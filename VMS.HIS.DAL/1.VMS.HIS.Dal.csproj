@@ -1,0 +1,751 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CD0BE8E8-B7D8-41CA-95F7-EA03675CFE0D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VMS.HIS.Dal</RootNamespace>
+    <AssemblyName>VMS.HIS.Dal</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>C:\HIS_BVSG\Running\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Running\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="SubSonic, Version=2.2.0.0, Culture=neutral, PublicKeyToken=eadb47849839a332, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class1.cs" />
+    <Compile Include="CustomProvider\CustomSqlProvider.cs" />
+    <Compile Include="CustomProvider\SubSonicHelper.cs" />
+    <Compile Include="Generated\AllStructs.cs" />
+    <Compile Include="Generated\Chiphi.cs" />
+    <Compile Include="Generated\ChiphiController.cs" />
+    <Compile Include="Generated\DataKetqua.cs" />
+    <Compile Include="Generated\DataKetquaController.cs" />
+    <Compile Include="Generated\DmucBenh.cs" />
+    <Compile Include="Generated\DmucBenhan.cs" />
+    <Compile Include="Generated\DmucBenhanController.cs" />
+    <Compile Include="Generated\DmucBenhController.cs" />
+    <Compile Include="Generated\DmucBenhvien.cs" />
+    <Compile Include="Generated\DmucBenhvienController.cs" />
+    <Compile Include="Generated\DmucBhytChitraDacbiet.cs" />
+    <Compile Include="Generated\DmucBhytChitraDacbietController.cs" />
+    <Compile Include="Generated\DmucBogiadichvu.cs" />
+    <Compile Include="Generated\DmucBogiadichvuController.cs" />
+    <Compile Include="Generated\DmucCanhbao.cs" />
+    <Compile Include="Generated\DmucCanhbaoController.cs" />
+    <Compile Include="Generated\DmucChidanKedonthuoc.cs" />
+    <Compile Include="Generated\DmucChidanKedonthuocController.cs" />
+    <Compile Include="Generated\DmucChung.cs" />
+    <Compile Include="Generated\DmucChungController.cs" />
+    <Compile Include="Generated\DmucDiachinh.cs" />
+    <Compile Include="Generated\DmucDiachinhController.cs" />
+    <Compile Include="Generated\DmucDichvucl.cs" />
+    <Compile Include="Generated\DmucDichvuclController.cs" />
+    <Compile Include="Generated\DmucDichvuclsChitiet.cs" />
+    <Compile Include="Generated\DmucDichvuclsChitietController.cs" />
+    <Compile Include="Generated\DmucDichvukcb.cs" />
+    <Compile Include="Generated\DmucDichvukcbController.cs" />
+    <Compile Include="Generated\DmucDoitac.cs" />
+    <Compile Include="Generated\DmucDoitacController.cs" />
+    <Compile Include="Generated\DmucDoituongbhyt.cs" />
+    <Compile Include="Generated\DmucDoituongbhytController.cs" />
+    <Compile Include="Generated\DmucDoituongkcb.cs" />
+    <Compile Include="Generated\DmucDoituongkcbController.cs" />
+    <Compile Include="Generated\DmucDonthuocmau.cs" />
+    <Compile Include="Generated\DmucDonthuocmauChitiet.cs" />
+    <Compile Include="Generated\DmucDonthuocmauChitietController.cs" />
+    <Compile Include="Generated\DmucDonthuocmauController.cs" />
+    <Compile Include="Generated\DmucGoikham.cs" />
+    <Compile Include="Generated\DmucGoikhamChitiet.cs" />
+    <Compile Include="Generated\DmucGoikhamChitietController.cs" />
+    <Compile Include="Generated\DmucGoikhamController.cs" />
+    <Compile Include="Generated\DmucHoatchat.cs" />
+    <Compile Include="Generated\DmucHoatchatController.cs" />
+    <Compile Include="Generated\DmucKhoaphong.cs" />
+    <Compile Include="Generated\DmucKhoaphongController.cs" />
+    <Compile Include="Generated\DmucKieudmuc.cs" />
+    <Compile Include="Generated\DmucKieudmucController.cs" />
+    <Compile Include="Generated\DmucKieukham.cs" />
+    <Compile Include="Generated\DmucKieukhamController.cs" />
+    <Compile Include="Generated\DmucLoaibenh.cs" />
+    <Compile Include="Generated\DmucLoaibenhController.cs" />
+    <Compile Include="Generated\DmucLoaithuoc.cs" />
+    <Compile Include="Generated\DmucLoaithuocController.cs" />
+    <Compile Include="Generated\DmucMahoamauKiemnghiem.cs" />
+    <Compile Include="Generated\DmucMahoamauKiemnghiemController.cs" />
+    <Compile Include="Generated\DmucNhanvien.cs" />
+    <Compile Include="Generated\DmucNhanvienController.cs" />
+    <Compile Include="Generated\DmucNhomcanlamsang.cs" />
+    <Compile Include="Generated\DmucNhomcanlamsangChitiet.cs" />
+    <Compile Include="Generated\DmucNhomcanlamsangChitietController.cs" />
+    <Compile Include="Generated\DmucNhomcanlamsangController.cs" />
+    <Compile Include="Generated\DmucNoiKCBBD.cs" />
+    <Compile Include="Generated\DmucNoiKCBBDController.cs" />
+    <Compile Include="Generated\DmucPhikemtheo.cs" />
+    <Compile Include="Generated\DmucPhikemtheoController.cs" />
+    <Compile Include="Generated\DmucThuoc.cs" />
+    <Compile Include="Generated\DmucThuocController.cs" />
+    <Compile Include="Generated\DmucTinhchatthuoc.cs" />
+    <Compile Include="Generated\DmucTinhchatthuocController.cs" />
+    <Compile Include="Generated\DmucVungkhaosat.cs" />
+    <Compile Include="Generated\DmucVungkhaosatController.cs" />
+    <Compile Include="Generated\DynamicField.cs" />
+    <Compile Include="Generated\DynamicFieldController.cs" />
+    <Compile Include="Generated\DynamicFieldUserCustomSize.cs" />
+    <Compile Include="Generated\DynamicFieldUserCustomSizeController.cs" />
+    <Compile Include="Generated\DynamicValue.cs" />
+    <Compile Include="Generated\DynamicValueController.cs" />
+    <Compile Include="Generated\EmrBa.cs" />
+    <Compile Include="Generated\EmrBaController.cs" />
+    <Compile Include="Generated\EmrBaFull.cs" />
+    <Compile Include="Generated\EmrBaFullController.cs" />
+    <Compile Include="Generated\EmrChandoan.cs" />
+    <Compile Include="Generated\EmrChandoanController.cs" />
+    <Compile Include="Generated\EmrChandoanSankhoa.cs" />
+    <Compile Include="Generated\EmrChandoanSankhoaController.cs" />
+    <Compile Include="Generated\EmrFile.cs" />
+    <Compile Include="Generated\EmrFileController.cs" />
+    <Compile Include="Generated\EmrGayPhieu.cs" />
+    <Compile Include="Generated\EmrGayPhieuController.cs" />
+    <Compile Include="Generated\EmrHosoluutru.cs" />
+    <Compile Include="Generated\EmrHosoluutruController.cs" />
+    <Compile Include="Generated\EmrNhikhoaQuatrinhsinhtruong.cs" />
+    <Compile Include="Generated\EmrNhikhoaQuatrinhsinhtruongController.cs" />
+    <Compile Include="Generated\EmrPhieuchuyenvien.cs" />
+    <Compile Include="Generated\EmrPhieuchuyenvienController.cs" />
+    <Compile Include="Generated\EmrPhieukhambenh.cs" />
+    <Compile Include="Generated\EmrPhieukhambenhController.cs" />
+    <Compile Include="Generated\EmrPhieukhamNhikhoa.cs" />
+    <Compile Include="Generated\EmrPhieukhamNhikhoaController.cs" />
+    <Compile Include="Generated\EmrPhieukhamNoikhoa.cs" />
+    <Compile Include="Generated\EmrPhieukhamNoikhoaController.cs" />
+    <Compile Include="Generated\EmrPhieukhamPhukhoa.cs" />
+    <Compile Include="Generated\EmrPhieukhamPhukhoaController.cs" />
+    <Compile Include="Generated\EmrPhieukhamSankhoa.cs" />
+    <Compile Include="Generated\EmrPhieukhamSankhoaController.cs" />
+    <Compile Include="Generated\EmrPhieuravien.cs" />
+    <Compile Include="Generated\EmrPhieuravienController.cs" />
+    <Compile Include="Generated\EmrPhieutheodoiTaibuongde.cs" />
+    <Compile Include="Generated\EmrPhieutheodoiTaibuongdeController.cs" />
+    <Compile Include="Generated\EmrPhieuvaovien.cs" />
+    <Compile Include="Generated\EmrPhieuvaovienController.cs" />
+    <Compile Include="Generated\EmrQheLoaibaGayba.cs" />
+    <Compile Include="Generated\EmrQheLoaibaGaybaController.cs" />
+    <Compile Include="Generated\EmrQuatrinhThaiky.cs" />
+    <Compile Include="Generated\EmrQuatrinhThaikyController.cs" />
+    <Compile Include="Generated\EmrThongtinNguoibenh.cs" />
+    <Compile Include="Generated\EmrThongtinNguoibenhController.cs" />
+    <Compile Include="Generated\EmrTiensubenhDacdiemlienquan.cs" />
+    <Compile Include="Generated\EmrTiensubenhDacdiemlienquanController.cs" />
+    <Compile Include="Generated\EmrTiensuSankhoa.cs" />
+    <Compile Include="Generated\EmrTiensuSankhoaController.cs" />
+    <Compile Include="Generated\EmrTiensusanphukhoa.cs" />
+    <Compile Include="Generated\EmrTiensusanphukhoaController.cs" />
+    <Compile Include="Generated\EmrTongketBenhan.cs" />
+    <Compile Include="Generated\EmrTongketBenhanController.cs" />
+    <Compile Include="Generated\Enums.cs" />
+    <Compile Include="Generated\GoiChitiet.cs" />
+    <Compile Include="Generated\GoiChitietController.cs" />
+    <Compile Include="Generated\GoiDangki.cs" />
+    <Compile Include="Generated\GoiDangkiController.cs" />
+    <Compile Include="Generated\GoiDanhsach.cs" />
+    <Compile Include="Generated\GoiDanhsachController.cs" />
+    <Compile Include="Generated\GoiMaVoucher.cs" />
+    <Compile Include="Generated\GoiMaVoucherController.cs" />
+    <Compile Include="Generated\GoiTinhtrangsudung.cs" />
+    <Compile Include="Generated\GoiTinhtrangsudungController.cs" />
+    <Compile Include="Generated\HoadonCapphat.cs" />
+    <Compile Include="Generated\HoadonCapphatController.cs" />
+    <Compile Include="Generated\HoadonLog.cs" />
+    <Compile Include="Generated\HoadonLogController.cs" />
+    <Compile Include="Generated\HoadonMau.cs" />
+    <Compile Include="Generated\HoadonMauController.cs" />
+    <Compile Include="Generated\HoadonMauMisa.cs" />
+    <Compile Include="Generated\HoadonMauMisaController.cs" />
+    <Compile Include="Generated\HoadonTrangthai.cs" />
+    <Compile Include="Generated\HoadonTrangthaiController.cs" />
+    <Compile Include="Generated\KcbBaCaytranhthai.cs" />
+    <Compile Include="Generated\KcbBaCaytranhthaiController.cs" />
+    <Compile Include="Generated\KcbBacsicungthuchien.cs" />
+    <Compile Include="Generated\KcbBacsicungthuchienController.cs" />
+    <Compile Include="Generated\KcbBaDatdungcu.cs" />
+    <Compile Include="Generated\KcbBaDatdungcuController.cs" />
+    <Compile Include="Generated\KcbBaThaoquecay.cs" />
+    <Compile Include="Generated\KcbBaThaoquecayController.cs" />
+    <Compile Include="Generated\KcbBaThaovong.cs" />
+    <Compile Include="Generated\KcbBaThaovongController.cs" />
+    <Compile Include="Generated\KcbBenhAn.cs" />
+    <Compile Include="Generated\KcbBenhAnController.cs" />
+    <Compile Include="Generated\KcbBienbanhoichan.cs" />
+    <Compile Include="Generated\KcbBienbanhoichanController.cs" />
+    <Compile Include="Generated\KcbChandoanKetluan.cs" />
+    <Compile Include="Generated\KcbChandoanKetluanController.cs" />
+    <Compile Include="Generated\KcbChidinhcl.cs" />
+    <Compile Include="Generated\KcbChidinhclController.cs" />
+    <Compile Include="Generated\KcbChidinhclsChitiet.cs" />
+    <Compile Include="Generated\KcbChidinhclsChitietController.cs" />
+    <Compile Include="Generated\KcbChietkhau.cs" />
+    <Compile Include="Generated\KcbChietkhauController.cs" />
+    <Compile Include="Generated\KcbDangkyKcb.cs" />
+    <Compile Include="Generated\KcbDangkyKcbController.cs" />
+    <Compile Include="Generated\KcbDangkySokham.cs" />
+    <Compile Include="Generated\KcbDangkySokhamController.cs" />
+    <Compile Include="Generated\KcbDanhsachBenhnhan.cs" />
+    <Compile Include="Generated\KcbDanhsachBenhnhanController.cs" />
+    <Compile Include="Generated\KcbDmucLuotkham.cs" />
+    <Compile Include="Generated\KcbDmucLuotkhamController.cs" />
+    <Compile Include="Generated\KcbDonkinh.cs" />
+    <Compile Include="Generated\KcbDonkinhController.cs" />
+    <Compile Include="Generated\KcbDonthuoc.cs" />
+    <Compile Include="Generated\KcbDonthuocChitiet.cs" />
+    <Compile Include="Generated\KcbDonthuocChitietController.cs" />
+    <Compile Include="Generated\KcbDonthuocController.cs" />
+    <Compile Include="Generated\KcbKetquaCl.cs" />
+    <Compile Include="Generated\KcbKetquaClController.cs" />
+    <Compile Include="Generated\KcbKetquaHa.cs" />
+    <Compile Include="Generated\KcbKetquaHaController.cs" />
+    <Compile Include="Generated\KcbLichsuDoituongKcb.cs" />
+    <Compile Include="Generated\KcbLichsuDoituongKcbController.cs" />
+    <Compile Include="Generated\KcbLichsugoihenKCB.cs" />
+    <Compile Include="Generated\KcbLichsugoihenKCBController.cs" />
+    <Compile Include="Generated\KcbLichsuInphoiBhyt.cs" />
+    <Compile Include="Generated\KcbLichsuInphoiBhytController.cs" />
+    <Compile Include="Generated\KcbLoghuy.cs" />
+    <Compile Include="Generated\KcbLoghuyController.cs" />
+    <Compile Include="Generated\KcbLuotkham.cs" />
+    <Compile Include="Generated\KcbLuotkhamController.cs" />
+    <Compile Include="Generated\KcbMaYte.cs" />
+    <Compile Include="Generated\KcbMaYteController.cs" />
+    <Compile Include="Generated\KcbPhieuchuyenvien.cs" />
+    <Compile Include="Generated\KcbPhieuchuyenvienController.cs" />
+    <Compile Include="Generated\KcbPhieuDct.cs" />
+    <Compile Include="Generated\KcbPhieuDctController.cs" />
+    <Compile Include="Generated\KcbPhieudenghiMg.cs" />
+    <Compile Include="Generated\KcbPhieudenghiMgChitiet.cs" />
+    <Compile Include="Generated\KcbPhieudenghiMgChitietController.cs" />
+    <Compile Include="Generated\KcbPhieudenghiMgController.cs" />
+    <Compile Include="Generated\KcbPhieuhenTiemchung.cs" />
+    <Compile Include="Generated\KcbPhieuhenTiemchungChitiet.cs" />
+    <Compile Include="Generated\KcbPhieuhenTiemchungChitietController.cs" />
+    <Compile Include="Generated\KcbPhieuhenTiemchungController.cs" />
+    <Compile Include="Generated\KcbPhieukhamcanthi.cs" />
+    <Compile Include="Generated\KcbPhieukhamcanthiController.cs" />
+    <Compile Include="Generated\KcbPhieukhamthai.cs" />
+    <Compile Include="Generated\KcbPhieukhamthaiController.cs" />
+    <Compile Include="Generated\KcbPhieukhamthaiTiensusankhoa.cs" />
+    <Compile Include="Generated\KcbPhieukhamthaiTiensusankhoaController.cs" />
+    <Compile Include="Generated\KcbPhieukhamThiluc.cs" />
+    <Compile Include="Generated\KcbPhieukhamThilucController.cs" />
+    <Compile Include="Generated\KcbPhieukhamTienme.cs" />
+    <Compile Include="Generated\KcbPhieukhamTienmeController.cs" />
+    <Compile Include="Generated\KcbPhieuPttt.cs" />
+    <Compile Include="Generated\KcbPhieuPtttController.cs" />
+    <Compile Include="Generated\KcbPhieusoket15ngay.cs" />
+    <Compile Include="Generated\KcbPhieusoket15ngayController.cs" />
+    <Compile Include="Generated\KcbPhieuthu.cs" />
+    <Compile Include="Generated\KcbPhieuthuController.cs" />
+    <Compile Include="Generated\KcbPhieutuvanPttt.cs" />
+    <Compile Include="Generated\KcbPhieutuvanPtttController.cs" />
+    <Compile Include="Generated\KcbQm.cs" />
+    <Compile Include="Generated\KcbQmController.cs" />
+    <Compile Include="Generated\KcbTag.cs" />
+    <Compile Include="Generated\KcbTagController.cs" />
+    <Compile Include="Generated\KcbTamungDichvu.cs" />
+    <Compile Include="Generated\KcbTamungDichvuController.cs" />
+    <Compile Include="Generated\KcbThanhphanhoichan.cs" />
+    <Compile Include="Generated\KcbThanhphanhoichanController.cs" />
+    <Compile Include="Generated\KcbThanhtoan.cs" />
+    <Compile Include="Generated\KcbThanhtoanChitiet.cs" />
+    <Compile Include="Generated\KcbThanhtoanChitietController.cs" />
+    <Compile Include="Generated\KcbThanhtoanController.cs" />
+    <Compile Include="Generated\KcbThanhtoanPhanbotheoPTTT.cs" />
+    <Compile Include="Generated\KcbThanhtoanPhanbotheoPTTTController.cs" />
+    <Compile Include="Generated\KcbThanhtoanTamungTrului.cs" />
+    <Compile Include="Generated\KcbThanhtoanTamungTruluiController.cs" />
+    <Compile Include="Generated\KcbThoigianchidinhCl.cs" />
+    <Compile Include="Generated\KcbThoigianchidinhClController.cs" />
+    <Compile Include="Generated\KcbThongtinchung.cs" />
+    <Compile Include="Generated\KcbThongtinchungController.cs" />
+    <Compile Include="Generated\KcbTongketBA.cs" />
+    <Compile Include="Generated\KcbTongketBAController.cs" />
+    <Compile Include="Generated\KnChidinhChitiet.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Generated\KnChidinhChitietController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Generated\KnChidinhXn.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Generated\KnChidinhXnController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Generated\KnDangkyXn.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Generated\KnDangkyXnController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Generated\KnDanhsachKhachhang.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Generated\KnDanhsachKhachhangController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Generated\KnDmucMadangky.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Generated\KnDmucMadangkyController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Generated\KskChidinhChitiet.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Generated\KskChidinhChitietController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Generated\KskChidinhCl.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Generated\KskChidinhClController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Generated\KskDanhsachNhanvien.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Generated\KskDanhsachNhanvienController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Generated\KskDmucKhachhang.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Generated\KskDmucKhachhangController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Generated\KskKhachhangDangky.cs" />
+    <Compile Include="Generated\KskKhachhangDangkyController.cs" />
+    <Compile Include="Generated\KskLuotkham.cs" />
+    <Compile Include="Generated\KskLuotkhamController.cs" />
+    <Compile Include="Generated\LDulieuDk.cs" />
+    <Compile Include="Generated\LDulieuDkController.cs" />
+    <Compile Include="Generated\MethaDanhsachBenhnhan.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Generated\MethaDanhsachBenhnhanController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Generated\MethaDonthuoc.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Generated\MethaDonthuocController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Generated\MethaKhamDtri.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Generated\MethaKhamDtriController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Generated\MethaLuotdieutri.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Generated\MethaLuotdieutriController.cs" />
+    <Compile Include="Generated\NoitruBienbanHoichan.cs" />
+    <Compile Include="Generated\NoitruBienbanHoichanController.cs" />
+    <Compile Include="Generated\NoitruChiphithem.cs" />
+    <Compile Include="Generated\NoitruChiphithemController.cs" />
+    <Compile Include="Generated\NoitruChuyenkhoasua.cs" />
+    <Compile Include="Generated\NoitruChuyenkhoasuaController.cs" />
+    <Compile Include="Generated\NoitruDmucBuong.cs" />
+    <Compile Include="Generated\NoitruDmucBuongController.cs" />
+    <Compile Include="Generated\NoitruDmucDinhduong.cs" />
+    <Compile Include="Generated\NoitruDmucDinhduongController.cs" />
+    <Compile Include="Generated\NoitruDmucGiuongbenh.cs" />
+    <Compile Include="Generated\NoitruDmucGiuongbenhController.cs" />
+    <Compile Include="Generated\NoitruGiabuonggiuong.cs" />
+    <Compile Include="Generated\NoitruGiabuonggiuongController.cs" />
+    <Compile Include="Generated\NoitruGoinhapvien.cs" />
+    <Compile Include="Generated\NoitruGoinhapvienController.cs" />
+    <Compile Include="Generated\NoitruPhanbuonggiuong.cs" />
+    <Compile Include="Generated\NoitruPhanbuonggiuongController.cs" />
+    <Compile Include="Generated\NoitruPhieuchamsoc.cs" />
+    <Compile Include="Generated\NoitruPhieuchamsocController.cs" />
+    <Compile Include="Generated\NoitruPhieudichtruyen.cs" />
+    <Compile Include="Generated\NoitruPhieudichtruyenController.cs" />
+    <Compile Include="Generated\NoitruPhieudieutri.cs" />
+    <Compile Include="Generated\NoitruPhieudieutriController.cs" />
+    <Compile Include="Generated\NoitruPhieudinhduong.cs" />
+    <Compile Include="Generated\NoitruPhieudinhduongController.cs" />
+    <Compile Include="Generated\NoitruPhieunhapvien.cs" />
+    <Compile Include="Generated\NoitruPhieunhapvienController.cs" />
+    <Compile Include="Generated\NoitruPhieuravien.cs" />
+    <Compile Include="Generated\NoitruPhieuravienController.cs" />
+    <Compile Include="Generated\NoitruPhieutheodoiChucnangsong.cs" />
+    <Compile Include="Generated\NoitruPhieutheodoiChucnangsongController.cs" />
+    <Compile Include="Generated\NoitruPhieuthuphanungthuoc.cs" />
+    <Compile Include="Generated\NoitruPhieuthuphanungthuocController.cs" />
+    <Compile Include="Generated\NoitruQheDoituongBuonggiuong.cs" />
+    <Compile Include="Generated\NoitruQheDoituongBuonggiuongController.cs" />
+    <Compile Include="Generated\NoitruQheGiuongGium.cs" />
+    <Compile Include="Generated\NoitruQheGiuongGiumController.cs" />
+    <Compile Include="Generated\NoitruTamung.cs" />
+    <Compile Include="Generated\NoitruTamungController.cs" />
+    <Compile Include="Generated\QheBacsiDichvucl.cs" />
+    <Compile Include="Generated\QheBacsiDichvuclController.cs" />
+    <Compile Include="Generated\QheBacsiKhoaphong.cs" />
+    <Compile Include="Generated\QheBacsiKhoaphongController.cs" />
+    <Compile Include="Generated\QheCamchidinhChungphieu.cs" />
+    <Compile Include="Generated\QheCamchidinhChungphieuController.cs" />
+    <Compile Include="Generated\QheChidinhclsGoi.cs" />
+    <Compile Include="Generated\QheChidinhclsGoiController.cs" />
+    <Compile Include="Generated\QheDautheQloiBhyt.cs" />
+    <Compile Include="Generated\QheDautheQloiBhytController.cs" />
+    <Compile Include="Generated\QheDichvuMauketqua.cs" />
+    <Compile Include="Generated\QheDichvuMauketquaController.cs" />
+    <Compile Include="Generated\QheDoituongDichvucl.cs" />
+    <Compile Include="Generated\QheDoituongDichvuclController.cs" />
+    <Compile Include="Generated\QheDoituongGoi.cs" />
+    <Compile Include="Generated\QheDoituongGoiController.cs" />
+    <Compile Include="Generated\QheDoituongGoidichvu.cs" />
+    <Compile Include="Generated\QheDoituongGoidichvuController.cs" />
+    <Compile Include="Generated\QheDoituongKho.cs" />
+    <Compile Include="Generated\QheDoituongKhoController.cs" />
+    <Compile Include="Generated\QheDoituongThuoc.cs" />
+    <Compile Include="Generated\QheDoituongThuocController.cs" />
+    <Compile Include="Generated\QheHoadondientuPhieuthanhtoan.cs" />
+    <Compile Include="Generated\QheHoadondientuPhieuthanhtoanController.cs" />
+    <Compile Include="Generated\QheKhoaKho.cs" />
+    <Compile Include="Generated\QheKhoaKhoController.cs" />
+    <Compile Include="Generated\QheNhanvienBaocaomulti.cs" />
+    <Compile Include="Generated\QheNhanvienBaocaomultiController.cs" />
+    <Compile Include="Generated\QheNhanvienCoso.cs" />
+    <Compile Include="Generated\QheNhanvienCosoController.cs" />
+    <Compile Include="Generated\QheNhanvienDanhmuc.cs" />
+    <Compile Include="Generated\QheNhanvienDanhmucController.cs" />
+    <Compile Include="Generated\QheNhanvienDmucchung.cs" />
+    <Compile Include="Generated\QheNhanvienDmucchungController.cs" />
+    <Compile Include="Generated\QheNhanvienKho.cs" />
+    <Compile Include="Generated\QheNhanvienKhoController.cs" />
+    <Compile Include="Generated\QheNhanvienQuyensudung.cs" />
+    <Compile Include="Generated\QheNhanvienQuyensudungController.cs" />
+    <Compile Include="Generated\QheNhomnhanvienQuyensudung.cs" />
+    <Compile Include="Generated\QheNhomnhanvienQuyensudungController.cs" />
+    <Compile Include="Generated\QheThanhtoanTamthu.cs" />
+    <Compile Include="Generated\QheThanhtoanTamthuController.cs" />
+    <Compile Include="Generated\QheThuoctuongduong.cs" />
+    <Compile Include="Generated\QheThuoctuongduongController.cs" />
+    <Compile Include="Generated\QheTuongtacThuoc.cs" />
+    <Compile Include="Generated\QheTuongtacThuocController.cs" />
+    <Compile Include="Generated\QlnsLichkham.cs" />
+    <Compile Include="Generated\QlnsLichkhamController.cs" />
+    <Compile Include="Generated\QrPhieuThanhtoan.cs" />
+    <Compile Include="Generated\QrPhieuThanhtoanChitiet.cs" />
+    <Compile Include="Generated\QrPhieuThanhtoanChitietController.cs" />
+    <Compile Include="Generated\QrPhieuThanhtoanController.cs" />
+    <Compile Include="Generated\StoredProcedures.cs" />
+    <Compile Include="Generated\SysAdministrator.cs" />
+    <Compile Include="Generated\SysAdministratorController.cs" />
+    <Compile Include="Generated\SysClient.cs" />
+    <Compile Include="Generated\SysClientController.cs" />
+    <Compile Include="Generated\SysConfigRadio.cs" />
+    <Compile Include="Generated\SysConfigRadioController.cs" />
+    <Compile Include="Generated\SysDelegateUser.cs" />
+    <Compile Include="Generated\SysDelegateUserController.cs" />
+    <Compile Include="Generated\SysDynamicControl.cs" />
+    <Compile Include="Generated\SysDynamicControlController.cs" />
+    <Compile Include="Generated\SysFunction.cs" />
+    <Compile Include="Generated\SysFunctionController.cs" />
+    <Compile Include="Generated\SysGridUserConfig.cs" />
+    <Compile Include="Generated\SysGridUserConfigController.cs" />
+    <Compile Include="Generated\SysGridViewOption.cs" />
+    <Compile Include="Generated\SysGridViewOptionController.cs" />
+    <Compile Include="Generated\SysGroup.cs" />
+    <Compile Include="Generated\SysGroupController.cs" />
+    <Compile Include="Generated\SysGroupRole.cs" />
+    <Compile Include="Generated\SysGroupRoleController.cs" />
+    <Compile Include="Generated\SysGroupUser.cs" />
+    <Compile Include="Generated\SysGroupUserController.cs" />
+    <Compile Include="Generated\SysHoadonMau.cs" />
+    <Compile Include="Generated\SysHoadonMauController.cs" />
+    <Compile Include="Generated\SysImgAndIcon.cs" />
+    <Compile Include="Generated\SysImgAndIconController.cs" />
+    <Compile Include="Generated\SysLockObject.cs" />
+    <Compile Include="Generated\SysLockObjectController.cs" />
+    <Compile Include="Generated\SysManagementUnit.cs" />
+    <Compile Include="Generated\SysManagementUnitController.cs" />
+    <Compile Include="Generated\SysMavienphi.cs" />
+    <Compile Include="Generated\SysMavienphiController.cs" />
+    <Compile Include="Generated\SysMessage.cs" />
+    <Compile Include="Generated\SysMessageController.cs" />
+    <Compile Include="Generated\SysMultiLanguage.cs" />
+    <Compile Include="Generated\SysMultiLanguageController.cs" />
+    <Compile Include="Generated\SysMultiReport.cs" />
+    <Compile Include="Generated\SysMultiReportConfig.cs" />
+    <Compile Include="Generated\SysMultiReportConfigController.cs" />
+    <Compile Include="Generated\SysMultiReportController.cs" />
+    <Compile Include="Generated\SysMultiReportSheetConfig.cs" />
+    <Compile Include="Generated\SysMultiReportSheetConfigController.cs" />
+    <Compile Include="Generated\SysReport.cs" />
+    <Compile Include="Generated\SysReportController.cs" />
+    <Compile Include="Generated\SysRole.cs" />
+    <Compile Include="Generated\SysRoleController.cs" />
+    <Compile Include="Generated\SysRolesForUser.cs" />
+    <Compile Include="Generated\SysRolesForUserController.cs" />
+    <Compile Include="Generated\SysScreen.cs" />
+    <Compile Include="Generated\SysScreenController.cs" />
+    <Compile Include="Generated\SysSecurity.cs" />
+    <Compile Include="Generated\SysSecurityController.cs" />
+    <Compile Include="Generated\SysSequence.cs" />
+    <Compile Include="Generated\SysSequenceController.cs" />
+    <Compile Include="Generated\SysSystemParameter.cs" />
+    <Compile Include="Generated\SysSystemParameterController.cs" />
+    <Compile Include="Generated\SysTieude.cs" />
+    <Compile Include="Generated\SysTieudeController.cs" />
+    <Compile Include="Generated\SysToolbarButton.cs" />
+    <Compile Include="Generated\SysToolbarButtonController.cs" />
+    <Compile Include="Generated\SysTrace.cs" />
+    <Compile Include="Generated\SysTraceController.cs" />
+    <Compile Include="Generated\SysTrinhky.cs" />
+    <Compile Include="Generated\SysTrinhkyController.cs" />
+    <Compile Include="Generated\SysUpdatelog.cs" />
+    <Compile Include="Generated\SysUpdatelogController.cs" />
+    <Compile Include="Generated\SysUser.cs" />
+    <Compile Include="Generated\SysUserConfig.cs" />
+    <Compile Include="Generated\SysUserConfigController.cs" />
+    <Compile Include="Generated\SysUserController.cs" />
+    <Compile Include="Generated\SysUserPrinter.cs" />
+    <Compile Include="Generated\SysUserPrinterController.cs" />
+    <Compile Include="Generated\SysVersion.cs" />
+    <Compile Include="Generated\SysVersionController.cs" />
+    <Compile Include="Generated\SysWebServicePath.cs" />
+    <Compile Include="Generated\SysWebServicePathController.cs" />
+    <Compile Include="Generated\TBiendongThuoc.cs" />
+    <Compile Include="Generated\TBiendongThuocController.cs" />
+    <Compile Include="Generated\TblFiledinhkem.cs" />
+    <Compile Include="Generated\TblFiledinhkemController.cs" />
+    <Compile Include="Generated\TblKedonthuocTempt.cs" />
+    <Compile Include="Generated\TblKedonthuocTemptController.cs" />
+    <Compile Include="Generated\TblTest.cs" />
+    <Compile Include="Generated\TblTestController.cs" />
+    <Compile Include="Generated\TDinhmucVtth.cs" />
+    <Compile Include="Generated\TDinhmucVtthController.cs" />
+    <Compile Include="Generated\TDmucKho.cs" />
+    <Compile Include="Generated\TDmucKhoController.cs" />
+    <Compile Include="Generated\TDutruThuoc.cs" />
+    <Compile Include="Generated\TDutruThuocController.cs" />
+    <Compile Include="Generated\TemBenhvien.cs" />
+    <Compile Include="Generated\TemBenhvienController.cs" />
+    <Compile Include="Generated\TempBiendongThuoc.cs" />
+    <Compile Include="Generated\TempBiendongThuocController.cs" />
+    <Compile Include="Generated\TempData2LI.cs" />
+    <Compile Include="Generated\TempData2LIController.cs" />
+    <Compile Include="Generated\TempData4Result.cs" />
+    <Compile Include="Generated\TempData4ResultController.cs" />
+    <Compile Include="Generated\TempDichvuclsChitiet.cs" />
+    <Compile Include="Generated\TempDichvuclsChitietController.cs" />
+    <Compile Include="Generated\TempDmucDichvuclsChitiet.cs" />
+    <Compile Include="Generated\TempDmucDichvuclsChitietController.cs" />
+    <Compile Include="Generated\TempDmucThuoc.cs" />
+    <Compile Include="Generated\TempDmucThuocController.cs" />
+    <Compile Include="Generated\TempDmucThuocTemp.cs" />
+    <Compile Include="Generated\TempDmucThuocTempController.cs" />
+    <Compile Include="Generated\TempDonvi.cs" />
+    <Compile Include="Generated\TempDonviController.cs" />
+    <Compile Include="Generated\TempLoaithuoc.cs" />
+    <Compile Include="Generated\TempLoaithuocController.cs" />
+    <Compile Include="Generated\TempQheGium.cs" />
+    <Compile Include="Generated\TempQheGiumController.cs" />
+    <Compile Include="Generated\TempThuoc.cs" />
+    <Compile Include="Generated\TempThuocController.cs" />
+    <Compile Include="Generated\ThuocLichsuTralaithuoctaiquayChitiet.cs" />
+    <Compile Include="Generated\ThuocLichsuTralaithuoctaiquayChitietController.cs" />
+    <Compile Include="Generated\ThuocLichsuTralaithuoctaiquayPhieu.cs" />
+    <Compile Include="Generated\ThuocLichsuTralaithuoctaiquayPhieuController.cs" />
+    <Compile Include="Generated\TLichsuChotthuoc.cs" />
+    <Compile Include="Generated\TLichsuChotthuocController.cs" />
+    <Compile Include="Generated\TLichsuHieuchinhDonthuoc.cs" />
+    <Compile Include="Generated\TLichsuHieuchinhDonthuocChitiet.cs" />
+    <Compile Include="Generated\TLichsuHieuchinhDonthuocChitietController.cs" />
+    <Compile Include="Generated\TLichsuHieuchinhDonthuocController.cs" />
+    <Compile Include="Generated\TLog.cs" />
+    <Compile Include="Generated\TLogController.cs" />
+    <Compile Include="Generated\TNhapxuat.cs" />
+    <Compile Include="Generated\TNhapxuatController.cs" />
+    <Compile Include="Generated\TNhapxuatTempt.cs" />
+    <Compile Include="Generated\TNhapxuatTemptController.cs" />
+    <Compile Include="Generated\TNhapxuattonTemp.cs" />
+    <Compile Include="Generated\TNhapxuattonTempController.cs" />
+    <Compile Include="Generated\TNhapxuattonThethuocTemp.cs" />
+    <Compile Include="Generated\TNhapxuattonThethuocTempController.cs" />
+    <Compile Include="Generated\TPhieuCapphatChitiet.cs" />
+    <Compile Include="Generated\TPhieuCapphatChitietController.cs" />
+    <Compile Include="Generated\TPhieuCapphatNoitru.cs" />
+    <Compile Include="Generated\TPhieuCapphatNoitruController.cs" />
+    <Compile Include="Generated\TPhieuNhapxuatthuoc.cs" />
+    <Compile Include="Generated\TPhieuNhapxuatthuocChitiet.cs" />
+    <Compile Include="Generated\TPhieuNhapxuatthuocChitietController.cs" />
+    <Compile Include="Generated\TPhieuNhapxuatthuocController.cs" />
+    <Compile Include="Generated\TPhieutrathuocthua.cs" />
+    <Compile Include="Generated\TPhieutrathuocthuaController.cs" />
+    <Compile Include="Generated\TPhieuXuatthuocBenhnhan.cs" />
+    <Compile Include="Generated\TPhieuXuatthuocBenhnhanChitiet.cs" />
+    <Compile Include="Generated\TPhieuXuatthuocBenhnhanChitietController.cs" />
+    <Compile Include="Generated\TPhieuXuatthuocBenhnhanController.cs" />
+    <Compile Include="Generated\TTamke.cs" />
+    <Compile Include="Generated\TTamkeController.cs" />
+    <Compile Include="Generated\TThau.cs" />
+    <Compile Include="Generated\TThauChitiet.cs" />
+    <Compile Include="Generated\TThauChitietController.cs" />
+    <Compile Include="Generated\TThauController.cs" />
+    <Compile Include="Generated\TThauDieutiet.cs" />
+    <Compile Include="Generated\TThauDieutietController.cs" />
+    <Compile Include="Generated\TThauDieutietCt.cs" />
+    <Compile Include="Generated\TThauDieutietCtController.cs" />
+    <Compile Include="Generated\TThauQdinh.cs" />
+    <Compile Include="Generated\TThauQdinhController.cs" />
+    <Compile Include="Generated\TThethuoc.cs" />
+    <Compile Include="Generated\TThethuocController.cs" />
+    <Compile Include="Generated\TThuocCapphatChitiet.cs" />
+    <Compile Include="Generated\TThuocCapphatChitietController.cs" />
+    <Compile Include="Generated\TThuockho.cs" />
+    <Compile Include="Generated\TThuockhoController.cs" />
+    <Compile Include="Generated\TThuocThua.cs" />
+    <Compile Include="Generated\TThuocThuaController.cs" />
+    <Compile Include="Generated\TTondauGium.cs" />
+    <Compile Include="Generated\TTondauGiumController.cs" />
+    <Compile Include="Generated\TTondauTemp.cs" />
+    <Compile Include="Generated\TTondauTempController.cs" />
+    <Compile Include="Generated\TTondauVacxinTemp.cs" />
+    <Compile Include="Generated\TTondauVacxinTempController.cs" />
+    <Compile Include="Generated\TTongChiphi.cs" />
+    <Compile Include="Generated\TTongChiphiController.cs" />
+    <Compile Include="Generated\TXuatthuocTheodon.cs" />
+    <Compile Include="Generated\TXuatthuocTheodonController.cs" />
+    <Compile Include="Generated\VDanhmucbenh.cs" />
+    <Compile Include="Generated\VDmucDiachinh.cs" />
+    <Compile Include="Generated\VDmucDichvucl.cs" />
+    <Compile Include="Generated\VDmucDichvuclsChitiet.cs" />
+    <Compile Include="Generated\VDmucDichvukcb.cs" />
+    <Compile Include="Generated\VDmucDoituongbhyt.cs" />
+    <Compile Include="Generated\VDmucKhoaphong.cs" />
+    <Compile Include="Generated\VDmucNhanvien.cs" />
+    <Compile Include="Generated\VDmucNoiKCBBD.cs" />
+    <Compile Include="Generated\VDmucThuoc.cs" />
+    <Compile Include="Generated\VKcbChidinhcl.cs" />
+    <Compile Include="Generated\VKcbDonthuoc.cs" />
+    <Compile Include="Generated\VKcbLuotkham.cs" />
+    <Compile Include="Generated\VKcbThanhtoan.cs" />
+    <Compile Include="Generated\VQheDoituongDichvucl.cs" />
+    <Compile Include="Generated\VQheDoituongThuoc.cs" />
+    <Compile Include="Generated\VQm.cs" />
+    <Compile Include="Generated\VThuocPhieunhapxuat.cs" />
+    <Compile Include="Generated\VTimkiembenhnhan.cs" />
+    <Compile Include="Generated\Xml1917.cs" />
+    <Compile Include="Generated\Xml1917Controller.cs" />
+    <Compile Include="Generated\Xml2917.cs" />
+    <Compile Include="Generated\Xml2917Controller.cs" />
+    <Compile Include="Generated\Xml3917.cs" />
+    <Compile Include="Generated\Xml3917Controller.cs" />
+    <Compile Include="Generated\Xml4917.cs" />
+    <Compile Include="Generated\Xml4917Controller.cs" />
+    <Compile Include="Generated\Xml5917.cs" />
+    <Compile Include="Generated\Xml5917Controller.cs" />
+    <Compile Include="Generated\XmlDmDvkt.cs" />
+    <Compile Include="Generated\XmlDmDvktController.cs" />
+    <Compile Include="Generated\XmlDmThuoc.cs" />
+    <Compile Include="Generated\XmlDmThuocController.cs" />
+    <Compile Include="Generated\XmlDmVtyt.cs" />
+    <Compile Include="Generated\XmlDmVtytController.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

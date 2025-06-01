@@ -1,0 +1,680 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B4990904-AC2D-44CC-A04F-6C3CBA3970D8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VMS.HIS.Noitru</RootNamespace>
+    <AssemblyName>VMS.HIS.Noitru</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>C:\HIS_BVSG\Running\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Running\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Aspose.Words">
+      <HintPath>..\..\..\Running_QLPKEBM\Aspose.Words.dll</HintPath>
+    </Reference>
+    <Reference Include="C1.C1Excel.2">
+      <HintPath>..\..\..\Running_QLPKEBM\C1.C1Excel.2.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="Excel">
+      <HintPath>..\..\..\Running_QLPKEBM\Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="Janus.Data.v3">
+      <HintPath>..\..\..\Running_QLPKEBM\Janus.Data.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.ButtonBar.v3">
+      <HintPath>..\..\..\Running_QLPKEBM\Janus.Windows.ButtonBar.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.CalendarCombo.v3">
+      <HintPath>..\..\..\Running_QLPKEBM\Janus.Windows.CalendarCombo.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.Common.v3">
+      <HintPath>..\..\..\Running_QLPKEBM\Janus.Windows.Common.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.GridEX.v3">
+      <HintPath>..\..\..\Running_QLPKEBM\Janus.Windows.GridEX.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.Ribbon.v3">
+      <HintPath>..\..\..\Running_QLPKEBM\Janus.Windows.Ribbon.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.Schedule.v3">
+      <HintPath>..\..\..\Running_QLPKEBM\Janus.Windows.Schedule.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.UI.v3">
+      <HintPath>..\..\..\Running_QLPKEBM\Janus.Windows.UI.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="NLog">
+      <HintPath>..\..\..\Running_QLPKEBM\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="SubSonic">
+      <HintPath>..\..\..\Running_QLPKEBM\SubSonic.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Noitru\frm_PhieuChamSoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Noitru\frm_PhieuChamSoc.Designer.cs">
+      <DependentUpon>frm_PhieuChamSoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Noitru\frm_Quanly_phieutuvanPTTT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Noitru\frm_Quanly_phieutuvanPTTT.Designer.cs">
+      <DependentUpon>frm_Quanly_phieutuvanPTTT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Noitru\frm_Saochep_phieudieutri_Alone.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Noitru\frm_Saochep_phieudieutri_Alone.Designer.cs">
+      <DependentUpon>frm_Saochep_phieudieutri_Alone.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Noitru\frm_phieucongkhai.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Noitru\frm_phieucongkhai.Designer.cs">
+      <DependentUpon>frm_phieucongkhai.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Noitru\frm_TonghopRavien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Noitru\frm_TonghopRavien.Designer.cs">
+      <DependentUpon>frm_TonghopRavien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Noitru\frm_tracuu_buonggiuong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Noitru\frm_tracuu_buonggiuong.Designer.cs">
+      <DependentUpon>frm_tracuu_buonggiuong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Noitru\FrmTrichBienBanHoiChan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Noitru\FrmTrichBienBanHoiChan.Designer.cs">
+      <DependentUpon>FrmTrichBienBanHoiChan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Noitru\frm_Add_GiuongNoiTru.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Noitru\frm_Add_GiuongNoiTru.Designer.cs">
+      <DependentUpon>frm_Add_GiuongNoiTru.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Noitru\frm_Add_PhongNoiTru.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Noitru\frm_Add_PhongNoiTru.Designer.cs">
+      <DependentUpon>frm_Add_PhongNoiTru.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Noitru\frm_ChandoanICD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Noitru\frm_ChandoanICD.Designer.cs">
+      <DependentUpon>frm_ChandoanICD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Noitru\frm_chonbacsidieutri.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Noitru\frm_chonbacsidieutri.Designer.cs">
+      <DependentUpon>frm_chonbacsidieutri.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Noitru\frm_Chuyengiuong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Noitru\frm_Chuyengiuong.Designer.cs">
+      <DependentUpon>frm_Chuyengiuong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Noitru\frm_ChuyenKhoa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Noitru\frm_ChuyenKhoa.Designer.cs">
+      <DependentUpon>frm_ChuyenKhoa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Noitru\frm_ChuyenKhoa_Sua.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Noitru\frm_ChuyenKhoa_Sua.Designer.cs">
+      <DependentUpon>frm_ChuyenKhoa_Sua.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Noitru\frm_DanhsachNguoibenhPTTT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Noitru\frm_DanhsachNguoibenhPTTT.Designer.cs">
+      <DependentUpon>frm_DanhsachNguoibenhPTTT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Noitru\frm_dmuc_buonggiuong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Noitru\frm_dmuc_buonggiuong.Designer.cs">
+      <DependentUpon>frm_dmuc_buonggiuong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Noitru\frm_dmuc_giabuonggiuong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Noitru\frm_dmuc_giabuonggiuong.Designer.cs">
+      <DependentUpon>frm_dmuc_giabuonggiuong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Noitru\frm_InPhieudieutri.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Noitru\frm_InPhieudieutri.Designer.cs">
+      <DependentUpon>frm_InPhieudieutri.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Noitru\frm_phanbuonggiuong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Noitru\frm_phanbuonggiuong.Designer.cs">
+      <DependentUpon>frm_phanbuonggiuong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Noitru\frm_QuanlyBienbanHoichan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Noitru\frm_QuanlyBienbanHoichan.Designer.cs">
+      <DependentUpon>frm_QuanlyBienbanHoichan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Noitru\frm_Quanlychuyenvien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Noitru\frm_Quanlychuyenvien.Designer.cs">
+      <DependentUpon>frm_Quanlychuyenvien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Noitru\frm_Quanlyphanbuonggiuong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Noitru\frm_Quanlyphanbuonggiuong.Designer.cs">
+      <DependentUpon>frm_Quanlyphanbuonggiuong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Noitru\frm_QuanlyPhieudieutri.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Noitru\frm_QuanlyPhieudieutri.Designer.cs">
+      <DependentUpon>frm_QuanlyPhieudieutri.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Noitru\frm_Quanlytamung.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Noitru\frm_Quanlytamung.Designer.cs">
+      <DependentUpon>frm_Quanlytamung.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Noitru\frm_Saochep_phieudieutri.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Noitru\frm_Saochep_phieudieutri.Designer.cs">
+      <DependentUpon>frm_Saochep_phieudieutri.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Noitru\frm_Taobenhnhancapcuu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Noitru\frm_Taobenhnhancapcuu.Designer.cs">
+      <DependentUpon>frm_Taobenhnhancapcuu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Noitru\frm_themphieudieutri.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Noitru\frm_themphieudieutri.Designer.cs">
+      <DependentUpon>frm_themphieudieutri.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Noitru\frm_Them_Sua_BG.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Noitru\frm_Them_Sua_BG.Designer.cs">
+      <DependentUpon>frm_Them_Sua_BG.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Noitru\frm_TimKiemKhoaPhongNoiTru.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Noitru\frm_TimKiemKhoaPhongNoiTru.Designer.cs">
+      <DependentUpon>frm_TimKiemKhoaPhongNoiTru.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Noitru\frm_Xemtonghopchiphi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Noitru\frm_Xemtonghopchiphi.Designer.cs">
+      <DependentUpon>frm_Xemtonghopchiphi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Noitru\HISVB\frm_phieutuvanPTTT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Noitru\HISVB\frm_phieutuvanPTTT.Designer.cs">
+      <DependentUpon>frm_phieutuvanPTTT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Noitru\HISVB\frm_CapnhatNgaynhapvien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Noitru\HISVB\frm_CapnhatNgaynhapvien.Designer.cs">
+      <DependentUpon>frm_CapnhatNgaynhapvien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Noitru\HISVB\frm_canhbaodongtamung.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Noitru\HISVB\frm_canhbaodongtamung.Designer.cs">
+      <DependentUpon>frm_canhbaodongtamung.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Noitru\HISVB\frm_themphieutruyendich.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Noitru\HISVB\frm_themphieutruyendich.Designer.cs">
+      <DependentUpon>frm_themphieutruyendich.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Noitru\HISVB\frm_PhieuPTTT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Noitru\HISVB\frm_PhieuPTTT.Designer.cs">
+      <DependentUpon>frm_PhieuPTTT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Noitru\HISVB\frm_PhieuSoKetDieuTri.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Noitru\HISVB\frm_PhieuSoKetDieuTri.Designer.cs">
+      <DependentUpon>frm_PhieuSoKetDieuTri.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Noitru\HISVB\frm_ThemBbanhoichan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Noitru\HISVB\frm_ThemBbanhoichan.Designer.cs">
+      <DependentUpon>frm_ThemBbanhoichan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Noitru\HISVB\frm_TongKetBenhAn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Noitru\HISVB\frm_TongKetBenhAn.Designer.cs">
+      <DependentUpon>frm_TongKetBenhAn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Noitru\frm_PhieuChamSoc.resx">
+      <DependentUpon>frm_PhieuChamSoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Noitru\frm_Quanly_phieutuvanPTTT.resx">
+      <DependentUpon>frm_Quanly_phieutuvanPTTT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Noitru\frm_Saochep_phieudieutri_Alone.resx">
+      <DependentUpon>frm_Saochep_phieudieutri_Alone.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Noitru\frm_phieucongkhai.resx">
+      <DependentUpon>frm_phieucongkhai.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Noitru\frm_TonghopRavien.resx">
+      <DependentUpon>frm_TonghopRavien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Noitru\frm_tracuu_buonggiuong.resx">
+      <DependentUpon>frm_tracuu_buonggiuong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Noitru\FrmTrichBienBanHoiChan.resx">
+      <DependentUpon>FrmTrichBienBanHoiChan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Noitru\frm_Add_GiuongNoiTru.resx">
+      <DependentUpon>frm_Add_GiuongNoiTru.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Noitru\frm_Add_PhongNoiTru.resx">
+      <DependentUpon>frm_Add_PhongNoiTru.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Noitru\frm_ChandoanICD.resx">
+      <DependentUpon>frm_ChandoanICD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Noitru\frm_chonbacsidieutri.resx">
+      <DependentUpon>frm_chonbacsidieutri.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Noitru\frm_Chuyengiuong.resx">
+      <DependentUpon>frm_Chuyengiuong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Noitru\frm_ChuyenKhoa.resx">
+      <DependentUpon>frm_ChuyenKhoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Noitru\frm_ChuyenKhoa_Sua.resx">
+      <DependentUpon>frm_ChuyenKhoa_Sua.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Noitru\frm_DanhsachNguoibenhPTTT.resx">
+      <DependentUpon>frm_DanhsachNguoibenhPTTT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Noitru\frm_dmuc_buonggiuong.resx">
+      <DependentUpon>frm_dmuc_buonggiuong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Noitru\frm_dmuc_giabuonggiuong.resx">
+      <DependentUpon>frm_dmuc_giabuonggiuong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Noitru\frm_InPhieudieutri.resx">
+      <DependentUpon>frm_InPhieudieutri.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Noitru\frm_phanbuonggiuong.resx">
+      <DependentUpon>frm_phanbuonggiuong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Noitru\frm_QuanlyBienbanHoichan.resx">
+      <DependentUpon>frm_QuanlyBienbanHoichan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Noitru\frm_Quanlychuyenvien.resx">
+      <DependentUpon>frm_Quanlychuyenvien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Noitru\frm_Quanlyphanbuonggiuong.resx">
+      <DependentUpon>frm_Quanlyphanbuonggiuong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Noitru\frm_QuanlyPhieudieutri.resx">
+      <DependentUpon>frm_QuanlyPhieudieutri.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Noitru\frm_Quanlytamung.resx">
+      <DependentUpon>frm_Quanlytamung.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Noitru\frm_Saochep_phieudieutri.resx">
+      <DependentUpon>frm_Saochep_phieudieutri.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Noitru\frm_Taobenhnhancapcuu.resx">
+      <DependentUpon>frm_Taobenhnhancapcuu.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Noitru\frm_themphieudieutri.resx">
+      <DependentUpon>frm_themphieudieutri.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Noitru\frm_Them_Sua_BG.resx">
+      <DependentUpon>frm_Them_Sua_BG.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Noitru\frm_TimKiemKhoaPhongNoiTru.resx">
+      <DependentUpon>frm_TimKiemKhoaPhongNoiTru.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Noitru\frm_Xemtonghopchiphi.resx">
+      <DependentUpon>frm_Xemtonghopchiphi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Noitru\HISVB\frm_phieutuvanPTTT.resx">
+      <DependentUpon>frm_phieutuvanPTTT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Noitru\HISVB\frm_CapnhatNgaynhapvien.resx">
+      <DependentUpon>frm_CapnhatNgaynhapvien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Noitru\HISVB\frm_canhbaodongtamung.resx">
+      <DependentUpon>frm_canhbaodongtamung.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Noitru\HISVB\frm_themphieutruyendich.resx">
+      <DependentUpon>frm_themphieutruyendich.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Noitru\HISVB\frm_PhieuPTTT.resx">
+      <DependentUpon>frm_PhieuPTTT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Noitru\HISVB\frm_PhieuSoKetDieuTri.resx">
+      <DependentUpon>frm_PhieuSoKetDieuTri.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Noitru\HISVB\frm_ThemBbanhoichan.resx">
+      <DependentUpon>frm_ThemBbanhoichan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Noitru\HISVB\frm_TongKetBenhAn.resx">
+      <DependentUpon>frm_TongKetBenhAn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VMS.HIS.Bus\3.VMS.HIS.Bus.csproj">
+      <Project>{a99e7072-450c-430d-ac3d-63cbb74c01ad}</Project>
+      <Name>3.VMS.HIS.Bus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VMS.HIS.DAL\1.VMS.HIS.Dal.csproj">
+      <Project>{cd0be8e8-b7d8-41ca-95f7-ea03675cfe0d}</Project>
+      <Name>1.VMS.HIS.Dal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VMS.HIS.Libs\2.VMS.HIS.Libs.csproj">
+      <Project>{0400ff7a-0d53-45aa-bbe5-09eedeb50d4e}</Project>
+      <Name>2.VMS.HIS.Libs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VMS.Resources\4.VMS.Resources.csproj">
+      <Project>{496ccd74-1e0f-45c2-8e86-bf48b9926587}</Project>
+      <Name>4.VMS.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VMS.HIS.Danhmuc\5.VMS.HIS.Danhmuc.csproj">
+      <Project>{53b9a2e4-529a-4248-ad8d-cbed38ed9c46}</Project>
+      <Name>5.VMS.HIS.Danhmuc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VMS.HIS.DUOC\9.VMS.HIS.Duoc.csproj">
+      <Project>{7928a51b-5f5e-46d4-ac1b-b9e466633d87}</Project>
+      <Name>9.VMS.HIS.Duoc</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\237510 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_01_24.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Add32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SUPPORT21.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_left_11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_left_11_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_left_16_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_left_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BS_96.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BS_961.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BSNAM.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BSNU.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\copy_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\direction_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_left_up1 - Copy %282%291.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_left_up1 - Copy %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FOLDER3.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FOLDERS.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GO_HOME.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HOME.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Hospital_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hospital_241.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PADLOCKE1.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\patient_color_24.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PEACE.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus_241.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus_243.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Print_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printer-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printer-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printtype1_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printtype1_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\QR.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\QR_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\QR_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh03_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\right_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SAVE.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SAVE %282%29.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SAVE_AS.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SAVE1.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SEARCH %282%29.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\STOP %282%29.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SUPPORT22.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TOOL.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trash-full_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_left_up1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Medical_24.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\excel_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SEARCH %282%291.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="backup\240812\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,1113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{684259A2-6A08-404E-95AF-27806C623BCE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VMS.HIS.BAOCAO</RootNamespace>
+    <AssemblyName>VMS.HIS.Baocao</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>C:\HIS_BVSG\Running\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Running\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Aspose.Cells, Version=4.7.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\HISLink\Running_Realease\Aspose.Cells.dll</HintPath>
+    </Reference>
+    <Reference Include="Aspose.Words, Version=16.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\HISLink\Running_Realease\Aspose.Words.dll</HintPath>
+    </Reference>
+    <Reference Include="C1.C1Excel.2, Version=2.1.20111.185, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\HISLink\Running_Realease\C1.C1Excel.2.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="Excel">
+      <HintPath>..\..\..\Running_QLPKEBM\Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="Janus.Data.v3">
+      <HintPath>..\..\..\Running_QLPKEBM\Janus.Data.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.CalendarCombo.v3">
+      <HintPath>..\..\..\Running_QLPKEBM\Janus.Windows.CalendarCombo.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.Common.v3">
+      <HintPath>..\..\..\Running_QLPKEBM\Janus.Windows.Common.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.GridEX.v3">
+      <HintPath>..\..\..\Running_QLPKEBM\Janus.Windows.GridEX.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.UI.v3">
+      <HintPath>..\..\..\Running_QLPKEBM\Janus.Windows.UI.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\..\..\Running_QLPKEBM\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="SubSonic">
+      <HintPath>..\..\..\Running_QLPKEBM\SubSonic.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Baocao\BaocaoMiengiam_tamung_hoanung\frm_baocaohuytien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\BaocaoMiengiam_tamung_hoanung\frm_baocaohuytien.Designer.cs">
+      <DependentUpon>frm_baocaohuytien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\BaocaoMiengiam_tamung_hoanung\frm_baocaomiengiam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\BaocaoMiengiam_tamung_hoanung\frm_baocaomiengiam.Designer.cs">
+      <DependentUpon>frm_baocaomiengiam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\BaocaoMiengiam_tamung_hoanung\frm_baocaotamung_hoanung.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\BaocaoMiengiam_tamung_hoanung\frm_baocaotamung_hoanung.Designer.cs">
+      <DependentUpon>frm_baocaotamung_hoanung.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\BaocaoMiengiam_tamung_hoanung\frm_baocaotonghop_chiphibenhvien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\BaocaoMiengiam_tamung_hoanung\frm_baocaotonghop_chiphibenhvien.Designer.cs">
+      <DependentUpon>frm_baocaotonghop_chiphibenhvien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\frm_tonghopchiphiKCB_bvsg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\frm_tonghopchiphiKCB_bvsg.Designer.cs">
+      <DependentUpon>frm_tonghopchiphiKCB_bvsg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\frm_baocaodoanhthutoanvien_bvsg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\frm_baocaodoanhthutoanvien_bvsg.Designer.cs">
+      <DependentUpon>frm_baocaodoanhthutoanvien_bvsg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\frm_sochitietbanhang_bvsg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\frm_sochitietbanhang_bvsg.Designer.cs">
+      <DependentUpon>frm_sochitietbanhang_bvsg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\frm_baocaodoanhthuphongkham_bvsg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\frm_baocaodoanhthuphongkham_bvsg.Designer.cs">
+      <DependentUpon>frm_baocaodoanhthuphongkham_bvsg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\fm_baocaochenhlech.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\fm_baocaochenhlech.Designer.cs">
+      <DependentUpon>fm_baocaochenhlech.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\fm_baocaochietkhaucong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\fm_baocaochietkhaucong.Designer.cs">
+      <DependentUpon>fm_baocaochietkhaucong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\fm_baocaodoanhthutienkham.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\fm_baocaodoanhthutienkham.Designer.cs">
+      <DependentUpon>fm_baocaodoanhthutienkham.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\fm_baocaoluu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\fm_baocaoluu.Designer.cs">
+      <DependentUpon>fm_baocaoluu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\fm_baocaonguon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\fm_baocaonguon.Designer.cs">
+      <DependentUpon>fm_baocaonguon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\fm_baocaonguon_EBM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\fm_baocaonguon_EBM.Designer.cs">
+      <DependentUpon>fm_baocaonguon_EBM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\fm_baocaothuchiendichvu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\fm_baocaothuchiendichvu.Designer.cs">
+      <DependentUpon>fm_baocaothuchiendichvu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\frm_baocaochidinhCLS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\frm_baocaochidinhCLS.Designer.cs">
+      <DependentUpon>frm_baocaochidinhCLS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\frm_baocaodanhsachbenhnhantheodotuoi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\frm_baocaodanhsachbenhnhantheodotuoi.Designer.cs">
+      <DependentUpon>frm_baocaodanhsachbenhnhantheodotuoi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\frm_baocaodanhsachhoadonthuphi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\frm_baocaodanhsachhoadonthuphi.Designer.cs">
+      <DependentUpon>frm_baocaodanhsachhoadonthuphi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\frm_baocaodoanhthuphongkham.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\frm_baocaodoanhthuphongkham.Designer.cs">
+      <DependentUpon>frm_baocaodoanhthuphongkham.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\frm_baocaodoanhthuphongkham_EBM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\frm_baocaodoanhthuphongkham_EBM.Designer.cs">
+      <DependentUpon>frm_baocaodoanhthuphongkham_EBM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\frm_baocaodoanhthutiemchung.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\frm_baocaodoanhthutiemchung.Designer.cs">
+      <DependentUpon>frm_baocaodoanhthutiemchung.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\frm_baocaodoanhthutiencls.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\frm_baocaodoanhthutiencls.Designer.cs">
+      <DependentUpon>frm_baocaodoanhthutiencls.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\frm_baocaosoluongbenhnhantheobacsy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\frm_baocaosoluongbenhnhantheobacsy.Designer.cs">
+      <DependentUpon>frm_baocaosoluongbenhnhantheobacsy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\frm_baocaothutientheokhoaphong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\frm_baocaothutientheokhoaphong.Designer.cs">
+      <DependentUpon>frm_baocaothutientheokhoaphong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\frm_baocaothuvienphi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\frm_baocaothuvienphi.Designer.cs">
+      <DependentUpon>frm_baocaothuvienphi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\frm_baocaotiepdonbenhnhan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\frm_baocaotiepdonbenhnhan.Designer.cs">
+      <DependentUpon>frm_baocaotiepdonbenhnhan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\frm_tonghopkhamchuabenh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\frm_tonghopkhamchuabenh.Designer.cs">
+      <DependentUpon>frm_tonghopkhamchuabenh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocaonoitru\frm_baocaotinhhinhnoitru.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocaonoitru\frm_baocaotinhhinhnoitru.Designer.cs">
+      <DependentUpon>frm_baocaotinhhinhnoitru.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocaonoitru\frm_thongkechuyenvien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocaonoitru\frm_thongkechuyenvien.Designer.cs">
+      <DependentUpon>frm_thongkechuyenvien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocaonoitru\frm_thongkenhapvien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocaonoitru\frm_thongkenhapvien.Designer.cs">
+      <DependentUpon>frm_thongkenhapvien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_nhapxuaton_tutruc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_nhapxuaton_tutruc.Designer.cs">
+      <DependentUpon>frm_baocao_nhapxuaton_tutruc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_doanhthubanthuoctaiquay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_doanhthubanthuoctaiquay.Designer.cs">
+      <DependentUpon>frm_baocao_doanhthubanthuoctaiquay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_benhnhan_linhthuoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_benhnhan_linhthuoc.Designer.cs">
+      <DependentUpon>frm_baocao_benhnhan_linhthuoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_chitiet_thuocdacapphat_benhnhan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_chitiet_thuocdacapphat_benhnhan.Designer.cs">
+      <DependentUpon>frm_baocao_chitiet_thuocdacapphat_benhnhan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_huychot_theoquy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_huychot_theoquy.Designer.cs">
+      <DependentUpon>frm_baocao_huychot_theoquy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_huythuoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_huythuoc.Designer.cs">
+      <DependentUpon>frm_baocao_huythuoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_nhapkho_chitiet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_nhapkho_chitiet.Designer.cs">
+      <DependentUpon>frm_baocao_nhapkho_chitiet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_nhapthuoctheoNhacungcap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_nhapthuoctheoNhacungcap.Designer.cs">
+      <DependentUpon>frm_baocao_nhapthuoctheoNhacungcap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_nhapxuathuoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_nhapxuathuoc.Designer.cs">
+      <DependentUpon>frm_baocao_nhapxuathuoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_nhapxuaton.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_nhapxuaton.Designer.cs">
+      <DependentUpon>frm_baocao_nhapxuaton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_nhapxuaton_theokhoanoitru.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_nhapxuaton_theokhoanoitru.Designer.cs">
+      <DependentUpon>frm_baocao_nhapxuaton_theokhoanoitru.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_nhapxuaton_theoquy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_nhapxuaton_theoquy.Designer.cs">
+      <DependentUpon>frm_baocao_nhapxuaton_theoquy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_phanungnang_sautiemchung.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_phanungnang_sautiemchung.Designer.cs">
+      <DependentUpon>frm_baocao_phanungnang_sautiemchung.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_phanungthongthuong_sautiemchung.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_phanungthongthuong_sautiemchung.Designer.cs">
+      <DependentUpon>frm_baocao_phanungthongthuong_sautiemchung.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_thanhlythuoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_thanhlythuoc.Designer.cs">
+      <DependentUpon>frm_baocao_thanhlythuoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_thuockedon_theobacsy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_thuockedon_theobacsy.Designer.cs">
+      <DependentUpon>frm_baocao_thuockedon_theobacsy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_tinhhinhsudung_vacxin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_tinhhinhsudung_vacxin.Designer.cs">
+      <DependentUpon>frm_baocao_tinhhinhsudung_vacxin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_tonghopthuoc_hangngay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_tonghopthuoc_hangngay.Designer.cs">
+      <DependentUpon>frm_baocao_tonghopthuoc_hangngay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_tonkho.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_tonkho.Designer.cs">
+      <DependentUpon>frm_baocao_tonkho.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_tonthuoc_trongkho.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_tonthuoc_trongkho.Designer.cs">
+      <DependentUpon>frm_baocao_tonthuoc_trongkho.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_tranhacungcap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_tranhacungcap.Designer.cs">
+      <DependentUpon>frm_baocao_tranhacungcap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_xuatthuoc_khoanoitru.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_xuatthuoc_khoanoitru.Designer.cs">
+      <DependentUpon>frm_baocao_xuatthuoc_khoanoitru.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_xuatvacxin_tuyenhuyen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_xuatvacxin_tuyenhuyen.Designer.cs">
+      <DependentUpon>frm_baocao_xuatvacxin_tuyenhuyen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_Sovatlieuchitiet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_Sovatlieuchitiet.Designer.cs">
+      <DependentUpon>frm_Sovatlieuchitiet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_thethuoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_thethuoc.Designer.cs">
+      <DependentUpon>frm_thethuoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_tonghopphatsinh_nhapxuat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_tonghopphatsinh_nhapxuat.Designer.cs">
+      <DependentUpon>frm_tonghopphatsinh_nhapxuat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\BHYT\frm_BHYT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\BHYT\frm_BHYT.Designer.cs">
+      <DependentUpon>frm_BHYT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\BHYT\frm_BHYT_05A.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\BHYT\frm_BHYT_05A.Designer.cs">
+      <DependentUpon>frm_BHYT_05A.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\BHYT\frm_BHYT_14A.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\BHYT\frm_BHYT_14A.Designer.cs">
+      <DependentUpon>frm_BHYT_14A.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\BHYT\frm_BHYT_19A.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\BHYT\frm_BHYT_19A.Designer.cs">
+      <DependentUpon>frm_BHYT_19A.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\BHYT\frm_BHYT_20A.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\BHYT\frm_BHYT_20A.Designer.cs">
+      <DependentUpon>frm_BHYT_20A.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\BHYT\frm_BHYT_21A.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\BHYT\frm_BHYT_21A.Designer.cs">
+      <DependentUpon>frm_BHYT_21A.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\BHYT\frm_BHYT_25A.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\BHYT\frm_BHYT_25A.Designer.cs">
+      <DependentUpon>frm_BHYT_25A.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\BHYT\frm_BHYT_79A.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\BHYT\frm_BHYT_79A.Designer.cs">
+      <DependentUpon>frm_BHYT_79A.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\BHYT\frm_BHYT_80A.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\BHYT\frm_BHYT_80A.Designer.cs">
+      <DependentUpon>frm_BHYT_80A.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\BHYT\frm_BHYT_baocao_dongchitra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\BHYT\frm_BHYT_baocao_dongchitra.Designer.cs">
+      <DependentUpon>frm_BHYT_baocao_dongchitra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\BHYT\frm_BHYT_baocao_tonghop_chiphitangthem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\BHYT\frm_BHYT_baocao_tonghop_chiphitangthem.Designer.cs">
+      <DependentUpon>frm_BHYT_baocao_tonghop_chiphitangthem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\BHYT\UserControls\BHYT_05A.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Baocao\BHYT\UserControls\BHYT_05A.Designer.cs">
+      <DependentUpon>BHYT_05A.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\BHYT\UserControls\BHYT_14A.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Baocao\BHYT\UserControls\BHYT_14A.Designer.cs">
+      <DependentUpon>BHYT_14A.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\BHYT\UserControls\BHYT_19A.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Baocao\BHYT\UserControls\BHYT_19A.Designer.cs">
+      <DependentUpon>BHYT_19A.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\BHYT\UserControls\BHYT_20A.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Baocao\BHYT\UserControls\BHYT_20A.Designer.cs">
+      <DependentUpon>BHYT_20A.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\BHYT\UserControls\BHYT_21A.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Baocao\BHYT\UserControls\BHYT_21A.Designer.cs">
+      <DependentUpon>BHYT_21A.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\BHYT\UserControls\BHYT_25A.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Baocao\BHYT\UserControls\BHYT_25A.Designer.cs">
+      <DependentUpon>BHYT_25A.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\BHYT\UserControls\BHYT_79A.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Baocao\BHYT\UserControls\BHYT_79A.Designer.cs">
+      <DependentUpon>BHYT_79A.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\BHYT\UserControls\BHYT_80A.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Baocao\BHYT\UserControls\BHYT_80A.Designer.cs">
+      <DependentUpon>BHYT_80A.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Multi\frm_BaocaoMulti.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Multi\frm_BaocaoMulti.Designer.cs">
+      <DependentUpon>frm_BaocaoMulti.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Multi\Libs\DataBinding.cs" />
+    <Compile Include="Baocao\Multi\Libs\JanusUtility.cs" />
+    <Compile Include="Baocao\Multi\Libs\SqlUtility.cs" />
+    <Compile Include="Baocao\ThongKe\frm_baocaochidinh_hangngay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\ThongKe\frm_baocaochidinh_hangngay.Designer.cs">
+      <DependentUpon>frm_baocaochidinh_hangngay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\ThongKe\frm_baocao_soketquacls.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\ThongKe\frm_baocao_soketquacls.Designer.cs">
+      <DependentUpon>frm_baocao_soketquacls.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\ThongKe\frm_baocao_thoigianthuchien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\ThongKe\frm_baocao_thoigianthuchien.Designer.cs">
+      <DependentUpon>frm_baocao_thoigianthuchien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\ThongKe\frm_danhsachbenhnhan_ngoaitru.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\ThongKe\frm_danhsachbenhnhan_ngoaitru.Designer.cs">
+      <DependentUpon>frm_danhsachbenhnhan_ngoaitru.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\ThongKe\frm_sobenhan_ngoaitru.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\ThongKe\frm_sobenhan_ngoaitru.Designer.cs">
+      <DependentUpon>frm_sobenhan_ngoaitru.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\ThongKe\frm_sokhambenh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\ThongKe\frm_sokhambenh.Designer.cs">
+      <DependentUpon>frm_sokhambenh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\ThongKe\Frm_Sokhambenh_NoiTru.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\ThongKe\Frm_Sokhambenh_NoiTru.Designer.cs">
+      <DependentUpon>Frm_Sokhambenh_NoiTru.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\ThongKe\frm_thongketheoma_ICD10.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\ThongKe\frm_thongketheoma_ICD10.Designer.cs">
+      <DependentUpon>frm_thongketheoma_ICD10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\ThongKe\frm_thongke_danhsachbenhnhanh_phongchucnang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\ThongKe\frm_thongke_danhsachbenhnhanh_phongchucnang.Designer.cs">
+      <DependentUpon>frm_thongke_danhsachbenhnhanh_phongchucnang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Baocao\BaocaoMiengiam_tamung_hoanung\frm_baocaohuytien.resx">
+      <DependentUpon>frm_baocaohuytien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\BaocaoMiengiam_tamung_hoanung\frm_baocaomiengiam.resx">
+      <DependentUpon>frm_baocaomiengiam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\BaocaoMiengiam_tamung_hoanung\frm_baocaotamung_hoanung.resx">
+      <DependentUpon>frm_baocaotamung_hoanung.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\BaocaoMiengiam_tamung_hoanung\frm_baocaotonghop_chiphibenhvien.resx">
+      <DependentUpon>frm_baocaotonghop_chiphibenhvien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocaongoaitru\frm_tonghopchiphiKCB_bvsg.resx">
+      <DependentUpon>frm_tonghopchiphiKCB_bvsg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocaongoaitru\frm_baocaodoanhthutoanvien_bvsg.resx">
+      <DependentUpon>frm_baocaodoanhthutoanvien_bvsg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocaongoaitru\frm_sochitietbanhang_bvsg.resx">
+      <DependentUpon>frm_sochitietbanhang_bvsg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocaongoaitru\frm_baocaodoanhthuphongkham_bvsg.resx">
+      <DependentUpon>frm_baocaodoanhthuphongkham_bvsg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocaongoaitru\fm_baocaochenhlech.resx">
+      <DependentUpon>fm_baocaochenhlech.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocaongoaitru\fm_baocaochietkhaucong.resx">
+      <DependentUpon>fm_baocaochietkhaucong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocaongoaitru\fm_baocaodoanhthutienkham.resx">
+      <DependentUpon>fm_baocaodoanhthutienkham.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocaongoaitru\fm_baocaoluu.resx">
+      <DependentUpon>fm_baocaoluu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocaongoaitru\fm_baocaonguon.resx">
+      <DependentUpon>fm_baocaonguon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocaongoaitru\fm_baocaonguon_EBM.resx">
+      <DependentUpon>fm_baocaonguon_EBM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocaongoaitru\fm_baocaothuchiendichvu.resx">
+      <DependentUpon>fm_baocaothuchiendichvu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocaongoaitru\frm_baocaochidinhCLS.resx">
+      <DependentUpon>frm_baocaochidinhCLS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocaongoaitru\frm_baocaodanhsachbenhnhantheodotuoi.resx">
+      <DependentUpon>frm_baocaodanhsachbenhnhantheodotuoi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocaongoaitru\frm_baocaodanhsachhoadonthuphi.resx">
+      <DependentUpon>frm_baocaodanhsachhoadonthuphi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocaongoaitru\frm_baocaodoanhthuphongkham.resx">
+      <DependentUpon>frm_baocaodoanhthuphongkham.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocaongoaitru\frm_baocaodoanhthuphongkham_EBM.resx">
+      <DependentUpon>frm_baocaodoanhthuphongkham_EBM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocaongoaitru\frm_baocaodoanhthutiemchung.resx">
+      <DependentUpon>frm_baocaodoanhthutiemchung.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocaongoaitru\frm_baocaodoanhthutiencls.resx">
+      <DependentUpon>frm_baocaodoanhthutiencls.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocaongoaitru\frm_baocaosoluongbenhnhantheobacsy.resx">
+      <DependentUpon>frm_baocaosoluongbenhnhantheobacsy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocaongoaitru\frm_baocaothutientheokhoaphong.resx">
+      <DependentUpon>frm_baocaothutientheokhoaphong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocaongoaitru\frm_baocaothuvienphi.resx">
+      <DependentUpon>frm_baocaothuvienphi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocaongoaitru\frm_baocaotiepdonbenhnhan.resx">
+      <DependentUpon>frm_baocaotiepdonbenhnhan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocaongoaitru\frm_tonghopkhamchuabenh.resx">
+      <DependentUpon>frm_tonghopkhamchuabenh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocaonoitru\frm_baocaotinhhinhnoitru.resx">
+      <DependentUpon>frm_baocaotinhhinhnoitru.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocaonoitru\frm_thongkechuyenvien.resx">
+      <DependentUpon>frm_thongkechuyenvien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocaonoitru\frm_thongkenhapvien.resx">
+      <DependentUpon>frm_thongkenhapvien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocao_Thuoc\frm_baocao_nhapxuaton_tutruc.resx">
+      <DependentUpon>frm_baocao_nhapxuaton_tutruc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocao_Thuoc\frm_baocao_doanhthubanthuoctaiquay.resx">
+      <DependentUpon>frm_baocao_doanhthubanthuoctaiquay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocao_Thuoc\frm_baocao_benhnhan_linhthuoc.resx">
+      <DependentUpon>frm_baocao_benhnhan_linhthuoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocao_Thuoc\frm_baocao_chitiet_thuocdacapphat_benhnhan.resx">
+      <DependentUpon>frm_baocao_chitiet_thuocdacapphat_benhnhan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocao_Thuoc\frm_baocao_huychot_theoquy.resx">
+      <DependentUpon>frm_baocao_huychot_theoquy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocao_Thuoc\frm_baocao_huythuoc.resx">
+      <DependentUpon>frm_baocao_huythuoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocao_Thuoc\frm_baocao_nhapkho_chitiet.resx">
+      <DependentUpon>frm_baocao_nhapkho_chitiet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocao_Thuoc\frm_baocao_nhapthuoctheoNhacungcap.resx">
+      <DependentUpon>frm_baocao_nhapthuoctheoNhacungcap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocao_Thuoc\frm_baocao_nhapxuathuoc.resx">
+      <DependentUpon>frm_baocao_nhapxuathuoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocao_Thuoc\frm_baocao_nhapxuaton.resx">
+      <DependentUpon>frm_baocao_nhapxuaton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocao_Thuoc\frm_baocao_nhapxuaton_theokhoanoitru.resx">
+      <DependentUpon>frm_baocao_nhapxuaton_theokhoanoitru.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocao_Thuoc\frm_baocao_nhapxuaton_theoquy.resx">
+      <DependentUpon>frm_baocao_nhapxuaton_theoquy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocao_Thuoc\frm_baocao_phanungnang_sautiemchung.resx">
+      <DependentUpon>frm_baocao_phanungnang_sautiemchung.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocao_Thuoc\frm_baocao_phanungthongthuong_sautiemchung.resx">
+      <DependentUpon>frm_baocao_phanungthongthuong_sautiemchung.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocao_Thuoc\frm_baocao_thanhlythuoc.resx">
+      <DependentUpon>frm_baocao_thanhlythuoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocao_Thuoc\frm_baocao_thuockedon_theobacsy.resx">
+      <DependentUpon>frm_baocao_thuockedon_theobacsy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocao_Thuoc\frm_baocao_tinhhinhsudung_vacxin.resx">
+      <DependentUpon>frm_baocao_tinhhinhsudung_vacxin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocao_Thuoc\frm_baocao_tonghopthuoc_hangngay.resx">
+      <DependentUpon>frm_baocao_tonghopthuoc_hangngay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocao_Thuoc\frm_baocao_tonkho.resx">
+      <DependentUpon>frm_baocao_tonkho.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocao_Thuoc\frm_baocao_tonthuoc_trongkho.resx">
+      <DependentUpon>frm_baocao_tonthuoc_trongkho.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocao_Thuoc\frm_baocao_tranhacungcap.resx">
+      <DependentUpon>frm_baocao_tranhacungcap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocao_Thuoc\frm_baocao_xuatthuoc_khoanoitru.resx">
+      <DependentUpon>frm_baocao_xuatthuoc_khoanoitru.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocao_Thuoc\frm_baocao_xuatvacxin_tuyenhuyen.resx">
+      <DependentUpon>frm_baocao_xuatvacxin_tuyenhuyen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocao_Thuoc\frm_Sovatlieuchitiet.resx">
+      <DependentUpon>frm_Sovatlieuchitiet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocao_Thuoc\frm_thethuoc.resx">
+      <DependentUpon>frm_thethuoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocao_Thuoc\frm_tonghopphatsinh_nhapxuat.resx">
+      <DependentUpon>frm_tonghopphatsinh_nhapxuat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\BHYT\frm_BHYT.resx">
+      <DependentUpon>frm_BHYT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\BHYT\frm_BHYT_05A.resx">
+      <DependentUpon>frm_BHYT_05A.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\BHYT\frm_BHYT_14A.resx">
+      <DependentUpon>frm_BHYT_14A.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\BHYT\frm_BHYT_19A.resx">
+      <DependentUpon>frm_BHYT_19A.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\BHYT\frm_BHYT_20A.resx">
+      <DependentUpon>frm_BHYT_20A.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\BHYT\frm_BHYT_21A.resx">
+      <DependentUpon>frm_BHYT_21A.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\BHYT\frm_BHYT_25A.resx">
+      <DependentUpon>frm_BHYT_25A.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\BHYT\frm_BHYT_79A.resx">
+      <DependentUpon>frm_BHYT_79A.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\BHYT\frm_BHYT_80A.resx">
+      <DependentUpon>frm_BHYT_80A.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\BHYT\frm_BHYT_baocao_dongchitra.resx">
+      <DependentUpon>frm_BHYT_baocao_dongchitra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\BHYT\frm_BHYT_baocao_tonghop_chiphitangthem.resx">
+      <DependentUpon>frm_BHYT_baocao_tonghop_chiphitangthem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\BHYT\UserControls\BHYT_05A.resx">
+      <DependentUpon>BHYT_05A.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\BHYT\UserControls\BHYT_14A.resx">
+      <DependentUpon>BHYT_14A.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\BHYT\UserControls\BHYT_19A.resx">
+      <DependentUpon>BHYT_19A.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\BHYT\UserControls\BHYT_20A.resx">
+      <DependentUpon>BHYT_20A.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\BHYT\UserControls\BHYT_21A.resx">
+      <DependentUpon>BHYT_21A.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\BHYT\UserControls\BHYT_25A.resx">
+      <DependentUpon>BHYT_25A.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\BHYT\UserControls\BHYT_79A.resx">
+      <DependentUpon>BHYT_79A.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\BHYT\UserControls\BHYT_80A.resx">
+      <DependentUpon>BHYT_80A.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Multi\frm_BaocaoMulti.resx">
+      <DependentUpon>frm_BaocaoMulti.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\ThongKe\frm_baocaochidinh_hangngay.resx">
+      <DependentUpon>frm_baocaochidinh_hangngay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\ThongKe\frm_baocao_soketquacls.resx">
+      <DependentUpon>frm_baocao_soketquacls.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\ThongKe\frm_baocao_thoigianthuchien.resx">
+      <DependentUpon>frm_baocao_thoigianthuchien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\ThongKe\frm_danhsachbenhnhan_ngoaitru.resx">
+      <DependentUpon>frm_danhsachbenhnhan_ngoaitru.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\ThongKe\frm_sobenhan_ngoaitru.resx">
+      <DependentUpon>frm_sobenhan_ngoaitru.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\ThongKe\frm_sokhambenh.resx">
+      <DependentUpon>frm_sokhambenh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\ThongKe\Frm_Sokhambenh_NoiTru.resx">
+      <DependentUpon>Frm_Sokhambenh_NoiTru.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\ThongKe\frm_thongketheoma_ICD10.resx">
+      <DependentUpon>frm_thongketheoma_ICD10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\ThongKe\frm_thongke_danhsachbenhnhanh_phongchucnang.resx">
+      <DependentUpon>frm_thongke_danhsachbenhnhanh_phongchucnang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VMS.HIS.Bus\3.VMS.HIS.Bus.csproj">
+      <Project>{a99e7072-450c-430d-ac3d-63cbb74c01ad}</Project>
+      <Name>3.VMS.HIS.Bus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VMS.HIS.DAL\1.VMS.HIS.Dal.csproj">
+      <Project>{cd0be8e8-b7d8-41ca-95f7-ea03675cfe0d}</Project>
+      <Name>1.VMS.HIS.Dal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VMS.HIS.Libs\2.VMS.HIS.Libs.csproj">
+      <Project>{0400ff7a-0d53-45aa-bbe5-09eedeb50d4e}</Project>
+      <Name>2.VMS.HIS.Libs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VMS.Resources\4.VMS.Resources.csproj">
+      <Project>{496ccd74-1e0f-45c2-8e86-bf48b9926587}</Project>
+      <Name>4.VMS.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VMS.HIS.Danhmuc\5.VMS.HIS.Danhmuc.csproj">
+      <Project>{53b9a2e4-529a-4248-ad8d-cbed38ed9c46}</Project>
+      <Name>5.VMS.HIS.Danhmuc</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\237510 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_01_24.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Add32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SUPPORT21.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_left_11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_left_11_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_left_16_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_left_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bed_no196.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bed_no24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bed_yes196.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BS_96.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BS_961.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BSNAM.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BSNU.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clock_196.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clock_20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clock_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clock_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\copy_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\direction_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_left_up1 - Copy %282%291.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_left_up1 - Copy %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FOLDER3.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FOLDERS.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GO_HOME.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HOME.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HOME_24.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Hospital_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hospital_241.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PADLOCKE1.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\patient_color_24.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PEACE.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus_241.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus_243.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Print_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printer-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printer-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printtype1_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printtype1_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\QR.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\QR_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\QR_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh03_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\right_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SAVE.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SAVE %282%29.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SAVE_AS.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SAVE1.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SEARCH %282%29.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\STOP %282%29.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SUPPORT22.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TOOL.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trash-full_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_left_up1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_32.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,11 @@
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\Running\VMS.HIS.BHYT.dll
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\Running\VMS.HIS.BHYT.pdb
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BHYT\obj\Release\4_1.VMS.HIS.BHYT.csprojResolveAssemblyReference.cache
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BHYT\obj\Release\VMS.HIS.BHYT.FrmThongTinBHYT.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BHYT\obj\Release\VMS.HIS.BHYT.Properties.Resources.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BHYT\obj\Release\4_1.VMS.HIS.BHYT.csproj.GenerateResource.Cache
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BHYT\obj\Release\VMS.HIS.BHYT.dll.licenses
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BHYT\obj\Release\VMS.HIS.BHYT.dll
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BHYT\obj\Release\VMS.HIS.BHYT.pdb
+F:\VMS_HIS\GitHub2024\Running\VMS.HIS.BHYT.dll
+F:\VMS_HIS\GitHub2024\Running\VMS.HIS.BHYT.pdb

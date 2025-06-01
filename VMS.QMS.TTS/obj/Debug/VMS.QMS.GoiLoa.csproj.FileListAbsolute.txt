@@ -1,0 +1,14 @@
+C:\HIS_BVSG\Running\QMS_Goiloa\VMS.QMS.TTS.exe.config
+C:\HIS_BVSG\Running\QMS_Goiloa\VMS.QMS.TTS.exe
+C:\HIS_BVSG\Running\QMS_Goiloa\VMS.QMS.TTS.pdb
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.QMS.TTS\obj\Debug\Interop.WMPLib.dll
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.QMS.TTS\obj\Debug\VMS.QMS.GoiLoa.csproj.ResolveComReference.cache
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.QMS.TTS\obj\Debug\VMS.QMS.GoiLoa.FrmMain_New.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.QMS.TTS\obj\Debug\VMS.QMS.TTS.Properties.Resources.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.QMS.TTS\obj\Debug\VMS.QMS.GoiLoa.csproj.GenerateResource.cache
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.QMS.TTS\obj\Debug\VMS.QMS.TTS.exe.licenses
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.QMS.TTS\obj\Debug\VMS.QMS.GoiLoa.csproj.CoreCompileInputs.cache
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.QMS.TTS\obj\Debug\VMS.QMS.GoiLoa.csproj.CopyComplete
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.QMS.TTS\obj\Debug\VMS.QMS.TTS.exe
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.QMS.TTS\obj\Debug\VMS.QMS.TTS.pdb
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.QMS.TTS\obj\Debug\VMS.QMS.GoiLoa.csproj.AssemblyReference.cache

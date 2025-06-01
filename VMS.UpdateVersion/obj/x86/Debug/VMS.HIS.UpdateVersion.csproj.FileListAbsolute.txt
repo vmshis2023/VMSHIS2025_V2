@@ -1,0 +1,14 @@
+F:\VMS_HIS\GitHub2024\Running_QLPKEBM\UpdateVer.exe.config
+F:\VMS_HIS\GitHub2024\Running_QLPKEBM\UpdateVer.exe
+F:\VMS_HIS\GitHub2024\Running_QLPKEBM\UpdateVer.pdb
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.UpdateVersion\obj\x86\Debug\VMS.HIS.UpdateVersion.csproj.AssemblyReference.cache
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.UpdateVersion\obj\x86\Debug\UpdateVer.Properties.Resources.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.UpdateVersion\obj\x86\Debug\UpdateVersion.UpdateVersion.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.UpdateVersion\obj\x86\Debug\VMS.HIS.UpdateVersion.csproj.GenerateResource.cache
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.UpdateVersion\obj\x86\Debug\VMS.HIS.UpdateVersion.csproj.CoreCompileInputs.cache
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.UpdateVersion\obj\x86\Debug\VMS.HIS.UpdateVersion.csproj.CopyComplete
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.UpdateVersion\obj\x86\Debug\UpdateVer.exe
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.UpdateVersion\obj\x86\Debug\UpdateVer.pdb
+C:\HIS_BVSG\Running\UpdateVer.exe.config
+C:\HIS_BVSG\Running\UpdateVer.exe
+C:\HIS_BVSG\Running\UpdateVer.pdb

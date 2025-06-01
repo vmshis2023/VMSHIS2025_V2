@@ -1,0 +1,16 @@
+F:\VMS_HIS\GitHub2024\Running\VMS.HIS.Goikham.dll
+F:\VMS_HIS\GitHub2024\Running\VMS.HIS.Goikham.pdb
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Goikham\obj\Release\9_4.VMS.HIS.Goikham.csprojResolveAssemblyReference.cache
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Goikham\obj\Release\VMS.HIS.Goikham.Form1.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Goikham\obj\Release\VNS.HIS.UI.GOIKHAM.frm_TaoChuongtrinhKhuyenmai_Voucher.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Goikham\obj\Release\VNS.HIS.UI.GOIKHAM.frm_TaoGoiKham.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Goikham\obj\Release\VNS.HIS.UI.GOIKHAM.frm_DanhSachGoiKham.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Goikham\obj\Release\VNS.HIS.UI.GOIKHAM.frm_TaoMaVoucher.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Goikham\obj\Release\VNS.HIS.UI.GOIKHAM.frm_QuanLyGoiKham.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Goikham\obj\Release\VNS.HIS.UI.Forms.KSK.frm_capnhatksk.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Goikham\obj\Release\VNS.HIS.UI.Forms.KSK.frm_qly_ksk.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Goikham\obj\Release\VMS.HIS.Goikham.Properties.Resources.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Goikham\obj\Release\9_4.VMS.HIS.Goikham.csproj.GenerateResource.Cache
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Goikham\obj\Release\VMS.HIS.Goikham.dll.licenses
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Goikham\obj\Release\VMS.HIS.Goikham.dll
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Goikham\obj\Release\VMS.HIS.Goikham.pdb

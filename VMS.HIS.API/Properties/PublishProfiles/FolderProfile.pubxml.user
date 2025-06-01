@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>D:\Publish Webservice\VMS_HIS_API</_PublishTargetUrl>
+    <History>True|2025-05-21T13:55:48.4195557Z;True|2025-05-21T01:32:25.2595559+07:00;True|2025-05-21T01:09:44.5257878+07:00;True|2025-05-20T16:25:54.2023236+07:00;True|2025-05-20T16:22:34.4085440+07:00;</History>
+  </PropertyGroup>
+</Project>

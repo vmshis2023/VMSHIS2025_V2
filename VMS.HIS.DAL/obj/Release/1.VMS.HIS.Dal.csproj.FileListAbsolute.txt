@@ -1,0 +1,8 @@
+F:\VMS_HIS\GitHub2024\Running\VMS.HIS.Dal.dll.config
+F:\VMS_HIS\GitHub2024\Running\VMS.HIS.Dal.dll
+F:\VMS_HIS\GitHub2024\Running\VMS.HIS.Dal.pdb
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.DAL\obj\Release\VMS.HIS.Dal.dll
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.DAL\obj\Release\VMS.HIS.Dal.pdb
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.DAL\obj\Release\1.VMS.HIS.Dal.csproj.AssemblyReference.cache
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.DAL\obj\Release\1.VMS.HIS.Dal.csproj.CoreCompileInputs.cache
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.DAL\obj\Release\1.VMS.HIS.Dal.csproj.CopyComplete

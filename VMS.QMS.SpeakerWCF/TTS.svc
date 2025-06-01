@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="VMS.QMS.SpeakerWCF.TTS" CodeBehind="TTS.svc.cs" %>

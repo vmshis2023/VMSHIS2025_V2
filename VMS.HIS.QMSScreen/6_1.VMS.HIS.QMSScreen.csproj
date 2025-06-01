@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{841CB0C9-0D6D-4C4F-B63C-76925523B84D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VMS.HIS.QMSScreen</RootNamespace>
+    <AssemblyName>VMS.HIS.QMSScreen</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>C:\HIS_BVSG\Running\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Running\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="Janus.Data.v3">
+      <HintPath>..\..\..\Running_QLPKEBM\Janus.Data.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.ButtonBar.v3">
+      <HintPath>..\..\..\Running_QLPKEBM\Janus.Windows.ButtonBar.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.CalendarCombo.v3">
+      <HintPath>..\..\..\Running_QLPKEBM\Janus.Windows.CalendarCombo.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.Common.v3">
+      <HintPath>..\..\..\Running_QLPKEBM\Janus.Windows.Common.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.GridEX.v3">
+      <HintPath>..\..\..\Running_QLPKEBM\Janus.Windows.GridEX.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.UI.v3">
+      <HintPath>..\..\..\Running_QLPKEBM\Janus.Windows.UI.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="NLog">
+      <HintPath>..\..\..\Running_QLPKEBM\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="SubSonic">
+      <HintPath>..\..\..\Running_QLPKEBM\SubSonic.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QMS\frm_DanhSachKham.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QMS\frm_DanhSachKham.Designer.cs">
+      <DependentUpon>frm_DanhSachKham.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QMS\frm_ScreenSoKham.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QMS\frm_ScreenSoKham.Designer.cs">
+      <DependentUpon>frm_ScreenSoKham.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QMS\frm_SoKham_GoiLai.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QMS\frm_SoKham_GoiLai.Designer.cs">
+      <DependentUpon>frm_SoKham_GoiLai.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QMS\VB\Class\QMSChucNang.cs" />
+    <Compile Include="QMS\VB\FrmShowListData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QMS\VB\FrmShowListData.Designer.cs">
+      <DependentUpon>FrmShowListData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QMS\VB\FrmShowScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QMS\VB\FrmShowScreen.Designer.cs">
+      <DependentUpon>FrmShowScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QMS\VB\FrmShowScreen_Type1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QMS\VB\FrmShowScreen_Type1.Designer.cs">
+      <DependentUpon>FrmShowScreen_Type1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QMS\VB\frm_Config.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QMS\VB\frm_Config.Designer.cs">
+      <DependentUpon>frm_Config.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QMS\VB\QMSXQ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QMS\VB\QMSXQ.Designer.cs">
+      <DependentUpon>QMSXQ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QMS\VB\UIControl\chkUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="QMS\VB\UIControl\chkUserControl.Designer.cs">
+      <DependentUpon>chkUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QMS\VB\UIControl\MarqueeLable.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Web References\QMSService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QMS\frm_DanhSachKham.resx">
+      <DependentUpon>frm_DanhSachKham.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="QMS\frm_ScreenSoKham.resx">
+      <DependentUpon>frm_ScreenSoKham.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QMS\frm_SoKham_GoiLai.resx">
+      <DependentUpon>frm_SoKham_GoiLai.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QMS\VB\FrmShowListData.resx">
+      <DependentUpon>FrmShowListData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QMS\VB\FrmShowScreen.resx">
+      <DependentUpon>FrmShowScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QMS\VB\FrmShowScreen_Type1.resx">
+      <DependentUpon>FrmShowScreen_Type1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QMS\VB\frm_Config.resx">
+      <DependentUpon>frm_Config.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QMS\VB\QMSXQ.resx">
+      <DependentUpon>QMSXQ.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QMS\VB\UIControl\chkUserControl.resx">
+      <DependentUpon>chkUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QMS\VB\UIControl\MarqueeLable.resx">
+      <DependentUpon>MarqueeLable.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Web References\QMSService\QMS.wsdl" />
+    <None Include="Web References\QMSService\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VMS.HIS.Bus\3.VMS.HIS.Bus.csproj">
+      <Project>{a99e7072-450c-430d-ac3d-63cbb74c01ad}</Project>
+      <Name>3.VMS.HIS.Bus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VMS.HIS.Libs\2.VMS.HIS.Libs.csproj">
+      <Project>{0400ff7a-0d53-45aa-bbe5-09eedeb50d4e}</Project>
+      <Name>2.VMS.HIS.Libs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VMS.QMS.DAL\VMS.QMS.DAL.csproj">
+      <Project>{dde91a50-b09f-4f92-8557-35a72c8bbdbd}</Project>
+      <Name>VMS.QMS.DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://localhost:1850/QMS.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\QMSService\</RelPath>
+      <UpdateFromURL>http://localhost:1850/QMS.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>VMS_HIS_Qms_QMSService_Service1</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\QMSService\QMS.disco" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

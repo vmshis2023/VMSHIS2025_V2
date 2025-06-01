@@ -1,0 +1,469 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0FB2FDA1-6238-415D-AFA9-ACCA3094C1D1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VMS.HIS.BA</RootNamespace>
+    <AssemblyName>VMS.HIS.BA</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>C:\HIS_BVSG\Running\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Running\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Aspose.Words, Version=16.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Running_QLPKEBM\Aspose.Words.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="Janus.Data.v3, Version=3.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Running_QLPKEBM\Janus.Data.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.ButtonBar.v3, Version=3.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Running_QLPKEBM\Janus.Windows.ButtonBar.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.CalendarCombo.v3">
+      <HintPath>..\..\Running\Janus.Windows.CalendarCombo.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.Common.v3">
+      <HintPath>..\..\Running\Janus.Windows.Common.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.GridEX.v3">
+      <HintPath>..\..\Running\Janus.Windows.GridEX.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.Ribbon.v3, Version=3.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\HIS_BVSG\Running\Janus.Windows.Ribbon.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.UI.v3">
+      <HintPath>..\..\Running\Janus.Windows.UI.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="SubSonic">
+      <HintPath>..\..\Running\SubSonic.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BenhAn\Forms\Frm_BenhAnThuong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BenhAn\Forms\Frm_BenhAnThuong.designer.cs">
+      <DependentUpon>Frm_BenhAnThuong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BenhAn\Forms\frm_BENHAN_NGOAITRU.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BenhAn\Forms\frm_BENHAN_NGOAITRU.designer.cs">
+      <DependentUpon>frm_BENHAN_NGOAITRU.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BenhAn\Forms\frm_BENHAN_NGOAITRU_TG.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BenhAn\Forms\frm_BENHAN_NGOAITRU_TG.designer.cs">
+      <DependentUpon>frm_BENHAN_NGOAITRU_TG.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BenhAn\Forms\frm_DSACH_BN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BenhAn\Forms\frm_DSACH_BN.designer.cs">
+      <DependentUpon>frm_DSACH_BN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BenhAn\Forms\VMS\frm_BenhAn_NoiKhoa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BenhAn\Forms\VMS\frm_BenhAn_NoiKhoa.Designer.cs">
+      <DependentUpon>frm_BenhAn_NoiKhoa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BenhAn\Forms\VMS\frm_dmuc_gay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BenhAn\Forms\VMS\frm_dmuc_gay.Designer.cs">
+      <DependentUpon>frm_dmuc_gay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BenhAn\Forms\VMS\EMR.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BenhAn\Forms\VMS\EMR.Designer.cs">
+      <DependentUpon>EMR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BenhAn\Forms\VMS\frm_QuanlyBA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BenhAn\Forms\VMS\frm_QuanlyBA.Designer.cs">
+      <DependentUpon>frm_QuanlyBA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BenhAn\UCs\uc_bant_1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BenhAn\UCs\uc_bant_1.Designer.cs">
+      <DependentUpon>uc_bant_1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BenhAn\UCs\uc_bant_2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BenhAn\UCs\uc_bant_2.Designer.cs">
+      <DependentUpon>uc_bant_2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BenhAn\UCs\uc_bant_3.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BenhAn\UCs\uc_bant_3.Designer.cs">
+      <DependentUpon>uc_bant_3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BenhAn\UCs\uc_bant_4.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BenhAn\UCs\uc_bant_4.Designer.cs">
+      <DependentUpon>uc_bant_4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmHoSoCayThuocTranhThai.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmHoSoCayThuocTranhThai.Designer.cs">
+      <DependentUpon>FrmHoSoCayThuocTranhThai.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="BenhAn\Forms\Frm_BenhAnThuong.resx">
+      <DependentUpon>Frm_BenhAnThuong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BenhAn\Forms\frm_BENHAN_NGOAITRU.resx">
+      <DependentUpon>frm_BENHAN_NGOAITRU.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BenhAn\Forms\frm_BENHAN_NGOAITRU_TG.resx">
+      <DependentUpon>frm_BENHAN_NGOAITRU_TG.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BenhAn\Forms\frm_DSACH_BN.resx">
+      <DependentUpon>frm_DSACH_BN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BenhAn\Forms\VMS\frm_BenhAn_NoiKhoa.resx">
+      <DependentUpon>frm_BenhAn_NoiKhoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BenhAn\Forms\VMS\frm_dmuc_gay.resx">
+      <DependentUpon>frm_dmuc_gay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BenhAn\Forms\VMS\EMR.resx">
+      <DependentUpon>EMR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BenhAn\Forms\VMS\frm_QuanlyBA.resx">
+      <DependentUpon>frm_QuanlyBA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BenhAn\UCs\uc_bant_1.resx">
+      <DependentUpon>uc_bant_1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BenhAn\UCs\uc_bant_2.resx">
+      <DependentUpon>uc_bant_2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BenhAn\UCs\uc_bant_3.resx">
+      <DependentUpon>uc_bant_3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BenhAn\UCs\uc_bant_4.resx">
+      <DependentUpon>uc_bant_4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmHoSoCayThuocTranhThai.resx">
+      <DependentUpon>FrmHoSoCayThuocTranhThai.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VMS.Resources\4.VMS.Resources.csproj">
+      <Project>{496ccd74-1e0f-45c2-8e86-bf48b9926587}</Project>
+      <Name>4.VMS.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VMS.HIS.Danhmuc\5.VMS.HIS.Danhmuc.csproj">
+      <Project>{53b9a2e4-529a-4248-ad8d-cbed38ed9c46}</Project>
+      <Name>5.VMS.HIS.Danhmuc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VMS.HIS.Bus\3.VMS.HIS.Bus.csproj">
+      <Project>{a99e7072-450c-430d-ac3d-63cbb74c01ad}</Project>
+      <Name>3.VMS.HIS.Bus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VMS.HIS.DAL\1.VMS.HIS.Dal.csproj">
+      <Project>{cd0be8e8-b7d8-41ca-95f7-ea03675cfe0d}</Project>
+      <Name>1.VMS.HIS.Dal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VMS.HIS.Libs\2.VMS.HIS.Libs.csproj">
+      <Project>{0400ff7a-0d53-45aa-bbe5-09eedeb50d4e}</Project>
+      <Name>2.VMS.HIS.Libs</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\237510 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_01_24.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_04_32.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Add32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SUPPORT21.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_left_11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_left_11_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_left_16_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_left_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bed_no196.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bed_no24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bed_yes196.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BS_96.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BS_961.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BSNAM.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BSNU.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clock_196.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clock_20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clock_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clock_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\copy_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\direction_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_left_up1 - Copy %282%291.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_left_up1 - Copy %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\excel_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file_copy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FOLDER3.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FOLDERS.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GO_HOME.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HOME.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HOME_24.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Hospital_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hospital_241.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PADLOCKE1.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\option_check_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\option_uncheck_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\patient_color_24.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PEACE.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus_241.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus_243.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Print_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printer-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printer-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printtype1_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printtype1_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\QR.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\QR_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\QR_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh03_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\right_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SAVE.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SAVE %282%29.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SAVE_AS.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SAVE1.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SEARCH %282%29.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\STOP %282%29.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SUPPORT22.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tick2424.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TOOL.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trash-full_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_left_up1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="BenhAn\Forms\VMS\backup_tachcacloaiphieu\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

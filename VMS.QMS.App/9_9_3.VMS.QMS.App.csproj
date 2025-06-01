@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F7035611-9F48-4B54-B738-8F55951B6606}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>QMS</RootNamespace>
+    <AssemblyName>QMS</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <StartupObject>VNS.QMS.Program</StartupObject>
+    <ApplicationIcon>speaker1.ico</ApplicationIcon>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>C:\HIS_BVSG\Running\QMS\QMSTiepdon\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>C:\HIS_BVSG\Running\QMS\QMSTiepdon\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="Janus.Data.v3, Version=3.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\HIS_BVSG\Running\Janus.Data.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.Common.v3, Version=3.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\HIS_BVSG\Running\Janus.Windows.Common.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.GridEX.v3, Version=3.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\HIS_BVSG\Running\Janus.Windows.GridEX.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.Ribbon.v3">
+      <HintPath>C:\HIS_BVSG\Running\Janus.Windows.Ribbon.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.UI.v3, Version=3.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\HIS_BVSG\Running\Janus.Windows.UI.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="SubSonic, Version=2.2.0.0, Culture=neutral, PublicKeyToken=eadb47849839a332, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Running_QLPKEBM\QMS\QMSTiepdon\SubSonic.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ConnectionSQL.cs" />
+    <Compile Include="DMUC_CHUNG_BUSRULE.cs" />
+    <Compile Include="DMUC_DCHUNG.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DMUC_DCHUNG.Designer.cs">
+      <DependentUpon>DMUC_DCHUNG.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_QMSPCN_Layso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_QMSPCN_Layso.Designer.cs">
+      <DependentUpon>frm_QMSPCN_Layso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_QMSTiepdon_Layso_V1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_QMSTiepdon_Layso_V1.Designer.cs">
+      <DependentUpon>frm_QMSTiepdon_Layso_V1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CRPT_SOTIEMCHUNG.cs">
+      <DependentUpon>CRPT_SOTIEMCHUNG.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="CRPT_SOKHAM.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRPT_SOKHAM.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="frm_QMSTiepdon_Layso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_QMSTiepdon_Layso.Designer.cs">
+      <DependentUpon>frm_QMSTiepdon_Layso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QMS_Tiepdon_BVMHN2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QMS_Tiepdon_BVMHN2.Designer.cs">
+      <DependentUpon>QMS_Tiepdon_BVMHN2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCs\ucQMSPCN_Item.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCs\ucQMSPCN_Item.Designer.cs">
+      <DependentUpon>ucQMSPCN_Item.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCs\medCheckBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCs\medCheckBox.Designer.cs">
+      <DependentUpon>medCheckBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCs\ucQMSItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCs\ucQMSItem.Designer.cs">
+      <DependentUpon>ucQMSItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCs\ucQMSTiepdon.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCs\ucQMSTiepdon.Designer.cs">
+      <DependentUpon>ucQMSTiepdon.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="DMUC_DCHUNG.resx">
+      <DependentUpon>DMUC_DCHUNG.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_QMSPCN_Layso.resx">
+      <DependentUpon>frm_QMSPCN_Layso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_QMSTiepdon_Layso_V1.resx">
+      <DependentUpon>frm_QMSTiepdon_Layso_V1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CRPT_SOTIEMCHUNG.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRPT_SOTIEMCHUNG.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_QMSTiepdon_Layso.resx">
+      <DependentUpon>frm_QMSTiepdon_Layso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CRPT_SOKHAM.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRPT_SOKHAM.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="QMS_Tiepdon_BVMHN2.resx">
+      <DependentUpon>QMS_Tiepdon_BVMHN2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCs\ucQMSPCN_Item.resx">
+      <DependentUpon>ucQMSPCN_Item.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCs\medCheckBox.resx">
+      <DependentUpon>medCheckBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCs\ucQMSItem.resx">
+      <DependentUpon>ucQMSItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCs\ucQMSTiepdon.resx">
+      <DependentUpon>ucQMSTiepdon.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="App.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="QMSPrintProperties.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{967B4E0D-AD0C-4609-AB67-0FA40C0206D8}" />
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="1348021795_Print.ico" />
+    <Content Include="favicon %281%29.ico" />
+    <Content Include="favicon.ico" />
+    <Content Include="images %289%29.ico" />
+    <Content Include="QMS.ico" />
+    <Content Include="speaker1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VMS.HIS.Libs\2.VMS.HIS.Libs.csproj">
+      <Project>{0400ff7a-0d53-45aa-bbe5-09eedeb50d4e}</Project>
+      <Name>2.VMS.HIS.Libs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VMS.QMS.DAL\VMS.QMS.DAL.csproj">
+      <Project>{dde91a50-b09f-4f92-8557-35a72c8bbdbd}</Project>
+      <Name>VMS.QMS.DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,198 @@
+2025-05-21 01:51:39.1290||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 01:51:42.7580||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 01:51:42.9839||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 01:51:48.1563||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 01:52:44.3015||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 01:52:48.3870||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 01:52:48.4609||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 01:53:10.3778||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 02:00:24.0971||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 02:00:27.4100||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 02:00:27.4960||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 02:00:27.6715||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 02:00:50.3622||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 02:00:53.6283||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 02:00:53.7216||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 02:00:53.7969||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 02:20:03.7117||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 02:20:07.1936||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 02:20:07.2817||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 02:20:13.4428||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 02:20:13.5153||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 02:20:15.5122||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 02:20:15.6130||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 02:20:16.7503||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 02:20:17.3358||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 02:20:17.4067||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 02:20:17.4775||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 02:20:19.0809||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 02:20:19.1507||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 02:20:34.1943||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 02:21:18.5952||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 02:22:37.0613||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 02:22:52.2706||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 02:25:41.9611||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 02:26:05.8821||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 02:26:06.0772||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 02:26:22.2023||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 02:26:42.6221||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 02:26:42.7062||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 02:26:45.9765||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 02:26:46.0463||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 02:27:18.4258||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 02:27:57.3422||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 10:23:19.7313||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 10:23:23.3159||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 10:23:23.5710||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 10:24:38.7515||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 10:24:59.6932||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 10:24:59.7758||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 10:25:03.0811||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 10:25:03.1503||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 10:25:05.2853||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 10:25:44.7684||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 10:26:13.3391||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 10:29:51.6490||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 10:29:55.1697||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 10:29:55.3934||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 10:30:30.0795||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 10:35:32.7516||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 10:35:36.2912||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 10:35:36.5218||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 10:36:20.7630||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 10:38:09.1304||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 10:38:12.5807||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 10:38:12.7790||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 10:38:15.1018||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 10:40:50.3224||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 10:40:53.8455||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 10:40:54.0522||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 10:41:24.5540||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 10:42:58.5869||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 10:43:00.6334||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 10:43:00.8465||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 10:43:02.6147||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 10:57:40.8858||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 10:57:44.3740||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 10:57:44.5738||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 10:57:49.2677||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 10:58:49.1974||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 10:58:52.6961||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 10:58:52.9000||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 10:58:52.9989||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 11:08:44.0623||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 11:08:45.6731||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 11:08:45.8775||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 11:08:46.0959||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 11:09:41.7302||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 11:09:45.2129||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 11:09:45.4156||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 11:09:45.5230||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 12:04:05.7346||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 12:04:11.1187||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 12:04:11.2011||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 12:04:11.3860||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 12:52:17.8429||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 12:52:21.1939||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 12:52:21.2647||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 12:52:26.2881||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 13:11:36.3418||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 13:11:37.4147||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 13:11:37.6301||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 13:11:37.8166||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 13:16:20.4183||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 13:16:23.6702||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 13:16:23.7455||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 13:16:23.8266||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 13:20:33.7757||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 13:20:37.0494||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 13:20:37.1272||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 13:20:37.2034||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 14:01:22.1618||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 14:01:25.4354||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 14:01:25.5126||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 14:01:25.6033||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 14:03:18.4400||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 14:03:23.7498||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 14:03:23.9518||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 14:03:24.0558||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 14:04:14.4591||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 14:04:18.5999||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 14:04:18.6768||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 14:04:18.7567||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 15:58:43.5085||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 15:58:49.6932||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 15:58:49.7707||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 15:58:52.9321||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 16:02:31.8191||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 16:02:35.3190||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 16:02:35.5377||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 16:02:35.6810||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 16:03:29.3231||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 16:03:32.8069||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 16:03:33.0068||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 16:03:33.1477||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 16:17:47.2471||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 16:17:49.1074||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 16:17:49.1822||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 16:17:49.2748||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 16:54:47.1726||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 16:54:50.4877||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 16:54:50.5774||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 16:54:50.6728||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 16:57:13.3294||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 16:57:16.7950||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 16:57:16.9920||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 16:57:17.1108||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 16:59:41.7333||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 16:59:45.0119||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 16:59:45.0953||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 17:00:23.4086||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 21:43:21.4955||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 21:43:25.1507||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 21:43:25.4526||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 21:43:25.7002||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 21:43:53.0895||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 21:43:56.3750||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 21:43:56.4595||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 21:43:56.5589||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 21:49:37.4883||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 21:49:40.8403||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 21:49:40.9171||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 21:49:41.0524||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 21:51:57.7071||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 21:51:59.9054||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 21:51:59.9776||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 21:52:00.1366||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 21:57:44.6445||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 21:57:49.4302||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 21:57:49.5323||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 21:57:55.0364||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 21:57:55.1219||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 21:57:56.6720||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 21:57:56.7509||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 21:58:35.2614||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 21:58:35.3535||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 21:58:38.5404||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 21:58:38.6227||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 21:58:38.7943||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 21:59:36.1423||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 21:59:37.7261||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 21:59:37.9071||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 21:59:42.9826||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 22:11:37.0727||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 22:11:40.4406||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 22:11:40.5110||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 22:11:44.6402||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 22:14:27.2812||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 22:14:30.1295||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 22:14:30.2081||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 22:14:34.1967||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 22:15:01.7843||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 22:15:05.0412||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 22:15:05.1138||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 22:15:05.2160||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 
+2025-05-21 22:17:22.3371||TRACE|ThongBaoPhatHanh|_________Begin________ 
+2025-05-21 22:17:26.1163||TRACE|ThongBaoPhatHanh|result: {"success":true,"errorCode":null,"descriptionErrorCode":null,"errors":[],"data":"[{\"IPTemplateID\":\"2d2ce64f-c525-44de-9501-488ae2237a87\",\"TemplateName\":\"Hóa đơn GTGT khởi tạo từ máy tính tiền\",\"InvSeries\":\"1C25MVP\",\"Inactive\":false,\"IsInheritFromOldTemplate\":false,\"IsSendSummary\":false,\"IsPetrol\":null,\"IsMoreVATRate\":false}]","customData":""} 
+2025-05-21 22:17:26.1924||TRACE|ThongBaoPhatHanh|_________End________ 
+2025-05-21 22:17:26.3702||TRACE|ThongBaoPhatHanh|Token cũ vẫn đang trong hạn sử dụng tới hạn 2025-05-22T01:01:52.52+07:00 

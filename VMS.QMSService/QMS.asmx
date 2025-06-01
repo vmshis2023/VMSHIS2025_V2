@@ -1,0 +1,1 @@
+﻿<%@ WebService Language="C#" CodeBehind="QMS.asmx.cs" Class="QMSService.Service1" %>

@@ -1,0 +1,17 @@
+C:\HIS_BVSG\Running\VMS.HIS.Libs.dll
+C:\HIS_BVSG\Running\VMS.HIS.Libs.pdb
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Libs\obj\Debug\2.VMS.HIS.Libs.csproj.AssemblyReference.cache
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Libs\obj\Debug\VNS.Properties.frm_Properties.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Libs\obj\Debug\VNS.Libs.frm_GridConfig.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Libs\obj\Debug\VNS.Libs.frm_SignInfor_V1.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Libs\obj\Debug\VNS.Libs.frmPrintPreview.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Libs\obj\Debug\VNS.Libs.frm_SignInfor.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Libs\obj\Debug\VNS.Libs.frm_Sysparams.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Libs\obj\Debug\VMS.HIS.Libs.Properties.Resources.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Libs\obj\Debug\VNS.Libs.ReportTitle.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Libs\obj\Debug\2.VMS.HIS.Libs.csproj.GenerateResource.cache
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Libs\obj\Debug\VMS.HIS.Libs.dll.licenses
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Libs\obj\Debug\2.VMS.HIS.Libs.csproj.CoreCompileInputs.cache
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Libs\obj\Debug\2.VMS.HIS.Libs.csproj.CopyComplete
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Libs\obj\Debug\VMS.HIS.Libs.dll
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Libs\obj\Debug\VMS.HIS.Libs.pdb

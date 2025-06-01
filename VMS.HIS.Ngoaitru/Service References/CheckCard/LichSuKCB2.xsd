@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/BHXH_CheckThe.Model" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/BHXH_CheckThe.Model" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ApiTheBHYT">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="gioiTinh" type="xs:short" />
+      <xs:element minOccurs="0" name="hoTen" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="maCSKCB" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="maThe" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ngayBD" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ngayKT" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ngaySinh" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ApiTheBHYT" nillable="true" type="tns:ApiTheBHYT" />
+  <xs:complexType name="KQNhanLichSuKCBBS">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cqBHXH" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="diaChi" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="dsLichSuKCB2018" nillable="true" type="tns:ArrayOfLichSuKCB2018" />
+      <xs:element minOccurs="0" name="dsLichSuKT2018" nillable="true" type="tns:ArrayOfLichSuKT2018" />
+      <xs:element minOccurs="0" name="ghiChu" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="gioiTinh" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="gtTheDen" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="gtTheDenMoi" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="gtTheTu" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="gtTheTuMoi" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="hoTen" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="maDKBD" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="maKV" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="maKetQua" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="maSoBHXH" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="maThe" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="maTheCu" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="maTheMoi" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="maloi" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ngayDu5Nam" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ngaySinh" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="KQNhanLichSuKCBBS" nillable="true" type="tns:KQNhanLichSuKCBBS" />
+  <xs:complexType name="ArrayOfLichSuKCB2018">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LichSuKCB2018" nillable="true" type="tns:LichSuKCB2018" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfLichSuKCB2018" nillable="true" type="tns:ArrayOfLichSuKCB2018" />
+  <xs:complexType name="LichSuKCB2018">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="kqDieuTri" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="maCSKCB" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="maHoSo" type="xs:long" />
+      <xs:element minOccurs="0" name="ngayRa" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ngayVao" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="tenBenh" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="tinhTrang" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LichSuKCB2018" nillable="true" type="tns:LichSuKCB2018" />
+  <xs:complexType name="ArrayOfLichSuKT2018">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LichSuKT2018" nillable="true" type="tns:LichSuKT2018" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfLichSuKT2018" nillable="true" type="tns:ArrayOfLichSuKT2018" />
+  <xs:complexType name="LichSuKT2018">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="maLoi" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="thoiGianKT" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="thongBao" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="userKT" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LichSuKT2018" nillable="true" type="tns:LichSuKT2018" />
+  <xs:complexType name="KQNhanLichSuKCB">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cqBHXH" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="diaChi" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="dsLichSuKCB" nillable="true" type="tns:ArrayOfLichSuKCB" />
+      <xs:element minOccurs="0" name="dsLichSuKiemTra" nillable="true" type="tns:ArrayOfLichSuKiemTra" />
+      <xs:element minOccurs="0" name="ghiChu" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="gioiTinh" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="gtTheDen" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="gtTheDenMoi" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="gtTheTu" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="gtTheTuMoi" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="hoTen" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="maDKBD" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="maKV" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="maKetQua" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="maSoBHXH" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="maThe" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="maTheCu" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="maTheMoi" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="maloi" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ngayDu5Nam" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ngaySinh" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="KQNhanLichSuKCB" nillable="true" type="tns:KQNhanLichSuKCB" />
+  <xs:complexType name="ArrayOfLichSuKCB">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LichSuKCB" nillable="true" type="tns:LichSuKCB" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfLichSuKCB" nillable="true" type="tns:ArrayOfLichSuKCB" />
+  <xs:complexType name="LichSuKCB">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="kqDieuTri" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="maCSKCB" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="maHoSo" type="xs:long" />
+      <xs:element minOccurs="0" name="ngayRa" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ngayVao" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="tenBenh" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="tinhTrang" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LichSuKCB" nillable="true" type="tns:LichSuKCB" />
+  <xs:complexType name="ArrayOfLichSuKiemTra">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LichSuKiemTra" nillable="true" type="tns:LichSuKiemTra" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfLichSuKiemTra" nillable="true" type="tns:ArrayOfLichSuKiemTra" />
+  <xs:complexType name="LichSuKiemTra">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="maLoi" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="thoiGianKT" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="thongBao" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="userKT" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LichSuKiemTra" nillable="true" type="tns:LichSuKiemTra" />
+</xs:schema>

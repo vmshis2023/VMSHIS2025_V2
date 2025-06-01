@@ -1,0 +1,10 @@
+C:\HIS_BVSG\Running\VMS.HIS.Bus.dll.config
+C:\HIS_BVSG\Running\VMS.HIS.Bus.dll
+C:\HIS_BVSG\Running\VMS.HIS.Bus.pdb
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Bus\obj\Debug\newBus.Form1.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Bus\obj\Debug\3.VMS.HIS.Bus.csproj.GenerateResource.cache
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Bus\obj\Debug\3.VMS.HIS.Bus.csproj.CoreCompileInputs.cache
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Bus\obj\Debug\3.VMS.HIS.Bus.csproj.CopyComplete
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Bus\obj\Debug\VMS.HIS.Bus.dll
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Bus\obj\Debug\VMS.HIS.Bus.pdb
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Bus\obj\Debug\3.VMS.HIS.Bus.csproj.AssemblyReference.cache

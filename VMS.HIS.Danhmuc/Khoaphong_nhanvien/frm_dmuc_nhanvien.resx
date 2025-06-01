@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <metadata name="sysColor.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="cmdEdit.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+</value>
+  </data>
+  <data name="cmdDelete.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAOzSURBVEhLrVXNSxtmGPewww497LDDjj30D9hhh0ELDrb7
+        CiIZ7GDBQnuQQUfWpsYZP6IxKMvUtMpWjC5aoonVaDTBJswYjdGI8zOJnyF+JVg/pth2IPjb87x7E1QW
+        k5b+4EfIm/f5Pc/7fCUnW7jd7tszMzPG/v7+7zo6Oj6Vxx8GU1NTt5aWluKvT07whpjY2cHq6upfXq/3
+        rrzyflAYotefDYaVa2trp3ESPTk+TnFrcxNHR0fo6+u7Ja+/G77Vha8/GT6Mm/17sA+HcNnB4uIizs7O
+        +DMoTbJHrib68V3Tzkyl6x/oht7iiWcfXXYPwqEQYtEo/H4/KG3ic3x8/FCaZY88w9KvpQNvoZEsI/7i
+        egXTczscDgdisRiOKT0He3sIh8MYGBjQStPMuFkc+PIn298p8ST1jjgCExMi8ii94vDgAPv7+9je3sby
+        8jK6urqMJpPpEymTHoX1U89UL15fEC91vEGHcw4rKytYWFgQUbODRDwuHDDtdjvq6+t9UiY99Ppa4/dq
+        Kx51n6QcqGxH6HdPCiHqKCQSCfxmMmN3d1dEv7W1Ba/Xj/Ly8swFb2xsVD58+Bj3Sy140BTCj3/s4YeW
+        BNpfjCESiUrGMOwNYn5+DS6XD729boreCL1eb5Uy6WEwGG5brVZUVFRArS7Bz5oqqCuN0NYYYTA0EZ+S
+        WDPq6hpQVVVDd9TQaDQwm81ob2/XSZn00Gq1n6+vr2NsbAyDg4OgtUBidaiuribBKnJgEGxubhainHtu
+        V04fFfqelEkPiuba7OwsgsGgMGS2tbWhtbWVUtGbOjvPycn/6kOBfC1lrgZF/4oWW0rA4/HAZrOBFt4F
+        4STZARdbpVLdkBJXg5ZYMERTe1nI5XKJ1F0+59cyc3NzP5ISV8PpdFq4HS8L8UssFgtGR0cvnM/NzcHn
+        80WleWaQSM0mbcvzIizOReVa0AZNnXPkfJd+fynNM4Nm4T4XjXPLIiMjI6lCM3t6esT5BK2OjY0NUWDq
+        uN+leWYUFRV9w9MZCASEEEecFO/s7EwVm/6EhDiTZuCRNM+MwsLCG5xXFmHy4J2PnMmpSYozaYoV0jwz
+        uBs4Ul5qLMTDxN+HhoYwPT1NK2JerOykOHeWQqH4SppnB3rFKUWF7u5u0TU8fJFIRJAd8Ct48GiDori4
+        GHl5eV9I0+ygVCrv6HS6Q94zJSUlaVlbW3taVlZWKc3eDfn5+ddaWloUtHcaGxoanLSL/mRSl72kfdRE
+        v90rKCj4TF7/H+Tk/Avol8ZrEL2W9wAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="cmdSearch.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAANkE3LLaAgAABqRJREFUWEe9
+        V1tPU1kUZphJeJgXXyYz4+CTPinypgYjYnR+wMQx8RKNicZExxdDQMcHxfHBxAwGhpvKHeQiyh0E5CIi
+        RFBApEBbaKlAoRTaU3o9LbT4zVobalAJFjXuZOUc9t7d37fXty6HoOPHj/9x6tSpP0+fPn3waxqfeezY
+        sd+3bNkSErTWUKlU7rdv32ItGxkZwZMnT1BaWoqSkhI8fvwYAwMD8Pl87+1bXFyE1+uFx+MRf7e3t+t2
+        7NjxyzLU6mMtAl1dXaiqqsIggWk1I6C9UCqHiNAw1GoVEWkQZPz7mdBKAs+ePXsTGRn56zLU6oMOlf0H
+        rDzowYMHGBwcQEdHB26nZyMhOQPJd/KQQpaYkoXktEwCbxRkeO/MzIwAdrvdcLlc4ozW1tbRzyJw//59
+        crECd+5mIi2jAF29SkwZLbDYXJgjM5psUCh1yCusRMJ/qejp6RYkjEajAHc4HJifn2fZ1k+guroanc+f
+        Iyk5DdX1bTBbHHC43LA7XO+ZwyXDapfR3qVAfEIK6f0MeXl5AtxmswlPtLS0rI+AwWBAeXk5cnJyUVXX
+        CovVCZvdiTmrA7NmK6ZnJBjIZkxzsMzZYbXxuowOIpF6+66ICQ5Wi8UCWZbR3Ny8PgIc5bU1NcjJL4Z+
+        WhIAxlkLtGMGqLV6qDUTy6aHRjdJspgFOfZSaUU9ysrKkJ6eDkmShCcaGxsDJ8BBk5WVJbRs6+gWWk9N
+        mzEyOolRIjA+OYOJqVlh/K4bnxZr/D5HRPsHNSgsKkY+yUBnChkaGhoCJ8BRXFBQQBJUQjk8JlzOwAxo
+        MC65nefY+J3lmDSYxB5en5gyobyyBmXkxaamJlitVtTX1wdOQKvV0u1L0NjUIg7V0+EMMEtgksUuXG21
+        u0hzzgQnJIoBJsNemiAvTNKzqblVgD98+FDIUFdXFziB0dFR1JD+vb19pK9eHMwADGx3yHDKbshujzAX
+        vTuclAU2B0ySTexlKV5096LrRZeIJbPZjEePHgVOYHZ2VmQAP1XDOswQuIXAGUiW5ymvFzC/4MUCmYfe
+        Zfc8nLQ2RySW5JrCm7FxvHz5gl0vJK2trQ2cABeOzMxMKiRODA6pKc0on8ndsuyhNS+VWB98VOtFvfct
+        CjJuIsHeYUnUIzqRfkVFRXj16hWmp6e5jAdOgK2iokKU3+HhEUxTijkJ3OOZF+CLi/5iBfEUJMgTLtrD
+        nhocVArQ+Ph46HQ6UVMqKyvXR4B/lJycTAcZoKAGxO73epduzOv+we8+mmNiHo8XSpUaer0eubm5HHgi
+        nvhvutD6CHAt4O7G6cgH9PcrKJ1sy7AfDw7GIaVKtGv+XVpaGnVJtcio8fFxjqn1E+D8vXfvnrgNH8J9
+        X0U3NBpnRHGx2+0wmUzQEEh/fz90dFtu2zk5OcjIyBDgTGhsbIwrY+AEGNzfyzmCuSLeuHEDbW1t5FKt
+        uNnQ0JAw+o0A6unpwc2bN3Hu3DmkpKTg6tWruHXrltjLMtAZgRPwg/v7OadjZ2cnEhMTce3aNSQlJSE7
+        O1vcNDU1FXFxcbh+/bqo/1euXMHTp0857XD58mWcP39ezFFB+jQBupEgsBLc31K5mrEMvb29Irj4O4HT
+        jOsFfWwICTQajfhouXDhgki/4uJiREdHIzw8HIcOHbJ8kgBpLLP7PwTnnGYCrDdLwik2OUnNhwixvmzs
+        ZpaCJaHGgxMnTuDs2bNChosXL2L79u0ICQmJX4ZafSgUCpnd/ylwTlHODD8BPzgHHGuuVCqFF/bt24fD
+        hw8jISHhHQmCiVtCW2W8fv1aZvd/KThnC8vEXti/f/87ErGxsWuT6Ovrk9n9XwrO2cHz9CmOM2fOfEQi
+        LCyMSfy9hLpiUCrJ7P4vBed17oB8FskK+sdEkDhy5MiHJKKXkJdHd3e3zMXla4BzLPlTurCwcH7z5s3D
+        K0nExMR8TIJiYIE7oT8GuBIyGT5wLTKcfvzkPRxD/mJGBH1UKyQC1W7duvXf0NDQUj8JrilMYtu2bQgO
+        Do4h+OAgqvsT9CVroQ9Iifq4MAomiT4mJCosErVUibqaRI1FovyXqPBIVOEkKjI8b6Z5Y35+/jAVpfaT
+        J0/WHDhw4HZERMQ/e/fu/WvPnj3hBBLmJ3H06FFB4tKlSyByJlr7KYg2RtDGKHpGfo7t3r07cteuXeE7
+        d+4M5aJDBejHqKioH9i7y+N7snckOEuossobN26MpfkfxY5vMASJTZs2lRNh64YNGzglfyb7jhe/1WCv
+        sCQHyX7jiaCgoKD/AdJurOj9Bcv+AAAAAElFTkSuQmCC
+</value>
+  </data>
+  <metadata name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>110, 17</value>
+  </metadata>
+  <data name="grdNhanvien.BuiltInTextsData" xml:space="preserve">
+    <value>&lt;LocalizableData ID="LocalizableStrings" Collection="true"&gt;&lt;GroupByBoxInfo&gt;Bạn muốn nhóm theo cột nào thì thả cột đó vào đây&lt;/GroupByBoxInfo&gt;&lt;FilterRowInfoText&gt;Bạn thực hiện tìm kiếm tên nhân viên&lt;/FilterRowInfoText&gt;&lt;/LocalizableData&gt;</value>
+  </data>
+  <data name="grdNhanvien_DesignTimeLayout.LayoutString" xml:space="preserve">
+    <value>&lt;GridEXLayoutData&gt;&lt;RootTable&gt;&lt;Columns Collection="true" ElementName="Column"&gt;&lt;Column0 ID="CHON"&gt;&lt;Caption&gt;CHON&lt;/Caption&gt;&lt;BoundMode&gt;UnboundFetch&lt;/BoundMode&gt;&lt;ColumnType&gt;CheckBox&lt;/ColumnType&gt;&lt;DataMember&gt;CHON&lt;/DataMember&gt;&lt;Key&gt;CHON&lt;/Key&gt;&lt;Position&gt;0&lt;/Position&gt;&lt;Width&gt;20&lt;/Width&gt;&lt;ActAsSelector&gt;True&lt;/ActAsSelector&gt;&lt;/Column0&gt;&lt;Column1 ID="id_nhanvien"&gt;&lt;Caption&gt;ID&lt;/Caption&gt;&lt;DataMember&gt;id_nhanvien&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;FilterEditType&gt;TextBox&lt;/FilterEditType&gt;&lt;Key&gt;id_nhanvien&lt;/Key&gt;&lt;Position&gt;1&lt;/Position&gt;&lt;Width&gt;45&lt;/Width&gt;&lt;/Column1&gt;&lt;Column2 ID="ma_nhanvien"&gt;&lt;Caption&gt;Mã nhân viên&lt;/Caption&gt;&lt;DataMember&gt;ma_nhanvien&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;FilterEditType&gt;TextBox&lt;/FilterEditType&gt;&lt;Key&gt;ma_nhanvien&lt;/Key&gt;&lt;Position&gt;2&lt;/Position&gt;&lt;/Column2&gt;&lt;Column3 ID="ten_nhanvien"&gt;&lt;Caption&gt;Tên nhân viên&lt;/Caption&gt;&lt;DataMember&gt;ten_nhanvien&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;FilterEditType&gt;TextBox&lt;/FilterEditType&gt;&lt;Key&gt;ten_nhanvien&lt;/Key&gt;&lt;Position&gt;3&lt;/Position&gt;&lt;Width&gt;217&lt;/Width&gt;&lt;/Column3&gt;&lt;Column4 ID="gioi_tinh"&gt;&lt;Caption&gt;Giới tính&lt;/Caption&gt;&lt;DataMember&gt;gioi_tinh&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;gioi_tinh&lt;/Key&gt;&lt;Position&gt;4&lt;/Position&gt;&lt;Width&gt;69&lt;/Width&gt;&lt;/Column4&gt;&lt;Column5 ID="ptram_ckhau"&gt;&lt;Caption&gt;% Chiết khấu&lt;/Caption&gt;&lt;DataMember&gt;ptram_ckhau&lt;/DataMember&gt;&lt;Key&gt;ptram_ckhau&lt;/Key&gt;&lt;Position&gt;5&lt;/Position&gt;&lt;Width&gt;92&lt;/Width&gt;&lt;/Column5&gt;&lt;Column6 ID="chiphi_cungthuchien"&gt;&lt;Caption&gt;Chi phí gây mê,...&lt;/Caption&gt;&lt;DataMember&gt;chiphi_cungthuchien&lt;/DataMember&gt;&lt;Key&gt;chiphi_cungthuchien&lt;/Key&gt;&lt;Position&gt;6&lt;/Position&gt;&lt;Width&gt;109&lt;/Width&gt;&lt;/Column6&gt;&lt;Column7 ID="user_name"&gt;&lt;Caption&gt;UID&lt;/Caption&gt;&lt;DataMember&gt;user_name&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;FilterEditType&gt;TextBox&lt;/FilterEditType&gt;&lt;Key&gt;user_name&lt;/Key&gt;&lt;Position&gt;7&lt;/Position&gt;&lt;/Column7&gt;&lt;Column8 ID="ma_chungchi"&gt;&lt;Caption&gt;Mã chứng chỉ&lt;/Caption&gt;&lt;DataMember&gt;ma_chungchi&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;FilterEditType&gt;TextBox&lt;/FilterEditType&gt;&lt;Key&gt;ma_chungchi&lt;/Key&gt;&lt;Position&gt;8&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column8&gt;&lt;Column9 ID="ma_loainhanvien"&gt;&lt;Caption&gt;Mã loại nv&lt;/Caption&gt;&lt;DataMember&gt;ma_loainhanvien&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;FilterEditType&gt;TextBox&lt;/FilterEditType&gt;&lt;Key&gt;ma_loainhanvien&lt;/Key&gt;&lt;Position&gt;9&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column9&gt;&lt;Column10 ID="ten_loainhanvien"&gt;&lt;Caption&gt;Loại nhân viên&lt;/Caption&gt;&lt;DataMember&gt;ten_loainhanvien&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;FilterEditType&gt;TextBox&lt;/FilterEditType&gt;&lt;Key&gt;ten_loainhanvien&lt;/Key&gt;&lt;Position&gt;10&lt;/Position&gt;&lt;Width&gt;116&lt;/Width&gt;&lt;/Column10&gt;&lt;Column11 ID="ten_khoa"&gt;&lt;Caption&gt;Tên khoa&lt;/Caption&gt;&lt;DataMember&gt;ten_khoa&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;FilterEditType&gt;TextBox&lt;/FilterEditType&gt;&lt;Key&gt;ten_khoa&lt;/Key&gt;&lt;Position&gt;11&lt;/Position&gt;&lt;/Column11&gt;&lt;Column12 ID="ten_phong"&gt;&lt;Caption&gt;Tên phòng&lt;/Caption&gt;&lt;DataMember&gt;ten_phong&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;FilterEditType&gt;TextBox&lt;/FilterEditType&gt;&lt;Key&gt;ten_phong&lt;/Key&gt;&lt;Position&gt;12&lt;/Position&gt;&lt;/Column12&gt;&lt;Column13 ID="trang_thai"&gt;&lt;Caption&gt;trang_thai&lt;/Caption&gt;&lt;ColumnType&gt;CheckBox&lt;/ColumnType&gt;&lt;DataMember&gt;trang_thai&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;FilterEditType&gt;TextBox&lt;/FilterEditType&gt;&lt;Key&gt;trang_thai&lt;/Key&gt;&lt;Position&gt;13&lt;/Position&gt;&lt;/Column13&gt;&lt;Column14 ID="mota_them"&gt;&lt;Caption&gt;Mô tả thêm&lt;/Caption&gt;&lt;DataMember&gt;mota_them&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;FilterEditType&gt;TextBox&lt;/FilterEditType&gt;&lt;Key&gt;mota_them&lt;/Key&gt;&lt;Position&gt;14&lt;/Position&gt;&lt;/Column14&gt;&lt;Column15 ID="stt_hthi"&gt;&lt;Caption&gt;STT&lt;/Caption&gt;&lt;DataMember&gt;stt_hthi&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;stt_hthi&lt;/Key&gt;&lt;Position&gt;15&lt;/Position&gt;&lt;/Column15&gt;&lt;Column16 ID="id_khoa"&gt;&lt;Caption&gt;ID khoa&lt;/Caption&gt;&lt;DataMember&gt;id_khoa&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;id_khoa&lt;/Key&gt;&lt;Position&gt;16&lt;/Position&gt;&lt;/Column16&gt;&lt;Column17 ID="id_phong"&gt;&lt;Caption&gt;ID phòng&lt;/Caption&gt;&lt;DataMember&gt;id_phong&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;id_phong&lt;/Key&gt;&lt;Position&gt;17&lt;/Position&gt;&lt;/Column17&gt;&lt;Column18 ID="danhmuc_phongkham"&gt;&lt;Caption&gt;Id danh mục phòng khám&lt;/Caption&gt;&lt;DataMember&gt;danhmuc_phongkham&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;danhmuc_phongkham&lt;/Key&gt;&lt;Position&gt;18&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column18&gt;&lt;Column19 ID="mota_them"&gt;&lt;Caption&gt;Mô tả thêm&lt;/Caption&gt;&lt;DataMember&gt;mota_them&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;mota_them&lt;/Key&gt;&lt;Position&gt;19&lt;/Position&gt;&lt;/Column19&gt;&lt;Column20 ID="ma_coso"&gt;&lt;Caption&gt;Mã cơ sở&lt;/Caption&gt;&lt;DataMember&gt;ma_coso&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;ma_coso&lt;/Key&gt;&lt;Position&gt;20&lt;/Position&gt;&lt;/Column20&gt;&lt;Column21 ID="ten_cosokcb"&gt;&lt;Caption&gt;Tên cơ sở&lt;/Caption&gt;&lt;DataMember&gt;ten_cosokcb&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;ten_cosokcb&lt;/Key&gt;&lt;Position&gt;21&lt;/Position&gt;&lt;/Column21&gt;&lt;/Columns&gt;&lt;FormatConditions Collection="true" ElementName="Condition"&gt;&lt;Condition0 ID="FormatCondition1"&gt;&lt;ColIndex&gt;7&lt;/ColIndex&gt;&lt;ConditionOperator&gt;IsEmpty&lt;/ConditionOperator&gt;&lt;FormatStyle&gt;&lt;ForeColor&gt;255, 128, 0&lt;/ForeColor&gt;&lt;/FormatStyle&gt;&lt;TargetColIndex&gt;3&lt;/TargetColIndex&gt;&lt;Key&gt;FormatCondition1&lt;/Key&gt;&lt;/Condition0&gt;&lt;Condition1 ID="FormatCondition2"&gt;&lt;ColIndex&gt;13&lt;/ColIndex&gt;&lt;ConditionOperator&gt;IsNull&lt;/ConditionOperator&gt;&lt;FormatStyle&gt;&lt;ForeColor&gt;Red&lt;/ForeColor&gt;&lt;/FormatStyle&gt;&lt;TargetColIndex&gt;3&lt;/TargetColIndex&gt;&lt;Key&gt;FormatCondition2&lt;/Key&gt;&lt;/Condition1&gt;&lt;/FormatConditions&gt;&lt;GroupCondition /&gt;&lt;Groups Collection="true" ElementName="Group"&gt;&lt;Group0 ID="Group0"&gt;&lt;ColumnCount&gt;2&lt;/ColumnCount&gt;&lt;ColIndex1&gt;21&lt;/ColIndex1&gt;&lt;CustomGroupIndex&gt;0&lt;/CustomGroupIndex&gt;&lt;/Group0&gt;&lt;Group1 ID="Group1"&gt;&lt;ColIndex&gt;10&lt;/ColIndex&gt;&lt;GroupPrefix /&gt;&lt;/Group1&gt;&lt;/Groups&gt;&lt;GroupHeaderTotals Collection="true" ElementName="GroupHeaderTotal"&gt;&lt;GroupHeaderTotal0 ID="GroupHeaderTotal1"&gt;&lt;AggregateFunction&gt;Count&lt;/AggregateFunction&gt;&lt;Key&gt;GroupHeaderTotal1&lt;/Key&gt;&lt;/GroupHeaderTotal0&gt;&lt;/GroupHeaderTotals&gt;&lt;CustomGroups Collection="true" ElementName="CustomGroup"&gt;&lt;CustomGroup0 ID="CustomGroup0"&gt;&lt;CompositeColumnsLength&gt;2&lt;/CompositeColumnsLength&gt;&lt;CompositeColumn0&gt;20&lt;/CompositeColumn0&gt;&lt;CompositeColumn1&gt;21&lt;/CompositeColumn1&gt;&lt;CustomGroupType&gt;CompositeColumns&lt;/CustomGroupType&gt;&lt;Key&gt;CustomGroup1&lt;/Key&gt;&lt;/CustomGroup0&gt;&lt;/CustomGroups&gt;&lt;/RootTable&gt;&lt;/GridEXLayoutData&gt;</value>
+  </data>
+  <data name="txtLoaiDichvu.AutoCompleteList" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAJoBbXNjb3JsaWIsIFZlcnNpb249NC4wLjAuMCwgQ3VsdHVyZT1u
+        ZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5XV0sIG1zY29ybGliLCBWZXJzaW9u
+        PTQuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OQUB
+        AAAAMFN5c3RlbS5Db2xsZWN0aW9ucy5HZW5lcmljLkxpc3RgMVtbU3lzdGVtLlN0cmluZwMAAAAGX2l0
+        ZW1zBV9zaXplCF92ZXJzaW9uBgAACAgCAAAACQMAAAAAAAAAAAAAABEDAAAAAAAAAAs=
+</value>
+  </data>
+  <data name="grdDvu.BuiltInTextsData" xml:space="preserve">
+    <value>&lt;LocalizableData ID="LocalizableStrings" Collection="true"&gt;&lt;GroupByBoxInfo&gt;Bạn muốn nhóm theo cột nào thì thả cột đó vào đây&lt;/GroupByBoxInfo&gt;&lt;FilterRowInfoText&gt;Bạn thực hiện tìm kiếm tên nhân viên&lt;/FilterRowInfoText&gt;&lt;/LocalizableData&gt;</value>
+  </data>
+  <data name="grdDvu_DesignTimeLayout.LayoutString" xml:space="preserve">
+    <value>&lt;GridEXLayoutData&gt;&lt;RootTable&gt;&lt;Columns Collection="true" ElementName="Column"&gt;&lt;Column0 ID="CHON"&gt;&lt;Caption&gt;CHON&lt;/Caption&gt;&lt;BoundMode&gt;UnboundFetch&lt;/BoundMode&gt;&lt;ColumnType&gt;CheckBox&lt;/ColumnType&gt;&lt;DataMember&gt;CHON&lt;/DataMember&gt;&lt;Key&gt;CHON&lt;/Key&gt;&lt;Position&gt;0&lt;/Position&gt;&lt;Width&gt;20&lt;/Width&gt;&lt;ActAsSelector&gt;True&lt;/ActAsSelector&gt;&lt;/Column0&gt;&lt;Column1 ID="tinh_chkhau"&gt;&lt;Caption&gt;Tính CK?&lt;/Caption&gt;&lt;TypeNameFalseValue&gt;System.Byte&lt;/TypeNameFalseValue&gt;&lt;CheckBoxFalseValue&gt;0&lt;/CheckBoxFalseValue&gt;&lt;TypeNameNullValue&gt;System.Byte&lt;/TypeNameNullValue&gt;&lt;CheckBoxNullValue&gt;0&lt;/CheckBoxNullValue&gt;&lt;TypeNameTrueValue&gt;System.Byte&lt;/TypeNameTrueValue&gt;&lt;CheckBoxTrueValue&gt;1&lt;/CheckBoxTrueValue&gt;&lt;ColumnType&gt;CheckBox&lt;/ColumnType&gt;&lt;DataMember&gt;tinh_chkhau&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;tinh_chkhau&lt;/Key&gt;&lt;Position&gt;1&lt;/Position&gt;&lt;Width&gt;61&lt;/Width&gt;&lt;/Column1&gt;&lt;Column2 ID="ten_chitietdichvu"&gt;&lt;Caption&gt;Tên dịch vụ&lt;/Caption&gt;&lt;DataMember&gt;ten_chitietdichvu&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;ten_chitietdichvu&lt;/Key&gt;&lt;Position&gt;2&lt;/Position&gt;&lt;Width&gt;245&lt;/Width&gt;&lt;/Column2&gt;&lt;Column3 ID="ptram_ckhau"&gt;&lt;Caption&gt;Tỉ lệ CK&lt;/Caption&gt;&lt;DataMember&gt;ptram_ckhau&lt;/DataMember&gt;&lt;Key&gt;ptram_ckhau&lt;/Key&gt;&lt;Position&gt;3&lt;/Position&gt;&lt;Width&gt;58&lt;/Width&gt;&lt;/Column3&gt;&lt;Column4 ID="id_chitietdichvu"&gt;&lt;Caption&gt;Id&lt;/Caption&gt;&lt;DataMember&gt;id_chitietdichvu&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;id_chitietdichvu&lt;/Key&gt;&lt;Position&gt;4&lt;/Position&gt;&lt;Width&gt;43&lt;/Width&gt;&lt;/Column4&gt;&lt;Column5 ID="stt_hthi_loaidvu"&gt;&lt;Caption&gt;stt_hthi_loaidvu&lt;/Caption&gt;&lt;DataMember&gt;stt_hthi_loaidvu&lt;/DataMember&gt;&lt;Key&gt;stt_hthi_loaidvu&lt;/Key&gt;&lt;Position&gt;5&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column5&gt;&lt;Column6 ID="stt_hthi_dichvu"&gt;&lt;Caption&gt;stt_hthi_dichvu&lt;/Caption&gt;&lt;DataMember&gt;stt_hthi_dichvu&lt;/DataMember&gt;&lt;Key&gt;stt_hthi_dichvu&lt;/Key&gt;&lt;Position&gt;6&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column6&gt;&lt;Column7 ID="stt_hthi"&gt;&lt;Caption&gt;stt_hthi&lt;/Caption&gt;&lt;DataMember&gt;stt_hthi&lt;/DataMember&gt;&lt;Key&gt;stt_hthi&lt;/Key&gt;&lt;Position&gt;7&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column7&gt;&lt;Column8 ID="id_dichvu"&gt;&lt;Caption&gt;id_dichvu&lt;/Caption&gt;&lt;DataMember&gt;id_dichvu&lt;/DataMember&gt;&lt;Key&gt;id_dichvu&lt;/Key&gt;&lt;Position&gt;8&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column8&gt;&lt;/Columns&gt;&lt;GroupCondition /&gt;&lt;GroupHeaderTotals Collection="true" ElementName="GroupHeaderTotal"&gt;&lt;GroupHeaderTotal0 ID="GroupHeaderTotal1"&gt;&lt;AggregateFunction&gt;Count&lt;/AggregateFunction&gt;&lt;Key&gt;GroupHeaderTotal1&lt;/Key&gt;&lt;/GroupHeaderTotal0&gt;&lt;/GroupHeaderTotals&gt;&lt;CustomGroups Collection="true" ElementName="CustomGroup"&gt;&lt;CustomGroup0 ID="CustomGroup0"&gt;&lt;CustomGroupType&gt;CompositeColumns&lt;/CustomGroupType&gt;&lt;Key&gt;CustomGroup1&lt;/Key&gt;&lt;/CustomGroup0&gt;&lt;/CustomGroups&gt;&lt;/RootTable&gt;&lt;/GridEXLayoutData&gt;</value>
+  </data>
+  <data name="cmdLaytile.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAW
+        JQAAFiUBSVIk8AAAAAd0SU1FB+IKFwMwG0dDJugAAAAHdEVYdEF1dGhvcgCprsxIAAAADHRFWHREZXNj
+        cmlwdGlvbgATCSEjAAAACnRFWHRDb3B5cmlnaHQArA/MOgAAAAl0RVh0U29mdHdhcmUAXXD/OgAAAAd0
+        RVh0U291cmNlAPX/g+sAAAAIdEVYdENvbW1lbnQA9syWvwAAAAZ0RVh0VGl0bGUAqO7SJwAAAT5JREFU
+        WEfF1ktqQlEQBFA/kWQgSSDkgyMlDpxkkK1lP2Yr2UogC3lWQQeaS+GrFnm34fCwvFoNfmfDMHQlwynJ
+        cEoynJIMXZhb+OBV3e+QoQOzg1/gDV7f1bkxMnRgvqP83x+Ul5ChA3OM4qy8hAwdGL4ELMwLUGkJGbpY
+        FIV5AbKXkGEFi6IwL0DWEjKsYlEU5gVodAkZEuYefiA/4SW4xE51kAwJ8xVPcA1H1UEyJEz3Bfq+BBWY
+        678JXSyIolxMo+UkQxcLoigXk1VOMnRg+n4VY9pfQyqVkwwdmPbXsFxOMnRg+v4hIUzXv2RL2MNnXJfq
+        3BgZOjAvcEi2sFBnz5GhA/McpdkGSkvI0IFZwSu8NZ5grh6jyNCFuYEHeGys1XlFhhWYBfDTcNdYqfMt
+        GV4CM2+pcy0ZTmeYnQBARNnzpM7uhgAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>265, 17</value>
+  </metadata>
+  <data name="cmdUpdate.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAANkE3LLaAgAABNNJREFUWEft
+        VlsopmsUltAwOQwxzhrHnGLkMHKuQU4lTDlERuQwJs0IwzTIFuUwJoeaEJLEhSuXUnMzikhuNFwQOY7z
+        72wba3/PGv9Pvs9u79n/vtr7raf/+9f3vc961lrvet9X5f9xa9S7ubn97uLicv5vAj4EX7/9dHlrWFtb
+        y2ZmZujbt2+M+fl5pQKcc3NzBB+Wlpaya7c3A8aRkRFqaWmh9vZ26ujoUCrA2draSp2dnWRubi4WAOPA
+        wABVVVXR1tYWXVxc0OnpqVIAru3tbaqurqbKykoyNTUVC4Cxt7eXysrK6Pv373R2dkYnJydKAbgQ1IcP
+        H6ioqIhMTEzEAmDs7u6m4uJipQs4Pz9nznfv3tGbN2/o8ePH0gJQn7dv37JaTJIi+1UsLi4yd35+PhkZ
+        GYkFQBUWSkFBAa2vr3PtpIj+Ko6Pj0kmk9Hu7i4HtLCwwNHn5ORIC4Cxra2NXr16RUtLS7S3t8eT9/f3
+        mQg4PDwUQf4OODg44O8xb2dnhxcenOP/8vIyB5eRkUGGhoZiATCiBXNzc2l1dZUJIeJXASFygGttbY1e
+        v35NaWlppK+vLy3g06dPlJ2dTZubm5zGo6MjpQBcWITIblJSkrQAGBsbGykzM5NTp8xFCC6UAdlNSEi4
+        X0B9fT3XCGm7urriDUQZ+PHjB5cB2Y2NjSU9PT2xABhra2spPT2dFxcEKBPoiqysLIqKipIWoKOjI8NW
+        mZqaynWTIvkngABkNzw8nODr2u3NkAuAwqGhIRofH6exsTGlAFzDw8MUHR1NoaGhpK2tLRYAIw6ioKAg
+        8vb2Jh8fHwW8vLzI09PzbwEcz549UwA84A4JCaGHDx+KBcCIkyogIIDh7+/PvyAKDg6myMhIio+PZ2Al
+        x8TEcDRhYWEiIM2YD+G+vr4MOV9gYKC0AE1NTVl5ebliAuDu7s7bJ3Y1XCr6+/tpcHCQ+vr6OLWwY8+4
+        C7Tc7Ows+fn54eglKysrcnBwYE7Y4Ova7c2A8f3796xaDhsbG+rp6eFFNDU1RcbGxiTcnEhXV5eamppE
+        C+0usO9jDpzb29srSvPgwQOxABhxXCJqOYRbEt9gQDYxMcHOnZ2dyczMjLBrwo5N5i7Q+3iHnc/Ozo6e
+        Pn1Kwl2Qged7BeAuIFwcFUD6Pn/+zGRIOSIByZMnT+jjx490eXmpOIjuAmXIy8vjQJB2RA5OV1dX0tDQ
+        EAuAsbCwkFMFR46Ojrg4EE5IOPry5QtH7+Hhwd/U1dWxExzdwMbGBgPPKysrfKDh/Efdnz9/zosPnJh7
+        rwBMgGJEiQ8fPXpEzc3NvJ+Pjo7yO7STk5MTNTQ08KmHUw6QC5E/Q1xpaSm3HfYWdAw4kQlJAWpqarKS
+        khJOF9oOtdPS0uIMoARfv37l6BERUglhqDXuAFKA6IqKCoqIiODWhQgsarTzfQIOUAL5xoE6q6urKxbh
+        5OQkRw4RIMLdAfbbh85t4F1NTQ3FxcVRSkoK7x3gRBYlBQjt8kKo+ZWFhQUvPrSPYKauri4mw8JCK05P
+        T7MY1Bj2PwPKlJiYSC9fvqTk5GQCt3DzImT7p9c7w8DAIFZ4uS9gT1VVdU9QuiWI2bC1td0EhLIogP9C
+        RPcC7wVnm8JFB9gQuDevefcFLFy7/M8PFZU/ABudpSAx37ccAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="grdQuyen_DesignTimeLayout.LayoutString" xml:space="preserve">
+    <value>&lt;GridEXLayoutData&gt;&lt;RootTable&gt;&lt;Columns Collection="true" ElementName="Column"&gt;&lt;Column0 ID="CHON"&gt;&lt;Caption&gt;Chọn&lt;/Caption&gt;&lt;BoundMode&gt;UnboundFetch&lt;/BoundMode&gt;&lt;ColumnType&gt;CheckBox&lt;/ColumnType&gt;&lt;DataMember&gt;CHON&lt;/DataMember&gt;&lt;EditType&gt;CheckBox&lt;/EditType&gt;&lt;Key&gt;CHON&lt;/Key&gt;&lt;Position&gt;0&lt;/Position&gt;&lt;Width&gt;58&lt;/Width&gt;&lt;ActAsSelector&gt;True&lt;/ActAsSelector&gt;&lt;/Column0&gt;&lt;Column1 ID="ma"&gt;&lt;Caption&gt;Mã quyền&lt;/Caption&gt;&lt;DataMember&gt;ma&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;FilterEditType&gt;TextBox&lt;/FilterEditType&gt;&lt;Key&gt;ma&lt;/Key&gt;&lt;Position&gt;1&lt;/Position&gt;&lt;Width&gt;158&lt;/Width&gt;&lt;CellStyle&gt;&lt;FontBold&gt;True&lt;/FontBold&gt;&lt;/CellStyle&gt;&lt;HeaderStyle&gt;&lt;FontBold&gt;True&lt;/FontBold&gt;&lt;/HeaderStyle&gt;&lt;/Column1&gt;&lt;Column2 ID="Ten"&gt;&lt;Caption&gt;Quyền&lt;/Caption&gt;&lt;DataMember&gt;Ten&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;FilterEditType&gt;TextBox&lt;/FilterEditType&gt;&lt;Key&gt;Ten&lt;/Key&gt;&lt;Position&gt;2&lt;/Position&gt;&lt;Width&gt;637&lt;/Width&gt;&lt;/Column2&gt;&lt;Column3 ID="Loai"&gt;&lt;Caption&gt;Loai&lt;/Caption&gt;&lt;DataMember&gt;Loai&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;FilterEditType&gt;TextBox&lt;/FilterEditType&gt;&lt;Key&gt;Loai&lt;/Key&gt;&lt;Position&gt;3&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column3&gt;&lt;Column4 ID="PHANLOAI"&gt;&lt;Caption&gt;Nhóm&lt;/Caption&gt;&lt;DataMember&gt;PHANLOAI&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;FilterEditType&gt;TextBox&lt;/FilterEditType&gt;&lt;Key&gt;PHANLOAI&lt;/Key&gt;&lt;Position&gt;4&lt;/Position&gt;&lt;/Column4&gt;&lt;Column5 ID="ten_nhomchucnang"&gt;&lt;Caption&gt;Tên nhóm&lt;/Caption&gt;&lt;DataMember&gt;ten_nhomchucnang&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;FilterEditType&gt;TextBox&lt;/FilterEditType&gt;&lt;Key&gt;ten_nhomchucnang&lt;/Key&gt;&lt;Position&gt;5&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column5&gt;&lt;/Columns&gt;&lt;GroupCondition /&gt;&lt;Groups Collection="true" ElementName="Group"&gt;&lt;Group0 ID="Group0"&gt;&lt;ColIndex&gt;5&lt;/ColIndex&gt;&lt;/Group0&gt;&lt;/Groups&gt;&lt;/RootTable&gt;&lt;/GridEXLayoutData&gt;</value>
+  </data>
+  <data name="grdKhoThuoc_DesignTimeLayout.LayoutString" xml:space="preserve">
+    <value>&lt;GridEXLayoutData&gt;&lt;RootTable&gt;&lt;Columns Collection="true" ElementName="Column"&gt;&lt;Column0 ID="CHON"&gt;&lt;Caption&gt;CHON&lt;/Caption&gt;&lt;BoundMode&gt;UnboundFetch&lt;/BoundMode&gt;&lt;ColumnType&gt;CheckBox&lt;/ColumnType&gt;&lt;DataMember&gt;CHON&lt;/DataMember&gt;&lt;Key&gt;CHON&lt;/Key&gt;&lt;Position&gt;0&lt;/Position&gt;&lt;Width&gt;20&lt;/Width&gt;&lt;ActAsSelector&gt;True&lt;/ActAsSelector&gt;&lt;/Column0&gt;&lt;Column1 ID="ID_KHO"&gt;&lt;Caption&gt;ID_KHO&lt;/Caption&gt;&lt;DataMember&gt;ID_KHO&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;FilterEditType&gt;TextBox&lt;/FilterEditType&gt;&lt;Key&gt;ID_KHO&lt;/Key&gt;&lt;Position&gt;1&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column1&gt;&lt;Column2 ID="MA_KHO"&gt;&lt;Caption&gt;Mã kho&lt;/Caption&gt;&lt;DataMember&gt;MA_KHO&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;FilterEditType&gt;TextBox&lt;/FilterEditType&gt;&lt;Key&gt;MA_KHO&lt;/Key&gt;&lt;Position&gt;2&lt;/Position&gt;&lt;/Column2&gt;&lt;Column3 ID="TEN_KHO"&gt;&lt;Caption&gt;Tên kho&lt;/Caption&gt;&lt;DataMember&gt;TEN_KHO&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;FilterEditType&gt;TextBox&lt;/FilterEditType&gt;&lt;Key&gt;TEN_KHO&lt;/Key&gt;&lt;Position&gt;3&lt;/Position&gt;&lt;Width&gt;315&lt;/Width&gt;&lt;/Column3&gt;&lt;Column4 ID="THU_KHO"&gt;&lt;Caption&gt;Thủ kho&lt;/Caption&gt;&lt;DataMember&gt;THU_KHO&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;FilterEditType&gt;TextBox&lt;/FilterEditType&gt;&lt;Key&gt;THU_KHO&lt;/Key&gt;&lt;Position&gt;4&lt;/Position&gt;&lt;/Column4&gt;&lt;Column5 ID="KIEU_KHO"&gt;&lt;Caption&gt;Kiểu kho&lt;/Caption&gt;&lt;DataMember&gt;KIEU_KHO&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;FilterEditType&gt;TextBox&lt;/FilterEditType&gt;&lt;Key&gt;KIEU_KHO&lt;/Key&gt;&lt;Position&gt;5&lt;/Position&gt;&lt;/Column5&gt;&lt;Column6 ID="LOAI_KHO"&gt;&lt;Caption&gt;Loại kho&lt;/Caption&gt;&lt;DataMember&gt;LOAI_KHO&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;FilterEditType&gt;TextBox&lt;/FilterEditType&gt;&lt;Key&gt;LOAI_KHO&lt;/Key&gt;&lt;Position&gt;6&lt;/Position&gt;&lt;Width&gt;70&lt;/Width&gt;&lt;/Column6&gt;&lt;Column7 ID="IsChon"&gt;&lt;Caption&gt;IsChon&lt;/Caption&gt;&lt;DataMember&gt;IsChon&lt;/DataMember&gt;&lt;Key&gt;IsChon&lt;/Key&gt;&lt;Position&gt;7&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column7&gt;&lt;/Columns&gt;&lt;FormatConditions Collection="true" ElementName="Condition"&gt;&lt;Condition0 ID="FormatCondition1"&gt;&lt;ColIndex&gt;7&lt;/ColIndex&gt;&lt;FormatStyle&gt;&lt;BackColor&gt;192, 255, 255&lt;/BackColor&gt;&lt;/FormatStyle&gt;&lt;Value1&gt;1&lt;/Value1&gt;&lt;Key&gt;FormatCondition1&lt;/Key&gt;&lt;/Condition0&gt;&lt;/FormatConditions&gt;&lt;GroupCondition /&gt;&lt;/RootTable&gt;&lt;/GridEXLayoutData&gt;</value>
+  </data>
+  <data name="grdPhongkham_DesignTimeLayout.LayoutString" xml:space="preserve">
+    <value>&lt;GridEXLayoutData&gt;&lt;RootTable&gt;&lt;Columns Collection="true" ElementName="Column"&gt;&lt;Column0 ID="CHON"&gt;&lt;Caption&gt;Chọn&lt;/Caption&gt;&lt;BoundMode&gt;UnboundFetch&lt;/BoundMode&gt;&lt;ColumnType&gt;CheckBox&lt;/ColumnType&gt;&lt;DataMember&gt;CHON&lt;/DataMember&gt;&lt;EditType&gt;CheckBox&lt;/EditType&gt;&lt;Key&gt;CHON&lt;/Key&gt;&lt;Position&gt;0&lt;/Position&gt;&lt;Width&gt;23&lt;/Width&gt;&lt;ActAsSelector&gt;True&lt;/ActAsSelector&gt;&lt;/Column0&gt;&lt;Column1 ID="id_khoaphong"&gt;&lt;Caption&gt;Id phòng&lt;/Caption&gt;&lt;DataMember&gt;id_khoaphong&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;id_khoaphong&lt;/Key&gt;&lt;Position&gt;1&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;Width&gt;71&lt;/Width&gt;&lt;/Column1&gt;&lt;Column2 ID="ma_khoaphong"&gt;&lt;Caption&gt;Mã khoa phòng&lt;/Caption&gt;&lt;DataMember&gt;ma_khoaphong&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;FilterEditType&gt;TextBox&lt;/FilterEditType&gt;&lt;Key&gt;ma_khoaphong&lt;/Key&gt;&lt;Position&gt;2&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column2&gt;&lt;Column3 ID="ten_khoaphong"&gt;&lt;Caption&gt;Tên phòng khám&lt;/Caption&gt;&lt;DataMember&gt;ten_khoaphong&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;FilterEditType&gt;TextBox&lt;/FilterEditType&gt;&lt;Key&gt;ten_khoaphong&lt;/Key&gt;&lt;Position&gt;3&lt;/Position&gt;&lt;Width&gt;258&lt;/Width&gt;&lt;/Column3&gt;&lt;Column4 ID="ma_cha"&gt;&lt;Caption&gt;ma_cha&lt;/Caption&gt;&lt;DataMember&gt;ma_cha&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;ma_cha&lt;/Key&gt;&lt;Position&gt;4&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column4&gt;&lt;Column5 ID="ten_cha"&gt;&lt;Caption&gt;ten_cha&lt;/Caption&gt;&lt;DataMember&gt;ten_cha&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;ten_cha&lt;/Key&gt;&lt;Position&gt;5&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column5&gt;&lt;/Columns&gt;&lt;GroupCondition /&gt;&lt;Groups Collection="true" ElementName="Group"&gt;&lt;Group0 ID="Group0"&gt;&lt;ColIndex&gt;5&lt;/ColIndex&gt;&lt;GroupPrefix /&gt;&lt;/Group0&gt;&lt;/Groups&gt;&lt;/RootTable&gt;&lt;/GridEXLayoutData&gt;</value>
+  </data>
+  <data name="grdKhoa_DesignTimeLayout.LayoutString" xml:space="preserve">
+    <value>&lt;GridEXLayoutData&gt;&lt;RootTable&gt;&lt;Columns Collection="true" ElementName="Column"&gt;&lt;Column0 ID="CHON"&gt;&lt;Caption&gt;Chọn&lt;/Caption&gt;&lt;BoundMode&gt;UnboundFetch&lt;/BoundMode&gt;&lt;ColumnType&gt;CheckBox&lt;/ColumnType&gt;&lt;DataMember&gt;CHON&lt;/DataMember&gt;&lt;EditType&gt;CheckBox&lt;/EditType&gt;&lt;Key&gt;CHON&lt;/Key&gt;&lt;Position&gt;0&lt;/Position&gt;&lt;Width&gt;24&lt;/Width&gt;&lt;ActAsSelector&gt;True&lt;/ActAsSelector&gt;&lt;/Column0&gt;&lt;Column1 ID="id_khoaphong"&gt;&lt;Caption&gt;Id phòng&lt;/Caption&gt;&lt;DataMember&gt;id_khoaphong&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;id_khoaphong&lt;/Key&gt;&lt;Position&gt;1&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;Width&gt;71&lt;/Width&gt;&lt;/Column1&gt;&lt;Column2 ID="ma_khoaphong"&gt;&lt;Caption&gt;Mã khoa phòng&lt;/Caption&gt;&lt;DataMember&gt;ma_khoaphong&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;ma_khoaphong&lt;/Key&gt;&lt;Position&gt;2&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column2&gt;&lt;Column3 ID="ten_khoaphong"&gt;&lt;Caption&gt;Khoa ngoại trú&lt;/Caption&gt;&lt;DataMember&gt;ten_khoaphong&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;ten_khoaphong&lt;/Key&gt;&lt;Position&gt;3&lt;/Position&gt;&lt;Width&gt;243&lt;/Width&gt;&lt;/Column3&gt;&lt;/Columns&gt;&lt;GroupCondition /&gt;&lt;/RootTable&gt;&lt;/GridEXLayoutData&gt;</value>
+  </data>
+  <data name="grdPhongkhamNoitru_DesignTimeLayout.LayoutString" xml:space="preserve">
+    <value>&lt;GridEXLayoutData&gt;&lt;RootTable&gt;&lt;Columns Collection="true" ElementName="Column"&gt;&lt;Column0 ID="CHON"&gt;&lt;Caption&gt;Chọn&lt;/Caption&gt;&lt;BoundMode&gt;UnboundFetch&lt;/BoundMode&gt;&lt;ColumnType&gt;CheckBox&lt;/ColumnType&gt;&lt;DataMember&gt;CHON&lt;/DataMember&gt;&lt;EditType&gt;CheckBox&lt;/EditType&gt;&lt;Key&gt;CHON&lt;/Key&gt;&lt;Position&gt;0&lt;/Position&gt;&lt;Width&gt;23&lt;/Width&gt;&lt;ActAsSelector&gt;True&lt;/ActAsSelector&gt;&lt;/Column0&gt;&lt;Column1 ID="id_khoaphong"&gt;&lt;Caption&gt;Id phòng&lt;/Caption&gt;&lt;DataMember&gt;id_khoaphong&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;id_khoaphong&lt;/Key&gt;&lt;Position&gt;1&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;Width&gt;71&lt;/Width&gt;&lt;/Column1&gt;&lt;Column2 ID="ma_khoaphong"&gt;&lt;Caption&gt;Mã khoa phòng&lt;/Caption&gt;&lt;DataMember&gt;ma_khoaphong&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;ma_khoaphong&lt;/Key&gt;&lt;Position&gt;2&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column2&gt;&lt;Column3 ID="ten_khoaphong"&gt;&lt;Caption&gt;Tên phòng khám nội&lt;/Caption&gt;&lt;DataMember&gt;ten_khoaphong&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;ten_khoaphong&lt;/Key&gt;&lt;Position&gt;3&lt;/Position&gt;&lt;Width&gt;300&lt;/Width&gt;&lt;/Column3&gt;&lt;Column4 ID="ma_cha"&gt;&lt;Caption&gt;ma_cha&lt;/Caption&gt;&lt;DataMember&gt;ma_cha&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;ma_cha&lt;/Key&gt;&lt;Position&gt;4&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column4&gt;&lt;Column5 ID="ten_cha"&gt;&lt;Caption&gt;Tên Khoa phòng cấp trên&lt;/Caption&gt;&lt;DataMember&gt;ten_cha&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;ten_cha&lt;/Key&gt;&lt;Position&gt;5&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column5&gt;&lt;/Columns&gt;&lt;GroupCondition /&gt;&lt;Groups Collection="true" ElementName="Group"&gt;&lt;Group0 ID="Group0"&gt;&lt;ColIndex&gt;5&lt;/ColIndex&gt;&lt;GroupPrefix /&gt;&lt;/Group0&gt;&lt;/Groups&gt;&lt;/RootTable&gt;&lt;/GridEXLayoutData&gt;</value>
+  </data>
+  <data name="grdKhoanoitru_DesignTimeLayout.LayoutString" xml:space="preserve">
+    <value>&lt;GridEXLayoutData&gt;&lt;RootTable&gt;&lt;Columns Collection="true" ElementName="Column"&gt;&lt;Column0 ID="CHON"&gt;&lt;Caption&gt;Chọn&lt;/Caption&gt;&lt;BoundMode&gt;UnboundFetch&lt;/BoundMode&gt;&lt;ColumnType&gt;CheckBox&lt;/ColumnType&gt;&lt;DataMember&gt;CHON&lt;/DataMember&gt;&lt;EditType&gt;CheckBox&lt;/EditType&gt;&lt;Key&gt;CHON&lt;/Key&gt;&lt;Position&gt;0&lt;/Position&gt;&lt;Width&gt;47&lt;/Width&gt;&lt;ActAsSelector&gt;True&lt;/ActAsSelector&gt;&lt;/Column0&gt;&lt;Column1 ID="id_khoaphong"&gt;&lt;Caption&gt;Id phòng&lt;/Caption&gt;&lt;DataMember&gt;id_khoaphong&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;id_khoaphong&lt;/Key&gt;&lt;Position&gt;1&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;Width&gt;71&lt;/Width&gt;&lt;/Column1&gt;&lt;Column2 ID="ma_khoaphong"&gt;&lt;Caption&gt;Mã khoa phòng&lt;/Caption&gt;&lt;DataMember&gt;ma_khoaphong&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;FilterEditType&gt;TextBox&lt;/FilterEditType&gt;&lt;Key&gt;ma_khoaphong&lt;/Key&gt;&lt;Position&gt;2&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column2&gt;&lt;Column3 ID="ten_khoaphong"&gt;&lt;Caption&gt;Khoa nội trú&lt;/Caption&gt;&lt;DataMember&gt;ten_khoaphong&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;FilterEditType&gt;TextBox&lt;/FilterEditType&gt;&lt;Key&gt;ten_khoaphong&lt;/Key&gt;&lt;Position&gt;3&lt;/Position&gt;&lt;Width&gt;470&lt;/Width&gt;&lt;/Column3&gt;&lt;Column4 ID="ma_cha"&gt;&lt;Caption&gt;ma_cha&lt;/Caption&gt;&lt;DataMember&gt;ma_cha&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;ma_cha&lt;/Key&gt;&lt;Position&gt;4&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column4&gt;&lt;/Columns&gt;&lt;GroupCondition /&gt;&lt;/RootTable&gt;&lt;/GridEXLayoutData&gt;</value>
+  </data>
+  <data name="grdDichvuCls_DesignTimeLayout.LayoutString" xml:space="preserve">
+    <value>&lt;GridEXLayoutData&gt;&lt;RootTable&gt;&lt;Columns Collection="true" ElementName="Column"&gt;&lt;Column0 ID="CHON"&gt;&lt;Caption&gt;Chọn&lt;/Caption&gt;&lt;BoundMode&gt;UnboundFetch&lt;/BoundMode&gt;&lt;ColumnType&gt;CheckBox&lt;/ColumnType&gt;&lt;DataMember&gt;CHON&lt;/DataMember&gt;&lt;EditType&gt;CheckBox&lt;/EditType&gt;&lt;Key&gt;CHON&lt;/Key&gt;&lt;Position&gt;0&lt;/Position&gt;&lt;Width&gt;47&lt;/Width&gt;&lt;ActAsSelector&gt;True&lt;/ActAsSelector&gt;&lt;/Column0&gt;&lt;Column1 ID="ma"&gt;&lt;Caption&gt;Mã dịch vụ&lt;/Caption&gt;&lt;DataMember&gt;ma&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;ma&lt;/Key&gt;&lt;Position&gt;1&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column1&gt;&lt;Column2 ID="ten"&gt;&lt;Caption&gt;Tên dịch vụ&lt;/Caption&gt;&lt;DataMember&gt;ten&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;ten&lt;/Key&gt;&lt;Position&gt;2&lt;/Position&gt;&lt;Width&gt;650&lt;/Width&gt;&lt;/Column2&gt;&lt;Column3 ID="loai"&gt;&lt;Caption&gt;loai&lt;/Caption&gt;&lt;DataMember&gt;loai&lt;/DataMember&gt;&lt;Key&gt;loai&lt;/Key&gt;&lt;Position&gt;3&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column3&gt;&lt;/Columns&gt;&lt;GroupCondition /&gt;&lt;/RootTable&gt;&lt;/GridEXLayoutData&gt;</value>
+  </data>
+  <data name="grdLoaiThuoc_DesignTimeLayout.LayoutString" xml:space="preserve">
+    <value>&lt;GridEXLayoutData&gt;&lt;RootTable&gt;&lt;Columns Collection="true" ElementName="Column"&gt;&lt;Column0 ID="CHON"&gt;&lt;Caption&gt;Chọn&lt;/Caption&gt;&lt;BoundMode&gt;UnboundFetch&lt;/BoundMode&gt;&lt;ColumnType&gt;CheckBox&lt;/ColumnType&gt;&lt;DataMember&gt;CHON&lt;/DataMember&gt;&lt;EditType&gt;CheckBox&lt;/EditType&gt;&lt;Key&gt;CHON&lt;/Key&gt;&lt;Position&gt;0&lt;/Position&gt;&lt;Width&gt;47&lt;/Width&gt;&lt;ActAsSelector&gt;True&lt;/ActAsSelector&gt;&lt;/Column0&gt;&lt;Column1 ID="id_loaithuoc"&gt;&lt;Caption&gt;Id loại thuốc&lt;/Caption&gt;&lt;DataMember&gt;id_loaithuoc&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;id_loaithuoc&lt;/Key&gt;&lt;Position&gt;1&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;Width&gt;71&lt;/Width&gt;&lt;/Column1&gt;&lt;Column2 ID="ma_loaithuoc"&gt;&lt;Caption&gt;Mã loại thuốc&lt;/Caption&gt;&lt;DataMember&gt;ma_loaithuoc&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;ma_loaithuoc&lt;/Key&gt;&lt;Position&gt;2&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column2&gt;&lt;Column3 ID="ten_loaithuoc"&gt;&lt;Caption&gt;Tên loại thuốc&lt;/Caption&gt;&lt;DataMember&gt;ten_loaithuoc&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;ten_loaithuoc&lt;/Key&gt;&lt;Position&gt;3&lt;/Position&gt;&lt;Width&gt;633&lt;/Width&gt;&lt;/Column3&gt;&lt;Column4 ID="ten_nhomthuoc"&gt;&lt;Caption&gt;Nhóm thuốc&lt;/Caption&gt;&lt;DataMember&gt;ten_nhomthuoc&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;ten_nhomthuoc&lt;/Key&gt;&lt;Position&gt;4&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column4&gt;&lt;/Columns&gt;&lt;GroupCondition /&gt;&lt;Groups Collection="true" ElementName="Group"&gt;&lt;Group0 ID="Group0"&gt;&lt;ColIndex&gt;4&lt;/ColIndex&gt;&lt;GroupPrefix /&gt;&lt;/Group0&gt;&lt;/Groups&gt;&lt;/RootTable&gt;&lt;/GridEXLayoutData&gt;</value>
+  </data>
+  <data name="grdbaocaomulti_DesignTimeLayout.LayoutString" xml:space="preserve">
+    <value>&lt;GridEXLayoutData&gt;&lt;RootTable&gt;&lt;Columns Collection="true" ElementName="Column"&gt;&lt;Column0 ID="CHON"&gt;&lt;Caption&gt;Chọn&lt;/Caption&gt;&lt;BoundMode&gt;UnboundFetch&lt;/BoundMode&gt;&lt;ColumnType&gt;CheckBox&lt;/ColumnType&gt;&lt;DataMember&gt;CHON&lt;/DataMember&gt;&lt;EditType&gt;CheckBox&lt;/EditType&gt;&lt;Key&gt;CHON&lt;/Key&gt;&lt;Position&gt;0&lt;/Position&gt;&lt;Width&gt;58&lt;/Width&gt;&lt;ActAsSelector&gt;True&lt;/ActAsSelector&gt;&lt;/Column0&gt;&lt;Column1 ID="ma"&gt;&lt;Caption&gt;Mã quyền&lt;/Caption&gt;&lt;DataMember&gt;ma&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;FilterEditType&gt;TextBox&lt;/FilterEditType&gt;&lt;Key&gt;ma&lt;/Key&gt;&lt;Position&gt;1&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column1&gt;&lt;Column2 ID="Ten"&gt;&lt;Caption&gt;Tên báo cáo&lt;/Caption&gt;&lt;DataMember&gt;Ten&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;FilterEditType&gt;TextBox&lt;/FilterEditType&gt;&lt;Key&gt;Ten&lt;/Key&gt;&lt;Position&gt;2&lt;/Position&gt;&lt;Width&gt;637&lt;/Width&gt;&lt;/Column2&gt;&lt;Column3 ID="Loai"&gt;&lt;Caption&gt;Loai&lt;/Caption&gt;&lt;DataMember&gt;Loai&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;FilterEditType&gt;TextBox&lt;/FilterEditType&gt;&lt;Key&gt;Loai&lt;/Key&gt;&lt;Position&gt;3&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column3&gt;&lt;Column4 ID="ten_loai"&gt;&lt;Caption&gt;ten_loai&lt;/Caption&gt;&lt;DataMember&gt;ten_loai&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;FilterEditType&gt;TextBox&lt;/FilterEditType&gt;&lt;Key&gt;ten_loai&lt;/Key&gt;&lt;Position&gt;4&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column4&gt;&lt;/Columns&gt;&lt;GroupCondition /&gt;&lt;Groups Collection="true" ElementName="Group"&gt;&lt;Group0 ID="Group0"&gt;&lt;ColumnCount&gt;2&lt;/ColumnCount&gt;&lt;ColIndex1&gt;4&lt;/ColIndex1&gt;&lt;CustomGroupIndex&gt;0&lt;/CustomGroupIndex&gt;&lt;/Group0&gt;&lt;/Groups&gt;&lt;CustomGroups Collection="true" ElementName="CustomGroup"&gt;&lt;CustomGroup0 ID="CustomGroup0"&gt;&lt;CompositeColumnsLength&gt;2&lt;/CompositeColumnsLength&gt;&lt;CompositeColumn0&gt;3&lt;/CompositeColumn0&gt;&lt;CompositeColumn1&gt;4&lt;/CompositeColumn1&gt;&lt;CustomGroupType&gt;CompositeColumns&lt;/CustomGroupType&gt;&lt;Key&gt;CustomGroup1&lt;/Key&gt;&lt;/CustomGroup0&gt;&lt;/CustomGroups&gt;&lt;/RootTable&gt;&lt;/GridEXLayoutData&gt;</value>
+  </data>
+  <data name="grdDmucchung_DesignTimeLayout.LayoutString" xml:space="preserve">
+    <value>&lt;GridEXLayoutData&gt;&lt;RootTable&gt;&lt;Columns Collection="true" ElementName="Column"&gt;&lt;Column0 ID="CHON"&gt;&lt;Caption&gt;Chọn&lt;/Caption&gt;&lt;BoundMode&gt;UnboundFetch&lt;/BoundMode&gt;&lt;ColumnType&gt;CheckBox&lt;/ColumnType&gt;&lt;DataMember&gt;CHON&lt;/DataMember&gt;&lt;EditType&gt;CheckBox&lt;/EditType&gt;&lt;Key&gt;CHON&lt;/Key&gt;&lt;Position&gt;0&lt;/Position&gt;&lt;Width&gt;58&lt;/Width&gt;&lt;ActAsSelector&gt;True&lt;/ActAsSelector&gt;&lt;/Column0&gt;&lt;Column1 ID="ma_loai"&gt;&lt;Caption&gt;Mã quyền&lt;/Caption&gt;&lt;DataMember&gt;ma_loai&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;FilterEditType&gt;TextBox&lt;/FilterEditType&gt;&lt;Key&gt;ma_loai&lt;/Key&gt;&lt;Position&gt;1&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column1&gt;&lt;Column2 ID="Ten_loai"&gt;&lt;Caption&gt;Tên kiểu danh mục dùng chung&lt;/Caption&gt;&lt;DataMember&gt;Ten_loai&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;FilterEditType&gt;TextBox&lt;/FilterEditType&gt;&lt;Key&gt;Ten_loai&lt;/Key&gt;&lt;Position&gt;2&lt;/Position&gt;&lt;Width&gt;637&lt;/Width&gt;&lt;/Column2&gt;&lt;Column3 ID="MOTA_THEM"&gt;&lt;Caption&gt;MOTA_THEM&lt;/Caption&gt;&lt;DataMember&gt;MOTA_THEM&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;FilterEditType&gt;TextBox&lt;/FilterEditType&gt;&lt;Key&gt;MOTA_THEM&lt;/Key&gt;&lt;Position&gt;3&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column3&gt;&lt;/Columns&gt;&lt;GroupCondition /&gt;&lt;Groups Collection="true" ElementName="Group"&gt;&lt;Group0 ID="Group0"&gt;&lt;ColIndex&gt;3&lt;/ColIndex&gt;&lt;GroupPrefix /&gt;&lt;HeaderCaption /&gt;&lt;CustomGroupIndex&gt;0&lt;/CustomGroupIndex&gt;&lt;/Group0&gt;&lt;/Groups&gt;&lt;CustomGroups Collection="true" ElementName="CustomGroup"&gt;&lt;CustomGroup0 ID="CustomGroup0"&gt;&lt;CompositeColumnsLength&gt;1&lt;/CompositeColumnsLength&gt;&lt;CompositeColumn0&gt;3&lt;/CompositeColumn0&gt;&lt;CustomGroupType&gt;CompositeColumns&lt;/CustomGroupType&gt;&lt;Key&gt;CustomGroup1&lt;/Key&gt;&lt;/CustomGroup0&gt;&lt;/CustomGroups&gt;&lt;/RootTable&gt;&lt;/GridEXLayoutData&gt;</value>
+  </data>
+  <data name="grdCosoKCB_DesignTimeLayout.LayoutString" xml:space="preserve">
+    <value>&lt;GridEXLayoutData&gt;&lt;RootTable&gt;&lt;Columns Collection="true" ElementName="Column"&gt;&lt;Column0 ID="CHON"&gt;&lt;Caption&gt;Chọn&lt;/Caption&gt;&lt;BoundMode&gt;UnboundFetch&lt;/BoundMode&gt;&lt;ColumnType&gt;CheckBox&lt;/ColumnType&gt;&lt;DataMember&gt;CHON&lt;/DataMember&gt;&lt;EditType&gt;CheckBox&lt;/EditType&gt;&lt;Key&gt;CHON&lt;/Key&gt;&lt;Position&gt;0&lt;/Position&gt;&lt;Width&gt;58&lt;/Width&gt;&lt;ActAsSelector&gt;True&lt;/ActAsSelector&gt;&lt;/Column0&gt;&lt;Column1 ID="ma"&gt;&lt;Caption&gt;Mã cơ sở&lt;/Caption&gt;&lt;DataMember&gt;ma&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;FilterEditType&gt;TextBox&lt;/FilterEditType&gt;&lt;Key&gt;ma&lt;/Key&gt;&lt;Position&gt;1&lt;/Position&gt;&lt;Width&gt;158&lt;/Width&gt;&lt;CellStyle&gt;&lt;FontBold&gt;True&lt;/FontBold&gt;&lt;/CellStyle&gt;&lt;HeaderStyle&gt;&lt;FontBold&gt;True&lt;/FontBold&gt;&lt;/HeaderStyle&gt;&lt;/Column1&gt;&lt;Column2 ID="Ten"&gt;&lt;Caption&gt;Tên cơ sở&lt;/Caption&gt;&lt;DataMember&gt;Ten&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;FilterEditType&gt;TextBox&lt;/FilterEditType&gt;&lt;Key&gt;Ten&lt;/Key&gt;&lt;Position&gt;2&lt;/Position&gt;&lt;Width&gt;637&lt;/Width&gt;&lt;/Column2&gt;&lt;Column3 ID="Loai"&gt;&lt;Caption&gt;Loai&lt;/Caption&gt;&lt;DataMember&gt;Loai&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;FilterEditType&gt;TextBox&lt;/FilterEditType&gt;&lt;Key&gt;Loai&lt;/Key&gt;&lt;Position&gt;3&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column3&gt;&lt;Column4 ID="PHANLOAI"&gt;&lt;Caption&gt;Nhóm&lt;/Caption&gt;&lt;DataMember&gt;PHANLOAI&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;FilterEditType&gt;TextBox&lt;/FilterEditType&gt;&lt;Key&gt;PHANLOAI&lt;/Key&gt;&lt;Position&gt;4&lt;/Position&gt;&lt;/Column4&gt;&lt;Column5 ID="ten_nhomchucnang"&gt;&lt;Caption&gt;Tên nhóm&lt;/Caption&gt;&lt;DataMember&gt;ten_nhomchucnang&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;FilterEditType&gt;TextBox&lt;/FilterEditType&gt;&lt;Key&gt;ten_nhomchucnang&lt;/Key&gt;&lt;Position&gt;5&lt;/Position&gt;&lt;Visible&gt;False&lt;/Visible&gt;&lt;/Column5&gt;&lt;/Columns&gt;&lt;GroupCondition /&gt;&lt;Groups Collection="true" ElementName="Group"&gt;&lt;Group0 ID="Group0"&gt;&lt;ColIndex&gt;5&lt;/ColIndex&gt;&lt;/Group0&gt;&lt;/Groups&gt;&lt;/RootTable&gt;&lt;/GridEXLayoutData&gt;</value>
+  </data>
+</root>

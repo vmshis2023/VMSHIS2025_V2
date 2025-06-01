@@ -1,0 +1,39 @@
+{
+  "version": 2,
+  "dgSpecHash": "Qjg2VbkIXECYyrSUtx95hM1kOY+wrupS8NX9aGKZIShWu3SesUhbsiRicKRZDbjr7AY6iE4D0CY8rUkNwePARA==",
+  "success": true,
+  "projectFilePath": "F:\\VMS_HIS\\GitHub2024\\VMS_HIS_2024\\VMS.HIS.API\\VMS.HIS.API.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\KKYBBNL\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\KKYBBNL\\.nuget\\packages\\microsoft.extensions.configuration\\3.0.0\\microsoft.extensions.configuration.3.0.0.nupkg.sha512",
+    "C:\\Users\\KKYBBNL\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\3.0.0\\microsoft.extensions.configuration.abstractions.3.0.0.nupkg.sha512",
+    "C:\\Users\\KKYBBNL\\.nuget\\packages\\microsoft.extensions.configuration.binder\\3.0.0\\microsoft.extensions.configuration.binder.3.0.0.nupkg.sha512",
+    "C:\\Users\\KKYBBNL\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\3.0.0\\microsoft.extensions.dependencyinjection.3.0.0.nupkg.sha512",
+    "C:\\Users\\KKYBBNL\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\3.0.0\\microsoft.extensions.dependencyinjection.abstractions.3.0.0.nupkg.sha512",
+    "C:\\Users\\KKYBBNL\\.nuget\\packages\\microsoft.extensions.logging\\3.0.0\\microsoft.extensions.logging.3.0.0.nupkg.sha512",
+    "C:\\Users\\KKYBBNL\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\3.0.0\\microsoft.extensions.logging.abstractions.3.0.0.nupkg.sha512",
+    "C:\\Users\\KKYBBNL\\.nuget\\packages\\microsoft.extensions.options\\3.0.0\\microsoft.extensions.options.3.0.0.nupkg.sha512",
+    "C:\\Users\\KKYBBNL\\.nuget\\packages\\microsoft.extensions.primitives\\3.0.0\\microsoft.extensions.primitives.3.0.0.nupkg.sha512",
+    "C:\\Users\\KKYBBNL\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\KKYBBNL\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
+    "C:\\Users\\KKYBBNL\\.nuget\\packages\\nlog\\5.2.8\\nlog.5.2.8.nupkg.sha512",
+    "C:\\Users\\KKYBBNL\\.nuget\\packages\\nlog.extensions.logging\\1.6.0\\nlog.extensions.logging.1.6.0.nupkg.sha512",
+    "C:\\Users\\KKYBBNL\\.nuget\\packages\\nlog.web.aspnetcore\\4.9.0\\nlog.web.aspnetcore.4.9.0.nupkg.sha512",
+    "C:\\Users\\KKYBBNL\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
+    "C:\\Users\\KKYBBNL\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
+    "C:\\Users\\KKYBBNL\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.6.3\\swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
+    "C:\\Users\\KKYBBNL\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\5.6.3\\swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1608",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Detected package version outside of dependency constraint: NLog.Extensions.Logging 1.6.0 requires NLog (>= 4.6.7 && < 5.0.0-beta01) but version NLog 5.2.8 was resolved.",
+      "libraryId": "NLog",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    }
+  ]
+}

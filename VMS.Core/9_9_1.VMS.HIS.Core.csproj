@@ -1,0 +1,391 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F6B863A1-C377-4434-9551-3687F5DBF249}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VNSCore</RootNamespace>
+    <AssemblyName>Core</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ApplicationIcon>hospital-128 %282%29.ico</ApplicationIcon>
+    <StartupObject>CIS.CoreApp.Program</StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+    <PublishUrl>D:\WebservicePublish\App\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>4</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>C:\HIS_BVSG\Running\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;LTV19_CONFIG,LEADTOOLS_V16_OR_LATER,LEADTOOLS_V17_OR_LATER;LEADTOOLS_V175_OR_LATER;LEADTOOLS_V18_OR_LATER;FOR_DOTNET4;LEADTOOLS_V19_OR_LATER;FOR_WIN32</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Running\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>3548BD6A6EFC87E2E494C7753CB217D1E0F08303</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Encrypt, Version=1.0.3264.16170, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Janus.Data.v3, Version=3.5.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Janus.Windows.Common.v3, Version=3.5.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Janus.Windows.GridEX.v3, Version=3.5.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Janus.Windows.Ribbon.v3, Version=3.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\HIS_BVSG\Running\Janus.Windows.Ribbon.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.UI.v3, Version=3.5.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="KeyManager, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Running_QLPKEBM\KeyManager.dll</HintPath>
+    </Reference>
+    <Reference Include="Leadtools, Version=17.0.0.0, Culture=neutral, PublicKeyToken=9cf889f53ea9b907, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\MyHIS\Running\Leadtools.dll</HintPath>
+    </Reference>
+    <Reference Include="Leadtools.Demos.Dialogs, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\Leadtools\LEADTOOLS 19\Bin\Dotnet\x64\Leadtools.Demos.Dialogs.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="NLog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL" />
+    <Reference Include="SubSonic, Version=2.2.0.0, Culture=neutral, PublicKeyToken=eadb47849839a332, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Design" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="xvect, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\VBITCode\CHECKDATA_BHYT\Running\xvect.dll</HintPath>
+    </Reference>
+    <Reference Include="xvlibs, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Running_QLPKEBM\xvlibs.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BVSG\frm_MainForm_new.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BVSG\frm_MainForm_new.Designer.cs">
+      <DependentUpon>frm_MainForm_new.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Class\AppChecker.cs" />
+    <Compile Include="Class\ConnectionSQL.cs" />
+    <Compile Include="Class\DynamicInitializer.cs" />
+    <Compile Include="Class\EnDec.cs" />
+    <Compile Include="Class\frm_RegEprd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Class\frm_RegEprd.Designer.cs">
+      <DependentUpon>frm_RegEprd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Class\LoginService.cs" />
+    <Compile Include="Class\UCError.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Class\UCError.Designer.cs">
+      <DependentUpon>UCError.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Conponent\TreeView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Conponent\TreeView.Designer.cs">
+      <DependentUpon>TreeView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ControlPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ControlPanel.Designer.cs">
+      <DependentUpon>ControlPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_Versions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_Versions.Designer.cs">
+      <DependentUpon>frm_Versions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_ConfirmPass.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_ConfirmPass.Designer.cs">
+      <DependentUpon>frm_ConfirmPass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_ChuyenKhoaKCB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_ChuyenKhoaKCB.Designer.cs">
+      <DependentUpon>frm_ChuyenKhoaKCB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_SpecialPass.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_SpecialPass.Designer.cs">
+      <DependentUpon>frm_SpecialPass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_Sysparams.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_Sysparams.Designer.cs">
+      <DependentUpon>frm_Sysparams.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormScreen.Designer.cs">
+      <DependentUpon>FormScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_ChangePass.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_ChangePass.Designer.cs">
+      <DependentUpon>frm_ChangePass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_DonVi_LamViec.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_DonVi_LamViec.Designer.cs">
+      <DependentUpon>frm_DonVi_LamViec.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_Login.Designer.cs">
+      <DependentUpon>frm_Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_Profile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_Profile.Designer.cs">
+      <DependentUpon>frm_Profile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_Settings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_Settings.Designer.cs">
+      <DependentUpon>frm_Settings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Web References\AWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="BVSG\frm_MainForm_new.resx">
+      <DependentUpon>frm_MainForm_new.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Class\frm_RegEprd.resx">
+      <DependentUpon>frm_RegEprd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Class\UCError.resx">
+      <DependentUpon>UCError.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlPanel.resx">
+      <DependentUpon>ControlPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_Versions.resx">
+      <DependentUpon>frm_Versions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_ConfirmPass.resx">
+      <DependentUpon>frm_ConfirmPass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_ChuyenKhoaKCB.resx">
+      <DependentUpon>frm_ChuyenKhoaKCB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormScreen.resx">
+      <DependentUpon>FormScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_ChangePass.resx">
+      <DependentUpon>frm_ChangePass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_DonVi_LamViec.resx">
+      <DependentUpon>frm_DonVi_LamViec.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_Login.resx">
+      <DependentUpon>frm_Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_Profile.resx">
+      <DependentUpon>frm_Profile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_Settings.resx">
+      <DependentUpon>frm_Settings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_SpecialPass.resx">
+      <DependentUpon>frm_SpecialPass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_Sysparams.resx">
+      <DependentUpon>frm_Sysparams.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="newHISLINK_TemporaryKey.pfx" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Web References\AWS\AdminWS.wsdl" />
+    <None Include="Web References\AWS\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="hospital-128 %282%29.ico" />
+    <Content Include="hospital-128.ico" />
+    <Content Include="hospital-48.ico" />
+    <Content Include="hospital.ico" />
+    <Content Include="imagehhh.ico" />
+    <None Include="Resources\Logo2.jpg" />
+    <None Include="Web References\AWS\AdminWS.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://localhost:1695/AdminWS.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\AWS\</RelPath>
+      <UpdateFromURL>http://localhost:1695/AdminWS.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>Core_AWS_LoginWS</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VMS.HIS.Bus\3.VMS.HIS.Bus.csproj">
+      <Project>{a99e7072-450c-430d-ac3d-63cbb74c01ad}</Project>
+      <Name>3.VMS.HIS.Bus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VMS.HIS.DAL\1.VMS.HIS.Dal.csproj">
+      <Project>{cd0be8e8-b7d8-41ca-95f7-ea03675cfe0d}</Project>
+      <Name>1.VMS.HIS.Dal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VMS.HIS.Libs\2.VMS.HIS.Libs.csproj">
+      <Project>{0400ff7a-0d53-45aa-bbe5-09eedeb50d4e}</Project>
+      <Name>2.VMS.HIS.Libs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VMS.HIS.Danhmuc\5.VMS.HIS.Danhmuc.csproj">
+      <Project>{53b9a2e4-529a-4248-ad8d-cbed38ed9c46}</Project>
+      <Name>5.VMS.HIS.Danhmuc</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Bak\" />
+    <Folder Include="RPT\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

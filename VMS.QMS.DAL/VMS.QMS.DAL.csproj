@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DDE91A50-B09F-4F92-8557-35A72C8BBDBD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VMS.QMS.DAL</RootNamespace>
+    <AssemblyName>VMS.QMS.DAL</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\..\..\HISLink\Running_QLPKEBM\QMS\QMSRunning\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Running\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="SubSonic, Version=2.2.0.0, Culture=neutral, PublicKeyToken=eadb47849839a332, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\HISLINK\TAM_PHUC\Debug\SubSonic.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Generated\AllStructs.cs" />
+    <Compile Include="Generated\DmucChung.cs" />
+    <Compile Include="Generated\DmucChungController.cs" />
+    <Compile Include="Generated\DmucKieudmuc.cs" />
+    <Compile Include="Generated\DmucKieudmucController.cs" />
+    <Compile Include="Generated\QmsCanLamSang.cs" />
+    <Compile Include="Generated\QmsCanLamSangController.cs" />
+    <Compile Include="Generated\QmsChoKham.cs" />
+    <Compile Include="Generated\QmsChoKhamController.cs" />
+    <Compile Include="Generated\QmsGoiLoa.cs" />
+    <Compile Include="Generated\QmsGoiLoaController.cs" />
+    <Compile Include="Generated\QmsLoai.cs" />
+    <Compile Include="Generated\QmsLoaiController.cs" />
+    <Compile Include="Generated\QmsPhongBan.cs" />
+    <Compile Include="Generated\QmsPhongBanController.cs" />
+    <Compile Include="Generated\QmsPhongchucnang.cs" />
+    <Compile Include="Generated\QmsPhongchucnangController.cs" />
+    <Compile Include="Generated\QmsSoKham.cs" />
+    <Compile Include="Generated\QmsSoKhamController.cs" />
+    <Compile Include="Generated\QmsThoigianCho.cs" />
+    <Compile Include="Generated\QmsThoigianChoController.cs" />
+    <Compile Include="Generated\QmsTiepdon.cs" />
+    <Compile Include="Generated\QmsTiepdonController.cs" />
+    <Compile Include="Generated\StoredProcedures.cs" />
+    <Compile Include="Generated\SysWebServicePath.cs" />
+    <Compile Include="Generated\SysWebServicePathController.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

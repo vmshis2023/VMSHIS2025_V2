@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="f22e35de-0cd1-4556-868e-909cb4d23cc8" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:5525/TTS.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="TTS.xsd" MetadataType="Schema" ID="029f7153-94ef-4203-b09c-c9bd21239c6f" SourceId="1" SourceUrl="http://localhost:5525/TTS.svc?xsd=xsd0" />
+    <MetadataFile FileName="TTS.wsdl" MetadataType="Wsdl" ID="1cc9650d-7ca7-497a-8b33-210f673b3822" SourceId="1" SourceUrl="http://localhost:5525/TTS.svc?wsdl" />
+    <MetadataFile FileName="TTS.disco" MetadataType="Disco" ID="88d401cd-7835-4a6d-9f7b-50dfabd9fdd2" SourceId="1" SourceUrl="http://localhost:5525/TTS.svc?disco" />
+    <MetadataFile FileName="TTS1.xsd" MetadataType="Schema" ID="d79de2cc-3ced-4edd-aaad-2562b6a0e64d" SourceId="1" SourceUrl="http://localhost:5525/TTS.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

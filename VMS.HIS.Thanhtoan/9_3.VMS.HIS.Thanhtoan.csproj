@@ -1,0 +1,518 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{803189C8-066B-412D-AC85-745486DE82E2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VMS.HIS.Thanhtoan</RootNamespace>
+    <AssemblyName>VMS.HIS.Thanhtoan</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>C:\HIS_BVSG\Running\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Running\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="Janus.Data.v3">
+      <HintPath>..\..\..\Running_QLPKEBM\Janus.Data.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.CalendarCombo.v3">
+      <HintPath>..\..\..\Running_QLPKEBM\Janus.Windows.CalendarCombo.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.Common.v3">
+      <HintPath>..\..\..\Running_QLPKEBM\Janus.Windows.Common.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.GridEX.v3">
+      <HintPath>..\..\..\Running_QLPKEBM\Janus.Windows.GridEX.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.Ribbon.v3">
+      <HintPath>..\..\..\Running_QLPKEBM\Janus.Windows.Ribbon.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.UI.v3">
+      <HintPath>..\..\..\Running_QLPKEBM\Janus.Windows.UI.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\..\..\Running_QLPKEBM\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="SubSonic">
+      <HintPath>..\..\..\Running_QLPKEBM\SubSonic.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="VMS.HLC.ASTM, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Running_QLPKEBM\VMS.HLC.ASTM.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="THANHTOAN\frm_QRData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="THANHTOAN\frm_QRData.Designer.cs">
+      <DependentUpon>frm_QRData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="THANHTOAN\frm_ChonTamthu_Ketchuyen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="THANHTOAN\frm_ChonTamthu_Ketchuyen.Designer.cs">
+      <DependentUpon>frm_ChonTamthu_Ketchuyen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="THANHTOAN\frm_tamthu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="THANHTOAN\frm_tamthu.Designer.cs">
+      <DependentUpon>frm_tamthu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="THANHTOAN\frm_CheckError.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="THANHTOAN\frm_CheckError.Designer.cs">
+      <DependentUpon>frm_CheckError.cs</DependentUpon>
+    </Compile>
+    <Compile Include="THANHTOAN\frm_phieutrathuoctaiquay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="THANHTOAN\frm_phieutrathuoctaiquay.Designer.cs">
+      <DependentUpon>frm_phieutrathuoctaiquay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="THANHTOAN\FrmDanhsachhoadon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="THANHTOAN\FrmDanhsachhoadon.Designer.cs">
+      <DependentUpon>FrmDanhsachhoadon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="THANHTOAN\frm_ChietkhauTrenHoadon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="THANHTOAN\frm_ChietkhauTrenHoadon.Designer.cs">
+      <DependentUpon>frm_ChietkhauTrenHoadon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="THANHTOAN\frm_DM_ConfigPaymentPrint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="THANHTOAN\frm_DM_ConfigPaymentPrint.Designer.cs">
+      <DependentUpon>frm_DM_ConfigPaymentPrint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="THANHTOAN\frm_HuyThanhtoan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="THANHTOAN\frm_HuyThanhtoan.Designer.cs">
+      <DependentUpon>frm_HuyThanhtoan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="THANHTOAN\frm_HuyThanhtoan_Quaythuoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="THANHTOAN\frm_HuyThanhtoan_Quaythuoc.Designer.cs">
+      <DependentUpon>frm_HuyThanhtoan_Quaythuoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="THANHTOAN\frm_InGopBenhNhan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="THANHTOAN\frm_InGopBenhNhan.Designer.cs">
+      <DependentUpon>frm_InGopBenhNhan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="THANHTOAN\frm_KiemTra_BHYT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="THANHTOAN\frm_KiemTra_BHYT.Designer.cs">
+      <DependentUpon>frm_KiemTra_BHYT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="THANHTOAN\frm_THANHTOAN_NGOAITRU.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="THANHTOAN\frm_THANHTOAN_NGOAITRU.Designer.cs">
+      <DependentUpon>frm_THANHTOAN_NGOAITRU.cs</DependentUpon>
+    </Compile>
+    <Compile Include="THANHTOAN\frm_THANHTOAN_NOITRU_V1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="THANHTOAN\frm_THANHTOAN_NOITRU_V1.Designer.cs">
+      <DependentUpon>frm_THANHTOAN_NOITRU_V1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="THANHTOAN\frm_Tralaitien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="THANHTOAN\frm_Tralaitien.Designer.cs">
+      <DependentUpon>frm_Tralaitien.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="THANHTOAN\frm_QRData.resx">
+      <DependentUpon>frm_QRData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="THANHTOAN\frm_ChonTamthu_Ketchuyen.resx">
+      <DependentUpon>frm_ChonTamthu_Ketchuyen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="THANHTOAN\frm_tamthu.resx">
+      <DependentUpon>frm_tamthu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="THANHTOAN\frm_CheckError.resx">
+      <DependentUpon>frm_CheckError.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="THANHTOAN\frm_phieutrathuoctaiquay.resx">
+      <DependentUpon>frm_phieutrathuoctaiquay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="THANHTOAN\FrmDanhsachhoadon.resx">
+      <DependentUpon>FrmDanhsachhoadon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="THANHTOAN\frm_ChietkhauTrenHoadon.resx">
+      <DependentUpon>frm_ChietkhauTrenHoadon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="THANHTOAN\frm_DM_ConfigPaymentPrint.resx">
+      <DependentUpon>frm_DM_ConfigPaymentPrint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="THANHTOAN\frm_HuyThanhtoan.resx">
+      <DependentUpon>frm_HuyThanhtoan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="THANHTOAN\frm_HuyThanhtoan_Quaythuoc.resx">
+      <DependentUpon>frm_HuyThanhtoan_Quaythuoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="THANHTOAN\frm_InGopBenhNhan.resx">
+      <DependentUpon>frm_InGopBenhNhan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="THANHTOAN\frm_KiemTra_BHYT.resx">
+      <DependentUpon>frm_KiemTra_BHYT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="THANHTOAN\frm_THANHTOAN_NGOAITRU.resx">
+      <DependentUpon>frm_THANHTOAN_NGOAITRU.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="THANHTOAN\frm_THANHTOAN_NOITRU_V1.resx">
+      <DependentUpon>frm_THANHTOAN_NOITRU_V1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="THANHTOAN\frm_Tralaitien.resx">
+      <DependentUpon>frm_Tralaitien.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VMS.HIS.Bus\3.VMS.HIS.Bus.csproj">
+      <Project>{a99e7072-450c-430d-ac3d-63cbb74c01ad}</Project>
+      <Name>3.VMS.HIS.Bus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VMS.HIS.DAL\1.VMS.HIS.Dal.csproj">
+      <Project>{cd0be8e8-b7d8-41ca-95f7-ea03675cfe0d}</Project>
+      <Name>1.VMS.HIS.Dal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VMS.HIS.Libs\2.VMS.HIS.Libs.csproj">
+      <Project>{0400ff7a-0d53-45aa-bbe5-09eedeb50d4e}</Project>
+      <Name>2.VMS.HIS.Libs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VMS.Invoice\VMS.Invoice.csproj">
+      <Project>{6721142b-c288-421a-a30f-db7a10d1df54}</Project>
+      <Name>VMS.Invoice</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VMS.Resources\4.VMS.Resources.csproj">
+      <Project>{496ccd74-1e0f-45c2-8e86-bf48b9926587}</Project>
+      <Name>4.VMS.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VMS.HIS.Danhmuc\5.VMS.HIS.Danhmuc.csproj">
+      <Project>{53b9a2e4-529a-4248-ad8d-cbed38ed9c46}</Project>
+      <Name>5.VMS.HIS.Danhmuc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VMS.HIS.UI.Noitru\9_2.VMS.HIS.Noitru.csproj">
+      <Project>{b4990904-ac2d-44cc-a04f-6c3cba3970d8}</Project>
+      <Name>9_2.VMS.HIS.Noitru</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="THANHTOAN\backup\230818\" />
+    <Folder Include="THANHTOAN\backup\240824_ChinhBHYT_Thanhtoan\" />
+    <Folder Include="THANHTOAN\backup\BHYT\" />
+    <Folder Include="THANHTOAN\backup\Dichvu\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\237510 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_01_24.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_04_32.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_04_321.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Add32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Add6_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Add6_321.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add7_32.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SUPPORT21.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_left_11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_left_11_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_left_16_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_left_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BS_96.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BS_961.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BSNAM.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BSNU.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\copy_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\direction_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_left_up1 - Copy %282%291.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_left_up1 - Copy %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FOLDER3.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FOLDERS.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GO_HOME.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HOME.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Hospital_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hospital_241.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\List1_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PADLOCKE1.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LOCKED.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PADLOCKE.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\patient_color_24.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PDF_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PEACE.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus_241.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus_243.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Print_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printer-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printer-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printtype1_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printtype1_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printtype1_321.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printtype1_322.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\QMS_64_DELETE.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\QMS_DELETE.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\QMS_pause_05_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\QMS_Play_06_48.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\QMS_Play01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\QMS_stop01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\QR.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\QR_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\QR_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh03_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\right_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SAVE.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SAVE %282%29.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SAVE_AS.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SAVE1.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SEARCH %282%29.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Start_05.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Stop051.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\STOP %282%29.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SUPPORT22.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TOOL.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trash-full_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_left_up1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_32.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,6 @@
+C:\HIS_BVSG\VMS.Invoice.Model.dll
+C:\HIS_BVSG\VMS.Invoice.Model.pdb
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.Invoice.Model\obj\Debug\VMS.Invoice.Model.csproj.AssemblyReference.cache
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.Invoice.Model\obj\Debug\VMS.Invoice.Model.csproj.CoreCompileInputs.cache
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.Invoice.Model\obj\Debug\VMS.Invoice.Model.dll
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.Invoice.Model\obj\Debug\VMS.Invoice.Model.pdb

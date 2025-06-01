@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>VMS.HIS.API</name>
+    </assembly>
+    <members>
+        <member name="M:VMS.HIS.API.Controllers.MisaInvoiceController.DangNhap">
+            <summary>
+            Hàm thực hiện get token từ misa 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:VMS.HIS.API.Controllers.MisaInvoiceController.lay_danhsach_mauhoadon(System.String)">
+            <summary>
+            Hàm thực hiện lấy danh sách thông báo phát hành hóa đơn 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:VMS.HIS.API.Controllers.MisaInvoiceController.phathanh_hoadon(VMS.Invoice.MisaPhatHanhHoaDon)">
+            <summary>
+            Hàm thực hiện phát hành hóa đơn Máy Tính Tiền (MTT) 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:VMS.HIS.API.Controllers.MisaInvoiceController.xemtruoc_hoadon(VMS.Invoice.Orginvoicedata)">
+            <summary>
+            Hàm thực hiện xem trước Hóa Đơn 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:VMS.HIS.API.Controllers.MisaInvoiceController.tai_hoadon(VMS.Invoice.downloadModel)">
+            <summary>
+            Hàm thực hiện tải hóa đơn Máy Tính Tiền (MTT) 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:VMS.HIS.API.Controllers.MisaInvoiceController.huy_hoadon(VMS.Invoice.DataCancelMisa)">
+            <summary>
+            Hàm thực hiện tải hóa đơn Máy Tính Tiền (MTT) 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:VMS.HIS.API.Controllers.MisaInvoiceController.lay_trangthai_hoadon(System.String)">
+            <summary>
+            Hàm thực hiện tải hóa đơn Máy Tính Tiền (MTT) 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:VMS.Invoice.Utility.Int16Dbnull(System.Object)">
+            <summary>
+            Chuyển đổi một đối tượng sang kiểu Int16. Xử lý nếu trường hợp là null thì trả về giá trị 0
+            </summary>
+            <param name="obj">convert đối tượng 16</param>
+            <returns></returns>
+        </member>
+        <member name="M:VMS.Invoice.Utility.Int64Dbnull(System.Object)">
+            <summary>
+            Hàm thực hiện set cho đối tượng kiểu Int64 
+            </summary>
+            <param name="obj">Đối tượng convert thành 64  </param>
+            <returns></returns>
+        </member>
+        <member name="M:VMS.Invoice.Utility.Int64Dbnull(System.Object,System.Object)">
+            <summary>
+            hàm thực hiện convert đối tượng thành 64
+            </summary>
+            <param name="obj">Lấy đối tượng thành 64 </param>
+            <param name="DefaultVal">Để giá trị mặc đi khi là null</param>
+            <returns></returns>
+        </member>
+        <member name="M:VMS.Invoice.Utility.Int16Dbnull(System.Object,System.Object)">
+            <summary>
+            Chuyển đổi một đối tượng sang kiểu Int16. Xử lý nếu trường hợp là null thì trả về giá trị DefaultVal
+            </summary>
+            <param name="obj"></param>
+            <param name="DefaultVal"></param>
+            <returns></returns>
+        </member>
+        <member name="M:VMS.Invoice.Utility.Int32Dbnull(System.Object,System.Object)">
+            <summary>
+            Chuyển đổi một đối tượng sang kiểu Int32. Xử lý nếu trường hợp là null thì trả về giá trị DefaultVal
+            </summary>
+            <param name="obj"></param>
+            <param name="DefaultVal"></param>
+            <returns></returns>
+        </member>
+        <member name="M:VMS.Invoice.Utility.NumbersOnly(System.Char,System.String)">
+            <summary>
+            Thủ tục thường dùng cho sự kiện Keypress của TextBox để ngăn không cho nhập ký tự
+            </summary>
+            <param name="newChar">Thường là e.KeyChar</param>
+            <param name="CurrentString">Thường là TextObject.Text. Trong đó TextObject là tên của TextObject bạn muốn ràng buộc</param>
+            <returns></returns>
+        </member>
+        <member name="M:VMS.Invoice.Utility.sDbnull(System.Object)">
+            <summary>
+            <para>Xử lý một Object nếu là null thì trả về giá trị truyền vào</para>
+            </summary>   
+             <param name="obj"><para>Object truyền vào <see cref="T:System.Object"/></para></param>     
+             <param name="DefaultVal"><para>Giá trị mặc định sẽ trả về nếu obj=null <see cref="T:System.Object"/></para></param>     
+            <returns>Đối tượng chuỗi trả về từ Object. Nếu obj=null thì trả về DefaultVal</returns>
+        </member>
+        <member name="M:VMS.Invoice.Utility.DoubletoDbnull(System.Object)">
+            <summary>
+            HÀM THỰC HIỆN CONVERT DOUBLE NẾU ĐỐI TƯỢNG LÀ NULL
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:VMS.Invoice.Utility.DoubletoDbnull(System.Object,System.Object)">
+            <summary>
+            HÀM THỰC HIỆN LẤY CONVERT ĐỐI TƯỢNG NẾU LÀ NULL THÌ 
+            </summary>
+            <param name="obj">GIÁ TRỊ TRUYỀN VÀO</param>
+            <param name="DefaultVal">GIÁ TRỊ MẶC ĐỊNH</param>
+            <returns></returns>
+        </member>
+        <member name="M:VMS.Invoice.Utility.DecimaltoDbnull(System.Object,System.Object)">
+            <summary>
+            Hàm thực hiện convert đối tượng thành Decimal
+            </summary>
+            <param name="obj">Đối tượng cần convert</param>
+            <param name="DefaultVal">Giá trị mặc định nếu obj là null</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

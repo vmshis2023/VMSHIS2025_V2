@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{20CA4CBF-7BF9-4CA8-B46E-5492AB8FE4A1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VMS.HIS.Goikham</RootNamespace>
+    <AssemblyName>VMS.HIS.Goikham</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>C:\HIS_BVSG\Running\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Running\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="C1.C1Excel.2">
+      <HintPath>..\..\Running_QLPKEBM\C1.C1Excel.2.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="Excel">
+      <HintPath>..\..\Running_QLPKEBM\Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="Janus.Data.v3">
+      <HintPath>..\..\Running_QLPKEBM\Janus.Data.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.ButtonBar.v3">
+      <HintPath>..\..\Running_QLPKEBM\Janus.Windows.ButtonBar.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.CalendarCombo.v3">
+      <HintPath>..\..\Running_QLPKEBM\Janus.Windows.CalendarCombo.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.Common.v3">
+      <HintPath>..\..\Running_QLPKEBM\Janus.Windows.Common.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.GridEX.v3">
+      <HintPath>..\..\Running_QLPKEBM\Janus.Windows.GridEX.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.UI.v3">
+      <HintPath>..\..\Running_QLPKEBM\Janus.Windows.UI.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\..\Running_QLPKEBM\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="SubSonic">
+      <HintPath>..\..\Running_QLPKEBM\SubSonic.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Goikham\frm_TaoChuongtrinhKhuyenmai_Voucher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Goikham\frm_TaoChuongtrinhKhuyenmai_Voucher.Designer.cs">
+      <DependentUpon>frm_TaoChuongtrinhKhuyenmai_Voucher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Goikham\frm_TaoGoiKham.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Goikham\frm_TaoGoiKham.Designer.cs">
+      <DependentUpon>frm_TaoGoiKham.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Goikham\frm_DanhSachGoiKham.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Goikham\frm_DanhSachGoiKham.Designer.cs">
+      <DependentUpon>frm_DanhSachGoiKham.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Goikham\frm_TaoMaVoucher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Goikham\frm_TaoMaVoucher.Designer.cs">
+      <DependentUpon>frm_TaoMaVoucher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Goikham\frm_QuanLyGoiKham.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Goikham\frm_QuanLyGoiKham.Designer.cs">
+      <DependentUpon>frm_QuanLyGoiKham.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KSK\frm_capnhatksk.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KSK\frm_capnhatksk.Designer.cs">
+      <DependentUpon>frm_capnhatksk.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KSK\frm_qly_ksk.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KSK\frm_qly_ksk.Designer.cs">
+      <DependentUpon>frm_qly_ksk.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Goikham\frm_TaoChuongtrinhKhuyenmai_Voucher.resx">
+      <DependentUpon>frm_TaoChuongtrinhKhuyenmai_Voucher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Goikham\frm_TaoGoiKham.resx">
+      <DependentUpon>frm_TaoGoiKham.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Goikham\frm_DanhSachGoiKham.resx">
+      <DependentUpon>frm_DanhSachGoiKham.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Goikham\frm_TaoMaVoucher.resx">
+      <DependentUpon>frm_TaoMaVoucher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Goikham\frm_QuanLyGoiKham.resx">
+      <DependentUpon>frm_QuanLyGoiKham.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KSK\frm_capnhatksk.resx">
+      <DependentUpon>frm_capnhatksk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KSK\frm_qly_ksk.resx">
+      <DependentUpon>frm_qly_ksk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VMS.Resources\4.VMS.Resources.csproj">
+      <Project>{496ccd74-1e0f-45c2-8e86-bf48b9926587}</Project>
+      <Name>4.VMS.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VMS.HIS.Danhmuc\5.VMS.HIS.Danhmuc.csproj">
+      <Project>{53b9a2e4-529a-4248-ad8d-cbed38ed9c46}</Project>
+      <Name>5.VMS.HIS.Danhmuc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VMS.HIS.Thanhtoan\9_3.VMS.HIS.Thanhtoan.csproj">
+      <Project>{803189c8-066b-412d-ac85-745486de82e2}</Project>
+      <Name>9_3.VMS.HIS.Thanhtoan</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VMS.HIS.Bus\3.VMS.HIS.Bus.csproj">
+      <Project>{a99e7072-450c-430d-ac3d-63cbb74c01ad}</Project>
+      <Name>3.VMS.HIS.Bus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VMS.HIS.DAL\1.VMS.HIS.Dal.csproj">
+      <Project>{cd0be8e8-b7d8-41ca-95f7-ea03675cfe0d}</Project>
+      <Name>1.VMS.HIS.Dal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VMS.HIS.Libs\2.VMS.HIS.Libs.csproj">
+      <Project>{0400ff7a-0d53-45aa-bbe5-09eedeb50d4e}</Project>
+      <Name>2.VMS.HIS.Libs</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

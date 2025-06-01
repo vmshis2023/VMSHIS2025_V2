@@ -1,0 +1,8 @@
+F:\HISLink\Running_QLPKEBM\QMS\QMSRunning\VMS.QMS.DAL.dll.config
+F:\HISLink\Running_QLPKEBM\QMS\QMSRunning\VMS.QMS.DAL.dll
+F:\HISLink\Running_QLPKEBM\QMS\QMSRunning\VMS.QMS.DAL.pdb
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.QMS.DAL\obj\Debug\VMS.QMS.DAL.csproj.AssemblyReference.cache
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.QMS.DAL\obj\Debug\VMS.QMS.DAL.csproj.CoreCompileInputs.cache
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.QMS.DAL\obj\Debug\VMS.QMS.DAL.csproj.CopyComplete
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.QMS.DAL\obj\Debug\VMS.QMS.DAL.dll
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.QMS.DAL\obj\Debug\VMS.QMS.DAL.pdb

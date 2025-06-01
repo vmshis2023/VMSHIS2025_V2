@@ -1,0 +1,11 @@
+C:\HIS_BVSG\Running\VMS.HIS.BHYT.dll
+C:\HIS_BVSG\Running\VMS.HIS.BHYT.pdb
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BHYT\obj\Debug\4_1.VMS.HIS.BHYT.csproj.AssemblyReference.cache
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BHYT\obj\Debug\VMS.HIS.BHYT.FrmThongTinBHYT.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BHYT\obj\Debug\VMS.HIS.BHYT.Properties.Resources.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BHYT\obj\Debug\4_1.VMS.HIS.BHYT.csproj.GenerateResource.cache
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BHYT\obj\Debug\VMS.HIS.BHYT.dll.licenses
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BHYT\obj\Debug\4_1.VMS.HIS.BHYT.csproj.CoreCompileInputs.cache
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BHYT\obj\Debug\4_1.VMS.HIS.BHYT.csproj.CopyComplete
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BHYT\obj\Debug\VMS.HIS.BHYT.dll
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BHYT\obj\Debug\VMS.HIS.BHYT.pdb
