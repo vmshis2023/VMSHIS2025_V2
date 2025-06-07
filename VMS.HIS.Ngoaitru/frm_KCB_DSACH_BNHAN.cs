@@ -2138,7 +2138,7 @@ namespace VNS.HIS.UI.NGOAITRU
                 }
                 KcbLuotkham objLuotkham = CreatePatientExam();
                 if (objLuotkham != null)
-                    KcbInphieu.INPHIEU_KHAM(Utility.sDbnull(objLuotkham.MaDoituongKcb), v_dtData,
+                    KcbInphieu.INPHIEU_KHAM(objCongkham, Utility.sDbnull(objLuotkham.MaDoituongKcb), v_dtData,
                                                   "PHIẾU KHÁM BỆNH", cboA4.Text == @"A5" ? "A5" : "A4");
             }
         }

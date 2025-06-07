@@ -230,18 +230,18 @@ namespace VMS.HIS.DAL
 				colvarMach.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarMach);
 				
-				TableSchema.TableColumn colvarNhịpTho = new TableSchema.TableColumn(schema);
-				colvarNhịpTho.ColumnName = "nhịp_tho";
-				colvarNhịpTho.DataType = DbType.String;
-				colvarNhịpTho.MaxLength = 10;
-				colvarNhịpTho.AutoIncrement = false;
-				colvarNhịpTho.IsNullable = true;
-				colvarNhịpTho.IsPrimaryKey = false;
-				colvarNhịpTho.IsForeignKey = false;
-				colvarNhịpTho.IsReadOnly = false;
-				colvarNhịpTho.DefaultSetting = @"";
-				colvarNhịpTho.ForeignKeyTableName = "";
-				schema.Columns.Add(colvarNhịpTho);
+				TableSchema.TableColumn colvarNhipTho = new TableSchema.TableColumn(schema);
+				colvarNhipTho.ColumnName = "nhip_tho";
+				colvarNhipTho.DataType = DbType.String;
+				colvarNhipTho.MaxLength = 10;
+				colvarNhipTho.AutoIncrement = false;
+				colvarNhipTho.IsNullable = true;
+				colvarNhipTho.IsPrimaryKey = false;
+				colvarNhipTho.IsForeignKey = false;
+				colvarNhipTho.IsReadOnly = false;
+				colvarNhipTho.DefaultSetting = @"";
+				colvarNhipTho.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarNhipTho);
 				
 				TableSchema.TableColumn colvarChieuCao = new TableSchema.TableColumn(schema);
 				colvarChieuCao.ColumnName = "chieu_cao";
@@ -760,12 +760,12 @@ namespace VMS.HIS.DAL
 			set { SetColumnValue(Columns.Mach, value); }
 		}
 		  
-		[XmlAttribute("NhịpTho")]
+		[XmlAttribute("NhipTho")]
 		[Bindable(true)]
-		public string NhịpTho 
+		public string NhipTho 
 		{
-			get { return GetColumnValue<string>(Columns.NhịpTho); }
-			set { SetColumnValue(Columns.NhịpTho, value); }
+			get { return GetColumnValue<string>(Columns.NhipTho); }
+			set { SetColumnValue(Columns.NhipTho, value); }
 		}
 		  
 		[XmlAttribute("ChieuCao")]
@@ -1059,7 +1059,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(string varMaLuotkham,long varIdBenhnhan,DateTime varNgayKham,string varNhomMau,string varNhietDo,string varHuyetAp,string varMach,string varNhịpTho,string varChieuCao,string varCanNang,string varMotaThem,string varBmi,string varDangDi,string varTinhThan,string varHinhdangChung,string varMausacDa,string varTinhtrangDa,string varHethongLongtoc,string varNghiCobenh,string varBophanDau,string varBophanCo,string varBophanNguc,string varBophanBung,string varBophanCotsong,string varBophanChatthai,string varTuanhoan,string varHohap,string varTieuhoa,string varThantietnieusinhduc,string varThankinh,string varCoxuongkhop,string varTaimuihong,string varRanghammat,string varMat,string varNoitietdinhduongbenhlykhac,short? varIdBacsi,string varToanThan,string varBoPhan,string varNguoiTao,DateTime? varNgayTao,string varNguoiSua,DateTime? varNgaySua)
+		public static void Insert(string varMaLuotkham,long varIdBenhnhan,DateTime varNgayKham,string varNhomMau,string varNhietDo,string varHuyetAp,string varMach,string varNhipTho,string varChieuCao,string varCanNang,string varMotaThem,string varBmi,string varDangDi,string varTinhThan,string varHinhdangChung,string varMausacDa,string varTinhtrangDa,string varHethongLongtoc,string varNghiCobenh,string varBophanDau,string varBophanCo,string varBophanNguc,string varBophanBung,string varBophanCotsong,string varBophanChatthai,string varTuanhoan,string varHohap,string varTieuhoa,string varThantietnieusinhduc,string varThankinh,string varCoxuongkhop,string varTaimuihong,string varRanghammat,string varMat,string varNoitietdinhduongbenhlykhac,short? varIdBacsi,string varToanThan,string varBoPhan,string varNguoiTao,DateTime? varNgayTao,string varNguoiSua,DateTime? varNgaySua)
 		{
 			EmrPhieukhambenh item = new EmrPhieukhambenh();
 			
@@ -1077,7 +1077,7 @@ namespace VMS.HIS.DAL
 			
 			item.Mach = varMach;
 			
-			item.NhịpTho = varNhịpTho;
+			item.NhipTho = varNhipTho;
 			
 			item.ChieuCao = varChieuCao;
 			
@@ -1157,7 +1157,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(long varId,string varMaLuotkham,long varIdBenhnhan,DateTime varNgayKham,string varNhomMau,string varNhietDo,string varHuyetAp,string varMach,string varNhịpTho,string varChieuCao,string varCanNang,string varMotaThem,string varBmi,string varDangDi,string varTinhThan,string varHinhdangChung,string varMausacDa,string varTinhtrangDa,string varHethongLongtoc,string varNghiCobenh,string varBophanDau,string varBophanCo,string varBophanNguc,string varBophanBung,string varBophanCotsong,string varBophanChatthai,string varTuanhoan,string varHohap,string varTieuhoa,string varThantietnieusinhduc,string varThankinh,string varCoxuongkhop,string varTaimuihong,string varRanghammat,string varMat,string varNoitietdinhduongbenhlykhac,short? varIdBacsi,string varToanThan,string varBoPhan,string varNguoiTao,DateTime? varNgayTao,string varNguoiSua,DateTime? varNgaySua)
+		public static void Update(long varId,string varMaLuotkham,long varIdBenhnhan,DateTime varNgayKham,string varNhomMau,string varNhietDo,string varHuyetAp,string varMach,string varNhipTho,string varChieuCao,string varCanNang,string varMotaThem,string varBmi,string varDangDi,string varTinhThan,string varHinhdangChung,string varMausacDa,string varTinhtrangDa,string varHethongLongtoc,string varNghiCobenh,string varBophanDau,string varBophanCo,string varBophanNguc,string varBophanBung,string varBophanCotsong,string varBophanChatthai,string varTuanhoan,string varHohap,string varTieuhoa,string varThantietnieusinhduc,string varThankinh,string varCoxuongkhop,string varTaimuihong,string varRanghammat,string varMat,string varNoitietdinhduongbenhlykhac,short? varIdBacsi,string varToanThan,string varBoPhan,string varNguoiTao,DateTime? varNgayTao,string varNguoiSua,DateTime? varNgaySua)
 		{
 			EmrPhieukhambenh item = new EmrPhieukhambenh();
 			
@@ -1177,7 +1177,7 @@ namespace VMS.HIS.DAL
 			
 				item.Mach = varMach;
 			
-				item.NhịpTho = varNhịpTho;
+				item.NhipTho = varNhipTho;
 			
 				item.ChieuCao = varChieuCao;
 			
@@ -1316,7 +1316,7 @@ namespace VMS.HIS.DAL
         
         
         
-        public static TableSchema.TableColumn NhịpThoColumn
+        public static TableSchema.TableColumn NhipThoColumn
         {
             get { return Schema.Columns[8]; }
         }
@@ -1573,7 +1573,7 @@ namespace VMS.HIS.DAL
 			 public static string NhietDo = @"nhiet_do";
 			 public static string HuyetAp = @"huyet_ap";
 			 public static string Mach = @"mach";
-			 public static string NhịpTho = @"nhịp_tho";
+			 public static string NhipTho = @"nhip_tho";
 			 public static string ChieuCao = @"chieu_cao";
 			 public static string CanNang = @"can_nang";
 			 public static string MotaThem = @"mota_them";

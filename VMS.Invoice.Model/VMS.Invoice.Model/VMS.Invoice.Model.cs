@@ -86,6 +86,9 @@ namespace VMS.Invoice
         public string MauHoadon { get; set; }
         public string Serie { get; set; }
         public string TenMauHoadon { get; set; }
+        public bool IsSendEmail { get; set; }
+        public string ReceiverName { get; set; }
+        public string ReceiverEmail { get; set; }
     }
     public class Orginvoicedata
     {
@@ -97,14 +100,18 @@ namespace VMS.Invoice
         public decimal ExchangeRate { get; set; }
         public string PaymentMethodName { get; set; }
         //Thông tin hóa đơn thay thế
-        public int ReferenceType { get; set; }
-        public int OrgInvoiceType { get; set; }
-        public string OrgInvTemplateNo { get; set; }
-        public string OrgInvSeries { get; set; }
-        public string OrgInvNo { get; set; }
-        public string OrgInvDate { get; set; }
-        public string InvoiceNote { get; set; }
+        //public int ReferenceType { get; set; }
+        //public int OrgInvoiceType { get; set; }
+        //public string OrgInvTemplateNo { get; set; }
+        //public string OrgInvSeries { get; set; }
+        //public string OrgInvNo { get; set; }
+        //public string OrgInvDate { get; set; }
+        //public string InvoiceNote { get; set; }
         //Các thông tin bình thường
+
+        public bool IsSendEmail { get; set; }
+        public string ReceiverName { get; set; }
+        public string ReceiverEmail { get; set; }
 
         public string BuyerFullName { get; set; }
         public string BuyerLegalName { get; set; }
@@ -133,6 +140,7 @@ namespace VMS.Invoice
         public bool IsTaxReduction43 { get; set; }
 
         public string CustomField1 { get; set; }
+        public string AccountObjectIdentificationNumber { get; set; }
     }
 
     public class Optionuserdefined

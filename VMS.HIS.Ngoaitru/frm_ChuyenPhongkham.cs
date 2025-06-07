@@ -268,7 +268,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
                 }
                 objLuotkham = Utility.getKcbLuotkham(objCongkham.IdBenhnhan, objCongkham.MaLuotkham);
                 if (objLuotkham != null)
-                    KcbInphieu.INPHIEU_KHAM(Utility.sDbnull(objLuotkham.MaDoituongKcb), v_dtData,
+                    KcbInphieu.INPHIEU_KHAM(objCongkham,Utility.sDbnull(objLuotkham.MaDoituongKcb), v_dtData,
                                                   "PHIẾU KHÁM BỆNH", PropertyLib._MayInProperties.CoGiayInPhieuKCB == Papersize.A5 ? "A5" : "A4");
 
                 //Thêm thông tin QMS cho phòng khám

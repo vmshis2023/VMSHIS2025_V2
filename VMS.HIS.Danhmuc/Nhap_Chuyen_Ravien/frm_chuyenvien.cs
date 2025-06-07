@@ -15,6 +15,8 @@ using System.Transactions;
 using CrystalDecisions.CrystalReports.Engine;
 using System.IO;
 using VNS.HIS.UI.Forms.Cauhinh;
+using VMS.Emr;
+
 namespace VNS.HIS.UI.Forms.NGOAITRU
 {
     public partial class frm_chuyenvien : Form
@@ -441,6 +443,9 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
                     using (var dbscope = new SharedDbConnectionScope())
                     {
                         objPhieuchuyenvien.Save();
+                        EmrDocuments emrdoc = new EmrDocuments();
+                        emrdoc.InitDocument(Utility.Int64Dbnull(objPhieuchuyenvien.IdBenhnhan), objPhieuchuyenvien.MaLuotkham, Utility.Int64Dbnull(objPhieuchuyenvien.IdPhieu), objPhieuchuyenvien.NgayChuyenvien, Loaiphieu_HIS.PHIEUCHUYENVIEN, "noitru_phieudieutri", objPhieuchuyenvien.NguoiTao, Utility.Int16Dbnull(objPhieuchuyenvien.IdKhoanoitru), -1, Utility.Byte2Bool(0), "");
+                        emrdoc.Save();
                         //if (objPhieuchuyenvien.IdRavien > 0)
                         //{
                         //    NoitruPhieuravien objravien = NoitruPhieuravien.FetchByID(objPhieuchuyenvien.IdRavien);

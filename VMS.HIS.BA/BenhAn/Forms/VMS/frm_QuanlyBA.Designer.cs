@@ -79,6 +79,7 @@
             this.uiStatusBar1 = new Janus.Windows.UI.StatusBar.UIStatusBar();
             this.uiGroupBox2 = new Janus.Windows.EditControls.UIGroupBox();
             this.grdList = new Janus.Windows.GridEX.GridEX();
+            this.cmdEmr = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox1)).BeginInit();
             this.uiGroupBox1.SuspendLayout();
@@ -101,6 +102,7 @@
             this.toolStripDropDownButton1,
             this.toolStripSeparator1,
             this.cmdTomtatBA,
+            this.cmdEmr,
             this.cmdDongBA,
             this.cmdExit});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
@@ -621,6 +623,15 @@
             this.grdList.TabStop = false;
             this.grdList.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007;
             // 
+            // cmdEmr
+            // 
+            this.cmdEmr.Image = ((System.Drawing.Image)(resources.GetObject("cmdEmr.Image")));
+            this.cmdEmr.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.cmdEmr.Name = "cmdEmr";
+            this.cmdEmr.Size = new System.Drawing.Size(66, 28);
+            this.cmdEmr.Text = "EMR";
+            this.cmdEmr.Click += new System.EventHandler(this.cmdEmr_Click);
+            // 
             // frm_QuanlyBA
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -702,6 +713,6 @@
         private System.Windows.Forms.ToolStripButton cmdDongBA;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton cmdTomtatBA;
-        
+        private System.Windows.Forms.ToolStripButton cmdEmr;
     }
 }

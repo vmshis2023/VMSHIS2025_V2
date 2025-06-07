@@ -45,6 +45,8 @@ namespace VMS.Invoice
             this.cmdChange = new Janus.Windows.EditControls.UIButton();
             this.lnkReset = new System.Windows.Forms.LinkLabel();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.chkCotralai = new System.Windows.Forms.CheckBox();
+            this.optQuaythuoc = new System.Windows.Forms.RadioButton();
             this.optNoitru = new System.Windows.Forms.RadioButton();
             this.optTatca = new System.Windows.Forms.RadioButton();
             this.optNgoaitru = new System.Windows.Forms.RadioButton();
@@ -82,6 +84,7 @@ namespace VMS.Invoice
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cmdCapnhatthongtinthue = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cmdHoadonThaythe = new Janus.Windows.EditControls.UIButton();
             this.cmdPReview = new Janus.Windows.EditControls.UIButton();
             this.cmdPhathanhHDon = new Janus.Windows.EditControls.UIButton();
             this.cmdDownload = new Janus.Windows.EditControls.UIButton();
@@ -105,10 +108,11 @@ namespace VMS.Invoice
             this.grdHoadonPhathanh = new Janus.Windows.GridEX.GridEX();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.cmdChangeDinhDanh = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmdGetRight = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.grdChitiet_Phathanh = new Janus.Windows.GridEX.GridEX();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.cmdHoadonChuyendoi = new Janus.Windows.EditControls.UIButton();
             this.txtlydohuy = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.uiTabDanhSachHoaDonDaHuy = new Janus.Windows.UI.Tab.UITabPage();
@@ -125,11 +129,10 @@ namespace VMS.Invoice
             this.grdMauhoadon = new Janus.Windows.GridEX.GridEX();
             this.uiTabPageLog = new Janus.Windows.UI.Tab.UITabPage();
             this.rtxtLogs = new System.Windows.Forms.RichTextBox();
+            this.uiTabPageOptions = new Janus.Windows.UI.Tab.UITabPage();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.chkXacnhanTruockhiphathanh = new System.Windows.Forms.CheckBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.cmdHoadonChuyendoi = new Janus.Windows.EditControls.UIButton();
-            this.cmdHoadonThaythe = new Janus.Windows.EditControls.UIButton();
-            this.optQuaythuoc = new System.Windows.Forms.RadioButton();
-            this.chkCotralai = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -172,6 +175,8 @@ namespace VMS.Invoice
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdMauhoadon)).BeginInit();
             this.uiTabPageLog.SuspendLayout();
+            this.uiTabPageOptions.SuspendLayout();
+            this.panel11.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -240,6 +245,28 @@ namespace VMS.Invoice
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(552, 28);
             this.panel8.TabIndex = 294;
+            // 
+            // chkCotralai
+            // 
+            this.chkCotralai.AutoSize = true;
+            this.chkCotralai.Location = new System.Drawing.Point(346, 3);
+            this.chkCotralai.Name = "chkCotralai";
+            this.chkCotralai.Size = new System.Drawing.Size(198, 19);
+            this.chkCotralai.TabIndex = 511;
+            this.chkCotralai.Tag = "EINVOICE_PHIEUTHANHTOAN_BITRALAITIEN";
+            this.chkCotralai.Text = "Phiếu thanh toán có trả lại tiền?";
+            this.chkCotralai.UseVisualStyleBackColor = true;
+            this.chkCotralai.CheckedChanged += new System.EventHandler(this.chk_CheckedChanged);
+            // 
+            // optQuaythuoc
+            // 
+            this.optQuaythuoc.AutoSize = true;
+            this.optQuaythuoc.Location = new System.Drawing.Point(236, 4);
+            this.optQuaythuoc.Name = "optQuaythuoc";
+            this.optQuaythuoc.Size = new System.Drawing.Size(86, 19);
+            this.optQuaythuoc.TabIndex = 15;
+            this.optQuaythuoc.Text = "Quầy thuốc";
+            this.optQuaythuoc.UseVisualStyleBackColor = true;
             // 
             // optNoitru
             // 
@@ -625,6 +652,7 @@ namespace VMS.Invoice
             this.grdPayment.AlternatingColors = true;
             this.grdPayment.AlternatingRowFormatStyle.BackColor = System.Drawing.Color.Cornsilk;
             this.grdPayment.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.grdPayment.ContextMenuStrip = this.contextMenuStrip1;
             grdPayment_DesignTimeLayout.LayoutString = resources.GetString("grdPayment_DesignTimeLayout.LayoutString");
             this.grdPayment.DesignTimeLayout = grdPayment_DesignTimeLayout;
             this.grdPayment.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -680,6 +708,19 @@ namespace VMS.Invoice
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1328, 44);
             this.panel2.TabIndex = 3;
+            // 
+            // cmdHoadonThaythe
+            // 
+            this.cmdHoadonThaythe.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmdHoadonThaythe.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmdHoadonThaythe.Image = ((System.Drawing.Image)(resources.GetObject("cmdHoadonThaythe.Image")));
+            this.cmdHoadonThaythe.Location = new System.Drawing.Point(772, 6);
+            this.cmdHoadonThaythe.Name = "cmdHoadonThaythe";
+            this.cmdHoadonThaythe.Size = new System.Drawing.Size(142, 35);
+            this.cmdHoadonThaythe.TabIndex = 28;
+            this.cmdHoadonThaythe.Text = "Tạo HĐ thay thế";
+            this.cmdHoadonThaythe.Visible = false;
+            this.cmdHoadonThaythe.Click += new System.EventHandler(this.cmdHoadonThaythe_Click);
             // 
             // cmdPReview
             // 
@@ -763,7 +804,8 @@ namespace VMS.Invoice
             this.uiTabDanhSachBenhNhanDaCoHoaDon,
             this.uiTabDanhSachHoaDonDaHuy,
             this.uiTabPageMauHdon,
-            this.uiTabPageLog});
+            this.uiTabPageLog,
+            this.uiTabPageOptions});
             this.uiTabHDDT.SelectedTabChanged += new Janus.Windows.UI.Tab.TabEventHandler(this.uiTab2_SelectedTabChanged);
             // 
             // uitabChuaTaoHoaDon
@@ -1003,27 +1045,27 @@ namespace VMS.Invoice
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem1,
-            this.cmdChangeDinhDanh,
+            this.cmdGetRight,
             this.toolStripMenuItem2});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(256, 38);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(235, 60);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(252, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(231, 6);
             // 
-            // cmdChangeDinhDanh
+            // cmdGetRight
             // 
-            this.cmdChangeDinhDanh.Name = "cmdChangeDinhDanh";
-            this.cmdChangeDinhDanh.Size = new System.Drawing.Size(255, 22);
-            this.cmdChangeDinhDanh.Text = "Gửi hóa đơn điều chỉnh định danh";
-            this.cmdChangeDinhDanh.Click += new System.EventHandler(this.cmdChangeDinhDanh_Click);
+            this.cmdGetRight.Name = "cmdGetRight";
+            this.cmdGetRight.Size = new System.Drawing.Size(234, 22);
+            this.cmdGetRight.Text = "Lấy lại quyền phát hành HĐĐT";
+            this.cmdGetRight.Click += new System.EventHandler(this.cmdChangeDinhDanh_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(252, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(231, 6);
             // 
             // grdChitiet_Phathanh
             // 
@@ -1070,6 +1112,18 @@ namespace VMS.Invoice
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(1328, 48);
             this.panel6.TabIndex = 4;
+            // 
+            // cmdHoadonChuyendoi
+            // 
+            this.cmdHoadonChuyendoi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmdHoadonChuyendoi.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmdHoadonChuyendoi.Image = ((System.Drawing.Image)(resources.GetObject("cmdHoadonChuyendoi.Image")));
+            this.cmdHoadonChuyendoi.Location = new System.Drawing.Point(880, 8);
+            this.cmdHoadonChuyendoi.Name = "cmdHoadonChuyendoi";
+            this.cmdHoadonChuyendoi.Size = new System.Drawing.Size(164, 35);
+            this.cmdHoadonChuyendoi.TabIndex = 13;
+            this.cmdHoadonChuyendoi.Text = "Tạo HĐ điều chỉnh";
+            this.cmdHoadonChuyendoi.Visible = false;
             // 
             // txtlydohuy
             // 
@@ -1310,57 +1364,41 @@ namespace VMS.Invoice
             this.rtxtLogs.TabIndex = 1;
             this.rtxtLogs.Text = "";
             // 
+            // uiTabPageOptions
+            // 
+            this.uiTabPageOptions.Controls.Add(this.panel11);
+            this.uiTabPageOptions.Location = new System.Drawing.Point(1, 23);
+            this.uiTabPageOptions.Name = "uiTabPageOptions";
+            this.uiTabPageOptions.Size = new System.Drawing.Size(1328, 628);
+            this.uiTabPageOptions.TabStop = true;
+            this.uiTabPageOptions.Text = "Tùy chọn cá nhân";
+            // 
+            // panel11
+            // 
+            this.panel11.Controls.Add(this.chkXacnhanTruockhiphathanh);
+            this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel11.Location = new System.Drawing.Point(0, 0);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(1328, 628);
+            this.panel11.TabIndex = 2;
+            // 
+            // chkXacnhanTruockhiphathanh
+            // 
+            this.chkXacnhanTruockhiphathanh.AutoSize = true;
+            this.chkXacnhanTruockhiphathanh.Checked = true;
+            this.chkXacnhanTruockhiphathanh.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkXacnhanTruockhiphathanh.Location = new System.Drawing.Point(27, 16);
+            this.chkXacnhanTruockhiphathanh.Name = "chkXacnhanTruockhiphathanh";
+            this.chkXacnhanTruockhiphathanh.Size = new System.Drawing.Size(244, 19);
+            this.chkXacnhanTruockhiphathanh.TabIndex = 1;
+            this.chkXacnhanTruockhiphathanh.Tag = "EINVOICE_XACNHANTRUOCKHIPHATHANH";
+            this.chkXacnhanTruockhiphathanh.Text = "Xác nhận trước khi phát hành Hóa đơn?";
+            this.chkXacnhanTruockhiphathanh.UseVisualStyleBackColor = true;
+            // 
             // toolTip1
             // 
             this.toolTip1.IsBalloon = true;
             this.toolTip1.ToolTipTitle = "Trợ giúp";
-            // 
-            // cmdHoadonChuyendoi
-            // 
-            this.cmdHoadonChuyendoi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmdHoadonChuyendoi.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdHoadonChuyendoi.Image = ((System.Drawing.Image)(resources.GetObject("cmdHoadonChuyendoi.Image")));
-            this.cmdHoadonChuyendoi.Location = new System.Drawing.Point(880, 8);
-            this.cmdHoadonChuyendoi.Name = "cmdHoadonChuyendoi";
-            this.cmdHoadonChuyendoi.Size = new System.Drawing.Size(164, 35);
-            this.cmdHoadonChuyendoi.TabIndex = 13;
-            this.cmdHoadonChuyendoi.Text = "Tạo HĐ điều chỉnh";
-            this.cmdHoadonChuyendoi.Visible = false;
-            // 
-            // cmdHoadonThaythe
-            // 
-            this.cmdHoadonThaythe.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmdHoadonThaythe.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdHoadonThaythe.Image = ((System.Drawing.Image)(resources.GetObject("cmdHoadonThaythe.Image")));
-            this.cmdHoadonThaythe.Location = new System.Drawing.Point(772, 6);
-            this.cmdHoadonThaythe.Name = "cmdHoadonThaythe";
-            this.cmdHoadonThaythe.Size = new System.Drawing.Size(142, 35);
-            this.cmdHoadonThaythe.TabIndex = 28;
-            this.cmdHoadonThaythe.Text = "Tạo HĐ thay thế";
-            this.cmdHoadonThaythe.Visible = false;
-            this.cmdHoadonThaythe.Click += new System.EventHandler(this.cmdHoadonThaythe_Click);
-            // 
-            // optQuaythuoc
-            // 
-            this.optQuaythuoc.AutoSize = true;
-            this.optQuaythuoc.Location = new System.Drawing.Point(236, 4);
-            this.optQuaythuoc.Name = "optQuaythuoc";
-            this.optQuaythuoc.Size = new System.Drawing.Size(86, 19);
-            this.optQuaythuoc.TabIndex = 15;
-            this.optQuaythuoc.Text = "Quầy thuốc";
-            this.optQuaythuoc.UseVisualStyleBackColor = true;
-            // 
-            // chkCotralai
-            // 
-            this.chkCotralai.AutoSize = true;
-            this.chkCotralai.Location = new System.Drawing.Point(346, 3);
-            this.chkCotralai.Name = "chkCotralai";
-            this.chkCotralai.Size = new System.Drawing.Size(198, 19);
-            this.chkCotralai.TabIndex = 511;
-            this.chkCotralai.Tag = "EINVOICE_PHIEUTHANHTOAN_BITRALAITIEN";
-            this.chkCotralai.Text = "Phiếu thanh toán có trả lại tiền?";
-            this.chkCotralai.UseVisualStyleBackColor = true;
-            this.chkCotralai.CheckedChanged += new System.EventHandler(this.chk_CheckedChanged);
             // 
             // frm_Quanlyphathanh_Hoadon
             // 
@@ -1430,6 +1468,9 @@ namespace VMS.Invoice
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdMauhoadon)).EndInit();
             this.uiTabPageLog.ResumeLayout(false);
+            this.uiTabPageOptions.ResumeLayout(false);
+            this.panel11.ResumeLayout(false);
+            this.panel11.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1470,7 +1511,7 @@ namespace VMS.Invoice
         private Janus.Windows.EditControls.UIButton cmdlaymauhoadon;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem cmdChangeDinhDanh;
+        private System.Windows.Forms.ToolStripMenuItem cmdGetRight;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
         private System.Windows.Forms.ToolStripMenuItem cmdCapnhatthongtinthue;
@@ -1525,5 +1566,8 @@ namespace VMS.Invoice
         private System.Windows.Forms.RadioButton optQuaythuoc;
         private Janus.Windows.EditControls.UIButton cmdHoadonThaythe;
         private Janus.Windows.EditControls.UIButton cmdHoadonChuyendoi;
+        private Janus.Windows.UI.Tab.UITabPage uiTabPageOptions;
+        private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.CheckBox chkXacnhanTruockhiphathanh;
     }
 }

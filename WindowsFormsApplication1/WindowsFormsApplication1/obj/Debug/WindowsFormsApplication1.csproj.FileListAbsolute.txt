@@ -1,0 +1,8 @@
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csprojResolveAssemblyReference.cache
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb

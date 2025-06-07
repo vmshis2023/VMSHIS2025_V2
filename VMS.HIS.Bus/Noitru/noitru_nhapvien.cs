@@ -935,7 +935,7 @@ namespace VNS.HIS.BusRule.Classes
                 return ActionResult.Error;
             }
         }
-        public ActionResult Nhapvien(NoitruPhanbuonggiuong objBuongGiuong, KcbLuotkham objLuotkham,NoitruPhieunhapvien objphieunhapvien,
+        public ActionResult Nhapvien(NoitruPhanbuonggiuong objBuongGiuong, KcbLuotkham objLuotkham,ref NoitruPhieunhapvien objphieunhapvien,
             NoitruGoinhapvien objThongtinGoiDvu)
         {
             int id_phieunv = objphieunhapvien.IdPhieu;

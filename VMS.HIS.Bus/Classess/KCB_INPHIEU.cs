@@ -11,24 +11,25 @@ using VMS.HIS.DAL;
 using VNS.Libs;
 using VNS.Properties;
 using VMS.HIS.Bus;
+using VMS.Emr;
 
 namespace VNS.HIS.UI.Classess
 {
     public class KcbInphieu
     {
-        public static void INPHIEU_KHAM(string maDoiTuong, DataTable mDtReport, string sTitleReport, string khoGiay)
+        public static void INPHIEU_KHAM(KcbDangkyKcb objCongkham, string maDoiTuong, DataTable mDtReport, string sTitleReport, string khoGiay)
         {
             Utility.UpdateLogotoDatatable(ref mDtReport);
             switch (maDoiTuong)
             {
                 case "DV":
-                    InPhieuKCB_DV(mDtReport, sTitleReport, khoGiay);
+                    InPhieuKCB_DV(objCongkham,mDtReport, sTitleReport, khoGiay);
                     break;
                 case "BHYT":
                     InPhieuKCB_BHYT(mDtReport, sTitleReport, khoGiay);
                     break;
                 default:
-                    InPhieuKCB_DV(mDtReport, sTitleReport, khoGiay);
+                    InPhieuKCB_DV(objCongkham,mDtReport, sTitleReport, khoGiay);
                     break;
             }
         }
@@ -42,7 +43,7 @@ namespace VNS.HIS.UI.Classess
             if (reportDocument == null || objReport == null) return;
             if (Utility.sDbnull(objReport.FileWord) != "")
             {
-                WordPrinter.InPhieu(mDtReport, Utility.sDbnull(objReport.FileWord));
+                WordPrinter.InPhieu(null,mDtReport, Utility.sDbnull(objReport.FileWord));
                 return;
             }
             ReportDocument crpt = reportDocument;
@@ -102,7 +103,7 @@ namespace VNS.HIS.UI.Classess
             if (reportDocument == null || objReport == null) return;
             if (Utility.sDbnull(objReport.FileWord) != "")
             {
-                WordPrinter.InPhieu(mDtReport, Utility.sDbnull(objReport.FileWord));
+                WordPrinter.InPhieu(null,mDtReport, Utility.sDbnull(objReport.FileWord));
                 return;
             }
             ReportDocument crpt = reportDocument;
@@ -148,7 +149,7 @@ namespace VNS.HIS.UI.Classess
             }
         }
 
-        public static void InPhieuKCB_DV(DataTable mDtReport, string sTitleReport, string khoGiay)
+        public static void InPhieuKCB_DV(KcbDangkyKcb objCongkham,DataTable mDtReport, string sTitleReport, string khoGiay)
         {
             var reportDocument = new ReportDocument();
             string tieude = "", reportname = "";
@@ -167,9 +168,12 @@ namespace VNS.HIS.UI.Classess
                     break;
             }
             if (reportDocument == null || objReport==null) return;
-            if(Utility.sDbnull( objReport.FileWord)!="" )
+            EmrDocuments emrdoc = new EmrDocuments();
+            emrdoc.InitDocument(objCongkham.IdBenhnhan, objCongkham.MaLuotkham,Utility.Int64Dbnull( objCongkham.IdKham), objCongkham.NgayDangky.Value, Loaiphieu_HIS.PHIEUDANGKYKCB, reportcode, objCongkham.NguoiTao,Utility.Int16Dbnull( objCongkham.IdKhoakcb,-1), Utility.Int16Dbnull(objCongkham.IdPhongkham,-1),Utility.Byte2Bool( objCongkham.Noitru), "");
+            emrdoc.Save();
+            if (Utility.sDbnull( objReport.FileWord)!="" )
             {
-                WordPrinter.InPhieu(mDtReport, Utility.sDbnull(objReport.FileWord));
+                WordPrinter.InPhieu(null,mDtReport, Utility.sDbnull(objReport.FileWord));
                 return;
             }    
             ReportDocument crpt = reportDocument;
@@ -193,6 +197,7 @@ namespace VNS.HIS.UI.Classess
                                                              Utility.getTrinhky(objForm.mv_sReportFileName,
                                                                                 DateTime.Now));
                 objForm.crptViewer.ReportSource = crpt;
+                
                 if (Utility.isPrintPreview(PropertyLib._MayInProperties.TenMayInPhieuKCB,
                                            PropertyLib._MayInProperties.PreviewPhieuKCB))
                 {
@@ -239,7 +244,7 @@ namespace VNS.HIS.UI.Classess
             if (reportDocument == null || objReport == null) return;
             if (Utility.sDbnull(objReport.FileWord) != "")
             {
-                WordPrinter.InPhieu(mDtReport, Utility.sDbnull(objReport.FileWord));
+                WordPrinter.InPhieu(null,mDtReport, Utility.sDbnull(objReport.FileWord));
                 return;
             }
             ReportDocument crpt = reportDocument;
@@ -335,6 +340,10 @@ namespace VNS.HIS.UI.Classess
                         if (_obj != null && (Utility.DoTrim(_obj.MotaThem).Contains("A4") || Utility.DoTrim(_obj.MotaThem).Contains("A5")))
                             khoGiay = Utility.DoTrim(_obj.MotaThem);
                         string reportname = "";
+                        EmrDocuments emrdoc = new EmrDocuments();
+                        emrdoc.InitDocument(idBenhnhan, maLuotkham, Utility.Int64Dbnull(vAssignId), objchidinh.NgayChidinh, Loaiphieu_HIS.PHIEUCHIDINH, manhomcls, objchidinh.NguoiTao, Utility.Int16Dbnull(objchidinh.IdKhoaChidinh, -1), Utility.Int16Dbnull(objchidinh.IdPhongChidinh, -1), Utility.Byte2Bool(objchidinh.Noitru), "",true);
+                        emrdoc.Save();
+
                         ReportDocument crpt = Utility.GetReport(manhomcls, khoGiay, ref tieude, ref reportname);
                         decimal tong = Utility.DecimaltoDbnull(dt.Compute("sum(Bnhan_chitra)", "1=1"), 0);
                         if (crpt == null) return ActionResult.Error;
@@ -921,6 +930,9 @@ namespace VNS.HIS.UI.Classess
                 if (crpt == null)
                     crpt = Utility.GetReport(reportCode, khoGiay, ref tieude, ref reportname);
                 if (crpt == null) return ActionResult.Error;
+                EmrDocuments emrdoc = new EmrDocuments();
+                emrdoc.InitDocument(idBenhnhan, maLuotkham, Utility.Int64Dbnull(vAssignId), objchidinh.NgayChidinh, Loaiphieu_HIS.PHIEUCHIDINH, reportCode, objchidinh.NguoiTao, Utility.Int16Dbnull(objchidinh.IdKhoaChidinh, -1), Utility.Int16Dbnull(objchidinh.IdPhongChidinh, -1), Utility.Byte2Bool(objchidinh.Noitru), "");
+                emrdoc.Save();
                 if (inchung)
                 {
                     List<string> lstNhominCls = (from p in dt.AsEnumerable()

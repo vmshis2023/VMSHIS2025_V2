@@ -46,8 +46,8 @@ namespace VMS.Invoice
         string invInvoiceSeries = "", mauHd = "", invoiceName = "";
         public string transaction_id = "";
         public int VAT = 0;
-        
-
+        public bool isConfirmBeforeDoing = false;
+        public BuyerInfor _buyer = null;
         public MisaInvoice()
         {
             try
@@ -182,7 +182,7 @@ namespace VMS.Invoice
                     );
             }
         }
-        public void xemtruoc_hoadon(string str_IdThanhtoan, int kieu, string lstIdThanhtoanChitiet, ref string eMessage)
+        public bool  xemtruoc_hoadon(string str_IdThanhtoan, int kieu, string lstIdThanhtoanChitiet, ref string eMessage)
         {
             string tranSactionID = "";
             try
@@ -208,7 +208,7 @@ namespace VMS.Invoice
                 {
                     eMessage = string.Format("Chi tiết thanh toán {0} đã được lấy hóa đơn", lstIdThanhtoanChitiet);
                     log.Trace(eMessage);
-                    return;
+                    return false;
                 }
                 else
                 {
@@ -227,7 +227,7 @@ namespace VMS.Invoice
                 {
                     eMessage = "Không lấy được dữ liệu tạo hóa đơn phát hành từ phiếu thanh toán đang chọn dtOrginvoicedata.Rows.Count <= 0";
                     log.Trace(eMessage);
-                    return;
+                    return false;
                 }
                 ReplaceBuyerInfor(ref dtOrginvoicedata);
                 log.Trace("Tổng số người bệnh:  " + dtOrginvoicedata.Rows.Count);
@@ -314,7 +314,7 @@ namespace VMS.Invoice
 
                         eMessage = "Ký hiệu hóa đơn không được để trống";
                         log.Trace(eMessage);
-                        return;
+                        return false;
                     }
                     orginvoicedata.RefID = Guid.NewGuid().ToString();
                     orginvoicedata.InvSeries = invInvoiceSeries;
@@ -336,16 +336,17 @@ namespace VMS.Invoice
                     {
                         Utility.ShowMsg(ex.Message);
                         eMessage = ex.Message;
-                        return;
+                        return false;
                     }
+                    orginvoicedata.AccountObjectIdentificationNumber = Utility.sDbnull(dtOrginvoicedata.Rows[0]["CMT"]);
                     orginvoicedata.BuyerAddress = Utility.sDbnull(dtOrginvoicedata.Rows[0]["BuyerAddress"]);
                     orginvoicedata.BuyerEmail = Utility.sDbnull(dtOrginvoicedata.Rows[0]["BuyerEmail"]);
                     orginvoicedata.ContactName = Utility.sDbnull(dtOrginvoicedata.Rows[0]["ContactName"]);
                     orginvoicedata.TotalAmountWithoutVATOC = Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalAmountWithoutVATOC)", "1=1"), 0);
-                    orginvoicedata.TotalVATAmountOC = Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalVATAmountOC)", "1=1"), 0);
+                    orginvoicedata.TotalVATAmountOC = Utility.DecimaltoDbnull(dtTaxRateInfo.Rows[0]["VATAmountOC"]);// Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalVATAmountOC)", "1=1"), 0);
                     orginvoicedata.TotalAmount = Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalAmount)", "1=1"), 0);
                     orginvoicedata.TotalAmountWithoutVAT = Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalAmountWithoutVAT)", "1=1"), 0);
-                    orginvoicedata.TotalVATAmount = Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalVATAmount)", "1=1"), 0);
+                    orginvoicedata.TotalVATAmount = Utility.DecimaltoDbnull(dtTaxRateInfo.Rows[0]["VATAmountOC"]);// Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalVATAmount)", "1=1"), 0);
                     orginvoicedata.TotalSaleAmountOC = Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalSaleAmountOC)", "1=1"), 0);
                     orginvoicedata.TotalSaleAmount = Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalSaleAmount)", "1=1"), 0);
                     orginvoicedata.TotalAmountOC = Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalAmountOC)", "1=1"), 0);
@@ -386,10 +387,11 @@ namespace VMS.Invoice
                             }
                             else
                             {
-                               
+
                                 eMessage = "objKetquaHoadon.Data is null ";
-                               
-                                    RaiseStatus(eMessage, true);
+
+                                RaiseStatus(eMessage, true);
+                                return false;
                             }
                         }
                     }
@@ -400,10 +402,10 @@ namespace VMS.Invoice
                     eMessage = "Không có dữ liệu để gửi hóa đơn";
                    
                         RaiseStatus(eMessage, true);
-                    return;
+                    return false;
                 }
 
-
+                return true;
             }
             catch (Exception ex)
             {
@@ -411,7 +413,7 @@ namespace VMS.Invoice
                     RaiseStatus(ex.Message, true);
                 log.Trace(ex.Message);
                 Utility.ShowMsg(ex.Message);
-                return;
+                return false;
             }
         }
 
@@ -723,15 +725,15 @@ namespace VMS.Invoice
                     }
                     orginvoicedata.RefID = Guid.NewGuid().ToString();
                     //Thông tin hóa đơn bị thay thế
-                    orginvoicedata.ReferenceType =1;//Tính chất hóa đơn 1: Thay thế 2: Điều chỉnh
+                    //orginvoicedata.ReferenceType =1;//Tính chất hóa đơn 1: Thay thế 2: Điều chỉnh
 
-                    orginvoicedata.OrgInvoiceType =1; //Loại hóa đơn bị thay thế/ điều chỉnh 1: Hóa đơn NĐ 123 3: Hóa đơn NĐ 51
+                    //orginvoicedata.OrgInvoiceType =1; //Loại hóa đơn bị thay thế/ điều chỉnh 1: Hóa đơn NĐ 123 3: Hóa đơn NĐ 51
 
-                    orginvoicedata.OrgInvTemplateNo = hoadon_thaythe.KiHieu.Substring(0,1);
-                    orginvoicedata.OrgInvSeries = hoadon_thaythe.KiHieu.Substring(1);
-                    orginvoicedata.OrgInvNo = hoadon_thaythe.Serie;
-                    orginvoicedata.OrgInvDate = hoadon_thaythe.NgayHoadon.Value.ToString("yyyy-MM-dd");
-                    orginvoicedata.InvoiceNote = lydohuy;
+                    //orginvoicedata.OrgInvTemplateNo = hoadon_thaythe.KiHieu.Substring(0,1);
+                    //orginvoicedata.OrgInvSeries = hoadon_thaythe.KiHieu.Substring(1);
+                    //orginvoicedata.OrgInvNo = hoadon_thaythe.Serie;
+                    //orginvoicedata.OrgInvDate = hoadon_thaythe.NgayHoadon.Value.ToString("yyyy-MM-dd");
+                    //orginvoicedata.InvoiceNote = lydohuy;
                     //Các thông tin chung
                     orginvoicedata.InvSeries = invInvoiceSeries;
                     log.Trace("inv_invoiceSeries: " + orginvoicedata.InvSeries);
@@ -753,17 +755,17 @@ namespace VMS.Invoice
                         eMessage = ex.Message;
                         return false;
                     }
-                    orginvoicedata.BuyerIDNumber = Utility.sDbnull(dtOrginvoicedata.Rows[0]["CMT"]);
+                    orginvoicedata.AccountObjectIdentificationNumber = Utility.sDbnull(dtOrginvoicedata.Rows[0]["CMT"]);
                     orginvoicedata.BuyerFullName = Utility.sDbnull(dtOrginvoicedata.Rows[0]["BuyerFullName"]);
                     orginvoicedata.BuyerAddress = Utility.sDbnull(dtOrginvoicedata.Rows[0]["BuyerAddress"]);
                     orginvoicedata.BuyerEmail = Utility.sDbnull(dtOrginvoicedata.Rows[0]["BuyerEmail"]);
                     orginvoicedata.ContactName = Utility.sDbnull(dtOrginvoicedata.Rows[0]["ContactName"]);
 
                     orginvoicedata.TotalAmountWithoutVATOC = Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalAmountWithoutVATOC)", "1=1"), 0);
-                    orginvoicedata.TotalVATAmountOC = Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalVATAmountOC)", "1=1"), 0);
+                    orginvoicedata.TotalVATAmountOC = Utility.DecimaltoDbnull(dtTaxRateInfo.Rows[0]["VATAmountOC"]);// Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalVATAmountOC)", "1=1"), 0);
                     orginvoicedata.TotalAmount = Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalAmount)", "1=1"), 0);
                     orginvoicedata.TotalAmountWithoutVAT = Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalAmountWithoutVAT)", "1=1"), 0);
-                    orginvoicedata.TotalVATAmount = Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalVATAmount)", "1=1"), 0);
+                    orginvoicedata.TotalVATAmount = Utility.DecimaltoDbnull(dtTaxRateInfo.Rows[0]["VATAmountOC"]);// Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalVATAmount)", "1=1"), 0);
                     orginvoicedata.TotalSaleAmountOC = Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalSaleAmountOC)", "1=1"), 0);
                     orginvoicedata.TotalSaleAmount = Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalSaleAmount)", "1=1"), 0);
                     orginvoicedata.TotalAmountOC = Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalAmountOC)", "1=1"), 0);
@@ -1243,17 +1245,25 @@ namespace VMS.Invoice
                         eMessage = ex.Message;
                         return false;
                     }
-                    orginvoicedata.BuyerIDNumber= Utility.sDbnull(dtOrginvoicedata.Rows[0]["CMT"]);
+                    orginvoicedata.AccountObjectIdentificationNumber = Utility.sDbnull(dtOrginvoicedata.Rows[0]["CMT"]);
                     orginvoicedata.BuyerFullName = Utility.sDbnull(dtOrginvoicedata.Rows[0]["BuyerFullName"]);
                     orginvoicedata.BuyerAddress = Utility.sDbnull(dtOrginvoicedata.Rows[0]["BuyerAddress"]);
                     orginvoicedata.BuyerEmail = Utility.sDbnull(dtOrginvoicedata.Rows[0]["BuyerEmail"]);
                     orginvoicedata.ContactName = Utility.sDbnull(dtOrginvoicedata.Rows[0]["ContactName"]);
-
+                    if(_buyer!=null)
+                    {
+                        List<string> lstEmail = _buyer.ReceiverEmail.Split(';').ToList<string>();
+                        orginvoicedata.BuyerLegalName = _buyer.BuyerLegalName;
+                        orginvoicedata.BuyerEmail =_buyer.BuyerEmail;
+                        orginvoicedata.IsSendEmail = _buyer.IsSendEmail;
+                        orginvoicedata.ReceiverEmail =_buyer.ReceiverEmail;
+                        orginvoicedata.ReceiverName = _buyer.ReceiverName;
+                    }    
                     orginvoicedata.TotalAmountWithoutVATOC = Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalAmountWithoutVATOC)","1=1"), 0);
-                    orginvoicedata.TotalVATAmountOC = Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalVATAmountOC)", "1=1"), 0);
+                    orginvoicedata.TotalVATAmountOC = Utility.DecimaltoDbnull(dtTaxRateInfo.Rows[0]["VATAmountOC"]);// Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalVATAmountOC)", "1=1"), 0);
                     orginvoicedata.TotalAmount = Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalAmount)", "1=1"), 0);
                     orginvoicedata.TotalAmountWithoutVAT = Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalAmountWithoutVAT)", "1=1"), 0);
-                    orginvoicedata.TotalVATAmount = Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalVATAmount)", "1=1"), 0);
+                    orginvoicedata.TotalVATAmount = Utility.DecimaltoDbnull(dtTaxRateInfo.Rows[0]["VATAmountOC"]);// Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalVATAmount)", "1=1"), 0);
                     orginvoicedata.TotalSaleAmountOC = Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalSaleAmountOC)", "1=1"), 0);
                     orginvoicedata.TotalSaleAmount = Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalSaleAmount)", "1=1"), 0);
                     orginvoicedata.TotalAmountOC = Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalAmountOC)", "1=1"), 0);
@@ -1358,6 +1368,8 @@ namespace VMS.Invoice
                                                     .Set(KcbThanhtoan.Columns.TthaiXuatHddt).EqualTo(1)
                                                     .Set(KcbThanhtoan.Columns.RefId).EqualTo(objhoalog.RefID)
                                                      .Set(KcbThanhtoan.Columns.TransactionId).EqualTo(objhoalog.TransactionId)
+                                                     .Set(KcbThanhtoan.Columns.TthaiDangphathanh).EqualTo(0)
+                                                     .Set(KcbThanhtoan.Columns.UsedBy).EqualTo("")
                                                     .Where(KcbThanhtoan.Columns.IdThanhtoan).IsEqualTo(objhoalog.IdThanhtoan)
                                                     .Execute();
                                                
@@ -1410,6 +1422,8 @@ namespace VMS.Invoice
                                                    .Set(KcbThanhtoan.Columns.TthaiXuatHddt).EqualTo(1)
                                                    .Set(KcbThanhtoan.Columns.RefId).EqualTo(objhoalog.RefID)
                                                     .Set(KcbThanhtoan.Columns.TransactionId).EqualTo(objhoalog.TransactionId)
+                                                     .Set(KcbThanhtoan.Columns.TthaiDangphathanh).EqualTo(0)
+                                                     .Set(KcbThanhtoan.Columns.UsedBy).EqualTo("")
                                                    .Where(KcbThanhtoan.Columns.IdThanhtoan).In(lstID)
                                                    .Execute();
                                             string sResult = string.Format("Xuất hóa đơn thành công cho các lần thanh toán {0} với serie {1}, mẫu hóa đơn {2}, tên mẫu {3}, transaction_id {4} và RefId {5}",str_IdThanhtoan, objhoalog.Serie, objhoalog.MauHoadon,invoiceName, objhoalog.TransactionId, objhoalog.RefID);

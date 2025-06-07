@@ -1,7 +1,7 @@
-C:\HIS_BVSG\Running\VMS.HIS.Thanhtoan.dll
-C:\HIS_BVSG\Running\VMS.HIS.Thanhtoan.pdb
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Thanhtoan\obj\Debug\9_3.VMS.HIS.Thanhtoan.csproj.AssemblyReference.cache
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Thanhtoan\obj\Debug\VNS.HIS.Thanhtoan.Form1.resources
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Thanhtoan\obj\Debug\VMS.HIS.Thanhtoan.Properties.Resources.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Thanhtoan\obj\Debug\VNS.HIS.UI.THANHTOAN.frm_QRData.resources
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Thanhtoan\obj\Debug\VMS.HIS.Thanhtoan.THANHTOAN.frm_ChonTamthu_Ketchuyen.resources
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Thanhtoan\obj\Debug\VNS.HIS.UI.THANHTOAN.frm_tamthu.resources
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Thanhtoan\obj\Debug\VNS.HIS.UI.THANHTOAN.frm_CheckError.resources
@@ -19,8 +19,8 @@ F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Thanhtoan\obj\Debug\VNS.HIS.UI.THANHT
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Thanhtoan\obj\Debug\9_3.VMS.HIS.Thanhtoan.csproj.GenerateResource.cache
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Thanhtoan\obj\Debug\VMS.HIS.Thanhtoan.dll.licenses
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Thanhtoan\obj\Debug\9_3.VMS.HIS.Thanhtoan.csproj.CoreCompileInputs.cache
+C:\HIS_BVSG\Running\VMS.HIS.Thanhtoan.dll
+C:\HIS_BVSG\Running\VMS.HIS.Thanhtoan.pdb
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Thanhtoan\obj\Debug\9_3.VMS.HIS.Thanhtoan.csproj.CopyComplete
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Thanhtoan\obj\Debug\VMS.HIS.Thanhtoan.dll
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Thanhtoan\obj\Debug\VMS.HIS.Thanhtoan.pdb
-F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Thanhtoan\obj\Debug\9_3.VMS.HIS.Thanhtoan.csproj.AssemblyReference.cache
-F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Thanhtoan\obj\Debug\VNS.HIS.UI.THANHTOAN.frm_QRData.resources

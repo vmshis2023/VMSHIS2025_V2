@@ -71,6 +71,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="eInvoice.cs" />
+    <Compile Include="MisaInvoices\frm_thongtin_khachhang_riengle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MisaInvoices\frm_thongtin_khachhang_riengle.Designer.cs">
+      <DependentUpon>frm_thongtin_khachhang_riengle.cs</DependentUpon>
+    </Compile>
     <Compile Include="MisaInvoices\frm_hoadon_taotay.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,6 +126,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="MisaInvoices\frm_thongtin_khachhang_riengle.resx">
+      <DependentUpon>frm_thongtin_khachhang_riengle.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MisaInvoices\frm_hoadon_taotay.resx">
       <DependentUpon>frm_hoadon_taotay.cs</DependentUpon>
     </EmbeddedResource>

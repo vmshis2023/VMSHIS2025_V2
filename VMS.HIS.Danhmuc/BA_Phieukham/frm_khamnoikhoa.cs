@@ -447,6 +447,7 @@ namespace VMS.EMR.PHIEUKHAM
             if (ucThongtinnguoibenh1.objLuotkham != null)
             {
                 objLuotkham = ucThongtinnguoibenh1.objLuotkham;
+                this.Text = string.Format("Phiếu khám nội khoa cho người bệnh {0} - {1} - {2} -{3}", ucThongtinnguoibenh1.txtTenBN.Text, ucThongtinnguoibenh1.txtgioitinh.Text, ucThongtinnguoibenh1.txttuoi.Text, ucThongtinnguoibenh1.txtDiachi.Text);
                 AllowedChanged = false;
                 LoadLichSu();
                 AllowedChanged = true;
@@ -533,7 +534,7 @@ namespace VMS.EMR.PHIEUKHAM
                     txtNhietDo.Text = objphieukham.NhietDo;
                     txtha.Text = objphieukham.NhomMau;
                     txtMach.Text = objphieukham.Mach;
-                    txtNhipTho.Text = objphieukham.NhịpTho;
+                    txtNhipTho.Text = objphieukham.NhipTho;
                     txtChieuCao.Text = objphieukham.ChieuCao;
                     txtCanNang.Text = objphieukham.CanNang;
                     txtBMI.Text = objphieukham.Bmi;
@@ -737,12 +738,18 @@ namespace VMS.EMR.PHIEUKHAM
                         objtsb.TsbThuocla = chkThuocLa.Checked;
                         objtsb.TsbThuoclao = chkThuocLao.Checked;
                         objtsb.TsbKhac = chkKhac.Checked;
-                        objtsb.TsbThoigianDiung = txtDiUng.Text;
-                        objtsb.TsbThoigianMatuy = txtMaTuy.Text;
-                        objtsb.TsbThoigianRuoubia = txtRuouBia.Text;
-                        objtsb.TsbThoigianThuocla = txtThuocLa.Text;
-                        objtsb.TsbThoigianThuoclao = txtThuocLao.Text;
-                        objtsb.TsbThoigianKhac = txtkhac.Text;
+                        if (chkDiUng.Checked) objtsb.TsbThoigianDiung = txtDiUng.Text;
+                        else objtsb.TsbThoigianDiung = "";
+                        if (chkMaTuy.Checked) objtsb.TsbThoigianMatuy = txtMaTuy.Text;
+                        else objtsb.TsbThoigianMatuy = "";
+                        if (chkRuouBia.Checked) objtsb.TsbThoigianRuoubia = txtRuouBia.Text;
+                        else objtsb.TsbThoigianRuoubia = "";
+                        if (chkThuocLa.Checked) objtsb.TsbThoigianThuocla = txtThuocLa.Text;
+                        else objtsb.TsbThoigianThuocla = "";
+                        if (chkThuocLao.Checked) objtsb.TsbThoigianThuoclao = txtThuocLao.Text;
+                        else objtsb.TsbThoigianThuoclao = "";
+                        if (chkKhac.Checked) objtsb.TsbThoigianKhac = txtkhac.Text;
+                        else objtsb.TsbThoigianKhac = "";
 
                         objphieukham.IdBacsi = Utility.Int16Dbnull(txtBacsi.MyID, -1);
                         //objphieukham.NoikhoaToanthan = Utility.sDbnull(txtToanthan.Text);
@@ -760,7 +767,7 @@ namespace VMS.EMR.PHIEUKHAM
                         objphieukham.HuyetAp = txtha.Text;
                         objphieukham.NhietDo = txtNhietDo.Text;
                         objphieukham.Mach = Utility.sDbnull(txtMach.Text);
-                        objphieukham.NhịpTho = Utility.sDbnull(txtNhipTho.Text);
+                        objphieukham.NhipTho = Utility.sDbnull(txtNhipTho.Text);
                         objphieukham.ChieuCao = Utility.sDbnull(txtChieuCao.Text);
                         objphieukham.CanNang = Utility.sDbnull(txtCanNang.Text);
                         objphieukham.Bmi = Utility.sDbnull(txtBMI.Text);

@@ -33,6 +33,8 @@ namespace VNS.HIS.UI.Forms.Cauhinh
             NapTrangthaiDieutri();
             dtmFrom.Value = dtmTo.Value = DateTime.Now;
             this.noitrungoaitru = noitrungoaitru;
+            chkByDate.Checked = noitrungoaitru == 1;
+            if (noitrungoaitru == 1) optNoiTru.Checked = true;
             this.KeyDown += new KeyEventHandler(frm_TimkiemBenhnhanNoitru_KeyDown);
             grdPatient.DoubleClick += new EventHandler(grdPatient_DoubleClick);
             grdPatient.KeyDown+=new KeyEventHandler(grdPatient_KeyDown);
@@ -109,7 +111,7 @@ namespace VNS.HIS.UI.Forms.Cauhinh
             try
             {
                
-                DataTable mDtPatient = new KCB_DANGKY().KcbTiepdonTimkiemBenhnhan( "01/01/1900", "01/01/1900",
+                DataTable mDtPatient = new KCB_DANGKY().KcbTiepdonTimkiemBenhnhan(chkByDate.Checked ? dtmTo.Value.ToString("dd/MM/yyyy") : "01/01/1900", chkByDate.Checked ? dtmTo.Value.ToString("dd/MM/yyyy") : "01/01/1900",
                                                        Utility.Int32Dbnull(cboObjectType.SelectedValue, -1), 1,
                                                        "",-1,"","",new DateTime(1900,1,1),100,"", "ALL", 0,
                                                        100, huongdieutri,Utility.Bool2byte(globalVariables.isSuperAdmin));
@@ -183,8 +185,8 @@ namespace VNS.HIS.UI.Forms.Cauhinh
         public DataTable dtPatient;
         private void frm_TimkiemBenhnhanNoitru_Load(object sender, EventArgs e)
         {
-            
-            Timkiemtatca();
+            TimKiemThongTin(true);
+            //Timkiemtatca();
         }
 
         private void grdPatient_KeyDown(object sender, KeyEventArgs e)

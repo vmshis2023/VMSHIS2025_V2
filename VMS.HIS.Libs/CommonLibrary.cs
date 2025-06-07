@@ -1388,7 +1388,7 @@ namespace VNS.Libs
                     else if (ctr is UIStatusBar)
                         ((UIStatusBar)ctr).VisualStyle = (Janus.Windows.UI.VisualStyle)PropertyLib._AppProperties.Sta_Cbo_CmdVisualStyle;
                     else if (ctr is UITab)
-                        ((UITab)ctr).VisualStyle = TabVisualStyle.Normal;// (TabVisualStyle)PropertyLib._AppProperties.TabVisualStyle;
+                        ((UITab)ctr).VisualStyle = TabVisualStyle.Office2007;// (TabVisualStyle)PropertyLib._AppProperties.TabVisualStyle;
                     else if (ctr is MultiColumnCombo)
                         ((MultiColumnCombo)ctr).VisualStyle = (Janus.Windows.GridEX.VisualStyle)PropertyLib._AppProperties.NormalVisualStyle;
                     else if (ctr is EditBox)

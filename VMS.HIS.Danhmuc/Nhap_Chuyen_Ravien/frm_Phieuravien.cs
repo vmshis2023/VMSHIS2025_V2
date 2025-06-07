@@ -68,7 +68,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
             txtChandoan._OnShowDataV1+=_OnShowDataV1;
              txtKqdieutri._OnShowDataV1+=_OnShowDataV1;
              txtTinhtrangravien._OnShowDataV1+=_OnShowDataV1;
-             txtBenhgiaiphau._OnShowDataV1+=_OnShowDataV1;
+            // txtBenhgiaiphau._OnShowDataV1+=_OnShowDataV1;
              txtKieuchuyenvien._OnShowDataV1+=_OnShowDataV1;
              txtPhuongphapdieutri._OnShowDataV1+=_OnShowDataV1;
              txtphuongtienvc._OnShowDataV1+=_OnShowDataV1;
@@ -327,7 +327,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
                 Utility.WaitNow(this);
                 DataTable dtData =
                     SPs.NoitruInphieuravien(Utility.DoTrim(ucThongtinnguoibenh1.txtMaluotkham.Text)).GetDataSet().Tables[0];
-                VMS.HIS.Bus.WordPrinter.InPhieu(dtData, "PHIEU_RAVIEN.doc");
+                VMS.HIS.Bus.WordPrinter.InPhieu(null,dtData, "PHIEU_RAVIEN.doc");
                 //if (dtData.Rows.Count <= 0)
                 //{
                 //    Utility.ShowMsg("Không tìm thấy dữ liệu cho báo cáo", "Thông báo", MessageBoxIcon.Warning);
@@ -784,9 +784,9 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
                 objRavien.LoidanBacsi = Utility.DoTrim(txtLoidanBS.Text);
                 objRavien.SotuanThai = Utility.Int16Dbnull(txtsotuanthai.Text, 0);
                 if (chkTuvong.Checked)
-                    objRavien.NgayTuvong = dtpNgaytuvong.Value;
+                    objRavien.TuvongNgay = dtpNgaytuvong.Value;
                 else
-                    objRavien.NgayTuvong = null;
+                    objRavien.TuvongNgay = null;
                 objRavien.YkienDexuat = Utility.DoTrim(txtYkien.Text);
                 objRavien.PhuhopChandoanlamsang = Utility.Bool2byte(chkPhuHopChanDoanCLS.Checked);
                 objRavien.NgayCapgiayravien = dtNGAY_CAP_GIAY_RVIEN.Value;
@@ -1043,10 +1043,52 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
                 objRavien.IdBenhvienDi = Utility.Int16Dbnull(txtNoichuyenden.MyID, -1);
                 objRavien.LoidanBacsi = Utility.DoTrim(txtLoidanBS.Text);
                 objRavien.SotuanThai = Utility.Int16Dbnull(txtsotuanthai.Text, 0);
-                if (chkTuvong.Checked)
-                    objRavien.NgayTuvong = dtpNgaytuvong.Value;
+                objRavien.GpbLanhtinh = optLanhtinh.Checked;
+                objRavien.GpbNghingo = optNghingo.Checked;
+                objRavien.GpbActinh = opActinh.Checked;
+                objRavien.Taibien = chkTaibien.Checked;
+                objRavien.Bienchung = chkBienchung.Checked;
+                if (chkTaibien.Checked)
+                    objRavien.TaibienMota = Utility.sDbnull(txtTaibien.Text);
                 else
-                    objRavien.NgayTuvong = null;
+                    objRavien.TaibienMota = "";
+                if (chkBienchung.Checked)
+                    objRavien.BienchungMota = Utility.sDbnull(txtBienchung.Text);
+                else
+                    objRavien.BienchungMota = "";
+                if (chkTuvong.Checked)
+                {
+                    objRavien.TuvongNgay = dtpNgaytuvong.Value;
+                    objRavien.TuvongDobenh = optDobenh.Checked;
+                    objRavien.TuvongDotaibien = optDotaibiendieutri.Checked;
+                    objRavien.TuvongDokhac = optLydokhac.Checked;
+                    objRavien.TuvongTrong24gio = optTrong24gio.Checked;
+                    objRavien.TuvongSau24h = optSau24Gio.Checked;
+                    objRavien.TuvongTrong48h = optTrong48h.Checked;
+                    objRavien.TuvongTrong72h = optTrong72h.Checked;
+                    objRavien.TuvongNguyennhanchinh = autoLydotuvong.Text;
+                    objRavien.TuvongNguyennhanchinhMa = autoLydotuvong.MyCode;
+                    objRavien.TuvongKhamnghiemtuthi = chkKhamnghiemtuthi.Checked;
+                    objRavien.TuvongChandoangiaiphaututhi = chkChandoangiaiphaututhi.Checked;
+                    if (chkChandoangiaiphaututhi.Checked) objRavien.TuvongChandoangiaiphaututhiMota = Utility.sDbnull(txtChandoanGiaiphauTuthi);
+                    else objRavien.TuvongChandoangiaiphaututhiMota = "";
+                }
+                else
+                {
+                    objRavien.TuvongNgay = null;
+                    objRavien.TuvongDobenh = false;
+                    objRavien.TuvongDotaibien = false;
+                    objRavien.TuvongDokhac = false;
+                    objRavien.TuvongTrong24gio = false;
+                    objRavien.TuvongSau24h = false;
+                    objRavien.TuvongTrong48h = false;
+                    objRavien.TuvongTrong72h = false;
+                    objRavien.TuvongNguyennhanchinh = "";
+                    objRavien.TuvongNguyennhanchinhMa = "";
+                    objRavien.TuvongKhamnghiemtuthi = false;
+                    objRavien.TuvongChandoangiaiphaututhi = false;
+                    objRavien.TuvongChandoangiaiphaututhiMota = "";
+                }
                 objRavien.YkienDexuat = Utility.DoTrim(txtYkien.Text);
                 objRavien.PhuhopChandoanlamsang = Utility.Bool2byte(chkPhuHopChanDoanCLS.Checked);
                 objRavien.NgayCapgiayravien = dtNGAY_CAP_GIAY_RVIEN.Value;
@@ -1284,13 +1326,13 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
                 AutocompleteBenhvien();
                 AutocompleteICD();
                 DataTable dtData = THU_VIEN_CHUNG.LayDulieuDanhmucChung(new List<string>() { txtChandoan.LOAI_DANHMUC, txtKqdieutri.LOAI_DANHMUC
-                , txtTinhtrangravien.LOAI_DANHMUC,txtBenhgiaiphau.LOAI_DANHMUC, txtKieuchuyenvien.LOAI_DANHMUC,
+                , txtTinhtrangravien.LOAI_DANHMUC, txtKieuchuyenvien.LOAI_DANHMUC,
                  txtPhuongphapdieutri.LOAI_DANHMUC,txtphuongtienvc.LOAI_DANHMUC, autoLydotuvong.LOAI_DANHMUC,txtNguoivanchuyen.LOAI_DANHMUC }, true);
                 txtNguoivanchuyen.Init(THU_VIEN_CHUNG.LayDulieuDanhmucChung(dtData, txtNguoivanchuyen.LOAI_DANHMUC));
                 txtChandoan.Init(THU_VIEN_CHUNG.LayDulieuDanhmucChung(dtData, txtChandoan.LOAI_DANHMUC));
                 txtKqdieutri.Init(THU_VIEN_CHUNG.LayDulieuDanhmucChung(dtData, txtKqdieutri.LOAI_DANHMUC));
                 txtTinhtrangravien.Init(THU_VIEN_CHUNG.LayDulieuDanhmucChung(dtData, txtTinhtrangravien.LOAI_DANHMUC));
-                txtBenhgiaiphau.Init(THU_VIEN_CHUNG.LayDulieuDanhmucChung(dtData, txtBenhgiaiphau.LOAI_DANHMUC));
+                //txtBenhgiaiphau.Init(THU_VIEN_CHUNG.LayDulieuDanhmucChung(dtData, txtBenhgiaiphau.LOAI_DANHMUC));
                 txtKieuchuyenvien.Init(THU_VIEN_CHUNG.LayDulieuDanhmucChung(dtData, txtKieuchuyenvien.LOAI_DANHMUC));
                 txtPhuongphapdieutri.Init(THU_VIEN_CHUNG.LayDulieuDanhmucChung(dtData, txtPhuongphapdieutri.LOAI_DANHMUC));
                 txtphuongtienvc.Init(THU_VIEN_CHUNG.LayDulieuDanhmucChung(dtData, txtphuongtienvc.LOAI_DANHMUC));
@@ -1486,7 +1528,15 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
                 //txtBenhchinh._Text = Utility.sDbnull(objRavien.MotaBenhchinh,objRavien.MabenhChinh);
                 FillMabenhphu(objRavien.MabenhPhu);
                 txtBenhgiaiphau.SetCode(objRavien.MabenhGiaiphau);
+                optLanhtinh.Checked = Utility.Bool2Bool(objRavien.GpbLanhtinh);
+                opActinh.Checked = Utility.Bool2Bool(objRavien.GpbActinh);
+                optNghingo.Checked = Utility.Bool2Bool(objRavien.GpbNghingo);
                 txtBenhbienchung.SetCode(objRavien.MabenhBienchung);
+                chkBienchung.Checked = Utility.Bool2Bool(objRavien.Bienchung);
+                txtBienchung.Text = objRavien.BienchungMota;
+                chkTaibien.Checked = Utility.Bool2Bool(objRavien.Taibien);
+                txtTaibien.Text = objRavien.TaibienMota;
+                
                 txtBenhnguyennhan.SetCode(objRavien.MabenhNguyennhan);
                 txtKqdieutri.SetCode(objRavien.MaKquaDieutri);
                 txtKieuchuyenvien.SetCode(objRavien.MaKieuchuyenvien);
@@ -1518,16 +1568,30 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
                     dtpNgayHen.Value = DateTime.Now;
                     chkHentaikham.Checked = false;
                 }
-                if (objRavien.NgayTuvong.HasValue)
+                if (objRavien.TuvongNgay.HasValue)
                 {
                     chkTuvong.Checked = true;
-                    dtpNgaytuvong.Value = objRavien.NgayTuvong.Value;
+                    dtpNgaytuvong.Value = objRavien.TuvongNgay.Value;
                 }
                 else
                 {
                     chkTuvong.Checked = false;
                     dtpNgaytuvong.Value = DateTime.Now;
                 }
+                if(chkTuvong.Checked)
+                {
+                    optDobenh.Checked= Utility.Bool2Bool(objRavien.TuvongDobenh);
+                    optDotaibiendieutri.Checked = Utility.Bool2Bool(objRavien.TuvongDotaibien);
+                    chkttrvKhac.Checked = Utility.Bool2Bool(objRavien.TuvongDokhac);
+                    optTrong24gio.Checked = Utility.Bool2Bool(objRavien.TuvongTrong24gio);
+                    optSau24Gio.Checked = Utility.Bool2Bool(objRavien.TuvongSau24h);
+                    optTrong48h.Checked = Utility.Bool2Bool(objRavien.TuvongTrong48h);
+                    optTrong72h.Checked = Utility.Bool2Bool(objRavien.TuvongTrong72h);
+                    chkKhamnghiemtuthi.Checked = Utility.Bool2Bool(objRavien.TuvongKhamnghiemtuthi);
+                    autoLydotuvong._Text = objRavien.TuvongNguyennhanchinh;
+                    chkChandoangiaiphaututhi.Checked = Utility.Bool2Bool(objRavien.TuvongChandoangiaiphaututhi);
+                    txtChandoanGiaiphauTuthi.Text = objRavien.TuvongChandoangiaiphaututhiMota;
+                }    
                 if (objRavien.NgayCapgiayravien.HasValue)
                 {
                     chkDaCapGiayRaVien.Checked = true;
@@ -1560,6 +1624,13 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
                 txtPhutRaVien.Text = dtpNgayravien.Value.ToString("mm");
                 txtId.Text = "";
                 txtSoRaVien.Text = THU_VIEN_CHUNG.Laysoravien();
+                dtpNgaytuvong.ResetText();
+                chkTuvong.Checked = false;
+                chkTaibien.Checked = chkBienchung.Checked = false;
+                opActinh.Checked = optLanhtinh.Checked = optNghingo.Checked = false;
+                chkKhamnghiemtuthi.Checked = chkChandoangiaiphaututhi.Checked = false;
+                optDobenh.Checked = optDotaibiendieutri.Checked = optLydokhac.Checked = false;
+                optTrong24gio.Checked = optSau24Gio.Checked = optTrong48h.Checked = optTrong72h.Checked = false;
                 //txtTinhtrangravien.setDefaultValue();
                 //txtLoidanBS.setDefaultValue();
                 cmdPrint.Enabled = false;
@@ -1778,7 +1849,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
 
         private void chkTuvong_CheckedChanged(object sender, EventArgs e)
         {
-            dtpNgaytuvong.Enabled = chkTuvong.Checked;
+            dtpNgaytuvong.Enabled =pnlLydotuvong.Enabled=pnlThoigiantuvong.Enabled=lblNguyennhanchinhtuvong.Enabled=autoLydotuvong.Enabled=chkKhamnghiemtuthi.Enabled=chkChandoangiaiphaututhi.Enabled=txtChandoanGiaiphauTuthi.Enabled= chkTuvong.Checked;
         }
         int Pres_ID = -1;
         GridEXRow RowThuoc = null;
@@ -2184,6 +2255,24 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
         private void label21_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void chkTaibien_CheckedChanged(object sender, EventArgs e)
+        {
+            txtTaibien.Enabled = chkTaibien.Checked;
+            if (txtTaibien.Enabled) txtTaibien.Focus();
+        }
+
+        private void chkBienchung_CheckedChanged(object sender, EventArgs e)
+        {
+            txtBienchung.Enabled = chkBienchung.Checked;
+            if (txtBienchung.Enabled) txtBienchung.Focus();
+        }
+
+        private void chkChandoangiaiphaututhi_CheckedChanged(object sender, EventArgs e)
+        {
+            txtChandoanGiaiphauTuthi.Enabled = chkChandoangiaiphaututhi.Checked;
+            if (txtChandoanGiaiphauTuthi.Enabled) txtChandoanGiaiphauTuthi.Focus();
         }
     }
 }

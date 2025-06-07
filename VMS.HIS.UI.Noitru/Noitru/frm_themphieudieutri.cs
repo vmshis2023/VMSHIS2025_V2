@@ -10,6 +10,8 @@ using VNS.Properties;
 using VNS.HIS.BusRule.Classes;
 using SubSonic;
 using System.Collections.Generic;
+using VMS.Emr;
+
 namespace VNS.HIS.UI.NOITRU
 {
     public partial class frm_themphieudieutri : Form
@@ -363,6 +365,9 @@ namespace VNS.HIS.UI.NOITRU
             switch (actionResult)
             {
                 case ActionResult.Success:
+                    EmrDocuments emrdoc = new EmrDocuments();
+                    emrdoc.InitDocument(Utility.Int64Dbnull( objPhieudieutri.IdBenhnhan), objPhieudieutri.MaLuotkham, Utility.Int64Dbnull(objPhieudieutri.IdPhieudieutri), objPhieudieutri.NgayDieutri.Value, Loaiphieu_HIS.PHIEUDIEUTRI, "noitru_phieudieutri", objPhieudieutri.NguoiTao,Utility.Int16Dbnull( objPhieudieutri.IdKhoanoitru), -1, Utility.Byte2Bool(0), "");
+                    emrdoc.Save();
                     txtTreat_ID.Text = Utility.sDbnull(objPhieudieutri.IdPhieudieutri, -1);
                     DataRow drv = p_TreatMent.NewRow();
                     Utility.FromObjectToDatarow(objPhieudieutri, ref drv);

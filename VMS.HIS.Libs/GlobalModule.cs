@@ -8,6 +8,8 @@ using SubSonic;
 using VMS.HIS.DAL;
 using System.Collections.Generic;
 using NLog;
+
+
 namespace VNS.Libs
 {
     public class globalVariables
@@ -16,7 +18,7 @@ namespace VNS.Libs
         public static string DC_DM_BENHAN = "DM_BA";
         public static string DC_NHOMIN_CLS = "NHOM_INPHIEU_CLS";
         // 
-
+      //  public static Pdf2HisManager _Pdf2HisManager = new Pdf2HisManager();
         /// <summary>
         /// Bộ mã bệnh án 
         /// </summary>

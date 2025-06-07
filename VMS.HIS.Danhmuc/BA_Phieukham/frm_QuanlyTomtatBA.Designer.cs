@@ -100,8 +100,7 @@
             // 
             this.cmdInsert.BackColor = System.Drawing.Color.Transparent;
             this.cmdInsert.Font = new System.Drawing.Font("Arial", 10F);
-            this.cmdInsert.Image = ((System.Drawing.Image)(resources.GetObject("cmdInsert.Image")));
-            this.cmdInsert.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.cmdInsert.Image = global::VMS.HIS.Danhmuc.Properties.Resources.add_04_32;
             this.cmdInsert.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdInsert.Name = "cmdInsert";
             this.cmdInsert.Size = new System.Drawing.Size(99, 28);
@@ -113,7 +112,6 @@
             // 
             this.cmdUpdate.Font = new System.Drawing.Font("Arial", 10F);
             this.cmdUpdate.Image = ((System.Drawing.Image)(resources.GetObject("cmdUpdate.Image")));
-            this.cmdUpdate.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.cmdUpdate.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdUpdate.Name = "cmdUpdate";
             this.cmdUpdate.Size = new System.Drawing.Size(94, 28);
@@ -153,7 +151,6 @@
             // 
             this.cmdExit.Font = new System.Drawing.Font("Arial", 10F);
             this.cmdExit.Image = global::VMS.HIS.Danhmuc.Properties.Resources.close_24;
-            this.cmdExit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.cmdExit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdExit.Name = "cmdExit";
             this.cmdExit.Size = new System.Drawing.Size(73, 28);

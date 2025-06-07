@@ -80,7 +80,7 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(string SophieuRavien,long? IdBenhnhan,string MaLuotkham,int? SoBenhAn,int? IdKhoaravien,int? IdKhoanoitru,byte? TrangThai,int TongsongayDieutri,string PhuongphapDieutri,string YkienDexuat,string LoidanBacsi,string MaKquaDieutri,string MaKieuchuyenvien,string MaTinhtrangravien,short? IdBenhvienDi,byte TrangthaiChuyenvien,short? IdBacsiChuyenvien,string MabenhChinh,string MabenhPhu,string MabenhBienchung,string MabenhNguyennhan,string MabenhGiaiphau,byte PhuhopChandoanlamsang,byte? TthaiIn,DateTime? NgayCapgiayravien,DateTime? NgayTronvien,string MaLydotronvien,DateTime NgayRavien,string NguoiTao,DateTime NgayTao,DateTime? NgaySua,string NguoiSua,string MotaBenhchinh,string ChanDoan,short? SotuanThai,DateTime? NgayTuvong,DateTime? NgayhenTaikham,byte? SongayhenTaikham,string MatheBhyt,DateTime? BhytTungay,DateTime? BhytDenngay)
+	    public void Insert(string SophieuRavien,long? IdBenhnhan,string MaLuotkham,int? SoBenhAn,int? IdKhoaravien,int? IdKhoanoitru,byte? TrangThai,int TongsongayDieutri,string PhuongphapDieutri,string YkienDexuat,string LoidanBacsi,string MaKquaDieutri,string MaKieuchuyenvien,string MaTinhtrangravien,short? IdBenhvienDi,byte TrangthaiChuyenvien,short? IdBacsiChuyenvien,string MabenhChinh,string MabenhPhu,string MabenhBienchung,string MabenhNguyennhan,string MabenhGiaiphau,byte PhuhopChandoanlamsang,byte? TthaiIn,DateTime? NgayCapgiayravien,DateTime? NgayTronvien,string MaLydotronvien,DateTime NgayRavien,string NguoiTao,DateTime NgayTao,DateTime? NgaySua,string NguoiSua,string MotaBenhchinh,string ChanDoan,short? SotuanThai,DateTime? NgayhenTaikham,byte? SongayhenTaikham,string MatheBhyt,DateTime? BhytTungay,DateTime? BhytDenngay,bool? GpbLanhtinh,bool? GpbActinh,bool? GpbNghingo,DateTime? TuvongNgay,bool? TuvongDotaibien,bool? TuvongDobenh,bool? TuvongDokhac,bool? TuvongTrong24gio,bool? TuvongSau24h,bool? TuvongTrong48h,bool? TuvongTrong72h,string TuvongNguyennhanchinh,string TuvongNguyennhanchinhMa,bool? TuvongKhamnghiemtuthi,string TuvongChandoangiaiphaututhiMota,bool? TuvongChandoangiaiphaututhi,bool? Taibien,string TaibienMota,bool? Bienchung,string BienchungMota)
 	    {
 		    NoitruPhieuravien item = new NoitruPhieuravien();
 		    
@@ -154,8 +154,6 @@ namespace VMS.HIS.DAL
             
             item.SotuanThai = SotuanThai;
             
-            item.NgayTuvong = NgayTuvong;
-            
             item.NgayhenTaikham = NgayhenTaikham;
             
             item.SongayhenTaikham = SongayhenTaikham;
@@ -166,6 +164,46 @@ namespace VMS.HIS.DAL
             
             item.BhytDenngay = BhytDenngay;
             
+            item.GpbLanhtinh = GpbLanhtinh;
+            
+            item.GpbActinh = GpbActinh;
+            
+            item.GpbNghingo = GpbNghingo;
+            
+            item.TuvongNgay = TuvongNgay;
+            
+            item.TuvongDotaibien = TuvongDotaibien;
+            
+            item.TuvongDobenh = TuvongDobenh;
+            
+            item.TuvongDokhac = TuvongDokhac;
+            
+            item.TuvongTrong24gio = TuvongTrong24gio;
+            
+            item.TuvongSau24h = TuvongSau24h;
+            
+            item.TuvongTrong48h = TuvongTrong48h;
+            
+            item.TuvongTrong72h = TuvongTrong72h;
+            
+            item.TuvongNguyennhanchinh = TuvongNguyennhanchinh;
+            
+            item.TuvongNguyennhanchinhMa = TuvongNguyennhanchinhMa;
+            
+            item.TuvongKhamnghiemtuthi = TuvongKhamnghiemtuthi;
+            
+            item.TuvongChandoangiaiphaututhiMota = TuvongChandoangiaiphaututhiMota;
+            
+            item.TuvongChandoangiaiphaututhi = TuvongChandoangiaiphaututhi;
+            
+            item.Taibien = Taibien;
+            
+            item.TaibienMota = TaibienMota;
+            
+            item.Bienchung = Bienchung;
+            
+            item.BienchungMota = BienchungMota;
+            
 	    
 		    item.Save(UserName);
 	    }
@@ -174,7 +212,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(long IdRavien,string SophieuRavien,long? IdBenhnhan,string MaLuotkham,int? SoBenhAn,int? IdKhoaravien,int? IdKhoanoitru,byte? TrangThai,int TongsongayDieutri,string PhuongphapDieutri,string YkienDexuat,string LoidanBacsi,string MaKquaDieutri,string MaKieuchuyenvien,string MaTinhtrangravien,short? IdBenhvienDi,byte TrangthaiChuyenvien,short? IdBacsiChuyenvien,string MabenhChinh,string MabenhPhu,string MabenhBienchung,string MabenhNguyennhan,string MabenhGiaiphau,byte PhuhopChandoanlamsang,byte? TthaiIn,DateTime? NgayCapgiayravien,DateTime? NgayTronvien,string MaLydotronvien,DateTime NgayRavien,string NguoiTao,DateTime NgayTao,DateTime? NgaySua,string NguoiSua,string MotaBenhchinh,string ChanDoan,short? SotuanThai,DateTime? NgayTuvong,DateTime? NgayhenTaikham,byte? SongayhenTaikham,string MatheBhyt,DateTime? BhytTungay,DateTime? BhytDenngay)
+	    public void Update(long IdRavien,string SophieuRavien,long? IdBenhnhan,string MaLuotkham,int? SoBenhAn,int? IdKhoaravien,int? IdKhoanoitru,byte? TrangThai,int TongsongayDieutri,string PhuongphapDieutri,string YkienDexuat,string LoidanBacsi,string MaKquaDieutri,string MaKieuchuyenvien,string MaTinhtrangravien,short? IdBenhvienDi,byte TrangthaiChuyenvien,short? IdBacsiChuyenvien,string MabenhChinh,string MabenhPhu,string MabenhBienchung,string MabenhNguyennhan,string MabenhGiaiphau,byte PhuhopChandoanlamsang,byte? TthaiIn,DateTime? NgayCapgiayravien,DateTime? NgayTronvien,string MaLydotronvien,DateTime NgayRavien,string NguoiTao,DateTime NgayTao,DateTime? NgaySua,string NguoiSua,string MotaBenhchinh,string ChanDoan,short? SotuanThai,DateTime? NgayhenTaikham,byte? SongayhenTaikham,string MatheBhyt,DateTime? BhytTungay,DateTime? BhytDenngay,bool? GpbLanhtinh,bool? GpbActinh,bool? GpbNghingo,DateTime? TuvongNgay,bool? TuvongDotaibien,bool? TuvongDobenh,bool? TuvongDokhac,bool? TuvongTrong24gio,bool? TuvongSau24h,bool? TuvongTrong48h,bool? TuvongTrong72h,string TuvongNguyennhanchinh,string TuvongNguyennhanchinhMa,bool? TuvongKhamnghiemtuthi,string TuvongChandoangiaiphaututhiMota,bool? TuvongChandoangiaiphaututhi,bool? Taibien,string TaibienMota,bool? Bienchung,string BienchungMota)
 	    {
 		    NoitruPhieuravien item = new NoitruPhieuravien();
 	        item.MarkOld();
@@ -252,8 +290,6 @@ namespace VMS.HIS.DAL
 				
 			item.SotuanThai = SotuanThai;
 				
-			item.NgayTuvong = NgayTuvong;
-				
 			item.NgayhenTaikham = NgayhenTaikham;
 				
 			item.SongayhenTaikham = SongayhenTaikham;
@@ -263,6 +299,46 @@ namespace VMS.HIS.DAL
 			item.BhytTungay = BhytTungay;
 				
 			item.BhytDenngay = BhytDenngay;
+				
+			item.GpbLanhtinh = GpbLanhtinh;
+				
+			item.GpbActinh = GpbActinh;
+				
+			item.GpbNghingo = GpbNghingo;
+				
+			item.TuvongNgay = TuvongNgay;
+				
+			item.TuvongDotaibien = TuvongDotaibien;
+				
+			item.TuvongDobenh = TuvongDobenh;
+				
+			item.TuvongDokhac = TuvongDokhac;
+				
+			item.TuvongTrong24gio = TuvongTrong24gio;
+				
+			item.TuvongSau24h = TuvongSau24h;
+				
+			item.TuvongTrong48h = TuvongTrong48h;
+				
+			item.TuvongTrong72h = TuvongTrong72h;
+				
+			item.TuvongNguyennhanchinh = TuvongNguyennhanchinh;
+				
+			item.TuvongNguyennhanchinhMa = TuvongNguyennhanchinhMa;
+				
+			item.TuvongKhamnghiemtuthi = TuvongKhamnghiemtuthi;
+				
+			item.TuvongChandoangiaiphaututhiMota = TuvongChandoangiaiphaututhiMota;
+				
+			item.TuvongChandoangiaiphaututhi = TuvongChandoangiaiphaututhi;
+				
+			item.Taibien = Taibien;
+				
+			item.TaibienMota = TaibienMota;
+				
+			item.Bienchung = Bienchung;
+				
+			item.BienchungMota = BienchungMota;
 				
 	        item.Save(UserName);
 	    }

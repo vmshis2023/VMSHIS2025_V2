@@ -253,6 +253,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\VMS.Emr\VMS.Emr\VMS.Emr.csproj">
+      <Project>{323d0245-5cd3-488a-8b83-edade85b3da4}</Project>
+      <Name>VMS.Emr</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VMS.HIS.Bus\3.VMS.HIS.Bus.csproj">
       <Project>{a99e7072-450c-430d-ac3d-63cbb74c01ad}</Project>
       <Name>3.VMS.HIS.Bus</Name>

@@ -609,7 +609,7 @@ namespace VNS.HIS.UI.NOITRU
                 }
                 KcbLuotkham objLuotkham = CreatePatientExam();
                 if (objLuotkham != null)
-                    KcbInphieu.INPHIEU_KHAM(Utility.sDbnull(objLuotkham.MaDoituongKcb), v_dtData,
+                    KcbInphieu.INPHIEU_KHAM(objRegExam,Utility.sDbnull(objLuotkham.MaDoituongKcb), v_dtData,
                                                   "PHIẾU KHÁM BỆNH", PropertyLib._MayInProperties.CoGiayInPhieuKCB == Papersize.A5 ? "A5" : "A4");
             }
         }

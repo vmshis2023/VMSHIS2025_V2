@@ -409,8 +409,14 @@ namespace VNS.HIS.UI.Forms.HinhAnh
                 this.ClosePreviewWindow();
             else
             {
-                if (videoSource != null)
+                //if (videoSource != null)
+                //    videoSource.SignalToStop();
+                if (videoSource.IsRunning)
+                {
                     videoSource.SignalToStop();
+                    videoSource.WaitForStop();
+                    videoSource.NewFrame -= video_NewFrame;
+                }
             }
             SaveImages();
             Util.ReleaseMemory(pnlImgs, RML);
@@ -1136,28 +1142,42 @@ namespace VNS.HIS.UI.Forms.HinhAnh
         {
             try
             {
-                // get new frame
-                Bitmap img = (Bitmap)eventArgs.Frame.Clone();
-                if (trbContrast.Value != 0)
+                using (Bitmap frame = (Bitmap)eventArgs.Frame.Clone())
                 {
-                    AForge.Imaging.Filters.ContrastCorrection c = new AForge.Imaging.Filters.ContrastCorrection(trbContrast.Value);
-                    c.ApplyInPlace(img);
-                }
-                if (trbBrightness.Value != 0)
-                {
-                    AForge.Imaging.Filters.BrightnessCorrection c1 = new AForge.Imaging.Filters.BrightnessCorrection(trbBrightness.Value);
-                    c1.ApplyInPlace(img);
+
+                    // Hiển thị hình ảnh trong PictureBox
+                    if (pnlVideo.Image != null)
+                    {
+                        pnlVideo.Image.Dispose();
+                    }
+                    pnlVideo.Image = (Bitmap)frame.Clone();
                 }
 
-                if (chkSharpen.Checked)
-                {
-                    AForge.Imaging.Filters.Sharpen c5 = new AForge.Imaging.Filters.Sharpen();
-                    c5.ApplyInPlace(img);
-                }
+                //// get new frame
+                //Bitmap img = (Bitmap)eventArgs.Frame.Clone();
+                ////if (trbContrast.Value != 0)
+                ////{
+                ////    AForge.Imaging.Filters.ContrastCorrection c = new AForge.Imaging.Filters.ContrastCorrection(trbContrast.Value);
+                ////    c.ApplyInPlace(img);
+                ////}
+                ////if (trbBrightness.Value != 0)
+                ////{
+                ////    AForge.Imaging.Filters.BrightnessCorrection c1 = new AForge.Imaging.Filters.BrightnessCorrection(trbBrightness.Value);
+                ////    c1.ApplyInPlace(img);
+                ////}
 
+                ////if (chkSharpen.Checked)
+                ////{
+                ////    AForge.Imaging.Filters.Sharpen c5 = new AForge.Imaging.Filters.Sharpen();
+                ////    c5.ApplyInPlace(img);
+                ////}
 
-                pnlVideo.Image = img;
-                Thread.Sleep(10);
+                //if (pnlVideo.Image != null)
+                //{
+                //    pnlVideo.Image.Dispose();
+                //}
+                //pnlVideo.Image = img;
+                //Thread.Sleep(10);
             }
             catch (Exception)
             {

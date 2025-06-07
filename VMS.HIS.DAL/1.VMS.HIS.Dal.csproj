@@ -162,8 +162,8 @@
     <Compile Include="Generated\EmrChandoanController.cs" />
     <Compile Include="Generated\EmrChandoanSankhoa.cs" />
     <Compile Include="Generated\EmrChandoanSankhoaController.cs" />
-    <Compile Include="Generated\EmrFile.cs" />
-    <Compile Include="Generated\EmrFileController.cs" />
+    <Compile Include="Generated\EmrDocument.cs" />
+    <Compile Include="Generated\EmrDocumentController.cs" />
     <Compile Include="Generated\EmrGayPhieu.cs" />
     <Compile Include="Generated\EmrGayPhieuController.cs" />
     <Compile Include="Generated\EmrHosoluutru.cs" />

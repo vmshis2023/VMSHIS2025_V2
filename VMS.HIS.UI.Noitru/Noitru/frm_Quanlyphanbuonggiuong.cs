@@ -1397,10 +1397,13 @@ namespace VNS.HIS.UI.NOITRU
                     if (kqclslaytubangdulieu)
                         dr["KETQUA_CLS"] = ketquaCLS;
                 }
-          
+                NoitruPhieunhapvien objPNV = new Select().From(NoitruPhieunhapvien.Schema)
+                          .Where(NoitruPhieunhapvien.Columns.MaLuotkham).IsEqualTo(malankham)
+                          .And(NoitruPhieunhapvien.Columns.IdBenhnhan).IsEqualTo(idbenhnhan)
+                          .ExecuteSingle<NoitruPhieunhapvien>();
 
                 dsTable.AcceptChanges();
-                VNS.HIS.UI.Baocao.noitru_baocao.Inphieunhapvien(dsTable, "PHIẾU NHẬP VIỆN", globalVariables.SysDate);
+                VNS.HIS.UI.Baocao.noitru_baocao.Inphieunhapvien(objPNV,dsTable, "PHIẾU NHẬP VIỆN", globalVariables.SysDate);
             }
             catch (Exception ex)
             {
@@ -1781,7 +1784,11 @@ namespace VNS.HIS.UI.NOITRU
                 }
 
                 dsTable.AcceptChanges();
-                VNS.HIS.UI.Baocao.noitru_baocao.Inphieunhapvien(dsTable, "PHIẾU NHẬP VIỆN", globalVariables.SysDate);
+                NoitruPhieunhapvien objPNV = new Select().From(NoitruPhieunhapvien.Schema)
+                        .Where(NoitruPhieunhapvien.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
+                        .And(NoitruPhieunhapvien.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
+                        .ExecuteSingle<NoitruPhieunhapvien>();
+                VNS.HIS.UI.Baocao.noitru_baocao.Inphieunhapvien(objPNV,dsTable, "PHIẾU NHẬP VIỆN", globalVariables.SysDate);
             }
             catch (Exception ex)
             {
@@ -1928,7 +1935,7 @@ namespace VNS.HIS.UI.NOITRU
                 Utility.WaitNow(this);
                 DataTable dtData =
                     SPs.NoitruInphieuravien(Utility.DoTrim(objLuotkham.MaLuotkham)).GetDataSet().Tables[0];
-                VMS.HIS.Bus.WordPrinter.InPhieu(dtData, "PHIEU_RAVIEN.doc"); 
+                VMS.HIS.Bus.WordPrinter.InPhieu(null,dtData, "PHIEU_RAVIEN.doc"); 
 
             }
             catch (Exception ex)

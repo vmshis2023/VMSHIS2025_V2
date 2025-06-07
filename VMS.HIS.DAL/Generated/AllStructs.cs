@@ -18,7 +18,7 @@ namespace VMS.HIS.DAL
 	public partial struct Tables
 	{
 		
-		public static readonly string BaNoitru = @"BA_Noitru";
+		public static readonly string BaNoitru1 = @"BA_Noitru1";
         
 		public static readonly string Chiphi = @"chiphi";
         
@@ -110,11 +110,13 @@ namespace VMS.HIS.DAL
         
 		public static readonly string EmrChandoanSankhoa = @"emr_chandoan_sankhoa";
         
-		public static readonly string EmrFile = @"EMR_files";
+		public static readonly string EmrDocument = @"emr_documents";
         
 		public static readonly string EmrGayPhieu = @"emr_gay_phieu";
         
 		public static readonly string EmrHosoluutru = @"emr_hosoluutru";
+        
+		public static readonly string EmrLoaibaGayPhieu = @"emr_loaiba_gay_phieu";
         
 		public static readonly string EmrNhikhoaQuatrinhsinhtruong = @"emr_nhikhoa_quatrinhsinhtruong";
         
@@ -135,8 +137,6 @@ namespace VMS.HIS.DAL
 		public static readonly string EmrPhieutheodoiTaibuongde = @"emr_phieutheodoi_taibuongde";
         
 		public static readonly string EmrPhieuvaovien = @"emr_phieuvaovien";
-        
-		public static readonly string EmrQheLoaibaGayba = @"emr_qhe_loaiba_gayba";
         
 		public static readonly string EmrQuatrinhThaiky = @"emr_quatrinh_thaiky";
         
@@ -605,9 +605,9 @@ namespace VMS.HIS.DAL
     #region Schemas
     public partial class Schemas {
 		
-		public static TableSchema.Table BaNoitru
+		public static TableSchema.Table BaNoitru1
 		{
-            get { return DataService.GetSchema("BA_Noitru", "ORM"); }
+            get { return DataService.GetSchema("BA_Noitru1", "ORM"); }
 		}
         
 		public static TableSchema.Table Chiphi
@@ -835,9 +835,9 @@ namespace VMS.HIS.DAL
             get { return DataService.GetSchema("emr_chandoan_sankhoa", "ORM"); }
 		}
         
-		public static TableSchema.Table EmrFile
+		public static TableSchema.Table EmrDocument
 		{
-            get { return DataService.GetSchema("EMR_files", "ORM"); }
+            get { return DataService.GetSchema("emr_documents", "ORM"); }
 		}
         
 		public static TableSchema.Table EmrGayPhieu
@@ -848,6 +848,11 @@ namespace VMS.HIS.DAL
 		public static TableSchema.Table EmrHosoluutru
 		{
             get { return DataService.GetSchema("emr_hosoluutru", "ORM"); }
+		}
+        
+		public static TableSchema.Table EmrLoaibaGayPhieu
+		{
+            get { return DataService.GetSchema("emr_loaiba_gay_phieu", "ORM"); }
 		}
         
 		public static TableSchema.Table EmrNhikhoaQuatrinhsinhtruong
@@ -898,11 +903,6 @@ namespace VMS.HIS.DAL
 		public static TableSchema.Table EmrPhieuvaovien
 		{
             get { return DataService.GetSchema("emr_phieuvaovien", "ORM"); }
-		}
-        
-		public static TableSchema.Table EmrQheLoaibaGayba
-		{
-            get { return DataService.GetSchema("emr_qhe_loaiba_gayba", "ORM"); }
 		}
         
 		public static TableSchema.Table EmrQuatrinhThaiky

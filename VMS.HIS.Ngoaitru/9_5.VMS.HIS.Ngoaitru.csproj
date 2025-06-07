@@ -376,6 +376,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\VMS.Emr\VMS.Emr\VMS.Emr.csproj">
+      <Project>{323d0245-5cd3-488a-8b83-edade85b3da4}</Project>
+      <Name>VMS.Emr</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VMS.HIS.BHYT\4_1.VMS.HIS.BHYT.csproj">
       <Project>{c68b076c-ad56-46bb-a16a-88f357aee6f4}</Project>
       <Name>4_1.VMS.HIS.BHYT</Name>

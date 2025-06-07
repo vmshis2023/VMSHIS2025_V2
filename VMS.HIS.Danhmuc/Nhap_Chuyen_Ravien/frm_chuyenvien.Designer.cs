@@ -49,6 +49,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
             this.label20 = new System.Windows.Forms.Label();
             this.dtpNgayin = new Janus.Windows.CalendarCombo.CalendarCombo();
             this.pnlFill = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.cmdRefreshSCV = new Janus.Windows.EditControls.UIButton();
             this.cmdRefresh = new Janus.Windows.EditControls.UIButton();
             this.txtIdNoichuyenden = new System.Windows.Forms.TextBox();
@@ -84,18 +85,17 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
             this.label11 = new System.Windows.Forms.Label();
             this.txtId = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.optCK = new System.Windows.Forms.RadioButton();
+            this.optTuyenduoi = new System.Windows.Forms.RadioButton();
+            this.optTuyentren = new System.Windows.Forms.RadioButton();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.optTuyentren = new System.Windows.Forms.RadioButton();
-            this.optTuyenduoi = new System.Windows.Forms.RadioButton();
-            this.optCK = new System.Windows.Forms.RadioButton();
             this.pnlTop.SuspendLayout();
             this.pnlBottom.SuspendLayout();
             this.pnlFill.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlTop
@@ -229,7 +229,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
             // 
             this.cmdNew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdNew.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdNew.Image = ((System.Drawing.Image)(resources.GetObject("cmdNew.Image")));
+            this.cmdNew.Image = global::VMS.HIS.Danhmuc.Properties.Resources.add_04_32;
             this.cmdNew.ImageSize = new System.Drawing.Size(24, 24);
             this.cmdNew.Location = new System.Drawing.Point(360, 20);
             this.cmdNew.Name = "cmdNew";
@@ -366,6 +366,18 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
             this.pnlFill.Size = new System.Drawing.Size(1008, 518);
             this.pnlFill.TabIndex = 2;
             // 
+            // label1
+            // 
+            this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Red;
+            this.label1.Location = new System.Drawing.Point(13, 54);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(135, 23);
+            this.label1.TabIndex = 36;
+            this.label1.Text = "Tuyến chuyển: ";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // cmdRefreshSCV
             // 
             this.cmdRefreshSCV.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -441,6 +453,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
             this.txtNguoivanchuyen.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtNguoivanchuyen.buildShortcut = false;
             this.txtNguoivanchuyen.CaseSensitive = false;
+            this.txtNguoivanchuyen.cmdDropDown = null;
             this.txtNguoivanchuyen.CompareNoID = true;
             this.txtNguoivanchuyen.DefaultCode = "-1";
             this.txtNguoivanchuyen.DefaultID = "-1";
@@ -651,6 +664,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
             this.txtTrangthainguoibenh.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtTrangthainguoibenh.buildShortcut = false;
             this.txtTrangthainguoibenh.CaseSensitive = false;
+            this.txtTrangthainguoibenh.cmdDropDown = null;
             this.txtTrangthainguoibenh.CompareNoID = true;
             this.txtTrangthainguoibenh.DefaultCode = "-1";
             this.txtTrangthainguoibenh.DefaultID = "-1";
@@ -771,6 +785,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
             this.txtdauhieucls.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtdauhieucls.buildShortcut = false;
             this.txtdauhieucls.CaseSensitive = false;
+            this.txtdauhieucls.cmdDropDown = null;
             this.txtdauhieucls.CompareNoID = true;
             this.txtdauhieucls.DefaultCode = "-1";
             this.txtdauhieucls.DefaultID = "-1";
@@ -844,6 +859,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
             this.txtphuongtienvc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtphuongtienvc.buildShortcut = false;
             this.txtphuongtienvc.CaseSensitive = false;
+            this.txtphuongtienvc.cmdDropDown = null;
             this.txtphuongtienvc.CompareNoID = true;
             this.txtphuongtienvc.DefaultCode = "-1";
             this.txtphuongtienvc.DefaultID = "-1";
@@ -891,6 +907,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
             this.txtHuongdieutri.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtHuongdieutri.buildShortcut = false;
             this.txtHuongdieutri.CaseSensitive = false;
+            this.txtHuongdieutri.cmdDropDown = null;
             this.txtHuongdieutri.CompareNoID = true;
             this.txtHuongdieutri.DefaultCode = "-1";
             this.txtHuongdieutri.DefaultID = "-1";
@@ -1061,26 +1078,6 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
             this.label3.Text = "Id chuyển viện";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // errorProvider1
-            // 
-            this.errorProvider1.ContainerControl = this;
-            // 
-            // toolTip1
-            // 
-            this.toolTip1.IsBalloon = true;
-            // 
-            // label1
-            // 
-            this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(13, 54);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(135, 23);
-            this.label1.TabIndex = 36;
-            this.label1.Text = "Tuyến chuyển: ";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.optCK);
@@ -1090,6 +1087,26 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(420, 32);
             this.panel1.TabIndex = 37;
+            // 
+            // optCK
+            // 
+            this.optCK.AutoSize = true;
+            this.optCK.Location = new System.Drawing.Point(297, 7);
+            this.optCK.Name = "optCK";
+            this.optCK.Size = new System.Drawing.Size(39, 17);
+            this.optCK.TabIndex = 2;
+            this.optCK.Text = "CK";
+            this.optCK.UseVisualStyleBackColor = true;
+            // 
+            // optTuyenduoi
+            // 
+            this.optTuyenduoi.AutoSize = true;
+            this.optTuyenduoi.Location = new System.Drawing.Point(168, 8);
+            this.optTuyenduoi.Name = "optTuyenduoi";
+            this.optTuyenduoi.Size = new System.Drawing.Size(78, 17);
+            this.optTuyenduoi.TabIndex = 1;
+            this.optTuyenduoi.Text = "Tuyến dưới";
+            this.optTuyenduoi.UseVisualStyleBackColor = true;
             // 
             // optTuyentren
             // 
@@ -1103,25 +1120,13 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
             this.optTuyentren.Text = "Tuyến trên";
             this.optTuyentren.UseVisualStyleBackColor = true;
             // 
-            // optTuyenduoi
+            // errorProvider1
             // 
-            this.optTuyenduoi.AutoSize = true;
-            this.optTuyenduoi.Location = new System.Drawing.Point(168, 8);
-            this.optTuyenduoi.Name = "optTuyenduoi";
-            this.optTuyenduoi.Size = new System.Drawing.Size(78, 17);
-            this.optTuyenduoi.TabIndex = 1;
-            this.optTuyenduoi.Text = "Tuyến dưới";
-            this.optTuyenduoi.UseVisualStyleBackColor = true;
+            this.errorProvider1.ContainerControl = this;
             // 
-            // optCK
+            // toolTip1
             // 
-            this.optCK.AutoSize = true;
-            this.optCK.Location = new System.Drawing.Point(297, 7);
-            this.optCK.Name = "optCK";
-            this.optCK.Size = new System.Drawing.Size(39, 17);
-            this.optCK.TabIndex = 2;
-            this.optCK.Text = "CK";
-            this.optCK.UseVisualStyleBackColor = true;
+            this.toolTip1.IsBalloon = true;
             // 
             // frm_chuyenvien
             // 
@@ -1143,9 +1148,9 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
             this.pnlBottom.ResumeLayout(false);
             this.pnlFill.ResumeLayout(false);
             this.pnlFill.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }

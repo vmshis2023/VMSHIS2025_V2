@@ -183,7 +183,7 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
 
             try
             {
-                DataTable _dataThuoc = SPs.ThuocLayDanhmucThuocTheoDanhmucKho(lstStockID).GetDataSet().Tables[0];
+                DataTable _dataThuoc = SPs.ThuocLayDanhmucThuocKhoTheoTrangthai(lstStockID,Convert.ToByte( chkHieuluc.Checked?1:100)).GetDataSet().Tables[0];
                 if (_dataThuoc == null)
                 {
                     txtthuoc.dtData = null;

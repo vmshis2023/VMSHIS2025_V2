@@ -7224,7 +7224,7 @@ namespace  VNS.HIS.UI.THANHTOAN
                 Utility.WaitNow(this);
                 DataTable dtData =
                     SPs.NoitruInphieuravien(Utility.DoTrim(objLuotkham.MaLuotkham)).GetDataSet().Tables[0];
-                VMS.HIS.Bus.WordPrinter.InPhieu(dtData,"PHIEU_RAVIEN.doc");
+                VMS.HIS.Bus.WordPrinter.InPhieu(null,dtData,"PHIEU_RAVIEN.doc");
                 //return;
                 //if (dtData.Rows.Count <= 0)
                 //{

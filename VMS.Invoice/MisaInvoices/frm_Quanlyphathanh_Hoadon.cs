@@ -71,7 +71,34 @@ namespace VMS.Invoice
             grdHoadonHuy.ColumnButtonClick += GrdHoadonHuy_ColumnButtonClick;
             grdMauhoadon.RowCheckStateChanged += GrdMauhoadon_RowCheckStateChanged;
             grdMauhoadon.CellValueChanged += GrdMauhoadon_CellValueChanged;
+            grdMauhoadon.ColumnButtonClick += GrdMauhoadon_ColumnButtonClick;
+        }
 
+        private void GrdMauhoadon_ColumnButtonClick(object sender, ColumnActionEventArgs e)
+        {
+            if (e.Column.Key == "XOA")
+            {
+                if (!Utility.Coquyen("HOADONDIENTU_XOAMAU_HOADON"))
+                {
+                    Utility.thongbaokhongcoquyen("HOADONDIENTU_XOAMAU_HOADON", "xóa mẫu hóa đơn. Vui lòng liên hệ Admin để được trợ giúp");
+                    return;
+                }
+                HoadonMauMisa hdonmau = HoadonMauMisa.FetchByID(Utility.Int16Dbnull(grdMauhoadon.GetValue("id")));
+                if (hdonmau != null )
+                {
+                    if (!Utility.AcceptQuestion(string.Format("Bạn có chắc chắn muốn xóa mẫu hóa đơn này {0}?", Utility.sDbnull(grdMauhoadon.GetValue("TemplateName"))), "Xác nhận xóa mẫu hóa đơn", true))
+                    {
+                        return;
+                    }
+                    int num = new Delete().From(HoadonMauMisa.Schema).Where(HoadonMauMisa.Columns.Id).IsEqualTo(Utility.Int16Dbnull(grdMauhoadon.GetValue("id"))).Execute();
+                    if (num > 0)
+                    {
+                        grdMauhoadon.CurrentRow.Delete();
+                        grdMauhoadon.Refetch();
+                        Utility.ShowMsg("Đã xóa mẫu hóa đơn thành công. Vui lòng chọn 1 mẫu hóa đơn kích hoạt chế độ Hiệu lực");
+                    }
+                }
+            }
         }
 
         private void GrdPayment_RowCheckStateChanged(object sender, RowCheckStateChangeEventArgs e)
@@ -540,7 +567,8 @@ namespace VMS.Invoice
         private int HoaDon_Mau_ID = -1;
 
         private BackgroundWorker m_oWorker;
-
+        int num = 0;
+        DataTable dtCheck = new DataTable();
         /// <summary>
         /// hàm thưc hiện lưu thông tin 
         /// </summary>
@@ -551,6 +579,8 @@ namespace VMS.Invoice
             try
             {
                 Utility.WaitNow(this);
+                _MisaInvoices._buyer = null;
+                // isAllowPaymentChanged = false;
                 if (dtMau == null || dtMau.Rows.Count <= 0 || dtMau.Select("isActive=true").Length <= 0)
                 {
                     Utility.ShowMsg("Chưa có mẫu hóa đơn để phát hành hóa đơn.\nVui lòng chuyển sang tab Danh sách mẫu hóa đơn để kích hoạt mẫu hóa đơn hiện có hoặc lấy mẫu hóa đơn mới từ nhà cung cấp HĐĐT");
@@ -581,7 +611,7 @@ namespace VMS.Invoice
                     grdPayment.CurrentRow.EndEdit();
                 }
                 bool isNoitru = (from p in grdPayment.GetCheckedRows() where Utility.sDbnull(p.Cells["noi_tru"].Value) == "1" select p).Count() > 0;
-                bool isQuaythuoc = (from p in grdPayment.GetCheckedRows() where Utility.sDbnull(p.Cells["ttoan_thuoc"].Value) == "1" select p).Count() > 0;
+                bool isQuaythuoc = (from p in grdPayment.GetCheckedRows() where Utility.sDbnull(p.Cells["ttoan_thuoc"].Value).ToUpper() == "TRUE" select p).Count() > 0;
                 List<string> lst_maluotkham = (from p in grdPayment.GetCheckedRows() select Utility.sDbnull(p.Cells["ma_luotkham"].Value)).Distinct().ToList<string>();
                 List<long> lst_Idbenhnhan = (from p in grdPayment.GetCheckedRows() select Utility.Int64Dbnull(p.Cells["id_benhnhan"].Value)).Distinct().ToList<long>();
                 List<string> lst_ngay_ttoan_check = (from p in grdPayment.GetCheckedRows() select Utility.sDbnull(p.Cells["ngay_ttoan_check"].Value)).Distinct().ToList<string>();
@@ -595,6 +625,7 @@ namespace VMS.Invoice
                     {
 
                         Utility.ShowMsg("Chỉ cho phép phát hành HĐĐT với các thuốc có thuế suất GTGT(VAT)>0.\nVui lòng kiểm tra lại các mặt hàng chi tiết đang chọn và loại bỏ các mặt hàng có thuế suất =0");
+                        grdPayment.UnCheckAllRecords();
                         cboVAT.Focus();
                         return;
                     }
@@ -605,6 +636,7 @@ namespace VMS.Invoice
                     {
 
                         Utility.ShowMsg("Các chi tiết bạn chọn để phát hành HĐĐT có mức VAT khác nhau nên hệ thống không cho phép.\nBạn có thể dùng tính năng Lọc VAT để tìm các mặt hàng có mức VAT giống nhau trước khi thực hiện phát hành HĐĐT");
+                        grdPayment.UnCheckAllRecords();
                         cboVAT.Focus();
                         return;
                     }
@@ -629,37 +661,158 @@ namespace VMS.Invoice
                    
                 }
                 _MisaInvoices.transaction_id = "";
-                if (optTheoThanhtoan.Checked)
+                if (grdPayment.GetCheckedRows().Count() == 1)
                 {
-                    foreach (GridEXRow gridExRow in grdPayment.GetCheckedRows())
+                    DataRow drInfor = ((DataRowView)grdPayment.CurrentRow.DataRow).Row;
+
+                    BuyerInfor _buyer = new BuyerInfor();
+                    _buyer.Id_benhnhan = drInfor != null ? Utility.Int64Dbnull(drInfor["Id_benhnhan"]) : -1;
+                    _buyer.MaLuotkham = drInfor != null ? Utility.sDbnull(drInfor["Ma_luotkham"]) : "XYZ";
+                    _buyer.BuyerCode = drInfor != null ? Utility.sDbnull(drInfor["Ma_luotkham"]) : "XYZ";
+                    _buyer.BuyerLegalName = drInfor != null ? Utility.sDbnull(drInfor["ten_benhnhan"]) : "Tên công ty";
+                    _buyer.BuyerTaxCode = "";
+                    _buyer.BuyerAddress = drInfor != null ? Utility.sDbnull(drInfor["dia_chi"]) : "Địa chỉ";
+                    _buyer.BuyerFullName = drInfor != null ? Utility.sDbnull(drInfor["ten_benhnhan"]) : "Họ và tên";
+                    _buyer.BuyerPhoneNumber = drInfor != null ? Utility.sDbnull(drInfor["dien_thoai"]) : "SĐT";
+                    _buyer.BuyerEmail = drInfor != null ? Utility.sDbnull(drInfor["email"]) : "email";
+                    _buyer.BuyerBankAccount = "";
+                    _buyer.BuyerBankName = "";
+                    _buyer.BuyerIDNumber = "";
+                    str_IdThanhtoan = Utility.sDbnull(grdPayment.GetValue("id_thanhtoan"), 0);
+                    str_IdThanhtoanChitiet = string.Join(",", (from p in grdChitietThanhtoan.GetCheckedRows() where Utility.sDbnull(p.Cells["id_thanhtoan"].Value, 0) == str_IdThanhtoan select Utility.sDbnull(p.Cells["id_chitiet"].Value)).Distinct().ToArray<string>());
+                    KcbThanhtoan objCheck = KcbThanhtoan.FetchByID(Utility.Int64Dbnull(str_IdThanhtoan));
+                    if (objCheck != null && !Utility.Bool2Bool(objCheck.TthaiDangphathanh) && !Utility.Bool2Bool(objCheck.TthaiXuatHddt))//Chưa phát hành hóa đơn và chưa được ai đang chiếm quyền phát hành
                     {
-                        str_IdThanhtoan = Utility.sDbnull(gridExRow.Cells["id_thanhtoan"].Value, 0);
-                        str_IdThanhtoanChitiet = string.Join(",", (from p in grdChitietThanhtoan.GetCheckedRows() where Utility.sDbnull(p.Cells["id_thanhtoan"].Value, 0)== str_IdThanhtoan select Utility.sDbnull(p.Cells["id_chitiet"].Value)).Distinct().ToArray<string>());
-                        kt = _MisaInvoices.phathanh_hoadon(str_IdThanhtoan, 0, str_IdThanhtoanChitiet, ref eMessage);
-                        if (kt)
+                        num = new Update(KcbThanhtoan.Schema)
+                            .Set(KcbThanhtoan.Columns.TthaiDangphathanh).EqualTo(1)
+                            .Set(KcbThanhtoan.Columns.UsedBy).EqualTo(globalVariables.UserName)
+                            .Where(KcbThanhtoan.Columns.IdThanhtoan).IsEqualTo(Utility.Int64Dbnull(str_IdThanhtoan))
+                            .Execute();
+                    }
+                    else
+                    {
+                        if (Utility.Bool2Bool(objCheck.TthaiXuatHddt))
                         {
+                            Utility.ShowMsg("Chứng từ này đã được phát hành HĐĐT, vui lòng kiểm tra lại");
+                            return;
+                        }
+                        if (!Utility.Bool2Bool(objCheck.TthaiXuatHddt) && Utility.Bool2Bool(objCheck.TthaiDangphathanh))
+                        {
+                            Utility.ShowMsg(string.Format("Chứng từ với Id={0} đang được sử dụng để phát hành Hóa đơn điện tử bởi người dùng {1} nên bạn không thể phát hành tiếp(tránh 1 chứng từ 2 hóa đơn trên Misa).\nVui lòng liên hệ người dùng {2} để phối hợp", str_IdThanhtoan, Utility.sDbnull(dtCheck.Rows[0]["used_by"]), Utility.sDbnull(dtCheck.Rows[0]["used_by"])));
+                            return;
+                        }
+                    }
+                    if (num > 0)
+                    {
+                        (from p in dtData.AsEnumerable()
+                         where str_IdThanhtoan == Utility.sDbnull(p["id_thanhtoan"], "-1")
+                         select p).ToList()
+                                 .ForEach(x =>
+                                 {
+                                     x["used_by"] = globalVariables.UserName;
+                                 }
+                                 );
+                        frm_thongtin_khachhang_riengle _xacnhanthongtin = new frm_thongtin_khachhang_riengle(_MisaInvoices, _buyer, dr, Utility.ByteDbnull(optTheoThanhtoan.Checked ? 1 : (optTheoluotkham.Checked ? 2 : 3)), str_IdThanhtoan, str_IdThanhtoanChitiet);
+                        if (_xacnhanthongtin.ShowDialog() == DialogResult.OK)
+                        {
+
+                        }
+                        else//Mở khóa cho người khác
+                        {
+                            grdPayment.UnCheckAllRecords();
+                            num = new Update(KcbThanhtoan.Schema)
+                                      .Set(KcbThanhtoan.Columns.TthaiDangphathanh).EqualTo(0)
+                                       .Set(KcbThanhtoan.Columns.UsedBy).EqualTo("")
+                                        .Where(KcbThanhtoan.Columns.IdThanhtoan).IsEqualTo(Utility.Int64Dbnull(str_IdThanhtoan))
+                                    .Execute();
                             (from p in dtData.AsEnumerable()
                              where str_IdThanhtoan == Utility.sDbnull(p["id_thanhtoan"], "-1")
                              select p).ToList()
-                             .ForEach(x =>
-                             {
-                                 x["tthai_xuat_hddt"] = true;
-                                 x["transaction_id"] = _MisaInvoices.transaction_id;
-                             }
-                             );
-                            LogText(eMessage, Color.DarkBlue);
+                                 .ForEach(x =>
+                                 {
+                                     x["used_by"] = "";
+                                 }
+                                 );
+                        }
+                    }
+                    else
+                    {
+                        Utility.ShowMsg("Cập nhật trạng thái đang phát hành HĐĐT thất bại. Vui lòng check xem có đồng nghiệp khác cùng bấm phát hành chứng từ này cùng 1 thời điểm không?");
+                        return;
+                    }
+
+                    return;
+                }
+                if (optTheoThanhtoan.Checked)
+                {
+                    List<string> lstErr = new List<string>();
+                    string errMsg = "";
+                    foreach (GridEXRow gridExRow in grdPayment.GetCheckedRows())
+                    {
+
+                        str_IdThanhtoan = Utility.sDbnull(gridExRow.Cells["id_thanhtoan"].Value, 0);
+                        KcbThanhtoan objCheck = KcbThanhtoan.FetchByID(Utility.Int64Dbnull(str_IdThanhtoan));
+                        if (objCheck != null && !Utility.Bool2Bool(objCheck.TthaiDangphathanh) && !Utility.Bool2Bool(objCheck.TthaiXuatHddt))//Chưa phát hành hóa đơn và chưa được ai đang chiếm quyền phát hành
+                        {
+                            num = new Update(KcbThanhtoan.Schema)
+                                .Set(KcbThanhtoan.Columns.TthaiDangphathanh).EqualTo(1)
+                                .Set(KcbThanhtoan.Columns.UsedBy).EqualTo(globalVariables.UserName)
+                                .Where(KcbThanhtoan.Columns.IdThanhtoan).IsEqualTo(Utility.Int64Dbnull(str_IdThanhtoan))
+                                .Execute();
                         }
                         else
                         {
-                            LogText(eMessage, Color.Red);
+                            if (Utility.Bool2Bool(objCheck.TthaiXuatHddt))
+                            {
+                                errMsg = string.Format("Chứng từ {0} đã được phát hành HĐĐT, vui lòng kiểm tra lại", str_IdThanhtoan);
+                                Utility.ShowMsg(errMsg);
+                                lstErr.Add( errMsg);
+                                continue;
+                            }
+                            if (!Utility.Bool2Bool(objCheck.TthaiXuatHddt) && Utility.Bool2Bool(objCheck.TthaiDangphathanh))
+                            {
+                                errMsg = string.Format("Chứng từ với Id={0} đang được sử dụng để phát hành Hóa đơn điện tử bởi người dùng {1} nên bạn không thể phát hành tiếp(tránh 1 chứng từ 2 hóa đơn trên Misa).\nVui lòng liên hệ người dùng {2} để phối hợp", str_IdThanhtoan, Utility.sDbnull(dtCheck.Rows[0]["used_by"]), Utility.sDbnull(dtCheck.Rows[0]["used_by"]));
+                                Utility.ShowMsg(errMsg);
+                                lstErr.Add( errMsg);
+                                continue;
+                            }
                         }
+                        if (num > 0)
+                        {
+                            str_IdThanhtoanChitiet = string.Join(",", (from p in grdChitietThanhtoan.GetCheckedRows() where Utility.sDbnull(p.Cells["id_thanhtoan"].Value, 0) == str_IdThanhtoan select Utility.sDbnull(p.Cells["id_chitiet"].Value)).Distinct().ToArray<string>());
+                            kt = _MisaInvoices.phathanh_hoadon(str_IdThanhtoan, 0, str_IdThanhtoanChitiet, ref eMessage);
+                            if (kt)
+                            {
+                                (from p in dtData.AsEnumerable()
+                                 where str_IdThanhtoan == Utility.sDbnull(p["id_thanhtoan"], "-1")
+                                 select p).ToList()
+                                 .ForEach(x =>
+                                 {
+                                     x["tthai_xuat_hddt"] = true;
+                                     x["transaction_id"] = _MisaInvoices.transaction_id;
+                                 }
+                                 );
+                                LogText(eMessage, Color.DarkBlue);
+                            }
+                            else
+                            {
+                                LogText(eMessage, Color.Red);
+                            }
+                        }
+                           
                         SetValue4Prg(ProgressBar, 1);
                         gridExRow.IsChecked = false;
+                    }
+                    grdPayment.UnCheckAllRecords();
+                    if (lstErr.Count > 0)
+                    {
+                        string allErrMsg = string.Join("\n", lstErr.ToArray<string>());
+                        Utility.ShowMsg(allErrMsg);
                     }
                 }
                 else if (optTheoluotkham.Checked)
                 {
-
+                  
                     if (lst_ngay_ttoan_check.Count >= 2)
                     {
                         if (!Utility.AcceptQuestion("Chú ý: Các phiếu thu khác ngày. Bạn có chắc chắn muốn phát hành HĐĐT điện tử cho các phiếu này?", "Cảnh báo các phiếu thu khác ngày", true))
@@ -669,8 +822,54 @@ namespace VMS.Invoice
                     }
                     foreach (string maluotkham in lst_maluotkham)
                     {
+                        List<string> lstErr = new List<string>();
+                        List<long> lstIdThanhtoan_updated = new List<long>();
+                        string errMsg = "";
                         List<long> lstIdThanhtoan = (from p in grdPayment.GetCheckedRows() where Utility.sDbnull(p.Cells["ma_luotkham"].Value) == maluotkham select Utility.Int64Dbnull(p.Cells["id_thanhtoan"].Value)).Distinct().ToList<long>();
-
+                        //Kiểm tra không có bất kì chứng từ nào của người bệnh đang được sử dụng bởi người khác mới cho làm tiếp
+                        foreach (long id_thanhtoan in lstIdThanhtoan)
+                        {
+                            KcbThanhtoan objCheck = KcbThanhtoan.FetchByID(Utility.Int64Dbnull(id_thanhtoan));
+                            if (objCheck != null && !Utility.Bool2Bool(objCheck.TthaiDangphathanh) && !Utility.Bool2Bool(objCheck.TthaiXuatHddt))//Chưa phát hành hóa đơn và chưa được ai đang chiếm quyền phát hành
+                            {
+                                num = new Update(KcbThanhtoan.Schema)
+                                    .Set(KcbThanhtoan.Columns.TthaiDangphathanh).EqualTo(1)
+                                    .Set(KcbThanhtoan.Columns.UsedBy).EqualTo(globalVariables.UserName)
+                                    .Where(KcbThanhtoan.Columns.IdThanhtoan).IsEqualTo(id_thanhtoan)
+                                    .Execute();
+                                if(num>0)
+                                {
+                                    lstIdThanhtoan_updated.Add(id_thanhtoan);
+                                }    
+                            }
+                            else
+                            {
+                                if (Utility.Bool2Bool(objCheck.TthaiXuatHddt))
+                                {
+                                    errMsg = string.Format("Chứng từ {0} đã được phát hành HĐĐT, vui lòng kiểm tra lại", str_IdThanhtoan);
+                                    Utility.ShowMsg(errMsg);
+                                    lstErr.Add(errMsg);
+                                    break;
+                                }
+                                if (!Utility.Bool2Bool(objCheck.TthaiXuatHddt) && Utility.Bool2Bool(objCheck.TthaiDangphathanh))
+                                {
+                                    errMsg = string.Format("Chứng từ với Id={0} đang được sử dụng để phát hành Hóa đơn điện tử bởi người dùng {1} nên bạn không thể phát hành tiếp(tránh 1 chứng từ 2 hóa đơn trên Misa).\nVui lòng liên hệ người dùng {2} để phối hợp", str_IdThanhtoan, Utility.sDbnull(dtCheck.Rows[0]["used_by"]), Utility.sDbnull(dtCheck.Rows[0]["used_by"]));
+                                    Utility.ShowMsg(errMsg);
+                                    lstErr.Add(errMsg);
+                                    break;
+                                }
+                            }
+                        }
+                        if(lstErr.Count>0)
+                        {
+                            //Rollback
+                            num = new Update(KcbThanhtoan.Schema)
+                                   .Set(KcbThanhtoan.Columns.TthaiDangphathanh).EqualTo(0)
+                                   .Set(KcbThanhtoan.Columns.UsedBy).EqualTo("")
+                                   .Where(KcbThanhtoan.Columns.IdThanhtoan).In(lstIdThanhtoan_updated)
+                                   .Execute();
+                            return;
+                        }    
                         str_IdThanhtoan = string.Join(",", lstIdThanhtoan.Select(l => l.ToString()).ToArray());
                         
                          str_IdThanhtoanChitiet = string.Join(",", (from p in grdChitietThanhtoan.GetCheckedRows() where lstIdThanhtoan.Contains(Utility.Int64Dbnull(p.Cells["id_thanhtoan"].Value)) select Utility.sDbnull(p.Cells["id_chitiet"].Value)).Distinct().ToArray<string>());
@@ -678,7 +877,7 @@ namespace VMS.Invoice
                         if (kt)
                         {
                             (from p in dtData.AsEnumerable()
-                             where str_IdThanhtoan == Utility.sDbnull(p["id_thanhtoan"], "-1")
+                             where lstIdThanhtoan.Contains(Utility.Int64Dbnull(p["id_thanhtoan"], "-1"))
                              select p).ToList()
                              .ForEach(x =>
                              {
@@ -695,6 +894,7 @@ namespace VMS.Invoice
                         SetValue4Prg(ProgressBar, 1);
                         str_IdThanhtoan = "";
                     }
+                    grdPayment.UnCheckAllRecords();
 
                 }
                 else
@@ -727,6 +927,7 @@ namespace VMS.Invoice
                         SetValue4Prg(ProgressBar, 1);
                         str_IdThanhtoan = "";
                     }
+                    grdPayment.UnCheckAllRecords();
                 }
                 Application.DoEvents();
 
@@ -739,6 +940,7 @@ namespace VMS.Invoice
             }
             finally
             {
+                //isAllowPaymentChanged = true;
                 VNS.Libs.AppUI.UIAction._Visible(ProgressBar, false);
                 Utility.DefaultNow(this);
                 cmdPhathanhHDon.Enabled = true;
@@ -780,7 +982,7 @@ namespace VMS.Invoice
                     grdPayment.CurrentRow.EndEdit();
                 }
                 bool isNoitru = (from p in grdPayment.GetCheckedRows() where Utility.sDbnull(p.Cells["noi_tru"].Value) == "1" select p).Count() > 0;
-                bool isQuaythuoc = (from p in grdPayment.GetCheckedRows() where Utility.sDbnull(p.Cells["ttoan_thuoc"].Value) == "1" select p).Count() > 0;
+                bool isQuaythuoc = (from p in grdPayment.GetCheckedRows() where Utility.sDbnull(p.Cells["ttoan_thuoc"].Value).ToUpper() == "TRUE" select p).Count() > 0;
                 List<string> lst_maluotkham = (from p in grdPayment.GetCheckedRows() select Utility.sDbnull(p.Cells["ma_luotkham"].Value)).Distinct().ToList<string>();
                 List<string> lst_Idbenhnhan = (from p in grdPayment.GetCheckedRows() select Utility.sDbnull(p.Cells["id_benhnhan"].Value)).Distinct().ToList<string>();
                 List<string> lst_ngay_ttoan_check = (from p in grdPayment.GetCheckedRows() select Utility.sDbnull(p.Cells["ngay_ttoan_check"].Value)).Distinct().ToList<string>();
@@ -794,6 +996,7 @@ namespace VMS.Invoice
                     {
 
                         Utility.ShowMsg("Chỉ cho phép phát hành HĐĐT với các thuốc có thuế suất GTGT(VAT)>0.\nVui lòng kiểm tra lại các mặt hàng chi tiết đang chọn và loại bỏ các mặt hàng có thuế suất =0");
+                        grdPayment.UnCheckAllRecords();
                         cboVAT.Focus();
                         return;
                     }
@@ -804,6 +1007,7 @@ namespace VMS.Invoice
                     {
 
                         Utility.ShowMsg("Các chi tiết bạn chọn để phát hành HĐĐT có mức VAT khác nhau nên hệ thống không cho phép.\nBạn có thể dùng tính năng Lọc VAT để tìm các mặt hàng có mức VAT giống nhau trước khi thực hiện phát hành HĐĐT");
+                        grdPayment.UnCheckAllRecords();
                         cboVAT.Focus();
                         return;
                     }
@@ -1220,23 +1424,29 @@ namespace VMS.Invoice
         {
             try
             {
-                //string invInvoiceAuthId =
-                //    Utility.sDbnull(grdListDaTaoHoaDon.CurrentRow.Cells["inv_InvoiceAuth_id"].Value, "");
-                //if (!string.IsNullOrEmpty(invInvoiceAuthId))
-                //{
-                //    FrmThongtinDieuchinh frm = new FrmThongtinDieuchinh();
-                //    frm.InvInvoiceAuthId = invInvoiceAuthId;
-                //    //frm._invoicesConnectionDieuchinh = _invoicesConnection;
-                //    frm.ShowDialog();
-                //    if (frm.isCancel)
-                //    {
-                //        grdListDaTaoHoaDon.SelectionChanged += grdListDaTaoHoaDon_SelectionChanged;
-                //    }
-                //}
-                //else
-                //{
-                //    Utility.ShowMsg("Không tồn tại dữ liệu với inv_InvoiceAuth_id = " + " ");
-                //}
+                if(!Utility.Coquyen("HOADONDIENTU_UNLOCK"))
+                {
+                    Utility.thongbaokhongcoquyen("HOADONDIENTU_UNLOCK", "lấy lại quyền phát hành HĐĐT cho các chứng từ đang họn.");
+                }    
+                if (!Utility.AcceptQuestion("Bạn có chắc chắn muốn lấy lại quyền phát hành HĐĐT cho các chứng từ đang chọn?", "Xác nhận", true)) return;
+                List<long> lstIdThanhtoan = (from p in grdPayment.GetCheckedRows() select Utility.Int64Dbnull(p.Cells["id_thanhtoan"].Value)).Distinct().ToList<long>();
+                num = new Update(KcbThanhtoan.Schema)
+                                 .Set(KcbThanhtoan.Columns.TthaiDangphathanh).EqualTo(0)
+                                 .Set(KcbThanhtoan.Columns.UsedBy).EqualTo("")
+                                 .Where(KcbThanhtoan.Columns.IdThanhtoan).In(lstIdThanhtoan)
+                                 .Execute();
+                if(num== lstIdThanhtoan.Count)
+                {
+                    (from p in dtData.AsEnumerable()
+                     where lstIdThanhtoan.Contains( Utility.Int64Dbnull(p["id_thanhtoan"], "-1"))
+                     select p).ToList()
+                                .ForEach(x =>
+                                {
+                                    x["used_by"] = "";
+                                }
+                                );
+                }
+                Utility.ShowMsg("Lấy lại quyền xuất hóa đơn điện tử cho các chứng từ đang chọn thành công.");
 
             }
             catch (Exception ex)
@@ -1271,6 +1481,7 @@ namespace VMS.Invoice
             cmdPhathanhHDon.Visible = Utility.Coquyen("HOADONDIENTU_CREATE");
             cmdDownload.Visible = Utility.Coquyen("HOADONDIENTU_DOWNLOAD");
             cmdCancelinvoices.Visible = Utility.Coquyen("HOADONDIENTU_CANCEL");
+            cmdManualInvoice.Visible = Utility.Coquyen("HOADONDIENTU_MANUAL");
         }
 
         private void cmdInHoaDonChuyenDoi_Click(object sender, EventArgs e)
@@ -1338,6 +1549,7 @@ namespace VMS.Invoice
             {
 
                 Utility.WaitNow(this);
+               // isAllowPaymentChanged = false;
                 if (dtMau == null || dtMau.Rows.Count <= 0 || dtMau.Select("isActive=true").Length <= 0)
                 {
                     Utility.ShowMsg("Chưa có mẫu hóa đơn để phát hành hóa đơn.\nVui lòng chuyển sang tab Danh sách mẫu hóa đơn để kích hoạt mẫu hóa đơn hiện có hoặc lấy mẫu hóa đơn mới từ nhà cung cấp HĐĐT");
@@ -1368,7 +1580,7 @@ namespace VMS.Invoice
                     grdPayment.CurrentRow.EndEdit();
                 }
                 bool isNoitru = (from p in grdPayment.GetCheckedRows() where Utility.sDbnull(p.Cells["noi_tru"].Value) == "1" select p).Count() > 0;
-                bool isQuaythuoc = (from p in grdPayment.GetCheckedRows() where Utility.sDbnull(p.Cells["ttoan_thuoc"].Value) == "1" select p).Count() > 0;
+                bool isQuaythuoc = (from p in grdPayment.GetCheckedRows() where Utility.sDbnull(p.Cells["ttoan_thuoc"].Value).ToUpper()=="TRUE"  select p).Count() > 0;
                 List<string> lst_maluotkham = (from p in grdPayment.GetCheckedRows() select Utility.sDbnull(p.Cells["ma_luotkham"].Value)).Distinct().ToList<string>();
                 List<long> lst_Idbenhnhan = (from p in grdPayment.GetCheckedRows() select Utility.Int64Dbnull(p.Cells["id_benhnhan"].Value)).Distinct().ToList<long>();
                 List<string> lst_ngay_ttoan_check = (from p in grdPayment.GetCheckedRows() select Utility.sDbnull(p.Cells["ngay_ttoan_check"].Value)).Distinct().ToList<string>();
@@ -1383,6 +1595,7 @@ namespace VMS.Invoice
                     {
 
                         Utility.ShowMsg("Chỉ cho phép phát hành HĐĐT với các thuốc có thuế suất GTGT(VAT)>0.\nVui lòng kiểm tra lại các mặt hàng chi tiết đang chọn và loại bỏ các mặt hàng có thuế suất =0");
+                        grdPayment.UnCheckAllRecords();
                         cboVAT.Focus();
                         return;
                     }
@@ -1393,6 +1606,7 @@ namespace VMS.Invoice
                     {
 
                         Utility.ShowMsg("Các chi tiết bạn chọn để phát hành HĐĐT có mức VAT khác nhau nên hệ thống không cho phép.\nBạn có thể dùng tính năng Lọc VAT để tìm các mặt hàng có mức VAT giống nhau trước khi thực hiện phát hành HĐĐT");
+                        grdPayment.UnCheckAllRecords();
                         cboVAT.Focus();
                         return;
                     }
@@ -1441,7 +1655,11 @@ namespace VMS.Invoice
                     {
                         str_IdThanhtoan = Utility.sDbnull(gridExRow.Cells["id_thanhtoan"].Value, 0);
                         str_IdThanhtoanChitiet = string.Join(",", (from p in grdChitietThanhtoan.GetCheckedRows() where Utility.sDbnull(p.Cells["id_thanhtoan"].Value, 0) == str_IdThanhtoan select Utility.sDbnull(p.Cells["id_chitiet"].Value)).Distinct().ToArray<string>());
-                       _MisaInvoices.xemtruoc_hoadon(str_IdThanhtoan, 0, str_IdThanhtoanChitiet, ref eMessage);
+                         kt = _MisaInvoices.xemtruoc_hoadon(str_IdThanhtoan, 0, str_IdThanhtoanChitiet, ref eMessage);
+                        //if(kt)
+                        //{
+                        //    gridExRow.IsChecked = false;
+                        //}    
                         if (!string.IsNullOrEmpty(eMessage))
                         {
                             Utility.ShowMsg(eMessage);
@@ -1450,6 +1668,7 @@ namespace VMS.Invoice
                         SetValue4Prg(ProgressBar, 1);
                         Application.DoEvents();
                     }
+                    grdPayment.UnCheckAllRecords();
                 }
                 else if (optTheoluotkham.Checked)
                 {
@@ -1468,7 +1687,7 @@ namespace VMS.Invoice
                         str_IdThanhtoan = string.Join(",", lstIdThanhtoan.Select(l => l.ToString()).ToArray());
 
                         str_IdThanhtoanChitiet = string.Join(",", (from p in grdChitietThanhtoan.GetCheckedRows() where lstIdThanhtoan.Contains(Utility.Int64Dbnull(p.Cells["id_thanhtoan"].Value)) select Utility.sDbnull(p.Cells["id_chitiet"].Value)).Distinct().ToArray<string>());
-                       _MisaInvoices.xemtruoc_hoadon(str_IdThanhtoan, 1, str_IdThanhtoanChitiet, ref eMessage);
+                         kt = _MisaInvoices.xemtruoc_hoadon(str_IdThanhtoan, 1, str_IdThanhtoanChitiet, ref eMessage);
                         if (!string.IsNullOrEmpty(eMessage))
                         {
                             Utility.ShowMsg(eMessage);
@@ -1478,7 +1697,7 @@ namespace VMS.Invoice
                         Application.DoEvents();
                         str_IdThanhtoan = "";
                     }
-
+                    grdPayment.UnCheckAllRecords();
                 }
                 else
                 {
@@ -1489,7 +1708,8 @@ namespace VMS.Invoice
                         str_IdThanhtoan = string.Join(",", lstIdThanhtoan.Select(l => l.ToString()).ToArray());
 
                         str_IdThanhtoanChitiet = string.Join(",", (from p in grdChitietThanhtoan.GetCheckedRows() where lstIdThanhtoan.Contains(Utility.Int64Dbnull(p.Cells["id_thanhtoan"].Value)) select Utility.sDbnull(p.Cells["id_chitiet"].Value)).Distinct().ToArray<string>());
-                       _MisaInvoices.xemtruoc_hoadon(str_IdThanhtoan, 1, str_IdThanhtoanChitiet, ref eMessage);
+                         kt = _MisaInvoices.xemtruoc_hoadon(str_IdThanhtoan, 1, str_IdThanhtoanChitiet, ref eMessage);
+                        
                         if (!string.IsNullOrEmpty(eMessage))
                         {
                             Utility.ShowMsg(eMessage);
@@ -1499,6 +1719,7 @@ namespace VMS.Invoice
                         Application.DoEvents();
                         str_IdThanhtoan = "";
                     }
+                    grdPayment.UnCheckAllRecords();
                 }
 
                 //foreach (long id_benhnhan in lst_Idbenhnhan)
@@ -1539,6 +1760,7 @@ namespace VMS.Invoice
             }
             finally
             {
+               // isAllowPaymentChanged = true;
                 VNS.Libs.AppUI.UIAction._Visible(ProgressBar, false);
                 Utility.DefaultNow(this);
             }
@@ -1654,7 +1876,10 @@ namespace VMS.Invoice
         {
             try
             {
-                ((DataView)grdChitietThanhtoan.DataSource).RowFilter = chkBodichvutronggoi.Checked ? "trong_goi=0" : "1=1";
+                if (grdChitietThanhtoan.DataSource != null)
+                {
+                    ((DataView)grdChitietThanhtoan.DataSource).RowFilter = chkBodichvutronggoi.Checked ? "trong_goi=0" : "1=1";
+                }
             }
             catch (Exception ex)
             {
@@ -1667,9 +1892,12 @@ namespace VMS.Invoice
         {
             try
             {
-                grdChitietThanhtoan.UnCheckAllRecords();
-                ((DataView)grdPayment.DataSource).RowFilter = chkBocacthanhtoandaxuathoadon.Checked ? "tthai_xuat_hddt= false or tthai_xuat_hddt is null" : "1=1";
-                grdChitietThanhtoan.CheckAllRecords();
+                if (grdPayment.DataSource != null)
+                {
+                    grdChitietThanhtoan.UnCheckAllRecords();
+                    ((DataView)grdPayment.DataSource).RowFilter = chkBocacthanhtoandaxuathoadon.Checked ? "tthai_xuat_hddt= false or tthai_xuat_hddt is null" : "1=1";
+                    grdChitietThanhtoan.CheckAllRecords();
+                }
             }
             catch (Exception ex)
             {
@@ -1681,9 +1909,12 @@ namespace VMS.Invoice
         {
             try
             {
-                grdChitietThanhtoan.UnCheckAllRecords();
-                ((DataView)grdChitietThanhtoan.DataSource).RowFilter = chkAnChitietdaPhathanh.Checked ? "tthai_xuat_hddt=0" : "1=1";
-                grdChitietThanhtoan.CheckAllRecords();
+                if (grdChitietThanhtoan.DataSource != null)
+                {
+                    grdChitietThanhtoan.UnCheckAllRecords();
+                    ((DataView)grdChitietThanhtoan.DataSource).RowFilter = chkAnChitietdaPhathanh.Checked ? "tthai_xuat_hddt=0" : "1=1";
+                    grdChitietThanhtoan.CheckAllRecords();
+                }
             }
             catch (Exception ex)
             {
@@ -1795,7 +2026,7 @@ namespace VMS.Invoice
                 string id_thanhtoan = Utility.sDbnull(grdPayment.GetValue("id_thanhtoan"), "");
                 
                 bool isNoitru = (from p in grdPayment.GetCheckedRows() where Utility.sDbnull(p.Cells["noi_tru"].Value) == "1" select p).Count() > 0;
-                bool isQuaythuoc = (from p in grdPayment.GetCheckedRows() where Utility.sDbnull(p.Cells["ttoan_thuoc"].Value) == "1" select p).Count() > 0;
+                bool isQuaythuoc = (from p in grdPayment.GetCheckedRows() where Utility.sDbnull(p.Cells["ttoan_thuoc"].Value).ToUpper() == "TRUE" select p).Count() > 0;
                 List<string> lst_maluotkham = (from p in grdPayment.GetCheckedRows() select Utility.sDbnull(p.Cells["ma_luotkham"].Value)).Distinct().ToList<string>();
                 List<string> lst_Idbenhnhan = (from p in grdPayment.GetCheckedRows() select Utility.sDbnull(p.Cells["id_benhnhan"].Value)).Distinct().ToList<string>();
                 List<string> lst_ngay_ttoan_check = (from p in grdPayment.GetCheckedRows() select Utility.sDbnull(p.Cells["ngay_ttoan_check"].Value)).Distinct().ToList<string>();
@@ -1809,6 +2040,7 @@ namespace VMS.Invoice
                     {
 
                         Utility.ShowMsg("Chỉ cho phép phát hành HĐĐT với các thuốc có thuế suất GTGT(VAT)>0.\nVui lòng kiểm tra lại các mặt hàng chi tiết đang chọn và loại bỏ các mặt hàng có thuế suất =0");
+                        grdPayment.UnCheckAllRecords();
                         cboVAT.Focus();
                         return;
                     }
@@ -1819,6 +2051,7 @@ namespace VMS.Invoice
                     {
 
                         Utility.ShowMsg("Các chi tiết bạn chọn để phát hành HĐĐT có mức VAT khác nhau nên hệ thống không cho phép.\nBạn có thể dùng tính năng Lọc VAT để tìm các mặt hàng có mức VAT giống nhau trước khi thực hiện phát hành HĐĐT");
+                        grdPayment.UnCheckAllRecords();
                         cboVAT.Focus();
                         return;
                     }
@@ -1958,6 +2191,11 @@ namespace VMS.Invoice
                 Utility.DefaultNow(this);
                 cmdPhathanhHDon.Enabled = true;
             }
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -7040,7 +7040,7 @@ namespace VNS.HIS.UI.NGOAITRU
                 if (_objLuotkham == null)
                     _objLuotkham = TaoLuotkham();
                 if (_objLuotkham != null)
-                    KcbInphieu.INPHIEU_KHAM(Utility.sDbnull(_objLuotkham.MaDoituongKcb), v_dtData,
+                    KcbInphieu.INPHIEU_KHAM(objCongkham, Utility.sDbnull(_objLuotkham.MaDoituongKcb), v_dtData,
                                                   "PHIẾU KHÁM BỆNH", PropertyLib._MayInProperties.CoGiayInPhieuKCB == Papersize.A5 ? "A5" : "A4");
             }
         }

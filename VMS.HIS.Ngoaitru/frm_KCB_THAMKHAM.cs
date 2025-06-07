@@ -11088,16 +11088,16 @@ namespace VNS.HIS.UI.NGOAITRU
             IdKham = GetrealRegID();
             try
             {
-                KcbDangkyKcb objRegExam = KcbDangkyKcb.FetchByID(IdKham);
-                DmucKhoaphong lDepartment = DmucKhoaphong.FetchByID(objRegExam.IdPhongkham);
+                KcbDangkyKcb objCongkham = KcbDangkyKcb.FetchByID(IdKham);
+                DmucKhoaphong lDepartment = DmucKhoaphong.FetchByID(objCongkham.IdPhongkham);
                 Utility.SetParameterValue(crpt, "PHONGKHAM", Utility.sDbnull(lDepartment.MaKhoaphong));
-                Utility.SetParameterValue(crpt, "STT", Utility.sDbnull(objRegExam.SttKham, ""));
+                Utility.SetParameterValue(crpt, "STT", Utility.sDbnull(objCongkham.SttKham, ""));
                 Utility.SetParameterValue(crpt, "BENHAN", txtPatient_Code.Text);
                 Utility.SetParameterValue(crpt, "TENBN", txtPatient_Name.Text);
                 Utility.SetParameterValue(crpt, "GT_TUOI", string.Format("{0}-{1}",txtGioitinh.Text,txtTuoi.Text));
                 string SOTHE = "Không có thẻ";
                 string HANTHE = "Không có hạn";
-                objLuotkham = Utility.getKcbLuotkham(objRegExam.IdBenhnhan, objRegExam.MaLuotkham);
+                objLuotkham = Utility.getKcbLuotkham(objCongkham.IdBenhnhan, objCongkham.MaLuotkham);
                 if (THU_VIEN_CHUNG.IsBaoHiem(objLuotkham.IdLoaidoituongKcb))
                 {
                     SOTHE = objLuotkham.MatheBhyt;// Utility.sDbnull(grdList.CurrentRow.Cells[KcbLuotkham.Columns.MatheBhyt].Value, "Không có thẻ");
@@ -11126,19 +11126,19 @@ namespace VNS.HIS.UI.NGOAITRU
         private void InphieuKham()
         {
             int IdKham = GetrealRegID();
-            KcbDangkyKcb objRegExam = KcbDangkyKcb.FetchByID(IdKham);
-            if (objRegExam != null)
+            KcbDangkyKcb objCongkham = KcbDangkyKcb.FetchByID(IdKham);
+            if (objCongkham != null)
             {
                 new Update(KcbDangkyKcb.Schema)
                     .Set(KcbDangkyKcb.Columns.TrangthaiIn).EqualTo(1)
                     .Set(KcbDangkyKcb.Columns.NgaySua).EqualTo(globalVariables.SysDate)
                     .Set(KcbDangkyKcb.Columns.NguoiSua).EqualTo(globalVariables.UserName)
-                    .Where(KcbDangkyKcb.Columns.IdKham).IsEqualTo(objRegExam.IdKham).Execute();
+                    .Where(KcbDangkyKcb.Columns.IdKham).IsEqualTo(objCongkham.IdKham).Execute();
                 //IEnumerable<GridEXRow> query = from kham in grdList.GetDataRows()
                 //                               where
                 //                                   kham.RowType == RowType.Record &&
                 //                                   Utility.Int32Dbnull(kham.Cells[KcbDangkyKcb.Columns.IdKham].Value, -1) ==
-                //                                   Utility.Int32Dbnull(objRegExam.IdKham)
+                //                                   Utility.Int32Dbnull(objCongkham.IdKham)
                 //                               select kham;
                 //if (query.Count() > 0)
                 //{
@@ -11156,9 +11156,9 @@ namespace VNS.HIS.UI.NGOAITRU
                     Utility.ShowMsg("Không tìm thấy bản ghi nào", "Thông báo");
                     return;
                 }
-                objLuotkham = Utility.getKcbLuotkham(objRegExam.IdBenhnhan, objRegExam.MaLuotkham);
+                objLuotkham = Utility.getKcbLuotkham(objCongkham.IdBenhnhan, objCongkham.MaLuotkham);
                 if (objLuotkham != null)
-                    KcbInphieu.INPHIEU_KHAM(Utility.sDbnull(objLuotkham.MaDoituongKcb), v_dtData,
+                    KcbInphieu.INPHIEU_KHAM(objCongkham, Utility.sDbnull(objLuotkham.MaDoituongKcb), v_dtData,
                                                   "PHIẾU KHÁM BỆNH", PropertyLib._MayInProperties.CoGiayInPhieuKCB == Papersize.A5 ? "A5" : "A4");
             }
         }
@@ -11323,16 +11323,16 @@ namespace VNS.HIS.UI.NGOAITRU
                 return false;
             }
             int v_RegId = Utility.Int32Dbnull(grdList.CurrentRow.Cells[KcbDangkyKcb.Columns.IdKham].Value, -1);
-            KcbDangkyKcb objRegExam = KcbDangkyKcb.FetchByID(v_RegId);
-            if (objRegExam != null)
+            KcbDangkyKcb objCongkham = KcbDangkyKcb.FetchByID(v_RegId);
+            if (objCongkham != null)
             {
-                if (objRegExam.TrangthaiThanhtoan >= 1)
+                if (objCongkham.TrangthaiThanhtoan >= 1)
                 {
                     Utility.ShowMsg("Công khám đang chọn đã thanh toán, Bạn không thể xóa", "Thông báo");
                     grdList.Focus();
                     return false;
                 }
-                else if (objRegExam.TrangThai >= 1)
+                else if (objCongkham.TrangThai >= 1)
                 {
                     Utility.ShowMsg("Công khám bạn chọn đã được bác sĩ kết thúc khám nên bạn không thể xóa", "Thông báo");
                     grdList.Focus();
@@ -11343,7 +11343,7 @@ namespace VNS.HIS.UI.NGOAITRU
                 {
                     SqlQuery q =
                         new Select().From(KcbChidinhclsChitiet.Schema).Where(KcbChidinhclsChitiet.Columns.IdKham).IsEqualTo(
-                            objRegExam.IdKham).And(KcbChidinhclsChitiet.Columns.TrangthaiThanhtoan).IsEqualTo(1);
+                            objCongkham.IdKham).And(KcbChidinhclsChitiet.Columns.TrangthaiThanhtoan).IsEqualTo(1);
                     if (q.GetRecordCount() > 0)
                     {
                         Utility.ShowMsg("Công khám đang chọn đã được bác sĩ chỉ định CLS và đã được thanh toán. Yêu cầu Hủy thanh toán các chỉ định CLS trước khi hủy phòng khám", "Thông báo");
@@ -11352,7 +11352,7 @@ namespace VNS.HIS.UI.NGOAITRU
                     }
                     SqlQuery qPres =
                         new Select().From(KcbDonthuocChitiet.Schema).Where(KcbDonthuocChitiet.Columns.IdKham).IsEqualTo(
-                            objRegExam.IdKham).And(KcbDonthuocChitiet.Columns.TrangthaiThanhtoan).IsEqualTo(1);
+                            objCongkham.IdKham).And(KcbDonthuocChitiet.Columns.TrangthaiThanhtoan).IsEqualTo(1);
                     if (qPres.GetRecordCount() > 0)
                     {
                         Utility.ShowMsg("Công khám đang chọn đã được bác sĩ kê đơn thuốc và đã được thanh toán. Yêu cầu hủy thanh toán đơn thuốc trước khi hủy phòng khám", "Thông báo");
@@ -11362,13 +11362,13 @@ namespace VNS.HIS.UI.NGOAITRU
                 }
                 else//Nếu có chỉ định CLS hoặc thuốc thì không cho phép xóa
                 {
-                    if (objRegExam.DachidinhCls >= 1)
+                    if (objCongkham.DachidinhCls >= 1)
                     {
                         Utility.ShowMsg("Công khám đang chọn đã được bác sĩ chỉ định CLS. Yêu cầu xóa chỉ định CLS trước khi xóa công khám", "Thông báo");
                         grdList.Focus();
                         return false;
                     }
-                    else if (objRegExam.DakeDonthuoc >= 1)
+                    else if (objCongkham.DakeDonthuoc >= 1)
                     {
                         Utility.ShowMsg("Công khám đang chọn đã được bác sĩ kê đơn thuốc. Yêu cầu xóa đơn thuốc trước khi xóa công khám", "Thông báo");
                         grdList.Focus();
@@ -11376,7 +11376,7 @@ namespace VNS.HIS.UI.NGOAITRU
                     }
                     SqlQuery q =
                         new Select().From(KcbChidinhcl.Schema).Where(KcbChidinhcl.Columns.IdKham).IsEqualTo(
-                            objRegExam.IdKham);
+                            objCongkham.IdKham);
                     if (q.GetRecordCount() > 0)
                     {
                         Utility.ShowMsg("Công khám đang chọn đã được bác sĩ chỉ định CLS. Yêu cầu xóa chỉ định CLS trước khi xóa công khám", "Thông báo");
@@ -11384,7 +11384,7 @@ namespace VNS.HIS.UI.NGOAITRU
                         return false;
                     }
                     SqlQuery qPres =
-                        new Select().From(KcbDonthuoc.Schema).Where(KcbDonthuoc.Columns.IdKham).IsEqualTo(objRegExam.IdKham);
+                        new Select().From(KcbDonthuoc.Schema).Where(KcbDonthuoc.Columns.IdKham).IsEqualTo(objCongkham.IdKham);
                     if (qPres.GetRecordCount() > 0)
                     {
                         Utility.ShowMsg("Công khám đang chọn đã được bác sĩ kê đơn thuốc. Yêu cầu xóa đơn thuốc trước khi xóa công khám", "Thông báo");
@@ -12208,7 +12208,11 @@ namespace VNS.HIS.UI.NGOAITRU
 
 
             dsTable.AcceptChanges();
-            VNS.HIS.UI.Baocao.noitru_baocao.Inphieunhapvien(dsTable, "PHIẾU NHẬP VIỆN", globalVariables.SysDate);
+            NoitruPhieunhapvien objPNV = new Select().From(NoitruPhieunhapvien.Schema)
+                         .Where(NoitruPhieunhapvien.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
+                         .And(NoitruPhieunhapvien.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
+                         .ExecuteSingle<NoitruPhieunhapvien>();
+            VNS.HIS.UI.Baocao.noitru_baocao.Inphieunhapvien(objPNV,dsTable, "PHIẾU NHẬP VIỆN", globalVariables.SysDate);
         }
 
         private void cdViewPDF_Click(object sender, EventArgs e)

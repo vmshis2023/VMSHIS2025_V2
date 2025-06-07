@@ -201,3 +201,4 @@ F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Danhmuc\obj\Debug\VMS.EMR.PHIEUKHAM.f
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Danhmuc\obj\Debug\VMS.EMR.PHIEUKHAM.frm_QuatrinhThaiky.resources
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Danhmuc\obj\Debug\VMS.EMR.PHIEUKHAM.Ucs.uc_quatrinh_thaiky.resources
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Danhmuc\obj\Debug\VMS.EMR.PHIEUKHAM.frm_khamSanKhoa.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Danhmuc\obj\Debug\VMS.EMR.PHIEUKHAM.Ucs.uc_theodoitaibuongde.resources

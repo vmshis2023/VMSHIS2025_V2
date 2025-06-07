@@ -164,12 +164,18 @@ namespace VMS.EMR.PHIEUKHAM.Ucs
                         objtsb.TsbThuocla = chkThuocLa.Checked;
                         objtsb.TsbThuoclao = chkThuocLao.Checked;
                         objtsb.TsbKhac = chkKhac.Checked;
-                        objtsb.TsbThoigianDiung = txtDiUng.Text;
-                        objtsb.TsbThoigianMatuy = txtMaTuy.Text;
-                        objtsb.TsbThoigianRuoubia = txtRuouBia.Text;
-                        objtsb.TsbThoigianThuocla = txtThuocLa.Text;
-                        objtsb.TsbThoigianThuoclao = txtThuocLao.Text;
-                        objtsb.TsbThoigianKhac = txtkhac.Text;
+                        if (chkDiUng.Checked) objtsb.TsbThoigianDiung = txtDiUng.Text;
+                        else objtsb.TsbThoigianDiung = "";
+                        if (chkMaTuy.Checked) objtsb.TsbThoigianMatuy = txtMaTuy.Text;
+                        else objtsb.TsbThoigianMatuy = "";
+                        if (chkRuouBia.Checked) objtsb.TsbThoigianRuoubia = txtRuouBia.Text;
+                        else objtsb.TsbThoigianRuoubia = "";
+                        if (chkThuocLa.Checked) objtsb.TsbThoigianThuocla = txtThuocLa.Text;
+                        else objtsb.TsbThoigianThuocla = "";
+                        if (chkThuocLao.Checked) objtsb.TsbThoigianThuoclao = txtThuocLao.Text;
+                        else objtsb.TsbThoigianThuoclao = "";
+                        if (chkKhac.Checked) objtsb.TsbThoigianKhac = txtkhac.Text;
+                        else objtsb.TsbThoigianKhac = "";
                         objtsb.Save();
                     }
                     scope.Complete();

@@ -202,6 +202,7 @@ namespace VMS.HIS.API.Controllers
 				string token = MISA_TOKEN;
 				if (string.IsNullOrEmpty(token))
 				{
+					Utility.Log.Trace("Request: Token is null");
 					responseData.Success = false;
 					responseData.ErrorCode = null;
 					responseData.Errors = "token is null";
@@ -210,6 +211,7 @@ namespace VMS.HIS.API.Controllers
 				}
 				else
 				{
+					Utility.Log.Trace("Request with url={0},token={1}: ",url, token);
 					string result = WebApiHelper.CallRestApi(url,"GET", token,"",true);
 					Utility.Log.Trace("result: " + result);
 					if (!string.IsNullOrEmpty(result))

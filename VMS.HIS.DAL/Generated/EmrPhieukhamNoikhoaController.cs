@@ -80,7 +80,7 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(string MaLuotkham,long IdBenhnhan,DateTime NgayKham,string Mach,string NhietDo,string HuyetAp,string NhịpTho,string ChieuCao,string CanNang,string NhomMau,string Bmi,string MotaThem,short? IdBacsi,string NguoiTao,DateTime? NgayTao,string NguoiSua,DateTime? NgaySua)
+	    public void Insert(string MaLuotkham,long IdBenhnhan,DateTime NgayKham,string Mach,string NhietDo,string HuyetAp,string NhipTho,string ChieuCao,string CanNang,string NhomMau,string Bmi,string MotaThem,short? IdBacsi,string NguoiTao,DateTime? NgayTao,string NguoiSua,DateTime? NgaySua)
 	    {
 		    EmrPhieukhamNoikhoa item = new EmrPhieukhamNoikhoa();
 		    
@@ -96,7 +96,7 @@ namespace VMS.HIS.DAL
             
             item.HuyetAp = HuyetAp;
             
-            item.NhịpTho = NhịpTho;
+            item.NhipTho = NhipTho;
             
             item.ChieuCao = ChieuCao;
             
@@ -126,7 +126,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(long Id,string MaLuotkham,long IdBenhnhan,DateTime NgayKham,string Mach,string NhietDo,string HuyetAp,string NhịpTho,string ChieuCao,string CanNang,string NhomMau,string Bmi,string MotaThem,short? IdBacsi,string NguoiTao,DateTime? NgayTao,string NguoiSua,DateTime? NgaySua)
+	    public void Update(long Id,string MaLuotkham,long IdBenhnhan,DateTime NgayKham,string Mach,string NhietDo,string HuyetAp,string NhipTho,string ChieuCao,string CanNang,string NhomMau,string Bmi,string MotaThem,short? IdBacsi,string NguoiTao,DateTime? NgayTao,string NguoiSua,DateTime? NgaySua)
 	    {
 		    EmrPhieukhamNoikhoa item = new EmrPhieukhamNoikhoa();
 	        item.MarkOld();
@@ -146,7 +146,7 @@ namespace VMS.HIS.DAL
 				
 			item.HuyetAp = HuyetAp;
 				
-			item.NhịpTho = NhịpTho;
+			item.NhipTho = NhipTho;
 				
 			item.ChieuCao = ChieuCao;
 				

@@ -23,7 +23,6 @@ namespace VNS.HIS.UI.Forms.Dungchung.UCs
         private bool AllowTextChanged;
         public bool AutoLoad = false;
         public KcbLuotkham objLuotkham = null;
-        public DmucKhoaphong _khoaphong = null;
         public byte noitrungoaitru = 100;
         public byte trangthai_noitru = 100;
         public bool isReadonly = false;
@@ -46,39 +45,7 @@ namespace VNS.HIS.UI.Forms.Dungchung.UCs
                 txtMaluotkham.Text = patient_code;
                 objLuotkham = null;
                 AllowTextChanged = false;
-                //if (!AutoLoad)//Do người dùng gõ mã và nhấn enter
-                //{
-                //    var dtPatient = new DataTable();
-
-                //    objLuotkham = null;
-                //    string _patient_Code = Utility.AutoFullPatientCode(txtMaluotkham.Text);
-                //    ClearControls();
-                //    txtMaluotkham.Text = _patient_Code;
-                //    dtPatient = new KCB_THAMKHAM().TimkiemBenhnhan(txtMaluotkham.Text, -1, 1, 0);
-
-                //    DataRow[] arrPatients = dtPatient.Select(KcbLuotkham.Columns.MaLuotkham + "='" + _patient_Code + "'");
-                //    if (arrPatients.GetLength(0) <= 0)
-                //    {
-                //        if (dtPatient.Rows.Count > 1)
-                //        {
-                //            var frm = new frm_DSACH_BN_TKIEM("ALL", noitrungoaitru);
-                //            frm.trangthai_noitru = trangthai_noitru;
-                //            frm.MaLuotkham = txtMaluotkham.Text;
-                //            frm.dtPatient = dtPatient;
-                //            frm.ShowDialog();
-                //            if (!frm.has_Cancel)
-                //            {
-                //                txtMaluotkham.Text = frm.MaLuotkham;
-                //                lastCode = txtMaluotkham.Text;
-                //            }
-                //        }
-                //    }
-                //    else
-                //    {
-                //        txtMaluotkham.Text = _patient_Code;
-                //        lastCode = txtMaluotkham.Text;
-                //    }
-                //}
+                
                 string _patient_Code = Utility.AutoFullPatientCode(txtMaluotkham.Text);
                 DataTable dt_Patient = SPs.EmrLaythongtinnguoibenhMaluotkhamIdbenhnhan(-1, _patient_Code).GetDataSet().Tables[0];
                 if (dt_Patient != null && dt_Patient.Rows.Count > 0)
@@ -93,28 +60,28 @@ namespace VNS.HIS.UI.Forms.Dungchung.UCs
                             .And(KcbLuotkham.Columns.MaLuotkham).IsEqualTo(txtMaluotkham.Text)
                             .ExecuteSingle<KcbLuotkham>();
                     txtTenBN.Text = Utility.sDbnull(dt_Patient.Rows[0][KcbDanhsachBenhnhan.Columns.TenBenhnhan], "");
-                    txttuoi.Text = Utility.sDbnull(dt_Patient.Rows[0]["nam_sinh"], "");
-                    txtgioitinh.Text = Utility.sDbnull(dt_Patient.Rows[0][KcbDanhsachBenhnhan.Columns.GioiTinh], "");
-                    txtDiachi.Text = Utility.sDbnull(dt_Patient.Rows[0][KcbDanhsachBenhnhan.Columns.DiaChi], "");
-                    txtmatheBhyt.Text = Utility.sDbnull(dt_Patient.Rows[0][KcbLuotkham.Columns.MatheBhyt], "");
-                    txtKhoanoitru.Text = Utility.sDbnull(dt_Patient.Rows[0]["ten_khoanoitru"], "");
-                    txtBuong.Text = Utility.sDbnull(dt_Patient.Rows[0][NoitruDmucBuong.Columns.TenBuong], "");
-                    txtGiuong.Text = Utility.sDbnull(dt_Patient.Rows[0][NoitruDmucGiuongbenh.Columns.TenGiuong], "");
+                    txtBOD.Text = Utility.sDbnull(dt_Patient.Rows[0]["nam_sinh"], "");
+                    txttuoi.Text = Utility.sDbnull(dt_Patient.Rows[0]["Tuoi"], "");
+                    chkNam.Checked = Utility.sDbnull(dt_Patient.Rows[0]["id_gioitinh"], "0") == "0";
+                    chkNu.Checked = Utility.sDbnull(dt_Patient.Rows[0]["id_gioitinh"], "0") == "1";
+                    txtNghenghiep.Text= Utility.sDbnull(dt_Patient.Rows[0]["ten_nghenghiep"], "");
+                    txtMaNgheNghiep.Text = Utility.sDbnull(dt_Patient.Rows[0]["nghe_nghiep"], "");
                     txtDantoc.Text = Utility.sDbnull(dt_Patient.Rows[0]["ten_dantoc"], "");
-                    txtTongiao.Text = Utility.sDbnull(dt_Patient.Rows[0]["ten_tongiao"], "");
-                    txtNghenghiep.Text = Utility.sDbnull(dt_Patient.Rows[0]["ten_nghenghiep"], "");
-                    txtcoquan.Text = Utility.sDbnull(dt_Patient.Rows[0]["ten_coquan"], "");
-                    txtCMT.Text = Utility.sDbnull(dt_Patient.Rows[0]["CMT"], "");
-                    txtsovaovien.Text = Utility.sDbnull(dt_Patient.Rows[0]["so_vaovien"], "");
-                    txtngaynhapvien.Text = Utility.sDbnull(dt_Patient.Rows[0]["sNgay_nhapvien"], "");
-                    txtIdkhoanoitru.Text = Utility.sDbnull(dt_Patient.Rows[0][KcbLuotkham.Columns.IdKhoanoitru], "-1");
-                    txtIdravien.Text = Utility.sDbnull(dt_Patient.Rows[0][KcbLuotkham.Columns.IdRavien], "-1");
-                    txtidBuong.Text = Utility.sDbnull(dt_Patient.Rows[0][KcbLuotkham.Columns.IdBuong], "-1");
-                    txtidgiuong.Text = Utility.sDbnull(dt_Patient.Rows[0][KcbLuotkham.Columns.IdGiuong], "-1");
-                    txtNguoiLienhe.Text = Utility.sDbnull(dt_Patient.Rows[0]["nguoi_lienhe"], "-1");
-                    txtSDTLienhe.Text = Utility.sDbnull(dt_Patient.Rows[0]["dienthoai_lienhe"], "-1");
-                    txtDiachiLienhe.Text = Utility.sDbnull(dt_Patient.Rows[0]["diachi_lienhe"], "-1");
-                    txtSDT.Text = Utility.sDbnull(dt_Patient.Rows[0]["dien_thoai"], "-1");
+                    txtMaDantoc.Text = Utility.sDbnull(dt_Patient.Rows[0]["dan_toc"], "");
+                    txtTenNgoaikieu.Text = Utility.sDbnull(dt_Patient.Rows[0]["ten_quocgia"], "");
+                    txtMaNgoaikieu.Text = Utility.sDbnull(dt_Patient.Rows[0]["ma_quocgia"], "");
+                    txtDiachi.Text = Utility.sDbnull(dt_Patient.Rows[0][KcbDanhsachBenhnhan.Columns.DiaChi], "");
+                    txtXaphuong.Text = Utility.sDbnull(dt_Patient.Rows[0]["ten_xaphuong"], "");
+                    txtMaXaPhuong.Text = Utility.sDbnull(dt_Patient.Rows[0]["ma_xaphuong"], "");
+                    txtQuanhuyen.Text = Utility.sDbnull(dt_Patient.Rows[0]["ten_quanhuyen"], "");
+                    txtMaQuanHuyen.Text = Utility.sDbnull(dt_Patient.Rows[0]["ma_quanhuyen"], "");
+                    txtTinhTp.Text = Utility.sDbnull(dt_Patient.Rows[0]["ten_tinhtp"], "");
+                    txtMaTinhTp.Text = Utility.sDbnull(dt_Patient.Rows[0]["ma_tinhtp"], "");
+                    txtNoilamviec.Text = Utility.sDbnull(dt_Patient.Rows[0]["ten_coquan"], "");
+                    txtBHYTTuNgay.Text= Utility.sDbnull(dt_Patient.Rows[0]["ngaybatdau_bhyt"], "");
+                    txtmatheBhyt.Text = Utility.sDbnull(dt_Patient.Rows[0]["mathe_bhyt"], "");
+                    lblNguoilienhe.Text = string.Format("11. Họ tên, địa chỉ người nhà khi cần báo tin: {0},{1}", Utility.sDbnull(dt_Patient.Rows[0]["nguoi_lienhe"], ""), Utility.sDbnull(dt_Patient.Rows[0]["diachi_lienhe"], "")); ;
+                    txtDTLienhe.Text = Utility.sDbnull(dt_Patient.Rows[0]["dienthoai_lienhe"], "-1");
 
                 }
                 if (_OnEnterMe != null) _OnEnterMe();
@@ -150,28 +117,28 @@ namespace VNS.HIS.UI.Forms.Dungchung.UCs
                             .And(KcbLuotkham.Columns.MaLuotkham).IsEqualTo(txtMaluotkham.Text)
                             .ExecuteSingle<KcbLuotkham>();
                     txtTenBN.Text = Utility.sDbnull(dt_Patient.Rows[0][KcbDanhsachBenhnhan.Columns.TenBenhnhan], "");
-                    txttuoi.Text = Utility.sDbnull(dt_Patient.Rows[0]["nam_sinh"], "");
-                    txtgioitinh.Text = Utility.sDbnull(dt_Patient.Rows[0][KcbDanhsachBenhnhan.Columns.GioiTinh], "");
-                    txtDiachi.Text = Utility.sDbnull(dt_Patient.Rows[0][KcbDanhsachBenhnhan.Columns.DiaChi], "");
-                    txtmatheBhyt.Text = Utility.sDbnull(dt_Patient.Rows[0][KcbLuotkham.Columns.MatheBhyt], "");
-                    txtKhoanoitru.Text = Utility.sDbnull(dt_Patient.Rows[0]["ten_khoanoitru"], "");
-                    txtBuong.Text = Utility.sDbnull(dt_Patient.Rows[0][NoitruDmucBuong.Columns.TenBuong], "");
-                    txtGiuong.Text = Utility.sDbnull(dt_Patient.Rows[0][NoitruDmucGiuongbenh.Columns.TenGiuong], "");
-                    txtDantoc.Text = Utility.sDbnull(dt_Patient.Rows[0]["ten_dantoc"], "");
-                    txtTongiao.Text = Utility.sDbnull(dt_Patient.Rows[0]["ten_tongiao"], "");
+                    txtBOD.Text = Utility.sDbnull(dt_Patient.Rows[0]["nam_sinh"], "");
+                    txttuoi.Text = Utility.sDbnull(dt_Patient.Rows[0]["Tuoi"], "");
+                    chkNam.Checked = Utility.sDbnull(dt_Patient.Rows[0]["id_gioitinh"], "0") == "0";
+                    chkNu.Checked = Utility.sDbnull(dt_Patient.Rows[0]["id_gioitinh"], "0") == "1";
                     txtNghenghiep.Text = Utility.sDbnull(dt_Patient.Rows[0]["ten_nghenghiep"], "");
-                    txtcoquan.Text = Utility.sDbnull(dt_Patient.Rows[0]["ten_coquan"], "");
-                    txtCMT.Text = Utility.sDbnull(dt_Patient.Rows[0]["CMT"], "");
-                    txtsovaovien.Text = Utility.sDbnull(dt_Patient.Rows[0]["so_vaovien"], "");
-                    txtngaynhapvien.Text = Utility.sDbnull(dt_Patient.Rows[0]["sNgay_nhapvien"], "");
-                    txtIdkhoanoitru.Text = Utility.sDbnull(dt_Patient.Rows[0][KcbLuotkham.Columns.IdKhoanoitru], "-1");
-                    txtIdravien.Text = Utility.sDbnull(dt_Patient.Rows[0][KcbLuotkham.Columns.IdRavien], "-1");
-                    txtidBuong.Text = Utility.sDbnull(dt_Patient.Rows[0][KcbLuotkham.Columns.IdBuong], "-1");
-                    txtidgiuong.Text = Utility.sDbnull(dt_Patient.Rows[0][KcbLuotkham.Columns.IdGiuong], "-1");
-                    txtNguoiLienhe.Text = Utility.sDbnull(dt_Patient.Rows[0]["nguoi_lienhe"], "-1");
-                    txtSDTLienhe.Text = Utility.sDbnull(dt_Patient.Rows[0]["dienthoai_lienhe"], "-1");
-                    txtDiachiLienhe.Text = Utility.sDbnull(dt_Patient.Rows[0]["diachi_lienhe"], "-1");
-                    txtSDT.Text = Utility.sDbnull(dt_Patient.Rows[0]["dien_thoai"], "-1");
+                    txtMaNgheNghiep.Text = Utility.sDbnull(dt_Patient.Rows[0]["nghe_nghiep"], "");
+                    txtDantoc.Text = Utility.sDbnull(dt_Patient.Rows[0]["ten_dantoc"], "");
+                    txtMaDantoc.Text = Utility.sDbnull(dt_Patient.Rows[0]["dan_toc"], "");
+                    txtTenNgoaikieu.Text = Utility.sDbnull(dt_Patient.Rows[0]["ten_quocgia"], "");
+                    txtMaNgoaikieu.Text = Utility.sDbnull(dt_Patient.Rows[0]["ma_quocgia"], "");
+                    txtDiachi.Text = Utility.sDbnull(dt_Patient.Rows[0][KcbDanhsachBenhnhan.Columns.DiaChi], "");
+                    txtXaphuong.Text = Utility.sDbnull(dt_Patient.Rows[0]["ten_xaphuong"], "");
+                    txtMaXaPhuong.Text = Utility.sDbnull(dt_Patient.Rows[0]["ma_xaphuong"], "");
+                    txtQuanhuyen.Text = Utility.sDbnull(dt_Patient.Rows[0]["ten_quanhuyen"], "");
+                    txtMaQuanHuyen.Text = Utility.sDbnull(dt_Patient.Rows[0]["ma_quanhuyen"], "");
+                    txtTinhTp.Text = Utility.sDbnull(dt_Patient.Rows[0]["ten_tinhtp"], "");
+                    txtMaTinhTp.Text = Utility.sDbnull(dt_Patient.Rows[0]["ma_tinhtp"], "");
+                    txtNoilamviec.Text = Utility.sDbnull(dt_Patient.Rows[0]["ten_coquan"], "");
+                    txtBHYTTuNgay.Text = Utility.sDbnull(dt_Patient.Rows[0]["ngaybatdau_bhyt"], "");
+                    txtmatheBhyt.Text = Utility.sDbnull(dt_Patient.Rows[0]["mathe_bhyt"], "");
+                    lblNguoilienhe.Text = string.Format("11. Họ tên, địa chỉ người nhà khi cần báo tin: {0},{1}", Utility.sDbnull(dt_Patient.Rows[0]["nguoi_lienhe"], ""), Utility.sDbnull(dt_Patient.Rows[0]["diachi_lienhe"], "")); ;
+                    txtDTLienhe.Text = Utility.sDbnull(dt_Patient.Rows[0]["dienthoai_lienhe"], "-1");
 
                 }
                 if (_OnEnterMe != null) _OnEnterMe();
@@ -207,29 +174,28 @@ namespace VNS.HIS.UI.Forms.Dungchung.UCs
                             .And(KcbLuotkham.Columns.MaLuotkham).IsEqualTo(txtMaluotkham.Text)
                             .ExecuteSingle<KcbLuotkham>();
                     txtTenBN.Text = Utility.sDbnull(dt_Patient.Rows[0][KcbDanhsachBenhnhan.Columns.TenBenhnhan], "");
-                    txttuoi.Text = Utility.sDbnull(dt_Patient.Rows[0]["nam_sinh"], "");
-                    txtgioitinh.Text = Utility.sDbnull(dt_Patient.Rows[0][KcbDanhsachBenhnhan.Columns.GioiTinh], "");
-                    txtDiachi.Text = Utility.sDbnull(dt_Patient.Rows[0][KcbDanhsachBenhnhan.Columns.DiaChi], "");
-                    txtmatheBhyt.Text = Utility.sDbnull(dt_Patient.Rows[0][KcbLuotkham.Columns.MatheBhyt], "");
-                    txtKhoanoitru.Text = Utility.sDbnull(dt_Patient.Rows[0]["ten_khoanoitru"], "");
-                    txtBuong.Text = Utility.sDbnull(dt_Patient.Rows[0][NoitruDmucBuong.Columns.TenBuong], "");
-                    txtGiuong.Text = Utility.sDbnull(dt_Patient.Rows[0][NoitruDmucGiuongbenh.Columns.TenGiuong], "");
-                    txtDantoc.Text = Utility.sDbnull(dt_Patient.Rows[0]["ten_dantoc"], "");
-                    txtTongiao.Text = Utility.sDbnull(dt_Patient.Rows[0]["ten_tongiao"], "");
+                    txtBOD.Text = Utility.sDbnull(dt_Patient.Rows[0]["nam_sinh"], "");
+                    txttuoi.Text = Utility.sDbnull(dt_Patient.Rows[0]["Tuoi"], "");
+                    chkNam.Checked = Utility.sDbnull(dt_Patient.Rows[0]["id_gioitinh"], "0") == "0";
+                    chkNu.Checked = Utility.sDbnull(dt_Patient.Rows[0]["id_gioitinh"], "0") == "1";
                     txtNghenghiep.Text = Utility.sDbnull(dt_Patient.Rows[0]["ten_nghenghiep"], "");
-                    txtcoquan.Text = Utility.sDbnull(dt_Patient.Rows[0]["ten_coquan"], "");
-                    txtCMT.Text = Utility.sDbnull(dt_Patient.Rows[0]["CMT"], "");
-                    txtsovaovien.Text = Utility.sDbnull(dt_Patient.Rows[0]["so_vaovien"], "");
-                    txtngaynhapvien.Text = Utility.sDbnull(dt_Patient.Rows[0]["sNgay_nhapvien"], "");
-                    txtIdkhoanoitru.Text = Utility.sDbnull(dt_Patient.Rows[0][KcbLuotkham.Columns.IdKhoanoitru], "-1");
-                    txtIdravien.Text = Utility.sDbnull(dt_Patient.Rows[0][KcbLuotkham.Columns.IdRavien], "-1");
-                    txtidBuong.Text = Utility.sDbnull(dt_Patient.Rows[0][KcbLuotkham.Columns.IdBuong], "-1");
-                    txtidgiuong.Text = Utility.sDbnull(dt_Patient.Rows[0][KcbLuotkham.Columns.IdGiuong], "-1");
-                    txtNguoiLienhe.Text = Utility.sDbnull(dt_Patient.Rows[0]["nguoi_lienhe"], "-1");
-                    txtSDTLienhe.Text = Utility.sDbnull(dt_Patient.Rows[0]["dienthoai_lienhe"], "-1");
-                    txtDiachiLienhe.Text = Utility.sDbnull(dt_Patient.Rows[0]["diachi_lienhe"], "-1");
-                    txtSDT.Text = Utility.sDbnull(dt_Patient.Rows[0]["dien_thoai"], "-1");
-
+                    txtMaNgheNghiep.Text = Utility.sDbnull(dt_Patient.Rows[0]["nghe_nghiep"], "");
+                    txtDantoc.Text = Utility.sDbnull(dt_Patient.Rows[0]["ten_dantoc"], "");
+                    txtMaDantoc.Text = Utility.sDbnull(dt_Patient.Rows[0]["dan_toc"], "");
+                    txtTenNgoaikieu.Text = Utility.sDbnull(dt_Patient.Rows[0]["ten_quocgia"], "");
+                    txtMaNgoaikieu.Text = Utility.sDbnull(dt_Patient.Rows[0]["ma_quocgia"], "");
+                    txtDiachi.Text = Utility.sDbnull(dt_Patient.Rows[0][KcbDanhsachBenhnhan.Columns.DiaChi], "");
+                    txtXaphuong.Text = Utility.sDbnull(dt_Patient.Rows[0]["ten_xaphuong"], "");
+                    txtMaXaPhuong.Text = Utility.sDbnull(dt_Patient.Rows[0]["ma_xaphuong"], "");
+                    txtQuanhuyen.Text = Utility.sDbnull(dt_Patient.Rows[0]["ten_quanhuyen"], "");
+                    txtMaQuanHuyen.Text = Utility.sDbnull(dt_Patient.Rows[0]["ma_quanhuyen"], "");
+                    txtTinhTp.Text = Utility.sDbnull(dt_Patient.Rows[0]["ten_tinhtp"], "");
+                    txtMaTinhTp.Text = Utility.sDbnull(dt_Patient.Rows[0]["ma_tinhtp"], "");
+                    txtNoilamviec.Text = Utility.sDbnull(dt_Patient.Rows[0]["ten_coquan"], "");
+                    txtBHYTTuNgay.Text = Utility.sDbnull(dt_Patient.Rows[0]["ngaybatdau_bhyt"], "");
+                    txtmatheBhyt.Text = Utility.sDbnull(dt_Patient.Rows[0]["mathe_bhyt"], "");
+                    lblNguoilienhe.Text = string.Format("11. Họ tên, địa chỉ người nhà khi cần báo tin: {0},{1}", Utility.sDbnull(dt_Patient.Rows[0]["nguoi_lienhe"], ""), Utility.sDbnull(dt_Patient.Rows[0]["diachi_lienhe"], "")); ;
+                    txtDTLienhe.Text = Utility.sDbnull(dt_Patient.Rows[0]["dienthoai_lienhe"], "-1");
                 }
                 if (RaiseEvent && _OnEnterMe != null) _OnEnterMe();
 

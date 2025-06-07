@@ -109,6 +109,10 @@
             this.label18 = new System.Windows.Forms.Label();
             this.grdGoidichvu = new Janus.Windows.GridEX.GridEX();
             this.uiCheckBox1 = new Janus.Windows.EditControls.UICheckBox();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.grdChiphithem = new Janus.Windows.GridEX.GridEX();
+            this.chkShowGroup = new Janus.Windows.EditControls.UICheckBox();
+            this.grdChidinhCLS_Ngoaitru = new Janus.Windows.GridEX.GridEX();
             this.cmdthemphieudieutri = new Janus.Windows.EditControls.UIButton();
             this.cmdSuaphieudieutri = new Janus.Windows.EditControls.UIButton();
             this.cmdxoaphieudieutri = new Janus.Windows.EditControls.UIButton();
@@ -146,8 +150,6 @@
             this.cmdInphieukham = new Janus.Windows.EditControls.UIButton();
             this.cmdInchungPhieu = new Janus.Windows.EditControls.UIButton();
             this.cmdIndonthuoc = new Janus.Windows.EditControls.UIButton();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.grdChiphithem = new Janus.Windows.GridEX.GridEX();
             this.cmdChiphithem_Inchung = new Janus.Windows.EditControls.UIButton();
             this.uiButton4 = new Janus.Windows.EditControls.UIButton();
             this.cmdChiphithem_Xoa = new Janus.Windows.EditControls.UIButton();
@@ -159,9 +161,7 @@
             this.cmdXoadonthuocravien = new Janus.Windows.EditControls.UIButton();
             this.cmdThemdonthuocravien = new Janus.Windows.EditControls.UIButton();
             this.cmdInKQXN = new Janus.Windows.EditControls.UIButton();
-            this.chkShowGroup = new Janus.Windows.EditControls.UICheckBox();
             this.cmdViewPDF = new Janus.Windows.EditControls.UIButton();
-            this.grdChidinhCLS_Ngoaitru = new Janus.Windows.GridEX.GridEX();
             this.txtKieuKham = new VNS.HIS.UCs.AutoCompleteTextbox();
             this.txtPhongkham = new VNS.HIS.UCs.AutoCompleteTextbox();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -1011,11 +1011,99 @@
             this.uiCheckBox1.Visible = false;
             this.uiCheckBox1.CheckedChanged += new System.EventHandler(this.uiCheckBox1_CheckedChanged);
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.linkLabel1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel1.Location = new System.Drawing.Point(0, 676);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(127, 16);
+            this.linkLabel1.TabIndex = 502;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Cấu hình kích thước";
+            this.toolTip1.SetToolTip(this.linkLabel1, "Nhấn vào đây để cấu hình kích thước cho các đối tượng nhập kết quả");
+            // 
+            // grdChiphithem
+            // 
+            this.grdChiphithem.AlternatingColors = true;
+            this.grdChiphithem.AlternatingRowFormatStyle.BackColor = System.Drawing.Color.Cornsilk;
+            grdChiphithem_DesignTimeLayout.LayoutString = resources.GetString("grdChiphithem_DesignTimeLayout.LayoutString");
+            this.grdChiphithem.DesignTimeLayout = grdChiphithem_DesignTimeLayout;
+            this.grdChiphithem.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdChiphithem.DynamicFiltering = true;
+            this.grdChiphithem.FilterMode = Janus.Windows.GridEX.FilterMode.Automatic;
+            this.grdChiphithem.FilterRowFormatStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.grdChiphithem.Font = new System.Drawing.Font("Arial", 9F);
+            this.grdChiphithem.GroupByBoxVisible = false;
+            this.grdChiphithem.GroupRowFormatStyle.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            this.grdChiphithem.GroupRowFormatStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.grdChiphithem.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight;
+            this.grdChiphithem.Location = new System.Drawing.Point(0, 0);
+            this.grdChiphithem.Name = "grdChiphithem";
+            this.grdChiphithem.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
+            this.grdChiphithem.SelectedFormatStyle.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.grdChiphithem.SelectedFormatStyle.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.grdChiphithem.Size = new System.Drawing.Size(842, 717);
+            this.grdChiphithem.TabIndex = 253;
+            this.toolTip1.SetToolTip(this.grdChiphithem, "Nhấn chuột phải để xóa từng chi tiết cận lâm sàng đang chọn");
+            this.grdChiphithem.TotalRow = Janus.Windows.GridEX.InheritableBoolean.True;
+            this.grdChiphithem.TotalRowFormatStyle.BackColor = System.Drawing.Color.Beige;
+            this.grdChiphithem.TotalRowFormatStyle.FontBold = Janus.Windows.GridEX.TriState.True;
+            this.grdChiphithem.TotalRowFormatStyle.ForeColor = System.Drawing.Color.Black;
+            this.grdChiphithem.TotalRowPosition = Janus.Windows.GridEX.TotalRowPosition.BottomFixed;
+            this.grdChiphithem.UseGroupRowSelector = true;
+            // 
+            // chkShowGroup
+            // 
+            this.chkShowGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkShowGroup.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkShowGroup.Location = new System.Drawing.Point(1165, 193);
+            this.chkShowGroup.Name = "chkShowGroup";
+            this.chkShowGroup.Size = new System.Drawing.Size(93, 23);
+            this.chkShowGroup.TabIndex = 635;
+            this.chkShowGroup.Tag = "KEDONTHUOC_NHOMTHUOC";
+            this.chkShowGroup.Text = "Nhóm thuốc?";
+            this.toolTip1.SetToolTip(this.chkShowGroup, "Check mục này nếu muốn gom các id thuốc kho của cùng 1 thuốc thành 1 dòng duy nhấ" +
+        "t");
+            this.chkShowGroup.CheckedChanged += new System.EventHandler(this.chkShowGroup_CheckedChanged);
+            // 
+            // grdChidinhCLS_Ngoaitru
+            // 
+            this.grdChidinhCLS_Ngoaitru.AlternatingColors = true;
+            this.grdChidinhCLS_Ngoaitru.AlternatingRowFormatStyle.BackColor = System.Drawing.Color.Cornsilk;
+            this.grdChidinhCLS_Ngoaitru.ContextMenuStrip = this.ctxDelCLS;
+            grdChidinhCLS_Ngoaitru_DesignTimeLayout.LayoutString = resources.GetString("grdChidinhCLS_Ngoaitru_DesignTimeLayout.LayoutString");
+            this.grdChidinhCLS_Ngoaitru.DesignTimeLayout = grdChidinhCLS_Ngoaitru_DesignTimeLayout;
+            this.grdChidinhCLS_Ngoaitru.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdChidinhCLS_Ngoaitru.DynamicFiltering = true;
+            this.grdChidinhCLS_Ngoaitru.FilterMode = Janus.Windows.GridEX.FilterMode.Automatic;
+            this.grdChidinhCLS_Ngoaitru.FilterRowFormatStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.grdChidinhCLS_Ngoaitru.Font = new System.Drawing.Font("Arial", 9F);
+            this.grdChidinhCLS_Ngoaitru.GroupByBoxVisible = false;
+            this.grdChidinhCLS_Ngoaitru.GroupRowFormatStyle.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            this.grdChidinhCLS_Ngoaitru.GroupRowFormatStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.grdChidinhCLS_Ngoaitru.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight;
+            this.grdChidinhCLS_Ngoaitru.Location = new System.Drawing.Point(0, 0);
+            this.grdChidinhCLS_Ngoaitru.Name = "grdChidinhCLS_Ngoaitru";
+            this.grdChidinhCLS_Ngoaitru.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
+            this.grdChidinhCLS_Ngoaitru.SelectedFormatStyle.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.grdChidinhCLS_Ngoaitru.SelectedFormatStyle.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.grdChidinhCLS_Ngoaitru.Size = new System.Drawing.Size(838, 691);
+            this.grdChidinhCLS_Ngoaitru.TabIndex = 254;
+            this.toolTip1.SetToolTip(this.grdChidinhCLS_Ngoaitru, "Nhấn chuột phải để xóa từng chi tiết cận lâm sàng đang chọn");
+            this.grdChidinhCLS_Ngoaitru.TotalRow = Janus.Windows.GridEX.InheritableBoolean.True;
+            this.grdChidinhCLS_Ngoaitru.TotalRowFormatStyle.BackColor = System.Drawing.Color.Beige;
+            this.grdChidinhCLS_Ngoaitru.TotalRowFormatStyle.FontBold = Janus.Windows.GridEX.TriState.True;
+            this.grdChidinhCLS_Ngoaitru.TotalRowFormatStyle.ForeColor = System.Drawing.Color.Black;
+            this.grdChidinhCLS_Ngoaitru.TotalRowPosition = Janus.Windows.GridEX.TotalRowPosition.BottomFixed;
+            this.grdChidinhCLS_Ngoaitru.UseGroupRowSelector = true;
+            // 
             // cmdthemphieudieutri
             // 
             this.cmdthemphieudieutri.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cmdthemphieudieutri.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdthemphieudieutri.Image = ((System.Drawing.Image)(resources.GetObject("cmdthemphieudieutri.Image")));
+            this.cmdthemphieudieutri.Image = global::VMS.HIS.Noitru.Properties.Resources.add_04_32;
             this.cmdthemphieudieutri.ImageSize = new System.Drawing.Size(24, 24);
             this.cmdthemphieudieutri.Location = new System.Drawing.Point(3, 3);
             this.cmdthemphieudieutri.Name = "cmdthemphieudieutri";
@@ -1054,7 +1142,7 @@
             // cmdInphieudieutri
             // 
             this.cmdInphieudieutri.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cmdInphieudieutri.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmdInphieudieutri.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdInphieudieutri.Image = ((System.Drawing.Image)(resources.GetObject("cmdInphieudieutri.Image")));
             this.cmdInphieudieutri.ImageSize = new System.Drawing.Size(24, 24);
             this.cmdInphieudieutri.Location = new System.Drawing.Point(3, 45);
@@ -1109,7 +1197,7 @@
             // 
             this.cmdInsertAssign.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdInsertAssign.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdInsertAssign.Image = ((System.Drawing.Image)(resources.GetObject("cmdInsertAssign.Image")));
+            this.cmdInsertAssign.Image = global::VMS.HIS.Noitru.Properties.Resources.add_04_32;
             this.cmdInsertAssign.ImageSize = new System.Drawing.Size(20, 20);
             this.cmdInsertAssign.Location = new System.Drawing.Point(247, 10);
             this.cmdInsertAssign.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
@@ -1168,7 +1256,7 @@
             // 
             this.cmdCreateNewPres.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdCreateNewPres.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdCreateNewPres.Image = ((System.Drawing.Image)(resources.GetObject("cmdCreateNewPres.Image")));
+            this.cmdCreateNewPres.Image = global::VMS.HIS.Noitru.Properties.Resources.add_04_32;
             this.cmdCreateNewPres.ImageSize = new System.Drawing.Size(20, 20);
             this.cmdCreateNewPres.Location = new System.Drawing.Point(112, 10);
             this.cmdCreateNewPres.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
@@ -1243,7 +1331,7 @@
             // 
             this.cmdThemphieuVT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdThemphieuVT.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdThemphieuVT.Image = ((System.Drawing.Image)(resources.GetObject("cmdThemphieuVT.Image")));
+            this.cmdThemphieuVT.Image = global::VMS.HIS.Noitru.Properties.Resources.add_04_32;
             this.cmdThemphieuVT.ImageSize = new System.Drawing.Size(20, 20);
             this.cmdThemphieuVT.Location = new System.Drawing.Point(148, 10);
             this.cmdThemphieuVT.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
@@ -1487,7 +1575,7 @@
             // 
             this.cmdThemCongkham.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdThemCongkham.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdThemCongkham.Image = ((System.Drawing.Image)(resources.GetObject("cmdThemCongkham.Image")));
+            this.cmdThemCongkham.Image = global::VMS.HIS.Noitru.Properties.Resources.add_04_32;
             this.cmdThemCongkham.ImageSize = new System.Drawing.Size(24, 24);
             this.cmdThemCongkham.Location = new System.Drawing.Point(17, 3);
             this.cmdThemCongkham.Name = "cmdThemCongkham";
@@ -1542,49 +1630,6 @@
             this.cmdIndonthuoc.Text = "In đơn thuốc";
             this.toolTip1.SetToolTip(this.cmdIndonthuoc, "Nhấn vào nts này để in đơn thuốc cho bệnh nhân");
             this.cmdIndonthuoc.Click += new System.EventHandler(this.cmdIndonthuoc_Click);
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.linkLabel1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel1.Location = new System.Drawing.Point(0, 658);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(127, 16);
-            this.linkLabel1.TabIndex = 502;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Cấu hình kích thước";
-            this.toolTip1.SetToolTip(this.linkLabel1, "Nhấn vào đây để cấu hình kích thước cho các đối tượng nhập kết quả");
-            // 
-            // grdChiphithem
-            // 
-            this.grdChiphithem.AlternatingColors = true;
-            this.grdChiphithem.AlternatingRowFormatStyle.BackColor = System.Drawing.Color.Cornsilk;
-            grdChiphithem_DesignTimeLayout.LayoutString = resources.GetString("grdChiphithem_DesignTimeLayout.LayoutString");
-            this.grdChiphithem.DesignTimeLayout = grdChiphithem_DesignTimeLayout;
-            this.grdChiphithem.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdChiphithem.DynamicFiltering = true;
-            this.grdChiphithem.FilterMode = Janus.Windows.GridEX.FilterMode.Automatic;
-            this.grdChiphithem.FilterRowFormatStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.grdChiphithem.Font = new System.Drawing.Font("Arial", 9F);
-            this.grdChiphithem.GroupByBoxVisible = false;
-            this.grdChiphithem.GroupRowFormatStyle.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
-            this.grdChiphithem.GroupRowFormatStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.grdChiphithem.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight;
-            this.grdChiphithem.Location = new System.Drawing.Point(0, 0);
-            this.grdChiphithem.Name = "grdChiphithem";
-            this.grdChiphithem.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
-            this.grdChiphithem.SelectedFormatStyle.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.grdChiphithem.SelectedFormatStyle.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.grdChiphithem.Size = new System.Drawing.Size(842, 699);
-            this.grdChiphithem.TabIndex = 253;
-            this.toolTip1.SetToolTip(this.grdChiphithem, "Nhấn chuột phải để xóa từng chi tiết cận lâm sàng đang chọn");
-            this.grdChiphithem.TotalRow = Janus.Windows.GridEX.InheritableBoolean.True;
-            this.grdChiphithem.TotalRowFormatStyle.BackColor = System.Drawing.Color.Beige;
-            this.grdChiphithem.TotalRowFormatStyle.FontBold = Janus.Windows.GridEX.TriState.True;
-            this.grdChiphithem.TotalRowFormatStyle.ForeColor = System.Drawing.Color.Black;
-            this.grdChiphithem.TotalRowPosition = Janus.Windows.GridEX.TotalRowPosition.BottomFixed;
-            this.grdChiphithem.UseGroupRowSelector = true;
             // 
             // cmdChiphithem_Inchung
             // 
@@ -1647,7 +1692,7 @@
             // 
             this.cmdChiphithem_Them.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdChiphithem_Them.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdChiphithem_Them.Image = ((System.Drawing.Image)(resources.GetObject("cmdChiphithem_Them.Image")));
+            this.cmdChiphithem_Them.Image = global::VMS.HIS.Noitru.Properties.Resources.add_04_32;
             this.cmdChiphithem_Them.ImageSize = new System.Drawing.Size(20, 20);
             this.cmdChiphithem_Them.Location = new System.Drawing.Point(202, 10);
             this.cmdChiphithem_Them.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
@@ -1722,7 +1767,7 @@
             // 
             this.cmdThemdonthuocravien.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdThemdonthuocravien.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdThemdonthuocravien.Image = ((System.Drawing.Image)(resources.GetObject("cmdThemdonthuocravien.Image")));
+            this.cmdThemdonthuocravien.Image = global::VMS.HIS.Noitru.Properties.Resources.add_04_32;
             this.cmdThemdonthuocravien.ImageSize = new System.Drawing.Size(20, 20);
             this.cmdThemdonthuocravien.Location = new System.Drawing.Point(163, 10);
             this.cmdThemdonthuocravien.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
@@ -1748,20 +1793,6 @@
             this.toolTip1.SetToolTip(this.cmdInKQXN, "Nhấn vào đây để in tóm tắt điều trị ngoại trú(Ctrl+P)");
             this.cmdInKQXN.VisualStyle = Janus.Windows.UI.VisualStyle.Office2003;
             // 
-            // chkShowGroup
-            // 
-            this.chkShowGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chkShowGroup.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkShowGroup.Location = new System.Drawing.Point(1165, 193);
-            this.chkShowGroup.Name = "chkShowGroup";
-            this.chkShowGroup.Size = new System.Drawing.Size(93, 23);
-            this.chkShowGroup.TabIndex = 635;
-            this.chkShowGroup.Tag = "KEDONTHUOC_NHOMTHUOC";
-            this.chkShowGroup.Text = "Nhóm thuốc?";
-            this.toolTip1.SetToolTip(this.chkShowGroup, "Check mục này nếu muốn gom các id thuốc kho của cùng 1 thuốc thành 1 dòng duy nhấ" +
-        "t");
-            this.chkShowGroup.CheckedChanged += new System.EventHandler(this.chkShowGroup_CheckedChanged);
-            // 
             // cmdViewPDF
             // 
             this.cmdViewPDF.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -1776,37 +1807,6 @@
             this.cmdViewPDF.TabStop = false;
             this.toolTip1.SetToolTip(this.cmdViewPDF, "Xem kết quả PDF");
             this.cmdViewPDF.Click += new System.EventHandler(this.cdViewPDF_Click);
-            // 
-            // grdChidinhCLS_Ngoaitru
-            // 
-            this.grdChidinhCLS_Ngoaitru.AlternatingColors = true;
-            this.grdChidinhCLS_Ngoaitru.AlternatingRowFormatStyle.BackColor = System.Drawing.Color.Cornsilk;
-            this.grdChidinhCLS_Ngoaitru.ContextMenuStrip = this.ctxDelCLS;
-            grdChidinhCLS_Ngoaitru_DesignTimeLayout.LayoutString = resources.GetString("grdChidinhCLS_Ngoaitru_DesignTimeLayout.LayoutString");
-            this.grdChidinhCLS_Ngoaitru.DesignTimeLayout = grdChidinhCLS_Ngoaitru_DesignTimeLayout;
-            this.grdChidinhCLS_Ngoaitru.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdChidinhCLS_Ngoaitru.DynamicFiltering = true;
-            this.grdChidinhCLS_Ngoaitru.FilterMode = Janus.Windows.GridEX.FilterMode.Automatic;
-            this.grdChidinhCLS_Ngoaitru.FilterRowFormatStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.grdChidinhCLS_Ngoaitru.Font = new System.Drawing.Font("Arial", 9F);
-            this.grdChidinhCLS_Ngoaitru.GroupByBoxVisible = false;
-            this.grdChidinhCLS_Ngoaitru.GroupRowFormatStyle.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
-            this.grdChidinhCLS_Ngoaitru.GroupRowFormatStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.grdChidinhCLS_Ngoaitru.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight;
-            this.grdChidinhCLS_Ngoaitru.Location = new System.Drawing.Point(0, 0);
-            this.grdChidinhCLS_Ngoaitru.Name = "grdChidinhCLS_Ngoaitru";
-            this.grdChidinhCLS_Ngoaitru.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
-            this.grdChidinhCLS_Ngoaitru.SelectedFormatStyle.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.grdChidinhCLS_Ngoaitru.SelectedFormatStyle.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.grdChidinhCLS_Ngoaitru.Size = new System.Drawing.Size(838, 691);
-            this.grdChidinhCLS_Ngoaitru.TabIndex = 254;
-            this.toolTip1.SetToolTip(this.grdChidinhCLS_Ngoaitru, "Nhấn chuột phải để xóa từng chi tiết cận lâm sàng đang chọn");
-            this.grdChidinhCLS_Ngoaitru.TotalRow = Janus.Windows.GridEX.InheritableBoolean.True;
-            this.grdChidinhCLS_Ngoaitru.TotalRowFormatStyle.BackColor = System.Drawing.Color.Beige;
-            this.grdChidinhCLS_Ngoaitru.TotalRowFormatStyle.FontBold = Janus.Windows.GridEX.TriState.True;
-            this.grdChidinhCLS_Ngoaitru.TotalRowFormatStyle.ForeColor = System.Drawing.Color.Black;
-            this.grdChidinhCLS_Ngoaitru.TotalRowPosition = Janus.Windows.GridEX.TotalRowPosition.BottomFixed;
-            this.grdChidinhCLS_Ngoaitru.UseGroupRowSelector = true;
             // 
             // txtKieuKham
             // 
@@ -3318,7 +3318,7 @@
             this.tabPageChidinhThuoc.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPageChidinhThuoc.Location = new System.Drawing.Point(1, 23);
             this.tabPageChidinhThuoc.Name = "tabPageChidinhThuoc";
-            this.tabPageChidinhThuoc.Size = new System.Drawing.Size(842, 749);
+            this.tabPageChidinhThuoc.Size = new System.Drawing.Size(842, 767);
             this.tabPageChidinhThuoc.TabStop = true;
             this.tabPageChidinhThuoc.Text = "Đơn thuốc";
             // 
@@ -3329,7 +3329,7 @@
             this.pnltabkedon.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnltabkedon.Location = new System.Drawing.Point(0, 0);
             this.pnltabkedon.Name = "pnltabkedon";
-            this.pnltabkedon.Size = new System.Drawing.Size(842, 749);
+            this.pnltabkedon.Size = new System.Drawing.Size(842, 767);
             this.pnltabkedon.TabIndex = 9;
             // 
             // grdPresDetail
@@ -3353,7 +3353,7 @@
             this.grdPresDetail.RecordNavigator = true;
             this.grdPresDetail.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
             this.grdPresDetail.SelectedFormatStyle.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.grdPresDetail.Size = new System.Drawing.Size(842, 699);
+            this.grdPresDetail.Size = new System.Drawing.Size(842, 717);
             this.grdPresDetail.TabIndex = 2;
             this.grdPresDetail.TotalRow = Janus.Windows.GridEX.InheritableBoolean.True;
             this.grdPresDetail.TotalRowFormatStyle.BackColor = System.Drawing.Color.Beige;
@@ -3366,7 +3366,7 @@
             // 
             this.pnlDonthuoc.Controls.Add(this.flowThuoc);
             this.pnlDonthuoc.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlDonthuoc.Location = new System.Drawing.Point(0, 699);
+            this.pnlDonthuoc.Location = new System.Drawing.Point(0, 717);
             this.pnlDonthuoc.Name = "pnlDonthuoc";
             this.pnlDonthuoc.Size = new System.Drawing.Size(842, 50);
             this.pnlDonthuoc.TabIndex = 1;
@@ -3391,7 +3391,7 @@
             this.TabPageVTTH.Controls.Add(this.pnlVTTH);
             this.TabPageVTTH.Location = new System.Drawing.Point(1, 23);
             this.TabPageVTTH.Name = "TabPageVTTH";
-            this.TabPageVTTH.Size = new System.Drawing.Size(842, 749);
+            this.TabPageVTTH.Size = new System.Drawing.Size(842, 767);
             this.TabPageVTTH.TabStop = true;
             this.TabPageVTTH.Text = "Vật tư y tế";
             // 
@@ -3416,7 +3416,7 @@
             this.grdVTTH.RecordNavigator = true;
             this.grdVTTH.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
             this.grdVTTH.SelectedFormatStyle.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.grdVTTH.Size = new System.Drawing.Size(842, 699);
+            this.grdVTTH.Size = new System.Drawing.Size(842, 717);
             this.grdVTTH.TabIndex = 3;
             this.grdVTTH.TotalRow = Janus.Windows.GridEX.InheritableBoolean.True;
             this.grdVTTH.TotalRowFormatStyle.BackColor = System.Drawing.Color.Beige;
@@ -3429,7 +3429,7 @@
             // 
             this.pnlVTTH.Controls.Add(this.flowVTTH);
             this.pnlVTTH.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlVTTH.Location = new System.Drawing.Point(0, 699);
+            this.pnlVTTH.Location = new System.Drawing.Point(0, 717);
             this.pnlVTTH.Name = "pnlVTTH";
             this.pnlVTTH.Size = new System.Drawing.Size(842, 50);
             this.pnlVTTH.TabIndex = 2;
@@ -3674,7 +3674,7 @@
             this.uiTabPage3.Controls.Add(this.panel19);
             this.uiTabPage3.Location = new System.Drawing.Point(1, 23);
             this.uiTabPage3.Name = "uiTabPage3";
-            this.uiTabPage3.Size = new System.Drawing.Size(842, 749);
+            this.uiTabPage3.Size = new System.Drawing.Size(842, 767);
             this.uiTabPage3.TabStop = true;
             this.uiTabPage3.Text = "Chi phí thêm";
             // 
@@ -3686,7 +3686,7 @@
             this.panel19.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel19.Location = new System.Drawing.Point(0, 0);
             this.panel19.Name = "panel19";
-            this.panel19.Size = new System.Drawing.Size(842, 749);
+            this.panel19.Size = new System.Drawing.Size(842, 767);
             this.panel19.TabIndex = 9;
             // 
             // uiTab1
@@ -3695,7 +3695,7 @@
             this.uiTab1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uiTab1.Location = new System.Drawing.Point(842, 0);
             this.uiTab1.Name = "uiTab1";
-            this.uiTab1.Size = new System.Drawing.Size(0, 699);
+            this.uiTab1.Size = new System.Drawing.Size(0, 717);
             this.uiTab1.TabIndex = 255;
             this.uiTab1.TabPages.AddRange(new Janus.Windows.UI.Tab.UITabPage[] {
             this.uiTabPage4});
@@ -3708,7 +3708,7 @@
             this.uiTabPage4.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uiTabPage4.Location = new System.Drawing.Point(1, 24);
             this.uiTabPage4.Name = "uiTabPage4";
-            this.uiTabPage4.Size = new System.Drawing.Size(0, 674);
+            this.uiTabPage4.Size = new System.Drawing.Size(0, 692);
             this.uiTabPage4.TabStop = true;
             this.uiTabPage4.Text = "Kết quả CLS";
             // 
@@ -3720,7 +3720,7 @@
             this.panel20.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel20.Location = new System.Drawing.Point(0, 0);
             this.panel20.Name = "panel20";
-            this.panel20.Size = new System.Drawing.Size(0, 674);
+            this.panel20.Size = new System.Drawing.Size(0, 692);
             this.panel20.TabIndex = 22;
             // 
             // flowLayoutPanel1
@@ -3729,7 +3729,7 @@
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 28);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(0, 630);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(0, 648);
             this.flowLayoutPanel1.TabIndex = 511;
             this.flowLayoutPanel1.TabStop = true;
             // 
@@ -3747,7 +3747,7 @@
             this.panel22.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel22.Location = new System.Drawing.Point(0, 0);
             this.panel22.Name = "panel22";
-            this.panel22.Size = new System.Drawing.Size(0, 674);
+            this.panel22.Size = new System.Drawing.Size(0, 692);
             this.panel22.TabIndex = 0;
             // 
             // gridEX1
@@ -3770,7 +3770,7 @@
             this.gridEX1.Name = "gridEX1";
             this.gridEX1.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
             this.gridEX1.SelectedFormatStyle.BackColor = System.Drawing.Color.SteelBlue;
-            this.gridEX1.Size = new System.Drawing.Size(0, 674);
+            this.gridEX1.Size = new System.Drawing.Size(0, 692);
             this.gridEX1.TabIndex = 256;
             this.gridEX1.TotalRow = Janus.Windows.GridEX.InheritableBoolean.True;
             this.gridEX1.TotalRowFormatStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
@@ -3787,7 +3787,7 @@
             this.panel23.Controls.Add(this.checkBox1);
             this.panel23.Controls.Add(this.uiButton9);
             this.panel23.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel23.Location = new System.Drawing.Point(0, 699);
+            this.panel23.Location = new System.Drawing.Point(0, 717);
             this.panel23.Name = "panel23";
             this.panel23.Size = new System.Drawing.Size(842, 50);
             this.panel23.TabIndex = 1;
@@ -3996,7 +3996,7 @@
             this.uiTabPage1.Key = "DinhDuong";
             this.uiTabPage1.Location = new System.Drawing.Point(1, 23);
             this.uiTabPage1.Name = "uiTabPage1";
-            this.uiTabPage1.Size = new System.Drawing.Size(842, 749);
+            this.uiTabPage1.Size = new System.Drawing.Size(842, 767);
             this.uiTabPage1.TabStop = true;
             this.uiTabPage1.Text = "Dinh dưỡng";
             // 
@@ -4007,7 +4007,7 @@
             this.panel15.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel15.Location = new System.Drawing.Point(0, 0);
             this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(842, 749);
+            this.panel15.Size = new System.Drawing.Size(842, 767);
             this.panel15.TabIndex = 479;
             // 
             // grdChedoDinhduong
@@ -4042,7 +4042,7 @@
             this.grdChedoDinhduong.SelectedFormatStyle.FontBold = Janus.Windows.GridEX.TriState.True;
             this.grdChedoDinhduong.SelectedFormatStyle.ForeColor = System.Drawing.Color.White;
             this.grdChedoDinhduong.SelectedInactiveFormatStyle.ForeColor = System.Drawing.Color.Black;
-            this.grdChedoDinhduong.Size = new System.Drawing.Size(842, 679);
+            this.grdChedoDinhduong.Size = new System.Drawing.Size(842, 697);
             this.grdChedoDinhduong.TabIndex = 555;
             this.grdChedoDinhduong.TabStop = false;
             // 
@@ -4199,7 +4199,7 @@
             this.uiTabPage5.Controls.Add(this.panel24);
             this.uiTabPage5.Location = new System.Drawing.Point(1, 23);
             this.uiTabPage5.Name = "uiTabPage5";
-            this.uiTabPage5.Size = new System.Drawing.Size(842, 749);
+            this.uiTabPage5.Size = new System.Drawing.Size(842, 767);
             this.uiTabPage5.TabStop = true;
             this.uiTabPage5.Text = "Đơn thuốc ra viện";
             // 
@@ -4210,7 +4210,7 @@
             this.panel24.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel24.Location = new System.Drawing.Point(0, 0);
             this.panel24.Name = "panel24";
-            this.panel24.Size = new System.Drawing.Size(842, 749);
+            this.panel24.Size = new System.Drawing.Size(842, 767);
             this.panel24.TabIndex = 10;
             // 
             // grdDonthuocravien
@@ -4234,7 +4234,7 @@
             this.grdDonthuocravien.RecordNavigator = true;
             this.grdDonthuocravien.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
             this.grdDonthuocravien.SelectedFormatStyle.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.grdDonthuocravien.Size = new System.Drawing.Size(842, 699);
+            this.grdDonthuocravien.Size = new System.Drawing.Size(842, 717);
             this.grdDonthuocravien.TabIndex = 2;
             this.grdDonthuocravien.TotalRow = Janus.Windows.GridEX.InheritableBoolean.True;
             this.grdDonthuocravien.TotalRowFormatStyle.BackColor = System.Drawing.Color.Beige;
@@ -4247,7 +4247,7 @@
             // 
             this.panel25.Controls.Add(this.flowLayoutPanel3);
             this.panel25.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel25.Location = new System.Drawing.Point(0, 699);
+            this.panel25.Location = new System.Drawing.Point(0, 717);
             this.panel25.Name = "panel25";
             this.panel25.Size = new System.Drawing.Size(842, 50);
             this.panel25.TabIndex = 1;

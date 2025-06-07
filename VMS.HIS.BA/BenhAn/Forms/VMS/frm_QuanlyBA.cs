@@ -439,10 +439,10 @@ namespace VNS.HIS.UI.BA
                 Utility.ShowMsg("Chưa có thông tin người bệnh để thực hiện thao tác in tóm tắt bệnh án");
                 return;
             }
-            KcbTomtatBA ttba = new Select().From(KcbTomtatBA.Schema)
-                .Where(KcbTomtatBA.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
-                .And(KcbTomtatBA.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
-                .ExecuteSingle<KcbTomtatBA>();
+            EmrTongketBenhan ttba = new Select().From(EmrTongketBenhan.Schema)
+                .Where(EmrTongketBenhan.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
+                .And(EmrTongketBenhan.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
+                .ExecuteSingle<EmrTongketBenhan>();
             if (ttba == null || ttba.Id <= 0)
             {
                 Utility.ShowMsg("Bạn cần tạo Tóm tắt hồ sơ bệnh án trước khi thực hiện in");
@@ -497,7 +497,7 @@ namespace VNS.HIS.UI.BA
                 {
                     dicMF.Add(chkField, Utility.Byte2Bool(drData[chkField]) ? "0" : "1");
                 }
-                string checkboxFieldsFile = AppDomain.CurrentDomain.BaseDirectory + "MAUBA\\BA01_EmrBa.txt";
+                string checkboxFieldsFile = AppDomain.CurrentDomain.BaseDirectory + "MAUBA\\BA_CHECKED_FIELDS.txt";
                 lstcheckboxfields = Utility.GetFirstValueFromFile(checkboxFieldsFile).Split(',').ToList<string>();
                 NoitruPhieuravien _phieuravien = new Select().From(NoitruPhieuravien.Schema)
                .Where(NoitruPhieuravien.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
@@ -536,12 +536,12 @@ namespace VNS.HIS.UI.BA
 
                 List<string> fieldNames = new List<string>();
                 string tenToBA = "";
-                if (toBA == 1) tenToBA = "BA01_EmrBa_TO1.doc";
-                else if (toBA == 0) tenToBA = "BA01_EmrBa_BIA.doc";
-                else if (toBA == 2) tenToBA = "BA01_EmrBa_TO2.doc";
-                else if (toBA == 3) tenToBA = "BA01_EmrBa_TO3.doc";
-                else if (toBA == 4) tenToBA = "BA01_EmrBa_TO4.doc";
-                else tenToBA = "BA01_EmrBa.doc";
+                if (toBA == 1) tenToBA = "BA01_BANOIKHOA_TO1.doc";
+                else if (toBA == 0) tenToBA = "BA01_BANOIKHOA_BIA.doc";
+                else if (toBA == 2) tenToBA = "BA01_BANOIKHOA_TO2.doc";
+                else if (toBA == 3) tenToBA = "BA01_BANOIKHOA_TO3.doc";
+                else if (toBA == 4) tenToBA = "BA01_BANOIKHOA_TO4.doc";
+                else tenToBA = "BA01_BANOIKHOA.doc";
                 string PathDoc = string.Format(AppDomain.CurrentDomain.BaseDirectory + "MAUBA\\{0}", tenToBA);
                 string writePathdoc = AppDomain.CurrentDomain.BaseDirectory + "tempDoc\\";
                 if (!Directory.Exists(writePathdoc)) Directory.CreateDirectory(writePathdoc);
@@ -589,7 +589,7 @@ namespace VNS.HIS.UI.BA
                         else
                         {
                             int table_idx = 0;
-                            string tbl_idx = AppDomain.CurrentDomain.BaseDirectory + "MAUBA\\BA01_EmrBa_TBLIDX.txt";
+                            string tbl_idx = AppDomain.CurrentDomain.BaseDirectory + "MAUBA\\BA01_BANOIKHOA_TBLIDX.txt";
                             table_idx = Utility.Int32Dbnull(Utility.GetFirstValueFromFile(tbl_idx), 1);
                             Aspose.Words.Tables.Table tab = doc.FirstSection.Body.Tables[table_idx];
 
@@ -743,6 +743,12 @@ namespace VNS.HIS.UI.BA
                 Utility.CatchException(ex);
             }
            
+        }
+
+        private void cmdEmr_Click(object sender, EventArgs e)
+        {
+            frm_Emr _Emr = new frm_Emr();
+            _Emr.ShowDialog();
         }
     }
 }

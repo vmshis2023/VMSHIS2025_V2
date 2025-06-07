@@ -73,6 +73,7 @@ namespace VMS.EMR.PHIEUKHAM
 
         private void cmdExit_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
@@ -82,6 +83,7 @@ namespace VMS.EMR.PHIEUKHAM
             if (result)
             {
                 Utility.SetMsg(lblMsg, "Lưu thông tin thành công",false);
+                this.DialogResult = DialogResult.OK;
                 if( chkCloseAfterSave.Checked)
                 this.Close();
             }

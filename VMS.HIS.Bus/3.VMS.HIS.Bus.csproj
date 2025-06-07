@@ -84,6 +84,11 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Running\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>C:\HIS_BVSG\Running\Microsoft.Office.Interop.Word.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Newtonsoft.Json, Version=13.0.1.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -131,6 +136,8 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Classess\Baocao\INPHIEU_THANHTOAN_NGOAITRU.cs" />
     <Compile Include="Classess\BA\clsInBA.cs" />
+    <Compile Include="Classess\Pdf2Emr\Pdf2HisItem.cs" />
+    <Compile Include="Classess\Pdf2Emr\Pdf2HisManager.cs" />
     <Compile Include="Classess\WordPrinter.cs" />
     <Compile Include="Classess\INPHIEU_THANHTOAN_NGOAITRU.cs" />
     <Compile Include="Classess\INPHIEU_THANHTOAN_NOITRU.cs" />
@@ -209,6 +216,10 @@
     <Compile Include="Thuoc\XuatThuoc\XuatThuoc.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\VMS.Emr\VMS.Emr\VMS.Emr.csproj">
+      <Project>{323d0245-5cd3-488a-8b83-edade85b3da4}</Project>
+      <Name>VMS.Emr</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VMS.HIS.BHYT\4_1.VMS.HIS.BHYT.csproj">
       <Project>{C68B076C-AD56-46BB-A16A-88F357AEE6F4}</Project>
       <Name>4_1.VMS.HIS.BHYT</Name>

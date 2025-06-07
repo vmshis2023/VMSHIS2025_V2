@@ -23,13 +23,14 @@ namespace VNS.HIS.UI.Forms.Dungchung.UCs
         private bool AllowTextChanged;
         public bool AutoLoad = false;
         public KcbLuotkham objLuotkham = null;
-        public VKcbLuotkham objBenhnhan = null;
+        //public VKcbLuotkham objBenhnhan = null;
         public DmucKhoaphong _khoaphong = null;
         public byte noitrungoaitru = 100;
         public byte trangthai_noitru = 100;
         public bool isReadonly = false;
         public string huongdieutri = "ALL"; //ALL,DTRI_NOITRU,DTRI_NGOAITRU
         string lastCode = "";
+        public DataTable dt_Patient;
         public ucThongtinnguoibenh_doc_v5()
         {
             InitializeComponent();
@@ -45,7 +46,7 @@ namespace VNS.HIS.UI.Forms.Dungchung.UCs
             try
             {
                 txtMaluotkham.Text = patient_code;
-                objBenhnhan = null;
+                //objBenhnhan = null;
                 AllowTextChanged = false;
                 if (!AutoLoad)
                 {
@@ -80,14 +81,14 @@ namespace VNS.HIS.UI.Forms.Dungchung.UCs
                         lastCode = txtMaluotkham.Text;
                     }
                 }
-                DataTable dt_Patient = Utility.ExecuteSql(string.Format("select * from v_kcb_luotkham where ma_luotkham='{0}' order by ngay_tiepdon desc", txtMaluotkham.Text), CommandType.Text).Tables[0];
+                 dt_Patient = SPs.EmrLaythongtinnguoibenhMaluotkhamIdbenhnhan(-1, patient_code).GetDataSet().Tables[0]; //Utility.ExecuteSql(string.Format("select * from v_kcb_luotkham where ma_luotkham='{0}' order by ngay_tiepdon desc", txtMaluotkham.Text), CommandType.Text).Tables[0];
                 if (dt_Patient != null && dt_Patient.Rows.Count > 0)
                 {
                     lastCode = txtMaluotkham.Text;
-                    objBenhnhan = new Select().From(VKcbLuotkham.Schema)
-                         .Where(VKcbLuotkham.Columns.IdBenhnhan).IsEqualTo(Utility.Int64Dbnull(dt_Patient.Rows[0][KcbDanhsachBenhnhan.Columns.IdBenhnhan]))
-                         .And(VKcbLuotkham.Columns.MaLuotkham).IsEqualTo(Utility.sDbnull(dt_Patient.Rows[0][KcbLuotkham.Columns.MaLuotkham]))
-                         .ExecuteSingle<VKcbLuotkham>();
+                    //objBenhnhan = new Select().From(VKcbLuotkham.Schema)
+                    //     .Where(VKcbLuotkham.Columns.IdBenhnhan).IsEqualTo(Utility.Int64Dbnull(dt_Patient.Rows[0][KcbDanhsachBenhnhan.Columns.IdBenhnhan]))
+                    //     .And(VKcbLuotkham.Columns.MaLuotkham).IsEqualTo(Utility.sDbnull(dt_Patient.Rows[0][KcbLuotkham.Columns.MaLuotkham]))
+                    //     .ExecuteSingle<VKcbLuotkham>();
                     txtIdBn.Text = Utility.sDbnull(dt_Patient.Rows[0][KcbDanhsachBenhnhan.Columns.IdBenhnhan], "");
                     objLuotkham =
                         new Select().From(KcbLuotkham.Schema)
@@ -137,7 +138,7 @@ namespace VNS.HIS.UI.Forms.Dungchung.UCs
         {
             try
             {
-                objBenhnhan = null;
+                //objBenhnhan = null;
                     AllowTextChanged = false;
                     if (!AutoLoad)
                     {
@@ -172,14 +173,14 @@ namespace VNS.HIS.UI.Forms.Dungchung.UCs
                             lastCode = txtMaluotkham.Text;
                         }
                     }
-                    DataTable dt_Patient = Utility.ExecuteSql(string.Format("select * from v_kcb_luotkham where ma_luotkham='{0}' order by ngay_tiepdon desc", txtMaluotkham.Text), CommandType.Text).Tables[0];
-                    if (dt_Patient != null && dt_Patient.Rows.Count > 0)
+                dt_Patient = SPs.EmrLaythongtinnguoibenhMaluotkhamIdbenhnhan(-1,Utility.sDbnull( txtMaluotkham.Text)).GetDataSet().Tables[0]; // Utility.ExecuteSql(string.Format("select * from v_kcb_luotkham where ma_luotkham='{0}' order by ngay_tiepdon desc", txtMaluotkham.Text), CommandType.Text).Tables[0];
+                if (dt_Patient != null && dt_Patient.Rows.Count > 0)
                     {
                         lastCode = txtMaluotkham.Text;
-                    objBenhnhan = new Select().From(VKcbLuotkham.Schema)
-                      .Where(VKcbLuotkham.Columns.IdBenhnhan).IsEqualTo(Utility.Int64Dbnull(dt_Patient.Rows[0][KcbDanhsachBenhnhan.Columns.IdBenhnhan]))
-                      .And(VKcbLuotkham.Columns.MaLuotkham).IsEqualTo(Utility.sDbnull(dt_Patient.Rows[0][KcbLuotkham.Columns.MaLuotkham]))
-                      .ExecuteSingle<VKcbLuotkham>();
+                    //objBenhnhan = new Select().From(VKcbLuotkham.Schema)
+                    //  .Where(VKcbLuotkham.Columns.IdBenhnhan).IsEqualTo(Utility.Int64Dbnull(dt_Patient.Rows[0][KcbDanhsachBenhnhan.Columns.IdBenhnhan]))
+                    //  .And(VKcbLuotkham.Columns.MaLuotkham).IsEqualTo(Utility.sDbnull(dt_Patient.Rows[0][KcbLuotkham.Columns.MaLuotkham]))
+                    //  .ExecuteSingle<VKcbLuotkham>();
                     txtIdBn.Text = Utility.sDbnull(dt_Patient.Rows[0][KcbDanhsachBenhnhan.Columns.IdBenhnhan], "");
                         objLuotkham =
                             new Select().From(KcbLuotkham.Schema)
@@ -229,7 +230,7 @@ namespace VNS.HIS.UI.Forms.Dungchung.UCs
         {
             try
             {
-                objBenhnhan = null;
+               // objBenhnhan = null;
                 AllowTextChanged = false;
                 if (!AutoLoad)
                 {
@@ -264,14 +265,14 @@ namespace VNS.HIS.UI.Forms.Dungchung.UCs
                         lastCode = txtMaluotkham.Text;
                     }
                 }
-                DataTable dt_Patient = Utility.ExecuteSql(string.Format("select * from v_kcb_luotkham where ma_luotkham='{0}' order by ngay_tiepdon desc", txtMaluotkham.Text), CommandType.Text).Tables[0];
+                dt_Patient = SPs.EmrLaythongtinnguoibenhMaluotkhamIdbenhnhan(-1, Utility.sDbnull(txtMaluotkham.Text)).GetDataSet().Tables[0]; // Utility.ExecuteSql(string.Format("select * from v_kcb_luotkham where ma_luotkham='{0}' order by ngay_tiepdon desc", txtMaluotkham.Text), CommandType.Text).Tables[0];
                 if (dt_Patient != null && dt_Patient.Rows.Count > 0)
                 {
                     lastCode = txtMaluotkham.Text;
-                    objBenhnhan = new Select().From(VKcbLuotkham.Schema)
-                         .Where(VKcbLuotkham.Columns.IdBenhnhan).IsEqualTo(Utility.Int64Dbnull(dt_Patient.Rows[0][KcbDanhsachBenhnhan.Columns.IdBenhnhan]))
-                         .And(VKcbLuotkham.Columns.MaLuotkham).IsEqualTo(Utility.sDbnull(dt_Patient.Rows[0][KcbLuotkham.Columns.MaLuotkham]))
-                         .ExecuteSingle<VKcbLuotkham>();
+                    //objBenhnhan = new Select().From(VKcbLuotkham.Schema)
+                    //     .Where(VKcbLuotkham.Columns.IdBenhnhan).IsEqualTo(Utility.Int64Dbnull(dt_Patient.Rows[0][KcbDanhsachBenhnhan.Columns.IdBenhnhan]))
+                    //     .And(VKcbLuotkham.Columns.MaLuotkham).IsEqualTo(Utility.sDbnull(dt_Patient.Rows[0][KcbLuotkham.Columns.MaLuotkham]))
+                    //     .ExecuteSingle<VKcbLuotkham>();
                     txtIdBn.Text = Utility.sDbnull(dt_Patient.Rows[0][KcbDanhsachBenhnhan.Columns.IdBenhnhan], "");
                     objLuotkham =
                         new Select().From(KcbLuotkham.Schema)

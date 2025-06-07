@@ -3673,9 +3673,11 @@ namespace VNS.HIS.UI.Forms.HinhAnh
         {
             if (videoSource != null && videoSource.IsRunning)
             {
-                videoSource.NewFrame -= new AForge.Video.NewFrameEventHandler(video_NewFrame);
+
                 videoSource.SignalToStop();
+                videoSource.WaitForStop();
                 videoSource = null;
+                videoSource.NewFrame -= new AForge.Video.NewFrameEventHandler(video_NewFrame);
             }
 
             videoSource = new AForge.Video.DirectShow.VideoCaptureDevice(videoDevices[cboDevices.SelectedIndex].MonikerString);
@@ -3696,12 +3698,28 @@ namespace VNS.HIS.UI.Forms.HinhAnh
 
             try
             {
-                if (isWritingVideo || cmdVideo.Tag.ToString() == "1") img = (Bitmap)eventArgs.Frame.Clone();
+                //if (isWritingVideo || cmdVideo.Tag.ToString() == "1") img = (Bitmap)eventArgs.Frame.Clone();
 
-                //pnlVideo.SizeMode = _myProperties._PictureBoxSizeMode;
-                pnlVideo.Image = (Bitmap)eventArgs.Frame.Clone();
-                if (isWritingVideo || cmdVideo.Tag.ToString()=="1") FileWriter.WriteVideoFrame(img);
-                Thread.Sleep(10);
+                //if (pnlVideo.Image != null)
+                //{
+                //    pnlVideo.Image.Dispose();
+                //}
+                //pnlVideo.Image = (Bitmap)eventArgs.Frame.Clone();
+                //if (isWritingVideo || cmdVideo.Tag.ToString()=="1") FileWriter.WriteVideoFrame(img);
+                ////Thread.Sleep(10);
+
+                using (Bitmap frame = (Bitmap)eventArgs.Frame.Clone())
+                {
+                    // Ghi khung hình vào video
+                    if (isWritingVideo || cmdVideo.Tag.ToString() == "1") FileWriter.WriteVideoFrame(frame);
+
+                    // Hiển thị hình ảnh trong PictureBox
+                    if (pnlVideo.Image != null)
+                    {
+                        pnlVideo.Image.Dispose();
+                    }
+                    pnlVideo.Image = (Bitmap)frame.Clone();
+                }
             }
             catch (Exception)
             {
@@ -3904,6 +3922,8 @@ namespace VNS.HIS.UI.Forms.HinhAnh
                     if (videoSource != null && videoSource.IsRunning)
                     {
                         videoSource.SignalToStop();
+                        videoSource.WaitForStop();
+                        videoSource.NewFrame -= video_NewFrame;
                         if (FileWriter != null) FileWriter.Close();
                         pnlVideo.Image = null;
                     }
@@ -3913,7 +3933,11 @@ namespace VNS.HIS.UI.Forms.HinhAnh
                 {
                     toolTip1.SetToolTip(cmdVideo, "Nhấn để ngắt kết nối với thiết bị siêu âm/nội soi");
                     if (videoSource != null && videoSource.IsRunning)
+                    {
                         this.videoSource.Stop();
+                        videoSource.WaitForStop();
+                        videoSource.NewFrame -= video_NewFrame;
+                    }
                     if (FileWriter != null) FileWriter.Close();
                     //this.AVIwriter.Close();
                     pnlVideo.Image = null;
@@ -3964,6 +3988,8 @@ namespace VNS.HIS.UI.Forms.HinhAnh
                 {
                     if (cmdVideo.Tag.ToString() == "0")//Quay video
                     {
+                        if (FileWriter == null)
+                            FileWriter = new VideoFileWriter();
                         toolTip1.SetToolTip(cmdVideo, "Nhấn để kết thúc quay video");
                         cmdVideo.Tag = "1";
                         this.cmdVideo.Image = global::VMS.HIS.Cls.Properties.Resources.video_stop3_96;
@@ -3976,7 +4002,7 @@ namespace VNS.HIS.UI.Forms.HinhAnh
                                 int h = videoSource.VideoResolution.FrameSize.Height;
                                 int w = videoSource.VideoResolution.FrameSize.Width;
                                 FileWriter.Open(saveAvi.FileName, w, h, 25, VideoCodec.Default, 5000000);
-                                FileWriter.WriteVideoFrame(img);
+                                //FileWriter.WriteVideoFrame(img);
                                 
                                 
                                 //AVIwriter.Open(saveAvi.FileName, w, h);
@@ -3996,8 +4022,8 @@ namespace VNS.HIS.UI.Forms.HinhAnh
                             int h = videoSource.VideoResolution.FrameSize.Height;
                             int w = videoSource.VideoResolution.FrameSize.Width;
                             FileWriter.Open(videoFile, w, h, 25, VideoCodec.Default, 5000000);
-                            FileWriter.WriteVideoFrame(img);
-                            System.Threading.Thread.Sleep(100);
+                            //FileWriter.WriteVideoFrame(img);
+                            //System.Threading.Thread.Sleep(10);
                             isWritingVideo = true;
                         }
 
@@ -4011,7 +4037,11 @@ namespace VNS.HIS.UI.Forms.HinhAnh
                         //cmdOnOff.Text = "Kết nối";
                         if (videoSource != null && videoSource.IsRunning)
                         {
-                            if (FileWriter != null) FileWriter.Close();
+                            if (FileWriter != null)
+                            {
+                                FileWriter.Close();
+                                FileWriter.Dispose();
+                            }
                             pnlVideo.Image = null;
                         }
                     }

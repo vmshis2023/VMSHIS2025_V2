@@ -118,8 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="SAVE1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SAVE1.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="file_edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\file edit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="close_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\close_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="HOME" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\HOME.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -145,29 +148,35 @@
   <data name="BSNU" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BSNU.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="SEARCH_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SEARCH (2)1.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Down1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrow_left_up1 - Copy (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="QR_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\QR_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Hospital_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Hospital_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="plus_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\plus_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="arrow_left_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\arrow_left_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="close_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\close_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Hospital_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Hospital_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="copy_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\copy_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="file_edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\file edit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Add32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Add32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="hospital_241" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hospital_241.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="arrow_left_11_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\arrow_left_11_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="plus_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\plus_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="refresh03_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\refresh03_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -192,9 +201,6 @@
   </data>
   <data name="SUPPORT2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SUPPORT22.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="hospital_241" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\hospital_241.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="patient_color_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\patient_color_24.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -226,9 +232,6 @@
   <data name="plus_241" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\plus_241.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="excel_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\excel_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="printtype1_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\printtype1_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -241,17 +244,14 @@
   <data name="SAVE__2_" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SAVE (2).PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="_237510__1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\237510 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="SAVE" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SAVE.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ADMIN" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SUPPORT21.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Medical_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Medical_24.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="excel_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\excel_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Down" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\arrow_left_up1 - Copy (2)1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -259,11 +259,14 @@
   <data name="Cancel" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Medical_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Medical_24.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="printer_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\printer-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Add32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Add32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="SAVE1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SAVE1.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="FOLDERS" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FOLDERS.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -274,13 +277,13 @@
   <data name="add_01_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\add_01_24.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Down1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\arrow_left_up1 - Copy (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="_237510__1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\237510 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="arrow_left_11" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\arrow_left_11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SEARCH_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SEARCH (2)1.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="add_04_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\add_04_32.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

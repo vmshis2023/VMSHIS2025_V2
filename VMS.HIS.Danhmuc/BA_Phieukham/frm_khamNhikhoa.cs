@@ -220,7 +220,7 @@ namespace VMS.EMR.PHIEUKHAM
             if (ucThongtinnguoibenh1.objLuotkham != null)
             {
                 objLuotkham = ucThongtinnguoibenh1.objLuotkham;
-                this.Text = string.Format("phiếu khám Nhi khoa cho người bệnh {0} - {1} - {2} -{3}", ucThongtinnguoibenh1.txtTenBN.Text, ucThongtinnguoibenh1.txtgioitinh, ucThongtinnguoibenh1.txttuoi, ucThongtinnguoibenh1.txtDiachi);
+                this.Text = string.Format("Phiếu khám nhi khoa cho người bệnh {0} - {1} - {2} -{3}", ucThongtinnguoibenh1.txtTenBN.Text, ucThongtinnguoibenh1.txtgioitinh.Text, ucThongtinnguoibenh1.txttuoi.Text, ucThongtinnguoibenh1.txtDiachi.Text);
                 objPKB = new Select().From(EmrPhieukhambenh.Schema)
                    .Where(EmrPhieukhambenh.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
                    .And(EmrPhieukhambenh.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)

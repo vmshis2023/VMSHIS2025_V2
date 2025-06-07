@@ -13,6 +13,7 @@ using VNS.HIS.BusRule.Classes;
 using SubSonic;
 using VNS.HIS.UI.DANHMUC;
 using VMS.HIS.Danhmuc.Dungchung;
+using VMS.Emr;
 
 namespace VNS.HIS.UI.NOITRU
 {
@@ -258,34 +259,34 @@ namespace VNS.HIS.UI.NOITRU
                    ? THU_VIEN_CHUNG.LaysoVaovien()
                    : Utility.sDbnull(objLuotkham.SoVaovien, "");
               
-               NoitruPhieunhapvien objphieu = new Select().From(NoitruPhieunhapvien.Schema).Where(NoitruPhieunhapvien.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan).And(NoitruPhieunhapvien.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham).ExecuteSingle<NoitruPhieunhapvien>();
-               if (objphieu != null)
+              objPhieuNv = new Select().From(NoitruPhieunhapvien.Schema).Where(NoitruPhieunhapvien.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan).And(NoitruPhieunhapvien.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham).ExecuteSingle<NoitruPhieunhapvien>();
+               if (objPhieuNv != null)
                {
-                   if (id_kham <= 0) id_kham =Utility.Int64Dbnull( objphieu.IdKham,-1);
-                   txtSovaovien.Text = objphieu.SoVaovien;
+                   if (id_kham <= 0) id_kham =Utility.Int64Dbnull( objPhieuNv.IdKham,-1);
+                   txtSovaovien.Text = objPhieuNv.SoVaovien;
                    txtKhoanoitru.Enabled = false;
-                   txtChandoanbandau.Text = Utility.sDbnull(objphieu.ChandoanVaovien);
-                   //autoLydovv.SetCode(objphieu.MaLydoNhapvien);
-                   autoLydovv._Text=objphieu.LydoNhapvien;
-                   txtQuanlybenhly.Text = objphieu.QuatrinhBenhly;
-                   autoBanthan._Text = objphieu.TsuBanthan;
-                   autoGiadinh._Text = objphieu.TsuGiadinh;
-                   autoToanthan._Text = objphieu.KhamToanthan;
-                   txtCacbophan.Text = objphieu.BphanKhac;
-                   txtTTKQLamSang.Text = objphieu.TtKquaLamsang;
-                   txtDaXuLy.Text = objphieu.DaXuly;
+                   txtChandoanbandau.Text = Utility.sDbnull(objPhieuNv.ChandoanVaovien);
+                   //autoLydovv.SetCode(objPhieuNv.MaLydoNhapvien);
+                   autoLydovv._Text=objPhieuNv.LydoNhapvien;
+                   txtQuanlybenhly.Text = objPhieuNv.QuatrinhBenhly;
+                   autoBanthan._Text = objPhieuNv.TsuBanthan;
+                   autoGiadinh._Text = objPhieuNv.TsuGiadinh;
+                   autoToanthan._Text = objPhieuNv.KhamToanthan;
+                   txtCacbophan.Text = objPhieuNv.BphanKhac;
+                   txtTTKQLamSang.Text = objPhieuNv.TtKquaLamsang;
+                   txtDaXuLy.Text = objPhieuNv.DaXuly;
                    txtBacsi.SetId(objLuotkham.IdBacsiNhapvien);
-                   txtChovaokhoa._Text = objphieu.ChovaoKhoa;
-                   txtMach.Text = objphieu.Mach;
-                   txtha.Text = objphieu.Huyetap;
-                   txtNhietDo.Text = objphieu.Nhietdo;
-                   txtChieucao.Text = objphieu.Chieucao;
-                   txtCannang.Text = objphieu.Cannang;
-                   txtBmi.Text = objphieu.Bmi;
+                   txtChovaokhoa._Text = objPhieuNv.ChovaoKhoa;
+                   txtMach.Text = objPhieuNv.Mach;
+                   txtha.Text = objPhieuNv.Huyetap;
+                   txtNhietDo.Text = objPhieuNv.Nhietdo;
+                   txtChieucao.Text = objPhieuNv.Chieucao;
+                   txtCannang.Text = objPhieuNv.Cannang;
+                   txtBmi.Text = objPhieuNv.Bmi;
                    txtNhommau._Text = ucThongtinnguoibenh1.objBenhnhan.NhomMau;
-                   txtNhiptho.Text = objphieu.Nhiptho;
-                   txtSPO2.Text = objphieu.SPO2;
-                   autoTainanthuongtich.SetCode(objphieu.MaTainanthuongtich);
+                   txtNhiptho.Text = objPhieuNv.Nhiptho;
+                   txtSPO2.Text = objPhieuNv.SPO2;
+                   autoTainanthuongtich.SetCode(objPhieuNv.MaTainanthuongtich);
                }
                else//Điền thêm thông tin kết quả CLS, thuốc kê đơn
                {
@@ -714,7 +715,7 @@ namespace VNS.HIS.UI.NOITRU
                 //    autoLydovv.Focus();
                 //    return false;
                 //}
-                objPhieuNv = Taophieunhapvien();
+                Taophieunhapvien();
                 if (objPhieuNv.IdPhieu > 0)
                 {
                     if (!InValiUpdateNgayNhapVien()) return false;
@@ -806,52 +807,53 @@ namespace VNS.HIS.UI.NOITRU
            
             return true;
         }
-        NoitruPhieunhapvien Taophieunhapvien()
+        void Taophieunhapvien()
         {
-            NoitruPhieunhapvien objphieu = new Select().From(NoitruPhieunhapvien.Schema).Where(NoitruPhieunhapvien.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan).And(NoitruPhieunhapvien.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham).ExecuteSingle<NoitruPhieunhapvien>();
-            if (objphieu == null)
+            objPhieuNv = new Select().From(NoitruPhieunhapvien.Schema).Where(NoitruPhieunhapvien.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan).And(NoitruPhieunhapvien.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham).ExecuteSingle<NoitruPhieunhapvien>();
+            if (objPhieuNv == null)
             {
-                objphieu = new NoitruPhieunhapvien();
-                objphieu.SoVaovien = Utility.sDbnull(txtSovaovien.Text);
-                objphieu.NgayTao = DateTime.Now;
-                objphieu.NguoiTao = globalVariables.UserName;
-                objphieu.IsNew = true;
+                objPhieuNv = new NoitruPhieunhapvien();
+                objPhieuNv.SoVaovien = Utility.sDbnull(txtSovaovien.Text);
+                objPhieuNv.NgayTao = DateTime.Now;
+                objPhieuNv.NguoiTao = globalVariables.UserName;
+                objPhieuNv.IsNew = true;
             }
             else
             {
-                objphieu.NgaySua = DateTime.Now;
-                objphieu.NguoiSua = globalVariables.UserName;
-                objphieu.MarkOld();
+                objPhieuNv.NgaySua = DateTime.Now;
+                objPhieuNv.NguoiSua = globalVariables.UserName;
+                objPhieuNv.MarkOld();
             }
-            objphieu.ChovaoKhoa = Utility.sDbnull(txtChovaokhoa.Text);
-            objphieu.NgayNhapvien = dtNgayNhapVien.Value;
-            objphieu.MaLuotkham = Utility.sDbnull(objLuotkham.MaLuotkham);
-            objphieu.IdBenhnhan = Utility.Int32Dbnull(objLuotkham.IdBenhnhan, -1);
-            objphieu.IdKhoanoitru = objLuotkham.IdKhoanoitru;
-            objphieu.ChandoanVaovien = txtChandoanbandau.Text;
-            objphieu.QuatrinhBenhly = txtQuanlybenhly.Text;
-            objphieu.TsuBanthan = autoBanthan.Text;
-            objphieu.TsuGiadinh = autoGiadinh.Text;
-            objphieu.MaLydoNhapvien = autoLydovv.MyCode;
-            objphieu.LydoNhapvien = autoLydovv.Text;
-            objphieu.KhamToanthan = autoToanthan.Text;
-            objphieu.MaTainanthuongtich = autoTainanthuongtich.MyCode;
-            objphieu.BphanKhac = txtCacbophan.Text;
-            objphieu.TtKquaLamsang = txtTTKQLamSang.Text;
-            objphieu.DaXuly = txtDaXuLy.Text;
-            objphieu.Mach = Utility.sDbnull(txtMach.Text);
-            objphieu.Nhiptho = Utility.sDbnull(txtNhiptho.Text);
-            objphieu.Huyetap = Utility.sDbnull(txtha.Text);
-            objphieu.Nhietdo = Utility.sDbnull(txtNhietDo.Text);
-            objphieu.Chieucao = Utility.sDbnull(txtChieucao.Text);
-            objphieu.Cannang = Utility.sDbnull(txtCannang.Text);
-            objphieu.SPO2 = Utility.sDbnull(txtSPO2.Text);
-            objphieu.Bmi = Utility.sDbnull(txtBmi.Text);
+            objPhieuNv.ChovaoKhoa = Utility.sDbnull(txtChovaokhoa.Text);
+            objPhieuNv.NgayNhapvien = dtNgayNhapVien.Value;
+            objPhieuNv.MaLuotkham = Utility.sDbnull(objLuotkham.MaLuotkham);
+            objPhieuNv.IdBenhnhan = Utility.Int32Dbnull(objLuotkham.IdBenhnhan, -1);
+            objPhieuNv.IdKhoanoitru = objLuotkham.IdKhoanoitru;
+            objPhieuNv.ChandoanVaovien = txtChandoanbandau.Text;
+            objPhieuNv.QuatrinhBenhly = txtQuanlybenhly.Text;
+            objPhieuNv.TsuBanthan = autoBanthan.Text;
+            objPhieuNv.TsuGiadinh = autoGiadinh.Text;
+            objPhieuNv.MaLydoNhapvien = autoLydovv.MyCode;
+            objPhieuNv.LydoNhapvien = autoLydovv.Text;
+            objPhieuNv.KhamToanthan = autoToanthan.Text;
+            objPhieuNv.MaTainanthuongtich = autoTainanthuongtich.MyCode;
+            objPhieuNv.BphanKhac = txtCacbophan.Text;
+            objPhieuNv.TtKquaLamsang = txtTTKQLamSang.Text;
+            objPhieuNv.DaXuly = txtDaXuLy.Text;
+            objPhieuNv.Mach = Utility.sDbnull(txtMach.Text);
+            objPhieuNv.Nhiptho = Utility.sDbnull(txtNhiptho.Text);
+            objPhieuNv.Huyetap = Utility.sDbnull(txtha.Text);
+            objPhieuNv.Nhietdo = Utility.sDbnull(txtNhietDo.Text);
+            objPhieuNv.Chieucao = Utility.sDbnull(txtChieucao.Text);
+            objPhieuNv.Cannang = Utility.sDbnull(txtCannang.Text);
+            objPhieuNv.SPO2 = Utility.sDbnull(txtSPO2.Text);
+            objPhieuNv.Bmi = Utility.sDbnull(txtBmi.Text);
 
-            objphieu.IdKham = id_kham;
-            return objphieu;
+            objPhieuNv.IdKham = id_kham;
+            
 
         }
+
         NoitruPhieunhapvien objPhieuNv = null;
         /// <summary>
         /// hàm thuwchj hiện việc nhập viện không có gói, gói sẽ là nulll cho bệnh nhân
@@ -879,11 +881,13 @@ namespace VNS.HIS.UI.NOITRU
                 objLuotkham.DiachiLienhe = txtDiachiLienhe.Text;
                 objLuotkham.DienthoaiLienhe = txtSDTLienhe.Text;
                 objLuotkham.NguoiLienhe = txtNguoiLienhe.Text;
-                ActionResult actionResult = new noitru_nhapvien().Nhapvien(TaoBuonggiuong(), objLuotkham, Taophieunhapvien(),null);
+                ActionResult actionResult = new noitru_nhapvien().Nhapvien(TaoBuonggiuong(), objLuotkham, ref objPhieuNv,null);
                 switch (actionResult)
                 {
                     case ActionResult.Success:
-                        
+                        EmrDocuments emrdoc = new EmrDocuments();
+                        emrdoc.InitDocument(objPhieuNv.IdBenhnhan, objPhieuNv.MaLuotkham, Utility.Int64Dbnull(objPhieuNv.IdPhieu), objPhieuNv.NgayNhapvien.Value, Loaiphieu_HIS.PHIEUNHAPVIEN, "", objPhieuNv.NguoiTao, -1, -1, Utility.Byte2Bool(0), "");
+                        emrdoc.Save();
                         txtSovaovien.Text = Utility.sDbnull(objLuotkham.SoVaovien, "");
                         objLuotkham.IdKhoanoitru = Utility.Int16Dbnull(txtKhoanoitru.MyID, -1);
                         objLuotkham.TrangthaiNoitru = 1;
@@ -999,7 +1003,7 @@ namespace VNS.HIS.UI.NOITRU
                 }
             }
             dsTable.AcceptChanges();
-            VNS.HIS.UI.Baocao.noitru_baocao.Inphieunhapvien(dsTable, "PHIẾU NHẬP VIỆN", globalVariables.SysDate);
+            VNS.HIS.UI.Baocao.noitru_baocao.Inphieunhapvien(objPhieuNv,dsTable, "PHIẾU NHẬP VIỆN", globalVariables.SysDate);
         }
         private void GetChanDoan(string ICD_chinh, string IDC_Phu, ref string ICD_Name, ref string ICD_Code)
         {

@@ -41,6 +41,49 @@
     </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\HIS_BVSG\Running\DevExpress.Data.v17.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Office.v17.2.Core, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\HIS_BVSG\Running\DevExpress.Office.v17.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Pdf.v17.2.Core, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\HIS_BVSG\Running\DevExpress.Pdf.v17.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Pdf.v17.2.Drawing, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\HIS_BVSG\Running\DevExpress.Pdf.v17.2.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v17.2.Core, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\HIS_BVSG\Running\DevExpress.RichEdit.v17.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v17.2.Export, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\HIS_BVSG\Running\DevExpress.RichEdit.v17.2.Export.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\HIS_BVSG\Running\DevExpress.Utils.v17.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\HIS_BVSG\Running\DevExpress.XtraBars.v17.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\HIS_BVSG\Running\DevExpress.XtraEditors.v17.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraPdfViewer.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\HIS_BVSG\Running\DevExpress.XtraPdfViewer.v17.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraRichEdit.v17.2">
+      <HintPath>C:\HIS_BVSG\Running\DevExpress\DevExpress.XtraRichEdit.v17.2.dll</HintPath>
+    </Reference>
     <Reference Include="Janus.Data.v3, Version=3.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Running_QLPKEBM\Janus.Data.v3.dll</HintPath>
@@ -64,6 +107,11 @@
     </Reference>
     <Reference Include="Janus.Windows.UI.v3">
       <HintPath>..\..\Running\Janus.Windows.UI.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="NLog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\HIS_BVSG\Running\NLog.dll</HintPath>
     </Reference>
     <Reference Include="SubSonic">
       <HintPath>..\..\Running\SubSonic.dll</HintPath>
@@ -104,6 +152,12 @@
     <Compile Include="BenhAn\Forms\frm_DSACH_BN.designer.cs">
       <DependentUpon>frm_DSACH_BN.cs</DependentUpon>
     </Compile>
+    <Compile Include="BenhAn\Forms\VMS\frm_BenhAn_NgoaiTru.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BenhAn\Forms\VMS\frm_BenhAn_NgoaiTru.Designer.cs">
+      <DependentUpon>frm_BenhAn_NgoaiTru.cs</DependentUpon>
+    </Compile>
     <Compile Include="BenhAn\Forms\VMS\frm_BenhAn_NoiKhoa.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,11 +170,11 @@
     <Compile Include="BenhAn\Forms\VMS\frm_dmuc_gay.Designer.cs">
       <DependentUpon>frm_dmuc_gay.cs</DependentUpon>
     </Compile>
-    <Compile Include="BenhAn\Forms\VMS\EMR.cs">
+    <Compile Include="BenhAn\Forms\VMS\frm_Emr.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BenhAn\Forms\VMS\EMR.Designer.cs">
-      <DependentUpon>EMR.cs</DependentUpon>
+    <Compile Include="BenhAn\Forms\VMS\frm_Emr.Designer.cs">
+      <DependentUpon>frm_Emr.cs</DependentUpon>
     </Compile>
     <Compile Include="BenhAn\Forms\VMS\frm_QuanlyBA.cs">
       <SubType>Form</SubType>
@@ -178,14 +232,17 @@
     <EmbeddedResource Include="BenhAn\Forms\frm_DSACH_BN.resx">
       <DependentUpon>frm_DSACH_BN.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BenhAn\Forms\VMS\frm_BenhAn_NgoaiTru.resx">
+      <DependentUpon>frm_BenhAn_NgoaiTru.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BenhAn\Forms\VMS\frm_BenhAn_NoiKhoa.resx">
       <DependentUpon>frm_BenhAn_NoiKhoa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BenhAn\Forms\VMS\frm_dmuc_gay.resx">
       <DependentUpon>frm_dmuc_gay.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BenhAn\Forms\VMS\EMR.resx">
-      <DependentUpon>EMR.cs</DependentUpon>
+    <EmbeddedResource Include="BenhAn\Forms\VMS\frm_Emr.resx">
+      <DependentUpon>frm_Emr.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BenhAn\Forms\VMS\frm_QuanlyBA.resx">
       <DependentUpon>frm_QuanlyBA.cs</DependentUpon>
@@ -230,6 +287,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\VMS.Emr\VMS.Emr\VMS.Emr.csproj">
+      <Project>{323d0245-5cd3-488a-8b83-edade85b3da4}</Project>
+      <Name>VMS.Emr</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VMS.Resources\4.VMS.Resources.csproj">
       <Project>{496ccd74-1e0f-45c2-8e86-bf48b9926587}</Project>
       <Name>4.VMS.Resources</Name>

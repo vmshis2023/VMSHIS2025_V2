@@ -1955,19 +1955,19 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
         private void InphieuKham()
         {
             int reg_id = GetrealRegID();
-            KcbDangkyKcb objRegExam = KcbDangkyKcb.FetchByID(reg_id);
-            if (objRegExam != null)
+            KcbDangkyKcb objCongkham = KcbDangkyKcb.FetchByID(reg_id);
+            if (objCongkham != null)
             {
                 new Update(KcbDangkyKcb.Schema)
                     .Set(KcbDangkyKcb.Columns.TrangthaiIn).EqualTo(1)
                     .Set(KcbDangkyKcb.Columns.NgaySua).EqualTo(globalVariables.SysDate)
                     .Set(KcbDangkyKcb.Columns.NguoiSua).EqualTo(globalVariables.UserName)
-                    .Where(KcbDangkyKcb.Columns.IdKham).IsEqualTo(objRegExam.IdKham).Execute();
+                    .Where(KcbDangkyKcb.Columns.IdKham).IsEqualTo(objCongkham.IdKham).Execute();
                 IEnumerable<GridEXRow> query = from kham in grdRegExam.GetDataRows()
                                                where
                                                    kham.RowType == RowType.Record &&
                                                    Utility.Int32Dbnull(kham.Cells[KcbDangkyKcb.Columns.IdKham].Value, -1) ==
-                                                   Utility.Int32Dbnull(objRegExam.IdKham)
+                                                   Utility.Int32Dbnull(objCongkham.IdKham)
                                                select kham;
                 if (query.Count() > 0)
                 {
@@ -1988,7 +1988,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
                 if (objLuotkham == null)
                     objLuotkham = TaoLuotkham();
                 if (objLuotkham != null)
-                    KcbInphieu.INPHIEU_KHAM(Utility.sDbnull(objLuotkham.MaDoituongKcb), v_dtData,
+                    KcbInphieu.INPHIEU_KHAM(objCongkham, Utility.sDbnull(objLuotkham.MaDoituongKcb), v_dtData,
                                                   "PHIẾU KHÁM BỆNH", PropertyLib._MayInProperties.CoGiayInPhieuKCB == Papersize.A5 ? "A5" : "A4");
             }
         }
@@ -2023,10 +2023,10 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
                     gridExRow.EndEdit();
                     grdRegExam.UpdateData();
                 }
-                KcbDangkyKcb objRegExam = KcbDangkyKcb.FetchByID(reg_id);
-                DmucKhoaphong lDepartment = DmucKhoaphong.FetchByID(objRegExam.IdPhongkham);
+                KcbDangkyKcb objCongkham = KcbDangkyKcb.FetchByID(reg_id);
+                DmucKhoaphong lDepartment = DmucKhoaphong.FetchByID(objCongkham.IdPhongkham);
                 Utility.SetParameterValue(crpt, "PHONGKHAM", Utility.sDbnull(lDepartment.MaKhoaphong));
-                Utility.SetParameterValue(crpt, "STT", Utility.sDbnull(objRegExam.SttKham, ""));
+                Utility.SetParameterValue(crpt, "STT", Utility.sDbnull(objCongkham.SttKham, ""));
                 Utility.SetParameterValue(crpt, "BENHAN", txtMaLankham.Text);
                 Utility.SetParameterValue(crpt, "TENBN", txtTEN_BN.Text);
                 Utility.SetParameterValue(crpt, "GT_TUOI", cboPatientSex.Text + " - " + txtTuoi.Text + " tuổi");

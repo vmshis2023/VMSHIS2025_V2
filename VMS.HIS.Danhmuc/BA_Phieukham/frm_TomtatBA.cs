@@ -27,6 +27,7 @@ namespace VNS.HIS.UI.BA
         public event OnCreated _OnCreated;
 
         public EmrTongketBenhan ttba = new EmrTongketBenhan();
+
         KcbLuotkham objLuotkham = null;
         VKcbLuotkham objBenhnhan = null;
         NoitruPhieunhapvien objNhapvien;
@@ -43,8 +44,16 @@ namespace VNS.HIS.UI.BA
             ucThongtinnguoibenh_v21._OnEnterMe += ucThongtinnguoibenh_v21__OnEnterMe;
             this.KeyDown += frm_TomtatBA_KeyDown;
             ucThongtinnguoibenh_v21.SetReadonly();
+            txtB_CTScanner.TextChanged += soluongto_TextChanged;
+            txtB_Khac.TextChanged += soluongto_TextChanged;
+            txtB_SieuAm.TextChanged += soluongto_TextChanged;
+            txtB_XetNghiem.TextChanged += soluongto_TextChanged;
+            txtB_Xquang.TextChanged += soluongto_TextChanged;
         }
-
+        void soluongto_TextChanged(object sender, EventArgs e)
+        {
+            txtB_Tongso.Text = (Utility.Int32Dbnull(txtB_CTScanner.Text, 0) + Utility.Int32Dbnull(txtB_Khac.Text, 0) + Utility.Int32Dbnull(txtB_SieuAm.Text, 0) + Utility.Int32Dbnull(txtB_XetNghiem.Text, 0) + Utility.Int32Dbnull(txtB_Xquang.Text, 0)).ToString();
+        }
         void frm_TomtatBA_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -121,10 +130,11 @@ namespace VNS.HIS.UI.BA
                 txtCDRavien.Text = objRavien.ChanDoan;
                 txtPPdieutri.Text = objRavien.PhuongphapDieutri;
                 txtTinhtrangRavien.SetCode(objRavien.MaTinhtrangravien);
+                txtTruongkhoa.SetId(objRavien.IdBacsiChuyenvien); 
+                autoKhoa.SetId(objRavien.IdKhoaravien);
             }
             txtCDnhapvien.Text = objNhapvien.ChandoanVaovien;
             dtTuNgay.Value = objLuotkham.NgayNhapvien.Value;
-            autoKhoa.SetId(objLuotkham.IdKhoanoitru);
             txtTiensubenh.Text = objChandoanKetluan.TiensuBenh;
             txtBSDieuTri.SetId(Utility.sDbnull(objLuotkham.IdBsDieutrinoitruChinh));
             if (ttba != null)
@@ -195,9 +205,11 @@ namespace VNS.HIS.UI.BA
 
         private void frm_TomtatBA_Load(object sender, EventArgs e)
         {
+            DataTable dtBacsi = THU_VIEN_CHUNG.LaydanhsachBacsi(-1, -1);
             DataTable dtData = THU_VIEN_CHUNG.LayDulieuDanhmucChung(new List<string>() { autoLydovv.LOAI_DANHMUC, txtTinhtrangRavien.LOAI_DANHMUC }, true);
             autoLydovv.Init(THU_VIEN_CHUNG.LayDulieuDanhmucChung(dtData, autoLydovv.LOAI_DANHMUC));
-           
+            txtTruongkhoa.Init(dtBacsi, new List<string>() { DmucNhanvien.Columns.IdNhanvien, DmucNhanvien.Columns.MaNhanvien, DmucNhanvien.Columns.TenNhanvien });
+            txtBSDieuTri.Init(dtBacsi, new List<string>() { DmucNhanvien.Columns.IdNhanvien, DmucNhanvien.Columns.MaNhanvien, DmucNhanvien.Columns.TenNhanvien });
             txtTinhtrangRavien.Init(THU_VIEN_CHUNG.LayDulieuDanhmucChung(dtData, txtTinhtrangRavien.LOAI_DANHMUC));
             DataTable mDtKhoaNoitru = THU_VIEN_CHUNG.Laydanhmuckhoa("NOI", 0);
             autoKhoa.Init(mDtKhoaNoitru, new List<string>() { DmucKhoaphong.Columns.IdKhoaphong, DmucKhoaphong.Columns.MaKhoaphong, DmucKhoaphong.Columns.TenKhoaphong });

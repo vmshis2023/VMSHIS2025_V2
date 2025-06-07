@@ -154,13 +154,13 @@ namespace VMS.EMR.PHIEUKHAM
                 return;
             }
 
-            if (objLuotkham.TrangthaiNgoaitru == 1 || (Utility.Byte2Bool(objLuotkham.TthaiThopNoitru) && objLuotkham.TrangthaiNoitru == 6))
-            {
-                Utility.ShowMsg("Bệnh nhân đã kết thúc khám nên bạn không thể thực hiện chức năng này");
-                ucThongtinnguoibenh1.txtMaluotkham.Focus();
-                ucThongtinnguoibenh1.txtMaluotkham.SelectAll();
-                return;
-            }
+            //if (objLuotkham.TrangthaiNgoaitru == 1 || (Utility.Byte2Bool(objLuotkham.TthaiThopNoitru) && objLuotkham.TrangthaiNoitru == 6))
+            //{
+            //    Utility.ShowMsg("Bệnh nhân đã kết thúc khám nên bạn không thể thực hiện chức năng này");
+            //    ucThongtinnguoibenh1.txtMaluotkham.Focus();
+            //    ucThongtinnguoibenh1.txtMaluotkham.SelectAll();
+            //    return;
+            //}
             m_enAct = action.Update;
             SetControlStatus();
         }
@@ -202,7 +202,7 @@ namespace VMS.EMR.PHIEUKHAM
             foreach (TabPage tp in tabControl1.TabPages)
             {
                 foreach (Control ctr in tp.Controls)
-                    if (ctr.GetType().Equals(txt_KhamBoPhan.GetType()))
+                    if (ctr.GetType().Equals(autoTxt.GetType()))
                         ((AutoCompleteTextbox_Danhmucchung)ctr).SetDefaultItem();
                     else if (ctr is EditBox)
                     {
@@ -220,7 +220,7 @@ namespace VMS.EMR.PHIEUKHAM
             //        }
             //}
             foreach (Control ctr in grpChucNangSong.Controls)
-                if (ctr.GetType().Equals(txt_KhamBoPhan.GetType()))
+                if (ctr.GetType().Equals(autoTxt.GetType()))
                     ((AutoCompleteTextbox_Danhmucchung)ctr).SetDefaultItem();
                 else if (ctr is EditBox)
                 {
@@ -459,7 +459,7 @@ namespace VMS.EMR.PHIEUKHAM
                     txtNhietDo.Text = objphieukham.NhietDo;
                     txtha.Text = objphieukham.NhomMau;
                     txtMach.Text = objphieukham.Mach;
-                    txtNhipTho.Text = objphieukham.NhịpTho;
+                    txtNhipTho.Text = objphieukham.NhipTho;
                     txtChieuCao.Text = objphieukham.ChieuCao;
                     txtCanNang.Text = objphieukham.CanNang;
                     txtBMI.Text = objphieukham.Bmi;
@@ -700,7 +700,7 @@ namespace VMS.EMR.PHIEUKHAM
                 objphieukham.HuyetAp = txtha.Text;
                 objphieukham.NhietDo = txtNhietDo.Text;
                 objphieukham.Mach = Utility.sDbnull(txtMach.Text);
-                objphieukham.NhịpTho = Utility.sDbnull(txtNhipTho.Text);
+                objphieukham.NhipTho = Utility.sDbnull(txtNhipTho.Text);
                 objphieukham.ChieuCao = Utility.sDbnull(txtChieuCao.Text);
                 objphieukham.CanNang = Utility.sDbnull(txtCanNang.Text);
                 objphieukham.Bmi = Utility.sDbnull(txtBMI.Text);
@@ -782,6 +782,11 @@ namespace VMS.EMR.PHIEUKHAM
             txtChieuCao.Text = chieucao;
             txtCanNang.Text = cannang;
             txtBMI.Text = bmi;
+        }
+
+        private void cmdSua_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using CrystalDecisions.CrystalReports.Engine;
+using VMS.Emr;
 using VMS.HIS.Bus;
 using VMS.HIS.DAL;
 using VNS.Libs;
@@ -11,16 +12,20 @@ namespace VNS.HIS.UI.Baocao
 {
     public class noitru_baocao
     {
-        public static void Inphieunhapvien(DataTable mDtReport, string sTitleReport, DateTime ngayIn)
+        public static void Inphieunhapvien(NoitruPhieunhapvien objPNV, DataTable mDtReport, string sTitleReport, DateTime ngayIn)
         {
             SysReport objReport = null;
             string tieude = "", reportname = "";
-            ReportDocument crpt = Utility.GetReport("noitru_phieunhapvien", ref tieude, ref reportname,ref objReport);
+            string reportCode = "noitru_phieunhapvien";
+            ReportDocument crpt = Utility.GetReport(reportCode, ref tieude, ref reportname,ref objReport);
             THU_VIEN_CHUNG.CreateXML(mDtReport, "noitru_phieunhapvien.xml");
             if (crpt == null || objReport == null) return;
+            EmrDocuments emrdoc = new EmrDocuments();
+            emrdoc.InitDocument(objPNV.IdBenhnhan, objPNV.MaLuotkham, Utility.Int64Dbnull(objPNV.IdPhieu), objPNV.NgayNhapvien.Value, Loaiphieu_HIS.PHIEUNHAPVIEN, reportCode, objPNV.NguoiTao, -1,-1, Utility.Byte2Bool(0), "");
+            emrdoc.Save();
             if (Utility.sDbnull(objReport.FileWord) != "")
             {
-                WordPrinter.InPhieu(mDtReport, Utility.sDbnull(objReport.FileWord));
+                WordPrinter.InPhieu(null,mDtReport, Utility.sDbnull(objReport.FileWord));
                 return;
             }
             
@@ -58,13 +63,17 @@ namespace VNS.HIS.UI.Baocao
         {
             string tieude = "", reportname = "";
             SysReport objReport = null;
-            ReportDocument crpt = Utility.GetReport("noitru_giaycamketPT_A5", ref tieude, ref reportname, ref objReport);
+            string reportCode = "noitru_giaycamketPT_A5";
+            ReportDocument crpt = Utility.GetReport(reportCode, ref tieude, ref reportname, ref objReport);
 
             THU_VIEN_CHUNG.CreateXML(mDtReport, "noitru_giaycamketPT_A5.xml");
             if (crpt == null || objReport == null) return;
+            //EmrDocuments emrdoc = new EmrDocuments();
+            //emrdoc.InitDocument(objPNV.IdBenhnhan, objPNV.MaLuotkham, Utility.Int64Dbnull(objPNV.IdPhieu), objPNV.NgayNhapvien.Value, Loaiphieu_HIS.PHIEUCHIDINH, reportCode, objPNV.NguoiTao, -1, -1, Utility.Byte2Bool(0), "");
+            //emrdoc.Save();
             if (Utility.sDbnull(objReport.FileWord) != "")
             {
-                WordPrinter.InPhieu(mDtReport, Utility.sDbnull(objReport.FileWord));
+                WordPrinter.InPhieu(null,mDtReport, Utility.sDbnull(objReport.FileWord));
                 return;
             }
             var moneyByLetter = new MoneyByLetter();
@@ -118,7 +127,7 @@ namespace VNS.HIS.UI.Baocao
             if (crpt == null || objReport == null) return;
             if (Utility.sDbnull(objReport.FileWord) != "")
             {
-                WordPrinter.InPhieu(mDtReport, Utility.sDbnull(objReport.FileWord));
+                WordPrinter.InPhieu(null,mDtReport, Utility.sDbnull(objReport.FileWord));
                 return;
             }
             var moneyByLetter = new MoneyByLetter();

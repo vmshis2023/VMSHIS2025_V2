@@ -1,5 +1,6 @@
 C:\HIS_BVSG\Running\VMS.HIS.Noitru.dll
 C:\HIS_BVSG\Running\VMS.HIS.Noitru.pdb
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.UI.Noitru\obj\Debug\9_2.VMS.HIS.Noitru.csproj.AssemblyReference.cache
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.UI.Noitru\obj\Debug\VNS.HIS.UI.Noitru.Form1.resources
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.UI.Noitru\obj\Debug\VNS.HIS.UI.NOITRU.frm_PhieuChamSoc.resources
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.UI.Noitru\obj\Debug\VNS.HIS.UI.NOITRU.frm_Quanly_phieutuvanPTTT.resources
@@ -46,4 +47,3 @@ F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.UI.Noitru\obj\Debug\9_2.VMS.HIS.Noitr
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.UI.Noitru\obj\Debug\9_2.VMS.HIS.Noitru.csproj.CopyComplete
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.UI.Noitru\obj\Debug\VMS.HIS.Noitru.dll
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.UI.Noitru\obj\Debug\VMS.HIS.Noitru.pdb
-F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.UI.Noitru\obj\Debug\9_2.VMS.HIS.Noitru.csproj.AssemblyReference.cache

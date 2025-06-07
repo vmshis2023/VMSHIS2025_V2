@@ -4326,6 +4326,20 @@ namespace VMS.HIS.DAL{
         }
         
         /// <summary>
+        /// Creates an object wrapper for the emr_laydanhsach_documents Procedure
+        /// </summary>
+        public static StoredProcedure EmrLaydanhsachDocuments(string maluotkham, long? Idbenhnhan)
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("emr_laydanhsach_documents", DataService.GetInstance("ORM"), "dbo");
+        	
+            sp.Command.AddParameter("@ma_luotkham", maluotkham, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@Id_benhnhan", Idbenhnhan, DbType.Int64, 0, 19);
+        	
+            return sp;
+        }
+        
+        /// <summary>
         /// Creates an object wrapper for the emr_laythongtinnguoibenh_maluotkham_idbenhnhan Procedure
         /// </summary>
         public static StoredProcedure EmrLaythongtinnguoibenhMaluotkhamIdbenhnhan(long? idbenhnhan, string maluotkham)
@@ -9839,6 +9853,26 @@ namespace VMS.HIS.DAL{
         public static StoredProcedure NoitruTonghopChiphiRavien(string maluotkham, int? idbenhnhan, byte? laycadulieungoaitruchuathanhtoan, string idKhoanoitru, string idphieudieutri)
         {
             SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("Noitru_Tonghop_Chiphi_Ravien", DataService.GetInstance("ORM"), "dbo");
+        	
+            sp.Command.AddParameter("@ma_luotkham", maluotkham, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@id_benhnhan", idbenhnhan, DbType.Int32, 0, 10);
+        	
+            sp.Command.AddParameter("@layca_dulieu_ngoaitru_chuathanhtoan", laycadulieungoaitruchuathanhtoan, DbType.Byte, 0, 3);
+        	
+            sp.Command.AddParameter("@idKhoanoitru", idKhoanoitru, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@idphieudieutri", idphieudieutri, DbType.String, null, null);
+        	
+            return sp;
+        }
+        
+        /// <summary>
+        /// Creates an object wrapper for the Noitru_Tonghop_Chiphi_Ravien_Join Procedure
+        /// </summary>
+        public static StoredProcedure NoitruTonghopChiphiRavienJoin(string maluotkham, int? idbenhnhan, byte? laycadulieungoaitruchuathanhtoan, string idKhoanoitru, string idphieudieutri)
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("Noitru_Tonghop_Chiphi_Ravien_Join", DataService.GetInstance("ORM"), "dbo");
         	
             sp.Command.AddParameter("@ma_luotkham", maluotkham, DbType.String, null, null);
         	
@@ -15679,6 +15713,20 @@ namespace VMS.HIS.DAL{
             sp.Command.AddParameter("@KieuThuocVT", KieuThuocVT, DbType.String, null, null);
         	
             sp.Command.AddParameter("@loaithuoc", loaithuoc, DbType.Int32, 0, 10);
+        	
+            return sp;
+        }
+        
+        /// <summary>
+        /// Creates an object wrapper for the Thuoc_LayDanhmucThuoc_Kho_TheoTrangthai Procedure
+        /// </summary>
+        public static StoredProcedure ThuocLayDanhmucThuocKhoTheoTrangthai(string lstIdKho, byte? trangthai)
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("Thuoc_LayDanhmucThuoc_Kho_TheoTrangthai", DataService.GetInstance("ORM"), "dbo");
+        	
+            sp.Command.AddParameter("@lstIdKho", lstIdKho, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@trang_thai", trangthai, DbType.Byte, 0, 3);
         	
             return sp;
         }
