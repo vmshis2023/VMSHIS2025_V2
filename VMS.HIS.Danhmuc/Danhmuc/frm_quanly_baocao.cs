@@ -300,5 +300,35 @@ namespace VNS.HIS.UI.DANHMUC
                 Utility.CatchException(ex);
             }
         }
+
+        private void cmdCapnhatMaNhomBC_Click(object sender, EventArgs e)
+        {
+            frm_capnhat_nhombc _capnhat_nhombc = new frm_capnhat_nhombc();
+            if(_capnhat_nhombc.ShowDialog()==DialogResult.OK)
+            {
+                List<string> lstMaBC = grdList.GetCheckedRows().Select(c =>Utility.sDbnull( c.Cells["ma_baocao"].Value)).ToList<string>();
+                int num = new Update(SysReport.Schema)
+                    .Set(SysReport.Columns.MaNhom).EqualTo(Utility.sDbnull(_capnhat_nhombc.cboNhomBC.SelectedValue))
+                    .Where(SysReport.Columns.MaBaocao).In(lstMaBC)
+                    .Execute();
+                if (num > 0)
+                    LoadDataReport();
+            }    
+        }
+
+        private void mnuCapnhatMaphieuEMR_Click(object sender, EventArgs e)
+        {
+            frm_capnhat_maphieuEmr _capnhat_maphieuEmr = new frm_capnhat_maphieuEmr();
+            if (_capnhat_maphieuEmr.ShowDialog() == DialogResult.OK)
+            {
+                List<string> lstMaBC = grdList.GetCheckedRows().Select(c => Utility.sDbnull(c.Cells["ma_baocao"].Value)).ToList<string>();
+                int num = new Update(SysReport.Schema)
+                    .Set(SysReport.Columns.MaPhieuEmr).EqualTo(Utility.sDbnull(_capnhat_maphieuEmr.cboPhieuEMR.SelectedValue))
+                    .Where(SysReport.Columns.MaBaocao).In(lstMaBC)
+                    .Execute();
+                if (num > 0)
+                    LoadDataReport();
+            }
+        }
     }
 }

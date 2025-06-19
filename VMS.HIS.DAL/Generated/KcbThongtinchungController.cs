@@ -80,7 +80,7 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(long IdBenhnhan,string MaLuotkham,string TrieuchungBandau,short IdBacsikham,string NguoiTao,DateTime NgayTao,string NguoiSua,DateTime? NgaySua,string Mach,string Nhietdo,string Huyetap,string Nhiptim,string Nhiptho,string Cannang,string Chieucao,string Nhommau,string IpMaytao,string IpMaysua,string TenMaytao,string TenMaysua,decimal? ChisoIbm,string ThilucMp,string ThilucMt,string NhanapMp,string NhanapMt,string SPO2,string Para,byte? Quaibi)
+	    public void Insert(long IdBenhnhan,string MaLuotkham,string TrieuchungBandau,short IdBacsikham,string NguoiTao,DateTime NgayTao,string NguoiSua,DateTime? NgaySua,string Mach,string Nhietdo,string Huyetap,string Nhiptim,string Nhiptho,string Cannang,string Chieucao,string Nhommau,string TiensuBanthan,string TiensuGiadinh,string IpMaytao,string IpMaysua,string TenMaytao,string TenMaysua,decimal? ChisoIbm,string ThilucMp,string ThilucMt,string NhanapMp,string NhanapMt,string SPO2,string Para,byte? Quaibi)
 	    {
 		    KcbThongtinchung item = new KcbThongtinchung();
 		    
@@ -116,6 +116,10 @@ namespace VMS.HIS.DAL
             
             item.Nhommau = Nhommau;
             
+            item.TiensuBanthan = TiensuBanthan;
+            
+            item.TiensuGiadinh = TiensuGiadinh;
+            
             item.IpMaytao = IpMaytao;
             
             item.IpMaysua = IpMaysua;
@@ -148,7 +152,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(long IdThongtin,long IdBenhnhan,string MaLuotkham,string TrieuchungBandau,short IdBacsikham,string NguoiTao,DateTime NgayTao,string NguoiSua,DateTime? NgaySua,string Mach,string Nhietdo,string Huyetap,string Nhiptim,string Nhiptho,string Cannang,string Chieucao,string Nhommau,string IpMaytao,string IpMaysua,string TenMaytao,string TenMaysua,decimal? ChisoIbm,string ThilucMp,string ThilucMt,string NhanapMp,string NhanapMt,string SPO2,string Para,byte? Quaibi)
+	    public void Update(long IdThongtin,long IdBenhnhan,string MaLuotkham,string TrieuchungBandau,short IdBacsikham,string NguoiTao,DateTime NgayTao,string NguoiSua,DateTime? NgaySua,string Mach,string Nhietdo,string Huyetap,string Nhiptim,string Nhiptho,string Cannang,string Chieucao,string Nhommau,string TiensuBanthan,string TiensuGiadinh,string IpMaytao,string IpMaysua,string TenMaytao,string TenMaysua,decimal? ChisoIbm,string ThilucMp,string ThilucMt,string NhanapMp,string NhanapMt,string SPO2,string Para,byte? Quaibi)
 	    {
 		    KcbThongtinchung item = new KcbThongtinchung();
 	        item.MarkOld();
@@ -187,6 +191,10 @@ namespace VMS.HIS.DAL
 			item.Chieucao = Chieucao;
 				
 			item.Nhommau = Nhommau;
+				
+			item.TiensuBanthan = TiensuBanthan;
+				
+			item.TiensuGiadinh = TiensuGiadinh;
 				
 			item.IpMaytao = IpMaytao;
 				

@@ -39,50 +39,68 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Running_QLPKEBM\Aspose.Words.dll</HintPath>
     </Reference>
+    <Reference Include="BarcodeLib, Version=1.3.0.0, Culture=neutral, PublicKeyToken=5f09bda868cc39e7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\HIS_BVSG\Running\BarcodeLib.dll</HintPath>
+    </Reference>
+    <Reference Include="BarcodeLibs, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\HIS_BVSG\Running\BarcodeLibs.dll</HintPath>
+    </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\HIS_BVSG\Running\DevExpress.Data.v17.2.dll</HintPath>
+      <HintPath>C:\HIS_BVSG\Running\DevExpress\DevExpress.Data.v17.2.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Office.v17.2.Core, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\HIS_BVSG\Running\DevExpress.Office.v17.2.Core.dll</HintPath>
+      <HintPath>C:\HIS_BVSG\Running\DevExpress\DevExpress.Office.v17.2.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Pdf.v17.2.Core, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\HIS_BVSG\Running\DevExpress.Pdf.v17.2.Core.dll</HintPath>
+      <HintPath>C:\HIS_BVSG\Running\DevExpress\DevExpress.Pdf.v17.2.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Pdf.v17.2.Drawing, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\HIS_BVSG\Running\DevExpress.Pdf.v17.2.Drawing.dll</HintPath>
+      <HintPath>C:\HIS_BVSG\Running\DevExpress\DevExpress.Pdf.v17.2.Drawing.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.RichEdit.v17.2.Core, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\HIS_BVSG\Running\DevExpress.RichEdit.v17.2.Core.dll</HintPath>
+      <HintPath>C:\HIS_BVSG\Running\DevExpress\DevExpress.RichEdit.v17.2.Core.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.RichEdit.v17.2.Export, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\HIS_BVSG\Running\DevExpress.RichEdit.v17.2.Export.dll</HintPath>
+      <HintPath>C:\HIS_BVSG\Running\DevExpress\DevExpress.RichEdit.v17.2.Export.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Utils.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\HIS_BVSG\Running\DevExpress.Utils.v17.2.dll</HintPath>
+      <HintPath>C:\HIS_BVSG\Running\DevExpress\DevExpress.Utils.v17.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v17.2.UI, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\HIS_BVSG\Running\DevExpress\DevExpress.Utils.v17.2.UI.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.XtraBars.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\HIS_BVSG\Running\DevExpress.XtraBars.v17.2.dll</HintPath>
+      <HintPath>C:\HIS_BVSG\Running\DevExpress\DevExpress.XtraBars.v17.2.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.XtraEditors.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\HIS_BVSG\Running\DevExpress.XtraEditors.v17.2.dll</HintPath>
+      <HintPath>C:\HIS_BVSG\Running\DevExpress\DevExpress.XtraEditors.v17.2.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.XtraPdfViewer.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\HIS_BVSG\Running\DevExpress.XtraPdfViewer.v17.2.dll</HintPath>
+      <HintPath>C:\HIS_BVSG\Running\DevExpress\DevExpress.XtraPdfViewer.v17.2.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraRichEdit.v17.2">
+    <Reference Include="DevExpress.XtraRichEdit.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\HIS_BVSG\Running\DevExpress\DevExpress.XtraRichEdit.v17.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraRichEdit.v17.2.Extensions">
+      <HintPath>C:\HIS_BVSG\Running\DevExpress\DevExpress.XtraRichEdit.v17.2.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="Janus.Data.v3, Version=3.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -108,6 +126,11 @@
     <Reference Include="Janus.Windows.UI.v3">
       <HintPath>..\..\Running\Janus.Windows.UI.v3.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>C:\HIS_BVSG\Running\Microsoft.Office.Interop.Word.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="NLog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -124,6 +147,7 @@
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -164,6 +188,12 @@
     <Compile Include="BenhAn\Forms\VMS\frm_BenhAn_NoiKhoa.Designer.cs">
       <DependentUpon>frm_BenhAn_NoiKhoa.cs</DependentUpon>
     </Compile>
+    <Compile Include="BenhAn\Forms\VMS\frm_capnhat_gayEmr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BenhAn\Forms\VMS\frm_capnhat_gayEmr.designer.cs">
+      <DependentUpon>frm_capnhat_gayEmr.cs</DependentUpon>
+    </Compile>
     <Compile Include="BenhAn\Forms\VMS\frm_dmuc_gay.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -181,6 +211,12 @@
     </Compile>
     <Compile Include="BenhAn\Forms\VMS\frm_QuanlyBA.Designer.cs">
       <DependentUpon>frm_QuanlyBA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BenhAn\Forms\VMS\frm_emrfile_attatchments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BenhAn\Forms\VMS\frm_emrfile_attatchments.designer.cs">
+      <DependentUpon>frm_emrfile_attatchments.cs</DependentUpon>
     </Compile>
     <Compile Include="BenhAn\UCs\uc_bant_1.cs">
       <SubType>UserControl</SubType>
@@ -238,6 +274,9 @@
     <EmbeddedResource Include="BenhAn\Forms\VMS\frm_BenhAn_NoiKhoa.resx">
       <DependentUpon>frm_BenhAn_NoiKhoa.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BenhAn\Forms\VMS\frm_capnhat_gayEmr.resx">
+      <DependentUpon>frm_capnhat_gayEmr.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BenhAn\Forms\VMS\frm_dmuc_gay.resx">
       <DependentUpon>frm_dmuc_gay.cs</DependentUpon>
     </EmbeddedResource>
@@ -246,6 +285,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BenhAn\Forms\VMS\frm_QuanlyBA.resx">
       <DependentUpon>frm_QuanlyBA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BenhAn\Forms\VMS\frm_emrfile_attatchments.resx">
+      <DependentUpon>frm_emrfile_attatchments.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BenhAn\UCs\uc_bant_1.resx">
       <DependentUpon>uc_bant_1.cs</DependentUpon>
@@ -518,6 +560,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BenhAn\Forms\VMS\backup_tachcacloaiphieu\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Edit1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EDIT2.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

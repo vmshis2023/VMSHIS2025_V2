@@ -139,6 +139,31 @@ namespace VNS.Libs
                         //Thread.Sleep(10);
                     }
                 }
+                else
+                {
+                    foreach (GridEXColumn col in grd.RootTable.Columns)
+                    {
+                        if (dtColumnData.Select("col_key='" + col.Key + "'").Length <= 0)
+                        {
+                            DataRow dr = dtColumnData.NewRow();
+                            dr["grid_name"] = grd.Name;
+                            dr["col_header"] = col.Caption;
+                            dr["col_header_org"] = col.Caption;
+                            dr["col_key"] = col.Key;
+                            dr["isVisible"] = col.Visible;
+                            dr["isVisible_org"] = col.Visible;
+                            dr["width"] = col.Width;
+                            dr["width_org"] = col.Width;
+                            dr["col_index"] = col.Index;
+                            dr["col_index_org"] = col.Index;
+                            dr["source"] = 1;
+                            dr["guid"] = Guid.NewGuid().ToString();
+                            dr["username"] = globalVariables.UserName;
+                            dtColumnData.Rows.Add(dr);
+                        }
+                        //Thread.Sleep(10);
+                    }
+                }    
                 chkApplyAll.Checked = dtColumnData.Select("apply_all=1").Length > 0;
                 Utility.SetDataSourceForDataGridEx(grdList, dtColumnData, true, true, "1=1", "col_index");
                 grdList.AutoSizeColumns();

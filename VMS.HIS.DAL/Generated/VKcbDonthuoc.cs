@@ -765,6 +765,78 @@ namespace VMS.HIS.DAL{
                 
                 schema.Columns.Add(colvarMaCoso);
                 
+                TableSchema.TableColumn colvarTthaiKyso = new TableSchema.TableColumn(schema);
+                colvarTthaiKyso.ColumnName = "tthai_kyso";
+                colvarTthaiKyso.DataType = DbType.Boolean;
+                colvarTthaiKyso.MaxLength = 0;
+                colvarTthaiKyso.AutoIncrement = false;
+                colvarTthaiKyso.IsNullable = true;
+                colvarTthaiKyso.IsPrimaryKey = false;
+                colvarTthaiKyso.IsForeignKey = false;
+                colvarTthaiKyso.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarTthaiKyso);
+                
+                TableSchema.TableColumn colvarNguoiKyso = new TableSchema.TableColumn(schema);
+                colvarNguoiKyso.ColumnName = "nguoi_kyso";
+                colvarNguoiKyso.DataType = DbType.String;
+                colvarNguoiKyso.MaxLength = 30;
+                colvarNguoiKyso.AutoIncrement = false;
+                colvarNguoiKyso.IsNullable = true;
+                colvarNguoiKyso.IsPrimaryKey = false;
+                colvarNguoiKyso.IsForeignKey = false;
+                colvarNguoiKyso.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarNguoiKyso);
+                
+                TableSchema.TableColumn colvarNgayKyso = new TableSchema.TableColumn(schema);
+                colvarNgayKyso.ColumnName = "ngay_kyso";
+                colvarNgayKyso.DataType = DbType.DateTime;
+                colvarNgayKyso.MaxLength = 0;
+                colvarNgayKyso.AutoIncrement = false;
+                colvarNgayKyso.IsNullable = true;
+                colvarNgayKyso.IsPrimaryKey = false;
+                colvarNgayKyso.IsForeignKey = false;
+                colvarNgayKyso.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarNgayKyso);
+                
+                TableSchema.TableColumn colvarTthaiKydientu = new TableSchema.TableColumn(schema);
+                colvarTthaiKydientu.ColumnName = "tthai_kydientu";
+                colvarTthaiKydientu.DataType = DbType.Boolean;
+                colvarTthaiKydientu.MaxLength = 0;
+                colvarTthaiKydientu.AutoIncrement = false;
+                colvarTthaiKydientu.IsNullable = true;
+                colvarTthaiKydientu.IsPrimaryKey = false;
+                colvarTthaiKydientu.IsForeignKey = false;
+                colvarTthaiKydientu.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarTthaiKydientu);
+                
+                TableSchema.TableColumn colvarNguoiKydientu = new TableSchema.TableColumn(schema);
+                colvarNguoiKydientu.ColumnName = "nguoi_kydientu";
+                colvarNguoiKydientu.DataType = DbType.String;
+                colvarNguoiKydientu.MaxLength = 30;
+                colvarNguoiKydientu.AutoIncrement = false;
+                colvarNguoiKydientu.IsNullable = true;
+                colvarNguoiKydientu.IsPrimaryKey = false;
+                colvarNguoiKydientu.IsForeignKey = false;
+                colvarNguoiKydientu.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarNguoiKydientu);
+                
+                TableSchema.TableColumn colvarNgayKydientu = new TableSchema.TableColumn(schema);
+                colvarNgayKydientu.ColumnName = "ngay_kydientu";
+                colvarNgayKydientu.DataType = DbType.DateTime;
+                colvarNgayKydientu.MaxLength = 0;
+                colvarNgayKydientu.AutoIncrement = false;
+                colvarNgayKydientu.IsNullable = true;
+                colvarNgayKydientu.IsPrimaryKey = false;
+                colvarNgayKydientu.IsForeignKey = false;
+                colvarNgayKydientu.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarNgayKydientu);
+                
                 TableSchema.TableColumn colvarChon = new TableSchema.TableColumn(schema);
                 colvarChon.ColumnName = "CHON";
                 colvarChon.DataType = DbType.Int32;
@@ -2949,6 +3021,90 @@ namespace VMS.HIS.DAL{
             }
         }
 	      
+        [XmlAttribute("TthaiKyso")]
+        [Bindable(true)]
+        public bool? TthaiKyso 
+	    {
+		    get
+		    {
+			    return GetColumnValue<bool?>("tthai_kyso");
+		    }
+            set 
+		    {
+			    SetColumnValue("tthai_kyso", value);
+            }
+        }
+	      
+        [XmlAttribute("NguoiKyso")]
+        [Bindable(true)]
+        public string NguoiKyso 
+	    {
+		    get
+		    {
+			    return GetColumnValue<string>("nguoi_kyso");
+		    }
+            set 
+		    {
+			    SetColumnValue("nguoi_kyso", value);
+            }
+        }
+	      
+        [XmlAttribute("NgayKyso")]
+        [Bindable(true)]
+        public DateTime? NgayKyso 
+	    {
+		    get
+		    {
+			    return GetColumnValue<DateTime?>("ngay_kyso");
+		    }
+            set 
+		    {
+			    SetColumnValue("ngay_kyso", value);
+            }
+        }
+	      
+        [XmlAttribute("TthaiKydientu")]
+        [Bindable(true)]
+        public bool? TthaiKydientu 
+	    {
+		    get
+		    {
+			    return GetColumnValue<bool?>("tthai_kydientu");
+		    }
+            set 
+		    {
+			    SetColumnValue("tthai_kydientu", value);
+            }
+        }
+	      
+        [XmlAttribute("NguoiKydientu")]
+        [Bindable(true)]
+        public string NguoiKydientu 
+	    {
+		    get
+		    {
+			    return GetColumnValue<string>("nguoi_kydientu");
+		    }
+            set 
+		    {
+			    SetColumnValue("nguoi_kydientu", value);
+            }
+        }
+	      
+        [XmlAttribute("NgayKydientu")]
+        [Bindable(true)]
+        public DateTime? NgayKydientu 
+	    {
+		    get
+		    {
+			    return GetColumnValue<DateTime?>("ngay_kydientu");
+		    }
+            set 
+		    {
+			    SetColumnValue("ngay_kydientu", value);
+            }
+        }
+	      
         [XmlAttribute("Chon")]
         [Bindable(true)]
         public int Chon 
@@ -4599,6 +4755,18 @@ namespace VMS.HIS.DAL{
             public static string ChanDoan = @"chan_doan";
             
             public static string MaCoso = @"ma_coso";
+            
+            public static string TthaiKyso = @"tthai_kyso";
+            
+            public static string NguoiKyso = @"nguoi_kyso";
+            
+            public static string NgayKyso = @"ngay_kyso";
+            
+            public static string TthaiKydientu = @"tthai_kydientu";
+            
+            public static string NguoiKydientu = @"nguoi_kydientu";
+            
+            public static string NgayKydientu = @"ngay_kydientu";
             
             public static string Chon = @"CHON";
             

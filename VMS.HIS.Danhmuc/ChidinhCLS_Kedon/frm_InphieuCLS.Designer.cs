@@ -78,7 +78,7 @@
             // 
             this.cmdExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmdExit.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdExit.Image = ((System.Drawing.Image)(resources.GetObject("cmdExit.Image")));
+            this.cmdExit.Image = global::VMS.HIS.Danhmuc.Properties.Resources.close_24;
             this.cmdExit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdExit.Location = new System.Drawing.Point(652, 519);
             this.cmdExit.Name = "cmdExit";

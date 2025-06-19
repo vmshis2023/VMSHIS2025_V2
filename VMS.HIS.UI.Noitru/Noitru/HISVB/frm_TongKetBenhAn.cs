@@ -13,6 +13,7 @@ using SubSonic;
 using System.IO;
 using Microsoft.VisualBasic;
 using VNS.HIS.UI.Classess;
+using VMS.Emr;
 //using SubSonic.Utilities;
 
 namespace VNS.HIS.UI.NOITRU
@@ -134,7 +135,7 @@ namespace VNS.HIS.UI.NOITRU
                 ucThongtinnguoibenh_v21.Refresh();
             }
         }
-
+        EmrDocuments emrdoc = new EmrDocuments();
         private void cmDelete_Click(object sender, EventArgs e)
         {
 
@@ -144,6 +145,7 @@ namespace VNS.HIS.UI.NOITRU
                      .Where(KcbTongketBA.Columns.Id)
                      .IsEqualTo(Utility.Int32Dbnull(Tkba.Id))
                      .Execute();
+                emrdoc.DeleteDocument(Utility.Int32Dbnull(Tkba.Id), Loaiphieu_HIS.PHIEU_TKBA, "");
                 if (banghi > 0)
                 {
                     Tkba = new KcbTongketBA();

@@ -413,6 +413,32 @@ namespace VMS.HIS.DAL
 				colvarIdDonthuoc.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarIdDonthuoc);
 				
+				TableSchema.TableColumn colvarTthaiKiso = new TableSchema.TableColumn(schema);
+				colvarTthaiKiso.ColumnName = "tthai_kiso";
+				colvarTthaiKiso.DataType = DbType.Boolean;
+				colvarTthaiKiso.MaxLength = 0;
+				colvarTthaiKiso.AutoIncrement = false;
+				colvarTthaiKiso.IsNullable = true;
+				colvarTthaiKiso.IsPrimaryKey = false;
+				colvarTthaiKiso.IsForeignKey = false;
+				colvarTthaiKiso.IsReadOnly = false;
+				colvarTthaiKiso.DefaultSetting = @"";
+				colvarTthaiKiso.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarTthaiKiso);
+				
+				TableSchema.TableColumn colvarNguoiKiso = new TableSchema.TableColumn(schema);
+				colvarNguoiKiso.ColumnName = "nguoi_kiso";
+				colvarNguoiKiso.DataType = DbType.String;
+				colvarNguoiKiso.MaxLength = 30;
+				colvarNguoiKiso.AutoIncrement = false;
+				colvarNguoiKiso.IsNullable = true;
+				colvarNguoiKiso.IsPrimaryKey = false;
+				colvarNguoiKiso.IsForeignKey = false;
+				colvarNguoiKiso.IsReadOnly = false;
+				colvarNguoiKiso.DefaultSetting = @"";
+				colvarNguoiKiso.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarNguoiKiso);
+				
 				BaseSchema = schema;
 				//add this schema to the provider
 				//so we can query it later
@@ -598,6 +624,22 @@ namespace VMS.HIS.DAL
 			get { return GetColumnValue<long>(Columns.IdDonthuoc); }
 			set { SetColumnValue(Columns.IdDonthuoc, value); }
 		}
+		  
+		[XmlAttribute("TthaiKiso")]
+		[Bindable(true)]
+		public bool? TthaiKiso 
+		{
+			get { return GetColumnValue<bool?>(Columns.TthaiKiso); }
+			set { SetColumnValue(Columns.TthaiKiso, value); }
+		}
+		  
+		[XmlAttribute("NguoiKiso")]
+		[Bindable(true)]
+		public string NguoiKiso 
+		{
+			get { return GetColumnValue<string>(Columns.NguoiKiso); }
+			set { SetColumnValue(Columns.NguoiKiso, value); }
+		}
 		
 		#endregion
 		
@@ -618,7 +660,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(long varIdBenhnhan,string varMaLuotkham,long? varIdBuonggiuong,int varIdKhoadieutri,int varIdBacsichidinh,int varIdYtathuchien,int varSoLuong,int varIdThuoc,int varTocDo,DateTime varThoigianBatdau,DateTime varThoigianKetthuc,string varNguoiThuchien,DateTime varNgayThuchien,DateTime varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua,long varIdChitietdonthuoc,byte varTrangthaiIn,string varIdThuocKethop,long varIdDonthuoc)
+		public static void Insert(long varIdBenhnhan,string varMaLuotkham,long? varIdBuonggiuong,int varIdKhoadieutri,int varIdBacsichidinh,int varIdYtathuchien,int varSoLuong,int varIdThuoc,int varTocDo,DateTime varThoigianBatdau,DateTime varThoigianKetthuc,string varNguoiThuchien,DateTime varNgayThuchien,DateTime varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua,long varIdChitietdonthuoc,byte varTrangthaiIn,string varIdThuocKethop,long varIdDonthuoc,bool? varTthaiKiso,string varNguoiKiso)
 		{
 			NoitruPhieudichtruyen item = new NoitruPhieudichtruyen();
 			
@@ -664,6 +706,10 @@ namespace VMS.HIS.DAL
 			
 			item.IdDonthuoc = varIdDonthuoc;
 			
+			item.TthaiKiso = varTthaiKiso;
+			
+			item.NguoiKiso = varNguoiKiso;
+			
 		
 			if (System.Web.HttpContext.Current != null)
 				item.Save(System.Web.HttpContext.Current.User.Identity.Name);
@@ -674,7 +720,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(long varIdPhieu,long varIdBenhnhan,string varMaLuotkham,long? varIdBuonggiuong,int varIdKhoadieutri,int varIdBacsichidinh,int varIdYtathuchien,int varSoLuong,int varIdThuoc,int varTocDo,DateTime varThoigianBatdau,DateTime varThoigianKetthuc,string varNguoiThuchien,DateTime varNgayThuchien,DateTime varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua,long varIdChitietdonthuoc,byte varTrangthaiIn,string varIdThuocKethop,long varIdDonthuoc)
+		public static void Update(long varIdPhieu,long varIdBenhnhan,string varMaLuotkham,long? varIdBuonggiuong,int varIdKhoadieutri,int varIdBacsichidinh,int varIdYtathuchien,int varSoLuong,int varIdThuoc,int varTocDo,DateTime varThoigianBatdau,DateTime varThoigianKetthuc,string varNguoiThuchien,DateTime varNgayThuchien,DateTime varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua,long varIdChitietdonthuoc,byte varTrangthaiIn,string varIdThuocKethop,long varIdDonthuoc,bool? varTthaiKiso,string varNguoiKiso)
 		{
 			NoitruPhieudichtruyen item = new NoitruPhieudichtruyen();
 			
@@ -721,6 +767,10 @@ namespace VMS.HIS.DAL
 				item.IdThuocKethop = varIdThuocKethop;
 			
 				item.IdDonthuoc = varIdDonthuoc;
+			
+				item.TthaiKiso = varTthaiKiso;
+			
+				item.NguoiKiso = varNguoiKiso;
 			
 			item.IsNew = false;
 			if (System.Web.HttpContext.Current != null)
@@ -889,6 +939,20 @@ namespace VMS.HIS.DAL
         
         
         
+        public static TableSchema.TableColumn TthaiKisoColumn
+        {
+            get { return Schema.Columns[22]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn NguoiKisoColumn
+        {
+            get { return Schema.Columns[23]; }
+        }
+        
+        
+        
         #endregion
 		#region Columns Struct
 		public struct Columns
@@ -915,6 +979,8 @@ namespace VMS.HIS.DAL
 			 public static string TrangthaiIn = @"trangthai_in";
 			 public static string IdThuocKethop = @"id_thuoc_kethop";
 			 public static string IdDonthuoc = @"id_donthuoc";
+			 public static string TthaiKiso = @"tthai_kiso";
+			 public static string NguoiKiso = @"nguoi_kiso";
 						
 		}
 		#endregion

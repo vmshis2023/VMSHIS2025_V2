@@ -48,6 +48,7 @@ namespace VMS.Invoice
         public int VAT = 0;
         public bool isConfirmBeforeDoing = false;
         public BuyerInfor _buyer = null;
+        public bool RefIdIsGuidID = false;
         public MisaInvoice()
         {
             try
@@ -167,17 +168,36 @@ namespace VMS.Invoice
                 (from p in dtData.AsEnumerable() select p).ToList()
                     .ForEach(x =>
                     {
-                        x["BuyerCode"] = BuyerCode;
-                        x["BuyerLegalName"] = BuyerLegalName;
-                        x["BuyerTaxCode"] = BuyerTaxCode;
-                        x["BuyerAddress"] = BuyerAddress;
-                        x["BuyerFullName"] = BuyerFullName;
-                        x["BuyerPhoneNumber"] = BuyerPhoneNumber;
-                        x["BuyerEmail"] = BuyerEmail;
-                        x["BuyerBankAccount"] = BuyerBankAccount;
-                        x["BuyerBankName"] = BuyerBankName;
-                        x["BuyerIDNumber"] = BuyerIDNumber;
-                        x["VAT"] = VAT;
+                        if (_buyer != null)
+                        {
+                            x["BuyerCode"] = _buyer.BuyerCode;
+                            x["BuyerLegalName"] = _buyer.BuyerLegalName;
+                            x["BuyerTaxCode"] = _buyer.BuyerTaxCode;
+                            x["BuyerAddress"] = _buyer.BuyerAddress;
+                            x["BuyerFullName"] = _buyer.BuyerFullName;
+                            x["BuyerPhoneNumber"] = _buyer.BuyerPhoneNumber;
+                            x["BuyerEmail"] = _buyer.BuyerEmail;
+                            x["BuyerBankAccount"] = _buyer.BuyerBankAccount;
+                            x["BuyerBankName"] = _buyer.BuyerBankName;
+                            x["BuyerIDNumber"] = _buyer.BuyerIDNumber;
+                            x["VAT"] = VAT;
+                            x["CMT"] = _buyer.BuyerIDNumber;//Tùy do người dùng chọn gửi cả CMT hay không
+                        }
+                        else
+                        {
+                            x["BuyerCode"] = BuyerCode;
+                            x["BuyerLegalName"] = BuyerLegalName;
+                            x["BuyerTaxCode"] = BuyerTaxCode;
+                            x["BuyerAddress"] = BuyerAddress;
+                            x["BuyerFullName"] = BuyerFullName;
+                            x["BuyerPhoneNumber"] = BuyerPhoneNumber;
+                            x["BuyerEmail"] = BuyerEmail;
+                            x["BuyerBankAccount"] = BuyerBankAccount;
+                            x["BuyerBankName"] = BuyerBankName;
+                            x["BuyerIDNumber"] = BuyerIDNumber;
+                            x["VAT"] = VAT;
+                            x["CMT"] = BuyerIDNumber;//Tùy do người dùng chọn gửi cả CMT hay không
+                        }
                     }
                     );
             }
@@ -316,7 +336,7 @@ namespace VMS.Invoice
                         log.Trace(eMessage);
                         return false;
                     }
-                    orginvoicedata.RefID = Guid.NewGuid().ToString();
+                    orginvoicedata.RefID = RefIdIsGuidID? Guid.NewGuid().ToString():( str_IdThanhtoan.Split(',').Count() > 1 ? Guid.NewGuid().ToString() : str_IdThanhtoan); //Guid.NewGuid().ToString();
                     orginvoicedata.InvSeries = invInvoiceSeries;
                     log.Trace("inv_invoiceSeries: " + orginvoicedata.InvSeries);
                     orginvoicedata.InvoiceName = invoiceName;
@@ -342,6 +362,20 @@ namespace VMS.Invoice
                     orginvoicedata.BuyerAddress = Utility.sDbnull(dtOrginvoicedata.Rows[0]["BuyerAddress"]);
                     orginvoicedata.BuyerEmail = Utility.sDbnull(dtOrginvoicedata.Rows[0]["BuyerEmail"]);
                     orginvoicedata.ContactName = Utility.sDbnull(dtOrginvoicedata.Rows[0]["ContactName"]);
+                    if (_buyer != null)
+                    {
+                        List<string> lstEmail = _buyer.ReceiverEmail.Split(';').ToList<string>();
+                        orginvoicedata.BuyerLegalName = _buyer.BuyerLegalName;
+                        orginvoicedata.BuyerEmail = _buyer.BuyerEmail;
+                        orginvoicedata.IsSendEmail = _buyer.IsSendEmail;
+                        orginvoicedata.ReceiverEmail = _buyer.ReceiverEmail;
+                        orginvoicedata.ReceiverName = _buyer.ReceiverName;
+                        orginvoicedata.BuyerFullName = _buyer.BuyerFullName;
+                        orginvoicedata.BuyerAddress = _buyer.BuyerAddress;
+                        orginvoicedata.BuyerTaxCode = _buyer.BuyerTaxCode;
+                        orginvoicedata.BuyerBankAccount = _buyer.BuyerBankAccount;
+                        orginvoicedata.AccountObjectIdentificationNumber = _buyer.BuyerIDNumber;
+                    }
                     orginvoicedata.TotalAmountWithoutVATOC = Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalAmountWithoutVATOC)", "1=1"), 0);
                     orginvoicedata.TotalVATAmountOC = Utility.DecimaltoDbnull(dtTaxRateInfo.Rows[0]["VATAmountOC"]);// Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalVATAmountOC)", "1=1"), 0);
                     orginvoicedata.TotalAmount = Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalAmount)", "1=1"), 0);
@@ -760,7 +794,20 @@ namespace VMS.Invoice
                     orginvoicedata.BuyerAddress = Utility.sDbnull(dtOrginvoicedata.Rows[0]["BuyerAddress"]);
                     orginvoicedata.BuyerEmail = Utility.sDbnull(dtOrginvoicedata.Rows[0]["BuyerEmail"]);
                     orginvoicedata.ContactName = Utility.sDbnull(dtOrginvoicedata.Rows[0]["ContactName"]);
-
+                    if (_buyer != null)
+                    {
+                        List<string> lstEmail = _buyer.ReceiverEmail.Split(';').ToList<string>();
+                        orginvoicedata.BuyerLegalName = _buyer.BuyerLegalName;
+                        orginvoicedata.BuyerEmail = _buyer.BuyerEmail;
+                        orginvoicedata.IsSendEmail = _buyer.IsSendEmail;
+                        orginvoicedata.ReceiverEmail = _buyer.ReceiverEmail;
+                        orginvoicedata.ReceiverName = _buyer.ReceiverName;
+                        orginvoicedata.BuyerFullName = _buyer.BuyerFullName;
+                        orginvoicedata.BuyerAddress = _buyer.BuyerAddress;
+                        orginvoicedata.BuyerTaxCode = _buyer.BuyerTaxCode;
+                        orginvoicedata.BuyerBankAccount = _buyer.BuyerBankAccount;
+                        orginvoicedata.AccountObjectIdentificationNumber = _buyer.BuyerIDNumber;
+                    }
                     orginvoicedata.TotalAmountWithoutVATOC = Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalAmountWithoutVATOC)", "1=1"), 0);
                     orginvoicedata.TotalVATAmountOC = Utility.DecimaltoDbnull(dtTaxRateInfo.Rows[0]["VATAmountOC"]);// Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalVATAmountOC)", "1=1"), 0);
                     orginvoicedata.TotalAmount = Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalAmount)", "1=1"), 0);
@@ -1224,7 +1271,7 @@ namespace VMS.Invoice
                         log.Trace(eMessage);
                         return false;
                     }
-                    orginvoicedata.RefID = Guid.NewGuid().ToString();
+                    orginvoicedata.RefID =RefIdIsGuidID? Guid.NewGuid().ToString(): (str_IdThanhtoan.Split(',').Count() > 1 ? Guid.NewGuid().ToString() : str_IdThanhtoan);
                     orginvoicedata.InvSeries = invInvoiceSeries;
                     log.Trace("inv_invoiceSeries: " + orginvoicedata.InvSeries);
                     orginvoicedata.InvoiceName = invoiceName;
@@ -1258,6 +1305,11 @@ namespace VMS.Invoice
                         orginvoicedata.IsSendEmail = _buyer.IsSendEmail;
                         orginvoicedata.ReceiverEmail =_buyer.ReceiverEmail;
                         orginvoicedata.ReceiverName = _buyer.ReceiverName;
+                        orginvoicedata.BuyerFullName = _buyer.BuyerFullName;
+                        orginvoicedata.BuyerAddress = _buyer.BuyerAddress;
+                        orginvoicedata.BuyerTaxCode = _buyer.BuyerTaxCode;
+                        orginvoicedata.BuyerBankAccount = _buyer.BuyerBankAccount;
+                        orginvoicedata.AccountObjectIdentificationNumber = _buyer.BuyerIDNumber;
                     }    
                     orginvoicedata.TotalAmountWithoutVATOC = Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalAmountWithoutVATOC)","1=1"), 0);
                     orginvoicedata.TotalVATAmountOC = Utility.DecimaltoDbnull(dtTaxRateInfo.Rows[0]["VATAmountOC"]);// Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalVATAmountOC)", "1=1"), 0);

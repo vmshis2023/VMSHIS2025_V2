@@ -411,7 +411,7 @@ namespace VNS.HIS.UI.Forms.HinhAnh
             {
                 //if (videoSource != null)
                 //    videoSource.SignalToStop();
-                if (videoSource.IsRunning)
+                if (videoSource!=null && videoSource.IsRunning)
                 {
                     videoSource.SignalToStop();
                     videoSource.WaitForStop();

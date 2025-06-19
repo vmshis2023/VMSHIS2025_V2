@@ -4051,7 +4051,7 @@ namespace VNS.HIS.UI.THUOC
                 m_dtPhieuChi = null;
                 DataTable dtData =
                        _THANHTOAN.LaythongtinCacLanthanhtoan(objLuotkham.MaLuotkham,
-                           objLuotkham.IdBenhnhan, 0, 0, 1,
+                           objLuotkham.IdBenhnhan,-1, 0, 1,
                            globalVariables.MA_KHOA_THIEN, lstIdLoaiTtoan,-1);
                 DataRow[] arrDR = dtData.Select("Kieu_ThanhToan = 0");
                 if (arrDR.Length > 0) m_dtPayment = arrDR.CopyToDataTable();

@@ -19,6 +19,7 @@ using Janus.Windows.GridEX;
 using VNS.HIS.UI.DANHMUC;
 using VNS.HIS.UCs;
 using System.Transactions;
+using VMS.Emr;
 //using SubSonic.Utilities;
 
 namespace VNS.HIS.UI.NOITRU
@@ -27,7 +28,7 @@ namespace VNS.HIS.UI.NOITRU
     {
         public delegate void OnCreated(long id, action m_enAct);
         public event OnCreated _OnCreated;
-
+        EmrDocuments emrdoc = new EmrDocuments();
         public KcbPhieutuvanPttt tuvanPttt = new KcbPhieutuvanPttt();
         KcbLuotkham objLuotkham = null;
         NoitruPhieunhapvien objNhapvien;
@@ -354,6 +355,7 @@ namespace VNS.HIS.UI.NOITRU
                      .Where(KcbPhieutuvanPttt.Columns.IdPhieu)
                      .IsEqualTo(Utility.Int32Dbnull(tuvanPttt.IdPhieu))
                      .Execute();
+                emrdoc.DeleteDocument(tuvanPttt.IdPhieu, Loaiphieu_HIS.PHIEU_TUVAN_PTTT, "");
                 if (banghi > 0)
                 {
                     tuvanPttt = new KcbPhieutuvanPttt();
@@ -455,6 +457,8 @@ namespace VNS.HIS.UI.NOITRU
                 tuvanPttt.NgayTuvan = dtNgaytuvan.Value;
                 tuvanPttt.GhichuThem = Utility.DoTrim(txtGhichu.Text);
                 tuvanPttt.Save();
+                emrdoc.InitDocument(tuvanPttt.IdBenhnhan, tuvanPttt.MaLuotkham, Utility.Int64Dbnull(tuvanPttt.IdPhieu), tuvanPttt.NgayTuvan, Loaiphieu_HIS.PHIEU_TUVAN_PTTT, "Phieu_TuvanPTTT", tuvanPttt.NguoiTao, tuvanPttt.IdKhoadieutri, -1, Utility.Byte2Bool(objLuotkham.Noitru), "");
+                emrdoc.Save();
                 if (m_enAct == action.Insert)
                 {
                     Utility.Log(this.Name, globalVariables.UserName, string.Format("Thêm mới Phiếu tư vấn PTTT bệnh nhân: {0}-{1} thành công", tuvanPttt.MaLuotkham, ucThongtinnguoibenh_doc_v11.txtTenBN.Text), tuvanPttt.IsNew ? newaction.Insert : newaction.Update, "UI");
@@ -703,6 +707,7 @@ namespace VNS.HIS.UI.NOITRU
                              .Where(KcbPhieutuvanPttt.Columns.IdPhieu)
                              .IsEqualTo(Utility.Int32Dbnull(tuvanPttt.IdPhieu))
                              .Execute();
+                        emrdoc.DeleteDocument(Utility.Int64Dbnull(tuvanPttt.IdPhieu), Loaiphieu_HIS.PHIEU_TUVAN_PTTT, "Phieu_TuvanPTTT");
                         if (banghi > 0)
                         {
                             tuvanPttt = new KcbPhieutuvanPttt();

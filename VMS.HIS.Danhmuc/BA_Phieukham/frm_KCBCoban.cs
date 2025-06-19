@@ -105,13 +105,13 @@ namespace VMS.EMR.PHIEUKHAM
         {
             try
             {
-                if (objLuotkham.TrangthaiNgoaitru == 1 || objLuotkham.NgayKetthuc != null || (Utility.Byte2Bool(objLuotkham.TthaiThopNoitru) && objLuotkham.TrangthaiNoitru == 6))
-                {
-                    Utility.ShowMsg("Bệnh nhân đã kết thúc khám nên bạn không thể thực hiện chức năng này");
-                    ucThongtinnguoibenh1.txtMaluotkham.Focus();
-                    ucThongtinnguoibenh1.txtMaluotkham.SelectAll();
-                    return;
-                }
+                //if (objLuotkham.TrangthaiNgoaitru == 1 || objLuotkham.NgayKetthuc != null || (Utility.Byte2Bool(objLuotkham.TthaiThopNoitru) && objLuotkham.TrangthaiNoitru == 6))
+                //{
+                //    Utility.ShowMsg("Bệnh nhân đã kết thúc khám nên bạn không thể thực hiện chức năng này");
+                //    ucThongtinnguoibenh1.txtMaluotkham.Focus();
+                //    ucThongtinnguoibenh1.txtMaluotkham.SelectAll();
+                //    return;
+                //}
                 if ( globalVariables.IsAdmin || (objphieukham != null &&  objphieukham.IdBacsi == globalVariables.gv_intIDNhanvien))
                 {
                     objphieukham = new Select().From(EmrPhieukhambenh.Schema)
@@ -123,6 +123,7 @@ namespace VMS.EMR.PHIEUKHAM
                         if (Utility.AcceptQuestion("Bạn có chắc chắn muốn xóa thông tin khám chữa bệnh ngày {0} của bác sĩ {1} thực hiện", "Cảnh báo", true))
                         {
                             EmrPhieukhambenh.Delete(objphieukham.Id);
+                            Utility.Log(Name, globalVariables.UserName, string.Format("Xóa thông tin phiếu KCB của bệnh nhân {0} ,mã lần khám {1} và id_benhnhan {2}, id phiếu KCB={3} ", ucThongtinnguoibenh1.txtTenBN.Text, objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan, objphieukham.Id), newaction.Delete, this.GetType().Assembly.ManifestModule.Name);
                             Utility.RemoveRowfromDataTable("id=" + objphieukham.Id.ToString(), m_dtData);
                         }
                     }
@@ -661,6 +662,7 @@ namespace VMS.EMR.PHIEUKHAM
         {
             try
             {
+                bool isInsert = false;
                 if (objphieukham != null && objphieukham.Id>0)
                 {
                     objphieukham.MarkOld();
@@ -678,7 +680,7 @@ namespace VMS.EMR.PHIEUKHAM
                     objphieukham.NgayTao = THU_VIEN_CHUNG.GetSysDateTime();
                 }
 
-
+                isInsert = objphieukham.Id <= 0;
                 objphieukham.NhomMau = txtNhommau.myCode;
 
                 objphieukham.DangDi = Utility.sDbnull(txtToanThan_DangDi.Text);
@@ -718,6 +720,7 @@ namespace VMS.EMR.PHIEUKHAM
                 objphieukham.Noitietdinhduongbenhlykhac = Utility.sDbnull(txtBophanKhac.Text);
 
                 objphieukham.Save();
+                Utility.Log(Name, globalVariables.UserName, string.Format("Lưu thông tin phiếu KCB của bệnh nhân {0} ,mã lần khám {1} và id_benhnhan {2}, id phiếu KCB={3} thành công", ucThongtinnguoibenh1.txtTenBN.Text, objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan, objphieukham.Id), isInsert? newaction.Insert: newaction.Update, this.GetType().Assembly.ManifestModule.Name);
                 Utility.ShowMsg("Bạn đã lưu thông tin khám cơ bản thành công. Nhấn nút OK để kết thúc");
                 //LoadLichSu();
                 //Utility.GonewRowJanus(grdLichSu, "Id", objphieukham.Id.ToString());
@@ -785,6 +788,11 @@ namespace VMS.EMR.PHIEUKHAM
         }
 
         private void cmdSua_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmdGhi_Click_1(object sender, EventArgs e)
         {
 
         }

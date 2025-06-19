@@ -23,6 +23,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Transactions;
 using VNS.Libs.AppUI;
+using VMS.Emr;
 
 namespace VNS.HIS.UI.NOITRU
 {
@@ -689,6 +690,7 @@ namespace VNS.HIS.UI.NOITRU
 
                     FillBacsiPttt(objpttt.MaDungcuvongtrong, dtDieuduongvongtrong, grdDieuduongvongtrong);
                     FillBacsiPttt(objpttt.MaDungcuvongngoai, dtDieuduongvongngoai, grdDieuduongvongngoai);
+                    autoCC.SetId(objpttt.IdbacsiThuchien);
                     dtpNgayGioKetThucPTTT.Enabled = chkPTTT_KetThuc.Checked;
                     txtIdPhieuPTTT.Text = objpttt.IdPhieu.ToString();
                     txtMaphieu.Text = objpttt.MaPhieu;
@@ -896,6 +898,7 @@ namespace VNS.HIS.UI.NOITRU
                                       DmucNhanvien.Columns.TenNhanvien
                                   });
             autoBSGayme.Init(autoBSPhauthuat.AutoCompleteSource, autoBSPhauthuat.defaultItem);
+            autoCC.Init(autoBSPhauthuat.AutoCompleteSource, autoBSPhauthuat.defaultItem);
             autoBSphu.Init(autoBSPhauthuat.AutoCompleteSource, autoBSPhauthuat.defaultItem);
             autoDieuduonggayme.Init(autoBSPhauthuat.AutoCompleteSource, autoBSPhauthuat.defaultItem);
             autoDieuduongvongngoai.Init(autoBSPhauthuat.AutoCompleteSource, autoBSPhauthuat.defaultItem);
@@ -1019,7 +1022,7 @@ namespace VNS.HIS.UI.NOITRU
             AllowSeletionChanged = false;
             m_enAct = action.Insert;
             cmdCancel.BringToFront();
-            ClearControl();
+            if (!chkGiuthongtin.Checked) ClearControl();
             autoKhoa.SetId(objLuotkham.IdKhoanoitru);
             autoKhoa.RaiseEnterEvents();
             autoBuong.SetId(objLuotkham.IdBuong);
@@ -1175,6 +1178,7 @@ namespace VNS.HIS.UI.NOITRU
             sp.Execute();
             return Utility.sDbnull(sp.OutputValues[0], "-1");
         }
+        EmrDocuments emrdoc = new EmrDocuments();
         private void cmdSave_Click(object sender, EventArgs e)
         {
             try
@@ -1209,6 +1213,7 @@ namespace VNS.HIS.UI.NOITRU
                     objpttt.NgayKetthuc = dtpNgayGioKetThucPTTT.Value;
                 else
                     objpttt.NgayKetthuc = null;
+                objpttt.IdbacsiThuchien = Utility.Int16Dbnull(autoCC.MyID);
                 objpttt.IdbacsiGayme = getBacsithamgia(dtbsgayme);
                 objpttt.IdbacsiPttt = getBacsithamgia(dtbsphauthuat);
                 objpttt.IdbacsiPtttPhu = getBacsithamgia(dtbsphauthuatphu);
@@ -1272,6 +1277,18 @@ namespace VNS.HIS.UI.NOITRU
                    UIAction.SetTextStatus(lblStatus, "Đã cập nhật phiếu PTTT thành công.",false);
                     m_enAct = action.Update;
                 }
+                emrdoc.InitDocument(objpttt.IdBenhnhan, objpttt.MaLuotkham, Utility.Int64Dbnull(objpttt.IdPhieu), objpttt.NgayPttt, Loaiphieu_HIS.PHIEUPTTT, "PHIEU_CAMKET_PTTT", objpttt.NguoiTao, objpttt.IdKhoadieutri, -1, Utility.Byte2Bool(objpttt.Noitru), "",true);
+                emrdoc.Save();
+                emrdoc.InitDocument(objpttt.IdBenhnhan, objpttt.MaLuotkham, Utility.Int64Dbnull(objpttt.IdPhieu), objpttt.NgayPttt, Loaiphieu_HIS.PHIEUPTTT, "PHIEU_CHUNGNHAN_PTTT", objpttt.NguoiTao, objpttt.IdKhoadieutri, -1, Utility.Byte2Bool(objpttt.Noitru), "", true);
+                emrdoc.Save();
+                emrdoc.InitDocument(objpttt.IdBenhnhan, objpttt.MaLuotkham, Utility.Int64Dbnull(objpttt.IdPhieu), objpttt.NgayPttt, Loaiphieu_HIS.PHIEUPTTT, "PHIEU_PTTT_NOITRU", objpttt.NguoiTao, objpttt.IdKhoadieutri, -1, Utility.Byte2Bool(objpttt.Noitru), "", true);
+                emrdoc.Save();
+                emrdoc.InitDocument(objpttt.IdBenhnhan, objpttt.MaLuotkham, Utility.Int64Dbnull(objpttt.IdPhieu), objpttt.NgayPttt, Loaiphieu_HIS.PHIEUPTTT, "PHIEU_TUONGTRINH_PTTT", objpttt.NguoiTao, objpttt.IdKhoadieutri, -1, Utility.Byte2Bool(objpttt.Noitru), "", true);
+                emrdoc.Save();
+
+
+
+
                 cmdExit.BringToFront();
                 cmdCancel.PerformClick();
                 AllowSeletionChanged = true;
@@ -1313,6 +1330,11 @@ namespace VNS.HIS.UI.NOITRU
                          .Where(KcbPhieupttt.Columns.IdPhieu)
                          .IsEqualTo(Utility.Int32Dbnull(objpttt.IdPhieu))
                          .Execute();
+                    emrdoc.DeleteDocument(Utility.Int64Dbnull(objpttt.IdPhieu), Loaiphieu_HIS.PHIEUPTTT, "");//Xóa tất cả các phiếu liên quan đến phiếu này
+                    //emrdoc.DeleteDocument(Utility.Int64Dbnull(objpttt.IdPhieu), Loaiphieu_HIS.PHIEUPTTT, "PHIEU_CAMKET_PTTT");
+                    //emrdoc.DeleteDocument(Utility.Int64Dbnull(objpttt.IdPhieu),  Loaiphieu_HIS.PHIEUPTTT, "PHIEU_CHUNGNHAN_PTTT");
+                    //emrdoc.DeleteDocument(Utility.Int64Dbnull(objpttt.IdPhieu),  Loaiphieu_HIS.PHIEUPTTT, "PHIEU_PTTT_NOITRU");
+                    //emrdoc.DeleteDocument(Utility.Int64Dbnull(objpttt.IdPhieu),  Loaiphieu_HIS.PHIEUPTTT, "PHIEU_TUONGTRINH_PTTT");
                     if (banghi > 0)
                     {
                         Utility.ShowMsg("Bạn xóa thông tin phiếu PTTT thành công", "Thông báo");
@@ -1415,7 +1437,7 @@ namespace VNS.HIS.UI.NOITRU
                 if (!File.Exists(PathDoc))
                 {
                     string tieude = "";
-                    Utility.GetReport("PHIEU_PTTT_NOITRU", ref tieude, ref PathDoc);
+                    Utility.GetReport("PHIEU_CHUNGNHAN_PTTT", ref tieude, ref PathDoc);
                 }
                 if (!File.Exists(PathDoc))
                 {
@@ -1434,7 +1456,7 @@ namespace VNS.HIS.UI.NOITRU
 
                 string fileKetqua = string.Format("{0}{1}{2}{3}{4}_{5}_{6}_{7}",
                                Path.GetDirectoryName(writePathdoc), Path.DirectorySeparatorChar,
-                               Path.GetFileNameWithoutExtension(PathDoc), "PhieuPTTT", objLuotkham.MaLuotkham, Utility.sDbnull(ID_PHIEUPTTT), Guid.NewGuid().ToString(), Path.GetExtension(PathDoc));
+                               Path.GetFileNameWithoutExtension(PathDoc), "PHIEU_CHUNGNHAN_PTTT", objLuotkham.MaLuotkham, Utility.sDbnull(ID_PHIEUPTTT), Guid.NewGuid().ToString(), Path.GetExtension(PathDoc));
 
                
                 if ((drData != null) && File.Exists(PathDoc))
@@ -1645,7 +1667,7 @@ namespace VNS.HIS.UI.NOITRU
 
                 string fileKetqua = string.Format("{0}{1}{2}{3}{4}_{5}_{6}_{7}",
                                Path.GetDirectoryName(writePathdoc), Path.DirectorySeparatorChar,
-                               Path.GetFileNameWithoutExtension(PathDoc), "PhieuPTTT", objLuotkham.MaLuotkham, Utility.sDbnull(ID_PHIEUPTTT), Guid.NewGuid().ToString(), Path.GetExtension(PathDoc));
+                               Path.GetFileNameWithoutExtension(PathDoc), "PHIEU_PTTT_NOITRU", objLuotkham.MaLuotkham, Utility.sDbnull(ID_PHIEUPTTT), Guid.NewGuid().ToString(), Path.GetExtension(PathDoc));
 
 
                 if ((drData != null) && File.Exists(PathDoc))
@@ -1770,7 +1792,7 @@ namespace VNS.HIS.UI.NOITRU
                 if (!File.Exists(PathDoc))
                 {
                     string tieude = "";
-                    Utility.GetReport("PHIEU_PTTT_NOITRU", ref tieude, ref PathDoc);
+                    Utility.GetReport("PHIEU_CAMKET_PTTT", ref tieude, ref PathDoc);
                 }
                 if (!File.Exists(PathDoc))
                 {
@@ -1789,7 +1811,7 @@ namespace VNS.HIS.UI.NOITRU
 
                 string fileKetqua = string.Format("{0}{1}{2}{3}{4}_{5}_{6}_{7}",
                                Path.GetDirectoryName(writePathdoc), Path.DirectorySeparatorChar,
-                               Path.GetFileNameWithoutExtension(PathDoc), "PhieuPTTT", objLuotkham.MaLuotkham, Utility.sDbnull(ID_PHIEUPTTT), Guid.NewGuid().ToString(), Path.GetExtension(PathDoc));
+                               Path.GetFileNameWithoutExtension(PathDoc), "PHIEU_CAMKET_PTTT", objLuotkham.MaLuotkham, Utility.sDbnull(ID_PHIEUPTTT), Guid.NewGuid().ToString(), Path.GetExtension(PathDoc));
 
 
                 if ((drData != null) && File.Exists(PathDoc))
@@ -1982,7 +2004,7 @@ namespace VNS.HIS.UI.NOITRU
 
                 string fileKetqua = string.Format("{0}{1}{2}{3}{4}_{5}_{6}_{7}",
                                Path.GetDirectoryName(writePathdoc), Path.DirectorySeparatorChar,
-                               Path.GetFileNameWithoutExtension(PathDoc), "PhieuPTTT", objLuotkham.MaLuotkham, Utility.sDbnull(ID_PHIEUPTTT), Guid.NewGuid().ToString(), Path.GetExtension(PathDoc));
+                               Path.GetFileNameWithoutExtension(PathDoc), "PHIEU_TUONGTRINH_PTTT", objLuotkham.MaLuotkham, Utility.sDbnull(ID_PHIEUPTTT), Guid.NewGuid().ToString(), Path.GetExtension(PathDoc));
 
                 int w = 100;
                 int h = 100;

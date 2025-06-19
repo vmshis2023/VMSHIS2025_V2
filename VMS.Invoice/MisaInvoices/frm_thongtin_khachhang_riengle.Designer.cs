@@ -117,7 +117,7 @@
             this.cmdthoat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdthoat.Image = ((System.Drawing.Image)(resources.GetObject("cmdthoat.Image")));
             this.cmdthoat.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdthoat.Location = new System.Drawing.Point(517, 400);
+            this.cmdthoat.Location = new System.Drawing.Point(520, 402);
             this.cmdthoat.Name = "cmdthoat";
             this.cmdthoat.Size = new System.Drawing.Size(103, 33);
             this.cmdthoat.TabIndex = 12;
@@ -189,7 +189,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(631, 65);
+            this.panel1.Size = new System.Drawing.Size(634, 65);
             this.panel1.TabIndex = 608;
             // 
             // lblTitle2
@@ -200,7 +200,7 @@
             this.lblTitle2.ForeColor = System.Drawing.Color.Black;
             this.lblTitle2.Location = new System.Drawing.Point(65, 0);
             this.lblTitle2.Name = "lblTitle2";
-            this.lblTitle2.Size = new System.Drawing.Size(564, 63);
+            this.lblTitle2.Size = new System.Drawing.Size(567, 63);
             this.lblTitle2.TabIndex = 542;
             this.lblTitle2.Text = "PHÁT HÀNH HÓA ĐƠN ĐIỆN TỬ";
             this.lblTitle2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -221,9 +221,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblMsg.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMsg.ForeColor = System.Drawing.Color.Black;
-            this.lblMsg.Location = new System.Drawing.Point(6, 373);
+            this.lblMsg.Location = new System.Drawing.Point(6, 375);
             this.lblMsg.Name = "lblMsg";
-            this.lblMsg.Size = new System.Drawing.Size(613, 24);
+            this.lblMsg.Size = new System.Drawing.Size(616, 24);
             this.lblMsg.TabIndex = 619;
             // 
             // cmdPReview
@@ -232,7 +232,7 @@
             this.cmdPReview.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdPReview.Image = ((System.Drawing.Image)(resources.GetObject("cmdPReview.Image")));
             this.cmdPReview.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdPReview.Location = new System.Drawing.Point(380, 400);
+            this.cmdPReview.Location = new System.Drawing.Point(383, 402);
             this.cmdPReview.Name = "cmdPReview";
             this.cmdPReview.Size = new System.Drawing.Size(131, 33);
             this.cmdPReview.TabIndex = 11;
@@ -245,7 +245,7 @@
             this.cmdPhathanhHDon.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdPhathanhHDon.Image = ((System.Drawing.Image)(resources.GetObject("cmdPhathanhHDon.Image")));
             this.cmdPhathanhHDon.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdPhathanhHDon.Location = new System.Drawing.Point(215, 400);
+            this.cmdPhathanhHDon.Location = new System.Drawing.Point(218, 402);
             this.cmdPhathanhHDon.Name = "cmdPhathanhHDon";
             this.cmdPhathanhHDon.Size = new System.Drawing.Size(159, 33);
             this.cmdPhathanhHDon.TabIndex = 10;
@@ -257,7 +257,7 @@
             this.chkCloseAfterSaving.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.chkCloseAfterSaving.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkCloseAfterSaving.ForeColor = System.Drawing.Color.Navy;
-            this.chkCloseAfterSaving.Location = new System.Drawing.Point(9, 410);
+            this.chkCloseAfterSaving.Location = new System.Drawing.Point(9, 412);
             this.chkCloseAfterSaving.Name = "chkCloseAfterSaving";
             this.chkCloseAfterSaving.Size = new System.Drawing.Size(199, 24);
             this.chkCloseAfterSaving.TabIndex = 627;
@@ -429,7 +429,7 @@
             // frm_thongtin_khachhang_riengle
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(631, 446);
+            this.ClientSize = new System.Drawing.Size(634, 448);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.grbThongtinHoadon);
             this.Controls.Add(this.chkCloseAfterSaving);

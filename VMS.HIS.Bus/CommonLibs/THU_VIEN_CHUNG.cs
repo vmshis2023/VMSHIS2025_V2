@@ -683,6 +683,21 @@ namespace VNS.Libs
             string GUID = Guid.NewGuid().ToString();
             return GUID;
         }
+        public static DmucChung LayDulieuDanhmucChung(string LOAI,string MA)
+        {
+            try
+            {
+                return new Select().From(DmucChung.Schema)
+                    .Where(DmucChung.Columns.Loai).IsEqualTo(LOAI)
+                    .And(DmucChung.Columns.Ma).IsEqualTo(MA)
+                    .ExecuteSingle<DmucChung>();
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+        }
         public static DataTable LayDulieuDanhmucChung(List<string> lstLoai, bool fromDB)
         {
             try

@@ -325,9 +325,9 @@ namespace VNS.HIS.BusRule.Classes
                 return ActionResult.Error;
             }
         }
-        public DataSet NoitruLaythongtinphieudieutriIn(string lstIdPhieudieutri)
+        public DataSet NoitruLaythongtinphieudieutriIn(long id_benhnhan,string ma_luotkham, string lstIdPhieudieutri)
         {
-            return SPs.NoitruLaythongtinphieudieutriIn(lstIdPhieudieutri).GetDataSet();
+            return SPs.NoitruLaythongtinphieudieutriIn(id_benhnhan, ma_luotkham,lstIdPhieudieutri).GetDataSet();
         }
         public DataTable NoitruLaydulieuClsThuocVtthSaochep(int IdPhieudieutri, int idbenhnhan, string maluotkham)
         {

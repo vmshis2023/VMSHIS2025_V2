@@ -22,6 +22,7 @@ using Aspose.Words;
 using System.Diagnostics;
 using VNS.HIS.BusRule.Classes;
 using VMS.HIS.Danhmuc.Dungchung;
+using VMS.Emr;
 
 namespace VNS.HIS.UI.NOITRU
 {
@@ -822,15 +823,24 @@ namespace VNS.HIS.UI.NOITRU
             //    txtHopTai.SelectAll();
             //    return false;
             //}
-            //if (Utility.DoTrim(autoChutoa.Text) == "")
-            //{
-            //    uiTabInfor.SelectedIndex = 0;
-            //    Utility.ShowMsg("Bạn phải nhập chủ tọa hội chẩn");
-            //    errorProvider1.SetError(autoBacsithamgia, "Nhập thông tin");
-            //    autoChutoa.Focus();
-            //    autoChutoa.SelectAll();
-            //    return false;
-            //}
+            if (Utility.DoTrim(autoChutoa.Text) == "")
+            {
+                uiTabInfor.SelectedIndex = 0;
+                Utility.ShowMsg("Bạn phải nhập chủ tọa hội chẩn");
+                errorProvider1.SetError(autoBacsithamgia, "Nhập thông tin");
+                autoChutoa.Focus();
+                autoChutoa.SelectAll();
+                return false;
+            }
+            if (Utility.Int32Dbnull(autoKhoa.MyID) == -1)
+            {
+                uiTabInfor.SelectedIndex = 0;
+                Utility.ShowMsg("Bạn phải nhập Khoa hội chẩn");
+                errorProvider1.SetError(autoBacsithamgia, "Nhập thông tin");
+                autoKhoa.Focus();
+                autoKhoa.SelectAll();
+                return false;
+            }
             //if (Utility.DoTrim(autoThuki.Text) == "")
             //{
             //    uiTabInfor.SelectedIndex = 0;
@@ -1044,6 +1054,7 @@ namespace VNS.HIS.UI.NOITRU
             sp.Execute();
             return Utility.sDbnull(sp.OutputValues[0], "-1");
         }
+        EmrDocuments emrdoc = new EmrDocuments();
         private void cmdSave_Click(object sender, EventArgs e)
         {
             try
@@ -1090,7 +1101,7 @@ namespace VNS.HIS.UI.NOITRU
                 bbhc.ChandoanNguyennhanTienluong = txtChanDoan.Text;
                 bbhc.Pphapdieutri = txtPhuongPhapDieuTri.Text;
                 bbhc.ChamSoc = txtChamSoc.Text;
-
+                bbhc.IdKhoahoichan = Utility.Int16Dbnull(autoKhoa.MyID);
                 bbhc.KetLuan = txtKetLuanChanDoan.Text;
                 bbhc.KetluanChandoan = txtKetLuanChanDoan.Text;
                 bbhc.Huongxuly = txtKetLuanHuongXuLyTiep.Text;
@@ -1163,6 +1174,8 @@ namespace VNS.HIS.UI.NOITRU
                 bbhc.IdbacsiPttt = getBacsithamgia(dtbsphauthuat);
                 bbhc.IdbacsiPtttPhu = getBacsithamgia(dtbsphauthuatphu);
                 bbhc.Save();
+                emrdoc.InitDocument(bbhc.IdBenhnhan, bbhc.MaLuotkham, Utility.Int64Dbnull(bbhc.Id), bbhc.NgayHoichan, Loaiphieu_HIS.BIENBANHOICHAN, "BIENBAN_HOICHAN", bbhc.NguoiTao,(Int16) bbhc.IdKhoahoichan, -1, Utility.Byte2Bool(objLuotkham.Noitru), "", true);
+                emrdoc.Save();
                 if (Utility.sDbnull(bbhc.Nhommau).Length > 0)
                     new Update(KcbDanhsachBenhnhan.Schema).Set(KcbDanhsachBenhnhan.Columns.NhomMau).EqualTo(bbhc.Nhommau).Where(KcbDanhsachBenhnhan.Columns.IdBenhnhan).IsEqualTo(bbhc.IdBenhnhan).Execute();
                 txtID.Text = bbhc.Id.ToString();

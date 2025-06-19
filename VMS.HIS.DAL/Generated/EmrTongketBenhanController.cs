@@ -80,7 +80,7 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(long IdBenhnhan,string MaLuotkham,int IdKhoadieutri,string QuatrinhbenhlyDienbienlamsang,string TiensuBenh,string TomtatKqcls,string DauhieuLamsang,byte? Noikhoa,string NoikhoaMota,byte? Pttt,string PtttMota,string HuongDieutri,string PhuongphapDieutri,string TinhtrangRavienMota,DateTime? NgayTtba,string MaNguoigiaoHoso,string NguoigiaoHoso,string MaNguoiNhanhoso,string NguoiNhanhoso,string MaNguoigiaohoso,string MaNguoinhanhoso,DateTime? NgayGiaonhanhoso,int? SotoXquang,int? SotoCt,int? SotoSieuam,int? SotoXetnghiem,int? SotoKhac,string MaBacsiDieutri,DateTime NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua)
+	    public void Insert(long IdBenhnhan,string MaLuotkham,int IdKhoadieutri,string QuatrinhbenhlyDienbienlamsang,string TiensuBenh,string TomtatKqcls,string DauhieuLamsang,byte? Noikhoa,string NoikhoaMota,byte? Pttt,string PtttMota,string HuongDieutri,string PhuongphapDieutri,string TinhtrangRavienMota,DateTime? NgayTtba,string MaNguoigiaoHoso,string NguoigiaoHoso,string MaNguoiNhanhoso,string NguoiNhanhoso,string MaNguoigiaohoso,string MaNguoinhanhoso,DateTime? NgayGiaonhanhoso,int? SotoXquang,int? SotoCt,int? SotoSieuam,int? SotoXetnghiem,int? SotoKhac,string MaBacsiDieutri,DateTime NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua,short? IdBacsiDieutri)
 	    {
 		    EmrTongketBenhan item = new EmrTongketBenhan();
 		    
@@ -148,6 +148,8 @@ namespace VMS.HIS.DAL
             
             item.NguoiSua = NguoiSua;
             
+            item.IdBacsiDieutri = IdBacsiDieutri;
+            
 	    
 		    item.Save(UserName);
 	    }
@@ -156,7 +158,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(long Id,long IdBenhnhan,string MaLuotkham,int IdKhoadieutri,string QuatrinhbenhlyDienbienlamsang,string TiensuBenh,string TomtatKqcls,string DauhieuLamsang,byte? Noikhoa,string NoikhoaMota,byte? Pttt,string PtttMota,string HuongDieutri,string PhuongphapDieutri,string TinhtrangRavienMota,DateTime? NgayTtba,string MaNguoigiaoHoso,string NguoigiaoHoso,string MaNguoiNhanhoso,string NguoiNhanhoso,string MaNguoigiaohoso,string MaNguoinhanhoso,DateTime? NgayGiaonhanhoso,int? SotoXquang,int? SotoCt,int? SotoSieuam,int? SotoXetnghiem,int? SotoKhac,string MaBacsiDieutri,DateTime NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua)
+	    public void Update(long Id,long IdBenhnhan,string MaLuotkham,int IdKhoadieutri,string QuatrinhbenhlyDienbienlamsang,string TiensuBenh,string TomtatKqcls,string DauhieuLamsang,byte? Noikhoa,string NoikhoaMota,byte? Pttt,string PtttMota,string HuongDieutri,string PhuongphapDieutri,string TinhtrangRavienMota,DateTime? NgayTtba,string MaNguoigiaoHoso,string NguoigiaoHoso,string MaNguoiNhanhoso,string NguoiNhanhoso,string MaNguoigiaohoso,string MaNguoinhanhoso,DateTime? NgayGiaonhanhoso,int? SotoXquang,int? SotoCt,int? SotoSieuam,int? SotoXetnghiem,int? SotoKhac,string MaBacsiDieutri,DateTime NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua,short? IdBacsiDieutri)
 	    {
 		    EmrTongketBenhan item = new EmrTongketBenhan();
 	        item.MarkOld();
@@ -227,6 +229,8 @@ namespace VMS.HIS.DAL
 			item.NgaySua = NgaySua;
 				
 			item.NguoiSua = NguoiSua;
+				
+			item.IdBacsiDieutri = IdBacsiDieutri;
 				
 	        item.Save(UserName);
 	    }

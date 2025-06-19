@@ -57,10 +57,14 @@
             this.DataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ctxFunction = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cmdCapnhatMaNhomBC = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuCapnhatMaphieuEMR = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.sysColor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdList)).BeginInit();
+            this.ctxFunction.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStripStatusLabel11
@@ -214,6 +218,7 @@
             // 
             // grdList
             // 
+            this.grdList.ContextMenuStrip = this.ctxFunction;
             grdList_DesignTimeLayout.LayoutString = resources.GetString("grdList_DesignTimeLayout.LayoutString");
             this.grdList.DesignTimeLayout = grdList_DesignTimeLayout;
             this.grdList.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -284,6 +289,28 @@
             this.DataGridViewTextBoxColumn1.ReadOnly = true;
             this.DataGridViewTextBoxColumn1.Width = 80;
             // 
+            // ctxFunction
+            // 
+            this.ctxFunction.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmdCapnhatMaNhomBC,
+            this.mnuCapnhatMaphieuEMR});
+            this.ctxFunction.Name = "ctxBOD";
+            this.ctxFunction.Size = new System.Drawing.Size(203, 70);
+            // 
+            // cmdCapnhatMaNhomBC
+            // 
+            this.cmdCapnhatMaNhomBC.Name = "cmdCapnhatMaNhomBC";
+            this.cmdCapnhatMaNhomBC.Size = new System.Drawing.Size(202, 22);
+            this.cmdCapnhatMaNhomBC.Text = "Cập nhật mã nhóm BC";
+            this.cmdCapnhatMaNhomBC.Click += new System.EventHandler(this.cmdCapnhatMaNhomBC_Click);
+            // 
+            // mnuCapnhatMaphieuEMR
+            // 
+            this.mnuCapnhatMaphieuEMR.Name = "mnuCapnhatMaphieuEMR";
+            this.mnuCapnhatMaphieuEMR.Size = new System.Drawing.Size(202, 22);
+            this.mnuCapnhatMaphieuEMR.Text = "Cập nhật mã phiếu EMR";
+            this.mnuCapnhatMaphieuEMR.Click += new System.EventHandler(this.mnuCapnhatMaphieuEMR_Click);
+            // 
             // frm_quanly_baocao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -304,6 +331,7 @@
             this.sysColor.ResumeLayout(false);
             this.sysColor.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdList)).EndInit();
+            this.ctxFunction.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -337,5 +365,8 @@
         private System.Windows.Forms.ToolStripButton cmdXML;
         private System.Windows.Forms.ToolStripButton cmdUpdateXml;
         private System.Windows.Forms.ToolStripButton cmdDuplicate;
+        private System.Windows.Forms.ContextMenuStrip ctxFunction;
+        private System.Windows.Forms.ToolStripMenuItem cmdCapnhatMaNhomBC;
+        private System.Windows.Forms.ToolStripMenuItem mnuCapnhatMaphieuEMR;
     }
 }

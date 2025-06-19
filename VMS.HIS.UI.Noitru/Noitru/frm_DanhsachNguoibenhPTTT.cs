@@ -19,6 +19,7 @@ using System.Diagnostics;
 using System.Threading;
 using Aspose.Words;
 using VMS.EMR.PHIEUKHAM;
+using VMS.Emr;
 
 namespace VNS.HIS.UI.NOITRU
 {
@@ -410,7 +411,7 @@ namespace VNS.HIS.UI.NOITRU
                 Utility.ShowMsg(ex.Message);
             }
         }
-
+        EmrDocuments emrdoc = new EmrDocuments();
         private void cmdXoa_Click(object sender, EventArgs e)
         {
             try
@@ -430,10 +431,16 @@ namespace VNS.HIS.UI.NOITRU
                 }
                 if (Utility.AcceptQuestion("Bạn có muốn xóa thông tin phiếu PTTT đang chọn không ?", "Thông báo", true))
                 {
+                    long IdPhieu = Utility.Int64Dbnull(grdList.GetValue("id_phieu"));
                     int banghi = new Delete().From<KcbPhieupttt>()
                          .Where(KcbPhieupttt.Columns.IdPhieu)
-                         .IsEqualTo(Utility.Int32Dbnull(grdList.GetValue("id_phieu")))
+                         .IsEqualTo(IdPhieu)
                          .Execute();
+                    emrdoc.DeleteDocument(IdPhieu, Loaiphieu_HIS.PHIEUPTTT, "");//Xóa tất cả các phiếu liên quan đến phiếu này
+                    //emrdoc.DeleteDocument(IdPhieu, Loaiphieu_HIS.PHIEUPTTT, "PHIEU_CAMKET_PTTT");
+                    //emrdoc.DeleteDocument(IdPhieu, Loaiphieu_HIS.PHIEUPTTT, "PHIEU_CHUNGNHAN_PTTT");
+                    //emrdoc.DeleteDocument(IdPhieu, Loaiphieu_HIS.PHIEUPTTT, "PHIEU_PTTT_NOITRU");
+                    //emrdoc.DeleteDocument(IdPhieu, Loaiphieu_HIS.PHIEUPTTT, "PHIEU_TUONGTRINH_PTTT");
                     if (banghi > 0)
                     {
                         Utility.ShowMsg("Bạn xóa thông tin phiếu PTTT thành công", "Thông báo");

@@ -819,6 +819,19 @@ namespace VMS.HIS.DAL
 				colvarBienChung.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarBienChung);
 				
+				TableSchema.TableColumn colvarIdbacsiThuchien = new TableSchema.TableColumn(schema);
+				colvarIdbacsiThuchien.ColumnName = "idbacsi_thuchien";
+				colvarIdbacsiThuchien.DataType = DbType.Int16;
+				colvarIdbacsiThuchien.MaxLength = 0;
+				colvarIdbacsiThuchien.AutoIncrement = false;
+				colvarIdbacsiThuchien.IsNullable = true;
+				colvarIdbacsiThuchien.IsPrimaryKey = false;
+				colvarIdbacsiThuchien.IsForeignKey = false;
+				colvarIdbacsiThuchien.IsReadOnly = false;
+				colvarIdbacsiThuchien.DefaultSetting = @"";
+				colvarIdbacsiThuchien.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarIdbacsiThuchien);
+				
 				BaseSchema = schema;
 				//add this schema to the provider
 				//so we can query it later
@@ -1252,6 +1265,14 @@ namespace VMS.HIS.DAL
 			get { return GetColumnValue<bool?>(Columns.BienChung); }
 			set { SetColumnValue(Columns.BienChung, value); }
 		}
+		  
+		[XmlAttribute("IdbacsiThuchien")]
+		[Bindable(true)]
+		public short? IdbacsiThuchien 
+		{
+			get { return GetColumnValue<short?>(Columns.IdbacsiThuchien); }
+			set { SetColumnValue(Columns.IdbacsiThuchien, value); }
+		}
 		
 		#endregion
 		
@@ -1272,7 +1293,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(string varMaPhieu,byte? varLoaiPhieu,long varIdBenhnhan,string varMaLuotkham,short varIdKhoadieutri,short? varIdBuong,short? varIdGiuong,DateTime varNgayPttt,string varChanDoan,string varTruocPttt,string varSauPttt,string varPhuongphapPttt,string varLoaiPttt,string varPhuongphapVocam,string varIdbacsiPttt,string varIdbacsiGayme,string varIdbacsiPtttPhu,string varIdDieuduonggayme,string varMaDungcuvongngoai,string varMaDungcuvongtrong,string varTenDungcuvongngoai,string varTenDungcuvongtrong,string varLuocdoPttt,string varDanLuu,string varBac,DateTime? varNgayRut,DateTime? varNgayCatchi,string varKhac,string varTrinhtuPttt,bool? varNoitru,bool? varKetthucPttt,DateTime? varNgayTuvong,string varLydoTaibien,string varLydoTuvong,DateTime? varNgayKetthuc,bool? varTaiBien,bool? varTuVong,long varIdChitietchidinh,byte varTrangThai,DateTime varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua,DateTime? varNgayXoa,string varNguoiXoa,string varNhommau,string varRh,string varMaHinhanh,string varTenPhuongphapVocam,string varGhiChu,string varLydoBienchung,bool? varBienChung)
+		public static void Insert(string varMaPhieu,byte? varLoaiPhieu,long varIdBenhnhan,string varMaLuotkham,short varIdKhoadieutri,short? varIdBuong,short? varIdGiuong,DateTime varNgayPttt,string varChanDoan,string varTruocPttt,string varSauPttt,string varPhuongphapPttt,string varLoaiPttt,string varPhuongphapVocam,string varIdbacsiPttt,string varIdbacsiGayme,string varIdbacsiPtttPhu,string varIdDieuduonggayme,string varMaDungcuvongngoai,string varMaDungcuvongtrong,string varTenDungcuvongngoai,string varTenDungcuvongtrong,string varLuocdoPttt,string varDanLuu,string varBac,DateTime? varNgayRut,DateTime? varNgayCatchi,string varKhac,string varTrinhtuPttt,bool? varNoitru,bool? varKetthucPttt,DateTime? varNgayTuvong,string varLydoTaibien,string varLydoTuvong,DateTime? varNgayKetthuc,bool? varTaiBien,bool? varTuVong,long varIdChitietchidinh,byte varTrangThai,DateTime varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua,DateTime? varNgayXoa,string varNguoiXoa,string varNhommau,string varRh,string varMaHinhanh,string varTenPhuongphapVocam,string varGhiChu,string varLydoBienchung,bool? varBienChung,short? varIdbacsiThuchien)
 		{
 			KcbPhieupttt item = new KcbPhieupttt();
 			
@@ -1380,6 +1401,8 @@ namespace VMS.HIS.DAL
 			
 			item.BienChung = varBienChung;
 			
+			item.IdbacsiThuchien = varIdbacsiThuchien;
+			
 		
 			if (System.Web.HttpContext.Current != null)
 				item.Save(System.Web.HttpContext.Current.User.Identity.Name);
@@ -1390,7 +1413,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(long varIdPhieu,string varMaPhieu,byte? varLoaiPhieu,long varIdBenhnhan,string varMaLuotkham,short varIdKhoadieutri,short? varIdBuong,short? varIdGiuong,DateTime varNgayPttt,string varChanDoan,string varTruocPttt,string varSauPttt,string varPhuongphapPttt,string varLoaiPttt,string varPhuongphapVocam,string varIdbacsiPttt,string varIdbacsiGayme,string varIdbacsiPtttPhu,string varIdDieuduonggayme,string varMaDungcuvongngoai,string varMaDungcuvongtrong,string varTenDungcuvongngoai,string varTenDungcuvongtrong,string varLuocdoPttt,string varDanLuu,string varBac,DateTime? varNgayRut,DateTime? varNgayCatchi,string varKhac,string varTrinhtuPttt,bool? varNoitru,bool? varKetthucPttt,DateTime? varNgayTuvong,string varLydoTaibien,string varLydoTuvong,DateTime? varNgayKetthuc,bool? varTaiBien,bool? varTuVong,long varIdChitietchidinh,byte varTrangThai,DateTime varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua,DateTime? varNgayXoa,string varNguoiXoa,string varNhommau,string varRh,string varMaHinhanh,string varTenPhuongphapVocam,string varGhiChu,string varLydoBienchung,bool? varBienChung)
+		public static void Update(long varIdPhieu,string varMaPhieu,byte? varLoaiPhieu,long varIdBenhnhan,string varMaLuotkham,short varIdKhoadieutri,short? varIdBuong,short? varIdGiuong,DateTime varNgayPttt,string varChanDoan,string varTruocPttt,string varSauPttt,string varPhuongphapPttt,string varLoaiPttt,string varPhuongphapVocam,string varIdbacsiPttt,string varIdbacsiGayme,string varIdbacsiPtttPhu,string varIdDieuduonggayme,string varMaDungcuvongngoai,string varMaDungcuvongtrong,string varTenDungcuvongngoai,string varTenDungcuvongtrong,string varLuocdoPttt,string varDanLuu,string varBac,DateTime? varNgayRut,DateTime? varNgayCatchi,string varKhac,string varTrinhtuPttt,bool? varNoitru,bool? varKetthucPttt,DateTime? varNgayTuvong,string varLydoTaibien,string varLydoTuvong,DateTime? varNgayKetthuc,bool? varTaiBien,bool? varTuVong,long varIdChitietchidinh,byte varTrangThai,DateTime varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua,DateTime? varNgayXoa,string varNguoiXoa,string varNhommau,string varRh,string varMaHinhanh,string varTenPhuongphapVocam,string varGhiChu,string varLydoBienchung,bool? varBienChung,short? varIdbacsiThuchien)
 		{
 			KcbPhieupttt item = new KcbPhieupttt();
 			
@@ -1499,6 +1522,8 @@ namespace VMS.HIS.DAL
 				item.LydoBienchung = varLydoBienchung;
 			
 				item.BienChung = varBienChung;
+			
+				item.IdbacsiThuchien = varIdbacsiThuchien;
 			
 			item.IsNew = false;
 			if (System.Web.HttpContext.Current != null)
@@ -1884,6 +1909,13 @@ namespace VMS.HIS.DAL
         
         
         
+        public static TableSchema.TableColumn IdbacsiThuchienColumn
+        {
+            get { return Schema.Columns[53]; }
+        }
+        
+        
+        
         #endregion
 		#region Columns Struct
 		public struct Columns
@@ -1941,6 +1973,7 @@ namespace VMS.HIS.DAL
 			 public static string GhiChu = @"ghi_chu";
 			 public static string LydoBienchung = @"lydo_bienchung";
 			 public static string BienChung = @"bien_chung";
+			 public static string IdbacsiThuchien = @"idbacsi_thuchien";
 						
 		}
 		#endregion

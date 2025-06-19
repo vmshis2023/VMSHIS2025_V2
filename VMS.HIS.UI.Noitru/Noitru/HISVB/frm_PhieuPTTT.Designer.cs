@@ -30,8 +30,8 @@ namespace VNS.HIS.UI.NOITRU
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_PhieuPTTT));
             Janus.Windows.GridEX.GridEXLayout grdChiDinh_Layout_0 = new Janus.Windows.GridEX.GridEXLayout();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_PhieuPTTT));
             Janus.Windows.GridEX.GridEXLayout grdPhieuPTTT_Layout_0 = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.GridEX.GridEXLayout grd_bsphauthuatphu_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.GridEX.GridEXLayout grd_bsgm_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
@@ -56,6 +56,8 @@ namespace VNS.HIS.UI.NOITRU
             this.tabThongTin = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.grpThongTin = new System.Windows.Forms.GroupBox();
+            this.autoCC = new VNS.HIS.UCs.AutoCompleteTextbox();
+            this.label13 = new System.Windows.Forms.Label();
             this.autoLydobienchung = new VNS.HIS.UCs.AutoCompleteTextbox_Danhmucchung();
             this.chkBienchung = new System.Windows.Forms.CheckBox();
             this.picPTTT = new System.Windows.Forms.PictureBox();
@@ -142,6 +144,7 @@ namespace VNS.HIS.UI.NOITRU
             this.cmdSave = new Janus.Windows.EditControls.UIButton();
             this.cmdExit = new Janus.Windows.EditControls.UIButton();
             this.cmdCancel = new Janus.Windows.EditControls.UIButton();
+            this.chkGiuthongtin = new System.Windows.Forms.CheckBox();
             this.grpThongTinPhieu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdChiDinh)).BeginInit();
             this.ctxInphieu.SuspendLayout();
@@ -190,6 +193,7 @@ namespace VNS.HIS.UI.NOITRU
             // 
             // grpThongTinPhieu
             // 
+            this.grpThongTinPhieu.Controls.Add(this.chkGiuthongtin);
             this.grpThongTinPhieu.Controls.Add(this.cmdAddNew);
             this.grpThongTinPhieu.Controls.Add(this.grdChiDinh);
             this.grpThongTinPhieu.Dock = System.Windows.Forms.DockStyle.Top;
@@ -204,7 +208,7 @@ namespace VNS.HIS.UI.NOITRU
             // 
             this.cmdAddNew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdAddNew.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdAddNew.Image = ((System.Drawing.Image)(resources.GetObject("cmdAddNew.Image")));
+            this.cmdAddNew.Image = global::VMS.HIS.Noitru.Properties.Resources.add_04_32;
             this.cmdAddNew.ImageSize = new System.Drawing.Size(24, 24);
             this.cmdAddNew.Location = new System.Drawing.Point(252, 228);
             this.cmdAddNew.Name = "cmdAddNew";
@@ -362,6 +366,8 @@ namespace VNS.HIS.UI.NOITRU
             // grpThongTin
             // 
             this.grpThongTin.BackColor = System.Drawing.SystemColors.Control;
+            this.grpThongTin.Controls.Add(this.autoCC);
+            this.grpThongTin.Controls.Add(this.label13);
             this.grpThongTin.Controls.Add(this.autoLydobienchung);
             this.grpThongTin.Controls.Add(this.chkBienchung);
             this.grpThongTin.Controls.Add(this.picPTTT);
@@ -438,6 +444,61 @@ namespace VNS.HIS.UI.NOITRU
             this.grpThongTin.TabStop = false;
             this.grpThongTin.Enter += new System.EventHandler(this.grpThongTin_Enter);
             // 
+            // autoCC
+            // 
+            this.autoCC._backcolor = System.Drawing.Color.WhiteSmoke;
+            this.autoCC._Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.autoCC._TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.autoCC.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.autoCC.AutoCompleteList = ((System.Collections.Generic.List<string>)(resources.GetObject("autoCC.AutoCompleteList")));
+            this.autoCC.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.autoCC.buildShortcut = false;
+            this.autoCC.CaseSensitive = false;
+            this.autoCC.CompareNoID = true;
+            this.autoCC.DefaultCode = "-1";
+            this.autoCC.DefaultID = "-1";
+            this.autoCC.DisplayType = 0;
+            this.autoCC.Drug_ID = null;
+            this.autoCC.ExtraWidth = 150;
+            this.autoCC.FillValueAfterSelect = false;
+            this.autoCC.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.autoCC.Location = new System.Drawing.Point(109, 671);
+            this.autoCC.MaxHeight = 289;
+            this.autoCC.MinTypedCharacters = 2;
+            this.autoCC.MyCode = "-1";
+            this.autoCC.MyID = "-1";
+            this.autoCC.MyText = "";
+            this.autoCC.MyTextOnly = "";
+            this.autoCC.Name = "autoCC";
+            this.autoCC.RaiseEvent = true;
+            this.autoCC.RaiseEventEnter = true;
+            this.autoCC.RaiseEventEnterWhenEmpty = true;
+            this.autoCC.SelectedIndex = -1;
+            this.autoCC.Size = new System.Drawing.Size(561, 22);
+            this.autoCC.splitChar = '@';
+            this.autoCC.splitCharIDAndCode = '#';
+            this.autoCC.TabIndex = 619;
+            this.autoCC.TakeCode = false;
+            this.autoCC.txtMyCode = null;
+            this.autoCC.txtMyCode_Edit = null;
+            this.autoCC.txtMyID = null;
+            this.autoCC.txtMyID_Edit = null;
+            this.autoCC.txtMyName = null;
+            this.autoCC.txtMyName_Edit = null;
+            this.autoCC.txtNext = null;
+            // 
+            // label13
+            // 
+            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label13.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.Black;
+            this.label13.Location = new System.Drawing.Point(12, 672);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(93, 15);
+            this.label13.TabIndex = 620;
+            this.label13.Text = "CC:";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // autoLydobienchung
             // 
             this.autoLydobienchung._backcolor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
@@ -500,9 +561,9 @@ namespace VNS.HIS.UI.NOITRU
             // 
             this.picPTTT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.picPTTT.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picPTTT.Location = new System.Drawing.Point(755, 438);
+            this.picPTTT.Location = new System.Drawing.Point(755, 435);
             this.picPTTT.Name = "picPTTT";
-            this.picPTTT.Size = new System.Drawing.Size(251, 227);
+            this.picPTTT.Size = new System.Drawing.Size(251, 230);
             this.picPTTT.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picPTTT.TabIndex = 614;
             this.picPTTT.TabStop = false;
@@ -1495,7 +1556,7 @@ namespace VNS.HIS.UI.NOITRU
             this.txtTrinhTuPhauThat.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtTrinhTuPhauThat.SelectedIndex = -1;
             this.txtTrinhTuPhauThat.ShowCodeWithValue = false;
-            this.txtTrinhTuPhauThat.Size = new System.Drawing.Size(640, 231);
+            this.txtTrinhTuPhauThat.Size = new System.Drawing.Size(640, 203);
             this.txtTrinhTuPhauThat.splitChar = '@';
             this.txtTrinhTuPhauThat.splitCharIDAndCode = '#';
             this.txtTrinhTuPhauThat.TabIndex = 32;
@@ -2087,6 +2148,18 @@ namespace VNS.HIS.UI.NOITRU
             this.cmdCancel.VisualStyle = Janus.Windows.UI.VisualStyle.Office2003;
             this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
             // 
+            // chkGiuthongtin
+            // 
+            this.chkGiuthongtin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.chkGiuthongtin.AutoSize = true;
+            this.chkGiuthongtin.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkGiuthongtin.Location = new System.Drawing.Point(6, 239);
+            this.chkGiuthongtin.Name = "chkGiuthongtin";
+            this.chkGiuthongtin.Size = new System.Drawing.Size(237, 20);
+            this.chkGiuthongtin.TabIndex = 573;
+            this.chkGiuthongtin.Text = "Giữ nguyên thông tin khi thêm mới?";
+            this.chkGiuthongtin.UseVisualStyleBackColor = true;
+            // 
             // frm_PhieuPTTT
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -2104,6 +2177,7 @@ namespace VNS.HIS.UI.NOITRU
             this.Load += new System.EventHandler(this.frm_PhieuPTTT_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frm_PhieuPTTT_KeyDown);
             this.grpThongTinPhieu.ResumeLayout(false);
+            this.grpThongTinPhieu.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdChiDinh)).EndInit();
             this.ctxInphieu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdPhieuPTTT)).EndInit();
@@ -2236,5 +2310,8 @@ namespace VNS.HIS.UI.NOITRU
         private AutoCompleteTextbox_Danhmucchung autoLydobienchung;
         private System.Windows.Forms.CheckBox chkBienchung;
         private System.Windows.Forms.CheckBox chkTaibien;
+        private AutoCompleteTextbox autoCC;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.CheckBox chkGiuthongtin;
     }
 }

@@ -55,10 +55,10 @@ F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.Emr\VMS.Emr\bin\Debug\SubSonic.xml
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.Emr\VMS.Emr\bin\Debug\Janus.Windows.GridEX.v3.xml
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.Emr\VMS.Emr\bin\Debug\Aspose.Words.xml
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.Emr\VMS.Emr\bin\Debug\Janus.Windows.UI.v3.xml
+C:\HIS_BVSG\Running\VMS.Emr.dll
+C:\HIS_BVSG\Running\VMS.Emr.pdb
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.Emr\VMS.Emr\obj\Debug\VMS.Emr.csproj.CoreCompileInputs.cache
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.Emr\VMS.Emr\obj\Debug\VMS.Emr.csproj.CopyComplete
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.Emr\VMS.Emr\obj\Debug\VMS.Emr.dll
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.Emr\VMS.Emr\obj\Debug\VMS.Emr.pdb
-C:\HIS_BVSG\Running\VMS.Emr.dll
-C:\HIS_BVSG\Running\VMS.Emr.pdb
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.Emr\VMS.Emr\obj\Debug\VMS.Emr.csproj.AssemblyReference.cache

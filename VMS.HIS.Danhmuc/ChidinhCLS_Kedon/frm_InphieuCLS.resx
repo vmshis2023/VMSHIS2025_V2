@@ -121,25 +121,6 @@
     <value>&lt;GridEXLayoutData&gt;&lt;RootTable&gt;&lt;Columns Collection="true" ElementName="Column"&gt;&lt;Column0 ID="CHON"&gt;&lt;Caption&gt;CHON&lt;/Caption&gt;&lt;BoundMode&gt;UnboundFetch&lt;/BoundMode&gt;&lt;ColumnType&gt;CheckBox&lt;/ColumnType&gt;&lt;DataMember&gt;CHON&lt;/DataMember&gt;&lt;Key&gt;CHON&lt;/Key&gt;&lt;Position&gt;0&lt;/Position&gt;&lt;Width&gt;32&lt;/Width&gt;&lt;ActAsSelector&gt;True&lt;/ActAsSelector&gt;&lt;/Column0&gt;&lt;Column1 ID="MA"&gt;&lt;Caption&gt;Mã phiếu in&lt;/Caption&gt;&lt;DataMember&gt;MA&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;MA&lt;/Key&gt;&lt;Position&gt;1&lt;/Position&gt;&lt;Width&gt;182&lt;/Width&gt;&lt;/Column1&gt;&lt;Column2 ID="ten"&gt;&lt;Caption&gt;Tên phiếu in&lt;/Caption&gt;&lt;DataMember&gt;ten&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;ten&lt;/Key&gt;&lt;Position&gt;2&lt;/Position&gt;&lt;Width&gt;286&lt;/Width&gt;&lt;/Column2&gt;&lt;Column3 ID="stt_hthi"&gt;&lt;Caption&gt;STT&lt;/Caption&gt;&lt;DataMember&gt;stt_hthi&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;stt_hthi&lt;/Key&gt;&lt;Position&gt;3&lt;/Position&gt;&lt;Width&gt;76&lt;/Width&gt;&lt;/Column3&gt;&lt;Column4 ID="id_phieu"&gt;&lt;Caption&gt;Id phiếu&lt;/Caption&gt;&lt;DataMember&gt;id_phieu&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;id_phieu&lt;/Key&gt;&lt;Position&gt;4&lt;/Position&gt;&lt;/Column4&gt;&lt;Column5 ID="ma_chidinh"&gt;&lt;Caption&gt;Mã phiếu&lt;/Caption&gt;&lt;DataMember&gt;ma_chidinh&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;ma_chidinh&lt;/Key&gt;&lt;Position&gt;5&lt;/Position&gt;&lt;/Column5&gt;&lt;/Columns&gt;&lt;GroupCondition /&gt;&lt;/RootTable&gt;&lt;/GridEXLayoutData&gt;</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="cmdExit.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAW
-        JQAAFiUBSVIk8AAAAAd0SU1FB+ILBwQKBfDTrVgAAAAHdEVYdEF1dGhvcgCprsxIAAAADHRFWHREZXNj
-        cmlwdGlvbgATCSEjAAAACnRFWHRDb3B5cmlnaHQArA/MOgAAAAl0RVh0U29mdHdhcmUAXXD/OgAAAAd0
-        RVh0U291cmNlAPX/g+sAAAAIdEVYdENvbW1lbnQA9syWvwAAAAZ0RVh0VGl0bGUAqO7SJwAAAm5JREFU
-        SEu1lc2LkkEcx599XN8welnWtM1AWxD26F6UtvAQJIkvB18IBLvYIU8uLubFl0Ne/Ae8dPIQ4bIm4iHF
-        slPiNbZgxYyNbtGpiKDIvrPoMo/PT93ADh+c+c7M9zszzjMjjEaj/wopLhNSpBgMBspGo2Go1WrXh8Oh
-        imtb4coySJGiUChs6nS6B4IgPM5kMttcm4IryyBFilAotAfz9+DYbDbvJxIJL9c+M4QUKQKBAAv4DDBK
-        +GU0GvdzudzNfr+v5frJtktSmUc+n7fAtADzn+OQb6CFkB2u3ypXPkFSWUS5XDbYbLZdpVL5bhJisVgO
-        sF0+qj9DJvR6vas4KTvAz9NqtTylUsmLgD0EHI4DGD+wsgpWcuPo6NPatJ+kwvD7/fcw6DVncBa+gmel
-        Uo3frhMkFYbD4Yihc58bfBZ+g5fF4tPb036SCgPn/RZWUQA1nnA4/Nzlch0YDIZXoih+4cz/qNXqt3a7
-        /VGj8WZr2k9SWUS329U5nU63SqXqcgEfYZ7tdDqacT/JUT0tLKLZbK5EIpG7WMELrIDtOTP/4PP5duv1
-        uoUawyBFilgs5oZxczJzbMshm3m1WjVx/WRftKQyD/wPRRh/HwccwzzDbYvsA5tAihSpVMqNWT+BeT0a
-        jT5st9tmrn3mjUqKFOl0Wq/RaO4g4H48Ht/g2kSuLIMUKbxe7wWYb4Itk8m0ns1m517TE0iRAsfzPMyv
-        gGsKhWLDarVexPWwMIQUKfDIaPEOXELA5XHQul6v11QqleW8aAw2YxhrgQ6cY7/QZp4gBinOAzermEwm
-        RY/HowgGg6u4YZe3gn9nJPwFnZWTp7uJTqgAAAAASUVORK5CYII=
-</value>
-  </data>
   <data name="cmdIntach.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO

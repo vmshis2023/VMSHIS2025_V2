@@ -77,8 +77,6 @@ namespace VMS.HIS.API.Controllers
 				Utility.Log.Error("Lỗi khi lưu thời gian sử dụng token {0}", ex.ToString());
 				return false;
 			}
-
-
 		}
 		private string GetToken()
 		{

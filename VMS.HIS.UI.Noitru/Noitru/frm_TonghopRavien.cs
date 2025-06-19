@@ -3842,7 +3842,7 @@ namespace VNS.HIS.UI.NOITRU
         {
             frm_TomtatBA _TomtatBA = new frm_TomtatBA();
             _TomtatBA.m_enAct = action.Insert;
-            _TomtatBA.ucThongtinnguoibenh_v21.txtMaluotkham.Text = objLuotkham == null ? "" : objLuotkham.MaLuotkham;
+            _TomtatBA.ucThongtinnguoibenh_emr_basic1.txtMaluotkham.Text = objLuotkham == null ? "" : objLuotkham.MaLuotkham;
             _TomtatBA.CallfromParent = true;
             _TomtatBA.ShowDialog();
         }

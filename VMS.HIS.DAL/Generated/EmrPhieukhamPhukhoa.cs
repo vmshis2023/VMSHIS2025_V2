@@ -272,7 +272,7 @@ namespace VMS.HIS.DAL
 				TableSchema.TableColumn colvarBmi = new TableSchema.TableColumn(schema);
 				colvarBmi.ColumnName = "bmi";
 				colvarBmi.DataType = DbType.String;
-				colvarBmi.MaxLength = 5;
+				colvarBmi.MaxLength = 10;
 				colvarBmi.AutoIncrement = false;
 				colvarBmi.IsNullable = true;
 				colvarBmi.IsPrimaryKey = false;

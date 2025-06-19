@@ -11,6 +11,7 @@ using VMS.HIS.DAL;
 using VNS.Libs;
 using NLog;
 using Janus.Windows.GridEX;
+using VMS.Emr;
 
 namespace VNS.HIS.UI.NOITRU
 {
@@ -195,6 +196,9 @@ namespace VNS.HIS.UI.NOITRU
         {
             CreateNewPhieu();
             objPhieudichtruyen.Save();
+            EmrDocuments emrdoc = new EmrDocuments();
+            emrdoc.InitDocument((long)objPhieudichtruyen.IdBenhnhan, objPhieudichtruyen.MaLuotkham, Utility.Int64Dbnull(objPhieudichtruyen.IdPhieu), objPhieudichtruyen.NgayTao, Loaiphieu_HIS.PHIEUTRUYENDICH, "PHIEUTRUYENDICH", objPhieudichtruyen.NguoiTao, (Int16)objPhieudichtruyen.IdKhoadieutri, -1, true, "");
+            emrdoc.Save();
             actionResult = ActionResult.Success;
             IdPhieu = objPhieudichtruyen.IdPhieu;
             SetStatusControl();

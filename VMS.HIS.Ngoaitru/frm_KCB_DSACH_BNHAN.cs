@@ -475,7 +475,7 @@ namespace VNS.HIS.UI.NGOAITRU
                 if (THU_VIEN_CHUNG.Laygiatrithamsohethong("THAMKHAM_INTACHTOANBO_CLS", "0", false) == "1" &&
                    chkIntach.Checked && cboServicePrint.SelectedIndex <= 0)
                 {
-                    actionResult = KcbInphieu.InTachToanBoPhieuCls(lstSelectedPrint,(int)objLuotkham.IdBenhnhan,
+                    KcbInphieu.InTachToanBoPhieuCls(lstSelectedPrint,(int)objLuotkham.IdBenhnhan,
                                                                      objLuotkham.MaLuotkham, vAssignId,
                                                                      vAssignCode, nhomcls, Utility.sDbnull(cboServicePrint.SelectedValue, "ALL"),
                                                                      cboServicePrint.SelectedIndex, chkIntach.Checked,

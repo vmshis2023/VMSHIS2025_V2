@@ -111,7 +111,7 @@ namespace VNS.HIS.BusRule.Classes
                                     , objkcbcdkl.Para, objkcbcdkl.QuaiBi, objkcbcdkl.SPO2, objkcbcdkl.PhantruocMatphai, objkcbcdkl.PhantruocMattrai, objkcbcdkl.DaymatMatphai,
                                     objkcbcdkl.DaymatMattrai, objkcbcdkl.VannhanMatphai, objkcbcdkl.VannhanMattrai, objkcbcdkl.ChandoanMatphai, objkcbcdkl.ChandoanMattrai, objkcbcdkl.Khammat
                                     , objkcbcdkl.IcdMatphai, objkcbcdkl.TenIcdMatphai, objkcbcdkl.IcdMattrai, objkcbcdkl.TenIcdMattrai
-                                    , objkcbcdkl.VitriIcdChinh, objkcbcdkl.Sotxuathuyet, objkcbcdkl.Taychanmieng, objkcbcdkl.MantinhCapthuoc, objkcbcdkl.MantinhCls
+                                    , objkcbcdkl.VitriIcdChinh, objkcbcdkl.Sotxuathuyet, objkcbcdkl.Taychanmieng, objkcbcdkl.MantinhCapthuoc, objkcbcdkl.MantinhCls, objkcbcdkl.TiensuGiadinh
                                     ).Execute();
                                 log.Trace("1.1 Thêm mới lưu chẩn đoán của bệnh nhân: " + objkcbcdkl.MaLuotkham);
                             }
@@ -133,7 +133,7 @@ namespace VNS.HIS.BusRule.Classes
                                     objkcbcdkl.KL2, objkcbcdkl.KL3, objkcbcdkl.KetluanNguyennhan, objkcbcdkl.NhanXet,
                                     objkcbcdkl.ChongchidinhKhac, objkcbcdkl.SoNgayhen, objkcbcdkl.ChisoIbm,
                                     objkcbcdkl.ThilucMp, objkcbcdkl.ThilucMt, objkcbcdkl.NhanapMp, objkcbcdkl.NhanapMt
-                                    , objkcbcdkl.IdKham, objkcbcdkl.IdBenhnhan, objkcbcdkl.MaLuotkham, objkcbcdkl.QuatrinhBenhly, objkcbcdkl.TiensuBenh, objkcbcdkl.TomtatCls, objkcbcdkl.LoiDan, objkcbcdkl.XuTri
+                                    , objkcbcdkl.IdKham, objkcbcdkl.IdBenhnhan, objkcbcdkl.MaLuotkham, objkcbcdkl.QuatrinhBenhly, objkcbcdkl.TiensuBenh, objkcbcdkl.TiensuGiadinh, objkcbcdkl.TomtatCls, objkcbcdkl.LoiDan, objkcbcdkl.XuTri
                                     , objkcbcdkl.Para, objkcbcdkl.QuaiBi, objkcbcdkl.SPO2, objkcbcdkl.PhantruocMatphai, objkcbcdkl.PhantruocMattrai, objkcbcdkl.DaymatMatphai,
                                     objkcbcdkl.DaymatMattrai, objkcbcdkl.VannhanMatphai, objkcbcdkl.VannhanMattrai, objkcbcdkl.ChandoanMatphai, objkcbcdkl.ChandoanMattrai, objkcbcdkl.Khammat
                                     , objkcbcdkl.IcdMatphai, objkcbcdkl.TenIcdMatphai, objkcbcdkl.IcdMattrai, objkcbcdkl.TenIcdMattrai
@@ -220,7 +220,7 @@ namespace VNS.HIS.BusRule.Classes
                                     , objkcbcdkl.Para, objkcbcdkl.QuaiBi, objkcbcdkl.SPO2, objkcbcdkl.PhantruocMatphai, objkcbcdkl.PhantruocMattrai, objkcbcdkl.DaymatMatphai, 
                                     objkcbcdkl.DaymatMattrai, objkcbcdkl.VannhanMatphai, objkcbcdkl.VannhanMattrai, objkcbcdkl.ChandoanMatphai, objkcbcdkl.ChandoanMattrai, objkcbcdkl.Khammat
                                     , objkcbcdkl.IcdMatphai, objkcbcdkl.TenIcdMatphai, objkcbcdkl.IcdMattrai, objkcbcdkl.TenIcdMattrai
-                                    , objkcbcdkl.VitriIcdChinh, objkcbcdkl.Sotxuathuyet, objkcbcdkl.Taychanmieng, objkcbcdkl.MantinhCapthuoc, objkcbcdkl.MantinhCls
+                                    , objkcbcdkl.VitriIcdChinh, objkcbcdkl.Sotxuathuyet, objkcbcdkl.Taychanmieng, objkcbcdkl.MantinhCapthuoc, objkcbcdkl.MantinhCls, objkcbcdkl.TiensuGiadinh
                                     ).Execute();
 
                             }
@@ -244,7 +244,7 @@ namespace VNS.HIS.BusRule.Classes
                                     objkcbcdkl.KL2, objkcbcdkl.KL3, objkcbcdkl.KetluanNguyennhan, objkcbcdkl.NhanXet,
                                     objkcbcdkl.ChongchidinhKhac, objkcbcdkl.SoNgayhen, objkcbcdkl.ChisoIbm,
                                     objkcbcdkl.ThilucMp, objkcbcdkl.ThilucMt, objkcbcdkl.NhanapMp,
-                                    objkcbcdkl.NhanapMt, objkcbcdkl.IdKham, objkcbcdkl.IdBenhnhan, objkcbcdkl.MaLuotkham, objkcbcdkl.QuatrinhBenhly, objkcbcdkl.TiensuBenh, objkcbcdkl.TomtatCls, objkcbcdkl.LoiDan, objkcbcdkl.XuTri
+                                    objkcbcdkl.NhanapMt, objkcbcdkl.IdKham, objkcbcdkl.IdBenhnhan, objkcbcdkl.MaLuotkham, objkcbcdkl.QuatrinhBenhly, objkcbcdkl.TiensuBenh, objkcbcdkl.TiensuGiadinh, objkcbcdkl.TomtatCls, objkcbcdkl.LoiDan, objkcbcdkl.XuTri
                                     , objkcbcdkl.Para, objkcbcdkl.QuaiBi, objkcbcdkl.SPO2, objkcbcdkl.PhantruocMatphai, objkcbcdkl.PhantruocMattrai, objkcbcdkl.DaymatMatphai,
                                     objkcbcdkl.DaymatMattrai, objkcbcdkl.VannhanMatphai, objkcbcdkl.VannhanMattrai, objkcbcdkl.ChandoanMatphai, objkcbcdkl.ChandoanMattrai, objkcbcdkl.Khammat
                                     , objkcbcdkl.IcdMatphai, objkcbcdkl.TenIcdMatphai, objkcbcdkl.IcdMattrai, objkcbcdkl.TenIcdMattrai

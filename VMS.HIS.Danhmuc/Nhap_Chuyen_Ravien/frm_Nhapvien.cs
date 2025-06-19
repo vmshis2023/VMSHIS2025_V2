@@ -886,7 +886,7 @@ namespace VNS.HIS.UI.NOITRU
                 {
                     case ActionResult.Success:
                         EmrDocuments emrdoc = new EmrDocuments();
-                        emrdoc.InitDocument(objPhieuNv.IdBenhnhan, objPhieuNv.MaLuotkham, Utility.Int64Dbnull(objPhieuNv.IdPhieu), objPhieuNv.NgayNhapvien.Value, Loaiphieu_HIS.PHIEUNHAPVIEN, "", objPhieuNv.NguoiTao, -1, -1, Utility.Byte2Bool(0), "");
+                        emrdoc.InitDocument(objPhieuNv.IdBenhnhan, objPhieuNv.MaLuotkham, Utility.Int64Dbnull(objPhieuNv.IdPhieu), objPhieuNv.NgayNhapvien.Value, Loaiphieu_HIS.PHIEUNHAPVIEN, "noitru_phieunhapvien", objPhieuNv.NguoiTao,Utility.Int16Dbnull( objPhieuNv.IdKhoanoitru),-1, Utility.Byte2Bool(0), "");
                         emrdoc.Save();
                         txtSovaovien.Text = Utility.sDbnull(objLuotkham.SoVaovien, "");
                         objLuotkham.IdKhoanoitru = Utility.Int16Dbnull(txtKhoanoitru.MyID, -1);

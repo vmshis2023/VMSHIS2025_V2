@@ -11,6 +11,7 @@ using System.Text;
 using SubSonic;
 using NLog;
 using VNS.Properties;
+using VMS.Emr;
 
 namespace VNS.HIS.BusRule.Classes
 {
@@ -1133,7 +1134,7 @@ namespace VNS.HIS.BusRule.Classes
                         {
                             StoredProcedure sp = SPs.NoitruHuynhapvien(objLuotkham.MaLuotkham,(int) objLuotkham.IdBenhnhan);
                             sp.Execute();
-                            
+                            new EmrDocuments().DeleteDocument(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, Loaiphieu_HIS.PHIEUNHAPVIEN, "noitru_phieunhapvien");
                         }
                     }
                     Scope.Complete();

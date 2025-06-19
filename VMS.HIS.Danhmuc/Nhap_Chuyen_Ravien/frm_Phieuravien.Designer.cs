@@ -234,9 +234,9 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
             this.cmdHuyphieuravien.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdHuyphieuravien.Image = global::VMS.HIS.Danhmuc.Properties.Resources.trash_full_24;
             this.cmdHuyphieuravien.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdHuyphieuravien.Location = new System.Drawing.Point(646, 21);
+            this.cmdHuyphieuravien.Location = new System.Drawing.Point(636, 21);
             this.cmdHuyphieuravien.Name = "cmdHuyphieuravien";
-            this.cmdHuyphieuravien.Size = new System.Drawing.Size(120, 33);
+            this.cmdHuyphieuravien.Size = new System.Drawing.Size(133, 33);
             this.cmdHuyphieuravien.TabIndex = 64;
             this.cmdHuyphieuravien.Text = "Hủy phiếu ra viện";
             this.cmdHuyphieuravien.Click += new System.EventHandler(this.cmdHuyphieuravien_Click);
@@ -247,7 +247,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
             this.cmdChuyenvien.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdChuyenvien.Image = ((System.Drawing.Image)(resources.GetObject("cmdChuyenvien.Image")));
             this.cmdChuyenvien.ImageSize = new System.Drawing.Size(28, 28);
-            this.cmdChuyenvien.Location = new System.Drawing.Point(394, 21);
+            this.cmdChuyenvien.Location = new System.Drawing.Point(384, 21);
             this.cmdChuyenvien.Name = "cmdChuyenvien";
             this.cmdChuyenvien.Size = new System.Drawing.Size(120, 33);
             this.cmdChuyenvien.TabIndex = 63;
@@ -262,7 +262,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
             this.cmdChuyen.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdChuyen.Image = ((System.Drawing.Image)(resources.GetObject("cmdChuyen.Image")));
             this.cmdChuyen.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdChuyen.Location = new System.Drawing.Point(520, 21);
+            this.cmdChuyen.Location = new System.Drawing.Point(510, 21);
             this.cmdChuyen.Name = "cmdChuyen";
             this.cmdChuyen.Size = new System.Drawing.Size(120, 33);
             this.cmdChuyen.TabIndex = 51;
@@ -758,6 +758,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
             this.chkttrvKhac.TabIndex = 665;
             this.chkttrvKhac.Text = "5.Khác";
             this.chkttrvKhac.UseVisualStyleBackColor = true;
+            this.chkttrvKhac.Visible = false;
             // 
             // txtChandoanGiaiphauTuthi
             // 

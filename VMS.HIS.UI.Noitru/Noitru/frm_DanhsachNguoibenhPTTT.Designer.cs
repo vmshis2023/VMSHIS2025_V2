@@ -54,10 +54,8 @@
             this.cmdExit = new System.Windows.Forms.ToolStripButton();
             this.uiGroupBox1 = new Janus.Windows.EditControls.UIGroupBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.autoKhoa = new VNS.HIS.UCs.AutoCompleteTextbox();
             this.txtmaBBHC = new Janus.Windows.GridEX.EditControls.EditBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.autoLoaiPTTT = new VNS.HIS.UCs.AutoCompleteTextbox_Danhmucchung();
             this.label4 = new System.Windows.Forms.Label();
             this.lnkDelete = new System.Windows.Forms.LinkLabel();
             this.label3 = new System.Windows.Forms.Label();
@@ -81,6 +79,8 @@
             this.uiStatusBar1 = new Janus.Windows.UI.StatusBar.UIStatusBar();
             this.uiGroupBox2 = new Janus.Windows.EditControls.UIGroupBox();
             this.grdList = new Janus.Windows.GridEX.GridEX();
+            this.autoKhoa = new VNS.HIS.UCs.AutoCompleteTextbox();
+            this.autoLoaiPTTT = new VNS.HIS.UCs.AutoCompleteTextbox_Danhmucchung();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox1)).BeginInit();
             this.uiGroupBox1.SuspendLayout();
@@ -110,7 +110,7 @@
             this.cmdExit});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1008, 31);
+            this.toolStrip1.Size = new System.Drawing.Size(1178, 31);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -118,8 +118,7 @@
             // 
             this.cmdInsert.BackColor = System.Drawing.Color.Transparent;
             this.cmdInsert.Font = new System.Drawing.Font("Arial", 10F);
-            this.cmdInsert.Image = ((System.Drawing.Image)(resources.GetObject("cmdInsert.Image")));
-            this.cmdInsert.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.cmdInsert.Image = global::VMS.HIS.Noitru.Properties.Resources.add_04_32;
             this.cmdInsert.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdInsert.Name = "cmdInsert";
             this.cmdInsert.Size = new System.Drawing.Size(99, 28);
@@ -131,7 +130,6 @@
             // 
             this.cmdUpdate.Font = new System.Drawing.Font("Arial", 10F);
             this.cmdUpdate.Image = ((System.Drawing.Image)(resources.GetObject("cmdUpdate.Image")));
-            this.cmdUpdate.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.cmdUpdate.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdUpdate.Name = "cmdUpdate";
             this.cmdUpdate.Size = new System.Drawing.Size(94, 28);
@@ -247,7 +245,6 @@
             // 
             this.cmdExit.Font = new System.Drawing.Font("Arial", 10F);
             this.cmdExit.Image = global::VMS.HIS.Noitru.Properties.Resources.close_24;
-            this.cmdExit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.cmdExit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdExit.Name = "cmdExit";
             this.cmdExit.Size = new System.Drawing.Size(73, 28);
@@ -274,7 +271,7 @@
             this.uiGroupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.uiGroupBox1.Location = new System.Drawing.Point(0, 31);
             this.uiGroupBox1.Name = "uiGroupBox1";
-            this.uiGroupBox1.Size = new System.Drawing.Size(1008, 138);
+            this.uiGroupBox1.Size = new System.Drawing.Size(1178, 138);
             this.uiGroupBox1.TabIndex = 5;
             this.uiGroupBox1.Text = "Thông tin tìm kiếm";
             this.uiGroupBox1.VisualStyle = Janus.Windows.UI.Dock.PanelVisualStyle.Office2003;
@@ -289,48 +286,6 @@
             this.label6.TabIndex = 47;
             this.label6.Text = "Khoa điều trị";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // autoKhoa
-            // 
-            this.autoKhoa._backcolor = System.Drawing.Color.WhiteSmoke;
-            this.autoKhoa._Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.autoKhoa._TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.autoKhoa.AutoCompleteList = ((System.Collections.Generic.List<string>)(resources.GetObject("autoKhoa.AutoCompleteList")));
-            this.autoKhoa.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.autoKhoa.buildShortcut = false;
-            this.autoKhoa.CaseSensitive = false;
-            this.autoKhoa.CompareNoID = true;
-            this.autoKhoa.DefaultCode = "-1";
-            this.autoKhoa.DefaultID = "-1";
-            this.autoKhoa.DisplayType = 0;
-            this.autoKhoa.Drug_ID = null;
-            this.autoKhoa.ExtraWidth = 0;
-            this.autoKhoa.FillValueAfterSelect = false;
-            this.autoKhoa.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.autoKhoa.Location = new System.Drawing.Point(136, 109);
-            this.autoKhoa.MaxHeight = 289;
-            this.autoKhoa.MinTypedCharacters = 2;
-            this.autoKhoa.MyCode = "-1";
-            this.autoKhoa.MyID = "-1";
-            this.autoKhoa.MyText = "";
-            this.autoKhoa.MyTextOnly = "";
-            this.autoKhoa.Name = "autoKhoa";
-            this.autoKhoa.RaiseEvent = true;
-            this.autoKhoa.RaiseEventEnter = true;
-            this.autoKhoa.RaiseEventEnterWhenEmpty = true;
-            this.autoKhoa.SelectedIndex = -1;
-            this.autoKhoa.Size = new System.Drawing.Size(653, 21);
-            this.autoKhoa.splitChar = '@';
-            this.autoKhoa.splitCharIDAndCode = '#';
-            this.autoKhoa.TabIndex = 11;
-            this.autoKhoa.TakeCode = false;
-            this.autoKhoa.txtMyCode = null;
-            this.autoKhoa.txtMyCode_Edit = null;
-            this.autoKhoa.txtMyID = null;
-            this.autoKhoa.txtMyID_Edit = null;
-            this.autoKhoa.txtMyName = null;
-            this.autoKhoa.txtMyName_Edit = null;
-            this.autoKhoa.txtNext = null;
             // 
             // txtmaBBHC
             // 
@@ -353,53 +308,6 @@
             this.label5.Size = new System.Drawing.Size(61, 15);
             this.label5.TabIndex = 45;
             this.label5.Text = "Mã phiếu:";
-            // 
-            // autoLoaiPTTT
-            // 
-            this.autoLoaiPTTT._backcolor = System.Drawing.Color.WhiteSmoke;
-            this.autoLoaiPTTT._Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.autoLoaiPTTT._TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.autoLoaiPTTT.AddValues = true;
-            this.autoLoaiPTTT.AllowMultiline = false;
-            this.autoLoaiPTTT.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.autoLoaiPTTT.AutoCompleteList = ((System.Collections.Generic.List<string>)(resources.GetObject("autoLoaiPTTT.AutoCompleteList")));
-            this.autoLoaiPTTT.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.autoLoaiPTTT.buildShortcut = false;
-            this.autoLoaiPTTT.CaseSensitive = false;
-            this.autoLoaiPTTT.cmdDropDown = null;
-            this.autoLoaiPTTT.CompareNoID = true;
-            this.autoLoaiPTTT.DefaultCode = "-1";
-            this.autoLoaiPTTT.DefaultID = "-1";
-            this.autoLoaiPTTT.Drug_ID = null;
-            this.autoLoaiPTTT.ExtraWidth = 0;
-            this.autoLoaiPTTT.FillValueAfterSelect = false;
-            this.autoLoaiPTTT.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.autoLoaiPTTT.LOAI_DANHMUC = "LOAIPTTT";
-            this.autoLoaiPTTT.Location = new System.Drawing.Point(136, 82);
-            this.autoLoaiPTTT.MaxHeight = 279;
-            this.autoLoaiPTTT.MinTypedCharacters = 2;
-            this.autoLoaiPTTT.MyCode = "-1";
-            this.autoLoaiPTTT.MyID = "-1";
-            this.autoLoaiPTTT.Name = "autoLoaiPTTT";
-            this.autoLoaiPTTT.RaiseEvent = false;
-            this.autoLoaiPTTT.RaiseEventEnter = false;
-            this.autoLoaiPTTT.RaiseEventEnterWhenEmpty = false;
-            this.autoLoaiPTTT.SelectedIndex = -1;
-            this.autoLoaiPTTT.ShowCodeWithValue = false;
-            this.autoLoaiPTTT.Size = new System.Drawing.Size(653, 21);
-            this.autoLoaiPTTT.splitChar = '@';
-            this.autoLoaiPTTT.splitCharIDAndCode = '#';
-            this.autoLoaiPTTT.TabIndex = 10;
-            this.autoLoaiPTTT.TakeCode = false;
-            this.autoLoaiPTTT.txtMyCode = null;
-            this.autoLoaiPTTT.txtMyCode_Edit = null;
-            this.autoLoaiPTTT.txtMyID = null;
-            this.autoLoaiPTTT.txtMyID_Edit = null;
-            this.autoLoaiPTTT.txtMyName = null;
-            this.autoLoaiPTTT.txtMyName_Edit = null;
-            this.autoLoaiPTTT.txtNext = null;
-            this.autoLoaiPTTT.txtNext1 = null;
             // 
             // label4
             // 
@@ -440,7 +348,7 @@
             this.cmdTimKiem.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdTimKiem.Image = ((System.Drawing.Image)(resources.GetObject("cmdTimKiem.Image")));
             this.cmdTimKiem.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdTimKiem.Location = new System.Drawing.Point(849, 55);
+            this.cmdTimKiem.Location = new System.Drawing.Point(1019, 55);
             this.cmdTimKiem.Name = "cmdTimKiem";
             this.cmdTimKiem.Size = new System.Drawing.Size(153, 50);
             this.cmdTimKiem.TabIndex = 12;
@@ -463,7 +371,7 @@
             this.txtTennguoibenh.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTennguoibenh.Location = new System.Drawing.Point(373, 57);
             this.txtTennguoibenh.Name = "txtTennguoibenh";
-            this.txtTennguoibenh.Size = new System.Drawing.Size(416, 21);
+            this.txtTennguoibenh.Size = new System.Drawing.Size(586, 21);
             this.txtTennguoibenh.TabIndex = 6;
             this.txtTennguoibenh.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
             // 
@@ -549,7 +457,7 @@
             this.dtpNgayin.DropDownCalendar.Name = "";
             this.dtpNgayin.DropDownCalendar.VisualStyle = Janus.Windows.CalendarCombo.VisualStyle.Office2003;
             this.dtpNgayin.Enabled = false;
-            this.dtpNgayin.Location = new System.Drawing.Point(-156, 707);
+            this.dtpNgayin.Location = new System.Drawing.Point(14, 716);
             this.dtpNgayin.Name = "dtpNgayin";
             this.dtpNgayin.ShowUpDown = true;
             this.dtpNgayin.Size = new System.Drawing.Size(115, 21);
@@ -613,7 +521,7 @@
             // uiStatusBar1
             // 
             this.uiStatusBar1.Font = new System.Drawing.Font("Arial", 9F);
-            this.uiStatusBar1.Location = new System.Drawing.Point(0, 706);
+            this.uiStatusBar1.Location = new System.Drawing.Point(0, 715);
             this.uiStatusBar1.Name = "uiStatusBar1";
             uiStatusBarPanel1.BorderColor = System.Drawing.Color.Empty;
             uiStatusBarPanel1.Key = "";
@@ -630,12 +538,12 @@
             uiStatusBarPanel3.ProgressBarValue = 0;
             uiStatusBarPanel3.Text = "Với mã khám nhập các số cuối khác số 0 và nhấn Enter. Ví dụ tìm mã khám 2300012 t" +
     "hì chỉ cần gõ 12 và Enter.                                       ";
-            uiStatusBarPanel3.Width = 798;
+            uiStatusBarPanel3.Width = 968;
             this.uiStatusBar1.Panels.AddRange(new Janus.Windows.UI.StatusBar.UIStatusBarPanel[] {
             uiStatusBarPanel1,
             uiStatusBarPanel2,
             uiStatusBarPanel3});
-            this.uiStatusBar1.Size = new System.Drawing.Size(1008, 23);
+            this.uiStatusBar1.Size = new System.Drawing.Size(1178, 23);
             this.uiStatusBar1.TabIndex = 359;
             this.uiStatusBar1.TabStop = false;
             // 
@@ -645,7 +553,7 @@
             this.uiGroupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiGroupBox2.Location = new System.Drawing.Point(0, 169);
             this.uiGroupBox2.Name = "uiGroupBox2";
-            this.uiGroupBox2.Size = new System.Drawing.Size(1008, 537);
+            this.uiGroupBox2.Size = new System.Drawing.Size(1178, 546);
             this.uiGroupBox2.TabIndex = 360;
             this.uiGroupBox2.Text = "Danh sách phiếu phẫu thuật thủ thuật";
             this.uiGroupBox2.VisualStyle = Janus.Windows.UI.Dock.PanelVisualStyle.Office2003;
@@ -674,16 +582,105 @@
             this.grdList.RecordNavigator = true;
             this.grdList.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
             this.grdList.SelectedFormatStyle.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.grdList.Size = new System.Drawing.Size(1002, 517);
+            this.grdList.Size = new System.Drawing.Size(1172, 526);
             this.grdList.TabIndex = 553;
             this.grdList.TabStop = false;
             this.grdList.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007;
+            // 
+            // autoKhoa
+            // 
+            this.autoKhoa._backcolor = System.Drawing.Color.WhiteSmoke;
+            this.autoKhoa._Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.autoKhoa._TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.autoKhoa.AutoCompleteList = ((System.Collections.Generic.List<string>)(resources.GetObject("autoKhoa.AutoCompleteList")));
+            this.autoKhoa.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.autoKhoa.buildShortcut = false;
+            this.autoKhoa.CaseSensitive = false;
+            this.autoKhoa.CompareNoID = true;
+            this.autoKhoa.DefaultCode = "-1";
+            this.autoKhoa.DefaultID = "-1";
+            this.autoKhoa.DisplayType = 0;
+            this.autoKhoa.Drug_ID = null;
+            this.autoKhoa.ExtraWidth = 0;
+            this.autoKhoa.FillValueAfterSelect = false;
+            this.autoKhoa.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.autoKhoa.Location = new System.Drawing.Point(136, 109);
+            this.autoKhoa.MaxHeight = 289;
+            this.autoKhoa.MinTypedCharacters = 2;
+            this.autoKhoa.MyCode = "-1";
+            this.autoKhoa.MyID = "-1";
+            this.autoKhoa.MyText = "";
+            this.autoKhoa.MyTextOnly = "";
+            this.autoKhoa.Name = "autoKhoa";
+            this.autoKhoa.RaiseEvent = true;
+            this.autoKhoa.RaiseEventEnter = true;
+            this.autoKhoa.RaiseEventEnterWhenEmpty = true;
+            this.autoKhoa.SelectedIndex = -1;
+            this.autoKhoa.Size = new System.Drawing.Size(653, 21);
+            this.autoKhoa.splitChar = '@';
+            this.autoKhoa.splitCharIDAndCode = '#';
+            this.autoKhoa.TabIndex = 11;
+            this.autoKhoa.TakeCode = false;
+            this.autoKhoa.txtMyCode = null;
+            this.autoKhoa.txtMyCode_Edit = null;
+            this.autoKhoa.txtMyID = null;
+            this.autoKhoa.txtMyID_Edit = null;
+            this.autoKhoa.txtMyName = null;
+            this.autoKhoa.txtMyName_Edit = null;
+            this.autoKhoa.txtNext = null;
+            // 
+            // autoLoaiPTTT
+            // 
+            this.autoLoaiPTTT._backcolor = System.Drawing.Color.WhiteSmoke;
+            this.autoLoaiPTTT._Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.autoLoaiPTTT._TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.autoLoaiPTTT.AddValues = true;
+            this.autoLoaiPTTT.AllowMultiline = false;
+            this.autoLoaiPTTT.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.autoLoaiPTTT.AutoCompleteList = ((System.Collections.Generic.List<string>)(resources.GetObject("autoLoaiPTTT.AutoCompleteList")));
+            this.autoLoaiPTTT.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.autoLoaiPTTT.buildShortcut = false;
+            this.autoLoaiPTTT.CaseSensitive = false;
+            this.autoLoaiPTTT.cmdDropDown = null;
+            this.autoLoaiPTTT.CompareNoID = true;
+            this.autoLoaiPTTT.DefaultCode = "-1";
+            this.autoLoaiPTTT.DefaultID = "-1";
+            this.autoLoaiPTTT.Drug_ID = null;
+            this.autoLoaiPTTT.ExtraWidth = 0;
+            this.autoLoaiPTTT.FillValueAfterSelect = false;
+            this.autoLoaiPTTT.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.autoLoaiPTTT.LOAI_DANHMUC = "LOAIPTTT";
+            this.autoLoaiPTTT.Location = new System.Drawing.Point(136, 82);
+            this.autoLoaiPTTT.MaxHeight = 279;
+            this.autoLoaiPTTT.MinTypedCharacters = 2;
+            this.autoLoaiPTTT.MyCode = "-1";
+            this.autoLoaiPTTT.MyID = "-1";
+            this.autoLoaiPTTT.Name = "autoLoaiPTTT";
+            this.autoLoaiPTTT.RaiseEvent = false;
+            this.autoLoaiPTTT.RaiseEventEnter = false;
+            this.autoLoaiPTTT.RaiseEventEnterWhenEmpty = false;
+            this.autoLoaiPTTT.SelectedIndex = -1;
+            this.autoLoaiPTTT.ShowCodeWithValue = false;
+            this.autoLoaiPTTT.Size = new System.Drawing.Size(823, 21);
+            this.autoLoaiPTTT.splitChar = '@';
+            this.autoLoaiPTTT.splitCharIDAndCode = '#';
+            this.autoLoaiPTTT.TabIndex = 10;
+            this.autoLoaiPTTT.TakeCode = false;
+            this.autoLoaiPTTT.txtMyCode = null;
+            this.autoLoaiPTTT.txtMyCode_Edit = null;
+            this.autoLoaiPTTT.txtMyID = null;
+            this.autoLoaiPTTT.txtMyID_Edit = null;
+            this.autoLoaiPTTT.txtMyName = null;
+            this.autoLoaiPTTT.txtMyName_Edit = null;
+            this.autoLoaiPTTT.txtNext = null;
+            this.autoLoaiPTTT.txtNext1 = null;
             // 
             // frm_DanhsachNguoibenhPTTT
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.ClientSize = new System.Drawing.Size(1178, 738);
             this.Controls.Add(this.dtpNgayin);
             this.Controls.Add(this.uiGroupBox2);
             this.Controls.Add(this.uiGroupBox1);

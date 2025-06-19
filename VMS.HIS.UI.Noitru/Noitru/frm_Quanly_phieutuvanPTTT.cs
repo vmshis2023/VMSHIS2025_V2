@@ -18,6 +18,8 @@ using System.Runtime.InteropServices;
 using System.Diagnostics;
 using System.Threading;
 using Aspose.Words;
+using VMS.Emr;
+
 namespace VNS.HIS.UI.NOITRU
 {
     public partial class frm_Quanly_phieutuvanPTTT : Form
@@ -278,7 +280,7 @@ namespace VNS.HIS.UI.NOITRU
                 Utility.CatchException(ex);
             }
         }
-
+        EmrDocuments emrdoc = new EmrDocuments();
         bool DeleteMe()
         {
             try
@@ -287,7 +289,9 @@ namespace VNS.HIS.UI.NOITRU
                 {
                     using (var dbscope = new SharedDbConnectionScope())
                     {
-                        new Delete().From(KcbBienbanhoichan.Schema).Where(KcbBienbanhoichan.Columns.Id).IsEqualTo(Utility.Int32Dbnull(grdList.GetValue(KcbBienbanhoichan.Columns.Id), -1)).Execute();
+                        long IdPhieu = Utility.Int32Dbnull(grdList.GetValue(KcbBienbanhoichan.Columns.Id), -1);
+                        new Delete().From(KcbBienbanhoichan.Schema).Where(KcbBienbanhoichan.Columns.Id).IsEqualTo(IdPhieu).Execute();
+                        emrdoc.DeleteDocument(IdPhieu, Loaiphieu_HIS.PHIEU_TUVAN_PTTT, "Phieu_TuvanPTTT");
                     }
                     scope.Complete();
                     

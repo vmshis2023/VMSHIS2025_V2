@@ -130,7 +130,7 @@ namespace VMS.EMR.PHIEUKHAM
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(299, 127);
+            this.label8.Location = new System.Drawing.Point(337, 252);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(74, 14);
             this.label8.TabIndex = 14;
@@ -141,7 +141,7 @@ namespace VMS.EMR.PHIEUKHAM
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(36, 127);
+            this.label15.Location = new System.Drawing.Point(74, 252);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(71, 14);
             this.label15.TabIndex = 12;
@@ -158,7 +158,7 @@ namespace VMS.EMR.PHIEUKHAM
             this.dtNgayKham.DropDownCalendar.Name = "";
             this.dtNgayKham.DropDownCalendar.VisualStyle = Janus.Windows.CalendarCombo.VisualStyle.VS2005;
             this.dtNgayKham.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtNgayKham.Location = new System.Drawing.Point(129, 121);
+            this.dtNgayKham.Location = new System.Drawing.Point(167, 246);
             this.dtNgayKham.Name = "dtNgayKham";
             this.dtNgayKham.ReadOnly = true;
             this.dtNgayKham.ShowUpDown = true;
@@ -180,7 +180,7 @@ namespace VMS.EMR.PHIEUKHAM
             this.grdLichSu.GroupByBoxVisible = false;
             this.grdLichSu.Location = new System.Drawing.Point(3, 18);
             this.grdLichSu.Name = "grdLichSu";
-            this.grdLichSu.Size = new System.Drawing.Size(298, 363);
+            this.grdLichSu.Size = new System.Drawing.Size(298, 271);
             this.grdLichSu.TabIndex = 0;
             this.grdLichSu.TabStop = false;
             this.grdLichSu.DoubleClick += new System.EventHandler(this.grdLichSu_DoubleClick);
@@ -191,9 +191,9 @@ namespace VMS.EMR.PHIEUKHAM
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grpLichSu.Controls.Add(this.grdLichSu);
             this.grpLichSu.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpLichSu.Location = new System.Drawing.Point(858, 395);
+            this.grpLichSu.Location = new System.Drawing.Point(858, 487);
             this.grpLichSu.Name = "grpLichSu";
-            this.grpLichSu.Size = new System.Drawing.Size(304, 384);
+            this.grpLichSu.Size = new System.Drawing.Size(304, 292);
             this.grpLichSu.TabIndex = 7;
             this.grpLichSu.TabStop = false;
             this.grpLichSu.Text = "Lịch sử khám";
@@ -205,15 +205,16 @@ namespace VMS.EMR.PHIEUKHAM
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.Location = new System.Drawing.Point(6, 151);
+            this.tabControl1.Location = new System.Drawing.Point(6, 276);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(846, 625);
+            this.tabControl1.Size = new System.Drawing.Size(846, 500);
             this.tabControl1.TabIndex = 4;
             this.tabControl1.TabStop = false;
             // 
             // tabPage1
             // 
+            this.tabPage1.AutoScroll = true;
             this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
             this.tabPage1.Controls.Add(this.autoTxt);
             this.tabPage1.Controls.Add(this.txtThantietnieu);
@@ -242,7 +243,7 @@ namespace VMS.EMR.PHIEUKHAM
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(838, 597);
+            this.tabPage1.Size = new System.Drawing.Size(838, 472);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Khám nội";
             // 
@@ -616,7 +617,7 @@ namespace VMS.EMR.PHIEUKHAM
             // txtID
             // 
             this.txtID.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtID.Location = new System.Drawing.Point(787, 124);
+            this.txtID.Location = new System.Drawing.Point(825, 249);
             this.txtID.MaxLength = 4;
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(31, 21);
@@ -627,7 +628,7 @@ namespace VMS.EMR.PHIEUKHAM
             // label17
             // 
             this.label17.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(716, 127);
+            this.label17.Location = new System.Drawing.Point(754, 252);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(65, 16);
             this.label17.TabIndex = 49;
@@ -752,7 +753,7 @@ namespace VMS.EMR.PHIEUKHAM
             this.grpChucNangSong.Controls.Add(this.label70);
             this.grpChucNangSong.Controls.Add(this.label69);
             this.grpChucNangSong.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpChucNangSong.Location = new System.Drawing.Point(861, 175);
+            this.grpChucNangSong.Location = new System.Drawing.Point(861, 276);
             this.grpChucNangSong.Name = "grpChucNangSong";
             this.grpChucNangSong.Size = new System.Drawing.Size(298, 209);
             this.grpChucNangSong.TabIndex = 50;
@@ -1077,7 +1078,7 @@ namespace VMS.EMR.PHIEUKHAM
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ucThongtinnguoibenh1.Location = new System.Drawing.Point(13, 2);
             this.ucThongtinnguoibenh1.Name = "ucThongtinnguoibenh1";
-            this.ucThongtinnguoibenh1.Size = new System.Drawing.Size(1150, 116);
+            this.ucThongtinnguoibenh1.Size = new System.Drawing.Size(1150, 238);
             this.ucThongtinnguoibenh1.TabIndex = 29;
             // 
             // txtBacsi
@@ -1097,7 +1098,7 @@ namespace VMS.EMR.PHIEUKHAM
             this.txtBacsi.ExtraWidth = 0;
             this.txtBacsi.FillValueAfterSelect = false;
             this.txtBacsi.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBacsi.Location = new System.Drawing.Point(379, 124);
+            this.txtBacsi.Location = new System.Drawing.Point(417, 249);
             this.txtBacsi.MaxHeight = 289;
             this.txtBacsi.MinTypedCharacters = 2;
             this.txtBacsi.MyCode = "-1";
@@ -1158,7 +1159,7 @@ namespace VMS.EMR.PHIEUKHAM
             this.autoTxt.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.autoTxt.SelectedIndex = -1;
             this.autoTxt.ShowCodeWithValue = false;
-            this.autoTxt.Size = new System.Drawing.Size(28, 10);
+            this.autoTxt.Size = new System.Drawing.Size(25, 10);
             this.autoTxt.splitChar = '@';
             this.autoTxt.splitCharIDAndCode = '#';
             this.autoTxt.TabIndex = 61;
@@ -1175,8 +1176,8 @@ namespace VMS.EMR.PHIEUKHAM
             // 
             // frm_khamnoikhoa
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1177, 829);
             this.Controls.Add(this.grpChucNangSong);
             this.Controls.Add(this.label17);

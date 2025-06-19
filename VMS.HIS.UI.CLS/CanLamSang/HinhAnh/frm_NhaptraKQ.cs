@@ -35,6 +35,7 @@ using System.Transactions;
 using VNS.HIS.UI.NGOAITRU;
 using VMS.HIS.Danhmuc;
 using Word = Microsoft.Office.Interop.Word;
+using VMS.Emr;
 
 namespace VNS.HIS.UI.Forms.HinhAnh
 {
@@ -1169,6 +1170,20 @@ namespace VNS.HIS.UI.Forms.HinhAnh
                 return bm;
             }
         }
+        string getFileMauTraKQ()
+        {
+            string docPath = THU_VIEN_CHUNG.Laygiatrithamsohethong("DOC", true);
+            string maubaocaogoc = AppDomain.CurrentDomain.BaseDirectory + "Doc\\maukq.doc";
+            string maubaocao = string.Format("{0}{1}\\{2}", AppDomain.CurrentDomain.BaseDirectory, docPath, txtTenFileKQ.Text);
+            _log.Trace(maubaocao);
+            string tempmau = AppDomain.CurrentDomain.BaseDirectory + "tempDoc\\";
+            if (!Directory.Exists(tempmau)) Directory.CreateDirectory(tempmau);
+            if (!File.Exists(maubaocao))
+            {
+                maubaocao = maubaocaogoc;
+            }
+            return maubaocao;
+        }
         Document doc;
 
         private void InKetQua(string dstFileName)
@@ -1494,6 +1509,9 @@ namespace VNS.HIS.UI.Forms.HinhAnh
                         File.Delete(fileKetqua);
                     }
                     doc.Save(fileKetqua, SaveFormat.Doc);
+                    emrdoc.InitDocument(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, Utility.Int64Dbnull(objKcbChidinhclsChitiet.IdChitietchidinh), objKcbChidinhclsChitiet.NgayThuchien.Value, Loaiphieu_HIS.PHIEU_KQCDHA,Path.GetFileNameWithoutExtension( maubaocao), objKcbChidinhclsChitiet.NguoiThuchien, Utility.Int16Dbnull(objChidinh.IdKhoaChidinh, -1), Utility.Int16Dbnull(objChidinh.IdPhongChidinh, -1), Utility.Byte2Bool(objChidinh.Noitru), "");
+                    emrdoc.SetFilePath(string.Format(@"{0}/{1}/{2}", objChidinh.NgayChidinh.ToString("yyyy_MM_dd"), objChidinh.MaChidinh, objKcbChidinhclsChitiet.IdChitietchidinh));
+                    emrdoc.Save();
                     //Save to Pdf
                     //Save to Pdf
                     string newDocfile = string.Format("{0}{1}{2}.doc", Path.GetDirectoryName(fileKetqua), Path.DirectorySeparatorChar, THU_VIEN_CHUNG.GetGUID());
@@ -1948,6 +1966,7 @@ namespace VNS.HIS.UI.Forms.HinhAnh
                 drWorklist.Table.AcceptChanges();
             }
         }
+        EmrDocuments emrdoc = new EmrDocuments();
         void SaveKQ(bool Msg, bool Confirm)
         {
             try
@@ -2068,6 +2087,9 @@ namespace VNS.HIS.UI.Forms.HinhAnh
                             sp.Execute();
 
                         objKcbChidinhclsChitiet.Save();
+                        string maubc = getFileMauTraKQ();
+                        emrdoc.InitDocument(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, Utility.Int64Dbnull(objKcbChidinhclsChitiet.IdChitietchidinh), objKcbChidinhclsChitiet.NgayThuchien.Value, Loaiphieu_HIS.PHIEU_KQCDHA, maubc, objKcbChidinhclsChitiet.NguoiThuchien, Utility.Int16Dbnull(objChidinh.IdKhoaChidinh, -1), Utility.Int16Dbnull(objChidinh.IdPhongChidinh, -1), Utility.Byte2Bool(objChidinh.Noitru), "");
+                        emrdoc.Save();
                     }
                     scope.Complete();
                 }

@@ -80,7 +80,7 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(DateTime? NgayNhapvien,string MaLuotkham,int IdBenhnhan,int? IdKhoanoitru,string LydoNhapvien,string ChandoanTuyenduoi,string TsuBanthan,string TsuGiadinh,string BenhSu,string KhamToanthan,string KhamPhukhoa,string ChandoanVaovien,string Xutri,string ChedoTheodoi,string ChuY,string DauhieuLamsang,string ThuocDadung,string TheTrang,string Bmi,string Eo,string HachNgoaivi,string TuyenGiap,string Tim,string TanSo,string HuyetAp,string Phoi,string Bung,string GanLanach,string PhanxaGanxuong,string Mat,string BphanKhac,string KquaXn,string TtKquaLamsang,string DaXuly,byte? NoiTru,long? IdKham,string MaTainanthuongtich,string QuatrinhBenhly,string MaLydoNhapvien,DateTime? NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua,string SoVaovien,string ChovaoKhoa,string Mach,string Nhietdo,string Huyetap,string Nhiptim,string Nhiptho,string Cannang,string Chieucao,string SPO2)
+	    public void Insert(DateTime? NgayNhapvien,string MaLuotkham,int IdBenhnhan,int? IdKhoanoitru,string LydoNhapvien,string ChandoanTuyenduoi,string TsuBanthan,string TsuGiadinh,string BenhSu,string KhamToanthan,string KhamPhukhoa,string ChandoanVaovien,string Xutri,string ChedoTheodoi,string ChuY,string DauhieuLamsang,string ThuocDadung,string TheTrang,string Bmi,string Eo,string HachNgoaivi,string TuyenGiap,string Tim,string TanSo,string HuyetAp,string Phoi,string Bung,string GanLanach,string PhanxaGanxuong,string Mat,string BphanKhac,string KquaXn,string TtKquaLamsang,string DaXuly,byte? NoiTru,long? IdKham,string MaTainanthuongtich,string QuatrinhBenhly,string MaLydoNhapvien,DateTime? NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua,string SoVaovien,string ChovaoKhoa,string Mach,string Nhietdo,string Huyetap,string Nhiptim,string Nhiptho,string Cannang,string Chieucao,string SPO2,bool? TthaiKyso,string NguoiKyso,DateTime? NgayKyso,bool? TthaiKydientu,string NguoiKydientu,DateTime? NgayKydientu)
 	    {
 		    NoitruPhieunhapvien item = new NoitruPhieunhapvien();
 		    
@@ -190,6 +190,18 @@ namespace VMS.HIS.DAL
             
             item.SPO2 = SPO2;
             
+            item.TthaiKyso = TthaiKyso;
+            
+            item.NguoiKyso = NguoiKyso;
+            
+            item.NgayKyso = NgayKyso;
+            
+            item.TthaiKydientu = TthaiKydientu;
+            
+            item.NguoiKydientu = NguoiKydientu;
+            
+            item.NgayKydientu = NgayKydientu;
+            
 	    
 		    item.Save(UserName);
 	    }
@@ -198,7 +210,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(int IdPhieu,DateTime? NgayNhapvien,string MaLuotkham,int IdBenhnhan,int? IdKhoanoitru,string LydoNhapvien,string ChandoanTuyenduoi,string TsuBanthan,string TsuGiadinh,string BenhSu,string KhamToanthan,string KhamPhukhoa,string ChandoanVaovien,string Xutri,string ChedoTheodoi,string ChuY,string DauhieuLamsang,string ThuocDadung,string TheTrang,string Bmi,string Eo,string HachNgoaivi,string TuyenGiap,string Tim,string TanSo,string HuyetAp,string Phoi,string Bung,string GanLanach,string PhanxaGanxuong,string Mat,string BphanKhac,string KquaXn,string TtKquaLamsang,string DaXuly,byte? NoiTru,long? IdKham,string MaTainanthuongtich,string QuatrinhBenhly,string MaLydoNhapvien,DateTime? NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua,string SoVaovien,string ChovaoKhoa,string Mach,string Nhietdo,string Huyetap,string Nhiptim,string Nhiptho,string Cannang,string Chieucao,string SPO2)
+	    public void Update(int IdPhieu,DateTime? NgayNhapvien,string MaLuotkham,int IdBenhnhan,int? IdKhoanoitru,string LydoNhapvien,string ChandoanTuyenduoi,string TsuBanthan,string TsuGiadinh,string BenhSu,string KhamToanthan,string KhamPhukhoa,string ChandoanVaovien,string Xutri,string ChedoTheodoi,string ChuY,string DauhieuLamsang,string ThuocDadung,string TheTrang,string Bmi,string Eo,string HachNgoaivi,string TuyenGiap,string Tim,string TanSo,string HuyetAp,string Phoi,string Bung,string GanLanach,string PhanxaGanxuong,string Mat,string BphanKhac,string KquaXn,string TtKquaLamsang,string DaXuly,byte? NoiTru,long? IdKham,string MaTainanthuongtich,string QuatrinhBenhly,string MaLydoNhapvien,DateTime? NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua,string SoVaovien,string ChovaoKhoa,string Mach,string Nhietdo,string Huyetap,string Nhiptim,string Nhiptho,string Cannang,string Chieucao,string SPO2,bool? TthaiKyso,string NguoiKyso,DateTime? NgayKyso,bool? TthaiKydientu,string NguoiKydientu,DateTime? NgayKydientu)
 	    {
 		    NoitruPhieunhapvien item = new NoitruPhieunhapvien();
 	        item.MarkOld();
@@ -311,6 +323,18 @@ namespace VMS.HIS.DAL
 			item.Chieucao = Chieucao;
 				
 			item.SPO2 = SPO2;
+				
+			item.TthaiKyso = TthaiKyso;
+				
+			item.NguoiKyso = NguoiKyso;
+				
+			item.NgayKyso = NgayKyso;
+				
+			item.TthaiKydientu = TthaiKydientu;
+				
+			item.NguoiKydientu = NguoiKydientu;
+				
+			item.NgayKydientu = NgayKydientu;
 				
 	        item.Save(UserName);
 	    }

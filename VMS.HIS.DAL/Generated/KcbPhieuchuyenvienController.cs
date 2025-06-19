@@ -80,7 +80,7 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(string SoChuyentuyen,long IdBenhnhan,string MaLuotkham,DateTime NgayChuyenvien,short IdBenhvienChuyenden,string DauhieuCls,string KetquaXnCls,string Mabenh,string ChanDoan,string ThuocSudung,string TrangthaiBenhnhan,byte? LydoChuyen,string HuongDieutri,string PhuongtienChuyen,string TenNguoichuyen,int? IdKhoanoitru,int? IdBuong,int? IdGiuong,int? IdRavien,byte NoiTru,short? IdBacsiChuyenvien,DateTime NgayTao,string NguoiTao,string IpMaytao,string NguoiSua,DateTime? NgaySua,byte? TuyenChuyen)
+	    public void Insert(string SoChuyentuyen,long IdBenhnhan,string MaLuotkham,DateTime NgayChuyenvien,short IdBenhvienChuyenden,string DauhieuCls,string KetquaXnCls,string Mabenh,string ChanDoan,string ThuocSudung,string TrangthaiBenhnhan,byte? LydoChuyen,string HuongDieutri,string PhuongtienChuyen,string TenNguoichuyen,int? IdKhoanoitru,int? IdBuong,int? IdGiuong,int? IdRavien,byte NoiTru,short? IdBacsiChuyenvien,DateTime NgayTao,string NguoiTao,string IpMaytao,string NguoiSua,DateTime? NgaySua,byte? TuyenChuyen,bool? TthaiKyso,string NguoiKyso,DateTime? NgayKyso,bool? TthaiKydientu,string NguoiKydientu,DateTime? NgayKydientu)
 	    {
 		    KcbPhieuchuyenvien item = new KcbPhieuchuyenvien();
 		    
@@ -138,6 +138,18 @@ namespace VMS.HIS.DAL
             
             item.TuyenChuyen = TuyenChuyen;
             
+            item.TthaiKyso = TthaiKyso;
+            
+            item.NguoiKyso = NguoiKyso;
+            
+            item.NgayKyso = NgayKyso;
+            
+            item.TthaiKydientu = TthaiKydientu;
+            
+            item.NguoiKydientu = NguoiKydientu;
+            
+            item.NgayKydientu = NgayKydientu;
+            
 	    
 		    item.Save(UserName);
 	    }
@@ -146,7 +158,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(long IdPhieu,string SoChuyentuyen,long IdBenhnhan,string MaLuotkham,DateTime NgayChuyenvien,short IdBenhvienChuyenden,string DauhieuCls,string KetquaXnCls,string Mabenh,string ChanDoan,string ThuocSudung,string TrangthaiBenhnhan,byte? LydoChuyen,string HuongDieutri,string PhuongtienChuyen,string TenNguoichuyen,int? IdKhoanoitru,int? IdBuong,int? IdGiuong,int? IdRavien,byte NoiTru,short? IdBacsiChuyenvien,DateTime NgayTao,string NguoiTao,string IpMaytao,string NguoiSua,DateTime? NgaySua,byte? TuyenChuyen)
+	    public void Update(long IdPhieu,string SoChuyentuyen,long IdBenhnhan,string MaLuotkham,DateTime NgayChuyenvien,short IdBenhvienChuyenden,string DauhieuCls,string KetquaXnCls,string Mabenh,string ChanDoan,string ThuocSudung,string TrangthaiBenhnhan,byte? LydoChuyen,string HuongDieutri,string PhuongtienChuyen,string TenNguoichuyen,int? IdKhoanoitru,int? IdBuong,int? IdGiuong,int? IdRavien,byte NoiTru,short? IdBacsiChuyenvien,DateTime NgayTao,string NguoiTao,string IpMaytao,string NguoiSua,DateTime? NgaySua,byte? TuyenChuyen,bool? TthaiKyso,string NguoiKyso,DateTime? NgayKyso,bool? TthaiKydientu,string NguoiKydientu,DateTime? NgayKydientu)
 	    {
 		    KcbPhieuchuyenvien item = new KcbPhieuchuyenvien();
 	        item.MarkOld();
@@ -207,6 +219,18 @@ namespace VMS.HIS.DAL
 			item.NgaySua = NgaySua;
 				
 			item.TuyenChuyen = TuyenChuyen;
+				
+			item.TthaiKyso = TthaiKyso;
+				
+			item.NguoiKyso = NguoiKyso;
+				
+			item.NgayKyso = NgayKyso;
+				
+			item.TthaiKydientu = TthaiKydientu;
+				
+			item.NguoiKydientu = NguoiKydientu;
+				
+			item.NgayKydientu = NgayKydientu;
 				
 	        item.Save(UserName);
 	    }

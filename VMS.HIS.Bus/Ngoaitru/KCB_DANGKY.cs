@@ -161,7 +161,7 @@ namespace VNS.HIS.BusRule.Classes
                 sp.Execute();
                 objCongkham.IdKham = Utility.Int64Dbnull(sp.OutputValues[0]);
                 EmrDocuments emrdoc = new EmrDocuments();
-                emrdoc.InitDocument(objCongkham.IdBenhnhan, objCongkham.MaLuotkham, Utility.Int64Dbnull(objCongkham.IdKham), objCongkham.NgayDangky.Value, Loaiphieu_HIS.PHIEUDANGKYKCB, "", objCongkham.NguoiTao, Utility.Int16Dbnull(objCongkham.IdKhoakcb, -1), Utility.Int16Dbnull(objCongkham.IdPhongkham, -1), Utility.Byte2Bool(objCongkham.Noitru), "");
+                emrdoc.InitDocument(objCongkham.IdBenhnhan, objCongkham.MaLuotkham, Utility.Int64Dbnull(objCongkham.IdKham), objCongkham.NgayDangky.Value, Loaiphieu_HIS.PHIEUDANGKYKCB, "tiepdon_PhieuKCB_Dvu_A4", objCongkham.NguoiTao, Utility.Int16Dbnull(objCongkham.IdKhoakcb, -1), Utility.Int16Dbnull(objCongkham.IdPhongkham, -1), Utility.Byte2Bool(objCongkham.Noitru), "");
                 emrdoc.Save();
                 //Thêm bản ghi trong bảng phân buồng giường để tiện tính toán
                 var newItem = new NoitruPhanbuonggiuong();
@@ -287,7 +287,7 @@ namespace VNS.HIS.BusRule.Classes
                 sp.Execute();
                 objCongkham.IdKham = Utility.Int64Dbnull(sp.OutputValues[0]);
                 EmrDocuments emrdoc = new EmrDocuments();
-                emrdoc.InitDocument(objCongkham.IdBenhnhan, objCongkham.MaLuotkham, Utility.Int64Dbnull(objCongkham.IdKham), objCongkham.NgayDangky.Value, Loaiphieu_HIS.PHIEUDANGKYKCB, "", objCongkham.NguoiTao, Utility.Int16Dbnull(objCongkham.IdKhoakcb, -1), Utility.Int16Dbnull(objCongkham.IdPhongkham, -1), Utility.Byte2Bool(objCongkham.Noitru), "");
+                emrdoc.InitDocument(objCongkham.IdBenhnhan, objCongkham.MaLuotkham, Utility.Int64Dbnull(objCongkham.IdKham), objCongkham.NgayDangky.Value, Loaiphieu_HIS.PHIEUDANGKYKCB, "tiepdon_PhieuKCB_Dvu_A4", objCongkham.NguoiTao, Utility.Int16Dbnull(objCongkham.IdKhoakcb, -1), Utility.Int16Dbnull(objCongkham.IdPhongkham, -1), Utility.Byte2Bool(objCongkham.Noitru), "");
                 emrdoc.Save();
             }
             catch (Exception ex)
@@ -499,6 +499,7 @@ namespace VNS.HIS.BusRule.Classes
 
                                 SPs.SpKcbDeleteRegExam(IdKham).Execute();
                             }
+                            new EmrDocuments().DeleteDocument(IdKham, Loaiphieu_HIS.PHIEUDANGKYKCB, "tiepdon_PhieuKCB_Dvu_A4");
                             SqlQuery lstKham = new Select().From(KcbDangkyKcb.Schema)
                                 .Where(KcbDangkyKcb.Columns.IdBenhnhan)
                                 .IsEqualTo(objCongkham.IdBenhnhan)

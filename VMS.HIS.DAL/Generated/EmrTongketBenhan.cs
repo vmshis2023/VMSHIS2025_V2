@@ -556,6 +556,19 @@ namespace VMS.HIS.DAL
 				colvarNguoiSua.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarNguoiSua);
 				
+				TableSchema.TableColumn colvarIdBacsiDieutri = new TableSchema.TableColumn(schema);
+				colvarIdBacsiDieutri.ColumnName = "id_bacsi_dieutri";
+				colvarIdBacsiDieutri.DataType = DbType.Int16;
+				colvarIdBacsiDieutri.MaxLength = 0;
+				colvarIdBacsiDieutri.AutoIncrement = false;
+				colvarIdBacsiDieutri.IsNullable = true;
+				colvarIdBacsiDieutri.IsPrimaryKey = false;
+				colvarIdBacsiDieutri.IsForeignKey = false;
+				colvarIdBacsiDieutri.IsReadOnly = false;
+				colvarIdBacsiDieutri.DefaultSetting = @"";
+				colvarIdBacsiDieutri.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarIdBacsiDieutri);
+				
 				BaseSchema = schema;
 				//add this schema to the provider
 				//so we can query it later
@@ -829,6 +842,14 @@ namespace VMS.HIS.DAL
 			get { return GetColumnValue<string>(Columns.NguoiSua); }
 			set { SetColumnValue(Columns.NguoiSua, value); }
 		}
+		  
+		[XmlAttribute("IdBacsiDieutri")]
+		[Bindable(true)]
+		public short? IdBacsiDieutri 
+		{
+			get { return GetColumnValue<short?>(Columns.IdBacsiDieutri); }
+			set { SetColumnValue(Columns.IdBacsiDieutri, value); }
+		}
 		
 		#endregion
 		
@@ -849,7 +870,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(long varIdBenhnhan,string varMaLuotkham,int varIdKhoadieutri,string varQuatrinhbenhlyDienbienlamsang,string varTiensuBenh,string varTomtatKqcls,string varDauhieuLamsang,byte? varNoikhoa,string varNoikhoaMota,byte? varPttt,string varPtttMota,string varHuongDieutri,string varPhuongphapDieutri,string varTinhtrangRavienMota,DateTime? varNgayTtba,string varMaNguoigiaoHoso,string varNguoigiaoHoso,string varMaNguoiNhanhoso,string varNguoiNhanhoso,string varMaNguoigiaohoso,string varMaNguoinhanhoso,DateTime? varNgayGiaonhanhoso,int? varSotoXquang,int? varSotoCt,int? varSotoSieuam,int? varSotoXetnghiem,int? varSotoKhac,string varMaBacsiDieutri,DateTime varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua)
+		public static void Insert(long varIdBenhnhan,string varMaLuotkham,int varIdKhoadieutri,string varQuatrinhbenhlyDienbienlamsang,string varTiensuBenh,string varTomtatKqcls,string varDauhieuLamsang,byte? varNoikhoa,string varNoikhoaMota,byte? varPttt,string varPtttMota,string varHuongDieutri,string varPhuongphapDieutri,string varTinhtrangRavienMota,DateTime? varNgayTtba,string varMaNguoigiaoHoso,string varNguoigiaoHoso,string varMaNguoiNhanhoso,string varNguoiNhanhoso,string varMaNguoigiaohoso,string varMaNguoinhanhoso,DateTime? varNgayGiaonhanhoso,int? varSotoXquang,int? varSotoCt,int? varSotoSieuam,int? varSotoXetnghiem,int? varSotoKhac,string varMaBacsiDieutri,DateTime varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua,short? varIdBacsiDieutri)
 		{
 			EmrTongketBenhan item = new EmrTongketBenhan();
 			
@@ -917,6 +938,8 @@ namespace VMS.HIS.DAL
 			
 			item.NguoiSua = varNguoiSua;
 			
+			item.IdBacsiDieutri = varIdBacsiDieutri;
+			
 		
 			if (System.Web.HttpContext.Current != null)
 				item.Save(System.Web.HttpContext.Current.User.Identity.Name);
@@ -927,7 +950,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(long varId,long varIdBenhnhan,string varMaLuotkham,int varIdKhoadieutri,string varQuatrinhbenhlyDienbienlamsang,string varTiensuBenh,string varTomtatKqcls,string varDauhieuLamsang,byte? varNoikhoa,string varNoikhoaMota,byte? varPttt,string varPtttMota,string varHuongDieutri,string varPhuongphapDieutri,string varTinhtrangRavienMota,DateTime? varNgayTtba,string varMaNguoigiaoHoso,string varNguoigiaoHoso,string varMaNguoiNhanhoso,string varNguoiNhanhoso,string varMaNguoigiaohoso,string varMaNguoinhanhoso,DateTime? varNgayGiaonhanhoso,int? varSotoXquang,int? varSotoCt,int? varSotoSieuam,int? varSotoXetnghiem,int? varSotoKhac,string varMaBacsiDieutri,DateTime varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua)
+		public static void Update(long varId,long varIdBenhnhan,string varMaLuotkham,int varIdKhoadieutri,string varQuatrinhbenhlyDienbienlamsang,string varTiensuBenh,string varTomtatKqcls,string varDauhieuLamsang,byte? varNoikhoa,string varNoikhoaMota,byte? varPttt,string varPtttMota,string varHuongDieutri,string varPhuongphapDieutri,string varTinhtrangRavienMota,DateTime? varNgayTtba,string varMaNguoigiaoHoso,string varNguoigiaoHoso,string varMaNguoiNhanhoso,string varNguoiNhanhoso,string varMaNguoigiaohoso,string varMaNguoinhanhoso,DateTime? varNgayGiaonhanhoso,int? varSotoXquang,int? varSotoCt,int? varSotoSieuam,int? varSotoXetnghiem,int? varSotoKhac,string varMaBacsiDieutri,DateTime varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua,short? varIdBacsiDieutri)
 		{
 			EmrTongketBenhan item = new EmrTongketBenhan();
 			
@@ -996,6 +1019,8 @@ namespace VMS.HIS.DAL
 				item.NgaySua = varNgaySua;
 			
 				item.NguoiSua = varNguoiSua;
+			
+				item.IdBacsiDieutri = varIdBacsiDieutri;
 			
 			item.IsNew = false;
 			if (System.Web.HttpContext.Current != null)
@@ -1241,6 +1266,13 @@ namespace VMS.HIS.DAL
         
         
         
+        public static TableSchema.TableColumn IdBacsiDieutriColumn
+        {
+            get { return Schema.Columns[33]; }
+        }
+        
+        
+        
         #endregion
 		#region Columns Struct
 		public struct Columns
@@ -1278,6 +1310,7 @@ namespace VMS.HIS.DAL
 			 public static string NguoiTao = @"nguoi_tao";
 			 public static string NgaySua = @"ngay_sua";
 			 public static string NguoiSua = @"nguoi_sua";
+			 public static string IdBacsiDieutri = @"id_bacsi_dieutri";
 						
 		}
 		#endregion

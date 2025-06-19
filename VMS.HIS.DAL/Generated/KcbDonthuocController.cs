@@ -80,7 +80,7 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(long? IdPhieudieutri,short? IdKhoadieutri,long? IdDonthuocthaythe,long? IdKham,long? IdBenhnhan,string MaLuotkham,DateTime NgayKedon,short? IdBacsiChidinh,byte TrangThai,byte? TthaiTonghop,byte TrangthaiThanhtoan,DateTime? NgayThanhtoan,int? IdGoi,byte? TrongGoi,string NguoiTao,DateTime NgayTao,string NguoiSua,DateTime? NgaySua,string MotaThem,string TenDonthuoc,string MaDoituongKcb,byte? Noitru,byte? KieuDonthuoc,short? IdPhongkham,long? IdBuongGiuong,short? IdBuongNoitru,short? IdGiuongNoitru,string LoidanBacsi,DateTime? NgayTaikham,string TaiKham,string MaKhoaThuchien,DateTime? NgayCapphat,string KieuThuocvattu,DateTime? NgayChot,int? IdChot,DateTime? NgayHuychot,string NguoiHuychot,string LydoHuychot,DateTime? NgayHuyxacnhan,string NguoiHuyxacnhan,string LydoHuyxacnhan,DateTime? NgayXacnhan,string NguoiXacnhan,long? IdLichsuDoituongKcb,string MatheBhyt,string IpMaytao,string IpMaysua,string TenMaytao,string TenMaysua,string LastActionName,byte? Donthuoctaiquay,byte? TthaiCapphat,string MaDonthuoc,long? IdCapphat,double? SongayNhaton,long? IdChitietchidinh,string ChanDoan,string MaCoso)
+	    public void Insert(long? IdPhieudieutri,short? IdKhoadieutri,long? IdDonthuocthaythe,long? IdKham,long? IdBenhnhan,string MaLuotkham,DateTime NgayKedon,short? IdBacsiChidinh,byte TrangThai,byte? TthaiTonghop,byte TrangthaiThanhtoan,DateTime? NgayThanhtoan,int? IdGoi,byte? TrongGoi,string NguoiTao,DateTime NgayTao,string NguoiSua,DateTime? NgaySua,string MotaThem,string TenDonthuoc,string MaDoituongKcb,byte? Noitru,byte? KieuDonthuoc,short? IdPhongkham,long? IdBuongGiuong,short? IdBuongNoitru,short? IdGiuongNoitru,string LoidanBacsi,DateTime? NgayTaikham,string TaiKham,string MaKhoaThuchien,DateTime? NgayCapphat,string KieuThuocvattu,DateTime? NgayChot,int? IdChot,DateTime? NgayHuychot,string NguoiHuychot,string LydoHuychot,DateTime? NgayHuyxacnhan,string NguoiHuyxacnhan,string LydoHuyxacnhan,DateTime? NgayXacnhan,string NguoiXacnhan,long? IdLichsuDoituongKcb,string MatheBhyt,string IpMaytao,string IpMaysua,string TenMaytao,string TenMaysua,string LastActionName,byte? Donthuoctaiquay,byte? TthaiCapphat,string MaDonthuoc,long? IdCapphat,double? SongayNhaton,long? IdChitietchidinh,string ChanDoan,string MaCoso,bool? TthaiKyso,string NguoiKyso,DateTime? NgayKyso,bool? TthaiKydientu,string NguoiKydientu,DateTime? NgayKydientu)
 	    {
 		    KcbDonthuoc item = new KcbDonthuoc();
 		    
@@ -200,6 +200,18 @@ namespace VMS.HIS.DAL
             
             item.MaCoso = MaCoso;
             
+            item.TthaiKyso = TthaiKyso;
+            
+            item.NguoiKyso = NguoiKyso;
+            
+            item.NgayKyso = NgayKyso;
+            
+            item.TthaiKydientu = TthaiKydientu;
+            
+            item.NguoiKydientu = NguoiKydientu;
+            
+            item.NgayKydientu = NgayKydientu;
+            
 	    
 		    item.Save(UserName);
 	    }
@@ -208,7 +220,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(long IdDonthuoc,long? IdPhieudieutri,short? IdKhoadieutri,long? IdDonthuocthaythe,long? IdKham,long? IdBenhnhan,string MaLuotkham,DateTime NgayKedon,short? IdBacsiChidinh,byte TrangThai,byte? TthaiTonghop,byte TrangthaiThanhtoan,DateTime? NgayThanhtoan,int? IdGoi,byte? TrongGoi,string NguoiTao,DateTime NgayTao,string NguoiSua,DateTime? NgaySua,string MotaThem,string TenDonthuoc,string MaDoituongKcb,byte? Noitru,byte? KieuDonthuoc,short? IdPhongkham,long? IdBuongGiuong,short? IdBuongNoitru,short? IdGiuongNoitru,string LoidanBacsi,DateTime? NgayTaikham,string TaiKham,string MaKhoaThuchien,DateTime? NgayCapphat,string KieuThuocvattu,DateTime? NgayChot,int? IdChot,DateTime? NgayHuychot,string NguoiHuychot,string LydoHuychot,DateTime? NgayHuyxacnhan,string NguoiHuyxacnhan,string LydoHuyxacnhan,DateTime? NgayXacnhan,string NguoiXacnhan,long? IdLichsuDoituongKcb,string MatheBhyt,string IpMaytao,string IpMaysua,string TenMaytao,string TenMaysua,string LastActionName,byte? Donthuoctaiquay,byte? TthaiCapphat,string MaDonthuoc,long? IdCapphat,double? SongayNhaton,long? IdChitietchidinh,string ChanDoan,string MaCoso)
+	    public void Update(long IdDonthuoc,long? IdPhieudieutri,short? IdKhoadieutri,long? IdDonthuocthaythe,long? IdKham,long? IdBenhnhan,string MaLuotkham,DateTime NgayKedon,short? IdBacsiChidinh,byte TrangThai,byte? TthaiTonghop,byte TrangthaiThanhtoan,DateTime? NgayThanhtoan,int? IdGoi,byte? TrongGoi,string NguoiTao,DateTime NgayTao,string NguoiSua,DateTime? NgaySua,string MotaThem,string TenDonthuoc,string MaDoituongKcb,byte? Noitru,byte? KieuDonthuoc,short? IdPhongkham,long? IdBuongGiuong,short? IdBuongNoitru,short? IdGiuongNoitru,string LoidanBacsi,DateTime? NgayTaikham,string TaiKham,string MaKhoaThuchien,DateTime? NgayCapphat,string KieuThuocvattu,DateTime? NgayChot,int? IdChot,DateTime? NgayHuychot,string NguoiHuychot,string LydoHuychot,DateTime? NgayHuyxacnhan,string NguoiHuyxacnhan,string LydoHuyxacnhan,DateTime? NgayXacnhan,string NguoiXacnhan,long? IdLichsuDoituongKcb,string MatheBhyt,string IpMaytao,string IpMaysua,string TenMaytao,string TenMaysua,string LastActionName,byte? Donthuoctaiquay,byte? TthaiCapphat,string MaDonthuoc,long? IdCapphat,double? SongayNhaton,long? IdChitietchidinh,string ChanDoan,string MaCoso,bool? TthaiKyso,string NguoiKyso,DateTime? NgayKyso,bool? TthaiKydientu,string NguoiKydientu,DateTime? NgayKydientu)
 	    {
 		    KcbDonthuoc item = new KcbDonthuoc();
 	        item.MarkOld();
@@ -331,6 +343,18 @@ namespace VMS.HIS.DAL
 			item.ChanDoan = ChanDoan;
 				
 			item.MaCoso = MaCoso;
+				
+			item.TthaiKyso = TthaiKyso;
+				
+			item.NguoiKyso = NguoiKyso;
+				
+			item.NgayKyso = NgayKyso;
+				
+			item.TthaiKydientu = TthaiKydientu;
+				
+			item.NguoiKydientu = NguoiKydientu;
+				
+			item.NgayKydientu = NgayKydientu;
 				
 	        item.Save(UserName);
 	    }

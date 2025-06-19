@@ -7,6 +7,8 @@ using System.Text;
 using System.Transactions;
 using VNS.Libs;
 using VMS.HIS.DAL;
+using VMS.Emr;
+
 namespace newBus.Noitru
 {
     public class PhieuChamSoc
@@ -46,6 +48,9 @@ namespace newBus.Noitru
                             objPhieuchamsoc.NgaySua = THU_VIEN_CHUNG.GetSysDateTime();
                             objPhieuchamsoc.Save();
                         }
+                        EmrDocuments emrdoc = new EmrDocuments();
+                        emrdoc.InitDocument((long)objPhieuchamsoc.IdBenhnhan, objPhieuchamsoc.MaLuotkham, Utility.Int64Dbnull(objPhieuchamsoc.Id), objPhieuchamsoc.NgayTao, Loaiphieu_HIS.PHIEUCHAMSOC, "PHIEUCHAMSOC", objPhieuchamsoc.NguoiTao, (Int16)objPhieuchamsoc.IdKhoa, -1, true, "");
+                        emrdoc.Save();
                     }
                     scope.Complete();
                     return ActionResult.Success;
@@ -143,6 +148,9 @@ namespace newBus.Noitru
                         {
                             objPhieutheodoichucnangsong.Save();
                         }
+                        EmrDocuments emrdoc = new EmrDocuments();
+                        emrdoc.InitDocument((long)objPhieutheodoichucnangsong.IdBenhnhan, objPhieutheodoichucnangsong.MaLuotkham, Utility.Int64Dbnull(objPhieutheodoichucnangsong.Id), objPhieutheodoichucnangsong.NgayTao, Loaiphieu_HIS.PHIEUTHEODOI, "PHIEUTHEODOI", objPhieutheodoichucnangsong.NguoiTao, (Int16)objPhieutheodoichucnangsong.IdKhoanoitru, -1, true, "");
+                        emrdoc.Save();
                     }
                     scope.Complete();
                     return ActionResult.Success;

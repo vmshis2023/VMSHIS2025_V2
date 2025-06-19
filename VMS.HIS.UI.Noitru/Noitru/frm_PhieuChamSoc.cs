@@ -308,11 +308,11 @@ namespace VNS.HIS.UI.NOITRU
         {
             try
             {
-                cmdXoa.Enabled = grdChamsoc.RowCount > 0 && objLuotkham!=null;
+                cmdXoaPhieuChamSoc.Enabled = grdChamsoc.RowCount > 0 && objLuotkham!=null;
                 tabTheoDoiVaChamSoc.Enabled = objLuotkham != null;
-                cmdInPhieu.Enabled = cmdXoa.Enabled = grdChamsoc.RowCount > 0 && objLuotkham != null;
+                cmdInPhieuChamSoc.Enabled = cmdXoaPhieuChamSoc.Enabled = grdChamsoc.RowCount > 0 && objLuotkham != null;
                 cmdInPhieuTheoDoi.Enabled = cmdXoaTheoDoi.Enabled = grdTheodoi.RowCount > 0 && objLuotkham != null;
-                cmdLuuLai.Enabled = cmdLuuTheoDoi.Enabled = cmdThemTheoiDoi.Enabled = cmdThemMoi.Enabled = objLuotkham != null;
+                cmdLuPhieuChamSoc.Enabled = cmdLuuTheoDoi.Enabled = cmdThemTheoiDoi.Enabled = cmdThemMoiPhieuChamSoc.Enabled = objLuotkham != null;
             }
             catch (Exception exception)
             {
@@ -398,28 +398,28 @@ namespace VNS.HIS.UI.NOITRU
             else if (e.Control && e.KeyCode == Keys.S)
             {
                 if (uiTab1.SelectedIndex == 0)
-                    cmdLuuLai.PerformClick();
+                    cmdLuPhieuChamSoc.PerformClick();
                 else if (uiTab1.SelectedIndex == 1)
                     cmdLuuTheoDoi.PerformClick();
             }
             else if (e.Control && e.KeyCode == Keys.D)
             {
                 if (uiTab1.SelectedIndex == 0)
-                    cmdXoa.PerformClick();
+                    cmdXoaPhieuChamSoc.PerformClick();
                 else if (uiTab1.SelectedIndex == 1)
                     cmdXoaTheoDoi.PerformClick();
             }
             else if (e.Control && e.KeyCode == Keys.N)
             {
                 if (uiTab1.SelectedIndex == 0)
-                    cmdThemMoi.PerformClick();
+                    cmdThemMoiPhieuChamSoc.PerformClick();
                 else if (uiTab1.SelectedIndex == 1)
                     cmdThemTheoiDoi.PerformClick();
             }
             else if (e.Control && e.KeyCode == Keys.P)
             {
                 if (uiTab1.SelectedIndex == 0)
-                    cmdInPhieu.PerformClick();
+                    cmdInPhieuChamSoc.PerformClick();
                 else if (uiTab1.SelectedIndex == 1)
                     cmdInPhieuTheoDoi.PerformClick();
             }
@@ -465,7 +465,7 @@ namespace VNS.HIS.UI.NOITRU
                 {
                     if (Utility.AcceptQuestion("Bạn có đồng ý xóa không", "Thông báo", true))
                     {
-                        Utility.EnableButton(cmdXoa, false);
+                        Utility.EnableButton(cmdXoaPhieuChamSoc, false);
                         ActionResult actionResult =
                             new PhieuChamSoc().XoaPhieuChamSoc(
                                 objChamsoc);
@@ -480,13 +480,13 @@ namespace VNS.HIS.UI.NOITRU
                                 // LoadPhieuChamSoc();
                                 //Utility.GotoNewRowJanus(grdList, NoitruPhieuchamsoc.Columns.HeathId, Utility.sDbnull(objChamsoc.HeathId));
                                 // INPHIEU_HOANKYQUI();
-                                Utility.EnableButton(cmdXoa, true);
+                                Utility.EnableButton(cmdXoaPhieuChamSoc, true);
                                 MoifyCommand();
                                 break;
                             case ActionResult.Error:
                                 Utility.ShowMsg("Lỗi trong quá trình lưu và in hóa đơn", "thông báo",
                                     MessageBoxIcon.Error);
-                                Utility.EnableButton(cmdXoa, true);
+                                Utility.EnableButton(cmdXoaPhieuChamSoc, true);
                                 break;
                         }
                     }
@@ -499,7 +499,7 @@ namespace VNS.HIS.UI.NOITRU
             }
             finally
             {
-                Utility.EnableButton(cmdXoa, true);
+                Utility.EnableButton(cmdXoaPhieuChamSoc, true);
             }
         }
         /// <summary>
@@ -543,7 +543,7 @@ namespace VNS.HIS.UI.NOITRU
         {
             try
             {
-                Utility.EnableButton(cmdLuuLai, false);
+                Utility.EnableButton(cmdLuPhieuChamSoc, false);
                 NoitruPhieuchamsoc objChamsoc = CreatePhieuChamSoc();
                 ActionResult actionResult =
                     new PhieuChamSoc().LuuPhieuChamSoc(
@@ -555,8 +555,8 @@ namespace VNS.HIS.UI.NOITRU
                         Utility.GotoNewRowJanus(grdChamsoc, NoitruPhieuchamsoc.Columns.Id,
                             Utility.sDbnull(objChamsoc.Id));
                         // INPHIEU_HOANKYQUI();
-                        Utility.EnableButton(cmdLuuLai, true);
-                        cmdThemMoi.PerformClick();
+                        Utility.EnableButton(cmdLuPhieuChamSoc, true);
+                        cmdThemMoiPhieuChamSoc.PerformClick();
 
                         MoifyCommand();
                         break;
@@ -572,7 +572,7 @@ namespace VNS.HIS.UI.NOITRU
             }
             finally
             {
-                Utility.EnableButton(cmdLuuLai, true);
+                Utility.EnableButton(cmdLuPhieuChamSoc, true);
             }
         }
 
@@ -677,7 +677,7 @@ namespace VNS.HIS.UI.NOITRU
                 }
                 grdChamsoc.UpdateData();
                 //p_PhieuDieutri.AcceptChanges();
-                Utility.EnableButton(cmdInPhieu, false);
+                Utility.EnableButton(cmdInPhieuChamSoc, false);
                 DataTable dtData_print =
                     SPs.NoitruPhieuchamsocIn(ucThongtinnguoibenh1.txtMaluotkham.Text, (int)objLuotkham.IdBenhnhan,
                         objLuotkham.IdKhoanoitru, Heath_ID.ToString()).GetDataSet().Tables[0];
@@ -695,7 +695,7 @@ namespace VNS.HIS.UI.NOITRU
             }
             finally
             {
-                Utility.EnableButton(cmdInPhieu, true);
+                Utility.EnableButton(cmdInPhieuChamSoc, true);
             }
         }
 
@@ -806,7 +806,7 @@ namespace VNS.HIS.UI.NOITRU
                         m_dtPhieuTheoDoiChucNang.AcceptChanges();
                         Utility.EnableButton(cmdXoaTheoDoi, true);
                         MoifyCommand();
-                        cmdThemMoi.PerformClick();
+                        cmdThemMoiPhieuChamSoc.PerformClick();
                         break;
                     case ActionResult.Error:
                         Utility.ShowMsg("Lỗi trong quá trình lưu phiếu theo dõi", "thông báo", MessageBoxIcon.Error);
@@ -983,7 +983,7 @@ namespace VNS.HIS.UI.NOITRU
                     return;
                 }
                 noitru_inphieu.InPhieutheodoi(dt_dataprint,chkPreview2.Checked,"noitru_phieutheodoi","");
-                Utility.EnableButton(cmdInPhieu, true);
+                Utility.EnableButton(cmdInPhieuChamSoc, true);
             }
             catch (Exception exception)
             {

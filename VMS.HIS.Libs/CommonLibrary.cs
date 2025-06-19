@@ -1596,6 +1596,10 @@ namespace VNS.Libs
                                 else
                                     col.Position = grd.RootTable.Columns.Count - 1;
                             }
+                            else//Những cột mới nhà SX thêm vào sau khi người dùng đã cấu hình
+                            {
+
+                            }    
                         }
                     }
                     List<string> lstDone = new List<string>();
@@ -2389,7 +2393,7 @@ namespace VNS.Libs
                     {
                         if (builder.MoveToMergeField(field))
                         {
-                            if (Byte2Bool(drData[field]))
+                            if (drData.Table.Columns.Contains(field) &&  Byte2Bool(drData[field]))
                             {
                                 builder.Font.Name = "Wingdings 2";
                                 builder.Write(char.ConvertFromUtf32(82));
@@ -9160,6 +9164,121 @@ namespace VNS.Libs
             catch(Exception ex)
             {
                 Utility.CatchException(ex);
+            }
+        }
+        public static byte[] GetBarcodeData(ref DataTable dt, string _value)
+        {
+            try
+            {
+                //return;
+                string ErrMsg = "";
+                int resolution = Utility.Int32Dbnull(Laygiatrithamsohethong("BARCODE_RESOLUTION", "300", false), 300);
+                int Width = Utility.Int32Dbnull(Laygiatrithamsohethong("BARCODE_WIDTH", "600", false), 600);
+                int Height = Utility.Int32Dbnull(Laygiatrithamsohethong("BARCODE_HEIGHT", "200", false), 200);
+                bool BARCODE_MEMORY = Laygiatrithamsohethong("BARCODE_MEMORY", "0", false) == "1";
+                if (!dt.Columns.Contains("BarCode")) dt.Columns.Add("BarCode", typeof(byte[]));
+                byte[] bytBarcode = BarcodeLibs.BarcodeCreator.CreateBarcode(BarcodeSymbology.Code128, _value, resolution, Width, Height, true, BARCODE_MEMORY, ref ErrMsg);
+                return bytBarcode;
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+                return null;
+            }
+        }
+        public static byte[] GetBarcodeDataLeadtools(string _value)
+        {
+            try
+            {
+                // Tạo một hình ảnh trắng để vẽ mã vạch
+                int width = 600;
+                int height = 200;
+                int bitsPerPixel = 24;
+                int resolution = 300;
+                using (RasterImage image = RasterImage.Create(width, height, bitsPerPixel, resolution, RasterColor.FromKnownColor(RasterKnownColor.White)))
+                {
+                    // Khởi tạo BarcodeEngine
+                    BarcodeEngine engine = new BarcodeEngine();
+
+                    // Tạo dữ liệu mã vạch
+                    BarcodeData data = new BarcodeData
+                    {
+                        Symbology = BarcodeSymbology.Code128,
+                        Value = _value,
+                        Bounds = new Leadtools.Forms.LogicalRectangle(10, 10, 580, 180, Leadtools.Forms.LogicalUnit.Pixel)
+                    };
+
+                    // Thiết lập tùy chọn viết mã vạch
+                    OneDBarcodeWriteOptions options = engine.Writer.GetDefaultOptions(BarcodeSymbology.Code128) as OneDBarcodeWriteOptions;
+                    options.TextPosition = options.TextPosition;
+
+                    // Ghi mã vạch lên hình ảnh
+                    engine.Writer.WriteBarcode(image, data, options);
+
+                    // Lưu hình ảnh thành tệp BMP
+                    using (var ms = new MemoryStream())
+                    using (var codecs = new Leadtools.Codecs.RasterCodecs())
+                    {
+                        codecs.Save(image, ms, RasterImageFormat.Png, 24);
+                        return ms.ToArray();
+                    }
+                }
+
+               // BarcodeData barcodeData = new BarcodeData();
+               // barcodeData.Symbology = BarcodeSymbology.Code128;
+               // barcodeData.Value = _value;
+
+               // BarcodeEngine _barcodeEngine = new BarcodeEngine();
+               // Leadtools.Codecs.RasterCodecs _rasterCodecs = new Leadtools.Codecs.RasterCodecs();
+               // RasterImage image;
+               // Assembly asm = Assembly.GetExecutingAssembly();
+               // Image sysImage = VMS.HIS.Libs.Properties.Resources.Symbologies;
+
+               // // Chuyển System.Drawing.Image thành MemoryStream
+               // using (MemoryStream ms = new MemoryStream())
+               // {
+               //     sysImage.Save(ms, System.Drawing.Imaging.ImageFormat.Tiff); // hoặc PNG tùy ảnh
+               //     ms.Seek(0, SeekOrigin.Begin);
+
+               //     // Load thành RasterImage bằng Leadtools
+                   
+               //     image = _rasterCodecs.Load(ms);
+               // }
+
+               // //using (Stream stream = asm.GetManifestResourceStream("VMS.HIS.Libs.Resources.Symbologies.tif"))
+               // //{
+               // //    _rasterCodecs.Options.Load.AllPages = true;
+               // //    image = _rasterCodecs.Load(stream);
+               // //}
+               // RasterRegion region = null;
+               // if (image.HasRegion)
+               // {
+               //     region = image.GetRegion(null);
+               //     image.MakeRegionEmpty();
+               // }
+               // BarcodeWriteOptions[] defaultOptions = _barcodeEngine.Writer.GetAllDefaultOptions();
+               // Leadtools.Forms.LogicalRectangle writeBounds = new Leadtools.Forms.LogicalRectangle(0, 0, image.Width, image.Height, Leadtools.Forms.LogicalUnit.Pixel);
+
+               // // if the specific user rectangle was specified for drawing the Barcode then overwrite the above rectangle
+               // if (!barcodeData.Bounds.IsEmpty && barcodeData.Bounds != writeBounds)
+               //     writeBounds = barcodeData.Bounds;
+
+               //// _barcodeEngine.Writer.CalculateBarcodeDataBounds(writeBounds, image.XResolution, image.YResolution, barcodeData, null);
+               // // Next, write the barcode
+               // _barcodeEngine.Writer.WriteBarcode(image, barcodeData, null);
+               // using (MemoryStream ms = new MemoryStream())
+               // {
+               //     _rasterCodecs.Save(image, ms, RasterImageFormat.Png, image.BitsPerPixel);
+               //     return ms.ToArray();
+               // }
+
+              
+
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+                return null;
             }
         }
         public static void CreateBarcodeData(ref DataTable dt, string _value, ref byte[] bytBarcode)

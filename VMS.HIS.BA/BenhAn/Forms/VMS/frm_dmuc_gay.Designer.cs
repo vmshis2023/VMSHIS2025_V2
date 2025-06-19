@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_dmuc_gay));
             Janus.Windows.GridEX.GridEXLayout grdList_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.GridEX.GridEXLayout grdPhieu_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
+            Janus.Windows.GridEX.GridEXLayout grdReport_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             this.pnlTOP = new System.Windows.Forms.Panel();
             this.ribbonStatusBar1 = new Janus.Windows.Ribbon.RibbonStatusBar();
             this.labelCommand1 = new Janus.Windows.Ribbon.LabelCommand();
@@ -86,6 +87,7 @@
             this.mnuGroup = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.grdPhieu = new Janus.Windows.GridEX.GridEX();
+            this.grdReport = new Janus.Windows.GridEX.GridEX();
             this.pnlBottom.SuspendLayout();
             this.pnlView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiTab1)).BeginInit();
@@ -94,6 +96,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdList)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPhieu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdReport)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlTOP
@@ -101,7 +104,7 @@
             this.pnlTOP.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTOP.Location = new System.Drawing.Point(0, 0);
             this.pnlTOP.Name = "pnlTOP";
-            this.pnlTOP.Size = new System.Drawing.Size(1086, 0);
+            this.pnlTOP.Size = new System.Drawing.Size(1222, 0);
             this.pnlTOP.TabIndex = 0;
             // 
             // ribbonStatusBar1
@@ -119,7 +122,7 @@
             this.ribbonStatusBar1.Office2007ColorScheme = Janus.Windows.Ribbon.Office2007ColorScheme.Custom;
             this.ribbonStatusBar1.Office2007CustomColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ribbonStatusBar1.ShowToolTips = false;
-            this.ribbonStatusBar1.Size = new System.Drawing.Size(1086, 23);
+            this.ribbonStatusBar1.Size = new System.Drawing.Size(1222, 23);
             // 
             // 
             // 
@@ -178,7 +181,7 @@
             this.pnlBottom.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pnlBottom.Location = new System.Drawing.Point(0, 663);
             this.pnlBottom.Name = "pnlBottom";
-            this.pnlBottom.Size = new System.Drawing.Size(1086, 43);
+            this.pnlBottom.Size = new System.Drawing.Size(1222, 43);
             this.pnlBottom.TabIndex = 2;
             // 
             // cmdPrint
@@ -195,7 +198,7 @@
             this.cmdCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdCancel.Image = global::VMS.HIS.BA.Properties.Resources.close_24;
             this.cmdCancel.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdCancel.Location = new System.Drawing.Point(961, 8);
+            this.cmdCancel.Location = new System.Drawing.Point(1097, 8);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(120, 30);
             this.cmdCancel.TabIndex = 9;
@@ -206,7 +209,7 @@
             this.cmdUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdUpdate.Image = global::VMS.HIS.BA.Properties.Resources.file_edit;
             this.cmdUpdate.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdUpdate.Location = new System.Drawing.Point(709, 8);
+            this.cmdUpdate.Location = new System.Drawing.Point(845, 8);
             this.cmdUpdate.Name = "cmdUpdate";
             this.cmdUpdate.Size = new System.Drawing.Size(120, 30);
             this.cmdUpdate.TabIndex = 1;
@@ -217,7 +220,7 @@
             this.cmdNew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdNew.Image = ((System.Drawing.Image)(resources.GetObject("cmdNew.Image")));
             this.cmdNew.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdNew.Location = new System.Drawing.Point(583, 8);
+            this.cmdNew.Location = new System.Drawing.Point(719, 8);
             this.cmdNew.Name = "cmdNew";
             this.cmdNew.Size = new System.Drawing.Size(120, 30);
             this.cmdNew.TabIndex = 0;
@@ -230,7 +233,7 @@
             this.lblMsg.BackColor = System.Drawing.Color.Transparent;
             this.lblMsg.Location = new System.Drawing.Point(9, 10);
             this.lblMsg.Name = "lblMsg";
-            this.lblMsg.Size = new System.Drawing.Size(552, 23);
+            this.lblMsg.Size = new System.Drawing.Size(688, 23);
             this.lblMsg.TabIndex = 9;
             this.lblMsg.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -239,7 +242,7 @@
             this.cmdDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdDelete.Image = global::VMS.HIS.BA.Properties.Resources.trash_full_24;
             this.cmdDelete.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdDelete.Location = new System.Drawing.Point(835, 8);
+            this.cmdDelete.Location = new System.Drawing.Point(971, 8);
             this.cmdDelete.Name = "cmdDelete";
             this.cmdDelete.Size = new System.Drawing.Size(120, 30);
             this.cmdDelete.TabIndex = 2;
@@ -249,7 +252,7 @@
             // cmdSave
             // 
             this.cmdSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmdSave.Location = new System.Drawing.Point(855, 8);
+            this.cmdSave.Location = new System.Drawing.Point(991, 8);
             this.cmdSave.Name = "cmdSave";
             this.cmdSave.Size = new System.Drawing.Size(99, 29);
             this.cmdSave.TabIndex = 8;
@@ -262,7 +265,7 @@
             this.pnlView.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlView.Location = new System.Drawing.Point(0, 431);
             this.pnlView.Name = "pnlView";
-            this.pnlView.Size = new System.Drawing.Size(1086, 232);
+            this.pnlView.Size = new System.Drawing.Size(1222, 232);
             this.pnlView.TabIndex = 3;
             // 
             // uiTab1
@@ -271,7 +274,7 @@
             this.uiTab1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uiTab1.Location = new System.Drawing.Point(0, 0);
             this.uiTab1.Name = "uiTab1";
-            this.uiTab1.Size = new System.Drawing.Size(1086, 232);
+            this.uiTab1.Size = new System.Drawing.Size(1222, 232);
             this.uiTab1.TabIndex = 0;
             this.uiTab1.TabPages.AddRange(new Janus.Windows.UI.Tab.UITabPage[] {
             this.uiTabPage1});
@@ -306,7 +309,7 @@
             this.uiTabPage1.Controls.Add(this.label1);
             this.uiTabPage1.Location = new System.Drawing.Point(1, 23);
             this.uiTabPage1.Name = "uiTabPage1";
-            this.uiTabPage1.Size = new System.Drawing.Size(1084, 208);
+            this.uiTabPage1.Size = new System.Drawing.Size(1220, 208);
             this.uiTabPage1.TabStop = true;
             this.uiTabPage1.Text = "Thông tin";
             // 
@@ -358,7 +361,7 @@
             this.cmdUpdateGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdUpdateGroup.Image = ((System.Drawing.Image)(resources.GetObject("cmdUpdateGroup.Image")));
             this.cmdUpdateGroup.ImageSize = new System.Drawing.Size(25, 25);
-            this.cmdUpdateGroup.Location = new System.Drawing.Point(941, 120);
+            this.cmdUpdateGroup.Location = new System.Drawing.Point(1077, 120);
             this.cmdUpdateGroup.Name = "cmdUpdateGroup";
             this.cmdUpdateGroup.Size = new System.Drawing.Size(25, 25);
             this.cmdUpdateGroup.TabIndex = 20;
@@ -396,7 +399,7 @@
             this.autoPhanloai.RaiseEventEnterWhenEmpty = false;
             this.autoPhanloai.SelectedIndex = -1;
             this.autoPhanloai.ShowCodeWithValue = false;
-            this.autoPhanloai.Size = new System.Drawing.Size(332, 21);
+            this.autoPhanloai.Size = new System.Drawing.Size(468, 21);
             this.autoPhanloai.splitChar = '@';
             this.autoPhanloai.splitCharIDAndCode = '#';
             this.autoPhanloai.TabIndex = 18;
@@ -426,7 +429,7 @@
             this.cmdExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdExport.Image = ((System.Drawing.Image)(resources.GetObject("cmdExport.Image")));
             this.cmdExport.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdExport.Location = new System.Drawing.Point(974, 104);
+            this.cmdExport.Location = new System.Drawing.Point(1110, 104);
             this.cmdExport.Name = "cmdExport";
             this.cmdExport.Size = new System.Drawing.Size(99, 29);
             this.cmdExport.TabIndex = 17;
@@ -438,7 +441,7 @@
             this.cmdImport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdImport.Image = ((System.Drawing.Image)(resources.GetObject("cmdImport.Image")));
             this.cmdImport.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdImport.Location = new System.Drawing.Point(974, 139);
+            this.cmdImport.Location = new System.Drawing.Point(1110, 139);
             this.cmdImport.Name = "cmdImport";
             this.cmdImport.Size = new System.Drawing.Size(99, 29);
             this.cmdImport.TabIndex = 16;
@@ -476,7 +479,7 @@
             this.txtTen.MaxLength = 255;
             this.txtTen.Multiline = true;
             this.txtTen.Name = "txtTen";
-            this.txtTen.Size = new System.Drawing.Size(852, 80);
+            this.txtTen.Size = new System.Drawing.Size(988, 80);
             this.txtTen.TabIndex = 1;
             // 
             // txtMa
@@ -551,7 +554,7 @@
             this.txtMotathem.Location = new System.Drawing.Point(114, 147);
             this.txtMotathem.MaxLength = 255;
             this.txtMotathem.Name = "txtMotathem";
-            this.txtMotathem.Size = new System.Drawing.Size(852, 21);
+            this.txtMotathem.Size = new System.Drawing.Size(988, 21);
             this.txtMotathem.TabIndex = 4;
             // 
             // label4
@@ -640,7 +643,7 @@
             this.grdList.ContextMenuStrip = this.contextMenuStrip1;
             grdList_DesignTimeLayout.LayoutString = resources.GetString("grdList_DesignTimeLayout.LayoutString");
             this.grdList.DesignTimeLayout = grdList_DesignTimeLayout;
-            this.grdList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdList.Dock = System.Windows.Forms.DockStyle.Left;
             this.grdList.DynamicFiltering = true;
             this.grdList.EnterKeyBehavior = Janus.Windows.GridEX.EnterKeyBehavior.None;
             this.grdList.FilterMode = Janus.Windows.GridEX.FilterMode.Automatic;
@@ -657,7 +660,7 @@
             this.grdList.RecordNavigator = true;
             this.grdList.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
             this.grdList.SelectedFormatStyle.BackColor = System.Drawing.Color.SteelBlue;
-            this.grdList.Size = new System.Drawing.Size(513, 431);
+            this.grdList.Size = new System.Drawing.Size(448, 431);
             this.grdList.TabIndex = 5;
             this.grdList.TabStop = false;
             this.grdList.UseGroupRowSelector = true;
@@ -728,7 +731,7 @@
             this.grdPhieu.ContextMenuStrip = this.contextMenuStrip1;
             grdPhieu_DesignTimeLayout.LayoutString = resources.GetString("grdPhieu_DesignTimeLayout.LayoutString");
             this.grdPhieu.DesignTimeLayout = grdPhieu_DesignTimeLayout;
-            this.grdPhieu.Dock = System.Windows.Forms.DockStyle.Right;
+            this.grdPhieu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grdPhieu.DynamicFiltering = true;
             this.grdPhieu.EnterKeyBehavior = Janus.Windows.GridEX.EnterKeyBehavior.None;
             this.grdPhieu.FilterMode = Janus.Windows.GridEX.FilterMode.Automatic;
@@ -740,24 +743,42 @@
             this.grdPhieu.GroupByBoxVisible = false;
             this.grdPhieu.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight;
             this.grdPhieu.IncrementalSearchMode = Janus.Windows.GridEX.IncrementalSearchMode.FirstCharacter;
-            this.grdPhieu.Location = new System.Drawing.Point(513, 0);
+            this.grdPhieu.Location = new System.Drawing.Point(448, 0);
             this.grdPhieu.Name = "grdPhieu";
             this.grdPhieu.RecordNavigator = true;
             this.grdPhieu.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
             this.grdPhieu.SelectedFormatStyle.BackColor = System.Drawing.Color.SteelBlue;
-            this.grdPhieu.Size = new System.Drawing.Size(573, 431);
+            this.grdPhieu.Size = new System.Drawing.Size(424, 431);
             this.grdPhieu.TabIndex = 6;
             this.grdPhieu.TabStop = false;
             this.grdPhieu.UseGroupRowSelector = true;
             this.grdPhieu.VisualStyle = Janus.Windows.GridEX.VisualStyle.VS2005;
             // 
+            // grdReport
+            // 
+            grdReport_DesignTimeLayout.LayoutString = resources.GetString("grdReport_DesignTimeLayout.LayoutString");
+            this.grdReport.DesignTimeLayout = grdReport_DesignTimeLayout;
+            this.grdReport.Dock = System.Windows.Forms.DockStyle.Right;
+            this.grdReport.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.grdReport.GroupByBoxVisible = false;
+            this.grdReport.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight;
+            this.grdReport.Location = new System.Drawing.Point(872, 0);
+            this.grdReport.Name = "grdReport";
+            this.grdReport.RecordNavigator = true;
+            this.grdReport.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
+            this.grdReport.Size = new System.Drawing.Size(350, 431);
+            this.grdReport.TabIndex = 75;
+            this.grdReport.UseGroupRowSelector = true;
+            this.grdReport.VisualStyle = Janus.Windows.GridEX.VisualStyle.VS2005;
+            // 
             // frm_dmuc_gay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1086, 729);
-            this.Controls.Add(this.grdList);
+            this.ClientSize = new System.Drawing.Size(1222, 729);
             this.Controls.Add(this.grdPhieu);
+            this.Controls.Add(this.grdList);
+            this.Controls.Add(this.grdReport);
             this.Controls.Add(this.pnlView);
             this.Controls.Add(this.pnlBottom);
             this.Controls.Add(this.ribbonStatusBar1);
@@ -777,6 +798,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdList)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdPhieu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdReport)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -837,5 +859,6 @@
         private Janus.Windows.EditControls.UIButton cmdCapnhatTatca;
         private System.Windows.Forms.ToolTip toolTip1;
         public Janus.Windows.GridEX.GridEX grdPhieu;
+        private Janus.Windows.GridEX.GridEX grdReport;
     }
 }

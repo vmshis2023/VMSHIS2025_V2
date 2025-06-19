@@ -178,9 +178,9 @@ namespace VNS.HIS.UI.Forms.Cauhinh
         {
             try
             {
-                if (noitrungoaitru == 1)
-                    dtmFrom.Value = DateTime.Now.AddMonths(-1);
-                dtmTo.Value = DateTime.Now;
+                //if (noitrungoaitru == 1)
+                //    dtmFrom.Value = DateTime.Now.AddDays(-1);
+                dtmFrom.Value=dtmTo.Value = DateTime.Now;
                 cboTrangthainoitru.SelectedIndex = 0;
                 if (noitrungoaitru == 100) optTatCa.Checked = true;
                 else if (noitrungoaitru == 0) optNgoaiTru.Checked = true;
@@ -191,6 +191,10 @@ namespace VNS.HIS.UI.Forms.Cauhinh
                     grdPatient.MoveFirst();
                     Utility.focusCell(grdPatient, KcbDanhsachBenhnhan.Columns.TenBenhnhan);
                 }
+                else
+                {
+                    cmdTimKiem.PerformClick();
+                }    
             }
             catch (Exception)
             {

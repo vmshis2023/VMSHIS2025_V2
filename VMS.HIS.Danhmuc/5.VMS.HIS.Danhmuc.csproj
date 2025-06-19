@@ -434,11 +434,23 @@
       <DependentUpon>frm_DoichieuGiaDvuKCB_Truockhichuyendoi.cs</DependentUpon>
     </Compile>
     <Compile Include="Class1.cs" />
+    <Compile Include="Danhmuc\frm_capnhat_maphieuEmr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Danhmuc\frm_capnhat_maphieuEmr.designer.cs">
+      <DependentUpon>frm_capnhat_maphieuEmr.cs</DependentUpon>
+    </Compile>
     <Compile Include="Danhmuc\frm_ChonDoituongKCB_All.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Danhmuc\frm_ChonDoituongKCB_All.Designer.cs">
       <DependentUpon>frm_ChonDoituongKCB_All.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Danhmuc\frm_capnhat_nhombc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Danhmuc\frm_capnhat_nhombc.designer.cs">
+      <DependentUpon>frm_capnhat_nhombc.cs</DependentUpon>
     </Compile>
     <Compile Include="Danhmuc\frm_themmoi_donthuocmau_2023.cs">
       <SubType>Form</SubType>
@@ -656,6 +668,12 @@
     </Compile>
     <Compile Include="UserControls\medRadioButton.Designer.cs">
       <DependentUpon>medRadioButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ucThongtinnguoibenh_emr_basic_v1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ucThongtinnguoibenh_emr_basic_v1.Designer.cs">
+      <DependentUpon>ucThongtinnguoibenh_emr_basic_v1.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\ucThongtinnguoibenh_emr_basic.cs">
       <SubType>UserControl</SubType>
@@ -1467,8 +1485,14 @@
     <EmbeddedResource Include="ChuyenDoituong\frm_DoichieuGiaDvuKCB_Truockhichuyendoi.resx">
       <DependentUpon>frm_DoichieuGiaDvuKCB_Truockhichuyendoi.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Danhmuc\frm_capnhat_maphieuEmr.resx">
+      <DependentUpon>frm_capnhat_maphieuEmr.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Danhmuc\frm_ChonDoituongKCB_All.resx">
       <DependentUpon>frm_ChonDoituongKCB_All.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Danhmuc\frm_capnhat_nhombc.resx">
+      <DependentUpon>frm_capnhat_nhombc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Danhmuc\frm_themmoi_donthuocmau_2023.resx">
       <DependentUpon>frm_themmoi_donthuocmau_2023.cs</DependentUpon>
@@ -1579,6 +1603,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\medRadioButton.resx">
       <DependentUpon>medRadioButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ucThongtinnguoibenh_emr_basic_v1.resx">
+      <DependentUpon>ucThongtinnguoibenh_emr_basic_v1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ucThongtinnguoibenh_emr_basic.resx">
       <DependentUpon>ucThongtinnguoibenh_emr_basic.cs</DependentUpon>

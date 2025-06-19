@@ -5,7 +5,12 @@ F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VNS.HIS.UI.Forms.BenhAn.
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VNS.HIS.UI.BENH_AN.frm_BENHAN_NGOAITRU.resources
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VNS.HIS.UI.BENH_AN.frm_BENHAN_NGOAITRU_TG.resources
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VNS.HIS.UI.BENH_AN.frm_DSACH_BN.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VNS.HIS.UI.BA.frm_BenhAn_NgoaiTru.resources
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VNS.HIS.UI.BA.frm_BenhAn_NoiKhoa.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VNS.HIS.UI.BA.frm_capnhat_gayEmr.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VNS.HIS.UI.BA.frm_dmuc_gay.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VNS.HIS.UI.BA.frm_Emr.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VNS.HIS.UI.BA.frm_QuanlyBA.resources
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VNS.HIS.UI.Forms.BenhAn.UCs.uc_bant_1.resources
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VNS.HIS.UI.Forms.BenhAn.UCs.uc_bant_2.resources
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VNS.HIS.UI.Forms.BenhAn.UCs.uc_bant_3.resources
@@ -19,7 +24,4 @@ F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\9_1.VMS.HIS.BA.csproj.Co
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\9_1.VMS.HIS.BA.csproj.CopyComplete
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VMS.HIS.BA.dll
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VMS.HIS.BA.pdb
-F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VNS.HIS.UI.BA.frm_dmuc_gay.resources
-F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VNS.HIS.UI.BA.frm_QuanlyBA.resources
-F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VNS.HIS.UI.BA.frm_Emr.resources
-F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VNS.HIS.UI.BA.frm_BenhAn_NgoaiTru.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VNS.HIS.UI.BA.frm_emrfile_attatchments.resources

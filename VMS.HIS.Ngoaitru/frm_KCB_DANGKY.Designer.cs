@@ -29,21 +29,21 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel1 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
-            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel2 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
-            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel3 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
-            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel4 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
+            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel9 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
+            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel10 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
+            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel11 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
+            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel12 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_KCB_DANGKY));
-            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem1 = new Janus.Windows.EditControls.UIComboBoxItem();
-            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem2 = new Janus.Windows.EditControls.UIComboBoxItem();
+            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem11 = new Janus.Windows.EditControls.UIComboBoxItem();
+            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem12 = new Janus.Windows.EditControls.UIComboBoxItem();
             Janus.Windows.GridEX.GridEXLayout grdQMSPK_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.GridEX.GridEXLayout grdCongkham_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.GridEX.GridEXLayout grdLichSu_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.GridEX.GridEXLayout cboCongkhamthiluc_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.GridEX.GridEXLayout grdLichSuKCB_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
-            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem3 = new Janus.Windows.EditControls.UIComboBoxItem();
-            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem4 = new Janus.Windows.EditControls.UIComboBoxItem();
-            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem5 = new Janus.Windows.EditControls.UIComboBoxItem();
+            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem13 = new Janus.Windows.EditControls.UIComboBoxItem();
+            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem14 = new Janus.Windows.EditControls.UIComboBoxItem();
+            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem15 = new Janus.Windows.EditControls.UIComboBoxItem();
             this.uiStatusBar1 = new Janus.Windows.UI.StatusBar.UIStatusBar();
             this.uiGroupBox2 = new Janus.Windows.EditControls.UIGroupBox();
             this.lblStatus = new System.Windows.Forms.Label();
@@ -282,6 +282,8 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.pnlBottom = new System.Windows.Forms.Panel();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.txtPassPost = new Janus.Windows.GridEX.EditControls.MaskedEditBox();
+            this.label28 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox2)).BeginInit();
             this.uiGroupBox2.SuspendLayout();
             this.pnlQMS.SuspendLayout();
@@ -334,40 +336,40 @@
             this.uiStatusBar1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uiStatusBar1.Location = new System.Drawing.Point(0, 838);
             this.uiStatusBar1.Name = "uiStatusBar1";
-            uiStatusBarPanel1.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
-            uiStatusBarPanel1.BorderColor = System.Drawing.Color.Empty;
-            uiStatusBarPanel1.FormatStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            uiStatusBarPanel1.Key = "";
-            uiStatusBarPanel1.ProgressBarValue = 0;
-            uiStatusBarPanel1.Text = "Ctrl+N: Thêm mới BN";
-            uiStatusBarPanel1.Width = 133;
-            uiStatusBarPanel2.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
-            uiStatusBarPanel2.BorderColor = System.Drawing.Color.Empty;
-            uiStatusBarPanel2.FormatStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            uiStatusBarPanel2.Key = "";
-            uiStatusBarPanel2.ProgressBarValue = 0;
-            uiStatusBarPanel2.Text = "Ctrl+S: Lưu lại";
-            uiStatusBarPanel2.Width = 93;
-            uiStatusBarPanel3.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
-            uiStatusBarPanel3.BorderColor = System.Drawing.Color.Empty;
-            uiStatusBarPanel3.FormatStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            uiStatusBarPanel3.Key = "";
-            uiStatusBarPanel3.ProgressBarValue = 0;
-            uiStatusBarPanel3.Text = "Esc: Thoát Form";
-            uiStatusBarPanel3.Width = 105;
-            uiStatusBarPanel4.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
-            uiStatusBarPanel4.BorderColor = System.Drawing.Color.Empty;
-            uiStatusBarPanel4.FormatStyle.FontBold = Janus.Windows.UI.TriState.True;
-            uiStatusBarPanel4.FormatStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            uiStatusBarPanel4.Key = "MSG";
-            uiStatusBarPanel4.ProgressBarValue = 0;
-            uiStatusBarPanel4.Text = "Thông báo:";
-            uiStatusBarPanel4.Width = 77;
+            uiStatusBarPanel9.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
+            uiStatusBarPanel9.BorderColor = System.Drawing.Color.Empty;
+            uiStatusBarPanel9.FormatStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            uiStatusBarPanel9.Key = "";
+            uiStatusBarPanel9.ProgressBarValue = 0;
+            uiStatusBarPanel9.Text = "Ctrl+N: Thêm mới BN";
+            uiStatusBarPanel9.Width = 133;
+            uiStatusBarPanel10.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
+            uiStatusBarPanel10.BorderColor = System.Drawing.Color.Empty;
+            uiStatusBarPanel10.FormatStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            uiStatusBarPanel10.Key = "";
+            uiStatusBarPanel10.ProgressBarValue = 0;
+            uiStatusBarPanel10.Text = "Ctrl+S: Lưu lại";
+            uiStatusBarPanel10.Width = 93;
+            uiStatusBarPanel11.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
+            uiStatusBarPanel11.BorderColor = System.Drawing.Color.Empty;
+            uiStatusBarPanel11.FormatStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            uiStatusBarPanel11.Key = "";
+            uiStatusBarPanel11.ProgressBarValue = 0;
+            uiStatusBarPanel11.Text = "Esc: Thoát Form";
+            uiStatusBarPanel11.Width = 105;
+            uiStatusBarPanel12.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
+            uiStatusBarPanel12.BorderColor = System.Drawing.Color.Empty;
+            uiStatusBarPanel12.FormatStyle.FontBold = Janus.Windows.UI.TriState.True;
+            uiStatusBarPanel12.FormatStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            uiStatusBarPanel12.Key = "MSG";
+            uiStatusBarPanel12.ProgressBarValue = 0;
+            uiStatusBarPanel12.Text = "Thông báo:";
+            uiStatusBarPanel12.Width = 77;
             this.uiStatusBar1.Panels.AddRange(new Janus.Windows.UI.StatusBar.UIStatusBarPanel[] {
-            uiStatusBarPanel1,
-            uiStatusBarPanel2,
-            uiStatusBarPanel3,
-            uiStatusBarPanel4});
+            uiStatusBarPanel9,
+            uiStatusBarPanel10,
+            uiStatusBarPanel11,
+            uiStatusBarPanel12});
             this.uiStatusBar1.Size = new System.Drawing.Size(1326, 23);
             this.uiStatusBar1.TabIndex = 0;
             this.uiStatusBar1.TabStop = false;
@@ -1008,24 +1010,24 @@
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(118, 15);
             this.label12.TabIndex = 407;
-            this.label12.Text = "Số CCCD/Passport:";
+            this.label12.Text = "Số CCCD:";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // cboPatientSex
             // 
             this.cboPatientSex.ComboStyle = Janus.Windows.EditControls.ComboStyle.DropDownList;
             this.cboPatientSex.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            uiComboBoxItem1.FormatStyle.Alpha = 0;
-            uiComboBoxItem1.IsSeparator = false;
-            uiComboBoxItem1.Text = "Nữ";
-            uiComboBoxItem1.Value = 1;
-            uiComboBoxItem2.FormatStyle.Alpha = 0;
-            uiComboBoxItem2.IsSeparator = false;
-            uiComboBoxItem2.Text = "Nam";
-            uiComboBoxItem2.Value = 0;
+            uiComboBoxItem11.FormatStyle.Alpha = 0;
+            uiComboBoxItem11.IsSeparator = false;
+            uiComboBoxItem11.Text = "Nữ";
+            uiComboBoxItem11.Value = 1;
+            uiComboBoxItem12.FormatStyle.Alpha = 0;
+            uiComboBoxItem12.IsSeparator = false;
+            uiComboBoxItem12.Text = "Nam";
+            uiComboBoxItem12.Value = 0;
             this.cboPatientSex.Items.AddRange(new Janus.Windows.EditControls.UIComboBoxItem[] {
-            uiComboBoxItem1,
-            uiComboBoxItem2});
+            uiComboBoxItem11,
+            uiComboBoxItem12});
             this.cboPatientSex.Location = new System.Drawing.Point(115, 55);
             this.cboPatientSex.Name = "cboPatientSex";
             this.cboPatientSex.Size = new System.Drawing.Size(109, 21);
@@ -1059,11 +1061,11 @@
             this.txtTuoi.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTuoi.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTuoi.Location = new System.Drawing.Point(729, 33);
+            this.txtTuoi.Location = new System.Drawing.Point(765, 33);
             this.txtTuoi.MaxLength = 3;
             this.txtTuoi.Name = "txtTuoi";
             this.txtTuoi.Numeric = true;
-            this.txtTuoi.Size = new System.Drawing.Size(153, 21);
+            this.txtTuoi.Size = new System.Drawing.Size(117, 21);
             this.txtTuoi.TabIndex = 15;
             this.txtTuoi.Text = "100";
             this.txtTuoi.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center;
@@ -1074,7 +1076,7 @@
             this.lblTuoi.AutoSize = true;
             this.lblTuoi.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTuoi.ForeColor = System.Drawing.Color.Red;
-            this.lblTuoi.Location = new System.Drawing.Point(695, 37);
+            this.lblTuoi.Location = new System.Drawing.Point(728, 37);
             this.lblTuoi.Name = "lblTuoi";
             this.lblTuoi.Size = new System.Drawing.Size(31, 15);
             this.lblTuoi.TabIndex = 4;
@@ -2358,6 +2360,7 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.label28);
             this.panel3.Controls.Add(this.lnkDiachiBN);
             this.panel3.Controls.Add(this.label49);
             this.panel3.Controls.Add(this.cboDoitac);
@@ -2415,6 +2418,7 @@
             this.panel3.Controls.Add(this.txtTEN_BN);
             this.panel3.Controls.Add(this.lblSDT);
             this.panel3.Controls.Add(this.txtCMT);
+            this.panel3.Controls.Add(this.txtPassPost);
             this.panel3.Controls.Add(this.txtSDTLienhe);
             this.panel3.Controls.Add(this.txtTtinNguonGt);
             this.panel3.Controls.Add(this.txtNguoiLienhe);
@@ -2654,7 +2658,7 @@
             this.txtDiachi.Name = "txtDiachi";
             this.txtDiachi.RaiseEvent = false;
             this.txtDiachi.SelectedIndex = -1;
-            this.txtDiachi.Size = new System.Drawing.Size(783, 21);
+            this.txtDiachi.Size = new System.Drawing.Size(782, 21);
             this.txtDiachi.splitChar = '\0';
             this.txtDiachi.splitCharIDAndCode = '\0';
             this.txtDiachi.TabIndex = 19;
@@ -2736,7 +2740,7 @@
             this.dtpBOD.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.dtpBOD.Name = "dtpBOD";
             this.dtpBOD.ShowUpDown = true;
-            this.dtpBOD.Size = new System.Drawing.Size(109, 21);
+            this.dtpBOD.Size = new System.Drawing.Size(120, 21);
             this.dtpBOD.TabIndex = 14;
             this.dtpBOD.Value = new System.DateTime(2013, 9, 23, 0, 0, 0, 0);
             this.dtpBOD.VisualStyle = Janus.Windows.CalendarCombo.VisualStyle.Office2003;
@@ -3053,7 +3057,7 @@
             this.lblSDTLength.AutoSize = true;
             this.lblSDTLength.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSDTLength.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lblSDTLength.Location = new System.Drawing.Point(902, 57);
+            this.lblSDTLength.Location = new System.Drawing.Point(905, 57);
             this.lblSDTLength.Name = "lblSDTLength";
             this.lblSDTLength.Size = new System.Drawing.Size(0, 15);
             this.lblSDTLength.TabIndex = 626;
@@ -3118,10 +3122,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSDT.BackColor = System.Drawing.Color.White;
             this.txtSDT.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSDT.Location = new System.Drawing.Point(586, 56);
+            this.txtSDT.Location = new System.Drawing.Point(765, 56);
             this.txtSDT.MaxLength = 15;
             this.txtSDT.Name = "txtSDT";
-            this.txtSDT.Size = new System.Drawing.Size(311, 21);
+            this.txtSDT.Size = new System.Drawing.Size(131, 21);
             this.txtSDT.TabIndex = 18;
             // 
             // txtTinhTp
@@ -3399,11 +3403,11 @@
             // 
             this.lblSDT.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSDT.ForeColor = System.Drawing.Color.Red;
-            this.lblSDT.Location = new System.Drawing.Point(494, 57);
+            this.lblSDT.Location = new System.Drawing.Point(718, 56);
             this.lblSDT.Name = "lblSDT";
-            this.lblSDT.Size = new System.Drawing.Size(88, 21);
+            this.lblSDT.Size = new System.Drawing.Size(41, 21);
             this.lblSDT.TabIndex = 617;
-            this.lblSDT.Text = "SĐT cá nhân:";
+            this.lblSDT.Text = "SĐT:";
             this.lblSDT.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtCMT
@@ -3422,7 +3426,7 @@
             this.txtSDTLienhe.BackColor = System.Drawing.Color.White;
             this.txtSDTLienhe.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSDTLienhe.Location = new System.Drawing.Point(331, 172);
-            this.txtSDTLienhe.MaxLength = 10;
+            this.txtSDTLienhe.MaxLength = 15;
             this.txtSDTLienhe.Name = "txtSDTLienhe";
             this.txtSDTLienhe.Size = new System.Drawing.Size(149, 21);
             this.txtSDTLienhe.TabIndex = 25;
@@ -3891,22 +3895,22 @@
             // 
             this.cboDoituongKCB.ComboStyle = Janus.Windows.EditControls.ComboStyle.DropDownList;
             this.cboDoituongKCB.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            uiComboBoxItem3.FormatStyle.Alpha = 0;
-            uiComboBoxItem3.IsSeparator = false;
-            uiComboBoxItem3.Text = "Nữ";
-            uiComboBoxItem3.Value = 1;
-            uiComboBoxItem4.FormatStyle.Alpha = 0;
-            uiComboBoxItem4.IsSeparator = false;
-            uiComboBoxItem4.Text = "Nam";
-            uiComboBoxItem4.Value = 0;
-            uiComboBoxItem5.FormatStyle.Alpha = 0;
-            uiComboBoxItem5.IsSeparator = false;
-            uiComboBoxItem5.Text = "Khác";
-            uiComboBoxItem5.Value = 2;
+            uiComboBoxItem13.FormatStyle.Alpha = 0;
+            uiComboBoxItem13.IsSeparator = false;
+            uiComboBoxItem13.Text = "Nữ";
+            uiComboBoxItem13.Value = 1;
+            uiComboBoxItem14.FormatStyle.Alpha = 0;
+            uiComboBoxItem14.IsSeparator = false;
+            uiComboBoxItem14.Text = "Nam";
+            uiComboBoxItem14.Value = 0;
+            uiComboBoxItem15.FormatStyle.Alpha = 0;
+            uiComboBoxItem15.IsSeparator = false;
+            uiComboBoxItem15.Text = "Khác";
+            uiComboBoxItem15.Value = 2;
             this.cboDoituongKCB.Items.AddRange(new Janus.Windows.EditControls.UIComboBoxItem[] {
-            uiComboBoxItem3,
-            uiComboBoxItem4,
-            uiComboBoxItem5});
+            uiComboBoxItem13,
+            uiComboBoxItem14,
+            uiComboBoxItem15});
             this.cboDoituongKCB.Location = new System.Drawing.Point(335, 41);
             this.cboDoituongKCB.Name = "cboDoituongKCB";
             this.cboDoituongKCB.Size = new System.Drawing.Size(180, 21);
@@ -4098,6 +4102,28 @@
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
+            // 
+            // txtPassPost
+            // 
+            this.txtPassPost.BackColor = System.Drawing.Color.White;
+            this.txtPassPost.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPassPost.Location = new System.Drawing.Point(587, 55);
+            this.txtPassPost.MaxLength = 15;
+            this.txtPassPost.Name = "txtPassPost";
+            this.txtPassPost.Size = new System.Drawing.Size(119, 21);
+            this.txtPassPost.TabIndex = 17;
+            this.txtPassPost.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center;
+            // 
+            // label28
+            // 
+            this.label28.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label28.ForeColor = System.Drawing.Color.Red;
+            this.label28.Location = new System.Drawing.Point(493, 55);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(88, 21);
+            this.label28.TabIndex = 663;
+            this.label28.Text = "Passport";
+            this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // frm_KCB_DANGKY
             // 
@@ -4411,5 +4437,7 @@
         private Janus.Windows.GridEX.GridEX grdLichSu;
         private System.Windows.Forms.LinkLabel lnkDiachiBN;
         private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Label label28;
+        public Janus.Windows.GridEX.EditControls.MaskedEditBox txtPassPost;
     }
 }

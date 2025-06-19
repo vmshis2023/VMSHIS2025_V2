@@ -19,6 +19,8 @@ using System.Diagnostics;
 using System.Threading;
 using Aspose.Words;
 using VMS.HIS.Bus;
+using VMS.Emr;
+
 namespace VNS.HIS.UI.BA
 {
     public partial class frm_QuanlyTomtatBA : Form
@@ -174,7 +176,7 @@ namespace VNS.HIS.UI.BA
             frm_TomtatBA _PhieuTTBA = new frm_TomtatBA();
             _PhieuTTBA._OnCreated += _PhieuTTBA__OnCreated;
             _PhieuTTBA.m_enAct = action.Insert;
-            _PhieuTTBA.ucThongtinnguoibenh_v21.txtMaluotkham.Focus();
+            _PhieuTTBA.ucThongtinnguoibenh_emr_basic1.txtMaluotkham.Focus();
             _PhieuTTBA.ShowDialog();
         }
 
@@ -221,8 +223,8 @@ namespace VNS.HIS.UI.BA
                 frm_TomtatBA _PhieuTTBA = new frm_TomtatBA();
                 _PhieuTTBA._OnCreated += _PhieuTTBA__OnCreated;
                 _PhieuTTBA.ttba = EmrTongketBenhan.FetchByID(Utility.Int64Dbnull(grdList.GetValue("Id")));
-                _PhieuTTBA.ucThongtinnguoibenh_v21.txtMaluotkham.Text = Utility.sDbnull(grdList.GetValue("ma_luotkham"));
-                _PhieuTTBA.ucThongtinnguoibenh_v21.Refresh();
+                _PhieuTTBA.ucThongtinnguoibenh_emr_basic1.txtMaluotkham.Text = Utility.sDbnull(grdList.GetValue("ma_luotkham"));
+                _PhieuTTBA.ucThongtinnguoibenh_emr_basic1.Refresh();
                 _PhieuTTBA.m_enAct = action.Update;
                 _PhieuTTBA.ShowDialog();
             }
@@ -234,51 +236,51 @@ namespace VNS.HIS.UI.BA
             
         }
 
-        private void cmdDelete_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (!Utility.Coquyen("kcb_PhieuTTBA_xoa"))
-                {
-                    Utility.ShowMsg("Bạn không có quyền xóa phiếu Tóm tắt hồ sơ bệnh án(kcb_PhieuTTBA_xoa)");
-                    return;
-                }
-                KcbLuotkham objLuotkham = Utility.getKcbLuotkham(Utility.Int64Dbnull(grdList.GetValue(KcbLuotkham.Columns.IdBenhnhan)), grdList.GetValue(KcbLuotkham.Columns.MaLuotkham).ToString());
-                if (objLuotkham == null)
-                {
-                    Utility.ShowMsg("Bạn cần chọn phiếu Tóm tắt hồ sơ bệnh án trên lưới trước khi thực hiện xóa phiếu Tóm tắt hồ sơ bệnh án");
-                    return;
-                }
-                if (Utility.AcceptQuestion(string.Format("Bạn có chắc chắn muốn xóa phiếu Tóm tắt hồ sơ bệnh án với mã {0} của người bệnh {1} hay không?", grdList.GetValue(KcbBienbanhoichan.Columns.MaBbhc).ToString(), grdList.GetValue("ten_benhnhan").ToString()), "Xác nhận hủy chuyển viện", true))
-            {
-                try
-                {
-                    using (var scope = new TransactionScope())
-                    {
-                        using (var dbscope = new SharedDbConnectionScope())
-                        {
-                            new Delete().From(KcbBienbanhoichan.Schema).Where(KcbBienbanhoichan.Columns.Id).IsEqualTo(Utility.Int32Dbnull(grdList.GetValue(KcbBienbanhoichan.Columns.Id), -1)).Execute();
-                        }
-                        scope.Complete();
-                        Utility.ShowMsg(string.Format("Xóa phiếu Tóm tắt hồ sơ bệnh án cho người bệnh {0} thành công", grdList.GetValue("ten_benhnhan").ToString()));
-                        DataRow[] arrDr = m_dtData.Select(string.Format("{0}={1}", KcbBienbanhoichan.Columns.Id, grdList.GetValue(KcbBienbanhoichan.Columns.Id)));
-                        if (arrDr.Length > 0)
-                            m_dtData.Rows.Remove(arrDr[0]);
-                        m_dtData.AcceptChanges();
+        //private void cmdDelete_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        if (!Utility.Coquyen("kcb_PhieuTTBA_xoa"))
+        //        {
+        //            Utility.ShowMsg("Bạn không có quyền xóa phiếu Tóm tắt hồ sơ bệnh án(kcb_PhieuTTBA_xoa)");
+        //            return;
+        //        }
+        //        KcbLuotkham objLuotkham = Utility.getKcbLuotkham(Utility.Int64Dbnull(grdList.GetValue(KcbLuotkham.Columns.IdBenhnhan)), grdList.GetValue(KcbLuotkham.Columns.MaLuotkham).ToString());
+        //        if (objLuotkham == null)
+        //        {
+        //            Utility.ShowMsg("Bạn cần chọn phiếu Tóm tắt hồ sơ bệnh án trên lưới trước khi thực hiện xóa phiếu Tóm tắt hồ sơ bệnh án");
+        //            return;
+        //        }
+        //        if (Utility.AcceptQuestion(string.Format("Bạn có chắc chắn muốn xóa phiếu Tóm tắt hồ sơ bệnh án với mã {0} của người bệnh {1} hay không?", grdList.GetValue(KcbBienbanhoichan.Columns.MaBbhc).ToString(), grdList.GetValue("ten_benhnhan").ToString()), "Xác nhận hủy chuyển viện", true))
+        //    {
+        //        try
+        //        {
+        //            using (var scope = new TransactionScope())
+        //            {
+        //                using (var dbscope = new SharedDbConnectionScope())
+        //                {
+        //                    new Delete().From(KcbBienbanhoichan.Schema).Where(KcbBienbanhoichan.Columns.Id).IsEqualTo(Utility.Int32Dbnull(grdList.GetValue(KcbBienbanhoichan.Columns.Id), -1)).Execute();
+        //                }
+        //                scope.Complete();
+        //                Utility.ShowMsg(string.Format("Xóa phiếu Tóm tắt hồ sơ bệnh án cho người bệnh {0} thành công", grdList.GetValue("ten_benhnhan").ToString()));
+        //                DataRow[] arrDr = m_dtData.Select(string.Format("{0}={1}", KcbBienbanhoichan.Columns.Id, grdList.GetValue(KcbBienbanhoichan.Columns.Id)));
+        //                if (arrDr.Length > 0)
+        //                    m_dtData.Rows.Remove(arrDr[0]);
+        //                m_dtData.AcceptChanges();
 
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Utility.CatchException(ex);
-                }
-            }
-            }
-            catch (Exception ex)
-            {
-                Utility.CatchException(ex);
-            }
-        }
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            Utility.CatchException(ex);
+        //        }
+        //    }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Utility.CatchException(ex);
+        //    }
+        //}
 
      
         private void lnkDelete_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -338,7 +340,7 @@ namespace VNS.HIS.UI.BA
                 Utility.ShowMsg(ex.Message);
             }
         }
-
+        EmrDocuments emrdoc = new EmrDocuments();
         private void cmdXoa_Click(object sender, EventArgs e)
         {
             try
@@ -358,10 +360,12 @@ namespace VNS.HIS.UI.BA
                 }
                 if (Utility.AcceptQuestion("Bạn có muốn xóa thông tin phiếu Tóm tắt hồ sơ bệnh án đang chọn không ?", "Thông báo", true))
                 {
+                    long id_tkba = Utility.Int64Dbnull(grdList.GetValue("Id"));
                     int banghi = new Delete().From<EmrTongketBenhan>()
                          .Where(EmrTongketBenhan.Columns.Id)
-                         .IsEqualTo(Utility.Int32Dbnull(grdList.GetValue("Id")))
+                         .IsEqualTo(id_tkba)
                          .Execute();
+                    emrdoc.DeleteDocument(id_tkba, Loaiphieu_HIS.PHIEU_TKBA, "BA_TKBA");
                     if (banghi > 0)
                     {
                         Utility.ShowMsg("Bạn xóa thông tin phiếu Tóm tắt hồ sơ bệnh án thành công", "Thông báo");

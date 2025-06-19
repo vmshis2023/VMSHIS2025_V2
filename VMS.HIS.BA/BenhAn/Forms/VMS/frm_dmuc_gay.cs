@@ -76,6 +76,8 @@ namespace VNS.HIS.UI.BA
                 grdList.UpdatingCell += grdList_UpdatingCell;
                 grdList.KeyDown += new KeyEventHandler(grdList_KeyDown);
                 grdPhieu.RowCheckStateChanged += GrdPhieu_RowCheckStateChanged;
+                grdPhieu.SelectionChanged += GrdPhieu_SelectionChanged;
+                grdReport.RowCheckStateChanged += GrdReport_RowCheckStateChanged;
                 cmdNew.Click+=new EventHandler(cmdNew_Click);
                 cmdDelete.Click+=new EventHandler(cmdDelete_Click);
                 cmdSave.Click+=new EventHandler(cmdSave_Click);
@@ -94,6 +96,81 @@ namespace VNS.HIS.UI.BA
             }
             catch (Exception ex)
             {
+            }
+        }
+
+        private void GrdPhieu_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                grdReport.UnCheckAllRecords();
+                //Nếu không có dòng nào thì gán giá trị trống cho các mục nhập liệu
+                if (!Utility.isValidGrid(grdPhieu))
+                {
+
+                    return;
+                }
+                LoadQuanHePhieuEmr_Report();
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                ModifyActButtons();
+            }
+        }
+
+        private void GrdReport_RowCheckStateChanged(object sender, RowCheckStateChangeEventArgs e)
+        {
+            try
+            {
+                if (Utility.isValidGrid(grdList) && Utility.isValidGrid(grdPhieu))
+                {
+                    int num = 0;
+                    string ma_phieu_emr = "";
+                    string ten_phieu_emr = "";
+                    if (e.CheckState == RowCheckState.Checked)
+                    {
+                        ma_phieu_emr = Utility.sDbnull(grdPhieu.GetValue("ma"));
+                        ten_phieu_emr = Utility.sDbnull(grdPhieu.GetValue("ten"));
+                        num = new Update(SysReport.Schema)
+                            .Set(SysReport.Columns.MaPhieuEmr).EqualTo(ma_phieu_emr)
+                            .Where(SysReport.Columns.MaBaocao).IsEqualTo(Utility.sDbnull(grdReport.GetValue("ma_baocao")))
+                            .Execute();
+                        if (num > 0)
+                        {
+                            grdReport.CurrentRow.BeginEdit();
+                            grdReport.CurrentRow.Cells["ma_phieu_emr"].Value = ma_phieu_emr;
+                            grdReport.CurrentRow.Cells["ten_phieu_emr"].Value = ten_phieu_emr;
+                            grdReport.CurrentRow.EndEdit();
+                        }
+                    }
+                    else
+                    {
+                        ma_phieu_emr = "";
+                        num = new Update(SysReport.Schema)
+                          .Set(SysReport.Columns.MaPhieuEmr).EqualTo(ma_phieu_emr)
+                          .Where(SysReport.Columns.MaBaocao).IsEqualTo(Utility.sDbnull(grdReport.GetValue("ma_baocao")))
+                          .Execute();
+                        if (num > 0)
+                        {
+                            grdReport.CurrentRow.BeginEdit();
+                            grdReport.CurrentRow.Cells["ma_phieu_emr"].Value = "";
+                            grdReport.CurrentRow.Cells["ten_phieu_emr"].Value = "";
+                            grdReport.CurrentRow.EndEdit();
+                        }
+                    }
+                    //if (num > 0)
+                    //{
+                    //    (from p in dtChild.AsEnumerable() where Utility.sDbnull(p["ma"]) == Utility.sDbnull(grdPhieu.GetValue("ma")) select p).ToList().ForEach(x => x[DmucChung.Columns.Phanloai] = phan_loai);
+                    //}
+                }
+            }
+            catch (Exception ex)
+            {
+
             }
         }
 
@@ -975,6 +1052,7 @@ namespace VNS.HIS.UI.BA
             {
                 //chức năng trên Tab của Avalon
                 if (m_blnHasLoad) return;
+                LoadDataReport();
                 //Chạy BasicFlow
                 BasicFlow();
                 kieudanhmuc = new Select().From(DmucKieudmuc.Schema).Where(DmucKieudmuc.Columns.MaLoai).IsEqualTo(m_strListType).ExecuteSingle<DmucKieudmuc>();
@@ -994,6 +1072,22 @@ namespace VNS.HIS.UI.BA
             catch (Exception ex)
             {
             }
+        }
+        private void LoadDataReport()
+        {
+            try
+            {
+                DataTable dtReport = SPs.DanhmucLaydanhsachbaocaohethong().GetDataSet().Tables[0];
+                Utility.SetDataSourceForDataGridEx(grdReport, dtReport, true, true, "1=1", "stt_nhombaocao,ma_baocao");
+                DataTable dtPhieuEMR = new Select("*").From(DmucChung.Schema).Where(DmucChung.Columns.Loai).IsEqualTo("EMR_PHIEU")
+                .OrderAsc(DmucChung.Columns.SttHthi)
+                .ExecuteDataSet().Tables[0];
+                if (grdReport.DropDowns.Contains("cboPhieuEmr"))
+                {
+                    grdReport.DropDowns["cboPhieuEmr"].DataSource = dtPhieuEMR;
+                }
+            }
+            catch (Exception ex) { }
         }
         public static Control FindFocusedControl(Control control)
         {
@@ -1098,6 +1192,27 @@ namespace VNS.HIS.UI.BA
             }
 
 
+        }
+        private void LoadQuanHePhieuEmr_Report()
+        {
+
+            foreach (Janus.Windows.GridEX.GridEXRow gridExRow in grdReport.GetDataRows())
+            {
+                gridExRow.BeginEdit();
+                string ma_phieu_emr = Utility.sDbnull(gridExRow.Cells[SysReport.Columns.MaPhieuEmr].Value);
+
+                if (Utility.sDbnull(grdPhieu.GetValue(DmucChung.Columns.Ma)) == ma_phieu_emr)
+                {
+                    gridExRow.IsChecked = true;
+                }
+
+                else
+                {
+                    gridExRow.IsChecked = false;
+                }
+                gridExRow.EndEdit();
+
+            }
         }
         private void LoadQuanHeGayPhieu()
         {

@@ -21,7 +21,7 @@ namespace VNS.HIS.UI.Baocao
             THU_VIEN_CHUNG.CreateXML(mDtReport, "noitru_phieunhapvien.xml");
             if (crpt == null || objReport == null) return;
             EmrDocuments emrdoc = new EmrDocuments();
-            emrdoc.InitDocument(objPNV.IdBenhnhan, objPNV.MaLuotkham, Utility.Int64Dbnull(objPNV.IdPhieu), objPNV.NgayNhapvien.Value, Loaiphieu_HIS.PHIEUNHAPVIEN, reportCode, objPNV.NguoiTao, -1,-1, Utility.Byte2Bool(0), "");
+            emrdoc.InitDocument(objPNV.IdBenhnhan, objPNV.MaLuotkham, Utility.Int64Dbnull(objPNV.IdPhieu), objPNV.NgayNhapvien.Value, Loaiphieu_HIS.PHIEUNHAPVIEN, reportCode, objPNV.NguoiTao,Utility.Int16Dbnull( objPNV.IdKhoanoitru), -1, Utility.Byte2Bool(0), "");
             emrdoc.Save();
             if (Utility.sDbnull(objReport.FileWord) != "")
             {

@@ -152,7 +152,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
         {
             try
             {
-                var actionResult = ActionResult.Error;
+              
                 string mayin = "";
 
 
@@ -165,17 +165,14 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
                     Utility.ShowMsg("Bạn cần chọn ít nhất một nhóm phiếu cần in tách");
                     return;
                 }
-                actionResult = KcbInphieu.InTachToanBoPhieuCls(lstSelectedPrint, (int)objLuotkham.IdBenhnhan,
+                 KcbInphieu.InTachToanBoPhieuCls(lstSelectedPrint, (int)objLuotkham.IdBenhnhan,
                                                                  objLuotkham.MaLuotkham, id_phieu,
                                                                  ma_chidinh, lstNhominCLS, "",
                                                                  -1, true,
                                                                  ref mayin);
 
 
-                if (actionResult == ActionResult.Success)
-                {
-
-                }
+               
             }
             catch (Exception ex)
             {

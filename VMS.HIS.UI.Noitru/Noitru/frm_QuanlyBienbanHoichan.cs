@@ -17,6 +17,8 @@ using System.IO;
 using VNS.HIS.UI.Classess;
 using Aspose.Words;
 using System.Diagnostics;
+using VMS.Emr;
+
 namespace VNS.HIS.UI.NOITRU
 {
     public partial class frm_QuanlyBienbanHoichan : Form
@@ -206,7 +208,7 @@ namespace VNS.HIS.UI.NOITRU
             _bbhc.m_enAct = action.Update;
             _bbhc.ShowDialog();
         }
-        
+        EmrDocuments emrdoc = new EmrDocuments();
         private void cmdDelete_Click(object sender, EventArgs e)
         {
             try
@@ -237,16 +239,17 @@ namespace VNS.HIS.UI.NOITRU
                             using (var dbscope = new SharedDbConnectionScope())
                             {
                                 new Delete().From(KcbBienbanhoichan.Schema).Where(KcbBienbanhoichan.Columns.Id).IsEqualTo(idbbhc).Execute();
+                                emrdoc.DeleteDocument(idbbhc, Loaiphieu_HIS.BIENBANHOICHAN, "BIENBAN_HOICHAN");
                             }
-                            Utility.Log(this.Name, globalVariables.UserName, string.Format("Xóa biên bản hội chẩn ID {0} của người bệnh {1} mã khám {2} thành công ", idbbhc, objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham), newaction.Delete, this.GetType().Assembly.ManifestModule.Name);
+                           
                             scope.Complete();
-                            Utility.ShowMsg(string.Format("Xóa biên bản hội chẩn cho người bệnh {0} thành công", grdList.GetValue("ten_benhnhan").ToString()));
-                            DataRow[] arrDr = m_dtData.Select(string.Format("{0}={1}", KcbBienbanhoichan.Columns.Id, grdList.GetValue(KcbBienbanhoichan.Columns.Id)));
-                            if (arrDr.Length > 0)
-                                m_dtData.Rows.Remove(arrDr[0]);
-                            m_dtData.AcceptChanges();
-
                         }
+                        Utility.Log(this.Name, globalVariables.UserName, string.Format("Xóa biên bản hội chẩn ID {0} của người bệnh {1} mã khám {2} thành công ", idbbhc, objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham), newaction.Delete, this.GetType().Assembly.ManifestModule.Name);
+                        Utility.ShowMsg(string.Format("Xóa biên bản hội chẩn cho người bệnh {0} thành công", grdList.GetValue("ten_benhnhan").ToString()));
+                        DataRow[] arrDr = m_dtData.Select(string.Format("{0}={1}", KcbBienbanhoichan.Columns.Id, grdList.GetValue(KcbBienbanhoichan.Columns.Id)));
+                        if (arrDr.Length > 0)
+                            m_dtData.Rows.Remove(arrDr[0]);
+                        m_dtData.AcceptChanges();
                     }
                     catch (Exception ex)
                     {

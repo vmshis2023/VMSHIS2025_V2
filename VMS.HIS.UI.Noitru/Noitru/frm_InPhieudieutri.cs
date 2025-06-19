@@ -182,7 +182,7 @@ namespace VNS.HIS.UI.NOITRU
                 grdList.UpdateData();
                 m_dtPhieudieutri.AcceptChanges();
                 DataSet dsPrint;
-                dsPrint = new noitru_phieudieutri().NoitruLaythongtinphieudieutriIn(TreatmentId.ToString());
+                dsPrint = new noitru_phieudieutri().NoitruLaythongtinphieudieutriIn(objLuotkham.IdBenhnhan,objLuotkham.MaLuotkham, TreatmentId.ToString());
                 DataTable mdtDataPhieuDieuTri;
                 mdtDataPhieuDieuTri = dsPrint.Tables[0];
                 THU_VIEN_CHUNG.CreateXML(mdtDataPhieuDieuTri, "noitru_phieudieutri");

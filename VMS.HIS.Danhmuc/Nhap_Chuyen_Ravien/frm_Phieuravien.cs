@@ -18,6 +18,7 @@ using System.Text;
 using VNS.HIS.UI.NGOAITRU;
 using Janus.Windows.GridEX;
 using VNS.HIS.UI.Forms.Noitru;
+using VMS.Emr;
 
 namespace VNS.HIS.UI.Forms.NGOAITRU
 {
@@ -926,6 +927,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
                 ModifyCommmands();
             }
         }
+        EmrDocuments emrdoc = new EmrDocuments();
         private void cmdChuyen_Click(object sender, EventArgs e)
         {
             Utility.SetMsg(lblMsg, "", false);
@@ -1158,15 +1160,21 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
                     //_phieuchuyenvien.TenNguoichuyen = Utility.DoTrim(txtNguoivanchuyen.Text);
 
                 }
+              
+               
                 using (var scope = new TransactionScope())
                 {
                     using (var dbscope = new SharedDbConnectionScope())
                     {
                         objRavien.Save();
+                        emrdoc.InitDocument(Utility.Int64Dbnull( objRavien.IdBenhnhan), objRavien.MaLuotkham, Utility.Int64Dbnull(objRavien.IdRavien), objRavien.NgayRavien, Loaiphieu_HIS.PHIEURAVIEN, "PHIEU_RAVIEN", objRavien.NguoiTao, Utility.Int16Dbnull(objRavien.IdKhoanoitru), -1, Utility.Byte2Bool(1), "");
+                        emrdoc.Save();
                         if (_phieuchuyenvien != null)
                         {
                             _phieuchuyenvien.IdRavien = (int)objRavien.IdRavien;
                             _phieuchuyenvien.Save();
+                            emrdoc.InitDocument(_phieuchuyenvien.IdBenhnhan, _phieuchuyenvien.MaLuotkham, Utility.Int64Dbnull(_phieuchuyenvien.IdPhieu), _phieuchuyenvien.NgayChuyenvien, Loaiphieu_HIS.PHIEUCHUYENVIEN, "thamkhamPhieuchuyenvien", _phieuchuyenvien.NguoiTao, Utility.Int16Dbnull(_phieuchuyenvien.IdKhoanoitru), -1, Utility.Byte2Bool(_phieuchuyenvien.NoiTru), "");
+                            emrdoc.Save();
                             objLuotkham.TthaiChuyendi = 1;
 
                             objLuotkham.IdBacsiChuyenvien = _phieuchuyenvien.IdBacsiChuyenvien;
@@ -2184,14 +2192,16 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
                             using (var dbscope = new SharedDbConnectionScope())
                             {
                                 SPs.NoitruXoaphieuravien(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, objRavien.IdRavien, objLuotkham.IdRavien.Value).Execute();
-                                //new Delete().From(NoitruPhieuravien.Schema)
-                                //    .Where(NoitruPhieuravien.Columns.IdRavien).IsEqualTo(Utility.Int32Dbnull(txtId.Text, -1))
-                                //    .Execute();
-                                //new Delete().From(KcbPhieuchuyenvien.Schema)
-                                //   .Where(KcbPhieuchuyenvien.Columns.IdRavien).IsEqualTo(Utility.Int32Dbnull(txtId.Text, -1))
-                                //   .And(KcbPhieuchuyenvien.Columns.NoiTru).IsEqualTo(1)
-                                //   .Execute();
-                                 objNoitruPhanbuonggiuong =
+                            emrdoc.DeleteDocument((long)objRavien.IdRavien, Loaiphieu_HIS.PHIEURAVIEN, "PHIEU_RAVIEN");
+
+                            //new Delete().From(NoitruPhieuravien.Schema)
+                            //    .Where(NoitruPhieuravien.Columns.IdRavien).IsEqualTo(Utility.Int32Dbnull(txtId.Text, -1))
+                            //    .Execute();
+                            //new Delete().From(KcbPhieuchuyenvien.Schema)
+                            //   .Where(KcbPhieuchuyenvien.Columns.IdRavien).IsEqualTo(Utility.Int32Dbnull(txtId.Text, -1))
+                            //   .And(KcbPhieuchuyenvien.Columns.NoiTru).IsEqualTo(1)
+                            //   .Execute();
+                            objNoitruPhanbuonggiuong =
                                     NoitruPhanbuonggiuong.FetchByID(objLuotkham.IdRavien.Value);
                                 if (objNoitruPhanbuonggiuong != null && Utility.Int16Dbnull(objNoitruPhanbuonggiuong.IdGiuong, -1) > 0)
                                     //{

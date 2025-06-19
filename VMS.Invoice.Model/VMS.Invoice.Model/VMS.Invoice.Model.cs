@@ -116,6 +116,8 @@ namespace VMS.Invoice
         public string BuyerFullName { get; set; }
         public string BuyerLegalName { get; set; }
         public string BuyerTaxCode { get; set; }
+
+        public string BuyerBankAccount { get; set; }
         public string BuyerAddress { get; set; }
         public string BuyerEmail { get; set; }
         public string BuyerIDNumber { get; set; }

@@ -35,6 +35,7 @@
             Janus.Windows.GridEX.GridEXLayout grd_bsgm_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.GridEX.GridEXLayout grd_bspt_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label88 = new System.Windows.Forms.Label();
             this.cmdRefreshXN = new Janus.Windows.EditControls.UIButton();
             this.pnlKQXN = new System.Windows.Forms.Panel();
             this.txtHCT = new Janus.Windows.GridEX.EditControls.EditBox();
@@ -132,6 +133,7 @@
             this.txtChanDoanTuyenDuoiKKB = new Janus.Windows.GridEX.EditControls.EditBox();
             this.autoBacsithamgia = new VNS.HIS.UCs.AutoCompleteTextbox();
             this.txtTsb_ngoaikhoa = new Janus.Windows.GridEX.EditControls.EditBox();
+            this.txtTsb_sankhoa = new Janus.Windows.GridEX.EditControls.EditBox();
             this.txtBacsidexuat = new VNS.HIS.UCs.AutoCompleteTextbox();
             this.txtTinhTrangLucVaoVien = new Janus.Windows.GridEX.EditControls.EditBox();
             this.grdBacsithamgia = new Janus.Windows.GridEX.GridEX();
@@ -241,8 +243,6 @@
             this.cmdIn = new Janus.Windows.EditControls.UIButton();
             this.cmdExit = new Janus.Windows.EditControls.UIButton();
             this.cmdSave = new Janus.Windows.EditControls.UIButton();
-            this.txtTsb_sankhoa = new Janus.Windows.GridEX.EditControls.EditBox();
-            this.label88 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.pnlKQXN.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -334,6 +334,15 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1148, 782);
             this.panel2.TabIndex = 1;
+            // 
+            // label88
+            // 
+            this.label88.Location = new System.Drawing.Point(3, 387);
+            this.label88.Name = "label88";
+            this.label88.Size = new System.Drawing.Size(131, 49);
+            this.label88.TabIndex = 661;
+            this.label88.Text = "Tiền sử sản khoa :";
+            this.label88.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // cmdRefreshXN
             // 
@@ -1629,6 +1638,15 @@
             this.txtTsb_ngoaikhoa.Size = new System.Drawing.Size(675, 49);
             this.txtTsb_ngoaikhoa.TabIndex = 25;
             // 
+            // txtTsb_sankhoa
+            // 
+            this.txtTsb_sankhoa.Location = new System.Drawing.Point(136, 390);
+            this.txtTsb_sankhoa.Multiline = true;
+            this.txtTsb_sankhoa.Name = "txtTsb_sankhoa";
+            this.txtTsb_sankhoa.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtTsb_sankhoa.Size = new System.Drawing.Size(675, 49);
+            this.txtTsb_sankhoa.TabIndex = 26;
+            // 
             // txtBacsidexuat
             // 
             this.txtBacsidexuat._backcolor = System.Drawing.Color.WhiteSmoke;
@@ -1765,7 +1783,7 @@
             // 
             // label6
             // 
-            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.ForeColor = System.Drawing.Color.Red;
             this.label6.Location = new System.Drawing.Point(3, 157);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(131, 15);
@@ -1833,7 +1851,7 @@
             // 
             // label19
             // 
-            this.label19.ForeColor = System.Drawing.Color.Black;
+            this.label19.ForeColor = System.Drawing.Color.Red;
             this.label19.Location = new System.Drawing.Point(3, 202);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(131, 15);
@@ -3033,7 +3051,7 @@
             // 
             this.cmdThemMoiBN.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdThemMoiBN.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdThemMoiBN.Image = ((System.Drawing.Image)(resources.GetObject("cmdThemMoiBN.Image")));
+            this.cmdThemMoiBN.Image = global::VMS.HIS.Noitru.Properties.Resources.add_04_32;
             this.cmdThemMoiBN.ImageSize = new System.Drawing.Size(24, 24);
             this.cmdThemMoiBN.Location = new System.Drawing.Point(599, 12);
             this.cmdThemMoiBN.Name = "cmdThemMoiBN";
@@ -3085,24 +3103,6 @@
             this.cmdSave.Text = "Lưu (Ctrl+S)";
             this.cmdSave.ToolTipText = "Nhấn vào đây để lưu thông tin bệnh nhân";
             this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click);
-            // 
-            // txtTsb_sankhoa
-            // 
-            this.txtTsb_sankhoa.Location = new System.Drawing.Point(136, 390);
-            this.txtTsb_sankhoa.Multiline = true;
-            this.txtTsb_sankhoa.Name = "txtTsb_sankhoa";
-            this.txtTsb_sankhoa.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtTsb_sankhoa.Size = new System.Drawing.Size(675, 49);
-            this.txtTsb_sankhoa.TabIndex = 26;
-            // 
-            // label88
-            // 
-            this.label88.Location = new System.Drawing.Point(3, 387);
-            this.label88.Name = "label88";
-            this.label88.Size = new System.Drawing.Size(131, 49);
-            this.label88.TabIndex = 661;
-            this.label88.Text = "Tiền sử sản khoa :";
-            this.label88.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // frm_ThemBbanhoichan
             // 

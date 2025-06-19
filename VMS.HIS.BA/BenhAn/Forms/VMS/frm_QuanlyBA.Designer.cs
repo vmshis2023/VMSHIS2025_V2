@@ -50,6 +50,7 @@
             this.mnuInTomtatBA = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.cmdTomtatBA = new System.Windows.Forms.ToolStripButton();
+            this.cmdEmr = new System.Windows.Forms.ToolStripButton();
             this.cmdDongBA = new System.Windows.Forms.ToolStripButton();
             this.cmdExit = new System.Windows.Forms.ToolStripButton();
             this.uiGroupBox1 = new Janus.Windows.EditControls.UIGroupBox();
@@ -79,7 +80,6 @@
             this.uiStatusBar1 = new Janus.Windows.UI.StatusBar.UIStatusBar();
             this.uiGroupBox2 = new Janus.Windows.EditControls.UIGroupBox();
             this.grdList = new Janus.Windows.GridEX.GridEX();
-            this.cmdEmr = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox1)).BeginInit();
             this.uiGroupBox1.SuspendLayout();
@@ -237,9 +237,18 @@
             this.cmdTomtatBA.Image = ((System.Drawing.Image)(resources.GetObject("cmdTomtatBA.Image")));
             this.cmdTomtatBA.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdTomtatBA.Name = "cmdTomtatBA";
-            this.cmdTomtatBA.Size = new System.Drawing.Size(106, 28);
-            this.cmdTomtatBA.Text = "Tóm tắt BA";
+            this.cmdTomtatBA.Size = new System.Drawing.Size(114, 28);
+            this.cmdTomtatBA.Text = "Tổng kết BA";
             this.cmdTomtatBA.Click += new System.EventHandler(this.cmdTomtatBA_Click);
+            // 
+            // cmdEmr
+            // 
+            this.cmdEmr.Image = ((System.Drawing.Image)(resources.GetObject("cmdEmr.Image")));
+            this.cmdEmr.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.cmdEmr.Name = "cmdEmr";
+            this.cmdEmr.Size = new System.Drawing.Size(66, 28);
+            this.cmdEmr.Text = "EMR";
+            this.cmdEmr.Click += new System.EventHandler(this.cmdEmr_Click);
             // 
             // cmdDongBA
             // 
@@ -622,15 +631,6 @@
             this.grdList.TabIndex = 553;
             this.grdList.TabStop = false;
             this.grdList.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007;
-            // 
-            // cmdEmr
-            // 
-            this.cmdEmr.Image = ((System.Drawing.Image)(resources.GetObject("cmdEmr.Image")));
-            this.cmdEmr.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.cmdEmr.Name = "cmdEmr";
-            this.cmdEmr.Size = new System.Drawing.Size(66, 28);
-            this.cmdEmr.Text = "EMR";
-            this.cmdEmr.Click += new System.EventHandler(this.cmdEmr_Click);
             // 
             // frm_QuanlyBA
             // 

@@ -29,6 +29,7 @@ namespace VMS.HIS.Danhmuc
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel1 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
             Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel2 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
             Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel3 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
@@ -162,6 +163,7 @@ namespace VMS.HIS.Danhmuc
             this.optMaluotkham.TabIndex = 466;
             this.optMaluotkham.Text = "Tìm kết quả theo mã khám";
             this.optMaluotkham.UseVisualStyleBackColor = true;
+            this.optMaluotkham.CheckedChanged += new System.EventHandler(this.optMaluotkham_CheckedChanged);
             // 
             // cmdSearch
             // 

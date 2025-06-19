@@ -18,6 +18,7 @@ using System.Diagnostics;
 using System.Drawing;
 using VMS.HIS.Bus;
 using VNS.HIS.UI.NOITRU;
+using VMS.Emr;
 
 namespace VNS.HIS.UI.BA
 {
@@ -181,21 +182,35 @@ namespace VNS.HIS.UI.BA
 
         private void cmdUpdate_Click(object sender, EventArgs e)
         {
-            frm_BenhAn_NoiKhoa BenhAn_NoiKhoa = new frm_BenhAn_NoiKhoa(lstLoaiBA);
-            EmrBa bant = EmrBa.FetchByID(Utility.Int64Dbnull(grdList.GetValue("id_ba")));
-            BenhAn_NoiKhoa.objEmrBa=bant;
-            BenhAn_NoiKhoa.ucThongtinnguoibenh_v31.txtMaluotkham.Text = Utility.sDbnull(grdList.GetValue("ma_luotkham"));
-            BenhAn_NoiKhoa.m_enAct = action.Update;
-            BenhAn_NoiKhoa.ShowDialog();
+            if (!Utility.isValidGrid(grdList)) return;
+            string MauBA = Utility.sDbnull(grdList.GetValue("loai_ba"));
+            if (MauBA == "01/BV")
+            {
+                frm_BenhAn_NoiKhoa BenhAn_NoiKhoa = new frm_BenhAn_NoiKhoa(lstLoaiBA);
+                EmrBa bant = EmrBa.FetchByID(Utility.Int64Dbnull(grdList.GetValue("id_ba")));
+                BenhAn_NoiKhoa.objEmrBa = bant;
+                BenhAn_NoiKhoa.ucThongtinnguoibenh_emr_basic1.txtMaluotkham.Text = Utility.sDbnull(grdList.GetValue("ma_luotkham"));
+                BenhAn_NoiKhoa.m_enAct = action.Update;
+                BenhAn_NoiKhoa.ShowDialog();
+            }
+            else if (MauBA == "15/BV")
+            {
+                frm_BenhAn_NgoaiTru _BenhAn_NgoaiTru = new frm_BenhAn_NgoaiTru(MauBA);
+                EmrBa bant = EmrBa.FetchByID(Utility.Int64Dbnull(grdList.GetValue("id_ba")));
+                _BenhAn_NgoaiTru.objEmrBa = bant;
+                _BenhAn_NgoaiTru.ucThongtinnguoibenh_emr_basic1.txtMaluotkham.Text = Utility.sDbnull(grdList.GetValue("ma_luotkham"));
+                _BenhAn_NgoaiTru.m_enAct = action.Update;
+                _BenhAn_NgoaiTru.ShowDialog();
+            }    
         }
-
+        EmrDocuments emrdoc = new EmrDocuments();
         private void cmdDelete_Click(object sender, EventArgs e)
         {
             try
             {
-                if (!Utility.Coquyen("kcb_EmrBa_xoa"))
+                if (!Utility.Coquyen("EMR_XOA_BENH_AN"))
                 {
-                    Utility.ShowMsg("Bạn không có quyền xóa Bệnh án nội trú");
+                    Utility.ShowMsg("Bạn không có quyền xóa Bệnh án ");
                     return;
                 }
                 EmrBa objEmrBa = EmrBa.FetchByID(Utility.Int64Dbnull(grdList.GetValue(EmrBa.Columns.IdBa)));
@@ -226,7 +241,7 @@ namespace VNS.HIS.UI.BA
                     Utility.ShowMsg("Bệnh án đang ở trạng thái đã được duyệt bởi KHTH và đưa vào lưu trữ nên không thể xóa");
                     return;
                 }
-                if (Utility.AcceptQuestion(string.Format("Bạn có chắc chắn muốn xóa Bệnh án nội trú với mã {0} của người bệnh {1} hay không?", grdList.GetValue(EmrBa.Columns.MaBa).ToString(), grdList.GetValue("ten_benhnhan").ToString()), "Xác nhận xóa bệnh án", true))
+                if (Utility.AcceptQuestion(string.Format("Bạn có chắc chắn muốn xóa Bệnh án với mã {0} của người bệnh {1} hay không?", grdList.GetValue(EmrBa.Columns.MaBa).ToString(), grdList.GetValue("ten_benhnhan").ToString()), "Xác nhận xóa bệnh án", true))
                 {
                     try
                     {
@@ -244,11 +259,12 @@ namespace VNS.HIS.UI.BA
                                       .And(EmrHosoluutru.Columns.LoaiBa).IsEqualTo(objEmrBa.LoaiBa)
                                       .And(EmrBa.Columns.MaCoso).IsEqualTo(objEmrBa.MaCoso)
                                       .Execute();
+                                emrdoc.DeleteDocument(objEmrBa.IdBa, Loaiphieu_HIS.BENHAN, "");
                                 Utility.Log("frm_BenhAn_NoiKhoa", globalVariables.UserName, string.Format("Xóa bệnh án id={0}, loại BA={1}, mã BA={2} của người bệnh id ={3}, mã lần khám {4} thành công", objEmrBa.IdBa, objEmrBa.LoaiBa, objEmrBa.MaBa, objEmrBa.IdBenhnhan, objEmrBa.MaLuotkham), newaction.Delete, "UI");
                             }
                             Scope.Complete();
                         }
-                        Utility.ShowMsg(string.Format("Xóa Bệnh án nội trú cho người bệnh {0} thành công", grdList.GetValue("ten_benhnhan").ToString()));
+                        Utility.ShowMsg(string.Format("Xóa Bệnh cho người bệnh {0} thành công", grdList.GetValue("ten_benhnhan").ToString()));
                         DataRow[] arrDr = m_dtData.Select(string.Format("{0}={1}", EmrBa.Columns.IdBa, grdList.GetValue(EmrBa.Columns.IdBa)));
                         if (arrDr.Length > 0)
                             m_dtData.Rows.Remove(arrDr[0]);
@@ -472,7 +488,7 @@ namespace VNS.HIS.UI.BA
 
                 if (objEmrBa == null || objEmrBa.IdBa <= 0)
                 {
-                    Utility.ShowMsg("Bạn cần tạo Bệnh án nội trú trước khi thực hiện in");
+                    Utility.ShowMsg("Bạn cần tạo Bệnh án trước khi thực hiện in");
                     return;
                 }
                 DataTable dtCacKhoa = new KCB_THAMKHAM().NoitruTimkiemlichsuBuonggiuong(objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan, "-1", -1);
@@ -694,8 +710,8 @@ namespace VNS.HIS.UI.BA
                 }
                 frm_TomtatBA _PhieuTTBA = new frm_TomtatBA();
                 _PhieuTTBA.m_enAct = action.Insert;
-                _PhieuTTBA.ucThongtinnguoibenh_v21.txtMaluotkham.Focus();
-                _PhieuTTBA.ucThongtinnguoibenh_v21.txtMaluotkham.Text = objLuotkham.MaLuotkham;
+                _PhieuTTBA.ucThongtinnguoibenh_emr_basic1.txtMaluotkham.Focus();
+                _PhieuTTBA.ucThongtinnguoibenh_emr_basic1.txtMaluotkham.Text = objLuotkham.MaLuotkham;
                 _PhieuTTBA.ShowDialog();
             }
             catch (Exception ex)

@@ -80,7 +80,7 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(string MaLuotkham,long? IdBenhnhan,long? IdPhieuchamsoc,string Nhiptho,string HuyetapTren,string HuyetapDuoi,string NhietDo,string ChieuCao,string CanNang,string Bmi,string Mach,string Spo2,string TheodoiNuoctieu,string TheodoiThem,long? IdPhieudieutri,short? IdKhoanoitru,long? IdBuongGiuong,int? IdBuong,int? IdGiuong,bool? TthaiIn,DateTime NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua)
+	    public void Insert(string MaLuotkham,long? IdBenhnhan,long? IdPhieuchamsoc,string Nhiptho,string HuyetapTren,string HuyetapDuoi,string NhietDo,string ChieuCao,string CanNang,string Bmi,string Mach,string Spo2,string TheodoiNuoctieu,string TheodoiThem,long? IdPhieudieutri,short? IdKhoanoitru,long? IdBuongGiuong,int? IdBuong,int? IdGiuong,bool? TthaiIn,DateTime NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua,bool? TthaiKyso,string NguoiKyso,DateTime? NgayKyso,bool? TthaiKydientu,string NguoiKydientu,DateTime? NgayKydientu)
 	    {
 		    NoitruPhieutheodoiChucnangsong item = new NoitruPhieutheodoiChucnangsong();
 		    
@@ -132,6 +132,18 @@ namespace VMS.HIS.DAL
             
             item.NguoiSua = NguoiSua;
             
+            item.TthaiKyso = TthaiKyso;
+            
+            item.NguoiKyso = NguoiKyso;
+            
+            item.NgayKyso = NgayKyso;
+            
+            item.TthaiKydientu = TthaiKydientu;
+            
+            item.NguoiKydientu = NguoiKydientu;
+            
+            item.NgayKydientu = NgayKydientu;
+            
 	    
 		    item.Save(UserName);
 	    }
@@ -140,7 +152,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(long Id,string MaLuotkham,long? IdBenhnhan,long? IdPhieuchamsoc,string Nhiptho,string HuyetapTren,string HuyetapDuoi,string NhietDo,string ChieuCao,string CanNang,string Bmi,string Mach,string Spo2,string TheodoiNuoctieu,string TheodoiThem,long? IdPhieudieutri,short? IdKhoanoitru,long? IdBuongGiuong,int? IdBuong,int? IdGiuong,bool? TthaiIn,DateTime NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua)
+	    public void Update(long Id,string MaLuotkham,long? IdBenhnhan,long? IdPhieuchamsoc,string Nhiptho,string HuyetapTren,string HuyetapDuoi,string NhietDo,string ChieuCao,string CanNang,string Bmi,string Mach,string Spo2,string TheodoiNuoctieu,string TheodoiThem,long? IdPhieudieutri,short? IdKhoanoitru,long? IdBuongGiuong,int? IdBuong,int? IdGiuong,bool? TthaiIn,DateTime NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua,bool? TthaiKyso,string NguoiKyso,DateTime? NgayKyso,bool? TthaiKydientu,string NguoiKydientu,DateTime? NgayKydientu)
 	    {
 		    NoitruPhieutheodoiChucnangsong item = new NoitruPhieutheodoiChucnangsong();
 	        item.MarkOld();
@@ -195,6 +207,18 @@ namespace VMS.HIS.DAL
 			item.NgaySua = NgaySua;
 				
 			item.NguoiSua = NguoiSua;
+				
+			item.TthaiKyso = TthaiKyso;
+				
+			item.NguoiKyso = NguoiKyso;
+				
+			item.NgayKyso = NgayKyso;
+				
+			item.TthaiKydientu = TthaiKydientu;
+				
+			item.NguoiKydientu = NguoiKydientu;
+				
+			item.NgayKydientu = NgayKydientu;
 				
 	        item.Save(UserName);
 	    }

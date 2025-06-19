@@ -170,7 +170,7 @@ namespace VNS.HIS.BusRule.Classes
                                  objkcbcdkl.Para, objkcbcdkl.QuaiBi, objkcbcdkl.SPO2, objkcbcdkl.PhantruocMatphai, objkcbcdkl.PhantruocMattrai, objkcbcdkl.DaymatMatphai,
                                     objkcbcdkl.DaymatMattrai, objkcbcdkl.VannhanMatphai, objkcbcdkl.VannhanMattrai, objkcbcdkl.ChandoanMatphai, objkcbcdkl.ChandoanMattrai, objkcbcdkl.Khammat
                                     , objkcbcdkl.IcdMatphai, objkcbcdkl.TenIcdMatphai, objkcbcdkl.IcdMattrai, objkcbcdkl.TenIcdMattrai
-                                    , objkcbcdkl.VitriIcdChinh, objkcbcdkl.Sotxuathuyet, objkcbcdkl.Taychanmieng, objkcbcdkl.MantinhCapthuoc, objkcbcdkl.MantinhCls);
+                                    , objkcbcdkl.VitriIcdChinh, objkcbcdkl.Sotxuathuyet, objkcbcdkl.Taychanmieng, objkcbcdkl.MantinhCapthuoc, objkcbcdkl.MantinhCls, objkcbcdkl.TiensuGiadinh);
 
                              sp.Execute();
                              objkcbcdkl.IdChandoan = Utility.Int64Dbnull(sp.OutputValues[0]);
@@ -203,7 +203,7 @@ namespace VNS.HIS.BusRule.Classes
                                  objkcbcdkl.ChisoIbm, objkcbcdkl.ThilucMp,
                                  objkcbcdkl.ThilucMt, objkcbcdkl.NhanapMp,
                                  objkcbcdkl.NhanapMt, objkcbcdkl.IdKham, objkcbcdkl.IdBenhnhan, objkcbcdkl.MaLuotkham, 
-                                 objkcbcdkl.QuatrinhBenhly, objkcbcdkl.TiensuBenh, objkcbcdkl.TomtatCls, objkcbcdkl.LoiDan,
+                                 objkcbcdkl.QuatrinhBenhly, objkcbcdkl.TiensuBenh, objkcbcdkl.TiensuGiadinh, objkcbcdkl.TomtatCls, objkcbcdkl.LoiDan,
                                  objkcbcdkl.XuTri, objkcbcdkl.Para, objkcbcdkl.QuaiBi, objkcbcdkl.SPO2, objkcbcdkl.PhantruocMatphai, objkcbcdkl.PhantruocMattrai, objkcbcdkl.DaymatMatphai,
                                     objkcbcdkl.DaymatMattrai, objkcbcdkl.VannhanMatphai, objkcbcdkl.VannhanMattrai, objkcbcdkl.ChandoanMatphai, objkcbcdkl.ChandoanMattrai, objkcbcdkl.Khammat
                                     , objkcbcdkl.IcdMatphai, objkcbcdkl.TenIcdMatphai, objkcbcdkl.IcdMattrai, objkcbcdkl.TenIcdMattrai
@@ -289,7 +289,7 @@ namespace VNS.HIS.BusRule.Classes
                                  objkcbcdkl.Para, objkcbcdkl.QuaiBi, objkcbcdkl.SPO2, objkcbcdkl.PhantruocMatphai, objkcbcdkl.PhantruocMattrai, objkcbcdkl.DaymatMatphai,
                                     objkcbcdkl.DaymatMattrai, objkcbcdkl.VannhanMatphai, objkcbcdkl.VannhanMattrai, objkcbcdkl.ChandoanMatphai, objkcbcdkl.ChandoanMattrai, objkcbcdkl.Khammat
                                     , objkcbcdkl.IcdMatphai, objkcbcdkl.TenIcdMatphai, objkcbcdkl.IcdMattrai, objkcbcdkl.TenIcdMattrai
-                                    , objkcbcdkl.VitriIcdChinh, objkcbcdkl.Sotxuathuyet, objkcbcdkl.Taychanmieng, objkcbcdkl.MantinhCapthuoc, objkcbcdkl.MantinhCls);
+                                    , objkcbcdkl.VitriIcdChinh, objkcbcdkl.Sotxuathuyet, objkcbcdkl.Taychanmieng, objkcbcdkl.MantinhCapthuoc, objkcbcdkl.MantinhCls, objkcbcdkl.TiensuGiadinh);
 
                             sp.Execute();
                             objkcbcdkl.IdChandoan = Utility.Int64Dbnull(sp.OutputValues[0]);
@@ -322,7 +322,7 @@ namespace VNS.HIS.BusRule.Classes
                                  objkcbcdkl.ChisoIbm, objkcbcdkl.ThilucMp,
                                  objkcbcdkl.ThilucMt, objkcbcdkl.NhanapMp,
                                  objkcbcdkl.NhanapMt, objkcbcdkl.IdKham, objkcbcdkl.IdBenhnhan, objkcbcdkl.MaLuotkham, 
-                                 objkcbcdkl.QuatrinhBenhly, objkcbcdkl.TiensuBenh, objkcbcdkl.TomtatCls, objkcbcdkl.LoiDan,
+                                 objkcbcdkl.QuatrinhBenhly, objkcbcdkl.TiensuBenh, objkcbcdkl.TiensuGiadinh, objkcbcdkl.TomtatCls, objkcbcdkl.LoiDan,
                                  objkcbcdkl.XuTri, objkcbcdkl.Para, objkcbcdkl.QuaiBi, objkcbcdkl.SPO2, objkcbcdkl.PhantruocMatphai, objkcbcdkl.PhantruocMattrai, objkcbcdkl.DaymatMatphai,
                                     objkcbcdkl.DaymatMattrai, objkcbcdkl.VannhanMatphai, objkcbcdkl.VannhanMattrai, objkcbcdkl.ChandoanMatphai, objkcbcdkl.ChandoanMattrai, objkcbcdkl.Khammat
                                     , objkcbcdkl.IcdMatphai, objkcbcdkl.TenIcdMatphai, objkcbcdkl.IcdMattrai, objkcbcdkl.TenIcdMattrai

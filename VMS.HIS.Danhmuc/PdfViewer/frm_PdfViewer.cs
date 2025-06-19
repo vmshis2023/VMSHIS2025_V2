@@ -488,7 +488,10 @@ namespace VMS.HIS.Danhmuc
            
         }
 
-      
+        private void optMaluotkham_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
     public class FileInfo
     {

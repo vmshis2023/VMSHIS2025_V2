@@ -347,6 +347,32 @@ namespace VMS.HIS.DAL
 				colvarNhommau.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarNhommau);
 				
+				TableSchema.TableColumn colvarTiensuBanthan = new TableSchema.TableColumn(schema);
+				colvarTiensuBanthan.ColumnName = "tiensu_banthan";
+				colvarTiensuBanthan.DataType = DbType.String;
+				colvarTiensuBanthan.MaxLength = 1000;
+				colvarTiensuBanthan.AutoIncrement = false;
+				colvarTiensuBanthan.IsNullable = true;
+				colvarTiensuBanthan.IsPrimaryKey = false;
+				colvarTiensuBanthan.IsForeignKey = false;
+				colvarTiensuBanthan.IsReadOnly = false;
+				colvarTiensuBanthan.DefaultSetting = @"";
+				colvarTiensuBanthan.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarTiensuBanthan);
+				
+				TableSchema.TableColumn colvarTiensuGiadinh = new TableSchema.TableColumn(schema);
+				colvarTiensuGiadinh.ColumnName = "tiensu_giadinh";
+				colvarTiensuGiadinh.DataType = DbType.String;
+				colvarTiensuGiadinh.MaxLength = 1000;
+				colvarTiensuGiadinh.AutoIncrement = false;
+				colvarTiensuGiadinh.IsNullable = true;
+				colvarTiensuGiadinh.IsPrimaryKey = false;
+				colvarTiensuGiadinh.IsForeignKey = false;
+				colvarTiensuGiadinh.IsReadOnly = false;
+				colvarTiensuGiadinh.DefaultSetting = @"";
+				colvarTiensuGiadinh.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarTiensuGiadinh);
+				
 				TableSchema.TableColumn colvarIpMaytao = new TableSchema.TableColumn(schema);
 				colvarIpMaytao.ColumnName = "ip_maytao";
 				colvarIpMaytao.DataType = DbType.String;
@@ -650,6 +676,22 @@ namespace VMS.HIS.DAL
 			set { SetColumnValue(Columns.Nhommau, value); }
 		}
 		  
+		[XmlAttribute("TiensuBanthan")]
+		[Bindable(true)]
+		public string TiensuBanthan 
+		{
+			get { return GetColumnValue<string>(Columns.TiensuBanthan); }
+			set { SetColumnValue(Columns.TiensuBanthan, value); }
+		}
+		  
+		[XmlAttribute("TiensuGiadinh")]
+		[Bindable(true)]
+		public string TiensuGiadinh 
+		{
+			get { return GetColumnValue<string>(Columns.TiensuGiadinh); }
+			set { SetColumnValue(Columns.TiensuGiadinh, value); }
+		}
+		  
 		[XmlAttribute("IpMaytao")]
 		[Bindable(true)]
 		public string IpMaytao 
@@ -765,7 +807,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(long varIdBenhnhan,string varMaLuotkham,string varTrieuchungBandau,short varIdBacsikham,string varNguoiTao,DateTime varNgayTao,string varNguoiSua,DateTime? varNgaySua,string varMach,string varNhietdo,string varHuyetap,string varNhiptim,string varNhiptho,string varCannang,string varChieucao,string varNhommau,string varIpMaytao,string varIpMaysua,string varTenMaytao,string varTenMaysua,decimal? varChisoIbm,string varThilucMp,string varThilucMt,string varNhanapMp,string varNhanapMt,string varSPO2,string varPara,byte? varQuaibi)
+		public static void Insert(long varIdBenhnhan,string varMaLuotkham,string varTrieuchungBandau,short varIdBacsikham,string varNguoiTao,DateTime varNgayTao,string varNguoiSua,DateTime? varNgaySua,string varMach,string varNhietdo,string varHuyetap,string varNhiptim,string varNhiptho,string varCannang,string varChieucao,string varNhommau,string varTiensuBanthan,string varTiensuGiadinh,string varIpMaytao,string varIpMaysua,string varTenMaytao,string varTenMaysua,decimal? varChisoIbm,string varThilucMp,string varThilucMt,string varNhanapMp,string varNhanapMt,string varSPO2,string varPara,byte? varQuaibi)
 		{
 			KcbThongtinchung item = new KcbThongtinchung();
 			
@@ -801,6 +843,10 @@ namespace VMS.HIS.DAL
 			
 			item.Nhommau = varNhommau;
 			
+			item.TiensuBanthan = varTiensuBanthan;
+			
+			item.TiensuGiadinh = varTiensuGiadinh;
+			
 			item.IpMaytao = varIpMaytao;
 			
 			item.IpMaysua = varIpMaysua;
@@ -835,7 +881,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(long varIdThongtin,long varIdBenhnhan,string varMaLuotkham,string varTrieuchungBandau,short varIdBacsikham,string varNguoiTao,DateTime varNgayTao,string varNguoiSua,DateTime? varNgaySua,string varMach,string varNhietdo,string varHuyetap,string varNhiptim,string varNhiptho,string varCannang,string varChieucao,string varNhommau,string varIpMaytao,string varIpMaysua,string varTenMaytao,string varTenMaysua,decimal? varChisoIbm,string varThilucMp,string varThilucMt,string varNhanapMp,string varNhanapMt,string varSPO2,string varPara,byte? varQuaibi)
+		public static void Update(long varIdThongtin,long varIdBenhnhan,string varMaLuotkham,string varTrieuchungBandau,short varIdBacsikham,string varNguoiTao,DateTime varNgayTao,string varNguoiSua,DateTime? varNgaySua,string varMach,string varNhietdo,string varHuyetap,string varNhiptim,string varNhiptho,string varCannang,string varChieucao,string varNhommau,string varTiensuBanthan,string varTiensuGiadinh,string varIpMaytao,string varIpMaysua,string varTenMaytao,string varTenMaysua,decimal? varChisoIbm,string varThilucMp,string varThilucMt,string varNhanapMp,string varNhanapMt,string varSPO2,string varPara,byte? varQuaibi)
 		{
 			KcbThongtinchung item = new KcbThongtinchung();
 			
@@ -872,6 +918,10 @@ namespace VMS.HIS.DAL
 				item.Chieucao = varChieucao;
 			
 				item.Nhommau = varNhommau;
+			
+				item.TiensuBanthan = varTiensuBanthan;
+			
+				item.TiensuGiadinh = varTiensuGiadinh;
 			
 				item.IpMaytao = varIpMaytao;
 			
@@ -1029,86 +1079,100 @@ namespace VMS.HIS.DAL
         
         
         
-        public static TableSchema.TableColumn IpMaytaoColumn
+        public static TableSchema.TableColumn TiensuBanthanColumn
         {
             get { return Schema.Columns[17]; }
         }
         
         
         
-        public static TableSchema.TableColumn IpMaysuaColumn
+        public static TableSchema.TableColumn TiensuGiadinhColumn
         {
             get { return Schema.Columns[18]; }
         }
         
         
         
-        public static TableSchema.TableColumn TenMaytaoColumn
+        public static TableSchema.TableColumn IpMaytaoColumn
         {
             get { return Schema.Columns[19]; }
         }
         
         
         
-        public static TableSchema.TableColumn TenMaysuaColumn
+        public static TableSchema.TableColumn IpMaysuaColumn
         {
             get { return Schema.Columns[20]; }
         }
         
         
         
-        public static TableSchema.TableColumn ChisoIbmColumn
+        public static TableSchema.TableColumn TenMaytaoColumn
         {
             get { return Schema.Columns[21]; }
         }
         
         
         
-        public static TableSchema.TableColumn ThilucMpColumn
+        public static TableSchema.TableColumn TenMaysuaColumn
         {
             get { return Schema.Columns[22]; }
         }
         
         
         
-        public static TableSchema.TableColumn ThilucMtColumn
+        public static TableSchema.TableColumn ChisoIbmColumn
         {
             get { return Schema.Columns[23]; }
         }
         
         
         
-        public static TableSchema.TableColumn NhanapMpColumn
+        public static TableSchema.TableColumn ThilucMpColumn
         {
             get { return Schema.Columns[24]; }
         }
         
         
         
-        public static TableSchema.TableColumn NhanapMtColumn
+        public static TableSchema.TableColumn ThilucMtColumn
         {
             get { return Schema.Columns[25]; }
         }
         
         
         
-        public static TableSchema.TableColumn SPO2Column
+        public static TableSchema.TableColumn NhanapMpColumn
         {
             get { return Schema.Columns[26]; }
         }
         
         
         
-        public static TableSchema.TableColumn ParaColumn
+        public static TableSchema.TableColumn NhanapMtColumn
         {
             get { return Schema.Columns[27]; }
         }
         
         
         
-        public static TableSchema.TableColumn QuaibiColumn
+        public static TableSchema.TableColumn SPO2Column
         {
             get { return Schema.Columns[28]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn ParaColumn
+        {
+            get { return Schema.Columns[29]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn QuaibiColumn
+        {
+            get { return Schema.Columns[30]; }
         }
         
         
@@ -1134,6 +1198,8 @@ namespace VMS.HIS.DAL
 			 public static string Cannang = @"cannang";
 			 public static string Chieucao = @"chieucao";
 			 public static string Nhommau = @"nhommau";
+			 public static string TiensuBanthan = @"tiensu_banthan";
+			 public static string TiensuGiadinh = @"tiensu_giadinh";
 			 public static string IpMaytao = @"ip_maytao";
 			 public static string IpMaysua = @"ip_maysua";
 			 public static string TenMaytao = @"ten_maytao";

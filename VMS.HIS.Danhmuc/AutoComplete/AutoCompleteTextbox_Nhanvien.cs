@@ -143,7 +143,7 @@ namespace VNS.HIS.UCs
             #endregion Excursus: DataSource vs. AddRange
             // Bind the CurrentAutoCompleteList as DataSource to the listbox
             listBox.DataSource = CurrentAutoCompleteList;
-            _ToolTip.SetToolTip(this, "Nhấn chuột phải để cấu hình thêm bớt danh mục");
+           // _ToolTip.SetToolTip(this, "Nhấn chuột phải để cấu hình thêm bớt danh mục");
             // set the input to remember, which is empty so far
             oldText = this.Text;
             ToolStripMenuItem _item = new ToolStripMenuItem("Cấu hình danh mục");

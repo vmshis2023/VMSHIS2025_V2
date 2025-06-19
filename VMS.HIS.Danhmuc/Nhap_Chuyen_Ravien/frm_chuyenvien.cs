@@ -283,6 +283,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
                     {
                         using (var dbscope = new SharedDbConnectionScope())
                         {
+                            long id_phieu = Utility.Int64Dbnull(txtId.Text, -1);
                             objLuotkham.TthaiChuyendi=0;
                             objLuotkham.IdBenhvienDi=-1;
                             objLuotkham.IdBacsiChuyenvien = -1;
@@ -290,12 +291,13 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
                             objLuotkham.IsNew=false;
                             objLuotkham.MarkOld();
                             objLuotkham.Save();
-                            new Delete().From(KcbPhieuchuyenvien.Schema).Where(KcbPhieuchuyenvien.Columns.IdPhieu).IsEqualTo(Utility.Int32Dbnull(txtId.Text, -1)).Execute();
+                            new Delete().From(KcbPhieuchuyenvien.Schema).Where(KcbPhieuchuyenvien.Columns.IdPhieu).IsEqualTo(id_phieu).Execute();
                             new Delete().From(KcbChandoanKetluan.Schema)
                                 .Where(KcbChandoanKetluan.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
                                 .And(KcbChandoanKetluan.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
                                 .And(KcbChandoanKetluan.Columns.KieuChandoan).IsEqualTo(3)
                                 .Execute();
+                            emrdoc.DeleteDocument(id_phieu, Loaiphieu_HIS.PHIEUCHUYENVIEN, "thamkhamPhieuchuyenvien");
                         }
                         scope.Complete();
 
@@ -312,7 +314,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
                 }
             }
         }
-
+        EmrDocuments emrdoc = new EmrDocuments();
         void cmdChuyen_Click(object sender, EventArgs e)
         {
             Utility.SetMsg(lblMsg, "", false);
@@ -443,8 +445,8 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
                     using (var dbscope = new SharedDbConnectionScope())
                     {
                         objPhieuchuyenvien.Save();
-                        EmrDocuments emrdoc = new EmrDocuments();
-                        emrdoc.InitDocument(Utility.Int64Dbnull(objPhieuchuyenvien.IdBenhnhan), objPhieuchuyenvien.MaLuotkham, Utility.Int64Dbnull(objPhieuchuyenvien.IdPhieu), objPhieuchuyenvien.NgayChuyenvien, Loaiphieu_HIS.PHIEUCHUYENVIEN, "noitru_phieudieutri", objPhieuchuyenvien.NguoiTao, Utility.Int16Dbnull(objPhieuchuyenvien.IdKhoanoitru), -1, Utility.Byte2Bool(0), "");
+                        
+                        emrdoc.InitDocument(Utility.Int64Dbnull(objPhieuchuyenvien.IdBenhnhan), objPhieuchuyenvien.MaLuotkham, Utility.Int64Dbnull(objPhieuchuyenvien.IdPhieu), objPhieuchuyenvien.NgayChuyenvien, Loaiphieu_HIS.PHIEUCHUYENVIEN, "thamkhamPhieuchuyenvien", objPhieuchuyenvien.NguoiTao, Utility.Int16Dbnull(objPhieuchuyenvien.IdKhoanoitru), -1, Utility.Byte2Bool(objPhieuchuyenvien.NoiTru), "");
                         emrdoc.Save();
                         //if (objPhieuchuyenvien.IdRavien > 0)
                         //{

@@ -80,7 +80,7 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(string MaLuotkham,long IdBenhnhan,short? IdKhoa,int? IdNvien,DateTime? NgayThuchien,string GioThuchien,string DienBien,string XuTri,string DanhGia,bool? TthaiIn,DateTime NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua)
+	    public void Insert(string MaLuotkham,long IdBenhnhan,short? IdKhoa,int? IdNvien,DateTime? NgayThuchien,string GioThuchien,string DienBien,string XuTri,string DanhGia,bool? TthaiIn,DateTime NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua,bool? TthaiKyso,string NguoiKyso,DateTime? NgayKyso,bool? TthaiKydientu,string NguoiKydientu,DateTime? NgayKydientu)
 	    {
 		    NoitruPhieuchamsoc item = new NoitruPhieuchamsoc();
 		    
@@ -112,6 +112,18 @@ namespace VMS.HIS.DAL
             
             item.NguoiSua = NguoiSua;
             
+            item.TthaiKyso = TthaiKyso;
+            
+            item.NguoiKyso = NguoiKyso;
+            
+            item.NgayKyso = NgayKyso;
+            
+            item.TthaiKydientu = TthaiKydientu;
+            
+            item.NguoiKydientu = NguoiKydientu;
+            
+            item.NgayKydientu = NgayKydientu;
+            
 	    
 		    item.Save(UserName);
 	    }
@@ -120,7 +132,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(int Id,string MaLuotkham,long IdBenhnhan,short? IdKhoa,int? IdNvien,DateTime? NgayThuchien,string GioThuchien,string DienBien,string XuTri,string DanhGia,bool? TthaiIn,DateTime NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua)
+	    public void Update(int Id,string MaLuotkham,long IdBenhnhan,short? IdKhoa,int? IdNvien,DateTime? NgayThuchien,string GioThuchien,string DienBien,string XuTri,string DanhGia,bool? TthaiIn,DateTime NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua,bool? TthaiKyso,string NguoiKyso,DateTime? NgayKyso,bool? TthaiKydientu,string NguoiKydientu,DateTime? NgayKydientu)
 	    {
 		    NoitruPhieuchamsoc item = new NoitruPhieuchamsoc();
 	        item.MarkOld();
@@ -155,6 +167,18 @@ namespace VMS.HIS.DAL
 			item.NgaySua = NgaySua;
 				
 			item.NguoiSua = NguoiSua;
+				
+			item.TthaiKyso = TthaiKyso;
+				
+			item.NguoiKyso = NguoiKyso;
+				
+			item.NgayKyso = NgayKyso;
+				
+			item.TthaiKydientu = TthaiKydientu;
+				
+			item.NguoiKydientu = NguoiKydientu;
+				
+			item.NgayKydientu = NgayKydientu;
 				
 	        item.Save(UserName);
 	    }
