@@ -1,0 +1,36 @@
+# Bỏ các thư mục build và IDE
+.vs/
+*.suo
+bin/
+obj/
+Debug/
+Release/
+TestResults/
+build/
+out/
+
+# Bỏ các file build và rác
+*.dll
+*.exe
+*.pdb
+*.cache
+*.application
+*.manifest
+*.user
+*.sdf
+*.dbmdl
+*.log
+*.tmp
+
+# Bỏ các file config phụ
+*.json
+*.xml
+*.xaml
+*.config
+*.db
+
+# Giữ lại file cần thiết
+!*.cs
+!*.resx
+!*.csproj
+!*.sln
