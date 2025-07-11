@@ -1,0 +1,7 @@
+C:\HIS_BVSG\Running\VMS.Emr.dll
+C:\HIS_BVSG\Running\VMS.Emr.pdb
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.Emr\VMS.Emr\obj\Debug\VMS.HIS.Bus.Emr.csproj.CoreCompileInputs.cache
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.Emr\VMS.Emr\obj\Debug\VMS.HIS.Bus.Emr.csproj.CopyComplete
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.Emr\VMS.Emr\obj\Debug\VMS.Emr.dll
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.Emr\VMS.Emr\obj\Debug\VMS.Emr.pdb
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.Emr\VMS.Emr\obj\Debug\VMS.HIS.Bus.Emr.csproj.AssemblyReference.cache
