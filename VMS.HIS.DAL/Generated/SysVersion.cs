@@ -142,7 +142,7 @@ namespace VMS.HIS.DAL
 				TableSchema.TableColumn colvarSFileName = new TableSchema.TableColumn(schema);
 				colvarSFileName.ColumnName = "sFileName";
 				colvarSFileName.DataType = DbType.String;
-				colvarSFileName.MaxLength = 50;
+				colvarSFileName.MaxLength = 255;
 				colvarSFileName.AutoIncrement = false;
 				colvarSFileName.IsNullable = false;
 				colvarSFileName.IsPrimaryKey = false;
@@ -155,7 +155,7 @@ namespace VMS.HIS.DAL
 				TableSchema.TableColumn colvarSRarFileName = new TableSchema.TableColumn(schema);
 				colvarSRarFileName.ColumnName = "sRarFileName";
 				colvarSRarFileName.DataType = DbType.String;
-				colvarSRarFileName.MaxLength = 50;
+				colvarSRarFileName.MaxLength = 255;
 				colvarSRarFileName.AutoIncrement = false;
 				colvarSRarFileName.IsNullable = true;
 				colvarSRarFileName.IsPrimaryKey = false;

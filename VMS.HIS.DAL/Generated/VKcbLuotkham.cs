@@ -873,6 +873,18 @@ namespace VMS.HIS.DAL{
                 
                 schema.Columns.Add(colvarCmt);
                 
+                TableSchema.TableColumn colvarPassPost = new TableSchema.TableColumn(schema);
+                colvarPassPost.ColumnName = "pass_post";
+                colvarPassPost.DataType = DbType.String;
+                colvarPassPost.MaxLength = 20;
+                colvarPassPost.AutoIncrement = false;
+                colvarPassPost.IsNullable = true;
+                colvarPassPost.IsPrimaryKey = false;
+                colvarPassPost.IsForeignKey = false;
+                colvarPassPost.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarPassPost);
+                
                 TableSchema.TableColumn colvarSttKham = new TableSchema.TableColumn(schema);
                 colvarSttKham.ColumnName = "stt_kham";
                 colvarSttKham.DataType = DbType.Int32;
@@ -2895,6 +2907,20 @@ namespace VMS.HIS.DAL{
             }
         }
 	      
+        [XmlAttribute("PassPost")]
+        [Bindable(true)]
+        public string PassPost 
+	    {
+		    get
+		    {
+			    return GetColumnValue<string>("pass_post");
+		    }
+            set 
+		    {
+			    SetColumnValue("pass_post", value);
+            }
+        }
+	      
         [XmlAttribute("SttKham")]
         [Bindable(true)]
         public int? SttKham 
@@ -4227,6 +4253,8 @@ namespace VMS.HIS.DAL{
             public static string Locked = @"Locked";
             
             public static string Cmt = @"CMT";
+            
+            public static string PassPost = @"pass_post";
             
             public static string SttKham = @"stt_kham";
             

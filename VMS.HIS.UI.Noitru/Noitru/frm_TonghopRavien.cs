@@ -24,7 +24,7 @@ using VNS.HIS.Classes;
 using SubSonic.Sugar;
 using System.Drawing;
 using VMS.HIS.Danhmuc;
-using VNS.HIS.UI.BA;
+using VMS.HIS.UI.EMR;
 
 namespace VNS.HIS.UI.NOITRU
 {

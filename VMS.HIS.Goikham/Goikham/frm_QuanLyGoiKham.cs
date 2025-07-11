@@ -2445,9 +2445,9 @@ namespace VNS.HIS.UI.GOIKHAM
                 if (kieuthanhtoan == 0)
                 {
                     if (chkIntonghop.Visible && chkIntonghop.Checked)
-                        new INPHIEU_THANHTOAN_NGOAITRU().InBienlai(true, _Payment_ID, objLuotkham, 0);
+                        new INPHIEU_THANHTOAN_NGOAITRU().InBienlai(true, _Payment_ID,-1, objLuotkham, 0);
                     else
-                        new INPHIEU_THANHTOAN_NGOAITRU().InBienlai(false, _Payment_ID, objLuotkham, 0);
+                        new INPHIEU_THANHTOAN_NGOAITRU().InBienlai(false, _Payment_ID,-1, objLuotkham, 0);
                 }
                 else//Phiếu chi
                 {
@@ -2455,7 +2455,7 @@ namespace VNS.HIS.UI.GOIKHAM
                     if (ttoan_thuoc == 0)
                         new INPHIEU_THANHTOAN_NGOAITRU().InBienlaiPhieuChi(chkIntonghop.Visible && chkIntonghop.Checked, _Payment_ID, objLuotkham, objKcbThanhtoan.NoiTru);
                     else
-                        new INPHIEU_THANHTOAN_NGOAITRU().InBienlaiPhieuChiTralaiThuoc(false, _Payment_ID, objLuotkham, objKcbThanhtoan.NoiTru);
+                        new INPHIEU_THANHTOAN_NGOAITRU().InBienlaiPhieuChiTralaiThuoc(false, _Payment_ID,-1, objLuotkham, objKcbThanhtoan.NoiTru);
                 }
 
             }
@@ -2905,7 +2905,7 @@ namespace VNS.HIS.UI.GOIKHAM
             try
             {
                 int _Payment_ID = Utility.Int32Dbnull(grdPayment.GetValue(KcbThanhtoan.Columns.IdThanhtoan), -1);
-                new INPHIEU_THANHTOAN_NGOAITRU().InHoaDon_BanHang(_Payment_ID,Utility.ByteDbnull( objLuotkham.TrangthaiNoitru > 0 ? 1 : 0));
+                new INPHIEU_THANHTOAN_NGOAITRU().InHoaDon_BanHang(_Payment_ID,-1,Utility.ByteDbnull( objLuotkham.TrangthaiNoitru > 0 ? 1 : 0));
             }
             catch (Exception ex)
             {

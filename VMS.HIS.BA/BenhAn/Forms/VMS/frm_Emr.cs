@@ -27,7 +27,7 @@ using System.Drawing;
 using Aspose.Words.MailMerging;
 using BarcodeLib;
 
-namespace VNS.HIS.UI.BA
+namespace VNS.HIS.UI.EMR
 {
     public partial class frm_Emr : Form
     {
@@ -121,7 +121,7 @@ namespace VNS.HIS.UI.BA
 
 
         }
-        void SearchWhenKeyDown()
+        void SearchWhenKeyDown(KeyEventArgs e)
         {
             try
             {
@@ -277,7 +277,7 @@ namespace VNS.HIS.UI.BA
                 EmrDocument objDoc = EmrDocument.FetchByID(Utility.Int64Dbnull(currRow.Cells[EmrDocument.Columns.IdFile].Value));
                 if (objDoc != null)
                 {
-                    IdPhieu = objDoc.IdPhieu;// Utility.Int64Dbnull(currRow.Cells[EmrDocument.Columns.IdPhieu].Value);
+                    IdPhieu = Utility.Int64Dbnull(objDoc.IdPhieu);// Utility.Int64Dbnull(currRow.Cells[EmrDocument.Columns.IdPhieu].Value);
                     loaiphieuhis = objDoc.LoaiPhieuHis;
                     reportcode = objDoc.ReportCode;
                 }
@@ -2047,7 +2047,7 @@ namespace VNS.HIS.UI.BA
             EmrDocument objDoc = EmrDocument.FetchByID(Utility.Int64Dbnull(currRow.Cells[EmrDocument.Columns.IdFile].Value));
             if (objDoc != null)
             {
-                IdPhieu = objDoc.IdPhieu;// Utility.Int64Dbnull(currRow.Cells[EmrDocument.Columns.IdPhieu].Value);
+                IdPhieu = Utility.Int64Dbnull(objDoc.IdPhieu);// Utility.Int64Dbnull(currRow.Cells[EmrDocument.Columns.IdPhieu].Value);
                 loaiphieuhis = objDoc.LoaiPhieuHis;
                 reportcode = objDoc.ReportCode;
             }
@@ -2541,7 +2541,7 @@ namespace VNS.HIS.UI.BA
         #region Tab danh sách người bệnh
         public string MaLuotkham = "";
         public string HovaTen = "";
-        public long IdBenhnhan = -1;
+        public int IdBenhnhan = -1;
         int id_doituongkcb = -1;
         public bool has_Cancel = true;
         public int DepartmentId = -1;

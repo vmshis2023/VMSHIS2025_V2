@@ -794,6 +794,7 @@ namespace VNS.Libs
         PhieuXuatHaophi = 19,//Tủ trực trả thuốc về kho nội trú -
          PhieuXuatNgoai = 20//Xuất đặc biệt- xuất ngoài, ví dụ điều chuyển thuốc tới 1 kho ở chi nhánh khác hoặc BV khác,...
     } ;
+    
     public enum TonghopStatus
     {
         TongHopKhoaDieuTri = 1,
@@ -1063,7 +1064,8 @@ namespace VNS.Libs
         Start=33,
         Begin=34,
         Download=35,
-        Upload = 36
+        Upload = 36,
+        Copy=37
     };
 
     public enum actionExamPres
@@ -1071,7 +1073,7 @@ namespace VNS.Libs
         PresExam = 1,
         PresNoExam = 2
     } ;
-
+   
     public enum ParamsPaymentType
     {
         RegExam = 1,
@@ -1140,7 +1142,292 @@ namespace VNS.Libs
     ///</summary>
     public class Utility
     {
-      
+        public static void SignDoc_File(Aspose.Words.Document doc, Aspose.Words.DocumentBuilder builder, string Signsize,bool SearchbyNguoiKy=false)
+        {
+            try
+            {
+              
+                if (globalVariables.dtSignInfor.Rows.Count > 0 && globalVariables.dtSignInfor.Columns.Count > 0)//Tìm các vùng chữ kí để đưa ảnh vào
+                {
+                    string[] remaining = doc.MailMerge.GetFieldNames();
+                    globalVariables.lstVitriky = GetDictionaryFromDataTable();
+                    if (remaining.Length > 0)
+                    {
+                        if (SearchbyNguoiKy)//Tìm theo người kí. Áp dụng đối với Tờ điều trị chung
+                        {
+                            foreach (var name in remaining)
+                            {
+
+                                string _defaultSign = string.Format(@"{0}\{1}\default.png", Application.StartupPath, "sign");
+                                string _signFile = string.Format(@"{0}\{1}\{2}.PNG", Application.StartupPath, "sign", name);
+                                byte[] _sign = null;
+                                if (File.Exists(_signFile))
+                                {
+                                    _sign = Utility.fromimagepath2byte(_signFile);
+                                }
+                                else
+                                {
+                                    if (File.Exists(_defaultSign))
+                                        _sign = Utility.fromimagepath2byte(_defaultSign);
+                                }
+
+                                if (builder.MoveToMergeField(name))
+                                {
+                                    //Chèn 2 cái này mục đích đánh dấu vị trí chữ ký phục vụ công tác di chuyển con trỏ đến sau khi ký (nếu muốn)
+                                    builder.StartBookmark(name);
+                                    builder.EndBookmark(name);
+                                    if (_sign != null)
+                                    {
+                                        if (Signsize != "")
+                                        {
+                                            int w = Utility.Int32Dbnull(Signsize.Split('x')[0], 0);
+                                            int h = Utility.Int32Dbnull(Signsize.Split('x')[1], 0);
+                                            if (w > 0 && h > 0)
+                                                builder.InsertImage(_sign, w, h);
+                                            else
+                                                builder.InsertImage(_sign);
+                                        }
+                                        else
+                                            if (_sign != null)
+                                            builder.InsertImage(_sign);
+                                    }
+                                    //else//Không cần vì mergefield này ẩn
+                                    //    builder.InsertImage(NoImage, 10, 10);
+                                }
+                            }
+                        }
+                        else//Tìm kiếm theo tên vị trí ký, tại vị trí tìm được lấy ảnh theo user ký chèn vào đó
+                        {
+                            foreach (var name in remaining)
+                            {
+                                if (globalVariables.lstVitriky.ContainsKey(name))
+                                {
+                                    string _defaultSign = string.Format(@"{0}\{1}\default.png", Application.StartupPath, "sign");
+                                    string _signFile = string.Format(@"{0}\{1}\{2}.PNG", Application.StartupPath, "sign", globalVariables.lstVitriky[name]);
+                                    byte[] _sign = null;
+                                    if (File.Exists(_signFile))
+                                    {
+                                        _sign = Utility.fromimagepath2byte(_signFile);
+                                    }
+                                    else
+                                    {
+                                        if (File.Exists(_defaultSign))
+                                            _sign = Utility.fromimagepath2byte(_defaultSign);
+                                    }
+
+                                    if (builder.MoveToMergeField(name))
+                                    {
+                                        //Chèn 2 cái này mục đích đánh dấu vị trí chữ ký phục vụ công tác di chuyển con trỏ đến sau khi ký (nếu muốn)
+                                        builder.StartBookmark(name);
+                                        builder.EndBookmark(name);
+                                        if (_sign != null)
+                                        {
+                                            if (Signsize != "")
+                                            {
+                                                int w = Utility.Int32Dbnull(Signsize.Split('x')[0], 0);
+                                                int h = Utility.Int32Dbnull(Signsize.Split('x')[1], 0);
+                                                if (w > 0 && h > 0)
+                                                    builder.InsertImage(_sign, w, h);
+                                                else
+                                                    builder.InsertImage(_sign);
+                                            }
+                                            else
+                                                if (_sign != null)
+                                                builder.InsertImage(_sign);
+                                        }
+                                        //else//Không cần vì mergefield này ẩn
+                                        //    builder.InsertImage(NoImage, 10, 10);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+
+            }
+
+        }
+        public static void SignDoc(Aspose.Words.Document doc, Aspose.Words.DocumentBuilder builder, string Signsize, bool SearchbyNguoiKy = false)
+        {
+            try
+            {
+                DmucNhanvien objNhanvien;
+                if (globalVariables.dtSignInfor.Rows.Count > 0 && globalVariables.dtSignInfor.Columns.Count > 0)//Tìm các vùng chữ kí để đưa ảnh vào
+                {
+                    string[] remaining = doc.MailMerge.GetFieldNames();
+                    globalVariables.lstVitriky = GetDictionaryFromDataTable();
+                    if (remaining.Length > 0)
+                    {
+                        if (SearchbyNguoiKy)//Tìm theo người kí. Áp dụng đối với Tờ điều trị chung
+                        {
+                            foreach (var name in remaining)
+                            {
+                                objNhanvien = new Select().From(DmucNhanvien.Schema).Where(DmucNhanvien.Columns.UserName).IsEqualTo(name).ExecuteSingle<DmucNhanvien>();
+                                string _defaultSign = string.Format(@"{0}\{1}\default.png", Application.StartupPath, "sign");
+                                byte[] _sign = null;
+                                if (objNhanvien != null)
+                                {
+                                    _sign = objNhanvien.ChuKy;
+                                }
+                                else
+                                {
+                                    if (File.Exists(_defaultSign))
+                                        _sign = Utility.fromimagepath2byte(_defaultSign);
+                                }
+                                //Kiểm tra xem trạng thái ký
+
+                                var p = globalVariables.dtSignInfor.AsEnumerable().Where(c => Utility.ByteDbnull(c["tthai_ky"]) == 0 && Utility.sDbnull(c["nguoi_ky"]) == name ).FirstOrDefault();
+                                if (p != null)//Chưa ký trên tài liệu này
+                                    _sign = null;
+                                if (builder.MoveToMergeField(name))
+                                {
+                                    //Chèn 2 cái này mục đích đánh dấu vị trí chữ ký phục vụ công tác di chuyển con trỏ đến sau khi ký (nếu muốn)
+                                    builder.StartBookmark(name);
+                                    builder.EndBookmark(name);
+                                    if (_sign != null)
+                                    {
+                                        if (Signsize != "")
+                                        {
+                                            int w = Utility.Int32Dbnull(Signsize.Split('x')[0], 0);
+                                            int h = Utility.Int32Dbnull(Signsize.Split('x')[1], 0);
+                                            if (w > 0 && h > 0)
+                                                builder.InsertImage(_sign, w, h);
+                                            else
+                                                builder.InsertImage(_sign);
+                                        }
+                                        else
+                                            if (_sign != null)
+                                            builder.InsertImage(_sign);
+                                    }
+                                    //else//Không cần vì mergefield này ẩn
+                                    //    builder.InsertImage(NoImage, 10, 10);
+                                }
+                            }
+                        }
+                        else//Tìm kiếm theo tên vị trí ký, tại vị trí tìm được lấy ảnh theo user ký chèn vào đó
+                        {
+                            foreach (var name in remaining)
+                            {
+                                if (globalVariables.lstVitriky.ContainsKey(name))
+                                {
+                                    string nguoi_ky = globalVariables.lstVitriky[name];
+                                    string _defaultSign = string.Format(@"{0}\{1}\default.png", Application.StartupPath, "sign");
+                                    objNhanvien = new Select().From(DmucNhanvien.Schema).Where(DmucNhanvien.Columns.UserName).IsEqualTo(nguoi_ky).ExecuteSingle<DmucNhanvien>();
+                                    byte[] _sign = null;
+                                    if (objNhanvien != null)
+                                    {
+                                        _sign = objNhanvien.ChuKy;
+                                    }
+                                    else
+                                    {
+                                        if (File.Exists(_defaultSign))
+                                            _sign = Utility.fromimagepath2byte(_defaultSign);
+                                    }
+                                    //Kiểm tra xem trạng thái ký
+
+                                    var p = globalVariables.dtSignInfor.AsEnumerable().Where(c => Utility.ByteDbnull(c["tthai_ky"]) == 0 && Utility.sDbnull(c["nguoi_ky"]) == nguoi_ky && Utility.sDbnull(c["ten_vitri_ky"]) == name).FirstOrDefault();
+                                    if(p!=null)//Chưa ký trên tài liệu này
+                                        _sign = null;
+                                    if (builder.MoveToMergeField(name))
+                                    {
+                                        //Chèn 2 cái này mục đích đánh dấu vị trí chữ ký phục vụ công tác di chuyển con trỏ đến sau khi ký (nếu muốn)
+                                        builder.StartBookmark(name);
+                                        builder.EndBookmark(name);
+                                        if (_sign != null)
+                                        {
+                                            if (Signsize != "")
+                                            {
+                                                int w = Utility.Int32Dbnull(Signsize.Split('x')[0], 0);
+                                                int h = Utility.Int32Dbnull(Signsize.Split('x')[1], 0);
+                                                if (w > 0 && h > 0)
+                                                    builder.InsertImage(_sign, w, h);
+                                                else
+                                                    builder.InsertImage(_sign);
+                                            }
+                                            else
+                                                if (_sign != null)
+                                                builder.InsertImage(_sign);
+                                        }
+                                        //else//Không cần vì mergefield này ẩn
+                                        //    builder.InsertImage(NoImage, 10, 10);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+
+            }
+
+        }
+        public static Dictionary<string, string> GetDictionaryFromDataTable()
+        {
+            var dict = new Dictionary<string, string>();
+
+            foreach (DataRow row in globalVariables.dtSignInfor.Rows)
+            {
+                string key = row["ten_vitri_ky"].ToString();
+                string value = row["nguoi_ky"].ToString();
+
+                if (!dict.ContainsKey(key))
+                    dict.Add(key, value);
+            }
+
+            return dict;
+        }
+        public static void ScrollToImageAfterBookmark(DevExpress.XtraRichEdit.RichEditControl ctrl, string bookmarkName)
+        {
+            try
+            {
+                if (ctrl == null || string.IsNullOrEmpty(bookmarkName))
+                    return;
+
+                DevExpress.XtraRichEdit.API.Native.Document document = ctrl.Document;
+                DevExpress.XtraRichEdit.API.Native.Bookmark bookmark = document.Bookmarks[bookmarkName];
+
+                if (bookmark == null)
+                    return;
+
+                int bmStart = bookmark.Range.Start.ToInt();
+
+                foreach (DevExpress.XtraRichEdit.API.Native.DocumentImage img in document.Images)
+                {
+                    int imgStart = img.Range.Start.ToInt();
+
+                    if (imgStart >= bmStart)
+                    {
+                        document.CaretPosition = document.CreatePosition(imgStart);
+                        document.Selection = document.CreateRange(imgStart, img.Range.Length);
+                        ctrl.ScrollToCaret();
+                        break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+              
+            }
+           
+        }
         public static void OpenHelpFile(string helpfile)
         {
             try
@@ -2387,10 +2674,15 @@ namespace VNS.Libs
                         }
                     }
                 }
+                List<string> lstTest = new List<string>() { "p307_1", "p307_15", "p307_16" };
                 if (lstcheckboxfields != null && lstcheckboxfields.Count > 0)
                 {
                     foreach (string field in lstcheckboxfields)
                     {
+                        if(lstTest.Contains( field))
+                        {
+                            string s = "";
+                        }    
                         if (builder.MoveToMergeField(field))
                         {
                             if (drData.Table.Columns.Contains(field) &&  Byte2Bool(drData[field]))
@@ -2447,6 +2739,45 @@ namespace VNS.Libs
             catch (Exception)
             {
                 return null;
+            }
+        }
+        public static void ClearAllInputControls(Control parent)
+        {
+            foreach (Control control in parent.Controls)
+            {
+                switch (control)
+                {
+                    case EditBox ebox:
+                        ebox.Clear();
+                        break;
+                    case TextBox textBox:
+                        textBox.Clear();
+                        break;
+                    case RichTextBox richTextBox:
+                        richTextBox.Clear();
+                        break;
+                    case DateTimePicker dtp:
+                        dtp.Value = globalVariables.SysDate;
+                        break;
+                    case MaskedTextBox maskedTextBox:
+                        maskedTextBox.Clear();
+                        break;
+                    case ComboBox comboBox:
+                        comboBox.SelectedIndex = -1;
+                        break;
+                    case CheckBox checkBox:
+                        checkBox.Checked = false;
+                        break;
+                    case RadioButton radioButton:
+                        radioButton.Checked = false;
+                        break;
+                }
+
+                // Đệ quy nếu control có chứa con
+                if (control.HasChildren)
+                {
+                    ClearAllInputControls(control);
+                }
             }
         }
         public static void CatchException(Exception ex)
@@ -3857,7 +4188,18 @@ namespace VNS.Libs
             }
             return reval;
         }
+        public static bool isValidSignStatus4UpdateDelete(KcbLuotkham objLuotkham, long id_phieu, string loaiphieuhis, string tenloaiphieu)
+        {
+            DataTable dtCheckSignStatus = SPs.EmrLaythongtinTrangthaikyTrenphieu(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, id_phieu, loaiphieuhis, 100).GetDataSet().Tables[0];
+            if (dtCheckSignStatus.Select("tthai_ky=1 or tthai_ky=true").Length>0)
+            {
+                Utility.ShowMsg(string.Format("{0} đã được ký nên không cho phép cập nhật-xóa.", tenloaiphieu));
+                //Xem chi tiết trạng thái ký các tờ trong bệnh án 
+                return false;
+            }
+            return true;
 
+        }
         /// <summary>
         /// HAM THỰC HIỆN HIÊN THỊ LABLEL
         /// </summary>
@@ -5561,6 +5903,7 @@ namespace VNS.Libs
         {
             return "{0:#,#}";
         }
+       
         ///<summary>
         ///<para>Xử lý một Object nếu là null thì trả về giá trị truyền vào</para>
         ///</summary>   
@@ -5767,6 +6110,8 @@ namespace VNS.Libs
         {
             try
             {
+                string mergeFields = AppDomain.CurrentDomain.BaseDirectory + "MergeFields\\";
+                if (!Directory.Exists(mergeFields)) Directory.CreateDirectory(mergeFields);
                 string fields = "";
                 string values = "";
                 foreach (DataColumn col in dt.Columns)
@@ -9618,6 +9963,27 @@ namespace VNS.Libs
             str += Strings.Right("0" + dt.Month.ToString(), 2);
             str += " Năm ";
             str += dt.Year;
+            return str;
+        }
+        public static string FormatDateTime(DateTime? dt)
+        {
+            string str = "Ngày ";
+            str += Strings.Right("0" + dt.Value.Day.ToString(), 2);
+            str += " Tháng ";
+            str += Strings.Right("0" + dt.Value.Month.ToString(), 2);
+            str += " Năm ";
+            str += dt.Value.Year;
+            return str;
+        }
+        public static string FormatDateTime(DateTime? dt, string defaultVal)
+        {
+            if (!dt.HasValue) return defaultVal;
+            string str = "Ngày ";
+            str += Strings.Right("0" + dt.Value.Day.ToString(), 2);
+            str += " Tháng ";
+            str += Strings.Right("0" + dt.Value.Month.ToString(), 2);
+            str += " Năm ";
+            str += dt.Value.Year;
             return str;
         }
         public static string FormatDateTime(string ddMMyyyy,string defaultVal)
@@ -14715,10 +15081,12 @@ namespace VNS.Libs
                     dr[dataValueField] = -1;
                     dt.Rows.InsertAt(dr, 0);
                 }
+                objCombobox.BindingContext = new BindingContext();
                 objCombobox.DataSource = dt;
                 objCombobox.ValueMember = dataValueField;
                 objCombobox.DisplayMember = dataTextField;
                 if (objCombobox.Items.Count > 0) objCombobox.SelectedIndex = 0;
+                objCombobox.Invalidate();
             }
             catch
             {
@@ -14773,12 +15141,13 @@ namespace VNS.Libs
         {
             DataTable dt = new DataTable();
             dt = (DataTable)data;
-
+            objCombobox.BindingContext = new BindingContext();
             objCombobox.DataSource = dt;
             objCombobox.ValueMember = dataValueField;
             objCombobox.DisplayMember = dataTextField;
             if (objCombobox.Items.Count > 0) objCombobox.SelectedIndex = 0;
             else objCombobox.SelectedIndex = -1;
+            objCombobox.SelectionLength = 0;
         }
 
         public static void BindDataCombox_CheckItem(Janus.Windows.EditControls.UIComboBox objCombobox, object data,

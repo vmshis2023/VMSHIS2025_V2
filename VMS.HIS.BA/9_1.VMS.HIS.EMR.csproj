@@ -1,0 +1,918 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0FB2FDA1-6238-415D-AFA9-ACCA3094C1D1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VMS.HIS.EMR</RootNamespace>
+    <AssemblyName>VMS.HIS.EMR</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>C:\HIS_BVSG\Running\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Running\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Aspose.Words, Version=16.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Running_QLPKEBM\Aspose.Words.dll</HintPath>
+    </Reference>
+    <Reference Include="BarcodeLib, Version=1.3.0.0, Culture=neutral, PublicKeyToken=5f09bda868cc39e7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\HIS_BVSG\Running\BarcodeLib.dll</HintPath>
+    </Reference>
+    <Reference Include="BarcodeLibs, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\HIS_BVSG\Running\BarcodeLibs.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\HIS_BVSG\Running\DevExpress\DevExpress.Data.v17.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Office.v17.2.Core, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\HIS_BVSG\Running\DevExpress\DevExpress.Office.v17.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Pdf.v17.2.Core, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\HIS_BVSG\Running\DevExpress\DevExpress.Pdf.v17.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Pdf.v17.2.Drawing, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\HIS_BVSG\Running\DevExpress\DevExpress.Pdf.v17.2.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v17.2.Core, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\HIS_BVSG\Running\DevExpress\DevExpress.RichEdit.v17.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v17.2.Export, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\HIS_BVSG\Running\DevExpress\DevExpress.RichEdit.v17.2.Export.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\HIS_BVSG\Running\DevExpress\DevExpress.Utils.v17.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v17.2.UI, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\HIS_BVSG\Running\DevExpress\DevExpress.Utils.v17.2.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\HIS_BVSG\Running\DevExpress\DevExpress.XtraBars.v17.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\HIS_BVSG\Running\DevExpress\DevExpress.XtraEditors.v17.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraPdfViewer.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\HIS_BVSG\Running\DevExpress\DevExpress.XtraPdfViewer.v17.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraRichEdit.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\HIS_BVSG\Running\DevExpress\DevExpress.XtraRichEdit.v17.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraRichEdit.v17.2.Extensions">
+      <HintPath>C:\HIS_BVSG\Running\DevExpress\DevExpress.XtraRichEdit.v17.2.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Data.v3, Version=3.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Running_QLPKEBM\Janus.Data.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.ButtonBar.v3, Version=3.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Running_QLPKEBM\Janus.Windows.ButtonBar.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.CalendarCombo.v3">
+      <HintPath>..\..\Running\Janus.Windows.CalendarCombo.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.Common.v3">
+      <HintPath>..\..\Running\Janus.Windows.Common.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.GridEX.v3">
+      <HintPath>..\..\Running\Janus.Windows.GridEX.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.Ribbon.v3, Version=3.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\HIS_BVSG\Running\Janus.Windows.Ribbon.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.UI.v3">
+      <HintPath>..\..\Running\Janus.Windows.UI.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>C:\HIS_BVSG\Running\Microsoft.Office.Interop.Word.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="NLog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\HIS_BVSG\Running\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="SubSonic">
+      <HintPath>..\..\Running\SubSonic.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\EmrUtils.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_Chandoan_Sankhoa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_Chandoan_Sankhoa.Designer.cs">
+      <DependentUpon>frm_Chandoan_Sankhoa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_giayxacnhan_nghiduongthai.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_giayxacnhan_nghiduongthai.Designer.cs">
+      <DependentUpon>frm_giayxacnhan_nghiduongthai.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_giayxacnhan_nguoimekhongdusuckhoe_chamsoccon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_giayxacnhan_nguoimekhongdusuckhoe_chamsoccon.Designer.cs">
+      <DependentUpon>frm_giayxacnhan_nguoimekhongdusuckhoe_chamsoccon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_giayxacnhan_quatrinhdieutrinoitru.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_giayxacnhan_quatrinhdieutrinoitru.Designer.cs">
+      <DependentUpon>frm_giayxacnhan_quatrinhdieutrinoitru.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_khamIVF_vo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_khamIVF_vo.Designer.cs">
+      <DependentUpon>frm_khamIVF_vo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_khamIVF_chong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_khamIVF_chong.Designer.cs">
+      <DependentUpon>frm_khamIVF_chong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_khamNamkhoa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_khamNamkhoa.Designer.cs">
+      <DependentUpon>frm_khamNamkhoa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_QuanlyGiayxacnhan_quatrinhdieutrinoitru.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_QuanlyGiayxacnhan_quatrinhdieutrinoitru.Designer.cs">
+      <DependentUpon>frm_QuanlyGiayxacnhan_quatrinhdieutrinoitru.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_QuanlyGiayxacnhan_nguoimekhongdusuckhoe_chamsoccon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_QuanlyGiayxacnhan_nguoimekhongdusuckhoe_chamsoccon.Designer.cs">
+      <DependentUpon>frm_QuanlyGiayxacnhan_nguoimekhongdusuckhoe_chamsoccon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_QuanlyGiayxacnhan_nghiduongthai.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_QuanlyGiayxacnhan_nghiduongthai.Designer.cs">
+      <DependentUpon>frm_QuanlyGiayxacnhan_nghiduongthai.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_QuanlyGiayxacnhanquatrinhdieutrivosinh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_QuanlyGiayxacnhanquatrinhdieutrivosinh.Designer.cs">
+      <DependentUpon>frm_QuanlyGiayxacnhanquatrinhdieutrivosinh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_QuanlyGiaychungnhanTainanThuongtich.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_QuanlyGiaychungnhanTainanThuongtich.Designer.cs">
+      <DependentUpon>frm_QuanlyGiaychungnhanTainanThuongtich.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_giayxacnhanquatrinhdieutrivosinh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_giayxacnhanquatrinhdieutrivosinh.Designer.cs">
+      <DependentUpon>frm_giayxacnhanquatrinhdieutrivosinh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_KCBCoban.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_KCBCoban.Designer.cs">
+      <DependentUpon>frm_KCBCoban.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_khamNhikhoa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_khamNhikhoa.Designer.cs">
+      <DependentUpon>frm_khamNhikhoa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_khamnoikhoa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_khamnoikhoa.Designer.cs">
+      <DependentUpon>frm_khamnoikhoa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_khamPhukhoa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_khamPhukhoa.Designer.cs">
+      <DependentUpon>frm_khamPhukhoa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_khamSanKhoa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_khamSanKhoa.Designer.cs">
+      <DependentUpon>frm_khamSanKhoa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_Phieukhamtienme.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_Phieukhamtienme.Designer.cs">
+      <DependentUpon>frm_Phieukhamtienme.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_QuanlyPhieukhamthai.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_QuanlyPhieukhamthai.Designer.cs">
+      <DependentUpon>frm_QuanlyPhieukhamthai.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_QuanlyTomtatBA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_QuanlyTomtatBA.Designer.cs">
+      <DependentUpon>frm_QuanlyTomtatBA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_giaychungnhan_tainanthuongtich.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_giaychungnhan_tainanthuongtich.Designer.cs">
+      <DependentUpon>frm_giaychungnhan_tainanthuongtich.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_QuatrinhThaiky.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_QuatrinhThaiky.Designer.cs">
+      <DependentUpon>frm_QuatrinhThaiky.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_ThemPhieukhamthai.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_ThemPhieukhamthai.Designer.cs">
+      <DependentUpon>frm_ThemPhieukhamthai.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_ThemtiensuSankhoa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_ThemtiensuSankhoa.Designer.cs">
+      <DependentUpon>frm_ThemtiensuSankhoa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_Tiensubenh_Cacdacdiemlienquan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_Tiensubenh_Cacdacdiemlienquan.Designer.cs">
+      <DependentUpon>frm_Tiensubenh_Cacdacdiemlienquan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_theodoitaibuongde.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_theodoitaibuongde.Designer.cs">
+      <DependentUpon>frm_theodoitaibuongde.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_TiensuSanphukhoa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_TiensuSanphukhoa.Designer.cs">
+      <DependentUpon>frm_TiensuSanphukhoa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_TomtatBA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_TomtatBA.Designer.cs">
+      <DependentUpon>frm_TomtatBA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\Ucs\ucNguoiKy.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\Ucs\ucNguoiKy.Designer.cs">
+      <DependentUpon>ucNguoiKy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\Ucs\uc_chandoan_sankhoa.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\Ucs\uc_chandoan_sankhoa.Designer.cs">
+      <DependentUpon>uc_chandoan_sankhoa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\Ucs\uc_tt25_giayxacnhan_quatrinhdieutrinoitru.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\Ucs\uc_tt25_giayxacnhan_quatrinhdieutrinoitru.Designer.cs">
+      <DependentUpon>uc_tt25_giayxacnhan_quatrinhdieutrinoitru.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\Ucs\uc_tt25_giayxacnhanquatrinhdieutrivosinh.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\Ucs\uc_tt25_giayxacnhanquatrinhdieutrivosinh.Designer.cs">
+      <DependentUpon>uc_tt25_giayxacnhanquatrinhdieutrivosinh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\Ucs\uc_tt25_giayxacnhan_nghiduongthai.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\Ucs\uc_tt25_giayxacnhan_nghiduongthai.Designer.cs">
+      <DependentUpon>uc_tt25_giayxacnhan_nghiduongthai.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\Ucs\uc_tt25_giayxacnhan_nguoimekhongdusuckhoe_chamsoccon.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\Ucs\uc_tt25_giayxacnhan_nguoimekhongdusuckhoe_chamsoccon.Designer.cs">
+      <DependentUpon>uc_tt25_giayxacnhan_nguoimekhongdusuckhoe_chamsoccon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\Ucs\uc_giaychungnhanthuongtich.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\Ucs\uc_giaychungnhanthuongtich.Designer.cs">
+      <DependentUpon>uc_giaychungnhanthuongtich.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\Ucs\uc_quatrinh_thaiky.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\Ucs\uc_quatrinh_thaiky.Designer.cs">
+      <DependentUpon>uc_quatrinh_thaiky.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\Ucs\uc_theodoitaibuongde.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\Ucs\uc_theodoitaibuongde.Designer.cs">
+      <DependentUpon>uc_theodoitaibuongde.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\Ucs\uc_tiensubenh_cacdacdiemlienquan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\Ucs\uc_tiensubenh_cacdacdiemlienquan.Designer.cs">
+      <DependentUpon>uc_tiensubenh_cacdacdiemlienquan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\Ucs\uc_tiensusankhoa.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\Ucs\uc_tiensusankhoa.Designer.cs">
+      <DependentUpon>uc_tiensusankhoa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\Ucs\uc_tiensusanphukhoa.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\Ucs\uc_tiensusanphukhoa.Designer.cs">
+      <DependentUpon>uc_tiensusanphukhoa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frm_BenhAn_NgoaiTru.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frm_BenhAn_NgoaiTru.Designer.cs">
+      <DependentUpon>frm_BenhAn_NgoaiTru.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frm_BenhAn_NgoaiKhoa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frm_BenhAn_NgoaiKhoa.Designer.cs">
+      <DependentUpon>frm_BenhAn_NgoaiKhoa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frm_BenhAn_NamKhoa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frm_BenhAn_NamKhoa.Designer.cs">
+      <DependentUpon>frm_BenhAn_NamKhoa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frm_BenhAn_SanKhoa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frm_BenhAn_SanKhoa.Designer.cs">
+      <DependentUpon>frm_BenhAn_SanKhoa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frm_BenhAn_PhuKhoa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frm_BenhAn_PhuKhoa.Designer.cs">
+      <DependentUpon>frm_BenhAn_PhuKhoa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frm_BenhAn_NoiKhoa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frm_BenhAn_NoiKhoa.Designer.cs">
+      <DependentUpon>frm_BenhAn_NoiKhoa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frm_capnhat_gayEmr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frm_capnhat_gayEmr.designer.cs">
+      <DependentUpon>frm_capnhat_gayEmr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frm_dmuc_gay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frm_dmuc_gay.Designer.cs">
+      <DependentUpon>frm_dmuc_gay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frm_Emr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frm_Emr.Designer.cs">
+      <DependentUpon>frm_Emr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frm_emrfile_attatchments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frm_emrfile_attatchments.designer.cs">
+      <DependentUpon>frm_emrfile_attatchments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frm_QuanlyBA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frm_QuanlyBA.Designer.cs">
+      <DependentUpon>frm_QuanlyBA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\frm_Chandoan_Sankhoa.resx">
+      <DependentUpon>frm_Chandoan_Sankhoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\frm_giayxacnhan_nghiduongthai.resx">
+      <DependentUpon>frm_giayxacnhan_nghiduongthai.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\frm_giayxacnhan_nguoimekhongdusuckhoe_chamsoccon.resx">
+      <DependentUpon>frm_giayxacnhan_nguoimekhongdusuckhoe_chamsoccon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\frm_giayxacnhan_quatrinhdieutrinoitru.resx">
+      <DependentUpon>frm_giayxacnhan_quatrinhdieutrinoitru.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\frm_khamIVF_vo.resx">
+      <DependentUpon>frm_khamIVF_vo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\frm_khamIVF_chong.resx">
+      <DependentUpon>frm_khamIVF_chong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\frm_khamNamkhoa.resx">
+      <DependentUpon>frm_khamNamkhoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\frm_QuanlyGiayxacnhan_quatrinhdieutrinoitru.resx">
+      <DependentUpon>frm_QuanlyGiayxacnhan_quatrinhdieutrinoitru.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\frm_QuanlyGiayxacnhan_nguoimekhongdusuckhoe_chamsoccon.resx">
+      <DependentUpon>frm_QuanlyGiayxacnhan_nguoimekhongdusuckhoe_chamsoccon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\frm_QuanlyGiayxacnhan_nghiduongthai.resx">
+      <DependentUpon>frm_QuanlyGiayxacnhan_nghiduongthai.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\frm_QuanlyGiayxacnhanquatrinhdieutrivosinh.resx">
+      <DependentUpon>frm_QuanlyGiayxacnhanquatrinhdieutrivosinh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\frm_QuanlyGiaychungnhanTainanThuongtich.resx">
+      <DependentUpon>frm_QuanlyGiaychungnhanTainanThuongtich.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\frm_giayxacnhanquatrinhdieutrivosinh.resx">
+      <DependentUpon>frm_giayxacnhanquatrinhdieutrivosinh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\frm_KCBCoban.resx">
+      <DependentUpon>frm_KCBCoban.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\frm_khamNhikhoa.resx">
+      <DependentUpon>frm_khamNhikhoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\frm_khamnoikhoa.resx">
+      <DependentUpon>frm_khamnoikhoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\frm_khamPhukhoa.resx">
+      <DependentUpon>frm_khamPhukhoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\frm_khamSanKhoa.resx">
+      <DependentUpon>frm_khamSanKhoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\frm_Phieukhamtienme.resx">
+      <DependentUpon>frm_Phieukhamtienme.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\frm_QuanlyPhieukhamthai.resx">
+      <DependentUpon>frm_QuanlyPhieukhamthai.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\frm_QuanlyTomtatBA.resx">
+      <DependentUpon>frm_QuanlyTomtatBA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\frm_giaychungnhan_tainanthuongtich.resx">
+      <DependentUpon>frm_giaychungnhan_tainanthuongtich.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\frm_QuatrinhThaiky.resx">
+      <DependentUpon>frm_QuatrinhThaiky.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\frm_ThemPhieukhamthai.resx">
+      <DependentUpon>frm_ThemPhieukhamthai.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\frm_ThemtiensuSankhoa.resx">
+      <DependentUpon>frm_ThemtiensuSankhoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\frm_Tiensubenh_Cacdacdiemlienquan.resx">
+      <DependentUpon>frm_Tiensubenh_Cacdacdiemlienquan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\frm_theodoitaibuongde.resx">
+      <DependentUpon>frm_theodoitaibuongde.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\frm_TiensuSanphukhoa.resx">
+      <DependentUpon>frm_TiensuSanphukhoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\frm_TomtatBA.resx">
+      <DependentUpon>frm_TomtatBA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\Ucs\ucNguoiKy.resx">
+      <DependentUpon>ucNguoiKy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\Ucs\uc_chandoan_sankhoa.resx">
+      <DependentUpon>uc_chandoan_sankhoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\Ucs\uc_tt25_giayxacnhan_quatrinhdieutrinoitru.resx">
+      <DependentUpon>uc_tt25_giayxacnhan_quatrinhdieutrinoitru.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\Ucs\uc_tt25_giayxacnhanquatrinhdieutrivosinh.resx">
+      <DependentUpon>uc_tt25_giayxacnhanquatrinhdieutrivosinh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\Ucs\uc_tt25_giayxacnhan_nghiduongthai.resx">
+      <DependentUpon>uc_tt25_giayxacnhan_nghiduongthai.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\Ucs\uc_tt25_giayxacnhan_nguoimekhongdusuckhoe_chamsoccon.resx">
+      <DependentUpon>uc_tt25_giayxacnhan_nguoimekhongdusuckhoe_chamsoccon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\Ucs\uc_giaychungnhanthuongtich.resx">
+      <DependentUpon>uc_giaychungnhanthuongtich.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\Ucs\uc_quatrinh_thaiky.resx">
+      <DependentUpon>uc_quatrinh_thaiky.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\Ucs\uc_theodoitaibuongde.resx">
+      <DependentUpon>uc_theodoitaibuongde.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\Ucs\uc_tiensubenh_cacdacdiemlienquan.resx">
+      <DependentUpon>uc_tiensubenh_cacdacdiemlienquan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\Ucs\uc_tiensusankhoa.resx">
+      <DependentUpon>uc_tiensusankhoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\Ucs\uc_tiensusanphukhoa.resx">
+      <DependentUpon>uc_tiensusanphukhoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_BenhAn_NgoaiTru.resx">
+      <DependentUpon>frm_BenhAn_NgoaiTru.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_BenhAn_NgoaiKhoa.resx">
+      <DependentUpon>frm_BenhAn_NgoaiKhoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_BenhAn_NamKhoa.resx">
+      <DependentUpon>frm_BenhAn_NamKhoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_BenhAn_SanKhoa.resx">
+      <DependentUpon>frm_BenhAn_SanKhoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_BenhAn_PhuKhoa.resx">
+      <DependentUpon>frm_BenhAn_PhuKhoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_BenhAn_NoiKhoa.resx">
+      <DependentUpon>frm_BenhAn_NoiKhoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_capnhat_gayEmr.resx">
+      <DependentUpon>frm_capnhat_gayEmr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_dmuc_gay.resx">
+      <DependentUpon>frm_dmuc_gay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_Emr.resx">
+      <DependentUpon>frm_Emr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_emrfile_attatchments.resx">
+      <DependentUpon>frm_emrfile_attatchments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_QuanlyBA.resx">
+      <DependentUpon>frm_QuanlyBA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VMS.Emr\VMS.Emr\VMS.HIS.Bus.Emr.csproj">
+      <Project>{323d0245-5cd3-488a-8b83-edade85b3da4}</Project>
+      <Name>VMS.HIS.Bus.Emr</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VMS.Resources\4.VMS.Resources.csproj">
+      <Project>{496ccd74-1e0f-45c2-8e86-bf48b9926587}</Project>
+      <Name>4.VMS.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VMS.HIS.Danhmuc\5.VMS.HIS.Danhmuc.csproj">
+      <Project>{53b9a2e4-529a-4248-ad8d-cbed38ed9c46}</Project>
+      <Name>5.VMS.HIS.Danhmuc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VMS.HIS.Bus\3.VMS.HIS.Bus.csproj">
+      <Project>{a99e7072-450c-430d-ac3d-63cbb74c01ad}</Project>
+      <Name>3.VMS.HIS.Bus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VMS.HIS.DAL\1.VMS.HIS.Dal.csproj">
+      <Project>{cd0be8e8-b7d8-41ca-95f7-ea03675cfe0d}</Project>
+      <Name>1.VMS.HIS.Dal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VMS.HIS.Libs\2.VMS.HIS.Libs.csproj">
+      <Project>{0400ff7a-0d53-45aa-bbe5-09eedeb50d4e}</Project>
+      <Name>2.VMS.HIS.Libs</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\237510 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_01_24.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_04_32.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Add32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SUPPORT21.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_left_11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_left_11_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_left_16_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_left_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bed_no196.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bed_no24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bed_yes196.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BS_96.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BS_961.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BSNAM.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BSNU.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clock_196.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clock_20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clock_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clock_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\copy_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\direction_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_left_up1 - Copy %282%291.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_left_up1 - Copy %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\excel_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file_copy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FOLDER3.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FOLDERS.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GO_HOME.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HOME.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HOME_24.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Hospital_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hospital_241.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PADLOCKE1.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\option_check_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\option_uncheck_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\patient_color_24.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PEACE.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus_241.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus_243.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Print_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printer-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printer-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printtype1_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printtype1_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\QR.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\QR_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\QR_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh03_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\right_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SAVE.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SAVE %282%29.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SAVE_AS.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SAVE1.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SEARCH %282%29.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\STOP %282%29.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SUPPORT22.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tick2424.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TOOL.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trash-full_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_left_up1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Forms\backup_tachcacloaiphieu\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Edit1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EDIT2.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tick1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tick2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tick3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tick4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tick5.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

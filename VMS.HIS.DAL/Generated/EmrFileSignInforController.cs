@@ -80,17 +80,31 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(long FileId,string NguoiKy,string TenVitriKy,bool? TthaiKy)
+	    public void Insert(long? IdBenhnhan,string MaLuotkham,long? FileId,long? IdPhieu,string LoaiphieuCha,string LoaiphieuHis,string NguoiKy,DateTime? NgayKy,string TenVitriKy,bool? TthaiKy,bool? TthaiXoa)
 	    {
 		    EmrFileSignInfor item = new EmrFileSignInfor();
 		    
+            item.IdBenhnhan = IdBenhnhan;
+            
+            item.MaLuotkham = MaLuotkham;
+            
             item.FileId = FileId;
             
+            item.IdPhieu = IdPhieu;
+            
+            item.LoaiphieuCha = LoaiphieuCha;
+            
+            item.LoaiphieuHis = LoaiphieuHis;
+            
             item.NguoiKy = NguoiKy;
+            
+            item.NgayKy = NgayKy;
             
             item.TenVitriKy = TenVitriKy;
             
             item.TthaiKy = TthaiKy;
+            
+            item.TthaiXoa = TthaiXoa;
             
 	    
 		    item.Save(UserName);
@@ -100,7 +114,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(long Id,long FileId,string NguoiKy,string TenVitriKy,bool? TthaiKy)
+	    public void Update(long Id,long? IdBenhnhan,string MaLuotkham,long? FileId,long? IdPhieu,string LoaiphieuCha,string LoaiphieuHis,string NguoiKy,DateTime? NgayKy,string TenVitriKy,bool? TthaiKy,bool? TthaiXoa)
 	    {
 		    EmrFileSignInfor item = new EmrFileSignInfor();
 	        item.MarkOld();
@@ -108,13 +122,27 @@ namespace VMS.HIS.DAL
 		    
 			item.Id = Id;
 				
+			item.IdBenhnhan = IdBenhnhan;
+				
+			item.MaLuotkham = MaLuotkham;
+				
 			item.FileId = FileId;
 				
+			item.IdPhieu = IdPhieu;
+				
+			item.LoaiphieuCha = LoaiphieuCha;
+				
+			item.LoaiphieuHis = LoaiphieuHis;
+				
 			item.NguoiKy = NguoiKy;
+				
+			item.NgayKy = NgayKy;
 				
 			item.TenVitriKy = TenVitriKy;
 				
 			item.TthaiKy = TthaiKy;
+				
+			item.TthaiXoa = TthaiXoa;
 				
 	        item.Save(UserName);
 	    }

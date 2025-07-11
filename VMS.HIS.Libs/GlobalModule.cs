@@ -12,8 +12,22 @@ using NLog;
 
 namespace VNS.Libs
 {
+    public class LoaiBA
+    {
+        public const string BA_NOIKHOA = "01/BV1";
+        public const string BA_NHIKHOA = "02/BV1";
+        public const string BA_PHUKHOA = "04/BV1";
+        public const string BA_SANKHOA = "05/BV1";
+        public const string BA_SOSINH = "06/BV1";
+        public const string BA_NGOAIKHOA = "10/BV1";
+        public const string BA_NGOAITRU = "15/BV1";
+        public const string BA_NAMKHOA = "BANK";
+        public const string BA_IVF = "BAIVF";
+    }
     public class globalVariables
     {
+       
+
         // Ma danh muc dùng chung 
         public static string DC_DM_BENHAN = "DM_BA";
         public static string DC_NHOMIN_CLS = "NHOM_INPHIEU_CLS";
@@ -238,10 +252,12 @@ namespace VNS.Libs
         public static string gv_strNoiDKKCBBD = "065";
         public static string Branch_ID = "HIS";
         public static string gv_strNoicapBHYT = "01";
-
+        public static DataTable dtSignInfor = new DataTable();
+        public static Dictionary<string, string> lstVitriky = new Dictionary<string, string>();
         public static string GvStrTendoituongNoiTinhKcbbd = "A. BỆNH NHÂN NỘI TỈNH KCB BAN ĐẦU";
         public static string GvStrTendoituongNoitinhKhongKcbbd = "B. BỆNH NHÂN NỘI TỈNH ĐẾN";
         public static string GvStrTendoituongNgoaitinh = "C. BỆNH NHÂN NGOẠI TỈNH ĐẾN";
+        public static string NgayThangNam = "Ngày........tháng.........năm........";
         /// <summary>
         /// Tên đơn vị làm việc
         /// </summary>

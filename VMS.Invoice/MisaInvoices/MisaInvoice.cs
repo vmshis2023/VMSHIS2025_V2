@@ -451,7 +451,7 @@ namespace VMS.Invoice
             }
         }
 
-        public void xemtruoc_hoadon(BuyerInfor _buyer, ref string eMessage)
+        public void xemtruoc_hoadon_bak(BuyerInfor _buyer, ref string eMessage)
         {
             string tranSactionID = "";
             try
@@ -1638,7 +1638,7 @@ namespace VMS.Invoice
                 }
             }
         }
-        public bool phathanh_hoadon(BuyerInfor _buyer, ref string eMessage)
+        public bool phathanh_hoadon_bak(BuyerInfor _buyer, ref string eMessage)
         {
             string tranSactionID = "";
             int num = 0;
@@ -1969,6 +1969,492 @@ namespace VMS.Invoice
                     bool kt = tai_hoadon(tranSactionID, false, ref eMessageDownload);
                     log.Trace(eMessageDownload);
                 }
+            }
+        }
+        public bool phathanh_hoadon(BuyerInfor _buyer, ref string eMessage)
+        {
+            string tranSactionID = "";
+            int num = 0;
+            try
+            {
+                List<MisaPhatHanhHoaDon> lstDataSendInvoiceses = new List<MisaPhatHanhHoaDon>();
+
+                log.Trace("Bắt đầu tạo dữ liệu chi tiết cho hóa đơn cho người mua {0}, mặt hàng {1}", _buyer.BuyerFullName, _buyer.TenHangHoa);
+                // Tạo dữ liệu chi tiết hóa đơn 
+                var lstOriginalinvoicedetail = new List<Originalinvoicedetail>();
+                int idx = 1;
+                foreach (ItemInfor _itemInfor in _buyer.lstItems)
+                {
+                    Originalinvoicedetail item = new Originalinvoicedetail();
+                    item.ItemType = 1;
+                    item.LineNumber = 1;
+                    item.ItemCode = "";
+                    item.ItemName = _itemInfor.ten_hang;
+                    item.UnitName = _itemInfor.donvitinh;
+                    item.Quantity = _itemInfor.soluong;
+                    item.UnitPrice = _itemInfor.dongia;
+
+                    item.AmountOC = _itemInfor.thanhtien;
+                    item.Amount = _itemInfor.thanhtien;
+                    item.AmountWithoutVATOC = _itemInfor.thanhtien;
+                    item.AmountWithoutVAT = _itemInfor.thanhtien;
+                    // thông tin chiết khấu
+                    item.DiscountRate = 0;
+                    item.DiscountAmountOC = 0;
+                    item.DiscountAmount = 0;
+
+                    item.VATRateName = _itemInfor.VAT;// "KCT";// Utility.DoTrim( _buyer.VAT.Replace("%",""));
+                    item.AmountAfterTax = _itemInfor.tongtien;
+                    item.VATAmountOC = _itemInfor.tienVAT;
+                    item.VATAmount = _itemInfor.tienVAT;
+                    item.SortOrder = idx;
+                    idx++;
+                    lstOriginalinvoicedetail.Add(item);
+                }
+
+                // Tạo dữ liệu chi tiết VATRateName 
+                var lsttaxrateinfo = new List<Taxrateinfo>();
+
+                Taxrateinfo _Taxrateinfo = new Taxrateinfo();
+                _Taxrateinfo.VATRateName = _buyer.lstItems.FirstOrDefault().VAT.ToString();
+                _Taxrateinfo.AmountWithoutVATOC = _buyer.lstItems.Sum(c => c.thanhtien);//Tổng tiền hàng
+                _Taxrateinfo.VATAmountOC = _buyer.lstItems.Sum(c => c.tienVAT);//Tổng tiền thuế
+                lsttaxrateinfo.Add(_Taxrateinfo);
+
+                // Tạo dữ liệu chi tiết #OptionUserDefined  
+                var optionuserdefined = new Optionuserdefined();
+
+                optionuserdefined.MainCurrency = "VND";
+                optionuserdefined.AmountDecimalDigits = "0";
+                optionuserdefined.AmountOCDecimalDigits = "0";
+                optionuserdefined.UnitPriceOCDecimalDigits = "0";
+                optionuserdefined.UnitPriceDecimalDigits = "0";
+                optionuserdefined.QuantityDecimalDigits = "0";
+                optionuserdefined.CoefficientDecimalDigits = "0";
+                optionuserdefined.ExchangRateDecimalDigits = "0";
+                optionuserdefined.ClockDecimalDigits = "0";
+
+                log.Trace("Kết thúc tạo dữ liệu chi tiết hóa đơn");
+
+                MisaPhatHanhHoaDon objdataSendInvoices = new MisaPhatHanhHoaDon();
+                Orginvoicedata orginvoicedata = new Orginvoicedata();
+                CultureInfo cultures = new CultureInfo("en-US");
+                if (Utility.sDbnull(invInvoiceSeries, "") == "")
+                {
+
+                    eMessage = "Ký hiệu hóa đơn không được để trống";
+                    log.Trace(eMessage);
+                    return false;
+                }
+                orginvoicedata.RefID = Guid.NewGuid().ToString();
+                orginvoicedata.InvSeries = invInvoiceSeries;
+                log.Trace("inv_invoiceSeries: " + orginvoicedata.InvSeries);
+                orginvoicedata.InvoiceName = invoiceName;
+                // Convert.ToDateTime(dtThontin.Rows[0]["inv_invoiceIssuedDate"], cultures).ToString("yyyy-MM-dd");
+                orginvoicedata.InvDate = Convert.ToDateTime(DateTime.Now, cultures).ToString("yyyy-MM-dd");
+                orginvoicedata.CurrencyCode = "VND";
+                orginvoicedata.ExchangeRate = 1;
+                orginvoicedata.PaymentMethodName = "TM/CK";
+                //Thông tin khách hàng
+                orginvoicedata.ContactName = _buyer.BuyerFullName;
+                orginvoicedata.BuyerLegalName = _buyer.BuyerLegalName;
+                orginvoicedata.BuyerEmail = _buyer.BuyerEmail;
+                orginvoicedata.IsSendEmail = _buyer.IsSendEmail;
+                orginvoicedata.ReceiverEmail = _buyer.ReceiverEmail;
+                orginvoicedata.ReceiverName = _buyer.ReceiverName;
+                orginvoicedata.BuyerFullName = _buyer.BuyerFullName;
+                orginvoicedata.BuyerAddress = _buyer.BuyerAddress;
+                orginvoicedata.BuyerTaxCode = _buyer.BuyerTaxCode;
+                orginvoicedata.BuyerBankAccount = _buyer.BuyerBankAccount;
+                orginvoicedata.AccountObjectIdentificationNumber = _buyer.BuyerIDNumber;
+                //Thông tin tiền
+                orginvoicedata.TotalSaleAmountOC = _buyer.lstItems.Sum(c => c.thanhtien);//Tổng tiền hàng
+                orginvoicedata.TotalSaleAmount = _buyer.lstItems.Sum(c => c.thanhtien);//Tổng tiền hàng
+                orginvoicedata.TotalDiscountAmount = 0;
+                orginvoicedata.TotalDiscountAmountOC = 0;
+                orginvoicedata.TotalAmountWithoutVATOC = _buyer.lstItems.Sum(c => c.thanhtien);//thành tiền hàng
+                orginvoicedata.TotalAmountWithoutVAT = _buyer.lstItems.Sum(c => c.thanhtien);
+                orginvoicedata.TotalVATAmountOC = _buyer.lstItems.Sum(c => c.tienVAT);
+                orginvoicedata.TotalVATAmount = _buyer.lstItems.Sum(c => c.tienVAT);//Tiền thuế
+                orginvoicedata.TotalAmount = _buyer.lstItems.Sum(c => c.tongtien);
+                orginvoicedata.TotalAmountOC = _buyer.lstItems.Sum(c => c.tongtien);//Tổng tiền hàng
+                orginvoicedata.TotalAmountInWords = Utility.DocSoThanhChu(_buyer.lstItems.Sum(c => c.tongtien).ToString("####"));
+                orginvoicedata.OriginalInvoiceDetail = lstOriginalinvoicedetail;
+                orginvoicedata.IsTaxReduction43 = false;
+                orginvoicedata.CustomField1 = "";
+                orginvoicedata.TaxRateInfo = lsttaxrateinfo;
+                orginvoicedata.OptionUserDefined = optionuserdefined;
+                orginvoicedata.IsInvoiceCalculatingMachine = true;
+                // tạo ra object DataSendInvoices 
+                objdataSendInvoices.InvoiceData = new List<Orginvoicedata>() { orginvoicedata };
+                objdataSendInvoices.SignType = 2;
+
+                lstDataSendInvoiceses.Add(objdataSendInvoices);
+                string url = InvoiceServicesUrl + Utility.sDbnull(apiMisaPhathanh, "/api/MisaInvoice/phathanh_hoadon");
+                const string contentType = "application/json";
+                string sDataRequest = JsonConvert.SerializeObject(objdataSendInvoices);
+
+
+                log.Trace("sDataRequest:" + sDataRequest);
+                RaiseStatus(string.Format("Đang gửi lệnh phát hành hóa đơn. Vui lòng chờ..."), false);
+                string result = CreateRequest.WebRequest(url, sDataRequest, "", "POST", contentType);
+                if (result != null)
+                {
+                    log.Trace("result: " + result);
+
+                    string paymentid = "";
+                    var objKetquaHoadon = JsonConvert.DeserializeObject<MisaResponse>(result);
+                    if (objKetquaHoadon.Success)
+                    {
+                        var lstMinvoices =
+                            JsonConvert.DeserializeObject<List<ResponseMinvoices>>(objKetquaHoadon.Data.ToString());
+                        if (lstMinvoices.Count <= 0)
+                        {
+                            eMessage = "Không có dữ liệu hóa đơn trả về";
+                            RaiseStatus(eMessage, true);
+                            return false;
+                        }
+                        ResponseMinvoices objMinvoices = lstMinvoices[0];
+
+                        if (objMinvoices != null && Utility.sDbnull(objMinvoices.TransactionID, "") != "")
+                        {
+                            transaction_id = Utility.sDbnull(objMinvoices.TransactionID, "");
+                            RaiseStatus(string.Format("Đã phát hành thành công. Đang lưu trữ dữ liệu phát hành..."), false);
+                            using (var scope = new TransactionScope())
+                            {
+                                using (var sh = new SharedDbConnectionScope())
+                                {
+                                    tranSactionID = objMinvoices.TransactionID;
+
+
+                                    HoadonLog objhoalog = new HoadonLog();
+                                    objhoalog.IdThanhtoan = "-1";
+                                    objhoalog.TongTien = _buyer.ThanhtienDonhang;
+                                    objhoalog.IdBenhnhan = _buyer.Id_benhnhan;
+                                    objhoalog.MaLuotkham = _buyer.MaLuotkham;
+                                    objhoalog.MauHoadon = mauHd;
+                                    objhoalog.KiHieu = Utility.sDbnull(objMinvoices.InvSeries, invInvoiceSeries);
+                                    objhoalog.IdCapphat = -1;
+                                    objhoalog.MaQuyen = mauHd;
+                                    objhoalog.Serie = Utility.sDbnull(objMinvoices.InvNo);
+                                    objhoalog.MaNhanvien = globalVariables.UserName;
+                                    objhoalog.MaLydo = string.Empty;
+                                    objhoalog.NgayIn = THU_VIEN_CHUNG.GetSysDateTime();
+                                    objhoalog.NgayTao = DateTime.Now;
+                                    objhoalog.NgayHoadon = DateTime.Now;
+                                    objhoalog.NguoiTao = globalVariables.UserName;
+                                    objhoalog.IpMaytao = THU_VIEN_CHUNG.GetIP4Address();
+                                    objhoalog.MacMaytao = THU_VIEN_CHUNG.GetMACAddress();
+                                    objhoalog.DaGui = Utility.Bool2byte(true);
+                                    objhoalog.TrangThai = 0;
+                                    objhoalog.TthaiHuy = false;
+                                    objhoalog.QrDatacode = "";
+                                    objhoalog.TransactionId = objMinvoices.TransactionID;
+                                    objhoalog.InvInvoiceCodeId = objMinvoices.TransactionID;
+                                    objhoalog.Sobaomat = "";
+                                    objhoalog.LoaiXuathdon = 0;//0= phiếu thu;1= phiếu tạm ứng
+                                    objhoalog.RefID = objMinvoices.RefID;
+                                    objhoalog.InvInvoiceAuthId = objMinvoices.RefID;
+
+                                    objhoalog.BuyerTaxCode = orginvoicedata.BuyerTaxCode;
+                                    objhoalog.BuyerFullName = orginvoicedata.BuyerFullName;
+                                    objhoalog.BuyerLegalName = orginvoicedata.BuyerLegalName;
+                                    objhoalog.BuyerAddress = orginvoicedata.BuyerAddress;
+                                    objhoalog.BuyerEmail = orginvoicedata.BuyerEmail;
+                                    objhoalog.HoadonTaotay = true;
+
+                                    objhoalog.Save();
+
+                                    string sResult = string.Format("Xuất hóa đơn thành công cho các lần thanh toán {0} với serie {1}, mẫu hóa đơn {2}, tên mẫu {3}, transaction_id {4} và RefId {5}", objhoalog.IdThanhtoan, objhoalog.Serie, objhoalog.MauHoadon, invoiceName, objhoalog.TransactionId, objhoalog.RefID);
+                                    Utility.Log("MisaInvoice", globalVariables.UserName, sResult, newaction.Upload, "Service");
+                                    log.Trace(sResult);
+
+                                    //// lưu thông tin bảng data_ketqua 
+                                    DataKetqua objdatKetqua = new DataKetqua();
+                                    objdatKetqua.TransactionID = objMinvoices.TransactionID;
+                                    objdatKetqua.RefID = objMinvoices.RefID;
+                                    objdatKetqua.InvInvoiceAuthId = objMinvoices.RefID;
+                                    objdatKetqua.PaymentId = "-1";
+                                    objdatKetqua.InvInvoiceType = null;
+                                    objdatKetqua.InvInvoiceCodeId = objMinvoices.TransactionID;
+                                    objdatKetqua.InvInvoiceSeries = objMinvoices.InvSeries;
+                                    objdatKetqua.InvInvoiceNumber = Utility.sDbnull(objMinvoices.InvNo);
+                                    objdatKetqua.InvInvoiceName = invoiceName;
+                                    objdatKetqua.InvInvoiceIssuedDate = orginvoicedata.InvDate;
+                                    objdatKetqua.InvSubmittedDate = null;
+                                    objdatKetqua.InvContractNumber = null;
+                                    objdatKetqua.InvContractDate = null;
+                                    objdatKetqua.InvCurrencyCode = orginvoicedata.CurrencyCode;
+                                    objdatKetqua.InvExchangeRate = "1";
+                                    objdatKetqua.InvInvoiceNote = null;
+                                    objdatKetqua.InvAdjustmentType = "1";
+                                    objdatKetqua.InvOriginalInvoiceId = null;
+                                    objdatKetqua.InvAdditionalReferenceDes = null;
+                                    objdatKetqua.InvAdditionalReferenceDate = null;
+                                    objdatKetqua.InvBuyerDisplayName = orginvoicedata.ContactName;
+                                    objdatKetqua.MaDt = orginvoicedata.CustomField1;
+                                    objdatKetqua.InvBuyerLegalName = orginvoicedata.BuyerLegalName;
+                                    objdatKetqua.InvBuyerTaxCode = orginvoicedata.BuyerTaxCode;
+                                    objdatKetqua.InvBuyerAddressLine = orginvoicedata.BuyerAddress;
+                                    objdatKetqua.InvBuyerEmail = orginvoicedata.BuyerAddress;
+                                    objdatKetqua.InvBuyerBankAccount = "";
+                                    objdatKetqua.InvBuyerBankName = "";
+                                    objdatKetqua.InvPaymentMethodName = orginvoicedata.PaymentMethodName;
+                                    objdatKetqua.InvSellerBankAccount = null;
+                                    objdatKetqua.InvSellerBankName = null;
+                                    objdatKetqua.InvDiscountAmount = "";
+                                    objdatKetqua.TrangThai = null;
+                                    objdatKetqua.UserNew = null;
+                                    objdatKetqua.DateNew = null;
+                                    objdatKetqua.MaDvcs = null;
+                                    objdatKetqua.DatabaseCode = null;
+                                    objdatKetqua.MaCt = null;
+                                    objdatKetqua.SignedDate = null;
+                                    objdatKetqua.SubmittedDate = null;
+                                    objdatKetqua.MauHd = mauHd;
+                                    objdatKetqua.SoBenhAn = null;
+                                    objdatKetqua.Sovb = null;
+                                    objdatKetqua.Ngayvb = null;
+                                    objdatKetqua.GhiChu = null;
+                                    objdatKetqua.SoHdDc = null;
+                                    objdatKetqua.InvOriginalId = null;
+                                    objdatKetqua.Signature = null;
+                                    objdatKetqua.DieuTri = null;
+                                    objdatKetqua.Ma1 = null;
+                                    objdatKetqua.InvItemCode = null;
+                                    objdatKetqua.InvUnitCode = null;
+                                    objdatKetqua.InvUnitName = null;
+                                    objdatKetqua.InvUnitPrice = null;
+                                    objdatKetqua.InvQuantity = null;
+                                    objdatKetqua.InvTotalAmountWithoutVat =
+                                        orginvoicedata.TotalAmountWithoutVAT.ToString("N");
+                                    objdatKetqua.InvVatPercentage = null;
+                                    objdatKetqua.InvVatAmount = null;
+                                    objdatKetqua.InvTotalAmount = orginvoicedata.TotalAmount.ToString("N");
+                                    objdatKetqua.NguoiKy = null;
+                                    objdatKetqua.Sobaomat = null;
+                                    objdatKetqua.TrangThaiHd = null;
+                                    objdatKetqua.InChuyenDoi = null;
+                                    objdatKetqua.NgayKy = null;
+                                    objdatKetqua.NguoiInCdoi = null;
+                                    objdatKetqua.NgayInCdoi = null;
+                                    objdatKetqua.InvDeliveryOrderNumber = null;
+                                    objdatKetqua.InvDeliveryOrderDate = null;
+                                    objdatKetqua.InvDeliveryBy = null;
+                                    objdatKetqua.InvTransportationMethod = null;
+                                    objdatKetqua.InvFromWarehouseName = null;
+                                    objdatKetqua.InvToWarehouseName = null;
+                                    objdatKetqua.InvSobangke = null;
+                                    objdatKetqua.InvNgaybangke = null;
+                                    objdatKetqua.KeyApi = null;
+                                    objdatKetqua.Id = objMinvoices.RefID;
+                                    objdatKetqua.IsNew = true;
+                                    objdatKetqua.Save();
+
+                                    eMessage =
+                                        string.Format("Lấy hóa đơn thành công cho người mua: {0} với số hóa đơn là: {1}",
+                                            orginvoicedata.BuyerLegalName, objMinvoices.InvNo);
+                                }
+                                scope.Complete();
+                            }
+                            return true;
+                        }
+                        else
+                        {
+                            eMessage = result;
+                            RaiseStatus("Phát hành thành công nhưng Transaction=''-->Xem log để biết chi tiết bản tin bên HĐĐT trả về", true);
+                            log.Trace(eMessage);
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        eMessage = result;
+                        RaiseStatus(eMessage, true);
+                        log.Trace(eMessage);
+                        return false;
+                    }
+                }
+                else
+                {
+                    eMessage = "Không có dữ liệu để gửi hóa đơn";
+                    RaiseStatus(eMessage, true);
+                    return false;
+                }
+
+
+
+            }
+            catch (Exception ex)
+            {
+                RaiseStatus(ex.Message, true);
+                log.Trace(ex.Message);
+                Utility.ShowMsg(ex.Message);
+                return false;
+            }
+            finally
+            {
+                if (!string.IsNullOrEmpty(tranSactionID))
+                {
+                    string eMessageDownload = "";
+                    //bool thongbaomofile = THU_VIEN_CHUNG.Laygiatrithamsohethong("MISA_THONGBAOMOFILE", true) == "1";
+                    RaiseStatus(string.Format("Đang tải hóa đơn với mã: {0}", tranSactionID), false);
+                    bool kt = tai_hoadon(tranSactionID, false, ref eMessageDownload);
+                    log.Trace(eMessageDownload);
+                }
+            }
+        }
+        public void xemtruoc_hoadon(BuyerInfor _buyer, ref string eMessage)
+        {
+            string tranSactionID = "";
+            try
+            {
+
+                List<MisaPhatHanhHoaDon> lstDataSendInvoiceses = new List<MisaPhatHanhHoaDon>();
+
+                log.Trace("Bắt đầu tạo dữ liệu chi tiết cho hóa đơn cho người mua {0}, mặt hàng {1}", _buyer.BuyerFullName, _buyer.TenHangHoa);
+                // Tạo dữ liệu chi tiết hóa đơn 
+                var lstOriginalinvoicedetail = new List<Originalinvoicedetail>();
+
+                int idx = 1;
+                foreach (ItemInfor _itemInfor in _buyer.lstItems)
+                {
+                    Originalinvoicedetail item = new Originalinvoicedetail();
+                    item.ItemType = 1;
+                    item.LineNumber = 1;
+                    item.ItemCode = "";
+                    item.ItemName = _itemInfor.ten_hang;
+                    item.UnitName = _itemInfor.donvitinh;
+                    item.Quantity = _itemInfor.soluong;
+                    item.UnitPrice = _itemInfor.dongia;
+
+                    item.AmountOC = _itemInfor.thanhtien;
+                    item.Amount = _itemInfor.thanhtien;
+                    item.AmountWithoutVATOC = _itemInfor.thanhtien;
+                    item.AmountWithoutVAT = _itemInfor.thanhtien;
+                    // thông tin chiết khấu
+                    item.DiscountRate = 0;
+                    item.DiscountAmountOC = 0;
+                    item.DiscountAmount = 0;
+
+                    item.VATRateName = _itemInfor.VAT;
+                    item.AmountAfterTax = _itemInfor.tongtien;
+                    item.VATAmountOC = _itemInfor.tienVAT;
+                    item.VATAmount = _itemInfor.tienVAT;
+                    item.SortOrder = idx;
+                    idx++;
+                    lstOriginalinvoicedetail.Add(item);
+                }
+
+                // Tạo dữ liệu chi tiết VATRateName 
+                var lsttaxrateinfo = new List<Taxrateinfo>();
+
+                Taxrateinfo _Taxrateinfo = new Taxrateinfo();
+                _Taxrateinfo.VATRateName = _buyer.lstItems.FirstOrDefault().VAT.ToString();
+                _Taxrateinfo.AmountWithoutVATOC = _buyer.lstItems.Sum(c => c.thanhtien);//Tổng tiền hàng
+                _Taxrateinfo.VATAmountOC = _buyer.lstItems.Sum(c => c.tienVAT);//Tổng tiền thuế
+                lsttaxrateinfo.Add(_Taxrateinfo);
+
+                // Tạo dữ liệu chi tiết #OptionUserDefined  
+                var optionuserdefined = new Optionuserdefined();
+
+                optionuserdefined.MainCurrency = "VND";
+                optionuserdefined.AmountDecimalDigits = "0";
+                optionuserdefined.AmountOCDecimalDigits = "0";
+                optionuserdefined.UnitPriceOCDecimalDigits = "0";
+                optionuserdefined.UnitPriceDecimalDigits = "0";
+                optionuserdefined.QuantityDecimalDigits = "0";
+                optionuserdefined.CoefficientDecimalDigits = "0";
+                optionuserdefined.ExchangRateDecimalDigits = "0";
+                optionuserdefined.ClockDecimalDigits = "0";
+
+                log.Trace("Kết thúc tạo dữ liệu chi tiết hóa đơn");
+
+                MisaPhatHanhHoaDon objdataSendInvoices = new MisaPhatHanhHoaDon();
+                Orginvoicedata orginvoicedata = new Orginvoicedata();
+                CultureInfo cultures = new CultureInfo("en-US");
+                if (Utility.sDbnull(invInvoiceSeries, "") == "")
+                {
+
+                    eMessage = "Ký hiệu hóa đơn không được để trống";
+                    log.Trace(eMessage);
+                    return ;
+                }
+                orginvoicedata.RefID = Guid.NewGuid().ToString();
+                orginvoicedata.InvSeries = invInvoiceSeries;
+                log.Trace("inv_invoiceSeries: " + orginvoicedata.InvSeries);
+                orginvoicedata.InvoiceName = invoiceName;
+                // Convert.ToDateTime(dtThontin.Rows[0]["inv_invoiceIssuedDate"], cultures).ToString("yyyy-MM-dd");
+                orginvoicedata.InvDate = Convert.ToDateTime(DateTime.Now, cultures).ToString("yyyy-MM-dd");
+                orginvoicedata.CurrencyCode = "VND";
+                orginvoicedata.ExchangeRate = 1;
+                orginvoicedata.PaymentMethodName = "TM/CK";
+                //Thông tin khách hàng
+                orginvoicedata.ContactName = _buyer.BuyerFullName;
+                orginvoicedata.BuyerLegalName = _buyer.BuyerLegalName;
+                orginvoicedata.BuyerEmail = _buyer.BuyerEmail;
+                orginvoicedata.IsSendEmail = _buyer.IsSendEmail;
+                orginvoicedata.ReceiverEmail = _buyer.ReceiverEmail;
+                orginvoicedata.ReceiverName = _buyer.ReceiverName;
+                orginvoicedata.BuyerFullName = _buyer.BuyerFullName;
+                orginvoicedata.BuyerAddress = _buyer.BuyerAddress;
+                orginvoicedata.BuyerTaxCode = _buyer.BuyerTaxCode;
+                orginvoicedata.BuyerBankAccount = _buyer.BuyerBankAccount;
+                orginvoicedata.AccountObjectIdentificationNumber = _buyer.BuyerIDNumber;
+                //Thông tin tiền
+                orginvoicedata.TotalSaleAmountOC = _buyer.lstItems.Sum(c => c.thanhtien);//Tổng tiền hàng
+                orginvoicedata.TotalSaleAmount = _buyer.lstItems.Sum(c => c.thanhtien);//Tổng tiền hàng
+                orginvoicedata.TotalDiscountAmount = 0;
+                orginvoicedata.TotalDiscountAmountOC = 0;
+                orginvoicedata.TotalAmountWithoutVATOC = _buyer.lstItems.Sum(c => c.thanhtien);//thành tiền hàng
+                orginvoicedata.TotalAmountWithoutVAT = _buyer.lstItems.Sum(c => c.thanhtien);
+                orginvoicedata.TotalVATAmountOC = _buyer.lstItems.Sum(c => c.tienVAT);
+                orginvoicedata.TotalVATAmount = _buyer.lstItems.Sum(c => c.tienVAT);//Tiền thuế
+                orginvoicedata.TotalAmount = _buyer.lstItems.Sum(c => c.tongtien);
+                orginvoicedata.TotalAmountOC = _buyer.lstItems.Sum(c => c.tongtien);//Tổng tiền hàng
+                orginvoicedata.TotalAmountInWords = Utility.DocSoThanhChu(_buyer.lstItems.Sum(c => c.tongtien).ToString("####"));
+                orginvoicedata.OriginalInvoiceDetail = lstOriginalinvoicedetail;
+                orginvoicedata.IsTaxReduction43 = false;
+                orginvoicedata.CustomField1 = "";
+                orginvoicedata.TaxRateInfo = lsttaxrateinfo;
+                orginvoicedata.OptionUserDefined = optionuserdefined;
+                orginvoicedata.IsInvoiceCalculatingMachine = true;
+                // tạo ra object DataSendInvoices 
+                objdataSendInvoices.InvoiceData = new List<Orginvoicedata>() { orginvoicedata };
+                objdataSendInvoices.SignType = 2;
+
+                lstDataSendInvoiceses.Add(objdataSendInvoices);
+                string url = InvoiceServicesUrl + Utility.sDbnull(apiMisaPreviewInvoice, "/api/MisaInvoice/xemtruoc_hoadon");
+                const string contentType = "application/json";
+                string sDataRequest = JsonConvert.SerializeObject(orginvoicedata);
+                log.Trace("sDataRequest:" + sDataRequest);
+                RaiseStatus(string.Format("Đang gửi lệnh xem trước hóa đơn. Vui lòng chờ..."), false);
+                string result = CreateRequest.WebRequest(url, sDataRequest, "", "POST", contentType);
+                if (result != null)
+                {
+                    var objKetquaHoadon = JsonConvert.DeserializeObject<MisaResponse>(result);
+                    if (objKetquaHoadon.Success)
+                    {
+                        if (!string.IsNullOrEmpty(objKetquaHoadon.Data.ToString()))
+                        {
+                            ProcessStartInfo sInfo = new ProcessStartInfo(objKetquaHoadon.Data.ToString());
+                            Process.Start(sInfo);
+                        }
+                        else
+                        {
+                            eMessage = "objKetquaHoadon.Data is null ";
+                            RaiseStatus(eMessage, true);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                RaiseStatus(ex.Message, true);
+                log.Trace(ex.Message);
+                Utility.ShowMsg(ex.Message);
+                return;
             }
         }
         public bool huy_hoadon(string transaction_id, string InvSeries, DateTime ngay_huy_hoadon, string lydo_huy, ref string eMessage)

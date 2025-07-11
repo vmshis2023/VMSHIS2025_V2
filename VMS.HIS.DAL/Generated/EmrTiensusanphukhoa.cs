@@ -217,18 +217,44 @@ namespace VMS.HIS.DAL
 				colvarBaTsspkTinhchatkinhnguyet.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarBaTsspkTinhchatkinhnguyet);
 				
-				TableSchema.TableColumn colvarBaTsspkChuky = new TableSchema.TableColumn(schema);
-				colvarBaTsspkChuky.ColumnName = "ba_tsspk_chuky";
-				colvarBaTsspkChuky.DataType = DbType.Int16;
-				colvarBaTsspkChuky.MaxLength = 0;
-				colvarBaTsspkChuky.AutoIncrement = false;
-				colvarBaTsspkChuky.IsNullable = true;
-				colvarBaTsspkChuky.IsPrimaryKey = false;
-				colvarBaTsspkChuky.IsForeignKey = false;
-				colvarBaTsspkChuky.IsReadOnly = false;
-				colvarBaTsspkChuky.DefaultSetting = @"";
-				colvarBaTsspkChuky.ForeignKeyTableName = "";
-				schema.Columns.Add(colvarBaTsspkChuky);
+				TableSchema.TableColumn colvarBaTsspkChukykinhnguyet = new TableSchema.TableColumn(schema);
+				colvarBaTsspkChukykinhnguyet.ColumnName = "ba_tsspk_chukykinhnguyet";
+				colvarBaTsspkChukykinhnguyet.DataType = DbType.Int16;
+				colvarBaTsspkChukykinhnguyet.MaxLength = 0;
+				colvarBaTsspkChukykinhnguyet.AutoIncrement = false;
+				colvarBaTsspkChukykinhnguyet.IsNullable = true;
+				colvarBaTsspkChukykinhnguyet.IsPrimaryKey = false;
+				colvarBaTsspkChukykinhnguyet.IsForeignKey = false;
+				colvarBaTsspkChukykinhnguyet.IsReadOnly = false;
+				colvarBaTsspkChukykinhnguyet.DefaultSetting = @"";
+				colvarBaTsspkChukykinhnguyet.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarBaTsspkChukykinhnguyet);
+				
+				TableSchema.TableColumn colvarBaTsspkKinhnguyetDeu = new TableSchema.TableColumn(schema);
+				colvarBaTsspkKinhnguyetDeu.ColumnName = "ba_tsspk_kinhnguyet_deu";
+				colvarBaTsspkKinhnguyetDeu.DataType = DbType.Boolean;
+				colvarBaTsspkKinhnguyetDeu.MaxLength = 0;
+				colvarBaTsspkKinhnguyetDeu.AutoIncrement = false;
+				colvarBaTsspkKinhnguyetDeu.IsNullable = true;
+				colvarBaTsspkKinhnguyetDeu.IsPrimaryKey = false;
+				colvarBaTsspkKinhnguyetDeu.IsForeignKey = false;
+				colvarBaTsspkKinhnguyetDeu.IsReadOnly = false;
+				colvarBaTsspkKinhnguyetDeu.DefaultSetting = @"";
+				colvarBaTsspkKinhnguyetDeu.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarBaTsspkKinhnguyetDeu);
+				
+				TableSchema.TableColumn colvarBaTsspkKinhnguyetKhongdeu = new TableSchema.TableColumn(schema);
+				colvarBaTsspkKinhnguyetKhongdeu.ColumnName = "ba_tsspk_kinhnguyet_khongdeu";
+				colvarBaTsspkKinhnguyetKhongdeu.DataType = DbType.Boolean;
+				colvarBaTsspkKinhnguyetKhongdeu.MaxLength = 0;
+				colvarBaTsspkKinhnguyetKhongdeu.AutoIncrement = false;
+				colvarBaTsspkKinhnguyetKhongdeu.IsNullable = true;
+				colvarBaTsspkKinhnguyetKhongdeu.IsPrimaryKey = false;
+				colvarBaTsspkKinhnguyetKhongdeu.IsForeignKey = false;
+				colvarBaTsspkKinhnguyetKhongdeu.IsReadOnly = false;
+				colvarBaTsspkKinhnguyetKhongdeu.DefaultSetting = @"";
+				colvarBaTsspkKinhnguyetKhongdeu.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarBaTsspkKinhnguyetKhongdeu);
 				
 				TableSchema.TableColumn colvarBaTsspkSongaythaykinh = new TableSchema.TableColumn(schema);
 				colvarBaTsspkSongaythaykinh.ColumnName = "ba_tsspk_songaythaykinh";
@@ -255,6 +281,123 @@ namespace VMS.HIS.DAL
 				colvarBaTsspkLuongkinh.DefaultSetting = @"";
 				colvarBaTsspkLuongkinh.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarBaTsspkLuongkinh);
+				
+				TableSchema.TableColumn colvarBaTsspkLuongkinhnguyetIt = new TableSchema.TableColumn(schema);
+				colvarBaTsspkLuongkinhnguyetIt.ColumnName = "ba_tsspk_luongkinhnguyet_it";
+				colvarBaTsspkLuongkinhnguyetIt.DataType = DbType.Boolean;
+				colvarBaTsspkLuongkinhnguyetIt.MaxLength = 0;
+				colvarBaTsspkLuongkinhnguyetIt.AutoIncrement = false;
+				colvarBaTsspkLuongkinhnguyetIt.IsNullable = true;
+				colvarBaTsspkLuongkinhnguyetIt.IsPrimaryKey = false;
+				colvarBaTsspkLuongkinhnguyetIt.IsForeignKey = false;
+				colvarBaTsspkLuongkinhnguyetIt.IsReadOnly = false;
+				colvarBaTsspkLuongkinhnguyetIt.DefaultSetting = @"";
+				colvarBaTsspkLuongkinhnguyetIt.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarBaTsspkLuongkinhnguyetIt);
+				
+				TableSchema.TableColumn colvarBaTsspkLuongkinhnguyetTrungbinh = new TableSchema.TableColumn(schema);
+				colvarBaTsspkLuongkinhnguyetTrungbinh.ColumnName = "ba_tsspk_luongkinhnguyet_trungbinh";
+				colvarBaTsspkLuongkinhnguyetTrungbinh.DataType = DbType.Boolean;
+				colvarBaTsspkLuongkinhnguyetTrungbinh.MaxLength = 0;
+				colvarBaTsspkLuongkinhnguyetTrungbinh.AutoIncrement = false;
+				colvarBaTsspkLuongkinhnguyetTrungbinh.IsNullable = true;
+				colvarBaTsspkLuongkinhnguyetTrungbinh.IsPrimaryKey = false;
+				colvarBaTsspkLuongkinhnguyetTrungbinh.IsForeignKey = false;
+				colvarBaTsspkLuongkinhnguyetTrungbinh.IsReadOnly = false;
+				colvarBaTsspkLuongkinhnguyetTrungbinh.DefaultSetting = @"";
+				colvarBaTsspkLuongkinhnguyetTrungbinh.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarBaTsspkLuongkinhnguyetTrungbinh);
+				
+				TableSchema.TableColumn colvarBaTsspkLuongkinhnguyetNhieu = new TableSchema.TableColumn(schema);
+				colvarBaTsspkLuongkinhnguyetNhieu.ColumnName = "ba_tsspk_luongkinhnguyet_nhieu";
+				colvarBaTsspkLuongkinhnguyetNhieu.DataType = DbType.Boolean;
+				colvarBaTsspkLuongkinhnguyetNhieu.MaxLength = 0;
+				colvarBaTsspkLuongkinhnguyetNhieu.AutoIncrement = false;
+				colvarBaTsspkLuongkinhnguyetNhieu.IsNullable = true;
+				colvarBaTsspkLuongkinhnguyetNhieu.IsPrimaryKey = false;
+				colvarBaTsspkLuongkinhnguyetNhieu.IsForeignKey = false;
+				colvarBaTsspkLuongkinhnguyetNhieu.IsReadOnly = false;
+				colvarBaTsspkLuongkinhnguyetNhieu.DefaultSetting = @"";
+				colvarBaTsspkLuongkinhnguyetNhieu.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarBaTsspkLuongkinhnguyetNhieu);
+				
+				TableSchema.TableColumn colvarVokinhNguyenphat = new TableSchema.TableColumn(schema);
+				colvarVokinhNguyenphat.ColumnName = "vokinh_nguyenphat";
+				colvarVokinhNguyenphat.DataType = DbType.Boolean;
+				colvarVokinhNguyenphat.MaxLength = 0;
+				colvarVokinhNguyenphat.AutoIncrement = false;
+				colvarVokinhNguyenphat.IsNullable = true;
+				colvarVokinhNguyenphat.IsPrimaryKey = false;
+				colvarVokinhNguyenphat.IsForeignKey = false;
+				colvarVokinhNguyenphat.IsReadOnly = false;
+				colvarVokinhNguyenphat.DefaultSetting = @"";
+				colvarVokinhNguyenphat.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarVokinhNguyenphat);
+				
+				TableSchema.TableColumn colvarVokinhThuphat = new TableSchema.TableColumn(schema);
+				colvarVokinhThuphat.ColumnName = "vokinh_thuphat";
+				colvarVokinhThuphat.DataType = DbType.Boolean;
+				colvarVokinhThuphat.MaxLength = 0;
+				colvarVokinhThuphat.AutoIncrement = false;
+				colvarVokinhThuphat.IsNullable = true;
+				colvarVokinhThuphat.IsPrimaryKey = false;
+				colvarVokinhThuphat.IsForeignKey = false;
+				colvarVokinhThuphat.IsReadOnly = false;
+				colvarVokinhThuphat.DefaultSetting = @"";
+				colvarVokinhThuphat.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarVokinhThuphat);
+				
+				TableSchema.TableColumn colvarVosinhNguyenphat = new TableSchema.TableColumn(schema);
+				colvarVosinhNguyenphat.ColumnName = "vosinh_nguyenphat";
+				colvarVosinhNguyenphat.DataType = DbType.Boolean;
+				colvarVosinhNguyenphat.MaxLength = 0;
+				colvarVosinhNguyenphat.AutoIncrement = false;
+				colvarVosinhNguyenphat.IsNullable = true;
+				colvarVosinhNguyenphat.IsPrimaryKey = false;
+				colvarVosinhNguyenphat.IsForeignKey = false;
+				colvarVosinhNguyenphat.IsReadOnly = false;
+				colvarVosinhNguyenphat.DefaultSetting = @"";
+				colvarVosinhNguyenphat.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarVosinhNguyenphat);
+				
+				TableSchema.TableColumn colvarVosinhThuphat = new TableSchema.TableColumn(schema);
+				colvarVosinhThuphat.ColumnName = "vosinh_thuphat";
+				colvarVosinhThuphat.DataType = DbType.Boolean;
+				colvarVosinhThuphat.MaxLength = 0;
+				colvarVosinhThuphat.AutoIncrement = false;
+				colvarVosinhThuphat.IsNullable = true;
+				colvarVosinhThuphat.IsPrimaryKey = false;
+				colvarVosinhThuphat.IsForeignKey = false;
+				colvarVosinhThuphat.IsReadOnly = false;
+				colvarVosinhThuphat.DefaultSetting = @"";
+				colvarVosinhThuphat.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarVosinhThuphat);
+				
+				TableSchema.TableColumn colvarBaTsspkLuongkinhnguyetTrungbinh2 = new TableSchema.TableColumn(schema);
+				colvarBaTsspkLuongkinhnguyetTrungbinh2.ColumnName = "ba_tsspk_luongkinhnguyet_trungbinh2";
+				colvarBaTsspkLuongkinhnguyetTrungbinh2.DataType = DbType.Boolean;
+				colvarBaTsspkLuongkinhnguyetTrungbinh2.MaxLength = 0;
+				colvarBaTsspkLuongkinhnguyetTrungbinh2.AutoIncrement = false;
+				colvarBaTsspkLuongkinhnguyetTrungbinh2.IsNullable = true;
+				colvarBaTsspkLuongkinhnguyetTrungbinh2.IsPrimaryKey = false;
+				colvarBaTsspkLuongkinhnguyetTrungbinh2.IsForeignKey = false;
+				colvarBaTsspkLuongkinhnguyetTrungbinh2.IsReadOnly = false;
+				colvarBaTsspkLuongkinhnguyetTrungbinh2.DefaultSetting = @"";
+				colvarBaTsspkLuongkinhnguyetTrungbinh2.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarBaTsspkLuongkinhnguyetTrungbinh2);
+				
+				TableSchema.TableColumn colvarBaTsspkLuongkinhnguyetNhieu2 = new TableSchema.TableColumn(schema);
+				colvarBaTsspkLuongkinhnguyetNhieu2.ColumnName = "ba_tsspk_luongkinhnguyet_nhieu2";
+				colvarBaTsspkLuongkinhnguyetNhieu2.DataType = DbType.Boolean;
+				colvarBaTsspkLuongkinhnguyetNhieu2.MaxLength = 0;
+				colvarBaTsspkLuongkinhnguyetNhieu2.AutoIncrement = false;
+				colvarBaTsspkLuongkinhnguyetNhieu2.IsNullable = true;
+				colvarBaTsspkLuongkinhnguyetNhieu2.IsPrimaryKey = false;
+				colvarBaTsspkLuongkinhnguyetNhieu2.IsForeignKey = false;
+				colvarBaTsspkLuongkinhnguyetNhieu2.IsReadOnly = false;
+				colvarBaTsspkLuongkinhnguyetNhieu2.DefaultSetting = @"";
+				colvarBaTsspkLuongkinhnguyetNhieu2.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarBaTsspkLuongkinhnguyetNhieu2);
 				
 				TableSchema.TableColumn colvarBaTsspkKinhlancuoingay = new TableSchema.TableColumn(schema);
 				colvarBaTsspkKinhlancuoingay.ColumnName = "ba_tsspk_kinhlancuoingay";
@@ -545,12 +688,28 @@ namespace VMS.HIS.DAL
 			set { SetColumnValue(Columns.BaTsspkTinhchatkinhnguyet, value); }
 		}
 		  
-		[XmlAttribute("BaTsspkChuky")]
+		[XmlAttribute("BaTsspkChukykinhnguyet")]
 		[Bindable(true)]
-		public short? BaTsspkChuky 
+		public short? BaTsspkChukykinhnguyet 
 		{
-			get { return GetColumnValue<short?>(Columns.BaTsspkChuky); }
-			set { SetColumnValue(Columns.BaTsspkChuky, value); }
+			get { return GetColumnValue<short?>(Columns.BaTsspkChukykinhnguyet); }
+			set { SetColumnValue(Columns.BaTsspkChukykinhnguyet, value); }
+		}
+		  
+		[XmlAttribute("BaTsspkKinhnguyetDeu")]
+		[Bindable(true)]
+		public bool? BaTsspkKinhnguyetDeu 
+		{
+			get { return GetColumnValue<bool?>(Columns.BaTsspkKinhnguyetDeu); }
+			set { SetColumnValue(Columns.BaTsspkKinhnguyetDeu, value); }
+		}
+		  
+		[XmlAttribute("BaTsspkKinhnguyetKhongdeu")]
+		[Bindable(true)]
+		public bool? BaTsspkKinhnguyetKhongdeu 
+		{
+			get { return GetColumnValue<bool?>(Columns.BaTsspkKinhnguyetKhongdeu); }
+			set { SetColumnValue(Columns.BaTsspkKinhnguyetKhongdeu, value); }
 		}
 		  
 		[XmlAttribute("BaTsspkSongaythaykinh")]
@@ -567,6 +726,78 @@ namespace VMS.HIS.DAL
 		{
 			get { return GetColumnValue<string>(Columns.BaTsspkLuongkinh); }
 			set { SetColumnValue(Columns.BaTsspkLuongkinh, value); }
+		}
+		  
+		[XmlAttribute("BaTsspkLuongkinhnguyetIt")]
+		[Bindable(true)]
+		public bool? BaTsspkLuongkinhnguyetIt 
+		{
+			get { return GetColumnValue<bool?>(Columns.BaTsspkLuongkinhnguyetIt); }
+			set { SetColumnValue(Columns.BaTsspkLuongkinhnguyetIt, value); }
+		}
+		  
+		[XmlAttribute("BaTsspkLuongkinhnguyetTrungbinh")]
+		[Bindable(true)]
+		public bool? BaTsspkLuongkinhnguyetTrungbinh 
+		{
+			get { return GetColumnValue<bool?>(Columns.BaTsspkLuongkinhnguyetTrungbinh); }
+			set { SetColumnValue(Columns.BaTsspkLuongkinhnguyetTrungbinh, value); }
+		}
+		  
+		[XmlAttribute("BaTsspkLuongkinhnguyetNhieu")]
+		[Bindable(true)]
+		public bool? BaTsspkLuongkinhnguyetNhieu 
+		{
+			get { return GetColumnValue<bool?>(Columns.BaTsspkLuongkinhnguyetNhieu); }
+			set { SetColumnValue(Columns.BaTsspkLuongkinhnguyetNhieu, value); }
+		}
+		  
+		[XmlAttribute("VokinhNguyenphat")]
+		[Bindable(true)]
+		public bool? VokinhNguyenphat 
+		{
+			get { return GetColumnValue<bool?>(Columns.VokinhNguyenphat); }
+			set { SetColumnValue(Columns.VokinhNguyenphat, value); }
+		}
+		  
+		[XmlAttribute("VokinhThuphat")]
+		[Bindable(true)]
+		public bool? VokinhThuphat 
+		{
+			get { return GetColumnValue<bool?>(Columns.VokinhThuphat); }
+			set { SetColumnValue(Columns.VokinhThuphat, value); }
+		}
+		  
+		[XmlAttribute("VosinhNguyenphat")]
+		[Bindable(true)]
+		public bool? VosinhNguyenphat 
+		{
+			get { return GetColumnValue<bool?>(Columns.VosinhNguyenphat); }
+			set { SetColumnValue(Columns.VosinhNguyenphat, value); }
+		}
+		  
+		[XmlAttribute("VosinhThuphat")]
+		[Bindable(true)]
+		public bool? VosinhThuphat 
+		{
+			get { return GetColumnValue<bool?>(Columns.VosinhThuphat); }
+			set { SetColumnValue(Columns.VosinhThuphat, value); }
+		}
+		  
+		[XmlAttribute("BaTsspkLuongkinhnguyetTrungbinh2")]
+		[Bindable(true)]
+		public bool? BaTsspkLuongkinhnguyetTrungbinh2 
+		{
+			get { return GetColumnValue<bool?>(Columns.BaTsspkLuongkinhnguyetTrungbinh2); }
+			set { SetColumnValue(Columns.BaTsspkLuongkinhnguyetTrungbinh2, value); }
+		}
+		  
+		[XmlAttribute("BaTsspkLuongkinhnguyetNhieu2")]
+		[Bindable(true)]
+		public bool? BaTsspkLuongkinhnguyetNhieu2 
+		{
+			get { return GetColumnValue<bool?>(Columns.BaTsspkLuongkinhnguyetNhieu2); }
+			set { SetColumnValue(Columns.BaTsspkLuongkinhnguyetNhieu2, value); }
 		}
 		  
 		[XmlAttribute("BaTsspkKinhlancuoingay")]
@@ -724,7 +955,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(string varMaLuotkham,long varIdBenhnhan,short? varIdBacsiKham,short? varBaTsspkBatdauthaykinhNam,short? varBaTsspkBatdauthaykinhTuoi,string varBaTsspkTinhchatkinhnguyet,short? varBaTsspkChuky,short? varBaTsspkSongaythaykinh,string varBaTsspkLuongkinh,DateTime? varBaTsspkKinhlancuoingay,bool? varBaTsspkCodaubung,bool? varBaTsspkThoigianTruoc,bool? varBaTsspkThoigianTrong,bool? varBaTsspkThoigianSau,short? varBaTsspkLaychongNam,short? varBaTsspkLaychongTuoi,short? varBaTsspkHetkinhnam,short? varBaTsspkHetkinhtuoi,string varBaTsspkBenhphukhoadadieutri,string varBaTsspkPara,string varTrangthaiXoa,string varTrangthaiAn,string varNguoiTao,DateTime varNgayTao,string varNguoiSua,DateTime? varNgaySua)
+		public static void Insert(string varMaLuotkham,long varIdBenhnhan,short? varIdBacsiKham,short? varBaTsspkBatdauthaykinhNam,short? varBaTsspkBatdauthaykinhTuoi,string varBaTsspkTinhchatkinhnguyet,short? varBaTsspkChukykinhnguyet,bool? varBaTsspkKinhnguyetDeu,bool? varBaTsspkKinhnguyetKhongdeu,short? varBaTsspkSongaythaykinh,string varBaTsspkLuongkinh,bool? varBaTsspkLuongkinhnguyetIt,bool? varBaTsspkLuongkinhnguyetTrungbinh,bool? varBaTsspkLuongkinhnguyetNhieu,bool? varVokinhNguyenphat,bool? varVokinhThuphat,bool? varVosinhNguyenphat,bool? varVosinhThuphat,bool? varBaTsspkLuongkinhnguyetTrungbinh2,bool? varBaTsspkLuongkinhnguyetNhieu2,DateTime? varBaTsspkKinhlancuoingay,bool? varBaTsspkCodaubung,bool? varBaTsspkThoigianTruoc,bool? varBaTsspkThoigianTrong,bool? varBaTsspkThoigianSau,short? varBaTsspkLaychongNam,short? varBaTsspkLaychongTuoi,short? varBaTsspkHetkinhnam,short? varBaTsspkHetkinhtuoi,string varBaTsspkBenhphukhoadadieutri,string varBaTsspkPara,string varTrangthaiXoa,string varTrangthaiAn,string varNguoiTao,DateTime varNgayTao,string varNguoiSua,DateTime? varNgaySua)
 		{
 			EmrTiensusanphukhoa item = new EmrTiensusanphukhoa();
 			
@@ -740,11 +971,33 @@ namespace VMS.HIS.DAL
 			
 			item.BaTsspkTinhchatkinhnguyet = varBaTsspkTinhchatkinhnguyet;
 			
-			item.BaTsspkChuky = varBaTsspkChuky;
+			item.BaTsspkChukykinhnguyet = varBaTsspkChukykinhnguyet;
+			
+			item.BaTsspkKinhnguyetDeu = varBaTsspkKinhnguyetDeu;
+			
+			item.BaTsspkKinhnguyetKhongdeu = varBaTsspkKinhnguyetKhongdeu;
 			
 			item.BaTsspkSongaythaykinh = varBaTsspkSongaythaykinh;
 			
 			item.BaTsspkLuongkinh = varBaTsspkLuongkinh;
+			
+			item.BaTsspkLuongkinhnguyetIt = varBaTsspkLuongkinhnguyetIt;
+			
+			item.BaTsspkLuongkinhnguyetTrungbinh = varBaTsspkLuongkinhnguyetTrungbinh;
+			
+			item.BaTsspkLuongkinhnguyetNhieu = varBaTsspkLuongkinhnguyetNhieu;
+			
+			item.VokinhNguyenphat = varVokinhNguyenphat;
+			
+			item.VokinhThuphat = varVokinhThuphat;
+			
+			item.VosinhNguyenphat = varVosinhNguyenphat;
+			
+			item.VosinhThuphat = varVosinhThuphat;
+			
+			item.BaTsspkLuongkinhnguyetTrungbinh2 = varBaTsspkLuongkinhnguyetTrungbinh2;
+			
+			item.BaTsspkLuongkinhnguyetNhieu2 = varBaTsspkLuongkinhnguyetNhieu2;
 			
 			item.BaTsspkKinhlancuoingay = varBaTsspkKinhlancuoingay;
 			
@@ -790,7 +1043,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(long varIdTsspk,string varMaLuotkham,long varIdBenhnhan,short? varIdBacsiKham,short? varBaTsspkBatdauthaykinhNam,short? varBaTsspkBatdauthaykinhTuoi,string varBaTsspkTinhchatkinhnguyet,short? varBaTsspkChuky,short? varBaTsspkSongaythaykinh,string varBaTsspkLuongkinh,DateTime? varBaTsspkKinhlancuoingay,bool? varBaTsspkCodaubung,bool? varBaTsspkThoigianTruoc,bool? varBaTsspkThoigianTrong,bool? varBaTsspkThoigianSau,short? varBaTsspkLaychongNam,short? varBaTsspkLaychongTuoi,short? varBaTsspkHetkinhnam,short? varBaTsspkHetkinhtuoi,string varBaTsspkBenhphukhoadadieutri,string varBaTsspkPara,string varTrangthaiXoa,string varTrangthaiAn,string varNguoiTao,DateTime varNgayTao,string varNguoiSua,DateTime? varNgaySua)
+		public static void Update(long varIdTsspk,string varMaLuotkham,long varIdBenhnhan,short? varIdBacsiKham,short? varBaTsspkBatdauthaykinhNam,short? varBaTsspkBatdauthaykinhTuoi,string varBaTsspkTinhchatkinhnguyet,short? varBaTsspkChukykinhnguyet,bool? varBaTsspkKinhnguyetDeu,bool? varBaTsspkKinhnguyetKhongdeu,short? varBaTsspkSongaythaykinh,string varBaTsspkLuongkinh,bool? varBaTsspkLuongkinhnguyetIt,bool? varBaTsspkLuongkinhnguyetTrungbinh,bool? varBaTsspkLuongkinhnguyetNhieu,bool? varVokinhNguyenphat,bool? varVokinhThuphat,bool? varVosinhNguyenphat,bool? varVosinhThuphat,bool? varBaTsspkLuongkinhnguyetTrungbinh2,bool? varBaTsspkLuongkinhnguyetNhieu2,DateTime? varBaTsspkKinhlancuoingay,bool? varBaTsspkCodaubung,bool? varBaTsspkThoigianTruoc,bool? varBaTsspkThoigianTrong,bool? varBaTsspkThoigianSau,short? varBaTsspkLaychongNam,short? varBaTsspkLaychongTuoi,short? varBaTsspkHetkinhnam,short? varBaTsspkHetkinhtuoi,string varBaTsspkBenhphukhoadadieutri,string varBaTsspkPara,string varTrangthaiXoa,string varTrangthaiAn,string varNguoiTao,DateTime varNgayTao,string varNguoiSua,DateTime? varNgaySua)
 		{
 			EmrTiensusanphukhoa item = new EmrTiensusanphukhoa();
 			
@@ -808,11 +1061,33 @@ namespace VMS.HIS.DAL
 			
 				item.BaTsspkTinhchatkinhnguyet = varBaTsspkTinhchatkinhnguyet;
 			
-				item.BaTsspkChuky = varBaTsspkChuky;
+				item.BaTsspkChukykinhnguyet = varBaTsspkChukykinhnguyet;
+			
+				item.BaTsspkKinhnguyetDeu = varBaTsspkKinhnguyetDeu;
+			
+				item.BaTsspkKinhnguyetKhongdeu = varBaTsspkKinhnguyetKhongdeu;
 			
 				item.BaTsspkSongaythaykinh = varBaTsspkSongaythaykinh;
 			
 				item.BaTsspkLuongkinh = varBaTsspkLuongkinh;
+			
+				item.BaTsspkLuongkinhnguyetIt = varBaTsspkLuongkinhnguyetIt;
+			
+				item.BaTsspkLuongkinhnguyetTrungbinh = varBaTsspkLuongkinhnguyetTrungbinh;
+			
+				item.BaTsspkLuongkinhnguyetNhieu = varBaTsspkLuongkinhnguyetNhieu;
+			
+				item.VokinhNguyenphat = varVokinhNguyenphat;
+			
+				item.VokinhThuphat = varVokinhThuphat;
+			
+				item.VosinhNguyenphat = varVosinhNguyenphat;
+			
+				item.VosinhThuphat = varVosinhThuphat;
+			
+				item.BaTsspkLuongkinhnguyetTrungbinh2 = varBaTsspkLuongkinhnguyetTrungbinh2;
+			
+				item.BaTsspkLuongkinhnguyetNhieu2 = varBaTsspkLuongkinhnguyetNhieu2;
 			
 				item.BaTsspkKinhlancuoingay = varBaTsspkKinhlancuoingay;
 			
@@ -910,142 +1185,219 @@ namespace VMS.HIS.DAL
         
         
         
-        public static TableSchema.TableColumn BaTsspkChukyColumn
+        public static TableSchema.TableColumn BaTsspkChukykinhnguyetColumn
         {
             get { return Schema.Columns[7]; }
         }
         
         
         
-        public static TableSchema.TableColumn BaTsspkSongaythaykinhColumn
+        public static TableSchema.TableColumn BaTsspkKinhnguyetDeuColumn
         {
             get { return Schema.Columns[8]; }
         }
         
         
         
-        public static TableSchema.TableColumn BaTsspkLuongkinhColumn
+        public static TableSchema.TableColumn BaTsspkKinhnguyetKhongdeuColumn
         {
             get { return Schema.Columns[9]; }
         }
         
         
         
-        public static TableSchema.TableColumn BaTsspkKinhlancuoingayColumn
+        public static TableSchema.TableColumn BaTsspkSongaythaykinhColumn
         {
             get { return Schema.Columns[10]; }
         }
         
         
         
-        public static TableSchema.TableColumn BaTsspkCodaubungColumn
+        public static TableSchema.TableColumn BaTsspkLuongkinhColumn
         {
             get { return Schema.Columns[11]; }
         }
         
         
         
-        public static TableSchema.TableColumn BaTsspkThoigianTruocColumn
+        public static TableSchema.TableColumn BaTsspkLuongkinhnguyetItColumn
         {
             get { return Schema.Columns[12]; }
         }
         
         
         
-        public static TableSchema.TableColumn BaTsspkThoigianTrongColumn
+        public static TableSchema.TableColumn BaTsspkLuongkinhnguyetTrungbinhColumn
         {
             get { return Schema.Columns[13]; }
         }
         
         
         
-        public static TableSchema.TableColumn BaTsspkThoigianSauColumn
+        public static TableSchema.TableColumn BaTsspkLuongkinhnguyetNhieuColumn
         {
             get { return Schema.Columns[14]; }
         }
         
         
         
-        public static TableSchema.TableColumn BaTsspkLaychongNamColumn
+        public static TableSchema.TableColumn VokinhNguyenphatColumn
         {
             get { return Schema.Columns[15]; }
         }
         
         
         
-        public static TableSchema.TableColumn BaTsspkLaychongTuoiColumn
+        public static TableSchema.TableColumn VokinhThuphatColumn
         {
             get { return Schema.Columns[16]; }
         }
         
         
         
-        public static TableSchema.TableColumn BaTsspkHetkinhnamColumn
+        public static TableSchema.TableColumn VosinhNguyenphatColumn
         {
             get { return Schema.Columns[17]; }
         }
         
         
         
-        public static TableSchema.TableColumn BaTsspkHetkinhtuoiColumn
+        public static TableSchema.TableColumn VosinhThuphatColumn
         {
             get { return Schema.Columns[18]; }
         }
         
         
         
-        public static TableSchema.TableColumn BaTsspkBenhphukhoadadieutriColumn
+        public static TableSchema.TableColumn BaTsspkLuongkinhnguyetTrungbinh2Column
         {
             get { return Schema.Columns[19]; }
         }
         
         
         
-        public static TableSchema.TableColumn BaTsspkParaColumn
+        public static TableSchema.TableColumn BaTsspkLuongkinhnguyetNhieu2Column
         {
             get { return Schema.Columns[20]; }
         }
         
         
         
-        public static TableSchema.TableColumn TrangthaiXoaColumn
+        public static TableSchema.TableColumn BaTsspkKinhlancuoingayColumn
         {
             get { return Schema.Columns[21]; }
         }
         
         
         
-        public static TableSchema.TableColumn TrangthaiAnColumn
+        public static TableSchema.TableColumn BaTsspkCodaubungColumn
         {
             get { return Schema.Columns[22]; }
         }
         
         
         
-        public static TableSchema.TableColumn NguoiTaoColumn
+        public static TableSchema.TableColumn BaTsspkThoigianTruocColumn
         {
             get { return Schema.Columns[23]; }
         }
         
         
         
-        public static TableSchema.TableColumn NgayTaoColumn
+        public static TableSchema.TableColumn BaTsspkThoigianTrongColumn
         {
             get { return Schema.Columns[24]; }
         }
         
         
         
-        public static TableSchema.TableColumn NguoiSuaColumn
+        public static TableSchema.TableColumn BaTsspkThoigianSauColumn
         {
             get { return Schema.Columns[25]; }
         }
         
         
         
-        public static TableSchema.TableColumn NgaySuaColumn
+        public static TableSchema.TableColumn BaTsspkLaychongNamColumn
         {
             get { return Schema.Columns[26]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn BaTsspkLaychongTuoiColumn
+        {
+            get { return Schema.Columns[27]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn BaTsspkHetkinhnamColumn
+        {
+            get { return Schema.Columns[28]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn BaTsspkHetkinhtuoiColumn
+        {
+            get { return Schema.Columns[29]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn BaTsspkBenhphukhoadadieutriColumn
+        {
+            get { return Schema.Columns[30]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn BaTsspkParaColumn
+        {
+            get { return Schema.Columns[31]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn TrangthaiXoaColumn
+        {
+            get { return Schema.Columns[32]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn TrangthaiAnColumn
+        {
+            get { return Schema.Columns[33]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn NguoiTaoColumn
+        {
+            get { return Schema.Columns[34]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn NgayTaoColumn
+        {
+            get { return Schema.Columns[35]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn NguoiSuaColumn
+        {
+            get { return Schema.Columns[36]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn NgaySuaColumn
+        {
+            get { return Schema.Columns[37]; }
         }
         
         
@@ -1061,9 +1413,20 @@ namespace VMS.HIS.DAL
 			 public static string BaTsspkBatdauthaykinhNam = @"ba_tsspk_batdauthaykinh_nam";
 			 public static string BaTsspkBatdauthaykinhTuoi = @"ba_tsspk_batdauthaykinh_tuoi";
 			 public static string BaTsspkTinhchatkinhnguyet = @"ba_tsspk_tinhchatkinhnguyet";
-			 public static string BaTsspkChuky = @"ba_tsspk_chuky";
+			 public static string BaTsspkChukykinhnguyet = @"ba_tsspk_chukykinhnguyet";
+			 public static string BaTsspkKinhnguyetDeu = @"ba_tsspk_kinhnguyet_deu";
+			 public static string BaTsspkKinhnguyetKhongdeu = @"ba_tsspk_kinhnguyet_khongdeu";
 			 public static string BaTsspkSongaythaykinh = @"ba_tsspk_songaythaykinh";
 			 public static string BaTsspkLuongkinh = @"ba_tsspk_luongkinh";
+			 public static string BaTsspkLuongkinhnguyetIt = @"ba_tsspk_luongkinhnguyet_it";
+			 public static string BaTsspkLuongkinhnguyetTrungbinh = @"ba_tsspk_luongkinhnguyet_trungbinh";
+			 public static string BaTsspkLuongkinhnguyetNhieu = @"ba_tsspk_luongkinhnguyet_nhieu";
+			 public static string VokinhNguyenphat = @"vokinh_nguyenphat";
+			 public static string VokinhThuphat = @"vokinh_thuphat";
+			 public static string VosinhNguyenphat = @"vosinh_nguyenphat";
+			 public static string VosinhThuphat = @"vosinh_thuphat";
+			 public static string BaTsspkLuongkinhnguyetTrungbinh2 = @"ba_tsspk_luongkinhnguyet_trungbinh2";
+			 public static string BaTsspkLuongkinhnguyetNhieu2 = @"ba_tsspk_luongkinhnguyet_nhieu2";
 			 public static string BaTsspkKinhlancuoingay = @"ba_tsspk_kinhlancuoingay";
 			 public static string BaTsspkCodaubung = @"ba_tsspk_codaubung";
 			 public static string BaTsspkThoigianTruoc = @"ba_tsspk_thoigian_truoc";

@@ -1557,6 +1557,30 @@ namespace VMS.HIS.DAL{
                 
                 schema.Columns.Add(colvarSttHthiLoaidvu);
                 
+                TableSchema.TableColumn colvarMaPhieuEmr = new TableSchema.TableColumn(schema);
+                colvarMaPhieuEmr.ColumnName = "ma_phieu_emr";
+                colvarMaPhieuEmr.DataType = DbType.String;
+                colvarMaPhieuEmr.MaxLength = 50;
+                colvarMaPhieuEmr.AutoIncrement = false;
+                colvarMaPhieuEmr.IsNullable = true;
+                colvarMaPhieuEmr.IsPrimaryKey = false;
+                colvarMaPhieuEmr.IsForeignKey = false;
+                colvarMaPhieuEmr.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarMaPhieuEmr);
+                
+                TableSchema.TableColumn colvarMaPhieuEmrDichvu = new TableSchema.TableColumn(schema);
+                colvarMaPhieuEmrDichvu.ColumnName = "ma_phieu_emr_dichvu";
+                colvarMaPhieuEmrDichvu.DataType = DbType.String;
+                colvarMaPhieuEmrDichvu.MaxLength = 50;
+                colvarMaPhieuEmrDichvu.AutoIncrement = false;
+                colvarMaPhieuEmrDichvu.IsNullable = true;
+                colvarMaPhieuEmrDichvu.IsPrimaryKey = false;
+                colvarMaPhieuEmrDichvu.IsForeignKey = false;
+                colvarMaPhieuEmrDichvu.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarMaPhieuEmrDichvu);
+                
                 TableSchema.TableColumn colvarSttHthiNhominphieucls = new TableSchema.TableColumn(schema);
                 colvarSttHthiNhominphieucls.ColumnName = "stt_hthi_nhominphieucls";
                 colvarSttHthiNhominphieucls.DataType = DbType.Int32;
@@ -3633,6 +3657,34 @@ namespace VMS.HIS.DAL{
             }
         }
 	      
+        [XmlAttribute("MaPhieuEmr")]
+        [Bindable(true)]
+        public string MaPhieuEmr 
+	    {
+		    get
+		    {
+			    return GetColumnValue<string>("ma_phieu_emr");
+		    }
+            set 
+		    {
+			    SetColumnValue("ma_phieu_emr", value);
+            }
+        }
+	      
+        [XmlAttribute("MaPhieuEmrDichvu")]
+        [Bindable(true)]
+        public string MaPhieuEmrDichvu 
+	    {
+		    get
+		    {
+			    return GetColumnValue<string>("ma_phieu_emr_dichvu");
+		    }
+            set 
+		    {
+			    SetColumnValue("ma_phieu_emr_dichvu", value);
+            }
+        }
+	      
         [XmlAttribute("SttHthiNhominphieucls")]
         [Bindable(true)]
         public int SttHthiNhominphieucls 
@@ -4211,6 +4263,10 @@ namespace VMS.HIS.DAL{
             public static string NhomBaocaoDichvu = @"nhom_baocao_dichvu";
             
             public static string SttHthiLoaidvu = @"stt_hthi_loaidvu";
+            
+            public static string MaPhieuEmr = @"ma_phieu_emr";
+            
+            public static string MaPhieuEmrDichvu = @"ma_phieu_emr_dichvu";
             
             public static string SttHthiNhominphieucls = @"stt_hthi_nhominphieucls";
             

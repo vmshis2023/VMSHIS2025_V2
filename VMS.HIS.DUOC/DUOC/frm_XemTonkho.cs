@@ -811,6 +811,9 @@ namespace VNS.HIS.UI.THUOC
                 splitContainer1.Orientation = Orientation.Horizontal;
         }
 
-       
+        private void cmdRefresh_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

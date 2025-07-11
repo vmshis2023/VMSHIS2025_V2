@@ -142,7 +142,7 @@ namespace VMS.HIS.DAL
 				TableSchema.TableColumn colvarMaLuotkham = new TableSchema.TableColumn(schema);
 				colvarMaLuotkham.ColumnName = "ma_luotkham";
 				colvarMaLuotkham.DataType = DbType.String;
-				colvarMaLuotkham.MaxLength = 10;
+				colvarMaLuotkham.MaxLength = 20;
 				colvarMaLuotkham.AutoIncrement = false;
 				colvarMaLuotkham.IsNullable = false;
 				colvarMaLuotkham.IsPrimaryKey = false;
@@ -311,7 +311,7 @@ namespace VMS.HIS.DAL
 				TableSchema.TableColumn colvarThongtintreCannangBenhtat = new TableSchema.TableColumn(schema);
 				colvarThongtintreCannangBenhtat.ColumnName = "thongtintre_cannang_benhtat";
 				colvarThongtintreCannangBenhtat.DataType = DbType.String;
-				colvarThongtintreCannangBenhtat.MaxLength = 255;
+				colvarThongtintreCannangBenhtat.MaxLength = 500;
 				colvarThongtintreCannangBenhtat.AutoIncrement = false;
 				colvarThongtintreCannangBenhtat.IsNullable = true;
 				colvarThongtintreCannangBenhtat.IsPrimaryKey = false;
@@ -350,7 +350,7 @@ namespace VMS.HIS.DAL
 				TableSchema.TableColumn colvarTuoithai = new TableSchema.TableColumn(schema);
 				colvarTuoithai.ColumnName = "tuoithai";
 				colvarTuoithai.DataType = DbType.String;
-				colvarTuoithai.MaxLength = 10;
+				colvarTuoithai.MaxLength = 20;
 				colvarTuoithai.AutoIncrement = false;
 				colvarTuoithai.IsNullable = true;
 				colvarTuoithai.IsPrimaryKey = false;
@@ -376,7 +376,7 @@ namespace VMS.HIS.DAL
 				TableSchema.TableColumn colvarDienbienthai = new TableSchema.TableColumn(schema);
 				colvarDienbienthai.ColumnName = "dienbienthai";
 				colvarDienbienthai.DataType = DbType.String;
-				colvarDienbienthai.MaxLength = 10;
+				colvarDienbienthai.MaxLength = 255;
 				colvarDienbienthai.AutoIncrement = false;
 				colvarDienbienthai.IsNullable = true;
 				colvarDienbienthai.IsPrimaryKey = false;

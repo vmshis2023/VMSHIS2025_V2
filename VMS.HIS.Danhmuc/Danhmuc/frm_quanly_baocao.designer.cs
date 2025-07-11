@@ -50,6 +50,9 @@
             this.cmdUpdateXml = new System.Windows.Forms.ToolStripButton();
             this.cmdThoat = new System.Windows.Forms.ToolStripButton();
             this.grdList = new Janus.Windows.GridEX.GridEX();
+            this.ctxFunction = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cmdCapnhatMaNhomBC = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuCapnhatMaphieuEMR = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,9 +60,7 @@
             this.DataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ctxFunction = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.cmdCapnhatMaNhomBC = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuCapnhatMaphieuEMR = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.sysColor.SuspendLayout();
@@ -111,10 +112,11 @@
             this.toolStripStatusLabel5,
             this.toolStripStatusLabel7,
             this.toolStripStatusLabel9,
-            this.toolStripStatusLabel11});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 599);
+            this.toolStripStatusLabel11,
+            this.toolStripStatusLabel2});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 664);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(944, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1321, 22);
             this.statusStrip1.TabIndex = 45;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -138,7 +140,7 @@
             this.cmdThoat});
             this.sysColor.Location = new System.Drawing.Point(0, 0);
             this.sysColor.Name = "sysColor";
-            this.sysColor.Size = new System.Drawing.Size(944, 31);
+            this.sysColor.Size = new System.Drawing.Size(1321, 31);
             this.sysColor.TabIndex = 47;
             this.sysColor.Text = "toolStrip1";
             // 
@@ -229,10 +231,32 @@
             this.grdList.Name = "grdList";
             this.grdList.RecordNavigator = true;
             this.grdList.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
-            this.grdList.Size = new System.Drawing.Size(944, 568);
+            this.grdList.Size = new System.Drawing.Size(1321, 633);
             this.grdList.TabIndex = 74;
             this.grdList.UseGroupRowSelector = true;
             this.grdList.VisualStyle = Janus.Windows.GridEX.VisualStyle.VS2005;
+            // 
+            // ctxFunction
+            // 
+            this.ctxFunction.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmdCapnhatMaNhomBC,
+            this.mnuCapnhatMaphieuEMR});
+            this.ctxFunction.Name = "ctxBOD";
+            this.ctxFunction.Size = new System.Drawing.Size(203, 48);
+            // 
+            // cmdCapnhatMaNhomBC
+            // 
+            this.cmdCapnhatMaNhomBC.Name = "cmdCapnhatMaNhomBC";
+            this.cmdCapnhatMaNhomBC.Size = new System.Drawing.Size(202, 22);
+            this.cmdCapnhatMaNhomBC.Text = "Cập nhật mã nhóm BC";
+            this.cmdCapnhatMaNhomBC.Click += new System.EventHandler(this.cmdCapnhatMaNhomBC_Click);
+            // 
+            // mnuCapnhatMaphieuEMR
+            // 
+            this.mnuCapnhatMaphieuEMR.Name = "mnuCapnhatMaphieuEMR";
+            this.mnuCapnhatMaphieuEMR.Size = new System.Drawing.Size(202, 22);
+            this.mnuCapnhatMaphieuEMR.Text = "Cập nhật mã phiếu EMR";
+            this.mnuCapnhatMaphieuEMR.Click += new System.EventHandler(this.mnuCapnhatMaphieuEMR_Click);
             // 
             // dataGridViewTextBoxColumn7
             // 
@@ -289,33 +313,17 @@
             this.DataGridViewTextBoxColumn1.ReadOnly = true;
             this.DataGridViewTextBoxColumn1.Width = 80;
             // 
-            // ctxFunction
+            // toolStripStatusLabel2
             // 
-            this.ctxFunction.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cmdCapnhatMaNhomBC,
-            this.mnuCapnhatMaphieuEMR});
-            this.ctxFunction.Name = "ctxBOD";
-            this.ctxFunction.Size = new System.Drawing.Size(203, 70);
-            // 
-            // cmdCapnhatMaNhomBC
-            // 
-            this.cmdCapnhatMaNhomBC.Name = "cmdCapnhatMaNhomBC";
-            this.cmdCapnhatMaNhomBC.Size = new System.Drawing.Size(202, 22);
-            this.cmdCapnhatMaNhomBC.Text = "Cập nhật mã nhóm BC";
-            this.cmdCapnhatMaNhomBC.Click += new System.EventHandler(this.cmdCapnhatMaNhomBC_Click);
-            // 
-            // mnuCapnhatMaphieuEMR
-            // 
-            this.mnuCapnhatMaphieuEMR.Name = "mnuCapnhatMaphieuEMR";
-            this.mnuCapnhatMaphieuEMR.Size = new System.Drawing.Size(202, 22);
-            this.mnuCapnhatMaphieuEMR.Text = "Cập nhật mã phiếu EMR";
-            this.mnuCapnhatMaphieuEMR.Click += new System.EventHandler(this.mnuCapnhatMaphieuEMR_Click);
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(64, 17);
+            this.toolStripStatusLabel2.Text = "F5: Refresh";
             // 
             // frm_quanly_baocao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(944, 621);
+            this.ClientSize = new System.Drawing.Size(1321, 686);
             this.Controls.Add(this.grdList);
             this.Controls.Add(this.sysColor);
             this.Controls.Add(this.statusStrip1);
@@ -368,5 +376,6 @@
         private System.Windows.Forms.ContextMenuStrip ctxFunction;
         private System.Windows.Forms.ToolStripMenuItem cmdCapnhatMaNhomBC;
         private System.Windows.Forms.ToolStripMenuItem mnuCapnhatMaphieuEMR;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
     }
 }

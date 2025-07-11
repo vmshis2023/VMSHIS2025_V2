@@ -72,10 +72,48 @@ namespace VMS.Invoice
             grdMauhoadon.RowCheckStateChanged += GrdMauhoadon_RowCheckStateChanged;
             grdMauhoadon.CellValueChanged += GrdMauhoadon_CellValueChanged;
             grdMauhoadon.ColumnButtonClick += GrdMauhoadon_ColumnButtonClick;
-
+            grdPayment.UpdatingCell += GrdPayment_UpdatingCell;
             grdPayment.MouseDoubleClick += GrdPayment_MouseDoubleClick;
         }
 
+        private void GrdPayment_UpdatingCell(object sender, UpdatingCellEventArgs e)
+        {
+            if (e.Column.Key == "mota_them")
+            {
+                Suaghichu();
+            }
+        }
+        void Suaghichu()
+        {
+            try
+            {
+                if (!Utility.Coquyen("HOADONDIENTU_SUA_GHICHU"))
+                {
+                    Utility.thongbaokhongcoquyen("HOADONDIENTU_SUA_GHICHU", "sửa thông tin ghi chú chứng từ.\nVui lòng liên hệ IT để được cấp quyền");
+                    return;
+                }
+                long id_thanhtoan = Utility.Int64Dbnull(grdPayment.GetValue(KcbThanhtoan.Columns.IdThanhtoan));
+                KcbThanhtoan _objthanhtoan = KcbThanhtoan.FetchByID(id_thanhtoan);
+                if (_objthanhtoan == null)
+                {
+                    Utility.ShowMsg("Không tìm được bản ghi thanh toán(Có thể vừa bị xóa khỏi hệ thống). Vui lòng chọn lại người bệnh để refresh lại");
+                    return;
+                }
+                string oldValue = Utility.sDbnull(_objthanhtoan.MotaThem, "");
+                string newValue = Utility.sDbnull(grdPayment.GetValue("mota_them"), "");
+                int numofA = new Update(KcbThanhtoan.Schema).Set(KcbThanhtoan.Columns.MotaThem).EqualTo(newValue).Where(KcbThanhtoan.Columns.IdThanhtoan).IsEqualTo(id_thanhtoan).Execute();
+                if (numofA > 0)
+                {
+                    Utility.Log(this.Name, globalVariables.UserName, string.Format("Cập nhật thông tin mô tả của bản tin thanh toán Id={0}, ghi chú cũ={1}, ghi chú mới ={2} thành công ", id_thanhtoan.ToString(), oldValue, newValue), newaction.Update, this.GetType().Assembly.ManifestModule.Name);
+                    //Utility.ShowMsg("Cập nhật mô tả thành công. Nhấn OK để kết thúc");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Utility.CatchException(ex);
+            }
+        }
         private void GrdPayment_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if (!Utility.isValidGrid(grdPayment)) return;
@@ -374,13 +412,14 @@ namespace VMS.Invoice
                 }
                 long v_id_thanhtoan = Utility.Int64Dbnull(grdPayment.GetValue("id_thanhtoan"));
                 DataTable dtChitietThanhtoan = _THANHTOAN.Laychitietthanhtoan(v_id_thanhtoan, (byte)0);
-                Utility.SetDataSourceForDataGridEx(grdChitietThanhtoan, dtChitietThanhtoan, true, true, chkAnChitietdaPhathanh.Checked ? "tthai_xuat_hddt=0" : "1=1", "");
+                Utility.SetDataSourceForDataGridEx(grdChitietThanhtoan, dtChitietThanhtoan, true, true, "1=1", "");
                 grdChitietThanhtoan.CheckAllRecords();
                 List<string> lstVAT = (from p in grdChitietThanhtoan.GetCheckedRows() select Utility.sDbnull(p.Cells["VAT"].Value)).Distinct().ToList<string>();
                 lblVAT.Visible = cboVAT.Visible = lstVAT.Count > 1;
                 lstVAT.Insert(0, "");
                 cboVAT.DataSource = lstVAT;
                 cmdHoadonThaythe.Visible = Utility.Int32Dbnull(grdPayment.GetValue("co_tralai")) == 1;
+                chkHienthiChitietThucthubang0_CheckedChanged(chkHienthiChitietThucthubang0, e);
             }
             catch (Exception)
             {
@@ -666,6 +705,13 @@ namespace VMS.Invoice
                 string str_IdThanhtoanChitiet = string.Join(",", (from p in grdChitietThanhtoan.GetCheckedRows() select Utility.sDbnull(p.Cells["id_chitiet"].Value)).Distinct().ToArray<string>());
                 List<long> lstCanhbao = (from p in grdChitietThanhtoan.GetCheckedRows() where Utility.sDbnull(p.Cells["transaction_id"].Value, "") != "" select Utility.Int64Dbnull(p.Cells["id_chitiet"].Value)).Distinct().ToList<long>();
                 List<long> lstCanhbao_VAT = (from p in grdChitietThanhtoan.GetCheckedRows() select Utility.Int64Dbnull(p.Cells["VAT"].Value)).Distinct().ToList<long>();
+                //Kiểm tra bỏ các thành phần thành tiền =0
+                bool Thucthu_bang0 = (from p in grdChitietThanhtoan.GetCheckedRows() where Utility.Int64Dbnull(p.Cells["THUC_THU"].Value) <= 0 select p).FirstOrDefault() != null;
+                if(Thucthu_bang0)
+                {
+                    Utility.ShowMsg("Một số chi tiết bạn chọn phát hành có thực thu <=0. Vui lòng loại bỏ các thành phần này");
+                    return;
+                }    
                 if (isQuaythuoc)
                 {
                     List<Int16> lstCanhbao_VAT_Thuoc_0_phantram = (from p in grdChitietThanhtoan.GetCheckedRows() where Utility.Int16Dbnull(p.Cells["VAT"].Value) <= 0 select Utility.Int16Dbnull(p.Cells["VAT"].Value)).Distinct().ToList<Int16>();
@@ -2041,8 +2087,12 @@ namespace VMS.Invoice
             _buyer.BuyerBankAccount = "";
             _buyer.BuyerBankName = "";
             _buyer.BuyerIDNumber = drInfor != null ? Utility.sDbnull(drInfor["CMT"]) : "";
-            frm_hoadon_taotay _hoadon_taotay = new frm_hoadon_taotay(_buyer, dr);
-            _hoadon_taotay.ShowDialog();
+            _buyer.lstItems = new List<ItemInfor>();
+            //frm_hoadon_taotay _hoadon_taotay = new frm_hoadon_taotay(_buyer, dr);
+            //_hoadon_taotay.ShowDialog();
+
+            frm_hoadon_taotay_v3 _hoadon_taotay_v3 = new frm_hoadon_taotay_v3(_MisaInvoices, _buyer, dr);
+            _hoadon_taotay_v3.ShowDialog();
         }
 
         private void cboVAT_SelectedIndexChanged(object sender, EventArgs e)
@@ -2676,6 +2726,33 @@ namespace VMS.Invoice
                 VNS.Libs.AppUI.UIAction._Visible(ProgressBar, false);
                 Utility.DefaultNow(this);
                 cmdPhathanhHDon.Enabled = true;
+            }
+        }
+
+        private void chkHienthiChitietThucthubang0_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string filter = "";
+                if (chkAnChitietdaPhathanh.Checked)
+                    filter = "tthai_xuat_hddt=0";
+                if (!chkHienthiChitietThucthubang0.Checked)
+                {
+                    if (filter == "")
+                        filter = " thuc_thu >0";
+                    else
+                        filter += " and thuc_thu>0";
+                }
+                if (filter == "")
+                    filter = "1=1";
+                if (grdChitietThanhtoan.DataSource != null)
+                {
+                    ((DataView)grdChitietThanhtoan.DataSource).RowFilter = filter;
+                }
+            }
+            catch (Exception ex)
+            {
+
             }
         }
     }

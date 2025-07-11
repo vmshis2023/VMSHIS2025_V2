@@ -13,7 +13,7 @@ using SubSonic;
 using System.IO;
 using Microsoft.VisualBasic;
 using VNS.HIS.UI.Classess;
-using VMS.Emr;
+using VMS.HIS.Bus.Emr;
 //using SubSonic.Utilities;
 
 namespace VNS.HIS.UI.NOITRU

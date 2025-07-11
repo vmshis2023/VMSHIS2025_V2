@@ -11,6 +11,7 @@ using SubSonic;
 using VNS.Libs;
 using VMS.HIS.DAL;
 using VNS.HIS.NGHIEPVU;
+using System.IO;
 
 namespace VNS.HIS.UI.DANHMUC
 {
@@ -248,24 +249,46 @@ namespace VNS.HIS.UI.DANHMUC
             }
            
         }
+        DmucNhanvien objNhanvien = null;
         private void grdStaffList_SelectionChanged(object sender, EventArgs e)
         {
-            if (!Utility.isValidGrid(grdNhanvien)) return;
-            if (grdNhanvien.CurrentRow != null)
+            try
             {
-                LoadQuanHeNhanVienKho();
-                
-                LoadQuanHeNhanVienQuyen();
-                LoadQuanHeNhanVienBaocaoMulti();
-                LoadQheBS_khoanoitru();
-                LoadQheBS_khoangoaitru();
-                LoadQheLoaithuoc();
-                LoadQheDichvuCLS();
-                LoadQuanHeNhanVienDmucchung();
-                LoadQuanHeNhanVienCosoKCB();
-                Loaddmucchietkhau();
-                ModifyCommand();
+                if (!Utility.isValidGrid(grdNhanvien))
+                {
+                    objNhanvien = null;
+                    return;
+                }
+                if (grdNhanvien.CurrentRow != null)
+                {
+                    objNhanvien = DmucNhanvien.FetchByID(Utility.Int32Dbnull(grdNhanvien.GetValue("id_nhanvien")));
+                    LoadQuanHeNhanVienKho();
+
+                    LoadQuanHeNhanVienQuyen();
+                    LoadQuanHeNhanVienBaocaoMulti();
+                    LoadQheBS_khoanoitru();
+                    LoadQheBS_khoangoaitru();
+                    LoadQheLoaithuoc();
+                    LoadQheDichvuCLS();
+                    LoadQuanHeNhanVienDmucchung();
+                    LoadQuanHeNhanVienCosoKCB();
+                    Loaddmucchietkhau();
+                    ModifyCommand();
+                }
+                else
+                    objNhanvien = null;
             }
+            catch (Exception ex)
+            {
+
+             
+            }
+            finally
+            {
+                LoadAnhChuKy();
+            }
+            
+
         }
         /// <summary>
         /// hàm thực hiện thêm mới nhân viên
@@ -1329,6 +1352,73 @@ namespace VNS.HIS.UI.DANHMUC
 
                 Utility.CatchException(ex);
             }
+        }
+        void LoadAnhChuKy()
+        {
+            try
+            {
+                var old = picSignImg.Image;
+                picSignImg.Image = null;    // ✳️ Bỏ tham chiếu đến ảnh cũ
+                old?.Dispose();
+
+                if (objNhanvien != null)
+                {
+                    if (objNhanvien.ChuKy != null)
+                    {
+                        using (var ms = new MemoryStream(objNhanvien.ChuKy))
+                        {
+                            picSignImg.Image = Image.FromStream(ms);
+                        }
+                    }
+                    else
+                    {
+                        picSignImg.Image = null;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+            }
+        }
+        private void picSignImg_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if(!Utility.Coquyen("EMR_CAPNHAT_CHUKY_NGUOIDUNG"))
+                {
+                    Utility.thongbaokhongcoquyen("EMR_CAPNHAT_CHUKY_NGUOIDUNG", "cập nhật chữ ký của người dùng trong hệ thống");
+                    return;
+                }    
+                using (var dlg = new OpenFileDialog())
+                {
+                    dlg.Title = "Chọn ảnh chữ ký";
+                    dlg.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp;*.tif;*.tiff|All files (*.*)|*.*";
+                    dlg.Multiselect = false; // chỉ được chọn 1 file
+                    dlg.CheckFileExists = true;
+
+                    if (dlg.ShowDialog() == DialogResult.OK)
+                    {
+                        string selectedFile = dlg.FileName;
+                        
+                        if (objNhanvien != null)
+                        {
+                            objNhanvien.ChuKy = File.ReadAllBytes(selectedFile);
+                            objNhanvien.IsNew = false;
+                            objNhanvien.MarkOld();
+                            objNhanvien.Save();
+                        }
+                        LoadAnhChuKy();
+
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+              
+            }
+           
         }
     }
 }

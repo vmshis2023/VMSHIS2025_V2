@@ -60,10 +60,8 @@
             // 
             // grdList
             // 
-            this.grdList.AllowEdit = Janus.Windows.GridEX.InheritableBoolean.False;
             this.grdList.BuiltInTextsData = "<LocalizableData ID=\"LocalizableStrings\" Collection=\"true\"><FilterRowInfoText>Lọc" +
     " thông tin phòng bệnh</FilterRowInfoText></LocalizableData>";
-            this.grdList.ColumnAutoResize = true;
             this.grdList.DefaultFilterRowComparison = Janus.Windows.GridEX.FilterConditionOperator.Contains;
             grdList_DesignTimeLayout.LayoutString = resources.GetString("grdList_DesignTimeLayout.LayoutString");
             this.grdList.DesignTimeLayout = grdList_DesignTimeLayout;
@@ -107,7 +105,7 @@
             // cmdAdd
             // 
             this.cmdAdd.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.cmdAdd.Image = global::VMS.HIS.Danhmuc.Properties.Resources.Add32;
+            this.cmdAdd.Image = global::VMS.HIS.Danhmuc.Properties.Resources.add_04_32;
             this.cmdAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdAdd.Name = "cmdAdd";
             this.cmdAdd.Size = new System.Drawing.Size(90, 28);

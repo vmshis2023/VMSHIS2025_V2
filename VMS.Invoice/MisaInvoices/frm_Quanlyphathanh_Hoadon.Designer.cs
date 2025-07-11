@@ -89,6 +89,7 @@ namespace VMS.Invoice
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cmdCapnhatthongtinthue = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.cmdHoadonThaythe = new Janus.Windows.EditControls.UIButton();
             this.cmdPReview = new Janus.Windows.EditControls.UIButton();
             this.cmdPhathanhHDon = new Janus.Windows.EditControls.UIButton();
@@ -101,12 +102,11 @@ namespace VMS.Invoice
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.grdChitietThanhtoan = new Janus.Windows.GridEX.GridEX();
             this.panel10 = new System.Windows.Forms.Panel();
+            this.chkHienthiChitietThucthubang0 = new System.Windows.Forms.CheckBox();
             this.lblVAT = new System.Windows.Forms.Label();
             this.cboVAT = new System.Windows.Forms.ComboBox();
-            this.chkAnChitietdaPhathanh = new System.Windows.Forms.CheckBox();
             this.chkBocacthanhtoandaxuathoadon = new System.Windows.Forms.CheckBox();
             this.lnkViewAllCheckedData = new System.Windows.Forms.LinkLabel();
-            this.chkBodichvutronggoi = new System.Windows.Forms.CheckBox();
             this.uiTabDanhSachBenhNhanDaCoHoaDon = new Janus.Windows.UI.Tab.UITabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.grdPayment_Phathanh = new Janus.Windows.GridEX.GridEX();
@@ -133,8 +133,9 @@ namespace VMS.Invoice
             this.uiTabPageOptions = new Janus.Windows.UI.Tab.UITabPage();
             this.panel11 = new System.Windows.Forms.Panel();
             this.chkXacnhanTruockhiphathanh = new System.Windows.Forms.CheckBox();
+            this.chkAnChitietdaPhathanh = new System.Windows.Forms.CheckBox();
+            this.chkBodichvutronggoi = new System.Windows.Forms.CheckBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -733,6 +734,7 @@ namespace VMS.Invoice
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.cmdHoadonThaythe);
             this.panel2.Controls.Add(this.cmdPReview);
             this.panel2.Controls.Add(this.cmdPhathanhHDon);
@@ -744,6 +746,17 @@ namespace VMS.Invoice
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1328, 44);
             this.panel2.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Enabled = false;
+            this.label1.ForeColor = System.Drawing.Color.Red;
+            this.label1.Location = new System.Drawing.Point(424, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(23, 15);
+            this.label1.TabIndex = 511;
+            this.label1.Text = "DF";
             // 
             // cmdHoadonThaythe
             // 
@@ -907,17 +920,28 @@ namespace VMS.Invoice
             // 
             // panel10
             // 
+            this.panel10.Controls.Add(this.chkHienthiChitietThucthubang0);
             this.panel10.Controls.Add(this.lblVAT);
             this.panel10.Controls.Add(this.cboVAT);
-            this.panel10.Controls.Add(this.chkAnChitietdaPhathanh);
             this.panel10.Controls.Add(this.chkBocacthanhtoandaxuathoadon);
             this.panel10.Controls.Add(this.lnkViewAllCheckedData);
-            this.panel10.Controls.Add(this.chkBodichvutronggoi);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel10.Location = new System.Drawing.Point(0, 0);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(1328, 34);
             this.panel10.TabIndex = 118;
+            // 
+            // chkHienthiChitietThucthubang0
+            // 
+            this.chkHienthiChitietThucthubang0.AutoSize = true;
+            this.chkHienthiChitietThucthubang0.Location = new System.Drawing.Point(683, 9);
+            this.chkHienthiChitietThucthubang0.Name = "chkHienthiChitietThucthubang0";
+            this.chkHienthiChitietThucthubang0.Size = new System.Drawing.Size(428, 19);
+            this.chkHienthiChitietThucthubang0.TabIndex = 2;
+            this.chkHienthiChitietThucthubang0.Tag = "";
+            this.chkHienthiChitietThucthubang0.Text = "Hiển thị toàn bộ chi tiết dịch vụ được thanh toán trong chứng từ đang chọn";
+            this.chkHienthiChitietThucthubang0.UseVisualStyleBackColor = true;
+            this.chkHienthiChitietThucthubang0.CheckedChanged += new System.EventHandler(this.chkHienthiChitietThucthubang0_CheckedChanged);
             // 
             // lblVAT
             // 
@@ -941,24 +965,11 @@ namespace VMS.Invoice
             this.cboVAT.TabIndex = 4;
             this.cboVAT.SelectedIndexChanged += new System.EventHandler(this.cboVAT_SelectedIndexChanged);
             // 
-            // chkAnChitietdaPhathanh
-            // 
-            this.chkAnChitietdaPhathanh.AutoSize = true;
-            this.chkAnChitietdaPhathanh.ForeColor = System.Drawing.Color.DarkMagenta;
-            this.chkAnChitietdaPhathanh.Location = new System.Drawing.Point(552, 8);
-            this.chkAnChitietdaPhathanh.Name = "chkAnChitietdaPhathanh";
-            this.chkAnChitietdaPhathanh.Size = new System.Drawing.Size(247, 19);
-            this.chkAnChitietdaPhathanh.TabIndex = 3;
-            this.chkAnChitietdaPhathanh.Tag = "EINVOICE_AN_CHITIET_DAPHATHANH_HDDT";
-            this.chkAnChitietdaPhathanh.Text = "Không hiển thị các chi tiết đã phát hành?";
-            this.chkAnChitietdaPhathanh.UseVisualStyleBackColor = true;
-            this.chkAnChitietdaPhathanh.CheckedChanged += new System.EventHandler(this.chkAnChitietdaPhathanh_CheckedChanged);
-            // 
             // chkBocacthanhtoandaxuathoadon
             // 
             this.chkBocacthanhtoandaxuathoadon.AutoSize = true;
             this.chkBocacthanhtoandaxuathoadon.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.chkBocacthanhtoandaxuathoadon.Location = new System.Drawing.Point(234, 8);
+            this.chkBocacthanhtoandaxuathoadon.Location = new System.Drawing.Point(5, 9);
             this.chkBocacthanhtoandaxuathoadon.Name = "chkBocacthanhtoandaxuathoadon";
             this.chkBocacthanhtoandaxuathoadon.Size = new System.Drawing.Size(300, 19);
             this.chkBocacthanhtoandaxuathoadon.TabIndex = 2;
@@ -970,25 +981,13 @@ namespace VMS.Invoice
             // lnkViewAllCheckedData
             // 
             this.lnkViewAllCheckedData.AutoSize = true;
-            this.lnkViewAllCheckedData.Location = new System.Drawing.Point(824, 8);
+            this.lnkViewAllCheckedData.Location = new System.Drawing.Point(321, 10);
             this.lnkViewAllCheckedData.Name = "lnkViewAllCheckedData";
             this.lnkViewAllCheckedData.Size = new System.Drawing.Size(328, 15);
             this.lnkViewAllCheckedData.TabIndex = 1;
             this.lnkViewAllCheckedData.TabStop = true;
             this.lnkViewAllCheckedData.Text = "Xem dữ liệu chi tiết theo nhiều phiếu thanh toán đang chọn";
             this.lnkViewAllCheckedData.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkViewAllCheckedData_LinkClicked);
-            // 
-            // chkBodichvutronggoi
-            // 
-            this.chkBodichvutronggoi.AutoSize = true;
-            this.chkBodichvutronggoi.Location = new System.Drawing.Point(11, 8);
-            this.chkBodichvutronggoi.Name = "chkBodichvutronggoi";
-            this.chkBodichvutronggoi.Size = new System.Drawing.Size(201, 19);
-            this.chkBodichvutronggoi.TabIndex = 0;
-            this.chkBodichvutronggoi.Tag = "EINVOICE_BOCACDICHVUTRONGGOI";
-            this.chkBodichvutronggoi.Text = "Bỏ các dịch vụ trong gói(giá=0)?";
-            this.chkBodichvutronggoi.UseVisualStyleBackColor = true;
-            this.chkBodichvutronggoi.CheckedChanged += new System.EventHandler(this.chkBodichvutronggoi_CheckedChanged);
             // 
             // uiTabDanhSachBenhNhanDaCoHoaDon
             // 
@@ -1010,12 +1009,14 @@ namespace VMS.Invoice
             // 
             this.splitContainer1.Panel1.Controls.Add(this.grdPayment_Phathanh);
             this.splitContainer1.Panel1.Controls.Add(this.grdHoadonPhathanh);
+            this.splitContainer1.Panel1MinSize = 500;
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.grdChitiet_Phathanh);
+            this.splitContainer1.Panel2MinSize = 300;
             this.splitContainer1.Size = new System.Drawing.Size(1328, 580);
-            this.splitContainer1.SplitterDistance = 768;
+            this.splitContainer1.SplitterDistance = 500;
             this.splitContainer1.TabIndex = 4;
             // 
             // grdPayment_Phathanh
@@ -1038,13 +1039,13 @@ namespace VMS.Invoice
             this.grdPayment_Phathanh.GroupTotalRowFormatStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.grdPayment_Phathanh.GroupTotals = Janus.Windows.GridEX.GroupTotals.Always;
             this.grdPayment_Phathanh.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight;
-            this.grdPayment_Phathanh.Location = new System.Drawing.Point(0, 265);
+            this.grdPayment_Phathanh.Location = new System.Drawing.Point(0, 413);
             this.grdPayment_Phathanh.Name = "grdPayment_Phathanh";
             this.grdPayment_Phathanh.RecordNavigator = true;
             this.grdPayment_Phathanh.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
             this.grdPayment_Phathanh.SelectedFormatStyle.BackColor = System.Drawing.Color.PaleTurquoise;
             this.grdPayment_Phathanh.SelectedInactiveFormatStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.grdPayment_Phathanh.Size = new System.Drawing.Size(768, 315);
+            this.grdPayment_Phathanh.Size = new System.Drawing.Size(500, 167);
             this.grdPayment_Phathanh.TabIndex = 10;
             this.grdPayment_Phathanh.TotalRow = Janus.Windows.GridEX.InheritableBoolean.True;
             this.grdPayment_Phathanh.TotalRowFormatStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
@@ -1071,7 +1072,7 @@ namespace VMS.Invoice
             this.grdHoadonPhathanh.Name = "grdHoadonPhathanh";
             this.grdHoadonPhathanh.RecordNavigator = true;
             this.grdHoadonPhathanh.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
-            this.grdHoadonPhathanh.Size = new System.Drawing.Size(768, 265);
+            this.grdHoadonPhathanh.Size = new System.Drawing.Size(500, 413);
             this.grdHoadonPhathanh.TabIndex = 3;
             this.grdHoadonPhathanh.TotalRow = Janus.Windows.GridEX.InheritableBoolean.True;
             this.grdHoadonPhathanh.TotalRowPosition = Janus.Windows.GridEX.TotalRowPosition.BottomFixed;
@@ -1101,7 +1102,7 @@ namespace VMS.Invoice
             this.grdChitiet_Phathanh.RecordNavigator = true;
             this.grdChitiet_Phathanh.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
             this.grdChitiet_Phathanh.SelectedFormatStyle.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.grdChitiet_Phathanh.Size = new System.Drawing.Size(556, 580);
+            this.grdChitiet_Phathanh.Size = new System.Drawing.Size(824, 580);
             this.grdChitiet_Phathanh.TabIndex = 118;
             this.grdChitiet_Phathanh.TotalRow = Janus.Windows.GridEX.InheritableBoolean.True;
             this.grdChitiet_Phathanh.TotalRowFormatStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
@@ -1175,8 +1176,9 @@ namespace VMS.Invoice
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.grdChitiet_Huy);
+            this.splitContainer2.Panel2MinSize = 500;
             this.splitContainer2.Size = new System.Drawing.Size(1328, 578);
-            this.splitContainer2.SplitterDistance = 766;
+            this.splitContainer2.SplitterDistance = 556;
             this.splitContainer2.TabIndex = 4;
             // 
             // grdPayment_Huy
@@ -1205,7 +1207,7 @@ namespace VMS.Invoice
             this.grdPayment_Huy.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
             this.grdPayment_Huy.SelectedFormatStyle.BackColor = System.Drawing.Color.PaleTurquoise;
             this.grdPayment_Huy.SelectedInactiveFormatStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.grdPayment_Huy.Size = new System.Drawing.Size(766, 313);
+            this.grdPayment_Huy.Size = new System.Drawing.Size(556, 313);
             this.grdPayment_Huy.TabIndex = 10;
             this.grdPayment_Huy.TotalRow = Janus.Windows.GridEX.InheritableBoolean.True;
             this.grdPayment_Huy.TotalRowFormatStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
@@ -1232,7 +1234,7 @@ namespace VMS.Invoice
             this.grdHoadonHuy.Name = "grdHoadonHuy";
             this.grdHoadonHuy.RecordNavigator = true;
             this.grdHoadonHuy.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
-            this.grdHoadonHuy.Size = new System.Drawing.Size(766, 265);
+            this.grdHoadonHuy.Size = new System.Drawing.Size(556, 265);
             this.grdHoadonHuy.TabIndex = 11;
             this.grdHoadonHuy.TotalRow = Janus.Windows.GridEX.InheritableBoolean.True;
             this.grdHoadonHuy.TotalRowPosition = Janus.Windows.GridEX.TotalRowPosition.BottomFixed;
@@ -1262,7 +1264,7 @@ namespace VMS.Invoice
             this.grdChitiet_Huy.RecordNavigator = true;
             this.grdChitiet_Huy.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
             this.grdChitiet_Huy.SelectedFormatStyle.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.grdChitiet_Huy.Size = new System.Drawing.Size(558, 578);
+            this.grdChitiet_Huy.Size = new System.Drawing.Size(768, 578);
             this.grdChitiet_Huy.TabIndex = 118;
             this.grdChitiet_Huy.TotalRow = Janus.Windows.GridEX.InheritableBoolean.True;
             this.grdChitiet_Huy.TotalRowFormatStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
@@ -1385,8 +1387,9 @@ namespace VMS.Invoice
             // 
             // panel11
             // 
-            this.panel11.Controls.Add(this.checkBox1);
             this.panel11.Controls.Add(this.chkXacnhanTruockhiphathanh);
+            this.panel11.Controls.Add(this.chkAnChitietdaPhathanh);
+            this.panel11.Controls.Add(this.chkBodichvutronggoi);
             this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel11.Location = new System.Drawing.Point(0, 0);
             this.panel11.Name = "panel11";
@@ -1406,23 +1409,35 @@ namespace VMS.Invoice
             this.chkXacnhanTruockhiphathanh.Text = "Xác nhận trước khi phát hành Hóa đơn?";
             this.chkXacnhanTruockhiphathanh.UseVisualStyleBackColor = true;
             // 
+            // chkAnChitietdaPhathanh
+            // 
+            this.chkAnChitietdaPhathanh.AutoSize = true;
+            this.chkAnChitietdaPhathanh.ForeColor = System.Drawing.Color.DarkMagenta;
+            this.chkAnChitietdaPhathanh.Location = new System.Drawing.Point(27, 66);
+            this.chkAnChitietdaPhathanh.Name = "chkAnChitietdaPhathanh";
+            this.chkAnChitietdaPhathanh.Size = new System.Drawing.Size(247, 19);
+            this.chkAnChitietdaPhathanh.TabIndex = 3;
+            this.chkAnChitietdaPhathanh.Tag = "EINVOICE_AN_CHITIET_DAPHATHANH_HDDT";
+            this.chkAnChitietdaPhathanh.Text = "Không hiển thị các chi tiết đã phát hành?";
+            this.chkAnChitietdaPhathanh.UseVisualStyleBackColor = true;
+            this.chkAnChitietdaPhathanh.CheckedChanged += new System.EventHandler(this.chkAnChitietdaPhathanh_CheckedChanged);
+            // 
+            // chkBodichvutronggoi
+            // 
+            this.chkBodichvutronggoi.AutoSize = true;
+            this.chkBodichvutronggoi.Location = new System.Drawing.Point(27, 41);
+            this.chkBodichvutronggoi.Name = "chkBodichvutronggoi";
+            this.chkBodichvutronggoi.Size = new System.Drawing.Size(201, 19);
+            this.chkBodichvutronggoi.TabIndex = 0;
+            this.chkBodichvutronggoi.Tag = "EINVOICE_BOCACDICHVUTRONGGOI";
+            this.chkBodichvutronggoi.Text = "Bỏ các dịch vụ trong gói(giá=0)?";
+            this.chkBodichvutronggoi.UseVisualStyleBackColor = true;
+            this.chkBodichvutronggoi.CheckedChanged += new System.EventHandler(this.chkBodichvutronggoi_CheckedChanged);
+            // 
             // toolTip1
             // 
             this.toolTip1.IsBalloon = true;
             this.toolTip1.ToolTipTitle = "Trợ giúp";
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(324, 16);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(244, 19);
-            this.checkBox1.TabIndex = 2;
-            this.checkBox1.Tag = "EINVOICE_XACNHANTRUOCKHIPHATHANH";
-            this.checkBox1.Text = "Xác nhận trước khi phát hành Hóa đơn?";
-            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // frm_Quanlyphathanh_Hoadon
             // 
@@ -1457,6 +1472,7 @@ namespace VMS.Invoice
             this.contextMenuStrip1.ResumeLayout(false);
             this.contextMenuStrip2.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiTabHDDT)).EndInit();
             this.uiTabHDDT.ResumeLayout(false);
@@ -1594,6 +1610,7 @@ namespace VMS.Invoice
         private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.CheckBox chkXacnhanTruockhiphathanh;
         private System.Windows.Forms.ToolStripMenuItem mnuPhathanhtiep;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox chkHienthiChitietThucthubang0;
+        private System.Windows.Forms.Label label1;
     }
 }

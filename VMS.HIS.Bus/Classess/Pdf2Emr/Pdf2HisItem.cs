@@ -16,7 +16,7 @@ using Aspose.Words;
 using VNS.Libs;
 using VMS.HIS.DAL;
 using Aspose.Words.Saving;
-using VMS.Emr;
+using VMS.HIS.Bus.Emr;
 using NLog;
 
 namespace VMS.HIS.Bus

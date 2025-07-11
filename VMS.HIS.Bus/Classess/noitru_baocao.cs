@@ -3,7 +3,7 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using CrystalDecisions.CrystalReports.Engine;
-using VMS.Emr;
+using VMS.HIS.Bus.Emr;
 using VMS.HIS.Bus;
 using VMS.HIS.DAL;
 using VNS.Libs;

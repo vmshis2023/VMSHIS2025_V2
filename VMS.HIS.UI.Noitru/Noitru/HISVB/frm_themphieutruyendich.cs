@@ -11,7 +11,7 @@ using VMS.HIS.DAL;
 using VNS.Libs;
 using NLog;
 using Janus.Windows.GridEX;
-using VMS.Emr;
+using VMS.HIS.Bus.Emr;
 
 namespace VNS.HIS.UI.NOITRU
 {

@@ -15,7 +15,7 @@ using System.Transactions;
 using CrystalDecisions.CrystalReports.Engine;
 using System.IO;
 using VNS.HIS.UI.Forms.Cauhinh;
-using VMS.Emr;
+using VMS.HIS.Bus.Emr;
 
 namespace VNS.HIS.UI.Forms.NGOAITRU
 {

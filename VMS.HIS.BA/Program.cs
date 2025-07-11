@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using VMS.HIS.BA.Forms;
+
 
 namespace VMS.HIS.BA
 {
@@ -16,7 +16,7 @@ namespace VMS.HIS.BA
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmHoSoCayThuocTranhThai());
+            Application.Run(new Form());
         }
     }
 }

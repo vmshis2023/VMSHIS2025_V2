@@ -220,9 +220,9 @@
     <Compile Include="Thuoc\XuatThuoc\XuatThuoc.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\VMS.Emr\VMS.Emr\VMS.Emr.csproj">
+    <ProjectReference Include="..\VMS.Emr\VMS.Emr\VMS.HIS.Bus.Emr.csproj">
       <Project>{323d0245-5cd3-488a-8b83-edade85b3da4}</Project>
-      <Name>VMS.Emr</Name>
+      <Name>VMS.HIS.Bus.Emr</Name>
     </ProjectReference>
     <ProjectReference Include="..\VMS.HIS.BHYT\4_1.VMS.HIS.BHYT.csproj">
       <Project>{C68B076C-AD56-46BB-A16A-88F357AEE6F4}</Project>

@@ -3053,11 +3053,13 @@ namespace VNS.HIS.UI.NGOAITRU
                 autotxtdiachilienhe._Text = objBenhnhan.DiachiLienhe;
                 txtEmail.Text = Utility.sDbnull(objBenhnhan.Email);
                 txtCMT.Text = Utility.sDbnull(objBenhnhan.Cmt);
+                
                 _objLuotkham = new Select().From(KcbLuotkham.Schema)
                    .Where(KcbLuotkham.Columns.MaLuotkham).IsEqualTo(Utility.sDbnull(txtMaLankham.Text.Trim(),""))
                    .And(KcbLuotkham.Columns.IdBenhnhan).IsEqualTo(Utility.Int32Dbnull(txtIdBenhnhan.Text.Trim(),-1)).ExecuteSingle <KcbLuotkham>();
                 if (_objLuotkham != null)
                 {
+                    txtPassPost.Text = Utility.sDbnull(_objLuotkham.PassPost);
                     LoadLichSuKham(_objLuotkham.IdBenhnhan);
                     KcbDangkySokham objSoKCB=new Select().From(KcbDangkySokham.Schema)
                         .Where(KcbDangkySokham.Columns.IdBenhnhan).IsEqualTo(_objLuotkham.IdBenhnhan)
@@ -8741,6 +8743,7 @@ namespace VNS.HIS.UI.NGOAITRU
             objBenhnhan.NguoiTao = globalVariables.UserName;
             objBenhnhan.NguonGoc = "KCB";
             objBenhnhan.Cmt = Utility.sDbnull(txtCMT.Text, "");
+            objBenhnhan.PassPost = Utility.sDbnull(txtPassPost.Text, "");
             objBenhnhan.CoQuan = string.Empty;
             objBenhnhan.NgheNghiep = txtNgheNghiep.Text;
             objBenhnhan.GioiTinh = cboPatientSex.Text;
@@ -8818,6 +8821,7 @@ namespace VNS.HIS.UI.NGOAITRU
                 _objLuotkham.IdKhoatiepnhan = globalVariables.idKhoatheoMay;
                 _objLuotkham.TthaiUutien = chkDoituongUutien.Checked;
                 _objLuotkham.Cmt = Utility.sDbnull(txtCMT.Text, "");
+                _objLuotkham.PassPost = Utility.sDbnull(txtPassPost.Text, "");
                 if (sudungsonha)
                 {
                     _objLuotkham.SonhaDuongpho = Utility.sDbnull(txtDiachi.Text);

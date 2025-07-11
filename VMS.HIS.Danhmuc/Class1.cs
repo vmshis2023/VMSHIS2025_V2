@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using VNS.HIS.UCs;
 using VNS.HIS.UI.Forms.HinhAnh;
 using VNS.Libs;
 
@@ -10,6 +11,17 @@ namespace VMS.HIS.Danhmuc
 {
     public class Util
     {
+        public static void SetNguoiDaiDienDonVi(AutoCompleteTextbox auto)
+        {
+            try
+            {
+                auto.SetId(THU_VIEN_CHUNG.Laygiatrithamsohethong("ID_NGUOIDAIDIEN_DONVI", "-1",true));
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
         public static void ReleaseControlMemory(Control pnl, string RML)
         {
             try

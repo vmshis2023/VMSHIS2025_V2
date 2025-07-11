@@ -80,7 +80,7 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(long? IdBenhnhan,string MaLuotkham,string CdLucvaode,DateTime? CdNgaymode,string CdNgoithai,string CdCachthucde,string CdKiemsoattucung,bool? CdDonthai,bool? CdDathai,bool? CdTrai,bool? CdGai,bool? CdSong,bool? CdChet,string CdDitatThainhi,string CdCannangThainhi,DateTime? NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua)
+	    public void Insert(long? IdBenhnhan,string MaLuotkham,string CdLucvaode,DateTime? CdNgaymode,string CdNgoithai,string CdCachthucde,string CdKiemsoattucung,bool? CdDonthai,bool? CdDathai,bool? CdTrai,bool? CdGai,bool? CdSong,bool? CdChet,string CdDitatThainhi,int? CdCannangThainhi,string CdPhuongphapphauthuat,DateTime? NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua)
 	    {
 		    EmrChandoanSankhoa item = new EmrChandoanSankhoa();
 		    
@@ -114,6 +114,8 @@ namespace VMS.HIS.DAL
             
             item.CdCannangThainhi = CdCannangThainhi;
             
+            item.CdPhuongphapphauthuat = CdPhuongphapphauthuat;
+            
             item.NgayTao = NgayTao;
             
             item.NguoiTao = NguoiTao;
@@ -130,7 +132,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(long Id,long? IdBenhnhan,string MaLuotkham,string CdLucvaode,DateTime? CdNgaymode,string CdNgoithai,string CdCachthucde,string CdKiemsoattucung,bool? CdDonthai,bool? CdDathai,bool? CdTrai,bool? CdGai,bool? CdSong,bool? CdChet,string CdDitatThainhi,string CdCannangThainhi,DateTime? NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua)
+	    public void Update(long Id,long? IdBenhnhan,string MaLuotkham,string CdLucvaode,DateTime? CdNgaymode,string CdNgoithai,string CdCachthucde,string CdKiemsoattucung,bool? CdDonthai,bool? CdDathai,bool? CdTrai,bool? CdGai,bool? CdSong,bool? CdChet,string CdDitatThainhi,int? CdCannangThainhi,string CdPhuongphapphauthuat,DateTime? NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua)
 	    {
 		    EmrChandoanSankhoa item = new EmrChandoanSankhoa();
 	        item.MarkOld();
@@ -167,6 +169,8 @@ namespace VMS.HIS.DAL
 			item.CdDitatThainhi = CdDitatThainhi;
 				
 			item.CdCannangThainhi = CdCannangThainhi;
+				
+			item.CdPhuongphapphauthuat = CdPhuongphapphauthuat;
 				
 			item.NgayTao = NgayTao;
 				

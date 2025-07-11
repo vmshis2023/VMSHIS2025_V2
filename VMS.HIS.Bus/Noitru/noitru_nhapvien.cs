@@ -11,7 +11,7 @@ using System.Text;
 using SubSonic;
 using NLog;
 using VNS.Properties;
-using VMS.Emr;
+using VMS.HIS.Bus.Emr;
 
 namespace VNS.HIS.BusRule.Classes
 {

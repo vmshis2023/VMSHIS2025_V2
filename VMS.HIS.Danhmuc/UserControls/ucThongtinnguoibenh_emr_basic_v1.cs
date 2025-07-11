@@ -117,6 +117,81 @@ namespace VNS.HIS.UI.Forms.Dungchung.UCs
                 AllowTextChanged = true;
             }
         }
+        public void Refresh(KcbLuotkham objLuotkham)
+        {
+            try
+            {
+                globalVariables.AppLog.Trace("Start Refresh");
+                this.objLuotkham = objLuotkham;
+                AllowTextChanged = false;
+                string _patient_Code = objLuotkham != null ? objLuotkham.MaLuotkham : Utility.AutoFullPatientCode(txtMaluotkham.Text);
+                if (objLuotkham==null)//Hiển thị form tìm kiếm
+                {
+                    var frm = new frm_DSACH_BN_TKIEM("ALL", noitrungoaitru);
+                    frm.trangthai_noitru = trangthai_noitru;
+                    frm.AutoSearch = this.AutoLoad;
+                    frm.MaLuotkham = txtMaluotkham.Text;
+                    frm.ShowDialog();
+                    if (!frm.has_Cancel)
+                    {
+                        txtMaluotkham.Text = frm.MaLuotkham;
+                        lastCode = txtMaluotkham.Text;
+                    }
+
+                }
+                else
+                    txtMaluotkham.Text = Utility.sDbnull(_patient_Code);
+                dt_ThongtinNguoibenh = SPs.EmrLaythongtinnguoibenhMaluotkhamIdbenhnhan(-1, txtMaluotkham.Text).GetDataSet().Tables[0];
+                if (dt_ThongtinNguoibenh != null && dt_ThongtinNguoibenh.Rows.Count > 0)
+                {
+                    lastCode = txtMaluotkham.Text;
+
+                    txtIdBn.Text = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0][KcbDanhsachBenhnhan.Columns.IdBenhnhan], "");
+                    objLuotkham =
+                        new Select().From(KcbLuotkham.Schema)
+                            .Where(KcbLuotkham.Columns.IdBenhnhan)
+                            .IsEqualTo(txtIdBn.Text)
+                            .And(KcbLuotkham.Columns.MaLuotkham).IsEqualTo(txtMaluotkham.Text)
+                            .ExecuteSingle<KcbLuotkham>();
+                    txtTenBN.Text = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0][KcbDanhsachBenhnhan.Columns.TenBenhnhan], "");
+                    txtMaYT.Text = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["ma_yte"], "");
+                    txtBOD.Text = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["nam_sinh"], "");
+                    txttuoi.Text = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["Tuoi"], "");
+                    chkNam.Checked = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["id_gioitinh"], "0") == "0";
+                    chkNu.Checked = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["id_gioitinh"], "0") == "1";
+                    txtNghenghiep.Text = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["ten_nghenghiep"], "");
+                    txtMaNgheNghiep.Text = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["nghe_nghiep"], "");
+                    txtDantoc.Text = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["ten_dantoc"], "");
+                    txtMaDantoc.Text = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["dan_toc"], "");
+                    txtTenNgoaikieu.Text = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["ten_quocgia"], "");
+                    txtMaNgoaikieu.Text = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["ma_quocgia"], "");
+                    txtDiachi.Text = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0][KcbDanhsachBenhnhan.Columns.DiaChi], "");
+                    txtXaphuong.Text = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["ten_xaphuong"], "");
+                    txtMaXaPhuong.Text = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["ma_xaphuong"], "");
+                    txtQuanhuyen.Text = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["ten_quanhuyen"], "");
+                    txtMaQuanHuyen.Text = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["ma_quanhuyen"], "");
+                    txtTinhTp.Text = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["ten_tinhtp"], "");
+                    txtMaTinhTp.Text = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["ma_tinhtp"], "");
+                    txtNoilamviec.Text = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["ten_coquan"], "");
+                    txtBHYTTuNgay.Text = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["ngaybatdau_bhyt"], "");
+                    txtmatheBhyt.Text = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["mathe_bhyt"], "");
+                    lblNguoilienhe.Text = string.Format("11. Họ tên, địa chỉ người nhà khi cần báo tin: {0},{1}", Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["nguoi_lienhe"], ""), Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["diachi_lienhe"], "")); ;
+                    txtDTLienhe.Text = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["dienthoai_lienhe"], "-1");
+
+                }
+                if (_OnEnterMe != null) _OnEnterMe();
+
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+            }
+            finally
+            {
+                globalVariables.AppLog.Trace("End Refresh");
+                AllowTextChanged = true;
+            }
+        }
         public void Refresh()
         {
             try

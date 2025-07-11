@@ -201,6 +201,9 @@ namespace VNS.HIS.UI.DANHMUC
         private void frmServiceDetail_Load(object sender, EventArgs e)
         {
             BindService();
+            DataTable dtPhieuEMR = THU_VIEN_CHUNG.LayDulieuDanhmucChung("EMR_PHIEU", true);
+            DataBinding.BindDataCombobox(cboPhieuEMR, dtPhieuEMR, DmucChung.Columns.Ma, DmucChung.Columns.Ten);
+
             DataTable dtnhominphoi = new Select().From(DmucChung.Schema)
                 .Where(DmucChung.Columns.Loai)
                 .IsEqualTo(THU_VIEN_CHUNG.Laygiatrithamsohethong("BHYT_STT_INPHOI", "STT_INPHOIBHYT", true))
@@ -487,8 +490,8 @@ namespace VNS.HIS.UI.DANHMUC
                         objDichVuChitiet.IdPhongThuchien.Value.ToString());
                 }
                 cbonhombaocao.SelectedIndex = Utility.GetSelectedIndex(cbonhombaocao, objDichVuChitiet.NhomBaocao);
-                
-                
+                cboPhieuEMR.SelectedValue = Utility.sDbnull(objDichVuChitiet.MaPhieuEmr);
+
             }
         }
 
@@ -708,6 +711,7 @@ namespace VNS.HIS.UI.DANHMUC
                 objDichVuChitiet.TyleHotro = Utility.DecimaltoDbnull(txtTyleHotro.Text, 0);
                 objDichVuChitiet.BhytNguonKhac = Utility.Bool2byte(chkThanhtoannguonkhac.Checked);
                 chkHIV.Checked = Utility.Byte2Bool(objDichVuChitiet.Hiv);
+                objDichVuChitiet.MaPhieuEmr = Utility.sDbnull(cboPhieuEMR.SelectedValue);
 
                 objDichVuChitiet.IsNew = true;
                 dmucDichvuCLS_busrule.Insert(objDichVuChitiet,null,
@@ -776,6 +780,7 @@ namespace VNS.HIS.UI.DANHMUC
             dr[DmucDichvuclsChitiet.Columns.XmlMachiso] = Utility.sDbnull(txtmachiso.Text);
             dr[DmucDichvuclsChitiet.Columns.XmlTenchiso] = Utility.sDbnull(txttenchiso.Text);
             dr[DmucDichvuclsChitiet.Columns.XmlMamay] = Utility.sDbnull(txtmamay.Text);
+            dr[DmucDichvuclsChitiet.Columns.MaPhieuEmr] = Utility.sDbnull(cboPhieuEMR.SelectedValue, "");
             dr[DmucDichvuclsChitiet.Columns.SongayChophepChidinhtiep] = Utility.ByteDbnull(nmrThoigian.Value, 0);
             if (cboDepartment.SelectedIndex > 0)
                 dr[VDmucDichvucl.Columns.TenKhoaThuchien] = Utility.sDbnull(cboDepartment.Text);
@@ -883,7 +888,7 @@ namespace VNS.HIS.UI.DANHMUC
                 objDichVuChitiet.TyleHotro = Utility.DecimaltoDbnull(txtTyleHotro.Text, 0);
                 objDichVuChitiet.BhytNguonKhac = Utility.Bool2byte(chkThanhtoannguonkhac.Checked);
                 chkHIV.Checked = Utility.Byte2Bool(objDichVuChitiet.Hiv);
-
+                objDichVuChitiet.MaPhieuEmr = Utility.sDbnull(cboPhieuEMR.SelectedValue);
                 objDichVuChitiet.IsNew = false;
                 objDichVuChitiet.MarkOld();
                 dmucDichvuCLS_busrule.Insert(objDichVuChitiet, null,
@@ -966,6 +971,7 @@ namespace VNS.HIS.UI.DANHMUC
                         dr[DmucDichvuclsChitiet.Columns.TinhChkhau] = chkTinhCK.Checked;
                         dr[DmucDichvucl.Columns.TenDichvu] = txtLoaiDichvu.Text;
                         dr[DmucDichvuclsChitiet.Columns.NhomBaocao] = Utility.sDbnull(cbonhombaocao.SelectedValue, "-1");
+                        dr[DmucDichvuclsChitiet.Columns.MaPhieuEmr] = Utility.sDbnull(cboPhieuEMR.SelectedValue, "");
                         dr["ten_nhombaocao_chitiet"] = Utility.sDbnull(cbonhombaocao.Text, "");
                         dr[DmucDichvuclsChitiet.Columns.MaDonvitinh] = txtDonvitinh.myCode;
                         dr[DmucDichvuclsChitiet.Columns.SongayChophepChidinhtiep] =Utility.ByteDbnull( nmrThoigian.Value,0);

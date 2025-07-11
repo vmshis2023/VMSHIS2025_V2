@@ -24,7 +24,7 @@ using VMS.EMR.PHIEUKHAM;
 using VMS.Emr;
 using System.Globalization;
 
-namespace VNS.HIS.UI.BA
+namespace VNS.HIS.UI.EMR
 {
     public partial class frm_BenhAn_NgoaiTru : Form
     {

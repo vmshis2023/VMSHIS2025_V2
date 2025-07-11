@@ -73,7 +73,14 @@ namespace VNS.HIS.UI.DANHMUC
 
         void grdList_CellUpdated(object sender, ColumnActionEventArgs e)
         {
-           
+            string colKey = e.Column.Key;
+            string colValue = Utility.sDbnull(grdList.GetValue(colKey));
+            int v_intIdDichvu = Utility.Int32Dbnull(grdList.GetValue(DmucDichvucl.Columns.IdDichvu));
+            int num = 0;
+            if (colKey == DmucDichvucl.Columns.MaPhieuEmr)
+            {
+                num = new Update(DmucDichvucl.Schema).Set(DmucDichvucl.Columns.MaPhieuEmr).EqualTo(colValue).Where(DmucDichvucl.Columns.IdDichvu).IsEqualTo(v_intIdDichvu).Execute();
+            }
         }
 
         void cboDepartment_SelectedIndexChanged(object sender, EventArgs e)
@@ -99,6 +106,14 @@ namespace VNS.HIS.UI.DANHMUC
         {
             try
             {
+                DataTable dtPhieuEMR = new Select("*").From(DmucChung.Schema).Where(DmucChung.Columns.Loai).IsEqualTo("EMR_PHIEU")
+               .OrderAsc(DmucChung.Columns.SttHthi)
+               .ExecuteDataSet().Tables[0];
+                if (grdList.DropDowns.Contains("cboPhieuEmr"))
+                {
+                    grdList.DropDowns["cboPhieuEmr"].DataSource = dtPhieuEMR;
+                }
+
                 m_dtLoaiDichvuCLS = THU_VIEN_CHUNG.LayDulieuDanhmucChung("LOAIDICHVUCLS", true);
                 DataTable m_dtLoaiDichvuCLS_new = m_dtLoaiDichvuCLS.Clone();
                 if (globalVariables.gv_dtQuyenNhanvien_Dmuc.Select(QheNhanvienDanhmuc.Columns.Loai + "= 0").Length <= 0)

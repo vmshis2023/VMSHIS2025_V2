@@ -80,7 +80,7 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(string MaFile,byte[] FileData,string FilePath,string FileIn,string FileKiso,long IdBenhnhan,string MaLuotkham,DateTime NgayPhieu,long? IdPhieu,string MaPhieu,long? IdPhieuChitiet,bool? PhieuBosung,string LoaiPhieuHis,string MaGayEmr,string MaPhieuEmr,string ReportCode,string Title,string Ext,byte? TthaiDuyet,bool? TthaiHuy,bool? TthaiAn,string NguoiKy,string NguoiTao,DateTime? NgayTao,byte? NguonTao,short? IdKhoa,string TenKhoa,short? IdPhong,string TenPhong,bool? Noitru,string MotaThem,bool? LaPhieutach,bool? TthaiXoa,bool? TthaiChiase,string DsachKhoaduocchiase,string DsachsNguoiduocchiase,bool? TthaiKyso,string NguoiKyso,DateTime? NgayKyso,bool? TthaiKydientu,string NguoiKydientu,DateTime? NgayKydientu)
+	    public void Insert(string MaFile,byte[] FileData,string FilePath,string FileIn,string FileKiso,long IdBenhnhan,string MaLuotkham,DateTime NgayPhieu,long? IdPhieu,string MaPhieu,long? IdPhieuChitiet,bool? PhieuBosung,string LoaiphieuCha,string LoaiPhieuHis,string MaGayEmr,string MaPhieuEmr,string ReportCode,string Title,string Ext,byte? TthaiDuyet,bool? TthaiHuy,bool? TthaiAn,string NguoiKy,string NguoiTao,DateTime? NgayTao,byte? NguonTao,short? IdKhoa,string TenKhoa,short? IdPhong,string TenPhong,bool? Noitru,string MotaThem,bool? LaPhieutach,bool? TthaiXoa,bool? TthaiChiase,string DsachKhoaduocchiase,string DsachsNguoiduocchiase,bool? TthaiKyso,string NguoiKyso,DateTime? NgayKyso,bool? TthaiKydientu,string NguoiKydientu,DateTime? NgayKydientu,bool? ManualGen,string LstIdPhieu)
 	    {
 		    EmrDocument item = new EmrDocument();
 		    
@@ -107,6 +107,8 @@ namespace VMS.HIS.DAL
             item.IdPhieuChitiet = IdPhieuChitiet;
             
             item.PhieuBosung = PhieuBosung;
+            
+            item.LoaiphieuCha = LoaiphieuCha;
             
             item.LoaiPhieuHis = LoaiPhieuHis;
             
@@ -168,6 +170,10 @@ namespace VMS.HIS.DAL
             
             item.NgayKydientu = NgayKydientu;
             
+            item.ManualGen = ManualGen;
+            
+            item.LstIdPhieu = LstIdPhieu;
+            
 	    
 		    item.Save(UserName);
 	    }
@@ -176,7 +182,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(long IdFile,string MaFile,byte[] FileData,string FilePath,string FileIn,string FileKiso,long IdBenhnhan,string MaLuotkham,DateTime NgayPhieu,long? IdPhieu,string MaPhieu,long? IdPhieuChitiet,bool? PhieuBosung,string LoaiPhieuHis,string MaGayEmr,string MaPhieuEmr,string ReportCode,string Title,string Ext,byte? TthaiDuyet,bool? TthaiHuy,bool? TthaiAn,string NguoiKy,string NguoiTao,DateTime? NgayTao,byte? NguonTao,short? IdKhoa,string TenKhoa,short? IdPhong,string TenPhong,bool? Noitru,string MotaThem,bool? LaPhieutach,bool? TthaiXoa,bool? TthaiChiase,string DsachKhoaduocchiase,string DsachsNguoiduocchiase,bool? TthaiKyso,string NguoiKyso,DateTime? NgayKyso,bool? TthaiKydientu,string NguoiKydientu,DateTime? NgayKydientu)
+	    public void Update(long IdFile,string MaFile,byte[] FileData,string FilePath,string FileIn,string FileKiso,long IdBenhnhan,string MaLuotkham,DateTime NgayPhieu,long? IdPhieu,string MaPhieu,long? IdPhieuChitiet,bool? PhieuBosung,string LoaiphieuCha,string LoaiPhieuHis,string MaGayEmr,string MaPhieuEmr,string ReportCode,string Title,string Ext,byte? TthaiDuyet,bool? TthaiHuy,bool? TthaiAn,string NguoiKy,string NguoiTao,DateTime? NgayTao,byte? NguonTao,short? IdKhoa,string TenKhoa,short? IdPhong,string TenPhong,bool? Noitru,string MotaThem,bool? LaPhieutach,bool? TthaiXoa,bool? TthaiChiase,string DsachKhoaduocchiase,string DsachsNguoiduocchiase,bool? TthaiKyso,string NguoiKyso,DateTime? NgayKyso,bool? TthaiKydientu,string NguoiKydientu,DateTime? NgayKydientu,bool? ManualGen,string LstIdPhieu)
 	    {
 		    EmrDocument item = new EmrDocument();
 	        item.MarkOld();
@@ -207,6 +213,8 @@ namespace VMS.HIS.DAL
 			item.IdPhieuChitiet = IdPhieuChitiet;
 				
 			item.PhieuBosung = PhieuBosung;
+				
+			item.LoaiphieuCha = LoaiphieuCha;
 				
 			item.LoaiPhieuHis = LoaiPhieuHis;
 				
@@ -267,6 +275,10 @@ namespace VMS.HIS.DAL
 			item.NguoiKydientu = NguoiKydientu;
 				
 			item.NgayKydientu = NgayKydientu;
+				
+			item.ManualGen = ManualGen;
+				
+			item.LstIdPhieu = LstIdPhieu;
 				
 	        item.Save(UserName);
 	    }

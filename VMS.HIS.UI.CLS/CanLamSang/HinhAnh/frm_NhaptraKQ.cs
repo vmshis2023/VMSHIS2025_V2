@@ -35,8 +35,8 @@ using System.Transactions;
 using VNS.HIS.UI.NGOAITRU;
 using VMS.HIS.Danhmuc;
 using Word = Microsoft.Office.Interop.Word;
-using VMS.Emr;
-
+using VMS.HIS.Bus.Emr;
+using Microsoft.Win32;
 namespace VNS.HIS.UI.Forms.HinhAnh
 {
     //0=Mới chỉ định;1=Đã chuyển CLS;2=Đang thực hiện;3= Đã có kết quả CLS;4=Đã xác nhận kết quả
@@ -115,20 +115,41 @@ namespace VNS.HIS.UI.Forms.HinhAnh
             }
 
             //!File.Exists(Application.StartupPath + @"\nolic.txt") && !cl.IsValidLicense(GetIP4Address(), ref videotype, ref lstframeInfor, ref RML, ref numofimg);
-            
+            SetBrowserEmulation();
             cmdChonfile.Visible = globalVariables.IsAdmin;
             chkPreview.Checked = PropertyLib._HinhAnhProperties.PrintPreview;
             cmdSave.Text = PropertyLib._HinhAnhProperties.PrintAfterSave ? "Lưu và in" : "Lưu kết quả";
             chkSignType.Checked = PropertyLib._HinhAnhProperties.SignType;
             this.Text = string.Format("{0}-{1}", this.Text,
                 string.Format("Nhân viên thực hiện:{0}", globalVariables.gv_strTenNhanvien));
-            webBrowser1.Url = new Uri(Application.StartupPath.ToString() + @"\editor\ckeditor.html");
-            webBrowserHistory.Url = new Uri(Application.StartupPath.ToString() + @"\editor\ckeditor.html");
-
+            string editorUrl = Application.StartupPath.ToString() + @"\editor\ckeditor.html";
+            webBrowser1.Url = new Uri(editorUrl);
+          if(File.Exists(Application.StartupPath+@"\Showmsg.txt"))  Utility.ShowMsg("OK1");
+            webBrowserHistory.Url = new Uri(editorUrl);
+            if (File.Exists(Application.StartupPath + @"\Showmsg.txt")) Utility.ShowMsg("OK2");
+            webBrowser1.Navigate(editorUrl);
+            webBrowserHistory.Navigate(editorUrl);
             timer2.Start();
             watch();
         }
-       
+        private void SetBrowserEmulation()
+        {
+            try
+            {
+                string app = System.IO.Path.GetFileName(Process.GetCurrentProcess().MainModule.FileName);
+                using (var key = Registry.CurrentUser.CreateSubKey(
+                    @"Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION"))
+                {
+                    key.SetValue(app, 11000, RegistryValueKind.DWord); // IE11
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Utility.CatchException(ex);
+            }
+           
+        }
         void _Pdf2HisManager__OnQueueChanged(int QueueCount)
         {
 
@@ -1891,6 +1912,12 @@ namespace VNS.HIS.UI.Forms.HinhAnh
                 if (e.Control)
                     switch (e.KeyCode)
                     {
+                        case Keys.K:
+                            cmdDuyet.PerformClick();
+                            break;
+                        case Keys.X:
+                            mnuHuyduyet.PerformClick();
+                            break;
                         case Keys.S:
                             cmdSave.PerformClick();
                             break;
@@ -2247,7 +2274,7 @@ namespace VNS.HIS.UI.Forms.HinhAnh
                     return;
                 }
                 string sFilter = "All|*.Doc;*.Docx;*.doc";
-                using (OpenFileDialog _filedlg = new OpenFileDialog())
+                using (System.Windows.Forms.OpenFileDialog _filedlg = new System.Windows.Forms.OpenFileDialog())
                 {
                     _filedlg.Multiselect = true;
                     _filedlg.Filter = sFilter;
@@ -2286,7 +2313,7 @@ namespace VNS.HIS.UI.Forms.HinhAnh
             try
             {
                 cmdBrowse.Enabled = false;
-                OpenFileDialog ofd = new OpenFileDialog();
+                System.Windows.Forms.OpenFileDialog ofd = new System.Windows.Forms.OpenFileDialog();
                 ofd.Filter = sFilter;
                 if (File.Exists(Application.StartupPath + @"\imgfolder.txt"))
                     ofd.InitialDirectory = Path.GetDirectoryName(File.ReadAllText(Application.StartupPath + @"\imgfolder.txt"));
@@ -2356,7 +2383,7 @@ namespace VNS.HIS.UI.Forms.HinhAnh
             try
             {
                 cmdBrowse.Enabled = false;
-                OpenFileDialog ofd = new OpenFileDialog();
+                System.Windows.Forms.OpenFileDialog ofd = new System.Windows.Forms.OpenFileDialog();
                 ofd.Filter = sFilter;
                 if (File.Exists(Application.StartupPath + @"\imgfolder.txt"))
                     ofd.InitialDirectory = Path.GetDirectoryName(File.ReadAllText(Application.StartupPath + @"\imgfolder.txt"));

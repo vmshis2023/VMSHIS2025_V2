@@ -80,7 +80,7 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(long? IdBenhnhan,string MaLuotkham,DateTime? Vaobuongdeluc,string Nguoitheodoi,string Chucdanh,DateTime? Deluc,string Apgar1phut,string Apgar5phut,string Apgar10phut,short? TresosinhCannang,short? TresosinhCao,short? TresosinhVongdau,bool? TresosinhDonthaiTrai,bool? TresosinhDonthaiGai,bool? TresosinhDathaiTrai,bool? TresosinhDathaiGai,bool? TresosinhTatbamsinh,bool? TresosinhCohaumon,string TresosinhCuthetatbamsinh,string TresosinhTinhtrangsaude,string TresosinhXulyvaketqua,bool? SorauBoc,bool? SorauSo,DateTime? SorauLuc,string SorauCachsorau,string SorauMatmang,string SorauMatmui,string SorauBanhrau,short? SorauCannang,bool? SorauRaucuonco,short? CuongrauDai,bool? SorauChaymausauso,short? SorauLuongmaumat,bool? SorauKiemsoattucung,string SorauXulyvaketqua,string SanphuDaniemmac,bool? SanphuPhuongphapdeThuong,bool? SanphuPhuongphapdeForceps,bool? SanphuPhuongphapdeGiachut,bool? SanphuPhuongphapdePt,bool? SanphuPhuongphapdeDechihuy,bool? SanphuPhuongphapdeKhac,string SanphuLydocanthiep,bool? SanphuTangsinhmonKhongrach,bool? SanphuTangsinhmonRach,bool? SanphuTangsinhmonCat,bool? SanphuPhuongphapkhauvaloaichi,string SanphuPhuongphapkhauvaloaichiMota,short? SanphuSomuikhau,bool? SanphuCotucungKhongrach,bool? SanphuCotucungRach,string Mach,string NhietDo,string HuyetAp,string NhịpTho,string ChieuCao,string CanNang,string NhomMau,string Bmi,string NguoiTao,DateTime? NgayTao,string NguoiSua,DateTime? NgaySua)
+	    public void Insert(long? IdBenhnhan,string MaLuotkham,DateTime? Vaobuongdeluc,string Nguoitheodoi,string Chucdanh,DateTime? Deluc,string Apgar1phut,string Apgar5phut,string Apgar10phut,short? TresosinhCannang,short? TresosinhCao,short? TresosinhVongdau,bool? TresosinhDonthai,bool? TresosinhDonthaiTrai,bool? TresosinhDonthaiGai,bool? TresosinhDathai,bool? TresosinhDathaiTrai,bool? TresosinhDathaiGai,bool? TresosinhTatbamsinh,bool? TresosinhCohaumon,string TresosinhCuthetatbamsinh,string TresosinhTinhtrangsaude,string TresosinhXulyvaketqua,bool? SorauBoc,bool? SorauSo,DateTime? SorauLuc,string SorauCachsorau,string SorauMatmang,string SorauMatmui,string SorauBanhrau,short? SorauCannang,bool? SorauRaucuonco,short? CuongrauDai,bool? SorauChaymausauso,short? SorauLuongmaumat,bool? SorauKiemsoattucung,string SorauXulyvaketqua,string SanphuDaniemmac,bool? SanphuPhuongphapdeThuong,bool? SanphuPhuongphapdeForceps,bool? SanphuPhuongphapdeGiachut,bool? SanphuPhuongphapdePt,bool? SanphuPhuongphapdeDechihuy,bool? SanphuPhuongphapdeKhac,string SanphuLydocanthiep,bool? SanphuTangsinhmonKhongrach,bool? SanphuTangsinhmonRach,bool? SanphuTangsinhmonCat,bool? SanphuPhuongphapkhauvaloaichi,string SanphuPhuongphapkhauvaloaichiMota,short? SanphuSomuikhau,bool? SanphuCotucungKhongrach,bool? SanphuCotucungRach,string Mach,string NhietDo,string HuyetAp,string NhịpTho,string ChieuCao,string CanNang,string NhomMau,string Bmi,string NguoiTao,DateTime? NgayTao,string NguoiSua,DateTime? NgaySua)
 	    {
 		    EmrPhieutheodoiTaibuongde item = new EmrPhieutheodoiTaibuongde();
 		    
@@ -108,9 +108,13 @@ namespace VMS.HIS.DAL
             
             item.TresosinhVongdau = TresosinhVongdau;
             
+            item.TresosinhDonthai = TresosinhDonthai;
+            
             item.TresosinhDonthaiTrai = TresosinhDonthaiTrai;
             
             item.TresosinhDonthaiGai = TresosinhDonthaiGai;
+            
+            item.TresosinhDathai = TresosinhDathai;
             
             item.TresosinhDathaiTrai = TresosinhDathaiTrai;
             
@@ -218,7 +222,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(long Id,long? IdBenhnhan,string MaLuotkham,DateTime? Vaobuongdeluc,string Nguoitheodoi,string Chucdanh,DateTime? Deluc,string Apgar1phut,string Apgar5phut,string Apgar10phut,short? TresosinhCannang,short? TresosinhCao,short? TresosinhVongdau,bool? TresosinhDonthaiTrai,bool? TresosinhDonthaiGai,bool? TresosinhDathaiTrai,bool? TresosinhDathaiGai,bool? TresosinhTatbamsinh,bool? TresosinhCohaumon,string TresosinhCuthetatbamsinh,string TresosinhTinhtrangsaude,string TresosinhXulyvaketqua,bool? SorauBoc,bool? SorauSo,DateTime? SorauLuc,string SorauCachsorau,string SorauMatmang,string SorauMatmui,string SorauBanhrau,short? SorauCannang,bool? SorauRaucuonco,short? CuongrauDai,bool? SorauChaymausauso,short? SorauLuongmaumat,bool? SorauKiemsoattucung,string SorauXulyvaketqua,string SanphuDaniemmac,bool? SanphuPhuongphapdeThuong,bool? SanphuPhuongphapdeForceps,bool? SanphuPhuongphapdeGiachut,bool? SanphuPhuongphapdePt,bool? SanphuPhuongphapdeDechihuy,bool? SanphuPhuongphapdeKhac,string SanphuLydocanthiep,bool? SanphuTangsinhmonKhongrach,bool? SanphuTangsinhmonRach,bool? SanphuTangsinhmonCat,bool? SanphuPhuongphapkhauvaloaichi,string SanphuPhuongphapkhauvaloaichiMota,short? SanphuSomuikhau,bool? SanphuCotucungKhongrach,bool? SanphuCotucungRach,string Mach,string NhietDo,string HuyetAp,string NhịpTho,string ChieuCao,string CanNang,string NhomMau,string Bmi,string NguoiTao,DateTime? NgayTao,string NguoiSua,DateTime? NgaySua)
+	    public void Update(long Id,long? IdBenhnhan,string MaLuotkham,DateTime? Vaobuongdeluc,string Nguoitheodoi,string Chucdanh,DateTime? Deluc,string Apgar1phut,string Apgar5phut,string Apgar10phut,short? TresosinhCannang,short? TresosinhCao,short? TresosinhVongdau,bool? TresosinhDonthai,bool? TresosinhDonthaiTrai,bool? TresosinhDonthaiGai,bool? TresosinhDathai,bool? TresosinhDathaiTrai,bool? TresosinhDathaiGai,bool? TresosinhTatbamsinh,bool? TresosinhCohaumon,string TresosinhCuthetatbamsinh,string TresosinhTinhtrangsaude,string TresosinhXulyvaketqua,bool? SorauBoc,bool? SorauSo,DateTime? SorauLuc,string SorauCachsorau,string SorauMatmang,string SorauMatmui,string SorauBanhrau,short? SorauCannang,bool? SorauRaucuonco,short? CuongrauDai,bool? SorauChaymausauso,short? SorauLuongmaumat,bool? SorauKiemsoattucung,string SorauXulyvaketqua,string SanphuDaniemmac,bool? SanphuPhuongphapdeThuong,bool? SanphuPhuongphapdeForceps,bool? SanphuPhuongphapdeGiachut,bool? SanphuPhuongphapdePt,bool? SanphuPhuongphapdeDechihuy,bool? SanphuPhuongphapdeKhac,string SanphuLydocanthiep,bool? SanphuTangsinhmonKhongrach,bool? SanphuTangsinhmonRach,bool? SanphuTangsinhmonCat,bool? SanphuPhuongphapkhauvaloaichi,string SanphuPhuongphapkhauvaloaichiMota,short? SanphuSomuikhau,bool? SanphuCotucungKhongrach,bool? SanphuCotucungRach,string Mach,string NhietDo,string HuyetAp,string NhịpTho,string ChieuCao,string CanNang,string NhomMau,string Bmi,string NguoiTao,DateTime? NgayTao,string NguoiSua,DateTime? NgaySua)
 	    {
 		    EmrPhieutheodoiTaibuongde item = new EmrPhieutheodoiTaibuongde();
 	        item.MarkOld();
@@ -250,9 +254,13 @@ namespace VMS.HIS.DAL
 				
 			item.TresosinhVongdau = TresosinhVongdau;
 				
+			item.TresosinhDonthai = TresosinhDonthai;
+				
 			item.TresosinhDonthaiTrai = TresosinhDonthaiTrai;
 				
 			item.TresosinhDonthaiGai = TresosinhDonthaiGai;
+				
+			item.TresosinhDathai = TresosinhDathai;
 				
 			item.TresosinhDathaiTrai = TresosinhDathaiTrai;
 				

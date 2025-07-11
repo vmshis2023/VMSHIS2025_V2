@@ -80,7 +80,7 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(string LoaiBa,string MaBa,DateTime? NgaylamBa,string Khoa,string Buong,string Giuong,string SoLuutru,long IdBenhnhan,string MaLuotkham,string MaYte,string TenBenhnhan,DateTime? NgaySinh,short? Tuoi,byte? LoaiTuoi,string MaGioitinh,string GioiTinh,string MaNghenghiep,string TenNghenghiep,string MaDantoc,string TenDantoc,string MaTongiao,string TenTongiao,string MaQuocgia,string TenQuocgia,bool? NgoaiKieu,string DiaChi,string Sonha,string Thonpho,string MaXaphuong,string TenXaphuong,string MaQuanhuyen,string TenQuanhuyen,string MaTinhtp,string TenTinhtp,string MaCoquan,string TenCoquan,byte? MaDoituong,string TenDoituong,string MatheBhyt,DateTime? BhytTungay,DateTime? BhytDenngay,string NguoiLienhe,string DienthoaiLienhe,string DiachiLienhe,string CmtNguoilienhe,string HotenBo,string TrinhdoVanhoaBo,string NghenghiepBo,string HotenMe,string TrinhdoVanhoaMe,string NghenghiepMe,string CmtCccd,string SoHochieu,string DienThoai,string Email,DateTime? VaovienNgay,string VaovienLydovaovien,byte? VaovienVaongaythucuabenh,byte? VaovienTructiepVao,bool? VaovienCapcuu,bool? VaovienKkb,bool? VaovienKhoadieutri,bool? NoigioithieuCoquanyte,bool? NoigioithieuTuden,bool? NoigioithieuKhac,byte? VaovienLanthu,string VaovienTenkhoa,string VaovienMakhoa,short? VaovienIdKhoa,DateTime? VaovienNgayvaokhoa,bool? ChuyenvienTuyentren,bool? ChuyenvienTuyenduoi,bool? ChuyenvienKhac,string ChuyenvienNoichuyenden,DateTime? RavienNgay,string RavienMatinhtrang,bool? RavienRavien,bool? RavienXinve,bool? RavienBove,bool? RavienDuave,short? RavienTongsongayDieutri,string CdNoichuyenden,string CdNoichuyendenMa,string CdKkbCapcuu,string CdKkbCapcuuMa,string CdKhoadieutri,string CdKhoadieutriMa,string RavienMaBenhchinh,string RavienTenBenhchinh,string RavienMaBenhphu,string RavienTenBenhphu,string TinhtrangravienMaKetquadieutri,bool? TinhtrangravienKetquadieutriKhoi,bool? TinhtrangravienKetquadieutriDogiam,bool? TinhtrangravienKetquadieutriKhongthaydoi,bool? TinhtrangravienKetquadieutriNanghon,bool? TinhtrangravienKetquadieutriTuvong,bool? TinhtrangravienKetquadieutriChuyenvien,bool? TinhtrangravienGpbLanhtinh,bool? TinhtrangravienGpbNghingo,bool? TinhtrangravienGpbActinh,bool? TinhtrangravienGpb,DateTime? TinhtrangravienThoigianTuvong,string TinhtrangravienMaLydotuvong,bool? TinhtrangravienLydotuvongDobenh,bool? TinhtrangravienLydotuvongDotaibiendieutri,bool? TinhtrangravienLydotuvongKhac,string TinhtrangravienMaThoigiantuvong,bool? TinhtrangravienThoigiantuvongTrong24h,bool? TinhtrangravienThoigiantuvongSau24h,bool? TinhtrangravienThoigiantuvongTrong48h,bool? TinhtrangravienThoigiantuvongTrong72h,string TinhtrangravienMaNguyennhantuvong,string TinhtrangravienNguyennhantuvong,bool? TinhtrangravienKhamnghiemtuthi,string TinhtrangravienMaChandoangiaiphaututhi,string TinhtrangravienChandoangiauphaututhi,bool? CdThuthuat,bool? CdPhauthuat,bool? CdTaibien,bool? CdBienchung,bool? CdDophauthuat,bool? CdDogayme,bool? CdDonhiemkhuan,bool? CdTaibienBienchungKhac,byte? CdTongsongaydieutriSauphauthuat,byte? CdTongsolanphauthuat,string MaChandoanTruocphauthuat,string ChandoanTruocphauthuat,string MaChandoanSauphauthuat,string ChandoanSauphauthuat,string CdLucvaode,DateTime? CdNgaymode,string CdNgoithai,string CdCachthucde,string CdKiemsoattucung,bool? CdDonthai,bool? CdDathai,bool? CdTrai,bool? CdGai,bool? CdSong,bool? CdChet,string CdDitatThainhi,string CdCannangThainhi,DateTime? HoibenhKinhcuoitungay,DateTime? HoibenhKinhcuoiden,byte? HoibenhTuoithai,string HoibenhKhamthaitai,bool? HoibenhTiemphongUonvan,byte? HoibenhTiemphongUonvanSolan,DateTime? HoibenhBatdauchuyenda,string HoibenhDauhieulucdau,string HoibenhBienchuyen,string HoibenhQuatrinhbenhly,string HoibenhTiensubanthan,string HoibenhTiensugiadinh,byte? HoibenhBatdauthaykinhNam,byte? HoibenhBatdauthaykinhTuoi,string HoibenhTinhchatkinhnguyet,byte? HoibenhChukykinh,byte? HoibenhLuongkinh,byte? HoibenhLaychongNam,byte? HoibenhLaychongTuoi,string HoibenhNhungbenhphukhoadadieutri,string KbMach,string KbNhietdo,string KbHuyetap,string KbNhiptho,string KbChieucao,string KbCannang,string KbNhommau,string KbBmi,bool? TsbDiung,bool? TsbMatuy,bool? TsbRuoubia,bool? TsbThuocla,bool? TsbThuoclao,bool? TsbKhac,string TsbThoigianDiung,string TsbThoigianMatuy,string TsbThoigianRuoubia,string TsbThoigianThuocla,string TsbThoigianThuoclao,string TsbThoigianKhac,string TsbDiungKhac,byte? NhikhoaConthu,bool? TinhtrangkhisinhDethuong,bool? TinhtrangkhisinhForceps,bool? TinhtrangkhisinhGiachut,bool? TinhtrangkhisinhDephauthuat,bool? TinhtrangkhisinhDechihuy,bool? TinhtrangkhisinhDekhac,string CannangLucsinh,bool? DitatBamsinh,string DitatBamsinhMota,string PhattrienVetinhthan,string PhattrienVevandong,string Cacbenhlykhac,bool? NuoiduongSuame,bool? NuoiduongNhantao,bool? NuoiduongHonhop,byte? NuoidungCaisuathangthu,bool? ChamsocTaivuontre,bool? ChamsocTainha,bool? DatiemchungLao,bool? DatiemchungBailiet,bool? DatiemchungSoi,bool? DatiemchungHoga,bool? DatiemchungUonvan,bool? DatiemchungBachhau,bool? DatiemchungKhac,string DatiemchungKhacMota,byte? KhambenhChieucao,short? BatdauthaykinhNam,short? BatdauthaykinhTuoi,string Tinhchatkinhnguyet,short? Chuky,short? Songaythaykinh,string Luongkinh,DateTime? Kinhlancuoingay,bool? Codaubung,bool? ThoigianTruoc,bool? ThoigianTrong,bool? ThoigianSau,byte? LaychongNam,byte? LaychongTuoi,byte? Hetkinhnam,byte? Hetkinhtuoi,string Nhungbenhphukhoadadieutri,byte? KhambenhVongnguc,byte? KhambenhVongdau,string KhambenhDaniemmac,string KhambenhHach,string KhambenhVu,string BaKckCacdauhieusinhducthuphat,string BaKckMoilon,string BaKckMoibe,string BaKckAmvat,string BaKckAmho,string BaKckMangtrinh,string BaKckTangsinhmon,string BaKckAmdao,string BaKckCotucung,string BaKckThantucung,string BaKckPhanphu,string BaKckCactuicung,string KhambenhToanthan,string KhambenhCacbophan,string KhambenhTuanhoan,string KhambenhHohap,string KhambenhTieuhoa,string KhambenhThantietnieusinhduc,string KhambenhThankinh,string KhambenhCoxuongkhop,string KhambenhTaimuihong,string KhambenhRanghammat,string KhambenhMat,string KhambenhNoitietDinhduongBenhlykhac,bool? KhamngoaiBungcoseophauthuatcu,string KhamngoaiHinhdangtucung,string KhamngoaiTuthe,byte? KhamngoaiChieucaotucung,byte? KhamngoaiVongbung,string KhamngoaiConcotucung,byte? KhamngoaiTimthai,string KhamngoaiVu,string KhamtrongChisoBishop,string KhamtrongAmho,string KhamtrongAmdao,string KhamtrongTangsinhmon,string KhamtrongCotucung,string KhamtrongPhanphu,bool? KhamtrongTinhtrangoiPhong,bool? KhamtrongTinhtrangoiDet,bool? KhamtrongTinhtrangoiQuale,DateTime? KhamtrongThoigianoivo,bool? KhamtrongTinhtrangoivoTunhien,bool? KhamtrongTinhtrangoivoBamoi,string KhamtrongMausacnuocoi,string KhamtrongNuocoinhieuit,string KhamtrongNgoi,string KhamtrongThe,string KhamtrongKieuthe,string KhamtrongDuongkinhnhohave,bool? KhamtrongDolotCao,bool? KhamtrongDolotChuc,bool? KhamtrongDolotChat,bool? KhamtrongDolotLot,string KhambenhXetnghiemClsCanlam,string KhambenhTomtatbenhan,string KhambenhDaxulychamsoc,string CdBandau,string CdChuyenbiet,string CdKhivaokhoadieutriMabenhchinh,string CdKhivaokhoadieutriBenhchinh,string CdKhivaokhoadieutriMabenhphu,string CdKhivaokhoadieutriBenhphu,string CdKhivaokhoadieutriPhanbiet,string KhambenhTienluong,string KhambenhHuongdieutri,DateTime? Vaobuongdeluc,string Nguoitheodoi,string Chucdanh,DateTime? Deluc,string Apgar,short? TresosinhCannang,short? TresosinhCao,short? TresosinhVongdau,bool? TresosinhDonthaiTrai,bool? TresosinhDonthaiGai,bool? TresosinhDathaiTrai,bool? TresosinhDathaiGai,bool? TresosinhTatbamsinh,bool? TresosinhCohaumon,string TresosinhCuthetatbamsinh,string TresosinhTinhtrangsaude,string TresosinhXulyvaketqua,bool? SorauBoc,bool? SorauSo,DateTime? SorauLuc,string SorauCachsorau,string SorauMatmang,string SorauMatmui,string SorauBanhrau,short? SorauCannang,bool? SorauRaucuonco,short? CuongrauDai,bool? SorauChaymausauso,short? SorauLuongmaumat,bool? SorauKiemsoattucung,string SorauXulyvaketqua,string SanphuDaniemmac,bool? SanphuPhuongphapdeThuong,bool? SanphuPhuongphapdeForceps,bool? SanphuPhuongphapdeGiachut,bool? SanphuPhuongphapdePt,bool? SanphuPhuongphapdeDechihuy,bool? SanphuPhuongphapdeKhac,string SanphuLydocanthiep,bool? SanphuTangsinhmonKhongrach,bool? SanphuTangsinhmonRach,bool? SanphuTangsinhmonCat,string SanphuPhuongphapkhauvaloaichi,short? SanphuSomuikhau,bool? SanphuCotucungKhongrach,bool? SanphuCotucungRach,bool? TinhinhphauthuatTaibien,bool? TinhinhphauthuatBienchung,bool? TinhinhphauthuatDophauthuat,bool? TinhinhphauthuatDogayme,bool? TinhinhphauthuatDonhiemkhuan,bool? TinhinhphauthuatDokhac,string TongketbaQuatrinhbenhlyDienbienlamsang,string TongketbaTomtatKqcls,string TongketbaPhuongphapdieutri,string TongketbaTinhtrangNguoiravien,string TongketbaHuongdieutritieptheo,DateTime? TongketbaNgay,string TongketbaMaNguoigiaoHoso,string TongketbaNguoigiaoHoso,string TongketbaMaNguoiNhanhoso,string TongketbaNguoiNhanhoso,string TongketbaMaNguoigiaohoso,string TongketbaMaNguoinhanhoso,DateTime? TongketbaNgayGiaonhanhoso,int? TongketbaSotoXquang,int? TongketbaSotoCt,int? TongketbaSotoSieuam,int? TongketbaSotoXetnghiem,int? TongketbaSotoKhac,short? IdBacsiDieutri,string MabacsiDieutri,string TenbacsiDieutri,short? IdBacsiLamBA,string MabacsiLamBA,string TenbacsiLamBA,short? IdBacsiKham,string MabacsiKham,string TenbacsiKham,DateTime? NgayKham,short? IdTruongkhoadieutri,string MaTruongkhoadieutri,string TenTruongkhoadieutri,short? IdKhoaravien,string MaKhoaravien,string TenKhoaravien,string TenGdBenhvien,string MaCoso,DateTime? NgayDieutriTu,DateTime? NgayDieutriDen,DateTime? NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua,bool? TthaiKyso,string NguoiKyso,DateTime? NgayKyso,bool? TthaiKydientu,string NguoiKydientu,DateTime? NgayKydientu)
+	    public void Insert(string LoaiBa,string MaBa,DateTime? NgaylamBa,string Khoa,string Buong,string Giuong,string SoLuutru,long IdBenhnhan,string MaLuotkham,string MaYte,string TenBenhnhan,DateTime? NgaySinh,short? Tuoi,byte? LoaiTuoi,string MaGioitinh,string GioiTinh,string MaNghenghiep,string TenNghenghiep,string MaDantoc,string TenDantoc,string MaTongiao,string TenTongiao,string MaQuocgia,string TenQuocgia,bool? NgoaiKieu,string DiaChi,string Sonha,string Thonpho,string MaXaphuong,string TenXaphuong,string MaQuanhuyen,string TenQuanhuyen,string MaTinhtp,string TenTinhtp,string MaCoquan,string TenCoquan,byte? MaDoituong,string TenDoituong,string MatheBhyt,DateTime? BhytTungay,DateTime? BhytDenngay,string NguoiLienhe,string DienthoaiLienhe,string DiachiLienhe,string CmtNguoilienhe,string HotenBo,string TrinhdoVanhoaBo,string NghenghiepBo,string HotenMe,string TrinhdoVanhoaMe,string NghenghiepMe,string CmtCccd,string SoHochieu,string DienThoai,string Email,DateTime? VaovienNgay,string VaovienLydovaovien,byte? VaovienVaongaythucuabenh,byte? VaovienTructiepVao,bool? VaovienCapcuu,bool? VaovienKkb,bool? VaovienKhoadieutri,bool? NoigioithieuCoquanyte,bool? NoigioithieuTuden,bool? NoigioithieuKhac,byte? VaovienLanthu,string VaovienTenkhoa,string VaovienMakhoa,short? VaovienIdKhoa,DateTime? VaovienNgayvaokhoa,bool? ChuyenvienTuyentren,bool? ChuyenvienTuyenduoi,bool? ChuyenvienKhac,string ChuyenvienNoichuyenden,DateTime? RavienNgay,string RavienMatinhtrang,bool? RavienRavien,bool? RavienXinve,bool? RavienBove,bool? RavienDuave,short? RavienTongsongayDieutri,string CdNoichuyenden,string CdNoichuyendenMa,string CdKkbCapcuu,string CdKkbCapcuuMa,string CdKhoadieutri,string CdKhoadieutriMa,string RavienMaBenhchinh,string RavienTenBenhchinh,string RavienMaBenhphu,string RavienTenBenhphu,string TinhtrangravienMaKetquadieutri,bool? TinhtrangravienKetquadieutriKhoi,bool? TinhtrangravienKetquadieutriDogiam,bool? TinhtrangravienKetquadieutriKhongthaydoi,bool? TinhtrangravienKetquadieutriNanghon,bool? TinhtrangravienKetquadieutriTuvong,bool? TinhtrangravienKetquadieutriChuyenvien,bool? TinhtrangravienGpbLanhtinh,bool? TinhtrangravienGpbNghingo,bool? TinhtrangravienGpbActinh,bool? TinhtrangravienGpb,DateTime? TinhtrangravienThoigianTuvong,string TinhtrangravienMaLydotuvong,bool? TinhtrangravienLydotuvongDobenh,bool? TinhtrangravienLydotuvongDotaibiendieutri,bool? TinhtrangravienLydotuvongKhac,string TinhtrangravienMaThoigiantuvong,bool? TinhtrangravienThoigiantuvongTrong24h,bool? TinhtrangravienThoigiantuvongSau24h,bool? TinhtrangravienThoigiantuvongTrong48h,bool? TinhtrangravienThoigiantuvongTrong72h,string TinhtrangravienMaNguyennhantuvong,string TinhtrangravienNguyennhantuvong,bool? TinhtrangravienKhamnghiemtuthi,string TinhtrangravienMaChandoangiaiphaututhi,string TinhtrangravienChandoangiauphaututhi,bool? CdThuthuat,bool? CdPhauthuat,bool? CdTaibien,bool? CdBienchung,bool? CdDophauthuat,bool? CdDogayme,bool? CdDonhiemkhuan,bool? CdTaibienBienchungKhac,byte? CdTongsongaydieutriSauphauthuat,byte? CdTongsolanphauthuat,string MaChandoanTruocphauthuat,string ChandoanTruocphauthuat,string MaChandoanSauphauthuat,string ChandoanSauphauthuat,string CdLucvaode,DateTime? CdNgaymode,string CdNgoithai,string CdCachthucde,string CdKiemsoattucung,bool? CdDonthai,bool? CdDathai,bool? CdTrai,bool? CdGai,bool? CdSong,bool? CdChet,string CdDitatThainhi,int? CdCannangThainhi,string CdPhuongphapphauthuat,DateTime? HoibenhKinhcuoitungay,DateTime? HoibenhKinhcuoiden,byte? HoibenhTuoithai,string HoibenhKhamthaitai,bool? HoibenhTiemphongUonvan,byte? HoibenhTiemphongUonvanSolan,DateTime? HoibenhBatdauchuyenda,string HoibenhDauhieulucdau,string HoibenhBienchuyen,string HoibenhQuatrinhbenhly,string HoibenhTiensubanthan,string HoibenhTiensugiadinh,short? HoibenhBatdauthaykinhNam,byte? HoibenhBatdauthaykinhTuoi,string HoibenhTinhchatkinhnguyet,byte? HoibenhChukykinh,byte? HoibenhLuongkinh,short? HoibenhLaychongNam,byte? HoibenhLaychongTuoi,string HoibenhNhungbenhphukhoadadieutri,string HoibenhPara,string KbMach,string KbNhietdo,string KbHuyetap,string KbNhiptho,string KbChieucao,string KbCannang,string KbNhommau,string KbBmi,bool? TsbDiung,bool? TsbMatuy,bool? TsbRuoubia,bool? TsbThuocla,bool? TsbThuoclao,bool? TsbKhac,string TsbThoigianDiung,string TsbThoigianMatuy,string TsbThoigianRuoubia,string TsbThoigianThuocla,string TsbThoigianThuoclao,string TsbThoigianKhac,string TsbDiungKhac,byte? NhikhoaConthu,bool? TinhtrangkhisinhDethuong,bool? TinhtrangkhisinhForceps,bool? TinhtrangkhisinhGiachut,bool? TinhtrangkhisinhDephauthuat,bool? TinhtrangkhisinhDechihuy,bool? TinhtrangkhisinhDekhac,string CannangLucsinh,bool? DitatBamsinh,string DitatBamsinhMota,string PhattrienVetinhthan,string PhattrienVevandong,string Cacbenhlykhac,bool? NuoiduongSuame,bool? NuoiduongNhantao,bool? NuoiduongHonhop,byte? NuoidungCaisuathangthu,bool? ChamsocTaivuontre,bool? ChamsocTainha,bool? DatiemchungLao,bool? DatiemchungBailiet,bool? DatiemchungSoi,bool? DatiemchungHoga,bool? DatiemchungUonvan,bool? DatiemchungBachhau,bool? DatiemchungKhac,string DatiemchungKhacMota,byte? KhambenhChieucao,short? BatdauthaykinhNam,short? BatdauthaykinhTuoi,string Tinhchatkinhnguyet,short? Chuky,short? Songaythaykinh,string Luongkinh,DateTime? Kinhlancuoingay,bool? Codaubung,bool? ThoigianTruoc,bool? ThoigianTrong,bool? ThoigianSau,short? LaychongNam,byte? LaychongTuoi,short? Hetkinhnam,byte? Hetkinhtuoi,string Nhungbenhphukhoadadieutri,byte? KhambenhVongnguc,byte? KhambenhVongdau,string KhambenhDaniemmac,string KhambenhHach,string KhambenhVu,string BaKckCacdauhieusinhducthuphat,string BaKckMoilon,string BaKckMoibe,string BaKckAmvat,string BaKckAmho,string BaKckMangtrinh,string BaKckTangsinhmon,string BaKckAmdao,string BaKckCotucung,string BaKckThantucung,string BaKckPhanphu,string BaKckCactuicung,string KhambenhToanthan,string KhambenhNgoaikhoa,string KhambenhCacbophan,string KhambenhTuanhoan,string KhambenhHohap,string KhambenhTieuhoa,string KhambenhThantietnieusinhduc,string KhambenhThankinh,string KhambenhCoxuongkhop,string KhambenhTaimuihong,string KhambenhRanghammat,string KhambenhMat,string KhambenhNoitietDinhduongBenhlykhac,bool? KhamngoaiBungcoseophauthuatcu,string KhamngoaiHinhdangtucung,string KhamngoaiTuthe,byte? KhamngoaiChieucaotucung,byte? KhamngoaiVongbung,string KhamngoaiConcotucung,byte? KhamngoaiTimthai,string KhamngoaiVu,string KhamtrongChisoBishop,string KhamtrongAmho,string KhamtrongAmdao,string KhamtrongTangsinhmon,string KhamtrongCotucung,string KhamtrongPhanphu,string KhamtrongThantucung,string KhamtrongCactuicung,bool? KhamtrongTinhtrangoiPhong,bool? KhamtrongTinhtrangoiDet,bool? KhamtrongTinhtrangoiQuale,DateTime? KhamtrongThoigianoivo,bool? KhamtrongTinhtrangoivoTunhien,bool? KhamtrongTinhtrangoivoBamoi,string KhamtrongMausacnuocoi,string KhamtrongNuocoinhieuit,string KhamtrongNgoi,string KhamtrongThe,string KhamtrongKieuthe,string KhamtrongDuongkinhnhohave,bool? KhamtrongDolotCao,bool? KhamtrongDolotChuc,bool? KhamtrongDolotChat,bool? KhamtrongDolotLot,string KhambenhXetnghiemClsCanlam,string KhambenhTomtatbenhan,string KhambenhDaxulychamsoc,string CdBandau,string CdChuyenbiet,string CdKhivaokhoadieutriMabenhchinh,string CdKhivaokhoadieutriBenhchinh,string CdKhivaokhoadieutriMabenhphu,string CdKhivaokhoadieutriBenhphu,string CdKhivaokhoadieutriPhanbiet,string KhambenhTienluong,string KhambenhHuongdieutri,DateTime? Vaobuongdeluc,string Nguoitheodoi,string Chucdanh,DateTime? Deluc,string Apgar,string Apgar1phut,string Apgar5phut,string Apgar10phut,short? TresosinhCannang,short? TresosinhCao,short? TresosinhVongdau,bool? TresosinhDonthai,bool? TresosinhDonthaiTrai,bool? TresosinhDonthaiGai,bool? TresosinhDathai,bool? TresosinhDathaiTrai,bool? TresosinhDathaiGai,bool? TresosinhTatbamsinh,bool? TresosinhCohaumon,string TresosinhCuthetatbamsinh,string TresosinhTinhtrangsaude,string TresosinhXulyvaketqua,bool? SorauBoc,bool? SorauSo,DateTime? SorauLuc,string SorauCachsorau,string SorauMatmang,string SorauMatmui,string SorauBanhrau,short? SorauCannang,bool? SorauRaucuonco,short? CuongrauDai,bool? SorauChaymausauso,short? SorauLuongmaumat,bool? SorauKiemsoattucung,string SorauXulyvaketqua,string SanphuDaniemmac,bool? SanphuPhuongphapdeThuong,bool? SanphuPhuongphapdeForceps,bool? SanphuPhuongphapdeGiachut,bool? SanphuPhuongphapdePt,bool? SanphuPhuongphapdeDechihuy,bool? SanphuPhuongphapdeKhac,string SanphuLydocanthiep,bool? SanphuTangsinhmonKhongrach,bool? SanphuTangsinhmonRach,bool? SanphuTangsinhmonCat,bool? SanphuPhuongphapkhauvaloaichi,string SanphuPhuongphapkhauvaloaichiMota,short? SanphuSomuikhau,bool? SanphuCotucungKhongrach,bool? SanphuCotucungRach,string TinhinhphauthuatChandoantruocphauthuat,string TinhinhphauthuatChandoansauphauthuat,bool? TinhinhphauthuatTaibien,bool? TinhinhphauthuatBienchung,bool? TinhinhphauthuatDophauthuat,bool? TinhinhphauthuatDogayme,bool? TinhinhphauthuatDonhiemkhuan,bool? TinhinhphauthuatDokhac,string TongketbaQuatrinhbenhlyDienbienlamsang,string TongketbaTomtatKqcls,string TongketbaPhuongphapdieutri,bool? TongketbaThuthuat,bool? TongketbaPhauthuat,string TongketbaTinhtrangNguoiravien,string TongketbaHuongdieutritieptheo,DateTime? TongketbaNgay,string TongketbaMaNguoigiaoHoso,string TongketbaNguoigiaoHoso,string TongketbaMaNguoiNhanhoso,string TongketbaNguoiNhanhoso,string TongketbaMaNguoigiaohoso,string TongketbaMaNguoinhanhoso,DateTime? TongketbaNgayGiaonhanhoso,int? TongketbaSotoXquang,int? TongketbaSotoCt,int? TongketbaSotoSieuam,int? TongketbaSotoXetnghiem,int? TongketbaSotoKhac,short? IdNguoigiaoHoso,string MaNguoigiaoHoso,short? IdNguoinhanHoso,string MaNguoinhanHoso,short? IdBacsiDieutri,string MabacsiDieutri,string TenbacsiDieutri,short? IdBacsiLamBA,string MabacsiLamBA,string TenbacsiLamBA,short? IdBacsiKham,string MabacsiKham,string TenbacsiKham,DateTime? NgayKham,short? IdTruongkhoadieutri,string MaTruongkhoadieutri,string TenTruongkhoadieutri,short? IdGiamdoc,string MaGiamdoc,string TenGiamdoc,short? IdKhoaravien,string MaKhoaravien,string TenKhoaravien,string TenGdBenhvien,string MaCoso,DateTime? NgayDieutriTu,DateTime? NgayDieutriDen,string BenhlyToanthan,bool? QuaibiCo,bool? QuaibiKhong,bool? BienchungtinhhoanCo,bool? BienchungtinhhoanKhong,bool? Bienchungtinhhoan1ben,bool? Bienchungtinhhoan2ben,string BienchungtinhoanMota,bool? BenhxahoiCo,bool? BenhxahoiKhong,string BenhxahoiMota,bool? UngthuCo,bool? UngthuKhong,string UngthuMota,bool? TiencanlaoCo,bool? TiencanlaoKhong,bool? SudungTestosteronCo,bool? SudungTestosteronKhong,string SudungTestosteronMota,string NoikhoaKhac,string Thuocdangdieutri,bool? ViphaucothattmtCo,bool? ViphaucothattmtKhong,bool? HatinhoananCo,bool? HatinhoananKhong,string HatinhoananMota,bool? ThatongdantinhCo,bool? ThatongdantinhKhong,string ThatongdantinhThoigian,string NgoaikhoaKhac,string QuanhetinhducTansuat,bool? RoiloancuongCo,bool? RoiloancuongKhong,string RoiloancuongMota,bool? XuattinhsomTruockhixamnhap,bool? XuattinhsomSaukhixamnhap,bool? XuattinhsomKhong,bool? CuckhoaiCo,bool? CuckhoaiKhong,bool? CosudungchatboitronCo,bool? CosudungchatboitronKhong,string CosudungchatboitronMota,string ThetichtinhhoanPhai,string MatdotinhhoanPhai,string BemattinhoanPhai,string ThetichtinhhoanTrai,string MatdotinhhoanTrai,string BemattinhoanTrai,bool? MatdotinhhoanPhaiChac,bool? MatdotinhhoanPhaiMem,bool? MatdotinhhoanTraiChac,bool? MatdotinhhoanTraiMem,string MatdomaotinhPhai,string MatdomaotinhTrai,bool? MatdomaotinhPhaiChac,bool? MatdomaotinhPhaiMem,bool? MatdomaotinhTraiChac,bool? MatdomaotinhTraiMem,string NangmaotinhPhai,string NangmaotinhTrai,bool? MaotinhNangphaiCo,bool? MaotinhNangphaiKhong,bool? MaotinhNangphaiKhongxacdinh,bool? MaotinhNangtraiCo,bool? MaotinhNangtraiKhong,bool? MaotinhNangtraiKhongxacdinh,bool? OngdantinhPhaiCo,bool? OngdantinhPhaiKhong,bool? OngdantinhPhaiKhongro,bool? OngdantinhTraiCo,bool? OngdantinhTraiKhong,bool? OngdantinhTraiKhongro,bool? TinhmachthungtingPhaiBinhthuong,bool? TinhmachthungtingGianphai1,bool? TinhmachthungtingGianphai2,bool? TinhmachthungtingGianphai3,string TinhmachthungtingPhaiGianMota,bool? TinhmachthungtingTraiBinhthuong,bool? TinhmachthungtingGiantrai1,bool? TinhmachthungtingGiantrai2,bool? TinhmachthungtingGiantrai3,string TinhmachthungtingTraiGianMota,bool? PhanbocoBinhthuong,bool? PhanbocoBatthuong,string PhanboMo,string PhanboLongmu,string PhanboChi,DateTime? NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua,bool? TthaiKyso,string NguoiKyso,DateTime? NgayKyso,bool? TthaiKydientu,string NguoiKydientu,DateTime? NgayKydientu)
 	    {
 		    EmrBa item = new EmrBa();
 		    
@@ -372,6 +372,8 @@ namespace VMS.HIS.DAL
             
             item.CdCannangThainhi = CdCannangThainhi;
             
+            item.CdPhuongphapphauthuat = CdPhuongphapphauthuat;
+            
             item.HoibenhKinhcuoitungay = HoibenhKinhcuoitungay;
             
             item.HoibenhKinhcuoiden = HoibenhKinhcuoiden;
@@ -411,6 +413,8 @@ namespace VMS.HIS.DAL
             item.HoibenhLaychongTuoi = HoibenhLaychongTuoi;
             
             item.HoibenhNhungbenhphukhoadadieutri = HoibenhNhungbenhphukhoadadieutri;
+            
+            item.HoibenhPara = HoibenhPara;
             
             item.KbMach = KbMach;
             
@@ -578,6 +582,8 @@ namespace VMS.HIS.DAL
             
             item.KhambenhToanthan = KhambenhToanthan;
             
+            item.KhambenhNgoaikhoa = KhambenhNgoaikhoa;
+            
             item.KhambenhCacbophan = KhambenhCacbophan;
             
             item.KhambenhTuanhoan = KhambenhTuanhoan;
@@ -627,6 +633,10 @@ namespace VMS.HIS.DAL
             item.KhamtrongCotucung = KhamtrongCotucung;
             
             item.KhamtrongPhanphu = KhamtrongPhanphu;
+            
+            item.KhamtrongThantucung = KhamtrongThantucung;
+            
+            item.KhamtrongCactuicung = KhamtrongCactuicung;
             
             item.KhamtrongTinhtrangoiPhong = KhamtrongTinhtrangoiPhong;
             
@@ -694,15 +704,25 @@ namespace VMS.HIS.DAL
             
             item.Apgar = Apgar;
             
+            item.Apgar1phut = Apgar1phut;
+            
+            item.Apgar5phut = Apgar5phut;
+            
+            item.Apgar10phut = Apgar10phut;
+            
             item.TresosinhCannang = TresosinhCannang;
             
             item.TresosinhCao = TresosinhCao;
             
             item.TresosinhVongdau = TresosinhVongdau;
             
+            item.TresosinhDonthai = TresosinhDonthai;
+            
             item.TresosinhDonthaiTrai = TresosinhDonthaiTrai;
             
             item.TresosinhDonthaiGai = TresosinhDonthaiGai;
+            
+            item.TresosinhDathai = TresosinhDathai;
             
             item.TresosinhDathaiTrai = TresosinhDathaiTrai;
             
@@ -770,11 +790,17 @@ namespace VMS.HIS.DAL
             
             item.SanphuPhuongphapkhauvaloaichi = SanphuPhuongphapkhauvaloaichi;
             
+            item.SanphuPhuongphapkhauvaloaichiMota = SanphuPhuongphapkhauvaloaichiMota;
+            
             item.SanphuSomuikhau = SanphuSomuikhau;
             
             item.SanphuCotucungKhongrach = SanphuCotucungKhongrach;
             
             item.SanphuCotucungRach = SanphuCotucungRach;
+            
+            item.TinhinhphauthuatChandoantruocphauthuat = TinhinhphauthuatChandoantruocphauthuat;
+            
+            item.TinhinhphauthuatChandoansauphauthuat = TinhinhphauthuatChandoansauphauthuat;
             
             item.TinhinhphauthuatTaibien = TinhinhphauthuatTaibien;
             
@@ -793,6 +819,10 @@ namespace VMS.HIS.DAL
             item.TongketbaTomtatKqcls = TongketbaTomtatKqcls;
             
             item.TongketbaPhuongphapdieutri = TongketbaPhuongphapdieutri;
+            
+            item.TongketbaThuthuat = TongketbaThuthuat;
+            
+            item.TongketbaPhauthuat = TongketbaPhauthuat;
             
             item.TongketbaTinhtrangNguoiravien = TongketbaTinhtrangNguoiravien;
             
@@ -824,6 +854,14 @@ namespace VMS.HIS.DAL
             
             item.TongketbaSotoKhac = TongketbaSotoKhac;
             
+            item.IdNguoigiaoHoso = IdNguoigiaoHoso;
+            
+            item.MaNguoigiaoHoso = MaNguoigiaoHoso;
+            
+            item.IdNguoinhanHoso = IdNguoinhanHoso;
+            
+            item.MaNguoinhanHoso = MaNguoinhanHoso;
+            
             item.IdBacsiDieutri = IdBacsiDieutri;
             
             item.MabacsiDieutri = MabacsiDieutri;
@@ -850,6 +888,12 @@ namespace VMS.HIS.DAL
             
             item.TenTruongkhoadieutri = TenTruongkhoadieutri;
             
+            item.IdGiamdoc = IdGiamdoc;
+            
+            item.MaGiamdoc = MaGiamdoc;
+            
+            item.TenGiamdoc = TenGiamdoc;
+            
             item.IdKhoaravien = IdKhoaravien;
             
             item.MaKhoaravien = MaKhoaravien;
@@ -863,6 +907,180 @@ namespace VMS.HIS.DAL
             item.NgayDieutriTu = NgayDieutriTu;
             
             item.NgayDieutriDen = NgayDieutriDen;
+            
+            item.BenhlyToanthan = BenhlyToanthan;
+            
+            item.QuaibiCo = QuaibiCo;
+            
+            item.QuaibiKhong = QuaibiKhong;
+            
+            item.BienchungtinhhoanCo = BienchungtinhhoanCo;
+            
+            item.BienchungtinhhoanKhong = BienchungtinhhoanKhong;
+            
+            item.Bienchungtinhhoan1ben = Bienchungtinhhoan1ben;
+            
+            item.Bienchungtinhhoan2ben = Bienchungtinhhoan2ben;
+            
+            item.BienchungtinhoanMota = BienchungtinhoanMota;
+            
+            item.BenhxahoiCo = BenhxahoiCo;
+            
+            item.BenhxahoiKhong = BenhxahoiKhong;
+            
+            item.BenhxahoiMota = BenhxahoiMota;
+            
+            item.UngthuCo = UngthuCo;
+            
+            item.UngthuKhong = UngthuKhong;
+            
+            item.UngthuMota = UngthuMota;
+            
+            item.TiencanlaoCo = TiencanlaoCo;
+            
+            item.TiencanlaoKhong = TiencanlaoKhong;
+            
+            item.SudungTestosteronCo = SudungTestosteronCo;
+            
+            item.SudungTestosteronKhong = SudungTestosteronKhong;
+            
+            item.SudungTestosteronMota = SudungTestosteronMota;
+            
+            item.NoikhoaKhac = NoikhoaKhac;
+            
+            item.Thuocdangdieutri = Thuocdangdieutri;
+            
+            item.ViphaucothattmtCo = ViphaucothattmtCo;
+            
+            item.ViphaucothattmtKhong = ViphaucothattmtKhong;
+            
+            item.HatinhoananCo = HatinhoananCo;
+            
+            item.HatinhoananKhong = HatinhoananKhong;
+            
+            item.HatinhoananMota = HatinhoananMota;
+            
+            item.ThatongdantinhCo = ThatongdantinhCo;
+            
+            item.ThatongdantinhKhong = ThatongdantinhKhong;
+            
+            item.ThatongdantinhThoigian = ThatongdantinhThoigian;
+            
+            item.NgoaikhoaKhac = NgoaikhoaKhac;
+            
+            item.QuanhetinhducTansuat = QuanhetinhducTansuat;
+            
+            item.RoiloancuongCo = RoiloancuongCo;
+            
+            item.RoiloancuongKhong = RoiloancuongKhong;
+            
+            item.RoiloancuongMota = RoiloancuongMota;
+            
+            item.XuattinhsomTruockhixamnhap = XuattinhsomTruockhixamnhap;
+            
+            item.XuattinhsomSaukhixamnhap = XuattinhsomSaukhixamnhap;
+            
+            item.XuattinhsomKhong = XuattinhsomKhong;
+            
+            item.CuckhoaiCo = CuckhoaiCo;
+            
+            item.CuckhoaiKhong = CuckhoaiKhong;
+            
+            item.CosudungchatboitronCo = CosudungchatboitronCo;
+            
+            item.CosudungchatboitronKhong = CosudungchatboitronKhong;
+            
+            item.CosudungchatboitronMota = CosudungchatboitronMota;
+            
+            item.ThetichtinhhoanPhai = ThetichtinhhoanPhai;
+            
+            item.MatdotinhhoanPhai = MatdotinhhoanPhai;
+            
+            item.BemattinhoanPhai = BemattinhoanPhai;
+            
+            item.ThetichtinhhoanTrai = ThetichtinhhoanTrai;
+            
+            item.MatdotinhhoanTrai = MatdotinhhoanTrai;
+            
+            item.BemattinhoanTrai = BemattinhoanTrai;
+            
+            item.MatdotinhhoanPhaiChac = MatdotinhhoanPhaiChac;
+            
+            item.MatdotinhhoanPhaiMem = MatdotinhhoanPhaiMem;
+            
+            item.MatdotinhhoanTraiChac = MatdotinhhoanTraiChac;
+            
+            item.MatdotinhhoanTraiMem = MatdotinhhoanTraiMem;
+            
+            item.MatdomaotinhPhai = MatdomaotinhPhai;
+            
+            item.MatdomaotinhTrai = MatdomaotinhTrai;
+            
+            item.MatdomaotinhPhaiChac = MatdomaotinhPhaiChac;
+            
+            item.MatdomaotinhPhaiMem = MatdomaotinhPhaiMem;
+            
+            item.MatdomaotinhTraiChac = MatdomaotinhTraiChac;
+            
+            item.MatdomaotinhTraiMem = MatdomaotinhTraiMem;
+            
+            item.NangmaotinhPhai = NangmaotinhPhai;
+            
+            item.NangmaotinhTrai = NangmaotinhTrai;
+            
+            item.MaotinhNangphaiCo = MaotinhNangphaiCo;
+            
+            item.MaotinhNangphaiKhong = MaotinhNangphaiKhong;
+            
+            item.MaotinhNangphaiKhongxacdinh = MaotinhNangphaiKhongxacdinh;
+            
+            item.MaotinhNangtraiCo = MaotinhNangtraiCo;
+            
+            item.MaotinhNangtraiKhong = MaotinhNangtraiKhong;
+            
+            item.MaotinhNangtraiKhongxacdinh = MaotinhNangtraiKhongxacdinh;
+            
+            item.OngdantinhPhaiCo = OngdantinhPhaiCo;
+            
+            item.OngdantinhPhaiKhong = OngdantinhPhaiKhong;
+            
+            item.OngdantinhPhaiKhongro = OngdantinhPhaiKhongro;
+            
+            item.OngdantinhTraiCo = OngdantinhTraiCo;
+            
+            item.OngdantinhTraiKhong = OngdantinhTraiKhong;
+            
+            item.OngdantinhTraiKhongro = OngdantinhTraiKhongro;
+            
+            item.TinhmachthungtingPhaiBinhthuong = TinhmachthungtingPhaiBinhthuong;
+            
+            item.TinhmachthungtingGianphai1 = TinhmachthungtingGianphai1;
+            
+            item.TinhmachthungtingGianphai2 = TinhmachthungtingGianphai2;
+            
+            item.TinhmachthungtingGianphai3 = TinhmachthungtingGianphai3;
+            
+            item.TinhmachthungtingPhaiGianMota = TinhmachthungtingPhaiGianMota;
+            
+            item.TinhmachthungtingTraiBinhthuong = TinhmachthungtingTraiBinhthuong;
+            
+            item.TinhmachthungtingGiantrai1 = TinhmachthungtingGiantrai1;
+            
+            item.TinhmachthungtingGiantrai2 = TinhmachthungtingGiantrai2;
+            
+            item.TinhmachthungtingGiantrai3 = TinhmachthungtingGiantrai3;
+            
+            item.TinhmachthungtingTraiGianMota = TinhmachthungtingTraiGianMota;
+            
+            item.PhanbocoBinhthuong = PhanbocoBinhthuong;
+            
+            item.PhanbocoBatthuong = PhanbocoBatthuong;
+            
+            item.PhanboMo = PhanboMo;
+            
+            item.PhanboLongmu = PhanboLongmu;
+            
+            item.PhanboChi = PhanboChi;
             
             item.NgayTao = NgayTao;
             
@@ -892,7 +1110,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(long IdBa,string LoaiBa,string MaBa,DateTime? NgaylamBa,string Khoa,string Buong,string Giuong,string SoLuutru,long IdBenhnhan,string MaLuotkham,string MaYte,string TenBenhnhan,DateTime? NgaySinh,short? Tuoi,byte? LoaiTuoi,string MaGioitinh,string GioiTinh,string MaNghenghiep,string TenNghenghiep,string MaDantoc,string TenDantoc,string MaTongiao,string TenTongiao,string MaQuocgia,string TenQuocgia,bool? NgoaiKieu,string DiaChi,string Sonha,string Thonpho,string MaXaphuong,string TenXaphuong,string MaQuanhuyen,string TenQuanhuyen,string MaTinhtp,string TenTinhtp,string MaCoquan,string TenCoquan,byte? MaDoituong,string TenDoituong,string MatheBhyt,DateTime? BhytTungay,DateTime? BhytDenngay,string NguoiLienhe,string DienthoaiLienhe,string DiachiLienhe,string CmtNguoilienhe,string HotenBo,string TrinhdoVanhoaBo,string NghenghiepBo,string HotenMe,string TrinhdoVanhoaMe,string NghenghiepMe,string CmtCccd,string SoHochieu,string DienThoai,string Email,DateTime? VaovienNgay,string VaovienLydovaovien,byte? VaovienVaongaythucuabenh,byte? VaovienTructiepVao,bool? VaovienCapcuu,bool? VaovienKkb,bool? VaovienKhoadieutri,bool? NoigioithieuCoquanyte,bool? NoigioithieuTuden,bool? NoigioithieuKhac,byte? VaovienLanthu,string VaovienTenkhoa,string VaovienMakhoa,short? VaovienIdKhoa,DateTime? VaovienNgayvaokhoa,bool? ChuyenvienTuyentren,bool? ChuyenvienTuyenduoi,bool? ChuyenvienKhac,string ChuyenvienNoichuyenden,DateTime? RavienNgay,string RavienMatinhtrang,bool? RavienRavien,bool? RavienXinve,bool? RavienBove,bool? RavienDuave,short? RavienTongsongayDieutri,string CdNoichuyenden,string CdNoichuyendenMa,string CdKkbCapcuu,string CdKkbCapcuuMa,string CdKhoadieutri,string CdKhoadieutriMa,string RavienMaBenhchinh,string RavienTenBenhchinh,string RavienMaBenhphu,string RavienTenBenhphu,string TinhtrangravienMaKetquadieutri,bool? TinhtrangravienKetquadieutriKhoi,bool? TinhtrangravienKetquadieutriDogiam,bool? TinhtrangravienKetquadieutriKhongthaydoi,bool? TinhtrangravienKetquadieutriNanghon,bool? TinhtrangravienKetquadieutriTuvong,bool? TinhtrangravienKetquadieutriChuyenvien,bool? TinhtrangravienGpbLanhtinh,bool? TinhtrangravienGpbNghingo,bool? TinhtrangravienGpbActinh,bool? TinhtrangravienGpb,DateTime? TinhtrangravienThoigianTuvong,string TinhtrangravienMaLydotuvong,bool? TinhtrangravienLydotuvongDobenh,bool? TinhtrangravienLydotuvongDotaibiendieutri,bool? TinhtrangravienLydotuvongKhac,string TinhtrangravienMaThoigiantuvong,bool? TinhtrangravienThoigiantuvongTrong24h,bool? TinhtrangravienThoigiantuvongSau24h,bool? TinhtrangravienThoigiantuvongTrong48h,bool? TinhtrangravienThoigiantuvongTrong72h,string TinhtrangravienMaNguyennhantuvong,string TinhtrangravienNguyennhantuvong,bool? TinhtrangravienKhamnghiemtuthi,string TinhtrangravienMaChandoangiaiphaututhi,string TinhtrangravienChandoangiauphaututhi,bool? CdThuthuat,bool? CdPhauthuat,bool? CdTaibien,bool? CdBienchung,bool? CdDophauthuat,bool? CdDogayme,bool? CdDonhiemkhuan,bool? CdTaibienBienchungKhac,byte? CdTongsongaydieutriSauphauthuat,byte? CdTongsolanphauthuat,string MaChandoanTruocphauthuat,string ChandoanTruocphauthuat,string MaChandoanSauphauthuat,string ChandoanSauphauthuat,string CdLucvaode,DateTime? CdNgaymode,string CdNgoithai,string CdCachthucde,string CdKiemsoattucung,bool? CdDonthai,bool? CdDathai,bool? CdTrai,bool? CdGai,bool? CdSong,bool? CdChet,string CdDitatThainhi,string CdCannangThainhi,DateTime? HoibenhKinhcuoitungay,DateTime? HoibenhKinhcuoiden,byte? HoibenhTuoithai,string HoibenhKhamthaitai,bool? HoibenhTiemphongUonvan,byte? HoibenhTiemphongUonvanSolan,DateTime? HoibenhBatdauchuyenda,string HoibenhDauhieulucdau,string HoibenhBienchuyen,string HoibenhQuatrinhbenhly,string HoibenhTiensubanthan,string HoibenhTiensugiadinh,byte? HoibenhBatdauthaykinhNam,byte? HoibenhBatdauthaykinhTuoi,string HoibenhTinhchatkinhnguyet,byte? HoibenhChukykinh,byte? HoibenhLuongkinh,byte? HoibenhLaychongNam,byte? HoibenhLaychongTuoi,string HoibenhNhungbenhphukhoadadieutri,string KbMach,string KbNhietdo,string KbHuyetap,string KbNhiptho,string KbChieucao,string KbCannang,string KbNhommau,string KbBmi,bool? TsbDiung,bool? TsbMatuy,bool? TsbRuoubia,bool? TsbThuocla,bool? TsbThuoclao,bool? TsbKhac,string TsbThoigianDiung,string TsbThoigianMatuy,string TsbThoigianRuoubia,string TsbThoigianThuocla,string TsbThoigianThuoclao,string TsbThoigianKhac,string TsbDiungKhac,byte? NhikhoaConthu,bool? TinhtrangkhisinhDethuong,bool? TinhtrangkhisinhForceps,bool? TinhtrangkhisinhGiachut,bool? TinhtrangkhisinhDephauthuat,bool? TinhtrangkhisinhDechihuy,bool? TinhtrangkhisinhDekhac,string CannangLucsinh,bool? DitatBamsinh,string DitatBamsinhMota,string PhattrienVetinhthan,string PhattrienVevandong,string Cacbenhlykhac,bool? NuoiduongSuame,bool? NuoiduongNhantao,bool? NuoiduongHonhop,byte? NuoidungCaisuathangthu,bool? ChamsocTaivuontre,bool? ChamsocTainha,bool? DatiemchungLao,bool? DatiemchungBailiet,bool? DatiemchungSoi,bool? DatiemchungHoga,bool? DatiemchungUonvan,bool? DatiemchungBachhau,bool? DatiemchungKhac,string DatiemchungKhacMota,byte? KhambenhChieucao,short? BatdauthaykinhNam,short? BatdauthaykinhTuoi,string Tinhchatkinhnguyet,short? Chuky,short? Songaythaykinh,string Luongkinh,DateTime? Kinhlancuoingay,bool? Codaubung,bool? ThoigianTruoc,bool? ThoigianTrong,bool? ThoigianSau,byte? LaychongNam,byte? LaychongTuoi,byte? Hetkinhnam,byte? Hetkinhtuoi,string Nhungbenhphukhoadadieutri,byte? KhambenhVongnguc,byte? KhambenhVongdau,string KhambenhDaniemmac,string KhambenhHach,string KhambenhVu,string BaKckCacdauhieusinhducthuphat,string BaKckMoilon,string BaKckMoibe,string BaKckAmvat,string BaKckAmho,string BaKckMangtrinh,string BaKckTangsinhmon,string BaKckAmdao,string BaKckCotucung,string BaKckThantucung,string BaKckPhanphu,string BaKckCactuicung,string KhambenhToanthan,string KhambenhCacbophan,string KhambenhTuanhoan,string KhambenhHohap,string KhambenhTieuhoa,string KhambenhThantietnieusinhduc,string KhambenhThankinh,string KhambenhCoxuongkhop,string KhambenhTaimuihong,string KhambenhRanghammat,string KhambenhMat,string KhambenhNoitietDinhduongBenhlykhac,bool? KhamngoaiBungcoseophauthuatcu,string KhamngoaiHinhdangtucung,string KhamngoaiTuthe,byte? KhamngoaiChieucaotucung,byte? KhamngoaiVongbung,string KhamngoaiConcotucung,byte? KhamngoaiTimthai,string KhamngoaiVu,string KhamtrongChisoBishop,string KhamtrongAmho,string KhamtrongAmdao,string KhamtrongTangsinhmon,string KhamtrongCotucung,string KhamtrongPhanphu,bool? KhamtrongTinhtrangoiPhong,bool? KhamtrongTinhtrangoiDet,bool? KhamtrongTinhtrangoiQuale,DateTime? KhamtrongThoigianoivo,bool? KhamtrongTinhtrangoivoTunhien,bool? KhamtrongTinhtrangoivoBamoi,string KhamtrongMausacnuocoi,string KhamtrongNuocoinhieuit,string KhamtrongNgoi,string KhamtrongThe,string KhamtrongKieuthe,string KhamtrongDuongkinhnhohave,bool? KhamtrongDolotCao,bool? KhamtrongDolotChuc,bool? KhamtrongDolotChat,bool? KhamtrongDolotLot,string KhambenhXetnghiemClsCanlam,string KhambenhTomtatbenhan,string KhambenhDaxulychamsoc,string CdBandau,string CdChuyenbiet,string CdKhivaokhoadieutriMabenhchinh,string CdKhivaokhoadieutriBenhchinh,string CdKhivaokhoadieutriMabenhphu,string CdKhivaokhoadieutriBenhphu,string CdKhivaokhoadieutriPhanbiet,string KhambenhTienluong,string KhambenhHuongdieutri,DateTime? Vaobuongdeluc,string Nguoitheodoi,string Chucdanh,DateTime? Deluc,string Apgar,short? TresosinhCannang,short? TresosinhCao,short? TresosinhVongdau,bool? TresosinhDonthaiTrai,bool? TresosinhDonthaiGai,bool? TresosinhDathaiTrai,bool? TresosinhDathaiGai,bool? TresosinhTatbamsinh,bool? TresosinhCohaumon,string TresosinhCuthetatbamsinh,string TresosinhTinhtrangsaude,string TresosinhXulyvaketqua,bool? SorauBoc,bool? SorauSo,DateTime? SorauLuc,string SorauCachsorau,string SorauMatmang,string SorauMatmui,string SorauBanhrau,short? SorauCannang,bool? SorauRaucuonco,short? CuongrauDai,bool? SorauChaymausauso,short? SorauLuongmaumat,bool? SorauKiemsoattucung,string SorauXulyvaketqua,string SanphuDaniemmac,bool? SanphuPhuongphapdeThuong,bool? SanphuPhuongphapdeForceps,bool? SanphuPhuongphapdeGiachut,bool? SanphuPhuongphapdePt,bool? SanphuPhuongphapdeDechihuy,bool? SanphuPhuongphapdeKhac,string SanphuLydocanthiep,bool? SanphuTangsinhmonKhongrach,bool? SanphuTangsinhmonRach,bool? SanphuTangsinhmonCat,string SanphuPhuongphapkhauvaloaichi,short? SanphuSomuikhau,bool? SanphuCotucungKhongrach,bool? SanphuCotucungRach,bool? TinhinhphauthuatTaibien,bool? TinhinhphauthuatBienchung,bool? TinhinhphauthuatDophauthuat,bool? TinhinhphauthuatDogayme,bool? TinhinhphauthuatDonhiemkhuan,bool? TinhinhphauthuatDokhac,string TongketbaQuatrinhbenhlyDienbienlamsang,string TongketbaTomtatKqcls,string TongketbaPhuongphapdieutri,string TongketbaTinhtrangNguoiravien,string TongketbaHuongdieutritieptheo,DateTime? TongketbaNgay,string TongketbaMaNguoigiaoHoso,string TongketbaNguoigiaoHoso,string TongketbaMaNguoiNhanhoso,string TongketbaNguoiNhanhoso,string TongketbaMaNguoigiaohoso,string TongketbaMaNguoinhanhoso,DateTime? TongketbaNgayGiaonhanhoso,int? TongketbaSotoXquang,int? TongketbaSotoCt,int? TongketbaSotoSieuam,int? TongketbaSotoXetnghiem,int? TongketbaSotoKhac,short? IdBacsiDieutri,string MabacsiDieutri,string TenbacsiDieutri,short? IdBacsiLamBA,string MabacsiLamBA,string TenbacsiLamBA,short? IdBacsiKham,string MabacsiKham,string TenbacsiKham,DateTime? NgayKham,short? IdTruongkhoadieutri,string MaTruongkhoadieutri,string TenTruongkhoadieutri,short? IdKhoaravien,string MaKhoaravien,string TenKhoaravien,string TenGdBenhvien,string MaCoso,DateTime? NgayDieutriTu,DateTime? NgayDieutriDen,DateTime? NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua,bool? TthaiKyso,string NguoiKyso,DateTime? NgayKyso,bool? TthaiKydientu,string NguoiKydientu,DateTime? NgayKydientu)
+	    public void Update(long IdBa,string LoaiBa,string MaBa,DateTime? NgaylamBa,string Khoa,string Buong,string Giuong,string SoLuutru,long IdBenhnhan,string MaLuotkham,string MaYte,string TenBenhnhan,DateTime? NgaySinh,short? Tuoi,byte? LoaiTuoi,string MaGioitinh,string GioiTinh,string MaNghenghiep,string TenNghenghiep,string MaDantoc,string TenDantoc,string MaTongiao,string TenTongiao,string MaQuocgia,string TenQuocgia,bool? NgoaiKieu,string DiaChi,string Sonha,string Thonpho,string MaXaphuong,string TenXaphuong,string MaQuanhuyen,string TenQuanhuyen,string MaTinhtp,string TenTinhtp,string MaCoquan,string TenCoquan,byte? MaDoituong,string TenDoituong,string MatheBhyt,DateTime? BhytTungay,DateTime? BhytDenngay,string NguoiLienhe,string DienthoaiLienhe,string DiachiLienhe,string CmtNguoilienhe,string HotenBo,string TrinhdoVanhoaBo,string NghenghiepBo,string HotenMe,string TrinhdoVanhoaMe,string NghenghiepMe,string CmtCccd,string SoHochieu,string DienThoai,string Email,DateTime? VaovienNgay,string VaovienLydovaovien,byte? VaovienVaongaythucuabenh,byte? VaovienTructiepVao,bool? VaovienCapcuu,bool? VaovienKkb,bool? VaovienKhoadieutri,bool? NoigioithieuCoquanyte,bool? NoigioithieuTuden,bool? NoigioithieuKhac,byte? VaovienLanthu,string VaovienTenkhoa,string VaovienMakhoa,short? VaovienIdKhoa,DateTime? VaovienNgayvaokhoa,bool? ChuyenvienTuyentren,bool? ChuyenvienTuyenduoi,bool? ChuyenvienKhac,string ChuyenvienNoichuyenden,DateTime? RavienNgay,string RavienMatinhtrang,bool? RavienRavien,bool? RavienXinve,bool? RavienBove,bool? RavienDuave,short? RavienTongsongayDieutri,string CdNoichuyenden,string CdNoichuyendenMa,string CdKkbCapcuu,string CdKkbCapcuuMa,string CdKhoadieutri,string CdKhoadieutriMa,string RavienMaBenhchinh,string RavienTenBenhchinh,string RavienMaBenhphu,string RavienTenBenhphu,string TinhtrangravienMaKetquadieutri,bool? TinhtrangravienKetquadieutriKhoi,bool? TinhtrangravienKetquadieutriDogiam,bool? TinhtrangravienKetquadieutriKhongthaydoi,bool? TinhtrangravienKetquadieutriNanghon,bool? TinhtrangravienKetquadieutriTuvong,bool? TinhtrangravienKetquadieutriChuyenvien,bool? TinhtrangravienGpbLanhtinh,bool? TinhtrangravienGpbNghingo,bool? TinhtrangravienGpbActinh,bool? TinhtrangravienGpb,DateTime? TinhtrangravienThoigianTuvong,string TinhtrangravienMaLydotuvong,bool? TinhtrangravienLydotuvongDobenh,bool? TinhtrangravienLydotuvongDotaibiendieutri,bool? TinhtrangravienLydotuvongKhac,string TinhtrangravienMaThoigiantuvong,bool? TinhtrangravienThoigiantuvongTrong24h,bool? TinhtrangravienThoigiantuvongSau24h,bool? TinhtrangravienThoigiantuvongTrong48h,bool? TinhtrangravienThoigiantuvongTrong72h,string TinhtrangravienMaNguyennhantuvong,string TinhtrangravienNguyennhantuvong,bool? TinhtrangravienKhamnghiemtuthi,string TinhtrangravienMaChandoangiaiphaututhi,string TinhtrangravienChandoangiauphaututhi,bool? CdThuthuat,bool? CdPhauthuat,bool? CdTaibien,bool? CdBienchung,bool? CdDophauthuat,bool? CdDogayme,bool? CdDonhiemkhuan,bool? CdTaibienBienchungKhac,byte? CdTongsongaydieutriSauphauthuat,byte? CdTongsolanphauthuat,string MaChandoanTruocphauthuat,string ChandoanTruocphauthuat,string MaChandoanSauphauthuat,string ChandoanSauphauthuat,string CdLucvaode,DateTime? CdNgaymode,string CdNgoithai,string CdCachthucde,string CdKiemsoattucung,bool? CdDonthai,bool? CdDathai,bool? CdTrai,bool? CdGai,bool? CdSong,bool? CdChet,string CdDitatThainhi,int? CdCannangThainhi,string CdPhuongphapphauthuat,DateTime? HoibenhKinhcuoitungay,DateTime? HoibenhKinhcuoiden,byte? HoibenhTuoithai,string HoibenhKhamthaitai,bool? HoibenhTiemphongUonvan,byte? HoibenhTiemphongUonvanSolan,DateTime? HoibenhBatdauchuyenda,string HoibenhDauhieulucdau,string HoibenhBienchuyen,string HoibenhQuatrinhbenhly,string HoibenhTiensubanthan,string HoibenhTiensugiadinh,short? HoibenhBatdauthaykinhNam,byte? HoibenhBatdauthaykinhTuoi,string HoibenhTinhchatkinhnguyet,byte? HoibenhChukykinh,byte? HoibenhLuongkinh,short? HoibenhLaychongNam,byte? HoibenhLaychongTuoi,string HoibenhNhungbenhphukhoadadieutri,string HoibenhPara,string KbMach,string KbNhietdo,string KbHuyetap,string KbNhiptho,string KbChieucao,string KbCannang,string KbNhommau,string KbBmi,bool? TsbDiung,bool? TsbMatuy,bool? TsbRuoubia,bool? TsbThuocla,bool? TsbThuoclao,bool? TsbKhac,string TsbThoigianDiung,string TsbThoigianMatuy,string TsbThoigianRuoubia,string TsbThoigianThuocla,string TsbThoigianThuoclao,string TsbThoigianKhac,string TsbDiungKhac,byte? NhikhoaConthu,bool? TinhtrangkhisinhDethuong,bool? TinhtrangkhisinhForceps,bool? TinhtrangkhisinhGiachut,bool? TinhtrangkhisinhDephauthuat,bool? TinhtrangkhisinhDechihuy,bool? TinhtrangkhisinhDekhac,string CannangLucsinh,bool? DitatBamsinh,string DitatBamsinhMota,string PhattrienVetinhthan,string PhattrienVevandong,string Cacbenhlykhac,bool? NuoiduongSuame,bool? NuoiduongNhantao,bool? NuoiduongHonhop,byte? NuoidungCaisuathangthu,bool? ChamsocTaivuontre,bool? ChamsocTainha,bool? DatiemchungLao,bool? DatiemchungBailiet,bool? DatiemchungSoi,bool? DatiemchungHoga,bool? DatiemchungUonvan,bool? DatiemchungBachhau,bool? DatiemchungKhac,string DatiemchungKhacMota,byte? KhambenhChieucao,short? BatdauthaykinhNam,short? BatdauthaykinhTuoi,string Tinhchatkinhnguyet,short? Chuky,short? Songaythaykinh,string Luongkinh,DateTime? Kinhlancuoingay,bool? Codaubung,bool? ThoigianTruoc,bool? ThoigianTrong,bool? ThoigianSau,short? LaychongNam,byte? LaychongTuoi,short? Hetkinhnam,byte? Hetkinhtuoi,string Nhungbenhphukhoadadieutri,byte? KhambenhVongnguc,byte? KhambenhVongdau,string KhambenhDaniemmac,string KhambenhHach,string KhambenhVu,string BaKckCacdauhieusinhducthuphat,string BaKckMoilon,string BaKckMoibe,string BaKckAmvat,string BaKckAmho,string BaKckMangtrinh,string BaKckTangsinhmon,string BaKckAmdao,string BaKckCotucung,string BaKckThantucung,string BaKckPhanphu,string BaKckCactuicung,string KhambenhToanthan,string KhambenhNgoaikhoa,string KhambenhCacbophan,string KhambenhTuanhoan,string KhambenhHohap,string KhambenhTieuhoa,string KhambenhThantietnieusinhduc,string KhambenhThankinh,string KhambenhCoxuongkhop,string KhambenhTaimuihong,string KhambenhRanghammat,string KhambenhMat,string KhambenhNoitietDinhduongBenhlykhac,bool? KhamngoaiBungcoseophauthuatcu,string KhamngoaiHinhdangtucung,string KhamngoaiTuthe,byte? KhamngoaiChieucaotucung,byte? KhamngoaiVongbung,string KhamngoaiConcotucung,byte? KhamngoaiTimthai,string KhamngoaiVu,string KhamtrongChisoBishop,string KhamtrongAmho,string KhamtrongAmdao,string KhamtrongTangsinhmon,string KhamtrongCotucung,string KhamtrongPhanphu,string KhamtrongThantucung,string KhamtrongCactuicung,bool? KhamtrongTinhtrangoiPhong,bool? KhamtrongTinhtrangoiDet,bool? KhamtrongTinhtrangoiQuale,DateTime? KhamtrongThoigianoivo,bool? KhamtrongTinhtrangoivoTunhien,bool? KhamtrongTinhtrangoivoBamoi,string KhamtrongMausacnuocoi,string KhamtrongNuocoinhieuit,string KhamtrongNgoi,string KhamtrongThe,string KhamtrongKieuthe,string KhamtrongDuongkinhnhohave,bool? KhamtrongDolotCao,bool? KhamtrongDolotChuc,bool? KhamtrongDolotChat,bool? KhamtrongDolotLot,string KhambenhXetnghiemClsCanlam,string KhambenhTomtatbenhan,string KhambenhDaxulychamsoc,string CdBandau,string CdChuyenbiet,string CdKhivaokhoadieutriMabenhchinh,string CdKhivaokhoadieutriBenhchinh,string CdKhivaokhoadieutriMabenhphu,string CdKhivaokhoadieutriBenhphu,string CdKhivaokhoadieutriPhanbiet,string KhambenhTienluong,string KhambenhHuongdieutri,DateTime? Vaobuongdeluc,string Nguoitheodoi,string Chucdanh,DateTime? Deluc,string Apgar,string Apgar1phut,string Apgar5phut,string Apgar10phut,short? TresosinhCannang,short? TresosinhCao,short? TresosinhVongdau,bool? TresosinhDonthai,bool? TresosinhDonthaiTrai,bool? TresosinhDonthaiGai,bool? TresosinhDathai,bool? TresosinhDathaiTrai,bool? TresosinhDathaiGai,bool? TresosinhTatbamsinh,bool? TresosinhCohaumon,string TresosinhCuthetatbamsinh,string TresosinhTinhtrangsaude,string TresosinhXulyvaketqua,bool? SorauBoc,bool? SorauSo,DateTime? SorauLuc,string SorauCachsorau,string SorauMatmang,string SorauMatmui,string SorauBanhrau,short? SorauCannang,bool? SorauRaucuonco,short? CuongrauDai,bool? SorauChaymausauso,short? SorauLuongmaumat,bool? SorauKiemsoattucung,string SorauXulyvaketqua,string SanphuDaniemmac,bool? SanphuPhuongphapdeThuong,bool? SanphuPhuongphapdeForceps,bool? SanphuPhuongphapdeGiachut,bool? SanphuPhuongphapdePt,bool? SanphuPhuongphapdeDechihuy,bool? SanphuPhuongphapdeKhac,string SanphuLydocanthiep,bool? SanphuTangsinhmonKhongrach,bool? SanphuTangsinhmonRach,bool? SanphuTangsinhmonCat,bool? SanphuPhuongphapkhauvaloaichi,string SanphuPhuongphapkhauvaloaichiMota,short? SanphuSomuikhau,bool? SanphuCotucungKhongrach,bool? SanphuCotucungRach,string TinhinhphauthuatChandoantruocphauthuat,string TinhinhphauthuatChandoansauphauthuat,bool? TinhinhphauthuatTaibien,bool? TinhinhphauthuatBienchung,bool? TinhinhphauthuatDophauthuat,bool? TinhinhphauthuatDogayme,bool? TinhinhphauthuatDonhiemkhuan,bool? TinhinhphauthuatDokhac,string TongketbaQuatrinhbenhlyDienbienlamsang,string TongketbaTomtatKqcls,string TongketbaPhuongphapdieutri,bool? TongketbaThuthuat,bool? TongketbaPhauthuat,string TongketbaTinhtrangNguoiravien,string TongketbaHuongdieutritieptheo,DateTime? TongketbaNgay,string TongketbaMaNguoigiaoHoso,string TongketbaNguoigiaoHoso,string TongketbaMaNguoiNhanhoso,string TongketbaNguoiNhanhoso,string TongketbaMaNguoigiaohoso,string TongketbaMaNguoinhanhoso,DateTime? TongketbaNgayGiaonhanhoso,int? TongketbaSotoXquang,int? TongketbaSotoCt,int? TongketbaSotoSieuam,int? TongketbaSotoXetnghiem,int? TongketbaSotoKhac,short? IdNguoigiaoHoso,string MaNguoigiaoHoso,short? IdNguoinhanHoso,string MaNguoinhanHoso,short? IdBacsiDieutri,string MabacsiDieutri,string TenbacsiDieutri,short? IdBacsiLamBA,string MabacsiLamBA,string TenbacsiLamBA,short? IdBacsiKham,string MabacsiKham,string TenbacsiKham,DateTime? NgayKham,short? IdTruongkhoadieutri,string MaTruongkhoadieutri,string TenTruongkhoadieutri,short? IdGiamdoc,string MaGiamdoc,string TenGiamdoc,short? IdKhoaravien,string MaKhoaravien,string TenKhoaravien,string TenGdBenhvien,string MaCoso,DateTime? NgayDieutriTu,DateTime? NgayDieutriDen,string BenhlyToanthan,bool? QuaibiCo,bool? QuaibiKhong,bool? BienchungtinhhoanCo,bool? BienchungtinhhoanKhong,bool? Bienchungtinhhoan1ben,bool? Bienchungtinhhoan2ben,string BienchungtinhoanMota,bool? BenhxahoiCo,bool? BenhxahoiKhong,string BenhxahoiMota,bool? UngthuCo,bool? UngthuKhong,string UngthuMota,bool? TiencanlaoCo,bool? TiencanlaoKhong,bool? SudungTestosteronCo,bool? SudungTestosteronKhong,string SudungTestosteronMota,string NoikhoaKhac,string Thuocdangdieutri,bool? ViphaucothattmtCo,bool? ViphaucothattmtKhong,bool? HatinhoananCo,bool? HatinhoananKhong,string HatinhoananMota,bool? ThatongdantinhCo,bool? ThatongdantinhKhong,string ThatongdantinhThoigian,string NgoaikhoaKhac,string QuanhetinhducTansuat,bool? RoiloancuongCo,bool? RoiloancuongKhong,string RoiloancuongMota,bool? XuattinhsomTruockhixamnhap,bool? XuattinhsomSaukhixamnhap,bool? XuattinhsomKhong,bool? CuckhoaiCo,bool? CuckhoaiKhong,bool? CosudungchatboitronCo,bool? CosudungchatboitronKhong,string CosudungchatboitronMota,string ThetichtinhhoanPhai,string MatdotinhhoanPhai,string BemattinhoanPhai,string ThetichtinhhoanTrai,string MatdotinhhoanTrai,string BemattinhoanTrai,bool? MatdotinhhoanPhaiChac,bool? MatdotinhhoanPhaiMem,bool? MatdotinhhoanTraiChac,bool? MatdotinhhoanTraiMem,string MatdomaotinhPhai,string MatdomaotinhTrai,bool? MatdomaotinhPhaiChac,bool? MatdomaotinhPhaiMem,bool? MatdomaotinhTraiChac,bool? MatdomaotinhTraiMem,string NangmaotinhPhai,string NangmaotinhTrai,bool? MaotinhNangphaiCo,bool? MaotinhNangphaiKhong,bool? MaotinhNangphaiKhongxacdinh,bool? MaotinhNangtraiCo,bool? MaotinhNangtraiKhong,bool? MaotinhNangtraiKhongxacdinh,bool? OngdantinhPhaiCo,bool? OngdantinhPhaiKhong,bool? OngdantinhPhaiKhongro,bool? OngdantinhTraiCo,bool? OngdantinhTraiKhong,bool? OngdantinhTraiKhongro,bool? TinhmachthungtingPhaiBinhthuong,bool? TinhmachthungtingGianphai1,bool? TinhmachthungtingGianphai2,bool? TinhmachthungtingGianphai3,string TinhmachthungtingPhaiGianMota,bool? TinhmachthungtingTraiBinhthuong,bool? TinhmachthungtingGiantrai1,bool? TinhmachthungtingGiantrai2,bool? TinhmachthungtingGiantrai3,string TinhmachthungtingTraiGianMota,bool? PhanbocoBinhthuong,bool? PhanbocoBatthuong,string PhanboMo,string PhanboLongmu,string PhanboChi,DateTime? NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua,bool? TthaiKyso,string NguoiKyso,DateTime? NgayKyso,bool? TthaiKydientu,string NguoiKydientu,DateTime? NgayKydientu)
 	    {
 		    EmrBa item = new EmrBa();
 	        item.MarkOld();
@@ -1188,6 +1406,8 @@ namespace VMS.HIS.DAL
 				
 			item.CdCannangThainhi = CdCannangThainhi;
 				
+			item.CdPhuongphapphauthuat = CdPhuongphapphauthuat;
+				
 			item.HoibenhKinhcuoitungay = HoibenhKinhcuoitungay;
 				
 			item.HoibenhKinhcuoiden = HoibenhKinhcuoiden;
@@ -1227,6 +1447,8 @@ namespace VMS.HIS.DAL
 			item.HoibenhLaychongTuoi = HoibenhLaychongTuoi;
 				
 			item.HoibenhNhungbenhphukhoadadieutri = HoibenhNhungbenhphukhoadadieutri;
+				
+			item.HoibenhPara = HoibenhPara;
 				
 			item.KbMach = KbMach;
 				
@@ -1394,6 +1616,8 @@ namespace VMS.HIS.DAL
 				
 			item.KhambenhToanthan = KhambenhToanthan;
 				
+			item.KhambenhNgoaikhoa = KhambenhNgoaikhoa;
+				
 			item.KhambenhCacbophan = KhambenhCacbophan;
 				
 			item.KhambenhTuanhoan = KhambenhTuanhoan;
@@ -1443,6 +1667,10 @@ namespace VMS.HIS.DAL
 			item.KhamtrongCotucung = KhamtrongCotucung;
 				
 			item.KhamtrongPhanphu = KhamtrongPhanphu;
+				
+			item.KhamtrongThantucung = KhamtrongThantucung;
+				
+			item.KhamtrongCactuicung = KhamtrongCactuicung;
 				
 			item.KhamtrongTinhtrangoiPhong = KhamtrongTinhtrangoiPhong;
 				
@@ -1510,15 +1738,25 @@ namespace VMS.HIS.DAL
 				
 			item.Apgar = Apgar;
 				
+			item.Apgar1phut = Apgar1phut;
+				
+			item.Apgar5phut = Apgar5phut;
+				
+			item.Apgar10phut = Apgar10phut;
+				
 			item.TresosinhCannang = TresosinhCannang;
 				
 			item.TresosinhCao = TresosinhCao;
 				
 			item.TresosinhVongdau = TresosinhVongdau;
 				
+			item.TresosinhDonthai = TresosinhDonthai;
+				
 			item.TresosinhDonthaiTrai = TresosinhDonthaiTrai;
 				
 			item.TresosinhDonthaiGai = TresosinhDonthaiGai;
+				
+			item.TresosinhDathai = TresosinhDathai;
 				
 			item.TresosinhDathaiTrai = TresosinhDathaiTrai;
 				
@@ -1586,11 +1824,17 @@ namespace VMS.HIS.DAL
 				
 			item.SanphuPhuongphapkhauvaloaichi = SanphuPhuongphapkhauvaloaichi;
 				
+			item.SanphuPhuongphapkhauvaloaichiMota = SanphuPhuongphapkhauvaloaichiMota;
+				
 			item.SanphuSomuikhau = SanphuSomuikhau;
 				
 			item.SanphuCotucungKhongrach = SanphuCotucungKhongrach;
 				
 			item.SanphuCotucungRach = SanphuCotucungRach;
+				
+			item.TinhinhphauthuatChandoantruocphauthuat = TinhinhphauthuatChandoantruocphauthuat;
+				
+			item.TinhinhphauthuatChandoansauphauthuat = TinhinhphauthuatChandoansauphauthuat;
 				
 			item.TinhinhphauthuatTaibien = TinhinhphauthuatTaibien;
 				
@@ -1609,6 +1853,10 @@ namespace VMS.HIS.DAL
 			item.TongketbaTomtatKqcls = TongketbaTomtatKqcls;
 				
 			item.TongketbaPhuongphapdieutri = TongketbaPhuongphapdieutri;
+				
+			item.TongketbaThuthuat = TongketbaThuthuat;
+				
+			item.TongketbaPhauthuat = TongketbaPhauthuat;
 				
 			item.TongketbaTinhtrangNguoiravien = TongketbaTinhtrangNguoiravien;
 				
@@ -1640,6 +1888,14 @@ namespace VMS.HIS.DAL
 				
 			item.TongketbaSotoKhac = TongketbaSotoKhac;
 				
+			item.IdNguoigiaoHoso = IdNguoigiaoHoso;
+				
+			item.MaNguoigiaoHoso = MaNguoigiaoHoso;
+				
+			item.IdNguoinhanHoso = IdNguoinhanHoso;
+				
+			item.MaNguoinhanHoso = MaNguoinhanHoso;
+				
 			item.IdBacsiDieutri = IdBacsiDieutri;
 				
 			item.MabacsiDieutri = MabacsiDieutri;
@@ -1666,6 +1922,12 @@ namespace VMS.HIS.DAL
 				
 			item.TenTruongkhoadieutri = TenTruongkhoadieutri;
 				
+			item.IdGiamdoc = IdGiamdoc;
+				
+			item.MaGiamdoc = MaGiamdoc;
+				
+			item.TenGiamdoc = TenGiamdoc;
+				
 			item.IdKhoaravien = IdKhoaravien;
 				
 			item.MaKhoaravien = MaKhoaravien;
@@ -1679,6 +1941,180 @@ namespace VMS.HIS.DAL
 			item.NgayDieutriTu = NgayDieutriTu;
 				
 			item.NgayDieutriDen = NgayDieutriDen;
+				
+			item.BenhlyToanthan = BenhlyToanthan;
+				
+			item.QuaibiCo = QuaibiCo;
+				
+			item.QuaibiKhong = QuaibiKhong;
+				
+			item.BienchungtinhhoanCo = BienchungtinhhoanCo;
+				
+			item.BienchungtinhhoanKhong = BienchungtinhhoanKhong;
+				
+			item.Bienchungtinhhoan1ben = Bienchungtinhhoan1ben;
+				
+			item.Bienchungtinhhoan2ben = Bienchungtinhhoan2ben;
+				
+			item.BienchungtinhoanMota = BienchungtinhoanMota;
+				
+			item.BenhxahoiCo = BenhxahoiCo;
+				
+			item.BenhxahoiKhong = BenhxahoiKhong;
+				
+			item.BenhxahoiMota = BenhxahoiMota;
+				
+			item.UngthuCo = UngthuCo;
+				
+			item.UngthuKhong = UngthuKhong;
+				
+			item.UngthuMota = UngthuMota;
+				
+			item.TiencanlaoCo = TiencanlaoCo;
+				
+			item.TiencanlaoKhong = TiencanlaoKhong;
+				
+			item.SudungTestosteronCo = SudungTestosteronCo;
+				
+			item.SudungTestosteronKhong = SudungTestosteronKhong;
+				
+			item.SudungTestosteronMota = SudungTestosteronMota;
+				
+			item.NoikhoaKhac = NoikhoaKhac;
+				
+			item.Thuocdangdieutri = Thuocdangdieutri;
+				
+			item.ViphaucothattmtCo = ViphaucothattmtCo;
+				
+			item.ViphaucothattmtKhong = ViphaucothattmtKhong;
+				
+			item.HatinhoananCo = HatinhoananCo;
+				
+			item.HatinhoananKhong = HatinhoananKhong;
+				
+			item.HatinhoananMota = HatinhoananMota;
+				
+			item.ThatongdantinhCo = ThatongdantinhCo;
+				
+			item.ThatongdantinhKhong = ThatongdantinhKhong;
+				
+			item.ThatongdantinhThoigian = ThatongdantinhThoigian;
+				
+			item.NgoaikhoaKhac = NgoaikhoaKhac;
+				
+			item.QuanhetinhducTansuat = QuanhetinhducTansuat;
+				
+			item.RoiloancuongCo = RoiloancuongCo;
+				
+			item.RoiloancuongKhong = RoiloancuongKhong;
+				
+			item.RoiloancuongMota = RoiloancuongMota;
+				
+			item.XuattinhsomTruockhixamnhap = XuattinhsomTruockhixamnhap;
+				
+			item.XuattinhsomSaukhixamnhap = XuattinhsomSaukhixamnhap;
+				
+			item.XuattinhsomKhong = XuattinhsomKhong;
+				
+			item.CuckhoaiCo = CuckhoaiCo;
+				
+			item.CuckhoaiKhong = CuckhoaiKhong;
+				
+			item.CosudungchatboitronCo = CosudungchatboitronCo;
+				
+			item.CosudungchatboitronKhong = CosudungchatboitronKhong;
+				
+			item.CosudungchatboitronMota = CosudungchatboitronMota;
+				
+			item.ThetichtinhhoanPhai = ThetichtinhhoanPhai;
+				
+			item.MatdotinhhoanPhai = MatdotinhhoanPhai;
+				
+			item.BemattinhoanPhai = BemattinhoanPhai;
+				
+			item.ThetichtinhhoanTrai = ThetichtinhhoanTrai;
+				
+			item.MatdotinhhoanTrai = MatdotinhhoanTrai;
+				
+			item.BemattinhoanTrai = BemattinhoanTrai;
+				
+			item.MatdotinhhoanPhaiChac = MatdotinhhoanPhaiChac;
+				
+			item.MatdotinhhoanPhaiMem = MatdotinhhoanPhaiMem;
+				
+			item.MatdotinhhoanTraiChac = MatdotinhhoanTraiChac;
+				
+			item.MatdotinhhoanTraiMem = MatdotinhhoanTraiMem;
+				
+			item.MatdomaotinhPhai = MatdomaotinhPhai;
+				
+			item.MatdomaotinhTrai = MatdomaotinhTrai;
+				
+			item.MatdomaotinhPhaiChac = MatdomaotinhPhaiChac;
+				
+			item.MatdomaotinhPhaiMem = MatdomaotinhPhaiMem;
+				
+			item.MatdomaotinhTraiChac = MatdomaotinhTraiChac;
+				
+			item.MatdomaotinhTraiMem = MatdomaotinhTraiMem;
+				
+			item.NangmaotinhPhai = NangmaotinhPhai;
+				
+			item.NangmaotinhTrai = NangmaotinhTrai;
+				
+			item.MaotinhNangphaiCo = MaotinhNangphaiCo;
+				
+			item.MaotinhNangphaiKhong = MaotinhNangphaiKhong;
+				
+			item.MaotinhNangphaiKhongxacdinh = MaotinhNangphaiKhongxacdinh;
+				
+			item.MaotinhNangtraiCo = MaotinhNangtraiCo;
+				
+			item.MaotinhNangtraiKhong = MaotinhNangtraiKhong;
+				
+			item.MaotinhNangtraiKhongxacdinh = MaotinhNangtraiKhongxacdinh;
+				
+			item.OngdantinhPhaiCo = OngdantinhPhaiCo;
+				
+			item.OngdantinhPhaiKhong = OngdantinhPhaiKhong;
+				
+			item.OngdantinhPhaiKhongro = OngdantinhPhaiKhongro;
+				
+			item.OngdantinhTraiCo = OngdantinhTraiCo;
+				
+			item.OngdantinhTraiKhong = OngdantinhTraiKhong;
+				
+			item.OngdantinhTraiKhongro = OngdantinhTraiKhongro;
+				
+			item.TinhmachthungtingPhaiBinhthuong = TinhmachthungtingPhaiBinhthuong;
+				
+			item.TinhmachthungtingGianphai1 = TinhmachthungtingGianphai1;
+				
+			item.TinhmachthungtingGianphai2 = TinhmachthungtingGianphai2;
+				
+			item.TinhmachthungtingGianphai3 = TinhmachthungtingGianphai3;
+				
+			item.TinhmachthungtingPhaiGianMota = TinhmachthungtingPhaiGianMota;
+				
+			item.TinhmachthungtingTraiBinhthuong = TinhmachthungtingTraiBinhthuong;
+				
+			item.TinhmachthungtingGiantrai1 = TinhmachthungtingGiantrai1;
+				
+			item.TinhmachthungtingGiantrai2 = TinhmachthungtingGiantrai2;
+				
+			item.TinhmachthungtingGiantrai3 = TinhmachthungtingGiantrai3;
+				
+			item.TinhmachthungtingTraiGianMota = TinhmachthungtingTraiGianMota;
+				
+			item.PhanbocoBinhthuong = PhanbocoBinhthuong;
+				
+			item.PhanbocoBatthuong = PhanbocoBatthuong;
+				
+			item.PhanboMo = PhanboMo;
+				
+			item.PhanboLongmu = PhanboLongmu;
+				
+			item.PhanboChi = PhanboChi;
 				
 			item.NgayTao = NgayTao;
 				

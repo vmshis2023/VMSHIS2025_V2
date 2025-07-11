@@ -21,12 +21,43 @@ namespace VMS.HIS.Danhmuc.UI
         {
             InitializeComponent();
             Utility.SetVisualStyle(this);
+            grdList.MouseDoubleClick += GrdList_MouseDoubleClick;
+            grdList.CellValueChanged += GrdList_CellValueChanged;
             thamSo = "";
         }
+
+        private void GrdList_CellValueChanged(object sender, ColumnActionEventArgs e)
+        {
+            try
+            {
+                if (!Utility.isValidGrid(grdList)) return;
+                if (globalVariables.IsAdmin || globalVariables.isSuperAdmin)
+                {
+                string colname = e.Column.Key;
+                    new Update(SysSystemParameter.Schema)
+                        .Set(colname).EqualTo(Utility.sDbnull(grdList.GetValue("sValue")))
+                        .Where(SysSystemParameter.Columns.Id).IsEqualTo(Utility.Int32Dbnull(grdList.GetValue("id")))
+                        .Execute();
+                }
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+            }
+         
+        }
+
+        private void GrdList_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (!Utility.isValidGrid(grdList)) return;
+            cmdEdit.PerformClick();
+        }
+
         public frm_dmucthamsohethong(string sThamSo)
         {
             InitializeComponent();
             Utility.SetVisualStyle(this);
+            grdList.MouseDoubleClick += GrdList_MouseDoubleClick;
             thamSo = sThamSo;
         }
         private bool InVali()

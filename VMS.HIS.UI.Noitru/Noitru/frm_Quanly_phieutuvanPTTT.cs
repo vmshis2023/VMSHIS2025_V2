@@ -18,7 +18,7 @@ using System.Runtime.InteropServices;
 using System.Diagnostics;
 using System.Threading;
 using Aspose.Words;
-using VMS.Emr;
+using VMS.HIS.Bus.Emr;
 
 namespace VNS.HIS.UI.NOITRU
 {

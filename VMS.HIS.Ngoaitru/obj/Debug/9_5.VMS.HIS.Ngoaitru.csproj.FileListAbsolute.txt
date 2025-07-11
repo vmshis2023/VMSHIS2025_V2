@@ -1,7 +1,3 @@
-C:\HIS_BVSG\Running\VMS.HIS.Ngoaitru.dll.config
-C:\HIS_BVSG\Running\VMS.HIS.Ngoaitru.dll
-C:\HIS_BVSG\Running\VMS.HIS.Ngoaitru.pdb
-F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Ngoaitru\obj\Debug\9_5.VMS.HIS.Ngoaitru.csproj.AssemblyReference.cache
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Ngoaitru\obj\Debug\VNS.HIS.UI.NGOAITRU.frm_KCB_DANGKY_240903.resources
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Ngoaitru\obj\Debug\VMS.HIS.Ngoaitru.frmSHS.resources
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Ngoaitru\obj\Debug\VNS.HIS.UI.NGOAITRU.frm_KCB_DANGKY.resources
@@ -31,6 +27,10 @@ F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Ngoaitru\obj\Debug\VMS.HIS.Ngoaitru.T
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Ngoaitru\obj\Debug\9_5.VMS.HIS.Ngoaitru.csproj.GenerateResource.cache
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Ngoaitru\obj\Debug\VMS.HIS.Ngoaitru.dll.licenses
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Ngoaitru\obj\Debug\9_5.VMS.HIS.Ngoaitru.csproj.CoreCompileInputs.cache
+C:\HIS_BVSG\Running\VMS.HIS.Ngoaitru.dll.config
+C:\HIS_BVSG\Running\VMS.HIS.Ngoaitru.dll
+C:\HIS_BVSG\Running\VMS.HIS.Ngoaitru.pdb
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Ngoaitru\obj\Debug\9_5.VMS.HIS.Ngoaitru.csproj.CopyComplete
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Ngoaitru\obj\Debug\VMS.HIS.Ngoaitru.dll
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Ngoaitru\obj\Debug\VMS.HIS.Ngoaitru.pdb
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Ngoaitru\obj\Debug\9_5.VMS.HIS.Ngoaitru.csproj.AssemblyReference.cache

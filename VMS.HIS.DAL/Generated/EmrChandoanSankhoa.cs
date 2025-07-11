@@ -323,8 +323,8 @@ namespace VMS.HIS.DAL
 				
 				TableSchema.TableColumn colvarCdCannangThainhi = new TableSchema.TableColumn(schema);
 				colvarCdCannangThainhi.ColumnName = "cd_cannang_thainhi";
-				colvarCdCannangThainhi.DataType = DbType.String;
-				colvarCdCannangThainhi.MaxLength = 10;
+				colvarCdCannangThainhi.DataType = DbType.Int32;
+				colvarCdCannangThainhi.MaxLength = 0;
 				colvarCdCannangThainhi.AutoIncrement = false;
 				colvarCdCannangThainhi.IsNullable = true;
 				colvarCdCannangThainhi.IsPrimaryKey = false;
@@ -333,6 +333,19 @@ namespace VMS.HIS.DAL
 				colvarCdCannangThainhi.DefaultSetting = @"";
 				colvarCdCannangThainhi.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarCdCannangThainhi);
+				
+				TableSchema.TableColumn colvarCdPhuongphapphauthuat = new TableSchema.TableColumn(schema);
+				colvarCdPhuongphapphauthuat.ColumnName = "cd_phuongphapphauthuat";
+				colvarCdPhuongphapphauthuat.DataType = DbType.String;
+				colvarCdPhuongphapphauthuat.MaxLength = 255;
+				colvarCdPhuongphapphauthuat.AutoIncrement = false;
+				colvarCdPhuongphapphauthuat.IsNullable = true;
+				colvarCdPhuongphapphauthuat.IsPrimaryKey = false;
+				colvarCdPhuongphapphauthuat.IsForeignKey = false;
+				colvarCdPhuongphapphauthuat.IsReadOnly = false;
+				colvarCdPhuongphapphauthuat.DefaultSetting = @"";
+				colvarCdPhuongphapphauthuat.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarCdPhuongphapphauthuat);
 				
 				TableSchema.TableColumn colvarNgayTao = new TableSchema.TableColumn(schema);
 				colvarNgayTao.ColumnName = "ngay_tao";
@@ -518,10 +531,18 @@ namespace VMS.HIS.DAL
 		  
 		[XmlAttribute("CdCannangThainhi")]
 		[Bindable(true)]
-		public string CdCannangThainhi 
+		public int? CdCannangThainhi 
 		{
-			get { return GetColumnValue<string>(Columns.CdCannangThainhi); }
+			get { return GetColumnValue<int?>(Columns.CdCannangThainhi); }
 			set { SetColumnValue(Columns.CdCannangThainhi, value); }
+		}
+		  
+		[XmlAttribute("CdPhuongphapphauthuat")]
+		[Bindable(true)]
+		public string CdPhuongphapphauthuat 
+		{
+			get { return GetColumnValue<string>(Columns.CdPhuongphapphauthuat); }
+			set { SetColumnValue(Columns.CdPhuongphapphauthuat, value); }
 		}
 		  
 		[XmlAttribute("NgayTao")]
@@ -575,7 +596,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(long? varIdBenhnhan,string varMaLuotkham,string varCdLucvaode,DateTime? varCdNgaymode,string varCdNgoithai,string varCdCachthucde,string varCdKiemsoattucung,bool? varCdDonthai,bool? varCdDathai,bool? varCdTrai,bool? varCdGai,bool? varCdSong,bool? varCdChet,string varCdDitatThainhi,string varCdCannangThainhi,DateTime? varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua)
+		public static void Insert(long? varIdBenhnhan,string varMaLuotkham,string varCdLucvaode,DateTime? varCdNgaymode,string varCdNgoithai,string varCdCachthucde,string varCdKiemsoattucung,bool? varCdDonthai,bool? varCdDathai,bool? varCdTrai,bool? varCdGai,bool? varCdSong,bool? varCdChet,string varCdDitatThainhi,int? varCdCannangThainhi,string varCdPhuongphapphauthuat,DateTime? varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua)
 		{
 			EmrChandoanSankhoa item = new EmrChandoanSankhoa();
 			
@@ -609,6 +630,8 @@ namespace VMS.HIS.DAL
 			
 			item.CdCannangThainhi = varCdCannangThainhi;
 			
+			item.CdPhuongphapphauthuat = varCdPhuongphapphauthuat;
+			
 			item.NgayTao = varNgayTao;
 			
 			item.NguoiTao = varNguoiTao;
@@ -627,7 +650,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(long varId,long? varIdBenhnhan,string varMaLuotkham,string varCdLucvaode,DateTime? varCdNgaymode,string varCdNgoithai,string varCdCachthucde,string varCdKiemsoattucung,bool? varCdDonthai,bool? varCdDathai,bool? varCdTrai,bool? varCdGai,bool? varCdSong,bool? varCdChet,string varCdDitatThainhi,string varCdCannangThainhi,DateTime? varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua)
+		public static void Update(long varId,long? varIdBenhnhan,string varMaLuotkham,string varCdLucvaode,DateTime? varCdNgaymode,string varCdNgoithai,string varCdCachthucde,string varCdKiemsoattucung,bool? varCdDonthai,bool? varCdDathai,bool? varCdTrai,bool? varCdGai,bool? varCdSong,bool? varCdChet,string varCdDitatThainhi,int? varCdCannangThainhi,string varCdPhuongphapphauthuat,DateTime? varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua)
 		{
 			EmrChandoanSankhoa item = new EmrChandoanSankhoa();
 			
@@ -662,6 +685,8 @@ namespace VMS.HIS.DAL
 				item.CdDitatThainhi = varCdDitatThainhi;
 			
 				item.CdCannangThainhi = varCdCannangThainhi;
+			
+				item.CdPhuongphapphauthuat = varCdPhuongphapphauthuat;
 			
 				item.NgayTao = varNgayTao;
 			
@@ -796,30 +821,37 @@ namespace VMS.HIS.DAL
         
         
         
-        public static TableSchema.TableColumn NgayTaoColumn
+        public static TableSchema.TableColumn CdPhuongphapphauthuatColumn
         {
             get { return Schema.Columns[16]; }
         }
         
         
         
-        public static TableSchema.TableColumn NguoiTaoColumn
+        public static TableSchema.TableColumn NgayTaoColumn
         {
             get { return Schema.Columns[17]; }
         }
         
         
         
-        public static TableSchema.TableColumn NgaySuaColumn
+        public static TableSchema.TableColumn NguoiTaoColumn
         {
             get { return Schema.Columns[18]; }
         }
         
         
         
-        public static TableSchema.TableColumn NguoiSuaColumn
+        public static TableSchema.TableColumn NgaySuaColumn
         {
             get { return Schema.Columns[19]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn NguoiSuaColumn
+        {
+            get { return Schema.Columns[20]; }
         }
         
         
@@ -844,6 +876,7 @@ namespace VMS.HIS.DAL
 			 public static string CdChet = @"cd_chet";
 			 public static string CdDitatThainhi = @"cd_ditat_thainhi";
 			 public static string CdCannangThainhi = @"cd_cannang_thainhi";
+			 public static string CdPhuongphapphauthuat = @"cd_phuongphapphauthuat";
 			 public static string NgayTao = @"ngay_tao";
 			 public static string NguoiTao = @"nguoi_tao";
 			 public static string NgaySua = @"ngay_sua";

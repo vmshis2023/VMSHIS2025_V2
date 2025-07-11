@@ -10,7 +10,7 @@ using VNS.Properties;
 using VNS.HIS.BusRule.Classes;
 using SubSonic;
 using System.Collections.Generic;
-using VMS.Emr;
+using VMS.HIS.Bus.Emr;
 
 namespace VNS.HIS.UI.NOITRU
 {

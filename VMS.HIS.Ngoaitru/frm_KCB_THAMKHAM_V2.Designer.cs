@@ -976,6 +976,7 @@
             this.autoTrangthai.RaiseEventEnter = false;
             this.autoTrangthai.RaiseEventEnterWhenEmpty = false;
             this.autoTrangthai.SelectedIndex = -1;
+            this.autoTrangthai.SetDefaultWhenInit = false;
             this.autoTrangthai.ShowCodeWithValue = false;
             this.autoTrangthai.Size = new System.Drawing.Size(11, 22);
             this.autoTrangthai.splitChar = '@';
@@ -2160,6 +2161,7 @@
             this.txtCheDoAn.RaiseEventEnter = false;
             this.txtCheDoAn.RaiseEventEnterWhenEmpty = false;
             this.txtCheDoAn.SelectedIndex = -1;
+            this.txtCheDoAn.SetDefaultWhenInit = false;
             this.txtCheDoAn.ShowCodeWithValue = false;
             this.txtCheDoAn.Size = new System.Drawing.Size(92, 21);
             this.txtCheDoAn.splitChar = '@';
@@ -2252,6 +2254,7 @@
             this.txtLydokham.RaiseEventEnter = false;
             this.txtLydokham.RaiseEventEnterWhenEmpty = false;
             this.txtLydokham.SelectedIndex = -1;
+            this.txtLydokham.SetDefaultWhenInit = false;
             this.txtLydokham.ShowCodeWithValue = false;
             this.txtLydokham.Size = new System.Drawing.Size(1010, 21);
             this.txtLydokham.splitChar = '@';
@@ -2299,6 +2302,7 @@
             this.txtChanDoan.RaiseEventEnter = false;
             this.txtChanDoan.RaiseEventEnterWhenEmpty = false;
             this.txtChanDoan.SelectedIndex = -1;
+            this.txtChanDoan.SetDefaultWhenInit = false;
             this.txtChanDoan.ShowCodeWithValue = false;
             this.txtChanDoan.Size = new System.Drawing.Size(1010, 21);
             this.txtChanDoan.splitChar = '@';
@@ -2347,6 +2351,7 @@
             this.txtNhanxet.RaiseEventEnter = false;
             this.txtNhanxet.RaiseEventEnterWhenEmpty = false;
             this.txtNhanxet.SelectedIndex = -1;
+            this.txtNhanxet.SetDefaultWhenInit = false;
             this.txtNhanxet.ShowCodeWithValue = false;
             this.txtNhanxet.Size = new System.Drawing.Size(1010, 21);
             this.txtNhanxet.splitChar = '@';
@@ -2395,6 +2400,7 @@
             this.txtTAG.RaiseEventEnter = true;
             this.txtTAG.RaiseEventEnterWhenEmpty = false;
             this.txtTAG.SelectedIndex = -1;
+            this.txtTAG.SetDefaultWhenInit = false;
             this.txtTAG.ShowCodeWithValue = false;
             this.txtTAG.Size = new System.Drawing.Size(397, 21);
             this.txtTAG.splitChar = '@';
@@ -3316,6 +3322,7 @@
             this.txtCanhbao.RaiseEventEnter = false;
             this.txtCanhbao.RaiseEventEnterWhenEmpty = false;
             this.txtCanhbao.SelectedIndex = -1;
+            this.txtCanhbao.SetDefaultWhenInit = false;
             this.txtCanhbao.ShowCodeWithValue = false;
             this.txtCanhbao.Size = new System.Drawing.Size(816, 21);
             this.txtCanhbao.splitChar = '@';
@@ -3366,6 +3373,7 @@
             this.auto_khammat.RaiseEventEnterWhenEmpty = false;
             this.auto_khammat.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.auto_khammat.SelectedIndex = -1;
+            this.auto_khammat.SetDefaultWhenInit = false;
             this.auto_khammat.ShowCodeWithValue = false;
             this.auto_khammat.Size = new System.Drawing.Size(1010, 148);
             this.auto_khammat.splitChar = '@';
@@ -3988,6 +3996,7 @@
             this.txtNhommau.RaiseEventEnter = false;
             this.txtNhommau.RaiseEventEnterWhenEmpty = false;
             this.txtNhommau.SelectedIndex = -1;
+            this.txtNhommau.SetDefaultWhenInit = false;
             this.txtNhommau.ShowCodeWithValue = false;
             this.txtNhommau.Size = new System.Drawing.Size(97, 21);
             this.txtNhommau.splitChar = '@';
@@ -5507,6 +5516,7 @@
             this.txtChanDoanKemTheo.RaiseEventEnter = false;
             this.txtChanDoanKemTheo.RaiseEventEnterWhenEmpty = false;
             this.txtChanDoanKemTheo.SelectedIndex = -1;
+            this.txtChanDoanKemTheo.SetDefaultWhenInit = false;
             this.txtChanDoanKemTheo.ShowCodeWithValue = false;
             this.txtChanDoanKemTheo.Size = new System.Drawing.Size(498, 21);
             this.txtChanDoanKemTheo.splitChar = '@';

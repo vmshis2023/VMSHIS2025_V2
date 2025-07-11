@@ -7,7 +7,8 @@ using SubSonic;
 using VMS.HIS.DAL;
 using VNS.Libs;
 using VNS.HIS.BusRule.Goikham;
-
+using VMS.HIS.Bus.Emr;
+using System.Linq;
 namespace VNS.HIS.BusRule.Classes
 {
     public class KCB_CHIDINH_CANLAMSANG
@@ -376,6 +377,35 @@ namespace VNS.HIS.BusRule.Classes
             finally
             {
                 GC.Collect();
+            }
+        }
+        void InsertEmrPhieuChidinh(KcbChidinhcl objChidinh)
+        {
+            EmrDocuments emrdoc = new EmrDocuments();
+            emrdoc.InitDocument(objChidinh.IdBenhnhan, objChidinh.MaLuotkham, objChidinh.IdChidinh, objChidinh.NgayChidinh, Loaiphieu_HIS.PHIEUCHIDINH, "thamkham_InphieuchidinhCLS_A5", objChidinh.NguoiTao, Utility.Int16Dbnull(objChidinh.IdKhoaChidinh, -1), Utility.Int16Dbnull(objChidinh.IdPhongChidinh, -1), Utility.Byte2Bool(objChidinh.Noitru), "", false, false, objChidinh.MaChidinh);
+            emrdoc.Save();
+            DataTable dt_Data = LaythongtinCLS_Thuoc((int)objChidinh.IdChidinh, "DICHVU");
+            try
+            {
+                List<string> LstNhomcls = new List<string>();
+                if (dt_Data.Rows.Count <= 0) return;
+                long id_phieu = Utility.Int64Dbnull(dt_Data.Rows[0][KcbChidinhclsChitiet.Columns.IdChidinh],
+                                                    -1);
+                string ma_chidinh = Utility.sDbnull(dt_Data.Rows[0][KcbChidinhcl.Columns.MaChidinh], "");
+
+                LstNhomcls = dt_Data.AsEnumerable().Select(c => Utility.sDbnull(c["nhom_in_cls"])).Distinct().ToList<string>();
+                foreach (string nhomcls in LstNhomcls)
+                {
+                    emrdoc = new EmrDocuments();
+                    emrdoc.InitDocument(objChidinh.IdBenhnhan, objChidinh.MaLuotkham, objChidinh.IdChidinh, objChidinh.NgayChidinh, Loaiphieu_HIS.PHIEUCHIDINH, nhomcls, objChidinh.NguoiTao, Utility.Int16Dbnull(objChidinh.IdKhoaChidinh, -1), Utility.Int16Dbnull(objChidinh.IdPhongChidinh, -1), Utility.Byte2Bool(objChidinh.Noitru), "", true, false, objChidinh.MaChidinh);
+                    emrdoc.Save();
+                }   
+            }
+            catch (Exception ex)
+            {
+
+                Utility.ShowMsg(ex.ToString());
+
             }
         }
 

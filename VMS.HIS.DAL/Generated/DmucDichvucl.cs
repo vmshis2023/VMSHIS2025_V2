@@ -545,6 +545,19 @@ namespace VMS.HIS.DAL
 				colvarInTachphieu.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarInTachphieu);
 				
+				TableSchema.TableColumn colvarMaPhieuEmr = new TableSchema.TableColumn(schema);
+				colvarMaPhieuEmr.ColumnName = "ma_phieu_emr";
+				colvarMaPhieuEmr.DataType = DbType.String;
+				colvarMaPhieuEmr.MaxLength = 50;
+				colvarMaPhieuEmr.AutoIncrement = false;
+				colvarMaPhieuEmr.IsNullable = true;
+				colvarMaPhieuEmr.IsPrimaryKey = false;
+				colvarMaPhieuEmr.IsForeignKey = false;
+				colvarMaPhieuEmr.IsReadOnly = false;
+				colvarMaPhieuEmr.DefaultSetting = @"";
+				colvarMaPhieuEmr.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarMaPhieuEmr);
+				
 				BaseSchema = schema;
 				//add this schema to the provider
 				//so we can query it later
@@ -810,6 +823,14 @@ namespace VMS.HIS.DAL
 			get { return GetColumnValue<byte?>(Columns.InTachphieu); }
 			set { SetColumnValue(Columns.InTachphieu, value); }
 		}
+		  
+		[XmlAttribute("MaPhieuEmr")]
+		[Bindable(true)]
+		public string MaPhieuEmr 
+		{
+			get { return GetColumnValue<string>(Columns.MaPhieuEmr); }
+			set { SetColumnValue(Columns.MaPhieuEmr, value); }
+		}
 		
 		#endregion
 		
@@ -830,7 +851,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(string varIdLoaidichvu,string varMaDichvu,string varTenDichvu,decimal varDonGia,byte varTrangThai,short? varDichvuKtc,short varSttHthi,byte? varHienthiChitiet,short? varIdKhoaThuchien,short? varIdPhongThuchien,string varChiDan,string varNhomBaocao,string varNhomInCls,string varMotaThem,string varNguoiTao,DateTime? varNgayTao,string varNguoiSua,DateTime? varNgaySua,int? varIdVungkhaosat,int? varThetichToithieu,byte? varTinhthetichTheochitieu,string varMaDonvichitieu,byte? varCoSosanh,string varMaQuychuanSosanh,byte? varSongayTraketqua,string varMaBhyt,string varTenBhyt,string varNhomInphoiBHYT,byte? varLaDvuKiemnghiem,string varCdhaTenphieu,byte? varInTachphieu)
+		public static void Insert(string varIdLoaidichvu,string varMaDichvu,string varTenDichvu,decimal varDonGia,byte varTrangThai,short? varDichvuKtc,short varSttHthi,byte? varHienthiChitiet,short? varIdKhoaThuchien,short? varIdPhongThuchien,string varChiDan,string varNhomBaocao,string varNhomInCls,string varMotaThem,string varNguoiTao,DateTime? varNgayTao,string varNguoiSua,DateTime? varNgaySua,int? varIdVungkhaosat,int? varThetichToithieu,byte? varTinhthetichTheochitieu,string varMaDonvichitieu,byte? varCoSosanh,string varMaQuychuanSosanh,byte? varSongayTraketqua,string varMaBhyt,string varTenBhyt,string varNhomInphoiBHYT,byte? varLaDvuKiemnghiem,string varCdhaTenphieu,byte? varInTachphieu,string varMaPhieuEmr)
 		{
 			DmucDichvucl item = new DmucDichvucl();
 			
@@ -896,6 +917,8 @@ namespace VMS.HIS.DAL
 			
 			item.InTachphieu = varInTachphieu;
 			
+			item.MaPhieuEmr = varMaPhieuEmr;
+			
 		
 			if (System.Web.HttpContext.Current != null)
 				item.Save(System.Web.HttpContext.Current.User.Identity.Name);
@@ -906,7 +929,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(short varIdDichvu,string varIdLoaidichvu,string varMaDichvu,string varTenDichvu,decimal varDonGia,byte varTrangThai,short? varDichvuKtc,short varSttHthi,byte? varHienthiChitiet,short? varIdKhoaThuchien,short? varIdPhongThuchien,string varChiDan,string varNhomBaocao,string varNhomInCls,string varMotaThem,string varNguoiTao,DateTime? varNgayTao,string varNguoiSua,DateTime? varNgaySua,int? varIdVungkhaosat,int? varThetichToithieu,byte? varTinhthetichTheochitieu,string varMaDonvichitieu,byte? varCoSosanh,string varMaQuychuanSosanh,byte? varSongayTraketqua,string varMaBhyt,string varTenBhyt,string varNhomInphoiBHYT,byte? varLaDvuKiemnghiem,string varCdhaTenphieu,byte? varInTachphieu)
+		public static void Update(short varIdDichvu,string varIdLoaidichvu,string varMaDichvu,string varTenDichvu,decimal varDonGia,byte varTrangThai,short? varDichvuKtc,short varSttHthi,byte? varHienthiChitiet,short? varIdKhoaThuchien,short? varIdPhongThuchien,string varChiDan,string varNhomBaocao,string varNhomInCls,string varMotaThem,string varNguoiTao,DateTime? varNgayTao,string varNguoiSua,DateTime? varNgaySua,int? varIdVungkhaosat,int? varThetichToithieu,byte? varTinhthetichTheochitieu,string varMaDonvichitieu,byte? varCoSosanh,string varMaQuychuanSosanh,byte? varSongayTraketqua,string varMaBhyt,string varTenBhyt,string varNhomInphoiBHYT,byte? varLaDvuKiemnghiem,string varCdhaTenphieu,byte? varInTachphieu,string varMaPhieuEmr)
 		{
 			DmucDichvucl item = new DmucDichvucl();
 			
@@ -973,6 +996,8 @@ namespace VMS.HIS.DAL
 				item.CdhaTenphieu = varCdhaTenphieu;
 			
 				item.InTachphieu = varInTachphieu;
+			
+				item.MaPhieuEmr = varMaPhieuEmr;
 			
 			item.IsNew = false;
 			if (System.Web.HttpContext.Current != null)
@@ -1211,6 +1236,13 @@ namespace VMS.HIS.DAL
         
         
         
+        public static TableSchema.TableColumn MaPhieuEmrColumn
+        {
+            get { return Schema.Columns[32]; }
+        }
+        
+        
+        
         #endregion
 		#region Columns Struct
 		public struct Columns
@@ -1247,6 +1279,7 @@ namespace VMS.HIS.DAL
 			 public static string LaDvuKiemnghiem = @"la_dvu_kiemnghiem";
 			 public static string CdhaTenphieu = @"cdha_tenphieu";
 			 public static string InTachphieu = @"in_tachphieu";
+			 public static string MaPhieuEmr = @"ma_phieu_emr";
 						
 		}
 		#endregion

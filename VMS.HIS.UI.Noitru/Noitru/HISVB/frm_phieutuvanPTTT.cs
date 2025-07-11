@@ -19,7 +19,7 @@ using Janus.Windows.GridEX;
 using VNS.HIS.UI.DANHMUC;
 using VNS.HIS.UCs;
 using System.Transactions;
-using VMS.Emr;
+using VMS.HIS.Bus.Emr;
 //using SubSonic.Utilities;
 
 namespace VNS.HIS.UI.NOITRU

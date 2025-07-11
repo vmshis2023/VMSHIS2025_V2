@@ -86,6 +86,8 @@
             this.txtID = new System.Windows.Forms.TextBox();
             this.cmdThoat = new System.Windows.Forms.Button();
             this.cmdGhi = new System.Windows.Forms.Button();
+            this.label19 = new System.Windows.Forms.Label();
+            this.cboPhieuEMR = new VNS.HIS.UCs.EasyCompletionComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.grpControl)).BeginInit();
             this.grpControl.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -127,6 +129,8 @@
             // 
             // grpControl
             // 
+            this.grpControl.Controls.Add(this.label19);
+            this.grpControl.Controls.Add(this.cboPhieuEMR);
             this.grpControl.Controls.Add(this.chkIntachphieu);
             this.grpControl.Controls.Add(this.label18);
             this.grpControl.Controls.Add(this.label17);
@@ -273,6 +277,7 @@
             this.txtDonvitinh.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtDonvitinh.buildShortcut = false;
             this.txtDonvitinh.CaseSensitive = false;
+            this.txtDonvitinh.cmdDropDown = null;
             this.txtDonvitinh.CompareNoID = true;
             this.txtDonvitinh.DefaultCode = "-1";
             this.txtDonvitinh.DefaultID = "-1";
@@ -292,6 +297,7 @@
             this.txtDonvitinh.RaiseEventEnter = false;
             this.txtDonvitinh.RaiseEventEnterWhenEmpty = false;
             this.txtDonvitinh.SelectedIndex = -1;
+            this.txtDonvitinh.SetDefaultWhenInit = false;
             this.txtDonvitinh.ShowCodeWithValue = false;
             this.txtDonvitinh.Size = new System.Drawing.Size(276, 21);
             this.txtDonvitinh.splitChar = '@';
@@ -396,6 +402,7 @@
             this.txtQuychuan.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtQuychuan.buildShortcut = false;
             this.txtQuychuan.CaseSensitive = false;
+            this.txtQuychuan.cmdDropDown = null;
             this.txtQuychuan.CompareNoID = true;
             this.txtQuychuan.DefaultCode = "-1";
             this.txtQuychuan.DefaultID = "-1";
@@ -415,6 +422,7 @@
             this.txtQuychuan.RaiseEventEnter = false;
             this.txtQuychuan.RaiseEventEnterWhenEmpty = false;
             this.txtQuychuan.SelectedIndex = -1;
+            this.txtQuychuan.SetDefaultWhenInit = false;
             this.txtQuychuan.ShowCodeWithValue = false;
             this.txtQuychuan.Size = new System.Drawing.Size(276, 21);
             this.txtQuychuan.splitChar = '@';
@@ -477,6 +485,7 @@
             this.txtNhominphoiBHYT.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtNhominphoiBHYT.buildShortcut = false;
             this.txtNhominphoiBHYT.CaseSensitive = false;
+            this.txtNhominphoiBHYT.cmdDropDown = null;
             this.txtNhominphoiBHYT.CompareNoID = true;
             this.txtNhominphoiBHYT.DefaultCode = "-1";
             this.txtNhominphoiBHYT.DefaultID = "-1";
@@ -495,6 +504,7 @@
             this.txtNhominphoiBHYT.RaiseEventEnter = false;
             this.txtNhominphoiBHYT.RaiseEventEnterWhenEmpty = false;
             this.txtNhominphoiBHYT.SelectedIndex = -1;
+            this.txtNhominphoiBHYT.SetDefaultWhenInit = false;
             this.txtNhominphoiBHYT.ShowCodeWithValue = false;
             this.txtNhominphoiBHYT.Size = new System.Drawing.Size(276, 21);
             this.txtNhominphoiBHYT.splitChar = '@';
@@ -728,7 +738,7 @@
             // 
             this.label2.Font = new System.Drawing.Font("Arial", 9F);
             this.label2.ForeColor = System.Drawing.Color.Red;
-            this.label2.Location = new System.Drawing.Point(15, 187);
+            this.label2.Location = new System.Drawing.Point(418, 157);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(116, 23);
             this.label2.TabIndex = 98;
@@ -740,9 +750,9 @@
             this.cbonhombaocao.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbonhombaocao.Font = new System.Drawing.Font("Arial", 9F);
             this.cbonhombaocao.FormattingEnabled = true;
-            this.cbonhombaocao.Location = new System.Drawing.Point(136, 187);
+            this.cbonhombaocao.Location = new System.Drawing.Point(540, 159);
             this.cbonhombaocao.Name = "cbonhombaocao";
-            this.cbonhombaocao.Size = new System.Drawing.Size(639, 23);
+            this.cbonhombaocao.Size = new System.Drawing.Size(235, 23);
             this.cbonhombaocao.TabIndex = 6;
             // 
             // cboNhomin
@@ -759,7 +769,7 @@
             "Phiếu điện não đồ"});
             this.cboNhomin.Location = new System.Drawing.Point(136, 158);
             this.cboNhomin.Name = "cboNhomin";
-            this.cboNhomin.Size = new System.Drawing.Size(638, 23);
+            this.cboNhomin.Size = new System.Drawing.Size(276, 23);
             this.cboNhomin.TabIndex = 5;
             // 
             // chkHaveDetail
@@ -890,6 +900,27 @@
             this.cmdGhi.UseVisualStyleBackColor = true;
             this.cmdGhi.Click += new System.EventHandler(this.cmdGhi_Click_1);
             // 
+            // label19
+            // 
+            this.label19.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.ForeColor = System.Drawing.Color.Green;
+            this.label19.Location = new System.Drawing.Point(44, 189);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(87, 20);
+            this.label19.TabIndex = 140;
+            this.label19.Text = "Mã phiếu EMR";
+            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // cboPhieuEMR
+            // 
+            this.cboPhieuEMR.FormattingEnabled = true;
+            this.cboPhieuEMR.Location = new System.Drawing.Point(135, 187);
+            this.cboPhieuEMR.Name = "cboPhieuEMR";
+            this.cboPhieuEMR.Next_Control = null;
+            this.cboPhieuEMR.RaiseEnterEventWhenInvisible = true;
+            this.cboPhieuEMR.Size = new System.Drawing.Size(640, 23);
+            this.cboPhieuEMR.TabIndex = 139;
+            // 
             // frm_themmoi_dichvucls
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -978,5 +1009,7 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox txttenphieutrakqCDHA;
         private System.Windows.Forms.CheckBox chkIntachphieu;
+        private System.Windows.Forms.Label label19;
+        private UCs.EasyCompletionComboBox cboPhieuEMR;
     }
 }

@@ -707,6 +707,19 @@ namespace VMS.HIS.DAL
 				colvarDienThoai.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarDienThoai);
 				
+				TableSchema.TableColumn colvarChuKy = new TableSchema.TableColumn(schema);
+				colvarChuKy.ColumnName = "chu_ky";
+				colvarChuKy.DataType = DbType.Binary;
+				colvarChuKy.MaxLength = 2147483647;
+				colvarChuKy.AutoIncrement = false;
+				colvarChuKy.IsNullable = true;
+				colvarChuKy.IsPrimaryKey = false;
+				colvarChuKy.IsForeignKey = false;
+				colvarChuKy.IsReadOnly = false;
+				colvarChuKy.DefaultSetting = @"";
+				colvarChuKy.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarChuKy);
+				
 				BaseSchema = schema;
 				//add this schema to the provider
 				//so we can query it later
@@ -1068,6 +1081,14 @@ namespace VMS.HIS.DAL
 			get { return GetColumnValue<string>(Columns.DienThoai); }
 			set { SetColumnValue(Columns.DienThoai, value); }
 		}
+		  
+		[XmlAttribute("ChuKy")]
+		[Bindable(true)]
+		public byte[] ChuKy 
+		{
+			get { return GetColumnValue<byte[]>(Columns.ChuKy); }
+			set { SetColumnValue(Columns.ChuKy, value); }
+		}
 		
 		#endregion
 		
@@ -1088,7 +1109,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(string varMaNhanvien,string varTenNhanvien,short varIdPhong,int? varIdKhoa,string varMaLoainhanvien,string varUserName,string varMaChungchi,byte? varPtramCkhau,byte? varCungthuchien,decimal? varChiphiCungthuchien,string varMaCoso,byte? varTrangThai,int? varSttHthi,string varMotaThem,string varNguoiTao,DateTime? varNgayTao,string varNguoiSua,DateTime? varNgaySua,byte? varIdGioitinh,string varGioiTinh,string varMaLoaiKcb,string varMaKhoa,string varTenKhoa,string varMaBhxh,string varMaChucdanh,DateTime? varNgaycapCchn,string varNoicapCchn,string varPhamviChuyenmo,string varPhamviChuyenmonBacsi,string varDvktKhac,string varVbanPhancong,byte? varThoigianDky,string varThoigianNgay,string varThoigianTuan,string varCskcbKhac,string varCskcbCgkt,string varQdinhCgkt,bool? varAnhxaBhyt,decimal? varTranKedon,string varChucDanh,string varChucVu,string varViTri,string varDienThoai)
+		public static void Insert(string varMaNhanvien,string varTenNhanvien,short varIdPhong,int? varIdKhoa,string varMaLoainhanvien,string varUserName,string varMaChungchi,byte? varPtramCkhau,byte? varCungthuchien,decimal? varChiphiCungthuchien,string varMaCoso,byte? varTrangThai,int? varSttHthi,string varMotaThem,string varNguoiTao,DateTime? varNgayTao,string varNguoiSua,DateTime? varNgaySua,byte? varIdGioitinh,string varGioiTinh,string varMaLoaiKcb,string varMaKhoa,string varTenKhoa,string varMaBhxh,string varMaChucdanh,DateTime? varNgaycapCchn,string varNoicapCchn,string varPhamviChuyenmo,string varPhamviChuyenmonBacsi,string varDvktKhac,string varVbanPhancong,byte? varThoigianDky,string varThoigianNgay,string varThoigianTuan,string varCskcbKhac,string varCskcbCgkt,string varQdinhCgkt,bool? varAnhxaBhyt,decimal? varTranKedon,string varChucDanh,string varChucVu,string varViTri,string varDienThoai,byte[] varChuKy)
 		{
 			DmucNhanvien item = new DmucNhanvien();
 			
@@ -1178,6 +1199,8 @@ namespace VMS.HIS.DAL
 			
 			item.DienThoai = varDienThoai;
 			
+			item.ChuKy = varChuKy;
+			
 		
 			if (System.Web.HttpContext.Current != null)
 				item.Save(System.Web.HttpContext.Current.User.Identity.Name);
@@ -1188,7 +1211,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(short varIdNhanvien,string varMaNhanvien,string varTenNhanvien,short varIdPhong,int? varIdKhoa,string varMaLoainhanvien,string varUserName,string varMaChungchi,byte? varPtramCkhau,byte? varCungthuchien,decimal? varChiphiCungthuchien,string varMaCoso,byte? varTrangThai,int? varSttHthi,string varMotaThem,string varNguoiTao,DateTime? varNgayTao,string varNguoiSua,DateTime? varNgaySua,byte? varIdGioitinh,string varGioiTinh,string varMaLoaiKcb,string varMaKhoa,string varTenKhoa,string varMaBhxh,string varMaChucdanh,DateTime? varNgaycapCchn,string varNoicapCchn,string varPhamviChuyenmo,string varPhamviChuyenmonBacsi,string varDvktKhac,string varVbanPhancong,byte? varThoigianDky,string varThoigianNgay,string varThoigianTuan,string varCskcbKhac,string varCskcbCgkt,string varQdinhCgkt,bool? varAnhxaBhyt,decimal? varTranKedon,string varChucDanh,string varChucVu,string varViTri,string varDienThoai)
+		public static void Update(short varIdNhanvien,string varMaNhanvien,string varTenNhanvien,short varIdPhong,int? varIdKhoa,string varMaLoainhanvien,string varUserName,string varMaChungchi,byte? varPtramCkhau,byte? varCungthuchien,decimal? varChiphiCungthuchien,string varMaCoso,byte? varTrangThai,int? varSttHthi,string varMotaThem,string varNguoiTao,DateTime? varNgayTao,string varNguoiSua,DateTime? varNgaySua,byte? varIdGioitinh,string varGioiTinh,string varMaLoaiKcb,string varMaKhoa,string varTenKhoa,string varMaBhxh,string varMaChucdanh,DateTime? varNgaycapCchn,string varNoicapCchn,string varPhamviChuyenmo,string varPhamviChuyenmonBacsi,string varDvktKhac,string varVbanPhancong,byte? varThoigianDky,string varThoigianNgay,string varThoigianTuan,string varCskcbKhac,string varCskcbCgkt,string varQdinhCgkt,bool? varAnhxaBhyt,decimal? varTranKedon,string varChucDanh,string varChucVu,string varViTri,string varDienThoai,byte[] varChuKy)
 		{
 			DmucNhanvien item = new DmucNhanvien();
 			
@@ -1279,6 +1302,8 @@ namespace VMS.HIS.DAL
 				item.ViTri = varViTri;
 			
 				item.DienThoai = varDienThoai;
+			
+				item.ChuKy = varChuKy;
 			
 			item.IsNew = false;
 			if (System.Web.HttpContext.Current != null)
@@ -1601,6 +1626,13 @@ namespace VMS.HIS.DAL
         
         
         
+        public static TableSchema.TableColumn ChuKyColumn
+        {
+            get { return Schema.Columns[44]; }
+        }
+        
+        
+        
         #endregion
 		#region Columns Struct
 		public struct Columns
@@ -1649,6 +1681,7 @@ namespace VMS.HIS.DAL
 			 public static string ChucVu = @"chuc_vu";
 			 public static string ViTri = @"vi_tri";
 			 public static string DienThoai = @"dien_thoai";
+			 public static string ChuKy = @"chu_ky";
 						
 		}
 		#endregion

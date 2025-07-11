@@ -159,6 +159,9 @@
     <Compile Include="AutoCombobox\EasyCompletionComboBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="AutoCombobox\EasyCompletionComboBox_v2.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="AutoCombobox\StringMatcher.cs" />
     <Compile Include="AutoComplete\AutoCompleteTextbox.cs">
       <SubType>Component</SubType>
@@ -300,114 +303,6 @@
     </Compile>
     <Compile Include="Barcode\FrmBarCodePrint.Designer.cs">
       <DependentUpon>FrmBarCodePrint.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BA_Phieukham\frm_khamSanKhoa.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BA_Phieukham\frm_khamSanKhoa.Designer.cs">
-      <DependentUpon>frm_khamSanKhoa.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BA_Phieukham\frm_QuatrinhThaiky.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BA_Phieukham\frm_QuatrinhThaiky.Designer.cs">
-      <DependentUpon>frm_QuatrinhThaiky.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BA_Phieukham\frm_KCBCoban.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BA_Phieukham\frm_KCBCoban.Designer.cs">
-      <DependentUpon>frm_KCBCoban.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BA_Phieukham\frm_khamnoikhoa.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BA_Phieukham\frm_khamnoikhoa.Designer.cs">
-      <DependentUpon>frm_khamnoikhoa.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BA_Phieukham\frm_khamNhikhoa.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BA_Phieukham\frm_khamNhikhoa.Designer.cs">
-      <DependentUpon>frm_khamNhikhoa.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BA_Phieukham\frm_khamPhukhoa.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BA_Phieukham\frm_khamPhukhoa.Designer.cs">
-      <DependentUpon>frm_khamPhukhoa.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BA_Phieukham\frm_QuanlyTomtatBA.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BA_Phieukham\frm_QuanlyTomtatBA.Designer.cs">
-      <DependentUpon>frm_QuanlyTomtatBA.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BA_Phieukham\frm_ThemtiensuSankhoa.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BA_Phieukham\frm_ThemtiensuSankhoa.Designer.cs">
-      <DependentUpon>frm_ThemtiensuSankhoa.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BA_Phieukham\frm_Tiensubenh_Cacdacdiemlienquan.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BA_Phieukham\frm_Tiensubenh_Cacdacdiemlienquan.Designer.cs">
-      <DependentUpon>frm_Tiensubenh_Cacdacdiemlienquan.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BA_Phieukham\frm_Chandoan_Sankhoa.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BA_Phieukham\frm_Chandoan_Sankhoa.Designer.cs">
-      <DependentUpon>frm_Chandoan_Sankhoa.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BA_Phieukham\frm_TiensuSanphukhoa.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BA_Phieukham\frm_TiensuSanphukhoa.Designer.cs">
-      <DependentUpon>frm_TiensuSanphukhoa.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BA_Phieukham\frm_TomtatBA.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BA_Phieukham\frm_TomtatBA.Designer.cs">
-      <DependentUpon>frm_TomtatBA.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BA_Phieukham\Ucs\uc_theodoitaibuongde.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="BA_Phieukham\Ucs\uc_theodoitaibuongde.Designer.cs">
-      <DependentUpon>uc_theodoitaibuongde.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BA_Phieukham\Ucs\uc_quatrinh_thaiky.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="BA_Phieukham\Ucs\uc_quatrinh_thaiky.Designer.cs">
-      <DependentUpon>uc_quatrinh_thaiky.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BA_Phieukham\Ucs\uc_chandoan_sankhoa.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="BA_Phieukham\Ucs\uc_chandoan_sankhoa.Designer.cs">
-      <DependentUpon>uc_chandoan_sankhoa.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BA_Phieukham\Ucs\uc_tiensubenh_cacdacdiemlienquan.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="BA_Phieukham\Ucs\uc_tiensubenh_cacdacdiemlienquan.Designer.cs">
-      <DependentUpon>uc_tiensubenh_cacdacdiemlienquan.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BA_Phieukham\Ucs\uc_tiensusankhoa.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="BA_Phieukham\Ucs\uc_tiensusankhoa.Designer.cs">
-      <DependentUpon>uc_tiensusankhoa.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BA_Phieukham\Ucs\uc_tiensusanphukhoa.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="BA_Phieukham\Ucs\uc_tiensusanphukhoa.Designer.cs">
-      <DependentUpon>uc_tiensusanphukhoa.cs</DependentUpon>
     </Compile>
     <Compile Include="ChidinhCLS_Kedon\frm_chidandungthuoc_bacsi.cs">
       <SubType>Form</SubType>
@@ -613,24 +508,6 @@
     </Compile>
     <Compile Include="Noitru\frm_TimKiem_BN.Designer.cs">
       <DependentUpon>frm_TimKiem_BN.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BA_Phieukham\frm_Phieukhamtienme.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BA_Phieukham\frm_Phieukhamtienme.Designer.cs">
-      <DependentUpon>frm_Phieukhamtienme.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BA_Phieukham\frm_QuanlyPhieukhamthai.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BA_Phieukham\frm_QuanlyPhieukhamthai.Designer.cs">
-      <DependentUpon>frm_QuanlyPhieukhamthai.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BA_Phieukham\frm_ThemPhieukhamthai.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BA_Phieukham\frm_ThemPhieukhamthai.Designer.cs">
-      <DependentUpon>frm_ThemPhieukhamthai.cs</DependentUpon>
     </Compile>
     <Compile Include="Thanhtoan\frm_Xemthongtinthanhtoan.cs">
       <SubType>Form</SubType>
@@ -1419,60 +1296,6 @@
     <EmbeddedResource Include="Barcode\FrmBarCodePrint.resx">
       <DependentUpon>FrmBarCodePrint.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BA_Phieukham\frm_khamSanKhoa.resx">
-      <DependentUpon>frm_khamSanKhoa.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BA_Phieukham\frm_QuatrinhThaiky.resx">
-      <DependentUpon>frm_QuatrinhThaiky.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BA_Phieukham\frm_KCBCoban.resx">
-      <DependentUpon>frm_KCBCoban.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BA_Phieukham\frm_khamnoikhoa.resx">
-      <DependentUpon>frm_khamnoikhoa.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BA_Phieukham\frm_khamNhikhoa.resx">
-      <DependentUpon>frm_khamNhikhoa.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BA_Phieukham\frm_khamPhukhoa.resx">
-      <DependentUpon>frm_khamPhukhoa.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BA_Phieukham\frm_QuanlyTomtatBA.resx">
-      <DependentUpon>frm_QuanlyTomtatBA.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BA_Phieukham\frm_ThemtiensuSankhoa.resx">
-      <DependentUpon>frm_ThemtiensuSankhoa.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BA_Phieukham\frm_Tiensubenh_Cacdacdiemlienquan.resx">
-      <DependentUpon>frm_Tiensubenh_Cacdacdiemlienquan.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BA_Phieukham\frm_Chandoan_Sankhoa.resx">
-      <DependentUpon>frm_Chandoan_Sankhoa.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BA_Phieukham\frm_TiensuSanphukhoa.resx">
-      <DependentUpon>frm_TiensuSanphukhoa.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BA_Phieukham\frm_TomtatBA.resx">
-      <DependentUpon>frm_TomtatBA.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BA_Phieukham\Ucs\uc_theodoitaibuongde.resx">
-      <DependentUpon>uc_theodoitaibuongde.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BA_Phieukham\Ucs\uc_quatrinh_thaiky.resx">
-      <DependentUpon>uc_quatrinh_thaiky.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BA_Phieukham\Ucs\uc_chandoan_sankhoa.resx">
-      <DependentUpon>uc_chandoan_sankhoa.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BA_Phieukham\Ucs\uc_tiensubenh_cacdacdiemlienquan.resx">
-      <DependentUpon>uc_tiensubenh_cacdacdiemlienquan.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BA_Phieukham\Ucs\uc_tiensusankhoa.resx">
-      <DependentUpon>uc_tiensusankhoa.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BA_Phieukham\Ucs\uc_tiensusanphukhoa.resx">
-      <DependentUpon>uc_tiensusanphukhoa.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ChidinhCLS_Kedon\frm_chidandungthuoc_bacsi.resx">
       <DependentUpon>frm_chidandungthuoc_bacsi.cs</DependentUpon>
     </EmbeddedResource>
@@ -1576,15 +1399,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Noitru\frm_TimKiem_BN.resx">
       <DependentUpon>frm_TimKiem_BN.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BA_Phieukham\frm_Phieukhamtienme.resx">
-      <DependentUpon>frm_Phieukhamtienme.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BA_Phieukham\frm_QuanlyPhieukhamthai.resx">
-      <DependentUpon>frm_QuanlyPhieukhamthai.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BA_Phieukham\frm_ThemPhieukhamthai.resx">
-      <DependentUpon>frm_ThemPhieukhamthai.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Thanhtoan\frm_Xemthongtinthanhtoan.resx">
       <DependentUpon>frm_Xemthongtinthanhtoan.cs</DependentUpon>
@@ -1954,9 +1768,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\VMS.Emr\VMS.Emr\VMS.Emr.csproj">
+    <ProjectReference Include="..\VMS.Emr\VMS.Emr\VMS.HIS.Bus.Emr.csproj">
       <Project>{323d0245-5cd3-488a-8b83-edade85b3da4}</Project>
-      <Name>VMS.Emr</Name>
+      <Name>VMS.HIS.Bus.Emr</Name>
     </ProjectReference>
     <ProjectReference Include="..\VMS.HIS.BHYT\4_1.VMS.HIS.BHYT.csproj">
       <Project>{c68b076c-ad56-46bb-a16a-88f357aee6f4}</Project>

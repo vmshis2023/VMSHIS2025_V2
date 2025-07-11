@@ -832,6 +832,84 @@ namespace VMS.HIS.DAL
 				colvarIdbacsiThuchien.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarIdbacsiThuchien);
 				
+				TableSchema.TableColumn colvarIdTruongkhoa = new TableSchema.TableColumn(schema);
+				colvarIdTruongkhoa.ColumnName = "id_truongkhoa";
+				colvarIdTruongkhoa.DataType = DbType.Int32;
+				colvarIdTruongkhoa.MaxLength = 0;
+				colvarIdTruongkhoa.AutoIncrement = false;
+				colvarIdTruongkhoa.IsNullable = true;
+				colvarIdTruongkhoa.IsPrimaryKey = false;
+				colvarIdTruongkhoa.IsForeignKey = false;
+				colvarIdTruongkhoa.IsReadOnly = false;
+				colvarIdTruongkhoa.DefaultSetting = @"";
+				colvarIdTruongkhoa.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarIdTruongkhoa);
+				
+				TableSchema.TableColumn colvarMaTruongkhoa = new TableSchema.TableColumn(schema);
+				colvarMaTruongkhoa.ColumnName = "ma_truongkhoa";
+				colvarMaTruongkhoa.DataType = DbType.String;
+				colvarMaTruongkhoa.MaxLength = 50;
+				colvarMaTruongkhoa.AutoIncrement = false;
+				colvarMaTruongkhoa.IsNullable = true;
+				colvarMaTruongkhoa.IsPrimaryKey = false;
+				colvarMaTruongkhoa.IsForeignKey = false;
+				colvarMaTruongkhoa.IsReadOnly = false;
+				colvarMaTruongkhoa.DefaultSetting = @"";
+				colvarMaTruongkhoa.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarMaTruongkhoa);
+				
+				TableSchema.TableColumn colvarUserTruongkhoa = new TableSchema.TableColumn(schema);
+				colvarUserTruongkhoa.ColumnName = "user_truongkhoa";
+				colvarUserTruongkhoa.DataType = DbType.String;
+				colvarUserTruongkhoa.MaxLength = 50;
+				colvarUserTruongkhoa.AutoIncrement = false;
+				colvarUserTruongkhoa.IsNullable = true;
+				colvarUserTruongkhoa.IsPrimaryKey = false;
+				colvarUserTruongkhoa.IsForeignKey = false;
+				colvarUserTruongkhoa.IsReadOnly = false;
+				colvarUserTruongkhoa.DefaultSetting = @"";
+				colvarUserTruongkhoa.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarUserTruongkhoa);
+				
+				TableSchema.TableColumn colvarIdGiamdoc = new TableSchema.TableColumn(schema);
+				colvarIdGiamdoc.ColumnName = "id_giamdoc";
+				colvarIdGiamdoc.DataType = DbType.Int32;
+				colvarIdGiamdoc.MaxLength = 0;
+				colvarIdGiamdoc.AutoIncrement = false;
+				colvarIdGiamdoc.IsNullable = true;
+				colvarIdGiamdoc.IsPrimaryKey = false;
+				colvarIdGiamdoc.IsForeignKey = false;
+				colvarIdGiamdoc.IsReadOnly = false;
+				colvarIdGiamdoc.DefaultSetting = @"";
+				colvarIdGiamdoc.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarIdGiamdoc);
+				
+				TableSchema.TableColumn colvarMaGiamdoc = new TableSchema.TableColumn(schema);
+				colvarMaGiamdoc.ColumnName = "ma_giamdoc";
+				colvarMaGiamdoc.DataType = DbType.String;
+				colvarMaGiamdoc.MaxLength = 50;
+				colvarMaGiamdoc.AutoIncrement = false;
+				colvarMaGiamdoc.IsNullable = true;
+				colvarMaGiamdoc.IsPrimaryKey = false;
+				colvarMaGiamdoc.IsForeignKey = false;
+				colvarMaGiamdoc.IsReadOnly = false;
+				colvarMaGiamdoc.DefaultSetting = @"";
+				colvarMaGiamdoc.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarMaGiamdoc);
+				
+				TableSchema.TableColumn colvarUserGiamdoc = new TableSchema.TableColumn(schema);
+				colvarUserGiamdoc.ColumnName = "user_giamdoc";
+				colvarUserGiamdoc.DataType = DbType.String;
+				colvarUserGiamdoc.MaxLength = 50;
+				colvarUserGiamdoc.AutoIncrement = false;
+				colvarUserGiamdoc.IsNullable = true;
+				colvarUserGiamdoc.IsPrimaryKey = false;
+				colvarUserGiamdoc.IsForeignKey = false;
+				colvarUserGiamdoc.IsReadOnly = false;
+				colvarUserGiamdoc.DefaultSetting = @"";
+				colvarUserGiamdoc.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarUserGiamdoc);
+				
 				BaseSchema = schema;
 				//add this schema to the provider
 				//so we can query it later
@@ -1273,6 +1351,54 @@ namespace VMS.HIS.DAL
 			get { return GetColumnValue<short?>(Columns.IdbacsiThuchien); }
 			set { SetColumnValue(Columns.IdbacsiThuchien, value); }
 		}
+		  
+		[XmlAttribute("IdTruongkhoa")]
+		[Bindable(true)]
+		public int? IdTruongkhoa 
+		{
+			get { return GetColumnValue<int?>(Columns.IdTruongkhoa); }
+			set { SetColumnValue(Columns.IdTruongkhoa, value); }
+		}
+		  
+		[XmlAttribute("MaTruongkhoa")]
+		[Bindable(true)]
+		public string MaTruongkhoa 
+		{
+			get { return GetColumnValue<string>(Columns.MaTruongkhoa); }
+			set { SetColumnValue(Columns.MaTruongkhoa, value); }
+		}
+		  
+		[XmlAttribute("UserTruongkhoa")]
+		[Bindable(true)]
+		public string UserTruongkhoa 
+		{
+			get { return GetColumnValue<string>(Columns.UserTruongkhoa); }
+			set { SetColumnValue(Columns.UserTruongkhoa, value); }
+		}
+		  
+		[XmlAttribute("IdGiamdoc")]
+		[Bindable(true)]
+		public int? IdGiamdoc 
+		{
+			get { return GetColumnValue<int?>(Columns.IdGiamdoc); }
+			set { SetColumnValue(Columns.IdGiamdoc, value); }
+		}
+		  
+		[XmlAttribute("MaGiamdoc")]
+		[Bindable(true)]
+		public string MaGiamdoc 
+		{
+			get { return GetColumnValue<string>(Columns.MaGiamdoc); }
+			set { SetColumnValue(Columns.MaGiamdoc, value); }
+		}
+		  
+		[XmlAttribute("UserGiamdoc")]
+		[Bindable(true)]
+		public string UserGiamdoc 
+		{
+			get { return GetColumnValue<string>(Columns.UserGiamdoc); }
+			set { SetColumnValue(Columns.UserGiamdoc, value); }
+		}
 		
 		#endregion
 		
@@ -1293,7 +1419,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(string varMaPhieu,byte? varLoaiPhieu,long varIdBenhnhan,string varMaLuotkham,short varIdKhoadieutri,short? varIdBuong,short? varIdGiuong,DateTime varNgayPttt,string varChanDoan,string varTruocPttt,string varSauPttt,string varPhuongphapPttt,string varLoaiPttt,string varPhuongphapVocam,string varIdbacsiPttt,string varIdbacsiGayme,string varIdbacsiPtttPhu,string varIdDieuduonggayme,string varMaDungcuvongngoai,string varMaDungcuvongtrong,string varTenDungcuvongngoai,string varTenDungcuvongtrong,string varLuocdoPttt,string varDanLuu,string varBac,DateTime? varNgayRut,DateTime? varNgayCatchi,string varKhac,string varTrinhtuPttt,bool? varNoitru,bool? varKetthucPttt,DateTime? varNgayTuvong,string varLydoTaibien,string varLydoTuvong,DateTime? varNgayKetthuc,bool? varTaiBien,bool? varTuVong,long varIdChitietchidinh,byte varTrangThai,DateTime varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua,DateTime? varNgayXoa,string varNguoiXoa,string varNhommau,string varRh,string varMaHinhanh,string varTenPhuongphapVocam,string varGhiChu,string varLydoBienchung,bool? varBienChung,short? varIdbacsiThuchien)
+		public static void Insert(string varMaPhieu,byte? varLoaiPhieu,long varIdBenhnhan,string varMaLuotkham,short varIdKhoadieutri,short? varIdBuong,short? varIdGiuong,DateTime varNgayPttt,string varChanDoan,string varTruocPttt,string varSauPttt,string varPhuongphapPttt,string varLoaiPttt,string varPhuongphapVocam,string varIdbacsiPttt,string varIdbacsiGayme,string varIdbacsiPtttPhu,string varIdDieuduonggayme,string varMaDungcuvongngoai,string varMaDungcuvongtrong,string varTenDungcuvongngoai,string varTenDungcuvongtrong,string varLuocdoPttt,string varDanLuu,string varBac,DateTime? varNgayRut,DateTime? varNgayCatchi,string varKhac,string varTrinhtuPttt,bool? varNoitru,bool? varKetthucPttt,DateTime? varNgayTuvong,string varLydoTaibien,string varLydoTuvong,DateTime? varNgayKetthuc,bool? varTaiBien,bool? varTuVong,long varIdChitietchidinh,byte varTrangThai,DateTime varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua,DateTime? varNgayXoa,string varNguoiXoa,string varNhommau,string varRh,string varMaHinhanh,string varTenPhuongphapVocam,string varGhiChu,string varLydoBienchung,bool? varBienChung,short? varIdbacsiThuchien,int? varIdTruongkhoa,string varMaTruongkhoa,string varUserTruongkhoa,int? varIdGiamdoc,string varMaGiamdoc,string varUserGiamdoc)
 		{
 			KcbPhieupttt item = new KcbPhieupttt();
 			
@@ -1403,6 +1529,18 @@ namespace VMS.HIS.DAL
 			
 			item.IdbacsiThuchien = varIdbacsiThuchien;
 			
+			item.IdTruongkhoa = varIdTruongkhoa;
+			
+			item.MaTruongkhoa = varMaTruongkhoa;
+			
+			item.UserTruongkhoa = varUserTruongkhoa;
+			
+			item.IdGiamdoc = varIdGiamdoc;
+			
+			item.MaGiamdoc = varMaGiamdoc;
+			
+			item.UserGiamdoc = varUserGiamdoc;
+			
 		
 			if (System.Web.HttpContext.Current != null)
 				item.Save(System.Web.HttpContext.Current.User.Identity.Name);
@@ -1413,7 +1551,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(long varIdPhieu,string varMaPhieu,byte? varLoaiPhieu,long varIdBenhnhan,string varMaLuotkham,short varIdKhoadieutri,short? varIdBuong,short? varIdGiuong,DateTime varNgayPttt,string varChanDoan,string varTruocPttt,string varSauPttt,string varPhuongphapPttt,string varLoaiPttt,string varPhuongphapVocam,string varIdbacsiPttt,string varIdbacsiGayme,string varIdbacsiPtttPhu,string varIdDieuduonggayme,string varMaDungcuvongngoai,string varMaDungcuvongtrong,string varTenDungcuvongngoai,string varTenDungcuvongtrong,string varLuocdoPttt,string varDanLuu,string varBac,DateTime? varNgayRut,DateTime? varNgayCatchi,string varKhac,string varTrinhtuPttt,bool? varNoitru,bool? varKetthucPttt,DateTime? varNgayTuvong,string varLydoTaibien,string varLydoTuvong,DateTime? varNgayKetthuc,bool? varTaiBien,bool? varTuVong,long varIdChitietchidinh,byte varTrangThai,DateTime varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua,DateTime? varNgayXoa,string varNguoiXoa,string varNhommau,string varRh,string varMaHinhanh,string varTenPhuongphapVocam,string varGhiChu,string varLydoBienchung,bool? varBienChung,short? varIdbacsiThuchien)
+		public static void Update(long varIdPhieu,string varMaPhieu,byte? varLoaiPhieu,long varIdBenhnhan,string varMaLuotkham,short varIdKhoadieutri,short? varIdBuong,short? varIdGiuong,DateTime varNgayPttt,string varChanDoan,string varTruocPttt,string varSauPttt,string varPhuongphapPttt,string varLoaiPttt,string varPhuongphapVocam,string varIdbacsiPttt,string varIdbacsiGayme,string varIdbacsiPtttPhu,string varIdDieuduonggayme,string varMaDungcuvongngoai,string varMaDungcuvongtrong,string varTenDungcuvongngoai,string varTenDungcuvongtrong,string varLuocdoPttt,string varDanLuu,string varBac,DateTime? varNgayRut,DateTime? varNgayCatchi,string varKhac,string varTrinhtuPttt,bool? varNoitru,bool? varKetthucPttt,DateTime? varNgayTuvong,string varLydoTaibien,string varLydoTuvong,DateTime? varNgayKetthuc,bool? varTaiBien,bool? varTuVong,long varIdChitietchidinh,byte varTrangThai,DateTime varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua,DateTime? varNgayXoa,string varNguoiXoa,string varNhommau,string varRh,string varMaHinhanh,string varTenPhuongphapVocam,string varGhiChu,string varLydoBienchung,bool? varBienChung,short? varIdbacsiThuchien,int? varIdTruongkhoa,string varMaTruongkhoa,string varUserTruongkhoa,int? varIdGiamdoc,string varMaGiamdoc,string varUserGiamdoc)
 		{
 			KcbPhieupttt item = new KcbPhieupttt();
 			
@@ -1524,6 +1662,18 @@ namespace VMS.HIS.DAL
 				item.BienChung = varBienChung;
 			
 				item.IdbacsiThuchien = varIdbacsiThuchien;
+			
+				item.IdTruongkhoa = varIdTruongkhoa;
+			
+				item.MaTruongkhoa = varMaTruongkhoa;
+			
+				item.UserTruongkhoa = varUserTruongkhoa;
+			
+				item.IdGiamdoc = varIdGiamdoc;
+			
+				item.MaGiamdoc = varMaGiamdoc;
+			
+				item.UserGiamdoc = varUserGiamdoc;
 			
 			item.IsNew = false;
 			if (System.Web.HttpContext.Current != null)
@@ -1916,6 +2066,48 @@ namespace VMS.HIS.DAL
         
         
         
+        public static TableSchema.TableColumn IdTruongkhoaColumn
+        {
+            get { return Schema.Columns[54]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn MaTruongkhoaColumn
+        {
+            get { return Schema.Columns[55]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn UserTruongkhoaColumn
+        {
+            get { return Schema.Columns[56]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn IdGiamdocColumn
+        {
+            get { return Schema.Columns[57]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn MaGiamdocColumn
+        {
+            get { return Schema.Columns[58]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn UserGiamdocColumn
+        {
+            get { return Schema.Columns[59]; }
+        }
+        
+        
+        
         #endregion
 		#region Columns Struct
 		public struct Columns
@@ -1974,6 +2166,12 @@ namespace VMS.HIS.DAL
 			 public static string LydoBienchung = @"lydo_bienchung";
 			 public static string BienChung = @"bien_chung";
 			 public static string IdbacsiThuchien = @"idbacsi_thuchien";
+			 public static string IdTruongkhoa = @"id_truongkhoa";
+			 public static string MaTruongkhoa = @"ma_truongkhoa";
+			 public static string UserTruongkhoa = @"user_truongkhoa";
+			 public static string IdGiamdoc = @"id_giamdoc";
+			 public static string MaGiamdoc = @"ma_giamdoc";
+			 public static string UserGiamdoc = @"user_giamdoc";
 						
 		}
 		#endregion

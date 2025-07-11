@@ -273,20 +273,20 @@
             // toolStripStatusLabel4
             // 
             this.toolStripStatusLabel4.Name = "toolStripStatusLabel4";
-            this.toolStripStatusLabel4.Size = new System.Drawing.Size(114, 17);
-            this.toolStripStatusLabel4.Text = "Ctrl+C: Duyệt KQ     ";
+            this.toolStripStatusLabel4.Size = new System.Drawing.Size(125, 17);
+            this.toolStripStatusLabel4.Text = "Ctrl+K: Kí duyệt KQ     ";
             // 
             // toolStripStatusLabel5
             // 
             this.toolStripStatusLabel5.Name = "toolStripStatusLabel5";
-            this.toolStripStatusLabel5.Size = new System.Drawing.Size(134, 17);
-            this.toolStripStatusLabel5.Text = "Ctrl+X: Hủy duyệt KQ     ";
+            this.toolStripStatusLabel5.Size = new System.Drawing.Size(146, 17);
+            this.toolStripStatusLabel5.Text = "Ctrl+X: Hủy kí duyệt KQ     ";
             // 
             // lblMsg
             // 
             this.lblMsg.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMsg.Name = "lblMsg";
-            this.lblMsg.Size = new System.Drawing.Size(774, 17);
+            this.lblMsg.Size = new System.Drawing.Size(751, 17);
             this.lblMsg.Spring = true;
             this.lblMsg.Text = "Thông báo";
             // 
@@ -1126,8 +1126,8 @@
             this.cmdDuyet.Name = "cmdDuyet";
             this.cmdDuyet.Size = new System.Drawing.Size(124, 36);
             this.cmdDuyet.TabIndex = 556;
-            this.cmdDuyet.Text = "Duyệt kết quả";
-            this.toolTip1.SetToolTip(this.cmdDuyet, "Ctrl+X");
+            this.cmdDuyet.Text = "Kí duyệt KQ";
+            this.toolTip1.SetToolTip(this.cmdDuyet, "Kí duyệt kết quả trả về phòng khám");
             this.cmdDuyet.Click += new System.EventHandler(this.cmdDuyet_Click);
             // 
             // cmdHuyduyet
@@ -2016,17 +2016,17 @@
             // 
             // mnuDuyet
             // 
-            this.mnuDuyet.Image = ((System.Drawing.Image)(resources.GetObject("mnuDuyet.Image")));
+            this.mnuDuyet.Image = global::VMS.HIS.Cls.Properties.Resources._1180;
             this.mnuDuyet.Name = "mnuDuyet";
             this.mnuDuyet.Size = new System.Drawing.Size(314, 26);
-            this.mnuDuyet.Text = "Duyệt trả kết quả về phòng khám";
+            this.mnuDuyet.Text = "Kí duyệt trả kết quả về phòng khám";
             this.mnuDuyet.Click += new System.EventHandler(this.mnuDuyet_Click);
             // 
             // mnuHuyduyet
             // 
             this.mnuHuyduyet.Name = "mnuHuyduyet";
             this.mnuHuyduyet.Size = new System.Drawing.Size(314, 26);
-            this.mnuHuyduyet.Text = "Hủy duyệt trả kết quả về phòng khám";
+            this.mnuHuyduyet.Text = "Hủy kí duyệt kết quả";
             this.mnuHuyduyet.Click += new System.EventHandler(this.mnuHuyduyet_Click);
             // 
             // toolStripMenuItem2

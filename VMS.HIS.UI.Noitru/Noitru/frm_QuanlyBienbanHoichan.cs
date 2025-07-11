@@ -17,7 +17,7 @@ using System.IO;
 using VNS.HIS.UI.Classess;
 using Aspose.Words;
 using System.Diagnostics;
-using VMS.Emr;
+using VMS.HIS.Bus.Emr;
 
 namespace VNS.HIS.UI.NOITRU
 {

@@ -119,7 +119,8 @@ namespace VNS.HIS.UI.DANHMUC
         void InitData()
         {
 
-
+            DataTable dtPhieuEMR = THU_VIEN_CHUNG.LayDulieuDanhmucChung("EMR_PHIEU", true);
+            DataBinding.BindDataCombobox(cboPhieuEMR, dtPhieuEMR, DmucChung.Columns.Ma, DmucChung.Columns.Ten);
             DataTable dtnhominphoi = new Select().From(DmucChung.Schema)
                 .Where(DmucChung.Columns.Loai).IsEqualTo(THU_VIEN_CHUNG.Laygiatrithamsohethong("BHYT_STT_INPHOI", "STT_INPHOIBHYT", true))
                 .And(DmucChung.Columns.VietTat).IsEqualTo("2")
@@ -406,6 +407,7 @@ namespace VNS.HIS.UI.DANHMUC
                 chkHighTech.Checked = objDichVu.DichvuKtc == 1 ? true : false;
                 chkIntachphieu.Checked = Utility.Byte2Bool(objDichVu.InTachphieu);
                 cboServiceType.SelectedIndex = Utility.GetSelectedIndex(cboServiceType, Utility.sDbnull(objDichVu.IdLoaidichvu, "-1"));
+                cboPhieuEMR.SelectedValue = Utility.sDbnull(objDichVu.MaPhieuEmr);
                 chkKiemnghiem_CheckedChanged(chkKiemnghiem, new EventArgs());
             }
         }
@@ -444,6 +446,7 @@ namespace VNS.HIS.UI.DANHMUC
                 objDichVu.NhomBaocao = Utility.sDbnull(cbonhombaocao.SelectedValue, "-1");
                 objDichVu.CdhaTenphieu =  Utility.sDbnull(txttenphieutrakqCDHA.Text);
                 objDichVu.DonGia = nmrDongia.Value;
+                objDichVu.MaPhieuEmr = Utility.sDbnull(cboPhieuEMR.SelectedValue);
                 objDichVu.IsNew = true;
                 objDichVu.Save();
                 ProcessData(objDichVu.IdDichvu);
@@ -496,6 +499,7 @@ namespace VNS.HIS.UI.DANHMUC
             dr[DmucDichvucl.Columns.TinhthetichTheochitieu] = Utility.Bool2byte(chkTinhthetichtheochitieu.Checked);
             dr[DmucDichvucl.Columns.CoSosanh] = Utility.Bool2byte(chkCososanh.Checked);
             dr[DmucDichvucl.Columns.LaDvuKiemnghiem] = Utility.Bool2byte(chkKiemnghiem.Checked);
+            dr[DmucDichvucl.Columns.MaPhieuEmr] = Utility.Int16Dbnull(cboPhieuEMR.SelectedValue, -1);
             dsService.Rows.Add(dr);
             dsService.AcceptChanges();
             Utility.GotoNewRowJanus(grdService, DmucDichvucl.Columns.IdDichvu, id.ToString());
@@ -591,9 +595,11 @@ namespace VNS.HIS.UI.DANHMUC
                 .Set(DmucDichvucl.Columns.TinhthetichTheochitieu).EqualTo(Utility.Bool2byte( chkTinhthetichtheochitieu.Checked))
                 .Set(DmucDichvucl.Columns.CoSosanh).EqualTo(Utility.Bool2byte( chkCososanh.Checked))
                 .Set(DmucDichvucl.Columns.LaDvuKiemnghiem).EqualTo(Utility.Bool2byte(chkKiemnghiem.Checked))
+                .Set(DmucDichvucl.Columns.LaDvuKiemnghiem).EqualTo(Utility.Bool2byte(chkKiemnghiem.Checked))
                 //.Set(DmucDichvucl.Columns.NhomInCls).EqualTo(getNhominCLS(cboNhomin.SelectedIndex))
                 .Set(DmucDichvucl.Columns.NhomInCls).EqualTo(Utility.sDbnull(cboNhomin.SelectedValue,"ALL"))
                 .Set(DmucDichvucl.Columns.CdhaTenphieu).EqualTo(Utility.sDbnull(txttenphieutrakqCDHA.Text))
+                .Set(DmucDichvucl.Columns.MaPhieuEmr).EqualTo(Utility.sDbnull(cboPhieuEMR.SelectedValue))
                 .Where(DmucDichvucl.Columns.IdDichvu).IsEqualTo(Utility.Int32Dbnull(txtID.Text,-1))
                 .Execute();
             
@@ -629,6 +635,7 @@ namespace VNS.HIS.UI.DANHMUC
                     arrDr[0][VDmucDichvucl.Columns.TenLoaidichvu] = Utility.sDbnull(cboServiceType.Text, "");
                     arrDr[0][DmucDichvucl.Columns.IdKhoaThuchien] = Utility.Int16Dbnull(cboDepartment.SelectedValue, -1);
                     arrDr[0][DmucDichvucl.Columns.IdPhongThuchien] = Utility.Int16Dbnull(cboPhongthuchien.SelectedValue, -1);
+                    arrDr[0][DmucDichvucl.Columns.MaPhieuEmr] = Utility.Int16Dbnull(cboPhieuEMR.SelectedValue, -1);
                     arrDr[0][DmucDichvucl.Columns.ChiDan] = Utility.DoTrim(txtchidan.Text);
                     if (cboDepartment.SelectedIndex > 0)
                         arrDr[0][VDmucDichvucl.Columns.TenKhoaThuchien] = Utility.sDbnull(cboDepartment.Text);

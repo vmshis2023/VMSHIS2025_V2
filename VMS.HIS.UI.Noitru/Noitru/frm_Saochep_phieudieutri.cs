@@ -352,6 +352,7 @@ namespace VNS.HIS.UI.NOITRU
                     {
                         _OnCopyComplete();
                     }
+                    Utility.Log(this.Name, globalVariables.UserName, string.Format("Sao chép từ phiếu điều trị cho Người bệnh có ID ={0}, Mã lượt khám ={1}",objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham), newaction.Duplicate, this.GetType().Assembly.ManifestModule.Name);
                     Utility.ShowMsg("Bạn sao chép thành công. Nhấn OK để kết thúc", "Thông báo");
                     break;
                 case ActionResult.Error:

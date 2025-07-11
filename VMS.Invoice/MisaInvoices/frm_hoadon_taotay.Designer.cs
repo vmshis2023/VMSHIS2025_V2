@@ -72,6 +72,8 @@
             this.txtVAT = new MaskedTextBox.MaskedTextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.lblTongtien = new System.Windows.Forms.Label();
+            this.txtDonvitinh = new VNS.HIS.UCs.AutoCompleteTextbox_Danhmucchung();
+            this.label14 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -543,10 +545,67 @@
             this.lblTongtien.Text = "Tổng tiền:";
             this.lblTongtien.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // txtDonvitinh
+            // 
+            this.txtDonvitinh._backcolor = System.Drawing.SystemColors.Control;
+            this.txtDonvitinh._Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDonvitinh._TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtDonvitinh.AddValues = true;
+            this.txtDonvitinh.AllowMultiline = false;
+            this.txtDonvitinh.AutoCompleteList = ((System.Collections.Generic.List<string>)(resources.GetObject("txtDonvitinh.AutoCompleteList")));
+            this.txtDonvitinh.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtDonvitinh.buildShortcut = false;
+            this.txtDonvitinh.CaseSensitive = false;
+            this.txtDonvitinh.cmdDropDown = null;
+            this.txtDonvitinh.CompareNoID = true;
+            this.txtDonvitinh.DefaultCode = "-1";
+            this.txtDonvitinh.DefaultID = "-1";
+            this.txtDonvitinh.Drug_ID = null;
+            this.txtDonvitinh.ExtraWidth = 0;
+            this.txtDonvitinh.FillValueAfterSelect = false;
+            this.txtDonvitinh.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDonvitinh.LOAI_DANHMUC = "DONVITINH";
+            this.txtDonvitinh.Location = new System.Drawing.Point(415, 392);
+            this.txtDonvitinh.MaxHeight = -1;
+            this.txtDonvitinh.MinTypedCharacters = 2;
+            this.txtDonvitinh.MyCode = "-1";
+            this.txtDonvitinh.MyID = "-1";
+            this.txtDonvitinh.Name = "txtDonvitinh";
+            this.txtDonvitinh.RaiseEvent = false;
+            this.txtDonvitinh.RaiseEventEnter = false;
+            this.txtDonvitinh.RaiseEventEnterWhenEmpty = false;
+            this.txtDonvitinh.SelectedIndex = -1;
+            this.txtDonvitinh.ShowCodeWithValue = false;
+            this.txtDonvitinh.Size = new System.Drawing.Size(199, 21);
+            this.txtDonvitinh.splitChar = '@';
+            this.txtDonvitinh.splitCharIDAndCode = '#';
+            this.txtDonvitinh.TabIndex = 11;
+            this.txtDonvitinh.TakeCode = false;
+            this.txtDonvitinh.txtMyCode = null;
+            this.txtDonvitinh.txtMyCode_Edit = null;
+            this.txtDonvitinh.txtMyID = null;
+            this.txtDonvitinh.txtMyID_Edit = null;
+            this.txtDonvitinh.txtMyName = null;
+            this.txtDonvitinh.txtMyName_Edit = null;
+            this.txtDonvitinh.txtNext = null;
+            this.txtDonvitinh.txtNext1 = null;
+            // 
+            // label14
+            // 
+            this.label14.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.Color.Red;
+            this.label14.Location = new System.Drawing.Point(340, 395);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(69, 19);
+            this.label14.TabIndex = 632;
+            this.label14.Text = "ĐVT";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // frm_hoadon_taotay
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(631, 582);
+            this.Controls.Add(this.label14);
             this.Controls.Add(this.lblTongtien);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.txtVAT);
@@ -563,6 +622,7 @@
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.txtSotien);
+            this.Controls.Add(this.txtDonvitinh);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.txtTenhang);
             this.Controls.Add(this.panel1);
@@ -649,5 +709,7 @@
         private MaskedTextBox.MaskedTextBox txtVAT;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label lblTongtien;
+        private HIS.UCs.AutoCompleteTextbox_Danhmucchung txtDonvitinh;
+        private System.Windows.Forms.Label label14;
     }
 }

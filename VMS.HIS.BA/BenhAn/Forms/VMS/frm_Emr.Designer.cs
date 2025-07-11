@@ -1,5 +1,5 @@
 ﻿using DevExpress.XtraPdfViewer;
-namespace VNS.HIS.UI.BA
+namespace VNS.HIS.UI.EMR
 {
     partial class frm_Emr
     {

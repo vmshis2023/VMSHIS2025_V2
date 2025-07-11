@@ -18,7 +18,7 @@ using System.Text;
 using VNS.HIS.UI.NGOAITRU;
 using Janus.Windows.GridEX;
 using VNS.HIS.UI.Forms.Noitru;
-using VMS.Emr;
+using VMS.HIS.Bus.Emr;
 
 namespace VNS.HIS.UI.Forms.NGOAITRU
 {
@@ -958,7 +958,12 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
                 txtTruongkhoa.Focus();
                 return;
             }
-
+            //if (txtNguoiDaidien.MyCode == "-1")
+            //{
+            //    Utility.SetMsg(lblMsg, "Bạn phải nhập thông tin người đại diện đơn vị", true);
+            //    txtNguoiDaidien.Focus();
+            //    return;
+            //}
             if (txtKqdieutri.MyCode == "-1")
             {
                 Utility.SetMsg(lblMsg, "Bạn phải nhập thông tin kết quả điều trị theo danh mục", true);
@@ -1040,6 +1045,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
                 objRavien.MaKieuchuyenvien = txtKieuchuyenvien.MyCode;
                 objRavien.MaTinhtrangravien = txtTinhtrangravien.MyCode;
                 objRavien.IdBacsiChuyenvien = Utility.Int16Dbnull(txtTruongkhoa.MyID, -1);
+                objRavien.IdNguoidaidien = Utility.Int16Dbnull(txtNguoiDaidien.MyID, -1);
                 objRavien.PhuongphapDieutri = Utility.DoTrim(txtPhuongphapdieutri.Text);
                 objRavien.TrangthaiChuyenvien = Utility.Bool2byte(chkChuyenvien.Checked);
                 objRavien.IdBenhvienDi = Utility.Int16Dbnull(txtNoichuyenden.MyID, -1);
@@ -1375,6 +1381,8 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
                 DataTable dtBacsi = THU_VIEN_CHUNG.LaydanhsachBacsi(-1, -1);
                 txtBsChidinh.Init(dtBacsi, new List<string>() {DmucNhanvien.Columns.IdNhanvien,DmucNhanvien.Columns.MaNhanvien,DmucNhanvien.Columns.TenNhanvien });
                 txtTruongkhoa.Init(dtBacsi, new List<string>() { DmucNhanvien.Columns.IdNhanvien, DmucNhanvien.Columns.MaNhanvien, DmucNhanvien.Columns.TenNhanvien });
+                txtNguoiDaidien.Init(txtTruongkhoa.AutoCompleteSource, txtTruongkhoa.defaultItem);
+                txtNguoiDaidien.SetId(THU_VIEN_CHUNG.Laygiatrithamsohethong("ID_NGUOIDAIDIEN_DONVI", "-1", true));
             }
             catch (Exception exception)
             {
@@ -1524,6 +1532,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
             if (objRavien != null)
             {
                 txtTruongkhoa.SetId(objRavien.IdBacsiChuyenvien);
+                txtNguoiDaidien.SetId(objRavien.IdNguoidaidien);
                 txtId.Text = objRavien.IdRavien.ToString();
                 dtpNgayravien.Value = objRavien.NgayRavien;
                 txtGioRaVien.Text = objRavien.NgayRavien.ToString("HH");

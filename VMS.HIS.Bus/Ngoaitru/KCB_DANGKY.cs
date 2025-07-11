@@ -4,7 +4,7 @@ using System.Linq;
 using System.Transactions;
 using NLog;
 using SubSonic;
-using VMS.Emr;
+using VMS.HIS.Bus.Emr;
 using VMS.HIS.DAL;
 using VNS.Libs;
 
@@ -57,6 +57,14 @@ namespace VNS.HIS.BusRule.Classes
             return
                 SPs.KcbTimkiemDanhsachBenhnhan(FromDate, ToDate, ObjectTypeID, TrangThai, TenBenhnhan, IdBenhnhan,
                     MaLuotkham, CMT, ngay_sinh, id_gioitinh, PHONE, MAKHOATHIEN, cachtao, trangthaiNoitru,trangthaidieutri, loaiBN).GetDataSet().Tables[0];
+        }
+        public DataTable EmrTimkiemDanhsachBenhnhan(string FromDate, string ToDate, int? ObjectTypeID, int? TrangThai,
+            string TenBenhnhan, int? IdBenhnhan, string MaLuotkham, string CMT, DateTime ngay_sinh, byte id_gioitinh, string PHONE, string MAKHOATHIEN,
+            byte cachtao, byte trangthaiNoitru, byte trangthaidieutri, string loaiBN,int id_khoa,string ma_ba, string sovaovien, string lstLoaiBA,byte tthaikhoitaoba)
+        {
+            return
+                SPs.EmrTimkiemDanhsachBenhnhan(FromDate, ToDate, ObjectTypeID, TrangThai, TenBenhnhan, IdBenhnhan,
+                    MaLuotkham, CMT, ngay_sinh, id_gioitinh, PHONE, MAKHOATHIEN, cachtao, trangthaiNoitru, trangthaidieutri, loaiBN,id_khoa,ma_ba,sovaovien,lstLoaiBA,tthaikhoitaoba).GetDataSet().Tables[0];
         }
         public DataTable KcbQuanlylichhenKCB(string FromDate, string ToDate, int? ObjectTypeID, int? TrangThai,
             string TenBenhnhan, int? IdBenhnhan, string MaLuotkham, string CMT, string PHONE, string MAKHOATHIEN,

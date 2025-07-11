@@ -739,6 +739,19 @@ namespace VMS.HIS.DAL
 				colvarMasoThue.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarMasoThue);
 				
+				TableSchema.TableColumn colvarPassPost = new TableSchema.TableColumn(schema);
+				colvarPassPost.ColumnName = "pass_post";
+				colvarPassPost.DataType = DbType.String;
+				colvarPassPost.MaxLength = 20;
+				colvarPassPost.AutoIncrement = false;
+				colvarPassPost.IsNullable = true;
+				colvarPassPost.IsPrimaryKey = false;
+				colvarPassPost.IsForeignKey = false;
+				colvarPassPost.IsReadOnly = false;
+				colvarPassPost.DefaultSetting = @"";
+				colvarPassPost.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarPassPost);
+				
 				BaseSchema = schema;
 				//add this schema to the provider
 				//so we can query it later
@@ -1124,6 +1137,14 @@ namespace VMS.HIS.DAL
 			get { return GetColumnValue<string>(Columns.MasoThue); }
 			set { SetColumnValue(Columns.MasoThue, value); }
 		}
+		  
+		[XmlAttribute("PassPost")]
+		[Bindable(true)]
+		public string PassPost 
+		{
+			get { return GetColumnValue<string>(Columns.PassPost); }
+			set { SetColumnValue(Columns.PassPost, value); }
+		}
 		
 		#endregion
 		
@@ -1144,7 +1165,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(string varTenBenhnhan,string varDiaChi,string varMaTinhThanhpho,string varMaQuanhuyen,DateTime? varNgaySinh,short? varNamSinh,byte? varIdGioitinh,string varGioiTinh,string varNgheNghiep,string varCoQuan,string varCmt,string varMaQuocgia,string varDienThoai,string varEmail,DateTime varNgayTiepdon,string varNguoiTiepdon,string varDanToc,string varTonGiao,DateTime? varNgaySua,DateTime? varNgayTao,string varNguoiSua,string varNguoiTao,string varDiachiBhyt,string varNguonGoc,byte? varKieuBenhnhan,byte? varMacDinh,string varIpMaytao,string varIpMaysua,string varTenMaytao,string varTenMaysua,string varDiachiLienhe,string varDienthoaiLienhe,string varFax,string varNguoiLienhe,string varSoTiemchungQg,string varLastActionName,string varChucVu,string varMaBenhnhan,string varSoLo,string varLastNoigioithieu,string varFirstNoigioithieu,string varCanhBao,string varSonhaDuongpho,string varMaXaphuong,string varNhomMau,string varMasoThue)
+		public static void Insert(string varTenBenhnhan,string varDiaChi,string varMaTinhThanhpho,string varMaQuanhuyen,DateTime? varNgaySinh,short? varNamSinh,byte? varIdGioitinh,string varGioiTinh,string varNgheNghiep,string varCoQuan,string varCmt,string varMaQuocgia,string varDienThoai,string varEmail,DateTime varNgayTiepdon,string varNguoiTiepdon,string varDanToc,string varTonGiao,DateTime? varNgaySua,DateTime? varNgayTao,string varNguoiSua,string varNguoiTao,string varDiachiBhyt,string varNguonGoc,byte? varKieuBenhnhan,byte? varMacDinh,string varIpMaytao,string varIpMaysua,string varTenMaytao,string varTenMaysua,string varDiachiLienhe,string varDienthoaiLienhe,string varFax,string varNguoiLienhe,string varSoTiemchungQg,string varLastActionName,string varChucVu,string varMaBenhnhan,string varSoLo,string varLastNoigioithieu,string varFirstNoigioithieu,string varCanhBao,string varSonhaDuongpho,string varMaXaphuong,string varNhomMau,string varMasoThue,string varPassPost)
 		{
 			KcbDanhsachBenhnhan item = new KcbDanhsachBenhnhan();
 			
@@ -1240,6 +1261,8 @@ namespace VMS.HIS.DAL
 			
 			item.MasoThue = varMasoThue;
 			
+			item.PassPost = varPassPost;
+			
 		
 			if (System.Web.HttpContext.Current != null)
 				item.Save(System.Web.HttpContext.Current.User.Identity.Name);
@@ -1250,7 +1273,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(long varIdBenhnhan,string varTenBenhnhan,string varDiaChi,string varMaTinhThanhpho,string varMaQuanhuyen,DateTime? varNgaySinh,short? varNamSinh,byte? varIdGioitinh,string varGioiTinh,string varNgheNghiep,string varCoQuan,string varCmt,string varMaQuocgia,string varDienThoai,string varEmail,DateTime varNgayTiepdon,string varNguoiTiepdon,string varDanToc,string varTonGiao,DateTime? varNgaySua,DateTime? varNgayTao,string varNguoiSua,string varNguoiTao,string varDiachiBhyt,string varNguonGoc,byte? varKieuBenhnhan,byte? varMacDinh,string varIpMaytao,string varIpMaysua,string varTenMaytao,string varTenMaysua,string varDiachiLienhe,string varDienthoaiLienhe,string varFax,string varNguoiLienhe,string varSoTiemchungQg,string varLastActionName,string varChucVu,string varMaBenhnhan,string varSoLo,string varLastNoigioithieu,string varFirstNoigioithieu,string varCanhBao,string varSonhaDuongpho,string varMaXaphuong,string varNhomMau,string varMasoThue)
+		public static void Update(long varIdBenhnhan,string varTenBenhnhan,string varDiaChi,string varMaTinhThanhpho,string varMaQuanhuyen,DateTime? varNgaySinh,short? varNamSinh,byte? varIdGioitinh,string varGioiTinh,string varNgheNghiep,string varCoQuan,string varCmt,string varMaQuocgia,string varDienThoai,string varEmail,DateTime varNgayTiepdon,string varNguoiTiepdon,string varDanToc,string varTonGiao,DateTime? varNgaySua,DateTime? varNgayTao,string varNguoiSua,string varNguoiTao,string varDiachiBhyt,string varNguonGoc,byte? varKieuBenhnhan,byte? varMacDinh,string varIpMaytao,string varIpMaysua,string varTenMaytao,string varTenMaysua,string varDiachiLienhe,string varDienthoaiLienhe,string varFax,string varNguoiLienhe,string varSoTiemchungQg,string varLastActionName,string varChucVu,string varMaBenhnhan,string varSoLo,string varLastNoigioithieu,string varFirstNoigioithieu,string varCanhBao,string varSonhaDuongpho,string varMaXaphuong,string varNhomMau,string varMasoThue,string varPassPost)
 		{
 			KcbDanhsachBenhnhan item = new KcbDanhsachBenhnhan();
 			
@@ -1347,6 +1370,8 @@ namespace VMS.HIS.DAL
 				item.NhomMau = varNhomMau;
 			
 				item.MasoThue = varMasoThue;
+			
+				item.PassPost = varPassPost;
 			
 			item.IsNew = false;
 			if (System.Web.HttpContext.Current != null)
@@ -1690,6 +1715,13 @@ namespace VMS.HIS.DAL
         
         
         
+        public static TableSchema.TableColumn PassPostColumn
+        {
+            get { return Schema.Columns[47]; }
+        }
+        
+        
+        
         #endregion
 		#region Columns Struct
 		public struct Columns
@@ -1741,6 +1773,7 @@ namespace VMS.HIS.DAL
 			 public static string MaXaphuong = @"ma_xaphuong";
 			 public static string NhomMau = @"nhom_mau";
 			 public static string MasoThue = @"maso_thue";
+			 public static string PassPost = @"pass_post";
 						
 		}
 		#endregion

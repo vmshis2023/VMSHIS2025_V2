@@ -13,7 +13,7 @@ using VNS.HIS.BusRule.Classes;
 using SubSonic;
 using VNS.HIS.UI.DANHMUC;
 using VMS.HIS.Danhmuc.Dungchung;
-using VMS.Emr;
+using VMS.HIS.Bus.Emr;
 
 namespace VNS.HIS.UI.NOITRU
 {

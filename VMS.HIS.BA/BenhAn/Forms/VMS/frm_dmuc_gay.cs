@@ -11,7 +11,7 @@ using VMS.HIS.DAL;
 using VNS.HIS.NGHIEPVU;
 using Janus.Windows.GridEX;
 using SubSonic;
-namespace VNS.HIS.UI.BA
+namespace VNS.HIS.UI.EMR
 {
     public partial class frm_dmuc_gay : Form
     {

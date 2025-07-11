@@ -40,13 +40,13 @@
             Janus.Windows.GridEX.GridEXLayout grdKhoThuoc_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.GridEX.GridEXLayout grdPhongkham_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.GridEX.GridEXLayout grdKhoa_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
+            Janus.Windows.GridEX.GridEXLayout grdPhongkhamNoitru_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.GridEX.GridEXLayout grdKhoanoitru_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.GridEX.GridEXLayout grdDichvuCls_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.GridEX.GridEXLayout grdLoaiThuoc_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.GridEX.GridEXLayout grdbaocaomulti_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.GridEX.GridEXLayout grdDmucchung_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.GridEX.GridEXLayout grdCosoKCB_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
-            Janus.Windows.GridEX.GridEXLayout grdPhongkhamNoitru_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             this.sysColor = new System.Windows.Forms.ToolStrip();
             this.cmdNew = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -95,6 +95,7 @@
             this.grdPhongkham = new Janus.Windows.GridEX.GridEX();
             this.grdKhoa = new Janus.Windows.GridEX.GridEX();
             this.uiTabPageKhoanoitru = new Janus.Windows.UI.Tab.UITabPage();
+            this.grdPhongkhamNoitru = new Janus.Windows.GridEX.GridEX();
             this.grdKhoanoitru = new Janus.Windows.GridEX.GridEX();
             this.uiTabPageDvuCLS = new Janus.Windows.UI.Tab.UITabPage();
             this.grdDichvuCls = new Janus.Windows.GridEX.GridEX();
@@ -107,7 +108,9 @@
             this.uiTabPageCKdichvu = new Janus.Windows.UI.Tab.UITabPage();
             this.uiTabPage1 = new Janus.Windows.UI.Tab.UITabPage();
             this.grdCosoKCB = new Janus.Windows.GridEX.GridEX();
-            this.grdPhongkhamNoitru = new Janus.Windows.GridEX.GridEX();
+            this.uiTabPage2 = new Janus.Windows.UI.Tab.UITabPage();
+            this.picSignImg = new System.Windows.Forms.PictureBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.sysColor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox1)).BeginInit();
             this.uiGroupBox1.SuspendLayout();
@@ -131,6 +134,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdPhongkham)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdKhoa)).BeginInit();
             this.uiTabPageKhoanoitru.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdPhongkhamNoitru)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdKhoanoitru)).BeginInit();
             this.uiTabPageDvuCLS.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdDichvuCls)).BeginInit();
@@ -143,12 +147,14 @@
             this.uiTabPageCKdichvu.SuspendLayout();
             this.uiTabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdCosoKCB)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdPhongkhamNoitru)).BeginInit();
+            this.uiTabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picSignImg)).BeginInit();
             this.SuspendLayout();
             // 
             // sysColor
             // 
             this.sysColor.BackColor = System.Drawing.SystemColors.Control;
+            this.sysColor.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.sysColor.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cmdNew,
             this.toolStripSeparator1,
@@ -166,8 +172,7 @@
             // cmdNew
             // 
             this.cmdNew.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.cmdNew.Image = global::VMS.HIS.Danhmuc.Properties.Resources.Add;
-            this.cmdNew.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.cmdNew.Image = global::VMS.HIS.Danhmuc.Properties.Resources.add_04_32;
             this.cmdNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdNew.Name = "cmdNew";
             this.cmdNew.Size = new System.Drawing.Size(136, 28);
@@ -183,7 +188,6 @@
             // 
             this.cmdEdit.Font = new System.Drawing.Font("Tahoma", 9F);
             this.cmdEdit.Image = ((System.Drawing.Image)(resources.GetObject("cmdEdit.Image")));
-            this.cmdEdit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.cmdEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdEdit.Name = "cmdEdit";
             this.cmdEdit.Size = new System.Drawing.Size(99, 28);
@@ -199,7 +203,6 @@
             // 
             this.cmdDelete.Font = new System.Drawing.Font("Tahoma", 9F);
             this.cmdDelete.Image = ((System.Drawing.Image)(resources.GetObject("cmdDelete.Image")));
-            this.cmdDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.cmdDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdDelete.Name = "cmdDelete";
             this.cmdDelete.Size = new System.Drawing.Size(99, 28);
@@ -215,7 +218,6 @@
             // 
             this.toolStripButton1.Font = new System.Drawing.Font("Tahoma", 9F);
             this.toolStripButton1.Image = global::VMS.HIS.Danhmuc.Properties.Resources.close_24;
-            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(96, 28);
@@ -668,7 +670,8 @@
             this.uiTabPageBaocaonhanh,
             this.uiTabPageDmucchung,
             this.uiTabPageCKdichvu,
-            this.uiTabPage1});
+            this.uiTabPage1,
+            this.uiTabPage2});
             this.uiTab1.VisualStyle = Janus.Windows.UI.Tab.TabVisualStyle.Normal;
             // 
             // uiTpQuyen
@@ -782,6 +785,23 @@
             this.uiTabPageKhoanoitru.Size = new System.Drawing.Size(691, 609);
             this.uiTabPageKhoanoitru.TabStop = true;
             this.uiTabPageKhoanoitru.Text = "Khoa nội trú";
+            // 
+            // grdPhongkhamNoitru
+            // 
+            this.grdPhongkhamNoitru.BackColor = System.Drawing.SystemColors.Control;
+            grdPhongkhamNoitru_DesignTimeLayout.LayoutString = resources.GetString("grdPhongkhamNoitru_DesignTimeLayout.LayoutString");
+            this.grdPhongkhamNoitru.DesignTimeLayout = grdPhongkhamNoitru_DesignTimeLayout;
+            this.grdPhongkhamNoitru.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdPhongkhamNoitru.DynamicFiltering = true;
+            this.grdPhongkhamNoitru.FilterMode = Janus.Windows.GridEX.FilterMode.Automatic;
+            this.grdPhongkhamNoitru.FilterRowUpdateMode = Janus.Windows.GridEX.FilterRowUpdateMode.WhenValueChanges;
+            this.grdPhongkhamNoitru.GroupByBoxVisible = false;
+            this.grdPhongkhamNoitru.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight;
+            this.grdPhongkhamNoitru.Location = new System.Drawing.Point(337, 0);
+            this.grdPhongkhamNoitru.Name = "grdPhongkhamNoitru";
+            this.grdPhongkhamNoitru.Size = new System.Drawing.Size(354, 609);
+            this.grdPhongkhamNoitru.TabIndex = 75;
+            this.grdPhongkhamNoitru.VisualStyle = Janus.Windows.GridEX.VisualStyle.VS2005;
             // 
             // grdKhoanoitru
             // 
@@ -954,22 +974,38 @@
             this.grdCosoKCB.UseGroupRowSelector = true;
             this.grdCosoKCB.VisualStyle = Janus.Windows.GridEX.VisualStyle.VS2005;
             // 
-            // grdPhongkhamNoitru
+            // uiTabPage2
             // 
-            this.grdPhongkhamNoitru.BackColor = System.Drawing.SystemColors.Control;
-            grdPhongkhamNoitru_DesignTimeLayout.LayoutString = resources.GetString("grdPhongkhamNoitru_DesignTimeLayout.LayoutString");
-            this.grdPhongkhamNoitru.DesignTimeLayout = grdPhongkhamNoitru_DesignTimeLayout;
-            this.grdPhongkhamNoitru.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdPhongkhamNoitru.DynamicFiltering = true;
-            this.grdPhongkhamNoitru.FilterMode = Janus.Windows.GridEX.FilterMode.Automatic;
-            this.grdPhongkhamNoitru.FilterRowUpdateMode = Janus.Windows.GridEX.FilterRowUpdateMode.WhenValueChanges;
-            this.grdPhongkhamNoitru.GroupByBoxVisible = false;
-            this.grdPhongkhamNoitru.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight;
-            this.grdPhongkhamNoitru.Location = new System.Drawing.Point(337, 0);
-            this.grdPhongkhamNoitru.Name = "grdPhongkhamNoitru";
-            this.grdPhongkhamNoitru.Size = new System.Drawing.Size(354, 609);
-            this.grdPhongkhamNoitru.TabIndex = 75;
-            this.grdPhongkhamNoitru.VisualStyle = Janus.Windows.GridEX.VisualStyle.VS2005;
+            this.uiTabPage2.Controls.Add(this.label5);
+            this.uiTabPage2.Controls.Add(this.picSignImg);
+            this.uiTabPage2.Location = new System.Drawing.Point(1, 43);
+            this.uiTabPage2.Name = "uiTabPage2";
+            this.uiTabPage2.Size = new System.Drawing.Size(691, 609);
+            this.uiTabPage2.TabStop = true;
+            this.uiTabPage2.Text = "Chữ ký";
+            // 
+            // picSignImg
+            // 
+            this.picSignImg.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.picSignImg.Image = ((System.Drawing.Image)(resources.GetObject("picSignImg.Image")));
+            this.picSignImg.Location = new System.Drawing.Point(105, 53);
+            this.picSignImg.Name = "picSignImg";
+            this.picSignImg.Size = new System.Drawing.Size(501, 307);
+            this.picSignImg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picSignImg.TabIndex = 0;
+            this.picSignImg.TabStop = false;
+            this.picSignImg.Click += new System.EventHandler(this.picSignImg_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(191, 20);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(272, 15);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Nhấn đúp chuột vào ảnh để cập nhật hình chữ ký";
             // 
             // frm_dmuc_nhanvien
             // 
@@ -1019,6 +1055,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdPhongkham)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdKhoa)).EndInit();
             this.uiTabPageKhoanoitru.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grdPhongkhamNoitru)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdKhoanoitru)).EndInit();
             this.uiTabPageDvuCLS.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdDichvuCls)).EndInit();
@@ -1031,7 +1068,9 @@
             this.uiTabPageCKdichvu.ResumeLayout(false);
             this.uiTabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdCosoKCB)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grdPhongkhamNoitru)).EndInit();
+            this.uiTabPage2.ResumeLayout(false);
+            this.uiTabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picSignImg)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1100,5 +1139,8 @@
         private Janus.Windows.UI.Tab.UITabPage uiTabPage1;
         private Janus.Windows.GridEX.GridEX grdCosoKCB;
         private Janus.Windows.GridEX.GridEX grdPhongkhamNoitru;
+        private Janus.Windows.UI.Tab.UITabPage uiTabPage2;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.PictureBox picSignImg;
     }
 }

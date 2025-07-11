@@ -97,21 +97,22 @@ namespace VMS.HIS.Danhmuc.UserControls
                 DataRow dr = dtDmucThiluc.NewRow();
                 dr[DmucChung.Columns.Ma] = "";
                 dr[DmucChung.Columns.Ten] = "";
+                
                 dtDmucThiluc.Rows.InsertAt(dr, 0);
-                DataBinding.BindDataCombobox(cbo_donkinh_thiluc_cokinh_phai, dtDmucThiluc.Copy(), DmucChung.Columns.Ma, DmucChung.Columns.Ten);
-                DataBinding.BindDataCombobox(cbo_donkinh_thiluc_cokinh_trai, dtDmucThiluc.Copy(), DmucChung.Columns.Ma, DmucChung.Columns.Ten);
-                DataBinding.BindDataCombobox(cbo_khucxahientai_thiluc_cokinh_phai, dtDmucThiluc.Copy(), DmucChung.Columns.Ma, DmucChung.Columns.Ten);
-                DataBinding.BindDataCombobox(cbo_khucxahientai_thiluc_cokinh_trai, dtDmucThiluc.Copy(), DmucChung.Columns.Ma, DmucChung.Columns.Ten);
-                DataBinding.BindDataCombobox(cbo_khucxahientai_thiluc_khongkinh_phai, dtDmucThiluc.Copy(), DmucChung.Columns.Ma, DmucChung.Columns.Ten);
-                DataBinding.BindDataCombobox(cbo_khucxahientai_thiluc_khongkinh_trai, dtDmucThiluc.Copy(), DmucChung.Columns.Ma, DmucChung.Columns.Ten);
-                DataBinding.BindDataCombobox(cbo_khucxahientai_thiluc_kinhlo_phai, dtDmucThiluc.Copy(), DmucChung.Columns.Ma, DmucChung.Columns.Ten);
-                DataBinding.BindDataCombobox(cbo_khucxahientai_thiluc_kinhlo_trai, dtDmucThiluc.Copy(), DmucChung.Columns.Ma, DmucChung.Columns.Ten);
-                DataBinding.BindDataCombobox(cbo_khucxasaudieutiet_thiluc_cokinh_phai, dtDmucThiluc.Copy(), DmucChung.Columns.Ma, DmucChung.Columns.Ten);
-                DataBinding.BindDataCombobox(cbo_khucxasaudieutiet_thiluc_cokinh_trai, dtDmucThiluc.Copy(), DmucChung.Columns.Ma, DmucChung.Columns.Ten);
-                DataBinding.BindDataCombobox(cbo_khucxasaudieutiet_thiluc_khongkinh_phai, dtDmucThiluc.Copy(), DmucChung.Columns.Ma, DmucChung.Columns.Ten);
-                DataBinding.BindDataCombobox(cbo_khucxasaudieutiet_thiluc_khongkinh_trai, dtDmucThiluc.Copy(), DmucChung.Columns.Ma, DmucChung.Columns.Ten);
-                DataBinding.BindDataCombobox(cbo_kinhcu_thiluc_cokinh_phai, dtDmucThiluc.Copy(), DmucChung.Columns.Ma, DmucChung.Columns.Ten);
-                DataBinding.BindDataCombobox(cbo_kinhcu_thiluc_cokinh_trai, dtDmucThiluc.Copy(), DmucChung.Columns.Ma, DmucChung.Columns.Ten);
+                DataBinding.BindDataCombobox(cbo_donkinh_thiluc_cokinh_phai, dtDmucThiluc, DmucChung.Columns.Ma, DmucChung.Columns.Ten);
+                DataBinding.BindDataCombobox(cbo_donkinh_thiluc_cokinh_trai, dtDmucThiluc, DmucChung.Columns.Ma, DmucChung.Columns.Ten);
+                DataBinding.BindDataCombobox(cbo_khucxahientai_thiluc_cokinh_phai, dtDmucThiluc, DmucChung.Columns.Ma, DmucChung.Columns.Ten);
+                DataBinding.BindDataCombobox(cbo_khucxahientai_thiluc_cokinh_trai, dtDmucThiluc, DmucChung.Columns.Ma, DmucChung.Columns.Ten);
+                DataBinding.BindDataCombobox(cbo_khucxahientai_thiluc_khongkinh_phai, dtDmucThiluc, DmucChung.Columns.Ma, DmucChung.Columns.Ten);
+                DataBinding.BindDataCombobox(cbo_khucxahientai_thiluc_khongkinh_trai, dtDmucThiluc, DmucChung.Columns.Ma, DmucChung.Columns.Ten);
+                DataBinding.BindDataCombobox(cbo_khucxahientai_thiluc_kinhlo_phai, dtDmucThiluc, DmucChung.Columns.Ma, DmucChung.Columns.Ten);
+                DataBinding.BindDataCombobox(cbo_khucxahientai_thiluc_kinhlo_trai, dtDmucThiluc, DmucChung.Columns.Ma, DmucChung.Columns.Ten);
+                DataBinding.BindDataCombobox(cbo_khucxasaudieutiet_thiluc_cokinh_phai, dtDmucThiluc, DmucChung.Columns.Ma, DmucChung.Columns.Ten);
+                DataBinding.BindDataCombobox(cbo_khucxasaudieutiet_thiluc_cokinh_trai, dtDmucThiluc, DmucChung.Columns.Ma, DmucChung.Columns.Ten);
+                DataBinding.BindDataCombobox(cbo_khucxasaudieutiet_thiluc_khongkinh_phai, dtDmucThiluc, DmucChung.Columns.Ma, DmucChung.Columns.Ten);
+                DataBinding.BindDataCombobox(cbo_khucxasaudieutiet_thiluc_khongkinh_trai, dtDmucThiluc, DmucChung.Columns.Ma, DmucChung.Columns.Ten);
+                DataBinding.BindDataCombobox(cbo_kinhcu_thiluc_cokinh_phai, dtDmucThiluc, DmucChung.Columns.Ma, DmucChung.Columns.Ten);
+                DataBinding.BindDataCombobox(cbo_kinhcu_thiluc_cokinh_trai, dtDmucThiluc, DmucChung.Columns.Ma, DmucChung.Columns.Ten);
 
                 if (cbo_khucxamay_cau_phai.Items.Count <= 0)
                 {

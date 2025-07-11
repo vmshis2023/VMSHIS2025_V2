@@ -4057,6 +4057,19 @@ namespace  VNS.HIS.UI.THANHTOAN
                     newItem.NgayTao = globalVariables.SysDate;
                     newItem.NguoiTao = globalVariables.UserName;
                     lstItems.Add(newItem);
+                    #region Kiểm tra tiền chiết khấu để loại sai khi gặp kịch bản như trên
+                    decimal chenhlechtienck_chophep = Utility.DecimaltoDbnull(THU_VIEN_CHUNG.Laygiatrithamsohethong("THANHTOAN_CHENHLECHTIEN_CHIETKHAU", "500", false));
+                    decimal TienChietkhau = (newItem.DonGia + newItem.PhuThu) * Utility.DecimaltoDbnull(newItem.SoLuong);
+                    TienChietkhau *= Utility.DecimaltoDbnull(newItem.TileChietkhau, 0) / 100;
+                    decimal chenhlechtienck = TienChietkhau - newItem.TienChietkhau.Value;
+                    if (Math.Abs(chenhlechtienck) > chenhlechtienck_chophep)
+                    {
+                        errMsg = string.Format("Dịch vụ: {0} \ncó tiền chiết khấu the tỉ lệ % là {1} khác với tiền chiết khấu {2} .(Có thể do hiện tượng thay đổi số lượng dịch vụ chỉ định hoặc phần trăm chiết khấu bị lẻ sau dấu thập phân).\nVui lòng kiểm tra lại và nhập lại % chiết khấu để hệ thống tính lại tiền chiết khấu chính xác", newItem.TenChitietdichvu, TienChietkhau, newItem.TienChietkhau.Value);
+                        ErrType = 2;
+                        break;
+                    }
+                    #endregion
+
                     CoDichvu0dong = !Utility.Byte2Bool(newItem.TrongGoi) && newItem.DonGia <= 0;
                     dtDataCheck = SPs.ThanhtoanKiemtratontaitruockhithanhtoan(newItem.IdPhieu, newItem.IdPhieuChitiet, newItem.IdLoaithanhtoan).GetDataSet().Tables[0];
                     if (dtDataCheck.Rows.Count <= 0)
@@ -5267,7 +5280,7 @@ namespace  VNS.HIS.UI.THANHTOAN
                         grdThongTinChuaThanhToan.CurrentRow.Cells["tile_chietkhau"].Value = Math.Ceiling((Utility.DecimaltoDbnull(e.Value, 0) / Utility.DecimaltoDbnull(grdThongTinChuaThanhToan.CurrentRow.Cells["tt"].Value, 0)) * 100);
                         tile_chietkhau = Utility.DecimaltoDbnull(grdThongTinChuaThanhToan.CurrentRow.Cells["tile_chietkhau"].Value);
                     }
-                    grdThongTinChuaThanhToan.CurrentRow.Cells["thuc_thu"].Value = Utility.DecimaltoDbnull(grdThongTinChuaThanhToan.CurrentRow.Cells["TT_KHONG_PHUTHU"].Value, 0) - tien_chietkhau;// Utility.DecimaltoDbnull(grdThongTinChuaThanhToan.CurrentRow.Cells["tien_chietkhau"].Value, 0);
+                    grdThongTinChuaThanhToan.CurrentRow.Cells["thuc_thu"].Value = Utility.DecimaltoDbnull(grdThongTinChuaThanhToan.CurrentRow.Cells["tt"].Value, 0) - tien_chietkhau;// Utility.DecimaltoDbnull(grdThongTinChuaThanhToan.CurrentRow.Cells["tien_chietkhau"].Value, 0);
                     //Cập nhật luôn vào bảng trong CSDL để in bảng kê chi phí cho người bệnh xem trước khi thanh toán
                     byte id_loaithanhtoan = Utility.ByteDbnull(grdThongTinChuaThanhToan.CurrentRow.Cells["id_loaithanhtoan"].Value);
                     tile_chietkhau = Math.Ceiling(tile_chietkhau);

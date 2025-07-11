@@ -7,7 +7,7 @@ using System.Text;
 using System.Transactions;
 using VNS.Libs;
 using VMS.HIS.DAL;
-using VMS.Emr;
+using VMS.HIS.Bus.Emr;
 
 namespace newBus.Noitru
 {

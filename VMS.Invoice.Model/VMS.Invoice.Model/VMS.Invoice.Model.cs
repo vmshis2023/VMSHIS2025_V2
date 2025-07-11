@@ -61,6 +61,18 @@ namespace VMS.Invoice
 
 
     }
+    public class ItemInfor
+    {
+        public string id { get; set; }
+        public string ten_hang { get; set; }
+        public string donvitinh { get; set; }
+        public int soluong { get; set; }
+        public decimal dongia { get; set; }
+        public decimal thanhtien { get; set; }
+        public string VAT { get; set; }
+        public decimal tienVAT { get; set; }
+        public decimal tongtien { get; set; }
+    }
     public class BuyerInfor
     {
         public long Id_benhnhan { get; set; }
@@ -89,6 +101,7 @@ namespace VMS.Invoice
         public bool IsSendEmail { get; set; }
         public string ReceiverName { get; set; }
         public string ReceiverEmail { get; set; }
+        public List<ItemInfor> lstItems { get; set; }
     }
     public class Orginvoicedata
     {

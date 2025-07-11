@@ -325,9 +325,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\VMS.Emr\VMS.Emr\VMS.Emr.csproj">
+    <ProjectReference Include="..\VMS.Emr\VMS.Emr\VMS.HIS.Bus.Emr.csproj">
       <Project>{323d0245-5cd3-488a-8b83-edade85b3da4}</Project>
-      <Name>VMS.Emr</Name>
+      <Name>VMS.HIS.Bus.Emr</Name>
     </ProjectReference>
     <ProjectReference Include="..\VMS.HIS.Bus\3.VMS.HIS.Bus.csproj">
       <Project>{a99e7072-450c-430d-ac3d-63cbb74c01ad}</Project>
@@ -416,6 +416,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\video_stop3_96.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1180.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1180_huy3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

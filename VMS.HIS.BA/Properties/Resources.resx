@@ -178,6 +178,9 @@
   <data name="Bed_no24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Bed_no24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="option_check_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\option_check_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="printtype1_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\printtype1_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -214,8 +217,8 @@
   <data name="PEACE" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PEACE.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Add" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="patient_color_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\patient_color_24.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="clock_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\clock_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -259,9 +262,6 @@
   <data name="ADMIN" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SUPPORT21.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="patient_color_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\patient_color_24.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="clock_196" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\clock_196.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -274,8 +274,14 @@
   <data name="printer_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\printer-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Edit1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Edit1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="refresh03_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\refresh03_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="EDIT2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\EDIT2.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="hospital_241" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\hospital_241.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -319,13 +325,22 @@
   <data name="excel_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\excel_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="option_check_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\option_check_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Add" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Edit1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Edit1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="tick1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tick1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="EDIT2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\EDIT2.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="tick2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tick2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tick3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tick3.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tick4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tick4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tick5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tick5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

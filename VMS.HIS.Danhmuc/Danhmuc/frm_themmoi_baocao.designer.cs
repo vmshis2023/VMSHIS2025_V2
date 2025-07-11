@@ -32,6 +32,10 @@
             this.cmdExit = new Janus.Windows.EditControls.UIButton();
             this.cmdSave = new Janus.Windows.EditControls.UIButton();
             this.grpControl = new Janus.Windows.EditControls.UIGroupBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.cboPhieuEMR = new VNS.HIS.UCs.EasyCompletionComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtFileWord = new Janus.Windows.GridEX.EditControls.EditBox();
             this.chkThemlientuc = new System.Windows.Forms.CheckBox();
             this.cboNhom = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -45,10 +49,6 @@
             this.txtTenFileMacDinh = new Janus.Windows.GridEX.EditControls.EditBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtMa = new Janus.Windows.GridEX.EditControls.EditBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtFileWord = new Janus.Windows.GridEX.EditControls.EditBox();
-            this.cboPhieuEMR = new VNS.HIS.UCs.EasyCompletionComboBox();
-            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grpControl)).BeginInit();
             this.grpControl.SuspendLayout();
             this.SuspendLayout();
@@ -105,6 +105,45 @@
             this.grpControl.Name = "grpControl";
             this.grpControl.Size = new System.Drawing.Size(511, 306);
             this.grpControl.TabIndex = 0;
+            // 
+            // label8
+            // 
+            this.label8.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.Green;
+            this.label8.Location = new System.Drawing.Point(8, 193);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(107, 20);
+            this.label8.TabIndex = 29;
+            this.label8.Text = "Mã phiếu EMR";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // cboPhieuEMR
+            // 
+            this.cboPhieuEMR.FormattingEnabled = true;
+            this.cboPhieuEMR.Location = new System.Drawing.Point(121, 193);
+            this.cboPhieuEMR.Name = "cboPhieuEMR";
+            this.cboPhieuEMR.Next_Control = null;
+            this.cboPhieuEMR.RaiseEnterEventWhenInvisible = true;
+            this.cboPhieuEMR.Size = new System.Drawing.Size(364, 23);
+            this.cboPhieuEMR.TabIndex = 11;
+            // 
+            // label7
+            // 
+            this.label7.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(8, 169);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(107, 20);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "File word";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtFileWord
+            // 
+            this.txtFileWord.Location = new System.Drawing.Point(121, 169);
+            this.txtFileWord.MaxLength = 100;
+            this.txtFileWord.Name = "txtFileWord";
+            this.txtFileWord.Size = new System.Drawing.Size(364, 21);
+            this.txtFileWord.TabIndex = 10;
             // 
             // chkThemlientuc
             // 
@@ -225,44 +264,6 @@
             this.txtMa.Name = "txtMa";
             this.txtMa.Size = new System.Drawing.Size(187, 21);
             this.txtMa.TabIndex = 0;
-            // 
-            // label7
-            // 
-            this.label7.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(8, 169);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(107, 20);
-            this.label7.TabIndex = 14;
-            this.label7.Text = "File word";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtFileWord
-            // 
-            this.txtFileWord.Location = new System.Drawing.Point(121, 169);
-            this.txtFileWord.MaxLength = 100;
-            this.txtFileWord.Name = "txtFileWord";
-            this.txtFileWord.Size = new System.Drawing.Size(364, 21);
-            this.txtFileWord.TabIndex = 10;
-            // 
-            // cboPhieuEMR
-            // 
-            this.cboPhieuEMR.FormattingEnabled = true;
-            this.cboPhieuEMR.Location = new System.Drawing.Point(121, 193);
-            this.cboPhieuEMR.Name = "cboPhieuEMR";
-            this.cboPhieuEMR.Next_Control = null;
-            this.cboPhieuEMR.RaiseEnterEventWhenInvisible = true;
-            this.cboPhieuEMR.Size = new System.Drawing.Size(364, 23);
-            this.cboPhieuEMR.TabIndex = 11;
-            // 
-            // label8
-            // 
-            this.label8.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(8, 193);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(107, 20);
-            this.label8.TabIndex = 29;
-            this.label8.Text = "Mã phiếu EMR";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // frm_themmoi_baocao
             // 

@@ -4117,6 +4117,19 @@ namespace VNS.Libs
 
             return Sovaovien;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="code">1= giấy tai nạn, thương tích;2=dưỡng thai,3= chăm sóc con;4=nội trú;5= vô sinh</param>
+        /// <returns></returns>
+        public static string TT25LaySohoso(int code)
+        {
+            string Sohoso = "";
+            DataTable dataTable = SPs.Tt25Laysohoso(code).GetDataSet().Tables[0];
+            if (dataTable.Rows.Count > 0) Sohoso = Utility.sDbnull(dataTable.Rows[0][0], string.Empty);
+
+            return Sohoso;
+        }
         public static string KCB_SINH_MALANKHAM(byte loai)
         {
             string Maxma_luotkham = "";

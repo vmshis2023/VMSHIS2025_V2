@@ -4859,6 +4859,60 @@ namespace VNS.HIS.UI.THUOC
             }
         }
 
+        private void mnuHoanthuocvaokho_Click(object sender, EventArgs e)
+        {
+            try
+            {
+               if(!Utility.Coquyen("THUOC_HOANTHUOCVAOKHO_KHONGPHIEUCHI"))
+                {
+                    Utility.thongbaokhongcoquyen("THUOC_HOANTHUOCVAOKHO_KHONGPHIEUCHI", "hoàn thuốc vào kho mà không thông qua phiếu chi.");
+                    return;
+                }    
+                if (Utility.AcceptQuestion("Bạn có chắc chắn muốn Hoàn thuốc về kho cho Bệnh nhân hay không?",                    "Thông báo", true))
+                {
+                     id_phieutralaiTTQ = Utility.Int64Dbnull(grdLichsutrathuoc.GetValue("id_tralaithuoc"));
+                    
+                    ///Dùng chung 1 người làm
+                    ///ActionResult actionResult = _THANHTOAN.Trathuoctaiquay_Rieng(objPayment, objLuotkham, id_phieutralaiTTQ, TaodulieuthanhtoanchitietHuy(), _Chondanhmucdungchung.ma, noidung, _Chondanhmucdungchung.ten);
+                    //Dùng riêng từng bộ phận
+                    ActionResult actionResult = _THANHTOAN.HoanThuocvaoKho( objLuotkham, id_phieutralaiTTQ, "", "", "");
+                    switch (actionResult)
+                    {
+                        case ActionResult.Success:
+                            Utility.ShowMsg("Đã hoàn thuốc thành công. Nhấn OK để kết thúc");
+                            ////tabThongTinThanhToan.SelectedTab = tabPagePhieuChi;
+                            //LaydanhsachLichsuthanhtoan_phieuchi();
+                            LaydanhsachLichsu_phieutralaithuoc();
+                            //GetChiPhiDaThanhToan();
+                            id_phieutralaiTTQ = -1;
+                            ModifyCommand();
+                            break;
+                        case ActionResult.AssignIsConfirmed:
+                            Utility.ShowMsg("Đã có dịch vụ được thực hiện rồi. Bạn không thể trả lại tiền !",
+                                "Thông báo");
+                            break;
+                        case ActionResult.PresIsConfirmed:
+                            Utility.ShowMsg("Đã có thuốc được xác nhận cấp phát. Bạn không thể trả lại tiền !",
+                                "Thông báo");
+                            break;
+                        case ActionResult.Error:
+                            Utility.ShowMsg("Bản ghi thanh toán chi tiết trả lại không tồn tại. Liên hệ IT để được hỗ trợ", "Thông báo");
+                            break;
+                        case ActionResult.Cancel:
+                            Utility.ShowMsg("Bản ghi đơn thuốc chi tiết trả lại không tồn tại. Liên hệ IT để được hỗ trợ", "Thông báo");
+                            break;
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                if (globalVariables.IsAdmin)
+                {
+                    Utility.ShowMsg(exception.ToString());
+                }
+            }
+        }
+
         private void mnuCheck_Click(object sender, EventArgs e)
         {
             KiemTraTonthuoctrongdon();

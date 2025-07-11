@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_XemTonkho));
             Janus.Windows.GridEX.GridEXLayout grdList_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.GridEX.GridEXLayout grdDieuchinh_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
@@ -56,7 +57,7 @@
             this.grdList = new Janus.Windows.GridEX.GridEX();
             this.pnlDieuchinh = new System.Windows.Forms.Panel();
             this.grdDieuchinh = new Janus.Windows.GridEX.GridEX();
-            this.ctxUpdate = new System.Windows.Forms.ContextMenuStrip();
+            this.ctxUpdate = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cmdUpdateGiaNhap = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdUpdateNgayHetHan = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdupdatengaynhap = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,8 +74,8 @@
             this.optExpireDate = new System.Windows.Forms.RadioButton();
             this.optLIFO = new System.Windows.Forms.RadioButton();
             this.optFIFO = new System.Windows.Forms.RadioButton();
-            this.timer1 = new System.Windows.Forms.Timer();
-            this.toolTip1 = new System.Windows.Forms.ToolTip();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.chkAutoupdate = new Janus.Windows.EditControls.UICheckBox();
             this.cmdXemchoxacnhan = new Janus.Windows.EditControls.UIButton();
             this.cmdInTonKho = new Janus.Windows.EditControls.UIButton();
@@ -300,6 +301,7 @@
             this.cmdRefresh.TabStop = false;
             this.cmdRefresh.Text = "Lấy dữ liệu";
             this.toolTip1.SetToolTip(this.cmdRefresh, "Làm mới lại dữ liệu thuốc trong kho");
+            this.cmdRefresh.Click += new System.EventHandler(this.cmdRefresh_Click_1);
             // 
             // cmdCauHinh
             // 

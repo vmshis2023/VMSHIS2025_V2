@@ -20,7 +20,7 @@ using VMS.HIS.Bus;
 using VNS.HIS.UI.NOITRU;
 using VMS.Emr;
 
-namespace VNS.HIS.UI.BA
+namespace VNS.HIS.UI.EMR
 {
     public partial class frm_QuanlyBA : Form
     {

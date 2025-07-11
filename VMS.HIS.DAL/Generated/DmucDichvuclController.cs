@@ -80,7 +80,7 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(string IdLoaidichvu,string MaDichvu,string TenDichvu,decimal DonGia,byte TrangThai,short? DichvuKtc,short SttHthi,byte? HienthiChitiet,short? IdKhoaThuchien,short? IdPhongThuchien,string ChiDan,string NhomBaocao,string NhomInCls,string MotaThem,string NguoiTao,DateTime? NgayTao,string NguoiSua,DateTime? NgaySua,int? IdVungkhaosat,int? ThetichToithieu,byte? TinhthetichTheochitieu,string MaDonvichitieu,byte? CoSosanh,string MaQuychuanSosanh,byte? SongayTraketqua,string MaBhyt,string TenBhyt,string NhomInphoiBHYT,byte? LaDvuKiemnghiem,string CdhaTenphieu,byte? InTachphieu)
+	    public void Insert(string IdLoaidichvu,string MaDichvu,string TenDichvu,decimal DonGia,byte TrangThai,short? DichvuKtc,short SttHthi,byte? HienthiChitiet,short? IdKhoaThuchien,short? IdPhongThuchien,string ChiDan,string NhomBaocao,string NhomInCls,string MotaThem,string NguoiTao,DateTime? NgayTao,string NguoiSua,DateTime? NgaySua,int? IdVungkhaosat,int? ThetichToithieu,byte? TinhthetichTheochitieu,string MaDonvichitieu,byte? CoSosanh,string MaQuychuanSosanh,byte? SongayTraketqua,string MaBhyt,string TenBhyt,string NhomInphoiBHYT,byte? LaDvuKiemnghiem,string CdhaTenphieu,byte? InTachphieu,string MaPhieuEmr)
 	    {
 		    DmucDichvucl item = new DmucDichvucl();
 		    
@@ -146,6 +146,8 @@ namespace VMS.HIS.DAL
             
             item.InTachphieu = InTachphieu;
             
+            item.MaPhieuEmr = MaPhieuEmr;
+            
 	    
 		    item.Save(UserName);
 	    }
@@ -154,7 +156,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(short IdDichvu,string IdLoaidichvu,string MaDichvu,string TenDichvu,decimal DonGia,byte TrangThai,short? DichvuKtc,short SttHthi,byte? HienthiChitiet,short? IdKhoaThuchien,short? IdPhongThuchien,string ChiDan,string NhomBaocao,string NhomInCls,string MotaThem,string NguoiTao,DateTime? NgayTao,string NguoiSua,DateTime? NgaySua,int? IdVungkhaosat,int? ThetichToithieu,byte? TinhthetichTheochitieu,string MaDonvichitieu,byte? CoSosanh,string MaQuychuanSosanh,byte? SongayTraketqua,string MaBhyt,string TenBhyt,string NhomInphoiBHYT,byte? LaDvuKiemnghiem,string CdhaTenphieu,byte? InTachphieu)
+	    public void Update(short IdDichvu,string IdLoaidichvu,string MaDichvu,string TenDichvu,decimal DonGia,byte TrangThai,short? DichvuKtc,short SttHthi,byte? HienthiChitiet,short? IdKhoaThuchien,short? IdPhongThuchien,string ChiDan,string NhomBaocao,string NhomInCls,string MotaThem,string NguoiTao,DateTime? NgayTao,string NguoiSua,DateTime? NgaySua,int? IdVungkhaosat,int? ThetichToithieu,byte? TinhthetichTheochitieu,string MaDonvichitieu,byte? CoSosanh,string MaQuychuanSosanh,byte? SongayTraketqua,string MaBhyt,string TenBhyt,string NhomInphoiBHYT,byte? LaDvuKiemnghiem,string CdhaTenphieu,byte? InTachphieu,string MaPhieuEmr)
 	    {
 		    DmucDichvucl item = new DmucDichvucl();
 	        item.MarkOld();
@@ -223,6 +225,8 @@ namespace VMS.HIS.DAL
 			item.CdhaTenphieu = CdhaTenphieu;
 				
 			item.InTachphieu = InTachphieu;
+				
+			item.MaPhieuEmr = MaPhieuEmr;
 				
 	        item.Save(UserName);
 	    }

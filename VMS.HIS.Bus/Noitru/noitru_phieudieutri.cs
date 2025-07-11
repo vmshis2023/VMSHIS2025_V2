@@ -126,7 +126,7 @@ namespace VNS.HIS.BusRule.Classes
                     objDonthuoc.IdBacsiChidinh = objTreatment.IdBacsi;
                     objDonthuoc.NgaySua = null;
                     objDonthuoc.NguoiSua = null;
-                    objDonthuoc.NgayKedon = Convert.ToDateTime(objTreatment.NgayDieutri);
+                    objDonthuoc.NgayKedon = objTreatment.NgayDieutri.Value.AddHours(Utility.Int32Dbnull(objTreatment.GioDieutri.Split(':')[0], 0)).AddMinutes(Utility.Int32Dbnull(objTreatment.GioDieutri.Split(':')[1], 0));
                     objDonthuoc.Noitru = 1;
                     NoitruPhanbuonggiuong objPatientDept = NoitruPhanbuonggiuong.FetchByID(objTreatment.IdBuongGiuong);
                     if (objPatientDept != null)
@@ -669,7 +669,7 @@ namespace VNS.HIS.BusRule.Classes
                                 objAssignInfo.IdPhongChidinh = objTreatment.IdKhoanoitru;
                                 objAssignInfo.Barcode = string.Empty;
                                 
-                                objAssignInfo.NgayChidinh = objTreatment.NgayDieutri.Value;
+                                objAssignInfo.NgayChidinh = objTreatment.NgayDieutri.Value.AddHours(Utility.Int32Dbnull( objTreatment.GioDieutri.Split(':')[0],0)).AddMinutes(Utility.Int32Dbnull(objTreatment.GioDieutri.Split(':')[1], 0));
                                 objAssignInfo.NguoiTao = globalVariables.UserName;
                                 objAssignInfo.NgayTao = DateTime.Now;
                                 objAssignInfo.IpMaytao = globalVariables.gv_strIPAddress;

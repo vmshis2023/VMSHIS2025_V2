@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Janus.Windows.GridEX.EditControls;
 using SubSonic;
 using VMS.HIS.DAL;
 using VMS.Invoice;
@@ -15,6 +16,8 @@ namespace VNS.HIS.UI.Forms.Dungchung
 {
     public partial class frm_hoadon_taotay : Form
     {
+        public delegate void OnSucess(bool isNew);
+        public event OnSucess _OnSucess;
         public BuyerInfor _buyer;
        
         private MisaInvoice _MisaInvoices = new MisaInvoice();
@@ -102,7 +105,34 @@ namespace VNS.HIS.UI.Forms.Dungchung
 
         private void frm_hoadon_taotay_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter) ProcessTabKey(true);
+            Control activeCtrl = Utility.getActiveControl(this);
+            if (e.KeyCode == Keys.Enter)
+            {
+                
+                    if (activeCtrl.GetType().Equals(typeof(EditBox)))
+                    {
+                        EditBox box = activeCtrl as EditBox;
+                        if (box.Multiline)
+                        {
+                            return;
+                        }
+                        else
+                            SendKeys.Send("{TAB}");
+                    }
+                    else if (activeCtrl.GetType().Equals(typeof(TextBox)))
+                    {
+                        TextBox box = activeCtrl as TextBox;
+                        if (box.Multiline)
+                        {
+                            return;
+                        }
+                        else
+                            SendKeys.Send("{TAB}");
+                    }
+                    else
+                        SendKeys.Send("{TAB}");
+               
+            }
             else if (e.Control && e.KeyCode == Keys.S) cmdPhathanhHDon.PerformClick();
             else if (e.Control && e.KeyCode == Keys.P) cmdPReview.PerformClick();
             else if (e.KeyCode == Keys.Escape) cmdthoat.PerformClick();
@@ -130,6 +160,8 @@ namespace VNS.HIS.UI.Forms.Dungchung
 
         private void frm_hoadon_taotay_Load(object sender, EventArgs e)
         {
+            txtDonvitinh.SetDefaultWhenInit = false;
+            txtDonvitinh.Init();
             txtTenhang.Focus();
         }
 
@@ -159,6 +191,7 @@ namespace VNS.HIS.UI.Forms.Dungchung
                 _buyer.BuyerIDNumber = "";
                 //Thông tin hàng hóa
                 _buyer.TenHangHoa = Utility.sDbnull(txtTenhang.Text);
+                _buyer.Donvitinh= Utility.sDbnull(txtDonvitinh.Text);
                 _buyer.Tongtienhang = Utility.DecimaltoDbnull(txtSotien.Text);
                 _buyer.VAT = Utility.DecimaltoDbnull(txtVAT.Text, 0) <= 0 ? "KCT" : Utility.DoTrim( txtVAT.Text) + "%";
                 _buyer.TongtienThue = Utility.DecimaltoDbnull(txtTienthueGTGT.Text);
@@ -173,6 +206,25 @@ namespace VNS.HIS.UI.Forms.Dungchung
                 {
                     Utility.ShowMsg("Bạn cần nhập địa chỉ người mua");
                     txtdiachi.Focus();
+                    return;
+                }
+                if (_buyer.TenHangHoa.Length <= 0)
+                {
+                    Utility.ShowMsg("Bạn cần nhập nội dung hàng hóa");
+                    txtTenhang.Focus();
+                    return;
+                }
+                
+                if (_buyer.Tongtienhang <= 0)
+                {
+                    Utility.ShowMsg("Bạn cần nhập số tiền");
+                    txtSotien.Focus();
+                    return;
+                }
+                if (_buyer.Donvitinh.Length <= 0)
+                {
+                    Utility.ShowMsg("Bạn cần nhập đơn vị tính");
+                    txtDonvitinh.Focus();
                     return;
                 }
                 string eMessage = "";
@@ -213,6 +265,7 @@ namespace VNS.HIS.UI.Forms.Dungchung
                 //Thông tin hàng hóa
                 _buyer.TenHangHoa = Utility.sDbnull(txtTenhang.Text);
                 _buyer.Tongtienhang = Utility.DecimaltoDbnull(txtSotien.Text);
+                _buyer.Donvitinh= Utility.sDbnull(txtDonvitinh.Text);
                 _buyer.VAT = Utility.DecimaltoDbnull(txtVAT.Text, 0) <= 0 ?"KCT" : Utility.DoTrim(txtVAT.Text) + "%";
                 _buyer.TongtienThue = Utility.DecimaltoDbnull(txtTienthueGTGT.Text);
                 _buyer.ThanhtienDonhang = Utility.DecimaltoDbnull(txtThanhtienDonhang.Text);
@@ -226,6 +279,25 @@ namespace VNS.HIS.UI.Forms.Dungchung
                 {
                     Utility.ShowMsg("Bạn cần nhập địa chỉ người mua");
                     txtdiachi.Focus();
+                    return;
+                }
+                if (_buyer.TenHangHoa.Length <= 0)
+                {
+                    Utility.ShowMsg("Bạn cần nhập nội dung hàng hóa");
+                    txtTenhang.Focus();
+                    return;
+                }
+
+                if (_buyer.Tongtienhang <= 0)
+                {
+                    Utility.ShowMsg("Bạn cần nhập số tiền");
+                    txtSotien.Focus();
+                    return;
+                }
+                if (_buyer.Donvitinh.Length <= 0)
+                {
+                    Utility.ShowMsg("Bạn cần nhập đơn vị tính");
+                    txtDonvitinh.Focus();
                     return;
                 }
                 string eMessage = "";

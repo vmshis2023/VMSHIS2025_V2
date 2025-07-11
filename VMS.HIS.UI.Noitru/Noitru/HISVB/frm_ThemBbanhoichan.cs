@@ -22,7 +22,7 @@ using Aspose.Words;
 using System.Diagnostics;
 using VNS.HIS.BusRule.Classes;
 using VMS.HIS.Danhmuc.Dungchung;
-using VMS.Emr;
+using VMS.HIS.Bus.Emr;
 
 namespace VNS.HIS.UI.NOITRU
 {

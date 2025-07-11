@@ -441,6 +441,18 @@ namespace VMS.HIS.DAL{
                 
                 schema.Columns.Add(colvarInTachphieu);
                 
+                TableSchema.TableColumn colvarMaPhieuEmr = new TableSchema.TableColumn(schema);
+                colvarMaPhieuEmr.ColumnName = "ma_phieu_emr";
+                colvarMaPhieuEmr.DataType = DbType.String;
+                colvarMaPhieuEmr.MaxLength = 50;
+                colvarMaPhieuEmr.AutoIncrement = false;
+                colvarMaPhieuEmr.IsNullable = true;
+                colvarMaPhieuEmr.IsPrimaryKey = false;
+                colvarMaPhieuEmr.IsForeignKey = false;
+                colvarMaPhieuEmr.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarMaPhieuEmr);
+                
                 TableSchema.TableColumn colvarChon = new TableSchema.TableColumn(schema);
                 colvarChon.ColumnName = "CHON";
                 colvarChon.DataType = DbType.Int32;
@@ -1131,6 +1143,20 @@ namespace VMS.HIS.DAL{
             }
         }
 	      
+        [XmlAttribute("MaPhieuEmr")]
+        [Bindable(true)]
+        public string MaPhieuEmr 
+	    {
+		    get
+		    {
+			    return GetColumnValue<string>("ma_phieu_emr");
+		    }
+            set 
+		    {
+			    SetColumnValue("ma_phieu_emr", value);
+            }
+        }
+	      
         [XmlAttribute("Chon")]
         [Bindable(true)]
         public int Chon 
@@ -1425,6 +1451,8 @@ namespace VMS.HIS.DAL{
             public static string CdhaTenphieu = @"cdha_tenphieu";
             
             public static string InTachphieu = @"in_tachphieu";
+            
+            public static string MaPhieuEmr = @"ma_phieu_emr";
             
             public static string Chon = @"CHON";
             

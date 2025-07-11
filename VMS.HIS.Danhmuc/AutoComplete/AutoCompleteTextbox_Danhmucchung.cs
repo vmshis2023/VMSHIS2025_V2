@@ -388,6 +388,11 @@ namespace VNS.HIS.UCs
             set;
             get;
         }
+        public bool SetDefaultWhenInit
+        {
+            set;
+            get;
+        }
         private List<string> CurrentAutoCompleteList_IDAndCode
         {
             set;
@@ -515,7 +520,7 @@ namespace VNS.HIS.UCs
                 this.CaseSensitive = false;
                 this.MinTypedCharacters = 1;
                 if (!VisibleDefaultItem) return;
-                SetCode(defaultItem);
+             if(SetDefaultWhenInit)   SetCode(defaultItem);
             }
             catch (Exception ex)
             {

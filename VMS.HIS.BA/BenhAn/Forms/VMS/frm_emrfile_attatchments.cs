@@ -15,7 +15,7 @@ using System.IO;
 using System.Threading;
 using NLog;
 
-namespace VNS.HIS.UI.BA
+namespace VNS.HIS.UI.EMR
 {
     public partial class frm_emrfile_attatchments : Form
     {

@@ -1246,6 +1246,7 @@ namespace VNS.HIS.UI.NGOAITRU
                     int num = Utility.Int32Dbnull(cboStock.SelectedValue, -1);
                     if ((num > 0) && ((cboStock.Items.Count > 0)))
                     {
+                        AutoSaveKhoID();
                         //if (objLuotkham.DungTuyen != null)
                         m_dtDanhmucthuoc = _kedonthuoc.LayThuoctrongkhokedon(num, KIEU_THUOC_VT,
                             Utility.sDbnull(objLuotkham.MaDoituongKcb, "DV"),
@@ -3077,7 +3078,7 @@ namespace VNS.HIS.UI.NGOAITRU
                 IdDonthuoc = -1;
                 txtPres_ID.Text = "-1";
                 if (objPhieudieutriNoitru != null)
-                    dtpCreatedDate.Value = objPhieudieutriNoitru.NgayDieutri.Value;
+                    dtpCreatedDate.Value = objPhieudieutriNoitru.NgayDieutri.Value.AddHours(Utility.Int32Dbnull(objPhieudieutriNoitru.GioDieutri.Split(':')[0], 0)).AddMinutes(Utility.Int32Dbnull(objPhieudieutriNoitru.GioDieutri.Split(':')[1], 0)) ;
                 else
                     dtpCreatedDate.Value = globalVariables.SysDate;
             }

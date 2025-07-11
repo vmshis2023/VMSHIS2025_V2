@@ -18,7 +18,7 @@ using VMS.HIS.DAL;
 using VNS.HIS.UCs;
 using VNS.HIS.UI.Classess;
 using VNS.HIS.UI.DANHMUC;
-using VNS.HIS.UI.Forms.BenhAn.Forms;
+using VMS.HIS.UI.EMR;
 using VNS.HIS.UI.Forms.CanLamSang;
 using VNS.HIS.UI.Forms.Cauhinh;
 using VNS.HIS.UI.Forms.NGOAITRU;
@@ -39,9 +39,7 @@ using VNS.Libs.AppUI;
 using System.Runtime.InteropServices;
 using SubSonic.Sugar;
 using VNS.HIS.UI.Forms.Dungchung;
-using VMS.EMR.PHIEUKHAM;
-using VNS.HIS.UI.BA;
-using VMS.Emr;
+using VMS.HIS.Bus.Emr;
 using VMS.HIS.Bus;
 
 namespace VNS.HIS.UI.NGOAITRU
@@ -1794,20 +1792,23 @@ namespace VNS.HIS.UI.NGOAITRU
                 }
                 if (!globalVariables.isSuperAdmin)
                 {
-                    if (objCongkham.TrangThai == 1)
+                    if (objLuotkham.HuongDieutri != "4")//Khác điều trị ngoại trú thì kiểm tra
                     {
-                        Utility.ShowMsg("Bệnh nhân đã kết thúc khám nên bạn chỉ được quyền xem thông tin");
-                        return false;
-                    }
-                    if (objLuotkham.TrangthaiNoitru >= 1)
-                    {
-                        Utility.ShowMsg("Bệnh nhân đã nhập viện điều trị nội trú nên bạn chỉ được quyền xem thông tin");
-                        return false;
-                    }
-                    if (objCongkham.TrangThai == 1 && objLuotkham.TthaiChuyendi == 1)
-                    {
-                        Utility.ShowMsg("Bệnh nhân đã chuyển viện nên bạn chỉ được quyền xem thông tin");
-                        return false;
+                        if (objCongkham.TrangThai == 1)
+                        {
+                            Utility.ShowMsg("Bệnh nhân đã kết thúc khám nên bạn chỉ được quyền xem thông tin");
+                            return false;
+                        }
+                        if (objLuotkham.TrangthaiNoitru >= 1)
+                        {
+                            Utility.ShowMsg("Bệnh nhân đã nhập viện điều trị nội trú nên bạn chỉ được quyền xem thông tin");
+                            return false;
+                        }
+                        if (objCongkham.TrangThai == 1 && objLuotkham.TthaiChuyendi == 1)
+                        {
+                            Utility.ShowMsg("Bệnh nhân đã chuyển viện nên bạn chỉ được quyền xem thông tin");
+                            return false;
+                        }
                     }
                 }
                 if (Utility.Laygiatrithamsohethong("CANHBAO_CHUCNANGSONG", "0", true) == "1" && savedType!=1)
@@ -1911,7 +1912,12 @@ namespace VNS.HIS.UI.NGOAITRU
             errorProvider1.Clear();
             Utility.SetMsg(lblkhamsobo, "", false);
             Utility.SetMsg(lblMsg, "", false);
-            if (!isvalidKhamsobo(savedType)) return;
+            if (!isvalidKhamsobo(savedType))
+            {
+                cmdLuuChandoan.Enabled = true;
+                cmdLuuChandoan_sobo.Enabled = true;
+                return;
+            }
 
             if (Utility.Coquyen("quyen_khamtatcacacphong_ngoaitru") || globalVariables.StrQheNvpk.Split(',').ToList<string>().Contains(Utility.sDbnull(objCongkham.IdPhongkham))) //!=          Utility.Int16Dbnull(globalVariables.IdPhongNhanvien)))
             {
@@ -2402,131 +2408,131 @@ namespace VNS.HIS.UI.NGOAITRU
         }
         private void BenhAnSanKhoa()
         {
-            var frm = new VMS.HIS.BA.Forms.FrmHoSoCayThuocTranhThai();
-            frm.Idbenhnhan = Utility.Int64Dbnull(txtPatient_ID.Text);
-            frm.Loaibenhan = Utility.sDbnull(cboMauBA.SelectedValue);
-            SqlQuery soKham = null;
-            //if (THU_VIEN_CHUNG.Laygiatrithamsohethong_off("KCB_BA_TAONHIEUBENHAN", "0", false) == "1")
+            //var frm = new VMS.HIS.BA.Forms.FrmHoSoCayThuocTranhThai();
+            //frm.Idbenhnhan = Utility.Int64Dbnull(txtPatient_ID.Text);
+            //frm.Loaibenhan = Utility.sDbnull(cboMauBA.SelectedValue);
+            //SqlQuery soKham = null;
+            ////if (THU_VIEN_CHUNG.Laygiatrithamsohethong_off("KCB_BA_TAONHIEUBENHAN", "0", false) == "1")
+            ////{
+            ////    soKham = new Select().From(KcbBenhAn.Schema).
+            ////    Where(KcbBenhAn.Columns.IdBnhan).IsEqualTo(Utility.sDbnull(txtPatient_ID.Text));
+            ////}
+            //switch (Utility.sDbnull(cboMauBA.SelectedValue))
             //{
-            //    soKham = new Select().From(KcbBenhAn.Schema).
-            //    Where(KcbBenhAn.Columns.IdBnhan).IsEqualTo(Utility.sDbnull(txtPatient_ID.Text));
+            //    case "CTT":
+            //        soKham = new Select().From(KcbBaCaytranhthai.Schema).
+            //                      Where(KcbBaCaytranhthai.Columns.IdBenhnhan).IsEqualTo(Utility.sDbnull(txtPatient_ID.Text));
+            //        break;
+            //    case "THV":
+            //        soKham = new Select().From(KcbBaThaovong.Schema).
+            //                      Where(KcbBaThaovong.Columns.IdBenhnhan).IsEqualTo(Utility.sDbnull(txtPatient_ID.Text));
+            //        break;
+            //    case "TQC":
+            //        soKham = new Select().From(KcbBaThaoquecay.Schema).
+            //                      Where(KcbBaThaoquecay.Columns.IdBenhnhan).IsEqualTo(Utility.sDbnull(txtPatient_ID.Text));
+            //        break;
+            //    case "DDC":
+            //        soKham = new Select().From(KcbBaDatdungcu.Schema).
+            //                      Where(KcbBaDatdungcu.Columns.IdBenhnhan).IsEqualTo(Utility.sDbnull(txtPatient_ID.Text));
+            //        break;
+            //    default:
+            //        soKham = new Select().From(KcbBaCaytranhthai.Schema).
+            //                                     Where(KcbBaCaytranhthai.Columns.IdBenhnhan).IsEqualTo(Utility.sDbnull(txtPatient_ID.Text));
+            //        break;
             //}
-            switch (Utility.sDbnull(cboMauBA.SelectedValue))
-            {
-                case "CTT":
-                    soKham = new Select().From(KcbBaCaytranhthai.Schema).
-                                  Where(KcbBaCaytranhthai.Columns.IdBenhnhan).IsEqualTo(Utility.sDbnull(txtPatient_ID.Text));
-                    break;
-                case "THV":
-                    soKham = new Select().From(KcbBaThaovong.Schema).
-                                  Where(KcbBaThaovong.Columns.IdBenhnhan).IsEqualTo(Utility.sDbnull(txtPatient_ID.Text));
-                    break;
-                case "TQC":
-                    soKham = new Select().From(KcbBaThaoquecay.Schema).
-                                  Where(KcbBaThaoquecay.Columns.IdBenhnhan).IsEqualTo(Utility.sDbnull(txtPatient_ID.Text));
-                    break;
-                case "DDC":
-                    soKham = new Select().From(KcbBaDatdungcu.Schema).
-                                  Where(KcbBaDatdungcu.Columns.IdBenhnhan).IsEqualTo(Utility.sDbnull(txtPatient_ID.Text));
-                    break;
-                default:
-                    soKham = new Select().From(KcbBaCaytranhthai.Schema).
-                                                 Where(KcbBaCaytranhthai.Columns.IdBenhnhan).IsEqualTo(Utility.sDbnull(txtPatient_ID.Text));
-                    break;
-            }
-            //Đã Tồn tại thông tin bệnh án ngoại trú. Sửa
-            if (soKham.GetRecordCount() > 0)
-            {
-                //Execute()
-                frm.EmAction = action.Update;
-            }
-            //chưa tồn tại thông tin ngoại tru. Them
-            else
-            {
-                frm.EmAction = action.Insert;
-            }
-            frm.ShowDialog();
-            ThongBaoBenhAn();
+            ////Đã Tồn tại thông tin bệnh án ngoại trú. Sửa
+            //if (soKham.GetRecordCount() > 0)
+            //{
+            //    //Execute()
+            //    frm.EmAction = action.Update;
+            //}
+            ////chưa tồn tại thông tin ngoại tru. Them
+            //else
+            //{
+            //    frm.EmAction = action.Insert;
+            //}
+            //frm.ShowDialog();
+            //ThongBaoBenhAn();
         }
         private void BenhAnThuong()
         {
-            try
-            {
-                var frm = new FrmBenhAnThuong();
-                frm.Loaibenhan =Utility.sDbnull( cboMauBA.SelectedValue);
-                frm.txtMaBN.Text = txtPatient_ID.Text;
-                frm.txtMaLanKham.Text = m_strMaLuotkham;
-                frm.txtHuyetApTu.Text = Utility.sDbnull(txtHa.Text);
-                frm.txtNhietDo.Text = Utility.sDbnull(txtNhietDo.Text);
-                frm.txtNhipTho.Text = Utility.sDbnull(txtNhipTho.Text);
-                frm.txtMach.Text = Utility.sDbnull(txtNhipTim.Text);
-                frm.txtCanNang.Text = Utility.sDbnull(txtCannang.Text, 0);
-                frm.txtChieuCao.Text = Utility.sDbnull(txtChieucao.Text, 0);
-                frm.txtBMI.Text = String.Format("{0:0.00}",
-                                                (Convert.ToDouble(Utility.DoubletoDbnull(Utility.chuanhoaDecimal(txtCannang.Text), 0))/
-                                                 ((Convert.ToDouble(Utility.DoubletoDbnull(txtChieucao.Text, 100))/100)*
-                                                  (Convert.ToDouble(Utility.DoubletoDbnull(txtChieucao.Text, 100))/100))));
-                string icdName = "";
-                string icdCode = "";
-                string icdChinhName = "";
-                string icdChinhCode = "";
-                string icdPhuName = "";
-                string icdPhuCode = "";
-                DataSet dsData =
-                    new Select("*").From(KcbChandoanKetluan.Schema).Where(KcbChandoanKetluan.Columns.IdKham).IsEqualTo(
-                        Utility.Int32Dbnull(txtExam_ID.Text.Trim())).ExecuteDataSet();
-                DataTable v_dtData = dsData.Tables[0];
-                if (v_dtData != null && v_dtData.Rows.Count > 0)
-                {
-                    GetChanDoan(Utility.sDbnull(v_dtData.Rows[0][KcbChandoanKetluan.Columns.MabenhChinh], ""),
-                                Utility.sDbnull(v_dtData.Rows[0][KcbChandoanKetluan.Columns.MabenhPhu], ""),
-                                ref icdName, ref icdCode);
-                }
-                frm.txtkbChanDoanRaVien.Text = icdName;
-                frm.txtkbMa.Text = icdCode;
+            //try
+            //{
+            //    var frm = new FrmBenhAnThuong();
+            //    frm.Loaibenhan =Utility.sDbnull( cboMauBA.SelectedValue);
+            //    frm.txtMaBN.Text = txtPatient_ID.Text;
+            //    frm.txtMaLanKham.Text = m_strMaLuotkham;
+            //    frm.txtHuyetApTu.Text = Utility.sDbnull(txtHa.Text);
+            //    frm.txtNhietDo.Text = Utility.sDbnull(txtNhietDo.Text);
+            //    frm.txtNhipTho.Text = Utility.sDbnull(txtNhipTho.Text);
+            //    frm.txtMach.Text = Utility.sDbnull(txtNhipTim.Text);
+            //    frm.txtCanNang.Text = Utility.sDbnull(txtCannang.Text, 0);
+            //    frm.txtChieuCao.Text = Utility.sDbnull(txtChieucao.Text, 0);
+            //    frm.txtBMI.Text = String.Format("{0:0.00}",
+            //                                    (Convert.ToDouble(Utility.DoubletoDbnull(Utility.chuanhoaDecimal(txtCannang.Text), 0))/
+            //                                     ((Convert.ToDouble(Utility.DoubletoDbnull(txtChieucao.Text, 100))/100)*
+            //                                      (Convert.ToDouble(Utility.DoubletoDbnull(txtChieucao.Text, 100))/100))));
+            //    string icdName = "";
+            //    string icdCode = "";
+            //    string icdChinhName = "";
+            //    string icdChinhCode = "";
+            //    string icdPhuName = "";
+            //    string icdPhuCode = "";
+            //    DataSet dsData =
+            //        new Select("*").From(KcbChandoanKetluan.Schema).Where(KcbChandoanKetluan.Columns.IdKham).IsEqualTo(
+            //            Utility.Int32Dbnull(txtExam_ID.Text.Trim())).ExecuteDataSet();
+            //    DataTable v_dtData = dsData.Tables[0];
+            //    if (v_dtData != null && v_dtData.Rows.Count > 0)
+            //    {
+            //        GetChanDoan(Utility.sDbnull(v_dtData.Rows[0][KcbChandoanKetluan.Columns.MabenhChinh], ""),
+            //                    Utility.sDbnull(v_dtData.Rows[0][KcbChandoanKetluan.Columns.MabenhPhu], ""),
+            //                    ref icdName, ref icdCode);
+            //    }
+            //    frm.txtkbChanDoanRaVien.Text = icdName;
+            //    frm.txtkbMa.Text = icdCode;
 
-                if (v_dtData != null && v_dtData.Rows.Count > 0)
-                {
-                    GetChanDoanChinhPhu(Utility.sDbnull(v_dtData.Rows[0][KcbChandoanKetluan.Columns.MabenhChinh], ""),
-                                        Utility.sDbnull(v_dtData.Rows[0][KcbChandoanKetluan.Columns.MabenhPhu], ""),
-                                        ref icdChinhName,
-                                        ref icdChinhCode, ref icdPhuName, ref icdPhuCode);
-                }
-                SqlQuery soKham = null;
-                if (THU_VIEN_CHUNG.Laygiatrithamsohethong_off("KCB_BA_TAONHIEUBENHAN", "0", false) == "1")
-                {
-                    soKham =
-                        new Select().From(KcbBenhAn.Schema).
-                            Where(KcbBenhAn.Columns.MaLuotkham)//Sửa điều kiện theo IdBnhan thành Maluotkham
-                            .IsEqualTo(Utility.sDbnull(txtPatient_Code.Text))
-                            .And(KcbBenhAn.Columns.LoaiBa)
-                            .IsEqualTo(frm.Loaibenhan);
-                }
-                else
-                {
-                    soKham =
-                new Select().From(KcbBenhAn.Schema).
-                    Where(KcbBenhAn.Columns.MaLuotkham).IsEqualTo(Utility.sDbnull(txtPatient_Code.Text));//Sửa điều kiện theo IdBnhan thành Maluotkham;
-                }
+            //    if (v_dtData != null && v_dtData.Rows.Count > 0)
+            //    {
+            //        GetChanDoanChinhPhu(Utility.sDbnull(v_dtData.Rows[0][KcbChandoanKetluan.Columns.MabenhChinh], ""),
+            //                            Utility.sDbnull(v_dtData.Rows[0][KcbChandoanKetluan.Columns.MabenhPhu], ""),
+            //                            ref icdChinhName,
+            //                            ref icdChinhCode, ref icdPhuName, ref icdPhuCode);
+            //    }
+            //    SqlQuery soKham = null;
+            //    if (THU_VIEN_CHUNG.Laygiatrithamsohethong_off("KCB_BA_TAONHIEUBENHAN", "0", false) == "1")
+            //    {
+            //        soKham =
+            //            new Select().From(KcbBenhAn.Schema).
+            //                Where(KcbBenhAn.Columns.MaLuotkham)//Sửa điều kiện theo IdBnhan thành Maluotkham
+            //                .IsEqualTo(Utility.sDbnull(txtPatient_Code.Text))
+            //                .And(KcbBenhAn.Columns.LoaiBa)
+            //                .IsEqualTo(frm.Loaibenhan);
+            //    }
+            //    else
+            //    {
+            //        soKham =
+            //    new Select().From(KcbBenhAn.Schema).
+            //        Where(KcbBenhAn.Columns.MaLuotkham).IsEqualTo(Utility.sDbnull(txtPatient_Code.Text));//Sửa điều kiện theo IdBnhan thành Maluotkham;
+            //    }
               
-                //Đã Tồn tại thông tin bệnh án ngoại trú. Sửa
-                if (soKham.GetRecordCount() > 0)
-                {
-                    //Execute()
-                    frm.EmAction = action.Update;
-                }
-                    //chưa tồn tại thông tin ngoại tru. Them
-                else
-                {
-                    frm.EmAction = action.Insert;
-                }
-                frm.ShowDialog();
-                ThongBaoBenhAn();
-            }
-            catch (Exception ex)
-            {
-                Utility.ShowMsg("Lỗi: " + ex.Message);
-            }
+            //    //Đã Tồn tại thông tin bệnh án ngoại trú. Sửa
+            //    if (soKham.GetRecordCount() > 0)
+            //    {
+            //        //Execute()
+            //        frm.EmAction = action.Update;
+            //    }
+            //        //chưa tồn tại thông tin ngoại tru. Them
+            //    else
+            //    {
+            //        frm.EmAction = action.Insert;
+            //    }
+            //    frm.ShowDialog();
+            //    ThongBaoBenhAn();
+            //}
+            //catch (Exception ex)
+            //{
+            //    Utility.ShowMsg("Lỗi: " + ex.Message);
+            //}
         }
         DataTable dtCheck;
         EmrBa emr_ba;
@@ -12977,7 +12983,7 @@ namespace VNS.HIS.UI.NGOAITRU
                     Utility.ShowMsg("Bạn cần chọn ít nhất một người bệnh trên danh sách người bệnh để bắt đầu khám phụ khoa");
                     return;
                 }
-                frm_khamPhukhoa _khamphukhoa = new frm_khamPhukhoa(objLuotkham, objBenhnhan);
+                frm_khamPhukhoa _khamphukhoa = new frm_khamPhukhoa(objLuotkham,objBenhnhan);
                 _khamphukhoa.ShowDialog();
 
             }
@@ -13032,7 +13038,7 @@ namespace VNS.HIS.UI.NGOAITRU
                 Utility.ShowMsg("Bạn cần chọn ít nhất một người bệnh trên danh sách người bệnh để bắt đầu khám phụ khoa");
                 return;
             }
-            frm_khamPhukhoa _khamPhukhoa = new frm_khamPhukhoa(objLuotkham, objBenhnhan);
+            frm_khamPhukhoa _khamPhukhoa = new frm_khamPhukhoa(objLuotkham,objBenhnhan);
             _khamPhukhoa.ShowDialog();
         }
 
@@ -13147,6 +13153,77 @@ namespace VNS.HIS.UI.NGOAITRU
             frm_Emr _Emr = new frm_Emr();
             _Emr.ucThongtinnguoibenh_emr_basic1.txtMaluotkham.Text = objLuotkham.MaLuotkham;
             _Emr.ShowDialog();
+        }
+
+        private void chkXemDonthuocnoitru_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (chkXemDonthuocnoitru.Checked)
+                {
+                    if (grdTatcaDonthuoc.DataSource == null)
+                    {
+                        grdTatcaDonthuoc.DataSource = SPs.DonthuocLaytoanbodonthuocDexem(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham).GetDataSet().Tables[0];
+                    }
+                    grdPresDetail.Visible = false;
+                    grdPresDetail.SendToBack();
+                    grdTatcaDonthuoc.Visible = true;
+                    grdTatcaDonthuoc.BringToFront();
+
+                }
+                else
+                {
+                    grdPresDetail.Visible = true;
+                    grdPresDetail.BringToFront();
+                    grdTatcaDonthuoc.Visible = false;
+                    grdTatcaDonthuoc.SendToBack();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+            }
+             
+           
+        }
+
+        private void mnuKhamNamkhoa_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (objCongkham == null || objLuotkham == null)
+                {
+                    Utility.ShowMsg("Bạn cần chọn ít nhất một người bệnh trên danh sách người bệnh để bắt đầu khám phụ khoa");
+                    return;
+                }
+                frm_khamNamkhoa _khamNamkhoa = new frm_khamNamkhoa(objLuotkham, objBenhnhan);
+                _khamNamkhoa.ShowDialog();
+
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+            }
+        }
+
+        private void mnuKhamIVFChong_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (objCongkham == null || objLuotkham == null)
+                {
+                    Utility.ShowMsg("Bạn cần chọn ít nhất một người bệnh trên danh sách người bệnh để bắt đầu khám phụ khoa");
+                    return;
+                }
+                frm_khamIVF_chong _khamIVF_chong = new frm_khamIVF_chong(objLuotkham, objBenhnhan);
+                _khamIVF_chong.ShowDialog();
+
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+            }
         }
     }
 }

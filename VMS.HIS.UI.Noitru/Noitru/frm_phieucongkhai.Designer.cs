@@ -45,11 +45,11 @@ namespace VNS.HIS.UI.NOITRU
             this.label10 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.chkAutoFillEmpty = new System.Windows.Forms.CheckBox();
             this.lblMsg = new System.Windows.Forms.Label();
             this.cmdExcel = new Janus.Windows.EditControls.UIButton();
             this.cmdIn = new Janus.Windows.EditControls.UIButton();
             this.cmdExit = new Janus.Windows.EditControls.UIButton();
-            this.chkAutoFillEmpty = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPhieudieutri)).BeginInit();
             this.panel3.SuspendLayout();
@@ -270,6 +270,21 @@ namespace VNS.HIS.UI.NOITRU
             this.panel3.Size = new System.Drawing.Size(1008, 57);
             this.panel3.TabIndex = 1;
             // 
+            // chkAutoFillEmpty
+            // 
+            this.chkAutoFillEmpty.AutoSize = true;
+            this.chkAutoFillEmpty.Checked = true;
+            this.chkAutoFillEmpty.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkAutoFillEmpty.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkAutoFillEmpty.ForeColor = System.Drawing.Color.Black;
+            this.chkAutoFillEmpty.Location = new System.Drawing.Point(133, 25);
+            this.chkAutoFillEmpty.Name = "chkAutoFillEmpty";
+            this.chkAutoFillEmpty.Size = new System.Drawing.Size(432, 20);
+            this.chkAutoFillEmpty.TabIndex = 18;
+            this.chkAutoFillEmpty.Text = "Tự động fill các ngày trống trong khoảng ngày min - ngày max?";
+            this.chkAutoFillEmpty.UseVisualStyleBackColor = true;
+            this.chkAutoFillEmpty.Visible = false;
+            // 
             // lblMsg
             // 
             this.lblMsg.AutoSize = true;
@@ -321,21 +336,6 @@ namespace VNS.HIS.UI.NOITRU
             this.cmdExit.Text = "Thoát(Esc)";
             this.cmdExit.Click += new System.EventHandler(this.cmdExit_Click_1);
             // 
-            // chkAutoFillEmpty
-            // 
-            this.chkAutoFillEmpty.AutoSize = true;
-            this.chkAutoFillEmpty.Checked = true;
-            this.chkAutoFillEmpty.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkAutoFillEmpty.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkAutoFillEmpty.ForeColor = System.Drawing.Color.Black;
-            this.chkAutoFillEmpty.Location = new System.Drawing.Point(133, 25);
-            this.chkAutoFillEmpty.Name = "chkAutoFillEmpty";
-            this.chkAutoFillEmpty.Size = new System.Drawing.Size(432, 20);
-            this.chkAutoFillEmpty.TabIndex = 18;
-            this.chkAutoFillEmpty.Text = "Tự động fill các ngày trống trong khoảng ngày min - ngày max?";
-            this.chkAutoFillEmpty.UseVisualStyleBackColor = true;
-            this.chkAutoFillEmpty.Visible = false;
-            // 
             // frm_phieucongkhai
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -347,7 +347,7 @@ namespace VNS.HIS.UI.NOITRU
             this.Name = "frm_phieucongkhai";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Tổng kết bệnh án";
+            this.Text = "Phiếu công khai";
             this.Load += new System.EventHandler(this.frm_phieucongkhai_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

@@ -1202,7 +1202,7 @@ namespace VNS.HIS.UI.NGOAITRU
             
             objKcbChidinhcls.NguoiTao = globalVariables.UserName;
             objKcbChidinhcls.NgayTao = globalVariables.SysDate;
-            objKcbChidinhcls.NgayChidinh = dtRegDate.Value.Date;
+            objKcbChidinhcls.NgayChidinh = dtRegDate.Value;
             objKcbChidinhcls.KieuChidinh = kieu_chidinh;
             objKcbChidinhcls.IdKham = objCongkham != null ? objCongkham.IdKham : -1;
             if (objCongkham != null)//Chỉ định qua phòng khám hoặc nội trú
@@ -2574,7 +2574,7 @@ namespace VNS.HIS.UI.NGOAITRU
                 if (objPhieudieutriNoitru != null)
                 {
                     if (objPhieudieutriNoitru.NgayDieutri != null)
-                        dtRegDate.Value = objPhieudieutriNoitru.NgayDieutri.Value;
+                        dtRegDate.Value = objPhieudieutriNoitru.NgayDieutri.Value.AddHours(Utility.Int32Dbnull(objPhieudieutriNoitru.GioDieutri.Split(':')[0], 0)).AddMinutes(Utility.Int32Dbnull(objPhieudieutriNoitru.GioDieutri.Split(':')[1], 0));
                 }
                 else
                 dtRegDate.Value = globalVariables.SysDate;

@@ -80,7 +80,7 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(string MaLuotkham,long IdBenhnhan,short? IdBacsiKham,short? BaTsspkBatdauthaykinhNam,short? BaTsspkBatdauthaykinhTuoi,string BaTsspkTinhchatkinhnguyet,short? BaTsspkChuky,short? BaTsspkSongaythaykinh,string BaTsspkLuongkinh,DateTime? BaTsspkKinhlancuoingay,bool? BaTsspkCodaubung,bool? BaTsspkThoigianTruoc,bool? BaTsspkThoigianTrong,bool? BaTsspkThoigianSau,short? BaTsspkLaychongNam,short? BaTsspkLaychongTuoi,short? BaTsspkHetkinhnam,short? BaTsspkHetkinhtuoi,string BaTsspkBenhphukhoadadieutri,string BaTsspkPara,string TrangthaiXoa,string TrangthaiAn,string NguoiTao,DateTime NgayTao,string NguoiSua,DateTime? NgaySua)
+	    public void Insert(string MaLuotkham,long IdBenhnhan,short? IdBacsiKham,short? BaTsspkBatdauthaykinhNam,short? BaTsspkBatdauthaykinhTuoi,string BaTsspkTinhchatkinhnguyet,short? BaTsspkChukykinhnguyet,bool? BaTsspkKinhnguyetDeu,bool? BaTsspkKinhnguyetKhongdeu,short? BaTsspkSongaythaykinh,string BaTsspkLuongkinh,bool? BaTsspkLuongkinhnguyetIt,bool? BaTsspkLuongkinhnguyetTrungbinh,bool? BaTsspkLuongkinhnguyetNhieu,bool? VokinhNguyenphat,bool? VokinhThuphat,bool? VosinhNguyenphat,bool? VosinhThuphat,bool? BaTsspkLuongkinhnguyetTrungbinh2,bool? BaTsspkLuongkinhnguyetNhieu2,DateTime? BaTsspkKinhlancuoingay,bool? BaTsspkCodaubung,bool? BaTsspkThoigianTruoc,bool? BaTsspkThoigianTrong,bool? BaTsspkThoigianSau,short? BaTsspkLaychongNam,short? BaTsspkLaychongTuoi,short? BaTsspkHetkinhnam,short? BaTsspkHetkinhtuoi,string BaTsspkBenhphukhoadadieutri,string BaTsspkPara,string TrangthaiXoa,string TrangthaiAn,string NguoiTao,DateTime NgayTao,string NguoiSua,DateTime? NgaySua)
 	    {
 		    EmrTiensusanphukhoa item = new EmrTiensusanphukhoa();
 		    
@@ -96,11 +96,33 @@ namespace VMS.HIS.DAL
             
             item.BaTsspkTinhchatkinhnguyet = BaTsspkTinhchatkinhnguyet;
             
-            item.BaTsspkChuky = BaTsspkChuky;
+            item.BaTsspkChukykinhnguyet = BaTsspkChukykinhnguyet;
+            
+            item.BaTsspkKinhnguyetDeu = BaTsspkKinhnguyetDeu;
+            
+            item.BaTsspkKinhnguyetKhongdeu = BaTsspkKinhnguyetKhongdeu;
             
             item.BaTsspkSongaythaykinh = BaTsspkSongaythaykinh;
             
             item.BaTsspkLuongkinh = BaTsspkLuongkinh;
+            
+            item.BaTsspkLuongkinhnguyetIt = BaTsspkLuongkinhnguyetIt;
+            
+            item.BaTsspkLuongkinhnguyetTrungbinh = BaTsspkLuongkinhnguyetTrungbinh;
+            
+            item.BaTsspkLuongkinhnguyetNhieu = BaTsspkLuongkinhnguyetNhieu;
+            
+            item.VokinhNguyenphat = VokinhNguyenphat;
+            
+            item.VokinhThuphat = VokinhThuphat;
+            
+            item.VosinhNguyenphat = VosinhNguyenphat;
+            
+            item.VosinhThuphat = VosinhThuphat;
+            
+            item.BaTsspkLuongkinhnguyetTrungbinh2 = BaTsspkLuongkinhnguyetTrungbinh2;
+            
+            item.BaTsspkLuongkinhnguyetNhieu2 = BaTsspkLuongkinhnguyetNhieu2;
             
             item.BaTsspkKinhlancuoingay = BaTsspkKinhlancuoingay;
             
@@ -144,7 +166,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(long IdTsspk,string MaLuotkham,long IdBenhnhan,short? IdBacsiKham,short? BaTsspkBatdauthaykinhNam,short? BaTsspkBatdauthaykinhTuoi,string BaTsspkTinhchatkinhnguyet,short? BaTsspkChuky,short? BaTsspkSongaythaykinh,string BaTsspkLuongkinh,DateTime? BaTsspkKinhlancuoingay,bool? BaTsspkCodaubung,bool? BaTsspkThoigianTruoc,bool? BaTsspkThoigianTrong,bool? BaTsspkThoigianSau,short? BaTsspkLaychongNam,short? BaTsspkLaychongTuoi,short? BaTsspkHetkinhnam,short? BaTsspkHetkinhtuoi,string BaTsspkBenhphukhoadadieutri,string BaTsspkPara,string TrangthaiXoa,string TrangthaiAn,string NguoiTao,DateTime NgayTao,string NguoiSua,DateTime? NgaySua)
+	    public void Update(long IdTsspk,string MaLuotkham,long IdBenhnhan,short? IdBacsiKham,short? BaTsspkBatdauthaykinhNam,short? BaTsspkBatdauthaykinhTuoi,string BaTsspkTinhchatkinhnguyet,short? BaTsspkChukykinhnguyet,bool? BaTsspkKinhnguyetDeu,bool? BaTsspkKinhnguyetKhongdeu,short? BaTsspkSongaythaykinh,string BaTsspkLuongkinh,bool? BaTsspkLuongkinhnguyetIt,bool? BaTsspkLuongkinhnguyetTrungbinh,bool? BaTsspkLuongkinhnguyetNhieu,bool? VokinhNguyenphat,bool? VokinhThuphat,bool? VosinhNguyenphat,bool? VosinhThuphat,bool? BaTsspkLuongkinhnguyetTrungbinh2,bool? BaTsspkLuongkinhnguyetNhieu2,DateTime? BaTsspkKinhlancuoingay,bool? BaTsspkCodaubung,bool? BaTsspkThoigianTruoc,bool? BaTsspkThoigianTrong,bool? BaTsspkThoigianSau,short? BaTsspkLaychongNam,short? BaTsspkLaychongTuoi,short? BaTsspkHetkinhnam,short? BaTsspkHetkinhtuoi,string BaTsspkBenhphukhoadadieutri,string BaTsspkPara,string TrangthaiXoa,string TrangthaiAn,string NguoiTao,DateTime NgayTao,string NguoiSua,DateTime? NgaySua)
 	    {
 		    EmrTiensusanphukhoa item = new EmrTiensusanphukhoa();
 	        item.MarkOld();
@@ -164,11 +186,33 @@ namespace VMS.HIS.DAL
 				
 			item.BaTsspkTinhchatkinhnguyet = BaTsspkTinhchatkinhnguyet;
 				
-			item.BaTsspkChuky = BaTsspkChuky;
+			item.BaTsspkChukykinhnguyet = BaTsspkChukykinhnguyet;
+				
+			item.BaTsspkKinhnguyetDeu = BaTsspkKinhnguyetDeu;
+				
+			item.BaTsspkKinhnguyetKhongdeu = BaTsspkKinhnguyetKhongdeu;
 				
 			item.BaTsspkSongaythaykinh = BaTsspkSongaythaykinh;
 				
 			item.BaTsspkLuongkinh = BaTsspkLuongkinh;
+				
+			item.BaTsspkLuongkinhnguyetIt = BaTsspkLuongkinhnguyetIt;
+				
+			item.BaTsspkLuongkinhnguyetTrungbinh = BaTsspkLuongkinhnguyetTrungbinh;
+				
+			item.BaTsspkLuongkinhnguyetNhieu = BaTsspkLuongkinhnguyetNhieu;
+				
+			item.VokinhNguyenphat = VokinhNguyenphat;
+				
+			item.VokinhThuphat = VokinhThuphat;
+				
+			item.VosinhNguyenphat = VosinhNguyenphat;
+				
+			item.VosinhThuphat = VosinhThuphat;
+				
+			item.BaTsspkLuongkinhnguyetTrungbinh2 = BaTsspkLuongkinhnguyetTrungbinh2;
+				
+			item.BaTsspkLuongkinhnguyetNhieu2 = BaTsspkLuongkinhnguyetNhieu2;
 				
 			item.BaTsspkKinhlancuoingay = BaTsspkKinhlancuoingay;
 				

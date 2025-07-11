@@ -11,7 +11,7 @@ using SubSonic;
 using VNS.Libs;
 using VMS.HIS.DAL;
 
-namespace VNS.HIS.UI.BA
+namespace VNS.HIS.UI.EMR
 {
     public partial class frm_capnhat_gayEmr : Form
     {

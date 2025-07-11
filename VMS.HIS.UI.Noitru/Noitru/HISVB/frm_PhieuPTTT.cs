@@ -23,7 +23,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Transactions;
 using VNS.Libs.AppUI;
-using VMS.Emr;
+using VMS.HIS.Bus.Emr;
 
 namespace VNS.HIS.UI.NOITRU
 {
@@ -115,6 +115,20 @@ namespace VNS.HIS.UI.NOITRU
             txtPhuongPhapVoCam._OnSaveAsV1 += _OnSaveAs;
             chkTaibien.CheckedChanged += ChkTaibien_CheckedChanged;
             chkBienchung.CheckedChanged += ChkBienchung_CheckedChanged;
+            txtTruongkhoa._OnEnterMe += TxtTruongkhoa__OnEnterMe;
+            txtGDBV._OnEnterMe += TxtGDBV__OnEnterMe;
+        }
+
+        private void TxtGDBV__OnEnterMe()
+        {
+            objGD = DmucNhanvien.FetchByID(Utility.Int32Dbnull(txtGDBV.MyID));
+        }
+
+        DmucNhanvien objTK;
+        DmucNhanvien objGD;
+        private void TxtTruongkhoa__OnEnterMe()
+        {
+            objTK = DmucNhanvien.FetchByID(Utility.Int32Dbnull(txtTruongkhoa.MyID));
         }
 
         private void ChkBienchung_CheckedChanged(object sender, EventArgs e)
@@ -691,6 +705,10 @@ namespace VNS.HIS.UI.NOITRU
                     FillBacsiPttt(objpttt.MaDungcuvongtrong, dtDieuduongvongtrong, grdDieuduongvongtrong);
                     FillBacsiPttt(objpttt.MaDungcuvongngoai, dtDieuduongvongngoai, grdDieuduongvongngoai);
                     autoCC.SetId(objpttt.IdbacsiThuchien);
+                    txtTruongkhoa.SetId(objpttt.IdTruongkhoa);
+                    txtGDBV.SetId(objpttt.IdGiamdoc);
+                    txtTruongkhoa.RaiseEnterEvents();
+                    txtGDBV.RaiseEnterEvents();
                     dtpNgayGioKetThucPTTT.Enabled = chkPTTT_KetThuc.Checked;
                     txtIdPhieuPTTT.Text = objpttt.IdPhieu.ToString();
                     txtMaphieu.Text = objpttt.MaPhieu;
@@ -903,6 +921,9 @@ namespace VNS.HIS.UI.NOITRU
             autoDieuduonggayme.Init(autoBSPhauthuat.AutoCompleteSource, autoBSPhauthuat.defaultItem);
             autoDieuduongvongngoai.Init(autoBSPhauthuat.AutoCompleteSource, autoBSPhauthuat.defaultItem);
             autoDieuduongvongtrong.Init(autoBSPhauthuat.AutoCompleteSource, autoBSPhauthuat.defaultItem);
+            txtTruongkhoa.Init(autoBSPhauthuat.AutoCompleteSource, autoBSPhauthuat.defaultItem);
+            txtGDBV.Init(autoBSPhauthuat.AutoCompleteSource, autoBSPhauthuat.defaultItem);
+            VMS.HIS.Danhmuc.Util.SetNguoiDaiDienDonVi(txtGDBV);
             //AllowTextChanged = false;
             Utility.SetDataSourceForDataGridEx(grd_bspt, dtbsphauthuat, false, true, "", "");
             Utility.SetDataSourceForDataGridEx(grd_bsgm, dtbsgayme, false, true, "", "");
@@ -1088,6 +1109,24 @@ namespace VNS.HIS.UI.NOITRU
                     }
                 }
             }
+            if (objTK == null || txtTruongkhoa.MyID == "-1")
+            {
+                Utility.ShowMsg("Bạn cần chọn Trưởng khoa(Người ký trên Giấy Chứng nhận PTTT)");
+                txtTruongkhoa.Focus();
+                return false;
+            }
+            if (objGD == null || txtGDBV.MyID == "-1" )
+            {
+                Utility.ShowMsg("Bạn cần chọn Giám đốc hoặc Người đại diện đơn vị (Người ký trên Giấy Chứng nhận PTTT)");
+                txtGDBV.Focus();
+                return false;
+            }
+            if (dtNgayPhauThuat.Value <objLuotkham.NgayTiepdon)
+            {
+                Utility.ShowMsg(string.Format( "Thời gian bắt đầu phẫu thuật phải >thời gian tiếp đón {0}", objLuotkham.NgayTiepdon.ToString("dd/MM/yyyy HH:mm")));
+                dtNgayPhauThuat.Focus();
+                return false;
+            }
             if (chkPTTT_KetThuc.Checked)
             {
                 if (dtpNgayGioKetThucPTTT.Value < dtNgayPhauThuat.Value)
@@ -1252,6 +1291,14 @@ namespace VNS.HIS.UI.NOITRU
                 objpttt.LydoBienchung = autoLydobienchung.myCode;
                 objpttt.Noitru = radNoiTru.Checked;
                 objpttt.IdChitietchidinh = IdChitietchidinh;
+
+                objpttt.IdTruongkhoa = objTK.IdNhanvien;
+                objpttt.MaTruongkhoa = objTK.MaNhanvien;
+                objpttt.UserTruongkhoa = objTK.UserName;
+
+                objpttt.IdGiamdoc = objTK.IdNhanvien;
+                objpttt.MaGiamdoc = objTK.MaNhanvien;
+                objpttt.UserGiamdoc = objTK.UserName; 
                 objpttt.Save();
                 txtIdPhieuPTTT.Text = objpttt.IdPhieu.ToString();
 
@@ -1277,18 +1324,14 @@ namespace VNS.HIS.UI.NOITRU
                    UIAction.SetTextStatus(lblStatus, "Đã cập nhật phiếu PTTT thành công.",false);
                     m_enAct = action.Update;
                 }
-                emrdoc.InitDocument(objpttt.IdBenhnhan, objpttt.MaLuotkham, Utility.Int64Dbnull(objpttt.IdPhieu), objpttt.NgayPttt, Loaiphieu_HIS.PHIEUPTTT, "PHIEU_CAMKET_PTTT", objpttt.NguoiTao, objpttt.IdKhoadieutri, -1, Utility.Byte2Bool(objpttt.Noitru), "",true);
+                emrdoc.InitDocument(objpttt.IdBenhnhan, objpttt.MaLuotkham, Utility.Int64Dbnull(objpttt.IdPhieu), objpttt.NgayPttt, Loaiphieu_HIS.PHIEU_CAMKET_PTTT, "PHIEU_CAMKET_PTTT", objpttt.NguoiTao, objpttt.IdKhoadieutri, -1, Utility.Byte2Bool(objpttt.Noitru), "",true,false,"", Loaiphieu_HIS.PHIEUPTTT);
                 emrdoc.Save();
-                emrdoc.InitDocument(objpttt.IdBenhnhan, objpttt.MaLuotkham, Utility.Int64Dbnull(objpttt.IdPhieu), objpttt.NgayPttt, Loaiphieu_HIS.PHIEUPTTT, "PHIEU_CHUNGNHAN_PTTT", objpttt.NguoiTao, objpttt.IdKhoadieutri, -1, Utility.Byte2Bool(objpttt.Noitru), "", true);
+                emrdoc.InitDocument(objpttt.IdBenhnhan, objpttt.MaLuotkham, Utility.Int64Dbnull(objpttt.IdPhieu), objpttt.NgayPttt, Loaiphieu_HIS.PHIEU_CHUNGNHAN_PTTT, "PHIEU_CHUNGNHAN_PTTT", objpttt.NguoiTao, objpttt.IdKhoadieutri, -1, Utility.Byte2Bool(objpttt.Noitru), "", true, false, "", Loaiphieu_HIS.PHIEUPTTT);
                 emrdoc.Save();
-                emrdoc.InitDocument(objpttt.IdBenhnhan, objpttt.MaLuotkham, Utility.Int64Dbnull(objpttt.IdPhieu), objpttt.NgayPttt, Loaiphieu_HIS.PHIEUPTTT, "PHIEU_PTTT_NOITRU", objpttt.NguoiTao, objpttt.IdKhoadieutri, -1, Utility.Byte2Bool(objpttt.Noitru), "", true);
+                emrdoc.InitDocument(objpttt.IdBenhnhan, objpttt.MaLuotkham, Utility.Int64Dbnull(objpttt.IdPhieu), objpttt.NgayPttt, Loaiphieu_HIS.PHIEUPTTT, "PHIEU_PTTT", objpttt.NguoiTao, objpttt.IdKhoadieutri, -1, Utility.Byte2Bool(objpttt.Noitru), "", true, false, "", Loaiphieu_HIS.PHIEUPTTT);
                 emrdoc.Save();
-                emrdoc.InitDocument(objpttt.IdBenhnhan, objpttt.MaLuotkham, Utility.Int64Dbnull(objpttt.IdPhieu), objpttt.NgayPttt, Loaiphieu_HIS.PHIEUPTTT, "PHIEU_TUONGTRINH_PTTT", objpttt.NguoiTao, objpttt.IdKhoadieutri, -1, Utility.Byte2Bool(objpttt.Noitru), "", true);
+                emrdoc.InitDocument(objpttt.IdBenhnhan, objpttt.MaLuotkham, Utility.Int64Dbnull(objpttt.IdPhieu), objpttt.NgayPttt, Loaiphieu_HIS.PHIEU_TUONGTRINH_PTTT, "PHIEU_TUONGTRINH_PTTT", objpttt.NguoiTao, objpttt.IdKhoadieutri, -1, Utility.Byte2Bool(objpttt.Noitru), "", true, false, "", Loaiphieu_HIS.PHIEUPTTT);
                 emrdoc.Save();
-
-
-
-
                 cmdExit.BringToFront();
                 cmdCancel.PerformClick();
                 AllowSeletionChanged = true;
@@ -1330,11 +1373,7 @@ namespace VNS.HIS.UI.NOITRU
                          .Where(KcbPhieupttt.Columns.IdPhieu)
                          .IsEqualTo(Utility.Int32Dbnull(objpttt.IdPhieu))
                          .Execute();
-                    emrdoc.DeleteDocument(Utility.Int64Dbnull(objpttt.IdPhieu), Loaiphieu_HIS.PHIEUPTTT, "");//Xóa tất cả các phiếu liên quan đến phiếu này
-                    //emrdoc.DeleteDocument(Utility.Int64Dbnull(objpttt.IdPhieu), Loaiphieu_HIS.PHIEUPTTT, "PHIEU_CAMKET_PTTT");
-                    //emrdoc.DeleteDocument(Utility.Int64Dbnull(objpttt.IdPhieu),  Loaiphieu_HIS.PHIEUPTTT, "PHIEU_CHUNGNHAN_PTTT");
-                    //emrdoc.DeleteDocument(Utility.Int64Dbnull(objpttt.IdPhieu),  Loaiphieu_HIS.PHIEUPTTT, "PHIEU_PTTT_NOITRU");
-                    //emrdoc.DeleteDocument(Utility.Int64Dbnull(objpttt.IdPhieu),  Loaiphieu_HIS.PHIEUPTTT, "PHIEU_TUONGTRINH_PTTT");
+                    emrdoc.DeleteDocument(Utility.Int64Dbnull(objpttt.IdPhieu),new List<string>() { Loaiphieu_HIS.PHIEUPTTT, Loaiphieu_HIS.PHIEU_TUONGTRINH_PTTT, Loaiphieu_HIS.PHIEU_CAMKET_PTTT, Loaiphieu_HIS.PHIEU_CHUNGNHAN_PTTT }, "");//Xóa tất cả các phiếu liên quan đến phiếu này
                     if (banghi > 0)
                     {
                         Utility.ShowMsg("Bạn xóa thông tin phiếu PTTT thành công", "Thông báo");

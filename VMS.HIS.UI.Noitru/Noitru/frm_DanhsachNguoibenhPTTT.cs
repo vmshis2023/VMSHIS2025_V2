@@ -18,9 +18,8 @@ using System.Runtime.InteropServices;
 using System.Diagnostics;
 using System.Threading;
 using Aspose.Words;
-using VMS.EMR.PHIEUKHAM;
-using VMS.Emr;
-
+using VMS.HIS.Bus.Emr;
+using VMS.HIS.UI.EMR;
 namespace VNS.HIS.UI.NOITRU
 {
     public partial class frm_DanhsachNguoibenhPTTT : Form

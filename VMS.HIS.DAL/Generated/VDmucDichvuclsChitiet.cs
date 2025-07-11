@@ -981,6 +981,18 @@ namespace VMS.HIS.DAL{
                 
                 schema.Columns.Add(colvarGiaCu);
                 
+                TableSchema.TableColumn colvarMaPhieuEmr = new TableSchema.TableColumn(schema);
+                colvarMaPhieuEmr.ColumnName = "ma_phieu_emr";
+                colvarMaPhieuEmr.DataType = DbType.String;
+                colvarMaPhieuEmr.MaxLength = 50;
+                colvarMaPhieuEmr.AutoIncrement = false;
+                colvarMaPhieuEmr.IsNullable = true;
+                colvarMaPhieuEmr.IsPrimaryKey = false;
+                colvarMaPhieuEmr.IsForeignKey = false;
+                colvarMaPhieuEmr.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarMaPhieuEmr);
+                
                 TableSchema.TableColumn colvarMotaThemChitiet = new TableSchema.TableColumn(schema);
                 colvarMotaThemChitiet.ColumnName = "mota_them_chitiet";
                 colvarMotaThemChitiet.DataType = DbType.String;
@@ -1016,6 +1028,18 @@ namespace VMS.HIS.DAL{
                 colvarMaDichvu.IsReadOnly = false;
                 
                 schema.Columns.Add(colvarMaDichvu);
+                
+                TableSchema.TableColumn colvarMaPhieuEmrDichvu = new TableSchema.TableColumn(schema);
+                colvarMaPhieuEmrDichvu.ColumnName = "ma_phieu_emr_dichvu";
+                colvarMaPhieuEmrDichvu.DataType = DbType.String;
+                colvarMaPhieuEmrDichvu.MaxLength = 50;
+                colvarMaPhieuEmrDichvu.AutoIncrement = false;
+                colvarMaPhieuEmrDichvu.IsNullable = true;
+                colvarMaPhieuEmrDichvu.IsPrimaryKey = false;
+                colvarMaPhieuEmrDichvu.IsForeignKey = false;
+                colvarMaPhieuEmrDichvu.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarMaPhieuEmrDichvu);
                 
                 TableSchema.TableColumn colvarMaBhyt = new TableSchema.TableColumn(schema);
                 colvarMaBhyt.ColumnName = "ma_bhyt";
@@ -2589,6 +2613,20 @@ namespace VMS.HIS.DAL{
             }
         }
 	      
+        [XmlAttribute("MaPhieuEmr")]
+        [Bindable(true)]
+        public string MaPhieuEmr 
+	    {
+		    get
+		    {
+			    return GetColumnValue<string>("ma_phieu_emr");
+		    }
+            set 
+		    {
+			    SetColumnValue("ma_phieu_emr", value);
+            }
+        }
+	      
         [XmlAttribute("MotaThemChitiet")]
         [Bindable(true)]
         public string MotaThemChitiet 
@@ -2628,6 +2666,20 @@ namespace VMS.HIS.DAL{
             set 
 		    {
 			    SetColumnValue("ma_dichvu", value);
+            }
+        }
+	      
+        [XmlAttribute("MaPhieuEmrDichvu")]
+        [Bindable(true)]
+        public string MaPhieuEmrDichvu 
+	    {
+		    get
+		    {
+			    return GetColumnValue<string>("ma_phieu_emr_dichvu");
+		    }
+            set 
+		    {
+			    SetColumnValue("ma_phieu_emr_dichvu", value);
             }
         }
 	      
@@ -3310,11 +3362,15 @@ namespace VMS.HIS.DAL{
             
             public static string GiaCu = @"gia_cu";
             
+            public static string MaPhieuEmr = @"ma_phieu_emr";
+            
             public static string MotaThemChitiet = @"mota_them_chitiet";
             
             public static string Chon = @"CHON";
             
             public static string MaDichvu = @"ma_dichvu";
+            
+            public static string MaPhieuEmrDichvu = @"ma_phieu_emr_dichvu";
             
             public static string MaBhyt = @"ma_bhyt";
             
