@@ -18,6 +18,9 @@ using VNS.Properties;
 using KeyManager;
 using System.Drawing;
 using System.Linq;
+using DevExpress.XtraRichEdit;
+using Aspose.Words;
+
 namespace VNSCore
 {
     public partial class FrmLogin : Form
@@ -452,6 +455,7 @@ namespace VNSCore
                     Utility.DefaultNow(this);
                     return;
                 }
+                this.Opacity = 0;
                 //if (chkRemember.Checked)
                 //{
                 PropertyLib._AppProperties.UID = Utility.sDbnull(txtUserName.Text);
@@ -483,9 +487,11 @@ namespace VNSCore
             catch (Exception ex)
             {
                 Utility.ShowMsg(ex.Message);
+
             }
             finally
             {
+                this.Opacity = 1;
                 cmdLogin.Enabled = true;
                 Utility.DefaultNow(this);
             }
@@ -758,8 +764,10 @@ namespace VNSCore
                 globalVariables.gv_dtDmucDichvuClsChitiet = ds.Tables[12];//new Select().From(VDmucDichvuclsChitiet.Schema).ExecuteDataSet().Tables[0];
                 globalVariables.gv_dtNhomDichVuCLS = ds.Tables[13];//new Select().From(DmucNhomcanlamsang.Schema).ExecuteDataSet().Tables[0];
                 globalVariables.gv_dtQheDoituongDichvu = ds.Tables[14];//new Select().From(QheDoituongDichvucl.Schema).ExecuteDataSet().Tables[0];
+                UIAction.SetTextStatus(lblMsg, "Run Editor...", false);
+                RunTest();
                 UIAction.SetTextStatus(lblMsg, "Nạp dữ liệu hệ thống khác...", false);
-                 globalVariables.gv_dtSysparams = ds.Tables[15];// new Select().From(SysSystemParameter.Schema).ExecuteDataSet().Tables[0];
+                globalVariables.gv_dtSysparams = ds.Tables[15];// new Select().From(SysSystemParameter.Schema).ExecuteDataSet().Tables[0];
                  globalVariables.gv_dtQuyenNhanvienCapnhatnhanhDmucChung = ds.Tables[22];
                arrDr = globalVariables.gv_dtSysparams.Select("sName='"+globalVariables.BHXH_WebCode+"'");
 
@@ -831,7 +839,24 @@ namespace VNSCore
                 THU_VIEN_CHUNG.LoadThamSoHeThong();
             }
         }
+        void RunTest()
+        {
+            try
+            {
+                RichEditControl richEdit = new DevExpress.XtraRichEdit.RichEditControl();
+                string PathDoc = Application.StartupPath + @"\doc\runtest.doc";
+                List<string> lstFields = new List<string>() {"Patient_Name" };
+                List<string> lstValues = new List<string>() { "Patient_Name" };
+                Document doc = new Document(PathDoc);
+                doc.MailMerge.Execute(lstFields.ToArray<string>(), lstValues.ToArray<string>());
+            }
+            catch (Exception)
+            {
 
+
+            }
+
+        }
         /// <summary>
         ///     hàm thực hiện việc lưu lại thông tin
         /// </summary>

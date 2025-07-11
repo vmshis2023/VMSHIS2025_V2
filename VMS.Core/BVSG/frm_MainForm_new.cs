@@ -29,6 +29,7 @@ using KeyManager;
 using Microsoft.VisualBasic;
 using AppUI;
 using System.Text;
+using DevExpress.XtraRichEdit;
 
 namespace CIS.CoreApp
 {
@@ -182,7 +183,7 @@ namespace CIS.CoreApp
                 Application.DoEvents();
             }
         }
-
+        
         void txtFunction__OnEnterMe()
         {
             try
