@@ -618,7 +618,7 @@ namespace VNS.HIS.UCs
                 this.HideSuggestionListBox();
             }
         }
-        private void buildData(string TenTp)
+        private void buildData_old(string TenTp)
         {
             if (Utility.DoTrim(TenTp) != "")
                 TenTp = TenTp.TrimStart();//Tránh trường hợp nhập " hn" hệ thống không tìm được dữ liệu
@@ -761,6 +761,77 @@ namespace VNS.HIS.UCs
             {
                 string ItemsValue = Utility.sDbnull(dtData.DefaultView[i]["Value"], "");
                 string Diachinh = string.Format("{0};{1};{2}", Utility.sDbnull(dtData.DefaultView[i]["MaTinhTP"], ""), Utility.sDbnull(dtData.DefaultView[i]["MaQH"], ""), Utility.sDbnull(dtData.DefaultView[i]["MaXaPhuong"], ""));
+                CurrentAutoCompleteList.Add(ItemsValue);
+                CurrentAutoCompleteList_IDAndCode.Add(Diachinh);
+            }
+        }
+        /// <summary>
+        /// Build dữ liệu không có quận huyện
+        /// </summary>
+        /// <param name="TenTp"></param>
+        private void buildData(string TenTp)
+        {
+            if (Utility.DoTrim(TenTp) != "")
+                TenTp = TenTp.TrimStart();//Tránh trường hợp nhập " hn" hệ thống không tìm được dữ liệu
+            TenTp = TenTp.Replace("'", "");
+            string _rowFilter = "1=1";
+            if (TenTp == "")// || TenTp.Length > 6)
+            {
+                CurrentAutoCompleteList.Clear();
+                CurrentAutoCompleteList_IDAndCode.Clear();
+                return;
+            }
+            if (TenTp != "" && TenTp.Trim() == "") TenTp = " ";
+            dtData.DefaultView.RowFilter = "1=1";
+            //Tạm khóa lại
+            
+            if (Utility.DoTrim(TenTp) != "")
+            {
+                //Tạm bỏ đoạn dưới để xử lý 3 kí tự thành phố 230805
+                //if (Utility.DoTrim(TenTp).Contains(" ") || Utility.CheckUnicode(TenTp) || Utility.DoTrim(TenTp).Length > LengthOfQuickType)
+                //{
+                //    _rowFilter = "1=0";
+                //}
+                //else if (Utility.DoTrim(TenTp).Contains(" ") || Utility.DoTrim(TenTp).Length > LengthOfQuickType)//Gõ trực tiếp tên thay vì gõ tắt
+                if (Utility.DoTrim(TenTp).Contains(" ") || Utility.DoTrim(TenTp).Length > LengthOfQuickType)//Gõ trực tiếp tên thay vì gõ tắt
+                                                                                                            // if (Utility.DoTrim(TenTp).Contains(" ") || Utility.CheckUnicode(TenTp) || Utility.DoTrim(TenTp).Length > 6)//Gõ trực tiếp tên thay vì gõ tắt
+                {
+                    _rowFilter = " Value like '%" + TenTp + "%' Or ComparedValue like '%" + TenTp + "%'";
+                }
+                else
+                {
+                    //if (LengthOfQuickType == 4)
+                    //{
+                        if (TenTp.Length == 1)
+                        {
+                        _rowFilter = " ShortcutTP like '%" + TenTp + "%' ";
+                        }
+                        if (TenTp.Length == 2)
+                        {
+                        _rowFilter = " ShortcutTP = '" + TenTp + "' ";
+                        }
+                        if (TenTp.Length == 3)
+                        {
+                            _rowFilter = " ShortcutTP like '%" + TenTp.Substring(2, 1) +
+                                         "%' AND ShortcutXP = '" + TenTp.Substring(0, 2) + "'";
+                        }
+                        if (TenTp.Length == 4)
+                        {
+                            _rowFilter = " ShortcutTP = '" + TenTp.Substring(2, 2) + "' AND ShortcutXP = '" + TenTp.Substring(0, 2) + "'";
+                        }
+                       
+                   // }
+
+                }
+                //_rowFilter = " Shortcut like '%" + TenTp + "%'  OR Value like  '%" + TenTp + "'%";
+                // string.Format(", LQuickSearch.Columns.Shortform);
+                dtData.DefaultView.RowFilter = _rowFilter;
+            }
+            dtData.AcceptChanges();
+            for (int i = 0; i <= dtData.DefaultView.Count - 1; i++)
+            {
+                string ItemsValue = Utility.sDbnull(dtData.DefaultView[i]["Value"], "");
+                string Diachinh = string.Format("{0};{1}", Utility.sDbnull(dtData.DefaultView[i]["MaTinhTP"], ""), Utility.sDbnull(dtData.DefaultView[i]["MaXaPhuong"], ""));
                 CurrentAutoCompleteList.Add(ItemsValue);
                 CurrentAutoCompleteList_IDAndCode.Add(Diachinh);
             }

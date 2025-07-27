@@ -1628,15 +1628,15 @@ namespace VNS.HIS.UI.NOITRU
 
         private void cmdPhieuKhamVaoVien_Click(object sender, EventArgs e)
         {
+
             if (objLuotkham == null)
             {
                 Utility.ShowMsg("Vui lòng chọn một người bệnh trên danh sách bệnh nhân để bắt đầu thực hiện chức năng này");
                 return;
             }
-            frm_Nhapvien frm = new frm_Nhapvien();
-            frm.CallfromParent = true;
+            frm_PhieuChamSoc frm = new frm_PhieuChamSoc();
+            frm.b_CallParent = true;
             frm.objLuotkham = objLuotkham;
-            frm.isReadonly = true;
             frm.ShowDialog();
         }
 

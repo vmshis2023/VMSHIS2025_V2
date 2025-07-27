@@ -80,7 +80,7 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(string MaLuotkham,long IdBenhnhan,DateTime NgayKham,string NhomMau,string NhietDo,string HuyetAp,string Mach,string NhipTho,string ChieuCao,string CanNang,string MotaThem,string Bmi,string DangDi,string TinhThan,string HinhdangChung,string MausacDa,string TinhtrangDa,string HethongLongtoc,string NghiCobenh,string BophanDau,string BophanCo,string BophanNguc,string BophanBung,string BophanCotsong,string BophanChatthai,string Tuanhoan,string Hohap,string Tieuhoa,string Thantietnieusinhduc,string Thankinh,string Coxuongkhop,string Taimuihong,string Ranghammat,string Mat,string Noitietdinhduongbenhlykhac,short? IdBacsi,string ToanThan,string NgoaiKhoa,string BoPhan,string Vu,string Hach,string NguoiTao,DateTime? NgayTao,string NguoiSua,DateTime? NgaySua)
+	    public void Insert(string MaLuotkham,long IdBenhnhan,DateTime NgayKham,string NhomMau,string NhietDo,string HuyetAp,string Mach,string NhipTho,string ChieuCao,string CanNang,string MotaThem,string Bmi,string DangDi,string TinhThan,string HinhdangChung,string MausacDa,string TinhtrangDa,string HethongLongtoc,string NghiCobenh,string BophanDau,string BophanCo,string BophanNguc,string BophanBung,string BophanCotsong,string BophanChatthai,string Tuanhoan,string Hohap,string Tieuhoa,string Thantietnieusinhduc,string Thankinh,string Coxuongkhop,string Taimuihong,string Ranghammat,string Mat,string Noitietdinhduongbenhlykhac,short? IdBacsi,string ToanThan,string NgoaiKhoa,string BoPhan,string Vu,string Hach,byte? Noitru,string NguoiTao,DateTime? NgayTao,string NguoiSua,DateTime? NgaySua)
 	    {
 		    EmrPhieukhambenh item = new EmrPhieukhambenh();
 		    
@@ -166,6 +166,8 @@ namespace VMS.HIS.DAL
             
             item.Hach = Hach;
             
+            item.Noitru = Noitru;
+            
             item.NguoiTao = NguoiTao;
             
             item.NgayTao = NgayTao;
@@ -182,7 +184,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(long Id,string MaLuotkham,long IdBenhnhan,DateTime NgayKham,string NhomMau,string NhietDo,string HuyetAp,string Mach,string NhipTho,string ChieuCao,string CanNang,string MotaThem,string Bmi,string DangDi,string TinhThan,string HinhdangChung,string MausacDa,string TinhtrangDa,string HethongLongtoc,string NghiCobenh,string BophanDau,string BophanCo,string BophanNguc,string BophanBung,string BophanCotsong,string BophanChatthai,string Tuanhoan,string Hohap,string Tieuhoa,string Thantietnieusinhduc,string Thankinh,string Coxuongkhop,string Taimuihong,string Ranghammat,string Mat,string Noitietdinhduongbenhlykhac,short? IdBacsi,string ToanThan,string NgoaiKhoa,string BoPhan,string Vu,string Hach,string NguoiTao,DateTime? NgayTao,string NguoiSua,DateTime? NgaySua)
+	    public void Update(long Id,string MaLuotkham,long IdBenhnhan,DateTime NgayKham,string NhomMau,string NhietDo,string HuyetAp,string Mach,string NhipTho,string ChieuCao,string CanNang,string MotaThem,string Bmi,string DangDi,string TinhThan,string HinhdangChung,string MausacDa,string TinhtrangDa,string HethongLongtoc,string NghiCobenh,string BophanDau,string BophanCo,string BophanNguc,string BophanBung,string BophanCotsong,string BophanChatthai,string Tuanhoan,string Hohap,string Tieuhoa,string Thantietnieusinhduc,string Thankinh,string Coxuongkhop,string Taimuihong,string Ranghammat,string Mat,string Noitietdinhduongbenhlykhac,short? IdBacsi,string ToanThan,string NgoaiKhoa,string BoPhan,string Vu,string Hach,byte? Noitru,string NguoiTao,DateTime? NgayTao,string NguoiSua,DateTime? NgaySua)
 	    {
 		    EmrPhieukhambenh item = new EmrPhieukhambenh();
 	        item.MarkOld();
@@ -271,6 +273,8 @@ namespace VMS.HIS.DAL
 			item.Vu = Vu;
 				
 			item.Hach = Hach;
+				
+			item.Noitru = Noitru;
 				
 			item.NguoiTao = NguoiTao;
 				

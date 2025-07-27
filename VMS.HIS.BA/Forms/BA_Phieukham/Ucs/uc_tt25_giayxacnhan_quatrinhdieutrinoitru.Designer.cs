@@ -51,8 +51,6 @@ namespace VMS.HIS.UI.EMR.Ucs
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtDaidienDonvi = new VNS.HIS.UCs.AutoCompleteTextbox();
-            this.cmdInphieu = new Janus.Windows.EditControls.UIButton();
-            this.cmdGhi = new Janus.Windows.EditControls.UIButton();
             this.txtId = new System.Windows.Forms.TextBox();
             this.cmdTuSinh = new Janus.Windows.EditControls.UIButton();
             this.txtSoHoso = new Janus.Windows.GridEX.EditControls.EditBox();
@@ -167,7 +165,7 @@ namespace VMS.HIS.UI.EMR.Ucs
             this.txt_ghichu.Multiline = true;
             this.txt_ghichu.Name = "txt_ghichu";
             this.txt_ghichu.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txt_ghichu.Size = new System.Drawing.Size(639, 60);
+            this.txt_ghichu.Size = new System.Drawing.Size(639, 91);
             this.txt_ghichu.TabIndex = 11;
             // 
             // label2
@@ -408,35 +406,6 @@ namespace VMS.HIS.UI.EMR.Ucs
             this.txtDaidienDonvi.txtMyName_Edit = null;
             this.txtDaidienDonvi.txtNext = null;
             // 
-            // cmdInphieu
-            // 
-            this.cmdInphieu.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.cmdInphieu.ButtonStyle = Janus.Windows.EditControls.ButtonStyle.Button;
-            this.cmdInphieu.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdInphieu.Image = ((System.Drawing.Image)(resources.GetObject("cmdInphieu.Image")));
-            this.cmdInphieu.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdInphieu.Location = new System.Drawing.Point(553, 418);
-            this.cmdInphieu.Name = "cmdInphieu";
-            this.cmdInphieu.Office2007ColorScheme = Janus.Windows.UI.Office2007ColorScheme.Custom;
-            this.cmdInphieu.Office2007CustomColor = System.Drawing.Color.WhiteSmoke;
-            this.cmdInphieu.Size = new System.Drawing.Size(120, 35);
-            this.cmdInphieu.TabIndex = 2583;
-            this.cmdInphieu.Text = "In phiếu";
-            this.cmdInphieu.Click += new System.EventHandler(this.cmdInphieu_Click);
-            // 
-            // cmdGhi
-            // 
-            this.cmdGhi.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.cmdGhi.Enabled = false;
-            this.cmdGhi.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdGhi.Image = global::VMS.HIS.EMR.Properties.Resources.SAVE_AS;
-            this.cmdGhi.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdGhi.Location = new System.Drawing.Point(681, 418);
-            this.cmdGhi.Name = "cmdGhi";
-            this.cmdGhi.Size = new System.Drawing.Size(120, 35);
-            this.cmdGhi.TabIndex = 15;
-            this.cmdGhi.Text = "Ghi";
-            // 
             // txtId
             // 
             this.txtId.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -498,12 +467,10 @@ namespace VMS.HIS.UI.EMR.Ucs
             this.Controls.Add(this.chkDaravien);
             this.Controls.Add(this.chkDangdieutriNoitru);
             this.Controls.Add(this.autoTxt);
-            this.Controls.Add(this.cmdInphieu);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtNguoiXacnhan);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dtpNgayxacnhan);
-            this.Controls.Add(this.cmdGhi);
             this.Controls.Add(this.txt_ghichu);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txt_phuongphapdieutri);
@@ -532,11 +499,9 @@ namespace VMS.HIS.UI.EMR.Ucs
         private Janus.Windows.GridEX.EditControls.EditBox txt_phuongphapdieutri;
         private Janus.Windows.GridEX.EditControls.EditBox txt_ghichu;
         private System.Windows.Forms.Label label2;
-        public Janus.Windows.EditControls.UIButton cmdGhi;
         private System.Windows.Forms.Label label3;
         private VNS.HIS.UCs.AutoCompleteTextbox txtNguoiXacnhan;
         private System.Windows.Forms.Label label4;
-        private Janus.Windows.EditControls.UIButton cmdInphieu;
         private VNS.HIS.UCs.AutoCompleteTextbox_Danhmucchung autoTxt;
         private System.Windows.Forms.CheckBox chkDangdieutriNoitru;
         private System.Windows.Forms.CheckBox chkDaravien;

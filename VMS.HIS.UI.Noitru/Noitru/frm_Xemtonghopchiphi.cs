@@ -691,8 +691,9 @@ namespace VNS.HIS.UI.NOITRU
                 Utility.SetParameterValue(crpt, "tienmiengiam_hdon", tong_ck_hoadon);
                 Utility.SetParameterValue(crpt, "tong_miengiam", tong_ck);
                 Utility.SetParameterValue(crpt, "tongtien_bn", tong);
-                //  Utility.SetParameterValue(crpt,"DateTime", Utility.FormatDateTime(dtCreateDate.Value));
-                Utility.SetParameterValue(crpt, "CurrentDate", Utility.FormatDateTimeWithLocation(DateTime.Now, globalVariables.gv_strDiadiem));
+                Utility.SetParameterValue(crpt, "DIADIEM", globalVariables.gv_strDiadiem);
+                Utility.SetParameterValue(crpt, "CurrentDate", Utility.FormatDateTime(DateTime.Now));
+                //Utility.SetParameterValue(crpt, "CurrentDate", Utility.FormatDateTimeWithLocation(DateTime.Now, globalVariables.gv_strDiadiem));
                 Utility.SetParameterValue(crpt, "sTitleReport", tieude);
                 Utility.SetParameterValue(crpt, "sMoneyCharacter",
                                        new MoneyByLetter().sMoneyToLetter(Utility.sDbnull(tong)));
@@ -828,10 +829,23 @@ namespace VNS.HIS.UI.NOITRU
 
         void frm_Xemtonghopchiphi_Load(object sender, EventArgs e)
         {
+            ShowHideMienGiam();
             baocaO_TIEUDE1.Init(Khoanoitrutonghop ? "noitru_tonghopchiphiravien_theokhoa" : "noitru_tonghopchiphiravien");
             LoadData();
+           
             pnlTangGiamDonGia.Enabled = Utility.Coquyen("thanhtoan_tanggiam_tile_dongia");
             mv_blnHasloaded = true;
+        }
+        void ShowHideMienGiam()
+        {
+            bool MIENGIAM_CHOPHEPTHUCHIEN_TONGHOPCHIPHI_KCB = THU_VIEN_CHUNG.Laygiatrithamsohethong("MIENGIAM_CHOPHEPTHUCHIEN_TONGHOPCHIPHI_KCB","1",true)=="1";
+            if(MIENGIAM_CHOPHEPTHUCHIEN_TONGHOPCHIPHI_KCB)
+            {
+                pnlMienGiam.Height = 0;
+                grdThongTinChuaThanhToan.RootTable.Columns["tile_chietkhau"].Visible = false;
+                grdThongTinChuaThanhToan.RootTable.Columns["tien_chietkhau"].Visible = false;
+            }    
+           
         }
         void LoadData()
         {
@@ -842,6 +856,7 @@ namespace VNS.HIS.UI.NOITRU
                    SPs.NoitruTonghopChiphiRavien(objLuotkham.MaLuotkham, (int)objLuotkham.IdBenhnhan, Utility.Bool2byte(!Khoanoitrutonghop), idkhoanoitru, getidphieudieutri()).GetDataSet().Tables[0];
                // Utility.SetDataSourceForDataGridEx_Basic(grdThongTinChuaThanhToan, m_dtChiPhiThanhtoan,true, true, "trangthai_huy=0" + (PropertyLib._ThanhtoanProperties.Hienthidichvuchuathanhtoan ? " and trangthai_thanhtoan=0" : ""), "");
                 Utility.SetDataSourceForDataGridEx_Basic(grdThongTinChuaThanhToan, m_dtChiPhiThanhtoan, true, true, "trangthai_huy=0" + (PropertyLib._ThanhtoanProperties.Hienthidichvuchuathanhtoan ? " and trangthai_thanhtoan=0" : ""), "");
+                THU_VIEN_CHUNG.CreateXML(m_dtChiPhiThanhtoan, string.Format("tonghopchiphi_kcb.xml"));
                 var q = (from p in m_dtChiPhiThanhtoan.AsEnumerable()
                          select new { id_khoadieutri = Utility.sDbnull(p["id_khoadieutri"]), ten_khoadieutri = Utility.sDbnull(p["ten_khoadieutri"]) }).Distinct();
                 DataTable dtKhoadieutri = LINQResultToDataTable(q);

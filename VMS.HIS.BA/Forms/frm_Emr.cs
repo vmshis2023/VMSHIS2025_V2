@@ -72,6 +72,7 @@ namespace VMS.HIS.UI.EMR
             grdEmrDocuments.SelectionChanged += grdEmrDocuments_SelectionChanged;
             grdEmrDocuments.MouseDoubleClick += GrdEmrDocuments_MouseDoubleClick;
             grdEmrDocuments.KeyDown += GrdEmrDocuments_KeyDown;
+            grdDocs.SelectionChanged += GrdDocs_SelectionChanged;
             txtPatientCode.KeyDown += new KeyEventHandler(txtPatientCode_KeyDown);
             txtPatient_ID.KeyDown += TxtPatient_ID_KeyDown;
             txtSoBA.KeyDown += TxtSoBA_KeyDown;
@@ -85,6 +86,11 @@ namespace VMS.HIS.UI.EMR
             txtNguoiKy._OnEnterMe += TxtNguoiKy__OnEnterMe;
             richEdit.KeyDown += RichEdit_KeyDown;
             richEdit.SelectionChanged += RichEdit_SelectionChanged;
+        }
+
+        private void GrdDocs_SelectionChanged(object sender, EventArgs e)
+        {
+          
         }
 
         private void RichEdit_SelectionChanged(object sender, EventArgs e)
@@ -152,6 +158,7 @@ namespace VMS.HIS.UI.EMR
 
         private void GrdEmrDocuments_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            isLinkClicked = false;
             grdEmrDocuments_SelectionChanged(grdEmrDocuments, new EventArgs());
         }
 
@@ -359,7 +366,7 @@ namespace VMS.HIS.UI.EMR
             // Tạo BarManager và gán Form trước khi gọi CreateBars
             var manager = new BarManager();
             manager.Form = this;
-            this.components.Add(manager); // thêm vào components
+            //this.components.Add(manager); // thêm vào components
 
             // Tạo vùng dock cố định
             var standalone = new StandaloneBarDockControl();
@@ -475,11 +482,18 @@ namespace VMS.HIS.UI.EMR
             {
                 flowSignInfor.Controls.Clear();
                 flowSignInfor.SuspendLayout();
+               // List<string> lstNguoiKy = globalVariables.dtSignInfor.AsEnumerable().Select(c => Utility.sDbnull(c["ten_nguoiky"])).Distinct().ToList<string>();
+                List<string> lstNguoiKy = new List<string>();
                 foreach (DataRow dr in globalVariables.dtSignInfor.Rows)
                 {
-                    ucNguoiKy _nguoiky = new ucNguoiKy(dr);
-                    _nguoiky._OnClickMe += _nguoiky__OnClickMe;
-                    flowSignInfor.Controls.Add(_nguoiky);
+                    string nguoiky = Utility.sDbnull(dr["nguoi_ky"]);
+                    if (!lstNguoiKy.Contains(nguoiky))
+                    {
+                        lstNguoiKy.Add(nguoiky);
+                        ucNguoiKy _nguoiky = new ucNguoiKy(dr);
+                        _nguoiky._OnClickMe += _nguoiky__OnClickMe;
+                        flowSignInfor.Controls.Add(_nguoiky);
+                    }
                 }
                 
             }
@@ -589,6 +603,7 @@ namespace VMS.HIS.UI.EMR
                 Utility.WaitNow(this);
                 sysSignsize = new Select().From(SysSystemParameter.Schema).Where(SysSystemParameter.Columns.SName).IsEqualTo("signsize").ExecuteSingle<SysSystemParameter>();
                 string loaiphieuhis = "";
+                string loaiphieu_cha = "";
                 string reportcode = "";
                 long IdPhieu = -1;
                 long IdFile = Utility.Int64Dbnull(currRow.Cells[EmrDocument.Columns.IdFile].Value);
@@ -598,11 +613,13 @@ namespace VMS.HIS.UI.EMR
                 {
                     IdPhieu = Utility.Int64Dbnull(objDoc.IdPhieu);// Utility.Int64Dbnull(currRow.Cells[EmrDocument.Columns.IdPhieu].Value);
                     loaiphieuhis = objDoc.LoaiPhieuHis;
+                    loaiphieu_cha = objDoc.LoaiphieuCha;
                     reportcode = objDoc.ReportCode;
                 }
                 else
                 {
                     loaiphieuhis = Utility.sDbnull(currRow.Cells[EmrDocument.Columns.LoaiPhieuHis].Value);
+                    loaiphieuhis = Utility.sDbnull(currRow.Cells[EmrDocument.Columns.LoaiphieuCha].Value);
                     reportcode = Utility.sDbnull(currRow.Cells[EmrDocument.Columns.ReportCode].Value);
                 }
                 AddSignInfor(objDoc);
@@ -662,19 +679,23 @@ namespace VMS.HIS.UI.EMR
                     }
 
                 }
-                else if (loaiphieuhis == Loaiphieu_HIS.BENHAN_TO1 || loaiphieuhis == Loaiphieu_HIS.BENHAN_TO2 || loaiphieuhis == Loaiphieu_HIS.BENHAN_TO3 || loaiphieuhis == Loaiphieu_HIS.BENHAN_TO4 || loaiphieuhis == Loaiphieu_HIS.BENHAN || loaiphieuhis == Loaiphieu_HIS.BENHAN_BIA)
+                else if (loaiphieuhis == Loaiphieu_HIS.BENHAN_TO1 || loaiphieuhis == Loaiphieu_HIS.BENHAN_TO2 || loaiphieuhis == Loaiphieu_HIS.BENHAN_TO3 || loaiphieuhis == Loaiphieu_HIS.BENHAN_TO4 
+                    || loaiphieuhis == Loaiphieu_HIS.BA_IVF_CHONG || loaiphieuhis == Loaiphieu_HIS.BENHAN_BIA
+                    || loaiphieuhis == Loaiphieu_HIS.BA_IVF_VO || loaiphieuhis == Loaiphieu_HIS.BA_NAMKHOA
+                    || loaiphieuhis == Loaiphieu_HIS.BA_NGOAIKHOA || loaiphieuhis == Loaiphieu_HIS.BA_NGOAITRU
+                    || loaiphieuhis == Loaiphieu_HIS.BA_NHIKHOA || loaiphieuhis == Loaiphieu_HIS.BA_NOIKHOA
+                    || loaiphieuhis == Loaiphieu_HIS.BA_PHUKHOA || loaiphieuhis == Loaiphieu_HIS.BA_SANKHOA
+                    || loaiphieuhis == Loaiphieu_HIS.BA_SOSINH )
                 {
                     int ToBA = 0;
                     if (loaiphieuhis == Loaiphieu_HIS.BENHAN_TO1) ToBA = 1;
                     else if (loaiphieuhis == Loaiphieu_HIS.BENHAN_TO2) ToBA = 2;
                     else if (loaiphieuhis == Loaiphieu_HIS.BENHAN_TO3) ToBA = 3;
                     else if (loaiphieuhis == Loaiphieu_HIS.BENHAN_TO4) ToBA = 4;
-                    else if (loaiphieuhis == Loaiphieu_HIS.BENHAN) ToBA = 100;
                     else if (loaiphieuhis == Loaiphieu_HIS.BENHAN_BIA) ToBA = 0;
-                    EmrBa emr_ba = new Select().From(EmrBa.Schema)
-              .Where(EmrBa.Columns.IdBa).IsEqualTo(IdPhieu)
-              .ExecuteSingle<EmrBa>();
-                    pdfFileName = clsInBA.InBA(emr_ba, objLuotkham,dtkhoanhapvien,dtkhoachuyen,dt_tssk,dtPhieuPttt, ToBA, true);
+                    else  ToBA = 100;
+                    string ma_ba = "";
+                    pdfFileName = clsInBA.InBA(IdPhieu, ma_ba, loaiphieu_cha,objLuotkham, dtkhoanhapvien,dtkhoachuyen,dt_tssk,dtPhieuPttt, ToBA, true);
                 }
                 else if (loaiphieuhis == Loaiphieu_HIS.PHIEUTOMTATDIEUTRINGOAITRU)//Phiếu tóm tắt điều trị ngoại trú
                 {
@@ -1137,7 +1158,14 @@ namespace VMS.HIS.UI.EMR
                         //#region Old // Bước 3: Chèn merge field cho chữ ký bác sĩ
                         string nguoi_ky = LayThongTinNguoiKyToDieuTri(Utility.Int64Dbnull(row["id_phieudieutri"]));
                         if (nguoi_ky != "")
-                            builder.InsertField(string.Format("MERGEFIELD {0} \\* MERGEFORMAT", nguoi_ky), "");
+                        {
+                            //Aspose.Words.Paragraph currentPara = builder.CurrentParagraph;
+                            //builder.MoveTo(currentPara);
+                            //builder.Writeln("Chữ ký:");
+                            //builder.Writeln(); // xuống dòng
+                            builder.InsertField(string.Format("MERGEFIELD {0} \\* MERGEFORMAT", string.Format("{0}_{1}", Utility.sDbnull(row["id_phieudieutri"]),nguoi_ky)), "");
+                        }
+                        
                         //#endregion
                         if (!KyDientu)//Chèn khung ký vào word
                         {
@@ -1164,11 +1192,12 @@ namespace VMS.HIS.UI.EMR
                         tab.AppendChild(newRow);
                         idx += 1;
                     }
+                    //doc.UpdateFields();
                     doc.MailMerge.PreserveUnusedTags = true;
                     //Merge các field thông tin chung của người bệnh
                     doc.MailMerge.Execute(drData);
                     SysSystemParameter sysLogosize = new Select().From(SysSystemParameter.Schema).Where(SysSystemParameter.Columns.SName).IsEqualTo("signsize").ExecuteSingle<SysSystemParameter>();
-                   Utility.SignDoc(doc, builder, sysLogosize != null ? sysLogosize.SValue : "");
+                   Utility.SignDoc(doc, builder, sysLogosize != null ? sysLogosize.SValue : "",true);
                     //if (KyDientu)//Tìm các vùng chữ kí để đưa ảnh vào
                     //{
                     //    string[] remaining = doc.MailMerge.GetFieldNames();
@@ -2097,10 +2126,38 @@ namespace VMS.HIS.UI.EMR
                 Utility.SetDataSourceForDataGridEx_Basic(grdEmrDocuments, dtEmrDocuments, true, true, "1=1", "");
                 //Nạp các thông tin để in các tờ bệnh án
                 LoadEmrData();
+                LoadDocsAndSigns();
                 isAllowSelectionChanged = true;
             }
+            else
+            {
+                grdDocs.DataSource = null;
+                grdSign.DataSource = null;
+                grdEmrDocuments.DataSource = null;
+            }    
         }
+        void LoadDocsAndSigns()
+        {
+            try
+            {
+                DataTable dtDocs = new Select().From(EmrDocument.Schema)
+                    .Where(EmrDocument.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
+                    .And(EmrDocument.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
+                    .ExecuteDataSet().Tables[0];
+                grdDocs.DataSource = dtDocs;
+                DataTable dtSign = new Select().From(EmrFileSignInfor.Schema)
+                   .Where(EmrFileSignInfor.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
+                   .And(EmrFileSignInfor.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
+                   .ExecuteDataSet().Tables[0];
+                grdSign.DataSource = dtSign;
 
+            }
+            catch (Exception ex)
+            {
+
+            
+            }
+        }
         void _CheckedChanged(object sender, EventArgs e)
         {
 
@@ -2796,6 +2853,13 @@ namespace VMS.HIS.UI.EMR
         {
             try
             {
+                EmrDocument objDoc = EmrDocument.FetchByID(Utility.Int64Dbnull(currRow.Cells[EmrDocument.Columns.IdFile].Value));
+                if (objDoc.LoaiPhieuHis == Loaiphieu_HIS.PHIEUCHIDINH)
+                {
+                    KyphieuChidinh();
+                    return;
+                }
+                bool refresh = false;
                 if(grdEmrDocuments.GetCheckedRows().Count()<=0)
                 {
                     grdEmrDocuments.CurrentRow.BeginEdit();
@@ -2809,8 +2873,8 @@ namespace VMS.HIS.UI.EMR
                 List<long> lstIdFiles_NguoiKy = dtSignInfo.AsEnumerable().Select(c => Utility.Int64Dbnull(c["file_id"])).Distinct().ToList<long>();
                 //Lấy về các phiếu đang chọn mà không liên quan đến người dùng(gặp người dùng ẩu chọn bừa khi ký)
                 List<long> lstIdPhieu_Other = (from p in grdEmrDocuments.GetCheckedRows() where !lstIdFiles_NguoiKy.Contains( Utility.Int64Dbnull(p.Cells["id_file"].Value))  select Utility.Int64Dbnull(p.Cells[EmrDocument.Columns.IdPhieu].Value)).Distinct().ToList<long>();
-                List<long> lstIdPhieu_Daky = (from p in dtSignInfo.AsEnumerable() where lstIdFiles_NguoiKy.Contains(Utility.Int64Dbnull(p["id_file"]))  && Utility.sDbnull(p["tthai_ky"]) == "1" select Utility.Int64Dbnull(p[EmrDocument.Columns.IdPhieu])).Distinct().ToList<long>();
-                List<long> lstIdPhieu_ChuaKy = (from p in dtSignInfo.AsEnumerable() where lstIdFiles_NguoiKy.Contains(Utility.Int64Dbnull(p["id_file"])) &&  Utility.sDbnull(p["tthai_ky"]) == "0"  select Utility.Int64Dbnull(p[EmrDocument.Columns.IdPhieu])).Distinct().ToList<long>();
+                List<long> lstIdPhieu_Daky = (from p in dtSignInfo.AsEnumerable() where lstIdFiles_NguoiKy.Contains(Utility.Int64Dbnull(p["file_id"]))  && Utility.ByteDbnull(p["tthai_ky"]) == 1 select Utility.Int64Dbnull(p[EmrDocument.Columns.IdPhieu])).Distinct().ToList<long>();
+                List<long> lstIdPhieu_ChuaKy = (from p in dtSignInfo.AsEnumerable() where lstIdFiles_NguoiKy.Contains(Utility.Int64Dbnull(p["file_id"])) &&  Utility.ByteDbnull(p["tthai_ky"]) == 0  select Utility.Int64Dbnull(p[EmrDocument.Columns.IdPhieu])).Distinct().ToList<long>();
                 if (lstIdPhieu_Other.Count > 0)
                 {
                     Utility.ShowMsg("Bạn đang chọn lẫn các phiếu của người khác để ký(Có thể do bạn đang có Full quyền xem EMR nên nhìn thấy phiếu của người khác).\nChú ý: Tất cả các phiếu lẫn này hệ thống sẽ loại bỏ không ký.\nNhấn OK để tiếp tục");
@@ -2827,14 +2891,27 @@ namespace VMS.HIS.UI.EMR
                         GridEXRow[] lstCheckedRows = grdEmrDocuments.GetCheckedRows();
                         foreach (GridEXRow _row in lstCheckedRows)
                         {
-                            if (lstIdFiles_NguoiKy.Contains(Utility.Int64Dbnull(_row.Cells["id_file"].Value)) && Utility.sDbnull(_row.Cells["tthai_kyso"].Value) == "0" )
+                            if (lstIdFiles_NguoiKy.Contains(Utility.Int64Dbnull(_row.Cells["id_file"].Value)) )//&& Utility.sDbnull(_row.Cells["tthai_kyso"].Value) == "0" )
                             {
                                 long id_phieu = Utility.Int64Dbnull(_row.Cells[EmrDocument.Columns.IdPhieu].Value);
                                 long IdFile = Utility.Int64Dbnull(_row.Cells[EmrDocument.Columns.IdFile].Value);
                                 string LoaiPhieuHis = Utility.sDbnull(_row.Cells[EmrDocument.Columns.LoaiPhieuHis].Value);
-                                num += SPs.EmrThaydoitrangthai(IdFile,id_phieu, LoaiPhieuHis, 2, true, globalVariables.UserName, DateTime.Now).Execute();
+                                if (LoaiPhieuHis == Loaiphieu_HIS.PHIEUDIEUTRI && id_phieu == -1)
+                                {
+                                    frm_chonky_todieutri _chonky_todieutri = new frm_chonky_todieutri(objLuotkham, globalVariables.UserName);
+                                  if(  _chonky_todieutri.ShowDialog()==DialogResult.OK)
+                                    {
+                                        foreach (long id_p in _chonky_todieutri.lstIdphieu)
+                                            num += SPs.EmrThaydoitrangthai(IdFile, id_p, LoaiPhieuHis, 2, true, globalVariables.UserName, DateTime.Now).Execute();
+                                    }    
+                                }
+                                else
+                                {
+                                    num += SPs.EmrThaydoitrangthai(IdFile, id_phieu, LoaiPhieuHis, 2, true, globalVariables.UserName, DateTime.Now).Execute();
+                                }
                                 if(num > 0)
                                 {
+                                    refresh = true;
                                     _row.BeginEdit();
                                     _row.IsChecked = false;
                                     _row.EndEdit();
@@ -2850,18 +2927,28 @@ namespace VMS.HIS.UI.EMR
                     }
                 }
                 //Load lại với chữ ký
-                grdEmrDocuments_SelectionChanged(grdEmrDocuments, new EventArgs());
+              if(refresh)  grdEmrDocuments_SelectionChanged(grdEmrDocuments, new EventArgs());
             }
             catch (Exception ex)
             {
 
 
             }
+            finally
+            {
+                grdEmrDocuments.CurrentRow.BeginEdit();
+                grdEmrDocuments.CurrentRow.IsChecked = false;
+                grdEmrDocuments.CurrentRow.EndEdit();
+            }
         }
-        private void cmdHuyKyDientu_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Hàm riêng vì 1 phiếu chỉ định, nhiều tờ tách riêng, nhưng chỉ có 1 dòng thông tin ký theo id phiếu
+        /// </summary>
+        private void KyphieuChidinh()
         {
             try
             {
+                bool refresh = false;
                 if (grdEmrDocuments.GetCheckedRows().Count() <= 0)
                 {
                     grdEmrDocuments.CurrentRow.BeginEdit();
@@ -2870,13 +2957,102 @@ namespace VMS.HIS.UI.EMR
                 }
                 List<string> lstIdFiles = (from p in grdEmrDocuments.GetCheckedRows() select Utility.sDbnull(p.Cells[EmrDocument.Columns.IdFile].Value)).Distinct().ToList<string>();
                 //Lấy về thông tin kí của người dùng trên các file đang chọn
-                DataTable dtSignInfo = SPs.EmrLaythongtinChukyTrenphieu(string.Join(",", lstIdFiles), globalVariables.UserName,100).GetDataSet().Tables[0];
+                DataTable dtSignInfo = SPs.EmrLaythongtinChukyTrenphieu(string.Join(",", lstIdFiles), globalVariables.UserName, 100).GetDataSet().Tables[0];
                 //Lấy về danh sách các file liên quan đến người dùng
-                List<long> lstIdFiles_NguoiKy = dtSignInfo.AsEnumerable().Select(c => Utility.Int64Dbnull(c["file_id"])).Distinct().ToList<long>();
+                List<long> lstIdFiles_NguoiKy = dtSignInfo.AsEnumerable().Select(c => Utility.Int64Dbnull(c["id_phieu"])).Distinct().ToList<long>();
                 //Lấy về các phiếu đang chọn mà không liên quan đến người dùng(gặp người dùng ẩu chọn bừa khi ký)
-                List<long> lstIdPhieu_Other = (from p in grdEmrDocuments.GetCheckedRows() where !lstIdFiles_NguoiKy.Contains(Utility.Int64Dbnull(p.Cells["id_file"].Value)) select Utility.Int64Dbnull(p.Cells[EmrDocument.Columns.IdPhieu].Value)).Distinct().ToList<long>();
-                List<long> lstIdPhieu_Daky = (from p in dtSignInfo.AsEnumerable() where lstIdFiles_NguoiKy.Contains(Utility.Int64Dbnull(p["id_file"])) && Utility.sDbnull(p["tthai_ky"]) == "1" select Utility.Int64Dbnull(p[EmrDocument.Columns.IdPhieu])).Distinct().ToList<long>();
-                List<long> lstIdPhieu_ChuaKy = (from p in dtSignInfo.AsEnumerable() where lstIdFiles_NguoiKy.Contains(Utility.Int64Dbnull(p["id_file"])) && Utility.sDbnull(p["tthai_ky"]) == "0" select Utility.Int64Dbnull(p[EmrDocument.Columns.IdPhieu])).Distinct().ToList<long>();
+                List<long> lstIdPhieu_Other = (from p in grdEmrDocuments.GetCheckedRows() where !lstIdFiles_NguoiKy.Contains(Utility.Int64Dbnull(p.Cells["id_phieu"].Value)) select Utility.Int64Dbnull(p.Cells[EmrDocument.Columns.IdPhieu].Value)).Distinct().ToList<long>();
+                List<long> lstIdPhieu_Daky = (from p in dtSignInfo.AsEnumerable() where lstIdFiles_NguoiKy.Contains(Utility.Int64Dbnull(p["id_phieu"])) && Utility.ByteDbnull(p["tthai_ky"]) == 1 select Utility.Int64Dbnull(p[EmrDocument.Columns.IdPhieu])).Distinct().ToList<long>();
+                List<long> lstIdPhieu_ChuaKy = (from p in dtSignInfo.AsEnumerable() where lstIdFiles_NguoiKy.Contains(Utility.Int64Dbnull(p["id_phieu"])) && Utility.ByteDbnull(p["tthai_ky"]) == 0 select Utility.Int64Dbnull(p[EmrDocument.Columns.IdPhieu])).Distinct().ToList<long>();
+                if (lstIdPhieu_Other.Count > 0)
+                {
+                    Utility.ShowMsg("Bạn đang chọn lẫn các phiếu của người khác để ký(Có thể do bạn đang có Full quyền xem EMR nên nhìn thấy phiếu của người khác).\nChú ý: Tất cả các phiếu lẫn này hệ thống sẽ loại bỏ không ký.\nNhấn OK để tiếp tục");
+                }
+                if (lstIdPhieu_Daky.Count > 0)
+                {
+                    Utility.ShowMsg("Bạn đang chọn lẫn cả các phiếu đã ký.\nChú ý: Tất cả các phiếu lẫn này hệ thống sẽ không tác động cập nhật lại trạng thái.\nNhấn OK để tiếp tục");
+                }
+                int num = 0;
+                if (lstIdPhieu_ChuaKy.Count > 0)
+                {
+                    if (Utility.AcceptQuestion("Bạn có chắc chắn muốn ký điện tử cho các phiếu đang chọn. Sau khi ký điện tử xong, bạn sẽ không được quyền sửa, xóa phiếu đó trong toàn bộ hệ thống HIS/EMR", "Xác nhận", true))
+                    {
+                        GridEXRow[] lstCheckedRows = grdEmrDocuments.GetCheckedRows();
+                        foreach (GridEXRow _row in lstCheckedRows)
+                        {
+                            if (lstIdFiles_NguoiKy.Contains(Utility.Int64Dbnull(_row.Cells["id_phieu"].Value)))//&& Utility.sDbnull(_row.Cells["tthai_kyso"].Value) == "0" )
+                            {
+                                long id_phieu = Utility.Int64Dbnull(_row.Cells[EmrDocument.Columns.IdPhieu].Value);
+                                long IdFile = Utility.Int64Dbnull(_row.Cells[EmrDocument.Columns.IdFile].Value);
+                                string LoaiPhieuHis = Utility.sDbnull(_row.Cells[EmrDocument.Columns.LoaiPhieuHis].Value);
+                                if (LoaiPhieuHis == Loaiphieu_HIS.PHIEUDIEUTRI && id_phieu == -1)
+                                {
+                                    frm_chonky_todieutri _chonky_todieutri = new frm_chonky_todieutri(objLuotkham, globalVariables.UserName);
+                                    if (_chonky_todieutri.ShowDialog() == DialogResult.OK)
+                                    {
+                                        foreach (long id_p in _chonky_todieutri.lstIdphieu)
+                                            num += SPs.EmrThaydoitrangthai(IdFile, id_p, LoaiPhieuHis, 2, true, globalVariables.UserName, DateTime.Now).Execute();
+                                    }
+                                }
+                                else
+                                {
+                                    num += SPs.EmrThaydoitrangthai(-1, id_phieu, LoaiPhieuHis, 2, true, globalVariables.UserName, DateTime.Now).Execute();
+                                }
+                                if (num > 0)
+                                {
+                                    refresh = true;
+                                    _row.BeginEdit();
+                                    _row.IsChecked = false;
+                                    _row.EndEdit();
+                                }
+                                //Bản chất chỉ đánh dấu phiếu đã được kí để ngăn hủy, xóa hoặc bắt chặt thao tác trên HIS.
+                                ////Khi nào đóng hồ sơ bệnh án sẽ đẩy PDF chính thức lên server và update đường dẫn file pdf vào emr documents để phục vụ tra cứu và lưu trữ
+                            }
+                        }
+                        if (num > 0)
+                        {
+                            Utility.ShowMsg("Đã ký các phiếu thành công. Nhấn OK để kết thúc");
+                        }
+                    }
+                }
+                //Load lại với chữ ký
+                if (refresh) grdEmrDocuments_SelectionChanged(grdEmrDocuments, new EventArgs());
+            }
+            catch (Exception ex)
+            {
+
+
+            }
+            finally
+            {
+                grdEmrDocuments.CurrentRow.BeginEdit();
+                grdEmrDocuments.CurrentRow.IsChecked = false;
+                grdEmrDocuments.CurrentRow.EndEdit();
+            }
+        }
+        /// <summary>
+        /// HỦy chữ ký điện tử cho phiếu chỉ định
+        /// </summary>
+        private void HuyChuKyDientu()
+        {
+            try
+            {
+                bool refresh = false;
+                if (grdEmrDocuments.GetCheckedRows().Count() <= 0)
+                {
+                    grdEmrDocuments.CurrentRow.BeginEdit();
+                    grdEmrDocuments.CurrentRow.IsChecked = true;
+                    grdEmrDocuments.CurrentRow.EndEdit();
+                }
+                List<string> lstIdFiles = (from p in grdEmrDocuments.GetCheckedRows() select Utility.sDbnull(p.Cells[EmrDocument.Columns.IdFile].Value)).Distinct().ToList<string>();
+                //Lấy về thông tin kí của người dùng trên các file đang chọn
+                DataTable dtSignInfo = SPs.EmrLaythongtinChukyTrenphieu(string.Join(",", lstIdFiles), globalVariables.UserName, 100).GetDataSet().Tables[0];
+                //Lấy về danh sách các file liên quan đến người dùng
+                List<long> lstIdFiles_NguoiKy = dtSignInfo.AsEnumerable().Select(c => Utility.Int64Dbnull(c["id_phieu"])).Distinct().ToList<long>();
+                //Lấy về các phiếu đang chọn mà không liên quan đến người dùng(gặp người dùng ẩu chọn bừa khi ký)
+                List<long> lstIdPhieu_Other = (from p in grdEmrDocuments.GetCheckedRows() where !lstIdFiles_NguoiKy.Contains(Utility.Int64Dbnull(p.Cells["id_phieu"].Value)) select Utility.Int64Dbnull(p.Cells[EmrDocument.Columns.IdPhieu].Value)).Distinct().ToList<long>();
+                List<long> lstIdPhieu_Daky = (from p in dtSignInfo.AsEnumerable() where lstIdFiles_NguoiKy.Contains(Utility.Int64Dbnull(p["id_phieu"])) && Utility.ByteDbnull(p["tthai_ky"]) == 1 select Utility.Int64Dbnull(p[EmrDocument.Columns.IdPhieu])).Distinct().ToList<long>();
+                List<long> lstIdPhieu_ChuaKy = (from p in dtSignInfo.AsEnumerable() where lstIdFiles_NguoiKy.Contains(Utility.Int64Dbnull(p["id_phieu"])) && Utility.ByteDbnull(p["tthai_ky"]) == 0 select Utility.Int64Dbnull(p[EmrDocument.Columns.IdPhieu])).Distinct().ToList<long>();
                 if (lstIdPhieu_Other.Count > 0)
                 {
                     Utility.ShowMsg("Bạn đang chọn lẫn các phiếu của người khác để hủy ký(Có thể do bạn đang có Full quyền xem EMR nên nhìn thấy phiếu của người khác).\nChú ý: Tất cả các phiếu lẫn này hệ thống sẽ loại bỏ không hủy ký.\nNhấn OK để tiếp tục");
@@ -2893,14 +3069,15 @@ namespace VMS.HIS.UI.EMR
                         GridEXRow[] lstCheckedRows = grdEmrDocuments.GetCheckedRows();
                         foreach (GridEXRow _row in lstCheckedRows)
                         {
-                            if (lstIdFiles_NguoiKy.Contains(Utility.Int64Dbnull(_row.Cells["id_file"].Value)) && Utility.sDbnull(_row.Cells["tthai_kyso"].Value) == "1")
+                            if (lstIdFiles_NguoiKy.Contains(Utility.Int64Dbnull(_row.Cells["id_phieu"].Value)))//&& Utility.sDbnull(_row.Cells["tthai_kyso"].Value) == "1")
                             {
                                 long id_phieu = Utility.Int64Dbnull(_row.Cells[EmrDocument.Columns.IdPhieu].Value);
                                 long IdFile = Utility.Int64Dbnull(_row.Cells[EmrDocument.Columns.IdFile].Value);
                                 string LoaiPhieuHis = Utility.sDbnull(_row.Cells[EmrDocument.Columns.LoaiPhieuHis].Value);
-                                num += SPs.EmrThaydoitrangthai(IdFile,id_phieu, LoaiPhieuHis, 2, false, globalVariables.UserName, null).Execute();
+                                num += SPs.EmrThaydoitrangthai(-1, id_phieu, LoaiPhieuHis, 2, false, globalVariables.UserName, null).Execute();
                                 if (num > 0)
                                 {
+                                    refresh = true;
                                     _row.BeginEdit();
                                     _row.IsChecked = false;
                                     _row.EndEdit();
@@ -2915,11 +3092,97 @@ namespace VMS.HIS.UI.EMR
                         }
                     }
                 }
+                if (refresh) grdEmrDocuments_SelectionChanged(grdEmrDocuments, new EventArgs());
             }
             catch (Exception ex)
             {
 
 
+            }
+            finally
+            {
+                grdEmrDocuments.CurrentRow.BeginEdit();
+                grdEmrDocuments.CurrentRow.IsChecked = false;
+                grdEmrDocuments.CurrentRow.EndEdit();
+            }
+        }
+        private void cmdHuyKyDientu_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                EmrDocument objDoc = EmrDocument.FetchByID(Utility.Int64Dbnull(currRow.Cells[EmrDocument.Columns.IdFile].Value));
+                if (objDoc.LoaiPhieuHis == Loaiphieu_HIS.PHIEUCHIDINH)
+                {
+                    HuyChuKyDientu();
+                    return;
+                }
+                bool refresh = false;
+                if (grdEmrDocuments.GetCheckedRows().Count() <= 0)
+                {
+                    grdEmrDocuments.CurrentRow.BeginEdit();
+                    grdEmrDocuments.CurrentRow.IsChecked = true;
+                    grdEmrDocuments.CurrentRow.EndEdit();
+                }
+                List<string> lstIdFiles = (from p in grdEmrDocuments.GetCheckedRows() select Utility.sDbnull(p.Cells[EmrDocument.Columns.IdFile].Value)).Distinct().ToList<string>();
+                //Lấy về thông tin kí của người dùng trên các file đang chọn
+                DataTable dtSignInfo = SPs.EmrLaythongtinChukyTrenphieu(string.Join(",", lstIdFiles), globalVariables.UserName,100).GetDataSet().Tables[0];
+                //Lấy về danh sách các file liên quan đến người dùng
+                List<long> lstIdFiles_NguoiKy = dtSignInfo.AsEnumerable().Select(c => Utility.Int64Dbnull(c["file_id"])).Distinct().ToList<long>();
+                //Lấy về các phiếu đang chọn mà không liên quan đến người dùng(gặp người dùng ẩu chọn bừa khi ký)
+                List<long> lstIdPhieu_Other = (from p in grdEmrDocuments.GetCheckedRows() where !lstIdFiles_NguoiKy.Contains(Utility.Int64Dbnull(p.Cells["id_file"].Value)) select Utility.Int64Dbnull(p.Cells[EmrDocument.Columns.IdPhieu].Value)).Distinct().ToList<long>();
+                List<long> lstIdPhieu_Daky = (from p in dtSignInfo.AsEnumerable() where lstIdFiles_NguoiKy.Contains(Utility.Int64Dbnull(p["file_id"])) && Utility.ByteDbnull(p["tthai_ky"]) == 1 select Utility.Int64Dbnull(p[EmrDocument.Columns.IdPhieu])).Distinct().ToList<long>();
+                List<long> lstIdPhieu_ChuaKy = (from p in dtSignInfo.AsEnumerable() where lstIdFiles_NguoiKy.Contains(Utility.Int64Dbnull(p["file_id"])) && Utility.ByteDbnull(p["tthai_ky"]) == 0 select Utility.Int64Dbnull(p[EmrDocument.Columns.IdPhieu])).Distinct().ToList<long>();
+                if (lstIdPhieu_Other.Count > 0)
+                {
+                    Utility.ShowMsg("Bạn đang chọn lẫn các phiếu của người khác để hủy ký(Có thể do bạn đang có Full quyền xem EMR nên nhìn thấy phiếu của người khác).\nChú ý: Tất cả các phiếu lẫn này hệ thống sẽ loại bỏ không hủy ký.\nNhấn OK để tiếp tục");
+                }
+                if (lstIdPhieu_ChuaKy.Count > 0)
+                {
+                    Utility.ShowMsg("Bạn đang chọn lẫn cả các phiếu chưa ký.\nChú ý: Tất cả các phiếu lẫn này hệ thống sẽ không tác động cập nhật lại trạng thái.\nNhấn OK để tiếp tục");
+                }
+                int num = 0;
+                if (lstIdPhieu_Daky.Count > 0)
+                {
+                    if (Utility.AcceptQuestion("Bạn có chắc chắn muốn HỦY ký điện tử cho các phiếu đang chọn. Sau khi Hủy ký điện tử xong, bạn sẽ có thể được quyền sửa, xóa phiếu đó trong hệ thống HIS/EMR", "Xác nhận", true))
+                    {
+                        GridEXRow[] lstCheckedRows = grdEmrDocuments.GetCheckedRows();
+                        foreach (GridEXRow _row in lstCheckedRows)
+                        {
+                            if (lstIdFiles_NguoiKy.Contains(Utility.Int64Dbnull(_row.Cells["id_file"].Value)) )//&& Utility.sDbnull(_row.Cells["tthai_kyso"].Value) == "1")
+                            {
+                                long id_phieu = Utility.Int64Dbnull(_row.Cells[EmrDocument.Columns.IdPhieu].Value);
+                                long IdFile = Utility.Int64Dbnull(_row.Cells[EmrDocument.Columns.IdFile].Value);
+                                string LoaiPhieuHis = Utility.sDbnull(_row.Cells[EmrDocument.Columns.LoaiPhieuHis].Value);
+                                num += SPs.EmrThaydoitrangthai(IdFile,id_phieu, LoaiPhieuHis, 2, false, globalVariables.UserName, null).Execute();
+                                if (num > 0)
+                                {
+                                    refresh = true;
+                                    _row.BeginEdit();
+                                    _row.IsChecked = false;
+                                    _row.EndEdit();
+                                }
+                                //Bản chất chỉ đánh dấu phiếu đã được kí để ngăn hủy, xóa hoặc bắt chặt thao tác trên HIS.
+                                ////Khi nào đóng hồ sơ bệnh án sẽ đẩy PDF chính thức lên server và update đường dẫn file pdf vào emr documents để phục vụ tra cứu và lưu trữ
+                            }
+                        }
+                        if (num > 0)
+                        {
+                            Utility.ShowMsg("Đã Hủy ký các phiếu thành công. Nhấn OK để kết thúc");
+                        }
+                    }
+                }
+                if (refresh) grdEmrDocuments_SelectionChanged(grdEmrDocuments, new EventArgs());
+            }
+            catch (Exception ex)
+            {
+
+
+            }
+            finally
+            {
+                grdEmrDocuments.CurrentRow.BeginEdit();
+                grdEmrDocuments.CurrentRow.IsChecked = false;
+                grdEmrDocuments.CurrentRow.EndEdit();
             }
         }
         private void cmdChuyenGay_Click(object sender, EventArgs e)
@@ -3338,21 +3601,47 @@ namespace VMS.HIS.UI.EMR
                  .Where(EmrFileSignInfor.Columns.FileId).IsEqualTo(objDoc.IdFile)
                  .ExecuteDataSet().Tables[0];
                 if (dtCheck.Rows.Count > 0) return;//Không thêm lại nữa
-                lstNguoiKy = emrDoc.GetThongtinKy(objDoc.IdPhieu.Value, objDoc.LoaiPhieuHis);//username+ vị trí ký
-
-                foreach (var nguoiky in lstNguoiKy)
+                if (objDoc.LoaiPhieuHis == Loaiphieu_HIS.PHIEUDIEUTRI)
                 {
-                    EmrFileSignInfor fsi = new EmrFileSignInfor();
-                    fsi.NguoiKy = nguoiky.Key;
-                    fsi.IdBenhnhan = objLuotkham.IdBenhnhan;
-                    fsi.MaLuotkham = objLuotkham.MaLuotkham;
-                    fsi.LoaiphieuHis = objDoc.LoaiPhieuHis;
-                    fsi.LoaiphieuCha = objDoc.LoaiphieuCha;
-                    fsi.IdPhieu = objDoc.IdPhieu;
-                    fsi.TenVitriKy = nguoiky.Value;
-                    fsi.TthaiKy = false;
-                    fsi.FileId = objDoc.IdFile;
-                    fsi.Save();
+                    DataTable dtSignInfor = SPs.EmrLaythongtinChukyPhieu(objDoc.MaLuotkham, objDoc.IdBenhnhan, objDoc.IdPhieu, objDoc.LoaiPhieuHis, objDoc.LoaiphieuCha).GetDataSet().Tables[0];
+                    foreach (DataRow dr in dtSignInfor.Rows)
+                    {
+                        DmucNhanvien objBacsi = DmucNhanvien.FetchByID(Utility.Int16Dbnull(dr["id_bacsi"]));
+                        if (objBacsi != null)
+                        {
+                            lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_BACSI"));
+                            EmrFileSignInfor fsi = new EmrFileSignInfor();
+                            fsi.NguoiKy = objBacsi.UserName;
+                            fsi.IdBenhnhan = objLuotkham.IdBenhnhan;
+                            fsi.MaLuotkham = objLuotkham.MaLuotkham;
+                            fsi.LoaiphieuHis = objDoc.LoaiPhieuHis;
+                            fsi.LoaiphieuCha = objDoc.LoaiphieuCha;
+                            fsi.IdPhieu = Utility.Int64Dbnull(dr["id_phieudieutri"]);
+                            fsi.TenVitriKy = "CKS_BACSI";
+                            fsi.TthaiKy = false;
+                            fsi.FileId = objDoc.IdFile;
+                            fsi.Save();
+                        }
+                    }
+                }
+                else
+                {
+                    lstNguoiKy = emrDoc.GetThongtinKy(objDoc.IdPhieu.Value, objDoc.LoaiPhieuHis);//username+ vị trí ký
+
+                    foreach (var nguoiky in lstNguoiKy)
+                    {
+                        EmrFileSignInfor fsi = new EmrFileSignInfor();
+                        fsi.NguoiKy = nguoiky.Key;
+                        fsi.IdBenhnhan = objLuotkham.IdBenhnhan;
+                        fsi.MaLuotkham = objLuotkham.MaLuotkham;
+                        fsi.LoaiphieuHis = objDoc.LoaiPhieuHis;
+                        fsi.LoaiphieuCha = objDoc.LoaiphieuCha;
+                        fsi.IdPhieu = objDoc.IdPhieu;
+                        fsi.TenVitriKy = nguoiky.Value;
+                        fsi.TthaiKy = false;
+                        fsi.FileId = objDoc.IdFile;
+                        fsi.Save();
+                    }
                 }
 
             }
@@ -3724,18 +4013,18 @@ namespace VMS.HIS.UI.EMR
 
         private void cboTagFields_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(Utility.sDbnull(cboTagFields.SelectedValue,"").Length>0)
-            EmrUtils.InsertTagField(richEdit,Utility.sDbnull( cboTagFields.SelectedValue), Guid.NewGuid().ToString());
+            //if(Utility.sDbnull(cboTagFields.SelectedValue,"").Length>0)
+            //EmrUtils.InsertTagField(richEdit,Utility.sDbnull( cboTagFields.SelectedValue), Guid.NewGuid().ToString());
         }
 
         private void cmdLoad_Click(object sender, EventArgs e)
         {
-           EmrUtils.LoadTemplateAndReplace(richEdit, templatefile, new Dictionary<string, string>
-            {
-                ["HoTen"] = "Nguyễn Văn A",
-                ["NgaySinh"] = "01/01/1990",
-                ["GioiTinh"] = "Nam"
-            });
+           //EmrUtils.LoadTemplateAndReplace(richEdit, templatefile, new Dictionary<string, string>
+           // {
+           //     ["HoTen"] = "Nguyễn Văn A",
+           //     ["NgaySinh"] = "01/01/1990",
+           //     ["GioiTinh"] = "Nam"
+           // });
         }
     }
     class HandleMergeBarcode : IFieldMergingCallback

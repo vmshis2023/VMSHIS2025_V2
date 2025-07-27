@@ -80,7 +80,7 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(string PkSBranchID,string SName,string SParentBranchName,string FpSUpBranchID,int? IntLevel,string SAddress,string SPhone,string SBussinessPhone,string SHotPhone,string SDutyPhone,string SFAX,string SEMAIL,string STaxCode,string SAccountID,string SRepresentative,string SPosition,string SProxyNumber,DateTime? TDateMandate,string SMandateUnitName,string SMandateUnitAddress,DateTime? TInvalidDate,DateTime? TInputDate,string STyper,string SBankCode,string SLandSurveyUnitCode,string Website,byte[] Logo)
+	    public void Insert(string PkSBranchID,string SName,string SParentBranchName,string FpSUpBranchID,int? IntLevel,string SAddress,string SPhone,string SBussinessPhone,string SHotPhone,string SDutyPhone,string SFAX,string SEMAIL,string STaxCode,string SAccountID,string SRepresentative,string SPosition,string SProxyNumber,DateTime? TDateMandate,string SMandateUnitName,string SMandateUnitAddress,DateTime? TInvalidDate,DateTime? TInputDate,string STyper,string SBankCode,string SLandSurveyUnitCode,string Website,byte[] Logo,byte[] LogoNgang)
 	    {
 		    SysManagementUnit item = new SysManagementUnit();
 		    
@@ -138,6 +138,8 @@ namespace VMS.HIS.DAL
             
             item.Logo = Logo;
             
+            item.LogoNgang = LogoNgang;
+            
 	    
 		    item.Save(UserName);
 	    }
@@ -146,7 +148,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(string PkSBranchID,string SName,string SParentBranchName,string FpSUpBranchID,int? IntLevel,string SAddress,string SPhone,string SBussinessPhone,string SHotPhone,string SDutyPhone,string SFAX,string SEMAIL,string STaxCode,string SAccountID,string SRepresentative,string SPosition,string SProxyNumber,DateTime? TDateMandate,string SMandateUnitName,string SMandateUnitAddress,DateTime? TInvalidDate,DateTime? TInputDate,string STyper,string SBankCode,string SLandSurveyUnitCode,string Website,byte[] Logo)
+	    public void Update(string PkSBranchID,string SName,string SParentBranchName,string FpSUpBranchID,int? IntLevel,string SAddress,string SPhone,string SBussinessPhone,string SHotPhone,string SDutyPhone,string SFAX,string SEMAIL,string STaxCode,string SAccountID,string SRepresentative,string SPosition,string SProxyNumber,DateTime? TDateMandate,string SMandateUnitName,string SMandateUnitAddress,DateTime? TInvalidDate,DateTime? TInputDate,string STyper,string SBankCode,string SLandSurveyUnitCode,string Website,byte[] Logo,byte[] LogoNgang)
 	    {
 		    SysManagementUnit item = new SysManagementUnit();
 	        item.MarkOld();
@@ -205,6 +207,8 @@ namespace VMS.HIS.DAL
 			item.Website = Website;
 				
 			item.Logo = Logo;
+				
+			item.LogoNgang = LogoNgang;
 				
 	        item.Save(UserName);
 	    }

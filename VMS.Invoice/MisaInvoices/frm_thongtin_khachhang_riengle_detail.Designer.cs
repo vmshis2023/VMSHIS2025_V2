@@ -48,6 +48,16 @@
             this.cmdPhathanhHDon = new Janus.Windows.EditControls.UIButton();
             this.chkCloseAfterSaving = new System.Windows.Forms.CheckBox();
             this.grbThongtinHoadon = new System.Windows.Forms.GroupBox();
+            this.chkFullName = new System.Windows.Forms.CheckBox();
+            this.txtSTK = new Janus.Windows.GridEX.EditControls.EditBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtMST = new Janus.Windows.GridEX.EditControls.EditBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtDiachi = new Janus.Windows.GridEX.EditControls.EditBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lblCCCDLength = new System.Windows.Forms.Label();
+            this.txtCCCD = new Janus.Windows.GridEX.EditControls.EditBox();
+            this.chkCCCD = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.dtpNgaythanhtoan = new Janus.Windows.CalendarCombo.CalendarCombo();
             this.txttencongty = new Janus.Windows.GridEX.EditControls.EditBox();
@@ -63,22 +73,21 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.grdChitietThanhtoan = new Janus.Windows.GridEX.GridEX();
-            this.chkCCCD = new System.Windows.Forms.CheckBox();
-            this.txtCCCD = new Janus.Windows.GridEX.EditControls.EditBox();
-            this.lblCCCDLength = new System.Windows.Forms.Label();
-            this.txtDiachi = new Janus.Windows.GridEX.EditControls.EditBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtMST = new Janus.Windows.GridEX.EditControls.EditBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtSTK = new Janus.Windows.GridEX.EditControls.EditBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.chkFullName = new System.Windows.Forms.CheckBox();
+            this.grbUpdateInvoice = new System.Windows.Forms.GroupBox();
+            this.txtTransactionID = new Janus.Windows.GridEX.EditControls.EditBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtRefId = new Janus.Windows.GridEX.EditControls.EditBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtSerie = new Janus.Windows.GridEX.EditControls.EditBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.cmdUpdateInvoice = new Janus.Windows.EditControls.UIButton();
             this.panel1.SuspendLayout();
             this.grbThongtinHoadon.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdChitietThanhtoan)).BeginInit();
+            this.grbUpdateInvoice.SuspendLayout();
             this.SuspendLayout();
             // 
             // txthovaten
@@ -182,7 +191,7 @@
             this.txtEmail.Enabled = false;
             this.txtEmail.Font = new System.Drawing.Font("Arial", 10F);
             this.txtEmail.Location = new System.Drawing.Point(119, 53);
-            this.txtEmail.MaxLength = 500;
+            this.txtEmail.MaxLength = 255;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtEmail.Size = new System.Drawing.Size(419, 23);
@@ -201,10 +210,10 @@
             // 
             // lblTitle2
             // 
-            this.lblTitle2.BackColor = System.Drawing.Color.Cornsilk;
+            this.lblTitle2.BackColor = System.Drawing.Color.Teal;
             this.lblTitle2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblTitle2.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle2.ForeColor = System.Drawing.Color.Black;
+            this.lblTitle2.ForeColor = System.Drawing.Color.White;
             this.lblTitle2.Location = new System.Drawing.Point(65, 0);
             this.lblTitle2.Name = "lblTitle2";
             this.lblTitle2.Size = new System.Drawing.Size(1197, 63);
@@ -303,6 +312,113 @@
             this.grbThongtinHoadon.TabIndex = 631;
             this.grbThongtinHoadon.TabStop = false;
             this.grbThongtinHoadon.Text = "Thông tin hóa đơn";
+            // 
+            // chkFullName
+            // 
+            this.chkFullName.Checked = true;
+            this.chkFullName.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkFullName.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkFullName.ForeColor = System.Drawing.Color.Navy;
+            this.chkFullName.Location = new System.Drawing.Point(3, 103);
+            this.chkFullName.Name = "chkFullName";
+            this.chkFullName.Size = new System.Drawing.Size(133, 24);
+            this.chkFullName.TabIndex = 634;
+            this.chkFullName.Tag = "";
+            this.chkFullName.Text = "Họ tên người mua";
+            this.chkFullName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkFullName.UseVisualStyleBackColor = true;
+            // 
+            // txtSTK
+            // 
+            this.txtSTK.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSTK.Location = new System.Drawing.Point(386, 186);
+            this.txtSTK.MaxLength = 255;
+            this.txtSTK.Name = "txtSTK";
+            this.txtSTK.Size = new System.Drawing.Size(152, 21);
+            this.txtSTK.TabIndex = 6;
+            this.txtSTK.Visible = false;
+            // 
+            // label11
+            // 
+            this.label11.ForeColor = System.Drawing.Color.Navy;
+            this.label11.Location = new System.Drawing.Point(281, 187);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(99, 19);
+            this.label11.TabIndex = 633;
+            this.label11.Text = "Số tài khoản:";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label11.Visible = false;
+            // 
+            // txtMST
+            // 
+            this.txtMST.Font = new System.Drawing.Font("Arial", 10F);
+            this.txtMST.Location = new System.Drawing.Point(139, 181);
+            this.txtMST.MaxLength = 255;
+            this.txtMST.Name = "txtMST";
+            this.txtMST.Size = new System.Drawing.Size(132, 23);
+            this.txtMST.TabIndex = 5;
+            // 
+            // label6
+            // 
+            this.label6.ForeColor = System.Drawing.Color.Navy;
+            this.label6.Location = new System.Drawing.Point(0, 182);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(133, 19);
+            this.label6.TabIndex = 631;
+            this.label6.Text = "MST:";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtDiachi
+            // 
+            this.txtDiachi.Font = new System.Drawing.Font("Arial", 10F);
+            this.txtDiachi.Location = new System.Drawing.Point(139, 157);
+            this.txtDiachi.MaxLength = 255;
+            this.txtDiachi.Name = "txtDiachi";
+            this.txtDiachi.Size = new System.Drawing.Size(399, 23);
+            this.txtDiachi.TabIndex = 4;
+            // 
+            // label5
+            // 
+            this.label5.ForeColor = System.Drawing.Color.Navy;
+            this.label5.Location = new System.Drawing.Point(0, 158);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(133, 19);
+            this.label5.TabIndex = 629;
+            this.label5.Text = "Địa chỉ:";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblCCCDLength
+            // 
+            this.lblCCCDLength.AutoSize = true;
+            this.lblCCCDLength.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCCCDLength.ForeColor = System.Drawing.Color.Navy;
+            this.lblCCCDLength.Location = new System.Drawing.Point(277, 213);
+            this.lblCCCDLength.Name = "lblCCCDLength";
+            this.lblCCCDLength.Size = new System.Drawing.Size(0, 19);
+            this.lblCCCDLength.TabIndex = 627;
+            // 
+            // txtCCCD
+            // 
+            this.txtCCCD.Font = new System.Drawing.Font("Arial", 10F);
+            this.txtCCCD.Location = new System.Drawing.Point(139, 210);
+            this.txtCCCD.MaxLength = 15;
+            this.txtCCCD.Name = "txtCCCD";
+            this.txtCCCD.Size = new System.Drawing.Size(132, 23);
+            this.txtCCCD.TabIndex = 9;
+            // 
+            // chkCCCD
+            // 
+            this.chkCCCD.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.chkCCCD.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkCCCD.ForeColor = System.Drawing.Color.Navy;
+            this.chkCCCD.Location = new System.Drawing.Point(29, 209);
+            this.chkCCCD.Name = "chkCCCD";
+            this.chkCCCD.Size = new System.Drawing.Size(104, 24);
+            this.chkCCCD.TabIndex = 9;
+            this.chkCCCD.Tag = "";
+            this.chkCCCD.Text = "CCCD:";
+            this.chkCCCD.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkCCCD.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
@@ -449,6 +565,7 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.grbUpdateInvoice);
             this.panel3.Controls.Add(this.groupBox1);
             this.panel3.Controls.Add(this.grbThongtinHoadon);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
@@ -502,112 +619,92 @@
             this.grdChitietThanhtoan.TotalRowPosition = Janus.Windows.GridEX.TotalRowPosition.BottomFixed;
             this.grdChitietThanhtoan.UseGroupRowSelector = true;
             // 
-            // chkCCCD
+            // grbUpdateInvoice
             // 
-            this.chkCCCD.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.chkCCCD.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkCCCD.ForeColor = System.Drawing.Color.Navy;
-            this.chkCCCD.Location = new System.Drawing.Point(29, 209);
-            this.chkCCCD.Name = "chkCCCD";
-            this.chkCCCD.Size = new System.Drawing.Size(104, 24);
-            this.chkCCCD.TabIndex = 9;
-            this.chkCCCD.Tag = "";
-            this.chkCCCD.Text = "CCCD:";
-            this.chkCCCD.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.chkCCCD.UseVisualStyleBackColor = true;
+            this.grbUpdateInvoice.Controls.Add(this.cmdUpdateInvoice);
+            this.grbUpdateInvoice.Controls.Add(this.txtSerie);
+            this.grbUpdateInvoice.Controls.Add(this.label13);
+            this.grbUpdateInvoice.Controls.Add(this.txtRefId);
+            this.grbUpdateInvoice.Controls.Add(this.label12);
+            this.grbUpdateInvoice.Controls.Add(this.txtTransactionID);
+            this.grbUpdateInvoice.Controls.Add(this.label2);
+            this.grbUpdateInvoice.Dock = System.Windows.Forms.DockStyle.Top;
+            this.grbUpdateInvoice.Location = new System.Drawing.Point(0, 468);
+            this.grbUpdateInvoice.Name = "grbUpdateInvoice";
+            this.grbUpdateInvoice.Size = new System.Drawing.Size(547, 143);
+            this.grbUpdateInvoice.TabIndex = 633;
+            this.grbUpdateInvoice.TabStop = false;
+            this.grbUpdateInvoice.Text = "Cập nhật hóa đơn cho chứng từ";
             // 
-            // txtCCCD
+            // txtTransactionID
             // 
-            this.txtCCCD.Font = new System.Drawing.Font("Arial", 10F);
-            this.txtCCCD.Location = new System.Drawing.Point(139, 210);
-            this.txtCCCD.MaxLength = 15;
-            this.txtCCCD.Name = "txtCCCD";
-            this.txtCCCD.Size = new System.Drawing.Size(132, 23);
-            this.txtCCCD.TabIndex = 9;
+            this.txtTransactionID.Font = new System.Drawing.Font("Arial", 10F);
+            this.txtTransactionID.Location = new System.Drawing.Point(119, 20);
+            this.txtTransactionID.MaxLength = 255;
+            this.txtTransactionID.Name = "txtTransactionID";
+            this.txtTransactionID.Size = new System.Drawing.Size(419, 23);
+            this.txtTransactionID.TabIndex = 632;
             // 
-            // lblCCCDLength
+            // label2
             // 
-            this.lblCCCDLength.AutoSize = true;
-            this.lblCCCDLength.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCCCDLength.ForeColor = System.Drawing.Color.Navy;
-            this.lblCCCDLength.Location = new System.Drawing.Point(277, 213);
-            this.lblCCCDLength.Name = "lblCCCDLength";
-            this.lblCCCDLength.Size = new System.Drawing.Size(0, 19);
-            this.lblCCCDLength.TabIndex = 627;
+            this.label2.ForeColor = System.Drawing.Color.Navy;
+            this.label2.Location = new System.Drawing.Point(14, 20);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(99, 19);
+            this.label2.TabIndex = 633;
+            this.label2.Text = "Mã tra cứu";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // txtDiachi
+            // txtRefId
             // 
-            this.txtDiachi.Font = new System.Drawing.Font("Arial", 10F);
-            this.txtDiachi.Location = new System.Drawing.Point(139, 157);
-            this.txtDiachi.MaxLength = 255;
-            this.txtDiachi.Name = "txtDiachi";
-            this.txtDiachi.Size = new System.Drawing.Size(399, 23);
-            this.txtDiachi.TabIndex = 4;
+            this.txtRefId.Font = new System.Drawing.Font("Arial", 10F);
+            this.txtRefId.Location = new System.Drawing.Point(119, 49);
+            this.txtRefId.MaxLength = 255;
+            this.txtRefId.Name = "txtRefId";
+            this.txtRefId.Size = new System.Drawing.Size(419, 23);
+            this.txtRefId.TabIndex = 634;
             // 
-            // label5
+            // label12
             // 
-            this.label5.ForeColor = System.Drawing.Color.Navy;
-            this.label5.Location = new System.Drawing.Point(0, 158);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(133, 19);
-            this.label5.TabIndex = 629;
-            this.label5.Text = "Địa chỉ:";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label12.ForeColor = System.Drawing.Color.Navy;
+            this.label12.Location = new System.Drawing.Point(14, 49);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(99, 19);
+            this.label12.TabIndex = 635;
+            this.label12.Text = "RefID";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // txtMST
+            // txtSerie
             // 
-            this.txtMST.Font = new System.Drawing.Font("Arial", 10F);
-            this.txtMST.Location = new System.Drawing.Point(139, 181);
-            this.txtMST.MaxLength = 255;
-            this.txtMST.Name = "txtMST";
-            this.txtMST.Size = new System.Drawing.Size(132, 23);
-            this.txtMST.TabIndex = 5;
+            this.txtSerie.Font = new System.Drawing.Font("Arial", 10F);
+            this.txtSerie.Location = new System.Drawing.Point(119, 78);
+            this.txtSerie.MaxLength = 255;
+            this.txtSerie.Name = "txtSerie";
+            this.txtSerie.Size = new System.Drawing.Size(419, 23);
+            this.txtSerie.TabIndex = 636;
             // 
-            // label6
+            // label13
             // 
-            this.label6.ForeColor = System.Drawing.Color.Navy;
-            this.label6.Location = new System.Drawing.Point(0, 182);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(133, 19);
-            this.label6.TabIndex = 631;
-            this.label6.Text = "MST:";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label13.ForeColor = System.Drawing.Color.Navy;
+            this.label13.Location = new System.Drawing.Point(14, 79);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(99, 19);
+            this.label13.TabIndex = 637;
+            this.label13.Text = "Số hóa đơn";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // txtSTK
+            // cmdUpdateInvoice
             // 
-            this.txtSTK.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSTK.Location = new System.Drawing.Point(386, 186);
-            this.txtSTK.MaxLength = 255;
-            this.txtSTK.Name = "txtSTK";
-            this.txtSTK.Size = new System.Drawing.Size(152, 21);
-            this.txtSTK.TabIndex = 6;
-            this.txtSTK.Visible = false;
-            // 
-            // label11
-            // 
-            this.label11.ForeColor = System.Drawing.Color.Navy;
-            this.label11.Location = new System.Drawing.Point(281, 187);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(99, 19);
-            this.label11.TabIndex = 633;
-            this.label11.Text = "Số tài khoản:";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label11.Visible = false;
-            // 
-            // chkFullName
-            // 
-            this.chkFullName.Checked = true;
-            this.chkFullName.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkFullName.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkFullName.ForeColor = System.Drawing.Color.Navy;
-            this.chkFullName.Location = new System.Drawing.Point(3, 103);
-            this.chkFullName.Name = "chkFullName";
-            this.chkFullName.Size = new System.Drawing.Size(133, 24);
-            this.chkFullName.TabIndex = 634;
-            this.chkFullName.Tag = "";
-            this.chkFullName.Text = "Họ tên người mua";
-            this.chkFullName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.chkFullName.UseVisualStyleBackColor = true;
+            this.cmdUpdateInvoice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmdUpdateInvoice.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmdUpdateInvoice.Image = ((System.Drawing.Image)(resources.GetObject("cmdUpdateInvoice.Image")));
+            this.cmdUpdateInvoice.ImageSize = new System.Drawing.Size(24, 24);
+            this.cmdUpdateInvoice.Location = new System.Drawing.Point(119, 104);
+            this.cmdUpdateInvoice.Name = "cmdUpdateInvoice";
+            this.cmdUpdateInvoice.Size = new System.Drawing.Size(158, 33);
+            this.cmdUpdateInvoice.TabIndex = 638;
+            this.cmdUpdateInvoice.Text = "Cập nhật thông tin";
+            this.cmdUpdateInvoice.Click += new System.EventHandler(this.cmdUpdateInvoice_Click);
             // 
             // frm_thongtin_khachhang_riengle_detail
             // 
@@ -634,6 +731,8 @@
             this.panel3.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdChitietThanhtoan)).EndInit();
+            this.grbUpdateInvoice.ResumeLayout(false);
+            this.grbUpdateInvoice.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -684,5 +783,13 @@
         private Janus.Windows.GridEX.EditControls.EditBox txtDiachi;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.CheckBox chkFullName;
+        private System.Windows.Forms.GroupBox grbUpdateInvoice;
+        private Janus.Windows.GridEX.EditControls.EditBox txtRefId;
+        private System.Windows.Forms.Label label12;
+        private Janus.Windows.GridEX.EditControls.EditBox txtTransactionID;
+        private System.Windows.Forms.Label label2;
+        private Janus.Windows.GridEX.EditControls.EditBox txtSerie;
+        private System.Windows.Forms.Label label13;
+        private Janus.Windows.EditControls.UIButton cmdUpdateInvoice;
     }
 }

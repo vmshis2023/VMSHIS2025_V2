@@ -453,7 +453,7 @@ namespace VMS.HIS.UI.EMR
                     dtpBatdauthaykinhnam.Text = Utility.sDbnull(objTspk.BaTsspkBatdauthaykinhNam);
                     nmrBatdauthaykinhtuoi.Text = Utility.sDbnull(objTspk.BaTsspkBatdauthaykinhTuoi);
                     txt_tinhchatkinhnguyet.Text = Utility.sDbnull(objTspk.BaTsspkTinhchatkinhnguyet);
-                    txt_chuky.Text = Utility.sDbnull(objTspk.BaTsspkChuky);
+                    txt_chuky.Text = Utility.sDbnull(objTspk.BaTsspkChukykinhnguyet);
                     txt_songaythaykinh.Text = Utility.sDbnull(objTspk.BaTsspkSongaythaykinh);
                     txt_luongkinh.Text = Utility.sDbnull(objTspk.BaTsspkLuongkinh);
                     if (objTspk.BaTsspkKinhlancuoingay.HasValue)
@@ -761,7 +761,7 @@ namespace VMS.HIS.UI.EMR
             objTspk.BaTsspkBatdauthaykinhNam = Utility.Int16Dbnull( dtpBatdauthaykinhnam.Text);
             objTspk.BaTsspkBatdauthaykinhTuoi = Utility.Int16Dbnull( nmrBatdauthaykinhtuoi.Value);
             objTspk.BaTsspkTinhchatkinhnguyet = Utility.sDbnull(txt_tinhchatkinhnguyet.Text);
-            objTspk.BaTsspkChuky = Utility.Int16Dbnull(txt_chuky.Text);
+            objTspk.BaTsspkChukykinhnguyet = Utility.Int16Dbnull(txt_chuky.Text);
             objTspk.BaTsspkSongaythaykinh = Utility.Int16Dbnull(txt_songaythaykinh.Text);
             objTspk.BaTsspkLuongkinh = Utility.sDbnull(txt_luongkinh.Text);
             objTspk.BaTsspkKinhlancuoingay = dtpKinhlancuoingay.Value;

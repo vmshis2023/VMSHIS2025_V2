@@ -52,11 +52,11 @@ namespace VNS.HIS.BusRule.Classes
         /// <param name="id_donthuoc">phục vụ mục đích in tách phiếu xuất thuốc của biên lai thanh toán cho >=2 đơn thuốc nhưng yêu cầu in biên lai tại quầy thuốc phải tách theo từng đơn, từng kho</param>
         /// <param name="noitru"></param>
         /// <returns></returns>
-        public DataTable LaythongtininbienlaiDichvu(KcbThanhtoan objThanhtoan,long id_donthuoc, byte noitru)
+        public DataTable LaythongtininbienlaiDichvu(KcbThanhtoan objThanhtoan,long id_donthuoc, byte noitru,byte boqua_cacdichvu_tralai)
         {
             return
                 SPs.KcbThanhtoanLaythongtinInbienlaiDv2023(objThanhtoan.IdThanhtoan, id_donthuoc,objThanhtoan.MaLuotkham,
-                    objThanhtoan.IdBenhnhan, noitru).GetDataSet().Tables[0];
+                    objThanhtoan.IdBenhnhan, noitru, boqua_cacdichvu_tralai).GetDataSet().Tables[0];
         }
         public DataTable LaythongtininbienlaiDichvu_PhieuChi_Quaythuoc(KcbThanhtoan objThanhtoan, byte noitru)
         {

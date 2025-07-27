@@ -2899,33 +2899,33 @@ namespace VNS.HIS.UI.NGOAITRU
                 //   yourString = yourString + this.txtCachDung.Text + " ";
                 if (Utility.Int16Dbnull(txtsang.Text,0)>0)
                 {
-                    yourString = "Sáng " + txtsang.Text.Trim() + " " + txtDonViDung.Text;
+                    yourString = "Sáng " + txtsang.Text.Trim() + " " + txtDonViTinh.Text;
                 }
                 if (Utility.Int16Dbnull(txttrua.Text,0)>0)
                 {
                     if (!string.IsNullOrEmpty(yourString))
-                        yourString += ", Trưa " + txttrua.Text.Trim() + " " + txtDonViDung.Text;
+                        yourString += ", Trưa " + txttrua.Text.Trim() + " " + txtDonViTinh.Text;
                     else
-                        yourString += "Trưa " + txttrua.Text.Trim() + " " + txtDonViDung.Text;
+                        yourString += "Trưa " + txttrua.Text.Trim() + " " + txtDonViTinh.Text;
                 }
                 if (Utility.Int16Dbnull(txtchieu.Text,0)>0)
                 {
                     if (!string.IsNullOrEmpty(yourString))
-                        yourString += ", Chiều " + txtchieu.Text.Trim() + " " + txtDonViDung.Text;
+                        yourString += ", Chiều " + txtchieu.Text.Trim() + " " + txtDonViTinh.Text;
                     else
-                        yourString += "Chiều " + txtchieu.Text.Trim() + " " + txtDonViDung.Text;
+                        yourString += "Chiều " + txtchieu.Text.Trim() + " " + txtDonViTinh.Text;
                 }
                 if (Utility.Int16Dbnull(txttoi.Text,0)>0)
                 {
                     if (!string.IsNullOrEmpty(yourString))
-                        yourString += ", Tối " + txtsang.Text.Trim() + " " + txtDonViDung.Text;
-                    else yourString += "Tối " + txtsang.Text.Trim() + " " + txtDonViDung.Text;
+                        yourString += ", Tối " + txtsang.Text.Trim() + " " + txtDonViTinh.Text;
+                    else yourString += "Tối " + txtsang.Text.Trim() + " " + txtDonViTinh.Text;
                 }
                 if (!string.IsNullOrEmpty(txtCachDung.Text))
                 {
                     if (!string.IsNullOrEmpty(yourString))
-                        yourString += ", " + txtCachDung.Text.Trim() + " " + txtDonViDung.Text;
-                    else yourString +=  txtCachDung.Text.Trim() + " " + txtDonViDung.Text;
+                        yourString += ", " + txtCachDung.Text.Trim() + " " + txtDonViTinh.Text;
+                    else yourString +=  txtCachDung.Text.Trim() + " " + txtDonViTinh.Text;
                 }
                 //if (!string.IsNullOrEmpty(this.txtChiDanThem.Text))
                 //{

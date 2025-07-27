@@ -31,6 +31,7 @@ namespace VMS.HIS.UI.EMR
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_BenhAn_PhuKhoa));
             Janus.Windows.GridEX.GridEXLayout grdQLNBKhoa_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.GridEX.GridEXLayout grdPTTT_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
@@ -373,10 +374,10 @@ namespace VMS.HIS.UI.EMR
             this.txtTKBAQuaTrinhBenhLy = new System.Windows.Forms.RichTextBox();
             this.label102 = new System.Windows.Forms.Label();
             this.label241 = new System.Windows.Forms.Label();
-            this.contextBn = new System.Windows.Forms.ContextMenuStrip();
+            this.contextBn = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cmdUpdateBNToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.timer1 = new System.Windows.Forms.Timer();
-            this.ctxIn = new System.Windows.Forms.ContextMenuStrip();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.ctxIn = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuInVoBA = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuInTomtatBA = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
@@ -2160,7 +2161,6 @@ namespace VMS.HIS.UI.EMR
             this.pTo2.Controls.Add(this.label52);
             this.pTo2.Controls.Add(this.label53);
             this.pTo2.Controls.Add(this.txtBenhAnQuaTrinhBenhLy);
-            this.pTo2.Controls.Add(this.label54);
             this.pTo2.Controls.Add(this.label55);
             this.pTo2.Controls.Add(this.label56);
             this.pTo2.Controls.Add(this.txtBenhAnVaoNgayThu);
@@ -2172,6 +2172,7 @@ namespace VMS.HIS.UI.EMR
             this.pTo2.Controls.Add(this.cmdLaythongtinPhieunhapvien);
             this.pTo2.Controls.Add(this.txtBacsiKham);
             this.pTo2.Controls.Add(this.txtBenhAnLyDoNhapVien);
+            this.pTo2.Controls.Add(this.label54);
             this.pTo2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pTo2.Location = new System.Drawing.Point(0, 0);
             this.pTo2.Name = "pTo2";
@@ -3186,7 +3187,7 @@ namespace VMS.HIS.UI.EMR
             this.label55.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label55.Location = new System.Drawing.Point(14, 55);
             this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(145, 21);
+            this.label55.Size = new System.Drawing.Size(145, 24);
             this.label55.TabIndex = 23;
             this.label55.Text = "1. Quá trình bệnh lý:";
             // 

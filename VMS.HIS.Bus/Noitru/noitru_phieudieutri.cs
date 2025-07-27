@@ -152,8 +152,8 @@ namespace VNS.HIS.BusRule.Classes
                     objDonthuoc.IpMaytao = globalVariables.gv_strIPAddress;
                     objDonthuoc.TenMaytao = globalVariables.gv_strComputerName;
                     objDonthuoc.IsNew = true;
-                   
-                    var sp = SPs.SpKcbThemmoiDonthuoc(objDonthuoc.IdDonthuoc, objDonthuoc.IdPhieudieutri, objDonthuoc.IdKhoadieutri, objDonthuoc.IdDonthuocthaythe, objDonthuoc.IdKham
+                    objDonthuoc.MaDonthuoc = THU_VIEN_CHUNG.TaoMaDonThuoc(objDonthuoc.NgayKedon);
+                    var sp = SPs.SpKcbThemmoiDonthuoc(objDonthuoc.IdDonthuoc, objDonthuoc.MaDonthuoc , objDonthuoc.IdPhieudieutri, objDonthuoc.IdKhoadieutri, objDonthuoc.IdDonthuocthaythe, objDonthuoc.IdKham
                         , objDonthuoc.IdBenhnhan, objDonthuoc.MaLuotkham, objDonthuoc.NgayKedon, objDonthuoc.IdBacsiChidinh, objDonthuoc.TrangThai, objDonthuoc.TthaiTonghop
                         , objDonthuoc.TrangthaiThanhtoan, objDonthuoc.NgayThanhtoan, objDonthuoc.IdGoi, objDonthuoc.TrongGoi, objDonthuoc.NguoiTao, objDonthuoc.NgayTao
                         , objDonthuoc.MotaThem, objDonthuoc.TenDonthuoc, objDonthuoc.MaDoituongKcb, objDonthuoc.Noitru, objDonthuoc.KieuDonthuoc, objDonthuoc.IdPhongkham

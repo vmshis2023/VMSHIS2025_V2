@@ -38,6 +38,7 @@ using System.Threading;
 using VMS.HIS.Danhmuc;
 using Aspose.Words;
 using System.Transactions;
+using VMS.HIS.Bus.Emr;
 
 namespace VNS.HIS.UI.NOITRU
 {
@@ -176,9 +177,9 @@ namespace VNS.HIS.UI.NOITRU
             grdAssignDetail.CellUpdated += grdAssignDetail_CellUpdated;
             grdAssignDetail.SelectionChanged+=new EventHandler(grdAssignDetail_SelectionChanged);
             
-            cmdInsertAssign.Click+=new EventHandler(cmdInsertAssign_Click);
-            cmdUpdate.Click+=new EventHandler(cmdUpdate_Click);
-            cmdDelteAssign.Click+=new EventHandler(cmdDelteAssign_Click);
+            cmd_themphieuchidinhCLS.Click+=new EventHandler(cmdInsertAssign_Click);
+            cmd_suaphieuchidinhCLS.Click+=new EventHandler(cmdUpdate_Click);
+            cmd_xoaphieuchidinhCLS.Click+=new EventHandler(cmdDelteAssign_Click);
             cboLaserPrinters.SelectedIndexChanged+=new EventHandler(cboLaserPrinters_SelectedIndexChanged);
             //cmdPrintAssign.Click+=new EventHandler(cmdPrintAssign_Click);
 
@@ -190,7 +191,7 @@ namespace VNS.HIS.UI.NOITRU
            // cmdIndonthuoc.Click += new EventHandler(cmdPrintPres_Click);
 
             mnuDelDrug.Click+=new EventHandler(mnuDelDrug_Click);
-            mnuDeleteCLS.Click+=new EventHandler(mnuDeleteCLS_Click);
+            mnu_xoachidinhCLS.Click+=new EventHandler(mnuDeleteCLS_Click);
 
             
             cmdThamkhamConfig.Click += new EventHandler(cmdThamkhamConfig_Click);
@@ -278,6 +279,13 @@ namespace VNS.HIS.UI.NOITRU
             txtCanhbao.LostFocus += txtCanhbao_LostFocus;
             txtCanhbao.GotFocus += txtCanhbao_GotFocus;
             grdDonthuocravien.UpdatingCell += grdDonthuocravien_UpdatingCell;
+            grdPhieudieutri.MouseDoubleClick += GrdPhieudieutri_MouseDoubleClick;
+        }
+
+        private void GrdPhieudieutri_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (!Utility.isValidGrid(grdPhieudieutri)) return;
+            cmdSuaphieudieutri.PerformClick();
         }
 
         void grdDonthuocravien_UpdatingCell(object sender, UpdatingCellEventArgs e)
@@ -1570,7 +1578,7 @@ namespace VNS.HIS.UI.NOITRU
             {
                 if (CheckDachuyenkhoa()) return;
                 if (!CheckPatientSelected()) return;
-                if (!cmdInsertAssign.Enabled) return;
+                if (!cmd_themphieuchidinhCLS.Enabled) return;
                 frm_KCB_CHIDINH_CLS frm = new frm_KCB_CHIDINH_CLS("GOI", 1);
                 frm.txtAssign_ID.Text = "-100";
                 frm.Exam_ID = -1;
@@ -2639,7 +2647,7 @@ namespace VNS.HIS.UI.NOITRU
                 cmdInPhieutruyendich.Visible =objLuotkham!=null && objPhieudieutri!=null && Utility.isValidGrid(grdPresDetail) && hasPTD.Any();
                 cmdDeletePres.Enabled = cmdUpdatePres.Enabled = !isReadOnly && objLuotkham != null && grdPresDetail.RowCount > 0 && objPhieudieutri != null;// && IsValidCommon();
                 cmdSuadonthuocravien.Enabled = cmdXoadonthuocravien.Enabled = !isReadOnly && objLuotkham != null && grdDonthuocravien.RowCount > 0 && objPhieudieutri != null && RowThuocRavien!=null;// && IsValidCommon();
-                cmdConfirm.Enabled = cmdUpdate.Enabled = cmdDelteAssign.Enabled = !isReadOnly && objLuotkham != null && grdAssignDetail.RowCount > 0 && objPhieudieutri != null && objLuotkham.TrangthaiNoitru < 3; // && IsValidCommon();
+                cmdConfirm.Enabled = cmd_suaphieuchidinhCLS.Enabled = cmd_xoaphieuchidinhCLS.Enabled = !isReadOnly && objLuotkham != null && grdAssignDetail.RowCount > 0 && objPhieudieutri != null && objLuotkham.TrangthaiNoitru < 3; // && IsValidCommon();
                 cmdViewPDF.Enabled = objLuotkham != null && grdAssignDetail.RowCount > 0 && objPhieudieutri != null;
                 cmdSuagoiDV.Enabled = cmdXoagoiDV.Enabled = !isReadOnly && objLuotkham != null && Utility.isValidGrid(grdGoidichvu) && (noitruHienthiGoidichvuTheophieudieutri == "0" || (noitruHienthiGoidichvuTheophieudieutri == "1" && objPhieudieutri != null)) && objLuotkham.TrangthaiNoitru < 3;
                 cmdSuaphieuVT_tronggoi.Enabled = cmdXoaphieuVT_tronggoi.Enabled
@@ -2654,7 +2662,7 @@ namespace VNS.HIS.UI.NOITRU
                 //0=Ngoại trú;1=Nội trú;2=Đã điều trị(Lập phiếu);3=Đã tổng hợp chờ ra viện;4=Ra viện
                 if (objLuotkham != null && objLuotkham.TrangthaiNoitru >= 3)
                 {
-                    cmdThemchandoan.Enabled = cmdInsertAssign.Enabled = cmdConfirm.Enabled = cmdUpdate.Enabled = cmdDelteAssign.Enabled = cmdThemgoiDV.Enabled = cmdSuagoiDV.Enabled = cmdXoagoiDV.Enabled =
+                    cmdThemchandoan.Enabled = cmd_themphieuchidinhCLS.Enabled = cmdConfirm.Enabled = cmd_suaphieuchidinhCLS.Enabled = cmd_xoaphieuchidinhCLS.Enabled = cmdThemgoiDV.Enabled = cmdSuagoiDV.Enabled = cmdXoagoiDV.Enabled =
                                                                     cmdCreateNewPres.Enabled = cmdUpdatePres.Enabled = cmdDeletePres.Enabled =
                                                                     cmdThemdonthuocravien.Enabled = cmdSuadonthuocravien.Enabled = cmdXoadonthuocravien.Enabled =
                                                                     cmdThemphieuVT.Enabled = cmdSuaphieuVT.Enabled = cmdXoaphieuVT.Enabled = !isReadOnly && false;
@@ -2662,7 +2670,7 @@ namespace VNS.HIS.UI.NOITRU
                 else
                 {
                     cmdThemchandoan.Enabled = !isReadOnly && objLuotkham != null && (noitruHienthiChandoankcbTheophieudieutri == "0" || (noitruHienthiChandoankcbTheophieudieutri == "1" && objPhieudieutri != null)) && objLuotkham.TrangthaiNoitru < 3;
-                    cmdInsertAssign.Enabled = !isReadOnly && objLuotkham != null && objPhieudieutri != null;
+                    cmd_themphieuchidinhCLS.Enabled = !isReadOnly && objLuotkham != null && objPhieudieutri != null;
                     cmdThemgoiDV.Enabled = !isReadOnly && objLuotkham != null && (noitruHienthiGoidichvuTheophieudieutri == "0" || (noitruHienthiGoidichvuTheophieudieutri == "1" && objPhieudieutri != null)) && objLuotkham.TrangthaiNoitru < 3;
                     cmdThemphieuVT_tronggoi.Enabled = !isReadOnly && objLuotkham != null && Utility.isValidGrid(grdGoidichvu);
                     cmdThemphieuVT.Enabled = !isReadOnly && objLuotkham != null && (noitruHienthiPhieuvtthTheophieudieutri == "0" || (noitruHienthiPhieuvtthTheophieudieutri == "1" && objPhieudieutri != null)) && objLuotkham.TrangthaiNoitru < 3;
@@ -3750,6 +3758,7 @@ namespace VNS.HIS.UI.NOITRU
                
                 if (objLuotkham != null)
                 {
+                    
                     LaychidinhCLS_Ngoaitru();
                     if (id_khoasua > 0)//Nếu id khoa sửa >0 thì lấy lại bản ghi phân buồng giường gần nhất tại khoa đó để căn cứ làm phiếu điều trị, pdt bổ sung cho chuẩn. Nếu ko sẽ lấy nhầm sang khoa hiện tại
                     {
@@ -3781,6 +3790,7 @@ namespace VNS.HIS.UI.NOITRU
                     //else
                     //    flowCls.Enabled = flowCongkham.Enabled = flowGoi.Enabled = FlowGoi1.Enabled = flowThuoc.Enabled = flowVTTH.Enabled = flowPhieudieutri.Enabled = true;
                     ClearControl();
+                    LaythongtinChandoan();
                     _idDoituongKcb = objLuotkham.IdDoituongKcb;
                     _objDoituongKcb = DmucDoituongkcb.FetchByID(_idDoituongKcb);
                     Loaddanhsachcongkhamdadangki();
@@ -3845,6 +3855,21 @@ namespace VNS.HIS.UI.NOITRU
 
                 ShowResult();
             }
+        }
+        void LaythongtinChandoan()
+        {
+            try
+            {
+                string chan_doan = "";
+
+                Utility.GetChandoanHienThiFormDieuTriNoitru(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, DateTime.Now.AddYears(100), ref chan_doan,false);
+                txt_chandoan.Text = chan_doan;
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+            }
+           
         }
         DataTable m_dtTamung = null;
         DataTable m_dtPhieudieutri = null;
@@ -3954,9 +3979,9 @@ namespace VNS.HIS.UI.NOITRU
             cmdIndonthuoc.Enabled = grdPresDetail.RowCount > 0 && !string.IsNullOrEmpty(malankham);
             ctxDelDrug.Enabled = cmdUpdatePres.Enabled;
            
-            cmdInsertAssign.Enabled = !Utility.isTrue(lockstatus);
-            cmdUpdate.Enabled = grdAssignDetail.RowCount > 0 && !Utility.isTrue(lockstatus);
-            cmdDelteAssign.Enabled = grdAssignDetail.RowCount > 0 && !Utility.isTrue(lockstatus);
+            cmd_themphieuchidinhCLS.Enabled = !Utility.isTrue(lockstatus);
+            cmd_suaphieuchidinhCLS.Enabled = grdAssignDetail.RowCount > 0 && !Utility.isTrue(lockstatus);
+            cmd_xoaphieuchidinhCLS.Enabled = grdAssignDetail.RowCount > 0 && !Utility.isTrue(lockstatus);
             cmdPrintAssign.Enabled = grdAssignDetail.RowCount > 0 && !string.IsNullOrEmpty(malankham);
             chkIntach.Enabled = cmdPrintAssign.Enabled;
             cboServicePrint.Enabled = cmdPrintAssign.Enabled;
@@ -4132,13 +4157,13 @@ namespace VNS.HIS.UI.NOITRU
                 tabDiagInfo.SelectedTab = tabPageChiDinhCLS;
                 if (grdAssignDetail.RowCount <= 0)
                 {
-                    cmdInsertAssign.Focus();
-                    cmdInsertAssign_Click(cmdInsertAssign, new EventArgs());
+                    cmd_themphieuchidinhCLS.Focus();
+                    cmdInsertAssign_Click(cmd_themphieuchidinhCLS, new EventArgs());
                 }
                 else
                 {
-                    cmdUpdate.Focus();
-                    cmdUpdate_Click(cmdUpdate, new EventArgs());
+                    cmd_suaphieuchidinhCLS.Focus();
+                    cmdUpdate_Click(cmd_suaphieuchidinhCLS, new EventArgs());
                 }
             }
 
@@ -4167,7 +4192,7 @@ namespace VNS.HIS.UI.NOITRU
                 if (tabDiagInfo.SelectedTab == tabPageChidinhThuoc)
                     cmdCreateNewPres_Click(cmdCreateNewPres, new EventArgs());
                 else
-                    cmdInsertAssign_Click(cmdInsertAssign, new EventArgs());
+                    cmdInsertAssign_Click(cmd_themphieuchidinhCLS, new EventArgs());
             }
 
         }
@@ -4828,6 +4853,8 @@ namespace VNS.HIS.UI.NOITRU
 
         private void mnuDeleteCLS_Click(object sender, EventArgs e)
         {
+            int idChidinh = Utility.Int32Dbnull(Utility.getCellValuefromGridEXRow(RowCLS, KcbChidinhclsChitiet.Columns.IdChidinh), -1);
+            if (EmrDocuments.KiemtratrangthaiKyphieu(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, Utility.Int64Dbnull(idChidinh, -1), Loaiphieu_HIS.PHIEUCHIDINH, Loaiphieu_HIS.PHIEUCHIDINH)) return;
             if (!InValiSelectedCLS()) return;
             PerforActionDeleteSelectedCLS();
             ModifyCommmands();
@@ -4987,6 +5014,8 @@ namespace VNS.HIS.UI.NOITRU
         /// <param name="e"></param>
         private void cmdDelteAssign_Click(object sender, EventArgs e)
         {
+            int idChidinh = Utility.Int32Dbnull(Utility.getCellValuefromGridEXRow(RowCLS, KcbChidinhclsChitiet.Columns.IdChidinh), -1);
+            if (EmrDocuments.KiemtratrangthaiKyphieu(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, Utility.Int64Dbnull(idChidinh, -1), Loaiphieu_HIS.PHIEUCHIDINH, Loaiphieu_HIS.PHIEUCHIDINH)) return;
             if (CheckDachuyenkhoa()) return;
             if (!IsValidChidinhCLS()) return;
             PerforActionDeleteAssign();
@@ -5157,7 +5186,7 @@ namespace VNS.HIS.UI.NOITRU
             if (sqlQuery.GetRecordCount() > 0)
             {
                 Utility.ShowMsg("Phiếu này đã thanh toán, Mời bạn thêm phiếu mới để thực hiện", "Thông báo");
-                cmdInsertAssign.Focus();
+                cmd_themphieuchidinhCLS.Focus();
                 return false;
             }
 
@@ -5168,7 +5197,7 @@ namespace VNS.HIS.UI.NOITRU
             if (sqlQueryKq.GetRecordCount() > 0)
             {
                 Utility.ShowMsg("Phiếu này đã có kết quả, Mời bạn Thêm phiếu mới để thực hiện", "Thông báo");
-                cmdInsertAssign.Focus();
+                cmd_themphieuchidinhCLS.Focus();
                 return false;
             }
 
@@ -5185,6 +5214,8 @@ namespace VNS.HIS.UI.NOITRU
         {
             try
             {
+                int idChidinh = Utility.Int32Dbnull(Utility.getCellValuefromGridEXRow(RowCLS, KcbChidinhclsChitiet.Columns.IdChidinh), -1);
+                if (EmrDocuments.KiemtratrangthaiKyphieu(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, Utility.Int64Dbnull(idChidinh, -1), Loaiphieu_HIS.PHIEUCHIDINH, Loaiphieu_HIS.PHIEUCHIDINH)) return;
                 if (CheckDachuyenkhoa()) return;
                 if (!CheckPatientSelected()) return;
                 if (!InValiUpdateChiDinh()) return;
@@ -5239,7 +5270,7 @@ namespace VNS.HIS.UI.NOITRU
             {
                 if (CheckDachuyenkhoa()) return;
                 if (!CheckPatientSelected()) return;
-                if (!cmdInsertAssign.Enabled) return;
+                if (!cmd_themphieuchidinhCLS.Enabled) return;
                 frm_KCB_CHIDINH_CLS frm = new frm_KCB_CHIDINH_CLS("-GOI,-TIEN,-CHIPHITHEM", 0);
                 frm.txtAssign_ID.Text = "-100";
                 frm.Exam_ID =-1;
@@ -8178,6 +8209,10 @@ namespace VNS.HIS.UI.NOITRU
 
         private void mnuICD_Click(object sender, EventArgs e)
         {
+            ShowChandoan();
+        }
+        void ShowChandoan()
+        {
             if (objLuotkham != null && objLuotkham.TrangthaiNoitru >= 3)
             {
                 Utility.ShowMsg("Người bệnh đã được tổng hợp làm thủ tục ra viện nên bạn không thể nhập thêm thông tin chẩn đoán");
@@ -8584,6 +8619,9 @@ namespace VNS.HIS.UI.NOITRU
           
         }
 
-        
+        private void lnkChandoan_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ShowChandoan();
+        }
     }
 }

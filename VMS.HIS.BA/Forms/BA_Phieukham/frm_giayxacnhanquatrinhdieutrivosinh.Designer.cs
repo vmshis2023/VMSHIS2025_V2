@@ -117,7 +117,7 @@ namespace VMS.HIS.UI.EMR
             // uc_tt25_giayxacnhanquatrinhdieutrivosinh1
             // 
             this.uc_tt25_giayxacnhanquatrinhdieutrivosinh1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.uc_tt25_giayxacnhanquatrinhdieutrivosinh1.Location = new System.Drawing.Point(0, 204);
+            this.uc_tt25_giayxacnhanquatrinhdieutrivosinh1.Location = new System.Drawing.Point(0, 187);
             this.uc_tt25_giayxacnhanquatrinhdieutrivosinh1.Name = "uc_tt25_giayxacnhanquatrinhdieutrivosinh1";
             this.uc_tt25_giayxacnhanquatrinhdieutrivosinh1.Size = new System.Drawing.Size(906, 414);
             this.uc_tt25_giayxacnhanquatrinhdieutrivosinh1.TabIndex = 2586;
@@ -129,7 +129,7 @@ namespace VMS.HIS.UI.EMR
             this.ucThongtinnguoibenh_emr_basic1.Dock = System.Windows.Forms.DockStyle.Top;
             this.ucThongtinnguoibenh_emr_basic1.Location = new System.Drawing.Point(0, 0);
             this.ucThongtinnguoibenh_emr_basic1.Name = "ucThongtinnguoibenh_emr_basic1";
-            this.ucThongtinnguoibenh_emr_basic1.Size = new System.Drawing.Size(906, 204);
+            this.ucThongtinnguoibenh_emr_basic1.Size = new System.Drawing.Size(906, 187);
             this.ucThongtinnguoibenh_emr_basic1.TabIndex = 2587;
             // 
             // frm_giayxacnhanquatrinhdieutrivosinh

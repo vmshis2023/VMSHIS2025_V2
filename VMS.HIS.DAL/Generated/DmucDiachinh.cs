@@ -205,6 +205,32 @@ namespace VMS.HIS.DAL
 				colvarMotaThem.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarMotaThem);
 				
+				TableSchema.TableColumn colvarTrangThai = new TableSchema.TableColumn(schema);
+				colvarTrangThai.ColumnName = "trang_thai";
+				colvarTrangThai.DataType = DbType.Boolean;
+				colvarTrangThai.MaxLength = 0;
+				colvarTrangThai.AutoIncrement = false;
+				colvarTrangThai.IsNullable = true;
+				colvarTrangThai.IsPrimaryKey = false;
+				colvarTrangThai.IsForeignKey = false;
+				colvarTrangThai.IsReadOnly = false;
+				colvarTrangThai.DefaultSetting = @"";
+				colvarTrangThai.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarTrangThai);
+				
+				TableSchema.TableColumn colvarIsNew = new TableSchema.TableColumn(schema);
+				colvarIsNew.ColumnName = "isNew";
+				colvarIsNew.DataType = DbType.Boolean;
+				colvarIsNew.MaxLength = 0;
+				colvarIsNew.AutoIncrement = false;
+				colvarIsNew.IsNullable = true;
+				colvarIsNew.IsPrimaryKey = false;
+				colvarIsNew.IsForeignKey = false;
+				colvarIsNew.IsReadOnly = false;
+				colvarIsNew.DefaultSetting = @"";
+				colvarIsNew.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarIsNew);
+				
 				BaseSchema = schema;
 				//add this schema to the provider
 				//so we can query it later
@@ -262,6 +288,22 @@ namespace VMS.HIS.DAL
 			get { return GetColumnValue<string>(Columns.MotaThem); }
 			set { SetColumnValue(Columns.MotaThem, value); }
 		}
+		  
+		[XmlAttribute("TrangThai")]
+		[Bindable(true)]
+		public bool? TrangThai 
+		{
+			get { return GetColumnValue<bool?>(Columns.TrangThai); }
+			set { SetColumnValue(Columns.TrangThai, value); }
+		}
+		  
+		[XmlAttribute("IsNew")]
+		[Bindable(true)]
+		public bool? IsNew 
+		{
+			get { return GetColumnValue<bool?>(Columns.IsNew); }
+			set { SetColumnValue(Columns.IsNew, value); }
+		}
 		
 		#endregion
 		
@@ -282,7 +324,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(string varMaDiachinh,string varTenDiachinh,string varMaCha,short? varSttHthi,byte? varLoaiDiachinh,string varMotaThem)
+		public static void Insert(string varMaDiachinh,string varTenDiachinh,string varMaCha,short? varSttHthi,byte? varLoaiDiachinh,string varMotaThem,bool? varTrangThai,bool? varIsNew)
 		{
 			DmucDiachinh item = new DmucDiachinh();
 			
@@ -298,6 +340,10 @@ namespace VMS.HIS.DAL
 			
 			item.MotaThem = varMotaThem;
 			
+			item.TrangThai = varTrangThai;
+			
+			item.IsNew = varIsNew;
+			
 		
 			if (System.Web.HttpContext.Current != null)
 				item.Save(System.Web.HttpContext.Current.User.Identity.Name);
@@ -308,7 +354,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(string varMaDiachinh,string varTenDiachinh,string varMaCha,short? varSttHthi,byte? varLoaiDiachinh,string varMotaThem)
+		public static void Update(string varMaDiachinh,string varTenDiachinh,string varMaCha,short? varSttHthi,byte? varLoaiDiachinh,string varMotaThem,bool? varTrangThai,bool? varIsNew)
 		{
 			DmucDiachinh item = new DmucDiachinh();
 			
@@ -323,6 +369,10 @@ namespace VMS.HIS.DAL
 				item.LoaiDiachinh = varLoaiDiachinh;
 			
 				item.MotaThem = varMotaThem;
+			
+				item.TrangThai = varTrangThai;
+			
+				item.IsNew = varIsNew;
 			
 			item.IsNew = false;
 			if (System.Web.HttpContext.Current != null)
@@ -379,6 +429,20 @@ namespace VMS.HIS.DAL
         
         
         
+        public static TableSchema.TableColumn TrangThaiColumn
+        {
+            get { return Schema.Columns[6]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn IsNewColumn
+        {
+            get { return Schema.Columns[7]; }
+        }
+        
+        
+        
         #endregion
 		#region Columns Struct
 		public struct Columns
@@ -389,6 +453,8 @@ namespace VMS.HIS.DAL
 			 public static string SttHthi = @"stt_hthi";
 			 public static string LoaiDiachinh = @"loai_diachinh";
 			 public static string MotaThem = @"mota_them";
+			 public static string TrangThai = @"trang_thai";
+			 public static string IsNew = @"isNew";
 						
 		}
 		#endregion

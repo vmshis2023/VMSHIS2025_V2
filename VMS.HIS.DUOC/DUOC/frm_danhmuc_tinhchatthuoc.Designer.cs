@@ -44,6 +44,7 @@
             this.Label5 = new System.Windows.Forms.Label();
             this.txtPos = new System.Windows.Forms.TextBox();
             this.GroupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkCanhbao = new System.Windows.Forms.CheckBox();
             this.txtReportCode = new System.Windows.Forms.TextBox();
             this.txtKieuthuocVT = new VNS.HIS.UCs.AutoCompleteTextbox_Danhmucchung();
             this.label7 = new System.Windows.Forms.Label();
@@ -74,7 +75,6 @@
             this.cmdDelete = new Janus.Windows.EditControls.UIButton();
             this.cmdUpdate = new Janus.Windows.EditControls.UIButton();
             this.cmdInsert = new Janus.Windows.EditControls.UIButton();
-            this.chkCanhbao = new System.Windows.Forms.CheckBox();
             this.GroupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -229,6 +229,18 @@
             this.GroupBox1.TabStop = false;
             this.GroupBox1.Text = "Thông tin chi tiết";
             // 
+            // chkCanhbao
+            // 
+            this.chkCanhbao.AutoSize = true;
+            this.chkCanhbao.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkCanhbao.Location = new System.Drawing.Point(210, 121);
+            this.chkCanhbao.Name = "chkCanhbao";
+            this.chkCanhbao.Size = new System.Drawing.Size(147, 19);
+            this.chkCanhbao.TabIndex = 506;
+            this.chkCanhbao.TabStop = false;
+            this.chkCanhbao.Text = "Cảnh báo khi kê đơn?";
+            this.chkCanhbao.UseVisualStyleBackColor = true;
+            // 
             // txtReportCode
             // 
             this.txtReportCode.BackColor = System.Drawing.Color.White;
@@ -251,6 +263,7 @@
             this.txtKieuthuocVT.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtKieuthuocVT.buildShortcut = false;
             this.txtKieuthuocVT.CaseSensitive = false;
+            this.txtKieuthuocVT.cmdDropDown = null;
             this.txtKieuthuocVT.CompareNoID = true;
             this.txtKieuthuocVT.DefaultCode = "-1";
             this.txtKieuthuocVT.DefaultID = "-1";
@@ -270,6 +283,7 @@
             this.txtKieuthuocVT.RaiseEventEnter = false;
             this.txtKieuthuocVT.RaiseEventEnterWhenEmpty = false;
             this.txtKieuthuocVT.SelectedIndex = -1;
+            this.txtKieuthuocVT.SetDefaultWhenInit = false;
             this.txtKieuthuocVT.ShowCodeWithValue = false;
             this.txtKieuthuocVT.Size = new System.Drawing.Size(128, 21);
             this.txtKieuthuocVT.splitChar = '@';
@@ -585,18 +599,6 @@
             this.cmdInsert.Size = new System.Drawing.Size(120, 35);
             this.cmdInsert.TabIndex = 34;
             this.cmdInsert.Text = "Thêm";
-            // 
-            // chkCanhbao
-            // 
-            this.chkCanhbao.AutoSize = true;
-            this.chkCanhbao.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkCanhbao.Location = new System.Drawing.Point(210, 121);
-            this.chkCanhbao.Name = "chkCanhbao";
-            this.chkCanhbao.Size = new System.Drawing.Size(147, 19);
-            this.chkCanhbao.TabIndex = 506;
-            this.chkCanhbao.TabStop = false;
-            this.chkCanhbao.Text = "Cảnh báo khi kê đơn?";
-            this.chkCanhbao.UseVisualStyleBackColor = true;
             // 
             // frm_danhmuc_tinhchatthuoc
             // 

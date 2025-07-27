@@ -16,6 +16,16 @@ namespace VMS.HIS.Bus.Emr
         {
 
         }
+        public static bool KiemtratrangthaiKyphieu(long id_benhnhan, string ma_luotkham, long id_phieu, string loaiphieu_cha, string loaiphieu_his)
+        {
+            DataTable dtData = SPs.EmrKiemtraTrangthaikyPhieu(id_benhnhan, ma_luotkham, id_phieu, loaiphieu_cha, loaiphieu_his).GetDataSet().Tables[0];
+            if (dtData != null && dtData.AsEnumerable().Any(c => Utility.ByteDbnull(c["tthai_ky"]) == 1))
+            {
+                Utility.ShowMsg(string.Format("Phiếu đã được\r\n{0}\r\nDo vậy bạn không được phép Sửa/Xóa", Utility.sDbnull(dtData.Rows[0]["sign_infor"])));
+                return true;
+            }
+            return false;
+        }
         public  bool  DeleteDocument(long id_benhnhan, string ma_luotkham, string loai_phieu_his, string report_code)
         {
             try
@@ -240,10 +250,6 @@ namespace VMS.HIS.Bus.Emr
                 Utility.CatchException(ex);
 
             }
-
-
-
-
         }
         public void Save()
         {
@@ -254,26 +260,40 @@ namespace VMS.HIS.Bus.Emr
                 {
                     using (var dbscope = new SharedDbConnectionScope())
                     {
+
                         if (objDoc != null)
                         {
-                            List<KeyValuePair<string, string>> lstNguoiKy = GetThongtinKy(objDoc.IdPhieu.Value, objDoc.LoaiPhieuHis);//username+ vị trí ký
+                           
+
+                            List<KeyValuePair<string, string>> lstNguoiKy = GetThongtinKy(objDoc.IdPhieu.Value, objDoc.LoaiPhieuHis, objDoc.LoaiphieuCha);//username+ vị trí ký
                             if (objDoc.IsNew && objDoc.IdFile <= 0)
                             {
                                 objDoc.Save();
                                 foreach (var nguoiky in lstNguoiKy)
                                 {
-                                    EmrFileSignInfor fsi = new EmrFileSignInfor();
-                                    fsi.NguoiKy = nguoiky.Key;
-                                    fsi.IdBenhnhan = objDoc.IdBenhnhan;
-                                    fsi.MaLuotkham = objDoc.MaLuotkham;
-                                    fsi.LoaiphieuHis = objDoc.LoaiPhieuHis;
-                                    fsi.LoaiphieuCha = objDoc.LoaiphieuCha;
-                                    fsi.IdPhieu = objDoc.IdPhieu.Value;
-                                    fsi.TenVitriKy = nguoiky.Value;
-                                    fsi.TthaiKy = false;
-                                    fsi.FileId = objDoc.IdFile;
-                                    fsi.Save();
-                                }    
+                                    EmrFileSignInfor fsi = new Select().From(EmrFileSignInfor.Schema)
+                                        .Where(EmrFileSignInfor.Columns.IdBenhnhan).IsEqualTo(objDoc.IdBenhnhan)
+                                        .And(EmrFileSignInfor.Columns.MaLuotkham).IsEqualTo(objDoc.MaLuotkham)
+                                         .And(EmrFileSignInfor.Columns.LoaiphieuHis).IsEqualTo(objDoc.LoaiPhieuHis)
+                                         .And(EmrFileSignInfor.Columns.IdPhieu).IsEqualTo(objDoc.IdPhieu.Value)
+                                         .And(EmrFileSignInfor.Columns.NguoiKy).IsEqualTo(nguoiky.Key)
+                                         .ExecuteSingle<EmrFileSignInfor>();
+                                    if (fsi == null)
+                                    {
+                                        fsi = new EmrFileSignInfor();
+                                        fsi.IsNew = true;
+                                        fsi.NguoiKy = nguoiky.Key;
+                                        fsi.IdBenhnhan = objDoc.IdBenhnhan;
+                                        fsi.MaLuotkham = objDoc.MaLuotkham;
+                                        fsi.LoaiphieuHis = objDoc.LoaiPhieuHis;
+                                        fsi.LoaiphieuCha = objDoc.LoaiphieuCha;
+                                        fsi.IdPhieu = objDoc.IdPhieu.Value;
+                                        fsi.TenVitriKy = nguoiky.Value;
+                                        fsi.TthaiKy = false;
+                                        fsi.FileId = objDoc.IdFile;
+                                        fsi.Save();
+                                    }
+                                }
                                 Utility.Log("EmrDocuments", globalVariables.UserName, string.Format("Thêm mới thành công phiếu emr của người bệnh id bệnh nhân={0}, mã lượt khám ={1}, id phiếu ={2}, loại phiếu ={3}, report code ={4}", objDoc.IdBenhnhan, objDoc.MaLuotkham, objDoc.IdPhieu, objDoc.LoaiPhieuHis, objDoc.ReportCode), newaction.Insert, this.GetType().Assembly.ManifestModule.Name);
                             }
                             else if (!objDoc.IsNew && Utility.Bool2Bool(objDoc.TthaiXoa))
@@ -295,6 +315,7 @@ namespace VMS.HIS.Bus.Emr
                                          .Set(EmrDocument.Columns.MaPhieu).EqualTo(objDoc.MaPhieu)
                                          .Set(EmrDocument.Columns.ReportCode).EqualTo(objDoc.ReportCode)
                                          .Set(EmrDocument.Columns.MaPhieuEmr).EqualTo(objDoc.MaPhieuEmr)
+                                         .Set(EmrDocument.Columns.IdPhieu).EqualTo(objDoc.IdPhieu)
                                         .Where(EmrDocument.Columns.IdFile).IsEqualTo(objDoc.IdFile)
                                         .And(EmrDocument.Columns.TthaiDuyet).IsEqualTo(0)
                                         .And(EmrDocument.Columns.FileIn).IsEqualTo("")
@@ -322,8 +343,8 @@ namespace VMS.HIS.Bus.Emr
                                     fsi.FileId = objDoc.IdFile;
                                     fsi.Save();
                                 }
-                                
                             }
+
                         }
                     }
                     scope.Complete();
@@ -344,7 +365,8 @@ namespace VMS.HIS.Bus.Emr
                 {
                     long id_phieu = Utility.Int64Dbnull(dr["id_phieu"]);
                     string loaiphieu_his = Utility.sDbnull(dr["loai_phieu_his"]);
-                    lstNguoiKy = GetThongtinKy(id_phieu, loaiphieu_his);//username+ vị trí ký
+                    string loaiphieu_cha = Utility.sDbnull(dr["loaiphieu_cha"]);
+                    lstNguoiKy = GetThongtinKy(id_phieu, loaiphieu_his, loaiphieu_cha);//username+ vị trí ký
                                                                         //PA1. Xóa các thông tin ký cũ sau đó thêm mới lại
                     new Delete().From(EmrFileSignInfor.Schema)
                         .Where(EmrFileSignInfor.IdPhieuColumn).IsEqualTo(id_phieu)
@@ -373,7 +395,7 @@ namespace VMS.HIS.Bus.Emr
             }
             
         }
-        public List<KeyValuePair<string, string>> GetThongtinKy(long id_phieu,string loaiphieuhis)
+        public List<KeyValuePair<string, string>> GetThongtinKy(long id_phieu,string loaiphieuhis,string loaiphieucha="",long id_benhnhan=-1,string ma_luotkham="")
         {
 
             List<KeyValuePair<string, string>> lstNguoiKy =new List<KeyValuePair<string, string>>();
@@ -381,98 +403,206 @@ namespace VMS.HIS.Bus.Emr
             {
                 if (loaiphieuhis == Loaiphieu_HIS.PHIEUCHIDINH)
                 {
-                    KcbChidinhcl objchidinh = KcbChidinhcl.FetchByID(id_phieu);
-                    DmucNhanvien objBacsi = DmucNhanvien.FetchByID(objchidinh.IdBacsiChidinh);
+                    KcbChidinhcl objPhieu = KcbChidinhcl.FetchByID(id_phieu);
+                    if (objPhieu == null) return lstNguoiKy;
+                    DmucNhanvien objBacsi = DmucNhanvien.FetchByID(objPhieu.IdBacsiChidinh);
                     if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_BACSI"));
                 }
                 else if (loaiphieuhis == Loaiphieu_HIS.PHIEUDIEUTRI)
                 {
-                    NoitruPhieudieutri objPhieu = NoitruPhieudieutri.FetchByID(id_phieu);
-                    DmucNhanvien objBacsi = DmucNhanvien.FetchByID(objPhieu.IdBacsi);
-                    if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_BACSI"));
-                    //objBacsi = DmucNhanvien.FetchByID(objPhieu.IdDieuduong);
-                    //if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_DIEUDUONG"));
+                    if (id_phieu <= 0)
+                    {
+                        DataTable dtSignInfor = SPs.EmrLaythongtinChukyPhieu(ma_luotkham, id_benhnhan, id_phieu, loaiphieuhis, loaiphieucha).GetDataSet().Tables[0];
+                        foreach(DataRow dr in dtSignInfor.Rows)
+                        {
+                            DmucNhanvien objBacsi = DmucNhanvien.FetchByID(Utility.Int16Dbnull( dr["id_bacsi"]));
+                            if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_BACSI"));
+                        }    
+                    }
+                    else
+                    {
+                        NoitruPhieudieutri objPhieu = NoitruPhieudieutri.FetchByID(id_phieu);
+                        if (objPhieu == null) return lstNguoiKy;
+                        DmucNhanvien objBacsi = DmucNhanvien.FetchByID(objPhieu.IdBacsi);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_BACSI"));
+                        //objBacsi = DmucNhanvien.FetchByID(objPhieu.IdDieuduong);
+                        //if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_DIEUDUONG"));
+                    }
                 }
                 else if (loaiphieuhis == Loaiphieu_HIS.PHIEUTOMTATDIEUTRINGOAITRU)
                 {
-                    KcbDangkyKcb objCongkham = KcbDangkyKcb.FetchByID(id_phieu);
-                    DmucNhanvien objBacsi = DmucNhanvien.FetchByID(objCongkham.IdBacsikham);
+                    KcbDangkyKcb objPhieu = KcbDangkyKcb.FetchByID(id_phieu);
+                    if (objPhieu == null) return lstNguoiKy;
+                    DmucNhanvien objBacsi = DmucNhanvien.FetchByID(objPhieu.IdBacsikham);
                     if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_BACSI"));
                 }
                 else if (loaiphieuhis == Loaiphieu_HIS.PHIEURAVIEN)
                 {
-                    NoitruPhieuravien objRavien = NoitruPhieuravien.FetchByID(id_phieu);
-                    DmucNhanvien objBacsi = DmucNhanvien.FetchByID(objRavien.IdBacsiChuyenvien);
+                    NoitruPhieuravien objPhieu = NoitruPhieuravien.FetchByID(id_phieu);
+                    if (objPhieu == null) return lstNguoiKy;
+                    DmucNhanvien objBacsi = DmucNhanvien.FetchByID(objPhieu.IdBacsiChuyenvien);
                     if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_BACSI"));
                 }
                 else if (loaiphieuhis == Loaiphieu_HIS.PHIEUNHAPVIEN)
                 {
-                    NoitruPhieunhapvien objpnv = NoitruPhieunhapvien.FetchByID(id_phieu);
-                    KcbDangkyKcb objck = KcbDangkyKcb.FetchByID(objpnv.IdKham);//sau lấy theo cột id_bacsi_nhapvien
+                    NoitruPhieunhapvien objPhieu = NoitruPhieunhapvien.FetchByID(id_phieu);
+                    if (objPhieu == null) return lstNguoiKy;
+                    KcbDangkyKcb objck = KcbDangkyKcb.FetchByID(objPhieu.IdKham);//sau lấy theo cột id_bacsi_nhapvien
+                    if (objck == null) return lstNguoiKy;
                     DmucNhanvien objBacsi = DmucNhanvien.FetchByID(objck.IdBacsikham);
+                   
                     if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_BACSI"));
                 }
                 else if (loaiphieuhis == Loaiphieu_HIS.PHIEUCHUYENVIEN)
                 {
-                    KcbPhieuchuyenvien objpcv = KcbPhieuchuyenvien.FetchByID(id_phieu);
-                    DmucNhanvien objBacsi = DmucNhanvien.FetchByID(objpcv.IdBacsiChuyenvien);
+                    KcbPhieuchuyenvien objPhieu = KcbPhieuchuyenvien.FetchByID(id_phieu);
+                    if (objPhieu == null) return lstNguoiKy;
+                    DmucNhanvien objBacsi = DmucNhanvien.FetchByID(objPhieu.IdBacsiChuyenvien);
                     if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_BACSI"));
                 }
                 else if (loaiphieuhis == Loaiphieu_HIS.PHIEUPTTT)
                 {
-                    KcbPhieupttt objPttt = KcbPhieupttt.FetchByID(id_phieu);
-                    DmucNhanvien objBacsi = DmucNhanvien.FetchByID(objPttt.IdbacsiPttt);
+                    KcbPhieupttt objPhieu = KcbPhieupttt.FetchByID(id_phieu);
+                    if (objPhieu == null) return lstNguoiKy;
+                    DmucNhanvien objBacsi = DmucNhanvien.FetchByID(objPhieu.IdbacsiPttt);
                     if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_BACSI"));
                 }
                 else if (loaiphieuhis == Loaiphieu_HIS.PHIEU_CAMKET_PTTT)
                 {
-                    KcbPhieupttt objPttt = KcbPhieupttt.FetchByID(id_phieu);
-                    DmucNhanvien objBacsi = DmucNhanvien.FetchByID(objPttt.IdbacsiPttt);
+                    EmrPhieucamketchapnhanPttt objPhieu = EmrPhieucamketchapnhanPttt.FetchByID(id_phieu);
+                    if (objPhieu == null) return lstNguoiKy;
+                    DmucNhanvien objBacsi = DmucNhanvien.FetchByID(objPhieu.IdBacsiPttt);
                     if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_BACSI"));
+                    objBacsi = DmucNhanvien.FetchByID(objPhieu.IdBacsiGaymehoisuc);
+                    if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_BACSI_GAYME"));
+
+                    //KcbPhieupttt objPttt = KcbPhieupttt.FetchByID(id_phieu);
+                    //DmucNhanvien objBacsi = DmucNhanvien.FetchByID(objPttt.IdbacsiPttt);
+                    //if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_BACSI"));
+                }
+                else if (loaiphieuhis == Loaiphieu_HIS.PHIEU_CAMKET_CHAPNHAN_PTTT)
+                {
+                    EmrPhieucamketchapnhanPttt objPhieu = EmrPhieucamketchapnhanPttt.FetchByID(id_phieu);
+                    if (objPhieu == null) return lstNguoiKy;
+                    DmucNhanvien objBacsi = DmucNhanvien.FetchByID(objPhieu.IdBacsiPttt);
+                    if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_BACSI"));
+                    objBacsi = DmucNhanvien.FetchByID(objPhieu.IdBacsiGaymehoisuc);
+                    if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_BACSI_GAYME"));
                 }
                 else if (loaiphieuhis == Loaiphieu_HIS.PHIEU_CHUNGNHAN_PTTT)
                 {
-                    KcbPhieupttt objPttt = KcbPhieupttt.FetchByID(id_phieu);
-                    DmucNhanvien objBacsi = DmucNhanvien.FetchByID(objPttt.IdTruongkhoa);
+                    KcbPhieupttt objPhieu = KcbPhieupttt.FetchByID(id_phieu);
+                    if (objPhieu == null) return lstNguoiKy;
+                    DmucNhanvien objBacsi = DmucNhanvien.FetchByID(objPhieu.IdTruongkhoa);
                     if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_TRUONGKHOA"));
-                    objBacsi = DmucNhanvien.FetchByID(objPttt.IdGiamdoc);
+                    objBacsi = DmucNhanvien.FetchByID(objPhieu.IdGiamdoc);
                     if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_GIAMDOC"));
                 }
                 else if (loaiphieuhis == Loaiphieu_HIS.PHIEU_TUONGTRINH_PTTT)
                 {
-                    KcbPhieupttt objPttt = KcbPhieupttt.FetchByID(id_phieu);
-                    DmucNhanvien objBacsi = DmucNhanvien.FetchByID(objPttt.IdbacsiPttt);
+                    KcbPhieupttt objPhieu = KcbPhieupttt.FetchByID(id_phieu);
+                    if (objPhieu == null) return lstNguoiKy;
+                    DmucNhanvien objBacsi = DmucNhanvien.FetchByID(objPhieu.IdbacsiPttt);
                     if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_BACSI"));
                 }
                 else if (loaiphieuhis == Loaiphieu_HIS.BIENBANHOICHAN_THONGQUAMO)
                 {
-                    EmrPt01Bienbanhoichanthongquamo objpt01 = EmrPt01Bienbanhoichanthongquamo.FetchByID(id_phieu);
-                    DmucNhanvien objBacsi = DmucNhanvien.FetchByID(objpt01.IdBacsyPhauthuat);
+                    EmrPt01Bienbanhoichanthongquamo objPhieu = EmrPt01Bienbanhoichanthongquamo.FetchByID(id_phieu);
+                    if (objPhieu == null) return lstNguoiKy;
+                    DmucNhanvien objBacsi = DmucNhanvien.FetchByID(objPhieu.IdBacsyPhauthuat);
                     if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_BACSI_PHAUTHUAT"));
-                    objBacsi = DmucNhanvien.FetchByID(objpt01.IdBacsyGayme);
+                    objBacsi = DmucNhanvien.FetchByID(objPhieu.IdBacsyGayme);
                     if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_BACSI_GAYME"));
-                    objBacsi = DmucNhanvien.FetchByID(objpt01.IdLanhdaokhoaLamsang);
+                    objBacsi = DmucNhanvien.FetchByID(objPhieu.IdLanhdaokhoaLamsang);
                     if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_LANHDAO_KHOALAMSANG"));
-                    objBacsi = DmucNhanvien.FetchByID(objpt01.IdLanhdaoDuyetmo);
+                    objBacsi = DmucNhanvien.FetchByID(objPhieu.IdLanhdaoDuyetmo);
                     if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_LANHDAO_DUYETMO"));
                 }
                 else if (loaiphieuhis == Loaiphieu_HIS.BANGKIEM_ANTOANPHAUTHUAT)
                 {
-                    EmrPt04BangkiemantoanPhauthuat objbkatpt = EmrPt04BangkiemantoanPhauthuat.FetchByID(id_phieu);
-                    DmucNhanvien objBacsi = DmucNhanvien.FetchByID(objbkatpt.DieuduongVongngoai);
-                    lstNguoiKy.Add(new KeyValuePair<string, string>(objbkatpt.DieuduongVongngoai, "CKS_DIEUDUONG_VONGNGOAI"));
-                    lstNguoiKy.Add(new KeyValuePair<string, string>(objbkatpt.DieuduongVongtrong, "CKS_DIEUDUONG_VONGTRONG"));
-                    lstNguoiKy.Add(new KeyValuePair<string, string>(objbkatpt.KtvDieuduongPhume, "CKS_DIEUDUONG_PHUME"));
-                    lstNguoiKy.Add(new KeyValuePair<string, string>(objbkatpt.BacsyGayme, "CKS_BACSI_GAYME"));
-                    lstNguoiKy.Add(new KeyValuePair<string, string>(objbkatpt.Phauthuatvien, "CKS_PHAUTHUATVIEN"));
+                    EmrPt04BangkiemantoanPhauthuat objPhieu = EmrPt04BangkiemantoanPhauthuat.FetchByID(id_phieu);
+                    if (objPhieu == null) return lstNguoiKy;
+                    DmucNhanvien objBacsi = DmucNhanvien.FetchByID(objPhieu.DieuduongVongngoai);
+                    lstNguoiKy.Add(new KeyValuePair<string, string>(objPhieu.DieuduongVongngoai, "CKS_DIEUDUONG_VONGNGOAI"));
+                    lstNguoiKy.Add(new KeyValuePair<string, string>(objPhieu.DieuduongVongtrong, "CKS_DIEUDUONG_VONGTRONG"));
+                    lstNguoiKy.Add(new KeyValuePair<string, string>(objPhieu.KtvDieuduongPhume, "CKS_DIEUDUONG_PHUME"));
+                    lstNguoiKy.Add(new KeyValuePair<string, string>(objPhieu.BacsyGayme, "CKS_BACSI_GAYME"));
+                    lstNguoiKy.Add(new KeyValuePair<string, string>(objPhieu.Phauthuatvien, "CKS_PHAUTHUATVIEN"));
                 }
                 else if (loaiphieuhis == Loaiphieu_HIS.BENHAN_TO1)
                 {
-                    EmrBa objBA = EmrBa.FetchByID(id_phieu);
-                    DmucNhanvien objBacsi = DmucNhanvien.FetchByID(objBA.IdTruongkhoadieutri);
-                    if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_TRUONGKHOA"));
-                    objBacsi = DmucNhanvien.FetchByID(objBA.IdGiamdoc);
-                    if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_GIAMDOC"));
+                    if (loaiphieucha == Loaiphieu_HIS.BA_NAMKHOA)
+                    {
+                        EmrBaNamkhoa objBA = EmrBaNamkhoa.FetchByID(id_phieu);
+                        if (objBA == null) return lstNguoiKy;
+                        DmucNhanvien objBacsi = DmucNhanvien.FetchByID(objBA.IdTruongkhoadieutri);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_TRUONGKHOA"));
+                        objBacsi = DmucNhanvien.FetchByID(objBA.IdGiamdoc);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_GIAMDOC"));
+                    }
+                    else if (loaiphieucha == Loaiphieu_HIS.BA_NGOAIKHOA)
+                    {
+                        EmrBaNgoaikhoa objBA = EmrBaNgoaikhoa.FetchByID(id_phieu);
+                        if (objBA == null) return lstNguoiKy;
+                        DmucNhanvien objBacsi = DmucNhanvien.FetchByID(objBA.IdTruongkhoadieutri);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_TRUONGKHOA"));
+                        objBacsi = DmucNhanvien.FetchByID(objBA.IdGiamdoc);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_GIAMDOC"));
+                    }
+                    else if (loaiphieucha == Loaiphieu_HIS.BA_NGOAITRU)
+                    {
+                        EmrBaNgoaitru objBA = EmrBaNgoaitru.FetchByID(id_phieu);
+                        if (objBA == null) return lstNguoiKy;
+                        DmucNhanvien objBacsi = DmucNhanvien.FetchByID(objBA.IdTruongkhoadieutri);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_TRUONGKHOA"));
+                        objBacsi = DmucNhanvien.FetchByID(objBA.IdGiamdoc);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_GIAMDOC"));
+                    }
+                    else if (loaiphieucha == Loaiphieu_HIS.BA_NOIKHOA)
+                    {
+                        EmrBaNoikhoa objBA = EmrBaNoikhoa.FetchByID(id_phieu);
+                        if (objBA == null) return lstNguoiKy;
+                        DmucNhanvien objBacsi = DmucNhanvien.FetchByID(objBA.IdTruongkhoadieutri);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_TRUONGKHOA"));
+                        objBacsi = DmucNhanvien.FetchByID(objBA.IdGiamdoc);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_GIAMDOC"));
+                    }
+                    else if (loaiphieucha == Loaiphieu_HIS.BA_PHUKHOA)
+                    {
+                        EmrBaPhukhoa objBA = EmrBaPhukhoa.FetchByID(id_phieu);
+                        if (objBA == null) return lstNguoiKy;
+                        DmucNhanvien objBacsi = DmucNhanvien.FetchByID(objBA.IdTruongkhoadieutri);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_TRUONGKHOA"));
+                        objBacsi = DmucNhanvien.FetchByID(objBA.IdGiamdoc);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_GIAMDOC"));
+                    }
+                    else if (loaiphieucha == Loaiphieu_HIS.BA_SANKHOA)
+                    {
+                        EmrBaSankhoa objBA = EmrBaSankhoa.FetchByID(id_phieu);
+                        if (objBA == null) return lstNguoiKy;
+                        DmucNhanvien objBacsi = DmucNhanvien.FetchByID(objBA.IdTruongkhoadieutri);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_TRUONGKHOA"));
+                        objBacsi = DmucNhanvien.FetchByID(objBA.IdGiamdoc);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_GIAMDOC"));
+                    }
+                    else if (loaiphieucha == Loaiphieu_HIS.BA_IVF_VO)
+                    {
+                        EmrBaSankhoa objBA = EmrBaSankhoa.FetchByID(id_phieu);
+                        if (objBA == null) return lstNguoiKy;
+                        DmucNhanvien objBacsi = DmucNhanvien.FetchByID(objBA.IdTruongkhoadieutri);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_TRUONGKHOA"));
+                        objBacsi = DmucNhanvien.FetchByID(objBA.IdGiamdoc);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_GIAMDOC"));
+                    }
+                    else if (loaiphieucha == Loaiphieu_HIS.BA_IVF_CHONG)
+                    {
+                        EmrBaSankhoa objBA = EmrBaSankhoa.FetchByID(id_phieu);
+                        if (objBA == null) return lstNguoiKy;
+                        DmucNhanvien objBacsi = DmucNhanvien.FetchByID(objBA.IdTruongkhoadieutri);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_TRUONGKHOA"));
+                        objBacsi = DmucNhanvien.FetchByID(objBA.IdGiamdoc);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_GIAMDOC"));
+                    }
                 }
                 else if (loaiphieuhis == Loaiphieu_HIS.BENHAN_TO2)
                 {
@@ -480,22 +610,179 @@ namespace VMS.HIS.Bus.Emr
                 }
                 else if (loaiphieuhis == Loaiphieu_HIS.BENHAN_TO3)
                 {
-                    EmrBa objBA = EmrBa.FetchByID(id_phieu);
-                    DmucNhanvien objBacsi = DmucNhanvien.FetchByID(objBA.IdBacsiKham);
-                   if(objBacsi!=null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_BACSI_KHAM"));
-                    objBacsi = DmucNhanvien.FetchByID(objBA.IdBacsiLamBA);
-                    if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_BACSI_LAMBA"));
+                    if (loaiphieucha == Loaiphieu_HIS.BA_NAMKHOA)
+                    {
+                        EmrBaNamkhoa objBA = EmrBaNamkhoa.FetchByID(id_phieu);
+                        if (objBA == null) return lstNguoiKy;
+                        DmucNhanvien objBacsi = DmucNhanvien.FetchByID(objBA.IdBacsiKham);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_BACSI_KHAM"));
+                        objBacsi = DmucNhanvien.FetchByID(objBA.IdBacsiLamBA);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_BACSI_LAMBA"));
+                    }
+                    else if (loaiphieucha == Loaiphieu_HIS.BA_NGOAIKHOA)
+                    {
+                        EmrBaNgoaikhoa objBA = EmrBaNgoaikhoa.FetchByID(id_phieu);
+                        if (objBA == null) return lstNguoiKy;
+                        DmucNhanvien objBacsi = DmucNhanvien.FetchByID(objBA.IdBacsiKham);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_BACSI_KHAM"));
+                        objBacsi = DmucNhanvien.FetchByID(objBA.IdBacsiLamBA);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_BACSI_LAMBA"));
+                    }
+                    else if (loaiphieucha == Loaiphieu_HIS.BA_NGOAITRU)
+                    {
+                        EmrBaNgoaitru objBA = EmrBaNgoaitru.FetchByID(id_phieu);
+                        if (objBA == null) return lstNguoiKy;
+                        DmucNhanvien objBacsi = DmucNhanvien.FetchByID(objBA.IdBacsiKham);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_BACSI_KHAM"));
+                        objBacsi = DmucNhanvien.FetchByID(objBA.IdBacsiLamBA);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_BACSI_LAMBA"));
+                    }
+                    else if (loaiphieucha == Loaiphieu_HIS.BA_NOIKHOA)
+                    {
+                        EmrBaNoikhoa objBA = EmrBaNoikhoa.FetchByID(id_phieu);
+                        if (objBA == null) return lstNguoiKy;
+                        DmucNhanvien objBacsi = DmucNhanvien.FetchByID(objBA.IdBacsiKham);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_BACSI_KHAM"));
+                        objBacsi = DmucNhanvien.FetchByID(objBA.IdBacsiLamBA);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_BACSI_LAMBA"));
+                    }
+                    else if (loaiphieucha == Loaiphieu_HIS.BA_PHUKHOA)
+                    {
+                        EmrBaPhukhoa objBA = EmrBaPhukhoa.FetchByID(id_phieu);
+                        if (objBA == null) return lstNguoiKy;
+                        DmucNhanvien objBacsi = DmucNhanvien.FetchByID(objBA.IdBacsiKham);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_BACSI_KHAM"));
+                        objBacsi = DmucNhanvien.FetchByID(objBA.IdBacsiLamBA);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_BACSI_LAMBA"));
+                    }
+                    else if (loaiphieucha == Loaiphieu_HIS.BA_SANKHOA)
+                    {
+                        EmrBaSankhoa objBA = EmrBaSankhoa.FetchByID(id_phieu);
+                        if (objBA == null) return lstNguoiKy;
+                        DmucNhanvien objBacsi = DmucNhanvien.FetchByID(objBA.IdBacsiKham);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_BACSI_KHAM"));
+                        objBacsi = DmucNhanvien.FetchByID(objBA.IdBacsiLamBA);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_BACSI_LAMBA"));
+                    }
+                    else if (loaiphieucha == Loaiphieu_HIS.BA_IVF_CHONG)
+                    {
+                        EmrBaIvfChong objBA = EmrBaIvfChong.FetchByID(id_phieu);
+                        if (objBA == null) return lstNguoiKy;
+                        DmucNhanvien objBacsi = DmucNhanvien.FetchByID(objBA.IdBacsiKham);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_BACSI_KHAM"));
+                        objBacsi = DmucNhanvien.FetchByID(objBA.IdBacsiLamBA);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_BACSI_LAMBA"));
+                    }
+                    else if (loaiphieucha == Loaiphieu_HIS.BA_IVF_VO)
+                    {
+                        EmrBaIvfVo objBA = EmrBaIvfVo.FetchByID(id_phieu);
+                        if (objBA == null) return lstNguoiKy;
+                        DmucNhanvien objBacsi = DmucNhanvien.FetchByID(objBA.IdBacsiKham);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_BACSI_KHAM"));
+                        objBacsi = DmucNhanvien.FetchByID(objBA.IdBacsiLamBA);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_BACSI_LAMBA"));
+                    }
+                    else if (loaiphieucha == Loaiphieu_HIS.BA_SOSINH)
+                    {
+                       
+                    }
 
                 }
                 else if (loaiphieuhis == Loaiphieu_HIS.BENHAN_TO4)
                 {
-                    EmrBa objBA = EmrBa.FetchByID(id_phieu);
-                    DmucNhanvien objBacsi = DmucNhanvien.FetchByID(objBA.IdBacsiDieutri);
-                    if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_BACSI_DIEUTRI"));
-                    objBacsi = DmucNhanvien.FetchByID(objBA.IdNguoigiaoHoso);
-                    if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_NGUOIGIAO_HOSO"));
-                    objBacsi = DmucNhanvien.FetchByID(objBA.IdNguoinhanHoso);
-                    if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_NGUOINHAN_HOSO"));
+                    DmucNhanvien objBacsi = null;
+                    if (loaiphieucha == Loaiphieu_HIS.BA_NAMKHOA)
+                    {
+                        EmrBaNamkhoa objBA = EmrBaNamkhoa.FetchByID(id_phieu);
+                        if (objBA == null) return lstNguoiKy;
+                        objBacsi = DmucNhanvien.FetchByID(objBA.IdBacsiDieutri);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_BACSI_DIEUTRI"));
+                        objBacsi = DmucNhanvien.FetchByID(objBA.IdNguoigiaoHoso);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_NGUOIGIAO_HOSO"));
+                        objBacsi = DmucNhanvien.FetchByID(objBA.IdNguoinhanHoso);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_NGUOINHAN_HOSO"));
+                    }
+                   else if (loaiphieucha == Loaiphieu_HIS.BA_NGOAIKHOA)
+                    {
+                        EmrBaNgoaikhoa objBA = EmrBaNgoaikhoa.FetchByID(id_phieu);
+                        if (objBA == null) return lstNguoiKy;
+                        objBacsi = DmucNhanvien.FetchByID(objBA.IdBacsiDieutri);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_BACSI_DIEUTRI"));
+                        objBacsi = DmucNhanvien.FetchByID(objBA.IdNguoigiaoHoso);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_NGUOIGIAO_HOSO"));
+                        objBacsi = DmucNhanvien.FetchByID(objBA.IdNguoinhanHoso);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_NGUOINHAN_HOSO"));
+                    }
+                    else if (loaiphieucha == Loaiphieu_HIS.BA_NGOAITRU)
+                    {
+                        EmrBaNgoaitru objBA = EmrBaNgoaitru.FetchByID(id_phieu);
+                        if (objBA == null) return lstNguoiKy;
+                        objBacsi = DmucNhanvien.FetchByID(objBA.IdBacsiDieutri);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_BACSI_DIEUTRI"));
+                        objBacsi = DmucNhanvien.FetchByID(objBA.IdNguoigiaoHoso);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_NGUOIGIAO_HOSO"));
+                        objBacsi = DmucNhanvien.FetchByID(objBA.IdNguoinhanHoso);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_NGUOINHAN_HOSO"));
+                    }
+                    else if (loaiphieucha == Loaiphieu_HIS.BA_NOIKHOA)
+                    {
+                        EmrBaNoikhoa objBA = EmrBaNoikhoa.FetchByID(id_phieu);
+                        if (objBA == null) return lstNguoiKy;
+                        objBacsi = DmucNhanvien.FetchByID(objBA.IdBacsiDieutri);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_BACSI_DIEUTRI"));
+                        objBacsi = DmucNhanvien.FetchByID(objBA.IdNguoigiaoHoso);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_NGUOIGIAO_HOSO"));
+                        objBacsi = DmucNhanvien.FetchByID(objBA.IdNguoinhanHoso);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_NGUOINHAN_HOSO"));
+                    }
+                    else if (loaiphieucha == Loaiphieu_HIS.BA_PHUKHOA)
+                    {
+                        EmrBaPhukhoa objBA = EmrBaPhukhoa.FetchByID(id_phieu);
+                        if (objBA == null) return lstNguoiKy;
+                        objBacsi = DmucNhanvien.FetchByID(objBA.IdBacsiDieutri);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_BACSI_DIEUTRI"));
+                        objBacsi = DmucNhanvien.FetchByID(objBA.IdNguoigiaoHoso);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_NGUOIGIAO_HOSO"));
+                        objBacsi = DmucNhanvien.FetchByID(objBA.IdNguoinhanHoso);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_NGUOINHAN_HOSO"));
+                    }
+                    if (loaiphieucha == Loaiphieu_HIS.BA_SANKHOA)
+                    {
+                        EmrBaSankhoa objBA = EmrBaSankhoa.FetchByID(id_phieu);
+                        if (objBA == null) return lstNguoiKy;
+                        objBacsi = DmucNhanvien.FetchByID(objBA.IdBacsiDieutri);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_BACSI_DIEUTRI"));
+                        objBacsi = DmucNhanvien.FetchByID(objBA.IdNguoigiaoHoso);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_NGUOIGIAO_HOSO"));
+                        objBacsi = DmucNhanvien.FetchByID(objBA.IdNguoinhanHoso);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_NGUOINHAN_HOSO"));
+                    }
+                    if (loaiphieucha == Loaiphieu_HIS.BA_IVF_CHONG)
+                    {
+                        EmrBaIvfChong objBA = EmrBaIvfChong.FetchByID(id_phieu);
+                        if (objBA == null) return lstNguoiKy;
+                        objBacsi = DmucNhanvien.FetchByID(objBA.IdBacsiDieutri);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_BACSI_DIEUTRI"));
+                        objBacsi = DmucNhanvien.FetchByID(objBA.IdNguoigiaoHoso);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_NGUOIGIAO_HOSO"));
+                        objBacsi = DmucNhanvien.FetchByID(objBA.IdNguoinhanHoso);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_NGUOINHAN_HOSO"));
+                    }
+                    if (loaiphieucha == Loaiphieu_HIS.BA_IVF_VO)
+                    {
+                        EmrBaIvfVo objBA = EmrBaIvfVo.FetchByID(id_phieu);
+                        if (objBA == null) return lstNguoiKy;
+                        objBacsi = DmucNhanvien.FetchByID(objBA.IdBacsiDieutri);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_BACSI_DIEUTRI"));
+                        objBacsi = DmucNhanvien.FetchByID(objBA.IdNguoigiaoHoso);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_NGUOIGIAO_HOSO"));
+                        objBacsi = DmucNhanvien.FetchByID(objBA.IdNguoinhanHoso);
+                        if (objBacsi != null) lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_NGUOINHAN_HOSO"));
+                    }
+                    if (loaiphieucha == Loaiphieu_HIS.BA_SOSINH)
+                    {
+                       
+                    }
                 }
             }
             catch (Exception ex)
@@ -506,6 +793,7 @@ namespace VMS.HIS.Bus.Emr
            
             return lstNguoiKy;
         }
+
         public void SetFilePath(string FileName)
         {
             objDoc.FileIn = FileName;
@@ -517,6 +805,13 @@ namespace VMS.HIS.Bus.Emr
                 if (loaiphieucha == "") loaiphieucha = loai_phieu_his;
                 SysReport objReport = null;
                 if (report_code != "") objReport = new Select().From(SysReport.Schema).Where(SysReport.Columns.MaBaocao).IsEqualTo(report_code).ExecuteSingle<SysReport>();
+                if (loai_phieu_his == Loaiphieu_HIS.PHIEUDIEUTRI)//Phiếu điều trị thì xem xét tách thành 2 luồng, 1 luồng chỉ tạo duy nhất 1 tờ điều trị trong gáy, 1 luồng tất cả tờ lẻ+ 1 tờ chung
+                {
+                    if (Utility.Laygiatrithamsohethong("EMR_TODIEUTRI_SINGLE", "1", true) == "1")
+                    {
+                        id_phieu = -1;
+                    }
+                }
                 if (isTachPhieu)
                     objDoc = new Select().From(EmrDocument.Schema)
                             .Where(EmrDocument.Columns.IdPhieu).IsEqualTo(id_phieu)
@@ -581,7 +876,7 @@ namespace VMS.HIS.Bus.Emr
         }
     }
    
-    public class Loaiphieu_HIS
+        public class Loaiphieu_HIS
     {
         public const string TT25_GIAYCHUNGNHAN_TAINANTHUONGTICH = "TT25_GIAYCHUNGNHAN_TAINANTHUONGTICH";
         public const string TT25_GIAYXACNHAN_NGHIDUONGTHAI = "TT25_GIAYXACNHAN_NGHIDUONGTHAI";
@@ -595,7 +890,16 @@ namespace VMS.HIS.Bus.Emr
         public const string BIENBANHOICHAN_THONGQUAMO = "BIENBANHOICHAN_THONGQUAMO";
         public const string PHIEUDANGKYKCB = "PHIEUDANGKYKCB";
         public const string FILE_DINHKEM = "FILE_DINHKEM";
-        public const string BENHAN = "BENHAN";
+        public const string BA_NGOAITRU = "BA_NGOAITRU";//"15/BV1";
+        public const string BA_NOIKHOA = "BA_NOIKHOA";//"01/BV1";
+        public const string BA_NHIKHOA = "BA_NHIKHOA";//"02/BV1";
+        public const string BA_PHUKHOA = "BA_PHUKHOA";//"04/BV1";
+        public const string BA_SANKHOA = "BA_SANKHOA";//"05/BV1";
+        public const string BA_SOSINH = "BA_SOSINH";//"06/BV1";
+        public const string BA_NGOAIKHOA = "BA_NGOAIKHOA";//"10/BV1";
+        public const string BA_NAMKHOA = "BA_NAMKHOA";
+        public const string BA_IVF_VO = "BAIVF_VO";
+        public const string BA_IVF_CHONG = "BAIVF_CHONG";
         public const string BENHAN_BIA = "BENHAN_BIA";
         public const string BENHAN_TO1 = "BENHAN_TO1";
         public const string BENHAN_TO2 = "BENHAN_TO2";
@@ -605,7 +909,9 @@ namespace VMS.HIS.Bus.Emr
         public const string PHIEUTOMTATDIEUTRINGOAITRU = "PHIEUTOMTATDIEUTRINGOAITRU";
         public const string PHIEUDIEUTRI = "PHIEUDIEUTRI";
         public const string PHIEUPTTT = "PHIEUPTTT";
+        public const string PHIEU_BANGIAO_NGUOIBENHCHUYENKHOA = "PHIEU_BANGIAO_NGUOIBENHCHUYENKHOA";
         public const string PHIEU_CAMKET_PTTT = "PHIEU_CAMKET_PTTT";
+        public const string PHIEU_CAMKET_CHAPNHAN_PTTT = "PHIEU_CAMKET_CHAPNHAN_PTTT";
         public const string PHIEU_CHUNGNHAN_PTTT = "PHIEU_CHUNGNHAN_PTTT";
         public const string PHIEU_TUONGTRINH_PTTT = "PHIEU_TUONGTRINH_PTTT";
         public const string PHIEU_TUVAN_PTTT = "PHIEU_TUVAN_PTTT";

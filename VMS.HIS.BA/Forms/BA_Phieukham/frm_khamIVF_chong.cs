@@ -25,6 +25,11 @@ namespace VMS.HIS.UI.EMR
         DataTable dt_tssk;
         bool AllowedChanged = false;
         action m_enAct = action.FirstOrFinished;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objLuotkham"></param>
+        /// <param name="objBenhnhan"></param>
         public frm_khamIVF_chong(KcbLuotkham objLuotkham, KcbDanhsachBenhnhan objBenhnhan)
         {
             InitializeComponent();
@@ -247,8 +252,11 @@ namespace VMS.HIS.UI.EMR
             InitDanhmucchung();
             DataBinding.BindDataCombobox(cboBacsi, globalVariables.gv_dtDmucNhanvien.Copy(),
                                      DmucNhanvien.Columns.UserName, DmucNhanvien.Columns.TenNhanvien, "----Chọn bác sĩ khám----", true);
+            DataBinding.BindDataCombobox(cbo_bacsitheodoi, globalVariables.gv_dtDmucNhanvien.Copy(),
+                                     DmucNhanvien.Columns.UserName, DmucNhanvien.Columns.TenNhanvien, "----Chọn bác sĩ khám----", true);
             ucThongtinnguoibenh1.Refresh();
             dtNgayKham.Value = DateTime.Now.Date;
+            dtp_ngaysinh.Value = objBenhnhan.NgaySinh.Value;
             dtNgayKham.Focus();
             ModifyCommmands();
            
@@ -719,31 +727,37 @@ namespace VMS.HIS.UI.EMR
         private void checkBox12_CheckedChanged(object sender, EventArgs e)
         {
             txt_tiensupttt_mota.Enabled = chk_tiensupttt_khac.Checked;
+            txt_tiensupttt_mota.Focus();
         }
 
         private void chkMaTuy_CheckedChanged(object sender, EventArgs e)
         {
             txtMaTuy.Enabled = chkMaTuy.Checked;
+            txtMaTuy.Focus();
         }
 
         private void chkThuocLa_CheckedChanged(object sender, EventArgs e)
         {
             txtThuocLa.Enabled = chkThuocLa.Checked;
+            txtThuocLa.Focus();
         }
 
         private void chkRuouBia_CheckedChanged(object sender, EventArgs e)
         {
             txtRuouBia.Enabled = chkRuouBia.Checked;
+            txtRuouBia.Focus();
         }
 
         private void chkKhac_CheckedChanged(object sender, EventArgs e)
         {
             txt_dacdiemlienquankhac.Enabled = chkKhac.Checked;
+            txt_dacdiemlienquankhac.Focus();
         }
 
         private void chk_benhkhac_CheckedChanged(object sender, EventArgs e)
         {
             txt_benhkhac_mota.Enabled = chk_benhkhac.Checked;
+            txt_benhkhac_mota.Focus();
         }
 
         private void txt_tiensupttt_mota_TextChanged(object sender, EventArgs e)
@@ -754,6 +768,7 @@ namespace VMS.HIS.UI.EMR
         private void chk_tiensubenhlayquaduongtinhduc_khac_CheckedChanged(object sender, EventArgs e)
         {
             txt_tiensubenhlayquaduongtinhduc_mota.Enabled = chk_tiensubenhlayquaduongtinhduc_khac.Checked;
+            txt_tiensubenhlayquaduongtinhduc_mota.Focus();
         }
     }
 }

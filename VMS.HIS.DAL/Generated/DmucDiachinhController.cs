@@ -80,7 +80,7 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(string MaDiachinh,string TenDiachinh,string MaCha,short? SttHthi,byte? LoaiDiachinh,string MotaThem)
+	    public void Insert(string MaDiachinh,string TenDiachinh,string MaCha,short? SttHthi,byte? LoaiDiachinh,string MotaThem,bool? TrangThai,bool? IsNew)
 	    {
 		    DmucDiachinh item = new DmucDiachinh();
 		    
@@ -96,6 +96,10 @@ namespace VMS.HIS.DAL
             
             item.MotaThem = MotaThem;
             
+            item.TrangThai = TrangThai;
+            
+            item.IsNew = IsNew;
+            
 	    
 		    item.Save(UserName);
 	    }
@@ -104,7 +108,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(string MaDiachinh,string TenDiachinh,string MaCha,short? SttHthi,byte? LoaiDiachinh,string MotaThem)
+	    public void Update(string MaDiachinh,string TenDiachinh,string MaCha,short? SttHthi,byte? LoaiDiachinh,string MotaThem,bool? TrangThai,bool? IsNew)
 	    {
 		    DmucDiachinh item = new DmucDiachinh();
 	        item.MarkOld();
@@ -121,6 +125,10 @@ namespace VMS.HIS.DAL
 			item.LoaiDiachinh = LoaiDiachinh;
 				
 			item.MotaThem = MotaThem;
+				
+			item.TrangThai = TrangThai;
+				
+			item.IsNew = IsNew;
 				
 	        item.Save(UserName);
 	    }

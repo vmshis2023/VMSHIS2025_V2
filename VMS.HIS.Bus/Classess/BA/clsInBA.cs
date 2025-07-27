@@ -178,6 +178,48 @@ using VNS.Libs;
                 return "";
             }
         }
+        static string LayMaBA( string loai_ba)
+        {
+            string tenToBA = "BENH_AN";
+            switch (loai_ba)
+            {
+                case LoaiBA.BA_SANKHOA:
+                    tenToBA= "BA_SANKHOA";
+                    break;
+                case LoaiBA.BA_PHUKHOA:
+                    tenToBA = "BA_PHUKHOA";
+                    break;
+                case LoaiBA.BA_NAMKHOA:
+                    tenToBA = "BA_NAMKHOA";
+                    break;
+                case LoaiBA.BA_NOIKHOA:
+                    tenToBA = "BA_NOIKHOA";
+                    break;
+                case LoaiBA.BA_NGOAIKHOA:
+                    tenToBA = "BA_NGOAIKHOA";
+                    break;
+                case LoaiBA.BA_NGOAITRU:
+                    tenToBA = "BA_NGOAITRU";
+                    break;
+                case LoaiBA.BA_SOSINH:
+                    tenToBA = "BA_SOSINH";
+                    break;
+                case LoaiBA.BA_NHIKHOA:
+                    tenToBA = "BA_NHIKHOA";
+                    break;
+                case LoaiBA.BA_IVF_VO:
+                    tenToBA = "BA_IVF_VO";
+                    break;
+                case LoaiBA.BA_IVF_CHONG:
+                    tenToBA = "BA_IVF_CHONG";
+                    break;
+                default:
+                    tenToBA = "BENH_AN";
+                    break;
+
+            }
+            return tenToBA;
+        }
         static string LayTenToBA(int toBA,string loai_ba)
         {
             string tenToBA = "";
@@ -198,6 +240,14 @@ using VNS.Libs;
                     else if (toBA == 3) tenToBA = "BA04_BAPHUKHOA_TO3.doc";
                     else if (toBA == 4) tenToBA = "BA04_BAPHUKHOA_TO4.doc";
                     else tenToBA = "BA04_BAPHUKHOA.doc";
+                    break;
+                case LoaiBA.BA_NAMKHOA:
+                    if (toBA == 1) tenToBA = "BANK_BANAMKHOA_TO1.doc";
+                    else if (toBA == 0) tenToBA = "BANK_BANAMKHOA_BIA.doc";
+                    else if (toBA == 2) tenToBA = "BANK_BANAMKHOA_TO2.doc";
+                    else if (toBA == 3) tenToBA = "BANK_BANAMKHOA_TO3.doc";
+                    else if (toBA == 4) tenToBA = "BANK_BANAMKHOA_TO4.doc";
+                    else tenToBA = "BANK_BANAMKHOA.doc";
                     break;
                 case LoaiBA.BA_NOIKHOA:
                     if (toBA == 1) tenToBA = "BA01_BANOIKHOA_TO1.doc";
@@ -239,24 +289,40 @@ using VNS.Libs;
                     else if (toBA == 4) tenToBA = "BA02_BANNHIKHOA_TO4.doc";
                     else tenToBA = "BA02_BANNHIKHOA.doc";
                     break;
+                case LoaiBA.BA_IVF_CHONG:
+                    if (toBA == 1) tenToBA = "BA_IVF_CHONG_TO1.doc";
+                    else if (toBA == 0) tenToBA = "BA_IVF_CHONG_BIA.doc";
+                    else if (toBA == 2) tenToBA = "BA_IVF_CHONG_TO2.doc";
+                    else if (toBA == 3) tenToBA = "BA_IVF_CHONG_TO3.doc";
+                    else if (toBA == 4) tenToBA = "BA_IVF_CHONG_TO4.doc";
+                    else tenToBA = "BA_IVF_CHONG.doc";
+                    break;
+                case LoaiBA.BA_IVF_VO:
+                    if (toBA == 1) tenToBA = "BA_IVF_VO_TO1.doc";
+                    else if (toBA == 0) tenToBA = "BA_IVF_VO_BIA.doc";
+                    else if (toBA == 2) tenToBA = "BA_IVF_VO_TO2.doc";
+                    else if (toBA == 3) tenToBA = "BA_IVF_VO_TO3.doc";
+                    else if (toBA == 4) tenToBA = "BA_IVF_VO_TO4.doc";
+                    else tenToBA = "BA_IVF_VO.doc";
+                    break;
                 default:
                     break;
 
             }
             return tenToBA;
         }
-        public static string InBA(EmrBa objEmrBa,KcbLuotkham objLuotkham, string tenToBA,bool returnFile=false)
+        public static string InBA_bak_250716(long IdBa,string MaBa,string LoaiBa, KcbLuotkham objLuotkham, string tenToBA,bool returnFile=false)
         {
             try
             {
               
 
-                if (objEmrBa == null || objEmrBa.IdBa <= 0)
-                {
-                    Utility.ShowMsg("Bạn cần tạo Bệnh án Ngoại trú trước khi thực hiện in");
-                    return "";
-                }
-                DataTable dtData = SPs.EmrBaLaythongtinIn(objEmrBa.IdBa, objEmrBa.MaBa, objEmrBa.IdBenhnhan, objEmrBa.MaLuotkham).GetDataSet().Tables[0];
+                //if (objEmrBa == null || objEmrBa.IdBa <= 0)
+                //{
+                //    Utility.ShowMsg("Bạn cần tạo Bệnh án Ngoại trú trước khi thực hiện in");
+                //    return "";
+                //}
+                DataTable dtData = SPs.EmrBaLaythongtinIn(IdBa, MaBa, LoaiBa, objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham).GetDataSet().Tables[0];
                 DataRow drData = dtData.Rows[0];
                 List<string> lstcheckboxfields = new List<string>();
                 Dictionary<string, string> dicMF = new Dictionary<string, string>();
@@ -267,11 +333,11 @@ using VNS.Libs;
                 string checkboxFieldsFile = AppDomain.CurrentDomain.BaseDirectory + "MAUBA\\BA_CHECKED_FIELDS.txt";
                 lstcheckboxfields = Utility.GetFirstValueFromFile(checkboxFieldsFile).Split(',').ToList<string>();
                 NoitruPhieuravien objPhieuRavien = new Select().From(NoitruPhieuravien.Schema)
-               .Where(NoitruPhieuravien.Columns.IdBenhnhan).IsEqualTo(objEmrBa.IdBenhnhan)
-               .And(NoitruPhieuravien.Columns.MaLuotkham).IsEqualTo(objEmrBa.MaLuotkham).ExecuteSingle<NoitruPhieuravien>();
+               .Where(NoitruPhieuravien.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
+               .And(NoitruPhieuravien.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham).ExecuteSingle<NoitruPhieuravien>();
                 NoitruPhieunhapvien _phieunv = new Select().From(NoitruPhieunhapvien.Schema)
-               .Where(NoitruPhieunhapvien.Columns.IdBenhnhan).IsEqualTo(objEmrBa.IdBenhnhan)
-               .And(NoitruPhieunhapvien.Columns.MaLuotkham).IsEqualTo(objEmrBa.MaLuotkham).ExecuteSingle<NoitruPhieunhapvien>();
+               .Where(NoitruPhieunhapvien.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
+               .And(NoitruPhieunhapvien.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham).ExecuteSingle<NoitruPhieunhapvien>();
                 dtData.TableName = "BA_EMR";
                 Document doc;
                 drData["ten_dvicaptren"] = globalVariables.ParentBranch_Name;
@@ -302,7 +368,7 @@ using VNS.Libs;
 
                 string fileKetqua = string.Format("{0}{1}{2}{3}{4}_{5}_{6}_{7}",
                                Path.GetDirectoryName(writePathdoc), Path.DirectorySeparatorChar,
-                               Path.GetFileNameWithoutExtension(PathDoc), "EmrBa", objLuotkham.MaLuotkham, Utility.sDbnull(objEmrBa.IdBa), Guid.NewGuid().ToString(), Path.GetExtension(PathDoc));
+                               Path.GetFileNameWithoutExtension(PathDoc), "EmrBa", objLuotkham.MaLuotkham, Utility.sDbnull(IdBa), Guid.NewGuid().ToString(), Path.GetExtension(PathDoc));
 
 
                 if ((drData != null) && File.Exists(PathDoc))
@@ -371,7 +437,7 @@ using VNS.Libs;
             }
         }
 
-        public static string InBA(EmrBa objEmrBa, KcbLuotkham objLuotkham,DataTable dtkhoanhapvien,DataTable dtkhoachuyen,DataTable dt_tssk,DataTable dtPhieuPttt, int toBA, bool returnFile = false)
+        public static string InBA(long IdBa, string MaBa,string LoaiBa, KcbLuotkham objLuotkham,DataTable dtkhoanhapvien,DataTable dtkhoachuyen,DataTable dt_tssk,DataTable dtPhieuPttt, int toBA, bool returnFile = false)
         {
             try
             {
@@ -381,12 +447,12 @@ using VNS.Libs;
                     return "";
                 }
 
-                if (objEmrBa == null || objEmrBa.IdBa <= 0)
-                {
-                    Utility.ShowMsg("Bạn cần tạo Bệnh án trước khi thực hiện in");
-                    return "";
-                }
-                DataTable dtData = SPs.EmrBaLaythongtinIn(objEmrBa.IdBa, objEmrBa.MaBa, objEmrBa.IdBenhnhan, objEmrBa.MaLuotkham).GetDataSet().Tables[0];
+                //if (objEmrBa == null || objEmrBa.IdBa <= 0)
+                //{
+                //    Utility.ShowMsg("Bạn cần tạo Bệnh án trước khi thực hiện in");
+                //    return "";
+                //}
+                DataTable dtData = SPs.EmrBaLaythongtinIn(IdBa, MaBa, LoaiBa, objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham).GetDataSet().Tables[0];
                 DataRow drData = dtData.Rows[0];
                 List<string> lstcheckboxfields = new List<string>();
                 Dictionary<string, string> dicMF = new Dictionary<string, string>();
@@ -402,17 +468,17 @@ using VNS.Libs;
                 NoitruPhieunhapvien _phieunv = new Select().From(NoitruPhieunhapvien.Schema)
                .Where(NoitruPhieunhapvien.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
                .And(NoitruPhieunhapvien.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham).ExecuteSingle<NoitruPhieunhapvien>();
-                dtData.TableName = "BA_NOITRU";
+                dtData.TableName = LayMaBA(LoaiBa); ;
                 Document doc;
                 drData["ten_dvicaptren"] = globalVariables.ParentBranch_Name;
                 drData["ten_benhvien"] = globalVariables.Branch_Name;
-                drData["p102"] = globalVariables.Branch_Name;
-                drData["p101"] = globalVariables.ParentBranch_Name;
-                drData["p132"] = _phieunv != null ? Utility.FormatDateTime_giophut_ngay_thang_nam(_phieunv.NgayNhapvien, "") : ".......... giờ ....... ngày ........./........./.............";//Vào viện
+                if (dtData.Columns.Contains("p102")) drData["p102"] = globalVariables.Branch_Name;
+                if (dtData.Columns.Contains("p101")) drData["p101"] = globalVariables.ParentBranch_Name;
+                if (dtData.Columns.Contains("p132")) drData["p132"] = _phieunv != null ? Utility.FormatDateTime_giophut_ngay_thang_nam(_phieunv.NgayNhapvien, "") : ".......... giờ ....... ngày ........./........./.............";//Vào viện
                 if (dtkhoanhapvien!=null && dtkhoanhapvien.Columns.Count>0 && dtkhoanhapvien.Rows.Count > 0)
                 {
-                    drData["p141"] = Utility.FormatDateTime_giophut_ngay_thang_nam(Convert.ToDateTime(dtkhoanhapvien.Rows[0]["ngay_vaokhoa"]), "");//vào khoa
-                    drData["p141_1"] = Utility.sDbnull(dtkhoanhapvien.Rows[0]["so_luong"], "0");
+                    if (dtData.Columns.Contains("p141")) drData["p141"] = Utility.FormatDateTime_giophut_ngay_thang_nam(Convert.ToDateTime(dtkhoanhapvien.Rows[0]["ngay_vaokhoa"]), "");//vào khoa
+                    if (dtData.Columns.Contains("p141_1")) drData["p141_1"] = Utility.sDbnull(dtkhoanhapvien.Rows[0]["so_luong"], "0");
                 }
                 //REM lại do đã xử lý ở bước fillData trước khi ghi
                 //drData["p103"] = drData["p140"];
@@ -421,9 +487,9 @@ using VNS.Libs;
                 //    drData["p103"] = Utility.sDbnull(dtkhoanhapvienCoGiuong.Rows[0]["ten_khoanoitru"], "");
                 //    drData["p104"] = Utility.sDbnull(dtkhoanhapvienCoGiuong.Rows[0]["ten_giuong"], "");
                 //}
-                drData["p128"] = Utility.FormatDateTime(Utility.sDbnull(drData["p128"], ""), "ngày......tháng......năm.........");//BHYT giá trị đến
-                drData["p145_1"] = objPhieuRavien != null ? Utility.FormatDateTime_giophut_ngay_thang_nam(objPhieuRavien.NgayRavien, "") : ".......... giờ ....... ngày ........./........./.............";//ra viện
-                drData["p155_2"] = objEmrBa.CdNgaymode != null ? Utility.FormatDateTime(objEmrBa.CdNgaymode, "") : globalVariables.NgayThangNam;//ra viện
+                if (dtData.Columns.Contains("p128")) drData["p128"] = Utility.FormatDateTime(Utility.sDbnull(drData["p128"], ""), "ngày......tháng......năm.........");//BHYT giá trị đến
+                if (dtData.Columns.Contains("p145_1")) drData["p145_1"] = objPhieuRavien != null ? Utility.FormatDateTime_giophut_ngay_thang_nam(objPhieuRavien.NgayRavien, "") : ".......... giờ ....... ngày ........./........./.............";//ra viện
+                if (dtData.Columns.Contains("p155_2")) drData["p155_2"] = Utility.FormatDateTime(Utility.sDbnull(drData["p155_2"], ""), globalVariables.NgayThangNam);//ra viện
                                                                                                                                                 // drData["p155_1"] = objPhieuRavien != null ? Utility.FormatDateTime_giophut_ngay_thang_nam(objPhieuRavien.NgayRavien, "") : ".......... giờ ....... ngày ........./........./.............";
 
                 //drData["diahchi_benhvien"] = globalVariables.Branch_Address;
@@ -443,7 +509,7 @@ using VNS.Libs;
 
                 Utility.CreateMergeFields(dtData);
                 List<string> fieldNames = new List<string>();
-              string tenToBA = LayTenToBA(toBA, objEmrBa.LoaiBa);
+              string tenToBA = LayTenToBA(toBA, LoaiBa);
                 string PathDoc = string.Format(AppDomain.CurrentDomain.BaseDirectory + "MAUBA\\{0}", tenToBA);
                 string writePathdoc = AppDomain.CurrentDomain.BaseDirectory + "tempDoc\\";
                 if (!Directory.Exists(writePathdoc)) Directory.CreateDirectory(writePathdoc);
@@ -457,7 +523,7 @@ using VNS.Libs;
 
                 string fileKetqua = string.Format("{0}{1}{2}{3}{4}_{5}_{6}_{7}",
                                Path.GetDirectoryName(writePathdoc), Path.DirectorySeparatorChar,
-                               Path.GetFileNameWithoutExtension(PathDoc), "EmrBa", objLuotkham.MaLuotkham, Utility.sDbnull(objEmrBa.IdBa), Guid.NewGuid().ToString(), Path.GetExtension(PathDoc));
+                               Path.GetFileNameWithoutExtension(PathDoc), "EmrBa", objLuotkham.MaLuotkham, Utility.sDbnull(IdBa), Guid.NewGuid().ToString(), Path.GetExtension(PathDoc));
 
 
                 if ((drData != null) && File.Exists(PathDoc))
@@ -494,13 +560,15 @@ using VNS.Libs;
                         string vitrihang = "14";//Vị trí hàng trong bảng cha chứa bảng
                         if (dtkhoachuyen != null && dtkhoachuyen.Columns.Count > 0 && (toBA == 1 || toBA == 100))//Thông tin chuyển khoa chỉ có ở tờ 1 hoặc in full
                         {
+                            Aspose.Words.Tables.Table topTable = doc.FirstSection.Body.Tables[0];//Table có 4 rows, mỗi row chứa 1 tờ
                             vitribangcha = string.Format("{0}_CHUYENKHOA_VITRIBANGCHA", loai_ba);
                             table_idx = Utility.Int32Dbnull(THU_VIEN_CHUNG.Laygiatrithamsohethong(vitribangcha, "-1", true));
                             vitrihang = string.Format("{0}_CHUYENKHOA_VITRIHANG", loai_ba);
                             row_idx = Utility.Int32Dbnull(THU_VIEN_CHUNG.Laygiatrithamsohethong(vitrihang, "-1", true));
                             if (table_idx >= 0 && row_idx >= 0)
                             {
-                                Aspose.Words.Tables.Table tab = doc.FirstSection.Body.Tables[table_idx];
+
+                                Aspose.Words.Tables.Table tab = topTable.Rows[0].Cells[0].ChildNodes[1] as Aspose.Words.Tables.Table;//dòng index=0 là chữ font nhỏ để hiển thị viền trên của bảng phía trong
                                 tab = tab.Rows[row_idx].Cells[1].FirstChild as Aspose.Words.Tables.Table;//(Aspose.Words.Tables.Table)doc.GetChild(NodeType.Table, 0, true);//
                                 int idx = 1;//Đè lên header trong design
                                 foreach (DataRow dr in dtkhoachuyen.Rows)
@@ -519,9 +587,9 @@ using VNS.Libs;
                                     Run r = new Run(doc);
                                     r.Font.Name = "Times New Roman";
                                     r.Font.Size = 10d;
-                                    r.Font.Bold = false;
+                                    r.Font.Bold = true;
                                     //r.Font.Color = Color.FromArgb(102, 0, 102);
-                                    r.Text = Utility.sDbnull(dr["ten_khoanoitru"], "");
+                                    r.Text = Utility.sDbnull(dr["ma_khoanoitru"], "");
                                     newRow.Cells[0].FirstParagraph.AppendChild(r);
                                     newRow.Cells[0].FirstParagraph.ParagraphFormat.Alignment = ParagraphAlignment.Left;
 
@@ -530,7 +598,7 @@ using VNS.Libs;
                                     r.Font.Bold = false;
                                     r.Font.Size = 10d;
                                     //r.Font.Color = Color.FromArgb(102, 0, 102);
-                                    r.Text = Utility.sDbnull(dr["ngay_vaokhoa"], "");
+                                    r.Text = Utility.sDbnull(dr["sngay_vaokhoa"], "");
                                     newRow.Cells[1].FirstParagraph.AppendChild(r);
                                     newRow.Cells[1].FirstParagraph.ParagraphFormat.Alignment = ParagraphAlignment.Left;
 
@@ -548,8 +616,9 @@ using VNS.Libs;
                                 }
                             }
                         }
-                        if (dt_tssk != null && dt_tssk.Columns.Count > 0 && (toBA == 2 || toBA == 100))//In thông tin tiền sử sản khoa in tờ 2, BA nào không có thì không cần khai báo tham số hệ thống
+                        if (dt_tssk != null && dt_tssk.Columns.Count > 0 && dt_tssk.Rows.Count>0 && (toBA == 2 || toBA == 100))//In thông tin tiền sử sản khoa in tờ 2, BA nào không có thì không cần khai báo tham số hệ thống
                         {
+                            Aspose.Words.Tables.Table topTable = doc.FirstSection.Body.Tables[0];//Table có 4 rows, mỗi row chứa 1 tờ
                             vitribangcha = toBA == 2 ? string.Format("{0}_TIENSUSANKHOA_VITRIBANGCHA", loai_ba) : string.Format("{0}_TIENSUSANKHOA_VITRIBANGCHA_FULL", loai_ba);
                             table_idx = Utility.Int32Dbnull(THU_VIEN_CHUNG.Laygiatrithamsohethong(vitribangcha, "-1", true));
                             vitrihang = string.Format("{0}_TIENSUSANKHOA_VITRIHANG", loai_ba);
@@ -557,7 +626,7 @@ using VNS.Libs;
                             byte isCheck = 0;
                             if (table_idx >= 0 && row_idx >= 0)
                             {
-                                Aspose.Words.Tables.Table tab = doc.FirstSection.Body.Tables[table_idx];
+                                Aspose.Words.Tables.Table tab = topTable.Rows[table_idx].Cells[0].ChildNodes[1] as Aspose.Words.Tables.Table;//doc.FirstSection.Body.Tables[table_idx];
                                 //Bảng nằm ở vị trí dòng thứ 11 của bảng lớn. Có 14 cột luôn
                                 tab = tab.Rows[row_idx].Cells[0].FirstChild as Aspose.Words.Tables.Table;//(Aspose.Words.Tables.Table)doc.GetChild(NodeType.Table, 0, true);//
                                 int idx = 2;//Giữ lại tiêu đề header của bảng
@@ -736,15 +805,16 @@ using VNS.Libs;
                             }
                         }
 
-                        if (dtPhieuPttt != null && dtPhieuPttt.Columns.Count > 0 && (toBA == 4 || toBA == 100))//In thông tin phiếu PTTT Bệnh án phụ khoa,sản khoa, ngoại khoa tại tờ 4
+                        if (dtPhieuPttt != null && dtPhieuPttt.Columns.Count > 0  && dtPhieuPttt.Rows.Count>0 && (toBA == 4 || toBA == 100))//In thông tin phiếu PTTT Bệnh án phụ khoa,sản khoa, ngoại khoa tại tờ 4
                         {
+                            Aspose.Words.Tables.Table topTable = doc.FirstSection.Body.Tables[0];//Table có 4 rows, mỗi row chứa 1 tờ
                             vitribangcha = toBA == 4 ? string.Format("{0}_PTTT_VITRIBANGCHA", loai_ba) : string.Format("{0}_PTTT_VITRIBANGCHA_FULL", loai_ba);
                             table_idx = Utility.Int32Dbnull(THU_VIEN_CHUNG.Laygiatrithamsohethong(vitribangcha, "-1", true));
                             vitrihang = string.Format("{0}_PTTT_VITRIHANG", loai_ba);
                             row_idx = Utility.Int32Dbnull(THU_VIEN_CHUNG.Laygiatrithamsohethong(vitrihang, "-1", true));
                             if (table_idx >= 0 && row_idx >= 0)
                             {
-                                Aspose.Words.Tables.Table tab = doc.FirstSection.Body.Tables[table_idx];
+                                Aspose.Words.Tables.Table tab = topTable.Rows[table_idx].Cells[0].ChildNodes[1] as Aspose.Words.Tables.Table;// doc.FirstSection.Body.Tables[table_idx];
 
                                 tab = tab.Rows[row_idx].Cells[0].FirstChild as Aspose.Words.Tables.Table;//(Aspose.Words.Tables.Table)doc.GetChild(NodeType.Table, 0, true);//
                                 int idx = 2;//Giữ lại tiêu đề header của bảng

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_Xemtonghopchiphi));
             Janus.Windows.GridEX.GridEXLayout cboNgaydieutri_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem1 = new Janus.Windows.EditControls.UIComboBoxItem();
@@ -55,7 +56,7 @@
             this.optNgoaitru = new System.Windows.Forms.RadioButton();
             this.optNoitru = new System.Windows.Forms.RadioButton();
             this.grdThongTinChuaThanhToan = new Janus.Windows.GridEX.GridEX();
-            this.ctxTronggoi_tutuc = new System.Windows.Forms.ContextMenuStrip();
+            this.ctxTronggoi_tutuc = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuTronggoi = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuTutuc = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
@@ -69,17 +70,17 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.ucThongtinnguoibenh_doc_v51 = new VNS.HIS.UI.Forms.Dungchung.UCs.ucThongtinnguoibenh_doc_v5();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.pnlMienGiam = new System.Windows.Forms.Panel();
             this.pnlTangGiamDonGia = new System.Windows.Forms.Panel();
+            this.txtptramtanggia_nguoinuocngoai = new Janus.Windows.GridEX.EditControls.EditBox();
             this.label45 = new System.Windows.Forms.Label();
             this.chkDoituongnguoinuocngoai = new System.Windows.Forms.CheckBox();
             this.chkPercent = new System.Windows.Forms.CheckBox();
             this.lbltilemiengiam = new System.Windows.Forms.Label();
             this.txtTilemiengiamAll = new MaskedTextBox.MaskedTextBox();
             this.label36 = new System.Windows.Forms.Label();
-            this.gridEXExporter1 = new Janus.Windows.GridEX.Export.GridEXExporter();
+            this.gridEXExporter1 = new Janus.Windows.GridEX.Export.GridEXExporter(this.components);
             this.baocaO_TIEUDE1 = new VNS.HIS.UI.FORMs.BAOCAO.BHYT.UserControls.BAOCAO_TIEUDE();
-            this.txtptramtanggia_nguoinuocngoai = new Janus.Windows.GridEX.EditControls.EditBox();
             this.panel10.SuspendLayout();
             this.panel1.SuspendLayout();
             this.pnlCachthuchienthidulieu.SuspendLayout();
@@ -90,7 +91,7 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
+            this.pnlMienGiam.SuspendLayout();
             this.pnlTangGiamDonGia.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -495,7 +496,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.grdThongTinChuaThanhToan);
-            this.splitContainer1.Panel2.Controls.Add(this.panel3);
+            this.splitContainer1.Panel2.Controls.Add(this.pnlMienGiam);
             this.splitContainer1.Size = new System.Drawing.Size(1384, 680);
             this.splitContainer1.SplitterDistance = 461;
             this.splitContainer1.TabIndex = 480;
@@ -522,18 +523,18 @@
             this.panel2.Size = new System.Drawing.Size(461, 680);
             this.panel2.TabIndex = 0;
             // 
-            // panel3
+            // pnlMienGiam
             // 
-            this.panel3.Controls.Add(this.pnlTangGiamDonGia);
-            this.panel3.Controls.Add(this.chkPercent);
-            this.panel3.Controls.Add(this.lbltilemiengiam);
-            this.panel3.Controls.Add(this.txtTilemiengiamAll);
-            this.panel3.Controls.Add(this.label36);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(919, 53);
-            this.panel3.TabIndex = 447;
+            this.pnlMienGiam.Controls.Add(this.pnlTangGiamDonGia);
+            this.pnlMienGiam.Controls.Add(this.chkPercent);
+            this.pnlMienGiam.Controls.Add(this.lbltilemiengiam);
+            this.pnlMienGiam.Controls.Add(this.txtTilemiengiamAll);
+            this.pnlMienGiam.Controls.Add(this.label36);
+            this.pnlMienGiam.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlMienGiam.Location = new System.Drawing.Point(0, 0);
+            this.pnlMienGiam.Name = "pnlMienGiam";
+            this.pnlMienGiam.Size = new System.Drawing.Size(919, 53);
+            this.pnlMienGiam.TabIndex = 447;
             // 
             // pnlTangGiamDonGia
             // 
@@ -544,6 +545,18 @@
             this.pnlTangGiamDonGia.Name = "pnlTangGiamDonGia";
             this.pnlTangGiamDonGia.Size = new System.Drawing.Size(904, 25);
             this.pnlTangGiamDonGia.TabIndex = 447;
+            // 
+            // txtptramtanggia_nguoinuocngoai
+            // 
+            this.txtptramtanggia_nguoinuocngoai.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.txtptramtanggia_nguoinuocngoai.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtptramtanggia_nguoinuocngoai.Location = new System.Drawing.Point(334, 3);
+            this.txtptramtanggia_nguoinuocngoai.MaxLength = 3;
+            this.txtptramtanggia_nguoinuocngoai.Name = "txtptramtanggia_nguoinuocngoai";
+            this.txtptramtanggia_nguoinuocngoai.Size = new System.Drawing.Size(47, 22);
+            this.txtptramtanggia_nguoinuocngoai.TabIndex = 638;
+            this.txtptramtanggia_nguoinuocngoai.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center;
+            this.txtptramtanggia_nguoinuocngoai.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
             // 
             // label45
             // 
@@ -632,18 +645,6 @@
             this.baocaO_TIEUDE1.TIEUDE = "TỔNG HỢP CHI PHÍ RA VIỆN";
             this.baocaO_TIEUDE1.TitleFont = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             // 
-            // txtptramtanggia_nguoinuocngoai
-            // 
-            this.txtptramtanggia_nguoinuocngoai.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.txtptramtanggia_nguoinuocngoai.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtptramtanggia_nguoinuocngoai.Location = new System.Drawing.Point(334, 3);
-            this.txtptramtanggia_nguoinuocngoai.MaxLength = 3;
-            this.txtptramtanggia_nguoinuocngoai.Name = "txtptramtanggia_nguoinuocngoai";
-            this.txtptramtanggia_nguoinuocngoai.Size = new System.Drawing.Size(47, 22);
-            this.txtptramtanggia_nguoinuocngoai.TabIndex = 638;
-            this.txtptramtanggia_nguoinuocngoai.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center;
-            this.txtptramtanggia_nguoinuocngoai.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
-            // 
             // frm_Xemtonghopchiphi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -671,8 +672,8 @@
             this.splitContainer1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            this.pnlMienGiam.ResumeLayout(false);
+            this.pnlMienGiam.PerformLayout();
             this.pnlTangGiamDonGia.ResumeLayout(false);
             this.pnlTangGiamDonGia.PerformLayout();
             this.ResumeLayout(false);
@@ -721,7 +722,7 @@
         private MaskedTextBox.MaskedTextBox txtTilemiengiamAll;
         private System.Windows.Forms.CheckBox chkPercent;
         internal System.Windows.Forms.Label lbltilemiengiam;
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel pnlMienGiam;
         private System.Windows.Forms.Panel pnlTangGiamDonGia;
         private System.Windows.Forms.ToolStripMenuItem mnuExcel;
         private Janus.Windows.GridEX.Export.GridEXExporter gridEXExporter1;

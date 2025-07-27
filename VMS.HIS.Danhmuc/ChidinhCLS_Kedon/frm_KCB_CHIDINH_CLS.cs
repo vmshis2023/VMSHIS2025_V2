@@ -20,6 +20,7 @@ using VNS.HIS.Classes;
 using VNS.HIS.UI.Forms.NGOAITRU;
 using VNS.HIS.BusRule.Goikham;
 using VNS.HIS.UI.DANHMUC;
+using VMS.HIS.Bus.Emr;
 
 namespace VNS.HIS.UI.NGOAITRU
 {
@@ -631,6 +632,7 @@ namespace VNS.HIS.UI.NGOAITRU
                 Utility.ShowMsg("Lỗi:" + ex.Message);
             }
         }
+        
         /// <summary>
         /// hàm thực hiện việc xóa thông tin trên lưới
         /// </summary>
@@ -640,6 +642,7 @@ namespace VNS.HIS.UI.NGOAITRU
         {
             try
             {
+                if (EmrDocuments.KiemtratrangthaiKyphieu(objLuotkham.IdBenhnhan,objLuotkham.MaLuotkham, Utility.Int64Dbnull(txtAssign_ID.Text, -1),Loaiphieu_HIS.PHIEUCHIDINH,Loaiphieu_HIS.PHIEUCHIDINH)) return;
                 if (!IsValidDataXoaCls()) return;
                 string lstvalues = "";
                 foreach (GridEXRow gridExRow in grdChitietChidinhCLS.GetCheckedRows())
@@ -942,6 +945,7 @@ namespace VNS.HIS.UI.NGOAITRU
         }
         bool SaveData()
         {
+            if (EmrDocuments.KiemtratrangthaiKyphieu(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, Utility.Int64Dbnull(txtAssign_ID.Text, -1), Loaiphieu_HIS.PHIEUCHIDINH, Loaiphieu_HIS.PHIEUCHIDINH)) return false;
             if (!IsValidData()) return false;
             if (!KiemTraTamUng() ) return false;
             isSaved = true;
@@ -949,6 +953,7 @@ namespace VNS.HIS.UI.NGOAITRU
             PerformAction();
             return true;
         }
+        
         /// <summary>
         /// hàm thực hiện việc kiểm tra lại thông tin 
         /// </summary>
@@ -1101,6 +1106,7 @@ namespace VNS.HIS.UI.NGOAITRU
             switch (actionResult)
             {
                 case ActionResult.Success:
+                    TachPhieuChiDinh(objKcbChidinhcls);
                     Utility.Log(this.Name, globalVariables.UserName, string.Format("Thêm mới phiếu chỉ định cho bệnh nhân ID={0}, PID={1}, Tên={2} thành công ", objLuotkham.IdBenhnhan.ToString(), objLuotkham.MaLuotkham, objBenhnhan.TenBenhnhan), newaction.Insert, this.GetType().Assembly.ManifestModule.Name);
                     if (objKcbChidinhcls != null)
                     {
@@ -1126,6 +1132,27 @@ namespace VNS.HIS.UI.NGOAITRU
             }
             //Utility.EnableButton(cmdSave, true);
             ModifyCommand();
+        }
+        void TachPhieuChiDinh(KcbChidinhcl objchidinh)
+        {
+            try
+            {
+                log.Trace("................Bắt đầu lưu phiếu tách vào EMR................");
+                DataTable m_dtChitietPhieuCLS = SPs.EmrKcbChidinhclsLaynhominphieu(objchidinh.IdBenhnhan, objchidinh.MaLuotkham, objchidinh.IdChidinh).GetDataSet().Tables[0];
+                List<string> lstNhominCLS = m_dtChitietPhieuCLS.AsEnumerable().Select(c => Utility.sDbnull(c["nhom_in_cls"])).Distinct().ToList<string>();
+                foreach (string nhomcls in lstNhominCLS)
+                {
+                    log.Trace("Lưu phiếu {0}", nhomcls);
+                    DmucChung _obj = new Select().From(DmucChung.Schema).Where(DmucChung.Columns.Ma).IsEqualTo(nhomcls).And(DmucChung.Columns.Loai).IsEqualTo("NHOM_INPHIEU_CLS").ExecuteSingle<DmucChung>();
+                    EmrDocuments emrdoc = new EmrDocuments();
+                    emrdoc.InitDocument(objchidinh.IdBenhnhan, objchidinh.MaLuotkham, objchidinh.IdChidinh, objchidinh.NgayChidinh, Loaiphieu_HIS.PHIEUCHIDINH, nhomcls, objchidinh.NguoiTao, Utility.Int16Dbnull(objchidinh.IdKhoaChidinh, -1), Utility.Int16Dbnull(objchidinh.IdPhongChidinh, -1), Utility.Byte2Bool(objchidinh.Noitru), "", true, false, objchidinh.MaChidinh);
+                    emrdoc.Save();
+                }
+                log.Trace("................Kết thúc lưu phiếu tách vào EMR................");
+            }
+            catch (Exception ex)
+            {
+            }
         }
         bool _hasLoadPrintType = false;
         void LoadNhomin()
@@ -1160,6 +1187,7 @@ namespace VNS.HIS.UI.NGOAITRU
             switch (actionResult)
             {
                 case ActionResult.Success:
+                    TachPhieuChiDinh(objKcbChidinhcls);
                     m_blnCancel = false;
                     GetData();
                     //Utility.ShowMsg("Cập nhật thông tin phiếu chỉ định CLS thành công. Nhấn OK để kết thúc");

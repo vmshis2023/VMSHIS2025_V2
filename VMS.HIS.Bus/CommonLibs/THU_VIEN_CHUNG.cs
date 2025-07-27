@@ -1637,6 +1637,13 @@ namespace VNS.Libs
             v_Pres_Name = Utility.sDbnull(SPs.TaoTenDonthuoc(v_ma_luotkham, v_id_benhnhan).ExecuteScalar(), "");
             return v_Pres_Name;
         }
+        public static string TaoMaDonThuoc(DateTime ngay_kedon)
+        {
+
+            string ma_donthuoc = "";
+            ma_donthuoc = Utility.sDbnull(SPs.DonthuocTaomadonthuoc(ngay_kedon).ExecuteScalar(), "");
+            return ma_donthuoc;
+        }
         public static void CreateXML(DataTable dt)
         {
             try

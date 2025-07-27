@@ -21,8 +21,9 @@ namespace VNS.Libs
         public const string BA_SOSINH = "06/BV1";
         public const string BA_NGOAIKHOA = "10/BV1";
         public const string BA_NGOAITRU = "15/BV1";
-        public const string BA_NAMKHOA = "BANK";
-        public const string BA_IVF = "BAIVF";
+        public const string BA_NAMKHOA = "BA_NAMKHOA";
+        public const string BA_IVF_VO = "BA_IVF_VO";
+        public const string BA_IVF_CHONG = "BA_IVF_CHONG";
     }
     public class globalVariables
     {
@@ -127,6 +128,7 @@ namespace VNS.Libs
         public static DataTable gv_ChanDoanPhatthuoc = new DataTable();
         public static int NoiTru = 1;
         public static byte[] SysLogo = null;
+        public static byte[] logo_ngang = null;
         public static int NgoaiTru = 0;
         public static int SONGAYSAOCHEP = 3;
         public static string sMenuStyle = "";
@@ -431,6 +433,7 @@ namespace VNS.Libs
         public static int gv_intKT_TT_ChuyenCLS_BHYT = 0;
         public static string gv_strBHYT_MAQUYENLOI_UUTIEN = "";
         public static DataTable dtAutocompleteAddress=null;
+        public static DataTable dtAutocompleteAddress_New = null;//Dữ liệu sau sát nhập tỉnh thành
         public static List<string> LstAutocompleteAddressSource = null;
 
         //BIẾN SỬ DỤNG ĐỂ CÀI ĐẶT THUỘC TÍNH CHO CỘT GIÁ TRONG KÊ ĐƠN

@@ -129,6 +129,30 @@ namespace VMS.HIS.DAL{
                 
                 schema.Columns.Add(colvarMotaThem);
                 
+                TableSchema.TableColumn colvarTrangThai = new TableSchema.TableColumn(schema);
+                colvarTrangThai.ColumnName = "trang_thai";
+                colvarTrangThai.DataType = DbType.Boolean;
+                colvarTrangThai.MaxLength = 0;
+                colvarTrangThai.AutoIncrement = false;
+                colvarTrangThai.IsNullable = true;
+                colvarTrangThai.IsPrimaryKey = false;
+                colvarTrangThai.IsForeignKey = false;
+                colvarTrangThai.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarTrangThai);
+                
+                TableSchema.TableColumn colvarIsNew = new TableSchema.TableColumn(schema);
+                colvarIsNew.ColumnName = "isNew";
+                colvarIsNew.DataType = DbType.Boolean;
+                colvarIsNew.MaxLength = 0;
+                colvarIsNew.AutoIncrement = false;
+                colvarIsNew.IsNullable = true;
+                colvarIsNew.IsPrimaryKey = false;
+                colvarIsNew.IsForeignKey = false;
+                colvarIsNew.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarIsNew);
+                
                 TableSchema.TableColumn colvarTenDiachinhCaptren = new TableSchema.TableColumn(schema);
                 colvarTenDiachinhCaptren.ColumnName = "ten_diachinh_captren";
                 colvarTenDiachinhCaptren.DataType = DbType.String;
@@ -287,6 +311,34 @@ namespace VMS.HIS.DAL{
             }
         }
 	      
+        [XmlAttribute("TrangThai")]
+        [Bindable(true)]
+        public bool? TrangThai 
+	    {
+		    get
+		    {
+			    return GetColumnValue<bool?>("trang_thai");
+		    }
+            set 
+		    {
+			    SetColumnValue("trang_thai", value);
+            }
+        }
+	      
+        [XmlAttribute("IsNew")]
+        [Bindable(true)]
+        public bool? IsNew 
+	    {
+		    get
+		    {
+			    return GetColumnValue<bool?>("isNew");
+		    }
+            set 
+		    {
+			    SetColumnValue("isNew", value);
+            }
+        }
+	      
         [XmlAttribute("TenDiachinhCaptren")]
         [Bindable(true)]
         public string TenDiachinhCaptren 
@@ -333,6 +385,10 @@ namespace VMS.HIS.DAL{
             public static string LoaiDiachinh = @"loai_diachinh";
             
             public static string MotaThem = @"mota_them";
+            
+            public static string TrangThai = @"trang_thai";
+            
+            public static string IsNew = @"isNew";
             
             public static string TenDiachinhCaptren = @"ten_diachinh_captren";
             

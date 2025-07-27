@@ -1262,14 +1262,28 @@ namespace VNS.HIS.UI.NGOAITRU
             {
                 if (sudungsonha) return;
                 List<string> lstMadiachinh = value.Split(';').ToList<string>();
-                if (lstMadiachinh.Count >= 3)
+                if(Apdung_DiachinhMoi)
                 {
-                    txtTinhTp.SetCode(lstMadiachinh[0]);
-                    txtTinhTp.RaiseEnterEvents();
-                    txtQuanhuyen.SetCode(lstMadiachinh[1]);
-                    txtQuanhuyen.RaiseEnterEvents();
-                    txtXaphuong.SetCode(lstMadiachinh[2]);
+                    if (lstMadiachinh.Count >= 2)
+                    {
+                        txtTinhTp.SetCode(lstMadiachinh[0]);
+                        txtTinhTp.RaiseEnterEvents();
+                        txtXaphuong.SetCode(lstMadiachinh[1]);
+                        txtQuanhuyen.RaiseEnterEvents();
+                    }
+                }  
+                else
+                {
+                    if (lstMadiachinh.Count >= 3)
+                    {
+                        txtTinhTp.SetCode(lstMadiachinh[0]);
+                        txtTinhTp.RaiseEnterEvents();
+                        txtQuanhuyen.SetCode(lstMadiachinh[1]);
+                        txtQuanhuyen.RaiseEnterEvents();
+                        txtXaphuong.SetCode(lstMadiachinh[2]);
+                    }
                 }
+                
             }
             catch (Exception ex)
             {
@@ -1280,24 +1294,36 @@ namespace VNS.HIS.UI.NGOAITRU
 
         void txtQuanhuyen__OnEnterMe()
         {
-            string oldXaPhuong = txtXaphuong.MyCode;
-            if (txtQuanhuyen.MyCode != "")
-                LoadXaPhuongByQuanHuyen(txtQuanhuyen.MyCode);
-            txtXaphuong.SetCode(oldXaPhuong);
+            if (!Apdung_DiachinhMoi)
+            {
+                string oldXaPhuong = txtXaphuong.MyCode;
+                if (txtQuanhuyen.MyCode != "")
+                    LoadXaPhuongByQuanHuyen(txtQuanhuyen.MyCode);
+                txtXaphuong.SetCode(oldXaPhuong);
+            }
         }
-
+        bool Apdung_DiachinhMoi = true;
         void txtTinhTp__OnEnterMe()
         {
-            string oldQH = txtQuanhuyen.MyCode;
-            if (txtTinhTp.MyCode != "")
-                LoadQuanHuyenByTinhTp(txtTinhTp.MyCode);
-            txtQuanhuyen.SetCode(oldQH);
+            if (Apdung_DiachinhMoi)
+            {
+                string oldXaphuong = txtXaphuong.MyCode;
+                LoadXaphuongByTinhTp(txtTinhTp.MyCode);
+                txtXaphuong.SetCode(oldXaphuong);
+            }
+            else
+            {
+                string oldQH = txtQuanhuyen.MyCode;
+                if (txtTinhTp.MyCode != "")
+                    LoadQuanHuyenByTinhTp(txtTinhTp.MyCode);
+                txtQuanhuyen.SetCode(oldQH);
+            }
         }
 
         void txtDiachi_LostFocus(object sender, EventArgs e)
         {
             txtDiachi.PreventTextChanged = true;
-            txtDiachi.Text=Utility.CapitalizeFirstLetters(txtDiachi.Text);
+            txtDiachi.Text= TIEPDON_DIACHI_AUTOUPPERCASE? Utility.CapitalizeFirstLetters(txtDiachi.Text): txtDiachi.Text;
             txtDiachi.PreventTextChanged = false;
             //string s=Utility.DoTrim(txtDiachi.Text);
             //txtDiachi.Text = s.Substring(0, 1).ToUpper() + s.Substring(1);
@@ -1357,12 +1383,20 @@ namespace VNS.HIS.UI.NGOAITRU
 
         void mnuBOD_Click(object sender, EventArgs e)
         {
-            PropertyLib._KCBProperties.Nhapngaythangnamsinh = mnuBOD.Checked;
-            PropertyLib.SavePropertyV1( PropertyLib._KCBProperties);
-            dtpBOD.CustomFormat = mnuBOD.Checked ? "dd/MM/yyyy" : "yyyy";
+            if (THU_VIEN_CHUNG.Laygiatrithamsohethong("TIEPDON_LUONNHAP_NGAYTHANGNAMSINH", "1", false) == "1")
+            {
+                dtpBOD.CustomFormat = "dd/MM/yyyy";
+            }
+            else
+            {
+                PropertyLib._KCBProperties.Nhapngaythangnamsinh = mnuBOD.Checked;
+                PropertyLib.SavePropertyV1(PropertyLib._KCBProperties);
+                dtpBOD.CustomFormat = mnuBOD.Checked ? "dd/MM/yyyy" : "yyyy";
+            }
             txtTuoi.Enabled = dtpBOD.CustomFormat == "yyyy";
             lblLoaituoi.Visible = dtpBOD.CustomFormat != "yyyy";
             dtpBOD_TextChanged(dtpBOD, e);
+
         }
 
         void txtLoaikham__OnShowData()
@@ -2547,6 +2581,7 @@ namespace VNS.HIS.UI.NGOAITRU
         }
         bool sudungsonha = false;
         string oldinfor = "";
+        bool TIEPDON_DIACHI_AUTOUPPERCASE = false;
         List<string> lstTE = new List<string>();
         List<string> lstNG = new List<string>();
         // private  b_QMSStop=false;
@@ -2557,6 +2592,10 @@ namespace VNS.HIS.UI.NGOAITRU
         /// <param name="e"></param>
         private void frm_KCB_DANGKY_Load(object sender, EventArgs e)
         {
+            Apdung_DiachinhMoi = THU_VIEN_CHUNG.Laygiatrithamsohethong("DIACHINH_MOI", "0", true) == "1";
+            lblQuanhuyen.Enabled = txtQuanhuyen.Enabled = lblQuanhuyen.Visible = txtQuanhuyen.Visible = !Apdung_DiachinhMoi;
+            txtTinhTp.Width = Apdung_DiachinhMoi ? 365 : 128;
+            TIEPDON_DIACHI_AUTOUPPERCASE=THU_VIEN_CHUNG.Laygiatrithamsohethong("TIEPDON_DIACHI_CHARACTERCASING", "0", true) == "1"; 
             //try
             //{
             //    cboMaKhuvuc.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -2588,7 +2627,7 @@ namespace VNS.HIS.UI.NGOAITRU
             //        txtDiachi.lblTest = lblAdd0;
             //        lnkDiachiBN.Text = "Địa chỉ:";
             //    }
-                
+
             //    txtDiachi_bhyt.lblWords = lblAdd1;
             //    txtDiachi_bhyt.lblTest = lblAdd0;
             //    cmdThemmoiDiachinh.Visible = Utility.Coquyen("TIEPDON_THEMNHANH_DONVIDIACHINH");
@@ -2654,7 +2693,7 @@ namespace VNS.HIS.UI.NGOAITRU
 
             //    b_HasLoaded = true;
             //    CanhbaoNguoibenh();
-                
+
             //}
         }
         private void LoadMe()
@@ -3253,14 +3292,14 @@ namespace VNS.HIS.UI.NGOAITRU
             txtDiachi_bhyt.LengthOfQuickType =Utility.Int32Dbnull( THU_VIEN_CHUNG.Laygiatrithamsohethong("TIEPDON_DIACHIGOTAT_6KITU", "6", false));
             txtDiachi.LengthOfQuickType = txtDiachi_bhyt.LengthOfQuickType;
             autoTpQH.LengthOfQuickType = txtDiachi_bhyt.LengthOfQuickType;
-            txtDiachi_bhyt.dtData = globalVariables.dtAutocompleteAddress;
+            txtDiachi_bhyt.dtData = globalVariables.dtAutocompleteAddress_New;
             if (sudungsonha)
             {
-                autoTpQH.dtData = globalVariables.dtAutocompleteAddress.Copy();
+                autoTpQH.dtData = globalVariables.dtAutocompleteAddress_New.Copy();
                 txtDiachi.dtData = autoTpQH.dtData.Clone();
             }
             else
-                txtDiachi.dtData = globalVariables.dtAutocompleteAddress.Copy();
+                txtDiachi.dtData = globalVariables.dtAutocompleteAddress_New.Copy();
            
             this.txtDiachi_bhyt.AutoCompleteList = globalVariables.LstAutocompleteAddressSource;
             this.txtDiachi_bhyt.CaseSensitive = false;
@@ -3269,7 +3308,7 @@ namespace VNS.HIS.UI.NGOAITRU
             this.txtDiachi.CaseSensitive = false;
             this.txtDiachi.MinTypedCharacters = 1;
 
-            autotxtdiachilienhe.dtData = globalVariables.dtAutocompleteAddress.Copy();
+            autotxtdiachilienhe.dtData = globalVariables.dtAutocompleteAddress_New.Copy();
             this.autotxtdiachilienhe.AutoCompleteList = globalVariables.LstAutocompleteAddressSource;
             this.autotxtdiachilienhe.CaseSensitive = false;
             this.autotxtdiachilienhe.MinTypedCharacters = 1;
@@ -3283,6 +3322,13 @@ namespace VNS.HIS.UI.NGOAITRU
             arrDr = globalVariables.gv_dtDmucDiachinh.Select("loai_diachinh=2");
             InitAutocomplete(arrDr.Length > 0 ? arrDr.CopyToDataTable() : dtTemp, txtXaphuong, DmucDiachinh.Columns.MaDiachinh, DmucDiachinh.Columns.MaDiachinh, DmucDiachinh.Columns.TenDiachinh);
         }
+        void LoadXaphuongByTinhTp(string ma_tinhtp)
+        {
+            DataTable dtTemp = globalVariables.gv_dtDmucDiachinh.Clone();
+            DataRow[] arrDr = globalVariables.gv_dtDmucDiachinh.Select("loai_diachinh=2 and ma_cha='" + ma_tinhtp + "'");
+            InitAutocomplete(arrDr.Length > 0 ? arrDr.CopyToDataTable() : dtTemp, txtXaphuong, DmucDiachinh.Columns.MaDiachinh, DmucDiachinh.Columns.MaDiachinh, DmucDiachinh.Columns.TenDiachinh);
+        }
+
         void LoadQuanHuyenByTinhTp(string ma_tinhtp)
         {
             DataTable dtTemp = globalVariables.gv_dtDmucDiachinh.Clone();
@@ -5638,9 +5684,11 @@ namespace VNS.HIS.UI.NGOAITRU
         /// <param name="e"></param>
         private void frm_KCB_DANGKY_KeyDown(object sender, KeyEventArgs e)
         {
+            Control ActControl = null;
             if (e.KeyCode == Keys.F3)
             {
-                if (this.ActiveControl != null && this.ActiveControl.Name == txtTEN_BN.Name && Utility.DoTrim(txtTEN_BN.Text)!="")
+                ActControl = Utility.getActiveControl(this);
+                if (Utility.IsMyControl( ActControl,txtTEN_BN) && Utility.DoTrim(txtTEN_BN.Text)!="")
                 {
                     frm_DSACH_BN_TKIEM Timkiem_Benhnhan = new frm_DSACH_BN_TKIEM(Args,0);
                     Timkiem_Benhnhan.AutoSearch = true;
@@ -5654,11 +5702,11 @@ namespace VNS.HIS.UI.NGOAITRU
                         isAutoFinding = false;
                     }
                 }
-                else if (this.ActiveControl != null && this.ActiveControl.Name == txtCMT.Name && Utility.DoTrim(txtCMT.Text) != "")
+                else if (Utility.IsMyControl(ActControl, txtCMT) && Utility.DoTrim(txtCMT.Text) != "")
                 {
                     FindPatientByCMT();
                 }
-                else if (this.ActiveControl != null && this.ActiveControl.Name == txtSDTLienhe.Name && Utility.DoTrim(txtSDTLienhe.Text) != "")
+                else if (Utility.IsMyControl(ActControl, txtSDTLienhe) && Utility.DoTrim(txtSDTLienhe.Text) != "")
                 {
                     frm_DSACH_BN_TKIEM Timkiem_Benhnhan = new frm_DSACH_BN_TKIEM(Args,0);
                     Timkiem_Benhnhan.AutoSearch = true;
@@ -5672,7 +5720,7 @@ namespace VNS.HIS.UI.NGOAITRU
                         isAutoFinding = false;
                     }
                 }
-                else if (this.ActiveControl != null && this.ActiveControl.Name == txtSDT.Name && Utility.DoTrim(txtSDT.Text) != "")
+                else if (Utility.IsMyControl(ActControl, txtSDT) && Utility.DoTrim(txtSDT.Text) != "")
                 {
                     FindPatientByPhoneNum();
                     //frm_DSACH_BN_TKIEM Timkiem_Benhnhan = new frm_DSACH_BN_TKIEM(Args, 0);
@@ -5788,9 +5836,9 @@ namespace VNS.HIS.UI.NGOAITRU
                 //tabControl1.SelectedTab = tabControl1.TabPages[1];
                 return;
             }
-            if (e.KeyCode == Keys.F11) Utility.ShowMsg(this.ActiveControl.Name);
+            //if (e.KeyCode == Keys.F11) Utility.ShowMsg(ActControl.Name);
             if (e.KeyCode == Keys.F4) cmdInPhieuKham.PerformClick();
-            if (e.KeyCode == Keys.Escape && this.ActiveControl != null && this.ActiveControl.GetType()!=txtDantoc.GetType())
+            if (e.KeyCode == Keys.Escape && ActControl != null && ActControl.GetType()!=txtDantoc.GetType())
             {
 
                 Close();

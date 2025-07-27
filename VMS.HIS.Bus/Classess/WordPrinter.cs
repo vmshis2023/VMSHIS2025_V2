@@ -94,7 +94,7 @@ using VNS.Libs;
                     doc.MailMerge.Execute(drData);
                     //Chèn ảnh chữ ký nếu đã được ký
                     sysLogosize = new Select().From(SysSystemParameter.Schema).Where(SysSystemParameter.Columns.SName).IsEqualTo("signsize").ExecuteSingle<SysSystemParameter>();
-                    Utility.SignDoc(doc, builder, sysLogosize != null ? sysLogosize.SValue : "");
+                    Utility.SignDoc( doc, builder, sysLogosize != null ? sysLogosize.SValue : "");
                     if (File.Exists(fileKetqua))
                     {
                         File.Delete(fileKetqua);

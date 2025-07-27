@@ -207,7 +207,7 @@ namespace VMS.HIS.DAL
 				TableSchema.TableColumn colvarInvInvoiceName = new TableSchema.TableColumn(schema);
 				colvarInvInvoiceName.ColumnName = "inv_invoiceName";
 				colvarInvInvoiceName.DataType = DbType.String;
-				colvarInvInvoiceName.MaxLength = 100;
+				colvarInvInvoiceName.MaxLength = 255;
 				colvarInvInvoiceName.AutoIncrement = false;
 				colvarInvInvoiceName.IsNullable = true;
 				colvarInvInvoiceName.IsPrimaryKey = false;
@@ -389,7 +389,7 @@ namespace VMS.HIS.DAL
 				TableSchema.TableColumn colvarInvBuyerLegalName = new TableSchema.TableColumn(schema);
 				colvarInvBuyerLegalName.ColumnName = "inv_buyerLegalName";
 				colvarInvBuyerLegalName.DataType = DbType.String;
-				colvarInvBuyerLegalName.MaxLength = 100;
+				colvarInvBuyerLegalName.MaxLength = 255;
 				colvarInvBuyerLegalName.AutoIncrement = false;
 				colvarInvBuyerLegalName.IsNullable = true;
 				colvarInvBuyerLegalName.IsPrimaryKey = false;
@@ -415,7 +415,7 @@ namespace VMS.HIS.DAL
 				TableSchema.TableColumn colvarInvBuyerAddressLine = new TableSchema.TableColumn(schema);
 				colvarInvBuyerAddressLine.ColumnName = "inv_buyerAddressLine";
 				colvarInvBuyerAddressLine.DataType = DbType.String;
-				colvarInvBuyerAddressLine.MaxLength = 100;
+				colvarInvBuyerAddressLine.MaxLength = 255;
 				colvarInvBuyerAddressLine.AutoIncrement = false;
 				colvarInvBuyerAddressLine.IsNullable = true;
 				colvarInvBuyerAddressLine.IsPrimaryKey = false;

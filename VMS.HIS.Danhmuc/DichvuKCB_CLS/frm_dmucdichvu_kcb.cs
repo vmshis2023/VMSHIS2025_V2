@@ -481,6 +481,12 @@ namespace VNS.HIS.UI.DANHMUC
                 Utility.CatchException(ex);
             }
         }
-       
+
+        private void cmdSaochep_Click(object sender, EventArgs e)
+        {
+            frm_saochepcongkham _saochepcongkham = new frm_saochepcongkham();
+            _saochepcongkham.ShowDialog();
+            
+        }
     }
 }

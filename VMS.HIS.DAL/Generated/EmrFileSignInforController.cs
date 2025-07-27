@@ -80,7 +80,7 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(long? IdBenhnhan,string MaLuotkham,long? FileId,long? IdPhieu,string LoaiphieuCha,string LoaiphieuHis,string NguoiKy,DateTime? NgayKy,string TenVitriKy,bool? TthaiKy,bool? TthaiXoa)
+	    public void Insert(long? IdBenhnhan,string MaLuotkham,long? FileId,long? IdPhieu,string LoaiphieuCha,string LoaiphieuHis,string NguoiKy,DateTime? NgayKy,string TenVitriKy,bool? TthaiKy,bool? TthaiXoa,string ChucnangKy,string MaytinhKy,string UserKy)
 	    {
 		    EmrFileSignInfor item = new EmrFileSignInfor();
 		    
@@ -106,6 +106,12 @@ namespace VMS.HIS.DAL
             
             item.TthaiXoa = TthaiXoa;
             
+            item.ChucnangKy = ChucnangKy;
+            
+            item.MaytinhKy = MaytinhKy;
+            
+            item.UserKy = UserKy;
+            
 	    
 		    item.Save(UserName);
 	    }
@@ -114,7 +120,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(long Id,long? IdBenhnhan,string MaLuotkham,long? FileId,long? IdPhieu,string LoaiphieuCha,string LoaiphieuHis,string NguoiKy,DateTime? NgayKy,string TenVitriKy,bool? TthaiKy,bool? TthaiXoa)
+	    public void Update(long Id,long? IdBenhnhan,string MaLuotkham,long? FileId,long? IdPhieu,string LoaiphieuCha,string LoaiphieuHis,string NguoiKy,DateTime? NgayKy,string TenVitriKy,bool? TthaiKy,bool? TthaiXoa,string ChucnangKy,string MaytinhKy,string UserKy)
 	    {
 		    EmrFileSignInfor item = new EmrFileSignInfor();
 	        item.MarkOld();
@@ -143,6 +149,12 @@ namespace VMS.HIS.DAL
 			item.TthaiKy = TthaiKy;
 				
 			item.TthaiXoa = TthaiXoa;
+				
+			item.ChucnangKy = ChucnangKy;
+				
+			item.MaytinhKy = MaytinhKy;
+				
+			item.UserKy = UserKy;
 				
 	        item.Save(UserName);
 	    }

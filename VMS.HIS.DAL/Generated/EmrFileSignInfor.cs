@@ -283,6 +283,45 @@ namespace VMS.HIS.DAL
 				colvarTthaiXoa.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarTthaiXoa);
 				
+				TableSchema.TableColumn colvarChucnangKy = new TableSchema.TableColumn(schema);
+				colvarChucnangKy.ColumnName = "chucnang_ky";
+				colvarChucnangKy.DataType = DbType.String;
+				colvarChucnangKy.MaxLength = 255;
+				colvarChucnangKy.AutoIncrement = false;
+				colvarChucnangKy.IsNullable = true;
+				colvarChucnangKy.IsPrimaryKey = false;
+				colvarChucnangKy.IsForeignKey = false;
+				colvarChucnangKy.IsReadOnly = false;
+				colvarChucnangKy.DefaultSetting = @"";
+				colvarChucnangKy.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarChucnangKy);
+				
+				TableSchema.TableColumn colvarMaytinhKy = new TableSchema.TableColumn(schema);
+				colvarMaytinhKy.ColumnName = "maytinh_ky";
+				colvarMaytinhKy.DataType = DbType.String;
+				colvarMaytinhKy.MaxLength = 60;
+				colvarMaytinhKy.AutoIncrement = false;
+				colvarMaytinhKy.IsNullable = true;
+				colvarMaytinhKy.IsPrimaryKey = false;
+				colvarMaytinhKy.IsForeignKey = false;
+				colvarMaytinhKy.IsReadOnly = false;
+				colvarMaytinhKy.DefaultSetting = @"";
+				colvarMaytinhKy.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarMaytinhKy);
+				
+				TableSchema.TableColumn colvarUserKy = new TableSchema.TableColumn(schema);
+				colvarUserKy.ColumnName = "user_ky";
+				colvarUserKy.DataType = DbType.String;
+				colvarUserKy.MaxLength = 30;
+				colvarUserKy.AutoIncrement = false;
+				colvarUserKy.IsNullable = true;
+				colvarUserKy.IsPrimaryKey = false;
+				colvarUserKy.IsForeignKey = false;
+				colvarUserKy.IsReadOnly = false;
+				colvarUserKy.DefaultSetting = @"";
+				colvarUserKy.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarUserKy);
+				
 				BaseSchema = schema;
 				//add this schema to the provider
 				//so we can query it later
@@ -388,6 +427,30 @@ namespace VMS.HIS.DAL
 			get { return GetColumnValue<bool?>(Columns.TthaiXoa); }
 			set { SetColumnValue(Columns.TthaiXoa, value); }
 		}
+		  
+		[XmlAttribute("ChucnangKy")]
+		[Bindable(true)]
+		public string ChucnangKy 
+		{
+			get { return GetColumnValue<string>(Columns.ChucnangKy); }
+			set { SetColumnValue(Columns.ChucnangKy, value); }
+		}
+		  
+		[XmlAttribute("MaytinhKy")]
+		[Bindable(true)]
+		public string MaytinhKy 
+		{
+			get { return GetColumnValue<string>(Columns.MaytinhKy); }
+			set { SetColumnValue(Columns.MaytinhKy, value); }
+		}
+		  
+		[XmlAttribute("UserKy")]
+		[Bindable(true)]
+		public string UserKy 
+		{
+			get { return GetColumnValue<string>(Columns.UserKy); }
+			set { SetColumnValue(Columns.UserKy, value); }
+		}
 		
 		#endregion
 		
@@ -408,7 +471,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(long? varIdBenhnhan,string varMaLuotkham,long? varFileId,long? varIdPhieu,string varLoaiphieuCha,string varLoaiphieuHis,string varNguoiKy,DateTime? varNgayKy,string varTenVitriKy,bool? varTthaiKy,bool? varTthaiXoa)
+		public static void Insert(long? varIdBenhnhan,string varMaLuotkham,long? varFileId,long? varIdPhieu,string varLoaiphieuCha,string varLoaiphieuHis,string varNguoiKy,DateTime? varNgayKy,string varTenVitriKy,bool? varTthaiKy,bool? varTthaiXoa,string varChucnangKy,string varMaytinhKy,string varUserKy)
 		{
 			EmrFileSignInfor item = new EmrFileSignInfor();
 			
@@ -434,6 +497,12 @@ namespace VMS.HIS.DAL
 			
 			item.TthaiXoa = varTthaiXoa;
 			
+			item.ChucnangKy = varChucnangKy;
+			
+			item.MaytinhKy = varMaytinhKy;
+			
+			item.UserKy = varUserKy;
+			
 		
 			if (System.Web.HttpContext.Current != null)
 				item.Save(System.Web.HttpContext.Current.User.Identity.Name);
@@ -444,7 +513,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(long varId,long? varIdBenhnhan,string varMaLuotkham,long? varFileId,long? varIdPhieu,string varLoaiphieuCha,string varLoaiphieuHis,string varNguoiKy,DateTime? varNgayKy,string varTenVitriKy,bool? varTthaiKy,bool? varTthaiXoa)
+		public static void Update(long varId,long? varIdBenhnhan,string varMaLuotkham,long? varFileId,long? varIdPhieu,string varLoaiphieuCha,string varLoaiphieuHis,string varNguoiKy,DateTime? varNgayKy,string varTenVitriKy,bool? varTthaiKy,bool? varTthaiXoa,string varChucnangKy,string varMaytinhKy,string varUserKy)
 		{
 			EmrFileSignInfor item = new EmrFileSignInfor();
 			
@@ -471,6 +540,12 @@ namespace VMS.HIS.DAL
 				item.TthaiKy = varTthaiKy;
 			
 				item.TthaiXoa = varTthaiXoa;
+			
+				item.ChucnangKy = varChucnangKy;
+			
+				item.MaytinhKy = varMaytinhKy;
+			
+				item.UserKy = varUserKy;
 			
 			item.IsNew = false;
 			if (System.Web.HttpContext.Current != null)
@@ -569,6 +644,27 @@ namespace VMS.HIS.DAL
         
         
         
+        public static TableSchema.TableColumn ChucnangKyColumn
+        {
+            get { return Schema.Columns[12]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn MaytinhKyColumn
+        {
+            get { return Schema.Columns[13]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn UserKyColumn
+        {
+            get { return Schema.Columns[14]; }
+        }
+        
+        
+        
         #endregion
 		#region Columns Struct
 		public struct Columns
@@ -585,6 +681,9 @@ namespace VMS.HIS.DAL
 			 public static string TenVitriKy = @"ten_vitri_ky";
 			 public static string TthaiKy = @"tthai_ky";
 			 public static string TthaiXoa = @"tthai_xoa";
+			 public static string ChucnangKy = @"chucnang_ky";
+			 public static string MaytinhKy = @"maytinh_ky";
+			 public static string UserKy = @"user_ky";
 						
 		}
 		#endregion

@@ -120,7 +120,7 @@ namespace VMS.HIS.UI.EMR
                             return;
                         }
                     }
-                    objEmrBa = new Select().From(EmrBa.Schema).Where(EmrBa.Columns.MaBa).IsEqualTo(Utility.DoTrim(txtMaBenhAn.Text)).ExecuteSingle<EmrBa>();
+                    objEmrBa = new Select().From(EmrBaSankhoa.Schema).Where(EmrBaSankhoa.Columns.MaBa).IsEqualTo(Utility.DoTrim(txtMaBenhAn.Text)).ExecuteSingle<EmrBaSankhoa>();
                     if (objEmrBa == null)
                         ClearControl();
                     else
@@ -152,7 +152,7 @@ namespace VMS.HIS.UI.EMR
                         {
                             return;
                         }
-                    objEmrBa = EmrBa.FetchByID(Utility.Int64Dbnull(txtIDBenhAn.Text));
+                    objEmrBa = EmrBaSankhoa.FetchByID(Utility.Int64Dbnull(txtIDBenhAn.Text));
                     if (objEmrBa == null)
                         ClearControl();
                     else
@@ -197,7 +197,13 @@ namespace VMS.HIS.UI.EMR
                 objLuotkham = ucThongtinnguoibenh_emr_basic1.objLuotkham;
                 dt_ThongtinNguoibenh = ucThongtinnguoibenh_emr_basic1.dt_ThongtinNguoibenh;
                 objBenhnhan = Utility.getKcbDanhsachBenhnhan(objLuotkham);
-
+                if (objBenhnhan.IdGioitinh != 0)
+                {
+                    Utility.ShowMsg("Giới tính của người bệnh phải là Nam mới được phép tạo bệnh án Nam khoa. Vui lòng kiểm tra lại");
+                    objLuotkham = null;
+                    objBenhnhan = null;
+                    return;
+                }
                 ClearControl();
                 FillData4Update();
                 dtQLNBVaoVien.Focus();
@@ -898,10 +904,10 @@ namespace VMS.HIS.UI.EMR
                 TaoTienSuPhuKhoa();
                 //Phiếu theo dõi tại buồng đẻ
                 TaoPhieuTheodoiTaiBuongde();
-                objEmrBa = TaoEmrBa();
+                objEmrBa = TaoEmrBaSankhoa();
                 if (objEmrBa.IdBa > 0)
                 {
-                    if (!Utility.isValidSignStatus4UpdateDelete(objLuotkham, objEmrBa.IdBa, Loaiphieu_HIS.BENHAN, "Bệnh án Sản khoa"))
+                    if (!Utility.isValidSignStatus4UpdateDelete(objLuotkham, objEmrBa.IdBa, Loaiphieu_HIS.BA_SANKHOA, "Bệnh án Sản khoa"))
                         return;
                 }
                 //if (objEmrBa.IdBa > 0 && objEmrBa.MaBa != maBA)
@@ -932,7 +938,7 @@ namespace VMS.HIS.UI.EMR
                         objEmrBa.Save();
                         new Update(KcbLuotkham.Schema)
                             .Set(KcbLuotkham.Columns.IdBsDieutrinoitruChinh).EqualTo(objEmrBa.IdBacsiDieutri)
-                            .Set(KcbLuotkham.Columns.SoBenhAn).EqualTo(objEmrBa.MaBa)
+                            .Set(KcbLuotkham.Columns.IdBa).EqualTo(objEmrBa.IdBa)
                                  .Where(KcbLuotkham.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
                                  .And(KcbLuotkham.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
                                  .Execute();
@@ -975,17 +981,17 @@ namespace VMS.HIS.UI.EMR
                             objPhieutheodoitaibuongde.Save();
                             Utility.Log(this.Name, globalVariables.UserName, string.Format("Cập nhật thông tin phiếu theo dõi tại buồng đẻ tại chức năng EMR cho người bệnh: {0}-{1} thành công", objEmrBa.MaLuotkham, objEmrBa.TenBenhnhan), objTKBA.IsNew ? newaction.Insert : newaction.Update, "EMR");
                         }
-                        emrdoc.InitDocument(objEmrBa.IdBenhnhan, objEmrBa.MaLuotkham, Utility.Int64Dbnull(objEmrBa.IdBa), objEmrBa.NgaylamBa.Value, Loaiphieu_HIS.BENHAN_BIA, "BA05_BASANKHOA_BIA", objEmrBa.NguoiTao, -1, -1, Utility.Byte2Bool(0), "", true, false, "", Loaiphieu_HIS.BENHAN);
+                        emrdoc.InitDocument(objEmrBa.IdBenhnhan, objEmrBa.MaLuotkham, Utility.Int64Dbnull(objEmrBa.IdBa), objEmrBa.NgaylamBa.Value, Loaiphieu_HIS.BENHAN_BIA, "BA05_BASANKHOA_BIA", objEmrBa.NguoiTao, -1, -1, Utility.Byte2Bool(0), "", true, false, "", Loaiphieu_HIS.BA_SANKHOA);
                         emrdoc.Save();
-                        emrdoc.InitDocument(objEmrBa.IdBenhnhan, objEmrBa.MaLuotkham, Utility.Int64Dbnull(objEmrBa.IdBa), objEmrBa.NgaylamBa.Value, Loaiphieu_HIS.BENHAN_TO1, "BA05_BASANKHOA_TO1", objEmrBa.NguoiTao, -1, -1, Utility.Byte2Bool(0), "", true, false, "", Loaiphieu_HIS.BENHAN);
+                        emrdoc.InitDocument(objEmrBa.IdBenhnhan, objEmrBa.MaLuotkham, Utility.Int64Dbnull(objEmrBa.IdBa), objEmrBa.NgaylamBa.Value, Loaiphieu_HIS.BENHAN_TO1, "BA05_BASANKHOA_TO1", objEmrBa.NguoiTao, -1, -1, Utility.Byte2Bool(0), "", true, false, "", Loaiphieu_HIS.BA_SANKHOA);
                         emrdoc.Save();
-                        emrdoc.InitDocument(objEmrBa.IdBenhnhan, objEmrBa.MaLuotkham, Utility.Int64Dbnull(objEmrBa.IdBa), objEmrBa.NgaylamBa.Value, Loaiphieu_HIS.BENHAN_TO2, "BA05_BASANKHOA_TO2", objEmrBa.NguoiTao, -1, -1, Utility.Byte2Bool(0), "", true, false, "", Loaiphieu_HIS.BENHAN);
+                        emrdoc.InitDocument(objEmrBa.IdBenhnhan, objEmrBa.MaLuotkham, Utility.Int64Dbnull(objEmrBa.IdBa), objEmrBa.NgaylamBa.Value, Loaiphieu_HIS.BENHAN_TO2, "BA05_BASANKHOA_TO2", objEmrBa.NguoiTao, -1, -1, Utility.Byte2Bool(0), "", true, false, "", Loaiphieu_HIS.BA_SANKHOA);
                         emrdoc.Save();
-                        emrdoc.InitDocument(objEmrBa.IdBenhnhan, objEmrBa.MaLuotkham, Utility.Int64Dbnull(objEmrBa.IdBa), objEmrBa.NgaylamBa.Value, Loaiphieu_HIS.BENHAN_TO3, "BA05_BASANKHOA_TO3", objEmrBa.NguoiTao, -1, -1, Utility.Byte2Bool(0), "", true, false, "", Loaiphieu_HIS.BENHAN);
+                        emrdoc.InitDocument(objEmrBa.IdBenhnhan, objEmrBa.MaLuotkham, Utility.Int64Dbnull(objEmrBa.IdBa), objEmrBa.NgaylamBa.Value, Loaiphieu_HIS.BENHAN_TO3, "BA05_BASANKHOA_TO3", objEmrBa.NguoiTao, -1, -1, Utility.Byte2Bool(0), "", true, false, "", Loaiphieu_HIS.BA_SANKHOA);
                         emrdoc.Save();
-                        emrdoc.InitDocument(objEmrBa.IdBenhnhan, objEmrBa.MaLuotkham, Utility.Int64Dbnull(objEmrBa.IdBa), objEmrBa.NgaylamBa.Value, Loaiphieu_HIS.BENHAN_TO4, "BA05_BASANKHOA_TO4", objEmrBa.NguoiTao, -1, -1, Utility.Byte2Bool(0), "", true, false, "", Loaiphieu_HIS.BENHAN);
+                        emrdoc.InitDocument(objEmrBa.IdBenhnhan, objEmrBa.MaLuotkham, Utility.Int64Dbnull(objEmrBa.IdBa), objEmrBa.NgaylamBa.Value, Loaiphieu_HIS.BENHAN_TO4, "BA05_BASANKHOA_TO4", objEmrBa.NguoiTao, -1, -1, Utility.Byte2Bool(0), "", true, false, "", Loaiphieu_HIS.BA_SANKHOA);
                         emrdoc.Save();
-                        emrdoc.InitDocument(objEmrBa.IdBenhnhan, objEmrBa.MaLuotkham, Utility.Int64Dbnull(objEmrBa.IdBa), objEmrBa.NgaylamBa.Value, Loaiphieu_HIS.BENHAN, "BA05_BASANKHOA", objEmrBa.NguoiTao, -1, -1, Utility.Byte2Bool(0), "", true, false, "", Loaiphieu_HIS.BENHAN);
+                        emrdoc.InitDocument(objEmrBa.IdBenhnhan, objEmrBa.MaLuotkham, Utility.Int64Dbnull(objEmrBa.IdBa), objEmrBa.NgaylamBa.Value, Loaiphieu_HIS.BA_SANKHOA, "BA05_BASANKHOA", objEmrBa.NguoiTao, -1, -1, Utility.Byte2Bool(0), "", true, false, "", Loaiphieu_HIS.BA_SANKHOA);
                         emrdoc.Save();
 
                     }
@@ -1013,7 +1019,7 @@ namespace VMS.HIS.UI.EMR
                 }
                 EnableBA();
                 //Utility.ShowMsg("Lưu thông tin thành công", "Thông báo");
-                dtDataBA = SPs.EmrBaLaythongtinIn(-1, "", objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham).GetDataSet().Tables[0];
+                dtDataBA = SPs.EmrBaSankhoaLaythongtinIn(-1, "", objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham).GetDataSet().Tables[0];
                 _isSuccess = true;
             }
             catch (Exception ex)
@@ -1022,14 +1028,14 @@ namespace VMS.HIS.UI.EMR
             }
             finally
             {
-                if (objEmrBa != null && _isSuccess)
-                {
-                    new Update(KcbLuotkham.Schema)
-                        .Set(KcbLuotkham.Columns.SoBenhAn).EqualTo(objEmrBa.MaBa)
-                        .Where(KcbLuotkham.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
-                        .And(KcbLuotkham.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan).Execute();
-                    // EmrThemBenhAn();
-                }
+                //if (objEmrBa != null && _isSuccess)
+                //{
+                //    new Update(KcbLuotkham.Schema)
+                //        .Set(KcbLuotkham.Columns.IdBa).EqualTo(objEmrBa.IdBa)
+                //        .Where(KcbLuotkham.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
+                //        .And(KcbLuotkham.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan).Execute();
+                //    // EmrThemBenhAn();
+                //}
 
             }
         }
@@ -1214,7 +1220,7 @@ namespace VMS.HIS.UI.EMR
             objTspk.BaTsspkBatdauthaykinhNam = Utility.Int16Dbnull(dtpBatdauthaykinhnam.Text);
             objTspk.BaTsspkBatdauthaykinhTuoi = Utility.Int16Dbnull(nmrBatdauthaykinhtuoi.Value);
             objTspk.BaTsspkTinhchatkinhnguyet = Utility.sDbnull(txt_tinhchatkinhnguyet.Text);
-            objTspk.BaTsspkChuky = Utility.Int16Dbnull(txt_chuky.Text);
+            objTspk.BaTsspkChukykinhnguyet = Utility.Int16Dbnull(txt_chuky.Text);
             objTspk.BaTsspkSongaythaykinh = Utility.Int16Dbnull(txt_songaythaykinh.Text);
             objTspk.BaTsspkLuongkinh = Utility.sDbnull(txt_luongkinh.Text);
             objTspk.BaTsspkKinhlancuoingay = dtpKinhlancuoingay.Value;
@@ -1394,7 +1400,7 @@ namespace VMS.HIS.UI.EMR
                 cmdPrint.Enabled = cmdSave.Enabled = cmdXoaBenhAn.Enabled = false;
             }
         }
-        void ThongbaoSaiBenhAn(EmrBa objEmrBa)
+        void ThongbaoSaiBenhAn(EmrBaSankhoa objEmrBa)
         {
             string Msg = string.Format("Người bệnh {0} đang có hồ sơ Bệnh án {1} không khớp với loại Bệnh án bạn đang chọn. Vui lòng chọn lại đúng loại Bệnh án cần làm", ucThongtinnguoibenh_emr_basic1.txtTenBN.Text, objEmrBa.LoaiBa);
             Utility.ShowMsg(Msg);
@@ -1416,7 +1422,7 @@ namespace VMS.HIS.UI.EMR
         //            objPatientHi.MaDmucBa = objDmucBenhan.MaBenhan;
         //            objPatientHi.MaLuotkham = objLuotkham.MaLuotkham;
         //            objPatientHi.IdBenhnhan = objLuotkham.IdBenhnhan;
-        //            objPatientHi.EmrNo = objEmrBa.MaEmrBa;
+        //            objPatientHi.EmrNo = objEmrBa.MaEmrBaSankhoa;
         //            ActionResult actionResult = EmrDocumentServices.ThemBenhAn(objPatientHi, action.Insert);
         //            switch (actionResult)
         //            {
@@ -1426,9 +1432,9 @@ namespace VMS.HIS.UI.EMR
         //        }
         //    }
         //} 
-        private EmrBa TaoEmrBa()
+        private EmrBaSankhoa TaoEmrBaSankhoa()
         {
-            if (objEmrBa == null) objEmrBa = new EmrBa();
+            if (objEmrBa == null) objEmrBa = new EmrBaSankhoa();
             try
             {
                 int id = Utility.Int32Dbnull(txtIDBenhAn.Text, -1);
@@ -1824,7 +1830,7 @@ namespace VMS.HIS.UI.EMR
                     objEmrBa.BatdauthaykinhNam = objTspk.BaTsspkBatdauthaykinhNam;
                     objEmrBa.BatdauthaykinhTuoi = objTspk.BaTsspkBatdauthaykinhTuoi;
                     objEmrBa.Tinhchatkinhnguyet = objTspk.BaTsspkTinhchatkinhnguyet;
-                    objEmrBa.Chuky = objTspk.BaTsspkChuky;
+                    objEmrBa.Chuky = objTspk.BaTsspkChukykinhnguyet;
                     objEmrBa.Songaythaykinh = objTspk.BaTsspkSongaythaykinh;
                     objEmrBa.Luongkinh = objTspk.BaTsspkLuongkinh;
                     objEmrBa.Kinhlancuoingay = objTspk.BaTsspkKinhlancuoingay;
@@ -2278,7 +2284,7 @@ namespace VMS.HIS.UI.EMR
         NoitruPhieunhapvien objNhapvien;
         KcbPhieuchuyenvien objPhieuchuyenvien;
         DataTable dtDataBA = new DataTable();
-        public EmrBa objEmrBa;
+        public EmrBaSankhoa objEmrBa;
        
         EmrPhieutheodoiTaibuongde objPhieutheodoitaibuongde;
          EmrPhieukhambenh objPKB;
@@ -2297,13 +2303,13 @@ namespace VMS.HIS.UI.EMR
                    .And(KcbPhieuchuyenvien.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
                    .ExecuteSingle<KcbPhieuchuyenvien>();
 
-                SqlQuery sqlQuery = new Select().From<EmrBa>()
-                    .Where(EmrBa.Columns.MaLuotkham)
+                SqlQuery sqlQuery = new Select().From<EmrBaSankhoa>()
+                    .Where(EmrBaSankhoa.Columns.MaLuotkham)
                     .IsEqualTo(objLuotkham.MaLuotkham)
-                    .And(EmrBa.Columns.IdBenhnhan)
+                    .And(EmrBaSankhoa.Columns.IdBenhnhan)
                     .IsEqualTo(Utility.Int32Dbnull(objLuotkham.IdBenhnhan));
                 if (objEmrBa == null || (objEmrBa.IdBenhnhan != objLuotkham.IdBenhnhan && objEmrBa.MaLuotkham != objLuotkham.MaLuotkham))
-                    objEmrBa = sqlQuery.ExecuteSingle<EmrBa>();
+                    objEmrBa = sqlQuery.ExecuteSingle<EmrBaSankhoa>();
                 //Autofill Data
 
                 dtCacKhoa = new KCB_THAMKHAM().NoitruTimkiemlichsuBuonggiuong(objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan, "-1", -1);
@@ -2356,7 +2362,7 @@ namespace VMS.HIS.UI.EMR
                     m_enAct = action.Update;
                     cboLoaiBA.SelectedIndex = Utility.GetSelectedIndex(cboLoaiBA, objEmrBa.LoaiBa);
                     maBA = objEmrBa.MaBa;
-                    dtDataBA = SPs.EmrBaLaythongtin(-1, "", objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham).GetDataSet().Tables[0];
+                    dtDataBA = SPs.EmrBaSankhoaLaythongtinIn(-1, "", objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham).GetDataSet().Tables[0];
                     DataRow dr = dtDataBA.Rows[0];
                     try
                     {
@@ -2745,13 +2751,7 @@ namespace VMS.HIS.UI.EMR
         DataTable dtPhieuPttt = new DataTable();
         void FillThongtinPTTT()
         {
-            string sql = "select  format(ngay_pttt,' HH:mm - dd/MM/yyyy') as ngay_pttt,concat(phuongphap_pttt,'/',ten_phuongphap_vocam) as phuongphap_pt_vc, ";
-            sql += " (select top 1 ten_nhanvien from dmuc_nhanvien where id_nhanvien in (select t.Number from dbo.fromStringintoIntTable(p.idbacsi_pttt)t)) as ten_bacsy_phauthuat, ";
-            sql += " (select top 1 ten_nhanvien from dmuc_nhanvien where id_nhanvien in (select t.Number from dbo.fromStringintoIntTable(p.idbacsi_gayme) t)) as ten_bacsy_gayme ";
-            sql += " from kcb_phieupttt p ";
-            sql += " where id_benhnhan={0} and ma_luotkham='{1}' order by ngay_pttt";
-            sql = string.Format(sql, objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham);
-             dtPhieuPttt = Utility.ExecuteSql(sql, CommandType.Text).Tables[0];
+            dtPhieuPttt = SPs.EmrLaythongtinPhieuPtttTo4(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham).GetDataSet().Tables[0];
             grdPTTT.DataSource = dtPhieuPttt;
         }
         void FillPhieuKCB()
@@ -3023,7 +3023,7 @@ namespace VMS.HIS.UI.EMR
                     dtpBatdauthaykinhnam.Text = Utility.sDbnull(objTspk.BaTsspkBatdauthaykinhNam);
                     nmrBatdauthaykinhtuoi.Text = Utility.sDbnull(objTspk.BaTsspkBatdauthaykinhTuoi);
                     txt_tinhchatkinhnguyet.Text = Utility.sDbnull(objTspk.BaTsspkTinhchatkinhnguyet);
-                    txt_chuky.Text = Utility.sDbnull(objTspk.BaTsspkChuky);
+                    txt_chuky.Text = Utility.sDbnull(objTspk.BaTsspkChukykinhnguyet);
                     txt_songaythaykinh.Text = Utility.sDbnull(objTspk.BaTsspkSongaythaykinh);
                     txt_luongkinh.Text = Utility.sDbnull(objTspk.BaTsspkLuongkinh);
                     if (objTspk.BaTsspkKinhlancuoingay.HasValue)
@@ -3221,7 +3221,7 @@ namespace VMS.HIS.UI.EMR
                     dtpBatdauthaykinhnam.Text = Utility.sDbnull(objTspk.BaTsspkBatdauthaykinhNam);
                     nmrBatdauthaykinhtuoi.Text = Utility.sDbnull(objTspk.BaTsspkBatdauthaykinhTuoi);
                     txt_tinhchatkinhnguyet.Text = Utility.sDbnull(objTspk.BaTsspkTinhchatkinhnguyet);
-                    txt_chuky.Text = Utility.sDbnull(objTspk.BaTsspkChuky);
+                    txt_chuky.Text = Utility.sDbnull(objTspk.BaTsspkChukykinhnguyet);
                     txt_songaythaykinh.Text = Utility.sDbnull(objTspk.BaTsspkSongaythaykinh);
                     txt_luongkinh.Text = Utility.sDbnull(objTspk.BaTsspkLuongkinh);
                     if (objTspk.BaTsspkKinhlancuoingay.HasValue)
@@ -3314,7 +3314,7 @@ namespace VMS.HIS.UI.EMR
             try
             {
                
-                objEmrBa = EmrBa.FetchByID(Utility.Int64Dbnull( txtIDBenhAn.Text));
+                objEmrBa = EmrBaSankhoa.FetchByID(Utility.Int64Dbnull( txtIDBenhAn.Text));
                 if (objEmrBa == null)
                 {
                     Utility.ShowMsg("Bạn chưa chọn bệnh án nào để xóa hoặc bệnh án muốn xóa không tồn tại trong hệ thống. Vui lòng gõ lại mã lượt khám để kiểm tra");
@@ -3352,15 +3352,15 @@ namespace VMS.HIS.UI.EMR
                         {
                             using (var dbScope = new SharedDbConnectionScope())
                             {
-                               new Delete().From(EmrBa.Schema)
-                                     .Where(EmrBa.Columns.IdBa).IsEqualTo(objEmrBa.IdBa)
-                                     .And(EmrBa.Columns.LoaiBa).IsEqualTo(objEmrBa.LoaiBa)
-                                     .And(EmrBa.Columns.MaCoso).IsEqualTo(objEmrBa.MaCoso)
+                               new Delete().From(EmrBaSankhoa.Schema)
+                                     .Where(EmrBaSankhoa.Columns.IdBa).IsEqualTo(objEmrBa.IdBa)
+                                     .And(EmrBaSankhoa.Columns.LoaiBa).IsEqualTo(objEmrBa.LoaiBa)
+                                     .And(EmrBaSankhoa.Columns.MaCoso).IsEqualTo(objEmrBa.MaCoso)
                                      .Execute();
                               new Delete().From(EmrHosoluutru.Schema)
                                     .Where(EmrHosoluutru.Columns.IdBa).IsEqualTo(objEmrBa.IdBa)
                                     .And(EmrHosoluutru.Columns.LoaiBa).IsEqualTo(objEmrBa.LoaiBa)
-                                    .And(EmrBa.Columns.MaCoso).IsEqualTo(objEmrBa.MaCoso)
+                                    .And(EmrBaSankhoa.Columns.MaCoso).IsEqualTo(objEmrBa.MaCoso)
                                     .Execute();
                                 emrdoc.DeleteDocument_WithoutTransaction(objEmrBa.IdBa, new List<string>() { "BENHAN", "BENHAN_BIA", "BENHAN_TO1", "BENHAN_TO2", "BENHAN_TO3", "BENHAN_TO4" }, "");
                                 Utility.Log("frm_BenhAn_SanKhoa", globalVariables.UserName, string.Format("Xóa bệnh án id={0}, loại BA={1}, mã BA={2} của người bệnh id ={3}, mã lần khám {4} thành công",objEmrBa.IdBa,objEmrBa.LoaiBa,objEmrBa.MaBa,objEmrBa.IdBenhnhan, objEmrBa.MaLuotkham), newaction.Delete, "UI");
@@ -3607,7 +3607,7 @@ namespace VMS.HIS.UI.EMR
 
         private void mnuInVoBA_Click(object sender, EventArgs e)
         {
-            clsInBA.InBA(objEmrBa, objLuotkham, dtkhoanhapvien, dtkhoachuyen, dt_tssk, dtPhieuPttt, 0, false);
+            clsInBA.InBA(objEmrBa.IdBa, objEmrBa.MaBa, objEmrBa.LoaiBa, objLuotkham, dtkhoanhapvien, dtkhoachuyen, dt_tssk, dtPhieuPttt, 0, false);
         }
 
         private void mnuInTomtatBA_Click(object sender, EventArgs e)
@@ -3631,26 +3631,26 @@ namespace VMS.HIS.UI.EMR
 
         private void mnuInTo1_Click(object sender, EventArgs e)
         {
-            clsInBA.InBA(objEmrBa, objLuotkham, dtkhoanhapvien, dtkhoachuyen, dt_tssk, dtPhieuPttt, 1, false);
+            clsInBA.InBA(objEmrBa.IdBa, objEmrBa.MaBa, objEmrBa.LoaiBa, objLuotkham, dtkhoanhapvien, dtkhoachuyen, dt_tssk, dtPhieuPttt, 1, false);
         }
 
         private void mnuInTo2_Click(object sender, EventArgs e)
         {
-            clsInBA.InBA(objEmrBa, objLuotkham, dtkhoanhapvien, dtkhoachuyen, dt_tssk, dtPhieuPttt, 2, false);
+            clsInBA.InBA(objEmrBa.IdBa, objEmrBa.MaBa, objEmrBa.LoaiBa, objLuotkham, dtkhoanhapvien, dtkhoachuyen, dt_tssk, dtPhieuPttt, 2, false);
         }
 
         private void mnuInTo3_Click(object sender, EventArgs e)
         {
-            clsInBA.InBA(objEmrBa, objLuotkham, dtkhoanhapvien, dtkhoachuyen, dt_tssk, dtPhieuPttt, 3, false);
+            clsInBA.InBA(objEmrBa.IdBa, objEmrBa.MaBa, objEmrBa.LoaiBa, objLuotkham, dtkhoanhapvien, dtkhoachuyen, dt_tssk, dtPhieuPttt, 3, false);
         }
 
         private void mnuInTo4_Click(object sender, EventArgs e)
         {
-            clsInBA.InBA(objEmrBa, objLuotkham, dtkhoanhapvien, dtkhoachuyen, dt_tssk, dtPhieuPttt, 4, false);
+            clsInBA.InBA(objEmrBa.IdBa, objEmrBa.MaBa, objEmrBa.LoaiBa, objLuotkham, dtkhoanhapvien, dtkhoachuyen, dt_tssk, dtPhieuPttt, 4, false);
         }
         private void mnuInBA_Click(object sender, EventArgs e)
         {
-            clsInBA.InBA(objEmrBa, objLuotkham, dtkhoanhapvien, dtkhoachuyen, dt_tssk, dtPhieuPttt, 100, false);
+            clsInBA.InBA(objEmrBa.IdBa, objEmrBa.MaBa, objEmrBa.LoaiBa, objLuotkham, dtkhoanhapvien, dtkhoachuyen, dt_tssk, dtPhieuPttt, 100, false);
         }
         private void InBA_Ba(int toBA)
         {
@@ -3667,7 +3667,7 @@ namespace VMS.HIS.UI.EMR
                     Utility.ShowMsg("Bạn cần tạo Bệnh án trước khi thực hiện in");
                     return;
                 }
-                DataTable dtData = SPs.EmrBaLaythongtinIn(objEmrBa.IdBa, objEmrBa.MaBa, objEmrBa.IdBenhnhan, objEmrBa.MaLuotkham).GetDataSet().Tables[0];
+                DataTable dtData = SPs.EmrBaSankhoaLaythongtinIn(objEmrBa.IdBa, objEmrBa.MaBa, objEmrBa.IdBenhnhan, objEmrBa.MaLuotkham).GetDataSet().Tables[0];
                 DataRow drData = dtData.Rows[0];
                 List<string> lstcheckboxfields = new List<string>();
                 Dictionary<string, string> dicMF = new Dictionary<string, string>();
@@ -3745,7 +3745,7 @@ namespace VMS.HIS.UI.EMR
 
                 string fileKetqua = string.Format("{0}{1}{2}{3}{4}_{5}_{6}_{7}",
                                Path.GetDirectoryName(writePathdoc), Path.DirectorySeparatorChar,
-                               Path.GetFileNameWithoutExtension(PathDoc), "EmrBa", objLuotkham.MaLuotkham, Utility.sDbnull(objEmrBa.IdBa), Guid.NewGuid().ToString(), Path.GetExtension(PathDoc));
+                               Path.GetFileNameWithoutExtension(PathDoc), "EmrBaSankhoa", objLuotkham.MaLuotkham, Utility.sDbnull(objEmrBa.IdBa), Guid.NewGuid().ToString(), Path.GetExtension(PathDoc));
 
 
                 if ((drData != null) && File.Exists(PathDoc))
@@ -4281,17 +4281,17 @@ namespace VMS.HIS.UI.EMR
             {
                 if(objEmrBa!=null)
                 {
-                    emrdoc.InitDocument(objEmrBa.IdBenhnhan, objEmrBa.MaLuotkham, Utility.Int64Dbnull(objEmrBa.IdBa), objEmrBa.NgaylamBa.Value, Loaiphieu_HIS.BENHAN_BIA, "BA05_BASANKHOA_BIA", objEmrBa.NguoiTao, -1, -1, Utility.Byte2Bool(0), "", true, false, "", Loaiphieu_HIS.BENHAN);
+                    emrdoc.InitDocument(objEmrBa.IdBenhnhan, objEmrBa.MaLuotkham, Utility.Int64Dbnull(objEmrBa.IdBa), objEmrBa.NgaylamBa.Value, Loaiphieu_HIS.BENHAN_BIA, "BA05_BASANKHOA_BIA", objEmrBa.NguoiTao, -1, -1, Utility.Byte2Bool(0), "", true, false, "", Loaiphieu_HIS.BA_SANKHOA);
                     emrdoc.Save();
-                    emrdoc.InitDocument(objEmrBa.IdBenhnhan, objEmrBa.MaLuotkham, Utility.Int64Dbnull(objEmrBa.IdBa), objEmrBa.NgaylamBa.Value, Loaiphieu_HIS.BENHAN_TO1, "BA05_BASANKHOA_TO1", objEmrBa.NguoiTao, -1, -1, Utility.Byte2Bool(0), "", true, false, "", Loaiphieu_HIS.BENHAN);
+                    emrdoc.InitDocument(objEmrBa.IdBenhnhan, objEmrBa.MaLuotkham, Utility.Int64Dbnull(objEmrBa.IdBa), objEmrBa.NgaylamBa.Value, Loaiphieu_HIS.BENHAN_TO1, "BA05_BASANKHOA_TO1", objEmrBa.NguoiTao, -1, -1, Utility.Byte2Bool(0), "", true, false, "", Loaiphieu_HIS.BA_SANKHOA);
                     emrdoc.Save();
-                    emrdoc.InitDocument(objEmrBa.IdBenhnhan, objEmrBa.MaLuotkham, Utility.Int64Dbnull(objEmrBa.IdBa), objEmrBa.NgaylamBa.Value, Loaiphieu_HIS.BENHAN_TO2, "BA05_BASANKHOA_TO2", objEmrBa.NguoiTao, -1, -1, Utility.Byte2Bool(0), "", true, false, "", Loaiphieu_HIS.BENHAN);
+                    emrdoc.InitDocument(objEmrBa.IdBenhnhan, objEmrBa.MaLuotkham, Utility.Int64Dbnull(objEmrBa.IdBa), objEmrBa.NgaylamBa.Value, Loaiphieu_HIS.BENHAN_TO2, "BA05_BASANKHOA_TO2", objEmrBa.NguoiTao, -1, -1, Utility.Byte2Bool(0), "", true, false, "", Loaiphieu_HIS.BA_SANKHOA);
                     emrdoc.Save();
-                    emrdoc.InitDocument(objEmrBa.IdBenhnhan, objEmrBa.MaLuotkham, Utility.Int64Dbnull(objEmrBa.IdBa), objEmrBa.NgaylamBa.Value, Loaiphieu_HIS.BENHAN_TO3, "BA05_BASANKHOA_TO3", objEmrBa.NguoiTao, -1, -1, Utility.Byte2Bool(0), "", true, false, "", Loaiphieu_HIS.BENHAN);
+                    emrdoc.InitDocument(objEmrBa.IdBenhnhan, objEmrBa.MaLuotkham, Utility.Int64Dbnull(objEmrBa.IdBa), objEmrBa.NgaylamBa.Value, Loaiphieu_HIS.BENHAN_TO3, "BA05_BASANKHOA_TO3", objEmrBa.NguoiTao, -1, -1, Utility.Byte2Bool(0), "", true, false, "", Loaiphieu_HIS.BA_SANKHOA);
                     emrdoc.Save();
-                    emrdoc.InitDocument(objEmrBa.IdBenhnhan, objEmrBa.MaLuotkham, Utility.Int64Dbnull(objEmrBa.IdBa), objEmrBa.NgaylamBa.Value, Loaiphieu_HIS.BENHAN_TO4, "BA05_BASANKHOA_TO4", objEmrBa.NguoiTao, -1, -1, Utility.Byte2Bool(0), "", true, false, "", Loaiphieu_HIS.BENHAN);
+                    emrdoc.InitDocument(objEmrBa.IdBenhnhan, objEmrBa.MaLuotkham, Utility.Int64Dbnull(objEmrBa.IdBa), objEmrBa.NgaylamBa.Value, Loaiphieu_HIS.BENHAN_TO4, "BA05_BASANKHOA_TO4", objEmrBa.NguoiTao, -1, -1, Utility.Byte2Bool(0), "", true, false, "", Loaiphieu_HIS.BA_SANKHOA);
                     emrdoc.Save();
-                    emrdoc.InitDocument(objEmrBa.IdBenhnhan, objEmrBa.MaLuotkham, Utility.Int64Dbnull(objEmrBa.IdBa), objEmrBa.NgaylamBa.Value, Loaiphieu_HIS.BENHAN, "BA05_BASANKHOA", objEmrBa.NguoiTao, -1, -1, Utility.Byte2Bool(0), "", true, false, "", Loaiphieu_HIS.BENHAN);
+                    emrdoc.InitDocument(objEmrBa.IdBenhnhan, objEmrBa.MaLuotkham, Utility.Int64Dbnull(objEmrBa.IdBa), objEmrBa.NgaylamBa.Value, Loaiphieu_HIS.BA_SANKHOA, "BA05_BASANKHOA", objEmrBa.NguoiTao, -1, -1, Utility.Byte2Bool(0), "", true, false, "", Loaiphieu_HIS.BA_SANKHOA);
                     emrdoc.Save();
                     Utility.ShowMsg("Đẩy dữ liệu vào EMR thành công. Nhấn OK để kết thúc");
                 }    

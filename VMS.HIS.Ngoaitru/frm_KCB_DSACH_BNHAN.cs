@@ -2761,7 +2761,7 @@ namespace VNS.HIS.UI.NGOAITRU
                      Utility.Int32Dbnull(grdList.GetValue(KcbLuotkham.Columns.IdBenhnhan), -1);
 
                 if (!IsValidDeleteData()) return;
-                if (Utility.AcceptQuestion("Bạn có muốn xóa thông tin lần khám này không", "Thông báo", true))
+                if (Utility.AcceptQuestion(string.Format("Bạn có chắc chắn muốn xóa thông tin lần khám của người bệnh: {0} không?", Utility.sDbnull(grdList.GetValue(KcbDanhsachBenhnhan.Columns.TenBenhnhan))), "Thông báo", true))
                 {
                     myTrace.FunctionID = globalVariables.FunctionID;
                     myTrace.FunctionName = globalVariables.FunctionName;

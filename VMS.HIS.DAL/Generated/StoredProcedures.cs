@@ -3568,6 +3568,18 @@ namespace VMS.HIS.DAL{
         }
         
         /// <summary>
+        /// Creates an object wrapper for the donthuoc_taomadonthuoc Procedure
+        /// </summary>
+        public static StoredProcedure DonthuocTaomadonthuoc(DateTime? ngaykedon)
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("donthuoc_taomadonthuoc", DataService.GetInstance("ORM"), "dbo");
+        	
+            sp.Command.AddParameter("@ngay_kedon", ngaykedon, DbType.DateTime, null, null);
+        	
+            return sp;
+        }
+        
+        /// <summary>
         /// Creates an object wrapper for the Donthuoc_Xoa_Chitiet Procedure
         /// </summary>
         public static StoredProcedure DonthuocXoaChitiet(int? PresDetailId)
@@ -4288,11 +4300,11 @@ namespace VMS.HIS.DAL{
         }
         
         /// <summary>
-        /// Creates an object wrapper for the emr_ba_laydanhsachBA Procedure
+        /// Creates an object wrapper for the emr_ba_ivfvo_laydanhsachBA Procedure
         /// </summary>
-        public static StoredProcedure EmrBaLaydanhsachBA(DateTime? tungay, DateTime? denngay, string maluotkham, string maBA, string tenbenhnhan, int? idkhoadieutri)
+        public static StoredProcedure EmrBaIvfvoLaydanhsachBA(DateTime? tungay, DateTime? denngay, string maluotkham, string maBA, string tenbenhnhan, int? idkhoadieutri)
         {
-            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("emr_ba_laydanhsachBA", DataService.GetInstance("ORM"), "dbo");
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("emr_ba_ivfvo_laydanhsachBA", DataService.GetInstance("ORM"), "dbo");
         	
             sp.Command.AddParameter("@tungay", tungay, DbType.DateTime, null, null);
         	
@@ -4330,9 +4342,417 @@ namespace VMS.HIS.DAL{
         /// <summary>
         /// Creates an object wrapper for the emr_ba_laythongtin_in Procedure
         /// </summary>
-        public static StoredProcedure EmrBaLaythongtinIn(long? idba, string maba, long? idbenhnhan, string maluotkham)
+        public static StoredProcedure EmrBaLaythongtinIn(long? idba, string maba, string loaiba, long? idbenhnhan, string maluotkham)
         {
             SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("emr_ba_laythongtin_in", DataService.GetInstance("ORM"), "dbo");
+        	
+            sp.Command.AddParameter("@id_ba", idba, DbType.Int64, 0, 19);
+        	
+            sp.Command.AddParameter("@ma_ba", maba, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@loai_ba", loaiba, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@id_benhnhan", idbenhnhan, DbType.Int64, 0, 19);
+        	
+            sp.Command.AddParameter("@ma_luotkham", maluotkham, DbType.String, null, null);
+        	
+            return sp;
+        }
+        
+        /// <summary>
+        /// Creates an object wrapper for the emr_ba_namkhoa_laydanhsachBA Procedure
+        /// </summary>
+        public static StoredProcedure EmrBaNamkhoaLaydanhsachBA(DateTime? tungay, DateTime? denngay, string maluotkham, string maBA, string tenbenhnhan, int? idkhoadieutri)
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("emr_ba_namkhoa_laydanhsachBA", DataService.GetInstance("ORM"), "dbo");
+        	
+            sp.Command.AddParameter("@tungay", tungay, DbType.DateTime, null, null);
+        	
+            sp.Command.AddParameter("@denngay", denngay, DbType.DateTime, null, null);
+        	
+            sp.Command.AddParameter("@ma_luotkham", maluotkham, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@ma_BA", maBA, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@ten_benhnhan", tenbenhnhan, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@id_khoadieutri", idkhoadieutri, DbType.Int32, 0, 10);
+        	
+            return sp;
+        }
+        
+        /// <summary>
+        /// Creates an object wrapper for the emr_ba_namkhoa_laythongtin Procedure
+        /// </summary>
+        public static StoredProcedure EmrBaNamkhoaLaythongtin(long? idba, string maba, long? idbenhnhan, string maluotkham)
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("emr_ba_namkhoa_laythongtin", DataService.GetInstance("ORM"), "dbo");
+        	
+            sp.Command.AddParameter("@id_ba", idba, DbType.Int64, 0, 19);
+        	
+            sp.Command.AddParameter("@ma_ba", maba, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@id_benhnhan", idbenhnhan, DbType.Int64, 0, 19);
+        	
+            sp.Command.AddParameter("@ma_luotkham", maluotkham, DbType.String, null, null);
+        	
+            return sp;
+        }
+        
+        /// <summary>
+        /// Creates an object wrapper for the emr_ba_namkhoa_laythongtin_in Procedure
+        /// </summary>
+        public static StoredProcedure EmrBaNamkhoaLaythongtinIn(long? idba, string maba, long? idbenhnhan, string maluotkham)
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("emr_ba_namkhoa_laythongtin_in", DataService.GetInstance("ORM"), "dbo");
+        	
+            sp.Command.AddParameter("@id_ba", idba, DbType.Int64, 0, 19);
+        	
+            sp.Command.AddParameter("@ma_ba", maba, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@id_benhnhan", idbenhnhan, DbType.Int64, 0, 19);
+        	
+            sp.Command.AddParameter("@ma_luotkham", maluotkham, DbType.String, null, null);
+        	
+            return sp;
+        }
+        
+        /// <summary>
+        /// Creates an object wrapper for the emr_ba_ngoaikhoa_laydanhsachBA Procedure
+        /// </summary>
+        public static StoredProcedure EmrBaNgoaikhoaLaydanhsachBA(DateTime? tungay, DateTime? denngay, string maluotkham, string maBA, string tenbenhnhan, int? idkhoadieutri)
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("emr_ba_ngoaikhoa_laydanhsachBA", DataService.GetInstance("ORM"), "dbo");
+        	
+            sp.Command.AddParameter("@tungay", tungay, DbType.DateTime, null, null);
+        	
+            sp.Command.AddParameter("@denngay", denngay, DbType.DateTime, null, null);
+        	
+            sp.Command.AddParameter("@ma_luotkham", maluotkham, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@ma_BA", maBA, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@ten_benhnhan", tenbenhnhan, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@id_khoadieutri", idkhoadieutri, DbType.Int32, 0, 10);
+        	
+            return sp;
+        }
+        
+        /// <summary>
+        /// Creates an object wrapper for the emr_ba_ngoaikhoa_laythongtin Procedure
+        /// </summary>
+        public static StoredProcedure EmrBaNgoaikhoaLaythongtin(long? idba, string maba, long? idbenhnhan, string maluotkham)
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("emr_ba_ngoaikhoa_laythongtin", DataService.GetInstance("ORM"), "dbo");
+        	
+            sp.Command.AddParameter("@id_ba", idba, DbType.Int64, 0, 19);
+        	
+            sp.Command.AddParameter("@ma_ba", maba, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@id_benhnhan", idbenhnhan, DbType.Int64, 0, 19);
+        	
+            sp.Command.AddParameter("@ma_luotkham", maluotkham, DbType.String, null, null);
+        	
+            return sp;
+        }
+        
+        /// <summary>
+        /// Creates an object wrapper for the emr_ba_ngoaikhoa_laythongtin_in Procedure
+        /// </summary>
+        public static StoredProcedure EmrBaNgoaikhoaLaythongtinIn(long? idba, string maba, long? idbenhnhan, string maluotkham)
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("emr_ba_ngoaikhoa_laythongtin_in", DataService.GetInstance("ORM"), "dbo");
+        	
+            sp.Command.AddParameter("@id_ba", idba, DbType.Int64, 0, 19);
+        	
+            sp.Command.AddParameter("@ma_ba", maba, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@id_benhnhan", idbenhnhan, DbType.Int64, 0, 19);
+        	
+            sp.Command.AddParameter("@ma_luotkham", maluotkham, DbType.String, null, null);
+        	
+            return sp;
+        }
+        
+        /// <summary>
+        /// Creates an object wrapper for the emr_ba_ngoaitru_laydanhsachBA Procedure
+        /// </summary>
+        public static StoredProcedure EmrBaNgoaitruLaydanhsachBA(DateTime? tungay, DateTime? denngay, string maluotkham, string maBA, string tenbenhnhan, int? idkhoadieutri)
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("emr_ba_ngoaitru_laydanhsachBA", DataService.GetInstance("ORM"), "dbo");
+        	
+            sp.Command.AddParameter("@tungay", tungay, DbType.DateTime, null, null);
+        	
+            sp.Command.AddParameter("@denngay", denngay, DbType.DateTime, null, null);
+        	
+            sp.Command.AddParameter("@ma_luotkham", maluotkham, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@ma_BA", maBA, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@ten_benhnhan", tenbenhnhan, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@id_khoadieutri", idkhoadieutri, DbType.Int32, 0, 10);
+        	
+            return sp;
+        }
+        
+        /// <summary>
+        /// Creates an object wrapper for the emr_ba_ngoaitru_laythongtin Procedure
+        /// </summary>
+        public static StoredProcedure EmrBaNgoaitruLaythongtin(long? idba, string maba, long? idbenhnhan, string maluotkham)
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("emr_ba_ngoaitru_laythongtin", DataService.GetInstance("ORM"), "dbo");
+        	
+            sp.Command.AddParameter("@id_ba", idba, DbType.Int64, 0, 19);
+        	
+            sp.Command.AddParameter("@ma_ba", maba, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@id_benhnhan", idbenhnhan, DbType.Int64, 0, 19);
+        	
+            sp.Command.AddParameter("@ma_luotkham", maluotkham, DbType.String, null, null);
+        	
+            return sp;
+        }
+        
+        /// <summary>
+        /// Creates an object wrapper for the emr_ba_ngoaitru_laythongtin_in Procedure
+        /// </summary>
+        public static StoredProcedure EmrBaNgoaitruLaythongtinIn(long? idba, string maba, long? idbenhnhan, string maluotkham)
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("emr_ba_ngoaitru_laythongtin_in", DataService.GetInstance("ORM"), "dbo");
+        	
+            sp.Command.AddParameter("@id_ba", idba, DbType.Int64, 0, 19);
+        	
+            sp.Command.AddParameter("@ma_ba", maba, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@id_benhnhan", idbenhnhan, DbType.Int64, 0, 19);
+        	
+            sp.Command.AddParameter("@ma_luotkham", maluotkham, DbType.String, null, null);
+        	
+            return sp;
+        }
+        
+        /// <summary>
+        /// Creates an object wrapper for the emr_ba_nhikhoa_laydanhsachBA Procedure
+        /// </summary>
+        public static StoredProcedure EmrBaNhikhoaLaydanhsachBA(DateTime? tungay, DateTime? denngay, string maluotkham, string maBA, string tenbenhnhan, int? idkhoadieutri)
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("emr_ba_nhikhoa_laydanhsachBA", DataService.GetInstance("ORM"), "dbo");
+        	
+            sp.Command.AddParameter("@tungay", tungay, DbType.DateTime, null, null);
+        	
+            sp.Command.AddParameter("@denngay", denngay, DbType.DateTime, null, null);
+        	
+            sp.Command.AddParameter("@ma_luotkham", maluotkham, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@ma_BA", maBA, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@ten_benhnhan", tenbenhnhan, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@id_khoadieutri", idkhoadieutri, DbType.Int32, 0, 10);
+        	
+            return sp;
+        }
+        
+        /// <summary>
+        /// Creates an object wrapper for the emr_ba_nhikhoa_laythongtin Procedure
+        /// </summary>
+        public static StoredProcedure EmrBaNhikhoaLaythongtin(long? idba, string maba, long? idbenhnhan, string maluotkham)
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("emr_ba_nhikhoa_laythongtin", DataService.GetInstance("ORM"), "dbo");
+        	
+            sp.Command.AddParameter("@id_ba", idba, DbType.Int64, 0, 19);
+        	
+            sp.Command.AddParameter("@ma_ba", maba, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@id_benhnhan", idbenhnhan, DbType.Int64, 0, 19);
+        	
+            sp.Command.AddParameter("@ma_luotkham", maluotkham, DbType.String, null, null);
+        	
+            return sp;
+        }
+        
+        /// <summary>
+        /// Creates an object wrapper for the emr_ba_nhikhoa_laythongtin_in Procedure
+        /// </summary>
+        public static StoredProcedure EmrBaNhikhoaLaythongtinIn(long? idba, string maba, long? idbenhnhan, string maluotkham)
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("emr_ba_nhikhoa_laythongtin_in", DataService.GetInstance("ORM"), "dbo");
+        	
+            sp.Command.AddParameter("@id_ba", idba, DbType.Int64, 0, 19);
+        	
+            sp.Command.AddParameter("@ma_ba", maba, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@id_benhnhan", idbenhnhan, DbType.Int64, 0, 19);
+        	
+            sp.Command.AddParameter("@ma_luotkham", maluotkham, DbType.String, null, null);
+        	
+            return sp;
+        }
+        
+        /// <summary>
+        /// Creates an object wrapper for the emr_ba_noikhoa_laydanhsachBA Procedure
+        /// </summary>
+        public static StoredProcedure EmrBaNoikhoaLaydanhsachBA(DateTime? tungay, DateTime? denngay, string maluotkham, string maBA, string tenbenhnhan, int? idkhoadieutri)
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("emr_ba_noikhoa_laydanhsachBA", DataService.GetInstance("ORM"), "dbo");
+        	
+            sp.Command.AddParameter("@tungay", tungay, DbType.DateTime, null, null);
+        	
+            sp.Command.AddParameter("@denngay", denngay, DbType.DateTime, null, null);
+        	
+            sp.Command.AddParameter("@ma_luotkham", maluotkham, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@ma_BA", maBA, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@ten_benhnhan", tenbenhnhan, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@id_khoadieutri", idkhoadieutri, DbType.Int32, 0, 10);
+        	
+            return sp;
+        }
+        
+        /// <summary>
+        /// Creates an object wrapper for the emr_ba_noikhoa_laythongtin Procedure
+        /// </summary>
+        public static StoredProcedure EmrBaNoikhoaLaythongtin(long? idba, string maba, long? idbenhnhan, string maluotkham)
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("emr_ba_noikhoa_laythongtin", DataService.GetInstance("ORM"), "dbo");
+        	
+            sp.Command.AddParameter("@id_ba", idba, DbType.Int64, 0, 19);
+        	
+            sp.Command.AddParameter("@ma_ba", maba, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@id_benhnhan", idbenhnhan, DbType.Int64, 0, 19);
+        	
+            sp.Command.AddParameter("@ma_luotkham", maluotkham, DbType.String, null, null);
+        	
+            return sp;
+        }
+        
+        /// <summary>
+        /// Creates an object wrapper for the emr_ba_noikhoa_laythongtin_in Procedure
+        /// </summary>
+        public static StoredProcedure EmrBaNoikhoaLaythongtinIn(long? idba, string maba, long? idbenhnhan, string maluotkham)
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("emr_ba_noikhoa_laythongtin_in", DataService.GetInstance("ORM"), "dbo");
+        	
+            sp.Command.AddParameter("@id_ba", idba, DbType.Int64, 0, 19);
+        	
+            sp.Command.AddParameter("@ma_ba", maba, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@id_benhnhan", idbenhnhan, DbType.Int64, 0, 19);
+        	
+            sp.Command.AddParameter("@ma_luotkham", maluotkham, DbType.String, null, null);
+        	
+            return sp;
+        }
+        
+        /// <summary>
+        /// Creates an object wrapper for the emr_ba_phukhoa_laydanhsachBA Procedure
+        /// </summary>
+        public static StoredProcedure EmrBaPhukhoaLaydanhsachBA(DateTime? tungay, DateTime? denngay, string maluotkham, string maBA, string tenbenhnhan, int? idkhoadieutri)
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("emr_ba_phukhoa_laydanhsachBA", DataService.GetInstance("ORM"), "dbo");
+        	
+            sp.Command.AddParameter("@tungay", tungay, DbType.DateTime, null, null);
+        	
+            sp.Command.AddParameter("@denngay", denngay, DbType.DateTime, null, null);
+        	
+            sp.Command.AddParameter("@ma_luotkham", maluotkham, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@ma_BA", maBA, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@ten_benhnhan", tenbenhnhan, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@id_khoadieutri", idkhoadieutri, DbType.Int32, 0, 10);
+        	
+            return sp;
+        }
+        
+        /// <summary>
+        /// Creates an object wrapper for the emr_ba_phukhoa_laythongtin Procedure
+        /// </summary>
+        public static StoredProcedure EmrBaPhukhoaLaythongtin(long? idba, string maba, long? idbenhnhan, string maluotkham)
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("emr_ba_phukhoa_laythongtin", DataService.GetInstance("ORM"), "dbo");
+        	
+            sp.Command.AddParameter("@id_ba", idba, DbType.Int64, 0, 19);
+        	
+            sp.Command.AddParameter("@ma_ba", maba, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@id_benhnhan", idbenhnhan, DbType.Int64, 0, 19);
+        	
+            sp.Command.AddParameter("@ma_luotkham", maluotkham, DbType.String, null, null);
+        	
+            return sp;
+        }
+        
+        /// <summary>
+        /// Creates an object wrapper for the emr_ba_phukhoa_laythongtin_in Procedure
+        /// </summary>
+        public static StoredProcedure EmrBaPhukhoaLaythongtinIn(long? idba, string maba, long? idbenhnhan, string maluotkham)
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("emr_ba_phukhoa_laythongtin_in", DataService.GetInstance("ORM"), "dbo");
+        	
+            sp.Command.AddParameter("@id_ba", idba, DbType.Int64, 0, 19);
+        	
+            sp.Command.AddParameter("@ma_ba", maba, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@id_benhnhan", idbenhnhan, DbType.Int64, 0, 19);
+        	
+            sp.Command.AddParameter("@ma_luotkham", maluotkham, DbType.String, null, null);
+        	
+            return sp;
+        }
+        
+        /// <summary>
+        /// Creates an object wrapper for the emr_ba_sankhoa_laydanhsachBA Procedure
+        /// </summary>
+        public static StoredProcedure EmrBaSankhoaLaydanhsachBA(DateTime? tungay, DateTime? denngay, string maluotkham, string maBA, string tenbenhnhan, int? idkhoadieutri)
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("emr_ba_sankhoa_laydanhsachBA", DataService.GetInstance("ORM"), "dbo");
+        	
+            sp.Command.AddParameter("@tungay", tungay, DbType.DateTime, null, null);
+        	
+            sp.Command.AddParameter("@denngay", denngay, DbType.DateTime, null, null);
+        	
+            sp.Command.AddParameter("@ma_luotkham", maluotkham, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@ma_BA", maBA, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@ten_benhnhan", tenbenhnhan, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@id_khoadieutri", idkhoadieutri, DbType.Int32, 0, 10);
+        	
+            return sp;
+        }
+        
+        /// <summary>
+        /// Creates an object wrapper for the emr_ba_sankhoa_laythongtin Procedure
+        /// </summary>
+        public static StoredProcedure EmrBaSankhoaLaythongtin(long? idba, string maba, long? idbenhnhan, string maluotkham)
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("emr_ba_sankhoa_laythongtin", DataService.GetInstance("ORM"), "dbo");
+        	
+            sp.Command.AddParameter("@id_ba", idba, DbType.Int64, 0, 19);
+        	
+            sp.Command.AddParameter("@ma_ba", maba, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@id_benhnhan", idbenhnhan, DbType.Int64, 0, 19);
+        	
+            sp.Command.AddParameter("@ma_luotkham", maluotkham, DbType.String, null, null);
+        	
+            return sp;
+        }
+        
+        /// <summary>
+        /// Creates an object wrapper for the emr_ba_sankhoa_laythongtin_in Procedure
+        /// </summary>
+        public static StoredProcedure EmrBaSankhoaLaythongtinIn(long? idba, string maba, long? idbenhnhan, string maluotkham)
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("emr_ba_sankhoa_laythongtin_in", DataService.GetInstance("ORM"), "dbo");
         	
             sp.Command.AddParameter("@id_ba", idba, DbType.Int64, 0, 19);
         	
@@ -4388,6 +4808,22 @@ namespace VMS.HIS.DAL{
         }
         
         /// <summary>
+        /// Creates an object wrapper for the emr_kcb_chidinhcls_laynhominphieu Procedure
+        /// </summary>
+        public static StoredProcedure EmrKcbChidinhclsLaynhominphieu(long? idbenhnhan, string maluotkham, long? idchidinh)
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("emr_kcb_chidinhcls_laynhominphieu", DataService.GetInstance("ORM"), "dbo");
+        	
+            sp.Command.AddParameter("@id_benhnhan", idbenhnhan, DbType.Int64, 0, 19);
+        	
+            sp.Command.AddParameter("@ma_luotkham", maluotkham, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@id_chidinh", idchidinh, DbType.Int64, 0, 19);
+        	
+            return sp;
+        }
+        
+        /// <summary>
         /// Creates an object wrapper for the emr_khoiphuc_gaytheophieuin Procedure
         /// </summary>
         public static StoredProcedure EmrKhoiphucGaytheophieuin(string lstIdFile)
@@ -4395,6 +4831,46 @@ namespace VMS.HIS.DAL{
             SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("emr_khoiphuc_gaytheophieuin", DataService.GetInstance("ORM"), "dbo");
         	
             sp.Command.AddParameter("@lstIdFile", lstIdFile, DbType.String, null, null);
+        	
+            return sp;
+        }
+        
+        /// <summary>
+        /// Creates an object wrapper for the emr_kiemtra_trangthaiky_phieu Procedure
+        /// </summary>
+        public static StoredProcedure EmrKiemtraTrangthaikyPhieu(long? idbenhnhan, string maluotkham, long? idphieu, string loaiphieucha, string loaiphieuhis)
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("emr_kiemtra_trangthaiky_phieu", DataService.GetInstance("ORM"), "dbo");
+        	
+            sp.Command.AddParameter("@id_benhnhan", idbenhnhan, DbType.Int64, 0, 19);
+        	
+            sp.Command.AddParameter("@ma_luotkham", maluotkham, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@id_phieu", idphieu, DbType.Int64, 0, 19);
+        	
+            sp.Command.AddParameter("@loaiphieu_cha", loaiphieucha, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@loaiphieu_his", loaiphieuhis, DbType.String, null, null);
+        	
+            return sp;
+        }
+        
+        /// <summary>
+        /// Creates an object wrapper for the emr_kiemtra_trangthaiky_phieu_simple Procedure
+        /// </summary>
+        public static StoredProcedure EmrKiemtraTrangthaikyPhieuSimple(long? idbenhnhan, string maluotkham, long? idphieu, string loaiphieucha, string loaiphieuhis)
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("emr_kiemtra_trangthaiky_phieu_simple", DataService.GetInstance("ORM"), "dbo");
+        	
+            sp.Command.AddParameter("@id_benhnhan", idbenhnhan, DbType.Int64, 0, 19);
+        	
+            sp.Command.AddParameter("@ma_luotkham", maluotkham, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@id_phieu", idphieu, DbType.Int64, 0, 19);
+        	
+            sp.Command.AddParameter("@loaiphieu_cha", loaiphieucha, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@loaiphieu_his", loaiphieuhis, DbType.String, null, null);
         	
             return sp;
         }
@@ -4456,6 +4932,26 @@ namespace VMS.HIS.DAL{
         }
         
         /// <summary>
+        /// Creates an object wrapper for the emr_laythongtin_chuky_phieu Procedure
+        /// </summary>
+        public static StoredProcedure EmrLaythongtinChukyPhieu(string maluotkham, long? Idbenhnhan, long? idphieu, string loaiphhieuhis, string loaiphhieucha)
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("emr_laythongtin_chuky_phieu", DataService.GetInstance("ORM"), "dbo");
+        	
+            sp.Command.AddParameter("@ma_luotkham", maluotkham, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@Id_benhnhan", Idbenhnhan, DbType.Int64, 0, 19);
+        	
+            sp.Command.AddParameter("@idphieu", idphieu, DbType.Int64, 0, 19);
+        	
+            sp.Command.AddParameter("@loaiphhieu_his", loaiphhieuhis, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@loaiphhieu_cha", loaiphhieucha, DbType.String, null, null);
+        	
+            return sp;
+        }
+        
+        /// <summary>
         /// Creates an object wrapper for the emr_laythongtin_chuky_phieudieutrichung Procedure
         /// </summary>
         public static StoredProcedure EmrLaythongtinChukyPhieudieutrichung(string maluotkham, long? Idbenhnhan, string lstidphieu, string loaiphhieuhis, string loaiphhieucha)
@@ -4487,6 +4983,20 @@ namespace VMS.HIS.DAL{
             sp.Command.AddParameter("@username", username, DbType.String, null, null);
         	
             sp.Command.AddParameter("@tthai_ky", tthaiky, DbType.Byte, 0, 3);
+        	
+            return sp;
+        }
+        
+        /// <summary>
+        /// Creates an object wrapper for the emr_laythongtin_phieu_pttt_to4 Procedure
+        /// </summary>
+        public static StoredProcedure EmrLaythongtinPhieuPtttTo4(long? idbenhnhan, string maluotkham)
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("emr_laythongtin_phieu_pttt_to4", DataService.GetInstance("ORM"), "dbo");
+        	
+            sp.Command.AddParameter("@id_benhnhan", idbenhnhan, DbType.Int64, 0, 19);
+        	
+            sp.Command.AddParameter("@ma_luotkham", maluotkham, DbType.String, null, null);
         	
             return sp;
         }
@@ -4541,6 +5051,108 @@ namespace VMS.HIS.DAL{
             sp.Command.AddParameter("@id_benhnhan", idbenhnhan, DbType.Int64, 0, 19);
         	
             sp.Command.AddParameter("@ma_luotkham", maluotkham, DbType.String, null, null);
+        	
+            return sp;
+        }
+        
+        /// <summary>
+        /// Creates an object wrapper for the emr_phieubangiaonguoibenhchuyenkhoa_laydanhsach Procedure
+        /// </summary>
+        public static StoredProcedure EmrPhieubangiaonguoibenhchuyenkhoaLaydanhsach(long? id, DateTime? tungay, DateTime? denngay, string sohoso, string maluotkham, string tennguoibenh, short? idkhoachuyen, short? idkhoanhan, short? idbacsichidinh, short? idbacsichuyen, short? idbacsinhan, short? iddieuduongchuyen, short? iddieuduongnhan)
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("emr_phieubangiaonguoibenhchuyenkhoa_laydanhsach", DataService.GetInstance("ORM"), "dbo");
+        	
+            sp.Command.AddParameter("@id", id, DbType.Int64, 0, 19);
+        	
+            sp.Command.AddParameter("@tungay", tungay, DbType.DateTime, null, null);
+        	
+            sp.Command.AddParameter("@denngay", denngay, DbType.DateTime, null, null);
+        	
+            sp.Command.AddParameter("@sohoso", sohoso, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@ma_luotkham", maluotkham, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@ten_nguoibenh", tennguoibenh, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@id_khoachuyen", idkhoachuyen, DbType.Int16, 0, 5);
+        	
+            sp.Command.AddParameter("@id_khoanhan", idkhoanhan, DbType.Int16, 0, 5);
+        	
+            sp.Command.AddParameter("@id_bacsi_chidinh", idbacsichidinh, DbType.Int16, 0, 5);
+        	
+            sp.Command.AddParameter("@id_bacsi_chuyen", idbacsichuyen, DbType.Int16, 0, 5);
+        	
+            sp.Command.AddParameter("@id_bacsi_nhan", idbacsinhan, DbType.Int16, 0, 5);
+        	
+            sp.Command.AddParameter("@id_dieuduong_chuyen", iddieuduongchuyen, DbType.Int16, 0, 5);
+        	
+            sp.Command.AddParameter("@id_dieuduong_nhan", iddieuduongnhan, DbType.Int16, 0, 5);
+        	
+            return sp;
+        }
+        
+        /// <summary>
+        /// Creates an object wrapper for the emr_phieubangiaonguoibenhchuyenkhoa_laythongtin_in Procedure
+        /// </summary>
+        public static StoredProcedure EmrPhieubangiaonguoibenhchuyenkhoaLaythongtinIn(long? id)
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("emr_phieubangiaonguoibenhchuyenkhoa_laythongtin_in", DataService.GetInstance("ORM"), "dbo");
+        	
+            sp.Command.AddParameter("@id", id, DbType.Int64, 0, 19);
+        	
+            return sp;
+        }
+        
+        /// <summary>
+        /// Creates an object wrapper for the emr_phieucamketchapnhan_pttt_laydanhsach Procedure
+        /// </summary>
+        public static StoredProcedure EmrPhieucamketchapnhanPtttLaydanhsach(long? id, DateTime? tungay, DateTime? denngay, string sohoso, string maluotkham, string tennguoibenh)
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("emr_phieucamketchapnhan_pttt_laydanhsach", DataService.GetInstance("ORM"), "dbo");
+        	
+            sp.Command.AddParameter("@id", id, DbType.Int64, 0, 19);
+        	
+            sp.Command.AddParameter("@tungay", tungay, DbType.DateTime, null, null);
+        	
+            sp.Command.AddParameter("@denngay", denngay, DbType.DateTime, null, null);
+        	
+            sp.Command.AddParameter("@sohoso", sohoso, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@ma_luotkham", maluotkham, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@ten_nguoibenh", tennguoibenh, DbType.String, null, null);
+        	
+            return sp;
+        }
+        
+        /// <summary>
+        /// Creates an object wrapper for the emr_phieucamketchapnhan_pttt_laythongtin_in Procedure
+        /// </summary>
+        public static StoredProcedure EmrPhieucamketchapnhanPtttLaythongtinIn(long? id)
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("emr_phieucamketchapnhan_pttt_laythongtin_in", DataService.GetInstance("ORM"), "dbo");
+        	
+            sp.Command.AddParameter("@id", id, DbType.Int64, 0, 19);
+        	
+            return sp;
+        }
+        
+        /// <summary>
+        /// Creates an object wrapper for the emr_reset Procedure
+        /// </summary>
+        public static StoredProcedure EmrReset()
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("emr_reset", DataService.GetInstance("ORM"), "");
+        	
+            return sp;
+        }
+        
+        /// <summary>
+        /// Creates an object wrapper for the emr_resetdata Procedure
+        /// </summary>
+        public static StoredProcedure EmrResetdata()
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("emr_resetdata", DataService.GetInstance("ORM"), "");
         	
             return sp;
         }
@@ -5319,6 +5931,20 @@ namespace VMS.HIS.DAL{
             sp.Command.AddParameter("@ngaysua", ngaysua, DbType.DateTime, null, null);
         	
             sp.Command.AddParameter("@nguoisua", nguoisua, DbType.String, null, null);
+        	
+            return sp;
+        }
+        
+        /// <summary>
+        /// Creates an object wrapper for the kcb_congkham_saochep Procedure
+        /// </summary>
+        public static StoredProcedure KcbCongkhamSaochep(short? idphongkhamnguon, short? idphongkhamdich)
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("kcb_congkham_saochep", DataService.GetInstance("ORM"), "dbo");
+        	
+            sp.Command.AddParameter("@id_phongkham_nguon", idphongkhamnguon, DbType.Int16, 0, 5);
+        	
+            sp.Command.AddParameter("@id_phongkham_dich", idphongkhamdich, DbType.Int16, 0, 5);
         	
             return sp;
         }
@@ -7346,7 +7972,7 @@ namespace VMS.HIS.DAL{
         /// <summary>
         /// Creates an object wrapper for the Kcb_Thanhtoan_Laythongtin_Inbienlai_Dv_2023 Procedure
         /// </summary>
-        public static StoredProcedure KcbThanhtoanLaythongtinInbienlaiDv2023(long? idthanhtoan, long? iddonthuoc, string maluotkham, long? idbenhnhan, byte? noitru)
+        public static StoredProcedure KcbThanhtoanLaythongtinInbienlaiDv2023(long? idthanhtoan, long? iddonthuoc, string maluotkham, long? idbenhnhan, byte? noitru, byte? boquacacdichvutralai)
         {
             SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("Kcb_Thanhtoan_Laythongtin_Inbienlai_Dv_2023", DataService.GetInstance("ORM"), "dbo");
         	
@@ -7359,6 +7985,8 @@ namespace VMS.HIS.DAL{
             sp.Command.AddParameter("@id_benhnhan", idbenhnhan, DbType.Int64, 0, 19);
         	
             sp.Command.AddParameter("@noitru", noitru, DbType.Byte, 0, 3);
+        	
+            sp.Command.AddParameter("@boqua_cacdichvu_tralai", boquacacdichvutralai, DbType.Byte, 0, 3);
         	
             return sp;
         }
@@ -13444,12 +14072,14 @@ namespace VMS.HIS.DAL{
         /// <summary>
         /// Creates an object wrapper for the sp_KCB_Themmoi_Donthuoc Procedure
         /// </summary>
-        public static StoredProcedure SpKcbThemmoiDonthuoc(long? iddonthuoc, long? idphieudieutri, int? idkhoadieutri, long? iddonthuocthaythe, long? idkham, long? idbenhnhan, string maluotkham, DateTime? ngaykedon, short? idbacsichidinh, byte? trangthai, byte? tthaitonghop, byte? trangthaithanhtoan, DateTime? ngaythanhtoan, int? idgoi, byte? tronggoi, string nguoitao, DateTime? ngaytao, string motathem, string tendonthuoc, string madoituongkcb, byte? noitru, byte? kieudonthuoc, short? idphongkham, long? idbuonggiuong, short? idbuongnoitru, short? idgiuongnoitru, string loidanbacsi, DateTime? ngaytaikham, string taikham, string makhoathuchien, DateTime? ngaycapphat, string kieuthuocvattu, DateTime? ngaychot, int? idchot, DateTime? ngayhuychot, string nguoihuychot, string lydohuychot, DateTime? ngayhuyxacnhan, string nguoihuyxacnhan, string lydohuyxacnhan, DateTime? ngayxacnhan, string nguoixacnhan, long? idlichsudoituongKcb, string mathebhyt, string ipmaytao, string tenmaytao, string LastActionName, byte? donthuoctaiquay, double? songaynhaton, string chandoan, long? idchitietchidinh, string macoso)
+        public static StoredProcedure SpKcbThemmoiDonthuoc(long? iddonthuoc, string madonthuoc, long? idphieudieutri, int? idkhoadieutri, long? iddonthuocthaythe, long? idkham, long? idbenhnhan, string maluotkham, DateTime? ngaykedon, short? idbacsichidinh, byte? trangthai, byte? tthaitonghop, byte? trangthaithanhtoan, DateTime? ngaythanhtoan, int? idgoi, byte? tronggoi, string nguoitao, DateTime? ngaytao, string motathem, string tendonthuoc, string madoituongkcb, byte? noitru, byte? kieudonthuoc, short? idphongkham, long? idbuonggiuong, short? idbuongnoitru, short? idgiuongnoitru, string loidanbacsi, DateTime? ngaytaikham, string taikham, string makhoathuchien, DateTime? ngaycapphat, string kieuthuocvattu, DateTime? ngaychot, int? idchot, DateTime? ngayhuychot, string nguoihuychot, string lydohuychot, DateTime? ngayhuyxacnhan, string nguoihuyxacnhan, string lydohuyxacnhan, DateTime? ngayxacnhan, string nguoixacnhan, long? idlichsudoituongKcb, string mathebhyt, string ipmaytao, string tenmaytao, string LastActionName, byte? donthuoctaiquay, double? songaynhaton, string chandoan, long? idchitietchidinh, string macoso)
         {
             SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("sp_KCB_Themmoi_Donthuoc", DataService.GetInstance("ORM"), "dbo");
         	
             sp.Command.AddOutputParameter("@id_donthuoc", DbType.Int64, 0, 19);
             
+            sp.Command.AddParameter("@ma_donthuoc", madonthuoc, DbType.String, null, null);
+        	
             sp.Command.AddParameter("@id_phieudieutri", idphieudieutri, DbType.Int64, 0, 19);
         	
             sp.Command.AddParameter("@id_khoadieutri", idkhoadieutri, DbType.Int32, 0, 10);

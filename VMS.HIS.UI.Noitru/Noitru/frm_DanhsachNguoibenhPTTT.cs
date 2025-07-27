@@ -480,6 +480,7 @@ namespace VNS.HIS.UI.NOITRU
                 drData["Fax_bv"] = globalVariables.Branch_Fax;
                 drData["website_bv"] = globalVariables.Branch_Website;
                 drData["email_bv"] = globalVariables.Branch_Email;
+                drData["sngay_pttt"] = Utility.FormatDateTime(Utility.sDbnull(drData["sngay_pttt"], ""), "ngày......tháng......năm.........");//BHYT giá trị đến
                 List<string> fieldNames = new List<string>();
 
                 string PathDoc = AppDomain.CurrentDomain.BaseDirectory + "Doc\\PHIEU_PTTT_NOITRU.doc";
@@ -561,6 +562,7 @@ namespace VNS.HIS.UI.NOITRU
                             builder.InsertImage(NoImage, 10, 10);
                     }
                     doc.MailMerge.Execute(drData);
+                    Utility.SignDoc(doc, builder, sysLogosize != null ? sysLogosize.SValue : "");
                     if (File.Exists(fileKetqua))
                     {
                         File.Delete(fileKetqua);
@@ -616,6 +618,7 @@ namespace VNS.HIS.UI.NOITRU
                 drData["website_bv"] = globalVariables.Branch_Website;
                 drData["email_bv"] = globalVariables.Branch_Email;
                 drData["ten_phieu"] = ma_loaidvu == "PTTT" ? lst_ten_phieu[0] : (ma_loaidvu == "PHAUTHUAT" ? lst_ten_phieu[1] : lst_ten_phieu[2]);
+                drData["sngay_pttt"] = Utility.FormatDateTime(Utility.sDbnull(drData["sngay_pttt"], ""), "ngày......tháng......năm.........");//BHYT giá trị đến
                 List<string> fieldNames = new List<string>();
 
                 string PathDoc = AppDomain.CurrentDomain.BaseDirectory + "Doc\\PHIEU_CHUNGNHAN_PTTT.doc";
@@ -697,6 +700,7 @@ namespace VNS.HIS.UI.NOITRU
                             builder.InsertImage(NoImage, 10, 10);
                     }
                     doc.MailMerge.Execute(drData);
+                    Utility.SignDoc(doc, builder, sysLogosize != null ? sysLogosize.SValue : "");
                     if (File.Exists(fileKetqua))
                     {
                         File.Delete(fileKetqua);
@@ -753,6 +757,7 @@ namespace VNS.HIS.UI.NOITRU
                 drData["website_bv"] = globalVariables.Branch_Website;
                 drData["email_bv"] = globalVariables.Branch_Email;
                 drData["ten_phieu"] = ma_loaidvu == "PTTT" ? lst_ten_phieu[0] : (ma_loaidvu == "PHAUTHUAT" ? lst_ten_phieu[1] : lst_ten_phieu[2]);
+                drData["sngay_pttt"] = Utility.FormatDateTime(Utility.sDbnull(drData["sngay_pttt"], ""), "ngày......tháng......năm.........");//BHYT giá trị đến
                 List<string> fieldNames = new List<string>();
 
                 string PathDoc = AppDomain.CurrentDomain.BaseDirectory + "Doc\\PHIEU_CAMKET_PTTT.doc";
@@ -835,6 +840,7 @@ namespace VNS.HIS.UI.NOITRU
                             builder.InsertImage(NoImage, 10, 10);
                     }
                     doc.MailMerge.Execute(drData);
+                    Utility.SignDoc(doc, builder, sysLogosize != null ? sysLogosize.SValue : "");
                     if (File.Exists(fileKetqua))
                     {
                         File.Delete(fileKetqua);
@@ -899,6 +905,7 @@ namespace VNS.HIS.UI.NOITRU
                 drData["website_bv"] = globalVariables.Branch_Website;
                 drData["email_bv"] = globalVariables.Branch_Email;
                 drData["ten_phieu"] = ma_loaidvu == "PTTT" ? lst_ten_phieu[0] : (ma_loaidvu == "PHAUTHUAT" ? lst_ten_phieu[1] : lst_ten_phieu[2]);
+                drData["sngay_pttt"] = Utility.FormatDateTime(Utility.sDbnull(drData["sngay_pttt"], ""), "ngày......tháng......năm.........");//BHYT giá trị đến
                 List<string> fieldNames = new List<string>();
 
                 string PathDoc = AppDomain.CurrentDomain.BaseDirectory + "Doc\\PHIEU_TUONGTRINH_PTTT.doc";
@@ -984,6 +991,7 @@ namespace VNS.HIS.UI.NOITRU
                             builder.InsertImage(NoImage, 10, 10);
                     }
                     doc.MailMerge.Execute(drData);
+                    Utility.SignDoc(doc, builder, sysLogosize != null ? sysLogosize.SValue : "");
                     if (File.Exists(fileKetqua))
                     {
                         File.Delete(fileKetqua);

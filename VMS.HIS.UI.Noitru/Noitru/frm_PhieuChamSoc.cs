@@ -33,7 +33,8 @@ namespace VNS.HIS.UI.NOITRU
         private long id_chitietdonthuoc;
         private long id_donthuoc;
         private int id_chitietdonthuoc_Thuoc_Thu;
-        private int soluong;
+        private int soluong=1;
+        private int soluong_ke;
         private int idthuockho;
         private int doctorid;
         private string tenthuoc;
@@ -80,7 +81,7 @@ namespace VNS.HIS.UI.NOITRU
                 if (!Utility.isValidGrid(grdDonthuocChitiet) || !AllowSelectionChanged) return;
                 id_chitietdonthuoc = Utility.Int64Dbnull(grdDonthuocChitiet.GetValue("id_chitietdonthuoc"), -1);
                 id_donthuoc = Utility.Int64Dbnull(grdDonthuocChitiet.GetValue("id_donthuoc"), -1);
-                soluong = Utility.Int32Dbnull(grdDonthuocChitiet.GetValue("so_luong"), -1);
+                soluong_ke= Utility.Int32Dbnull(grdDonthuocChitiet.GetValue("so_luong"), -1);
                 idthuockho = Utility.Int32Dbnull(grdDonthuocChitiet.GetValue("Id_ThuocKho"), -1);
                 tenthuoc = Utility.sDbnull(grdDonthuocChitiet.GetValue("ten_thuoc"));
                 solo = Utility.sDbnull(grdDonthuocChitiet.GetValue("so_lo"));
@@ -89,7 +90,7 @@ namespace VNS.HIS.UI.NOITRU
                 Patientdeptid = Utility.Int32Dbnull(grdDonthuocChitiet.GetValue("id_buong_giuong"), -1);
                 id_khoadieutri = Utility.Int32Dbnull(grdDonthuocChitiet.GetValue("id_khoanoitru"), -1);
 
-                //m_dtDataPhieuDichTruyen.DefaultView.RowFilter = "id_thuoc=" + id_thuoc.ToString();
+                m_dtDataPhieuDichTruyen.DefaultView.RowFilter = "id_thuoc=" + id_thuoc.ToString();
                 //m_dtDataPhieuDichTruyen.AcceptChanges();
                 modifyCommandPhieutruyendich();
             }
@@ -101,8 +102,9 @@ namespace VNS.HIS.UI.NOITRU
         }
         void modifyCommandPhieutruyendich()
         {
-            bool hasPTD=m_dtDataPhieuDichTruyen.Select("id_chitietdonthuoc=" + id_chitietdonthuoc).Length>0;
-            cmdThemoiPTD.Enabled = Utility.isValidGrid(grdDonthuocChitiet) && !hasPTD;
+            int soluongdatruyen = m_dtDataPhieuDichTruyen.AsEnumerable().Sum(c => Utility.Int32Dbnull(c["so_luong"]));
+            bool hasPTD = m_dtDataPhieuDichTruyen.Select("id_chitietdonthuoc=" + id_chitietdonthuoc).Length > 0;
+            cmdThemoiPTD.Enabled = Utility.isValidGrid(grdDonthuocChitiet) && soluongdatruyen < soluong_ke;
             cmdSuaPTD.Enabled = Utility.isValidGrid(grdDonthuocChitiet) && hasPTD;
             cmdXoaPTD.Enabled = Utility.isValidGrid(grdDonthuocChitiet) && hasPTD;
             cmdInPTD.Enabled = Utility.isValidGrid(grdDonthuocChitiet) && hasPTD;
@@ -184,6 +186,11 @@ namespace VNS.HIS.UI.NOITRU
             InitData();
             ucThongtinnguoibenh1.txtMaluotkham.Focus();
             ucThongtinnguoibenh1.txtMaluotkham.SelectAll();
+            if(objLuotkham!=null)
+            {
+                ucThongtinnguoibenh1.txtMaluotkham.Text = objLuotkham.MaLuotkham;
+                ucThongtinnguoibenh1.Refresh_V1(true);
+            }    
             MoifyCommand();
         }
         int Khoadieutri = -1;
@@ -447,7 +454,7 @@ namespace VNS.HIS.UI.NOITRU
         {
             ClearControl();
         }
-        KcbLuotkham objLuotkham = null;
+        public KcbLuotkham objLuotkham = null;
         /// <summary>
         ///     hàm thực hiện việc xóa thông tin
         /// </summary>
@@ -1144,6 +1151,11 @@ namespace VNS.HIS.UI.NOITRU
                     Utility.ShowMsg("Bạn cần chọn ít nhất một thuốc để thêm mới phiếu truyền dịch");
                     return;
                 }
+                if(m_dtDataPhieuDichTruyen.AsEnumerable().Sum(c=>Utility.Int32Dbnull( c["so_luong"]))>= soluong_ke)
+                {
+                    Utility.ShowMsg(string.Format( "Số lượng truyền dịch đã bằng số lượng kê đơn {0} nên bạn không được tạo phiếu truyền dịch thêm cho thuốc đang chọn. Vui lòng chọn thuốc khác", soluong_ke));
+                    return;
+                }    
                 frm_themphieutruyendich frm = new frm_themphieutruyendich();
                 frm.em_Action = action.Insert;
                 frm.p_DataPhieuDich = m_dtDataPhieuDichTruyen;
@@ -1161,6 +1173,7 @@ namespace VNS.HIS.UI.NOITRU
                 frm.id_khoadieutri = id_khoadieutri;
                 frm.objLuotkham = objLuotkham;
                 frm.ShowDialog();
+                modifyCommandPhieutruyendich();
             }
             catch (Exception exception)
             {

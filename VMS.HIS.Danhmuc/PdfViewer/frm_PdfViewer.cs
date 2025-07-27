@@ -425,7 +425,7 @@ namespace VMS.HIS.Danhmuc
                 }
                 if (pdfViewer1 != null)
                 {
-                    stream.Dispose();
+                    pdfViewer1.Dispose();
                     pdfViewer1 = null;
                 }
             }

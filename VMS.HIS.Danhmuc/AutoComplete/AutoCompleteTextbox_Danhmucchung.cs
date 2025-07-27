@@ -392,7 +392,7 @@ namespace VNS.HIS.UCs
         {
             set;
             get;
-        }
+        } = true;
         private List<string> CurrentAutoCompleteList_IDAndCode
         {
             set;

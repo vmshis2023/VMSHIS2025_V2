@@ -201,6 +201,30 @@
     <Compile Include="Forms\BA_Phieukham\frm_khamNamkhoa.Designer.cs">
       <DependentUpon>frm_khamNamkhoa.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_phieubangiaonguoibenhchuyenkhoa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_phieubangiaonguoibenhchuyenkhoa.Designer.cs">
+      <DependentUpon>frm_phieubangiaonguoibenhchuyenkhoa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_phieucamketchapnhan_pttt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_phieucamketchapnhan_pttt.Designer.cs">
+      <DependentUpon>frm_phieucamketchapnhan_pttt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_QuanlyPhieubangiaonguoibenhchuyenkhoa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_QuanlyPhieubangiaonguoibenhchuyenkhoa.Designer.cs">
+      <DependentUpon>frm_QuanlyPhieubangiaonguoibenhchuyenkhoa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_QuanlyGiaycamketchapnhanPttt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_QuanlyGiaycamketchapnhanPttt.Designer.cs">
+      <DependentUpon>frm_QuanlyGiaycamketchapnhanPttt.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\BA_Phieukham\frm_QuanlyGiayxacnhan_quatrinhdieutrinoitru.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -405,6 +429,18 @@
     <Compile Include="Forms\BA_Phieukham\Ucs\uc_tiensusanphukhoa.Designer.cs">
       <DependentUpon>uc_tiensusanphukhoa.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\BA_Phieukham\Ucs\uc_phieubangiaonguoibenhchuyenkhoa.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\Ucs\uc_phieubangiaonguoibenhchuyenkhoa.Designer.cs">
+      <DependentUpon>uc_phieubangiaonguoibenhchuyenkhoa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\Ucs\uc_tt32_giaycamketchapnhanpttt_gaymehoisuc.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\Ucs\uc_tt32_giaycamketchapnhanpttt_gaymehoisuc.Designer.cs">
+      <DependentUpon>uc_tt32_giaycamketchapnhanpttt_gaymehoisuc.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frm_BenhAn_NgoaiTru.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -465,11 +501,47 @@
     <Compile Include="Forms\frm_emrfile_attatchments.designer.cs">
       <DependentUpon>frm_emrfile_attatchments.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frm_QuanlyBA.cs">
+    <Compile Include="Forms\frm_chonky_todieutri.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frm_QuanlyBA.Designer.cs">
-      <DependentUpon>frm_QuanlyBA.cs</DependentUpon>
+    <Compile Include="Forms\frm_chonky_todieutri.Designer.cs">
+      <DependentUpon>frm_chonky_todieutri.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frm_QuanlyBA_Phukhoa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frm_QuanlyBA_Phukhoa.Designer.cs">
+      <DependentUpon>frm_QuanlyBA_Phukhoa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frm_QuanlyBA_Ngoaitru.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frm_QuanlyBA_Ngoaitru.Designer.cs">
+      <DependentUpon>frm_QuanlyBA_Ngoaitru.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frm_QuanlyBA_Ngoaikhoa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frm_QuanlyBA_Ngoaikhoa.Designer.cs">
+      <DependentUpon>frm_QuanlyBA_Ngoaikhoa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frm_QuanlyBA_SanKhoa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frm_QuanlyBA_SanKhoa.Designer.cs">
+      <DependentUpon>frm_QuanlyBA_SanKhoa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frm_QuanlyBA_Namkhoa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frm_QuanlyBA_Namkhoa.Designer.cs">
+      <DependentUpon>frm_QuanlyBA_Namkhoa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frm_QuanlyBA_Noikhoa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frm_QuanlyBA_Noikhoa.Designer.cs">
+      <DependentUpon>frm_QuanlyBA_Noikhoa.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -496,6 +568,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\BA_Phieukham\frm_khamNamkhoa.resx">
       <DependentUpon>frm_khamNamkhoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\frm_phieubangiaonguoibenhchuyenkhoa.resx">
+      <DependentUpon>frm_phieubangiaonguoibenhchuyenkhoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\frm_phieucamketchapnhan_pttt.resx">
+      <DependentUpon>frm_phieucamketchapnhan_pttt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\frm_QuanlyPhieubangiaonguoibenhchuyenkhoa.resx">
+      <DependentUpon>frm_QuanlyPhieubangiaonguoibenhchuyenkhoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\frm_QuanlyGiaycamketchapnhanPttt.resx">
+      <DependentUpon>frm_QuanlyGiaycamketchapnhanPttt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\BA_Phieukham\frm_QuanlyGiayxacnhan_quatrinhdieutrinoitru.resx">
       <DependentUpon>frm_QuanlyGiayxacnhan_quatrinhdieutrinoitru.cs</DependentUpon>
@@ -599,6 +683,12 @@
     <EmbeddedResource Include="Forms\BA_Phieukham\Ucs\uc_tiensusanphukhoa.resx">
       <DependentUpon>uc_tiensusanphukhoa.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\Ucs\uc_phieubangiaonguoibenhchuyenkhoa.resx">
+      <DependentUpon>uc_phieubangiaonguoibenhchuyenkhoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\Ucs\uc_tt32_giaycamketchapnhanpttt_gaymehoisuc.resx">
+      <DependentUpon>uc_tt32_giaycamketchapnhanpttt_gaymehoisuc.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frm_BenhAn_NgoaiTru.resx">
       <DependentUpon>frm_BenhAn_NgoaiTru.cs</DependentUpon>
     </EmbeddedResource>
@@ -629,8 +719,26 @@
     <EmbeddedResource Include="Forms\frm_emrfile_attatchments.resx">
       <DependentUpon>frm_emrfile_attatchments.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frm_QuanlyBA.resx">
-      <DependentUpon>frm_QuanlyBA.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\frm_chonky_todieutri.resx">
+      <DependentUpon>frm_chonky_todieutri.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_QuanlyBA_Phukhoa.resx">
+      <DependentUpon>frm_QuanlyBA_Phukhoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_QuanlyBA_Ngoaitru.resx">
+      <DependentUpon>frm_QuanlyBA_Ngoaitru.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_QuanlyBA_Ngoaikhoa.resx">
+      <DependentUpon>frm_QuanlyBA_Ngoaikhoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_QuanlyBA_SanKhoa.resx">
+      <DependentUpon>frm_QuanlyBA_SanKhoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_QuanlyBA_Namkhoa.resx">
+      <DependentUpon>frm_QuanlyBA_Namkhoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_QuanlyBA_Noikhoa.resx">
+      <DependentUpon>frm_QuanlyBA_Noikhoa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -658,13 +766,13 @@
       <Project>{323d0245-5cd3-488a-8b83-edade85b3da4}</Project>
       <Name>VMS.HIS.Bus.Emr</Name>
     </ProjectReference>
-    <ProjectReference Include="..\VMS.Resources\4.VMS.Resources.csproj">
-      <Project>{496ccd74-1e0f-45c2-8e86-bf48b9926587}</Project>
-      <Name>4.VMS.Resources</Name>
-    </ProjectReference>
     <ProjectReference Include="..\VMS.HIS.Danhmuc\5.VMS.HIS.Danhmuc.csproj">
       <Project>{53b9a2e4-529a-4248-ad8d-cbed38ed9c46}</Project>
       <Name>5.VMS.HIS.Danhmuc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VMS.Resources\4.VMS.Resources.csproj">
+      <Project>{496ccd74-1e0f-45c2-8e86-bf48b9926587}</Project>
+      <Name>4.VMS.Resources</Name>
     </ProjectReference>
     <ProjectReference Include="..\VMS.HIS.Bus\3.VMS.HIS.Bus.csproj">
       <Project>{a99e7072-450c-430d-ac3d-63cbb74c01ad}</Project>

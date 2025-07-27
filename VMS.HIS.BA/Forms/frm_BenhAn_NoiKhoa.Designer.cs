@@ -31,6 +31,7 @@ namespace VMS.HIS.UI.EMR
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_BenhAn_NoiKhoa));
             Janus.Windows.GridEX.GridEXLayout grdQLNBKhoa_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             this.uiGroupBox2 = new Janus.Windows.EditControls.UIGroupBox();
@@ -305,10 +306,10 @@ namespace VMS.HIS.UI.EMR
             this.txtTKBAQuaTrinhBenhLy = new System.Windows.Forms.RichTextBox();
             this.label102 = new System.Windows.Forms.Label();
             this.label241 = new System.Windows.Forms.Label();
-            this.contextBn = new System.Windows.Forms.ContextMenuStrip();
+            this.contextBn = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cmdUpdateBNToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.timer1 = new System.Windows.Forms.Timer();
-            this.ctxIn = new System.Windows.Forms.ContextMenuStrip();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.ctxIn = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuInVoBA = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuInTomtatBA = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();

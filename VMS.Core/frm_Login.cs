@@ -475,7 +475,8 @@ namespace VNSCore
                 {
                     _OnloadData();
                 }
-                else LoadDataForm();
+                else
+                    LoadDataForm();
                 if (IsExceedData())
                 {
                     Utility.ShowMsg("Phiên bản Demo chỉ cho phép bạn tiếp đón tối đa 100 lượt khám. Mời bạn liên hệ 0915150148(A. Cường) để được trợ giúp");
@@ -755,7 +756,10 @@ namespace VNSCore
                 UIAction.SetTextStatus(lblMsg, "Nạp dữ liệu danh mục địa chính...", false);
                 globalVariables.gv_dtDmucDiachinh = ds.Tables[7];// new Select().From(VDmucDiachinh.Schema).ExecuteDataSet().Tables[0];
                 globalVariables.gv_dtDmucBenhVien = ds.Tables[8];// new Select().From(DmucBenhvien.Schema).ExecuteDataSet().Tables[0];
-                Utility.AutoCompeleteAddress(globalVariables.gv_dtDmucDiachinh);
+                if (THU_VIEN_CHUNG.Laygiatrithamsohethong("DIACHINH_MOI", "0", true) == "0")
+                    Utility.AutoCompeleteAddress(globalVariables.gv_dtDmucDiachinh);
+                else
+                    Utility.AutoCompeleteAddress_New(globalVariables.gv_dtDmucDiachinh);
                 UIAction.SetTextStatus(lblMsg, "Nạp dữ liệu danh mục nơi KCBBĐ...", false);
                 globalVariables.gv_dtDmucNoiKCBBD = ds.Tables[9];// new Select().From(VDmucNoiKCBBD.Schema).ExecuteDataSet().Tables[0];
                 UIAction.SetTextStatus(lblMsg, "Nạp dữ liệu dịch vụ CLS...", false);

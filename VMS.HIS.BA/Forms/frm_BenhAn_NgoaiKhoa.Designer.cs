@@ -2939,7 +2939,7 @@ namespace VMS.HIS.UI.EMR
             this.tabpageTo3.Controls.Add(this.pTo3);
             this.tabpageTo3.Location = new System.Drawing.Point(1, 23);
             this.tabpageTo3.Name = "tabpageTo3";
-            this.tabpageTo3.Size = new System.Drawing.Size(1262, 837);
+            this.tabpageTo3.Size = new System.Drawing.Size(1283, 887);
             this.tabpageTo3.TabStop = true;
             this.tabpageTo3.Text = "A. BỆNH ÁN(TIẾP): KHÁM BỆNH, CHẨN ĐOÁN KĐT, TIÊN LƯỢNG, HĐT (TỜ THỨ 3)";
             // 
@@ -2980,7 +2980,7 @@ namespace VMS.HIS.UI.EMR
             this.pTo3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pTo3.Location = new System.Drawing.Point(0, 0);
             this.pTo3.Name = "pTo3";
-            this.pTo3.Size = new System.Drawing.Size(1262, 837);
+            this.pTo3.Size = new System.Drawing.Size(1283, 887);
             this.pTo3.TabIndex = 0;
             // 
             // cmdPhieuKCB2
@@ -2989,7 +2989,7 @@ namespace VMS.HIS.UI.EMR
             this.cmdPhieuKCB2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdPhieuKCB2.Image = ((System.Drawing.Image)(resources.GetObject("cmdPhieuKCB2.Image")));
             this.cmdPhieuKCB2.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdPhieuKCB2.Location = new System.Drawing.Point(1217, 180);
+            this.cmdPhieuKCB2.Location = new System.Drawing.Point(1238, 180);
             this.cmdPhieuKCB2.Name = "cmdPhieuKCB2";
             this.cmdPhieuKCB2.Size = new System.Drawing.Size(35, 35);
             this.cmdPhieuKCB2.TabIndex = 617;
@@ -3001,9 +3001,9 @@ namespace VMS.HIS.UI.EMR
             this.txtBenhAnPhanBiet.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBenhAnPhanBiet.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBenhAnPhanBiet.Location = new System.Drawing.Point(180, 644);
+            this.txtBenhAnPhanBiet.Location = new System.Drawing.Point(180, 694);
             this.txtBenhAnPhanBiet.Name = "txtBenhAnPhanBiet";
-            this.txtBenhAnPhanBiet.Size = new System.Drawing.Size(1071, 22);
+            this.txtBenhAnPhanBiet.Size = new System.Drawing.Size(1092, 22);
             this.txtBenhAnPhanBiet.TabIndex = 72;
             // 
             // txtBenhAnBenhKemTheo
@@ -3011,16 +3011,16 @@ namespace VMS.HIS.UI.EMR
             this.txtBenhAnBenhKemTheo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBenhAnBenhKemTheo.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBenhAnBenhKemTheo.Location = new System.Drawing.Point(180, 620);
+            this.txtBenhAnBenhKemTheo.Location = new System.Drawing.Point(180, 670);
             this.txtBenhAnBenhKemTheo.Name = "txtBenhAnBenhKemTheo";
-            this.txtBenhAnBenhKemTheo.Size = new System.Drawing.Size(1071, 22);
+            this.txtBenhAnBenhKemTheo.Size = new System.Drawing.Size(1092, 22);
             this.txtBenhAnBenhKemTheo.TabIndex = 71;
             // 
             // label95
             // 
             this.label95.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label95.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.label95.Location = new System.Drawing.Point(10, 621);
+            this.label95.Location = new System.Drawing.Point(10, 671);
             this.label95.Name = "label95";
             this.label95.Size = new System.Drawing.Size(158, 21);
             this.label95.TabIndex = 612;
@@ -3031,7 +3031,7 @@ namespace VMS.HIS.UI.EMR
             // 
             this.label94.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label94.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.label94.Location = new System.Drawing.Point(10, 644);
+            this.label94.Location = new System.Drawing.Point(10, 694);
             this.label94.Name = "label94";
             this.label94.Size = new System.Drawing.Size(158, 21);
             this.label94.TabIndex = 614;
@@ -3042,7 +3042,7 @@ namespace VMS.HIS.UI.EMR
             // 
             this.label96.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label96.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.label96.Location = new System.Drawing.Point(10, 596);
+            this.label96.Location = new System.Drawing.Point(10, 646);
             this.label96.Name = "label96";
             this.label96.Size = new System.Drawing.Size(158, 21);
             this.label96.TabIndex = 611;
@@ -3053,7 +3053,7 @@ namespace VMS.HIS.UI.EMR
             // 
             this.label93.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label93.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label93.Location = new System.Drawing.Point(9, 674);
+            this.label93.Location = new System.Drawing.Point(9, 724);
             this.label93.Name = "label93";
             this.label93.Size = new System.Drawing.Size(151, 48);
             this.label93.TabIndex = 609;
@@ -3064,7 +3064,7 @@ namespace VMS.HIS.UI.EMR
             // 
             this.label97.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label97.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label97.Location = new System.Drawing.Point(9, 573);
+            this.label97.Location = new System.Drawing.Point(9, 623);
             this.label97.Name = "label97";
             this.label97.Size = new System.Drawing.Size(262, 21);
             this.label97.TabIndex = 608;
@@ -3076,9 +3076,9 @@ namespace VMS.HIS.UI.EMR
             this.txtBenhAnBenhChinh.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBenhAnBenhChinh.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBenhAnBenhChinh.Location = new System.Drawing.Point(180, 596);
+            this.txtBenhAnBenhChinh.Location = new System.Drawing.Point(180, 646);
             this.txtBenhAnBenhChinh.Name = "txtBenhAnBenhChinh";
-            this.txtBenhAnBenhChinh.Size = new System.Drawing.Size(1071, 22);
+            this.txtBenhAnBenhChinh.Size = new System.Drawing.Size(1092, 22);
             this.txtBenhAnBenhChinh.TabIndex = 70;
             // 
             // txtBenhAnTienLuong
@@ -3086,9 +3086,9 @@ namespace VMS.HIS.UI.EMR
             this.txtBenhAnTienLuong.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBenhAnTienLuong.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBenhAnTienLuong.Location = new System.Drawing.Point(180, 670);
+            this.txtBenhAnTienLuong.Location = new System.Drawing.Point(180, 720);
             this.txtBenhAnTienLuong.Name = "txtBenhAnTienLuong";
-            this.txtBenhAnTienLuong.Size = new System.Drawing.Size(1071, 54);
+            this.txtBenhAnTienLuong.Size = new System.Drawing.Size(1092, 54);
             this.txtBenhAnTienLuong.TabIndex = 73;
             this.txtBenhAnTienLuong.Text = "";
             // 
@@ -3100,7 +3100,7 @@ namespace VMS.HIS.UI.EMR
             this.txtBenhAnTomTatBenhAn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBenhAnTomTatBenhAn.Location = new System.Drawing.Point(180, 343);
             this.txtBenhAnTomTatBenhAn.Name = "txtBenhAnTomTatBenhAn";
-            this.txtBenhAnTomTatBenhAn.Size = new System.Drawing.Size(1071, 227);
+            this.txtBenhAnTomTatBenhAn.Size = new System.Drawing.Size(1092, 277);
             this.txtBenhAnTomTatBenhAn.TabIndex = 61;
             this.txtBenhAnTomTatBenhAn.Text = "";
             this.txtBenhAnTomTatBenhAn.TextChanged += new System.EventHandler(this.txtBenhAnTomTatBenhAn_TextChanged);
@@ -3123,7 +3123,7 @@ namespace VMS.HIS.UI.EMR
             this.txtBenhAnCacXetNghiem.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBenhAnCacXetNghiem.Location = new System.Drawing.Point(180, 234);
             this.txtBenhAnCacXetNghiem.Name = "txtBenhAnCacXetNghiem";
-            this.txtBenhAnCacXetNghiem.Size = new System.Drawing.Size(1071, 104);
+            this.txtBenhAnCacXetNghiem.Size = new System.Drawing.Size(1092, 104);
             this.txtBenhAnCacXetNghiem.TabIndex = 60;
             this.txtBenhAnCacXetNghiem.Text = "";
             // 
@@ -3146,7 +3146,7 @@ namespace VMS.HIS.UI.EMR
             this.txtBenhAnNoiTiet.Location = new System.Drawing.Point(180, 182);
             this.txtBenhAnNoiTiet.Name = "txtBenhAnNoiTiet";
             this.txtBenhAnNoiTiet.ReadOnly = true;
-            this.txtBenhAnNoiTiet.Size = new System.Drawing.Size(1031, 48);
+            this.txtBenhAnNoiTiet.Size = new System.Drawing.Size(1052, 48);
             this.txtBenhAnNoiTiet.TabIndex = 59;
             this.txtBenhAnNoiTiet.Text = "";
             // 
@@ -3169,7 +3169,7 @@ namespace VMS.HIS.UI.EMR
             this.txtBenhAnMat.Location = new System.Drawing.Point(807, 123);
             this.txtBenhAnMat.Name = "txtBenhAnMat";
             this.txtBenhAnMat.ReadOnly = true;
-            this.txtBenhAnMat.Size = new System.Drawing.Size(445, 48);
+            this.txtBenhAnMat.Size = new System.Drawing.Size(466, 48);
             this.txtBenhAnMat.TabIndex = 58;
             this.txtBenhAnMat.Text = "";
             // 
@@ -3178,9 +3178,9 @@ namespace VMS.HIS.UI.EMR
             this.txtBenhAnHuongDieuTri.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBenhAnHuongDieuTri.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBenhAnHuongDieuTri.Location = new System.Drawing.Point(180, 727);
+            this.txtBenhAnHuongDieuTri.Location = new System.Drawing.Point(180, 777);
             this.txtBenhAnHuongDieuTri.Name = "txtBenhAnHuongDieuTri";
-            this.txtBenhAnHuongDieuTri.Size = new System.Drawing.Size(1071, 53);
+            this.txtBenhAnHuongDieuTri.Size = new System.Drawing.Size(1092, 53);
             this.txtBenhAnHuongDieuTri.TabIndex = 74;
             this.txtBenhAnHuongDieuTri.Text = "";
             // 
@@ -3209,7 +3209,7 @@ namespace VMS.HIS.UI.EMR
             // 
             this.label92.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label92.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label92.Location = new System.Drawing.Point(9, 732);
+            this.label92.Location = new System.Drawing.Point(9, 782);
             this.label92.Name = "label92";
             this.label92.Size = new System.Drawing.Size(151, 44);
             this.label92.TabIndex = 610;
@@ -3235,7 +3235,7 @@ namespace VMS.HIS.UI.EMR
             this.txtBenhAnTaiMuiHong.Location = new System.Drawing.Point(807, 72);
             this.txtBenhAnTaiMuiHong.Name = "txtBenhAnTaiMuiHong";
             this.txtBenhAnTaiMuiHong.ReadOnly = true;
-            this.txtBenhAnTaiMuiHong.Size = new System.Drawing.Size(445, 48);
+            this.txtBenhAnTaiMuiHong.Size = new System.Drawing.Size(466, 48);
             this.txtBenhAnTaiMuiHong.TabIndex = 56;
             this.txtBenhAnTaiMuiHong.Text = "";
             // 
@@ -3279,7 +3279,7 @@ namespace VMS.HIS.UI.EMR
             this.txtBenhAnThanKinh.Location = new System.Drawing.Point(807, 23);
             this.txtBenhAnThanKinh.Name = "txtBenhAnThanKinh";
             this.txtBenhAnThanKinh.ReadOnly = true;
-            this.txtBenhAnThanKinh.Size = new System.Drawing.Size(445, 48);
+            this.txtBenhAnThanKinh.Size = new System.Drawing.Size(466, 48);
             this.txtBenhAnThanKinh.TabIndex = 54;
             this.txtBenhAnThanKinh.Text = "";
             // 

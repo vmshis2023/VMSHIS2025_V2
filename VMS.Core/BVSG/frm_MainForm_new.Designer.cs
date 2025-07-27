@@ -59,6 +59,7 @@
             Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel7 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
             Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel8 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
             Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel9 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
+            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel10 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
             this.treeView = new System.Windows.Forms.TreeView();
             this.pMainConent = new Janus.Windows.UI.Dock.UIPanelGroup();
             this.treeView1 = new System.Windows.Forms.TreeView();
@@ -106,6 +107,7 @@
             this.pnlMDI = new System.Windows.Forms.Panel();
             this.Tientrinh = new System.Windows.Forms.ProgressBar();
             this.timer3 = new System.Windows.Forms.Timer(this.components);
+            this.tmrtoquit = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pMainConent)).BeginInit();
             this.pnlHeader.SuspendLayout();
             this.pnlSearch.SuspendLayout();
@@ -194,6 +196,7 @@
             this.imageList.Images.SetKeyName(2, "file1_32.png");
             this.imageList.Images.SetKeyName(3, "move-24.png");
             this.imageList.Images.SetKeyName(4, "PDF16.png");
+            this.imageList.Images.SetKeyName(5, "cube_9067896.png");
             // 
             // imageList1
             // 
@@ -201,12 +204,13 @@
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "Folder.png");
             this.imageList1.Images.SetKeyName(1, "system_config_boot_gray.png");
-            this.imageList1.Images.SetKeyName(2, "folder_3.png");
+            this.imageList1.Images.SetKeyName(2, "cube_9067896.png");
             this.imageList1.Images.SetKeyName(3, "PEACE.PNG");
             this.imageList1.Images.SetKeyName(4, "new-folder.png");
             this.imageList1.Images.SetKeyName(5, "F1.jpg");
             this.imageList1.Images.SetKeyName(6, "1348021754_Folder.png");
             this.imageList1.Images.SetKeyName(7, "arrow_left_1.ico");
+            this.imageList1.Images.SetKeyName(8, "folder_3.png");
             // 
             // ntfSystemInfo
             // 
@@ -568,7 +572,7 @@
             this.lblupdateVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblupdateVersion.BackColor = System.Drawing.Color.LightBlue;
             this.lblupdateVersion.LinkColor = System.Drawing.Color.Blue;
-            this.lblupdateVersion.Location = new System.Drawing.Point(1384, 13);
+            this.lblupdateVersion.Location = new System.Drawing.Point(1384, 32);
             this.lblupdateVersion.Name = "lblupdateVersion";
             this.lblupdateVersion.Size = new System.Drawing.Size(10, 21);
             this.lblupdateVersion.TabIndex = 555;
@@ -667,7 +671,7 @@
             this.menuStrip.Location = new System.Drawing.Point(0, 40);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
-            this.menuStrip.Size = new System.Drawing.Size(1482, 23);
+            this.menuStrip.Size = new System.Drawing.Size(1482, 4);
             this.menuStrip.TabIndex = 11;
             this.menuStrip.Text = "menuStrip1";
             // 
@@ -719,26 +723,33 @@
             uiStatusBarPanel6.ProgressBarValue = 0;
             uiStatusBarPanel6.Text = "Time";
             uiStatusBarPanel6.Width = 43;
-            uiStatusBarPanel7.Alignment = System.Windows.Forms.HorizontalAlignment.Right;
-            uiStatusBarPanel7.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Spring;
+            uiStatusBarPanel7.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
             uiStatusBarPanel7.BorderColor = System.Drawing.Color.Empty;
-            uiStatusBarPanel7.Key = "lblCopyright";
+            uiStatusBarPanel7.FormatStyle.ForeColor = System.Drawing.Color.Red;
+            uiStatusBarPanel7.Key = "Time2Close";
             uiStatusBarPanel7.ProgressBarValue = 0;
-            uiStatusBarPanel7.Text = "COPYRIGHT © Công ty cổ phần CNTT VMS Việt Nam";
-            uiStatusBarPanel7.Width = 855;
-            uiStatusBarPanel8.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
+            uiStatusBarPanel7.Text = "...";
+            uiStatusBarPanel7.Width = 24;
+            uiStatusBarPanel8.Alignment = System.Windows.Forms.HorizontalAlignment.Right;
+            uiStatusBarPanel8.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Spring;
             uiStatusBarPanel8.BorderColor = System.Drawing.Color.Empty;
-            uiStatusBarPanel8.FormatStyle.FontBold = Janus.Windows.UI.TriState.True;
-            uiStatusBarPanel8.Image = ((System.Drawing.Image)(resources.GetObject("uiStatusBarPanel8.Image")));
-            uiStatusBarPanel8.Key = "lblUpdateVersion";
+            uiStatusBarPanel8.Key = "lblCopyright";
             uiStatusBarPanel8.ProgressBarValue = 0;
-            uiStatusBarPanel8.Text = "  Hỗ trợ: A. Cường -  ĐT: 0915 150 148";
-            uiStatusBarPanel8.Width = 243;
+            uiStatusBarPanel8.Text = "COPYRIGHT © Công ty cổ phần CNTT VMS Việt Nam";
+            uiStatusBarPanel8.Width = 831;
             uiStatusBarPanel9.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
             uiStatusBarPanel9.BorderColor = System.Drawing.Color.Empty;
-            uiStatusBarPanel9.Key = "lblStatus";
+            uiStatusBarPanel9.FormatStyle.FontBold = Janus.Windows.UI.TriState.True;
+            uiStatusBarPanel9.Image = ((System.Drawing.Image)(resources.GetObject("uiStatusBarPanel9.Image")));
+            uiStatusBarPanel9.Key = "lblUpdateVersion";
             uiStatusBarPanel9.ProgressBarValue = 0;
-            uiStatusBarPanel9.Width = 10;
+            uiStatusBarPanel9.Text = "  Hỗ trợ: A. Cường -  ĐT: 0915 150 148";
+            uiStatusBarPanel9.Width = 243;
+            uiStatusBarPanel10.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
+            uiStatusBarPanel10.BorderColor = System.Drawing.Color.Empty;
+            uiStatusBarPanel10.Key = "lblStatus";
+            uiStatusBarPanel10.ProgressBarValue = 0;
+            uiStatusBarPanel10.Width = 10;
             this.statusStrip1.Panels.AddRange(new Janus.Windows.UI.StatusBar.UIStatusBarPanel[] {
             uiStatusBarPanel1,
             uiStatusBarPanel2,
@@ -748,7 +759,8 @@
             uiStatusBarPanel6,
             uiStatusBarPanel7,
             uiStatusBarPanel8,
-            uiStatusBarPanel9});
+            uiStatusBarPanel9,
+            uiStatusBarPanel10});
             this.statusStrip1.Size = new System.Drawing.Size(1482, 30);
             this.statusStrip1.TabIndex = 553;
             this.statusStrip1.VisualStyle = Janus.Windows.UI.VisualStyle.Standard;
@@ -766,9 +778,9 @@
             this.pnlMDI.Controls.Add(this.cmdMainPanel);
             this.pnlMDI.Controls.Add(this.lblupdateVersion);
             this.pnlMDI.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlMDI.Location = new System.Drawing.Point(3, 66);
+            this.pnlMDI.Location = new System.Drawing.Point(3, 47);
             this.pnlMDI.Name = "pnlMDI";
-            this.pnlMDI.Size = new System.Drawing.Size(1476, 662);
+            this.pnlMDI.Size = new System.Drawing.Size(1476, 681);
             this.pnlMDI.TabIndex = 555;
             // 
             // Tientrinh
@@ -787,6 +799,11 @@
             this.timer3.Enabled = true;
             this.timer3.Interval = 5000;
             this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
+            // 
+            // tmrtoquit
+            // 
+            this.tmrtoquit.Interval = 5000;
+            this.tmrtoquit.Tick += new System.EventHandler(this.tmrtoquit_Tick);
             // 
             // frm_MainForm_new
             // 
@@ -873,5 +890,6 @@
         private System.Windows.Forms.Label label2;
         private VNS.HIS.UCs.AutoCompleteTextbox txtFunction;
         private System.Windows.Forms.Timer timer3;
+        private System.Windows.Forms.Timer tmrtoquit;
     }
 }

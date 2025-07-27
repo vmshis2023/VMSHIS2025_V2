@@ -45,9 +45,9 @@ namespace VNS.HIS.UI.NOITRU
             Utility.SetVisualStyle(this);
             grdDonthuocchitiet.RowCheckStateChanged += grdDonthuocchitiet_RowCheckStateChanged;
           
-            dtCreateDate.Value = THU_VIEN_CHUNG.GetSysDateTime();
-            dtBatDau.Value =  dtCreateDate.Value.AddSeconds(5);
-            dtKetthuc.Value = dtBatDau.Value.AddSeconds(5);
+            dtpNgaythuchien.Value = THU_VIEN_CHUNG.GetSysDateTime();
+            dtp_thoigianbatdau.Value =  dtpNgaythuchien.Value.AddSeconds(5);
+            dtp_thoigianketthuc.Value = dtp_thoigianbatdau.Value.AddSeconds(5);
         }
 
         void grdDonthuocchitiet_RowCheckStateChanged(object sender, RowCheckStateChangeEventArgs e)
@@ -106,13 +106,13 @@ namespace VNS.HIS.UI.NOITRU
             errorProvider1.Clear();
             if(id_chitietdonthuoc <0)
             {
-                Utility.SetMsgError(errorProvider1, txtidphieuthuoc, "Phải chọn dịch truyền cần theo dõi");
+                Utility.SetMsgError(errorProvider1, txtidphieuthuoc, "Phải chọn thuốc truyền dịch");
                
                 return false;
             }
             if (Utility.Int32Dbnull(txtQuantity.Value,0)<=0)
             {
-                Utility.SetMsgError(errorProvider1, txtQuantity, "Số lượng lớn hơn 0(>0)");
+                Utility.SetMsgError(errorProvider1, txtQuantity, "Số lượng thuốc truyền dịch phải lớn hơn 0(>0)");
                 txtQuantity.Focus();
                 return false;
             }
@@ -122,21 +122,21 @@ namespace VNS.HIS.UI.NOITRU
                 txtTocDo.Focus();
                 return false;
             }
-            if (dtBatDau.Value < dtCreateDate.Value)
+            if (dtp_thoigianbatdau.Value < dtpNgaythuchien.Value)
             {
-                Utility.SetMsgError(errorProvider1, dtBatDau, "Thời gian bắt đầu phải >= ngày thực hiện");
-                dtBatDau.Focus();
+                Utility.SetMsgError(errorProvider1, dtp_thoigianbatdau, "Thời gian bắt đầu phải >= ngày thực hiện");
+                dtp_thoigianbatdau.Focus();
                 return false;
             }
-            if (dtBatDau.Value > dtKetthuc.Value)
+            if (dtp_thoigianbatdau.Value > dtp_thoigianketthuc.Value)
             {
-                Utility.SetMsgError(errorProvider1, dtKetthuc, "Thời gian kết thúc phải >= thời gian bắt đầu");
-                dtKetthuc.Focus();
+                Utility.SetMsgError(errorProvider1, dtp_thoigianketthuc, "Thời gian kết thúc phải >= thời gian bắt đầu");
+                dtp_thoigianketthuc.Focus();
                 return false;
             }
             if (txtYta.MyID =="-1")
             {
-                Utility.SetMsgError(errorProvider1, dtKetthuc, "Bạn phải chọn y tá thực hiện truyền dịch");
+                Utility.SetMsgError(errorProvider1, dtp_thoigianketthuc, "Bạn phải chọn y tá thực hiện truyền dịch");
                 txtYta.Focus();
                 return false;
             }
@@ -232,9 +232,9 @@ namespace VNS.HIS.UI.NOITRU
             {
                 DataRow newDr = p_DataPhieuDich.NewRow();
                 newDr[NoitruPhieudichtruyen.Columns.IdPhieu] = IdPhieu;
-                newDr[NoitruPhieudichtruyen.Columns.NgayThuchien] = dtCreateDate.Value;
-                newDr[NoitruPhieudichtruyen.Columns.ThoigianBatdau] = dtBatDau.Value;
-                newDr[NoitruPhieudichtruyen.Columns.ThoigianKetthuc] = dtKetthuc.Value;
+                newDr[NoitruPhieudichtruyen.Columns.NgayThuchien] = dtpNgaythuchien.Value;
+                newDr[NoitruPhieudichtruyen.Columns.ThoigianBatdau] = dtp_thoigianbatdau.Value;
+                newDr[NoitruPhieudichtruyen.Columns.ThoigianKetthuc] = dtp_thoigianketthuc.Value;
                 newDr[NoitruPhieudichtruyen.Columns.MaLuotkham] = objLuotkham.MaLuotkham;
                 newDr[NoitruPhieudichtruyen.Columns.IdBenhnhan] = objLuotkham.IdBenhnhan;
                 newDr[NoitruPhieudichtruyen.Columns.IdThuoc] = Utility.Int32Dbnull(txtDrug_Id.Text, -1);
@@ -277,9 +277,9 @@ namespace VNS.HIS.UI.NOITRU
                 DataRow[] newDr = p_DataPhieuDich.Select("id_phieu=" + Utility.Int64Dbnull(txtID.Text, -1));
                 if (newDr.GetLength(0) > 0)
                 {
-                    newDr[0][NoitruPhieudichtruyen.Columns.NgayThuchien] = dtCreateDate.Value;
-                    newDr[0][NoitruPhieudichtruyen.Columns.ThoigianBatdau] = dtBatDau.Value;
-                    newDr[0][NoitruPhieudichtruyen.Columns.ThoigianKetthuc] = dtKetthuc.Value;
+                    newDr[0][NoitruPhieudichtruyen.Columns.NgayThuchien] = dtpNgaythuchien.Value;
+                    newDr[0][NoitruPhieudichtruyen.Columns.ThoigianBatdau] = dtp_thoigianbatdau.Value;
+                    newDr[0][NoitruPhieudichtruyen.Columns.ThoigianKetthuc] = dtp_thoigianketthuc.Value;
                     newDr[0][NoitruPhieudichtruyen.Columns.MaLuotkham] = objLuotkham.MaLuotkham;
                     newDr[0][NoitruPhieudichtruyen.Columns.IdBenhnhan] = objLuotkham.IdBenhnhan;
                     newDr[0][NoitruPhieudichtruyen.Columns.IdThuoc] = id_thuoc;
@@ -313,11 +313,11 @@ namespace VNS.HIS.UI.NOITRU
             objPhieudichtruyen.MaLuotkham = objLuotkham.MaLuotkham;
             objPhieudichtruyen.IdBenhnhan = objLuotkham.IdBenhnhan;
             objPhieudichtruyen.NguoiThuchien = globalVariables.UserName;
-            objPhieudichtruyen.NgayThuchien = Convert.ToDateTime(dtCreateDate.Value);
+            objPhieudichtruyen.NgayThuchien = Convert.ToDateTime(dtpNgaythuchien.Value);
             objPhieudichtruyen.SoLuong = Utility.Int32Dbnull(txtQuantity.Value);
             objPhieudichtruyen.IdThuoc = Utility.Int32Dbnull(id_thuoc);
-            objPhieudichtruyen.ThoigianBatdau = Convert.ToDateTime(dtBatDau.Value);
-            objPhieudichtruyen.ThoigianKetthuc = Convert.ToDateTime(dtKetthuc.Value);
+            objPhieudichtruyen.ThoigianBatdau = Convert.ToDateTime(dtp_thoigianbatdau.Value);
+            objPhieudichtruyen.ThoigianKetthuc = Convert.ToDateTime(dtp_thoigianketthuc.Value);
             //objPhieudichtruyen.BsCd = Utility.Int32Dbnull(cboBacSyCD.SelectedValue, -1);
             objPhieudichtruyen.IdBacsichidinh = Utility.Int32Dbnull(txtBacSyCD.MyID, -1);
             objPhieudichtruyen.IdYtathuchien = Utility.Int32Dbnull(txtYta.MyID, -1);
@@ -475,10 +475,10 @@ namespace VNS.HIS.UI.NOITRU
             if(objPhieudichtruyen!=null)
             {
 
-                dtCreateDate.Value = objPhieudichtruyen.NgayThuchien;
+                dtpNgaythuchien.Value = objPhieudichtruyen.NgayThuchien;
                 txtQuantity.Value = Utility.Int32Dbnull(objPhieudichtruyen.SoLuong);
-                dtBatDau.Value = objPhieudichtruyen.ThoigianBatdau;
-                dtKetthuc.Value = objPhieudichtruyen.ThoigianKetthuc;
+                dtp_thoigianbatdau.Value = objPhieudichtruyen.ThoigianBatdau;
+                dtp_thoigianketthuc.Value = objPhieudichtruyen.ThoigianKetthuc;
                 txtTocDo.Value = Utility.Int32Dbnull(objPhieudichtruyen.TocDo);
                 txtDrug_Id.Text = Utility.sDbnull(objPhieudichtruyen.IdThuoc);
                 txtBacSyCD.SetId(objPhieudichtruyen.IdBacsichidinh);

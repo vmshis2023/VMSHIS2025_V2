@@ -6145,7 +6145,7 @@ namespace  VNS.HIS.UI.THANHTOAN
             try
             {
                 int _Payment_ID = Utility.Int32Dbnull(grdPayment.GetValue(KcbThanhtoan.Columns.IdThanhtoan), -1);
-                new INPHIEU_THANHTOAN_NGOAITRU().InHoaDon_BanHang(_Payment_ID,-1,v_bytNoitru);
+                new INPHIEU_THANHTOAN_NGOAITRU().InHoaDon_BanHang(_Payment_ID,-1,v_bytNoitru,100);
             }
             catch (Exception ex)
             {
@@ -7420,6 +7420,20 @@ namespace  VNS.HIS.UI.THANHTOAN
            long id_thanhtoan= Utility.Int64Dbnull(grdPayment.GetValue("id_thanhtoan"), -1);
             frm_QRData _QrData = new frm_QRData(id_thanhtoan);
             _QrData.ShowDialog();
+        }
+
+        private void mnuInBienLaiThucthu_Click(object sender, EventArgs e)
+        {
+            int _Payment_ID = Utility.Int32Dbnull(grdPayment.GetValue(KcbThanhtoan.Columns.IdThanhtoan), -1);
+            byte kieuthanhtoan = Utility.ByteDbnull(grdPayment.CurrentRow.Cells[KcbThanhtoan.Columns.KieuThanhtoan].Value, 0);
+            byte ttoan_thuoc = Utility.ByteDbnull(grdPayment.CurrentRow.Cells[KcbThanhtoan.Columns.TtoanThuoc].Value, 0);
+            if (kieuthanhtoan == 0 || kieuthanhtoan == 5)
+            {
+                if (chkIntonghop.Visible && chkIntonghop.Checked)
+                    new INPHIEU_THANHTOAN_NGOAITRU().InBienlai(true, _Payment_ID, -1, objLuotkham, 0,1);
+                else
+                    new INPHIEU_THANHTOAN_NGOAITRU().InBienlai(false, _Payment_ID, -1, objLuotkham, 0,1);
+            }
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

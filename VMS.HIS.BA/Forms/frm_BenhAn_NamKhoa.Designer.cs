@@ -6178,7 +6178,7 @@ namespace VMS.HIS.UI.EMR
             this.Name = "frm_BenhAn_NamKhoa";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Bệnh án Phụ khoa";
+            this.Text = "Bệnh án Nam khoa";
             this.Load += new System.EventHandler(this.frm_BenhAn_NamKhoa_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frm_BenhAn_NamKhoa_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox2)).EndInit();

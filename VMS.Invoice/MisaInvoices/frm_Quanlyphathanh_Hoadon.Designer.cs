@@ -136,6 +136,8 @@ namespace VMS.Invoice
             this.chkAnChitietdaPhathanh = new System.Windows.Forms.CheckBox();
             this.chkBodichvutronggoi = new System.Windows.Forms.CheckBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuUpdateHIS = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -690,31 +692,33 @@ namespace VMS.Invoice
             this.toolStripMenuItem1,
             this.cmdGetRight,
             this.toolStripMenuItem2,
-            this.mnuPhathanhtiep});
+            this.mnuPhathanhtiep,
+            this.toolStripMenuItem3,
+            this.mnuUpdateHIS});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(391, 60);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(643, 110);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(387, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(639, 6);
             // 
             // cmdGetRight
             // 
             this.cmdGetRight.Name = "cmdGetRight";
-            this.cmdGetRight.Size = new System.Drawing.Size(390, 22);
+            this.cmdGetRight.Size = new System.Drawing.Size(642, 22);
             this.cmdGetRight.Text = "Lấy lại quyền phát hành HĐĐT";
             this.cmdGetRight.Click += new System.EventHandler(this.cmdChangeDinhDanh_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(387, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(639, 6);
             // 
             // mnuPhathanhtiep
             // 
             this.mnuPhathanhtiep.Name = "mnuPhathanhtiep";
-            this.mnuPhathanhtiep.Size = new System.Drawing.Size(390, 22);
+            this.mnuPhathanhtiep.Size = new System.Drawing.Size(642, 22);
             this.mnuPhathanhtiep.Text = "Phát hành các chi tiết bị xuất thiếu của chứng từ đang chọn";
             this.mnuPhathanhtiep.Click += new System.EventHandler(this.mnuPhathanhtiep_Click);
             // 
@@ -1439,6 +1443,19 @@ namespace VMS.Invoice
             this.toolTip1.IsBalloon = true;
             this.toolTip1.ToolTipTitle = "Trợ giúp";
             // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(639, 6);
+            // 
+            // mnuUpdateHIS
+            // 
+            this.mnuUpdateHIS.Name = "mnuUpdateHIS";
+            this.mnuUpdateHIS.Size = new System.Drawing.Size(642, 22);
+            this.mnuUpdateHIS.Text = "Cập nhật thông tin chứng từ sau phát hành( Phát hành HĐ thành công nhưng bị lỗi c" +
+    "hưa lưu vào CSDL HIS)";
+            this.mnuUpdateHIS.Click += new System.EventHandler(this.mnuUpdateHIS_Click);
+            // 
             // frm_Quanlyphathanh_Hoadon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1612,5 +1629,7 @@ namespace VMS.Invoice
         private System.Windows.Forms.ToolStripMenuItem mnuPhathanhtiep;
         private System.Windows.Forms.CheckBox chkHienthiChitietThucthubang0;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem mnuUpdateHIS;
     }
 }

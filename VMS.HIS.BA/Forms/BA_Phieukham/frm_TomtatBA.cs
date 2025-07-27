@@ -433,25 +433,25 @@ namespace VMS.HIS.UI.EMR
                             .Where(KcbLuotkham.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
                             .And(KcbLuotkham.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
                             .Execute();
-                        EmrBa objEmrBa = new Select().From(EmrBa.Schema).Where(EmrBa.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan).And(EmrBa.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham).ExecuteSingle<EmrBa>();
-                        if (objEmrBa == null) objEmrBa = new EmrBa();
-                        if (objEmrBa.IdBa > 0)
-                        {
-                            objEmrBa.IsNew = false;
-                            objEmrBa.MarkOld();
-                            objEmrBa.NgaySua = THU_VIEN_CHUNG.GetSysDateTime();
-                            objEmrBa.NguoiSua = globalVariables.UserName;
-                            //objEmrBa.TkbaQtbl = ttba.QuatrinhbenhlyDienbienlamsang;
-                            //objEmrBa.TkbaTtkqxn = ttba.TomtatKqcls;
-                            //objEmrBa.TkbaTtrv = ttba.TinhtrangRavienMota;
-                            //objEmrBa.TkbaPpdt = ttba.PhuongphapDieutri;
-                            //objEmrBa.TkbaHdt = ttba.HuongDieutri;
-                            objEmrBa.Save();
-                        }
-                        else
-                        {
-                            //Phải khởi tạo BA xong mới được làm tổng kết BA
-                        }
+                        //EmrBa objEmrBa = new Select().From(EmrBa.Schema).Where(EmrBa.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan).And(EmrBa.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham).ExecuteSingle<EmrBa>();
+                        //if (objEmrBa == null) objEmrBa = new EmrBa();
+                        //if (objEmrBa.IdBa > 0)
+                        //{
+                        //    objEmrBa.IsNew = false;
+                        //    objEmrBa.MarkOld();
+                        //    objEmrBa.NgaySua = THU_VIEN_CHUNG.GetSysDateTime();
+                        //    objEmrBa.NguoiSua = globalVariables.UserName;
+                        //    //objEmrBa.TkbaQtbl = ttba.QuatrinhbenhlyDienbienlamsang;
+                        //    //objEmrBa.TkbaTtkqxn = ttba.TomtatKqcls;
+                        //    //objEmrBa.TkbaTtrv = ttba.TinhtrangRavienMota;
+                        //    //objEmrBa.TkbaPpdt = ttba.PhuongphapDieutri;
+                        //    //objEmrBa.TkbaHdt = ttba.HuongDieutri;
+                        //    objEmrBa.Save();
+                        //}
+                        //else
+                        //{
+                        //    //Phải khởi tạo BA xong mới được làm tổng kết BA
+                        //}
                     }
                     scope.Complete();
 

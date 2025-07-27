@@ -47,20 +47,20 @@ namespace VNS.HIS.UI.NOITRU
             this.txtBacSyCD = new VNS.HIS.UCs.AutoCompleteTextbox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.dtCreateDate = new Janus.Windows.CalendarCombo.CalendarCombo();
+            this.dtpNgaythuchien = new Janus.Windows.CalendarCombo.CalendarCombo();
             this.txtYta = new VNS.HIS.UCs.AutoCompleteTextbox();
             this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.txtDrug_Id = new Janus.Windows.GridEX.EditControls.EditBox();
-            this.dtKetthuc = new Janus.Windows.CalendarCombo.CalendarCombo();
+            this.dtp_thoigianketthuc = new Janus.Windows.CalendarCombo.CalendarCombo();
             this.txtSoLo = new Janus.Windows.GridEX.EditControls.EditBox();
             this.label11 = new System.Windows.Forms.Label();
             this.txtTenThuoc = new Janus.Windows.GridEX.EditControls.EditBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtTocDo = new Janus.Windows.GridEX.EditControls.IntegerUpDown();
-            this.dtBatDau = new Janus.Windows.CalendarCombo.CalendarCombo();
+            this.dtp_thoigianbatdau = new Janus.Windows.CalendarCombo.CalendarCombo();
             this.txtQuantity = new Janus.Windows.GridEX.EditControls.IntegerUpDown();
             this.chkContine = new Janus.Windows.EditControls.UICheckBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -71,6 +71,8 @@ namespace VNS.HIS.UI.NOITRU
             this.cmdExit = new Janus.Windows.EditControls.UIButton();
             this.cmdPrint = new Janus.Windows.EditControls.UIButton();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox1)).BeginInit();
             this.uiGroupBox1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -79,6 +81,8 @@ namespace VNS.HIS.UI.NOITRU
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // uiGroupBox1
@@ -96,8 +100,8 @@ namespace VNS.HIS.UI.NOITRU
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.grdThuockethop);
-            this.panel3.Controls.Add(this.grdDonthuocchitiet);
+            this.panel3.Controls.Add(this.groupBox1);
+            this.panel3.Controls.Add(this.groupBox2);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(516, 17);
             this.panel3.Name = "panel3";
@@ -120,12 +124,12 @@ namespace VNS.HIS.UI.NOITRU
             this.grdThuockethop.GroupRowFormatStyle.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
             this.grdThuockethop.GroupRowFormatStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.grdThuockethop.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight;
-            this.grdThuockethop.Location = new System.Drawing.Point(0, 380);
+            this.grdThuockethop.Location = new System.Drawing.Point(3, 17);
             this.grdThuockethop.Name = "grdThuockethop";
             this.grdThuockethop.RecordNavigator = true;
             this.grdThuockethop.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
             this.grdThuockethop.SelectedFormatStyle.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.grdThuockethop.Size = new System.Drawing.Size(745, 307);
+            this.grdThuockethop.Size = new System.Drawing.Size(739, 244);
             this.grdThuockethop.TabIndex = 4;
             this.grdThuockethop.TabStop = false;
             this.grdThuockethop.TotalRow = Janus.Windows.GridEX.InheritableBoolean.True;
@@ -141,7 +145,7 @@ namespace VNS.HIS.UI.NOITRU
             this.grdDonthuocchitiet.AlternatingRowFormatStyle.BackColor = System.Drawing.Color.Cornsilk;
             grdDonthuocchitiet_DesignTimeLayout.LayoutString = resources.GetString("grdDonthuocchitiet_DesignTimeLayout.LayoutString");
             this.grdDonthuocchitiet.DesignTimeLayout = grdDonthuocchitiet_DesignTimeLayout;
-            this.grdDonthuocchitiet.Dock = System.Windows.Forms.DockStyle.Top;
+            this.grdDonthuocchitiet.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grdDonthuocchitiet.DynamicFiltering = true;
             this.grdDonthuocchitiet.FilterMode = Janus.Windows.GridEX.FilterMode.Automatic;
             this.grdDonthuocchitiet.FilterRowFormatStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
@@ -151,12 +155,12 @@ namespace VNS.HIS.UI.NOITRU
             this.grdDonthuocchitiet.GroupRowFormatStyle.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
             this.grdDonthuocchitiet.GroupRowFormatStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.grdDonthuocchitiet.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight;
-            this.grdDonthuocchitiet.Location = new System.Drawing.Point(0, 0);
+            this.grdDonthuocchitiet.Location = new System.Drawing.Point(3, 17);
             this.grdDonthuocchitiet.Name = "grdDonthuocchitiet";
             this.grdDonthuocchitiet.RecordNavigator = true;
             this.grdDonthuocchitiet.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
             this.grdDonthuocchitiet.SelectedFormatStyle.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.grdDonthuocchitiet.Size = new System.Drawing.Size(745, 380);
+            this.grdDonthuocchitiet.Size = new System.Drawing.Size(739, 403);
             this.grdDonthuocchitiet.TabIndex = 4;
             this.grdDonthuocchitiet.TabStop = false;
             this.grdDonthuocchitiet.TotalRow = Janus.Windows.GridEX.InheritableBoolean.True;
@@ -177,20 +181,20 @@ namespace VNS.HIS.UI.NOITRU
             this.panel2.Controls.Add(this.txtBacSyCD);
             this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.label7);
-            this.panel2.Controls.Add(this.dtCreateDate);
+            this.panel2.Controls.Add(this.dtpNgaythuchien);
             this.panel2.Controls.Add(this.txtYta);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.label10);
             this.panel2.Controls.Add(this.txtDrug_Id);
-            this.panel2.Controls.Add(this.dtKetthuc);
+            this.panel2.Controls.Add(this.dtp_thoigianketthuc);
             this.panel2.Controls.Add(this.txtSoLo);
             this.panel2.Controls.Add(this.label11);
             this.panel2.Controls.Add(this.txtTenThuoc);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.txtTocDo);
-            this.panel2.Controls.Add(this.dtBatDau);
+            this.panel2.Controls.Add(this.dtp_thoigianbatdau);
             this.panel2.Controls.Add(this.txtQuantity);
             this.panel2.Controls.Add(this.chkContine);
             this.panel2.Controls.Add(this.label3);
@@ -272,7 +276,7 @@ namespace VNS.HIS.UI.NOITRU
             // 
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.Red;
-            this.label9.Location = new System.Drawing.Point(8, 296);
+            this.label9.Location = new System.Drawing.Point(8, 293);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(125, 16);
             this.label9.TabIndex = 82;
@@ -365,20 +369,20 @@ namespace VNS.HIS.UI.NOITRU
             this.label7.TabIndex = 66;
             this.label7.Text = "Mã phiếu";
             // 
-            // dtCreateDate
+            // dtpNgaythuchien
             // 
-            this.dtCreateDate.CustomFormat = "dd/MM/yyyy:HH:mm";
-            this.dtCreateDate.DateFormat = Janus.Windows.CalendarCombo.DateFormat.Custom;
+            this.dtpNgaythuchien.CustomFormat = "dd/MM/yyyy";
+            this.dtpNgaythuchien.DateFormat = Janus.Windows.CalendarCombo.DateFormat.Custom;
             // 
             // 
             // 
-            this.dtCreateDate.DropDownCalendar.Name = "";
-            this.dtCreateDate.Location = new System.Drawing.Point(139, 75);
-            this.dtCreateDate.Name = "dtCreateDate";
-            this.dtCreateDate.ShowUpDown = true;
-            this.dtCreateDate.Size = new System.Drawing.Size(145, 21);
-            this.dtCreateDate.TabIndex = 3;
-            this.dtCreateDate.Value = new System.DateTime(2020, 4, 13, 0, 0, 0, 0);
+            this.dtpNgaythuchien.DropDownCalendar.Name = "";
+            this.dtpNgaythuchien.Location = new System.Drawing.Point(139, 75);
+            this.dtpNgaythuchien.Name = "dtpNgaythuchien";
+            this.dtpNgaythuchien.ShowUpDown = true;
+            this.dtpNgaythuchien.Size = new System.Drawing.Size(145, 21);
+            this.dtpNgaythuchien.TabIndex = 3;
+            this.dtpNgaythuchien.Value = new System.DateTime(2020, 4, 13, 0, 0, 0, 0);
             // 
             // txtYta
             // 
@@ -465,21 +469,21 @@ namespace VNS.HIS.UI.NOITRU
             this.txtDrug_Id.TabStop = false;
             this.txtDrug_Id.Visible = false;
             // 
-            // dtKetthuc
+            // dtp_thoigianketthuc
             // 
-            this.dtKetthuc.CustomFormat = "dd/MM/yyyy:HH:mm";
-            this.dtKetthuc.DateFormat = Janus.Windows.CalendarCombo.DateFormat.Custom;
+            this.dtp_thoigianketthuc.CustomFormat = "dd/MM/yyyy:HH:mm";
+            this.dtp_thoigianketthuc.DateFormat = Janus.Windows.CalendarCombo.DateFormat.Custom;
             // 
             // 
             // 
-            this.dtKetthuc.DropDownCalendar.Name = "";
-            this.dtKetthuc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtKetthuc.Location = new System.Drawing.Point(139, 236);
-            this.dtKetthuc.Name = "dtKetthuc";
-            this.dtKetthuc.ShowUpDown = true;
-            this.dtKetthuc.Size = new System.Drawing.Size(145, 20);
-            this.dtKetthuc.TabIndex = 9;
-            this.dtKetthuc.Value = new System.DateTime(2020, 4, 13, 0, 0, 0, 0);
+            this.dtp_thoigianketthuc.DropDownCalendar.Name = "";
+            this.dtp_thoigianketthuc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtp_thoigianketthuc.Location = new System.Drawing.Point(139, 236);
+            this.dtp_thoigianketthuc.Name = "dtp_thoigianketthuc";
+            this.dtp_thoigianketthuc.ShowUpDown = true;
+            this.dtp_thoigianketthuc.Size = new System.Drawing.Size(145, 20);
+            this.dtp_thoigianketthuc.TabIndex = 9;
+            this.dtp_thoigianketthuc.Value = new System.DateTime(2020, 4, 13, 0, 0, 0, 0);
             // 
             // txtSoLo
             // 
@@ -539,21 +543,21 @@ namespace VNS.HIS.UI.NOITRU
             this.txtTocDo.Size = new System.Drawing.Size(145, 21);
             this.txtTocDo.TabIndex = 7;
             // 
-            // dtBatDau
+            // dtp_thoigianbatdau
             // 
-            this.dtBatDau.CustomFormat = "dd/MM/yyyy:HH:mm";
-            this.dtBatDau.DateFormat = Janus.Windows.CalendarCombo.DateFormat.Custom;
+            this.dtp_thoigianbatdau.CustomFormat = "dd/MM/yyyy:HH:mm";
+            this.dtp_thoigianbatdau.DateFormat = Janus.Windows.CalendarCombo.DateFormat.Custom;
             // 
             // 
             // 
-            this.dtBatDau.DropDownCalendar.Name = "";
-            this.dtBatDau.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtBatDau.Location = new System.Drawing.Point(139, 210);
-            this.dtBatDau.Name = "dtBatDau";
-            this.dtBatDau.ShowUpDown = true;
-            this.dtBatDau.Size = new System.Drawing.Size(145, 20);
-            this.dtBatDau.TabIndex = 8;
-            this.dtBatDau.Value = new System.DateTime(2020, 4, 13, 0, 0, 0, 0);
+            this.dtp_thoigianbatdau.DropDownCalendar.Name = "";
+            this.dtp_thoigianbatdau.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtp_thoigianbatdau.Location = new System.Drawing.Point(139, 210);
+            this.dtp_thoigianbatdau.Name = "dtp_thoigianbatdau";
+            this.dtp_thoigianbatdau.ShowUpDown = true;
+            this.dtp_thoigianbatdau.Size = new System.Drawing.Size(145, 20);
+            this.dtp_thoigianbatdau.TabIndex = 8;
+            this.dtp_thoigianbatdau.Value = new System.DateTime(2020, 4, 13, 0, 0, 0, 0);
             // 
             // txtQuantity
             // 
@@ -663,6 +667,28 @@ namespace VNS.HIS.UI.NOITRU
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.grdThuockethop);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Location = new System.Drawing.Point(0, 423);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(745, 264);
+            this.groupBox1.TabIndex = 5;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Thuốc đã kết hợp truyền dịch";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.grdDonthuocchitiet);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox2.Location = new System.Drawing.Point(0, 0);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(745, 423);
+            this.groupBox2.TabIndex = 6;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Thuốc có thể kết hợp truyền dịch";
+            // 
             // frm_themphieutruyendich
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -687,6 +713,8 @@ namespace VNS.HIS.UI.NOITRU
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -701,14 +729,14 @@ namespace VNS.HIS.UI.NOITRU
         internal System.Windows.Forms.Label label2;
         private Janus.Windows.GridEX.EditControls.EditBox txtSoLo;
         internal System.Windows.Forms.Label label6;
-        private Janus.Windows.CalendarCombo.CalendarCombo dtKetthuc;
+        private Janus.Windows.CalendarCombo.CalendarCombo dtp_thoigianketthuc;
         internal System.Windows.Forms.Label label5;
-        private Janus.Windows.CalendarCombo.CalendarCombo dtBatDau;
+        private Janus.Windows.CalendarCombo.CalendarCombo dtp_thoigianbatdau;
         internal System.Windows.Forms.Label label4;
         internal System.Windows.Forms.Label label9;
         internal System.Windows.Forms.Label label8;
         internal System.Windows.Forms.Label label10;
-        private Janus.Windows.CalendarCombo.CalendarCombo dtCreateDate;
+        private Janus.Windows.CalendarCombo.CalendarCombo dtpNgaythuchien;
         private Janus.Windows.EditControls.UIButton cmdGetdata;
         internal System.Windows.Forms.Label label11;
         private Janus.Windows.GridEX.EditControls.IntegerUpDown txtTocDo;
@@ -731,5 +759,7 @@ namespace VNS.HIS.UI.NOITRU
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }

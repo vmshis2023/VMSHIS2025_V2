@@ -45,8 +45,8 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
             txtTrangthainguoibenh._OnSaveAsV1 += _OnSaveAsV1;
             txtTrangthainguoibenh._OnShowDataV1 += _OnShowDataV1;
 
-            txtdauhieucls._OnSaveAsV1 += _OnSaveAsV1;
-            txtdauhieucls._OnShowDataV1 += _OnShowDataV1;
+            txt_dauhieulamsang._OnSaveAsV1 += _OnSaveAsV1;
+            txt_dauhieulamsang._OnShowDataV1 += _OnShowDataV1;
             txtHuongdieutri._OnSaveAsV1 += _OnSaveAsV1;
             txtHuongdieutri._OnShowDataV1 += _OnShowDataV1;
 
@@ -81,7 +81,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
         {
             if (Utility.DoTrim(obj.Text) == "") return;
             DMUC_DCHUNG _DMUC_DCHUNG = new DMUC_DCHUNG(obj.LOAI_DANHMUC);
-            _DMUC_DCHUNG.SetStatus(true, txtdauhieucls.Text);
+            _DMUC_DCHUNG.SetStatus(true, txt_dauhieulamsang.Text);
             _DMUC_DCHUNG.ShowDialog();
             if (!_DMUC_DCHUNG.m_blnCancel)
             {
@@ -336,11 +336,11 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
                 txtNoichuyenden.Focus();
                 return;
             }
-            if (Utility.DoTrim(txtdauhieucls.Text) == "")
+            if (Utility.DoTrim(txt_dauhieulamsang.Text) == "")
             {
                 Utility.SetMsg(lblMsg, "Bạn phải nhập thông tin dấu hiệu lâm sàng", true);
-                errorProvider1.SetError(txtdauhieucls, lblMsg.Text);
-                txtdauhieucls.Focus();
+                errorProvider1.SetError(txt_dauhieulamsang, lblMsg.Text);
+                txt_dauhieulamsang.Focus();
                 return;
             }
             //if (Utility.DoTrim(txtketquaCls.Text) == "")
@@ -423,7 +423,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
                 objPhieuchuyenvien.IdBenhnhan = objLuotkham.IdBenhnhan;
                 objPhieuchuyenvien.MaLuotkham = objLuotkham.MaLuotkham;
                 objPhieuchuyenvien.IdBenhvienChuyenden =Utility.Int16Dbnull( txtNoichuyenden.MyID,-1);
-                objPhieuchuyenvien.DauhieuCls = Utility.DoTrim(txtdauhieucls.Text);
+                objPhieuchuyenvien.DauhieuCls = Utility.DoTrim(txt_dauhieulamsang.Text);
                 objPhieuchuyenvien.KetquaXnCls = Utility.DoTrim(txtketquaCls.Text);
                 objPhieuchuyenvien.ChanDoan = Utility.DoTrim(txtChandoan.Text);
                 objPhieuchuyenvien.Mabenh =AutoMabenhchinh.MyCode;
@@ -431,6 +431,16 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
                 objPhieuchuyenvien.TrangthaiBenhnhan = Utility.DoTrim(txtTrangthainguoibenh.Text);
                 objPhieuchuyenvien.HuongDieutri = Utility.DoTrim(txtHuongdieutri.Text);
                 objPhieuchuyenvien.LydoChuyen = Utility.ByteDbnull(radDuDieukien.Checked ? "1" : "0");
+                //Lý do chuyển có thể đại diện cho 2 giá trị có hoặc không. Thêm 2 trường để sau dễ xử lý
+                objPhieuchuyenvien.Dudieukienchuyentuyen = radDuDieukien.Checked;
+                objPhieuchuyenvien.Khongdudieukienchuyentuyen = radKhongDuDK.Checked;
+                
+                objPhieuchuyenvien.Phuhopvoiquidinhchuyentuyen = chk_phuhopvoiquidinhchuyentuyen.Checked;
+                objPhieuchuyenvien.Khongphuhop = chk_khongphuhop.Checked;
+               
+                objPhieuchuyenvien.Giatrichuyen1namCo = opt_giatrichuyen_1nam_co.Checked;
+                objPhieuchuyenvien.Giatrichuyen1namKhong = opt_giatrichuyen_1nam_khong.Checked;
+                
                 objPhieuchuyenvien.PhuongtienChuyen = Utility.DoTrim(txtphuongtienvc.Text);
                 objPhieuchuyenvien.NgayChuyenvien = dtNgaychuyenvien.Value;
                 objPhieuchuyenvien.IdBacsiChuyenvien = Utility.Int16Dbnull(txtBacsi.MyID, -1);
@@ -551,7 +561,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
                 txtphuongtienvc.Init();
                 txtTrangthainguoibenh.Init();
                 txtHuongdieutri.Init();
-                txtdauhieucls.Init();
+                txt_dauhieulamsang.Init();
                 txtHuongdieutri.SetCode(ma_huongdieutri);
                 txtBacsi.SetId(idbacsikham);
                 dtNgaychuyenvien.Value = DateTime.Now;
@@ -680,6 +690,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
                 DataTable dt_Patient = new KCB_THAMKHAM().TimkiemThongtinBenhnhansaukhigoMaBN(ucThongtinnguoibenh1.txtMaluotkham.Text, -1, globalVariables.MA_KHOA_THIEN);
                 if (dt_Patient != null && dt_Patient.Rows.Count > 0)
                 {
+                   
                     cmdChuyen.Enabled = true;
                     txtIdkhoanoitru.Text = Utility.sDbnull(dt_Patient.Rows[0][KcbLuotkham.Columns.IdKhoanoitru], "-1");
                     txtIdravien.Text = Utility.sDbnull(dt_Patient.Rows[0][KcbLuotkham.Columns.IdRavien], "-1");
@@ -695,6 +706,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
                        .ExecuteSingle<KcbPhieuchuyenvien>();
                     if (objPhieuchuyenvien != null)
                     {
+                        dtNgaychuyenvien.Value = objPhieuchuyenvien.NgayChuyenvien;
                         optTuyentren.Checked = Utility.ByteDbnull(objPhieuchuyenvien.TuyenChuyen, 1) == 1;
                         optTuyenduoi.Checked = Utility.ByteDbnull(objPhieuchuyenvien.TuyenChuyen, 1) == 2;
                         optCK.Checked = Utility.ByteDbnull(objPhieuchuyenvien.TuyenChuyen, 1) == 3;
@@ -702,7 +714,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
                         txtsochuyenvien.Text = Utility.sDbnull(objPhieuchuyenvien.SoChuyentuyen);
                         txtNoichuyenden.SetId(objPhieuchuyenvien.IdBenhvienChuyenden);
                         txtIdNoichuyenden.Text = objPhieuchuyenvien.IdBenhvienChuyenden.ToString();
-                        txtdauhieucls._Text = objPhieuchuyenvien.DauhieuCls;
+                        txt_dauhieulamsang._Text = objPhieuchuyenvien.DauhieuCls;
                         txtketquaCls.Text = objPhieuchuyenvien.KetquaXnCls;
                         txtChandoan.Text = Utility.sDbnull(objPhieuchuyenvien.ChanDoan, "");
                         AutoMabenhchinh.SetCode(Utility.sDbnull(objPhieuchuyenvien.Mabenh, ""));
@@ -711,12 +723,42 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
                         txtHuongdieutri._Text = objPhieuchuyenvien.HuongDieutri;
                         txtphuongtienvc._Text = objPhieuchuyenvien.PhuongtienChuyen;
                         txtNguoivanchuyen._Text = objPhieuchuyenvien.TenNguoichuyen;
+
+                        opt_giatrichuyen_1nam_co.Checked = Utility.Bool2Bool(objPhieuchuyenvien.Giatrichuyen1namCo);
+                        opt_giatrichuyen_1nam_khong.Checked = Utility.Bool2Bool(objPhieuchuyenvien.Giatrichuyen1namKhong);
+
+                        chk_phuhopvoiquidinhchuyentuyen.Checked = Utility.Bool2Bool(objPhieuchuyenvien.Phuhopvoiquidinhchuyentuyen);
+                        chk_khongphuhop.Checked = Utility.Bool2Bool(objPhieuchuyenvien.Khongphuhop);
+
                         txtBacsi.SetId(Utility.Int32Dbnull(objPhieuchuyenvien.IdBacsiChuyenvien, -1));
                         cmdPrint.Enabled = true;
                         cmdHuy.Enabled = true;
                     }
                     else
                     {
+                        if (Utility.Byte2Bool(objLuotkham.Noitru))
+                        {
+                            EmrTongketBenhan objTKBA = new Select().From(EmrTongketBenhan.Schema)
+                      .Where(EmrTongketBenhan.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
+                      .And(EmrTongketBenhan.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
+                      .ExecuteSingle<EmrTongketBenhan>();
+                            if (objTKBA != null)
+                            {
+                                txt_dauhieulamsang._Text = objTKBA.DauhieuLamsang;
+                            }
+                        }
+                        else
+                        {
+                            KcbChandoanKetluan _KcbChandoanKetluan = new Select().From(KcbChandoanKetluan.Schema)
+                                               .Where(KcbChandoanKetluan.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
+                                               .And(KcbChandoanKetluan.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
+                                               .And(KcbChandoanKetluan.Columns.Noitru).IsEqualTo(0)
+                                               .ExecuteSingle<KcbChandoanKetluan>();
+                            if (_KcbChandoanKetluan != null)
+                            {
+                                txt_dauhieulamsang._Text = _KcbChandoanKetluan.QuatrinhBenhly;
+                            }
+                        }
                         txtsochuyenvien.Text = Laysochuyenvien();
                         cmdPrint.Enabled = false;
                         cmdHuy.Enabled = false;

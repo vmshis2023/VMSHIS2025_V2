@@ -672,6 +672,20 @@ namespace VMS.HIS.DAL
 				colvarHach.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarHach);
 				
+				TableSchema.TableColumn colvarNoitru = new TableSchema.TableColumn(schema);
+				colvarNoitru.ColumnName = "noitru";
+				colvarNoitru.DataType = DbType.Byte;
+				colvarNoitru.MaxLength = 0;
+				colvarNoitru.AutoIncrement = false;
+				colvarNoitru.IsNullable = true;
+				colvarNoitru.IsPrimaryKey = false;
+				colvarNoitru.IsForeignKey = false;
+				colvarNoitru.IsReadOnly = false;
+				
+						colvarNoitru.DefaultSetting = @"((0))";
+				colvarNoitru.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarNoitru);
+				
 				TableSchema.TableColumn colvarNguoiTao = new TableSchema.TableColumn(schema);
 				colvarNguoiTao.ColumnName = "nguoi_tao";
 				colvarNguoiTao.DataType = DbType.String;
@@ -1071,6 +1085,14 @@ namespace VMS.HIS.DAL
 			set { SetColumnValue(Columns.Hach, value); }
 		}
 		  
+		[XmlAttribute("Noitru")]
+		[Bindable(true)]
+		public byte? Noitru 
+		{
+			get { return GetColumnValue<byte?>(Columns.Noitru); }
+			set { SetColumnValue(Columns.Noitru, value); }
+		}
+		  
 		[XmlAttribute("NguoiTao")]
 		[Bindable(true)]
 		public string NguoiTao 
@@ -1122,7 +1144,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(string varMaLuotkham,long varIdBenhnhan,DateTime varNgayKham,string varNhomMau,string varNhietDo,string varHuyetAp,string varMach,string varNhipTho,string varChieuCao,string varCanNang,string varMotaThem,string varBmi,string varDangDi,string varTinhThan,string varHinhdangChung,string varMausacDa,string varTinhtrangDa,string varHethongLongtoc,string varNghiCobenh,string varBophanDau,string varBophanCo,string varBophanNguc,string varBophanBung,string varBophanCotsong,string varBophanChatthai,string varTuanhoan,string varHohap,string varTieuhoa,string varThantietnieusinhduc,string varThankinh,string varCoxuongkhop,string varTaimuihong,string varRanghammat,string varMat,string varNoitietdinhduongbenhlykhac,short? varIdBacsi,string varToanThan,string varNgoaiKhoa,string varBoPhan,string varVu,string varHach,string varNguoiTao,DateTime? varNgayTao,string varNguoiSua,DateTime? varNgaySua)
+		public static void Insert(string varMaLuotkham,long varIdBenhnhan,DateTime varNgayKham,string varNhomMau,string varNhietDo,string varHuyetAp,string varMach,string varNhipTho,string varChieuCao,string varCanNang,string varMotaThem,string varBmi,string varDangDi,string varTinhThan,string varHinhdangChung,string varMausacDa,string varTinhtrangDa,string varHethongLongtoc,string varNghiCobenh,string varBophanDau,string varBophanCo,string varBophanNguc,string varBophanBung,string varBophanCotsong,string varBophanChatthai,string varTuanhoan,string varHohap,string varTieuhoa,string varThantietnieusinhduc,string varThankinh,string varCoxuongkhop,string varTaimuihong,string varRanghammat,string varMat,string varNoitietdinhduongbenhlykhac,short? varIdBacsi,string varToanThan,string varNgoaiKhoa,string varBoPhan,string varVu,string varHach,byte? varNoitru,string varNguoiTao,DateTime? varNgayTao,string varNguoiSua,DateTime? varNgaySua)
 		{
 			EmrPhieukhambenh item = new EmrPhieukhambenh();
 			
@@ -1208,6 +1230,8 @@ namespace VMS.HIS.DAL
 			
 			item.Hach = varHach;
 			
+			item.Noitru = varNoitru;
+			
 			item.NguoiTao = varNguoiTao;
 			
 			item.NgayTao = varNgayTao;
@@ -1226,7 +1250,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(long varId,string varMaLuotkham,long varIdBenhnhan,DateTime varNgayKham,string varNhomMau,string varNhietDo,string varHuyetAp,string varMach,string varNhipTho,string varChieuCao,string varCanNang,string varMotaThem,string varBmi,string varDangDi,string varTinhThan,string varHinhdangChung,string varMausacDa,string varTinhtrangDa,string varHethongLongtoc,string varNghiCobenh,string varBophanDau,string varBophanCo,string varBophanNguc,string varBophanBung,string varBophanCotsong,string varBophanChatthai,string varTuanhoan,string varHohap,string varTieuhoa,string varThantietnieusinhduc,string varThankinh,string varCoxuongkhop,string varTaimuihong,string varRanghammat,string varMat,string varNoitietdinhduongbenhlykhac,short? varIdBacsi,string varToanThan,string varNgoaiKhoa,string varBoPhan,string varVu,string varHach,string varNguoiTao,DateTime? varNgayTao,string varNguoiSua,DateTime? varNgaySua)
+		public static void Update(long varId,string varMaLuotkham,long varIdBenhnhan,DateTime varNgayKham,string varNhomMau,string varNhietDo,string varHuyetAp,string varMach,string varNhipTho,string varChieuCao,string varCanNang,string varMotaThem,string varBmi,string varDangDi,string varTinhThan,string varHinhdangChung,string varMausacDa,string varTinhtrangDa,string varHethongLongtoc,string varNghiCobenh,string varBophanDau,string varBophanCo,string varBophanNguc,string varBophanBung,string varBophanCotsong,string varBophanChatthai,string varTuanhoan,string varHohap,string varTieuhoa,string varThantietnieusinhduc,string varThankinh,string varCoxuongkhop,string varTaimuihong,string varRanghammat,string varMat,string varNoitietdinhduongbenhlykhac,short? varIdBacsi,string varToanThan,string varNgoaiKhoa,string varBoPhan,string varVu,string varHach,byte? varNoitru,string varNguoiTao,DateTime? varNgayTao,string varNguoiSua,DateTime? varNgaySua)
 		{
 			EmrPhieukhambenh item = new EmrPhieukhambenh();
 			
@@ -1313,6 +1337,8 @@ namespace VMS.HIS.DAL
 				item.Vu = varVu;
 			
 				item.Hach = varHach;
+			
+				item.Noitru = varNoitru;
 			
 				item.NguoiTao = varNguoiTao;
 			
@@ -1629,30 +1655,37 @@ namespace VMS.HIS.DAL
         
         
         
-        public static TableSchema.TableColumn NguoiTaoColumn
+        public static TableSchema.TableColumn NoitruColumn
         {
             get { return Schema.Columns[42]; }
         }
         
         
         
-        public static TableSchema.TableColumn NgayTaoColumn
+        public static TableSchema.TableColumn NguoiTaoColumn
         {
             get { return Schema.Columns[43]; }
         }
         
         
         
-        public static TableSchema.TableColumn NguoiSuaColumn
+        public static TableSchema.TableColumn NgayTaoColumn
         {
             get { return Schema.Columns[44]; }
         }
         
         
         
-        public static TableSchema.TableColumn NgaySuaColumn
+        public static TableSchema.TableColumn NguoiSuaColumn
         {
             get { return Schema.Columns[45]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn NgaySuaColumn
+        {
+            get { return Schema.Columns[46]; }
         }
         
         
@@ -1703,6 +1736,7 @@ namespace VMS.HIS.DAL
 			 public static string BoPhan = @"bo_phan";
 			 public static string Vu = @"vu";
 			 public static string Hach = @"hach";
+			 public static string Noitru = @"noitru";
 			 public static string NguoiTao = @"nguoi_tao";
 			 public static string NgayTao = @"ngay_tao";
 			 public static string NguoiSua = @"nguoi_sua";

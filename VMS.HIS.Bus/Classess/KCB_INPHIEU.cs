@@ -682,7 +682,7 @@ namespace VNS.HIS.UI.Classess
                                 //Merge các field thông tin chung của người bệnh
                                 doc.MailMerge.Execute(drData);
                                 sysLogosize = new Select().From(SysSystemParameter.Schema).Where(SysSystemParameter.Columns.SName).IsEqualTo("signsize").ExecuteSingle<SysSystemParameter>();
-                                SignDoc(doc, builder, sysLogosize != null ? sysLogosize.SValue : "");
+                              Utility.SignDoc(doc, builder, sysLogosize != null ? sysLogosize.SValue : "");
                                 //List<string> lstSign = new List<string>();
                                 //if (KyDientu)//Tìm các vùng chữ kí để đưa ảnh vào
                                 //{
@@ -984,7 +984,7 @@ namespace VNS.HIS.UI.Classess
                         //Merge các field thông tin chung của người bệnh
                         doc.MailMerge.Execute(drData);
                         sysLogosize = new Select().From(SysSystemParameter.Schema).Where(SysSystemParameter.Columns.SName).IsEqualTo("signsize").ExecuteSingle<SysSystemParameter>();
-                        SignDoc(doc, builder, sysLogosize != null ? sysLogosize.SValue : "");
+                        Utility.SignDoc(doc, builder, sysLogosize != null ? sysLogosize.SValue : "");
                         //List<string> lstSign = new List<string>();
                         //if (KyDientu)//Tìm các vùng chữ kí để đưa ảnh vào
                         //{
@@ -1068,75 +1068,75 @@ namespace VNS.HIS.UI.Classess
             return "";
 
         }
-        static Dictionary<string, string> GetDictionaryFromDataTable()
-        {
-            var dict = new Dictionary<string, string>();
+        //static Dictionary<string, string> GetDictionaryFromDataTable()
+        //{
+        //    var dict = new Dictionary<string, string>();
 
-            foreach (DataRow row in globalVariables.dtSignInfor.Rows)
-            {
-                string key = row["ten_vitri_ky"].ToString();
-                string value = row["nguoi_ky"].ToString();
+        //    foreach (DataRow row in globalVariables.dtSignInfor.Rows)
+        //    {
+        //        string key = row["ten_vitri_ky"].ToString();
+        //        string value = row["nguoi_ky"].ToString();
 
-                if (!dict.ContainsKey(key))
-                    dict.Add(key, value);
-            }
+        //        if (!dict.ContainsKey(key))
+        //            dict.Add(key, value);
+        //    }
 
-            return dict;
-        }
-        static void SignDoc(Document doc, DocumentBuilder builder, string Signsize)
-        {
-            if (globalVariables.dtSignInfor.Rows.Count > 0 && globalVariables.dtSignInfor.Columns.Count > 0)//Tìm các vùng chữ kí để đưa ảnh vào
-            {
-                string[] remaining = doc.MailMerge.GetFieldNames();
-                Dictionary<string, string> lstVitriky = GetDictionaryFromDataTable();
-                if (remaining.Length > 0)
-                {
+        //    return dict;
+        //}
+        //static void SignDoc(Document doc, DocumentBuilder builder, string Signsize)
+        //{
+        //    if (globalVariables.dtSignInfor.Rows.Count > 0 && globalVariables.dtSignInfor.Columns.Count > 0)//Tìm các vùng chữ kí để đưa ảnh vào
+        //    {
+        //        string[] remaining = doc.MailMerge.GetFieldNames();
+        //        Dictionary<string, string> lstVitriky = GetDictionaryFromDataTable();
+        //        if (remaining.Length > 0)
+        //        {
 
-                    foreach (var name in remaining)
-                    {
-                        if (lstVitriky.ContainsKey(name))
-                        {
-                            string _defaultSign = string.Format(@"{0}\{1}\default", Application.StartupPath, "sign");
-                            string _signFile = string.Format(@"{0}\{1}\{2}", Application.StartupPath, "sign", lstVitriky[name]);
-                            byte[] _sign = null;
-                            if (File.Exists(_signFile))
-                            {
-                                _sign = Utility.fromimagepath2byte(_signFile);
-                            }
-                            else
-                            {
-                                if (File.Exists(_defaultSign))
-                                    _sign = Utility.fromimagepath2byte(_defaultSign);
-                            }
+        //            foreach (var name in remaining)
+        //            {
+        //                if (lstVitriky.ContainsKey(name))
+        //                {
+        //                    string _defaultSign = string.Format(@"{0}\{1}\default", Application.StartupPath, "sign");
+        //                    string _signFile = string.Format(@"{0}\{1}\{2}", Application.StartupPath, "sign", lstVitriky[name]);
+        //                    byte[] _sign = null;
+        //                    if (File.Exists(_signFile))
+        //                    {
+        //                        _sign = Utility.fromimagepath2byte(_signFile);
+        //                    }
+        //                    else
+        //                    {
+        //                        if (File.Exists(_defaultSign))
+        //                            _sign = Utility.fromimagepath2byte(_defaultSign);
+        //                    }
 
-                            if (builder.MoveToMergeField(name))
-                                if (_sign != null)
-                                {
-                                    if (Signsize != "")
-                                    {
-                                        int w = Utility.Int32Dbnull(Signsize.Split('x')[0], 0);
-                                        int h = Utility.Int32Dbnull(Signsize.Split('x')[1], 0);
-                                        if (w > 0 && h > 0)
-                                            builder.InsertImage(_sign, w, h);
-                                        else
-                                            builder.InsertImage(_sign);
-                                    }
-                                    else
-                                        if (_sign != null)
-                                        builder.InsertImage(_sign);
-                                }
-                            //else//Không cần vì mergefield này ẩn
-                            //    builder.InsertImage(NoImage, 10, 10);
-                        }
-                    }
-                }
-                else
-                {
+        //                    if (builder.MoveToMergeField(name))
+        //                        if (_sign != null)
+        //                        {
+        //                            if (Signsize != "")
+        //                            {
+        //                                int w = Utility.Int32Dbnull(Signsize.Split('x')[0], 0);
+        //                                int h = Utility.Int32Dbnull(Signsize.Split('x')[1], 0);
+        //                                if (w > 0 && h > 0)
+        //                                    builder.InsertImage(_sign, w, h);
+        //                                else
+        //                                    builder.InsertImage(_sign);
+        //                            }
+        //                            else
+        //                                if (_sign != null)
+        //                                builder.InsertImage(_sign);
+        //                        }
+        //                    //else//Không cần vì mergefield này ẩn
+        //                    //    builder.InsertImage(NoImage, 10, 10);
+        //                }
+        //            }
+        //        }
+        //        else
+        //        {
 
-                }
+        //        }
 
-            }
-        }
+        //    }
+        //}
         public static int CalculateMinimumWidth(string data)
         {
             int modulePerChar = 11;              // mỗi ký tự chiếm ~11 module

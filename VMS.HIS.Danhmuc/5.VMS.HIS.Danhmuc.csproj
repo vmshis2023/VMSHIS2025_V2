@@ -395,6 +395,12 @@
     <Compile Include="ChuyenDoituong\frm_chuyendoituongkcb.Designer.cs">
       <DependentUpon>frm_chuyendoituongkcb.cs</DependentUpon>
     </Compile>
+    <Compile Include="DichvuKCB_CLS\frm_saochepcongkham.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DichvuKCB_CLS\frm_saochepcongkham.Designer.cs">
+      <DependentUpon>frm_saochepcongkham.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dungchung\frm_CapnhatNguon_Doitac.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -545,6 +551,12 @@
     </Compile>
     <Compile Include="UserControls\medRadioButton.Designer.cs">
       <DependentUpon>medRadioButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ucThongtinnguoibenh_emr_basic_v2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ucThongtinnguoibenh_emr_basic_v2.Designer.cs">
+      <DependentUpon>ucThongtinnguoibenh_emr_basic_v2.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\ucThongtinnguoibenh_emr_basic_v1.cs">
       <SubType>UserControl</SubType>
@@ -1343,6 +1355,9 @@
     <EmbeddedResource Include="ChuyenDoituong\frm_chuyendoituongkcb.resx">
       <DependentUpon>frm_chuyendoituongkcb.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DichvuKCB_CLS\frm_saochepcongkham.resx">
+      <DependentUpon>frm_saochepcongkham.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dungchung\frm_CapnhatNguon_Doitac.resx">
       <DependentUpon>frm_CapnhatNguon_Doitac.cs</DependentUpon>
     </EmbeddedResource>
@@ -1417,6 +1432,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\medRadioButton.resx">
       <DependentUpon>medRadioButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ucThongtinnguoibenh_emr_basic_v2.resx">
+      <DependentUpon>ucThongtinnguoibenh_emr_basic_v2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ucThongtinnguoibenh_emr_basic_v1.resx">
       <DependentUpon>ucThongtinnguoibenh_emr_basic_v1.cs</DependentUpon>

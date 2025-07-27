@@ -1367,6 +1367,7 @@ namespace VNS.HIS.UI.Forms.HinhAnh
                 {
                     maubaocao = maubaocaogoc;
                 }
+                Utility.CreateMergeFields(dtData);
                 //  string maubaocao = Application.StartupPath + @"\Reports\" + docChuan;
                 string tenfile = Guid.NewGuid().ToString();
                 string fileExt = Path.GetExtension(maubaocao);
@@ -1652,6 +1653,7 @@ namespace VNS.HIS.UI.Forms.HinhAnh
             try
             {
                 LoadUserConfigs();
+                AnhienKetluanDenghi();
                 PhaiTrai = THU_VIEN_CHUNG.Laygiatrithamsohethong("HINHANH_TACH_PHAITRAI", "1", true) == "1";
                 flowLayoutPanel_Trai.Width = PhaiTrai ? 508 : 0;
                 ModifyRegionHinhAnh();
@@ -1993,6 +1995,21 @@ namespace VNS.HIS.UI.Forms.HinhAnh
                 drWorklist.Table.AcceptChanges();
             }
         }
+        void AnhienKetluanDenghi()
+        {
+            try
+            {
+                bool HienThiKetLuan = THU_VIEN_CHUNG.Laygiatrithamsohethong("CLS_HIENTHI_KETLUAN_DENGHI", "0", true) == "1";
+                lblKetluan.Visible = txtKet_Luan.Visible = lblDenghi.Visible = txtDenghi.Visible = HienThiKetLuan;
+                //Thay đổi chiều cao
+                pnlMota.Height = HienThiKetLuan ? pnlMainCkeditor.Height - 120 : pnlMainCkeditor.Height - 20;
+            }
+            catch (Exception ex)
+            {
+
+              
+            }
+        }
         EmrDocuments emrdoc = new EmrDocuments();
         void SaveKQ(bool Msg, bool Confirm)
         {
@@ -2072,7 +2089,7 @@ namespace VNS.HIS.UI.Forms.HinhAnh
 
                 }
 
-                ket_luan = txtKet_Luan.Visible ? Utility.sDbnull(txtKet_Luan.Text) : ketluanfromMota;
+                ket_luan = txtKet_Luan.Visible && Utility.sDbnull(txtKet_Luan.Text).Length>0 ? Utility.sDbnull(txtKet_Luan.Text) : ketluanfromMota;
                 if (Utility.Int32Dbnull(objKcbChidinhclsChitiet.TrangThai, 0) <= 3)
                     objKcbChidinhclsChitiet.TrangThai = 3;
                 de_nghi = Utility.sDbnull(txtDenghi.Text);
@@ -2995,14 +3012,14 @@ namespace VNS.HIS.UI.Forms.HinhAnh
 
         private void cmdExit_Click(object sender, EventArgs e)
         {
-            Mota_Current = webBrowser1.Document.InvokeScript("getData").ToString();
-            DataTable dtKQCDHA = SPs.HinhanhLaydulieuKQCDHA(ID_Study_Detail).GetDataSet().Tables[0];
-            if (dtKQCDHA.Rows.Count>0 && Utility.DoTrim(Mota_Org) != (Utility.DoTrim(Mota_Current)))//Sửa kết quả thì mới nhắc
-            {
-                if (Utility.AcceptQuestion("Hệ thống phát hiện kết quả đã bị sửa đổi. Bạn có chắc chắn muốn thoát khỏi chức năng?\nNhấn No để kiểm tra lại.\nNhấn Yes để thoát và bỏ qua sửa đổi", "", true))
-                    this.Close();
-            }
-            else
+            //Mota_Current = webBrowser1.Document.InvokeScript("getData").ToString();
+            //DataTable dtKQCDHA = SPs.HinhanhLaydulieuKQCDHA(ID_Study_Detail).GetDataSet().Tables[0];
+            //if (dtKQCDHA.Rows.Count>0 && Utility.DoTrim(Mota_Org) != (Utility.DoTrim(Mota_Current)))//Sửa kết quả thì mới nhắc
+            //{
+            //    if (Utility.AcceptQuestion("Hệ thống phát hiện kết quả đã bị sửa đổi. Bạn có chắc chắn muốn thoát khỏi chức năng?\nNhấn No để kiểm tra lại.\nNhấn Yes để thoát và bỏ qua sửa đổi", "", true))
+            //        this.Close();
+            //}
+            //else
                 this.Close();
         }
 

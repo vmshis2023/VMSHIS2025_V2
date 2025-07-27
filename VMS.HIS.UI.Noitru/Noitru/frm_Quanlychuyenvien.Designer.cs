@@ -85,7 +85,7 @@
             // 
             this.toolStrip1.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.toolStrip1.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(22, 22);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cmdInsert,
             this.cmdUpdate,
@@ -94,7 +94,7 @@
             this.cmdExit});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1008, 39);
+            this.toolStrip1.Size = new System.Drawing.Size(1008, 31);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -102,11 +102,10 @@
             // 
             this.cmdInsert.BackColor = System.Drawing.Color.Transparent;
             this.cmdInsert.Font = new System.Drawing.Font("Arial", 10F);
-            this.cmdInsert.Image = ((System.Drawing.Image)(resources.GetObject("cmdInsert.Image")));
-            this.cmdInsert.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.cmdInsert.Image = global::VMS.HIS.Noitru.Properties.Resources.add_04_32;
             this.cmdInsert.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdInsert.Name = "cmdInsert";
-            this.cmdInsert.Size = new System.Drawing.Size(99, 36);
+            this.cmdInsert.Size = new System.Drawing.Size(99, 28);
             this.cmdInsert.Text = "Thêm mới";
             this.cmdInsert.ToolTipText = "Thêm mới phiếu chuyển tuyến";
             this.cmdInsert.Click += new System.EventHandler(this.cmdInsert_Click);
@@ -116,10 +115,9 @@
             this.cmdUpdate.Enabled = false;
             this.cmdUpdate.Font = new System.Drawing.Font("Arial", 10F);
             this.cmdUpdate.Image = ((System.Drawing.Image)(resources.GetObject("cmdUpdate.Image")));
-            this.cmdUpdate.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.cmdUpdate.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdUpdate.Name = "cmdUpdate";
-            this.cmdUpdate.Size = new System.Drawing.Size(94, 36);
+            this.cmdUpdate.Size = new System.Drawing.Size(94, 28);
             this.cmdUpdate.Text = "Cập nhật";
             this.cmdUpdate.ToolTipText = "Cập nhật thông tin phiếu chuyển tuyến";
             this.cmdUpdate.Click += new System.EventHandler(this.cmdUpdate_Click);
@@ -130,7 +128,7 @@
             this.cmdDelete.Image = ((System.Drawing.Image)(resources.GetObject("cmdDelete.Image")));
             this.cmdDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdDelete.Name = "cmdDelete";
-            this.cmdDelete.Size = new System.Drawing.Size(99, 36);
+            this.cmdDelete.Size = new System.Drawing.Size(99, 28);
             this.cmdDelete.Text = "Hủy phiếu";
             this.cmdDelete.ToolTipText = "Xóa phiếu chuyển tuyến";
             this.cmdDelete.Click += new System.EventHandler(this.cmdDelete_Click);
@@ -141,18 +139,17 @@
             this.cmdPrint.Image = ((System.Drawing.Image)(resources.GetObject("cmdPrint.Image")));
             this.cmdPrint.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdPrint.Name = "cmdPrint";
-            this.cmdPrint.Size = new System.Drawing.Size(86, 36);
+            this.cmdPrint.Size = new System.Drawing.Size(86, 28);
             this.cmdPrint.Text = "In phiếu";
             this.cmdPrint.Click += new System.EventHandler(this.cmdPrint_Click);
             // 
             // cmdExit
             // 
             this.cmdExit.Font = new System.Drawing.Font("Arial", 10F);
-            this.cmdExit.Image = ((System.Drawing.Image)(resources.GetObject("cmdExit.Image")));
-            this.cmdExit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.cmdExit.Image = global::VMS.HIS.Noitru.Properties.Resources.close_24;
             this.cmdExit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdExit.Name = "cmdExit";
-            this.cmdExit.Size = new System.Drawing.Size(81, 36);
+            this.cmdExit.Size = new System.Drawing.Size(71, 28);
             this.cmdExit.Text = "Thoát";
             // 
             // uiGroupBox1
@@ -173,7 +170,7 @@
             this.uiGroupBox1.Controls.Add(this.dtFromDate);
             this.uiGroupBox1.Controls.Add(this.label1);
             this.uiGroupBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.uiGroupBox1.Location = new System.Drawing.Point(0, 39);
+            this.uiGroupBox1.Location = new System.Drawing.Point(0, 31);
             this.uiGroupBox1.Name = "uiGroupBox1";
             this.uiGroupBox1.Size = new System.Drawing.Size(1008, 105);
             this.uiGroupBox1.TabIndex = 5;
@@ -547,9 +544,9 @@
             // 
             this.uiGroupBox2.Controls.Add(this.grdList);
             this.uiGroupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiGroupBox2.Location = new System.Drawing.Point(0, 144);
+            this.uiGroupBox2.Location = new System.Drawing.Point(0, 136);
             this.uiGroupBox2.Name = "uiGroupBox2";
-            this.uiGroupBox2.Size = new System.Drawing.Size(1008, 562);
+            this.uiGroupBox2.Size = new System.Drawing.Size(1008, 570);
             this.uiGroupBox2.TabIndex = 360;
             this.uiGroupBox2.Text = "Danh sách phiếu chuyển viện";
             this.uiGroupBox2.VisualStyle = Janus.Windows.UI.Dock.PanelVisualStyle.Office2003;
@@ -580,7 +577,7 @@
             this.grdList.RecordNavigator = true;
             this.grdList.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
             this.grdList.SelectedFormatStyle.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.grdList.Size = new System.Drawing.Size(1002, 542);
+            this.grdList.Size = new System.Drawing.Size(1002, 550);
             this.grdList.TabIndex = 553;
             this.grdList.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007;
             // 

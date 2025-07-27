@@ -21,12 +21,14 @@ namespace VNS.HIS.UI.Forms.Dungchung
         string str_IdThanhtoan = "";
              string str_IdThanhtoanChitiet = "";
         byte kieuxuat = 0;
+        public bool isUpdate = false;
         MisaInvoice _MisaInvoices;
         KcbThanhtoan objThanhtoan;
         DataTable dtData;
         public frm_thongtin_khachhang_riengle_detail(MisaInvoice _MisaInvoices, BuyerInfor _buyer, DataRow dr, byte kieuxuat, string str_IdThanhtoan, string str_IdThanhtoanChitiet,DataTable dtData)
         {
             InitializeComponent();
+          
             this.dtData = dtData;
             this.DialogResult = DialogResult.Cancel;
             this.KeyDown += frm_thongtin_khachhang_riengle_detail_KeyDown;
@@ -84,6 +86,7 @@ namespace VNS.HIS.UI.Forms.Dungchung
 
         private void frm_thongtin_khachhang_riengle_detail_Shown(object sender, EventArgs e)
         {
+            grbUpdateInvoice.Visible = isUpdate;
             LoadUserConfigs();
         }
 
@@ -332,6 +335,89 @@ namespace VNS.HIS.UI.Forms.Dungchung
             catch (Exception ex)
             {
                 Utility.CatchException(ex);
+            }
+        }
+
+        private void cmdUpdateInvoice_Click(object sender, EventArgs e)
+        {
+            if(txtTransactionID.Text=="" || txtRefId.Text==""|| txtSerie.Text=="")
+            {
+                Utility.ShowMsg("Cần nhật các thông tin mã tra cứu, refId và số hóa đơn");
+                return;
+            }
+            try
+            {
+                int CCCDLength = Utility.Int32Dbnull(THU_VIEN_CHUNG.Laygiatrithamsohethong("MISA_DODAI_CCCD", "12", true), 12);
+                _buyer.BuyerFullName = chkFullName.Checked ? Utility.DoTrim(txthovaten.Text) : "";
+                _buyer.BuyerAddress = Utility.DoTrim(txtDiachi.Text);
+                _buyer.BuyerTaxCode = Utility.DoTrim(txtMST.Text);
+                _buyer.BuyerBankAccount = Utility.DoTrim(txtSTK.Text);
+                _buyer.BuyerLegalName = Utility.DoTrim(txttencongty.Text);
+                _buyer.BuyerIDNumber = chkCCCD.Checked ? Utility.sDbnull(txtCCCD.Text) : "";
+                _buyer.BuyerEmail = Utility.DoTrim(txtEmail.Text);
+                _buyer.IsSendEmail = chkSendEmail.Checked;
+                _buyer.ReceiverEmail = Utility.DoTrim(txtCC.Text);
+                _buyer.ReceiverName = Utility.DoTrim(txtTennguoinhan.Text);
+                if (chkCCCD.Checked && Utility.sDbnull(_buyer.BuyerIDNumber).Length != CCCDLength)
+                {
+                    if (!Utility.AcceptQuestion(string.Format("Căn cước công dân {0} có độ dài khác {1}. Bạn có muốn tiếp tục phát hành hóa đơn với CCCD này {2}.\nNhấn No để hủy thao tác. Nhấn Yes để tiếp tục phát hành", _buyer.BuyerIDNumber, CCCDLength, _buyer.BuyerIDNumber), "Cảnh báo độ dài CCCD chưa phù hợp qui định", true))
+                    {
+                        txtCCCD.Focus();
+                        return;
+                    }
+                }
+                if (chkSendEmail.Checked)
+                {
+                    if (_buyer.BuyerEmail.Split(';').Length > 1)
+                    {
+                        Utility.ShowMsg("Mục Email chỉ được nhập duy nhất 1 email nhận chính. Muốn gửi nhiều email thì nhập các email khác ở mục CC và cách nhau bởi dấu ;");
+                        txtEmail.Focus();
+                        return;
+                    }
+                    if (_buyer.ReceiverName.Length <= 0)
+                    {
+                        Utility.ShowMsg("Bạn cần nhập họ tên người nhận");
+                        txtTennguoinhan.Focus();
+                        return;
+                    }
+                    if (_buyer.ReceiverEmail.Length <= 0)
+                    {
+                        Utility.ShowMsg("Bạn cần nhập email người nhận. Các email cách nhau bởi dấy chấm phẩy ;");
+                        txtEmail.Focus();
+                        return;
+                    }
+                }
+                if (dtpNgayhoadon.Value.Date < dtpNgaythanhtoan.Value.Date)
+                {
+                    Utility.ShowMsg("Ngày hóa đơn phải >= ngày chứng từ");
+                    dtpNgayhoadon.Focus();
+                    return;
+                }
+                string eMessage = "";
+
+                bool kt = false;
+                _MisaInvoices._buyer = _buyer;
+               
+                    kt = _MisaInvoices.phathanh_hoadon_update_his(str_IdThanhtoan, 0, str_IdThanhtoanChitiet,Utility.sDbnull(txtTransactionID.Text), Utility.sDbnull(txtRefId.Text), Utility.sDbnull(cboSeries.Text), Utility.sDbnull(txtSerie.Text), ref eMessage);// _MisaInvoices.phathanh_hoadon(_buyer, ref eMessage);
+               
+                if (kt)
+                {
+                    this.DialogResult = DialogResult.OK;
+                    cmdPhathanhHDon.Enabled = false;
+                    cmdPReview.Enabled = false;
+                }
+                else
+                {
+
+                }
+                if (chkCloseAfterSaving.Checked)
+                {
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                Utility.ShowMsg(ex.Message);
             }
         }
     }

@@ -633,6 +633,7 @@
             this.txtphuongphapthu.RaiseEventEnter = false;
             this.txtphuongphapthu.RaiseEventEnterWhenEmpty = false;
             this.txtphuongphapthu.SelectedIndex = -1;
+            this.txtphuongphapthu.SetDefaultWhenInit = false;
             this.txtphuongphapthu.ShowCodeWithValue = false;
             this.txtphuongphapthu.Size = new System.Drawing.Size(220, 21);
             this.txtphuongphapthu.splitChar = '@';
@@ -941,7 +942,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1201, 525);
+            this.panel1.Size = new System.Drawing.Size(1201, 557);
             this.panel1.TabIndex = 0;
             // 
             // grpXuLyTramSoc
@@ -952,7 +953,7 @@
             this.grpXuLyTramSoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpXuLyTramSoc.Location = new System.Drawing.Point(321, 213);
             this.grpXuLyTramSoc.Name = "grpXuLyTramSoc";
-            this.grpXuLyTramSoc.Size = new System.Drawing.Size(625, 264);
+            this.grpXuLyTramSoc.Size = new System.Drawing.Size(625, 296);
             this.grpXuLyTramSoc.TabIndex = 10;
             this.grpXuLyTramSoc.Text = "Can thiệp điều dưỡng";
             // 
@@ -962,7 +963,7 @@
             this.txtXuTriChamSoc.Location = new System.Drawing.Point(3, 17);
             this.txtXuTriChamSoc.MaxLength = 4000;
             this.txtXuTriChamSoc.Name = "txtXuTriChamSoc";
-            this.txtXuTriChamSoc.Size = new System.Drawing.Size(619, 244);
+            this.txtXuTriChamSoc.Size = new System.Drawing.Size(619, 276);
             this.txtXuTriChamSoc.TabIndex = 13;
             this.txtXuTriChamSoc.Text = "";
             this.txtXuTriChamSoc.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtXuTriChamSoc_KeyDown);
@@ -974,7 +975,7 @@
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(946, 213);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(255, 264);
+            this.groupBox2.Size = new System.Drawing.Size(255, 296);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Đánh giá";
@@ -985,7 +986,7 @@
             this.txtDanhGia.Location = new System.Drawing.Point(3, 17);
             this.txtDanhGia.MaxLength = 4000;
             this.txtDanhGia.Name = "txtDanhGia";
-            this.txtDanhGia.Size = new System.Drawing.Size(249, 244);
+            this.txtDanhGia.Size = new System.Drawing.Size(249, 276);
             this.txtDanhGia.TabIndex = 14;
             this.txtDanhGia.Text = "";
             // 
@@ -997,7 +998,7 @@
             this.grpDienBien.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpDienBien.Location = new System.Drawing.Point(0, 213);
             this.grpDienBien.Name = "grpDienBien";
-            this.grpDienBien.Size = new System.Drawing.Size(321, 264);
+            this.grpDienBien.Size = new System.Drawing.Size(321, 296);
             this.grpDienBien.TabIndex = 11;
             this.grpDienBien.Text = "Nhận định người bệnh";
             // 
@@ -1007,7 +1008,7 @@
             this.txtDienBien.Location = new System.Drawing.Point(3, 17);
             this.txtDienBien.MaxLength = 4000;
             this.txtDienBien.Name = "txtDienBien";
-            this.txtDienBien.Size = new System.Drawing.Size(315, 244);
+            this.txtDienBien.Size = new System.Drawing.Size(315, 276);
             this.txtDienBien.TabIndex = 12;
             this.txtDienBien.Text = "";
             this.txtDienBien.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDienBien_KeyDown);
@@ -1017,7 +1018,7 @@
             this.panel2.Controls.Add(this.flowLayoutPanel2);
             this.panel2.Controls.Add(this.chkPreview1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 477);
+            this.panel2.Location = new System.Drawing.Point(0, 509);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1201, 48);
             this.panel2.TabIndex = 14;
@@ -1192,7 +1193,7 @@
             this.grpThongTinTheoDoi.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpThongTinTheoDoi.Location = new System.Drawing.Point(0, 0);
             this.grpThongTinTheoDoi.Name = "grpThongTinTheoDoi";
-            this.grpThongTinTheoDoi.Size = new System.Drawing.Size(1006, 457);
+            this.grpThongTinTheoDoi.Size = new System.Drawing.Size(1201, 457);
             this.grpThongTinTheoDoi.TabIndex = 0;
             this.grpThongTinTheoDoi.Text = "&Danh sách theo dõi chức năng sống";
             // 
@@ -1207,7 +1208,7 @@
             this.grdTheodoi.Location = new System.Drawing.Point(3, 17);
             this.grdTheodoi.Name = "grdTheodoi";
             this.grdTheodoi.RecordNavigator = true;
-            this.grdTheodoi.Size = new System.Drawing.Size(1000, 437);
+            this.grdTheodoi.Size = new System.Drawing.Size(1195, 437);
             this.grdTheodoi.TabIndex = 2;
             this.grdTheodoi.TabStop = false;
             this.grdTheodoi.VisualStyle = Janus.Windows.GridEX.VisualStyle.VS2005;
@@ -1245,7 +1246,7 @@
             this.grpThemThongTinTheoDoi.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpThemThongTinTheoDoi.Location = new System.Drawing.Point(0, 312);
             this.grpThemThongTinTheoDoi.Name = "grpThemThongTinTheoDoi";
-            this.grpThemThongTinTheoDoi.Size = new System.Drawing.Size(1006, 145);
+            this.grpThemThongTinTheoDoi.Size = new System.Drawing.Size(1201, 145);
             this.grpThemThongTinTheoDoi.TabIndex = 2;
             this.grpThemThongTinTheoDoi.Text = "Thông tin ";
             // 
@@ -1487,7 +1488,7 @@
             this.uiGroupBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.uiGroupBox2.Location = new System.Drawing.Point(0, 457);
             this.uiGroupBox2.Name = "uiGroupBox2";
-            this.uiGroupBox2.Size = new System.Drawing.Size(1006, 68);
+            this.uiGroupBox2.Size = new System.Drawing.Size(1201, 68);
             this.uiGroupBox2.TabIndex = 1;
             this.uiGroupBox2.Text = "Chức năng";
             // 
@@ -1500,7 +1501,7 @@
             this.flowLayoutPanel3.Controls.Add(this.cmdThemTheoiDoi);
             this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Right;
             this.flowLayoutPanel3.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(337, 17);
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(532, 17);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
             this.flowLayoutPanel3.Size = new System.Drawing.Size(666, 48);
             this.flowLayoutPanel3.TabIndex = 15;
@@ -1593,7 +1594,7 @@
             this.uiTab1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uiTab1.Location = new System.Drawing.Point(0, 158);
             this.uiTab1.Name = "uiTab1";
-            this.uiTab1.Size = new System.Drawing.Size(1203, 549);
+            this.uiTab1.Size = new System.Drawing.Size(1203, 581);
             this.uiTab1.TabIndex = 21;
             this.uiTab1.TabPages.AddRange(new Janus.Windows.UI.Tab.UITabPage[] {
             this.uiTabPageChamsoc,
@@ -1607,7 +1608,7 @@
             this.uiTabPageChamsoc.Controls.Add(this.panel1);
             this.uiTabPageChamsoc.Location = new System.Drawing.Point(1, 23);
             this.uiTabPageChamsoc.Name = "uiTabPageChamsoc";
-            this.uiTabPageChamsoc.Size = new System.Drawing.Size(1201, 525);
+            this.uiTabPageChamsoc.Size = new System.Drawing.Size(1201, 557);
             this.uiTabPageChamsoc.TabStop = true;
             this.uiTabPageChamsoc.Text = "Chăm sóc ( Ctrl/Alt +1 )";
             // 
@@ -1618,7 +1619,7 @@
             this.uiTabPageTheodoi.Controls.Add(this.uiGroupBox2);
             this.uiTabPageTheodoi.Location = new System.Drawing.Point(1, 23);
             this.uiTabPageTheodoi.Name = "uiTabPageTheodoi";
-            this.uiTabPageTheodoi.Size = new System.Drawing.Size(1006, 525);
+            this.uiTabPageTheodoi.Size = new System.Drawing.Size(1201, 525);
             this.uiTabPageTheodoi.TabStop = true;
             this.uiTabPageTheodoi.Text = "Theo dõi ( Ctrl/Alt +2 )";
             // 
@@ -1627,7 +1628,7 @@
             this.uiTabPageChandoan.Controls.Add(this.ucChandoanICD1);
             this.uiTabPageChandoan.Location = new System.Drawing.Point(1, 23);
             this.uiTabPageChandoan.Name = "uiTabPageChandoan";
-            this.uiTabPageChandoan.Size = new System.Drawing.Size(1006, 525);
+            this.uiTabPageChandoan.Size = new System.Drawing.Size(1201, 525);
             this.uiTabPageChandoan.TabStop = true;
             this.uiTabPageChandoan.Text = "Chẩn đoán ( Ctrl/Alt +3 )";
             // 
@@ -1636,7 +1637,7 @@
             this.ucChandoanICD1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucChandoanICD1.Location = new System.Drawing.Point(0, 0);
             this.ucChandoanICD1.Name = "ucChandoanICD1";
-            this.ucChandoanICD1.Size = new System.Drawing.Size(1006, 525);
+            this.ucChandoanICD1.Size = new System.Drawing.Size(1201, 525);
             this.ucChandoanICD1.TabIndex = 2;
             // 
             // uiTabPage1
@@ -1645,7 +1646,7 @@
             this.uiTabPage1.Controls.Add(this.uiGroupBox6);
             this.uiTabPage1.Location = new System.Drawing.Point(1, 23);
             this.uiTabPage1.Name = "uiTabPage1";
-            this.uiTabPage1.Size = new System.Drawing.Size(1201, 525);
+            this.uiTabPage1.Size = new System.Drawing.Size(1201, 557);
             this.uiTabPage1.TabStop = true;
             this.uiTabPage1.Text = "Phiếu truyền dịch (Ctrl/Alt +4)";
             // 
@@ -1655,7 +1656,7 @@
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(1201, 475);
+            this.groupBox3.Size = new System.Drawing.Size(1201, 507);
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
             // 
@@ -1672,7 +1673,7 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.uiGroupBox8);
-            this.splitContainer2.Size = new System.Drawing.Size(1195, 455);
+            this.splitContainer2.Size = new System.Drawing.Size(1195, 487);
             this.splitContainer2.SplitterDistance = 472;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -1697,7 +1698,7 @@
             this.grdDonthuocChitiet.RecordNavigator = true;
             this.grdDonthuocChitiet.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
             this.grdDonthuocChitiet.SelectedFormatStyle.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.grdDonthuocChitiet.Size = new System.Drawing.Size(472, 455);
+            this.grdDonthuocChitiet.Size = new System.Drawing.Size(472, 487);
             this.grdDonthuocChitiet.TabIndex = 3;
             this.grdDonthuocChitiet.TotalRow = Janus.Windows.GridEX.InheritableBoolean.True;
             this.grdDonthuocChitiet.TotalRowFormatStyle.BackColor = System.Drawing.SystemColors.Info;
@@ -1713,7 +1714,7 @@
             this.uiGroupBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uiGroupBox8.Location = new System.Drawing.Point(0, 0);
             this.uiGroupBox8.Name = "uiGroupBox8";
-            this.uiGroupBox8.Size = new System.Drawing.Size(719, 455);
+            this.uiGroupBox8.Size = new System.Drawing.Size(719, 487);
             this.uiGroupBox8.TabIndex = 12;
             this.uiGroupBox8.Text = "Thông tin theo dõi dịch truyền";
             // 
@@ -1728,7 +1729,7 @@
             this.grdListDichTruyen.Location = new System.Drawing.Point(3, 17);
             this.grdListDichTruyen.Name = "grdListDichTruyen";
             this.grdListDichTruyen.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
-            this.grdListDichTruyen.Size = new System.Drawing.Size(713, 435);
+            this.grdListDichTruyen.Size = new System.Drawing.Size(713, 467);
             this.grdListDichTruyen.TabIndex = 0;
             // 
             // uiGroupBox6
@@ -1739,7 +1740,7 @@
             this.uiGroupBox6.Controls.Add(this.cmdXoaPTD);
             this.uiGroupBox6.Controls.Add(this.cmdThemoiPTD);
             this.uiGroupBox6.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.uiGroupBox6.Location = new System.Drawing.Point(0, 475);
+            this.uiGroupBox6.Location = new System.Drawing.Point(0, 507);
             this.uiGroupBox6.Name = "uiGroupBox6";
             this.uiGroupBox6.Size = new System.Drawing.Size(1201, 50);
             this.uiGroupBox6.TabIndex = 3;
@@ -1807,7 +1808,7 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 707);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 739);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1203, 22);
             this.statusStrip1.TabIndex = 22;
@@ -1823,15 +1824,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1203, 729);
+            this.ClientSize = new System.Drawing.Size(1203, 761);
             this.Controls.Add(this.tabTheoDoiVaChamSoc);
             this.Controls.Add(this.uiTab1);
             this.Controls.Add(this.grpThongTinBN);
             this.Controls.Add(this.statusStrip1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "frm_PhieuChamSoc";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

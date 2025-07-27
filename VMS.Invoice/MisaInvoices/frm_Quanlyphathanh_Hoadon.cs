@@ -663,6 +663,11 @@ namespace VMS.Invoice
         /// <param name="e"></param>
         private void cmdSave_Click(object sender, EventArgs e)
         {
+            PhatHanhHoaDon(false);
+
+        }
+        void PhatHanhHoaDon(bool isUpdate)
+        {
             try
             {
                 Utility.WaitNow(this);
@@ -707,11 +712,11 @@ namespace VMS.Invoice
                 List<long> lstCanhbao_VAT = (from p in grdChitietThanhtoan.GetCheckedRows() select Utility.Int64Dbnull(p.Cells["VAT"].Value)).Distinct().ToList<long>();
                 //Kiểm tra bỏ các thành phần thành tiền =0
                 bool Thucthu_bang0 = (from p in grdChitietThanhtoan.GetCheckedRows() where Utility.Int64Dbnull(p.Cells["THUC_THU"].Value) <= 0 select p).FirstOrDefault() != null;
-                if(Thucthu_bang0)
+                if (Thucthu_bang0)
                 {
                     Utility.ShowMsg("Một số chi tiết bạn chọn phát hành có thực thu <=0. Vui lòng loại bỏ các thành phần này");
                     return;
-                }    
+                }
                 if (isQuaythuoc)
                 {
                     List<Int16> lstCanhbao_VAT_Thuoc_0_phantram = (from p in grdChitietThanhtoan.GetCheckedRows() where Utility.Int16Dbnull(p.Cells["VAT"].Value) <= 0 select Utility.Int16Dbnull(p.Cells["VAT"].Value)).Distinct().ToList<Int16>();
@@ -752,7 +757,7 @@ namespace VMS.Invoice
                     {
                         return;
                     }
-                   
+
                 }
                 _MisaInvoices.transaction_id = "";
                 if (grdPayment.GetCheckedRows().Count() == 1)
@@ -806,12 +811,13 @@ namespace VMS.Invoice
                                      x["used_by"] = globalVariables.UserName;
                                  }
                                  );
-                        
-                        if(THU_VIEN_CHUNG.Laygiatrithamsohethong("MISA_HIENTHICHITIET_PHATHANH",true)=="1")
+
+                        if (THU_VIEN_CHUNG.Laygiatrithamsohethong("MISA_HIENTHICHITIET_PHATHANH", true) == "1")
                         {
                             List<long> lstIdChitiet = (from p in grdChitietThanhtoan.GetCheckedRows() where Utility.sDbnull(p.Cells["id_thanhtoan"].Value, 0) == str_IdThanhtoan select Utility.Int64Dbnull(p.Cells["id_chitiet"].Value)).ToList<long>();
                             DataTable dtDetailData = (grdChitietThanhtoan.DataSource as DataView).Table.AsEnumerable().Where(c => lstIdChitiet.Contains(Utility.Int64Dbnull(c["id_chitiet"]))).CopyToDataTable();
                             frm_thongtin_khachhang_riengle_detail _xacnhanthongtin = new frm_thongtin_khachhang_riengle_detail(_MisaInvoices, _buyer, dr, Utility.ByteDbnull(optTheoThanhtoan.Checked ? 1 : (optTheoluotkham.Checked ? 2 : 3)), str_IdThanhtoan, str_IdThanhtoanChitiet, dtDetailData);
+                            _xacnhanthongtin.isUpdate = isUpdate;
                             if (_xacnhanthongtin.ShowDialog() == DialogResult.OK)
                             {
 
@@ -833,7 +839,7 @@ namespace VMS.Invoice
                                      }
                                      );
                             }
-                        }   
+                        }
                         else
                         {
                             frm_thongtin_khachhang_riengle _xacnhanthongtin = new frm_thongtin_khachhang_riengle(_MisaInvoices, _buyer, dr, Utility.ByteDbnull(optTheoThanhtoan.Checked ? 1 : (optTheoluotkham.Checked ? 2 : 3)), str_IdThanhtoan, str_IdThanhtoanChitiet);
@@ -858,8 +864,8 @@ namespace VMS.Invoice
                                      }
                                      );
                             }
-                        }    
-                        
+                        }
+
                     }
                     else
                     {
@@ -892,14 +898,14 @@ namespace VMS.Invoice
                             {
                                 errMsg = string.Format("Chứng từ {0} đã được phát hành HĐĐT, vui lòng kiểm tra lại", str_IdThanhtoan);
                                 Utility.ShowMsg(errMsg);
-                                lstErr.Add( errMsg);
+                                lstErr.Add(errMsg);
                                 continue;
                             }
                             if (!Utility.Bool2Bool(objCheck.TthaiXuatHddt) && Utility.Bool2Bool(objCheck.TthaiDangphathanh))
                             {
                                 errMsg = string.Format("Chứng từ với Id={0} đang được sử dụng để phát hành Hóa đơn điện tử bởi người dùng {1} nên bạn không thể phát hành tiếp(tránh 1 chứng từ 2 hóa đơn trên Misa).\nVui lòng liên hệ người dùng {2} để phối hợp", str_IdThanhtoan, Utility.sDbnull(dtCheck.Rows[0]["used_by"]), Utility.sDbnull(dtCheck.Rows[0]["used_by"]));
                                 Utility.ShowMsg(errMsg);
-                                lstErr.Add( errMsg);
+                                lstErr.Add(errMsg);
                                 continue;
                             }
                         }
@@ -925,7 +931,7 @@ namespace VMS.Invoice
                                 LogText(eMessage, Color.Red);
                             }
                         }
-                           
+
                         SetValue4Prg(ProgressBar, 1);
                         gridExRow.IsChecked = false;
                     }
@@ -938,7 +944,7 @@ namespace VMS.Invoice
                 }
                 else if (optTheoluotkham.Checked)
                 {
-                  
+
                     if (lst_ngay_ttoan_check.Count >= 2)
                     {
                         if (!Utility.AcceptQuestion("Chú ý: Các phiếu thu khác ngày. Bạn có chắc chắn muốn phát hành HĐĐT điện tử cho các phiếu này?", "Cảnh báo các phiếu thu khác ngày", true))
@@ -963,10 +969,10 @@ namespace VMS.Invoice
                                     .Set(KcbThanhtoan.Columns.UsedBy).EqualTo(globalVariables.UserName)
                                     .Where(KcbThanhtoan.Columns.IdThanhtoan).IsEqualTo(id_thanhtoan)
                                     .Execute();
-                                if(num>0)
+                                if (num > 0)
                                 {
                                     lstIdThanhtoan_updated.Add(id_thanhtoan);
-                                }    
+                                }
                             }
                             else
                             {
@@ -986,7 +992,7 @@ namespace VMS.Invoice
                                 }
                             }
                         }
-                        if(lstErr.Count>0)
+                        if (lstErr.Count > 0)
                         {
                             //Rollback
                             num = new Update(KcbThanhtoan.Schema)
@@ -995,10 +1001,10 @@ namespace VMS.Invoice
                                    .Where(KcbThanhtoan.Columns.IdThanhtoan).In(lstIdThanhtoan_updated)
                                    .Execute();
                             return;
-                        }    
+                        }
                         str_IdThanhtoan = string.Join(",", lstIdThanhtoan.Select(l => l.ToString()).ToArray());
-                        
-                         str_IdThanhtoanChitiet = string.Join(",", (from p in grdChitietThanhtoan.GetCheckedRows() where lstIdThanhtoan.Contains(Utility.Int64Dbnull(p.Cells["id_thanhtoan"].Value)) select Utility.sDbnull(p.Cells["id_chitiet"].Value)).Distinct().ToArray<string>());
+
+                        str_IdThanhtoanChitiet = string.Join(",", (from p in grdChitietThanhtoan.GetCheckedRows() where lstIdThanhtoan.Contains(Utility.Int64Dbnull(p.Cells["id_thanhtoan"].Value)) select Utility.sDbnull(p.Cells["id_chitiet"].Value)).Distinct().ToArray<string>());
                         kt = _MisaInvoices.phathanh_hoadon(str_IdThanhtoan, 1, str_IdThanhtoanChitiet, ref eMessage);
                         if (kt)
                         {
@@ -1071,7 +1077,6 @@ namespace VMS.Invoice
                 Utility.DefaultNow(this);
                 cmdPhathanhHDon.Enabled = true;
             }
-
         }
         void backup_phathanhhoadon()
         {
@@ -2754,6 +2759,11 @@ namespace VMS.Invoice
             {
 
             }
+        }
+
+        private void mnuUpdateHIS_Click(object sender, EventArgs e)
+        {
+            PhatHanhHoaDon(true);
         }
     }
 }

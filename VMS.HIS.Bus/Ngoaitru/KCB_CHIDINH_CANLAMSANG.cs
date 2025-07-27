@@ -337,6 +337,7 @@ namespace VNS.HIS.BusRule.Classes
                                 log.Trace("0.3 Da thuc hien xong cau SP");
                                 objChidinh.IdChidinh = Utility.Int64Dbnull(sp.OutputValues[0]);
                                 log.Trace("1. Da them moi chi dinh CLS");
+                                
                                 SPs.SpKcbCapnhatBacsiKham(objChidinh.IdKham, objChidinh.IdBacsiChidinh, 1).Execute();
                                 InsertAssignDetail(objChidinh, objLuotkham, arrAssignDetails);
                                 log.Trace("2. Da them moi chi tiet chi dinh CLS");
@@ -379,6 +380,7 @@ namespace VNS.HIS.BusRule.Classes
                 GC.Collect();
             }
         }
+       
         void InsertEmrPhieuChidinh(KcbChidinhcl objChidinh)
         {
             EmrDocuments emrdoc = new EmrDocuments();
@@ -608,6 +610,7 @@ namespace VNS.HIS.BusRule.Classes
                             objChidinh.NguoigiaoMau
                             , objChidinh.NguoinhanMau, objChidinh.MotaThem,objChidinh.LoaiPhieu, objChidinh.LastActionName).Execute();
                         log.Trace("1. Da cap nhat chi dinh dich vu CLS");
+                        
                         if (Utility.Int32Dbnull(objChidinh.IdKham) > 0)
                         {
                             SPs.SpKcbCapnhatBacsiKham(objChidinh.IdKham, objChidinh.IdBacsiChidinh, 1).Execute();

@@ -720,6 +720,34 @@ namespace VMS.HIS.DAL
 				colvarChuKy.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarChuKy);
 				
+				TableSchema.TableColumn colvarLaTruongkhoa = new TableSchema.TableColumn(schema);
+				colvarLaTruongkhoa.ColumnName = "la_truongkhoa";
+				colvarLaTruongkhoa.DataType = DbType.Byte;
+				colvarLaTruongkhoa.MaxLength = 0;
+				colvarLaTruongkhoa.AutoIncrement = false;
+				colvarLaTruongkhoa.IsNullable = true;
+				colvarLaTruongkhoa.IsPrimaryKey = false;
+				colvarLaTruongkhoa.IsForeignKey = false;
+				colvarLaTruongkhoa.IsReadOnly = false;
+				
+						colvarLaTruongkhoa.DefaultSetting = @"((0))";
+				colvarLaTruongkhoa.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarLaTruongkhoa);
+				
+				TableSchema.TableColumn colvarLaNguoidaidienDonvi = new TableSchema.TableColumn(schema);
+				colvarLaNguoidaidienDonvi.ColumnName = "la_nguoidaidien_donvi";
+				colvarLaNguoidaidienDonvi.DataType = DbType.Byte;
+				colvarLaNguoidaidienDonvi.MaxLength = 0;
+				colvarLaNguoidaidienDonvi.AutoIncrement = false;
+				colvarLaNguoidaidienDonvi.IsNullable = true;
+				colvarLaNguoidaidienDonvi.IsPrimaryKey = false;
+				colvarLaNguoidaidienDonvi.IsForeignKey = false;
+				colvarLaNguoidaidienDonvi.IsReadOnly = false;
+				
+						colvarLaNguoidaidienDonvi.DefaultSetting = @"((0))";
+				colvarLaNguoidaidienDonvi.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarLaNguoidaidienDonvi);
+				
 				BaseSchema = schema;
 				//add this schema to the provider
 				//so we can query it later
@@ -1089,6 +1117,22 @@ namespace VMS.HIS.DAL
 			get { return GetColumnValue<byte[]>(Columns.ChuKy); }
 			set { SetColumnValue(Columns.ChuKy, value); }
 		}
+		  
+		[XmlAttribute("LaTruongkhoa")]
+		[Bindable(true)]
+		public byte? LaTruongkhoa 
+		{
+			get { return GetColumnValue<byte?>(Columns.LaTruongkhoa); }
+			set { SetColumnValue(Columns.LaTruongkhoa, value); }
+		}
+		  
+		[XmlAttribute("LaNguoidaidienDonvi")]
+		[Bindable(true)]
+		public byte? LaNguoidaidienDonvi 
+		{
+			get { return GetColumnValue<byte?>(Columns.LaNguoidaidienDonvi); }
+			set { SetColumnValue(Columns.LaNguoidaidienDonvi, value); }
+		}
 		
 		#endregion
 		
@@ -1109,7 +1153,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(string varMaNhanvien,string varTenNhanvien,short varIdPhong,int? varIdKhoa,string varMaLoainhanvien,string varUserName,string varMaChungchi,byte? varPtramCkhau,byte? varCungthuchien,decimal? varChiphiCungthuchien,string varMaCoso,byte? varTrangThai,int? varSttHthi,string varMotaThem,string varNguoiTao,DateTime? varNgayTao,string varNguoiSua,DateTime? varNgaySua,byte? varIdGioitinh,string varGioiTinh,string varMaLoaiKcb,string varMaKhoa,string varTenKhoa,string varMaBhxh,string varMaChucdanh,DateTime? varNgaycapCchn,string varNoicapCchn,string varPhamviChuyenmo,string varPhamviChuyenmonBacsi,string varDvktKhac,string varVbanPhancong,byte? varThoigianDky,string varThoigianNgay,string varThoigianTuan,string varCskcbKhac,string varCskcbCgkt,string varQdinhCgkt,bool? varAnhxaBhyt,decimal? varTranKedon,string varChucDanh,string varChucVu,string varViTri,string varDienThoai,byte[] varChuKy)
+		public static void Insert(string varMaNhanvien,string varTenNhanvien,short varIdPhong,int? varIdKhoa,string varMaLoainhanvien,string varUserName,string varMaChungchi,byte? varPtramCkhau,byte? varCungthuchien,decimal? varChiphiCungthuchien,string varMaCoso,byte? varTrangThai,int? varSttHthi,string varMotaThem,string varNguoiTao,DateTime? varNgayTao,string varNguoiSua,DateTime? varNgaySua,byte? varIdGioitinh,string varGioiTinh,string varMaLoaiKcb,string varMaKhoa,string varTenKhoa,string varMaBhxh,string varMaChucdanh,DateTime? varNgaycapCchn,string varNoicapCchn,string varPhamviChuyenmo,string varPhamviChuyenmonBacsi,string varDvktKhac,string varVbanPhancong,byte? varThoigianDky,string varThoigianNgay,string varThoigianTuan,string varCskcbKhac,string varCskcbCgkt,string varQdinhCgkt,bool? varAnhxaBhyt,decimal? varTranKedon,string varChucDanh,string varChucVu,string varViTri,string varDienThoai,byte[] varChuKy,byte? varLaTruongkhoa,byte? varLaNguoidaidienDonvi)
 		{
 			DmucNhanvien item = new DmucNhanvien();
 			
@@ -1201,6 +1245,10 @@ namespace VMS.HIS.DAL
 			
 			item.ChuKy = varChuKy;
 			
+			item.LaTruongkhoa = varLaTruongkhoa;
+			
+			item.LaNguoidaidienDonvi = varLaNguoidaidienDonvi;
+			
 		
 			if (System.Web.HttpContext.Current != null)
 				item.Save(System.Web.HttpContext.Current.User.Identity.Name);
@@ -1211,7 +1259,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(short varIdNhanvien,string varMaNhanvien,string varTenNhanvien,short varIdPhong,int? varIdKhoa,string varMaLoainhanvien,string varUserName,string varMaChungchi,byte? varPtramCkhau,byte? varCungthuchien,decimal? varChiphiCungthuchien,string varMaCoso,byte? varTrangThai,int? varSttHthi,string varMotaThem,string varNguoiTao,DateTime? varNgayTao,string varNguoiSua,DateTime? varNgaySua,byte? varIdGioitinh,string varGioiTinh,string varMaLoaiKcb,string varMaKhoa,string varTenKhoa,string varMaBhxh,string varMaChucdanh,DateTime? varNgaycapCchn,string varNoicapCchn,string varPhamviChuyenmo,string varPhamviChuyenmonBacsi,string varDvktKhac,string varVbanPhancong,byte? varThoigianDky,string varThoigianNgay,string varThoigianTuan,string varCskcbKhac,string varCskcbCgkt,string varQdinhCgkt,bool? varAnhxaBhyt,decimal? varTranKedon,string varChucDanh,string varChucVu,string varViTri,string varDienThoai,byte[] varChuKy)
+		public static void Update(short varIdNhanvien,string varMaNhanvien,string varTenNhanvien,short varIdPhong,int? varIdKhoa,string varMaLoainhanvien,string varUserName,string varMaChungchi,byte? varPtramCkhau,byte? varCungthuchien,decimal? varChiphiCungthuchien,string varMaCoso,byte? varTrangThai,int? varSttHthi,string varMotaThem,string varNguoiTao,DateTime? varNgayTao,string varNguoiSua,DateTime? varNgaySua,byte? varIdGioitinh,string varGioiTinh,string varMaLoaiKcb,string varMaKhoa,string varTenKhoa,string varMaBhxh,string varMaChucdanh,DateTime? varNgaycapCchn,string varNoicapCchn,string varPhamviChuyenmo,string varPhamviChuyenmonBacsi,string varDvktKhac,string varVbanPhancong,byte? varThoigianDky,string varThoigianNgay,string varThoigianTuan,string varCskcbKhac,string varCskcbCgkt,string varQdinhCgkt,bool? varAnhxaBhyt,decimal? varTranKedon,string varChucDanh,string varChucVu,string varViTri,string varDienThoai,byte[] varChuKy,byte? varLaTruongkhoa,byte? varLaNguoidaidienDonvi)
 		{
 			DmucNhanvien item = new DmucNhanvien();
 			
@@ -1304,6 +1352,10 @@ namespace VMS.HIS.DAL
 				item.DienThoai = varDienThoai;
 			
 				item.ChuKy = varChuKy;
+			
+				item.LaTruongkhoa = varLaTruongkhoa;
+			
+				item.LaNguoidaidienDonvi = varLaNguoidaidienDonvi;
 			
 			item.IsNew = false;
 			if (System.Web.HttpContext.Current != null)
@@ -1633,6 +1685,20 @@ namespace VMS.HIS.DAL
         
         
         
+        public static TableSchema.TableColumn LaTruongkhoaColumn
+        {
+            get { return Schema.Columns[45]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn LaNguoidaidienDonviColumn
+        {
+            get { return Schema.Columns[46]; }
+        }
+        
+        
+        
         #endregion
 		#region Columns Struct
 		public struct Columns
@@ -1682,6 +1748,8 @@ namespace VMS.HIS.DAL
 			 public static string ViTri = @"vi_tri";
 			 public static string DienThoai = @"dien_thoai";
 			 public static string ChuKy = @"chu_ky";
+			 public static string LaTruongkhoa = @"la_truongkhoa";
+			 public static string LaNguoidaidienDonvi = @"la_nguoidaidien_donvi";
 						
 		}
 		#endregion

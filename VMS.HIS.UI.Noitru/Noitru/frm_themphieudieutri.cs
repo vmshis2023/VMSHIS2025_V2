@@ -555,7 +555,9 @@ namespace VNS.HIS.UI.NOITRU
             {
                 case ActionResult.Success:
                     Utility.Log(this.Name, globalVariables.UserName, string.Format("Sửa phiếu điều trị ID={0}  thành công ", objPhieudieutri.IdPhieudieutri), newaction.Delete, this.GetType().Assembly.ManifestModule.Name);
-
+                    EmrDocuments emrdoc = new EmrDocuments();
+                    emrdoc.InitDocument(Utility.Int64Dbnull(objPhieudieutri.IdBenhnhan), objPhieudieutri.MaLuotkham, Utility.Int64Dbnull(objPhieudieutri.IdPhieudieutri), objPhieudieutri.NgayDieutri.Value, Loaiphieu_HIS.PHIEUDIEUTRI, "noitru_phieudieutri", objPhieudieutri.NguoiTao, Utility.Int16Dbnull(objPhieudieutri.IdKhoanoitru), -1, Utility.Byte2Bool(0), "");
+                    emrdoc.Save();
                     DataRow drv = p_TreatMent.NewRow();
                     Utility.FromObjectToDatarow(objPhieudieutri, ref drv);
                     drv["sngay_dieutri"] = dtNgayLapPhieu.Value.ToString("dd/MM/yyyy");

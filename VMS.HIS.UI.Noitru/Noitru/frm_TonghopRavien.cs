@@ -4089,5 +4089,20 @@ namespace VNS.HIS.UI.NOITRU
         {
             cmdViewAll.PerformClick();
         }
+
+        private void cmdInsertAssign_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmdIntachPhieu_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void uiButton2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

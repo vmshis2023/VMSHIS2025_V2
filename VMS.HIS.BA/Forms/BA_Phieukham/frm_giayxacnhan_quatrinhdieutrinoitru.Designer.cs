@@ -38,7 +38,7 @@ namespace VMS.HIS.UI.EMR
             this.cmdExit = new Janus.Windows.EditControls.UIButton();
             this.cmdInphieu = new Janus.Windows.EditControls.UIButton();
             this.lblMsg = new System.Windows.Forms.Label();
-            this.ucThongtinnguoibenh_emr_basic1 = new VNS.HIS.UI.Forms.Dungchung.UCs.ucThongtinnguoibenh_emr_basic_v1();
+            this.ucThongtinnguoibenh_emr_basic1 = new VNS.HIS.UI.Forms.Dungchung.UCs.ucThongtinnguoibenh_emr_basic_v2();
             this.uc_tt25_giayxacnhan_quatrinhdieutrinoitru1 = new VMS.HIS.UI.EMR.Ucs.uc_tt25_giayxacnhan_quatrinhdieutrinoitru();
             this.SuspendLayout();
             // 
@@ -50,7 +50,7 @@ namespace VMS.HIS.UI.EMR
             this.chkCloseAfterSave.Checked = true;
             this.chkCloseAfterSave.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkCloseAfterSave.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkCloseAfterSave.Location = new System.Drawing.Point(154, 713);
+            this.chkCloseAfterSave.Location = new System.Drawing.Point(430, 713);
             this.chkCloseAfterSave.Name = "chkCloseAfterSave";
             this.chkCloseAfterSave.Size = new System.Drawing.Size(232, 20);
             this.chkCloseAfterSave.TabIndex = 8;
@@ -65,7 +65,7 @@ namespace VMS.HIS.UI.EMR
             this.cmdSave.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdSave.Image = ((System.Drawing.Image)(resources.GetObject("cmdSave.Image")));
             this.cmdSave.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdSave.Location = new System.Drawing.Point(596, 700);
+            this.cmdSave.Location = new System.Drawing.Point(965, 700);
             this.cmdSave.Name = "cmdSave";
             this.cmdSave.Size = new System.Drawing.Size(120, 35);
             this.cmdSave.TabIndex = 5;
@@ -79,7 +79,7 @@ namespace VMS.HIS.UI.EMR
             this.cmdExit.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdExit.Image = global::VMS.HIS.EMR.Properties.Resources.close_24;
             this.cmdExit.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdExit.Location = new System.Drawing.Point(722, 700);
+            this.cmdExit.Location = new System.Drawing.Point(1091, 700);
             this.cmdExit.Name = "cmdExit";
             this.cmdExit.Size = new System.Drawing.Size(120, 35);
             this.cmdExit.TabIndex = 7;
@@ -94,7 +94,7 @@ namespace VMS.HIS.UI.EMR
             this.cmdInphieu.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdInphieu.Image = ((System.Drawing.Image)(resources.GetObject("cmdInphieu.Image")));
             this.cmdInphieu.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdInphieu.Location = new System.Drawing.Point(470, 699);
+            this.cmdInphieu.Location = new System.Drawing.Point(839, 699);
             this.cmdInphieu.Name = "cmdInphieu";
             this.cmdInphieu.Office2007ColorScheme = Janus.Windows.UI.Office2007ColorScheme.Custom;
             this.cmdInphieu.Office2007CustomColor = System.Drawing.Color.WhiteSmoke;
@@ -108,34 +108,34 @@ namespace VMS.HIS.UI.EMR
             this.lblMsg.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblMsg.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMsg.Location = new System.Drawing.Point(151, 645);
+            this.lblMsg.Location = new System.Drawing.Point(427, 657);
             this.lblMsg.Name = "lblMsg";
-            this.lblMsg.Size = new System.Drawing.Size(675, 37);
+            this.lblMsg.Size = new System.Drawing.Size(768, 37);
             this.lblMsg.TabIndex = 2585;
             this.lblMsg.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // ucThongtinnguoibenh_emr_basic1
             // 
             this.ucThongtinnguoibenh_emr_basic1.AutoScroll = true;
-            this.ucThongtinnguoibenh_emr_basic1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucThongtinnguoibenh_emr_basic1.Dock = System.Windows.Forms.DockStyle.Left;
             this.ucThongtinnguoibenh_emr_basic1.Location = new System.Drawing.Point(0, 0);
             this.ucThongtinnguoibenh_emr_basic1.Name = "ucThongtinnguoibenh_emr_basic1";
-            this.ucThongtinnguoibenh_emr_basic1.Size = new System.Drawing.Size(863, 204);
+            this.ucThongtinnguoibenh_emr_basic1.Size = new System.Drawing.Size(408, 747);
             this.ucThongtinnguoibenh_emr_basic1.TabIndex = 2587;
             // 
             // uc_tt25_giayxacnhan_quatrinhdieutrinoitru1
             // 
             this.uc_tt25_giayxacnhan_quatrinhdieutrinoitru1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.uc_tt25_giayxacnhan_quatrinhdieutrinoitru1.Location = new System.Drawing.Point(0, 204);
+            this.uc_tt25_giayxacnhan_quatrinhdieutrinoitru1.Location = new System.Drawing.Point(408, 0);
             this.uc_tt25_giayxacnhan_quatrinhdieutrinoitru1.Name = "uc_tt25_giayxacnhan_quatrinhdieutrinoitru1";
-            this.uc_tt25_giayxacnhan_quatrinhdieutrinoitru1.Size = new System.Drawing.Size(863, 481);
+            this.uc_tt25_giayxacnhan_quatrinhdieutrinoitru1.Size = new System.Drawing.Size(824, 660);
             this.uc_tt25_giayxacnhan_quatrinhdieutrinoitru1.TabIndex = 2586;
-            this.uc_tt25_giayxacnhan_quatrinhdieutrinoitru1.VisibleFunctionButtons = false;
+           
             // 
             // frm_giayxacnhan_quatrinhdieutrinoitru
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(863, 747);
+            this.ClientSize = new System.Drawing.Size(1232, 747);
             this.Controls.Add(this.cmdInphieu);
             this.Controls.Add(this.chkCloseAfterSave);
             this.Controls.Add(this.cmdSave);
@@ -163,6 +163,6 @@ namespace VMS.HIS.UI.EMR
         private Janus.Windows.EditControls.UIButton cmdInphieu;
         private System.Windows.Forms.Label lblMsg;
         private uc_tt25_giayxacnhan_quatrinhdieutrinoitru uc_tt25_giayxacnhan_quatrinhdieutrinoitru1;
-        public VNS.HIS.UI.Forms.Dungchung.UCs.ucThongtinnguoibenh_emr_basic_v1 ucThongtinnguoibenh_emr_basic1;
+        public VNS.HIS.UI.Forms.Dungchung.UCs.ucThongtinnguoibenh_emr_basic_v2 ucThongtinnguoibenh_emr_basic1;
     }
 }

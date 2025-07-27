@@ -585,6 +585,42 @@ namespace VMS.HIS.DAL{
                 
                 schema.Columns.Add(colvarDienThoai);
                 
+                TableSchema.TableColumn colvarChuKy = new TableSchema.TableColumn(schema);
+                colvarChuKy.ColumnName = "chu_ky";
+                colvarChuKy.DataType = DbType.Binary;
+                colvarChuKy.MaxLength = 2147483647;
+                colvarChuKy.AutoIncrement = false;
+                colvarChuKy.IsNullable = true;
+                colvarChuKy.IsPrimaryKey = false;
+                colvarChuKy.IsForeignKey = false;
+                colvarChuKy.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarChuKy);
+                
+                TableSchema.TableColumn colvarLaTruongkhoa = new TableSchema.TableColumn(schema);
+                colvarLaTruongkhoa.ColumnName = "la_truongkhoa";
+                colvarLaTruongkhoa.DataType = DbType.Byte;
+                colvarLaTruongkhoa.MaxLength = 0;
+                colvarLaTruongkhoa.AutoIncrement = false;
+                colvarLaTruongkhoa.IsNullable = true;
+                colvarLaTruongkhoa.IsPrimaryKey = false;
+                colvarLaTruongkhoa.IsForeignKey = false;
+                colvarLaTruongkhoa.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarLaTruongkhoa);
+                
+                TableSchema.TableColumn colvarLaNguoidaidienDonvi = new TableSchema.TableColumn(schema);
+                colvarLaNguoidaidienDonvi.ColumnName = "la_nguoidaidien_donvi";
+                colvarLaNguoidaidienDonvi.DataType = DbType.Byte;
+                colvarLaNguoidaidienDonvi.MaxLength = 0;
+                colvarLaNguoidaidienDonvi.AutoIncrement = false;
+                colvarLaNguoidaidienDonvi.IsNullable = true;
+                colvarLaNguoidaidienDonvi.IsPrimaryKey = false;
+                colvarLaNguoidaidienDonvi.IsForeignKey = false;
+                colvarLaNguoidaidienDonvi.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarLaNguoidaidienDonvi);
+                
                 TableSchema.TableColumn colvarTenCosokcb = new TableSchema.TableColumn(schema);
                 colvarTenCosokcb.ColumnName = "ten_cosokcb";
                 colvarTenCosokcb.DataType = DbType.String;
@@ -1311,6 +1347,48 @@ namespace VMS.HIS.DAL{
             }
         }
 	      
+        [XmlAttribute("ChuKy")]
+        [Bindable(true)]
+        public byte[] ChuKy 
+	    {
+		    get
+		    {
+			    return GetColumnValue<byte[]>("chu_ky");
+		    }
+            set 
+		    {
+			    SetColumnValue("chu_ky", value);
+            }
+        }
+	      
+        [XmlAttribute("LaTruongkhoa")]
+        [Bindable(true)]
+        public byte? LaTruongkhoa 
+	    {
+		    get
+		    {
+			    return GetColumnValue<byte?>("la_truongkhoa");
+		    }
+            set 
+		    {
+			    SetColumnValue("la_truongkhoa", value);
+            }
+        }
+	      
+        [XmlAttribute("LaNguoidaidienDonvi")]
+        [Bindable(true)]
+        public byte? LaNguoidaidienDonvi 
+	    {
+		    get
+		    {
+			    return GetColumnValue<byte?>("la_nguoidaidien_donvi");
+		    }
+            set 
+		    {
+			    SetColumnValue("la_nguoidaidien_donvi", value);
+            }
+        }
+	      
         [XmlAttribute("TenCosokcb")]
         [Bindable(true)]
         public string TenCosokcb 
@@ -1475,6 +1553,12 @@ namespace VMS.HIS.DAL{
             public static string ViTri = @"vi_tri";
             
             public static string DienThoai = @"dien_thoai";
+            
+            public static string ChuKy = @"chu_ky";
+            
+            public static string LaTruongkhoa = @"la_truongkhoa";
+            
+            public static string LaNguoidaidienDonvi = @"la_nguoidaidien_donvi";
             
             public static string TenCosokcb = @"ten_cosokcb";
             

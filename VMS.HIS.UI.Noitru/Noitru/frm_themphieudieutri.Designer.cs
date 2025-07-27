@@ -274,7 +274,7 @@
             // cmdExit
             // 
             resources.ApplyResources(this.cmdExit, "cmdExit");
-            this.cmdExit.Image = ((System.Drawing.Image)(resources.GetObject("cmdExit.Image")));
+            this.cmdExit.Image = global::VMS.HIS.Noitru.Properties.Resources.close_24;
             this.cmdExit.Name = "cmdExit";
             this.cmdExit.Click += new System.EventHandler(this.cmdExit_Click);
             // 

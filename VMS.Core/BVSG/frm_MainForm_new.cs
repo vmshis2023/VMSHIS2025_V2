@@ -56,9 +56,14 @@ namespace CIS.CoreApp
         private Thread t1 = null;
         bool justCheckAcc = false;
         bool hasLogIn = false;
+
+        List<TimeSpan> lstTime2Quit = new List<TimeSpan>();
+        TimeSpan beginTime = DateTime.Now.TimeOfDay;
+        List<string> lstHour2Quit = new List<string>();
         /// <summary>
         ///     hàm thực hiện việc khởi tạo
         /// </summary>
+        /// 
         public frm_MainForm_new()
         {
             try
@@ -386,7 +391,10 @@ namespace CIS.CoreApp
                 Utility.SetMsg(statusStrip1.Panels["lblStatus"], "Nạp dữ liệu danh mục địa chính...", false);
                 globalVariables.gv_dtDmucDiachinh = ds.Tables[7];// new Select().From(VDmucDiachinh.Schema).ExecuteDataSet().Tables[0];
                 globalVariables.gv_dtDmucBenhVien = ds.Tables[8];// new Select().From(DmucBenhvien.Schema).ExecuteDataSet().Tables[0];
-                Utility.AutoCompeleteAddress(globalVariables.gv_dtDmucDiachinh);
+                if (THU_VIEN_CHUNG.Laygiatrithamsohethong("DIACHINH_MOI", "0", true) == "0")
+                    Utility.AutoCompeleteAddress(globalVariables.gv_dtDmucDiachinh);
+                else
+                    Utility.AutoCompeleteAddress_New(globalVariables.gv_dtDmucDiachinh);
                 Utility.SetMsg(statusStrip1.Panels["lblStatus"], "Nạp dữ liệu danh mục nơi KCBBĐ...", false);
                 globalVariables.gv_dtDmucNoiKCBBD = ds.Tables[9];// new Select().From(VDmucNoiKCBBD.Schema).ExecuteDataSet().Tables[0];
                 Utility.SetMsg(statusStrip1.Panels["lblStatus"], "Nạp dữ liệu dịch vụ CLS...", false);
@@ -1020,6 +1028,7 @@ namespace CIS.CoreApp
         {
             try
             {
+                lstTime2Quit.Clear();
                 SuspendLayout();
                 SetlogoAndBackGround();
                 SetsyncDateTime_v1();
@@ -1034,6 +1043,36 @@ namespace CIS.CoreApp
                 timer2.Interval = Utility.Int32Dbnull(THU_VIEN_CHUNG.Laygiatrithamsohethong("CORE_CANHBAOPHIENBANMOI_THOIGIANKIEMTRA", "600000", true));
                 timer2.Enabled = true;
                 timer2.Start();
+                string PHIEN_LAMVIEC = THU_VIEN_CHUNG.Laygiatrithamsohethong("PHIEN_LAMVIEC", "", true);
+                if (!string.IsNullOrEmpty(PHIEN_LAMVIEC))
+                {
+                    lstHour2Quit = PHIEN_LAMVIEC.Split(',').ToList<string>();
+                    foreach (string h in lstHour2Quit)
+                    {
+                        int Hour2Quit = 0;
+                        int Minute2Quit = 0;
+                        if (h.Contains("h"))
+                        {
+                            Hour2Quit = Utility.Int32Dbnull(h.Split('h')[0]);
+                            Minute2Quit = Utility.Int32Dbnull(h.Split('h')[1]);
+                        }
+                        else if (h.Contains(":"))
+                        {
+                            Hour2Quit = Utility.Int32Dbnull(h.Split(':')[0]);
+                            Minute2Quit = Utility.Int32Dbnull(h.Split(':')[1]);
+                        }
+                        else
+                        {
+                            Hour2Quit = Utility.Int32Dbnull(h);
+                            Minute2Quit = 0;
+                        }
+                        lstTime2Quit.Add(new TimeSpan(Hour2Quit % 24, Minute2Quit, 0));
+                    }
+                    tmrtoquit.Enabled = true;
+                    tmrtoquit.Start();
+                }
+
+
                 log.Trace("Khoi tao thanh cong");
             }
             catch (Exception ex)
@@ -3166,6 +3205,7 @@ namespace CIS.CoreApp
             {
                 if (globalVariables.LoginSuceess)
                 {
+                    LoadList();
                     ClearTab();
                     LoadFormMain();
                 }
@@ -3481,6 +3521,61 @@ namespace CIS.CoreApp
                 Utility.CatchException(ex);
             }
            
+        }
+
+        private void tmrtoquit_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                IEnumerable<TimeSpan> lstTime2Quit_temp;
+                TimeSpan next = DateTime.Now.TimeOfDay;
+                TimeSpan current = DateTime.Now.TimeOfDay;
+                if (lstTime2Quit.Count > 0)
+                {
+                    TimeSpan now = DateTime.Now.TimeOfDay;
+                    lstTime2Quit_temp = lstTime2Quit.Where(t => t > now);  // nếu không có giờ nào sau giờ hiện tại, chọn giờ nhỏ nhất trong ngày tiếp theo
+                    if (lstTime2Quit_temp.Count() > 0) next = lstTime2Quit_temp.Min();
+                }
+                if (next == null)
+                {
+                    statusStrip1.Panels["Time2Close"].Text = "";
+                    return;
+                }
+                int totalSeconds = Convert.ToInt32((next - current).TotalSeconds);
+                // 1. Tính số giờ
+                int hours = totalSeconds / 3600;
+
+                // 2. Lấy phần giây còn lại sau khi trừ giờ
+                int remaining = totalSeconds % 3600;
+
+                // 3. Tính số phút
+                int minutes = remaining / 60;
+
+                // 4. Giây cuối cùng
+                int seconds = remaining % 60;
+                if (hours == 0 && minutes == 0 && seconds == 0)
+                {
+                    statusStrip1.Panels["Time2Close"].Text = "";
+                    return;
+                }
+                else
+                    statusStrip1.Panels["Time2Close"].Text = string.Format("Còn {0} giờ {1} phút {2} giây nữa sẽ hết phiên làm việc", hours, minutes, seconds);
+                if (totalSeconds > 1 && totalSeconds <= 20)
+                {
+                    timer1.Stop();
+                    Utility.ShowMsg(string.Format("Đã hết phiên làm việc của bạn. Vui lòng bấm OK để tắt phần mềm.\nChú ý: Đề nghị cập nhật lại thông tin người thực hiện trong các phiên làm việc kế tiếp", DateTime.Now.ToString("HH:mm")));
+                    Environment.Exit(0);
+                }
+
+                Application.DoEvents();
+
+
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+
+            }
         }
     }
 

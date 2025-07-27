@@ -1115,7 +1115,7 @@ namespace VNS.HIS.UI.NOITRU
                 txtTruongkhoa.Focus();
                 return false;
             }
-            if (objGD == null || txtGDBV.MyID == "-1" )
+            if (objGD == null || txtGDBV.MyID == "-1")
             {
                 Utility.ShowMsg("Bạn cần chọn Giám đốc hoặc Người đại diện đơn vị (Người ký trên Giấy Chứng nhận PTTT)");
                 txtGDBV.Focus();
@@ -1324,8 +1324,8 @@ namespace VNS.HIS.UI.NOITRU
                    UIAction.SetTextStatus(lblStatus, "Đã cập nhật phiếu PTTT thành công.",false);
                     m_enAct = action.Update;
                 }
-                emrdoc.InitDocument(objpttt.IdBenhnhan, objpttt.MaLuotkham, Utility.Int64Dbnull(objpttt.IdPhieu), objpttt.NgayPttt, Loaiphieu_HIS.PHIEU_CAMKET_PTTT, "PHIEU_CAMKET_PTTT", objpttt.NguoiTao, objpttt.IdKhoadieutri, -1, Utility.Byte2Bool(objpttt.Noitru), "",true,false,"", Loaiphieu_HIS.PHIEUPTTT);
-                emrdoc.Save();
+                //emrdoc.InitDocument(objpttt.IdBenhnhan, objpttt.MaLuotkham, Utility.Int64Dbnull(objpttt.IdPhieu), objpttt.NgayPttt, Loaiphieu_HIS.PHIEU_CAMKET_PTTT, "PHIEU_CAMKET_PTTT", objpttt.NguoiTao, objpttt.IdKhoadieutri, -1, Utility.Byte2Bool(objpttt.Noitru), "",true,false,"", Loaiphieu_HIS.PHIEUPTTT);
+                //emrdoc.Save();
                 emrdoc.InitDocument(objpttt.IdBenhnhan, objpttt.MaLuotkham, Utility.Int64Dbnull(objpttt.IdPhieu), objpttt.NgayPttt, Loaiphieu_HIS.PHIEU_CHUNGNHAN_PTTT, "PHIEU_CHUNGNHAN_PTTT", objpttt.NguoiTao, objpttt.IdKhoadieutri, -1, Utility.Byte2Bool(objpttt.Noitru), "", true, false, "", Loaiphieu_HIS.PHIEUPTTT);
                 emrdoc.Save();
                 emrdoc.InitDocument(objpttt.IdBenhnhan, objpttt.MaLuotkham, Utility.Int64Dbnull(objpttt.IdPhieu), objpttt.NgayPttt, Loaiphieu_HIS.PHIEUPTTT, "PHIEU_PTTT", objpttt.NguoiTao, objpttt.IdKhoadieutri, -1, Utility.Byte2Bool(objpttt.Noitru), "", true, false, "", Loaiphieu_HIS.PHIEUPTTT);
@@ -1373,7 +1373,7 @@ namespace VNS.HIS.UI.NOITRU
                          .Where(KcbPhieupttt.Columns.IdPhieu)
                          .IsEqualTo(Utility.Int32Dbnull(objpttt.IdPhieu))
                          .Execute();
-                    emrdoc.DeleteDocument(Utility.Int64Dbnull(objpttt.IdPhieu),new List<string>() { Loaiphieu_HIS.PHIEUPTTT, Loaiphieu_HIS.PHIEU_TUONGTRINH_PTTT, Loaiphieu_HIS.PHIEU_CAMKET_PTTT, Loaiphieu_HIS.PHIEU_CHUNGNHAN_PTTT }, "");//Xóa tất cả các phiếu liên quan đến phiếu này
+                    emrdoc.DeleteDocument(Utility.Int64Dbnull(objpttt.IdPhieu),new List<string>() { Loaiphieu_HIS.PHIEUPTTT, Loaiphieu_HIS.PHIEU_TUONGTRINH_PTTT,  Loaiphieu_HIS.PHIEU_CHUNGNHAN_PTTT }, "");//Xóa tất cả các phiếu liên quan đến phiếu này
                     if (banghi > 0)
                     {
                         Utility.ShowMsg("Bạn xóa thông tin phiếu PTTT thành công", "Thông báo");
@@ -1556,6 +1556,7 @@ namespace VNS.HIS.UI.NOITRU
                     }
 
                     doc.MailMerge.Execute(drData);
+                    Utility.SignDoc(doc, builder, sysLogosize != null ? sysLogosize.SValue : "");
                     if (File.Exists(fileKetqua))
                     {
                         File.Delete(fileKetqua);
@@ -1677,7 +1678,7 @@ namespace VNS.HIS.UI.NOITRU
                 drData["website_bv"] = globalVariables.Branch_Website;
                 drData["email_bv"] = globalVariables.Branch_Email;
                 List<string> fieldNames = new List<string>();
-
+                drData["sngay_pttt"] = Utility.FormatDateTime(Utility.sDbnull(drData["sngay_pttt"], ""), "ngày......tháng......năm.........");//BHYT giá trị đến
                 string PathDoc = AppDomain.CurrentDomain.BaseDirectory + "Doc\\PHIEU_PTTT_NOITRU.doc";
                 string writePathdoc = AppDomain.CurrentDomain.BaseDirectory + "tempDoc\\";
                 if (!Directory.Exists(writePathdoc)) Directory.CreateDirectory(writePathdoc);
@@ -1767,6 +1768,7 @@ namespace VNS.HIS.UI.NOITRU
                             builder.InsertImage(NoImage, 10, 10);
                     }
                     doc.MailMerge.Execute(drData);
+                    Utility.SignDoc(doc, builder, sysLogosize != null ? sysLogosize.SValue : "");
                     if (File.Exists(fileKetqua))
                     {
                         File.Delete(fileKetqua);
@@ -1820,6 +1822,7 @@ namespace VNS.HIS.UI.NOITRU
                 drData["website_bv"] = globalVariables.Branch_Website;
                 drData["email_bv"] = globalVariables.Branch_Email;
                 drData["ten_phieu"] = ma_loaidvu == "PTTT" ? lst_ten_phieu[0] : (ma_loaidvu == "PHAUTHUAT" ? lst_ten_phieu[1] : lst_ten_phieu[2]);
+                drData["sngay_pttt"] = Utility.FormatDateTime(Utility.sDbnull(drData["sngay_pttt"], ""), "ngày......tháng......năm.........");//BHYT giá trị đến
                 List<string> fieldNames = new List<string>();
 
                 string PathDoc = AppDomain.CurrentDomain.BaseDirectory + "Doc\\PHIEU_CAMKET_PTTT.doc";
@@ -1911,6 +1914,7 @@ namespace VNS.HIS.UI.NOITRU
                             builder.InsertImage(NoImage, 10, 10);
                     }
                     doc.MailMerge.Execute(drData);
+                    Utility.SignDoc(doc, builder, sysLogosize != null ? sysLogosize.SValue : "");
                     if (File.Exists(fileKetqua))
                     {
                         File.Delete(fileKetqua);
@@ -2012,6 +2016,7 @@ namespace VNS.HIS.UI.NOITRU
                 drData["thogian_vaovien"] = Utility.FormatDateTime_giophut_ngay_thang_nam(objLuotkham.NgayNhapvien,"");
                 drData["thoigian_batdau_phauthuat"] = Utility.FormatDateTime_giophut_ngay_thang_nam(objpttt.NgayPttt, "Từ");
                 drData["thoigian_ketthuc_phauthuat"] = Utility.FormatDateTime_giophut_ngay_thang_nam(objpttt.NgayKetthuc, "Đến");
+                drData["sngay_pttt"] = Utility.FormatDateTime(Utility.sDbnull(drData["sngay_pttt"], ""), "ngày......tháng......năm.........");//BHYT giá trị đến
                 List<string> fieldNames = new List<string>();
                
 
@@ -2106,6 +2111,7 @@ namespace VNS.HIS.UI.NOITRU
                             builder.InsertImage(NoImage, 10, 10);
                     }
                     doc.MailMerge.Execute(drData);
+                    Utility.SignDoc(doc, builder, sysLogosize != null ? sysLogosize.SValue : "");
                     if (File.Exists(fileKetqua))
                     {
                         File.Delete(fileKetqua);

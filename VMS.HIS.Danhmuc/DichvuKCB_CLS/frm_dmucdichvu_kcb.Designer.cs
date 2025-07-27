@@ -61,6 +61,7 @@
             this.grdList = new Janus.Windows.GridEX.GridEX();
             this.uiStatusBar2 = new Janus.Windows.UI.StatusBar.UIStatusBar();
             this.gridEXExporter = new Janus.Windows.GridEX.Export.GridEXExporter(this.components);
+            this.cmdSaochep = new System.Windows.Forms.ToolStripButton();
             this.sysColor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox1)).BeginInit();
             this.uiGroupBox1.SuspendLayout();
@@ -72,6 +73,7 @@
             // sysColor
             // 
             this.sysColor.BackColor = System.Drawing.SystemColors.Control;
+            this.sysColor.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.sysColor.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cmdNew,
             this.toolStripSeparator1,
@@ -79,6 +81,7 @@
             this.toolStripSeparator2,
             this.cmdDelete,
             this.toolStripSeparator4,
+            this.cmdSaochep,
             this.cmdExport,
             this.cmdSaveAll,
             this.toolStripButton1});
@@ -91,8 +94,7 @@
             // cmdNew
             // 
             this.cmdNew.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdNew.Image = global::VMS.HIS.Danhmuc.Properties.Resources.Add;
-            this.cmdNew.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.cmdNew.Image = global::VMS.HIS.Danhmuc.Properties.Resources.add_04_32;
             this.cmdNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdNew.Name = "cmdNew";
             this.cmdNew.Size = new System.Drawing.Size(136, 28);
@@ -108,7 +110,6 @@
             // 
             this.cmdEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdEdit.Image = ((System.Drawing.Image)(resources.GetObject("cmdEdit.Image")));
-            this.cmdEdit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.cmdEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdEdit.Name = "cmdEdit";
             this.cmdEdit.Size = new System.Drawing.Size(98, 28);
@@ -124,7 +125,6 @@
             // 
             this.cmdDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdDelete.Image = ((System.Drawing.Image)(resources.GetObject("cmdDelete.Image")));
-            this.cmdDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.cmdDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdDelete.Name = "cmdDelete";
             this.cmdDelete.Size = new System.Drawing.Size(99, 28);
@@ -141,7 +141,7 @@
             this.cmdExport.Image = global::VMS.HIS.Danhmuc.Properties.Resources.excel_48;
             this.cmdExport.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdExport.Name = "cmdExport";
-            this.cmdExport.Size = new System.Drawing.Size(61, 28);
+            this.cmdExport.Size = new System.Drawing.Size(69, 28);
             this.cmdExport.Text = "Export";
             this.cmdExport.Click += new System.EventHandler(this.cmdExport_Click);
             // 
@@ -149,10 +149,9 @@
             // 
             this.cmdSaveAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdSaveAll.Image = ((System.Drawing.Image)(resources.GetObject("cmdSaveAll.Image")));
-            this.cmdSaveAll.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.cmdSaveAll.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdSaveAll.Name = "cmdSaveAll";
-            this.cmdSaveAll.Size = new System.Drawing.Size(108, 36);
+            this.cmdSaveAll.Size = new System.Drawing.Size(100, 28);
             this.cmdSaveAll.Text = "Lưu toàn bộ";
             this.cmdSaveAll.Visible = false;
             this.cmdSaveAll.Click += new System.EventHandler(this.cmdSaveAll_Click);
@@ -161,7 +160,6 @@
             // 
             this.toolStripButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripButton1.Image = global::VMS.HIS.Danhmuc.Properties.Resources.close_24;
-            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(94, 28);
@@ -371,6 +369,15 @@
             this.uiStatusBar2.TabIndex = 12;
             this.uiStatusBar2.VisualStyle = Janus.Windows.UI.VisualStyle.Office2007;
             // 
+            // cmdSaochep
+            // 
+            this.cmdSaochep.Image = ((System.Drawing.Image)(resources.GetObject("cmdSaochep.Image")));
+            this.cmdSaochep.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.cmdSaochep.Name = "cmdSaochep";
+            this.cmdSaochep.Size = new System.Drawing.Size(146, 28);
+            this.cmdSaochep.Text = "Sao chép công khám";
+            this.cmdSaochep.Click += new System.EventHandler(this.cmdSaochep_Click);
+            // 
             // frm_dmucdichvu_kcb
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
@@ -427,5 +434,6 @@
         private Janus.Windows.UI.StatusBar.UIStatusBar uiStatusBar2;
         private System.Windows.Forms.ToolStripButton cmdExport;
         private Janus.Windows.GridEX.Export.GridEXExporter gridEXExporter;
+        private System.Windows.Forms.ToolStripButton cmdSaochep;
     }
 }

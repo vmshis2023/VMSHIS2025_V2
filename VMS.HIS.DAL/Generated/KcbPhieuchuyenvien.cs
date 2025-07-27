@@ -570,6 +570,84 @@ namespace VMS.HIS.DAL
 				colvarNgayKydientu.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarNgayKydientu);
 				
+				TableSchema.TableColumn colvarGiatrichuyen1namCo = new TableSchema.TableColumn(schema);
+				colvarGiatrichuyen1namCo.ColumnName = "giatrichuyen_1nam_co";
+				colvarGiatrichuyen1namCo.DataType = DbType.Boolean;
+				colvarGiatrichuyen1namCo.MaxLength = 0;
+				colvarGiatrichuyen1namCo.AutoIncrement = false;
+				colvarGiatrichuyen1namCo.IsNullable = true;
+				colvarGiatrichuyen1namCo.IsPrimaryKey = false;
+				colvarGiatrichuyen1namCo.IsForeignKey = false;
+				colvarGiatrichuyen1namCo.IsReadOnly = false;
+				colvarGiatrichuyen1namCo.DefaultSetting = @"";
+				colvarGiatrichuyen1namCo.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarGiatrichuyen1namCo);
+				
+				TableSchema.TableColumn colvarGiatrichuyen1namKhong = new TableSchema.TableColumn(schema);
+				colvarGiatrichuyen1namKhong.ColumnName = "giatrichuyen_1nam_khong";
+				colvarGiatrichuyen1namKhong.DataType = DbType.Boolean;
+				colvarGiatrichuyen1namKhong.MaxLength = 0;
+				colvarGiatrichuyen1namKhong.AutoIncrement = false;
+				colvarGiatrichuyen1namKhong.IsNullable = true;
+				colvarGiatrichuyen1namKhong.IsPrimaryKey = false;
+				colvarGiatrichuyen1namKhong.IsForeignKey = false;
+				colvarGiatrichuyen1namKhong.IsReadOnly = false;
+				colvarGiatrichuyen1namKhong.DefaultSetting = @"";
+				colvarGiatrichuyen1namKhong.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarGiatrichuyen1namKhong);
+				
+				TableSchema.TableColumn colvarPhuhopvoiquidinhchuyentuyen = new TableSchema.TableColumn(schema);
+				colvarPhuhopvoiquidinhchuyentuyen.ColumnName = "phuhopvoiquidinhchuyentuyen";
+				colvarPhuhopvoiquidinhchuyentuyen.DataType = DbType.Boolean;
+				colvarPhuhopvoiquidinhchuyentuyen.MaxLength = 0;
+				colvarPhuhopvoiquidinhchuyentuyen.AutoIncrement = false;
+				colvarPhuhopvoiquidinhchuyentuyen.IsNullable = true;
+				colvarPhuhopvoiquidinhchuyentuyen.IsPrimaryKey = false;
+				colvarPhuhopvoiquidinhchuyentuyen.IsForeignKey = false;
+				colvarPhuhopvoiquidinhchuyentuyen.IsReadOnly = false;
+				colvarPhuhopvoiquidinhchuyentuyen.DefaultSetting = @"";
+				colvarPhuhopvoiquidinhchuyentuyen.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarPhuhopvoiquidinhchuyentuyen);
+				
+				TableSchema.TableColumn colvarKhongphuhop = new TableSchema.TableColumn(schema);
+				colvarKhongphuhop.ColumnName = "khongphuhop";
+				colvarKhongphuhop.DataType = DbType.Boolean;
+				colvarKhongphuhop.MaxLength = 0;
+				colvarKhongphuhop.AutoIncrement = false;
+				colvarKhongphuhop.IsNullable = true;
+				colvarKhongphuhop.IsPrimaryKey = false;
+				colvarKhongphuhop.IsForeignKey = false;
+				colvarKhongphuhop.IsReadOnly = false;
+				colvarKhongphuhop.DefaultSetting = @"";
+				colvarKhongphuhop.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarKhongphuhop);
+				
+				TableSchema.TableColumn colvarDudieukienchuyentuyen = new TableSchema.TableColumn(schema);
+				colvarDudieukienchuyentuyen.ColumnName = "dudieukienchuyentuyen";
+				colvarDudieukienchuyentuyen.DataType = DbType.Boolean;
+				colvarDudieukienchuyentuyen.MaxLength = 0;
+				colvarDudieukienchuyentuyen.AutoIncrement = false;
+				colvarDudieukienchuyentuyen.IsNullable = true;
+				colvarDudieukienchuyentuyen.IsPrimaryKey = false;
+				colvarDudieukienchuyentuyen.IsForeignKey = false;
+				colvarDudieukienchuyentuyen.IsReadOnly = false;
+				colvarDudieukienchuyentuyen.DefaultSetting = @"";
+				colvarDudieukienchuyentuyen.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarDudieukienchuyentuyen);
+				
+				TableSchema.TableColumn colvarKhongdudieukienchuyentuyen = new TableSchema.TableColumn(schema);
+				colvarKhongdudieukienchuyentuyen.ColumnName = "khongdudieukienchuyentuyen";
+				colvarKhongdudieukienchuyentuyen.DataType = DbType.Boolean;
+				colvarKhongdudieukienchuyentuyen.MaxLength = 0;
+				colvarKhongdudieukienchuyentuyen.AutoIncrement = false;
+				colvarKhongdudieukienchuyentuyen.IsNullable = true;
+				colvarKhongdudieukienchuyentuyen.IsPrimaryKey = false;
+				colvarKhongdudieukienchuyentuyen.IsForeignKey = false;
+				colvarKhongdudieukienchuyentuyen.IsReadOnly = false;
+				colvarKhongdudieukienchuyentuyen.DefaultSetting = @"";
+				colvarKhongdudieukienchuyentuyen.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarKhongdudieukienchuyentuyen);
+				
 				BaseSchema = schema;
 				//add this schema to the provider
 				//so we can query it later
@@ -851,6 +929,54 @@ namespace VMS.HIS.DAL
 			get { return GetColumnValue<DateTime?>(Columns.NgayKydientu); }
 			set { SetColumnValue(Columns.NgayKydientu, value); }
 		}
+		  
+		[XmlAttribute("Giatrichuyen1namCo")]
+		[Bindable(true)]
+		public bool? Giatrichuyen1namCo 
+		{
+			get { return GetColumnValue<bool?>(Columns.Giatrichuyen1namCo); }
+			set { SetColumnValue(Columns.Giatrichuyen1namCo, value); }
+		}
+		  
+		[XmlAttribute("Giatrichuyen1namKhong")]
+		[Bindable(true)]
+		public bool? Giatrichuyen1namKhong 
+		{
+			get { return GetColumnValue<bool?>(Columns.Giatrichuyen1namKhong); }
+			set { SetColumnValue(Columns.Giatrichuyen1namKhong, value); }
+		}
+		  
+		[XmlAttribute("Phuhopvoiquidinhchuyentuyen")]
+		[Bindable(true)]
+		public bool? Phuhopvoiquidinhchuyentuyen 
+		{
+			get { return GetColumnValue<bool?>(Columns.Phuhopvoiquidinhchuyentuyen); }
+			set { SetColumnValue(Columns.Phuhopvoiquidinhchuyentuyen, value); }
+		}
+		  
+		[XmlAttribute("Khongphuhop")]
+		[Bindable(true)]
+		public bool? Khongphuhop 
+		{
+			get { return GetColumnValue<bool?>(Columns.Khongphuhop); }
+			set { SetColumnValue(Columns.Khongphuhop, value); }
+		}
+		  
+		[XmlAttribute("Dudieukienchuyentuyen")]
+		[Bindable(true)]
+		public bool? Dudieukienchuyentuyen 
+		{
+			get { return GetColumnValue<bool?>(Columns.Dudieukienchuyentuyen); }
+			set { SetColumnValue(Columns.Dudieukienchuyentuyen, value); }
+		}
+		  
+		[XmlAttribute("Khongdudieukienchuyentuyen")]
+		[Bindable(true)]
+		public bool? Khongdudieukienchuyentuyen 
+		{
+			get { return GetColumnValue<bool?>(Columns.Khongdudieukienchuyentuyen); }
+			set { SetColumnValue(Columns.Khongdudieukienchuyentuyen, value); }
+		}
 		
 		#endregion
 		
@@ -871,7 +997,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(string varSoChuyentuyen,long varIdBenhnhan,string varMaLuotkham,DateTime varNgayChuyenvien,short varIdBenhvienChuyenden,string varDauhieuCls,string varKetquaXnCls,string varMabenh,string varChanDoan,string varThuocSudung,string varTrangthaiBenhnhan,byte? varLydoChuyen,string varHuongDieutri,string varPhuongtienChuyen,string varTenNguoichuyen,int? varIdKhoanoitru,int? varIdBuong,int? varIdGiuong,int? varIdRavien,byte varNoiTru,short? varIdBacsiChuyenvien,DateTime varNgayTao,string varNguoiTao,string varIpMaytao,string varNguoiSua,DateTime? varNgaySua,byte? varTuyenChuyen,bool? varTthaiKyso,string varNguoiKyso,DateTime? varNgayKyso,bool? varTthaiKydientu,string varNguoiKydientu,DateTime? varNgayKydientu)
+		public static void Insert(string varSoChuyentuyen,long varIdBenhnhan,string varMaLuotkham,DateTime varNgayChuyenvien,short varIdBenhvienChuyenden,string varDauhieuCls,string varKetquaXnCls,string varMabenh,string varChanDoan,string varThuocSudung,string varTrangthaiBenhnhan,byte? varLydoChuyen,string varHuongDieutri,string varPhuongtienChuyen,string varTenNguoichuyen,int? varIdKhoanoitru,int? varIdBuong,int? varIdGiuong,int? varIdRavien,byte varNoiTru,short? varIdBacsiChuyenvien,DateTime varNgayTao,string varNguoiTao,string varIpMaytao,string varNguoiSua,DateTime? varNgaySua,byte? varTuyenChuyen,bool? varTthaiKyso,string varNguoiKyso,DateTime? varNgayKyso,bool? varTthaiKydientu,string varNguoiKydientu,DateTime? varNgayKydientu,bool? varGiatrichuyen1namCo,bool? varGiatrichuyen1namKhong,bool? varPhuhopvoiquidinhchuyentuyen,bool? varKhongphuhop,bool? varDudieukienchuyentuyen,bool? varKhongdudieukienchuyentuyen)
 		{
 			KcbPhieuchuyenvien item = new KcbPhieuchuyenvien();
 			
@@ -941,6 +1067,18 @@ namespace VMS.HIS.DAL
 			
 			item.NgayKydientu = varNgayKydientu;
 			
+			item.Giatrichuyen1namCo = varGiatrichuyen1namCo;
+			
+			item.Giatrichuyen1namKhong = varGiatrichuyen1namKhong;
+			
+			item.Phuhopvoiquidinhchuyentuyen = varPhuhopvoiquidinhchuyentuyen;
+			
+			item.Khongphuhop = varKhongphuhop;
+			
+			item.Dudieukienchuyentuyen = varDudieukienchuyentuyen;
+			
+			item.Khongdudieukienchuyentuyen = varKhongdudieukienchuyentuyen;
+			
 		
 			if (System.Web.HttpContext.Current != null)
 				item.Save(System.Web.HttpContext.Current.User.Identity.Name);
@@ -951,7 +1089,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(long varIdPhieu,string varSoChuyentuyen,long varIdBenhnhan,string varMaLuotkham,DateTime varNgayChuyenvien,short varIdBenhvienChuyenden,string varDauhieuCls,string varKetquaXnCls,string varMabenh,string varChanDoan,string varThuocSudung,string varTrangthaiBenhnhan,byte? varLydoChuyen,string varHuongDieutri,string varPhuongtienChuyen,string varTenNguoichuyen,int? varIdKhoanoitru,int? varIdBuong,int? varIdGiuong,int? varIdRavien,byte varNoiTru,short? varIdBacsiChuyenvien,DateTime varNgayTao,string varNguoiTao,string varIpMaytao,string varNguoiSua,DateTime? varNgaySua,byte? varTuyenChuyen,bool? varTthaiKyso,string varNguoiKyso,DateTime? varNgayKyso,bool? varTthaiKydientu,string varNguoiKydientu,DateTime? varNgayKydientu)
+		public static void Update(long varIdPhieu,string varSoChuyentuyen,long varIdBenhnhan,string varMaLuotkham,DateTime varNgayChuyenvien,short varIdBenhvienChuyenden,string varDauhieuCls,string varKetquaXnCls,string varMabenh,string varChanDoan,string varThuocSudung,string varTrangthaiBenhnhan,byte? varLydoChuyen,string varHuongDieutri,string varPhuongtienChuyen,string varTenNguoichuyen,int? varIdKhoanoitru,int? varIdBuong,int? varIdGiuong,int? varIdRavien,byte varNoiTru,short? varIdBacsiChuyenvien,DateTime varNgayTao,string varNguoiTao,string varIpMaytao,string varNguoiSua,DateTime? varNgaySua,byte? varTuyenChuyen,bool? varTthaiKyso,string varNguoiKyso,DateTime? varNgayKyso,bool? varTthaiKydientu,string varNguoiKydientu,DateTime? varNgayKydientu,bool? varGiatrichuyen1namCo,bool? varGiatrichuyen1namKhong,bool? varPhuhopvoiquidinhchuyentuyen,bool? varKhongphuhop,bool? varDudieukienchuyentuyen,bool? varKhongdudieukienchuyentuyen)
 		{
 			KcbPhieuchuyenvien item = new KcbPhieuchuyenvien();
 			
@@ -1022,6 +1160,18 @@ namespace VMS.HIS.DAL
 				item.NguoiKydientu = varNguoiKydientu;
 			
 				item.NgayKydientu = varNgayKydientu;
+			
+				item.Giatrichuyen1namCo = varGiatrichuyen1namCo;
+			
+				item.Giatrichuyen1namKhong = varGiatrichuyen1namKhong;
+			
+				item.Phuhopvoiquidinhchuyentuyen = varPhuhopvoiquidinhchuyentuyen;
+			
+				item.Khongphuhop = varKhongphuhop;
+			
+				item.Dudieukienchuyentuyen = varDudieukienchuyentuyen;
+			
+				item.Khongdudieukienchuyentuyen = varKhongdudieukienchuyentuyen;
 			
 			item.IsNew = false;
 			if (System.Web.HttpContext.Current != null)
@@ -1274,6 +1424,48 @@ namespace VMS.HIS.DAL
         
         
         
+        public static TableSchema.TableColumn Giatrichuyen1namCoColumn
+        {
+            get { return Schema.Columns[34]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn Giatrichuyen1namKhongColumn
+        {
+            get { return Schema.Columns[35]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn PhuhopvoiquidinhchuyentuyenColumn
+        {
+            get { return Schema.Columns[36]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn KhongphuhopColumn
+        {
+            get { return Schema.Columns[37]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn DudieukienchuyentuyenColumn
+        {
+            get { return Schema.Columns[38]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn KhongdudieukienchuyentuyenColumn
+        {
+            get { return Schema.Columns[39]; }
+        }
+        
+        
+        
         #endregion
 		#region Columns Struct
 		public struct Columns
@@ -1312,6 +1504,12 @@ namespace VMS.HIS.DAL
 			 public static string TthaiKydientu = @"tthai_kydientu";
 			 public static string NguoiKydientu = @"nguoi_kydientu";
 			 public static string NgayKydientu = @"ngay_kydientu";
+			 public static string Giatrichuyen1namCo = @"giatrichuyen_1nam_co";
+			 public static string Giatrichuyen1namKhong = @"giatrichuyen_1nam_khong";
+			 public static string Phuhopvoiquidinhchuyentuyen = @"phuhopvoiquidinhchuyentuyen";
+			 public static string Khongphuhop = @"khongphuhop";
+			 public static string Dudieukienchuyentuyen = @"dudieukienchuyentuyen";
+			 public static string Khongdudieukienchuyentuyen = @"khongdudieukienchuyentuyen";
 						
 		}
 		#endregion

@@ -529,7 +529,6 @@
             // 
             // cmdTonghop
             // 
-            this.cmdTonghop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cmdTonghop.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdTonghop.Image = ((System.Drawing.Image)(resources.GetObject("cmdTonghop.Image")));
             this.cmdTonghop.ImageSize = new System.Drawing.Size(20, 20);
@@ -560,7 +559,6 @@
             // 
             // cmdInphoiBHYT
             // 
-            this.cmdInphoiBHYT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdInphoiBHYT.Enabled = false;
             this.cmdInphoiBHYT.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdInphoiBHYT.Image = global::VMS.HIS.Noitru.Properties.Resources.printer_32;
@@ -780,7 +778,6 @@
             // 
             // cmdCtxOther
             // 
-            this.cmdCtxOther.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cmdCtxOther.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdCtxOther.ImageSize = new System.Drawing.Size(20, 20);
             this.cmdCtxOther.Location = new System.Drawing.Point(940, 7);
@@ -816,7 +813,7 @@
             this.grdAssignDetail.RecordNavigator = true;
             this.grdAssignDetail.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
             this.grdAssignDetail.SelectedFormatStyle.BackColor = System.Drawing.Color.SteelBlue;
-            this.grdAssignDetail.Size = new System.Drawing.Size(833, 553);
+            this.grdAssignDetail.Size = new System.Drawing.Size(833, 603);
             this.grdAssignDetail.TabIndex = 253;
             this.toolTip1.SetToolTip(this.grdAssignDetail, "Nhấn chuột phải để xóa từng chi tiết cận lâm sàng đang chọn");
             this.grdAssignDetail.TotalRow = Janus.Windows.GridEX.InheritableBoolean.True;
@@ -853,6 +850,7 @@
             this.uiButton2.TabIndex = 534;
             this.uiButton2.Text = "In chung phiếu";
             this.toolTip1.SetToolTip(this.uiButton2, "Nhấn vào đây để in phiếu CLS(Phím tắt Ctrl+P)");
+            this.uiButton2.Click += new System.EventHandler(this.uiButton2_Click);
             // 
             // cmdConfirm
             // 
@@ -911,6 +909,7 @@
             this.cmdInsertAssign.TabIndex = 0;
             this.cmdInsertAssign.Text = "Thêm";
             this.toolTip1.SetToolTip(this.cmdInsertAssign, "Nhấn vào đây để thêm phiếu chỉ định cận lâm sàng");
+            this.cmdInsertAssign.Click += new System.EventHandler(this.cmdInsertAssign_Click);
             // 
             // cmdPrintAssign
             // 
@@ -918,7 +917,7 @@
             this.cmdPrintAssign.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdPrintAssign.Image = ((System.Drawing.Image)(resources.GetObject("cmdPrintAssign.Image")));
             this.cmdPrintAssign.ImageSize = new System.Drawing.Size(20, 20);
-            this.cmdPrintAssign.Location = new System.Drawing.Point(223, 11);
+            this.cmdPrintAssign.Location = new System.Drawing.Point(223, -39);
             this.cmdPrintAssign.Name = "cmdPrintAssign";
             this.cmdPrintAssign.Size = new System.Drawing.Size(34, 26);
             this.cmdPrintAssign.TabIndex = 4;
@@ -1677,14 +1676,13 @@
             // 
             // splitContainer3.Panel1
             // 
-            this.splitContainer3.Panel1.Controls.Add(this.cmdViewPdf2);
             this.splitContainer3.Panel1.Controls.Add(this.grdAssignDetail);
             // 
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.uiTabKqCls);
             this.splitContainer3.Panel2Collapsed = true;
-            this.splitContainer3.Size = new System.Drawing.Size(833, 553);
+            this.splitContainer3.Size = new System.Drawing.Size(833, 603);
             this.splitContainer3.SplitterDistance = 277;
             this.splitContainer3.SplitterWidth = 3;
             this.splitContainer3.TabIndex = 563;
@@ -1695,7 +1693,7 @@
             this.cmdViewPdf2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.cmdViewPdf2.Image = ((System.Drawing.Image)(resources.GetObject("cmdViewPdf2.Image")));
             this.cmdViewPdf2.ImageSize = new System.Drawing.Size(30, 30);
-            this.cmdViewPdf2.Location = new System.Drawing.Point(0, 0);
+            this.cmdViewPdf2.Location = new System.Drawing.Point(911, 69);
             this.cmdViewPdf2.Name = "cmdViewPdf2";
             this.cmdViewPdf2.Size = new System.Drawing.Size(35, 35);
             this.cmdViewPdf2.TabIndex = 562;
@@ -1952,9 +1950,9 @@
             this.pnlCLS.Controls.Add(this.chkIntach);
             this.pnlCLS.Controls.Add(this.cmdPrintAssign);
             this.pnlCLS.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlCLS.Location = new System.Drawing.Point(0, 553);
+            this.pnlCLS.Location = new System.Drawing.Point(0, 603);
             this.pnlCLS.Name = "pnlCLS";
-            this.pnlCLS.Size = new System.Drawing.Size(833, 50);
+            this.pnlCLS.Size = new System.Drawing.Size(833, 0);
             this.pnlCLS.TabIndex = 1;
             // 
             // flowCls
@@ -1970,7 +1968,7 @@
             this.flowCls.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.flowCls.Location = new System.Drawing.Point(-3, 0);
             this.flowCls.Name = "flowCls";
-            this.flowCls.Size = new System.Drawing.Size(836, 50);
+            this.flowCls.Size = new System.Drawing.Size(836, 0);
             this.flowCls.TabIndex = 440;
             // 
             // cmdViewPDF
@@ -1998,6 +1996,7 @@
             this.cmdIntachPhieu.Size = new System.Drawing.Size(110, 29);
             this.cmdIntachPhieu.TabIndex = 535;
             this.cmdIntachPhieu.Text = "In tách phiếu";
+            this.cmdIntachPhieu.Click += new System.EventHandler(this.cmdIntachPhieu_Click);
             // 
             // cboServicePrint
             // 
@@ -2020,7 +2019,7 @@
             uiComboBoxItem4,
             uiComboBoxItem5,
             uiComboBoxItem6});
-            this.cboServicePrint.Location = new System.Drawing.Point(76, 15);
+            this.cboServicePrint.Location = new System.Drawing.Point(76, -35);
             this.cboServicePrint.Name = "cboServicePrint";
             this.cboServicePrint.Size = new System.Drawing.Size(142, 21);
             this.cboServicePrint.TabIndex = 438;
@@ -2033,7 +2032,7 @@
             // 
             this.chkIntach.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.chkIntach.AutoSize = true;
-            this.chkIntach.Location = new System.Drawing.Point(9, 17);
+            this.chkIntach.Location = new System.Drawing.Point(9, -33);
             this.chkIntach.Name = "chkIntach";
             this.chkIntach.Size = new System.Drawing.Size(69, 19);
             this.chkIntach.TabIndex = 16;
@@ -2612,6 +2611,7 @@
             // 
             // pnlPatientInfor
             // 
+            this.pnlPatientInfor.Controls.Add(this.cmdViewPdf2);
             this.pnlPatientInfor.Controls.Add(this.cmdgetPatient);
             this.pnlPatientInfor.Controls.Add(this.cboKhoanoitru);
             this.pnlPatientInfor.Controls.Add(this.cmdconfig2);
@@ -3038,7 +3038,6 @@
             // 
             // cmdInchiphiKCB
             // 
-            this.cmdInchiphiKCB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cmdInchiphiKCB.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdInchiphiKCB.Image = ((System.Drawing.Image)(resources.GetObject("cmdInchiphiKCB.Image")));
             this.cmdInchiphiKCB.ImageSize = new System.Drawing.Size(20, 20);
@@ -3052,7 +3051,6 @@
             // 
             // cmdTongketBA
             // 
-            this.cmdTongketBA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cmdTongketBA.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdTongketBA.Image = ((System.Drawing.Image)(resources.GetObject("cmdTongketBA.Image")));
             this.cmdTongketBA.ImageSize = new System.Drawing.Size(20, 20);

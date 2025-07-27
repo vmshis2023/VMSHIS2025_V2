@@ -704,7 +704,7 @@ namespace VMS.HIS.UI.EMR
             objPhieukhamNamkhoa.ThetichtinhhoanTrai = Utility.sDbnull(txt_tinhoan_thetich_trai.Text);
             objPhieukhamNamkhoa.MatdotinhhoanTrai = Utility.sDbnull(txt_matdotinhoan_trai.Text);
             objPhieukhamNamkhoa.MatdotinhhoanTraiChac = opt_matdotinhhoantrai_chac.Checked;
-            objPhieukhamNamkhoa.MatdotinhhoanTraiMem = opt_matdomaotinhtrai_mem.Checked;
+            objPhieukhamNamkhoa.MatdotinhhoanTraiMem = opt_matdotinhhoantrai_mem.Checked;
             objPhieukhamNamkhoa.BemattinhoanTrai = Utility.sDbnull(txt_bemattinhhoan_trai.Text);
             //Mào tinh
             objPhieukhamNamkhoa.MatdomaotinhPhai = Utility.sDbnull(txt_matdomaotinh_phai.Text);
@@ -798,41 +798,49 @@ namespace VMS.HIS.UI.EMR
         private void opt_hatinhoanan_co_CheckedChanged(object sender, EventArgs e)
         {
             txt_hatinhhoan_mota.Enabled = opt_hatinhoanan_co.Checked;
+            txt_hatinhhoan_mota.Focus();
         }
 
         private void opt_thatongdantinh_co_CheckedChanged(object sender, EventArgs e)
         {
             txt_thatongdantinh_mota.Enabled = opt_thatongdantinh_co.Checked;
+            txt_thatongdantinh_mota.Focus();
         }
 
         private void opt_roiloancuongduong_co_CheckedChanged(object sender, EventArgs e)
         {
             txt_roiloancuongduong_mota.Enabled = opt_roiloancuongduong_co.Checked;
+            txt_roiloancuongduong_mota.Focus();
         }
 
         private void opt_sudungchatboitron_co_CheckedChanged(object sender, EventArgs e)
         {
             txt_chatboitron_mota.Enabled = opt_sudungchatboitron_co.Checked;
+            txt_chatboitron_mota.Focus();
         }
 
         private void opt_bienchungtinhhoan_co_CheckedChanged(object sender, EventArgs e)
         {
             txt_bienchungtinhhoan_mota.Enabled = opt_bienchungtinhhoan_co.Checked;
+            txt_bienchungtinhhoan_mota.Focus();
         }
 
         private void opt_benhxahoi_co_CheckedChanged(object sender, EventArgs e)
         {
             txt_benhxahoi_mota.Enabled = opt_benhxahoi_co.Checked;
+            txt_benhxahoi_mota.Focus();
         }
 
         private void opt_ungthu_co_CheckedChanged(object sender, EventArgs e)
         {
             txt_ungthu_mota.Enabled = opt_ungthu_co.Checked;
+            txt_ungthu_mota.Focus();
         }
 
         private void opt_sudungtestosteron_co_CheckedChanged(object sender, EventArgs e)
         {
             txt_testosteron_mota.Enabled = opt_sudungtestosteron_co.Checked;
+            txt_testosteron_mota.Focus();
         }
     }
 }

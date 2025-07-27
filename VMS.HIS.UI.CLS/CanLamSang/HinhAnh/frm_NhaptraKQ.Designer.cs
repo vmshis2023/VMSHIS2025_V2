@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_NhaptraKQ));
             Janus.Windows.GridEX.GridEXLayout gridEX1_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.GridEX.GridEXLayout grdKetqua_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
@@ -47,18 +46,20 @@
             this.pnlNhapKQ = new System.Windows.Forms.Panel();
             this.pnlCkeditor = new System.Windows.Forms.Panel();
             this.pnlMainCkeditor = new System.Windows.Forms.Panel();
-            this.cmdShowHistory = new Janus.Windows.EditControls.UIButton();
-            this.label16 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.pnlMota = new System.Windows.Forms.Panel();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
-            this.txtDenghi = new Janus.Windows.GridEX.EditControls.EditBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.txtKet_Luan = new System.Windows.Forms.RichTextBox();
-            this.label17 = new System.Windows.Forms.Label();
             this.pnlHistoryCKEditor = new System.Windows.Forms.Panel();
             this.webBrowserHistory = new System.Windows.Forms.WebBrowser();
             this.cboDichvu = new System.Windows.Forms.ComboBox();
+            this.cmdShowHistory = new Janus.Windows.EditControls.UIButton();
+            this.label16 = new System.Windows.Forms.Label();
+            this.txtDenghi = new Janus.Windows.GridEX.EditControls.EditBox();
+            this.lblDenghi = new System.Windows.Forms.Label();
+            this.txtKet_Luan = new System.Windows.Forms.RichTextBox();
+            this.lblKetluan = new System.Windows.Forms.Label();
             this.flowDynamics = new System.Windows.Forms.FlowLayoutPanel();
-            this.ctxCkEditor = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ctxCkEditor = new System.Windows.Forms.ContextMenuStrip();
             this.mnuRefresh = new System.Windows.Forms.ToolStripMenuItem();
             this.grbSelectedImgs = new Janus.Windows.EditControls.UIGroupBox();
             this.pnlImgs = new System.Windows.Forms.FlowLayoutPanel();
@@ -83,11 +84,11 @@
             this.uiTabPageKQXN = new Janus.Windows.UI.Tab.UITabPage();
             this.cmdViewPdf2 = new Janus.Windows.EditControls.UIButton();
             this.grdKetqua = new Janus.Windows.GridEX.GridEX();
-            this.ctxKQXN = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ctxKQXN = new System.Windows.Forms.ContextMenuStrip();
             this.mnuRefreshKQXN = new System.Windows.Forms.ToolStripMenuItem();
             this.uiTabPageDonthuoc = new Janus.Windows.UI.Tab.UITabPage();
             this.grdPresDetail = new Janus.Windows.GridEX.GridEX();
-            this.ctxDonthuoc = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ctxDonthuoc = new System.Windows.Forms.ContextMenuStrip();
             this.mnuRefreshDonthuoc = new System.Windows.Forms.ToolStripMenuItem();
             this.uiGroupBox8 = new Janus.Windows.EditControls.UIGroupBox();
             this.cmdSaveAndPrint = new Janus.Windows.EditControls.UIButton();
@@ -149,24 +150,24 @@
             this.txtObjectType_Name = new Janus.Windows.GridEX.EditControls.EditBox();
             this.label26 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
             this.toolChooseBN = new System.Windows.Forms.ToolStripMenuItem();
             this.toolAccept = new System.Windows.Forms.ToolStripMenuItem();
             this.toolUnAccept = new System.Windows.Forms.ToolStripMenuItem();
             this.toolPrintRadio = new System.Windows.Forms.ToolStripMenuItem();
-            this.ctxImage = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ctxImage = new System.Windows.Forms.ContextMenuStrip();
             this.mnuBrowseImage = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDeleteImage = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuView = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.gridEXExporter1 = new Janus.Windows.GridEX.Export.GridEXExporter(this.components);
-            this.gridEXExporter2 = new Janus.Windows.GridEX.Export.GridEXExporter(this.components);
+            this.gridEXExporter1 = new Janus.Windows.GridEX.Export.GridEXExporter();
+            this.gridEXExporter2 = new Janus.Windows.GridEX.Export.GridEXExporter();
             this.uiGroupBox13 = new Janus.Windows.EditControls.UIGroupBox();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTip1 = new System.Windows.Forms.ToolTip();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.timer2 = new System.Windows.Forms.Timer(this.components);
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timer2 = new System.Windows.Forms.Timer();
+            this.timer1 = new System.Windows.Forms.Timer();
             this.uiTab1 = new Janus.Windows.UI.Tab.UITab();
             this.uiTabPageKQ = new Janus.Windows.UI.Tab.UITabPage();
             this.uiTabPageCauhinh = new Janus.Windows.UI.Tab.UITabPage();
@@ -179,7 +180,7 @@
             this.vbLine2 = new VNS.UCs.VBLine();
             this.vbLine1 = new VNS.UCs.VBLine();
             this.chkInsauluu = new Janus.Windows.EditControls.UICheckBox();
-            this.ctxFunctions = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ctxFunctions = new System.Windows.Forms.ContextMenuStrip();
             this.mnuLuu_In = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuViewPDF = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
@@ -188,7 +189,7 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuHuyKQ = new System.Windows.Forms.ToolStripMenuItem();
             this.lblImgSize = new System.Windows.Forms.Label();
-            this.timer3 = new System.Windows.Forms.Timer(this.components);
+            this.timer3 = new System.Windows.Forms.Timer();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TabInfo)).BeginInit();
             this.TabInfo.SuspendLayout();
@@ -202,6 +203,7 @@
             this.pnlNhapKQ.SuspendLayout();
             this.pnlCkeditor.SuspendLayout();
             this.pnlMainCkeditor.SuspendLayout();
+            this.pnlMota.SuspendLayout();
             this.pnlHistoryCKEditor.SuspendLayout();
             this.ctxCkEditor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grbSelectedImgs)).BeginInit();
@@ -244,9 +246,9 @@
             this.toolStripStatusLabel4,
             this.toolStripStatusLabel5,
             this.lblMsg});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 789);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 773);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1331, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1451, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -286,7 +288,7 @@
             // 
             this.lblMsg.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMsg.Name = "lblMsg";
-            this.lblMsg.Size = new System.Drawing.Size(751, 17);
+            this.lblMsg.Size = new System.Drawing.Size(871, 17);
             this.lblMsg.Spring = true;
             this.lblMsg.Text = "Thông báo";
             // 
@@ -297,7 +299,7 @@
             this.TabInfo.ImageSize = new System.Drawing.Size(20, 20);
             this.TabInfo.Location = new System.Drawing.Point(0, 0);
             this.TabInfo.Name = "TabInfo";
-            this.TabInfo.Size = new System.Drawing.Size(1327, 597);
+            this.TabInfo.Size = new System.Drawing.Size(1447, 581);
             this.TabInfo.TabIndex = 0;
             this.TabInfo.TabPages.AddRange(new Janus.Windows.UI.Tab.UITabPage[] {
             this.tabCapNhap,
@@ -315,7 +317,7 @@
             this.tabCapNhap.Image = ((System.Drawing.Image)(resources.GetObject("tabCapNhap.Image")));
             this.tabCapNhap.Location = new System.Drawing.Point(1, 27);
             this.tabCapNhap.Name = "tabCapNhap";
-            this.tabCapNhap.Size = new System.Drawing.Size(1325, 569);
+            this.tabCapNhap.Size = new System.Drawing.Size(1445, 553);
             this.tabCapNhap.TabStop = true;
             this.tabCapNhap.Text = "Kết quả chẩn đoán";
             // 
@@ -327,7 +329,7 @@
             this.grpChiDinhCLS.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpChiDinhCLS.Location = new System.Drawing.Point(0, 0);
             this.grpChiDinhCLS.Name = "grpChiDinhCLS";
-            this.grpChiDinhCLS.Size = new System.Drawing.Size(1325, 569);
+            this.grpChiDinhCLS.Size = new System.Drawing.Size(1445, 553);
             this.grpChiDinhCLS.TabIndex = 1;
             this.grpChiDinhCLS.Text = "Thông tin kết quả";
             this.grpChiDinhCLS.VisualStyle = Janus.Windows.UI.Dock.PanelVisualStyle.UseDefault;
@@ -345,8 +347,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.grbSelectedImgs);
-            this.splitContainer1.Size = new System.Drawing.Size(1319, 549);
-            this.splitContainer1.SplitterDistance = 1043;
+            this.splitContainer1.Size = new System.Drawing.Size(1439, 533);
+            this.splitContainer1.SplitterDistance = 1137;
             this.splitContainer1.TabIndex = 77;
             // 
             // pnlNhapKQ
@@ -356,33 +358,96 @@
             this.pnlNhapKQ.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlNhapKQ.Location = new System.Drawing.Point(0, 0);
             this.pnlNhapKQ.Name = "pnlNhapKQ";
-            this.pnlNhapKQ.Size = new System.Drawing.Size(1043, 549);
+            this.pnlNhapKQ.Size = new System.Drawing.Size(1137, 533);
             this.pnlNhapKQ.TabIndex = 76;
             // 
             // pnlCkeditor
             // 
             this.pnlCkeditor.Controls.Add(this.pnlMainCkeditor);
-            this.pnlCkeditor.Controls.Add(this.pnlHistoryCKEditor);
             this.pnlCkeditor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlCkeditor.Location = new System.Drawing.Point(0, 0);
             this.pnlCkeditor.Name = "pnlCkeditor";
-            this.pnlCkeditor.Size = new System.Drawing.Size(1043, 549);
+            this.pnlCkeditor.Size = new System.Drawing.Size(1137, 533);
             this.pnlCkeditor.TabIndex = 76;
             // 
             // pnlMainCkeditor
             // 
+            this.pnlMainCkeditor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlMainCkeditor.Controls.Add(this.panel2);
+            this.pnlMainCkeditor.Controls.Add(this.pnlMota);
             this.pnlMainCkeditor.Controls.Add(this.cmdShowHistory);
             this.pnlMainCkeditor.Controls.Add(this.label16);
-            this.pnlMainCkeditor.Controls.Add(this.webBrowser1);
             this.pnlMainCkeditor.Controls.Add(this.txtDenghi);
-            this.pnlMainCkeditor.Controls.Add(this.label18);
+            this.pnlMainCkeditor.Controls.Add(this.lblDenghi);
             this.pnlMainCkeditor.Controls.Add(this.txtKet_Luan);
-            this.pnlMainCkeditor.Controls.Add(this.label17);
-            this.pnlMainCkeditor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlMainCkeditor.Controls.Add(this.lblKetluan);
             this.pnlMainCkeditor.Location = new System.Drawing.Point(0, 0);
             this.pnlMainCkeditor.Name = "pnlMainCkeditor";
-            this.pnlMainCkeditor.Size = new System.Drawing.Size(522, 549);
+            this.pnlMainCkeditor.Size = new System.Drawing.Size(1134, 533);
             this.pnlMainCkeditor.TabIndex = 64;
+            // 
+            // panel2
+            // 
+            this.panel2.Location = new System.Drawing.Point(14, 262);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(56, 97);
+            this.panel2.TabIndex = 507;
+            this.panel2.Visible = false;
+            // 
+            // pnlMota
+            // 
+            this.pnlMota.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlMota.Controls.Add(this.webBrowser1);
+            this.pnlMota.Controls.Add(this.pnlHistoryCKEditor);
+            this.pnlMota.Location = new System.Drawing.Point(82, 8);
+            this.pnlMota.Name = "pnlMota";
+            this.pnlMota.Size = new System.Drawing.Size(1045, 420);
+            this.pnlMota.TabIndex = 506;
+            // 
+            // webBrowser1
+            // 
+            this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webBrowser1.Location = new System.Drawing.Point(0, 0);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser1.Name = "webBrowser1";
+            this.webBrowser1.ScriptErrorsSuppressed = true;
+            this.webBrowser1.Size = new System.Drawing.Size(524, 420);
+            this.webBrowser1.TabIndex = 74;
+            // 
+            // pnlHistoryCKEditor
+            // 
+            this.pnlHistoryCKEditor.Controls.Add(this.webBrowserHistory);
+            this.pnlHistoryCKEditor.Controls.Add(this.cboDichvu);
+            this.pnlHistoryCKEditor.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pnlHistoryCKEditor.Location = new System.Drawing.Point(524, 0);
+            this.pnlHistoryCKEditor.Name = "pnlHistoryCKEditor";
+            this.pnlHistoryCKEditor.Size = new System.Drawing.Size(521, 420);
+            this.pnlHistoryCKEditor.TabIndex = 65;
+            // 
+            // webBrowserHistory
+            // 
+            this.webBrowserHistory.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webBrowserHistory.Location = new System.Drawing.Point(0, 23);
+            this.webBrowserHistory.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowserHistory.Name = "webBrowserHistory";
+            this.webBrowserHistory.ScriptErrorsSuppressed = true;
+            this.webBrowserHistory.Size = new System.Drawing.Size(521, 397);
+            this.webBrowserHistory.TabIndex = 74;
+            // 
+            // cboDichvu
+            // 
+            this.cboDichvu.Dock = System.Windows.Forms.DockStyle.Top;
+            this.cboDichvu.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboDichvu.FormattingEnabled = true;
+            this.cboDichvu.Location = new System.Drawing.Point(0, 0);
+            this.cboDichvu.Name = "cboDichvu";
+            this.cboDichvu.Size = new System.Drawing.Size(521, 23);
+            this.cboDichvu.TabIndex = 497;
+            this.cboDichvu.SelectedIndexChanged += new System.EventHandler(this.cboDichvu_SelectedIndexChanged);
             // 
             // cmdShowHistory
             // 
@@ -407,40 +472,28 @@
             this.label16.Text = "Mô tả:";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // webBrowser1
-            // 
-            this.webBrowser1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.webBrowser1.Location = new System.Drawing.Point(82, 9);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.ScriptErrorsSuppressed = true;
-            this.webBrowser1.Size = new System.Drawing.Size(433, 535);
-            this.webBrowser1.TabIndex = 74;
-            // 
             // txtDenghi
             // 
             this.txtDenghi.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDenghi.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDenghi.Location = new System.Drawing.Point(82, 523);
+            this.txtDenghi.Location = new System.Drawing.Point(82, 507);
             this.txtDenghi.Name = "txtDenghi";
-            this.txtDenghi.Size = new System.Drawing.Size(433, 21);
+            this.txtDenghi.Size = new System.Drawing.Size(1045, 21);
             this.txtDenghi.TabIndex = 71;
             this.txtDenghi.Visible = false;
             // 
-            // label18
+            // lblDenghi
             // 
-            this.label18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(6, 525);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(68, 15);
-            this.label18.TabIndex = 75;
-            this.label18.Text = "Đề nghị:";
-            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label18.Visible = false;
+            this.lblDenghi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblDenghi.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDenghi.Location = new System.Drawing.Point(6, 505);
+            this.lblDenghi.Name = "lblDenghi";
+            this.lblDenghi.Size = new System.Drawing.Size(68, 23);
+            this.lblDenghi.TabIndex = 75;
+            this.lblDenghi.Text = "Đề nghị:";
+            this.lblDenghi.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblDenghi.Visible = false;
             // 
             // txtKet_Luan
             // 
@@ -449,55 +502,24 @@
             this.txtKet_Luan.BackColor = System.Drawing.Color.White;
             this.txtKet_Luan.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtKet_Luan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtKet_Luan.Location = new System.Drawing.Point(82, 450);
+            this.txtKet_Luan.Location = new System.Drawing.Point(82, 434);
             this.txtKet_Luan.Name = "txtKet_Luan";
-            this.txtKet_Luan.Size = new System.Drawing.Size(433, 67);
+            this.txtKet_Luan.Size = new System.Drawing.Size(1045, 67);
             this.txtKet_Luan.TabIndex = 70;
             this.txtKet_Luan.Text = "";
             this.txtKet_Luan.Visible = false;
             // 
-            // label17
+            // lblKetluan
             // 
-            this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(8, 450);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(68, 16);
-            this.label17.TabIndex = 73;
-            this.label17.Text = "Kết luận :";
-            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label17.Visible = false;
-            // 
-            // pnlHistoryCKEditor
-            // 
-            this.pnlHistoryCKEditor.Controls.Add(this.webBrowserHistory);
-            this.pnlHistoryCKEditor.Controls.Add(this.cboDichvu);
-            this.pnlHistoryCKEditor.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlHistoryCKEditor.Location = new System.Drawing.Point(522, 0);
-            this.pnlHistoryCKEditor.Name = "pnlHistoryCKEditor";
-            this.pnlHistoryCKEditor.Size = new System.Drawing.Size(521, 549);
-            this.pnlHistoryCKEditor.TabIndex = 65;
-            // 
-            // webBrowserHistory
-            // 
-            this.webBrowserHistory.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webBrowserHistory.Location = new System.Drawing.Point(0, 23);
-            this.webBrowserHistory.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowserHistory.Name = "webBrowserHistory";
-            this.webBrowserHistory.ScriptErrorsSuppressed = true;
-            this.webBrowserHistory.Size = new System.Drawing.Size(521, 526);
-            this.webBrowserHistory.TabIndex = 74;
-            // 
-            // cboDichvu
-            // 
-            this.cboDichvu.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cboDichvu.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboDichvu.FormattingEnabled = true;
-            this.cboDichvu.Location = new System.Drawing.Point(0, 0);
-            this.cboDichvu.Name = "cboDichvu";
-            this.cboDichvu.Size = new System.Drawing.Size(521, 23);
-            this.cboDichvu.TabIndex = 497;
-            this.cboDichvu.SelectedIndexChanged += new System.EventHandler(this.cboDichvu_SelectedIndexChanged);
+            this.lblKetluan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblKetluan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblKetluan.Location = new System.Drawing.Point(8, 434);
+            this.lblKetluan.Name = "lblKetluan";
+            this.lblKetluan.Size = new System.Drawing.Size(68, 67);
+            this.lblKetluan.TabIndex = 73;
+            this.lblKetluan.Text = "Kết luận :";
+            this.lblKetluan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblKetluan.Visible = false;
             // 
             // flowDynamics
             // 
@@ -506,7 +528,7 @@
             this.flowDynamics.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowDynamics.Location = new System.Drawing.Point(0, 0);
             this.flowDynamics.Name = "flowDynamics";
-            this.flowDynamics.Size = new System.Drawing.Size(1043, 549);
+            this.flowDynamics.Size = new System.Drawing.Size(1137, 533);
             this.flowDynamics.TabIndex = 76;
             // 
             // ctxCkEditor
@@ -533,7 +555,7 @@
             this.grbSelectedImgs.Location = new System.Drawing.Point(0, 0);
             this.grbSelectedImgs.Margin = new System.Windows.Forms.Padding(4);
             this.grbSelectedImgs.Name = "grbSelectedImgs";
-            this.grbSelectedImgs.Size = new System.Drawing.Size(272, 549);
+            this.grbSelectedImgs.Size = new System.Drawing.Size(298, 533);
             this.grbSelectedImgs.TabIndex = 76;
             this.grbSelectedImgs.Text = "Hình ảnh đã chọn in";
             // 
@@ -545,7 +567,7 @@
             this.pnlImgs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlImgs.Location = new System.Drawing.Point(3, 71);
             this.pnlImgs.Name = "pnlImgs";
-            this.pnlImgs.Size = new System.Drawing.Size(266, 475);
+            this.pnlImgs.Size = new System.Drawing.Size(292, 459);
             this.pnlImgs.TabIndex = 63;
             // 
             // cmdChupAnh
@@ -556,7 +578,7 @@
             this.cmdChupAnh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdChupAnh.Location = new System.Drawing.Point(3, 18);
             this.cmdChupAnh.Name = "cmdChupAnh";
-            this.cmdChupAnh.Size = new System.Drawing.Size(266, 53);
+            this.cmdChupAnh.Size = new System.Drawing.Size(292, 53);
             this.cmdChupAnh.TabIndex = 62;
             this.cmdChupAnh.Text = "Chụp ảnh(F9)";
             this.cmdChupAnh.UseVisualStyleBackColor = true;
@@ -565,7 +587,7 @@
             // 
             this.cmdSaveBookMark.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdSaveBookMark.Image = ((System.Drawing.Image)(resources.GetObject("cmdSaveBookMark.Image")));
-            this.cmdSaveBookMark.Location = new System.Drawing.Point(1388, 487);
+            this.cmdSaveBookMark.Location = new System.Drawing.Point(1508, 471);
             this.cmdSaveBookMark.Name = "cmdSaveBookMark";
             this.cmdSaveBookMark.Size = new System.Drawing.Size(106, 27);
             this.cmdSaveBookMark.TabIndex = 27;
@@ -937,9 +959,9 @@
             this.uiGroupBox8.Controls.Add(this.cmdDuyet);
             this.uiGroupBox8.Controls.Add(this.cmdHuyduyet);
             this.uiGroupBox8.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.uiGroupBox8.Location = new System.Drawing.Point(0, 717);
+            this.uiGroupBox8.Location = new System.Drawing.Point(0, 701);
             this.uiGroupBox8.Name = "uiGroupBox8";
-            this.uiGroupBox8.Size = new System.Drawing.Size(1327, 46);
+            this.uiGroupBox8.Size = new System.Drawing.Size(1447, 46);
             this.uiGroupBox8.TabIndex = 2;
             this.uiGroupBox8.VisualStyle = Janus.Windows.UI.Dock.PanelVisualStyle.Office2003;
             // 
@@ -949,7 +971,7 @@
             this.cmdSaveAndPrint.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdSaveAndPrint.Image = ((System.Drawing.Image)(resources.GetObject("cmdSaveAndPrint.Image")));
             this.cmdSaveAndPrint.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdSaveAndPrint.Location = new System.Drawing.Point(153, 7);
+            this.cmdSaveAndPrint.Location = new System.Drawing.Point(273, 7);
             this.cmdSaveAndPrint.Name = "cmdSaveAndPrint";
             this.cmdSaveAndPrint.Size = new System.Drawing.Size(10, 36);
             this.cmdSaveAndPrint.TabIndex = 558;
@@ -964,7 +986,7 @@
             this.cmdchucnang.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
             this.cmdchucnang.Image = ((System.Drawing.Image)(resources.GetObject("cmdchucnang.Image")));
             this.cmdchucnang.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdchucnang.Location = new System.Drawing.Point(659, 9);
+            this.cmdchucnang.Location = new System.Drawing.Point(779, 9);
             this.cmdchucnang.Name = "cmdchucnang";
             this.cmdchucnang.Size = new System.Drawing.Size(149, 35);
             this.cmdchucnang.TabIndex = 555;
@@ -1006,7 +1028,7 @@
             this.cboLaserPrinters.FormattingEnabled = true;
             this.cboLaserPrinters.Location = new System.Drawing.Point(449, 13);
             this.cboLaserPrinters.Name = "cboLaserPrinters";
-            this.cboLaserPrinters.Size = new System.Drawing.Size(175, 23);
+            this.cboLaserPrinters.Size = new System.Drawing.Size(295, 23);
             this.cboLaserPrinters.TabIndex = 505;
             // 
             // cmdConfig
@@ -1057,7 +1079,7 @@
             this.cmdExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdExit.Image = ((System.Drawing.Image)(resources.GetObject("cmdExit.Image")));
             this.cmdExit.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdExit.Location = new System.Drawing.Point(1204, 7);
+            this.cmdExit.Location = new System.Drawing.Point(1324, 7);
             this.cmdExit.Name = "cmdExit";
             this.cmdExit.Size = new System.Drawing.Size(124, 36);
             this.cmdExit.TabIndex = 95;
@@ -1070,7 +1092,7 @@
             this.cmdPrint.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdPrint.Image = ((System.Drawing.Image)(resources.GetObject("cmdPrint.Image")));
             this.cmdPrint.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdPrint.Location = new System.Drawing.Point(944, 8);
+            this.cmdPrint.Location = new System.Drawing.Point(1064, 8);
             this.cmdPrint.Name = "cmdPrint";
             this.cmdPrint.Size = new System.Drawing.Size(124, 36);
             this.cmdPrint.TabIndex = 93;
@@ -1083,7 +1105,7 @@
             this.cmdSave.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdSave.Image = ((System.Drawing.Image)(resources.GetObject("cmdSave.Image")));
             this.cmdSave.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdSave.Location = new System.Drawing.Point(814, 8);
+            this.cmdSave.Location = new System.Drawing.Point(934, 8);
             this.cmdSave.Name = "cmdSave";
             this.cmdSave.Size = new System.Drawing.Size(124, 36);
             this.cmdSave.TabIndex = 91;
@@ -1097,7 +1119,7 @@
             this.cmdSend2PACS.Image = ((System.Drawing.Image)(resources.GetObject("cmdSend2PACS.Image")));
             this.cmdSend2PACS.ImageHorizontalAlignment = Janus.Windows.EditControls.ImageHorizontalAlignment.AfterText;
             this.cmdSend2PACS.ImageSize = new System.Drawing.Size(20, 20);
-            this.cmdSend2PACS.Location = new System.Drawing.Point(1306, 8);
+            this.cmdSend2PACS.Location = new System.Drawing.Point(1426, 8);
             this.cmdSend2PACS.Name = "cmdSend2PACS";
             this.cmdSend2PACS.Size = new System.Drawing.Size(10, 36);
             this.cmdSend2PACS.TabIndex = 506;
@@ -1109,7 +1131,7 @@
             this.cmdSaveAndAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdSaveAndAccept.Image = ((System.Drawing.Image)(resources.GetObject("cmdSaveAndAccept.Image")));
             this.cmdSaveAndAccept.ImageSize = new System.Drawing.Size(20, 20);
-            this.cmdSaveAndAccept.Location = new System.Drawing.Point(1306, 11);
+            this.cmdSaveAndAccept.Location = new System.Drawing.Point(1426, 11);
             this.cmdSaveAndAccept.Name = "cmdSaveAndAccept";
             this.cmdSaveAndAccept.Size = new System.Drawing.Size(10, 27);
             this.cmdSaveAndAccept.TabIndex = 92;
@@ -1122,7 +1144,7 @@
             this.cmdDuyet.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdDuyet.Image = ((System.Drawing.Image)(resources.GetObject("cmdDuyet.Image")));
             this.cmdDuyet.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdDuyet.Location = new System.Drawing.Point(1074, 8);
+            this.cmdDuyet.Location = new System.Drawing.Point(1194, 8);
             this.cmdDuyet.Name = "cmdDuyet";
             this.cmdDuyet.Size = new System.Drawing.Size(124, 36);
             this.cmdDuyet.TabIndex = 556;
@@ -1136,7 +1158,7 @@
             this.cmdHuyduyet.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdHuyduyet.Image = ((System.Drawing.Image)(resources.GetObject("cmdHuyduyet.Image")));
             this.cmdHuyduyet.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdHuyduyet.Location = new System.Drawing.Point(1074, 8);
+            this.cmdHuyduyet.Location = new System.Drawing.Point(1194, 8);
             this.cmdHuyduyet.Name = "cmdHuyduyet";
             this.cmdHuyduyet.Size = new System.Drawing.Size(124, 36);
             this.cmdHuyduyet.TabIndex = 557;
@@ -1244,7 +1266,7 @@
             this.grbInfor.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grbInfor.Location = new System.Drawing.Point(0, 0);
             this.grbInfor.Name = "grbInfor";
-            this.grbInfor.Size = new System.Drawing.Size(1327, 120);
+            this.grbInfor.Size = new System.Drawing.Size(1447, 120);
             this.grbInfor.TabIndex = 4;
             this.grbInfor.TabStop = false;
             this.grbInfor.Text = "Thông tin Bệnh nhân";
@@ -1254,7 +1276,7 @@
             this.txtNoidungHistory.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtNoidungHistory.BackColor = System.Drawing.Color.White;
             this.txtNoidungHistory.Font = new System.Drawing.Font("Arial", 9F);
-            this.txtNoidungHistory.Location = new System.Drawing.Point(654, 50);
+            this.txtNoidungHistory.Location = new System.Drawing.Point(714, 50);
             this.txtNoidungHistory.Name = "txtNoidungHistory";
             this.txtNoidungHistory.ReadOnly = true;
             this.txtNoidungHistory.Size = new System.Drawing.Size(19, 21);
@@ -1303,7 +1325,7 @@
             this.txtCD.Location = new System.Drawing.Point(878, 44);
             this.txtCD.Name = "txtCD";
             this.txtCD.ReadOnly = true;
-            this.txtCD.Size = new System.Drawing.Size(412, 21);
+            this.txtCD.Size = new System.Drawing.Size(532, 21);
             this.txtCD.TabIndex = 499;
             this.txtCD.TabStop = false;
             // 
@@ -1352,7 +1374,7 @@
             this.cmdHide.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdHide.Image = global::VMS.HIS.Cls.Properties.Resources.Up01;
             this.cmdHide.ImageSize = new System.Drawing.Size(20, 20);
-            this.cmdHide.Location = new System.Drawing.Point(1292, 18);
+            this.cmdHide.Location = new System.Drawing.Point(1412, 18);
             this.cmdHide.Margin = new System.Windows.Forms.Padding(4);
             this.cmdHide.Name = "cmdHide";
             this.cmdHide.Size = new System.Drawing.Size(25, 25);
@@ -1441,7 +1463,7 @@
             this.cboDoc.FormattingEnabled = true;
             this.cboDoc.Location = new System.Drawing.Point(878, 90);
             this.cboDoc.Name = "cboDoc";
-            this.cboDoc.Size = new System.Drawing.Size(412, 23);
+            this.cboDoc.Size = new System.Drawing.Size(532, 23);
             this.cboDoc.TabIndex = 489;
             this.cboDoc.TabStop = false;
             this.cboDoc.SelectedIndexChanged += new System.EventHandler(this.cboDoc_SelectedIndexChanged);
@@ -1477,7 +1499,7 @@
             this.txtNoiDung.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtNoiDung.BackColor = System.Drawing.Color.White;
             this.txtNoiDung.Font = new System.Drawing.Font("Arial", 9F);
-            this.txtNoiDung.Location = new System.Drawing.Point(1136, 162);
+            this.txtNoiDung.Location = new System.Drawing.Point(1196, 162);
             this.txtNoiDung.Name = "txtNoiDung";
             this.txtNoiDung.ReadOnly = true;
             this.txtNoiDung.Size = new System.Drawing.Size(19, 21);
@@ -1489,7 +1511,7 @@
             // 
             this.cboHinhAnh.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cboHinhAnh.FormattingEnabled = true;
-            this.cboHinhAnh.Location = new System.Drawing.Point(1134, 138);
+            this.cboHinhAnh.Location = new System.Drawing.Point(1194, 138);
             this.cboHinhAnh.Name = "cboHinhAnh";
             this.cboHinhAnh.Size = new System.Drawing.Size(21, 23);
             this.cboHinhAnh.TabIndex = 485;
@@ -1522,7 +1544,7 @@
             this.txtTenFileKQ.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTenFileKQ.BackColor = System.Drawing.Color.White;
             this.txtTenFileKQ.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTenFileKQ.Location = new System.Drawing.Point(1280, 92);
+            this.txtTenFileKQ.Location = new System.Drawing.Point(1400, 92);
             this.txtTenFileKQ.Margin = new System.Windows.Forms.Padding(4);
             this.txtTenFileKQ.MaxLength = 3;
             this.txtTenFileKQ.Name = "txtTenFileKQ";
@@ -1548,7 +1570,7 @@
             this.cmdChonfile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdChonfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdChonfile.Image = ((System.Drawing.Image)(resources.GetObject("cmdChonfile.Image")));
-            this.cmdChonfile.Location = new System.Drawing.Point(1292, 87);
+            this.cmdChonfile.Location = new System.Drawing.Point(1412, 87);
             this.cmdChonfile.Margin = new System.Windows.Forms.Padding(4);
             this.cmdChonfile.Name = "cmdChonfile";
             this.cmdChonfile.Size = new System.Drawing.Size(25, 25);
@@ -1564,7 +1586,7 @@
             this.txtVungKS.Location = new System.Drawing.Point(878, 67);
             this.txtVungKS.Name = "txtVungKS";
             this.txtVungKS.ReadOnly = true;
-            this.txtVungKS.Size = new System.Drawing.Size(412, 21);
+            this.txtVungKS.Size = new System.Drawing.Size(532, 21);
             this.txtVungKS.TabIndex = 477;
             this.txtVungKS.TabStop = false;
             // 
@@ -1573,7 +1595,7 @@
             this.cmdChonvungKS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdChonvungKS.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdChonvungKS.Image = ((System.Drawing.Image)(resources.GetObject("cmdChonvungKS.Image")));
-            this.cmdChonvungKS.Location = new System.Drawing.Point(1292, 62);
+            this.cmdChonvungKS.Location = new System.Drawing.Point(1412, 62);
             this.cmdChonvungKS.Margin = new System.Windows.Forms.Padding(4);
             this.cmdChonvungKS.Name = "cmdChonvungKS";
             this.cmdChonvungKS.Size = new System.Drawing.Size(25, 25);
@@ -1590,7 +1612,7 @@
             this.txtDiaChi.Location = new System.Drawing.Point(878, 21);
             this.txtDiaChi.Name = "txtDiaChi";
             this.txtDiaChi.ReadOnly = true;
-            this.txtDiaChi.Size = new System.Drawing.Size(412, 21);
+            this.txtDiaChi.Size = new System.Drawing.Size(532, 21);
             this.txtDiaChi.TabIndex = 6;
             this.txtDiaChi.TabStop = false;
             // 
@@ -1701,7 +1723,7 @@
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label22.ForeColor = System.Drawing.Color.Red;
-            this.label22.Location = new System.Drawing.Point(1941, 160);
+            this.label22.Location = new System.Drawing.Point(2061, 160);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(11, 14);
             this.label22.TabIndex = 31;
@@ -1799,7 +1821,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 120);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1327, 597);
+            this.panel1.Size = new System.Drawing.Size(1447, 581);
             this.panel1.TabIndex = 478;
             // 
             // timer2
@@ -1818,7 +1840,7 @@
             this.uiTab1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uiTab1.Location = new System.Drawing.Point(0, 0);
             this.uiTab1.Name = "uiTab1";
-            this.uiTab1.Size = new System.Drawing.Size(1331, 789);
+            this.uiTab1.Size = new System.Drawing.Size(1451, 773);
             this.uiTab1.TabIndex = 479;
             this.uiTab1.TabPages.AddRange(new Janus.Windows.UI.Tab.UITabPage[] {
             this.uiTabPageKQ,
@@ -1833,7 +1855,7 @@
             this.uiTabPageKQ.Controls.Add(this.grbInfor);
             this.uiTabPageKQ.Location = new System.Drawing.Point(1, 23);
             this.uiTabPageKQ.Name = "uiTabPageKQ";
-            this.uiTabPageKQ.Size = new System.Drawing.Size(1327, 763);
+            this.uiTabPageKQ.Size = new System.Drawing.Size(1447, 747);
             this.uiTabPageKQ.TabStop = true;
             this.uiTabPageKQ.Text = "Nhập trả kết quả CĐHA-Thăm dò chức năng";
             // 
@@ -2050,7 +2072,7 @@
             this.lblImgSize.Location = new System.Drawing.Point(606, 145);
             this.lblImgSize.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblImgSize.Name = "lblImgSize";
-            this.lblImgSize.Size = new System.Drawing.Size(715, 20);
+            this.lblImgSize.Size = new System.Drawing.Size(835, 20);
             this.lblImgSize.TabIndex = 501;
             this.lblImgSize.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -2062,7 +2084,7 @@
             // 
             this.AllowDrop = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1331, 811);
+            this.ClientSize = new System.Drawing.Size(1451, 795);
             this.Controls.Add(this.lblImgSize);
             this.Controls.Add(this.uiTab1);
             this.Controls.Add(this.statusStrip1);
@@ -2088,6 +2110,7 @@
             this.pnlCkeditor.ResumeLayout(false);
             this.pnlMainCkeditor.ResumeLayout(false);
             this.pnlMainCkeditor.PerformLayout();
+            this.pnlMota.ResumeLayout(false);
             this.pnlHistoryCKEditor.ResumeLayout(false);
             this.ctxCkEditor.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grbSelectedImgs)).EndInit();
@@ -2181,8 +2204,8 @@
         private System.Windows.Forms.Button cmdChupAnh;
         private System.Windows.Forms.WebBrowser webBrowser1;
         private Janus.Windows.GridEX.EditControls.EditBox txtDenghi;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label lblDenghi;
+        private System.Windows.Forms.Label lblKetluan;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.RichTextBox txtKet_Luan;
         private System.Windows.Forms.ComboBox cboBacsi;
@@ -2284,5 +2307,7 @@
         private System.Windows.Forms.ComboBox cboDichvu;
         private Janus.Windows.GridEX.EditControls.EditBox txtNoidungHistory;
         private System.Windows.Forms.Timer timer3;
+        private System.Windows.Forms.Panel pnlMota;
+        private System.Windows.Forms.Panel panel2;
     }
 }

@@ -130,7 +130,7 @@ namespace VMS.HIS.UI.EMR.Ucs
             this.txt_ketluan.Multiline = true;
             this.txt_ketluan.Name = "txt_ketluan";
             this.txt_ketluan.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txt_ketluan.Size = new System.Drawing.Size(662, 73);
+            this.txt_ketluan.Size = new System.Drawing.Size(662, 101);
             this.txt_ketluan.TabIndex = 8;
             // 
             // txt_tinhtrangbenh
@@ -299,8 +299,10 @@ namespace VMS.HIS.UI.EMR.Ucs
             // 
             // label5
             // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(139, 395);
+            this.label5.Location = new System.Drawing.Point(139, 421);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(662, 35);
             this.label5.TabIndex = 2585;

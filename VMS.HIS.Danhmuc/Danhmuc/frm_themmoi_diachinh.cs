@@ -225,7 +225,7 @@ namespace VNS.HIS.UI.DANHMUC
             DmucDiachinh.Insert(txtSurveyCode.Text, txtSurveyName.Text,
                 cboDiachinhcaptren.Enabled && cboDiachinhcaptren.SelectedIndex>0? Utility.sDbnull(cboDiachinhcaptren.SelectedValue, ""):"" ,
                            Utility.Int16Dbnull(txtIntOrder.Text, ""),
-                            Convert.ToByte(cboSurveyType.SelectedIndex), txtsDesc.Text);
+                            Convert.ToByte(cboSurveyType.SelectedIndex), txtsDesc.Text,true,true);
 
             DataRow dr = globalVariables.gv_dtDmucDiachinh.NewRow();
            // dr[DmucDiachinh.Columns.MaDiachinh] = Utility.Int16Dbnull(_Query.GetMax(LDisease.Columns.DiseaseId), -1);

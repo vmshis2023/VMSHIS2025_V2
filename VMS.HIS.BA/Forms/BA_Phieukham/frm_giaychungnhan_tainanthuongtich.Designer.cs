@@ -38,8 +38,8 @@ namespace VMS.HIS.UI.EMR
             this.cmdExit = new Janus.Windows.EditControls.UIButton();
             this.cmdInphieu = new Janus.Windows.EditControls.UIButton();
             this.lblMsg = new System.Windows.Forms.Label();
-            this.ucThongtinnguoibenh_emr_basic1 = new VNS.HIS.UI.Forms.Dungchung.UCs.ucThongtinnguoibenh_emr_basic_v1();
             this.uc_giaychungnhanthuongtich1 = new VMS.HIS.UI.EMR.Ucs.uc_giaychungnhanthuongtich();
+            this.ucThongtinnguoibenh_emr_basic1 = new VNS.HIS.UI.Forms.Dungchung.UCs.ucThongtinnguoibenh_emr_basic_v2();
             this.SuspendLayout();
             // 
             // chkCloseAfterSave
@@ -65,7 +65,7 @@ namespace VMS.HIS.UI.EMR
             this.cmdSave.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdSave.Image = ((System.Drawing.Image)(resources.GetObject("cmdSave.Image")));
             this.cmdSave.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdSave.Location = new System.Drawing.Point(563, 674);
+            this.cmdSave.Location = new System.Drawing.Point(960, 674);
             this.cmdSave.Name = "cmdSave";
             this.cmdSave.Size = new System.Drawing.Size(120, 35);
             this.cmdSave.TabIndex = 5;
@@ -79,7 +79,7 @@ namespace VMS.HIS.UI.EMR
             this.cmdExit.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdExit.Image = global::VMS.HIS.EMR.Properties.Resources.close_24;
             this.cmdExit.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdExit.Location = new System.Drawing.Point(689, 674);
+            this.cmdExit.Location = new System.Drawing.Point(1086, 674);
             this.cmdExit.Name = "cmdExit";
             this.cmdExit.Size = new System.Drawing.Size(120, 35);
             this.cmdExit.TabIndex = 7;
@@ -94,7 +94,7 @@ namespace VMS.HIS.UI.EMR
             this.cmdInphieu.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdInphieu.Image = ((System.Drawing.Image)(resources.GetObject("cmdInphieu.Image")));
             this.cmdInphieu.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdInphieu.Location = new System.Drawing.Point(437, 673);
+            this.cmdInphieu.Location = new System.Drawing.Point(834, 673);
             this.cmdInphieu.Name = "cmdInphieu";
             this.cmdInphieu.Office2007ColorScheme = Janus.Windows.UI.Office2007ColorScheme.Custom;
             this.cmdInphieu.Office2007CustomColor = System.Drawing.Color.WhiteSmoke;
@@ -108,34 +108,34 @@ namespace VMS.HIS.UI.EMR
             this.lblMsg.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblMsg.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMsg.Location = new System.Drawing.Point(151, 619);
+            this.lblMsg.Location = new System.Drawing.Point(484, 619);
             this.lblMsg.Name = "lblMsg";
-            this.lblMsg.Size = new System.Drawing.Size(642, 37);
+            this.lblMsg.Size = new System.Drawing.Size(706, 37);
             this.lblMsg.TabIndex = 2585;
             this.lblMsg.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // ucThongtinnguoibenh_emr_basic1
-            // 
-            this.ucThongtinnguoibenh_emr_basic1.AutoScroll = true;
-            this.ucThongtinnguoibenh_emr_basic1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ucThongtinnguoibenh_emr_basic1.Location = new System.Drawing.Point(0, 0);
-            this.ucThongtinnguoibenh_emr_basic1.Name = "ucThongtinnguoibenh_emr_basic1";
-            this.ucThongtinnguoibenh_emr_basic1.Size = new System.Drawing.Size(830, 204);
-            this.ucThongtinnguoibenh_emr_basic1.TabIndex = 2586;
             // 
             // uc_giaychungnhanthuongtich1
             // 
             this.uc_giaychungnhanthuongtich1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.uc_giaychungnhanthuongtich1.Location = new System.Drawing.Point(0, 204);
+            this.uc_giaychungnhanthuongtich1.Location = new System.Drawing.Point(400, 0);
             this.uc_giaychungnhanthuongtich1.Name = "uc_giaychungnhanthuongtich1";
-            this.uc_giaychungnhanthuongtich1.Size = new System.Drawing.Size(830, 452);
+            this.uc_giaychungnhanthuongtich1.Size = new System.Drawing.Size(827, 616);
             this.uc_giaychungnhanthuongtich1.TabIndex = 171;
-            this.uc_giaychungnhanthuongtich1.VisibleFunctionButtons = false;
+          
+            // 
+            // ucThongtinnguoibenh_emr_basic1
+            // 
+            this.ucThongtinnguoibenh_emr_basic1.AutoScroll = true;
+            this.ucThongtinnguoibenh_emr_basic1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ucThongtinnguoibenh_emr_basic1.Location = new System.Drawing.Point(0, 0);
+            this.ucThongtinnguoibenh_emr_basic1.Name = "ucThongtinnguoibenh_emr_basic1";
+            this.ucThongtinnguoibenh_emr_basic1.Size = new System.Drawing.Size(400, 721);
+            this.ucThongtinnguoibenh_emr_basic1.TabIndex = 2586;
             // 
             // frm_giaychungnhan_tainanthuongtich
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(830, 721);
+            this.ClientSize = new System.Drawing.Size(1227, 721);
             this.Controls.Add(this.lblMsg);
             this.Controls.Add(this.cmdInphieu);
             this.Controls.Add(this.uc_giaychungnhanthuongtich1);
@@ -163,6 +163,6 @@ namespace VMS.HIS.UI.EMR
         private uc_giaychungnhanthuongtich uc_giaychungnhanthuongtich1;
         private Janus.Windows.EditControls.UIButton cmdInphieu;
         private System.Windows.Forms.Label lblMsg;
-        public VNS.HIS.UI.Forms.Dungchung.UCs.ucThongtinnguoibenh_emr_basic_v1 ucThongtinnguoibenh_emr_basic1;
+        public VNS.HIS.UI.Forms.Dungchung.UCs.ucThongtinnguoibenh_emr_basic_v2 ucThongtinnguoibenh_emr_basic1;
     }
 }

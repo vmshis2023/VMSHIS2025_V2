@@ -478,6 +478,19 @@ namespace VMS.HIS.DAL
 				colvarLogo.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarLogo);
 				
+				TableSchema.TableColumn colvarLogoNgang = new TableSchema.TableColumn(schema);
+				colvarLogoNgang.ColumnName = "logo_ngang";
+				colvarLogoNgang.DataType = DbType.Binary;
+				colvarLogoNgang.MaxLength = 2147483647;
+				colvarLogoNgang.AutoIncrement = false;
+				colvarLogoNgang.IsNullable = true;
+				colvarLogoNgang.IsPrimaryKey = false;
+				colvarLogoNgang.IsForeignKey = false;
+				colvarLogoNgang.IsReadOnly = false;
+				colvarLogoNgang.DefaultSetting = @"";
+				colvarLogoNgang.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarLogoNgang);
+				
 				BaseSchema = schema;
 				//add this schema to the provider
 				//so we can query it later
@@ -703,6 +716,14 @@ namespace VMS.HIS.DAL
 			get { return GetColumnValue<byte[]>(Columns.Logo); }
 			set { SetColumnValue(Columns.Logo, value); }
 		}
+		  
+		[XmlAttribute("LogoNgang")]
+		[Bindable(true)]
+		public byte[] LogoNgang 
+		{
+			get { return GetColumnValue<byte[]>(Columns.LogoNgang); }
+			set { SetColumnValue(Columns.LogoNgang, value); }
+		}
 		
 		#endregion
 		
@@ -723,7 +744,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(string varPkSBranchID,string varSName,string varSParentBranchName,string varFpSUpBranchID,int? varIntLevel,string varSAddress,string varSPhone,string varSBussinessPhone,string varSHotPhone,string varSDutyPhone,string varSFAX,string varSEMAIL,string varSTaxCode,string varSAccountID,string varSRepresentative,string varSPosition,string varSProxyNumber,DateTime? varTDateMandate,string varSMandateUnitName,string varSMandateUnitAddress,DateTime? varTInvalidDate,DateTime? varTInputDate,string varSTyper,string varSBankCode,string varSLandSurveyUnitCode,string varWebsite,byte[] varLogo)
+		public static void Insert(string varPkSBranchID,string varSName,string varSParentBranchName,string varFpSUpBranchID,int? varIntLevel,string varSAddress,string varSPhone,string varSBussinessPhone,string varSHotPhone,string varSDutyPhone,string varSFAX,string varSEMAIL,string varSTaxCode,string varSAccountID,string varSRepresentative,string varSPosition,string varSProxyNumber,DateTime? varTDateMandate,string varSMandateUnitName,string varSMandateUnitAddress,DateTime? varTInvalidDate,DateTime? varTInputDate,string varSTyper,string varSBankCode,string varSLandSurveyUnitCode,string varWebsite,byte[] varLogo,byte[] varLogoNgang)
 		{
 			SysManagementUnit item = new SysManagementUnit();
 			
@@ -781,6 +802,8 @@ namespace VMS.HIS.DAL
 			
 			item.Logo = varLogo;
 			
+			item.LogoNgang = varLogoNgang;
+			
 		
 			if (System.Web.HttpContext.Current != null)
 				item.Save(System.Web.HttpContext.Current.User.Identity.Name);
@@ -791,7 +814,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(string varPkSBranchID,string varSName,string varSParentBranchName,string varFpSUpBranchID,int? varIntLevel,string varSAddress,string varSPhone,string varSBussinessPhone,string varSHotPhone,string varSDutyPhone,string varSFAX,string varSEMAIL,string varSTaxCode,string varSAccountID,string varSRepresentative,string varSPosition,string varSProxyNumber,DateTime? varTDateMandate,string varSMandateUnitName,string varSMandateUnitAddress,DateTime? varTInvalidDate,DateTime? varTInputDate,string varSTyper,string varSBankCode,string varSLandSurveyUnitCode,string varWebsite,byte[] varLogo)
+		public static void Update(string varPkSBranchID,string varSName,string varSParentBranchName,string varFpSUpBranchID,int? varIntLevel,string varSAddress,string varSPhone,string varSBussinessPhone,string varSHotPhone,string varSDutyPhone,string varSFAX,string varSEMAIL,string varSTaxCode,string varSAccountID,string varSRepresentative,string varSPosition,string varSProxyNumber,DateTime? varTDateMandate,string varSMandateUnitName,string varSMandateUnitAddress,DateTime? varTInvalidDate,DateTime? varTInputDate,string varSTyper,string varSBankCode,string varSLandSurveyUnitCode,string varWebsite,byte[] varLogo,byte[] varLogoNgang)
 		{
 			SysManagementUnit item = new SysManagementUnit();
 			
@@ -848,6 +871,8 @@ namespace VMS.HIS.DAL
 				item.Website = varWebsite;
 			
 				item.Logo = varLogo;
+			
+				item.LogoNgang = varLogoNgang;
 			
 			item.IsNew = false;
 			if (System.Web.HttpContext.Current != null)
@@ -1051,6 +1076,13 @@ namespace VMS.HIS.DAL
         
         
         
+        public static TableSchema.TableColumn LogoNgangColumn
+        {
+            get { return Schema.Columns[27]; }
+        }
+        
+        
+        
         #endregion
 		#region Columns Struct
 		public struct Columns
@@ -1082,6 +1114,7 @@ namespace VMS.HIS.DAL
 			 public static string SLandSurveyUnitCode = @"sLandSurveyUnitCode";
 			 public static string Website = @"website";
 			 public static string Logo = @"logo";
+			 public static string LogoNgang = @"logo_ngang";
 						
 		}
 		#endregion

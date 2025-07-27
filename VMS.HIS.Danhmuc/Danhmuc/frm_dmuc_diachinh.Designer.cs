@@ -45,6 +45,7 @@
             this.cmdRefresh = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.uiGroupBox1 = new Janus.Windows.EditControls.UIGroupBox();
+            this.lblMsg = new System.Windows.Forms.Label();
             this.lbldiachinh = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cboLoaiDiachinh = new System.Windows.Forms.ComboBox();
@@ -54,7 +55,6 @@
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.uiStatusBar2 = new Janus.Windows.UI.StatusBar.UIStatusBar();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.lblMsg = new System.Windows.Forms.Label();
             this.sysColor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox1)).BeginInit();
             this.uiGroupBox1.SuspendLayout();
@@ -66,6 +66,7 @@
             // 
             this.sysColor.BackColor = System.Drawing.SystemColors.Control;
             this.sysColor.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sysColor.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.sysColor.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cmdNew,
             this.toolStripSeparator1,
@@ -78,66 +79,62 @@
             this.toolStripButton1});
             this.sysColor.Location = new System.Drawing.Point(0, 0);
             this.sysColor.Name = "sysColor";
-            this.sysColor.Size = new System.Drawing.Size(1184, 39);
+            this.sysColor.Size = new System.Drawing.Size(1184, 25);
             this.sysColor.TabIndex = 4;
             this.sysColor.Text = "toolStrip1";
             // 
             // cmdNew
             // 
             this.cmdNew.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.cmdNew.Image = global::VMS.HIS.Danhmuc.Properties.Resources.Add;
-            this.cmdNew.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.cmdNew.Image = global::VMS.HIS.Danhmuc.Properties.Resources.add_04_32;
             this.cmdNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdNew.Name = "cmdNew";
-            this.cmdNew.Size = new System.Drawing.Size(144, 36);
+            this.cmdNew.Size = new System.Drawing.Size(136, 22);
             this.cmdNew.Text = "Thêm mới (Ctrl+N)";
             this.cmdNew.Click += new System.EventHandler(this.cmdNew_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // cmdEdit
             // 
             this.cmdEdit.Font = new System.Drawing.Font("Arial", 9.75F);
             this.cmdEdit.Image = ((System.Drawing.Image)(resources.GetObject("cmdEdit.Image")));
-            this.cmdEdit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.cmdEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdEdit.Name = "cmdEdit";
-            this.cmdEdit.Size = new System.Drawing.Size(106, 36);
+            this.cmdEdit.Size = new System.Drawing.Size(98, 22);
             this.cmdEdit.Text = "Sửa(Ctrl+E)";
             this.cmdEdit.Click += new System.EventHandler(this.cmdEdit_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 39);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // cmdDelete
             // 
             this.cmdDelete.Font = new System.Drawing.Font("Arial", 9.75F);
             this.cmdDelete.Image = ((System.Drawing.Image)(resources.GetObject("cmdDelete.Image")));
-            this.cmdDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.cmdDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdDelete.Name = "cmdDelete";
-            this.cmdDelete.Size = new System.Drawing.Size(102, 36);
+            this.cmdDelete.Size = new System.Drawing.Size(94, 22);
             this.cmdDelete.Text = "Xoá(Ctrl+D)";
             this.cmdDelete.Click += new System.EventHandler(this.cmdDelete_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 39);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
             // 
             // cmdPrint
             // 
             this.cmdPrint.Font = new System.Drawing.Font("Arial", 9.75F);
             this.cmdPrint.Image = global::VMS.HIS.Danhmuc.Properties.Resources.printer_32;
-            this.cmdPrint.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.cmdPrint.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdPrint.Name = "cmdPrint";
-            this.cmdPrint.Size = new System.Drawing.Size(141, 36);
+            this.cmdPrint.Size = new System.Drawing.Size(125, 22);
             this.cmdPrint.Text = "In danh sách(F4)";
             this.cmdPrint.Click += new System.EventHandler(this.cmdPrint_Click);
             // 
@@ -145,20 +142,18 @@
             // 
             this.cmdRefresh.Font = new System.Drawing.Font("Arial", 9.75F);
             this.cmdRefresh.Image = global::VMS.HIS.Danhmuc.Properties.Resources.refresh_24;
-            this.cmdRefresh.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.cmdRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdRefresh.Name = "cmdRefresh";
-            this.cmdRefresh.Size = new System.Drawing.Size(80, 36);
+            this.cmdRefresh.Size = new System.Drawing.Size(72, 22);
             this.cmdRefresh.Text = "Refresh";
             // 
             // toolStripButton1
             // 
             this.toolStripButton1.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton1.Image = global::VMS.HIS.Danhmuc.Properties.Resources.close_24;
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(107, 36);
+            this.toolStripButton1.Size = new System.Drawing.Size(91, 22);
             this.toolStripButton1.Text = "Thoát(Esc)";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
@@ -172,11 +167,20 @@
             this.uiGroupBox1.Controls.Add(this.cboSurvery);
             this.uiGroupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.uiGroupBox1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiGroupBox1.Location = new System.Drawing.Point(0, 39);
+            this.uiGroupBox1.Location = new System.Drawing.Point(0, 25);
             this.uiGroupBox1.Name = "uiGroupBox1";
             this.uiGroupBox1.Size = new System.Drawing.Size(1184, 81);
             this.uiGroupBox1.TabIndex = 0;
             this.uiGroupBox1.Text = "&Thông tin tìm kiếm";
+            // 
+            // lblMsg
+            // 
+            this.lblMsg.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lblMsg.Location = new System.Drawing.Point(3, 62);
+            this.lblMsg.Name = "lblMsg";
+            this.lblMsg.Size = new System.Drawing.Size(1178, 16);
+            this.lblMsg.TabIndex = 16;
+            this.lblMsg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbldiachinh
             // 
@@ -243,7 +247,7 @@
             this.grdDiachinh.Name = "grdDiachinh";
             this.grdDiachinh.RecordNavigator = true;
             this.grdDiachinh.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
-            this.grdDiachinh.Size = new System.Drawing.Size(1178, 599);
+            this.grdDiachinh.Size = new System.Drawing.Size(1178, 613);
             this.grdDiachinh.TabIndex = 13;
             this.grdDiachinh.UseGroupRowSelector = true;
             this.grdDiachinh.VisualStyle = Janus.Windows.GridEX.VisualStyle.VS2005;
@@ -262,7 +266,7 @@
             // uiStatusBar2
             // 
             this.uiStatusBar2.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.uiStatusBar2.Location = new System.Drawing.Point(3, 615);
+            this.uiStatusBar2.Location = new System.Drawing.Point(3, 629);
             this.uiStatusBar2.Name = "uiStatusBar2";
             uiStatusBarPanel1.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
             uiStatusBarPanel1.BorderColor = System.Drawing.Color.Empty;
@@ -303,21 +307,12 @@
             this.groupBox1.Controls.Add(this.uiStatusBar2);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(0, 120);
+            this.groupBox1.Location = new System.Drawing.Point(0, 106);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1184, 641);
+            this.groupBox1.Size = new System.Drawing.Size(1184, 655);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin  địa chính";
-            // 
-            // lblMsg
-            // 
-            this.lblMsg.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblMsg.Location = new System.Drawing.Point(3, 62);
-            this.lblMsg.Name = "lblMsg";
-            this.lblMsg.Size = new System.Drawing.Size(1178, 16);
-            this.lblMsg.TabIndex = 16;
-            this.lblMsg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frm_dmuc_diachinh
             // 

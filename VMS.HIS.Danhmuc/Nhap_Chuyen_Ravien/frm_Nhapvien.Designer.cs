@@ -256,6 +256,7 @@
             this.txtNhommau.RaiseEventEnter = false;
             this.txtNhommau.RaiseEventEnterWhenEmpty = false;
             this.txtNhommau.SelectedIndex = -1;
+            this.txtNhommau.SetDefaultWhenInit = false;
             this.txtNhommau.ShowCodeWithValue = false;
             this.txtNhommau.Size = new System.Drawing.Size(107, 21);
             this.txtNhommau.splitChar = '@';
@@ -539,6 +540,7 @@
             this.txtChovaokhoa.RaiseEventEnter = false;
             this.txtChovaokhoa.RaiseEventEnterWhenEmpty = false;
             this.txtChovaokhoa.SelectedIndex = -1;
+            this.txtChovaokhoa.SetDefaultWhenInit = false;
             this.txtChovaokhoa.ShowCodeWithValue = false;
             this.txtChovaokhoa.Size = new System.Drawing.Size(419, 21);
             this.txtChovaokhoa.splitChar = '@';
@@ -634,6 +636,7 @@
             this.txtChandoanbandau.RaiseEventEnter = false;
             this.txtChandoanbandau.RaiseEventEnterWhenEmpty = false;
             this.txtChandoanbandau.SelectedIndex = -1;
+            this.txtChandoanbandau.SetDefaultWhenInit = false;
             this.txtChandoanbandau.ShowCodeWithValue = false;
             this.txtChandoanbandau.Size = new System.Drawing.Size(1038, 21);
             this.txtChandoanbandau.splitChar = '@';
@@ -784,6 +787,7 @@
             this.autoLydovv.RaiseEventEnter = false;
             this.autoLydovv.RaiseEventEnterWhenEmpty = false;
             this.autoLydovv.SelectedIndex = -1;
+            this.autoLydovv.SetDefaultWhenInit = false;
             this.autoLydovv.ShowCodeWithValue = false;
             this.autoLydovv.Size = new System.Drawing.Size(1038, 21);
             this.autoLydovv.splitChar = '@';
@@ -832,6 +836,7 @@
             this.autoToanthan.RaiseEventEnter = false;
             this.autoToanthan.RaiseEventEnterWhenEmpty = false;
             this.autoToanthan.SelectedIndex = -1;
+            this.autoToanthan.SetDefaultWhenInit = false;
             this.autoToanthan.ShowCodeWithValue = false;
             this.autoToanthan.Size = new System.Drawing.Size(768, 21);
             this.autoToanthan.splitChar = '@';
@@ -880,6 +885,7 @@
             this.autoGiadinh.RaiseEventEnter = false;
             this.autoGiadinh.RaiseEventEnterWhenEmpty = false;
             this.autoGiadinh.SelectedIndex = -1;
+            this.autoGiadinh.SetDefaultWhenInit = false;
             this.autoGiadinh.ShowCodeWithValue = false;
             this.autoGiadinh.Size = new System.Drawing.Size(768, 21);
             this.autoGiadinh.splitChar = '@';
@@ -928,6 +934,7 @@
             this.autoBanthan.RaiseEventEnter = false;
             this.autoBanthan.RaiseEventEnterWhenEmpty = false;
             this.autoBanthan.SelectedIndex = -1;
+            this.autoBanthan.SetDefaultWhenInit = false;
             this.autoBanthan.ShowCodeWithValue = false;
             this.autoBanthan.Size = new System.Drawing.Size(768, 21);
             this.autoBanthan.splitChar = '@';
@@ -976,6 +983,7 @@
             this.autoGhichuvaovien.RaiseEventEnter = false;
             this.autoGhichuvaovien.RaiseEventEnterWhenEmpty = false;
             this.autoGhichuvaovien.SelectedIndex = -1;
+            this.autoGhichuvaovien.SetDefaultWhenInit = false;
             this.autoGhichuvaovien.ShowCodeWithValue = false;
             this.autoGhichuvaovien.Size = new System.Drawing.Size(488, 21);
             this.autoGhichuvaovien.splitChar = '@';
@@ -1024,6 +1032,7 @@
             this.autoTainanthuongtich.RaiseEventEnter = false;
             this.autoTainanthuongtich.RaiseEventEnterWhenEmpty = false;
             this.autoTainanthuongtich.SelectedIndex = -1;
+            this.autoTainanthuongtich.SetDefaultWhenInit = false;
             this.autoTainanthuongtich.ShowCodeWithValue = false;
             this.autoTainanthuongtich.Size = new System.Drawing.Size(769, 21);
             this.autoTainanthuongtich.splitChar = '@';
@@ -1372,7 +1381,7 @@
             // cmdExit
             // 
             this.cmdExit.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdExit.Image = ((System.Drawing.Image)(resources.GetObject("cmdExit.Image")));
+            this.cmdExit.Image = global::VMS.HIS.Danhmuc.Properties.Resources.close_24;
             this.cmdExit.ImageSize = new System.Drawing.Size(24, 24);
             this.cmdExit.Location = new System.Drawing.Point(1072, 716);
             this.cmdExit.Name = "cmdExit";

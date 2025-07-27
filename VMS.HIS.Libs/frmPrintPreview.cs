@@ -300,7 +300,7 @@ namespace VNS.Libs
         }
         private void cmdTrinhKy_Click(object sender, System.EventArgs e)
         {
-            if (globalVariables.isSuperAdmin)// || globalVariables.IsAdmin || Utility.Coquyen("trinhky_themsuaxoa"))
+           // if (globalVariables.isSuperAdmin)// || globalVariables.IsAdmin || Utility.Coquyen("trinhky_themsuaxoa"))
                 addTrinhKy_OnButtonClick();
         }
        

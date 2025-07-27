@@ -750,6 +750,814 @@ namespace VMS.HIS.DAL
 				colvarNoigioithieu.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarNoigioithieu);
 				
+				TableSchema.TableColumn colvarVaovienNgay = new TableSchema.TableColumn(schema);
+				colvarVaovienNgay.ColumnName = "vaovien_ngay";
+				colvarVaovienNgay.DataType = DbType.DateTime;
+				colvarVaovienNgay.MaxLength = 0;
+				colvarVaovienNgay.AutoIncrement = false;
+				colvarVaovienNgay.IsNullable = true;
+				colvarVaovienNgay.IsPrimaryKey = false;
+				colvarVaovienNgay.IsForeignKey = false;
+				colvarVaovienNgay.IsReadOnly = false;
+				colvarVaovienNgay.DefaultSetting = @"";
+				colvarVaovienNgay.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarVaovienNgay);
+				
+				TableSchema.TableColumn colvarVaovienLydovaovien = new TableSchema.TableColumn(schema);
+				colvarVaovienLydovaovien.ColumnName = "vaovien_lydovaovien";
+				colvarVaovienLydovaovien.DataType = DbType.String;
+				colvarVaovienLydovaovien.MaxLength = 255;
+				colvarVaovienLydovaovien.AutoIncrement = false;
+				colvarVaovienLydovaovien.IsNullable = true;
+				colvarVaovienLydovaovien.IsPrimaryKey = false;
+				colvarVaovienLydovaovien.IsForeignKey = false;
+				colvarVaovienLydovaovien.IsReadOnly = false;
+				colvarVaovienLydovaovien.DefaultSetting = @"";
+				colvarVaovienLydovaovien.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarVaovienLydovaovien);
+				
+				TableSchema.TableColumn colvarVaovienVaongaythucuabenh = new TableSchema.TableColumn(schema);
+				colvarVaovienVaongaythucuabenh.ColumnName = "vaovien_vaongaythucuabenh";
+				colvarVaovienVaongaythucuabenh.DataType = DbType.Byte;
+				colvarVaovienVaongaythucuabenh.MaxLength = 0;
+				colvarVaovienVaongaythucuabenh.AutoIncrement = false;
+				colvarVaovienVaongaythucuabenh.IsNullable = true;
+				colvarVaovienVaongaythucuabenh.IsPrimaryKey = false;
+				colvarVaovienVaongaythucuabenh.IsForeignKey = false;
+				colvarVaovienVaongaythucuabenh.IsReadOnly = false;
+				colvarVaovienVaongaythucuabenh.DefaultSetting = @"";
+				colvarVaovienVaongaythucuabenh.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarVaovienVaongaythucuabenh);
+				
+				TableSchema.TableColumn colvarVaovienTructiepVao = new TableSchema.TableColumn(schema);
+				colvarVaovienTructiepVao.ColumnName = "vaovien_tructiep_vao";
+				colvarVaovienTructiepVao.DataType = DbType.Byte;
+				colvarVaovienTructiepVao.MaxLength = 0;
+				colvarVaovienTructiepVao.AutoIncrement = false;
+				colvarVaovienTructiepVao.IsNullable = true;
+				colvarVaovienTructiepVao.IsPrimaryKey = false;
+				colvarVaovienTructiepVao.IsForeignKey = false;
+				colvarVaovienTructiepVao.IsReadOnly = false;
+				colvarVaovienTructiepVao.DefaultSetting = @"";
+				colvarVaovienTructiepVao.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarVaovienTructiepVao);
+				
+				TableSchema.TableColumn colvarVaovienCapcuu = new TableSchema.TableColumn(schema);
+				colvarVaovienCapcuu.ColumnName = "vaovien_capcuu";
+				colvarVaovienCapcuu.DataType = DbType.Boolean;
+				colvarVaovienCapcuu.MaxLength = 0;
+				colvarVaovienCapcuu.AutoIncrement = false;
+				colvarVaovienCapcuu.IsNullable = true;
+				colvarVaovienCapcuu.IsPrimaryKey = false;
+				colvarVaovienCapcuu.IsForeignKey = false;
+				colvarVaovienCapcuu.IsReadOnly = false;
+				colvarVaovienCapcuu.DefaultSetting = @"";
+				colvarVaovienCapcuu.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarVaovienCapcuu);
+				
+				TableSchema.TableColumn colvarVaovienKkb = new TableSchema.TableColumn(schema);
+				colvarVaovienKkb.ColumnName = "vaovien_kkb";
+				colvarVaovienKkb.DataType = DbType.Boolean;
+				colvarVaovienKkb.MaxLength = 0;
+				colvarVaovienKkb.AutoIncrement = false;
+				colvarVaovienKkb.IsNullable = true;
+				colvarVaovienKkb.IsPrimaryKey = false;
+				colvarVaovienKkb.IsForeignKey = false;
+				colvarVaovienKkb.IsReadOnly = false;
+				colvarVaovienKkb.DefaultSetting = @"";
+				colvarVaovienKkb.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarVaovienKkb);
+				
+				TableSchema.TableColumn colvarVaovienKhoadieutri = new TableSchema.TableColumn(schema);
+				colvarVaovienKhoadieutri.ColumnName = "vaovien_khoadieutri";
+				colvarVaovienKhoadieutri.DataType = DbType.Boolean;
+				colvarVaovienKhoadieutri.MaxLength = 0;
+				colvarVaovienKhoadieutri.AutoIncrement = false;
+				colvarVaovienKhoadieutri.IsNullable = true;
+				colvarVaovienKhoadieutri.IsPrimaryKey = false;
+				colvarVaovienKhoadieutri.IsForeignKey = false;
+				colvarVaovienKhoadieutri.IsReadOnly = false;
+				colvarVaovienKhoadieutri.DefaultSetting = @"";
+				colvarVaovienKhoadieutri.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarVaovienKhoadieutri);
+				
+				TableSchema.TableColumn colvarNoigioithieuCoquanyte = new TableSchema.TableColumn(schema);
+				colvarNoigioithieuCoquanyte.ColumnName = "noigioithieu_coquanyte";
+				colvarNoigioithieuCoquanyte.DataType = DbType.Boolean;
+				colvarNoigioithieuCoquanyte.MaxLength = 0;
+				colvarNoigioithieuCoquanyte.AutoIncrement = false;
+				colvarNoigioithieuCoquanyte.IsNullable = true;
+				colvarNoigioithieuCoquanyte.IsPrimaryKey = false;
+				colvarNoigioithieuCoquanyte.IsForeignKey = false;
+				colvarNoigioithieuCoquanyte.IsReadOnly = false;
+				colvarNoigioithieuCoquanyte.DefaultSetting = @"";
+				colvarNoigioithieuCoquanyte.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarNoigioithieuCoquanyte);
+				
+				TableSchema.TableColumn colvarNoigioithieuTuden = new TableSchema.TableColumn(schema);
+				colvarNoigioithieuTuden.ColumnName = "noigioithieu_tuden";
+				colvarNoigioithieuTuden.DataType = DbType.Boolean;
+				colvarNoigioithieuTuden.MaxLength = 0;
+				colvarNoigioithieuTuden.AutoIncrement = false;
+				colvarNoigioithieuTuden.IsNullable = true;
+				colvarNoigioithieuTuden.IsPrimaryKey = false;
+				colvarNoigioithieuTuden.IsForeignKey = false;
+				colvarNoigioithieuTuden.IsReadOnly = false;
+				colvarNoigioithieuTuden.DefaultSetting = @"";
+				colvarNoigioithieuTuden.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarNoigioithieuTuden);
+				
+				TableSchema.TableColumn colvarNoigioithieuKhac = new TableSchema.TableColumn(schema);
+				colvarNoigioithieuKhac.ColumnName = "noigioithieu_khac";
+				colvarNoigioithieuKhac.DataType = DbType.Boolean;
+				colvarNoigioithieuKhac.MaxLength = 0;
+				colvarNoigioithieuKhac.AutoIncrement = false;
+				colvarNoigioithieuKhac.IsNullable = true;
+				colvarNoigioithieuKhac.IsPrimaryKey = false;
+				colvarNoigioithieuKhac.IsForeignKey = false;
+				colvarNoigioithieuKhac.IsReadOnly = false;
+				colvarNoigioithieuKhac.DefaultSetting = @"";
+				colvarNoigioithieuKhac.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarNoigioithieuKhac);
+				
+				TableSchema.TableColumn colvarVaovienLanthu = new TableSchema.TableColumn(schema);
+				colvarVaovienLanthu.ColumnName = "vaovien_lanthu";
+				colvarVaovienLanthu.DataType = DbType.Byte;
+				colvarVaovienLanthu.MaxLength = 0;
+				colvarVaovienLanthu.AutoIncrement = false;
+				colvarVaovienLanthu.IsNullable = true;
+				colvarVaovienLanthu.IsPrimaryKey = false;
+				colvarVaovienLanthu.IsForeignKey = false;
+				colvarVaovienLanthu.IsReadOnly = false;
+				colvarVaovienLanthu.DefaultSetting = @"";
+				colvarVaovienLanthu.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarVaovienLanthu);
+				
+				TableSchema.TableColumn colvarVaovienTenkhoa = new TableSchema.TableColumn(schema);
+				colvarVaovienTenkhoa.ColumnName = "vaovien_tenkhoa";
+				colvarVaovienTenkhoa.DataType = DbType.String;
+				colvarVaovienTenkhoa.MaxLength = 255;
+				colvarVaovienTenkhoa.AutoIncrement = false;
+				colvarVaovienTenkhoa.IsNullable = true;
+				colvarVaovienTenkhoa.IsPrimaryKey = false;
+				colvarVaovienTenkhoa.IsForeignKey = false;
+				colvarVaovienTenkhoa.IsReadOnly = false;
+				
+						colvarVaovienTenkhoa.DefaultSetting = @"((0))";
+				colvarVaovienTenkhoa.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarVaovienTenkhoa);
+				
+				TableSchema.TableColumn colvarVaovienMakhoa = new TableSchema.TableColumn(schema);
+				colvarVaovienMakhoa.ColumnName = "vaovien_makhoa";
+				colvarVaovienMakhoa.DataType = DbType.String;
+				colvarVaovienMakhoa.MaxLength = 20;
+				colvarVaovienMakhoa.AutoIncrement = false;
+				colvarVaovienMakhoa.IsNullable = true;
+				colvarVaovienMakhoa.IsPrimaryKey = false;
+				colvarVaovienMakhoa.IsForeignKey = false;
+				colvarVaovienMakhoa.IsReadOnly = false;
+				colvarVaovienMakhoa.DefaultSetting = @"";
+				colvarVaovienMakhoa.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarVaovienMakhoa);
+				
+				TableSchema.TableColumn colvarVaovienIdKhoa = new TableSchema.TableColumn(schema);
+				colvarVaovienIdKhoa.ColumnName = "vaovien_id_khoa";
+				colvarVaovienIdKhoa.DataType = DbType.Int16;
+				colvarVaovienIdKhoa.MaxLength = 0;
+				colvarVaovienIdKhoa.AutoIncrement = false;
+				colvarVaovienIdKhoa.IsNullable = true;
+				colvarVaovienIdKhoa.IsPrimaryKey = false;
+				colvarVaovienIdKhoa.IsForeignKey = false;
+				colvarVaovienIdKhoa.IsReadOnly = false;
+				colvarVaovienIdKhoa.DefaultSetting = @"";
+				colvarVaovienIdKhoa.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarVaovienIdKhoa);
+				
+				TableSchema.TableColumn colvarVaovienNgayvaokhoa = new TableSchema.TableColumn(schema);
+				colvarVaovienNgayvaokhoa.ColumnName = "vaovien_ngayvaokhoa";
+				colvarVaovienNgayvaokhoa.DataType = DbType.DateTime;
+				colvarVaovienNgayvaokhoa.MaxLength = 0;
+				colvarVaovienNgayvaokhoa.AutoIncrement = false;
+				colvarVaovienNgayvaokhoa.IsNullable = true;
+				colvarVaovienNgayvaokhoa.IsPrimaryKey = false;
+				colvarVaovienNgayvaokhoa.IsForeignKey = false;
+				colvarVaovienNgayvaokhoa.IsReadOnly = false;
+				colvarVaovienNgayvaokhoa.DefaultSetting = @"";
+				colvarVaovienNgayvaokhoa.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarVaovienNgayvaokhoa);
+				
+				TableSchema.TableColumn colvarChuyenvienTuyentren = new TableSchema.TableColumn(schema);
+				colvarChuyenvienTuyentren.ColumnName = "chuyenvien_tuyentren";
+				colvarChuyenvienTuyentren.DataType = DbType.Boolean;
+				colvarChuyenvienTuyentren.MaxLength = 0;
+				colvarChuyenvienTuyentren.AutoIncrement = false;
+				colvarChuyenvienTuyentren.IsNullable = true;
+				colvarChuyenvienTuyentren.IsPrimaryKey = false;
+				colvarChuyenvienTuyentren.IsForeignKey = false;
+				colvarChuyenvienTuyentren.IsReadOnly = false;
+				
+						colvarChuyenvienTuyentren.DefaultSetting = @"((0))";
+				colvarChuyenvienTuyentren.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarChuyenvienTuyentren);
+				
+				TableSchema.TableColumn colvarChuyenvienTuyenduoi = new TableSchema.TableColumn(schema);
+				colvarChuyenvienTuyenduoi.ColumnName = "chuyenvien_tuyenduoi";
+				colvarChuyenvienTuyenduoi.DataType = DbType.Boolean;
+				colvarChuyenvienTuyenduoi.MaxLength = 0;
+				colvarChuyenvienTuyenduoi.AutoIncrement = false;
+				colvarChuyenvienTuyenduoi.IsNullable = true;
+				colvarChuyenvienTuyenduoi.IsPrimaryKey = false;
+				colvarChuyenvienTuyenduoi.IsForeignKey = false;
+				colvarChuyenvienTuyenduoi.IsReadOnly = false;
+				colvarChuyenvienTuyenduoi.DefaultSetting = @"";
+				colvarChuyenvienTuyenduoi.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarChuyenvienTuyenduoi);
+				
+				TableSchema.TableColumn colvarChuyenvienKhac = new TableSchema.TableColumn(schema);
+				colvarChuyenvienKhac.ColumnName = "chuyenvien_khac";
+				colvarChuyenvienKhac.DataType = DbType.Boolean;
+				colvarChuyenvienKhac.MaxLength = 0;
+				colvarChuyenvienKhac.AutoIncrement = false;
+				colvarChuyenvienKhac.IsNullable = true;
+				colvarChuyenvienKhac.IsPrimaryKey = false;
+				colvarChuyenvienKhac.IsForeignKey = false;
+				colvarChuyenvienKhac.IsReadOnly = false;
+				colvarChuyenvienKhac.DefaultSetting = @"";
+				colvarChuyenvienKhac.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarChuyenvienKhac);
+				
+				TableSchema.TableColumn colvarChuyenvienNoichuyenden = new TableSchema.TableColumn(schema);
+				colvarChuyenvienNoichuyenden.ColumnName = "chuyenvien_noichuyenden";
+				colvarChuyenvienNoichuyenden.DataType = DbType.String;
+				colvarChuyenvienNoichuyenden.MaxLength = 255;
+				colvarChuyenvienNoichuyenden.AutoIncrement = false;
+				colvarChuyenvienNoichuyenden.IsNullable = true;
+				colvarChuyenvienNoichuyenden.IsPrimaryKey = false;
+				colvarChuyenvienNoichuyenden.IsForeignKey = false;
+				colvarChuyenvienNoichuyenden.IsReadOnly = false;
+				colvarChuyenvienNoichuyenden.DefaultSetting = @"";
+				colvarChuyenvienNoichuyenden.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarChuyenvienNoichuyenden);
+				
+				TableSchema.TableColumn colvarRavienNgay = new TableSchema.TableColumn(schema);
+				colvarRavienNgay.ColumnName = "ravien_ngay";
+				colvarRavienNgay.DataType = DbType.DateTime;
+				colvarRavienNgay.MaxLength = 0;
+				colvarRavienNgay.AutoIncrement = false;
+				colvarRavienNgay.IsNullable = true;
+				colvarRavienNgay.IsPrimaryKey = false;
+				colvarRavienNgay.IsForeignKey = false;
+				colvarRavienNgay.IsReadOnly = false;
+				colvarRavienNgay.DefaultSetting = @"";
+				colvarRavienNgay.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarRavienNgay);
+				
+				TableSchema.TableColumn colvarRavienMatinhtrang = new TableSchema.TableColumn(schema);
+				colvarRavienMatinhtrang.ColumnName = "ravien_matinhtrang";
+				colvarRavienMatinhtrang.DataType = DbType.String;
+				colvarRavienMatinhtrang.MaxLength = 1;
+				colvarRavienMatinhtrang.AutoIncrement = false;
+				colvarRavienMatinhtrang.IsNullable = true;
+				colvarRavienMatinhtrang.IsPrimaryKey = false;
+				colvarRavienMatinhtrang.IsForeignKey = false;
+				colvarRavienMatinhtrang.IsReadOnly = false;
+				colvarRavienMatinhtrang.DefaultSetting = @"";
+				colvarRavienMatinhtrang.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarRavienMatinhtrang);
+				
+				TableSchema.TableColumn colvarRavienRavien = new TableSchema.TableColumn(schema);
+				colvarRavienRavien.ColumnName = "ravien_ravien";
+				colvarRavienRavien.DataType = DbType.Boolean;
+				colvarRavienRavien.MaxLength = 0;
+				colvarRavienRavien.AutoIncrement = false;
+				colvarRavienRavien.IsNullable = true;
+				colvarRavienRavien.IsPrimaryKey = false;
+				colvarRavienRavien.IsForeignKey = false;
+				colvarRavienRavien.IsReadOnly = false;
+				colvarRavienRavien.DefaultSetting = @"";
+				colvarRavienRavien.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarRavienRavien);
+				
+				TableSchema.TableColumn colvarRavienXinve = new TableSchema.TableColumn(schema);
+				colvarRavienXinve.ColumnName = "ravien_xinve";
+				colvarRavienXinve.DataType = DbType.Boolean;
+				colvarRavienXinve.MaxLength = 0;
+				colvarRavienXinve.AutoIncrement = false;
+				colvarRavienXinve.IsNullable = true;
+				colvarRavienXinve.IsPrimaryKey = false;
+				colvarRavienXinve.IsForeignKey = false;
+				colvarRavienXinve.IsReadOnly = false;
+				colvarRavienXinve.DefaultSetting = @"";
+				colvarRavienXinve.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarRavienXinve);
+				
+				TableSchema.TableColumn colvarRavienBove = new TableSchema.TableColumn(schema);
+				colvarRavienBove.ColumnName = "ravien_bove";
+				colvarRavienBove.DataType = DbType.Boolean;
+				colvarRavienBove.MaxLength = 0;
+				colvarRavienBove.AutoIncrement = false;
+				colvarRavienBove.IsNullable = true;
+				colvarRavienBove.IsPrimaryKey = false;
+				colvarRavienBove.IsForeignKey = false;
+				colvarRavienBove.IsReadOnly = false;
+				colvarRavienBove.DefaultSetting = @"";
+				colvarRavienBove.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarRavienBove);
+				
+				TableSchema.TableColumn colvarRavienDuave = new TableSchema.TableColumn(schema);
+				colvarRavienDuave.ColumnName = "ravien_duave";
+				colvarRavienDuave.DataType = DbType.Boolean;
+				colvarRavienDuave.MaxLength = 0;
+				colvarRavienDuave.AutoIncrement = false;
+				colvarRavienDuave.IsNullable = true;
+				colvarRavienDuave.IsPrimaryKey = false;
+				colvarRavienDuave.IsForeignKey = false;
+				colvarRavienDuave.IsReadOnly = false;
+				colvarRavienDuave.DefaultSetting = @"";
+				colvarRavienDuave.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarRavienDuave);
+				
+				TableSchema.TableColumn colvarRavienTongsongayDieutri = new TableSchema.TableColumn(schema);
+				colvarRavienTongsongayDieutri.ColumnName = "ravien_tongsongay_dieutri";
+				colvarRavienTongsongayDieutri.DataType = DbType.Int16;
+				colvarRavienTongsongayDieutri.MaxLength = 0;
+				colvarRavienTongsongayDieutri.AutoIncrement = false;
+				colvarRavienTongsongayDieutri.IsNullable = true;
+				colvarRavienTongsongayDieutri.IsPrimaryKey = false;
+				colvarRavienTongsongayDieutri.IsForeignKey = false;
+				colvarRavienTongsongayDieutri.IsReadOnly = false;
+				colvarRavienTongsongayDieutri.DefaultSetting = @"";
+				colvarRavienTongsongayDieutri.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarRavienTongsongayDieutri);
+				
+				TableSchema.TableColumn colvarCdNoichuyenden = new TableSchema.TableColumn(schema);
+				colvarCdNoichuyenden.ColumnName = "cd_noichuyenden";
+				colvarCdNoichuyenden.DataType = DbType.String;
+				colvarCdNoichuyenden.MaxLength = 255;
+				colvarCdNoichuyenden.AutoIncrement = false;
+				colvarCdNoichuyenden.IsNullable = true;
+				colvarCdNoichuyenden.IsPrimaryKey = false;
+				colvarCdNoichuyenden.IsForeignKey = false;
+				colvarCdNoichuyenden.IsReadOnly = false;
+				colvarCdNoichuyenden.DefaultSetting = @"";
+				colvarCdNoichuyenden.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarCdNoichuyenden);
+				
+				TableSchema.TableColumn colvarCdNoichuyendenMa = new TableSchema.TableColumn(schema);
+				colvarCdNoichuyendenMa.ColumnName = "cd_noichuyenden_ma";
+				colvarCdNoichuyendenMa.DataType = DbType.String;
+				colvarCdNoichuyendenMa.MaxLength = 50;
+				colvarCdNoichuyendenMa.AutoIncrement = false;
+				colvarCdNoichuyendenMa.IsNullable = true;
+				colvarCdNoichuyendenMa.IsPrimaryKey = false;
+				colvarCdNoichuyendenMa.IsForeignKey = false;
+				colvarCdNoichuyendenMa.IsReadOnly = false;
+				colvarCdNoichuyendenMa.DefaultSetting = @"";
+				colvarCdNoichuyendenMa.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarCdNoichuyendenMa);
+				
+				TableSchema.TableColumn colvarCdKkbCapcuu = new TableSchema.TableColumn(schema);
+				colvarCdKkbCapcuu.ColumnName = "cd_kkb_capcuu";
+				colvarCdKkbCapcuu.DataType = DbType.String;
+				colvarCdKkbCapcuu.MaxLength = 255;
+				colvarCdKkbCapcuu.AutoIncrement = false;
+				colvarCdKkbCapcuu.IsNullable = true;
+				colvarCdKkbCapcuu.IsPrimaryKey = false;
+				colvarCdKkbCapcuu.IsForeignKey = false;
+				colvarCdKkbCapcuu.IsReadOnly = false;
+				colvarCdKkbCapcuu.DefaultSetting = @"";
+				colvarCdKkbCapcuu.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarCdKkbCapcuu);
+				
+				TableSchema.TableColumn colvarCdKkbCapcuuMa = new TableSchema.TableColumn(schema);
+				colvarCdKkbCapcuuMa.ColumnName = "cd_kkb_capcuu_ma";
+				colvarCdKkbCapcuuMa.DataType = DbType.String;
+				colvarCdKkbCapcuuMa.MaxLength = 50;
+				colvarCdKkbCapcuuMa.AutoIncrement = false;
+				colvarCdKkbCapcuuMa.IsNullable = true;
+				colvarCdKkbCapcuuMa.IsPrimaryKey = false;
+				colvarCdKkbCapcuuMa.IsForeignKey = false;
+				colvarCdKkbCapcuuMa.IsReadOnly = false;
+				colvarCdKkbCapcuuMa.DefaultSetting = @"";
+				colvarCdKkbCapcuuMa.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarCdKkbCapcuuMa);
+				
+				TableSchema.TableColumn colvarCdKhoadieutri = new TableSchema.TableColumn(schema);
+				colvarCdKhoadieutri.ColumnName = "cd_khoadieutri";
+				colvarCdKhoadieutri.DataType = DbType.String;
+				colvarCdKhoadieutri.MaxLength = 1000;
+				colvarCdKhoadieutri.AutoIncrement = false;
+				colvarCdKhoadieutri.IsNullable = true;
+				colvarCdKhoadieutri.IsPrimaryKey = false;
+				colvarCdKhoadieutri.IsForeignKey = false;
+				colvarCdKhoadieutri.IsReadOnly = false;
+				colvarCdKhoadieutri.DefaultSetting = @"";
+				colvarCdKhoadieutri.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarCdKhoadieutri);
+				
+				TableSchema.TableColumn colvarCdKhoadieutriMa = new TableSchema.TableColumn(schema);
+				colvarCdKhoadieutriMa.ColumnName = "cd_khoadieutri_ma";
+				colvarCdKhoadieutriMa.DataType = DbType.String;
+				colvarCdKhoadieutriMa.MaxLength = 255;
+				colvarCdKhoadieutriMa.AutoIncrement = false;
+				colvarCdKhoadieutriMa.IsNullable = true;
+				colvarCdKhoadieutriMa.IsPrimaryKey = false;
+				colvarCdKhoadieutriMa.IsForeignKey = false;
+				colvarCdKhoadieutriMa.IsReadOnly = false;
+				colvarCdKhoadieutriMa.DefaultSetting = @"";
+				colvarCdKhoadieutriMa.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarCdKhoadieutriMa);
+				
+				TableSchema.TableColumn colvarRavienMaBenhchinh = new TableSchema.TableColumn(schema);
+				colvarRavienMaBenhchinh.ColumnName = "ravien_ma_benhchinh";
+				colvarRavienMaBenhchinh.DataType = DbType.String;
+				colvarRavienMaBenhchinh.MaxLength = 10;
+				colvarRavienMaBenhchinh.AutoIncrement = false;
+				colvarRavienMaBenhchinh.IsNullable = true;
+				colvarRavienMaBenhchinh.IsPrimaryKey = false;
+				colvarRavienMaBenhchinh.IsForeignKey = false;
+				colvarRavienMaBenhchinh.IsReadOnly = false;
+				colvarRavienMaBenhchinh.DefaultSetting = @"";
+				colvarRavienMaBenhchinh.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarRavienMaBenhchinh);
+				
+				TableSchema.TableColumn colvarRavienTenBenhchinh = new TableSchema.TableColumn(schema);
+				colvarRavienTenBenhchinh.ColumnName = "ravien_ten_benhchinh";
+				colvarRavienTenBenhchinh.DataType = DbType.String;
+				colvarRavienTenBenhchinh.MaxLength = 255;
+				colvarRavienTenBenhchinh.AutoIncrement = false;
+				colvarRavienTenBenhchinh.IsNullable = true;
+				colvarRavienTenBenhchinh.IsPrimaryKey = false;
+				colvarRavienTenBenhchinh.IsForeignKey = false;
+				colvarRavienTenBenhchinh.IsReadOnly = false;
+				colvarRavienTenBenhchinh.DefaultSetting = @"";
+				colvarRavienTenBenhchinh.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarRavienTenBenhchinh);
+				
+				TableSchema.TableColumn colvarRavienMaBenhphu = new TableSchema.TableColumn(schema);
+				colvarRavienMaBenhphu.ColumnName = "ravien_ma_benhphu";
+				colvarRavienMaBenhphu.DataType = DbType.String;
+				colvarRavienMaBenhphu.MaxLength = 250;
+				colvarRavienMaBenhphu.AutoIncrement = false;
+				colvarRavienMaBenhphu.IsNullable = true;
+				colvarRavienMaBenhphu.IsPrimaryKey = false;
+				colvarRavienMaBenhphu.IsForeignKey = false;
+				colvarRavienMaBenhphu.IsReadOnly = false;
+				colvarRavienMaBenhphu.DefaultSetting = @"";
+				colvarRavienMaBenhphu.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarRavienMaBenhphu);
+				
+				TableSchema.TableColumn colvarRavienTenBenhphu = new TableSchema.TableColumn(schema);
+				colvarRavienTenBenhphu.ColumnName = "ravien_ten_benhphu";
+				colvarRavienTenBenhphu.DataType = DbType.String;
+				colvarRavienTenBenhphu.MaxLength = 4000;
+				colvarRavienTenBenhphu.AutoIncrement = false;
+				colvarRavienTenBenhphu.IsNullable = true;
+				colvarRavienTenBenhphu.IsPrimaryKey = false;
+				colvarRavienTenBenhphu.IsForeignKey = false;
+				colvarRavienTenBenhphu.IsReadOnly = false;
+				colvarRavienTenBenhphu.DefaultSetting = @"";
+				colvarRavienTenBenhphu.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarRavienTenBenhphu);
+				
+				TableSchema.TableColumn colvarTinhtrangravienMaKetquadieutri = new TableSchema.TableColumn(schema);
+				colvarTinhtrangravienMaKetquadieutri.ColumnName = "tinhtrangravien_ma_ketquadieutri";
+				colvarTinhtrangravienMaKetquadieutri.DataType = DbType.String;
+				colvarTinhtrangravienMaKetquadieutri.MaxLength = 1;
+				colvarTinhtrangravienMaKetquadieutri.AutoIncrement = false;
+				colvarTinhtrangravienMaKetquadieutri.IsNullable = true;
+				colvarTinhtrangravienMaKetquadieutri.IsPrimaryKey = false;
+				colvarTinhtrangravienMaKetquadieutri.IsForeignKey = false;
+				colvarTinhtrangravienMaKetquadieutri.IsReadOnly = false;
+				colvarTinhtrangravienMaKetquadieutri.DefaultSetting = @"";
+				colvarTinhtrangravienMaKetquadieutri.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarTinhtrangravienMaKetquadieutri);
+				
+				TableSchema.TableColumn colvarTinhtrangravienKetquadieutriKhoi = new TableSchema.TableColumn(schema);
+				colvarTinhtrangravienKetquadieutriKhoi.ColumnName = "tinhtrangravien_ketquadieutri_khoi";
+				colvarTinhtrangravienKetquadieutriKhoi.DataType = DbType.Boolean;
+				colvarTinhtrangravienKetquadieutriKhoi.MaxLength = 0;
+				colvarTinhtrangravienKetquadieutriKhoi.AutoIncrement = false;
+				colvarTinhtrangravienKetquadieutriKhoi.IsNullable = true;
+				colvarTinhtrangravienKetquadieutriKhoi.IsPrimaryKey = false;
+				colvarTinhtrangravienKetquadieutriKhoi.IsForeignKey = false;
+				colvarTinhtrangravienKetquadieutriKhoi.IsReadOnly = false;
+				colvarTinhtrangravienKetquadieutriKhoi.DefaultSetting = @"";
+				colvarTinhtrangravienKetquadieutriKhoi.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarTinhtrangravienKetquadieutriKhoi);
+				
+				TableSchema.TableColumn colvarTinhtrangravienKetquadieutriDogiam = new TableSchema.TableColumn(schema);
+				colvarTinhtrangravienKetquadieutriDogiam.ColumnName = "tinhtrangravien_ketquadieutri_dogiam";
+				colvarTinhtrangravienKetquadieutriDogiam.DataType = DbType.Boolean;
+				colvarTinhtrangravienKetquadieutriDogiam.MaxLength = 0;
+				colvarTinhtrangravienKetquadieutriDogiam.AutoIncrement = false;
+				colvarTinhtrangravienKetquadieutriDogiam.IsNullable = true;
+				colvarTinhtrangravienKetquadieutriDogiam.IsPrimaryKey = false;
+				colvarTinhtrangravienKetquadieutriDogiam.IsForeignKey = false;
+				colvarTinhtrangravienKetquadieutriDogiam.IsReadOnly = false;
+				colvarTinhtrangravienKetquadieutriDogiam.DefaultSetting = @"";
+				colvarTinhtrangravienKetquadieutriDogiam.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarTinhtrangravienKetquadieutriDogiam);
+				
+				TableSchema.TableColumn colvarTinhtrangravienKetquadieutriKhongthaydoi = new TableSchema.TableColumn(schema);
+				colvarTinhtrangravienKetquadieutriKhongthaydoi.ColumnName = "tinhtrangravien_ketquadieutri_khongthaydoi";
+				colvarTinhtrangravienKetquadieutriKhongthaydoi.DataType = DbType.Boolean;
+				colvarTinhtrangravienKetquadieutriKhongthaydoi.MaxLength = 0;
+				colvarTinhtrangravienKetquadieutriKhongthaydoi.AutoIncrement = false;
+				colvarTinhtrangravienKetquadieutriKhongthaydoi.IsNullable = true;
+				colvarTinhtrangravienKetquadieutriKhongthaydoi.IsPrimaryKey = false;
+				colvarTinhtrangravienKetquadieutriKhongthaydoi.IsForeignKey = false;
+				colvarTinhtrangravienKetquadieutriKhongthaydoi.IsReadOnly = false;
+				colvarTinhtrangravienKetquadieutriKhongthaydoi.DefaultSetting = @"";
+				colvarTinhtrangravienKetquadieutriKhongthaydoi.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarTinhtrangravienKetquadieutriKhongthaydoi);
+				
+				TableSchema.TableColumn colvarTinhtrangravienKetquadieutriNanghon = new TableSchema.TableColumn(schema);
+				colvarTinhtrangravienKetquadieutriNanghon.ColumnName = "tinhtrangravien_ketquadieutri_nanghon";
+				colvarTinhtrangravienKetquadieutriNanghon.DataType = DbType.Boolean;
+				colvarTinhtrangravienKetquadieutriNanghon.MaxLength = 0;
+				colvarTinhtrangravienKetquadieutriNanghon.AutoIncrement = false;
+				colvarTinhtrangravienKetquadieutriNanghon.IsNullable = true;
+				colvarTinhtrangravienKetquadieutriNanghon.IsPrimaryKey = false;
+				colvarTinhtrangravienKetquadieutriNanghon.IsForeignKey = false;
+				colvarTinhtrangravienKetquadieutriNanghon.IsReadOnly = false;
+				colvarTinhtrangravienKetquadieutriNanghon.DefaultSetting = @"";
+				colvarTinhtrangravienKetquadieutriNanghon.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarTinhtrangravienKetquadieutriNanghon);
+				
+				TableSchema.TableColumn colvarTinhtrangravienKetquadieutriTuvong = new TableSchema.TableColumn(schema);
+				colvarTinhtrangravienKetquadieutriTuvong.ColumnName = "tinhtrangravien_ketquadieutri_tuvong";
+				colvarTinhtrangravienKetquadieutriTuvong.DataType = DbType.Boolean;
+				colvarTinhtrangravienKetquadieutriTuvong.MaxLength = 0;
+				colvarTinhtrangravienKetquadieutriTuvong.AutoIncrement = false;
+				colvarTinhtrangravienKetquadieutriTuvong.IsNullable = true;
+				colvarTinhtrangravienKetquadieutriTuvong.IsPrimaryKey = false;
+				colvarTinhtrangravienKetquadieutriTuvong.IsForeignKey = false;
+				colvarTinhtrangravienKetquadieutriTuvong.IsReadOnly = false;
+				colvarTinhtrangravienKetquadieutriTuvong.DefaultSetting = @"";
+				colvarTinhtrangravienKetquadieutriTuvong.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarTinhtrangravienKetquadieutriTuvong);
+				
+				TableSchema.TableColumn colvarTinhtrangravienKetquadieutriChuyenvien = new TableSchema.TableColumn(schema);
+				colvarTinhtrangravienKetquadieutriChuyenvien.ColumnName = "tinhtrangravien_ketquadieutri_chuyenvien";
+				colvarTinhtrangravienKetquadieutriChuyenvien.DataType = DbType.Boolean;
+				colvarTinhtrangravienKetquadieutriChuyenvien.MaxLength = 0;
+				colvarTinhtrangravienKetquadieutriChuyenvien.AutoIncrement = false;
+				colvarTinhtrangravienKetquadieutriChuyenvien.IsNullable = true;
+				colvarTinhtrangravienKetquadieutriChuyenvien.IsPrimaryKey = false;
+				colvarTinhtrangravienKetquadieutriChuyenvien.IsForeignKey = false;
+				colvarTinhtrangravienKetquadieutriChuyenvien.IsReadOnly = false;
+				colvarTinhtrangravienKetquadieutriChuyenvien.DefaultSetting = @"";
+				colvarTinhtrangravienKetquadieutriChuyenvien.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarTinhtrangravienKetquadieutriChuyenvien);
+				
+				TableSchema.TableColumn colvarTinhtrangravienGpbLanhtinh = new TableSchema.TableColumn(schema);
+				colvarTinhtrangravienGpbLanhtinh.ColumnName = "tinhtrangravien_gpb_lanhtinh";
+				colvarTinhtrangravienGpbLanhtinh.DataType = DbType.Boolean;
+				colvarTinhtrangravienGpbLanhtinh.MaxLength = 0;
+				colvarTinhtrangravienGpbLanhtinh.AutoIncrement = false;
+				colvarTinhtrangravienGpbLanhtinh.IsNullable = true;
+				colvarTinhtrangravienGpbLanhtinh.IsPrimaryKey = false;
+				colvarTinhtrangravienGpbLanhtinh.IsForeignKey = false;
+				colvarTinhtrangravienGpbLanhtinh.IsReadOnly = false;
+				colvarTinhtrangravienGpbLanhtinh.DefaultSetting = @"";
+				colvarTinhtrangravienGpbLanhtinh.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarTinhtrangravienGpbLanhtinh);
+				
+				TableSchema.TableColumn colvarTinhtrangravienGpbNghingo = new TableSchema.TableColumn(schema);
+				colvarTinhtrangravienGpbNghingo.ColumnName = "tinhtrangravien_gpb_nghingo";
+				colvarTinhtrangravienGpbNghingo.DataType = DbType.Boolean;
+				colvarTinhtrangravienGpbNghingo.MaxLength = 0;
+				colvarTinhtrangravienGpbNghingo.AutoIncrement = false;
+				colvarTinhtrangravienGpbNghingo.IsNullable = true;
+				colvarTinhtrangravienGpbNghingo.IsPrimaryKey = false;
+				colvarTinhtrangravienGpbNghingo.IsForeignKey = false;
+				colvarTinhtrangravienGpbNghingo.IsReadOnly = false;
+				colvarTinhtrangravienGpbNghingo.DefaultSetting = @"";
+				colvarTinhtrangravienGpbNghingo.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarTinhtrangravienGpbNghingo);
+				
+				TableSchema.TableColumn colvarTinhtrangravienGpbActinh = new TableSchema.TableColumn(schema);
+				colvarTinhtrangravienGpbActinh.ColumnName = "tinhtrangravien_gpb_actinh";
+				colvarTinhtrangravienGpbActinh.DataType = DbType.Boolean;
+				colvarTinhtrangravienGpbActinh.MaxLength = 0;
+				colvarTinhtrangravienGpbActinh.AutoIncrement = false;
+				colvarTinhtrangravienGpbActinh.IsNullable = true;
+				colvarTinhtrangravienGpbActinh.IsPrimaryKey = false;
+				colvarTinhtrangravienGpbActinh.IsForeignKey = false;
+				colvarTinhtrangravienGpbActinh.IsReadOnly = false;
+				colvarTinhtrangravienGpbActinh.DefaultSetting = @"";
+				colvarTinhtrangravienGpbActinh.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarTinhtrangravienGpbActinh);
+				
+				TableSchema.TableColumn colvarTinhtrangravienGpb = new TableSchema.TableColumn(schema);
+				colvarTinhtrangravienGpb.ColumnName = "tinhtrangravien_gpb";
+				colvarTinhtrangravienGpb.DataType = DbType.Boolean;
+				colvarTinhtrangravienGpb.MaxLength = 0;
+				colvarTinhtrangravienGpb.AutoIncrement = false;
+				colvarTinhtrangravienGpb.IsNullable = true;
+				colvarTinhtrangravienGpb.IsPrimaryKey = false;
+				colvarTinhtrangravienGpb.IsForeignKey = false;
+				colvarTinhtrangravienGpb.IsReadOnly = false;
+				colvarTinhtrangravienGpb.DefaultSetting = @"";
+				colvarTinhtrangravienGpb.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarTinhtrangravienGpb);
+				
+				TableSchema.TableColumn colvarTinhtrangravienThoigianTuvong = new TableSchema.TableColumn(schema);
+				colvarTinhtrangravienThoigianTuvong.ColumnName = "tinhtrangravien_thoigian_tuvong";
+				colvarTinhtrangravienThoigianTuvong.DataType = DbType.DateTime;
+				colvarTinhtrangravienThoigianTuvong.MaxLength = 0;
+				colvarTinhtrangravienThoigianTuvong.AutoIncrement = false;
+				colvarTinhtrangravienThoigianTuvong.IsNullable = true;
+				colvarTinhtrangravienThoigianTuvong.IsPrimaryKey = false;
+				colvarTinhtrangravienThoigianTuvong.IsForeignKey = false;
+				colvarTinhtrangravienThoigianTuvong.IsReadOnly = false;
+				colvarTinhtrangravienThoigianTuvong.DefaultSetting = @"";
+				colvarTinhtrangravienThoigianTuvong.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarTinhtrangravienThoigianTuvong);
+				
+				TableSchema.TableColumn colvarTinhtrangravienMaLydotuvong = new TableSchema.TableColumn(schema);
+				colvarTinhtrangravienMaLydotuvong.ColumnName = "tinhtrangravien_ma_lydotuvong";
+				colvarTinhtrangravienMaLydotuvong.DataType = DbType.String;
+				colvarTinhtrangravienMaLydotuvong.MaxLength = 1;
+				colvarTinhtrangravienMaLydotuvong.AutoIncrement = false;
+				colvarTinhtrangravienMaLydotuvong.IsNullable = true;
+				colvarTinhtrangravienMaLydotuvong.IsPrimaryKey = false;
+				colvarTinhtrangravienMaLydotuvong.IsForeignKey = false;
+				colvarTinhtrangravienMaLydotuvong.IsReadOnly = false;
+				colvarTinhtrangravienMaLydotuvong.DefaultSetting = @"";
+				colvarTinhtrangravienMaLydotuvong.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarTinhtrangravienMaLydotuvong);
+				
+				TableSchema.TableColumn colvarTinhtrangravienLydotuvongDobenh = new TableSchema.TableColumn(schema);
+				colvarTinhtrangravienLydotuvongDobenh.ColumnName = "tinhtrangravien_lydotuvong_dobenh";
+				colvarTinhtrangravienLydotuvongDobenh.DataType = DbType.Boolean;
+				colvarTinhtrangravienLydotuvongDobenh.MaxLength = 0;
+				colvarTinhtrangravienLydotuvongDobenh.AutoIncrement = false;
+				colvarTinhtrangravienLydotuvongDobenh.IsNullable = true;
+				colvarTinhtrangravienLydotuvongDobenh.IsPrimaryKey = false;
+				colvarTinhtrangravienLydotuvongDobenh.IsForeignKey = false;
+				colvarTinhtrangravienLydotuvongDobenh.IsReadOnly = false;
+				colvarTinhtrangravienLydotuvongDobenh.DefaultSetting = @"";
+				colvarTinhtrangravienLydotuvongDobenh.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarTinhtrangravienLydotuvongDobenh);
+				
+				TableSchema.TableColumn colvarTinhtrangravienLydotuvongDotaibiendieutri = new TableSchema.TableColumn(schema);
+				colvarTinhtrangravienLydotuvongDotaibiendieutri.ColumnName = "tinhtrangravien_lydotuvong_dotaibiendieutri";
+				colvarTinhtrangravienLydotuvongDotaibiendieutri.DataType = DbType.Boolean;
+				colvarTinhtrangravienLydotuvongDotaibiendieutri.MaxLength = 0;
+				colvarTinhtrangravienLydotuvongDotaibiendieutri.AutoIncrement = false;
+				colvarTinhtrangravienLydotuvongDotaibiendieutri.IsNullable = true;
+				colvarTinhtrangravienLydotuvongDotaibiendieutri.IsPrimaryKey = false;
+				colvarTinhtrangravienLydotuvongDotaibiendieutri.IsForeignKey = false;
+				colvarTinhtrangravienLydotuvongDotaibiendieutri.IsReadOnly = false;
+				colvarTinhtrangravienLydotuvongDotaibiendieutri.DefaultSetting = @"";
+				colvarTinhtrangravienLydotuvongDotaibiendieutri.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarTinhtrangravienLydotuvongDotaibiendieutri);
+				
+				TableSchema.TableColumn colvarTinhtrangravienLydotuvongKhac = new TableSchema.TableColumn(schema);
+				colvarTinhtrangravienLydotuvongKhac.ColumnName = "tinhtrangravien_lydotuvong_khac";
+				colvarTinhtrangravienLydotuvongKhac.DataType = DbType.Boolean;
+				colvarTinhtrangravienLydotuvongKhac.MaxLength = 0;
+				colvarTinhtrangravienLydotuvongKhac.AutoIncrement = false;
+				colvarTinhtrangravienLydotuvongKhac.IsNullable = true;
+				colvarTinhtrangravienLydotuvongKhac.IsPrimaryKey = false;
+				colvarTinhtrangravienLydotuvongKhac.IsForeignKey = false;
+				colvarTinhtrangravienLydotuvongKhac.IsReadOnly = false;
+				colvarTinhtrangravienLydotuvongKhac.DefaultSetting = @"";
+				colvarTinhtrangravienLydotuvongKhac.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarTinhtrangravienLydotuvongKhac);
+				
+				TableSchema.TableColumn colvarTinhtrangravienMaThoigiantuvong = new TableSchema.TableColumn(schema);
+				colvarTinhtrangravienMaThoigiantuvong.ColumnName = "tinhtrangravien_ma_thoigiantuvong";
+				colvarTinhtrangravienMaThoigiantuvong.DataType = DbType.String;
+				colvarTinhtrangravienMaThoigiantuvong.MaxLength = 10;
+				colvarTinhtrangravienMaThoigiantuvong.AutoIncrement = false;
+				colvarTinhtrangravienMaThoigiantuvong.IsNullable = true;
+				colvarTinhtrangravienMaThoigiantuvong.IsPrimaryKey = false;
+				colvarTinhtrangravienMaThoigiantuvong.IsForeignKey = false;
+				colvarTinhtrangravienMaThoigiantuvong.IsReadOnly = false;
+				colvarTinhtrangravienMaThoigiantuvong.DefaultSetting = @"";
+				colvarTinhtrangravienMaThoigiantuvong.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarTinhtrangravienMaThoigiantuvong);
+				
+				TableSchema.TableColumn colvarTinhtrangravienThoigiantuvongTrong24h = new TableSchema.TableColumn(schema);
+				colvarTinhtrangravienThoigiantuvongTrong24h.ColumnName = "tinhtrangravien_thoigiantuvong_trong24h";
+				colvarTinhtrangravienThoigiantuvongTrong24h.DataType = DbType.Boolean;
+				colvarTinhtrangravienThoigiantuvongTrong24h.MaxLength = 0;
+				colvarTinhtrangravienThoigiantuvongTrong24h.AutoIncrement = false;
+				colvarTinhtrangravienThoigiantuvongTrong24h.IsNullable = true;
+				colvarTinhtrangravienThoigiantuvongTrong24h.IsPrimaryKey = false;
+				colvarTinhtrangravienThoigiantuvongTrong24h.IsForeignKey = false;
+				colvarTinhtrangravienThoigiantuvongTrong24h.IsReadOnly = false;
+				colvarTinhtrangravienThoigiantuvongTrong24h.DefaultSetting = @"";
+				colvarTinhtrangravienThoigiantuvongTrong24h.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarTinhtrangravienThoigiantuvongTrong24h);
+				
+				TableSchema.TableColumn colvarTinhtrangravienThoigiantuvongSau24h = new TableSchema.TableColumn(schema);
+				colvarTinhtrangravienThoigiantuvongSau24h.ColumnName = "tinhtrangravien_thoigiantuvong_sau24h";
+				colvarTinhtrangravienThoigiantuvongSau24h.DataType = DbType.Boolean;
+				colvarTinhtrangravienThoigiantuvongSau24h.MaxLength = 0;
+				colvarTinhtrangravienThoigiantuvongSau24h.AutoIncrement = false;
+				colvarTinhtrangravienThoigiantuvongSau24h.IsNullable = true;
+				colvarTinhtrangravienThoigiantuvongSau24h.IsPrimaryKey = false;
+				colvarTinhtrangravienThoigiantuvongSau24h.IsForeignKey = false;
+				colvarTinhtrangravienThoigiantuvongSau24h.IsReadOnly = false;
+				colvarTinhtrangravienThoigiantuvongSau24h.DefaultSetting = @"";
+				colvarTinhtrangravienThoigiantuvongSau24h.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarTinhtrangravienThoigiantuvongSau24h);
+				
+				TableSchema.TableColumn colvarTinhtrangravienThoigiantuvongTrong48h = new TableSchema.TableColumn(schema);
+				colvarTinhtrangravienThoigiantuvongTrong48h.ColumnName = "tinhtrangravien_thoigiantuvong_trong48h";
+				colvarTinhtrangravienThoigiantuvongTrong48h.DataType = DbType.Boolean;
+				colvarTinhtrangravienThoigiantuvongTrong48h.MaxLength = 0;
+				colvarTinhtrangravienThoigiantuvongTrong48h.AutoIncrement = false;
+				colvarTinhtrangravienThoigiantuvongTrong48h.IsNullable = true;
+				colvarTinhtrangravienThoigiantuvongTrong48h.IsPrimaryKey = false;
+				colvarTinhtrangravienThoigiantuvongTrong48h.IsForeignKey = false;
+				colvarTinhtrangravienThoigiantuvongTrong48h.IsReadOnly = false;
+				colvarTinhtrangravienThoigiantuvongTrong48h.DefaultSetting = @"";
+				colvarTinhtrangravienThoigiantuvongTrong48h.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarTinhtrangravienThoigiantuvongTrong48h);
+				
+				TableSchema.TableColumn colvarTinhtrangravienThoigiantuvongTrong72h = new TableSchema.TableColumn(schema);
+				colvarTinhtrangravienThoigiantuvongTrong72h.ColumnName = "tinhtrangravien_thoigiantuvong_trong72h";
+				colvarTinhtrangravienThoigiantuvongTrong72h.DataType = DbType.Boolean;
+				colvarTinhtrangravienThoigiantuvongTrong72h.MaxLength = 0;
+				colvarTinhtrangravienThoigiantuvongTrong72h.AutoIncrement = false;
+				colvarTinhtrangravienThoigiantuvongTrong72h.IsNullable = true;
+				colvarTinhtrangravienThoigiantuvongTrong72h.IsPrimaryKey = false;
+				colvarTinhtrangravienThoigiantuvongTrong72h.IsForeignKey = false;
+				colvarTinhtrangravienThoigiantuvongTrong72h.IsReadOnly = false;
+				colvarTinhtrangravienThoigiantuvongTrong72h.DefaultSetting = @"";
+				colvarTinhtrangravienThoigiantuvongTrong72h.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarTinhtrangravienThoigiantuvongTrong72h);
+				
+				TableSchema.TableColumn colvarTinhtrangravienMaNguyennhantuvong = new TableSchema.TableColumn(schema);
+				colvarTinhtrangravienMaNguyennhantuvong.ColumnName = "tinhtrangravien_ma_nguyennhantuvong";
+				colvarTinhtrangravienMaNguyennhantuvong.DataType = DbType.String;
+				colvarTinhtrangravienMaNguyennhantuvong.MaxLength = 10;
+				colvarTinhtrangravienMaNguyennhantuvong.AutoIncrement = false;
+				colvarTinhtrangravienMaNguyennhantuvong.IsNullable = true;
+				colvarTinhtrangravienMaNguyennhantuvong.IsPrimaryKey = false;
+				colvarTinhtrangravienMaNguyennhantuvong.IsForeignKey = false;
+				colvarTinhtrangravienMaNguyennhantuvong.IsReadOnly = false;
+				colvarTinhtrangravienMaNguyennhantuvong.DefaultSetting = @"";
+				colvarTinhtrangravienMaNguyennhantuvong.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarTinhtrangravienMaNguyennhantuvong);
+				
+				TableSchema.TableColumn colvarTinhtrangravienNguyennhantuvong = new TableSchema.TableColumn(schema);
+				colvarTinhtrangravienNguyennhantuvong.ColumnName = "tinhtrangravien_nguyennhantuvong";
+				colvarTinhtrangravienNguyennhantuvong.DataType = DbType.String;
+				colvarTinhtrangravienNguyennhantuvong.MaxLength = 255;
+				colvarTinhtrangravienNguyennhantuvong.AutoIncrement = false;
+				colvarTinhtrangravienNguyennhantuvong.IsNullable = true;
+				colvarTinhtrangravienNguyennhantuvong.IsPrimaryKey = false;
+				colvarTinhtrangravienNguyennhantuvong.IsForeignKey = false;
+				colvarTinhtrangravienNguyennhantuvong.IsReadOnly = false;
+				colvarTinhtrangravienNguyennhantuvong.DefaultSetting = @"";
+				colvarTinhtrangravienNguyennhantuvong.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarTinhtrangravienNguyennhantuvong);
+				
+				TableSchema.TableColumn colvarTinhtrangravienKhamnghiemtuthi = new TableSchema.TableColumn(schema);
+				colvarTinhtrangravienKhamnghiemtuthi.ColumnName = "tinhtrangravien_khamnghiemtuthi";
+				colvarTinhtrangravienKhamnghiemtuthi.DataType = DbType.Boolean;
+				colvarTinhtrangravienKhamnghiemtuthi.MaxLength = 0;
+				colvarTinhtrangravienKhamnghiemtuthi.AutoIncrement = false;
+				colvarTinhtrangravienKhamnghiemtuthi.IsNullable = true;
+				colvarTinhtrangravienKhamnghiemtuthi.IsPrimaryKey = false;
+				colvarTinhtrangravienKhamnghiemtuthi.IsForeignKey = false;
+				colvarTinhtrangravienKhamnghiemtuthi.IsReadOnly = false;
+				colvarTinhtrangravienKhamnghiemtuthi.DefaultSetting = @"";
+				colvarTinhtrangravienKhamnghiemtuthi.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarTinhtrangravienKhamnghiemtuthi);
+				
+				TableSchema.TableColumn colvarTinhtrangravienMaChandoangiaiphaututhi = new TableSchema.TableColumn(schema);
+				colvarTinhtrangravienMaChandoangiaiphaututhi.ColumnName = "tinhtrangravien_ma_chandoangiaiphaututhi";
+				colvarTinhtrangravienMaChandoangiaiphaututhi.DataType = DbType.String;
+				colvarTinhtrangravienMaChandoangiaiphaututhi.MaxLength = 10;
+				colvarTinhtrangravienMaChandoangiaiphaututhi.AutoIncrement = false;
+				colvarTinhtrangravienMaChandoangiaiphaututhi.IsNullable = true;
+				colvarTinhtrangravienMaChandoangiaiphaututhi.IsPrimaryKey = false;
+				colvarTinhtrangravienMaChandoangiaiphaututhi.IsForeignKey = false;
+				colvarTinhtrangravienMaChandoangiaiphaututhi.IsReadOnly = false;
+				colvarTinhtrangravienMaChandoangiaiphaututhi.DefaultSetting = @"";
+				colvarTinhtrangravienMaChandoangiaiphaututhi.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarTinhtrangravienMaChandoangiaiphaututhi);
+				
+				TableSchema.TableColumn colvarTinhtrangravienChandoangiauphaututhi = new TableSchema.TableColumn(schema);
+				colvarTinhtrangravienChandoangiauphaututhi.ColumnName = "tinhtrangravien_chandoangiauphaututhi";
+				colvarTinhtrangravienChandoangiauphaututhi.DataType = DbType.String;
+				colvarTinhtrangravienChandoangiauphaututhi.MaxLength = 255;
+				colvarTinhtrangravienChandoangiauphaututhi.AutoIncrement = false;
+				colvarTinhtrangravienChandoangiauphaututhi.IsNullable = true;
+				colvarTinhtrangravienChandoangiauphaututhi.IsPrimaryKey = false;
+				colvarTinhtrangravienChandoangiauphaututhi.IsForeignKey = false;
+				colvarTinhtrangravienChandoangiauphaututhi.IsReadOnly = false;
+				colvarTinhtrangravienChandoangiauphaututhi.DefaultSetting = @"";
+				colvarTinhtrangravienChandoangiauphaututhi.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarTinhtrangravienChandoangiauphaututhi);
+				
 				TableSchema.TableColumn colvarNgayTao = new TableSchema.TableColumn(schema);
 				colvarNgayTao.ColumnName = "ngay_tao";
 				colvarNgayTao.DataType = DbType.DateTime;
@@ -1196,6 +2004,502 @@ namespace VMS.HIS.DAL
 			set { SetColumnValue(Columns.Noigioithieu, value); }
 		}
 		  
+		[XmlAttribute("VaovienNgay")]
+		[Bindable(true)]
+		public DateTime? VaovienNgay 
+		{
+			get { return GetColumnValue<DateTime?>(Columns.VaovienNgay); }
+			set { SetColumnValue(Columns.VaovienNgay, value); }
+		}
+		  
+		[XmlAttribute("VaovienLydovaovien")]
+		[Bindable(true)]
+		public string VaovienLydovaovien 
+		{
+			get { return GetColumnValue<string>(Columns.VaovienLydovaovien); }
+			set { SetColumnValue(Columns.VaovienLydovaovien, value); }
+		}
+		  
+		[XmlAttribute("VaovienVaongaythucuabenh")]
+		[Bindable(true)]
+		public byte? VaovienVaongaythucuabenh 
+		{
+			get { return GetColumnValue<byte?>(Columns.VaovienVaongaythucuabenh); }
+			set { SetColumnValue(Columns.VaovienVaongaythucuabenh, value); }
+		}
+		  
+		[XmlAttribute("VaovienTructiepVao")]
+		[Bindable(true)]
+		public byte? VaovienTructiepVao 
+		{
+			get { return GetColumnValue<byte?>(Columns.VaovienTructiepVao); }
+			set { SetColumnValue(Columns.VaovienTructiepVao, value); }
+		}
+		  
+		[XmlAttribute("VaovienCapcuu")]
+		[Bindable(true)]
+		public bool? VaovienCapcuu 
+		{
+			get { return GetColumnValue<bool?>(Columns.VaovienCapcuu); }
+			set { SetColumnValue(Columns.VaovienCapcuu, value); }
+		}
+		  
+		[XmlAttribute("VaovienKkb")]
+		[Bindable(true)]
+		public bool? VaovienKkb 
+		{
+			get { return GetColumnValue<bool?>(Columns.VaovienKkb); }
+			set { SetColumnValue(Columns.VaovienKkb, value); }
+		}
+		  
+		[XmlAttribute("VaovienKhoadieutri")]
+		[Bindable(true)]
+		public bool? VaovienKhoadieutri 
+		{
+			get { return GetColumnValue<bool?>(Columns.VaovienKhoadieutri); }
+			set { SetColumnValue(Columns.VaovienKhoadieutri, value); }
+		}
+		  
+		[XmlAttribute("NoigioithieuCoquanyte")]
+		[Bindable(true)]
+		public bool? NoigioithieuCoquanyte 
+		{
+			get { return GetColumnValue<bool?>(Columns.NoigioithieuCoquanyte); }
+			set { SetColumnValue(Columns.NoigioithieuCoquanyte, value); }
+		}
+		  
+		[XmlAttribute("NoigioithieuTuden")]
+		[Bindable(true)]
+		public bool? NoigioithieuTuden 
+		{
+			get { return GetColumnValue<bool?>(Columns.NoigioithieuTuden); }
+			set { SetColumnValue(Columns.NoigioithieuTuden, value); }
+		}
+		  
+		[XmlAttribute("NoigioithieuKhac")]
+		[Bindable(true)]
+		public bool? NoigioithieuKhac 
+		{
+			get { return GetColumnValue<bool?>(Columns.NoigioithieuKhac); }
+			set { SetColumnValue(Columns.NoigioithieuKhac, value); }
+		}
+		  
+		[XmlAttribute("VaovienLanthu")]
+		[Bindable(true)]
+		public byte? VaovienLanthu 
+		{
+			get { return GetColumnValue<byte?>(Columns.VaovienLanthu); }
+			set { SetColumnValue(Columns.VaovienLanthu, value); }
+		}
+		  
+		[XmlAttribute("VaovienTenkhoa")]
+		[Bindable(true)]
+		public string VaovienTenkhoa 
+		{
+			get { return GetColumnValue<string>(Columns.VaovienTenkhoa); }
+			set { SetColumnValue(Columns.VaovienTenkhoa, value); }
+		}
+		  
+		[XmlAttribute("VaovienMakhoa")]
+		[Bindable(true)]
+		public string VaovienMakhoa 
+		{
+			get { return GetColumnValue<string>(Columns.VaovienMakhoa); }
+			set { SetColumnValue(Columns.VaovienMakhoa, value); }
+		}
+		  
+		[XmlAttribute("VaovienIdKhoa")]
+		[Bindable(true)]
+		public short? VaovienIdKhoa 
+		{
+			get { return GetColumnValue<short?>(Columns.VaovienIdKhoa); }
+			set { SetColumnValue(Columns.VaovienIdKhoa, value); }
+		}
+		  
+		[XmlAttribute("VaovienNgayvaokhoa")]
+		[Bindable(true)]
+		public DateTime? VaovienNgayvaokhoa 
+		{
+			get { return GetColumnValue<DateTime?>(Columns.VaovienNgayvaokhoa); }
+			set { SetColumnValue(Columns.VaovienNgayvaokhoa, value); }
+		}
+		  
+		[XmlAttribute("ChuyenvienTuyentren")]
+		[Bindable(true)]
+		public bool? ChuyenvienTuyentren 
+		{
+			get { return GetColumnValue<bool?>(Columns.ChuyenvienTuyentren); }
+			set { SetColumnValue(Columns.ChuyenvienTuyentren, value); }
+		}
+		  
+		[XmlAttribute("ChuyenvienTuyenduoi")]
+		[Bindable(true)]
+		public bool? ChuyenvienTuyenduoi 
+		{
+			get { return GetColumnValue<bool?>(Columns.ChuyenvienTuyenduoi); }
+			set { SetColumnValue(Columns.ChuyenvienTuyenduoi, value); }
+		}
+		  
+		[XmlAttribute("ChuyenvienKhac")]
+		[Bindable(true)]
+		public bool? ChuyenvienKhac 
+		{
+			get { return GetColumnValue<bool?>(Columns.ChuyenvienKhac); }
+			set { SetColumnValue(Columns.ChuyenvienKhac, value); }
+		}
+		  
+		[XmlAttribute("ChuyenvienNoichuyenden")]
+		[Bindable(true)]
+		public string ChuyenvienNoichuyenden 
+		{
+			get { return GetColumnValue<string>(Columns.ChuyenvienNoichuyenden); }
+			set { SetColumnValue(Columns.ChuyenvienNoichuyenden, value); }
+		}
+		  
+		[XmlAttribute("RavienNgay")]
+		[Bindable(true)]
+		public DateTime? RavienNgay 
+		{
+			get { return GetColumnValue<DateTime?>(Columns.RavienNgay); }
+			set { SetColumnValue(Columns.RavienNgay, value); }
+		}
+		  
+		[XmlAttribute("RavienMatinhtrang")]
+		[Bindable(true)]
+		public string RavienMatinhtrang 
+		{
+			get { return GetColumnValue<string>(Columns.RavienMatinhtrang); }
+			set { SetColumnValue(Columns.RavienMatinhtrang, value); }
+		}
+		  
+		[XmlAttribute("RavienRavien")]
+		[Bindable(true)]
+		public bool? RavienRavien 
+		{
+			get { return GetColumnValue<bool?>(Columns.RavienRavien); }
+			set { SetColumnValue(Columns.RavienRavien, value); }
+		}
+		  
+		[XmlAttribute("RavienXinve")]
+		[Bindable(true)]
+		public bool? RavienXinve 
+		{
+			get { return GetColumnValue<bool?>(Columns.RavienXinve); }
+			set { SetColumnValue(Columns.RavienXinve, value); }
+		}
+		  
+		[XmlAttribute("RavienBove")]
+		[Bindable(true)]
+		public bool? RavienBove 
+		{
+			get { return GetColumnValue<bool?>(Columns.RavienBove); }
+			set { SetColumnValue(Columns.RavienBove, value); }
+		}
+		  
+		[XmlAttribute("RavienDuave")]
+		[Bindable(true)]
+		public bool? RavienDuave 
+		{
+			get { return GetColumnValue<bool?>(Columns.RavienDuave); }
+			set { SetColumnValue(Columns.RavienDuave, value); }
+		}
+		  
+		[XmlAttribute("RavienTongsongayDieutri")]
+		[Bindable(true)]
+		public short? RavienTongsongayDieutri 
+		{
+			get { return GetColumnValue<short?>(Columns.RavienTongsongayDieutri); }
+			set { SetColumnValue(Columns.RavienTongsongayDieutri, value); }
+		}
+		  
+		[XmlAttribute("CdNoichuyenden")]
+		[Bindable(true)]
+		public string CdNoichuyenden 
+		{
+			get { return GetColumnValue<string>(Columns.CdNoichuyenden); }
+			set { SetColumnValue(Columns.CdNoichuyenden, value); }
+		}
+		  
+		[XmlAttribute("CdNoichuyendenMa")]
+		[Bindable(true)]
+		public string CdNoichuyendenMa 
+		{
+			get { return GetColumnValue<string>(Columns.CdNoichuyendenMa); }
+			set { SetColumnValue(Columns.CdNoichuyendenMa, value); }
+		}
+		  
+		[XmlAttribute("CdKkbCapcuu")]
+		[Bindable(true)]
+		public string CdKkbCapcuu 
+		{
+			get { return GetColumnValue<string>(Columns.CdKkbCapcuu); }
+			set { SetColumnValue(Columns.CdKkbCapcuu, value); }
+		}
+		  
+		[XmlAttribute("CdKkbCapcuuMa")]
+		[Bindable(true)]
+		public string CdKkbCapcuuMa 
+		{
+			get { return GetColumnValue<string>(Columns.CdKkbCapcuuMa); }
+			set { SetColumnValue(Columns.CdKkbCapcuuMa, value); }
+		}
+		  
+		[XmlAttribute("CdKhoadieutri")]
+		[Bindable(true)]
+		public string CdKhoadieutri 
+		{
+			get { return GetColumnValue<string>(Columns.CdKhoadieutri); }
+			set { SetColumnValue(Columns.CdKhoadieutri, value); }
+		}
+		  
+		[XmlAttribute("CdKhoadieutriMa")]
+		[Bindable(true)]
+		public string CdKhoadieutriMa 
+		{
+			get { return GetColumnValue<string>(Columns.CdKhoadieutriMa); }
+			set { SetColumnValue(Columns.CdKhoadieutriMa, value); }
+		}
+		  
+		[XmlAttribute("RavienMaBenhchinh")]
+		[Bindable(true)]
+		public string RavienMaBenhchinh 
+		{
+			get { return GetColumnValue<string>(Columns.RavienMaBenhchinh); }
+			set { SetColumnValue(Columns.RavienMaBenhchinh, value); }
+		}
+		  
+		[XmlAttribute("RavienTenBenhchinh")]
+		[Bindable(true)]
+		public string RavienTenBenhchinh 
+		{
+			get { return GetColumnValue<string>(Columns.RavienTenBenhchinh); }
+			set { SetColumnValue(Columns.RavienTenBenhchinh, value); }
+		}
+		  
+		[XmlAttribute("RavienMaBenhphu")]
+		[Bindable(true)]
+		public string RavienMaBenhphu 
+		{
+			get { return GetColumnValue<string>(Columns.RavienMaBenhphu); }
+			set { SetColumnValue(Columns.RavienMaBenhphu, value); }
+		}
+		  
+		[XmlAttribute("RavienTenBenhphu")]
+		[Bindable(true)]
+		public string RavienTenBenhphu 
+		{
+			get { return GetColumnValue<string>(Columns.RavienTenBenhphu); }
+			set { SetColumnValue(Columns.RavienTenBenhphu, value); }
+		}
+		  
+		[XmlAttribute("TinhtrangravienMaKetquadieutri")]
+		[Bindable(true)]
+		public string TinhtrangravienMaKetquadieutri 
+		{
+			get { return GetColumnValue<string>(Columns.TinhtrangravienMaKetquadieutri); }
+			set { SetColumnValue(Columns.TinhtrangravienMaKetquadieutri, value); }
+		}
+		  
+		[XmlAttribute("TinhtrangravienKetquadieutriKhoi")]
+		[Bindable(true)]
+		public bool? TinhtrangravienKetquadieutriKhoi 
+		{
+			get { return GetColumnValue<bool?>(Columns.TinhtrangravienKetquadieutriKhoi); }
+			set { SetColumnValue(Columns.TinhtrangravienKetquadieutriKhoi, value); }
+		}
+		  
+		[XmlAttribute("TinhtrangravienKetquadieutriDogiam")]
+		[Bindable(true)]
+		public bool? TinhtrangravienKetquadieutriDogiam 
+		{
+			get { return GetColumnValue<bool?>(Columns.TinhtrangravienKetquadieutriDogiam); }
+			set { SetColumnValue(Columns.TinhtrangravienKetquadieutriDogiam, value); }
+		}
+		  
+		[XmlAttribute("TinhtrangravienKetquadieutriKhongthaydoi")]
+		[Bindable(true)]
+		public bool? TinhtrangravienKetquadieutriKhongthaydoi 
+		{
+			get { return GetColumnValue<bool?>(Columns.TinhtrangravienKetquadieutriKhongthaydoi); }
+			set { SetColumnValue(Columns.TinhtrangravienKetquadieutriKhongthaydoi, value); }
+		}
+		  
+		[XmlAttribute("TinhtrangravienKetquadieutriNanghon")]
+		[Bindable(true)]
+		public bool? TinhtrangravienKetquadieutriNanghon 
+		{
+			get { return GetColumnValue<bool?>(Columns.TinhtrangravienKetquadieutriNanghon); }
+			set { SetColumnValue(Columns.TinhtrangravienKetquadieutriNanghon, value); }
+		}
+		  
+		[XmlAttribute("TinhtrangravienKetquadieutriTuvong")]
+		[Bindable(true)]
+		public bool? TinhtrangravienKetquadieutriTuvong 
+		{
+			get { return GetColumnValue<bool?>(Columns.TinhtrangravienKetquadieutriTuvong); }
+			set { SetColumnValue(Columns.TinhtrangravienKetquadieutriTuvong, value); }
+		}
+		  
+		[XmlAttribute("TinhtrangravienKetquadieutriChuyenvien")]
+		[Bindable(true)]
+		public bool? TinhtrangravienKetquadieutriChuyenvien 
+		{
+			get { return GetColumnValue<bool?>(Columns.TinhtrangravienKetquadieutriChuyenvien); }
+			set { SetColumnValue(Columns.TinhtrangravienKetquadieutriChuyenvien, value); }
+		}
+		  
+		[XmlAttribute("TinhtrangravienGpbLanhtinh")]
+		[Bindable(true)]
+		public bool? TinhtrangravienGpbLanhtinh 
+		{
+			get { return GetColumnValue<bool?>(Columns.TinhtrangravienGpbLanhtinh); }
+			set { SetColumnValue(Columns.TinhtrangravienGpbLanhtinh, value); }
+		}
+		  
+		[XmlAttribute("TinhtrangravienGpbNghingo")]
+		[Bindable(true)]
+		public bool? TinhtrangravienGpbNghingo 
+		{
+			get { return GetColumnValue<bool?>(Columns.TinhtrangravienGpbNghingo); }
+			set { SetColumnValue(Columns.TinhtrangravienGpbNghingo, value); }
+		}
+		  
+		[XmlAttribute("TinhtrangravienGpbActinh")]
+		[Bindable(true)]
+		public bool? TinhtrangravienGpbActinh 
+		{
+			get { return GetColumnValue<bool?>(Columns.TinhtrangravienGpbActinh); }
+			set { SetColumnValue(Columns.TinhtrangravienGpbActinh, value); }
+		}
+		  
+		[XmlAttribute("TinhtrangravienGpb")]
+		[Bindable(true)]
+		public bool? TinhtrangravienGpb 
+		{
+			get { return GetColumnValue<bool?>(Columns.TinhtrangravienGpb); }
+			set { SetColumnValue(Columns.TinhtrangravienGpb, value); }
+		}
+		  
+		[XmlAttribute("TinhtrangravienThoigianTuvong")]
+		[Bindable(true)]
+		public DateTime? TinhtrangravienThoigianTuvong 
+		{
+			get { return GetColumnValue<DateTime?>(Columns.TinhtrangravienThoigianTuvong); }
+			set { SetColumnValue(Columns.TinhtrangravienThoigianTuvong, value); }
+		}
+		  
+		[XmlAttribute("TinhtrangravienMaLydotuvong")]
+		[Bindable(true)]
+		public string TinhtrangravienMaLydotuvong 
+		{
+			get { return GetColumnValue<string>(Columns.TinhtrangravienMaLydotuvong); }
+			set { SetColumnValue(Columns.TinhtrangravienMaLydotuvong, value); }
+		}
+		  
+		[XmlAttribute("TinhtrangravienLydotuvongDobenh")]
+		[Bindable(true)]
+		public bool? TinhtrangravienLydotuvongDobenh 
+		{
+			get { return GetColumnValue<bool?>(Columns.TinhtrangravienLydotuvongDobenh); }
+			set { SetColumnValue(Columns.TinhtrangravienLydotuvongDobenh, value); }
+		}
+		  
+		[XmlAttribute("TinhtrangravienLydotuvongDotaibiendieutri")]
+		[Bindable(true)]
+		public bool? TinhtrangravienLydotuvongDotaibiendieutri 
+		{
+			get { return GetColumnValue<bool?>(Columns.TinhtrangravienLydotuvongDotaibiendieutri); }
+			set { SetColumnValue(Columns.TinhtrangravienLydotuvongDotaibiendieutri, value); }
+		}
+		  
+		[XmlAttribute("TinhtrangravienLydotuvongKhac")]
+		[Bindable(true)]
+		public bool? TinhtrangravienLydotuvongKhac 
+		{
+			get { return GetColumnValue<bool?>(Columns.TinhtrangravienLydotuvongKhac); }
+			set { SetColumnValue(Columns.TinhtrangravienLydotuvongKhac, value); }
+		}
+		  
+		[XmlAttribute("TinhtrangravienMaThoigiantuvong")]
+		[Bindable(true)]
+		public string TinhtrangravienMaThoigiantuvong 
+		{
+			get { return GetColumnValue<string>(Columns.TinhtrangravienMaThoigiantuvong); }
+			set { SetColumnValue(Columns.TinhtrangravienMaThoigiantuvong, value); }
+		}
+		  
+		[XmlAttribute("TinhtrangravienThoigiantuvongTrong24h")]
+		[Bindable(true)]
+		public bool? TinhtrangravienThoigiantuvongTrong24h 
+		{
+			get { return GetColumnValue<bool?>(Columns.TinhtrangravienThoigiantuvongTrong24h); }
+			set { SetColumnValue(Columns.TinhtrangravienThoigiantuvongTrong24h, value); }
+		}
+		  
+		[XmlAttribute("TinhtrangravienThoigiantuvongSau24h")]
+		[Bindable(true)]
+		public bool? TinhtrangravienThoigiantuvongSau24h 
+		{
+			get { return GetColumnValue<bool?>(Columns.TinhtrangravienThoigiantuvongSau24h); }
+			set { SetColumnValue(Columns.TinhtrangravienThoigiantuvongSau24h, value); }
+		}
+		  
+		[XmlAttribute("TinhtrangravienThoigiantuvongTrong48h")]
+		[Bindable(true)]
+		public bool? TinhtrangravienThoigiantuvongTrong48h 
+		{
+			get { return GetColumnValue<bool?>(Columns.TinhtrangravienThoigiantuvongTrong48h); }
+			set { SetColumnValue(Columns.TinhtrangravienThoigiantuvongTrong48h, value); }
+		}
+		  
+		[XmlAttribute("TinhtrangravienThoigiantuvongTrong72h")]
+		[Bindable(true)]
+		public bool? TinhtrangravienThoigiantuvongTrong72h 
+		{
+			get { return GetColumnValue<bool?>(Columns.TinhtrangravienThoigiantuvongTrong72h); }
+			set { SetColumnValue(Columns.TinhtrangravienThoigiantuvongTrong72h, value); }
+		}
+		  
+		[XmlAttribute("TinhtrangravienMaNguyennhantuvong")]
+		[Bindable(true)]
+		public string TinhtrangravienMaNguyennhantuvong 
+		{
+			get { return GetColumnValue<string>(Columns.TinhtrangravienMaNguyennhantuvong); }
+			set { SetColumnValue(Columns.TinhtrangravienMaNguyennhantuvong, value); }
+		}
+		  
+		[XmlAttribute("TinhtrangravienNguyennhantuvong")]
+		[Bindable(true)]
+		public string TinhtrangravienNguyennhantuvong 
+		{
+			get { return GetColumnValue<string>(Columns.TinhtrangravienNguyennhantuvong); }
+			set { SetColumnValue(Columns.TinhtrangravienNguyennhantuvong, value); }
+		}
+		  
+		[XmlAttribute("TinhtrangravienKhamnghiemtuthi")]
+		[Bindable(true)]
+		public bool? TinhtrangravienKhamnghiemtuthi 
+		{
+			get { return GetColumnValue<bool?>(Columns.TinhtrangravienKhamnghiemtuthi); }
+			set { SetColumnValue(Columns.TinhtrangravienKhamnghiemtuthi, value); }
+		}
+		  
+		[XmlAttribute("TinhtrangravienMaChandoangiaiphaututhi")]
+		[Bindable(true)]
+		public string TinhtrangravienMaChandoangiaiphaututhi 
+		{
+			get { return GetColumnValue<string>(Columns.TinhtrangravienMaChandoangiaiphaututhi); }
+			set { SetColumnValue(Columns.TinhtrangravienMaChandoangiaiphaututhi, value); }
+		}
+		  
+		[XmlAttribute("TinhtrangravienChandoangiauphaututhi")]
+		[Bindable(true)]
+		public string TinhtrangravienChandoangiauphaututhi 
+		{
+			get { return GetColumnValue<string>(Columns.TinhtrangravienChandoangiauphaututhi); }
+			set { SetColumnValue(Columns.TinhtrangravienChandoangiauphaututhi, value); }
+		}
+		  
 		[XmlAttribute("NgayTao")]
 		[Bindable(true)]
 		public DateTime? NgayTao 
@@ -1247,7 +2551,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(long varIdBenhnhan,string varMaLuotkham,string varMaYte,string varTenBenhnhan,DateTime? varNgaySinh,short? varTuoi,byte? varLoaiTuoi,string varMaGioitinh,string varGioiTinh,string varMaNghenghiep,string varTenNghenghiep,string varMaDantoc,string varTenDantoc,string varMaTongiao,string varTenTongiao,string varMaQuocgia,string varTenQuocgia,bool? varNgoaiKieu,string varDiaChi,string varSonha,string varThonpho,string varMaXaphuong,string varTenXaphuong,string varMaQuanhuyen,string varTenQuanhuyen,string varMaTinhtp,string varTenTinhtp,string varMaCoquan,string varTenCoquan,byte? varMaDoituong,string varTenDoituong,string varMatheBhyt,DateTime? varBhytTungay,DateTime? varBhytDenngay,string varNguoiLienhe,string varDienthoaiLienhe,string varHotenBo,string varTrinhdoVanhoaBo,string varNghenghiepBo,string varHotenMe,string varTrinhdoVanhoaMe,string varNghenghiepMe,string varCmtCccd,string varSoHochieu,string varDienThoai,string varEmail,string varMaNoigioithieu,string varNoigioithieu,DateTime? varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua)
+		public static void Insert(long varIdBenhnhan,string varMaLuotkham,string varMaYte,string varTenBenhnhan,DateTime? varNgaySinh,short? varTuoi,byte? varLoaiTuoi,string varMaGioitinh,string varGioiTinh,string varMaNghenghiep,string varTenNghenghiep,string varMaDantoc,string varTenDantoc,string varMaTongiao,string varTenTongiao,string varMaQuocgia,string varTenQuocgia,bool? varNgoaiKieu,string varDiaChi,string varSonha,string varThonpho,string varMaXaphuong,string varTenXaphuong,string varMaQuanhuyen,string varTenQuanhuyen,string varMaTinhtp,string varTenTinhtp,string varMaCoquan,string varTenCoquan,byte? varMaDoituong,string varTenDoituong,string varMatheBhyt,DateTime? varBhytTungay,DateTime? varBhytDenngay,string varNguoiLienhe,string varDienthoaiLienhe,string varHotenBo,string varTrinhdoVanhoaBo,string varNghenghiepBo,string varHotenMe,string varTrinhdoVanhoaMe,string varNghenghiepMe,string varCmtCccd,string varSoHochieu,string varDienThoai,string varEmail,string varMaNoigioithieu,string varNoigioithieu,DateTime? varVaovienNgay,string varVaovienLydovaovien,byte? varVaovienVaongaythucuabenh,byte? varVaovienTructiepVao,bool? varVaovienCapcuu,bool? varVaovienKkb,bool? varVaovienKhoadieutri,bool? varNoigioithieuCoquanyte,bool? varNoigioithieuTuden,bool? varNoigioithieuKhac,byte? varVaovienLanthu,string varVaovienTenkhoa,string varVaovienMakhoa,short? varVaovienIdKhoa,DateTime? varVaovienNgayvaokhoa,bool? varChuyenvienTuyentren,bool? varChuyenvienTuyenduoi,bool? varChuyenvienKhac,string varChuyenvienNoichuyenden,DateTime? varRavienNgay,string varRavienMatinhtrang,bool? varRavienRavien,bool? varRavienXinve,bool? varRavienBove,bool? varRavienDuave,short? varRavienTongsongayDieutri,string varCdNoichuyenden,string varCdNoichuyendenMa,string varCdKkbCapcuu,string varCdKkbCapcuuMa,string varCdKhoadieutri,string varCdKhoadieutriMa,string varRavienMaBenhchinh,string varRavienTenBenhchinh,string varRavienMaBenhphu,string varRavienTenBenhphu,string varTinhtrangravienMaKetquadieutri,bool? varTinhtrangravienKetquadieutriKhoi,bool? varTinhtrangravienKetquadieutriDogiam,bool? varTinhtrangravienKetquadieutriKhongthaydoi,bool? varTinhtrangravienKetquadieutriNanghon,bool? varTinhtrangravienKetquadieutriTuvong,bool? varTinhtrangravienKetquadieutriChuyenvien,bool? varTinhtrangravienGpbLanhtinh,bool? varTinhtrangravienGpbNghingo,bool? varTinhtrangravienGpbActinh,bool? varTinhtrangravienGpb,DateTime? varTinhtrangravienThoigianTuvong,string varTinhtrangravienMaLydotuvong,bool? varTinhtrangravienLydotuvongDobenh,bool? varTinhtrangravienLydotuvongDotaibiendieutri,bool? varTinhtrangravienLydotuvongKhac,string varTinhtrangravienMaThoigiantuvong,bool? varTinhtrangravienThoigiantuvongTrong24h,bool? varTinhtrangravienThoigiantuvongSau24h,bool? varTinhtrangravienThoigiantuvongTrong48h,bool? varTinhtrangravienThoigiantuvongTrong72h,string varTinhtrangravienMaNguyennhantuvong,string varTinhtrangravienNguyennhantuvong,bool? varTinhtrangravienKhamnghiemtuthi,string varTinhtrangravienMaChandoangiaiphaututhi,string varTinhtrangravienChandoangiauphaututhi,DateTime? varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua)
 		{
 			EmrThongtinNguoibenh item = new EmrThongtinNguoibenh();
 			
@@ -1347,6 +2651,130 @@ namespace VMS.HIS.DAL
 			
 			item.Noigioithieu = varNoigioithieu;
 			
+			item.VaovienNgay = varVaovienNgay;
+			
+			item.VaovienLydovaovien = varVaovienLydovaovien;
+			
+			item.VaovienVaongaythucuabenh = varVaovienVaongaythucuabenh;
+			
+			item.VaovienTructiepVao = varVaovienTructiepVao;
+			
+			item.VaovienCapcuu = varVaovienCapcuu;
+			
+			item.VaovienKkb = varVaovienKkb;
+			
+			item.VaovienKhoadieutri = varVaovienKhoadieutri;
+			
+			item.NoigioithieuCoquanyte = varNoigioithieuCoquanyte;
+			
+			item.NoigioithieuTuden = varNoigioithieuTuden;
+			
+			item.NoigioithieuKhac = varNoigioithieuKhac;
+			
+			item.VaovienLanthu = varVaovienLanthu;
+			
+			item.VaovienTenkhoa = varVaovienTenkhoa;
+			
+			item.VaovienMakhoa = varVaovienMakhoa;
+			
+			item.VaovienIdKhoa = varVaovienIdKhoa;
+			
+			item.VaovienNgayvaokhoa = varVaovienNgayvaokhoa;
+			
+			item.ChuyenvienTuyentren = varChuyenvienTuyentren;
+			
+			item.ChuyenvienTuyenduoi = varChuyenvienTuyenduoi;
+			
+			item.ChuyenvienKhac = varChuyenvienKhac;
+			
+			item.ChuyenvienNoichuyenden = varChuyenvienNoichuyenden;
+			
+			item.RavienNgay = varRavienNgay;
+			
+			item.RavienMatinhtrang = varRavienMatinhtrang;
+			
+			item.RavienRavien = varRavienRavien;
+			
+			item.RavienXinve = varRavienXinve;
+			
+			item.RavienBove = varRavienBove;
+			
+			item.RavienDuave = varRavienDuave;
+			
+			item.RavienTongsongayDieutri = varRavienTongsongayDieutri;
+			
+			item.CdNoichuyenden = varCdNoichuyenden;
+			
+			item.CdNoichuyendenMa = varCdNoichuyendenMa;
+			
+			item.CdKkbCapcuu = varCdKkbCapcuu;
+			
+			item.CdKkbCapcuuMa = varCdKkbCapcuuMa;
+			
+			item.CdKhoadieutri = varCdKhoadieutri;
+			
+			item.CdKhoadieutriMa = varCdKhoadieutriMa;
+			
+			item.RavienMaBenhchinh = varRavienMaBenhchinh;
+			
+			item.RavienTenBenhchinh = varRavienTenBenhchinh;
+			
+			item.RavienMaBenhphu = varRavienMaBenhphu;
+			
+			item.RavienTenBenhphu = varRavienTenBenhphu;
+			
+			item.TinhtrangravienMaKetquadieutri = varTinhtrangravienMaKetquadieutri;
+			
+			item.TinhtrangravienKetquadieutriKhoi = varTinhtrangravienKetquadieutriKhoi;
+			
+			item.TinhtrangravienKetquadieutriDogiam = varTinhtrangravienKetquadieutriDogiam;
+			
+			item.TinhtrangravienKetquadieutriKhongthaydoi = varTinhtrangravienKetquadieutriKhongthaydoi;
+			
+			item.TinhtrangravienKetquadieutriNanghon = varTinhtrangravienKetquadieutriNanghon;
+			
+			item.TinhtrangravienKetquadieutriTuvong = varTinhtrangravienKetquadieutriTuvong;
+			
+			item.TinhtrangravienKetquadieutriChuyenvien = varTinhtrangravienKetquadieutriChuyenvien;
+			
+			item.TinhtrangravienGpbLanhtinh = varTinhtrangravienGpbLanhtinh;
+			
+			item.TinhtrangravienGpbNghingo = varTinhtrangravienGpbNghingo;
+			
+			item.TinhtrangravienGpbActinh = varTinhtrangravienGpbActinh;
+			
+			item.TinhtrangravienGpb = varTinhtrangravienGpb;
+			
+			item.TinhtrangravienThoigianTuvong = varTinhtrangravienThoigianTuvong;
+			
+			item.TinhtrangravienMaLydotuvong = varTinhtrangravienMaLydotuvong;
+			
+			item.TinhtrangravienLydotuvongDobenh = varTinhtrangravienLydotuvongDobenh;
+			
+			item.TinhtrangravienLydotuvongDotaibiendieutri = varTinhtrangravienLydotuvongDotaibiendieutri;
+			
+			item.TinhtrangravienLydotuvongKhac = varTinhtrangravienLydotuvongKhac;
+			
+			item.TinhtrangravienMaThoigiantuvong = varTinhtrangravienMaThoigiantuvong;
+			
+			item.TinhtrangravienThoigiantuvongTrong24h = varTinhtrangravienThoigiantuvongTrong24h;
+			
+			item.TinhtrangravienThoigiantuvongSau24h = varTinhtrangravienThoigiantuvongSau24h;
+			
+			item.TinhtrangravienThoigiantuvongTrong48h = varTinhtrangravienThoigiantuvongTrong48h;
+			
+			item.TinhtrangravienThoigiantuvongTrong72h = varTinhtrangravienThoigiantuvongTrong72h;
+			
+			item.TinhtrangravienMaNguyennhantuvong = varTinhtrangravienMaNguyennhantuvong;
+			
+			item.TinhtrangravienNguyennhantuvong = varTinhtrangravienNguyennhantuvong;
+			
+			item.TinhtrangravienKhamnghiemtuthi = varTinhtrangravienKhamnghiemtuthi;
+			
+			item.TinhtrangravienMaChandoangiaiphaututhi = varTinhtrangravienMaChandoangiaiphaututhi;
+			
+			item.TinhtrangravienChandoangiauphaututhi = varTinhtrangravienChandoangiauphaututhi;
+			
 			item.NgayTao = varNgayTao;
 			
 			item.NguoiTao = varNguoiTao;
@@ -1365,7 +2793,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(long varIdBenhnhan,string varMaLuotkham,string varMaYte,string varTenBenhnhan,DateTime? varNgaySinh,short? varTuoi,byte? varLoaiTuoi,string varMaGioitinh,string varGioiTinh,string varMaNghenghiep,string varTenNghenghiep,string varMaDantoc,string varTenDantoc,string varMaTongiao,string varTenTongiao,string varMaQuocgia,string varTenQuocgia,bool? varNgoaiKieu,string varDiaChi,string varSonha,string varThonpho,string varMaXaphuong,string varTenXaphuong,string varMaQuanhuyen,string varTenQuanhuyen,string varMaTinhtp,string varTenTinhtp,string varMaCoquan,string varTenCoquan,byte? varMaDoituong,string varTenDoituong,string varMatheBhyt,DateTime? varBhytTungay,DateTime? varBhytDenngay,string varNguoiLienhe,string varDienthoaiLienhe,string varHotenBo,string varTrinhdoVanhoaBo,string varNghenghiepBo,string varHotenMe,string varTrinhdoVanhoaMe,string varNghenghiepMe,string varCmtCccd,string varSoHochieu,string varDienThoai,string varEmail,string varMaNoigioithieu,string varNoigioithieu,DateTime? varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua)
+		public static void Update(long varIdBenhnhan,string varMaLuotkham,string varMaYte,string varTenBenhnhan,DateTime? varNgaySinh,short? varTuoi,byte? varLoaiTuoi,string varMaGioitinh,string varGioiTinh,string varMaNghenghiep,string varTenNghenghiep,string varMaDantoc,string varTenDantoc,string varMaTongiao,string varTenTongiao,string varMaQuocgia,string varTenQuocgia,bool? varNgoaiKieu,string varDiaChi,string varSonha,string varThonpho,string varMaXaphuong,string varTenXaphuong,string varMaQuanhuyen,string varTenQuanhuyen,string varMaTinhtp,string varTenTinhtp,string varMaCoquan,string varTenCoquan,byte? varMaDoituong,string varTenDoituong,string varMatheBhyt,DateTime? varBhytTungay,DateTime? varBhytDenngay,string varNguoiLienhe,string varDienthoaiLienhe,string varHotenBo,string varTrinhdoVanhoaBo,string varNghenghiepBo,string varHotenMe,string varTrinhdoVanhoaMe,string varNghenghiepMe,string varCmtCccd,string varSoHochieu,string varDienThoai,string varEmail,string varMaNoigioithieu,string varNoigioithieu,DateTime? varVaovienNgay,string varVaovienLydovaovien,byte? varVaovienVaongaythucuabenh,byte? varVaovienTructiepVao,bool? varVaovienCapcuu,bool? varVaovienKkb,bool? varVaovienKhoadieutri,bool? varNoigioithieuCoquanyte,bool? varNoigioithieuTuden,bool? varNoigioithieuKhac,byte? varVaovienLanthu,string varVaovienTenkhoa,string varVaovienMakhoa,short? varVaovienIdKhoa,DateTime? varVaovienNgayvaokhoa,bool? varChuyenvienTuyentren,bool? varChuyenvienTuyenduoi,bool? varChuyenvienKhac,string varChuyenvienNoichuyenden,DateTime? varRavienNgay,string varRavienMatinhtrang,bool? varRavienRavien,bool? varRavienXinve,bool? varRavienBove,bool? varRavienDuave,short? varRavienTongsongayDieutri,string varCdNoichuyenden,string varCdNoichuyendenMa,string varCdKkbCapcuu,string varCdKkbCapcuuMa,string varCdKhoadieutri,string varCdKhoadieutriMa,string varRavienMaBenhchinh,string varRavienTenBenhchinh,string varRavienMaBenhphu,string varRavienTenBenhphu,string varTinhtrangravienMaKetquadieutri,bool? varTinhtrangravienKetquadieutriKhoi,bool? varTinhtrangravienKetquadieutriDogiam,bool? varTinhtrangravienKetquadieutriKhongthaydoi,bool? varTinhtrangravienKetquadieutriNanghon,bool? varTinhtrangravienKetquadieutriTuvong,bool? varTinhtrangravienKetquadieutriChuyenvien,bool? varTinhtrangravienGpbLanhtinh,bool? varTinhtrangravienGpbNghingo,bool? varTinhtrangravienGpbActinh,bool? varTinhtrangravienGpb,DateTime? varTinhtrangravienThoigianTuvong,string varTinhtrangravienMaLydotuvong,bool? varTinhtrangravienLydotuvongDobenh,bool? varTinhtrangravienLydotuvongDotaibiendieutri,bool? varTinhtrangravienLydotuvongKhac,string varTinhtrangravienMaThoigiantuvong,bool? varTinhtrangravienThoigiantuvongTrong24h,bool? varTinhtrangravienThoigiantuvongSau24h,bool? varTinhtrangravienThoigiantuvongTrong48h,bool? varTinhtrangravienThoigiantuvongTrong72h,string varTinhtrangravienMaNguyennhantuvong,string varTinhtrangravienNguyennhantuvong,bool? varTinhtrangravienKhamnghiemtuthi,string varTinhtrangravienMaChandoangiaiphaututhi,string varTinhtrangravienChandoangiauphaututhi,DateTime? varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua)
 		{
 			EmrThongtinNguoibenh item = new EmrThongtinNguoibenh();
 			
@@ -1464,6 +2892,130 @@ namespace VMS.HIS.DAL
 				item.MaNoigioithieu = varMaNoigioithieu;
 			
 				item.Noigioithieu = varNoigioithieu;
+			
+				item.VaovienNgay = varVaovienNgay;
+			
+				item.VaovienLydovaovien = varVaovienLydovaovien;
+			
+				item.VaovienVaongaythucuabenh = varVaovienVaongaythucuabenh;
+			
+				item.VaovienTructiepVao = varVaovienTructiepVao;
+			
+				item.VaovienCapcuu = varVaovienCapcuu;
+			
+				item.VaovienKkb = varVaovienKkb;
+			
+				item.VaovienKhoadieutri = varVaovienKhoadieutri;
+			
+				item.NoigioithieuCoquanyte = varNoigioithieuCoquanyte;
+			
+				item.NoigioithieuTuden = varNoigioithieuTuden;
+			
+				item.NoigioithieuKhac = varNoigioithieuKhac;
+			
+				item.VaovienLanthu = varVaovienLanthu;
+			
+				item.VaovienTenkhoa = varVaovienTenkhoa;
+			
+				item.VaovienMakhoa = varVaovienMakhoa;
+			
+				item.VaovienIdKhoa = varVaovienIdKhoa;
+			
+				item.VaovienNgayvaokhoa = varVaovienNgayvaokhoa;
+			
+				item.ChuyenvienTuyentren = varChuyenvienTuyentren;
+			
+				item.ChuyenvienTuyenduoi = varChuyenvienTuyenduoi;
+			
+				item.ChuyenvienKhac = varChuyenvienKhac;
+			
+				item.ChuyenvienNoichuyenden = varChuyenvienNoichuyenden;
+			
+				item.RavienNgay = varRavienNgay;
+			
+				item.RavienMatinhtrang = varRavienMatinhtrang;
+			
+				item.RavienRavien = varRavienRavien;
+			
+				item.RavienXinve = varRavienXinve;
+			
+				item.RavienBove = varRavienBove;
+			
+				item.RavienDuave = varRavienDuave;
+			
+				item.RavienTongsongayDieutri = varRavienTongsongayDieutri;
+			
+				item.CdNoichuyenden = varCdNoichuyenden;
+			
+				item.CdNoichuyendenMa = varCdNoichuyendenMa;
+			
+				item.CdKkbCapcuu = varCdKkbCapcuu;
+			
+				item.CdKkbCapcuuMa = varCdKkbCapcuuMa;
+			
+				item.CdKhoadieutri = varCdKhoadieutri;
+			
+				item.CdKhoadieutriMa = varCdKhoadieutriMa;
+			
+				item.RavienMaBenhchinh = varRavienMaBenhchinh;
+			
+				item.RavienTenBenhchinh = varRavienTenBenhchinh;
+			
+				item.RavienMaBenhphu = varRavienMaBenhphu;
+			
+				item.RavienTenBenhphu = varRavienTenBenhphu;
+			
+				item.TinhtrangravienMaKetquadieutri = varTinhtrangravienMaKetquadieutri;
+			
+				item.TinhtrangravienKetquadieutriKhoi = varTinhtrangravienKetquadieutriKhoi;
+			
+				item.TinhtrangravienKetquadieutriDogiam = varTinhtrangravienKetquadieutriDogiam;
+			
+				item.TinhtrangravienKetquadieutriKhongthaydoi = varTinhtrangravienKetquadieutriKhongthaydoi;
+			
+				item.TinhtrangravienKetquadieutriNanghon = varTinhtrangravienKetquadieutriNanghon;
+			
+				item.TinhtrangravienKetquadieutriTuvong = varTinhtrangravienKetquadieutriTuvong;
+			
+				item.TinhtrangravienKetquadieutriChuyenvien = varTinhtrangravienKetquadieutriChuyenvien;
+			
+				item.TinhtrangravienGpbLanhtinh = varTinhtrangravienGpbLanhtinh;
+			
+				item.TinhtrangravienGpbNghingo = varTinhtrangravienGpbNghingo;
+			
+				item.TinhtrangravienGpbActinh = varTinhtrangravienGpbActinh;
+			
+				item.TinhtrangravienGpb = varTinhtrangravienGpb;
+			
+				item.TinhtrangravienThoigianTuvong = varTinhtrangravienThoigianTuvong;
+			
+				item.TinhtrangravienMaLydotuvong = varTinhtrangravienMaLydotuvong;
+			
+				item.TinhtrangravienLydotuvongDobenh = varTinhtrangravienLydotuvongDobenh;
+			
+				item.TinhtrangravienLydotuvongDotaibiendieutri = varTinhtrangravienLydotuvongDotaibiendieutri;
+			
+				item.TinhtrangravienLydotuvongKhac = varTinhtrangravienLydotuvongKhac;
+			
+				item.TinhtrangravienMaThoigiantuvong = varTinhtrangravienMaThoigiantuvong;
+			
+				item.TinhtrangravienThoigiantuvongTrong24h = varTinhtrangravienThoigiantuvongTrong24h;
+			
+				item.TinhtrangravienThoigiantuvongSau24h = varTinhtrangravienThoigiantuvongSau24h;
+			
+				item.TinhtrangravienThoigiantuvongTrong48h = varTinhtrangravienThoigiantuvongTrong48h;
+			
+				item.TinhtrangravienThoigiantuvongTrong72h = varTinhtrangravienThoigiantuvongTrong72h;
+			
+				item.TinhtrangravienMaNguyennhantuvong = varTinhtrangravienMaNguyennhantuvong;
+			
+				item.TinhtrangravienNguyennhantuvong = varTinhtrangravienNguyennhantuvong;
+			
+				item.TinhtrangravienKhamnghiemtuthi = varTinhtrangravienKhamnghiemtuthi;
+			
+				item.TinhtrangravienMaChandoangiaiphaututhi = varTinhtrangravienMaChandoangiaiphaututhi;
+			
+				item.TinhtrangravienChandoangiauphaututhi = varTinhtrangravienChandoangiauphaututhi;
 			
 				item.NgayTao = varNgayTao;
 			
@@ -1822,30 +3374,464 @@ namespace VMS.HIS.DAL
         
         
         
-        public static TableSchema.TableColumn NgayTaoColumn
+        public static TableSchema.TableColumn VaovienNgayColumn
         {
             get { return Schema.Columns[48]; }
         }
         
         
         
-        public static TableSchema.TableColumn NguoiTaoColumn
+        public static TableSchema.TableColumn VaovienLydovaovienColumn
         {
             get { return Schema.Columns[49]; }
         }
         
         
         
-        public static TableSchema.TableColumn NgaySuaColumn
+        public static TableSchema.TableColumn VaovienVaongaythucuabenhColumn
         {
             get { return Schema.Columns[50]; }
         }
         
         
         
-        public static TableSchema.TableColumn NguoiSuaColumn
+        public static TableSchema.TableColumn VaovienTructiepVaoColumn
         {
             get { return Schema.Columns[51]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn VaovienCapcuuColumn
+        {
+            get { return Schema.Columns[52]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn VaovienKkbColumn
+        {
+            get { return Schema.Columns[53]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn VaovienKhoadieutriColumn
+        {
+            get { return Schema.Columns[54]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn NoigioithieuCoquanyteColumn
+        {
+            get { return Schema.Columns[55]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn NoigioithieuTudenColumn
+        {
+            get { return Schema.Columns[56]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn NoigioithieuKhacColumn
+        {
+            get { return Schema.Columns[57]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn VaovienLanthuColumn
+        {
+            get { return Schema.Columns[58]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn VaovienTenkhoaColumn
+        {
+            get { return Schema.Columns[59]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn VaovienMakhoaColumn
+        {
+            get { return Schema.Columns[60]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn VaovienIdKhoaColumn
+        {
+            get { return Schema.Columns[61]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn VaovienNgayvaokhoaColumn
+        {
+            get { return Schema.Columns[62]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn ChuyenvienTuyentrenColumn
+        {
+            get { return Schema.Columns[63]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn ChuyenvienTuyenduoiColumn
+        {
+            get { return Schema.Columns[64]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn ChuyenvienKhacColumn
+        {
+            get { return Schema.Columns[65]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn ChuyenvienNoichuyendenColumn
+        {
+            get { return Schema.Columns[66]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn RavienNgayColumn
+        {
+            get { return Schema.Columns[67]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn RavienMatinhtrangColumn
+        {
+            get { return Schema.Columns[68]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn RavienRavienColumn
+        {
+            get { return Schema.Columns[69]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn RavienXinveColumn
+        {
+            get { return Schema.Columns[70]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn RavienBoveColumn
+        {
+            get { return Schema.Columns[71]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn RavienDuaveColumn
+        {
+            get { return Schema.Columns[72]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn RavienTongsongayDieutriColumn
+        {
+            get { return Schema.Columns[73]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn CdNoichuyendenColumn
+        {
+            get { return Schema.Columns[74]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn CdNoichuyendenMaColumn
+        {
+            get { return Schema.Columns[75]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn CdKkbCapcuuColumn
+        {
+            get { return Schema.Columns[76]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn CdKkbCapcuuMaColumn
+        {
+            get { return Schema.Columns[77]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn CdKhoadieutriColumn
+        {
+            get { return Schema.Columns[78]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn CdKhoadieutriMaColumn
+        {
+            get { return Schema.Columns[79]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn RavienMaBenhchinhColumn
+        {
+            get { return Schema.Columns[80]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn RavienTenBenhchinhColumn
+        {
+            get { return Schema.Columns[81]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn RavienMaBenhphuColumn
+        {
+            get { return Schema.Columns[82]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn RavienTenBenhphuColumn
+        {
+            get { return Schema.Columns[83]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn TinhtrangravienMaKetquadieutriColumn
+        {
+            get { return Schema.Columns[84]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn TinhtrangravienKetquadieutriKhoiColumn
+        {
+            get { return Schema.Columns[85]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn TinhtrangravienKetquadieutriDogiamColumn
+        {
+            get { return Schema.Columns[86]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn TinhtrangravienKetquadieutriKhongthaydoiColumn
+        {
+            get { return Schema.Columns[87]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn TinhtrangravienKetquadieutriNanghonColumn
+        {
+            get { return Schema.Columns[88]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn TinhtrangravienKetquadieutriTuvongColumn
+        {
+            get { return Schema.Columns[89]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn TinhtrangravienKetquadieutriChuyenvienColumn
+        {
+            get { return Schema.Columns[90]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn TinhtrangravienGpbLanhtinhColumn
+        {
+            get { return Schema.Columns[91]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn TinhtrangravienGpbNghingoColumn
+        {
+            get { return Schema.Columns[92]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn TinhtrangravienGpbActinhColumn
+        {
+            get { return Schema.Columns[93]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn TinhtrangravienGpbColumn
+        {
+            get { return Schema.Columns[94]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn TinhtrangravienThoigianTuvongColumn
+        {
+            get { return Schema.Columns[95]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn TinhtrangravienMaLydotuvongColumn
+        {
+            get { return Schema.Columns[96]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn TinhtrangravienLydotuvongDobenhColumn
+        {
+            get { return Schema.Columns[97]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn TinhtrangravienLydotuvongDotaibiendieutriColumn
+        {
+            get { return Schema.Columns[98]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn TinhtrangravienLydotuvongKhacColumn
+        {
+            get { return Schema.Columns[99]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn TinhtrangravienMaThoigiantuvongColumn
+        {
+            get { return Schema.Columns[100]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn TinhtrangravienThoigiantuvongTrong24hColumn
+        {
+            get { return Schema.Columns[101]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn TinhtrangravienThoigiantuvongSau24hColumn
+        {
+            get { return Schema.Columns[102]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn TinhtrangravienThoigiantuvongTrong48hColumn
+        {
+            get { return Schema.Columns[103]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn TinhtrangravienThoigiantuvongTrong72hColumn
+        {
+            get { return Schema.Columns[104]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn TinhtrangravienMaNguyennhantuvongColumn
+        {
+            get { return Schema.Columns[105]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn TinhtrangravienNguyennhantuvongColumn
+        {
+            get { return Schema.Columns[106]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn TinhtrangravienKhamnghiemtuthiColumn
+        {
+            get { return Schema.Columns[107]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn TinhtrangravienMaChandoangiaiphaututhiColumn
+        {
+            get { return Schema.Columns[108]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn TinhtrangravienChandoangiauphaututhiColumn
+        {
+            get { return Schema.Columns[109]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn NgayTaoColumn
+        {
+            get { return Schema.Columns[110]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn NguoiTaoColumn
+        {
+            get { return Schema.Columns[111]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn NgaySuaColumn
+        {
+            get { return Schema.Columns[112]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn NguoiSuaColumn
+        {
+            get { return Schema.Columns[113]; }
         }
         
         
@@ -1902,6 +3888,68 @@ namespace VMS.HIS.DAL
 			 public static string Email = @"email";
 			 public static string MaNoigioithieu = @"ma_noigioithieu";
 			 public static string Noigioithieu = @"noigioithieu";
+			 public static string VaovienNgay = @"vaovien_ngay";
+			 public static string VaovienLydovaovien = @"vaovien_lydovaovien";
+			 public static string VaovienVaongaythucuabenh = @"vaovien_vaongaythucuabenh";
+			 public static string VaovienTructiepVao = @"vaovien_tructiep_vao";
+			 public static string VaovienCapcuu = @"vaovien_capcuu";
+			 public static string VaovienKkb = @"vaovien_kkb";
+			 public static string VaovienKhoadieutri = @"vaovien_khoadieutri";
+			 public static string NoigioithieuCoquanyte = @"noigioithieu_coquanyte";
+			 public static string NoigioithieuTuden = @"noigioithieu_tuden";
+			 public static string NoigioithieuKhac = @"noigioithieu_khac";
+			 public static string VaovienLanthu = @"vaovien_lanthu";
+			 public static string VaovienTenkhoa = @"vaovien_tenkhoa";
+			 public static string VaovienMakhoa = @"vaovien_makhoa";
+			 public static string VaovienIdKhoa = @"vaovien_id_khoa";
+			 public static string VaovienNgayvaokhoa = @"vaovien_ngayvaokhoa";
+			 public static string ChuyenvienTuyentren = @"chuyenvien_tuyentren";
+			 public static string ChuyenvienTuyenduoi = @"chuyenvien_tuyenduoi";
+			 public static string ChuyenvienKhac = @"chuyenvien_khac";
+			 public static string ChuyenvienNoichuyenden = @"chuyenvien_noichuyenden";
+			 public static string RavienNgay = @"ravien_ngay";
+			 public static string RavienMatinhtrang = @"ravien_matinhtrang";
+			 public static string RavienRavien = @"ravien_ravien";
+			 public static string RavienXinve = @"ravien_xinve";
+			 public static string RavienBove = @"ravien_bove";
+			 public static string RavienDuave = @"ravien_duave";
+			 public static string RavienTongsongayDieutri = @"ravien_tongsongay_dieutri";
+			 public static string CdNoichuyenden = @"cd_noichuyenden";
+			 public static string CdNoichuyendenMa = @"cd_noichuyenden_ma";
+			 public static string CdKkbCapcuu = @"cd_kkb_capcuu";
+			 public static string CdKkbCapcuuMa = @"cd_kkb_capcuu_ma";
+			 public static string CdKhoadieutri = @"cd_khoadieutri";
+			 public static string CdKhoadieutriMa = @"cd_khoadieutri_ma";
+			 public static string RavienMaBenhchinh = @"ravien_ma_benhchinh";
+			 public static string RavienTenBenhchinh = @"ravien_ten_benhchinh";
+			 public static string RavienMaBenhphu = @"ravien_ma_benhphu";
+			 public static string RavienTenBenhphu = @"ravien_ten_benhphu";
+			 public static string TinhtrangravienMaKetquadieutri = @"tinhtrangravien_ma_ketquadieutri";
+			 public static string TinhtrangravienKetquadieutriKhoi = @"tinhtrangravien_ketquadieutri_khoi";
+			 public static string TinhtrangravienKetquadieutriDogiam = @"tinhtrangravien_ketquadieutri_dogiam";
+			 public static string TinhtrangravienKetquadieutriKhongthaydoi = @"tinhtrangravien_ketquadieutri_khongthaydoi";
+			 public static string TinhtrangravienKetquadieutriNanghon = @"tinhtrangravien_ketquadieutri_nanghon";
+			 public static string TinhtrangravienKetquadieutriTuvong = @"tinhtrangravien_ketquadieutri_tuvong";
+			 public static string TinhtrangravienKetquadieutriChuyenvien = @"tinhtrangravien_ketquadieutri_chuyenvien";
+			 public static string TinhtrangravienGpbLanhtinh = @"tinhtrangravien_gpb_lanhtinh";
+			 public static string TinhtrangravienGpbNghingo = @"tinhtrangravien_gpb_nghingo";
+			 public static string TinhtrangravienGpbActinh = @"tinhtrangravien_gpb_actinh";
+			 public static string TinhtrangravienGpb = @"tinhtrangravien_gpb";
+			 public static string TinhtrangravienThoigianTuvong = @"tinhtrangravien_thoigian_tuvong";
+			 public static string TinhtrangravienMaLydotuvong = @"tinhtrangravien_ma_lydotuvong";
+			 public static string TinhtrangravienLydotuvongDobenh = @"tinhtrangravien_lydotuvong_dobenh";
+			 public static string TinhtrangravienLydotuvongDotaibiendieutri = @"tinhtrangravien_lydotuvong_dotaibiendieutri";
+			 public static string TinhtrangravienLydotuvongKhac = @"tinhtrangravien_lydotuvong_khac";
+			 public static string TinhtrangravienMaThoigiantuvong = @"tinhtrangravien_ma_thoigiantuvong";
+			 public static string TinhtrangravienThoigiantuvongTrong24h = @"tinhtrangravien_thoigiantuvong_trong24h";
+			 public static string TinhtrangravienThoigiantuvongSau24h = @"tinhtrangravien_thoigiantuvong_sau24h";
+			 public static string TinhtrangravienThoigiantuvongTrong48h = @"tinhtrangravien_thoigiantuvong_trong48h";
+			 public static string TinhtrangravienThoigiantuvongTrong72h = @"tinhtrangravien_thoigiantuvong_trong72h";
+			 public static string TinhtrangravienMaNguyennhantuvong = @"tinhtrangravien_ma_nguyennhantuvong";
+			 public static string TinhtrangravienNguyennhantuvong = @"tinhtrangravien_nguyennhantuvong";
+			 public static string TinhtrangravienKhamnghiemtuthi = @"tinhtrangravien_khamnghiemtuthi";
+			 public static string TinhtrangravienMaChandoangiaiphaututhi = @"tinhtrangravien_ma_chandoangiaiphaututhi";
+			 public static string TinhtrangravienChandoangiauphaututhi = @"tinhtrangravien_chandoangiauphaututhi";
 			 public static string NgayTao = @"ngay_tao";
 			 public static string NguoiTao = @"nguoi_tao";
 			 public static string NgaySua = @"ngay_sua";

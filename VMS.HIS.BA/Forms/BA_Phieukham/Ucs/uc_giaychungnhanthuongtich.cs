@@ -37,11 +37,7 @@ namespace VMS.HIS.UI.EMR.Ucs
             txtNguoiXacnhan._OnEnterMe += TxtBSDieuTri__OnEnterMe;
             txtDaidienDonvi._OnEnterMe += TxtDaidienDonvi__OnEnterMe;
         }
-        public bool VisibleFunctionButtons
-        {
-            get { return cmdGhi.Visible; }
-            set { cmdGhi.Visible =cmdInphieu.Visible= value; }
-        }
+        
         public void Init(KcbLuotkham objLuotkham, Tt25GiaychungnhanThuongtich giayxacnhan)
         {
             dtpNgayxacnhan.Value = globalVariables.SysDate;
@@ -351,7 +347,7 @@ namespace VMS.HIS.UI.EMR.Ucs
                 if (giayxacnhan.Id <= 0)
                 {
                     Utility.ShowMsg("Bạn cần lưu thông tin Giấy chứng nhận tai nạn thương tích trước khi thực hiện in phiếu");
-                    cmdGhi.Focus();
+                    //cmdGhi.Focus();
                     return;
                 }
                 DataTable dtData = SPs.Tt25GiaychungnhanThuongtichLaythongtinIn(giayxacnhan.Id).GetDataSet().Tables[0];

@@ -16,6 +16,7 @@ namespace VMS.HIS.Danhmuc
             try
             {
                 auto.SetId(THU_VIEN_CHUNG.Laygiatrithamsohethong("ID_NGUOIDAIDIEN_DONVI", "-1",true));
+                auto.RaiseEnterEvents();
             }
             catch (Exception ex)
             {

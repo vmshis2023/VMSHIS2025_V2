@@ -1368,7 +1368,6 @@ namespace VMS.HIS.UI.EMR
             this.dtp_ngaysinh.Location = new System.Drawing.Point(168, 34);
             this.dtp_ngaysinh.Name = "dtp_ngaysinh";
             this.dtp_ngaysinh.ReadOnly = true;
-            this.dtp_ngaysinh.ShowUpDown = true;
             this.dtp_ngaysinh.Size = new System.Drawing.Size(147, 22);
             this.dtp_ngaysinh.TabIndex = 2;
             this.dtp_ngaysinh.Value = new System.DateTime(2016, 7, 26, 0, 0, 0, 0);

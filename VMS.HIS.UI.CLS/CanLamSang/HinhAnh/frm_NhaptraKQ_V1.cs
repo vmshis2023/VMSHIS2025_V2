@@ -1431,6 +1431,7 @@ namespace VNS.HIS.UI.Forms.HinhAnh
                 {
                     maubaocao = maubaocaogoc;
                 }
+                Utility.CreateMergeFields(dtData);
                 //  string maubaocao = Application.StartupPath + @"\Reports\" + docChuan;
                 string tenfile = Guid.NewGuid().ToString();
                 string fileExt = Path.GetExtension(maubaocao);

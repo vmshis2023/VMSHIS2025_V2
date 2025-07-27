@@ -352,9 +352,10 @@ namespace VNS.HIS.Classes
                Utility.SetParameterValue(crpt, "tienmiengiam_hdon", tong_ck_hoadon);
                Utility.SetParameterValue(crpt, "tong_miengiam", tong_ck);
                Utility.SetParameterValue(crpt, "tongtien_bn", tong);
-               //  Utility.SetParameterValue(crpt,"DateTime", Utility.FormatDateTime(dtCreateDate.Value));
-               Utility.SetParameterValue(crpt, "CurrentDate", Utility.FormatDateTimeWithLocation(NgayInPhieu, globalVariables.gv_strDiadiem));
-               Utility.SetParameterValue(crpt, "sCurrentDate", Utility.FormatDateTimeWithLocation(NgayInPhieu, globalVariables.gv_strDiadiem));
+                //  Utility.SetParameterValue(crpt,"DateTime", Utility.FormatDateTime(dtCreateDate.Value));
+                Utility.SetParameterValue(crpt, "DIADIEM", globalVariables.gv_strDiadiem);
+                Utility.SetParameterValue(crpt, "CurrentDate", Utility.FormatDateTimeWithLocation(NgayInPhieu, globalVariables.gv_strDiadiem));
+               Utility.SetParameterValue(crpt, "sCurrentDate", Utility.FormatDateTime(NgayInPhieu, globalVariables.gv_strDiadiem));
                Utility.SetParameterValue(crpt, "sTitleReport", tieude);
                Utility.SetParameterValue(crpt, "sMoneyCharacter",
                                       new MoneyByLetter().sMoneyToLetter(Utility.sDbnull(tong)));
@@ -480,8 +481,8 @@ namespace VNS.HIS.Classes
            Utility.SetParameterValue(crpt, "tongtien_bn", tong);
            //  Utility.SetParameterValue(crpt,"DateTime", Utility.FormatDateTime(dtCreateDate.Value));
            Utility.SetParameterValue(crpt, "DIADIEM", globalVariables.gv_strDiadiem);
-           Utility.SetParameterValue(crpt, "CurrentDate", Utility.FormatDateTime(objThanhtoan.NgayThanhtoan));
-           Utility.SetParameterValue(crpt, "sCurrentDate", Utility.FormatDateTime(objThanhtoan.NgayThanhtoan));
+           Utility.SetParameterValue(crpt, "CurrentDate", Utility.FormatDateTime(objThanhtoan.NgayThanhtoan,false));
+           Utility.SetParameterValue(crpt, "sCurrentDate", Utility.FormatDateTime(objThanhtoan.NgayThanhtoan,false));
            Utility.SetParameterValue(crpt, "sTitleReport", tieude);
            Utility.SetParameterValue(crpt, "sMoneyCharacter",
                                   new MoneyByLetter().sMoneyToLetter(Utility.sDbnull(tong)));
@@ -885,7 +886,7 @@ namespace VNS.HIS.Classes
                log.Trace(exception.Message);
            }
        }
-       public void InBienlai(bool IsTongHop, long id_thanhtoan,long id_donthuoc, KcbLuotkham objLuotkham,byte noitru)
+       public void InBienlai(bool IsTongHop, long id_thanhtoan,long id_donthuoc, KcbLuotkham objLuotkham,byte noitru,byte boqua_cacdichvu_tralai = 100)
        {
           
            try
@@ -896,13 +897,13 @@ namespace VNS.HIS.Classes
                    switch (objLuotkham.MaDoituongKcb)
                    {
                        case "DV":
-                           Inbienlai_Dichvu(id_thanhtoan, id_donthuoc, IsTongHop, noitru);
+                           Inbienlai_Dichvu(id_thanhtoan, id_donthuoc, IsTongHop, noitru, boqua_cacdichvu_tralai);
                            break;
                        //case "BHYT":
                        //    Inbienlai_BHYT(id_thanhtoan, IsTongHop, noitru);
                        //    break;
                        default:
-                           Inbienlai_Dichvu(id_thanhtoan, id_donthuoc, IsTongHop, noitru);
+                           Inbienlai_Dichvu(id_thanhtoan, id_donthuoc, IsTongHop, noitru, boqua_cacdichvu_tralai);
                            break;
                    }
                }
@@ -1014,7 +1015,7 @@ namespace VNS.HIS.Classes
                KcbThanhtoan objPayment = KcbThanhtoan.FetchByID(payment_id);
                if (IsTongHop) objPayment.IdThanhtoan = -1;
                ///lấy thông tin vào phiếu thu
-               DataTable mDtReportPhieuThu = new KCB_THANHTOAN().LaythongtininbienlaiDichvu(objPayment,-1, noitru);
+               DataTable mDtReportPhieuThu = new KCB_THANHTOAN().LaythongtininbienlaiDichvu(objPayment,-1, noitru,100);
                THU_VIEN_CHUNG.Sapxepthutuin(ref mDtReportPhieuThu, false);
                mDtReportPhieuThu.DefaultView.Sort = "stt_in ,stt_hthi_loaidichvu,stt_hthi_dichvu,stt_hthi_chitiet,ten_chitietdichvu";
 
@@ -1032,14 +1033,14 @@ namespace VNS.HIS.Classes
                log.Trace(exception.Message);
            }
        }
-       void Inbienlai_Dichvu(long payment_id, long id_donthuoc, bool IsTongHop, byte noitru)
+       void Inbienlai_Dichvu(long payment_id, long id_donthuoc, bool IsTongHop, byte noitru, byte boqua_cacdichvu_tralai=100)
        {
            try
            {
                KcbThanhtoan objPayment = KcbThanhtoan.FetchByID(payment_id);
                if (IsTongHop) objPayment.IdThanhtoan = -1;
                ///lấy thông tin vào phiếu thu
-               DataTable mDtReportPhieuThu = new KCB_THANHTOAN().LaythongtininbienlaiDichvu(objPayment, id_donthuoc, noitru);
+               DataTable mDtReportPhieuThu = new KCB_THANHTOAN().LaythongtininbienlaiDichvu(objPayment, id_donthuoc, noitru, boqua_cacdichvu_tralai);
                THU_VIEN_CHUNG.Sapxepthutuin(ref mDtReportPhieuThu, false);
                mDtReportPhieuThu.DefaultView.Sort = "stt_hthi_khoaphong,stt_in,stt_hthi_loaidichvu ,stt_hthi_dichvu,stt_hthi_chitiet,ten_chitietdichvu";
 
@@ -1058,7 +1059,7 @@ namespace VNS.HIS.Classes
                log.Trace(exception.Message);
            }
        }
-       private void Inbienlai_BHYT(long payment_id, bool IsTongHop, byte noitru)
+       private void Inbienlai_BHYT(long payment_id, bool IsTongHop, byte noitru, byte boqua_cacdichvu_tralai=100)
        {
            try
            {
@@ -1067,7 +1068,7 @@ namespace VNS.HIS.Classes
                if (IsTongHop) objPayment.IdThanhtoan = -1;
                ///lấy thông tin vào phiếu thu
                DataTable m_dtReportPhieuThu =
-                    new KCB_THANHTOAN().LaythongtininbienlaiDichvu(objPayment,-1, noitru);
+                    new KCB_THANHTOAN().LaythongtininbienlaiDichvu(objPayment,-1, noitru, boqua_cacdichvu_tralai);
                THU_VIEN_CHUNG.Sapxepthutuin(ref m_dtReportPhieuThu, true);
                m_dtReportPhieuThu.DefaultView.Sort = "stt_in ,stt_hthi_dichvu,stt_hthi_chitiet,ten_chitietdichvu";
                if (m_dtReportPhieuThu.Rows.Count <= 0)
@@ -1163,14 +1164,14 @@ namespace VNS.HIS.Classes
                log.Trace(exception.Message);
            }
        }
-        void Inbienlai_quaythuoc(long payment_id, long id_donthuoc, bool IsTongHop)
+        void Inbienlai_quaythuoc(long payment_id, long id_donthuoc, bool IsTongHop,byte boqua_cacdichvu_tralai=100)
         {
             try
             {
                 KcbThanhtoan objPayment = KcbThanhtoan.FetchByID(payment_id);
                 if (IsTongHop) objPayment.IdThanhtoan = -1;
                 ///lấy thông tin vào phiếu thu
-                DataTable m_dtReportPhieuThu = new KCB_THANHTOAN().LaythongtininbienlaiDichvu(objPayment, id_donthuoc,0);
+                DataTable m_dtReportPhieuThu = new KCB_THANHTOAN().LaythongtininbienlaiDichvu(objPayment, id_donthuoc,0, boqua_cacdichvu_tralai);
                 THU_VIEN_CHUNG.Sapxepthutuin(ref m_dtReportPhieuThu, false);
                 m_dtReportPhieuThu.DefaultView.Sort = "stt_in ,stt_hthi_dichvu,stt_hthi_chitiet,ten_chitietdichvu";
 
@@ -1190,13 +1191,13 @@ namespace VNS.HIS.Classes
         }
       
 
-       public void InHoaDon_BanHang(long  paymentID,long id_donthuoc,byte noitru)
+       public void InHoaDon_BanHang(long  paymentID,long id_donthuoc,byte noitru,byte boqua_cacdichvu_tralai)
        {
            try
            {
                KcbThanhtoan objPayment = KcbThanhtoan.FetchByID(paymentID);
                DataTable m_dtReportPhieuThu =
-                      new KCB_THANHTOAN().LaythongtininbienlaiDichvu(objPayment, id_donthuoc, noitru);
+                      new KCB_THANHTOAN().LaythongtininbienlaiDichvu(objPayment, id_donthuoc, noitru, boqua_cacdichvu_tralai);
                THU_VIEN_CHUNG.Sapxepthutuin(ref m_dtReportPhieuThu, true);
                m_dtReportPhieuThu.DefaultView.Sort = "stt_in ,stt_hthi_dichvu,stt_hthi_chitiet,ten_chitietdichvu";
                if (m_dtReportPhieuThu.Rows.Count <= 0)

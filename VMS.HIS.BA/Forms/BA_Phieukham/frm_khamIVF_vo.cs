@@ -31,7 +31,7 @@ namespace VMS.HIS.UI.EMR
             this.KeyDown += frm_khamIVF_vo_KeyDown;
             this.objLuotkham = objLuotkham;
             this.objBenhnhan = objBenhnhan;
-            if(objBenhnhan==null)
+            if (objBenhnhan == null)
                 objBenhnhan = new Select().From(KcbDanhsachBenhnhan.Schema).Where(KcbDanhsachBenhnhan.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan).ExecuteSingle<KcbDanhsachBenhnhan>();
             Utility.SetVisualStyle(this);
             ucThongtinnguoibenh1._OnEnterMe += ucThongtinnguoibenh1__OnEnterMe;
@@ -42,9 +42,53 @@ namespace VMS.HIS.UI.EMR
             txtNhommau._OnShowDataV1 += __OnShowDataV1;
             txtCanNang.TextChanged += txtCanNang_TextChanged;
             txtChieuCao.TextChanged += txtChieuCao_TextChanged;
-          
+            SetProperties(this);
         }
 
+        void SetProperties(Control parent)
+        {
+            foreach (Control ctr in parent.Controls)
+                if (ctr.GetType().Equals(nmr_chukykinhnguyet_songay.GetType()))
+                {
+                    NumericUpDown nmr = ctr as NumericUpDown;
+                    nmr.Tag = 0;
+                    nmr.MouseUp += nmr_MouseUp;
+                    nmr.GotFocus += nmr_GotFocus;
+                    nmr.Leave += nmr_Leave;
+
+                }
+                else
+                    SetProperties(ctr);
+        }
+
+        private void nmr_GotFocus(object sender, EventArgs e)
+        {
+
+            NumericUpDown nmr = sender as NumericUpDown;
+            // focus từ bàn phím (TAB), chưa có mouse event, chọn toàn bộ
+            nmr.Select(0, nmr.Text.Length);
+            nmr.Tag = 1;
+        }
+
+        private void nmr_MouseUp(object sender, MouseEventArgs e)
+        {
+            NumericUpDown nmr = sender as NumericUpDown;
+            // chọn toàn bộ sau khi click, tránh lặp lại nếu đã chọn
+            if (nmr.Tag.ToString() != "1")
+            {
+                nmr.BeginInvoke((MethodInvoker)(() =>
+                {
+                    nmr.Select(0, nmr.Text.Length);
+                }));
+                nmr.Tag = 1;
+            }
+        }
+
+        private void nmr_Leave(object sender, EventArgs e)
+        {
+            NumericUpDown nmr = sender as NumericUpDown;
+            nmr.Tag = 0; // reset khi rời khỏi control
+        }
         private void txtCanNang_TextChanged(object sender, EventArgs e)
         {
             tinhBMI();
@@ -114,24 +158,24 @@ namespace VMS.HIS.UI.EMR
                     ucThongtinnguoibenh1.txtMaluotkham.SelectAll();
                     return;
                 }
-                if (globalVariables.IsAdmin || objPhieuKhamIvfChong.NguoiTao == globalVariables.UserName.ToString())
+                if (globalVariables.IsAdmin || objPhieuKhamIvfVo.NguoiTao == globalVariables.UserName.ToString())
                 {
-                    objPhieuKhamIvfChong = EmrPhieukhamIvfChong.FetchByID(objPhieuKhamIvfChong.Id);
-                    if (objPhieuKhamIvfChong != null)
+                    objPhieuKhamIvfVo = EmrPhieukhamIvfVo.FetchByID(objPhieuKhamIvfVo.Id);
+                    if (objPhieuKhamIvfVo != null)
                     {
                         if (Utility.AcceptQuestion("Bạn có chắc chắn muốn xóa thông tin khám chữa bệnh ngày {0} của bác sĩ {1} thực hiện", "Cảnh báo", true))
                         {
-                            EmrPhieukhamIvfChong.Delete(objPhieuKhamIvfChong.Id);
+                            EmrPhieukhamIvfVo.Delete(objPhieuKhamIvfVo.Id);
                         }
                     }
                     else
                     {
-                        Utility.ShowMsg(string.Format("Không thể xóa phiếu khám IVF chồng.\nVui lòng kiểm tra lại vì có thể trong lúc bạn mở thao tác người khác đã xóa thông tin", objPhieuKhamIvfChong.NguoiTao));
+                        Utility.ShowMsg(string.Format("Không thể xóa phiếu khám IVF chồng.\nVui lòng kiểm tra lại vì có thể trong lúc bạn mở thao tác người khác đã xóa thông tin", objPhieuKhamIvfVo.NguoiTao));
                     }    
                 }
                 else
                 {
-                    Utility.ShowMsg(string.Format("Bạn không thể xóa thông tin khám được tạo bởi bác sĩ {0}.\nVui lòng kiểm tra lại", objPhieuKhamIvfChong.NguoiTao));
+                    Utility.ShowMsg(string.Format("Bạn không thể xóa thông tin khám được tạo bởi bác sĩ {0}.\nVui lòng kiểm tra lại", objPhieuKhamIvfVo.NguoiTao));
                 }
             }
             catch (Exception)
@@ -170,7 +214,7 @@ namespace VMS.HIS.UI.EMR
      
         void ModifyCommmands()
         {
-            cmdxoa.Enabled = cmdIn.Enabled = objPhieuKhamIvfChong != null;
+            cmdxoa.Enabled = cmdIn.Enabled = objPhieuKhamIvfVo != null;
         }
         void frm_khamIVF_vo_KeyDown(object sender, KeyEventArgs e)
         {
@@ -227,10 +271,10 @@ namespace VMS.HIS.UI.EMR
                    .Where(EmrTiensubenhDacdiemlienquan.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
                    .And(EmrTiensubenhDacdiemlienquan.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
                    .ExecuteSingle<EmrTiensubenhDacdiemlienquan>();
-                objPhieuKhamIvfChong= new Select().From(EmrPhieukhamIvfChong.Schema)
-                   .Where(EmrPhieukhamIvfChong.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
-                   .And(EmrPhieukhamIvfChong.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
-                   .ExecuteSingle<EmrPhieukhamIvfChong>();
+                objPhieuKhamIvfVo= new Select().From(EmrPhieukhamIvfVo.Schema)
+                   .Where(EmrPhieukhamIvfVo.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
+                   .And(EmrPhieukhamIvfVo.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
+                   .ExecuteSingle<EmrPhieukhamIvfVo>();
               
                 FillData();
             }
@@ -247,8 +291,12 @@ namespace VMS.HIS.UI.EMR
             InitDanhmucchung();
             DataBinding.BindDataCombobox(cboBacsi, globalVariables.gv_dtDmucNhanvien.Copy(),
                                      DmucNhanvien.Columns.UserName, DmucNhanvien.Columns.TenNhanvien, "----Chọn bác sĩ khám----", true);
+            DataBinding.BindDataCombobox(cbo_bacsitheodoi, globalVariables.gv_dtDmucNhanvien.Copy(),
+                                     DmucNhanvien.Columns.UserName, DmucNhanvien.Columns.TenNhanvien, "----Chọn bác sĩ khám----", true);
             ucThongtinnguoibenh1.Refresh();
             dtNgayKham.Value = DateTime.Now.Date;
+            dtp_ngaysinh_vo.Value =  objBenhnhan.NgaySinh.Value;
+            dtp_ngaylapgiadinh.Value = DateTime.Now.Date;
             dtNgayKham.Focus();
             ModifyCommmands();
            
@@ -271,96 +319,245 @@ namespace VMS.HIS.UI.EMR
                 txt_dacdiemlienquankhac.Text = Utility.sDbnull(objTsbDacdiemlienquan.TsbThoigianKhac);
             }
         }
-        EmrPhieukhamIvfChong objPhieuKhamIvfChong = null;
+        EmrPhieukhamIvfVo objPhieuKhamIvfVo = null;
       
         private void FillData()
         {
             try
             {
                 FillDacdiemLienquan();
-                if (objPhieuKhamIvfChong != null)
+                if (objPhieuKhamIvfVo != null)
                 {
-                    txtID.Text = objPhieuKhamIvfChong.Id.ToString();
-                    txtNhietDo.Text = objPhieuKhamIvfChong.NhietDo;
-                    txtha.Text = objPhieuKhamIvfChong.NhomMau;
-                    txtMach.Text = objPhieuKhamIvfChong.Mach;
-                    txtNhipTho.Text = objPhieuKhamIvfChong.NhịpTho;
-                    txtChieuCao.Text = objPhieuKhamIvfChong.ChieuCao;
-                    txtCanNang.Text = objPhieuKhamIvfChong.CanNang;
-                    txtBMI.Text = objPhieuKhamIvfChong.Bmi;
-                    txtNhommau.SetCode(objPhieuKhamIvfChong.NhomMau);
+                    txtID.Text = objPhieuKhamIvfVo.Id.ToString();
+                    txtNhietDo.Text = objPhieuKhamIvfVo.NhietDo;
+                    txtha.Text = objPhieuKhamIvfVo.NhomMau;
+                    txtMach.Text = objPhieuKhamIvfVo.Mach;
+                    txtNhipTho.Text = objPhieuKhamIvfVo.NhịpTho;
+                    txtChieuCao.Text = objPhieuKhamIvfVo.ChieuCao;
+                    txtCanNang.Text = objPhieuKhamIvfVo.CanNang;
+                    txtBMI.Text = objPhieuKhamIvfVo.Bmi;
+                    txtNhommau.SetCode(objPhieuKhamIvfVo.NhomMau);
                     //Tiền sử nội khoa
-                    txt_hoten_vo.Text = Utility.sDbnull(objPhieuKhamIvfChong.HotenChong);
-                    dtp_ngaysinh_vo.Value = objPhieuKhamIvfChong.NgaythangnamsinhChong.Value;
-                    txt_sodienthoai_vo.Text=Utility.sDbnull(objPhieuKhamIvfChong.SodienthoaiChong);
-                    cbo_bacsitheodoi.SelectedValue = objPhieuKhamIvfChong.IdBacsitheodoiChong;
+                    txt_hoten_vo.Text = objPhieuKhamIvfVo.HotenVo;
+                    dtp_ngaysinh_vo.Value = objPhieuKhamIvfVo.NgaysinhVo.Value;
+                    txt_sodienthoai_vo.Text = objPhieuKhamIvfVo.SodienthoaiVo;
+                    txt_diachi_vo.Text = objPhieuKhamIvfVo.DiachiVo;
+                    cbo_bacsitheodoi.SelectedValue = Utility.Int16Dbnull(objPhieuKhamIvfVo.IdBacsitheodoiVo, -1);
+                    //Tiền sử kinh nguyệt
+                    nmr_tuoicokinhlandau.Value=  Utility.ByteDbnull(objPhieuKhamIvfVo.Tuoicokinhlandau);
+                    opt_chukykinhnguyet_deu.Checked =Utility.Bool2Bool( objPhieuKhamIvfVo.ChukykinhnguyetDeu);
+                    opt_chukykinhnguyet_khongdeu.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.ChukykinhnguyetKhongdeu);
+                    txt_ghichu.Text = objPhieuKhamIvfVo.Ghichu;
+                    nmr_chukykinhnguyet_songay.Value = Utility.ByteDbnull(objPhieuKhamIvfVo.ChukykinhnguyetSongay);
+                    nmr_songay_cokinh.Value  = Utility.ByteDbnull(objPhieuKhamIvfVo.SongayCokinh);
 
-                    opt_vosinh_nguyenphat.Checked= Utility.Bool2Bool(objPhieuKhamIvfChong.VosinhNguyenphat);
-                    opt_vosinh_thuphat.Checked = Utility.Bool2Bool(objPhieuKhamIvfChong.VosinhThuphat);
-                    nmr_thoigian_vosinh.Value = Utility.Int32Dbnull(objPhieuKhamIvfChong.ThoigianVosinh);
+                    opt_soluongkinhnguyet_it.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.SoluongkinhnguyetIt);
+                    opt_soluongkinhnguyet_trungbinh.Checked= Utility.Bool2Bool(objPhieuKhamIvfVo.SoluongkinhnguyetTrungbinh);
+                    opt_soluongkinhnguyet_nhieu.Checked= Utility.Bool2Bool(objPhieuKhamIvfVo.SoluongkinhnguyetNhieu);
+                    opt_vokinh_nguyenphat.Checked= Utility.Bool2Bool(objPhieuKhamIvfVo.VokinhNguyenphat);
+                    opt_vokinh_thuphat.Checked= Utility.Bool2Bool(objPhieuKhamIvfVo.VokinhThuphat);
+                    opt_vokinh_khong.Checked= Utility.Bool2Bool(objPhieuKhamIvfVo.VokinhKhong);
 
-                    opt_tiensubenhanhhuongdensinhsan_co.Checked = Utility.Bool2Bool(objPhieuKhamIvfChong.TiensubenhanhhuongdensinhsanCo);
-                    opt_tiensubenhanhhuongdensinhsan_khong.Checked = Utility.Bool2Bool(objPhieuKhamIvfChong.TiensubenhanhhuongdensinhsanKhong);
-                    //Các bệnh toàn thân
-                    chk_benhtieuduong.Checked = Utility.Bool2Bool(objPhieuKhamIvfChong.Benhtieuduong);
-                    chk_benhlaophoi.Checked = Utility.Bool2Bool(objPhieuKhamIvfChong.Benhlaophoi);
-                    chk_benhtuyengiap.Checked = Utility.Bool2Bool(objPhieuKhamIvfChong.Benhtuyengiap);
-                    chk_benhthankinh.Checked = Utility.Bool2Bool(objPhieuKhamIvfChong.Benhthankinh);
-                    chk_benhkhac.Checked = Utility.Bool2Bool(objPhieuKhamIvfChong.Benhkhac);
-                    txt_noikhoabenhkhac_mota.Text = Utility.sDbnull(objPhieuKhamIvfChong.BenhkhacMota);
-                    //Tiền sử điều trị nội khoa
-                    opt_codaukhisinhhoat_co.Checked = Utility.Bool2Bool(objPhieuKhamIvfChong.TiensudieutrinoikhoaCo); 
-                    opt_codaukhisinhhoat_khong.Checked = Utility.Bool2Bool(objPhieuKhamIvfChong.TiensudieutrinoikhoaKhong); 
-                    txt_tiensudieutrinoikhoa_mota.Text = Utility.sDbnull(objPhieuKhamIvfChong.TiensudieutrinoikhoaMota);
-                    //Tiền sử PTTT
-                    chk_tiensupttt_khong.Checked = Utility.Bool2Bool(objPhieuKhamIvfChong.TiensuptttKhong);
-                    chk_hepnieudao.Checked = Utility.Bool2Bool(objPhieuKhamIvfChong.Hepnieudao);
-                    chk_lotietnieuthap.Checked = Utility.Bool2Bool(objPhieuKhamIvfChong.Lotietnieuthap);
-                    chk_thoatviben.Checked = Utility.Bool2Bool(objPhieuKhamIvfChong.Thoatviben);
-                    chk_catbotinhhoan.Checked = Utility.Bool2Bool(objPhieuKhamIvfChong.Catbotinhhoan);
-                    chk_thatongdantinh.Checked = Utility.Bool2Bool(objPhieuKhamIvfChong.Thatongdantinh);
-                    chk_tiensupttt_khac.Checked = Utility.Bool2Bool(objPhieuKhamIvfChong.TiensuptttKhac);
-                    txt_tiensupttt_mota.Text = Utility.sDbnull(objPhieuKhamIvfChong.TiensuptttMota);
-                    //Tiền sử nhiễm trùng đường tiết niệu
-                    opt_tiensunhiemtrungduongtietnieu_co.Checked = Utility.Bool2Bool(objPhieuKhamIvfChong.TiensunhiemtrungduongtietnieuCo); 
-                    opt_tiensunhiemtrungduongtietnieu_khong.Checked = Utility.Bool2Bool(objPhieuKhamIvfChong.TiensunhiemtrungduongtietnieuKhong); 
-                    //Tiền sử bệnh lây lan qua đường tình dục
-                    chk_tiensubenhlayquaduongtinhduc_co.Checked = Utility.Bool2Bool(objPhieuKhamIvfChong.TiensubenhlayquaduongtinhducCo);
-                    chk_tiensubenhlayquaduongtinhduc_lau.Checked = Utility.Bool2Bool(objPhieuKhamIvfChong.TiensubenhlayquaduongtinhducLau); 
-                    chk_tiensubenhlayquaduongtinhduc_giangmai.Checked = Utility.Bool2Bool(objPhieuKhamIvfChong.TiensubenhlayquaduongtinhducGiangmai); 
-                    chk_tiensubenhlayquaduongtinhduc_hiv.Checked = Utility.Bool2Bool(objPhieuKhamIvfChong.TiensubenhlayquaduongtinhducHiv); 
-                    chk_tiensubenhlayquaduongtinhduc_chlamydia.Checked = Utility.Bool2Bool(objPhieuKhamIvfChong.TiensubenhlayquaduongtinhducChlamydia); 
-                    chk_tiensubenhlayquaduongtinhduc_khac.Checked = Utility.Bool2Bool(objPhieuKhamIvfChong.TiensubenhlayquaduongtinhducKhac); 
-                    txt_tiensubenhlayquaduongtinhduc_mota.Text = Utility.sDbnull(objPhieuKhamIvfChong.TiensubenhlayquaduongtinhducMota);
-                    
-                    //KHÁM THỰC THỂ
-                    opt_khamtoanthan_binhthuong.Checked = Utility.Bool2Bool(objPhieuKhamIvfChong.KhamtoanthanBinhthuong); 
-                    opt_khamtoanthan_batthuong.Checked = Utility.Bool2Bool(objPhieuKhamIvfChong.KhamtoanthanBatthuong);
+                    opt_vosinh_nguyenphat.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.VosinhNguyenphat);
+                    opt_vosinh_thuphat.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.VosinhThuphat);
+                    opt_vosinh_khong.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.VosinhKhong);
+                    //Mức độ sinh hoạt tình dục
+                    nmr_mucdosinhhoattinhduc_theotuan.Value  = Utility.ByteDbnull(objPhieuKhamIvfVo.MucdosinhhoattinhducTheotuan);
+                    opt_codaukhisinhhoat_co.Checked= Utility.Bool2Bool(objPhieuKhamIvfVo.CodaukhisinhhoatCo);
+                    opt_codaukhisinhhoat_khong.Checked= Utility.Bool2Bool(objPhieuKhamIvfVo.CodaukhisinhhoatKhong);
+                    //Tiền sử sinh sản
+                    nmr_SolancothaiVoichonghiennay.Value = Utility.ByteDbnull(objPhieuKhamIvfVo.SolancothaiVoichonghiennay);
+                    nmr_SolancothaiVoilankethontruoc.Value  = Utility.ByteDbnull(objPhieuKhamIvfVo.SolancothaiVoilankethontruoc);
+                    nmr_SoconsongVoichonghiennay.Value= Utility.ByteDbnull(objPhieuKhamIvfVo.SoconsongVoichonghiennay);
+                    nmr_SoconsongVoilankethontruoc.Value= Utility.ByteDbnull(objPhieuKhamIvfVo.SoconsongVoilankethontruoc);
+                    nmr_DenonVoichonghiennay.Value = Utility.ByteDbnull(objPhieuKhamIvfVo.DenonVoichonghiennay);
+                    nmr_DenonVoilankethontruoc.Value = Utility.ByteDbnull(objPhieuKhamIvfVo.DenonVoilankethontruoc);
+                    nmr_SaythaiVoichonghiennay.Value= Utility.ByteDbnull(objPhieuKhamIvfVo.SaythaiVoichonghiennay);
+                    nmr_SaythaiVoilankethontruoc.Value  = Utility.ByteDbnull(objPhieuKhamIvfVo.SaythaiVoilankethontruoc);
+                    nmr_NaohutVoichonghiennay.Value= Utility.ByteDbnull(objPhieuKhamIvfVo.NaohutVoichonghiennay);
+                    nmr_NaohutVoilankethontruoc.Value = Utility.ByteDbnull(objPhieuKhamIvfVo.NaohutVoilankethontruoc);
+                    nmr_ThailuuVoichonghiennay.Value = Utility.ByteDbnull(objPhieuKhamIvfVo.ThailuuVoichonghiennay);
+                    nmr_ThailuuVoilankethontruoc.Value = Utility.ByteDbnull(objPhieuKhamIvfVo.ThailuuVoilankethontruoc);
 
-                    txt_khamtoanthan_mota.Text = Utility.sDbnull(objPhieuKhamIvfChong.KhamtoanthanMota);
-                    //Khám đường tiết niệu sinh dục
-                    txt_duongvat.Text = Utility.sDbnull(objPhieuKhamIvfChong.Duongvat);
-                    txt_khamtructrang.Text = Utility.sDbnull(objPhieuKhamIvfChong.Khamtructrang);
-                    txt_tuitinh.Text = Utility.sDbnull(objPhieuKhamIvfChong.Tuitinh);
-                    txt_sungbiu.Text = Utility.sDbnull(objPhieuKhamIvfChong.Sungbiu);
-                    txt_tuyentienliet.Text = Utility.sDbnull(objPhieuKhamIvfChong.Tuyentienliet);
-                    txt_GEU.Text = Utility.sDbnull(objPhieuKhamIvfChong.TinhoanPhai);
-                    txt_tinhoan_trai.Text = Utility.sDbnull(objPhieuKhamIvfChong.TinhoanTrai);
-                    txt_catvoitrung.Text = Utility.sDbnull(objPhieuKhamIvfChong.ThetichPhai);
-                    txt_thetich_trai.Text = Utility.sDbnull(objPhieuKhamIvfChong.ThetichTrai);
-                    txt_mothongvoi.Text = Utility.sDbnull(objPhieuKhamIvfChong.MaotinhoanPhai);
-                    txt_maotinhoan_trai.Text = Utility.sDbnull(objPhieuKhamIvfChong.MaotinhoanTrai);
-                    txt_boctach_unang_buongtrung.Text = Utility.sDbnull(objPhieuKhamIvfChong.OngdantinhPhai);
-                    txt_ongdantinh_trai.Text = Utility.sDbnull(objPhieuKhamIvfChong.OngdantinhTrai);
-                    txt_cat_unang_buongtrung.Text = Utility.sDbnull(objPhieuKhamIvfChong.GiantinhmachthungtinhPhai);
-                    txt_giantinhmachthungtinh_trai.Text = Utility.sDbnull(objPhieuKhamIvfChong.GiantinhmachthungtinhTrai);
-                    txt_boctachnhanxotucung.Text = Utility.sDbnull(objPhieuKhamIvfChong.BenPhai);
-                    txt_ben_trai.Text = Utility.sDbnull(objPhieuKhamIvfChong.BenTrai);
-                   
 
-                    cboBacsi.SelectedValue = Utility.sDbnull(objPhieuKhamIvfChong.IdBacsi, "-1");
-                    //dtNgayKham.Value = Convert.ToDateTime(string.IsNullOrEmpty(objPhieuKhamIvfChong.NgayKham) ? dtNgayKham.Value : objPhieuKhamIvfChong.NgayKham);
-                    dtNgayKham.Value = string.IsNullOrEmpty(objPhieuKhamIvfChong.NgayKham.ToString()) ? dtNgayKham.Value : Convert.ToDateTime(objPhieuKhamIvfChong.NgayKham);
+                    opt_GEU_co.Checked= Utility.Bool2Bool(objPhieuKhamIvfVo.GeuCo);
+                    opt_GEU_khong.Checked= Utility.Bool2Bool(objPhieuKhamIvfVo.GeuKhong);
+                    opt_chuatrung_co.Checked= Utility.Bool2Bool(objPhieuKhamIvfVo.ChuatrungCo);
+                    opt_chuatrung_khong.Checked= Utility.Bool2Bool(objPhieuKhamIvfVo.ChuatrungKhong);
+
+                    nmr_thoigian_vosinh.Value = Utility.ByteDbnull(objPhieuKhamIvfVo.Thoigianvosinh);
+                    chk_phuongphapdieutrivosinh_khong.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.PhuongphapdieutrivosinhKhong);
+
+                    chk_phuongphapdieutrivosinh_IUI.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.PhuongphapdieutrivosinhIui);
+                    txt_phuongphapdieutrivosinh_IUI_mota.Text = objPhieuKhamIvfVo.PhuongphapdieutrivosinhIuiMota;
+
+                    chk_phuongphapdieutrivosinh_IVF.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.PhuongphapdieutrivosinhIvf);
+                    txt_phuongphapdieutrivosinh_IVF_mota.Text = objPhieuKhamIvfVo.PhuongphapdieutrivosinhIvfMota;
+
+                    chk_phuongphapdieutrivosinh_khac.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.PhuongphapdieutrivosinhKhac);
+                    txt_phuongphapdieutrivosinh_khac_mota.Text = objPhieuKhamIvfVo.PhuongphapdieutrivosinhKhacMota;
+                    // Các thăm dò trước đó
+                    //Chụp phim vòi trứng
+                    chk_voitrungphai_thong.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.VoitrungphaiThong);
+                    chk_voitrungphai_thonghanche.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.VoitrungphaiThonghanche);
+                    chk_voitrungphai_tacgan.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.VoitrungphaiTacgan);
+                    chk_voitrungphai_tacxa.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.VoitrungphaiTacxa);
+                    chk_voitrungphai_unuoc.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.VoitrungphaiUnuoc);
+                    chk_voitrungphai_khac.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.VoitrungphaiKhac);
+
+                    chk_voitrungtrai_thong.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.VoitrungtraiThong);
+                    chk_voitrungtrai_thonghanche.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.VoitrungtraiThonghanche);
+                    chk_voitrungtrai_tacgan.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.VoitrungtraiTacgan);
+                    chk_voitrungtrai_tacxa.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.VoitrungtraiTacxa);
+                    chk_voitrungtrai_unuoc.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.VoitrungtraiUnuoc);
+                    chk_voitrungtrai_khac.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.VoitrungtraiKhac);
+                    //Nội soi vòi trứng
+                    chk_noisoi_voitrungphai_thong.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.NoisoiVoitrungphaiThong);
+                    chk_noisoi_voitrungphai_thonghanche.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.NoisoiVoitrungphaiThonghanche);
+                    chk_noisoi_voitrungphai_tacgan.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.NoisoiVoitrungphaiTacgan);
+                    chk_noisoi_voitrungphai_tacxa.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.NoisoiVoitrungphaiTacxa);
+                    chk_noisoi_voitrungphai_unuoc.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.NoisoiVoitrungphaiUnuoc);
+                    chk_noisoi_voitrungphai_khac.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.NoisoiVoitrungphaiKhac);
+
+                    chk_noisoi_voitrungtrai_thong.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.NoisoiVoitrungtraiThong);
+                    chk_noisoi_voitrungtrai_thonghanche.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.NoisoiVoitrungtraiThonghanche);
+                    chk_noisoi_voitrungtrai_tacgan.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.NoisoiVoitrungtraiTacgan);
+                    chk_noisoi_voitrungtrai_tacxa.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.NoisoiVoitrungtraiTacxa);
+                    chk_noisoi_voitrungtrai_unuoc.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.NoisoiVoitrungtraiUnuoc);
+                    chk_noisoi_voitrungtrai_khac.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.NoisoiVoitrungtraiKhac);
+
+                    txt_chupphim_tucungvoitrung_ghichu.Text = Utility.sDbnull(objPhieuKhamIvfVo.ChupphimTucungvoitrungGhichu);
+                    txt_noisoi_ghichu.Text= Utility.sDbnull(objPhieuKhamIvfVo.NoisoiGhichu);
+                    //Siêu âm
+                    opt_sis_co.Checked= Utility.Bool2Bool(objPhieuKhamIvfVo.SisCo );
+                    opt_sis_khong.Checked= Utility.Bool2Bool(objPhieuKhamIvfVo.SisKhong);
+                    dtp_ngay_sieuam_sis.Value = objPhieuKhamIvfVo.NgaySieuamSis.Value;
+                    txt_ketqua_sieuam_sis.Text= Utility.sDbnull(objPhieuKhamIvfVo.KetquaSieuamSis);
+                    //Các yếu tố ảnh hưởng khác
+                    chkMaTuy.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.Matuy);
+                    txtMaTuy.Text = objPhieuKhamIvfVo.MatuyMota;
+                    chkRuouBia.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.Ruoubia);
+                    txtRuouBia.Text = objPhieuKhamIvfVo.RuoubiaMota;
+                    chkThuocLa.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.Thuocla);
+                    txtThuocLa.Text = objPhieuKhamIvfVo.ThuoclaMota;
+
+                    //Tiền sử nội khoa
+                    opt_tiensubenh_anhhuongdensinhsan_co.Checked= Utility.Bool2Bool(objPhieuKhamIvfVo.TiensubenhAnhhuongdensinhsanCo);
+                    opt_tiensubenh_anhhuongdensinhsan_khong.Checked= Utility.Bool2Bool(objPhieuKhamIvfVo.TiensubenhAnhhuongdensinhsanKhong);
+                    chk_benhlaophoi.Checked= Utility.Bool2Bool(objPhieuKhamIvfVo.Benhlaophoi);
+                    chk_benhtieuduong.Checked= Utility.Bool2Bool(objPhieuKhamIvfVo.Benhtieuduong);
+                    chk_benhtuyengiap.Checked= Utility.Bool2Bool(objPhieuKhamIvfVo.Benhtuyengiap);
+                    chk_benhthankinh.Checked= Utility.Bool2Bool(objPhieuKhamIvfVo.Benhthankinh);
+                    chk_benhkhac.Checked= Utility.Bool2Bool(objPhieuKhamIvfVo.TiensunoikhoaBenhkhac);
+                    txt_noikhoabenhkhac_mota.Text= Utility.sDbnull(objPhieuKhamIvfVo.TiensungoaikhoaBenhkhacMota);
+                    //Tiền sử ngoại khoa
+                    opt_tiensungoaikhoa_co.Checked= Utility.Bool2Bool(objPhieuKhamIvfVo.TiensungoaikhoaCo);
+                    opt_tiensungoaikhoa_khong.Checked= Utility.Bool2Bool(objPhieuKhamIvfVo.TiensungoaikhoaKhong);
+                    txt_GEU.Text = Utility.sDbnull(objPhieuKhamIvfVo.Geu);
+                    txt_catvoitrung.Text = Utility.sDbnull(objPhieuKhamIvfVo.Catvoitrung);
+                    txt_mothongvoi.Text = Utility.sDbnull(objPhieuKhamIvfVo.Mothongvoi);
+                    txt_boctach_unang_buongtrung.Text = Utility.sDbnull(objPhieuKhamIvfVo.BoctachUnangBuongtrung);
+                    txt_cat_unang_buongtrung.Text = Utility.sDbnull(objPhieuKhamIvfVo.CatUnangBuongtrung);
+                    txt_boctachnhanxotucung.Text = Utility.sDbnull(objPhieuKhamIvfVo.Boctachnhanxotucung);
+                    txt_VRT.Text = Utility.sDbnull(objPhieuKhamIvfVo.Vrt);
+                    txt_sinhmo.Text  = Utility.sDbnull(objPhieuKhamIvfVo.Sinhmo);
+                    txt_tiensungoaikhoa_benhkhac_mota.Text = Utility.sDbnull(objPhieuKhamIvfVo.TiensungoaikhoaBenhkhacMota);
+                    // Tiền sử khám bệnh chậu, hông, núm vúi,dị ứng thuốc
+                    opt_tiensucacbenhviemchau_co.Checked= Utility.Bool2Bool(objPhieuKhamIvfVo.TiensucacbenhviemchauCo);
+                    opt_tiensucacbenhviemchau_khong.Checked= Utility.Bool2Bool(objPhieuKhamIvfVo.TiensucacbenhviemchauKhong);
+                    txt_tiensucacbenhviemchau_mota.Text = Utility.sDbnull(objPhieuKhamIvfVo.TiensucacbenhviemchauMota);
+
+                    opt_tiensubenhlayquaduongtinhduc_co.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.TiensubenhlayquaduongtinhducCo);
+                    opt_tiensubenhlayquaduongtinhduc_khong.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.TiensubenhlayquaduongtinhducKhong);
+                    chk_tiensubenhlayquaduongtinhduc_lau.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.TiensubenhlayquaduongtinhducLau);
+                    chk_tiensubenhlayquaduongtinhduc_giangmai.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.TiensubenhlayquaduongtinhducGiangmai);
+                    chk_tiensubenhlayquaduongtinhduc_hiv.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.TiensubenhlayquaduongtinhducHiv);
+                    chk_tiensubenhlayquaduongtinhduc_chlamydia.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.TiensubenhlayquaduongtinhducChlamydia);
+                    chk_tiensubenhlayquaduongtinhduc_viemphanphu.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.TiensubenhlayquaduongtinhducViemphanphu);
+                    chk_tiensubenhlayquaduongtinhduc_lao.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.TiensubenhlayquaduongtinhducLao);
+                    chk_tiensubenhlayquaduongtinhduc_khac.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.TiensubenhlayquaduongtinhducKhac);
+
+                    txt_tiensubenhlayquaduongtinhduc_mota.Text = Utility.sDbnull(objPhieuKhamIvfVo.TiensubenhlayquaduongtinhducMota);
+                    //Khám thực thể
+                    // Khám toàn thân
+                    opt_khamtoanthan_binhthuong.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.KhamToanthanBinhthuong);
+                    opt_khamtoanthan_batthuong.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.KhamToanthanBatthuong);
+                    txt_kham_toanthan_mota.Text = Utility.sDbnull(objPhieuKhamIvfVo.KhamToanthanMota);
+
+                    // Hệ thống lông
+                    opt_hethong_long_binhthuong.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.HethongLongBinhthuong);
+                    opt_hethong_long_batthuong.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.HethongLongBatthuong);
+                    txt_hethong_long_mota.Text = Utility.sDbnull(objPhieuKhamIvfVo.HethongLongMota);
+
+                    // Phát triển vú
+                    opt_phattrien_vu_batthuong.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.PhattrienVuBatthuong);
+                    opt_phattrien_vu_binhthuong.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.PhattrienVuBinhthuong);
+                    txt_phattrien_vu_mota.Text = Utility.sDbnull(objPhieuKhamIvfVo.PhattrienVuMota);
+
+                    // Tiết sữa
+                    opt_tietsua_co.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.TietsuaCo);
+                    opt_tietsua_khong.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.TietsuaKhong);
+                    txt_TietsuaMota.Text = Utility.sDbnull(objPhieuKhamIvfVo.TietsuaMota);
+
+                    // Chiều cao hông
+                    opt_chieucaohong_batthuong.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.ChieucaohongBatthuong);
+                    opt_chieucaohong_binhthuong.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.ChieucaohongBinhthuong);
+                    txt_chieucaohong_mota.Text = Utility.sDbnull(objPhieuKhamIvfVo.ChieucaohongMota);
+
+                    // Màng trinh
+                    opt_mangtrinh_connguyen.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.MangtrinhConnguyen);
+                    opt_mangtrinh_rach.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.MangtrinhRach);
+                    txt_mangtrinh_mota.Text = Utility.sDbnull(objPhieuKhamIvfVo.MangtrinhMota);
+
+                    // Âm đạo
+                    opt_amdao_binhthuong.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.AmdaoBinhthuong);
+                    opt_amdao_batthuong.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.AmdaoBatthuong);
+                    txt_amdao_mota.Text = Utility.sDbnull(objPhieuKhamIvfVo.AmdaoMota);
+
+                    // Cổ tử cung – nhóm checkbox
+                    chk_cotucung_binhthuong.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.CotucungBinhthuong);
+                    chk_cotucung_haitucung.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.CotucungHaitucung);
+                    chk_cotucung_lotuyen.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.CotucungLotuyen);
+                    chk_cotucung_polyp.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.CotucungPolyp);
+                    chk_cotucung_sui.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.CotucungSui);
+                    chk_cotucung_viem.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.CotucungViem);
+
+                    // Huyết trắng (dịch tiết)
+                    txt_thetich.Text = Utility.sDbnull(objPhieuKhamIvfVo.Thetich);
+                    txt_matdo.Text = Utility.sDbnull(objPhieuKhamIvfVo.Matdo);
+                    txt_didong.Text = Utility.sDbnull(objPhieuKhamIvfVo.Didong);
+                    txt_tuthetucung.Text = Utility.sDbnull(objPhieuKhamIvfVo.Tuthetucung);
+
+                    // Hai phần phụ và Catheter
+                    opt_haiphanphu_batthuong.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.HaiphanphuBatthuong);
+                    opt_haiphanphu_binhthuong.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.HaiphanphuBinhthuong);
+                    opt_catheter_de.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.CatheterDe);
+                    opt_catheter_kho.Checked = Utility.Bool2Bool(objPhieuKhamIvfVo.CatheterKho);
+
+                    // TÓM TẮT BỆNH ÁN
+                    txt_tomtat_benhan.Text = Utility.sDbnull(objPhieuKhamIvfVo.TomtatBenhan);
+                    txt_chandoanphanbiet.Text = Utility.sDbnull(objPhieuKhamIvfVo.Chandoanphanbiet);
+                    txt_ma_chandoanphanbiet.Text = Utility.sDbnull(objPhieuKhamIvfVo.MaChandoanphanbiet);
+                    txt_chandoanvaovien.Text = Utility.sDbnull(objPhieuKhamIvfVo.Chandoanvaovien);
+                    txt_ma_chandoanvaovien.Text = Utility.sDbnull(objPhieuKhamIvfVo.MaChandoanvaovien);
+                    txt_chandoanxacdinh.Text = Utility.sDbnull(objPhieuKhamIvfVo.Chandoanxacdinh);
+                    txt_ma_chandoanxacdinh.Text = Utility.sDbnull(objPhieuKhamIvfVo.MaChandoanxacdinh);
+
+                    txt_tenbenhchinh.Text = Utility.sDbnull(objPhieuKhamIvfVo.Tenbenhchinh);
+                    txt_mabenhchinh.Text = Utility.sDbnull(objPhieuKhamIvfVo.Mabenhchinh);
+                    txt_tenbenhphu.Text = Utility.sDbnull(objPhieuKhamIvfVo.Tenbenhphu);
+                    txt_mabenhphu.Text = Utility.sDbnull(objPhieuKhamIvfVo.Mabenhphu);
+                    txt_tenbienchung.Text = Utility.sDbnull(objPhieuKhamIvfVo.Tenbienchung);
+                    txt_mabienchung.Text = Utility.sDbnull(objPhieuKhamIvfVo.Mabienchung);
+
+                    txt_tienluong_gan.Text = Utility.sDbnull(objPhieuKhamIvfVo.TienluongGan);
+                    txt_tienluong_xa.Text = Utility.sDbnull(objPhieuKhamIvfVo.TienluongXa);
+                    txt_huongdieutri.Text = Utility.sDbnull(objPhieuKhamIvfVo.Huongdieutri);
+
+
+                    cboBacsi.SelectedValue = Utility.sDbnull(objPhieuKhamIvfVo.IdBacsidieutri, "-1");
+                    //dtNgayKham.Value = Convert.ToDateTime(string.IsNullOrEmpty(objPhieuKhamIvfVo.NgayKham) ? dtNgayKham.Value : objPhieuKhamIvfVo.NgayKham);
+                    dtNgayKham.Value = string.IsNullOrEmpty(objPhieuKhamIvfVo.NgayKham.ToString()) ? dtNgayKham.Value : Convert.ToDateTime(objPhieuKhamIvfVo.NgayKham);
                 }
                 else
                 {
@@ -505,12 +702,12 @@ namespace VMS.HIS.UI.EMR
                         TaoPhieuDacdiemLienquanBenh();
                         
                         //Phiếu khám sản khoa
-                        TaoPhieuKhamIVFChong();
-                        ActID = objPhieuKhamIvfChong.Id;
+                        TaoPhieuKhamIVFVo();
+                        ActID = objPhieuKhamIvfVo.Id;
                         //Hỏi bệnh
                         
                         //Lưu thông tin vào CSDL
-                        objPhieuKhamIvfChong.Save();
+                        objPhieuKhamIvfVo.Save();
                         objTsbDacdiemlienquan.Save();
                         Utility.Log(Name, globalVariables.UserName, string.Format(
                                               "Lưu thông tin phiếu khám IVF chồng cho người bệnh có mã lần khám {0} và ID bệnh nhân {1} ",
@@ -568,115 +765,263 @@ namespace VMS.HIS.UI.EMR
             else objTsbDacdiemlienquan.TsbThoigianKhac = "";
         }
        
-        void TaoPhieuKhamIVFChong()
+        void TaoPhieuKhamIVFVo()
         {
-            objPhieuKhamIvfChong = new Select().From(EmrPhieukhamIvfChong.Schema)
-                .Where(EmrPhieukhamIvfChong.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
-                .And(EmrPhieukhamIvfChong.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
-                .ExecuteSingle<EmrPhieukhamIvfChong>();
-            if (objPhieuKhamIvfChong != null && objPhieuKhamIvfChong.Id > 0)
+            objPhieuKhamIvfVo = new Select().From(EmrPhieukhamIvfVo.Schema)
+                .Where(EmrPhieukhamIvfVo.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
+                .And(EmrPhieukhamIvfVo.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
+                .ExecuteSingle<EmrPhieukhamIvfVo>();
+            if (objPhieuKhamIvfVo != null && objPhieuKhamIvfVo.Id > 0)
             {
-                objPhieuKhamIvfChong.MarkOld();
-                objPhieuKhamIvfChong.NguoiSua = globalVariables.UserName;
-                objPhieuKhamIvfChong.NgaySua = THU_VIEN_CHUNG.GetSysDateTime();
+                objPhieuKhamIvfVo.MarkOld();
+                objPhieuKhamIvfVo.NguoiSua = globalVariables.UserName;
+                objPhieuKhamIvfVo.NgaySua = THU_VIEN_CHUNG.GetSysDateTime();
             }
             else
             {
-                objPhieuKhamIvfChong = new EmrPhieukhamIvfChong();
-                objPhieuKhamIvfChong.IsNew = true;
-                objPhieuKhamIvfChong.MaLuotkham = Utility.sDbnull(objLuotkham.MaLuotkham);
-                objPhieuKhamIvfChong.IdBenhnhan = Utility.Int32Dbnull(objLuotkham.IdBenhnhan);
-                objPhieuKhamIvfChong.NgayKham = dtNgayKham.Value.Date;
-                objPhieuKhamIvfChong.NguoiTao = globalVariables.UserName;
-                objPhieuKhamIvfChong.NgayTao = THU_VIEN_CHUNG.GetSysDateTime();
+                objPhieuKhamIvfVo = new EmrPhieukhamIvfVo();
+                objPhieuKhamIvfVo.IsNew = true;
+                objPhieuKhamIvfVo.MaLuotkham = Utility.sDbnull(objLuotkham.MaLuotkham);
+                objPhieuKhamIvfVo.IdBenhnhan = Utility.Int32Dbnull(objLuotkham.IdBenhnhan);
+                objPhieuKhamIvfVo.NgayKham = dtNgayKham.Value.Date;
+                objPhieuKhamIvfVo.NguoiTao = globalVariables.UserName;
+                objPhieuKhamIvfVo.NgayTao = THU_VIEN_CHUNG.GetSysDateTime();
             }
-            objPhieuKhamIvfChong.IdBacsi = Utility.Int16Dbnull(cboBacsi.SelectedValue, -1);
+            objPhieuKhamIvfVo.IdBacsidieutri = Utility.Int16Dbnull(cboBacsi.SelectedValue, -1);
            
             //Nội khoa
-            objPhieuKhamIvfChong.HotenChong = Utility.sDbnull(txt_hoten_vo.Text);
-            objPhieuKhamIvfChong.NgaythangnamsinhChong = dtp_ngaysinh_vo.Value;
-            objPhieuKhamIvfChong.SodienthoaiChong = Utility.sDbnull(txt_sodienthoai_vo.Text);
-            objPhieuKhamIvfChong.DiachiChong= Utility.sDbnull(txt_diachi_vo.Text);
-            objPhieuKhamIvfChong.IdBacsitheodoiChong = Utility.Int16Dbnull(cbo_bacsitheodoi.SelectedValue, -1);
-
-
-            objPhieuKhamIvfChong.VosinhNguyenphat = opt_vosinh_nguyenphat.Checked;
-            objPhieuKhamIvfChong.VosinhThuphat = opt_vosinh_thuphat.Checked;
-            objPhieuKhamIvfChong.ThoigianVosinh = Utility.ByteDbnull(nmr_thoigian_vosinh.Value);
-            objPhieuKhamIvfChong.TiensubenhanhhuongdensinhsanCo = opt_tiensubenhanhhuongdensinhsan_co.Checked;
-            objPhieuKhamIvfChong.TiensubenhanhhuongdensinhsanKhong = opt_tiensubenhanhhuongdensinhsan_khong.Checked;
-           //Bệnh toàn thân
-            objPhieuKhamIvfChong.Benhtieuduong = chk_benhtieuduong.Checked;
-            objPhieuKhamIvfChong.Benhlaophoi = chk_benhlaophoi.Checked;
-            objPhieuKhamIvfChong.Benhtuyengiap = chk_benhtuyengiap.Checked;
-            objPhieuKhamIvfChong.Benhthankinh = chk_benhthankinh.Checked;
-            objPhieuKhamIvfChong.Benhkhac = chk_benhkhac.Checked;
-            objPhieuKhamIvfChong.BenhkhacMota = chk_benhkhac.Checked? Utility.sDbnull(txt_noikhoabenhkhac_mota.Text):"";
-            //tiền sử nội khoa
-            objPhieuKhamIvfChong.TiensudieutrinoikhoaCo = opt_codaukhisinhhoat_co.Checked;
-            objPhieuKhamIvfChong.TiensudieutrinoikhoaKhong = opt_codaukhisinhhoat_khong.Checked;
-            objPhieuKhamIvfChong.TiensudieutrinoikhoaMota = opt_codaukhisinhhoat_co.Checked? Utility.sDbnull(txt_tiensudieutrinoikhoa_mota.Text):"";
-            //Tiền sử pttt
-
-            objPhieuKhamIvfChong.TiensuptttCo = !chk_tiensupttt_khong.Checked;
-            objPhieuKhamIvfChong.TiensuptttKhong = chk_tiensupttt_khong.Checked;
-
-            objPhieuKhamIvfChong.Hepnieudao = chk_hepnieudao.Checked;
-            objPhieuKhamIvfChong.Lotietnieuthap = chk_lotietnieuthap.Checked;
-
-            objPhieuKhamIvfChong.Thoatviben = chk_thoatviben.Checked;
-            objPhieuKhamIvfChong.Catbotinhhoan = chk_catbotinhhoan.Checked;
-            objPhieuKhamIvfChong.Thatongdantinh = chk_thatongdantinh.Checked;
-
-            objPhieuKhamIvfChong.TiensuptttKhac = chk_tiensupttt_khac.Checked;
-            objPhieuKhamIvfChong.TiensuptttMota = chk_tiensupttt_khac.Checked? Utility.sDbnull(txt_tiensupttt_mota.Text):"";
-            //tiền sử bệnh lây qua đường tiết niệu
-            objPhieuKhamIvfChong.TiensunhiemtrungduongtietnieuCo = opt_tiensunhiemtrungduongtietnieu_co.Checked;
-            objPhieuKhamIvfChong.TiensunhiemtrungduongtietnieuKhong = opt_tiensunhiemtrungduongtietnieu_khong.Checked;
-            //tiền sử bệnh lây qua đường tình dục
-            objPhieuKhamIvfChong.TiensubenhlayquaduongtinhducCo = chk_tiensubenhlayquaduongtinhduc_co.Checked;
-            objPhieuKhamIvfChong.TiensubenhlayquaduongtinhducLau = chk_tiensubenhlayquaduongtinhduc_lau.Checked;
-            objPhieuKhamIvfChong.TiensubenhlayquaduongtinhducGiangmai = chk_tiensubenhlayquaduongtinhduc_giangmai.Checked;
-            objPhieuKhamIvfChong.TiensubenhlayquaduongtinhducHiv = chk_tiensubenhlayquaduongtinhduc_hiv.Checked;
-            objPhieuKhamIvfChong.TiensubenhlayquaduongtinhducChlamydia = chk_tiensubenhlayquaduongtinhduc_chlamydia.Checked;
-            objPhieuKhamIvfChong.TiensubenhlayquaduongtinhducKhac = chk_tiensubenhlayquaduongtinhduc_khac.Checked;
-            objPhieuKhamIvfChong.TiensubenhlayquaduongtinhducMota = chk_tiensubenhlayquaduongtinhduc_khac.Checked? Utility.sDbnull(txt_tiensubenhlayquaduongtinhduc_mota.Text):"";
+            objPhieuKhamIvfVo.HotenVo = Utility.sDbnull(txt_hoten_vo.Text);
+            objPhieuKhamIvfVo.NgaysinhVo = dtp_ngaysinh_vo.Value;
+            objPhieuKhamIvfVo.SodienthoaiVo = Utility.sDbnull(txt_sodienthoai_vo.Text);
+            objPhieuKhamIvfVo.DiachiVo= Utility.sDbnull(txt_diachi_vo.Text);
+            objPhieuKhamIvfVo.IdBacsitheodoiVo = Utility.Int16Dbnull(cbo_bacsitheodoi.SelectedValue, -1);
+            //Tiền sử kinh nguyệt
+            objPhieuKhamIvfVo.Tuoicokinhlandau = Utility.ByteDbnull(nmr_tuoicokinhlandau.Value);
+            objPhieuKhamIvfVo.ChukykinhnguyetDeu = opt_chukykinhnguyet_deu.Checked;
+            objPhieuKhamIvfVo.ChukykinhnguyetKhongdeu = opt_chukykinhnguyet_khongdeu.Checked;
+            objPhieuKhamIvfVo.Ghichu = opt_chukykinhnguyet_khongdeu.Checked? Utility.sDbnull(txt_ghichu.Text):"";
+            objPhieuKhamIvfVo.ChukykinhnguyetSongay= Utility.ByteDbnull(nmr_chukykinhnguyet_songay.Value);
+            objPhieuKhamIvfVo.SongayCokinh = Utility.ByteDbnull(nmr_songay_cokinh.Value);
            
-            //Khám thực thể
+            objPhieuKhamIvfVo.SoluongkinhnguyetIt = opt_soluongkinhnguyet_it.Checked;
+            objPhieuKhamIvfVo.SoluongkinhnguyetTrungbinh = opt_soluongkinhnguyet_trungbinh.Checked;
+            objPhieuKhamIvfVo.SoluongkinhnguyetNhieu = opt_soluongkinhnguyet_nhieu.Checked;
+            objPhieuKhamIvfVo.VokinhNguyenphat = opt_vokinh_nguyenphat.Checked;
+            objPhieuKhamIvfVo.VokinhThuphat = opt_vokinh_thuphat.Checked;
+            objPhieuKhamIvfVo.VokinhKhong = opt_vokinh_khong.Checked;
+
+            objPhieuKhamIvfVo.VosinhNguyenphat = opt_vosinh_nguyenphat.Checked;
+            objPhieuKhamIvfVo.VosinhThuphat = opt_vosinh_thuphat.Checked;
+            objPhieuKhamIvfVo.VosinhKhong = opt_vosinh_khong.Checked;
+            //Mức độ sinh hoạt tình dục
+            objPhieuKhamIvfVo.MucdosinhhoattinhducTheotuan = Utility.ByteDbnull(nmr_mucdosinhhoattinhduc_theotuan.Value);
+            objPhieuKhamIvfVo.CodaukhisinhhoatCo = opt_codaukhisinhhoat_co.Checked;
+            objPhieuKhamIvfVo.CodaukhisinhhoatKhong = opt_codaukhisinhhoat_khong.Checked;
+            //Tiền sử sinh sản
+            objPhieuKhamIvfVo.SolancothaiVoichonghiennay = Utility.ByteDbnull(nmr_SolancothaiVoichonghiennay.Value);
+            objPhieuKhamIvfVo.SolancothaiVoilankethontruoc = Utility.ByteDbnull(nmr_SolancothaiVoilankethontruoc.Value);
+            objPhieuKhamIvfVo.SoconsongVoichonghiennay = Utility.ByteDbnull(nmr_SoconsongVoichonghiennay.Value);
+            objPhieuKhamIvfVo.SoconsongVoilankethontruoc = Utility.ByteDbnull(nmr_SoconsongVoilankethontruoc.Value);
+            objPhieuKhamIvfVo.DenonVoichonghiennay = Utility.ByteDbnull(nmr_DenonVoichonghiennay.Value);
+            objPhieuKhamIvfVo.DenonVoilankethontruoc = Utility.ByteDbnull(nmr_DenonVoilankethontruoc.Value);
+            objPhieuKhamIvfVo.SaythaiVoichonghiennay = Utility.ByteDbnull(nmr_SaythaiVoichonghiennay.Value);
+            objPhieuKhamIvfVo.SaythaiVoilankethontruoc = Utility.ByteDbnull(nmr_SaythaiVoilankethontruoc.Value);
+            objPhieuKhamIvfVo.NaohutVoichonghiennay = Utility.ByteDbnull(nmr_NaohutVoichonghiennay.Value);
+            objPhieuKhamIvfVo.NaohutVoilankethontruoc = Utility.ByteDbnull(nmr_NaohutVoilankethontruoc.Value);
+            objPhieuKhamIvfVo.ThailuuVoichonghiennay = Utility.ByteDbnull(nmr_ThailuuVoichonghiennay.Value);
+            objPhieuKhamIvfVo.ThailuuVoilankethontruoc = Utility.ByteDbnull(nmr_ThailuuVoilankethontruoc.Value);
 
 
-            objPhieuKhamIvfChong.KhamtoanthanBinhthuong = opt_khamtoanthan_binhthuong.Checked;
-            objPhieuKhamIvfChong.KhamtoanthanBatthuong = opt_khamtoanthan_batthuong.Checked;
-            objPhieuKhamIvfChong.KhamtoanthanMota = opt_khamtoanthan_batthuong.Checked? Utility.sDbnull(txt_khamtoanthan_mota.Text):"";
-            //Khám đường niệu sinh dục
-            objPhieuKhamIvfChong.Duongvat = Utility.sDbnull(txt_duongvat.Text);
-            objPhieuKhamIvfChong.Khamtructrang = Utility.sDbnull(txt_khamtructrang.Text);
-            objPhieuKhamIvfChong.Tuitinh = Utility.sDbnull(txt_tuitinh.Text);
-            objPhieuKhamIvfChong.Sungbiu = Utility.sDbnull(txt_sungbiu.Text);
-            objPhieuKhamIvfChong.Tuyentienliet = Utility.sDbnull(txt_tuyentienliet.Text);
-            //Khám các bộ phận sinh dục trái, phải
-            objPhieuKhamIvfChong.TinhoanPhai = Utility.sDbnull(txt_GEU.Text);
-            objPhieuKhamIvfChong.TinhoanTrai = Utility.sDbnull(txt_tinhoan_trai.Text);
-            objPhieuKhamIvfChong.ThetichPhai = Utility.sDbnull(txt_catvoitrung.Text);
-            objPhieuKhamIvfChong.ThetichTrai = Utility.sDbnull(txt_thetich_trai.Text);
-            objPhieuKhamIvfChong.MaotinhoanPhai = Utility.sDbnull(txt_mothongvoi.Text);
-            objPhieuKhamIvfChong.MaotinhoanTrai = Utility.sDbnull(txt_maotinhoan_trai.Text);
-            objPhieuKhamIvfChong.OngdantinhPhai = Utility.sDbnull(txt_boctach_unang_buongtrung.Text);
-            objPhieuKhamIvfChong.OngdantinhTrai = Utility.sDbnull(txt_ongdantinh_trai.Text);
-            objPhieuKhamIvfChong.GiantinhmachthungtinhPhai = Utility.sDbnull(txt_cat_unang_buongtrung.Text);
-            objPhieuKhamIvfChong.GiantinhmachthungtinhTrai = Utility.sDbnull(txt_giantinhmachthungtinh_trai.Text);
-            objPhieuKhamIvfChong.BenPhai = Utility.sDbnull(txt_boctachnhanxotucung.Text);
-            objPhieuKhamIvfChong.BenTrai = Utility.sDbnull(txt_ben_trai.Text);
+            objPhieuKhamIvfVo.GeuCo = opt_GEU_co.Checked;
+            objPhieuKhamIvfVo.GeuKhong = opt_GEU_khong.Checked;
+            objPhieuKhamIvfVo.ChuatrungCo = opt_chuatrung_co.Checked;
+            objPhieuKhamIvfVo.ChuatrungKhong = opt_chuatrung_khong.Checked;
+
+            objPhieuKhamIvfVo.Thoigianvosinh = Utility.ByteDbnull(nmr_thoigian_vosinh.Value);
+            objPhieuKhamIvfVo.PhuongphapdieutrivosinhKhong = chk_phuongphapdieutrivosinh_khong.Checked;
             
+            objPhieuKhamIvfVo.PhuongphapdieutrivosinhIui = chk_phuongphapdieutrivosinh_IUI.Checked;
+            objPhieuKhamIvfVo.PhuongphapdieutrivosinhIuiMota = chk_phuongphapdieutrivosinh_IUI.Checked? Utility.sDbnull(txt_phuongphapdieutrivosinh_IUI_mota.Text):"";
+
+            objPhieuKhamIvfVo.PhuongphapdieutrivosinhIvf = chk_phuongphapdieutrivosinh_IVF.Checked;
+            objPhieuKhamIvfVo.PhuongphapdieutrivosinhIvfMota = chk_phuongphapdieutrivosinh_IVF.Checked? Utility.sDbnull(txt_phuongphapdieutrivosinh_IVF_mota.Text):"";
+
+            objPhieuKhamIvfVo.PhuongphapdieutrivosinhKhac = chk_phuongphapdieutrivosinh_khac.Checked;
+            objPhieuKhamIvfVo.PhuongphapdieutrivosinhKhacMota = chk_phuongphapdieutrivosinh_khac.Checked? Utility.sDbnull(txt_phuongphapdieutrivosinh_khac_mota.Text):"";
+            // Các thăm dò trước đó
+            //Chụp phim vòi trứng
+            objPhieuKhamIvfVo.VoitrungphaiThong = chk_voitrungphai_thong.Checked;
+            objPhieuKhamIvfVo.VoitrungphaiThonghanche = chk_voitrungphai_thonghanche.Checked;
+            objPhieuKhamIvfVo.VoitrungphaiTacgan = chk_voitrungphai_tacgan.Checked;
+            objPhieuKhamIvfVo.VoitrungphaiTacxa = chk_voitrungphai_tacxa.Checked;
+            objPhieuKhamIvfVo.VoitrungphaiUnuoc = chk_voitrungphai_unuoc.Checked;
+            objPhieuKhamIvfVo.VoitrungphaiKhac = chk_voitrungphai_khac.Checked;
+
+            objPhieuKhamIvfVo.VoitrungtraiThong = chk_voitrungtrai_thong.Checked;
+            objPhieuKhamIvfVo.VoitrungtraiThonghanche = chk_voitrungtrai_thonghanche.Checked;
+            objPhieuKhamIvfVo.VoitrungtraiTacgan = chk_voitrungtrai_tacgan.Checked;
+            objPhieuKhamIvfVo.VoitrungtraiTacxa = chk_voitrungtrai_tacxa.Checked;
+            objPhieuKhamIvfVo.VoitrungtraiUnuoc = chk_voitrungtrai_unuoc.Checked;
+            objPhieuKhamIvfVo.VoitrungtraiKhac = chk_voitrungtrai_khac.Checked;
+            //Nội soi vòi trứng
+            objPhieuKhamIvfVo.NoisoiVoitrungphaiThong = chk_noisoi_voitrungphai_thong.Checked;
+            objPhieuKhamIvfVo.NoisoiVoitrungphaiThonghanche = chk_noisoi_voitrungphai_thonghanche.Checked;
+            objPhieuKhamIvfVo.NoisoiVoitrungphaiTacgan = chk_noisoi_voitrungphai_tacgan.Checked;
+            objPhieuKhamIvfVo.NoisoiVoitrungphaiTacxa = chk_noisoi_voitrungphai_tacxa.Checked;
+            objPhieuKhamIvfVo.NoisoiVoitrungphaiUnuoc = chk_noisoi_voitrungphai_unuoc.Checked;
+            objPhieuKhamIvfVo.NoisoiVoitrungphaiKhac = chk_noisoi_voitrungphai_khac.Checked;
+
+            objPhieuKhamIvfVo.NoisoiVoitrungtraiThong = chk_noisoi_voitrungtrai_thong.Checked;
+            objPhieuKhamIvfVo.NoisoiVoitrungtraiThonghanche = chk_noisoi_voitrungtrai_thonghanche.Checked;
+            objPhieuKhamIvfVo.NoisoiVoitrungtraiTacgan = chk_noisoi_voitrungtrai_tacgan.Checked;
+            objPhieuKhamIvfVo.NoisoiVoitrungtraiTacxa = chk_noisoi_voitrungtrai_tacxa.Checked;
+            objPhieuKhamIvfVo.NoisoiVoitrungtraiUnuoc = chk_noisoi_voitrungtrai_unuoc.Checked;
+            objPhieuKhamIvfVo.NoisoiVoitrungtraiKhac = chk_noisoi_voitrungtrai_khac.Checked;
+           
+            objPhieuKhamIvfVo.ChupphimTucungvoitrungGhichu= Utility.sDbnull(txt_chupphim_tucungvoitrung_ghichu.Text);
+            objPhieuKhamIvfVo.NoisoiGhichu = Utility.sDbnull(txt_noisoi_ghichu.Text);
+            //Siêu âm
+            objPhieuKhamIvfVo.SisCo = opt_sis_co.Checked;
+            objPhieuKhamIvfVo.SisKhong = opt_sis_khong.Checked;
+            objPhieuKhamIvfVo.NgaySieuamSis = dtp_ngay_sieuam_sis.Value;
+            objPhieuKhamIvfVo.KetquaSieuamSis = Utility.sDbnull(txt_ketqua_sieuam_sis.Text);
+            //Các yếu tố khác có thể ảnh hưởng đến sinh sản
+            
+            objPhieuKhamIvfVo.Matuy = chkMaTuy.Checked;
+            objPhieuKhamIvfVo.MatuyMota = chkMaTuy.Checked ? Utility.sDbnull(txtMaTuy.Text) : "";
+            objPhieuKhamIvfVo.Ruoubia = chkRuouBia.Checked;
+            objPhieuKhamIvfVo.RuoubiaMota = chkRuouBia.Checked ? Utility.sDbnull(txtRuouBia.Text) : "";
+            objPhieuKhamIvfVo.Thuocla = chkThuocLa.Checked;
+            objPhieuKhamIvfVo.ThuoclaMota = chkThuocLa.Checked ? Utility.sDbnull(txtThuocLa.Text) : "";
+            //objPhieuKhamIvfVo.cacd = chkThuocLa.Checked;
+            //objPhieuKhamIvfVo.ThuoclaMota = chkThuocLa.Checked ? Utility.sDbnull(txtThuocLa.Text) : "";
+            //objPhieuKhamIvfVo.Thuocla = chkThuocLa.Checked;
+            //objPhieuKhamIvfVo.ThuoclaMota = chkThuocLa.Checked ? Utility.sDbnull(txtThuocLa.Text) : "";
+            //Tiền sử nội khoa
+            objPhieuKhamIvfVo.TiensubenhAnhhuongdensinhsanCo = opt_tiensubenh_anhhuongdensinhsan_co.Checked;
+            objPhieuKhamIvfVo.TiensubenhAnhhuongdensinhsanKhong = opt_tiensubenh_anhhuongdensinhsan_khong.Checked;
+            objPhieuKhamIvfVo.Benhlaophoi = chk_benhlaophoi.Checked;
+            objPhieuKhamIvfVo.Benhtieuduong = chk_benhtieuduong.Checked;
+            objPhieuKhamIvfVo.Benhtuyengiap = chk_benhtuyengiap.Checked;
+            objPhieuKhamIvfVo.Benhthankinh = chk_benhthankinh.Checked;
+            objPhieuKhamIvfVo.TiensunoikhoaBenhkhac = chk_benhkhac.Checked;
+            objPhieuKhamIvfVo.TiensungoaikhoaBenhkhacMota = chk_benhkhac.Checked? Utility.sDbnull(txt_noikhoabenhkhac_mota.Text):"";
+            //Tiền sử ngoại khoa
+            objPhieuKhamIvfVo.TiensungoaikhoaCo = opt_tiensungoaikhoa_co.Checked;
+            objPhieuKhamIvfVo.TiensungoaikhoaKhong = opt_tiensungoaikhoa_khong.Checked;
+            objPhieuKhamIvfVo.Geu = Utility.sDbnull(txt_GEU.Text);
+            objPhieuKhamIvfVo.Catvoitrung = Utility.sDbnull(txt_catvoitrung.Text);
+            objPhieuKhamIvfVo.Mothongvoi = Utility.sDbnull(txt_mothongvoi.Text);
+            objPhieuKhamIvfVo.BoctachUnangBuongtrung = Utility.sDbnull(txt_boctach_unang_buongtrung.Text);
+            objPhieuKhamIvfVo.CatUnangBuongtrung = Utility.sDbnull(txt_cat_unang_buongtrung.Text);
+            objPhieuKhamIvfVo.Boctachnhanxotucung = Utility.sDbnull(txt_boctachnhanxotucung.Text);
+            objPhieuKhamIvfVo.Vrt = Utility.sDbnull(txt_VRT.Text);
+            objPhieuKhamIvfVo.Sinhmo = Utility.sDbnull(txt_sinhmo.Text);
+            objPhieuKhamIvfVo.TiensungoaikhoaBenhkhacMota = Utility.sDbnull(txt_tiensungoaikhoa_benhkhac_mota.Text);
+            // Tiền sử khám bệnh chậu, hông, núm vúi,dị ứng thuốc
+            objPhieuKhamIvfVo.TiensucacbenhviemchauCo = opt_tiensucacbenhviemchau_co.Checked;
+            objPhieuKhamIvfVo.TiensucacbenhviemchauKhong = opt_tiensucacbenhviemchau_khong.Checked;
+            objPhieuKhamIvfVo.TiensucacbenhviemchauMota = opt_tiensucacbenhviemchau_co.Checked? Utility.sDbnull(txt_tiensucacbenhviemchau_mota.Text):"";
+
+            objPhieuKhamIvfVo.TiensubenhlayquaduongtinhducCo = opt_tiensubenhlayquaduongtinhduc_co.Checked;
+            objPhieuKhamIvfVo.TiensubenhlayquaduongtinhducKhong = opt_tiensubenhlayquaduongtinhduc_khong.Checked;
+            objPhieuKhamIvfVo.TiensubenhlayquaduongtinhducLau = chk_tiensubenhlayquaduongtinhduc_lau.Checked;
+            objPhieuKhamIvfVo.TiensubenhlayquaduongtinhducGiangmai = chk_tiensubenhlayquaduongtinhduc_giangmai.Checked;
+            objPhieuKhamIvfVo.TiensubenhlayquaduongtinhducHiv = chk_tiensubenhlayquaduongtinhduc_hiv.Checked;
+            objPhieuKhamIvfVo.TiensubenhlayquaduongtinhducChlamydia = chk_tiensubenhlayquaduongtinhduc_chlamydia.Checked;
+            objPhieuKhamIvfVo.TiensubenhlayquaduongtinhducViemphanphu = chk_tiensubenhlayquaduongtinhduc_viemphanphu.Checked;
+            objPhieuKhamIvfVo.TiensubenhlayquaduongtinhducLao = chk_tiensubenhlayquaduongtinhduc_lao.Checked;
+            objPhieuKhamIvfVo.TiensubenhlayquaduongtinhducKhac = chk_tiensubenhlayquaduongtinhduc_khac.Checked;
+
+            objPhieuKhamIvfVo.TiensutietDichnumvuCo = opt_tiensutiet_dichnumvu_co.Checked;
+            objPhieuKhamIvfVo.TiensutietDichnumvuKhong = opt_tiensutiet_dichnumvu_khong.Checked;
+            objPhieuKhamIvfVo.TiensutietDichnumvuMota = opt_tiensutiet_dichnumvu_co.Checked?Utility.sDbnull(txt_tiensutiet_dichnumvu_mota.Text):"";
+
+            objPhieuKhamIvfVo.DiungthuocCo = opt_diungthuoc_co.Checked;
+            objPhieuKhamIvfVo.DiungthuocKhong = opt_diungthuoc_khong.Checked;
+            objPhieuKhamIvfVo.DiungthuocMota = opt_diungthuoc_co.Checked ? Utility.sDbnull(txt_diungthuoc_mota.Text) : "";
+
+
+            objPhieuKhamIvfVo.TiensubenhlayquaduongtinhducMota = chk_tiensubenhlayquaduongtinhduc_khac.Checked? Utility.sDbnull(txt_tiensubenhlayquaduongtinhduc_mota.Text):"";
+            //Khám thực thể
+            objPhieuKhamIvfVo.KhamToanthanBinhthuong = opt_khamtoanthan_binhthuong.Checked;
+            objPhieuKhamIvfVo.KhamToanthanBatthuong = opt_khamtoanthan_batthuong.Checked;
+            objPhieuKhamIvfVo.KhamToanthanMota = opt_khamtoanthan_batthuong.Checked? Utility.sDbnull(txt_kham_toanthan_mota.Text):"";
+
+            objPhieuKhamIvfVo.HethongLongBinhthuong = opt_hethong_long_binhthuong.Checked;
+            objPhieuKhamIvfVo.HethongLongBatthuong = opt_hethong_long_batthuong.Checked;
+            objPhieuKhamIvfVo.HethongLongMota = opt_hethong_long_batthuong.Checked? Utility.sDbnull(txt_hethong_long_mota.Text):"";
+
+            objPhieuKhamIvfVo.PhattrienVuBatthuong = opt_phattrien_vu_batthuong.Checked;
+            objPhieuKhamIvfVo.PhattrienVuBinhthuong = opt_phattrien_vu_binhthuong.Checked;
+            objPhieuKhamIvfVo.PhattrienVuMota = opt_phattrien_vu_batthuong.Checked? Utility.sDbnull(txt_phattrien_vu_mota.Text):"";
+
+            objPhieuKhamIvfVo.TietsuaCo = opt_tietsua_co.Checked;
+            objPhieuKhamIvfVo.TietsuaKhong = opt_tietsua_khong.Checked;
+            objPhieuKhamIvfVo.TietsuaMota = opt_tietsua_khong.Checked? Utility.sDbnull(txt_TietsuaMota.Text):"";
+
+            objPhieuKhamIvfVo.ChieucaohongBatthuong = opt_chieucaohong_batthuong.Checked;
+            objPhieuKhamIvfVo.ChieucaohongBinhthuong = opt_chieucaohong_binhthuong.Checked;
+            objPhieuKhamIvfVo.ChieucaohongMota = opt_chieucaohong_batthuong.Checked? Utility.sDbnull(txt_chieucaohong_mota.Text):"";
+
+            objPhieuKhamIvfVo.MangtrinhConnguyen = opt_mangtrinh_connguyen.Checked;
+            objPhieuKhamIvfVo.MangtrinhRach = opt_mangtrinh_rach.Checked;
+            objPhieuKhamIvfVo.MangtrinhMota = opt_mangtrinh_rach.Checked? Utility.sDbnull(txt_mangtrinh_mota.Text):"";
+
+            objPhieuKhamIvfVo.AmdaoBinhthuong = opt_amdao_binhthuong.Checked;
+            objPhieuKhamIvfVo.AmdaoBatthuong = opt_amdao_batthuong.Checked;
+            objPhieuKhamIvfVo.AmdaoMota = opt_amdao_batthuong.Checked? Utility.sDbnull(txt_amdao_mota.Text):"";
+
+
+            objPhieuKhamIvfVo.CotucungBinhthuong = chk_cotucung_binhthuong.Checked;
+            objPhieuKhamIvfVo.CotucungHaitucung = chk_cotucung_haitucung.Checked;
+            objPhieuKhamIvfVo.CotucungLotuyen = chk_cotucung_lotuyen.Checked;
+            objPhieuKhamIvfVo.CotucungPolyp = chk_cotucung_polyp.Checked;
+
+            objPhieuKhamIvfVo.CotucungSui = chk_cotucung_sui.Checked;
+            objPhieuKhamIvfVo.CotucungViem = chk_cotucung_viem.Checked;
+
+           
+            objPhieuKhamIvfVo.Thetich = Utility.sDbnull(txt_thetich.Text);
+            objPhieuKhamIvfVo.Matdo = Utility.sDbnull(txt_matdo.Text);
+            objPhieuKhamIvfVo.Didong = Utility.sDbnull(txt_didong.Text);
+            objPhieuKhamIvfVo.Tuthetucung = Utility.sDbnull(txt_tuthetucung.Text);
+
+            objPhieuKhamIvfVo.HaiphanphuBatthuong = opt_haiphanphu_batthuong.Checked;
+            objPhieuKhamIvfVo.HaiphanphuBinhthuong = opt_haiphanphu_binhthuong.Checked;
+            objPhieuKhamIvfVo.CatheterDe = opt_catheter_de.Checked;
+            objPhieuKhamIvfVo.CatheterKho = opt_catheter_kho.Checked;
+            //Tóm tắt BA
+            objPhieuKhamIvfVo.TomtatBenhan = Utility.sDbnull(txt_tomtat_benhan.Text);
+            objPhieuKhamIvfVo.Chandoanphanbiet = Utility.sDbnull(txt_chandoanphanbiet.Text);
+            objPhieuKhamIvfVo.MaChandoanphanbiet = Utility.sDbnull(txt_ma_chandoanphanbiet.Text);
+            objPhieuKhamIvfVo.Chandoanvaovien = Utility.sDbnull(txt_chandoanvaovien.Text);
+            objPhieuKhamIvfVo.MaChandoanvaovien = Utility.sDbnull(txt_ma_chandoanvaovien.Text);
+            objPhieuKhamIvfVo.Chandoanxacdinh = Utility.sDbnull(txt_chandoanxacdinh.Text);
+            objPhieuKhamIvfVo.MaChandoanxacdinh = Utility.sDbnull(txt_ma_chandoanxacdinh.Text);
+
+            objPhieuKhamIvfVo.Tenbenhchinh = Utility.sDbnull(txt_tenbenhchinh.Text);
+            objPhieuKhamIvfVo.Mabenhchinh = Utility.sDbnull(txt_mabenhchinh.Text);
+            objPhieuKhamIvfVo.Tenbenhphu = Utility.sDbnull(txt_tenbenhphu.Text);
+            objPhieuKhamIvfVo.Mabenhphu = Utility.sDbnull(txt_mabenhphu.Text);
+            objPhieuKhamIvfVo.Tenbienchung = Utility.sDbnull(txt_tenbienchung.Text);
+            objPhieuKhamIvfVo.Mabienchung = Utility.sDbnull(txt_mabienchung.Text);
+           
+            objPhieuKhamIvfVo.TienluongGan = Utility.sDbnull(txt_tienluong_gan.Text);
+            objPhieuKhamIvfVo.TienluongXa = Utility.sDbnull(txt_tienluong_xa.Text);
+            objPhieuKhamIvfVo.Huongdieutri = Utility.sDbnull(txt_huongdieutri.Text);
+           
+
+
             //Chức năng sống
-            objPhieuKhamIvfChong.NhomMau = txtNhommau.myCode;
-            objPhieuKhamIvfChong.HuyetAp = txtha.Text;
-            objPhieuKhamIvfChong.NhietDo = txtNhietDo.Text;
-            objPhieuKhamIvfChong.Mach = Utility.sDbnull(txtMach.Text);
-            objPhieuKhamIvfChong.NhịpTho = Utility.sDbnull(txtNhipTho.Text);
-            objPhieuKhamIvfChong.ChieuCao = Utility.sDbnull(txtChieuCao.Text);
-            objPhieuKhamIvfChong.CanNang = Utility.sDbnull(txtCanNang.Text);
-            objPhieuKhamIvfChong.Bmi = Utility.sDbnull(txtBMI.Text);
+            objPhieuKhamIvfVo.NhomMau = txtNhommau.myCode;
+            objPhieuKhamIvfVo.HuyetAp = txtha.Text;
+            objPhieuKhamIvfVo.NhietDo = txtNhietDo.Text;
+            objPhieuKhamIvfVo.Mach = Utility.sDbnull(txtMach.Text);
+            objPhieuKhamIvfVo.NhịpTho = Utility.sDbnull(txtNhipTho.Text);
+            objPhieuKhamIvfVo.ChieuCao = Utility.sDbnull(txtChieuCao.Text);
+            objPhieuKhamIvfVo.CanNang = Utility.sDbnull(txtCanNang.Text);
+            objPhieuKhamIvfVo.Bmi = Utility.sDbnull(txtBMI.Text);
             
         }    
        
@@ -716,10 +1061,7 @@ namespace VMS.HIS.UI.EMR
             _Tiensubenh_Cacdacdiemlienquan.ShowDialog();
         }
 
-        private void checkBox12_CheckedChanged(object sender, EventArgs e)
-        {
-            txt_tiensupttt_mota.Enabled = chk_tiensupttt_khac.Checked;
-        }
+       
 
         private void chkMaTuy_CheckedChanged(object sender, EventArgs e)
         {
@@ -754,6 +1096,140 @@ namespace VMS.HIS.UI.EMR
         private void chk_tiensubenhlayquaduongtinhduc_khac_CheckedChanged(object sender, EventArgs e)
         {
             txt_tiensubenhlayquaduongtinhduc_mota.Enabled = chk_tiensubenhlayquaduongtinhduc_khac.Checked;
+        }
+
+        private void chkDiUng_CheckedChanged(object sender, EventArgs e)
+        {
+            txt_diungthuoc_mota.Enabled = chkDiUng.Checked;
+            txt_diungthuoc_mota.Focus();
+        }
+
+        private void chkMaTuy_CheckedChanged_1(object sender, EventArgs e)
+        {
+            txtMaTuy.Enabled = chkMaTuy.Checked;
+            txtMaTuy.Focus();
+        }
+
+        private void chkRuouBia_CheckedChanged_1(object sender, EventArgs e)
+        {
+            txtRuouBia.Enabled = chkRuouBia.Checked;
+            txtRuouBia.Focus();
+        }
+
+        private void chkThuocLa_CheckedChanged_1(object sender, EventArgs e)
+        {
+            txtThuocLa.Enabled = chkThuocLa.Checked;
+            txtThuocLa.Focus();
+        }
+
+        private void chkThuocLao_CheckedChanged(object sender, EventArgs e)
+        {
+            txtThuocLao.Enabled = chkThuocLao.Checked;
+            txtThuocLao.Focus();
+
+        }
+
+        private void chkKhac_CheckedChanged_1(object sender, EventArgs e)
+        {
+            txt_dacdiemlienquankhac.Enabled = chkKhac.Checked;
+            txt_dacdiemlienquankhac.Focus();
+        }
+
+        private void opt_chukykinhnguyet_khongdeu_CheckedChanged(object sender, EventArgs e)
+        {
+            txt_ghichu.Enabled = opt_chukykinhnguyet_khongdeu.Checked;
+            txt_ghichu.Focus();
+            txt_ghichu.Focus();
+        }
+
+        private void chk_phuongphapdieutrivosinh_IVF_CheckedChanged(object sender, EventArgs e)
+        {
+            txt_phuongphapdieutrivosinh_IVF_mota.Enabled = chk_phuongphapdieutrivosinh_IVF.Checked;
+            txt_phuongphapdieutrivosinh_IVF_mota.Focus();
+        }
+
+        private void chk_phuongphapdieutrivosinh_IUI_CheckedChanged(object sender, EventArgs e)
+        {
+            txt_phuongphapdieutrivosinh_IUI_mota.Enabled = chk_phuongphapdieutrivosinh_IUI.Checked;
+            txt_phuongphapdieutrivosinh_IUI_mota.Focus();
+        }
+
+        private void chk_phuongphapdieutrivosinh_khac_CheckedChanged(object sender, EventArgs e)
+        {
+            txt_phuongphapdieutrivosinh_khac_mota.Enabled = chk_phuongphapdieutrivosinh_khac.Checked;
+            txt_phuongphapdieutrivosinh_khac_mota.Focus();
+        }
+
+        private void chk_benhkhac_CheckedChanged_1(object sender, EventArgs e)
+        {
+            txt_noikhoabenhkhac_mota.Enabled = chk_benhkhac.Checked;
+            txt_noikhoabenhkhac_mota.Focus();
+        }
+
+        private void opt_tiensucacbenhviemchau_co_CheckedChanged(object sender, EventArgs e)
+        {
+            txt_tiensucacbenhviemchau_mota.Enabled = opt_tiensucacbenhviemchau_co.Checked;
+            txt_tiensucacbenhviemchau_mota.Focus();
+        }
+
+        private void opt_tiensutiet_dichnumvu_co_CheckedChanged(object sender, EventArgs e)
+        {
+            txt_tiensutiet_dichnumvu_mota.Enabled = opt_tiensutiet_dichnumvu_co.Checked;
+            txt_tiensutiet_dichnumvu_mota.Focus();
+        }
+
+        private void opt_diungthuoc_co_CheckedChanged(object sender, EventArgs e)
+        {
+            txt_diungthuoc_mota.Enabled = opt_diungthuoc_co.Checked;
+            txt_diungthuoc_mota.Focus();
+        }
+
+        private void chk_tiensubenhlayquaduongtinhduc_khac_CheckedChanged_1(object sender, EventArgs e)
+        {
+            txt_tiensubenhlayquaduongtinhduc_mota.Enabled = chk_tiensubenhlayquaduongtinhduc_khac.Checked;
+            txt_tiensubenhlayquaduongtinhduc_mota.Focus();
+        }
+
+        private void opt_khamtoanthan_batthuong_CheckedChanged(object sender, EventArgs e)
+        {
+            txt_kham_toanthan_mota.Enabled = opt_khamtoanthan_batthuong.Checked;
+            txt_kham_toanthan_mota.Focus();
+        }
+
+        private void opt_hethong_long_batthuong_CheckedChanged(object sender, EventArgs e)
+        {
+            txt_hethong_long_mota.Enabled = opt_hethong_long_batthuong.Checked;
+            txt_hethong_long_mota.Focus();
+        }
+
+        private void opt_phattrien_vu_batthuong_CheckedChanged(object sender, EventArgs e)
+        {
+            txt_phattrien_vu_mota.Enabled = opt_phattrien_vu_batthuong.Checked;
+            txt_phattrien_vu_mota.Focus();
+        }
+
+        private void opt_tietsua_khong_CheckedChanged(object sender, EventArgs e)
+        {
+            txt_TietsuaMota.Enabled = opt_tietsua_khong.Checked;
+            txt_TietsuaMota.Focus();
+        }
+
+        private void opt_chieucaohong_batthuong_CheckedChanged(object sender, EventArgs e)
+        {
+            txt_chieucaohong_mota.Enabled = opt_chieucaohong_batthuong.Checked;
+            txt_chieucaohong_mota.Focus();
+        }
+
+        private void opt_mangtrinh_rach_CheckedChanged(object sender, EventArgs e)
+        {
+            txt_mangtrinh_mota.Enabled = opt_mangtrinh_rach.Checked;
+            txt_mangtrinh_mota.Focus();
+        }
+
+        private void opt_amdao_batthuong_CheckedChanged(object sender, EventArgs e)
+        {
+            txt_amdao_mota.Enabled = opt_amdao_batthuong.Checked;
+            txt_amdao_mota.Focus();
         }
     }
 }

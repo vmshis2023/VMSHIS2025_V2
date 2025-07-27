@@ -1008,7 +1008,7 @@ namespace VMS.Invoice
                                         objdatKetqua.InvBuyerLegalName = orginvoicedata.BuyerLegalName;
                                         objdatKetqua.InvBuyerTaxCode = orginvoicedata.BuyerTaxCode;
                                         objdatKetqua.InvBuyerAddressLine = orginvoicedata.BuyerAddress;
-                                        objdatKetqua.InvBuyerEmail = orginvoicedata.BuyerAddress;
+                                        objdatKetqua.InvBuyerEmail = orginvoicedata.BuyerEmail;
                                         objdatKetqua.InvBuyerBankAccount = "";
                                         objdatKetqua.InvBuyerBankName = "";
                                         objdatKetqua.InvPaymentMethodName = orginvoicedata.PaymentMethodName;
@@ -1310,6 +1310,7 @@ namespace VMS.Invoice
                         orginvoicedata.BuyerTaxCode = _buyer.BuyerTaxCode;
                         orginvoicedata.BuyerBankAccount = _buyer.BuyerBankAccount;
                         orginvoicedata.AccountObjectIdentificationNumber = _buyer.BuyerIDNumber;
+                        orginvoicedata.ContactName = _buyer.BuyerFullName;
                     }    
                     orginvoicedata.TotalAmountWithoutVATOC = Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalAmountWithoutVATOC)","1=1"), 0);
                     orginvoicedata.TotalVATAmountOC = Utility.DecimaltoDbnull(dtTaxRateInfo.Rows[0]["VATAmountOC"]);// Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalVATAmountOC)", "1=1"), 0);
@@ -1516,7 +1517,7 @@ namespace VMS.Invoice
                                         objdatKetqua.InvBuyerLegalName = orginvoicedata.BuyerLegalName;
                                         objdatKetqua.InvBuyerTaxCode = orginvoicedata.BuyerTaxCode;
                                         objdatKetqua.InvBuyerAddressLine = orginvoicedata.BuyerAddress;
-                                        objdatKetqua.InvBuyerEmail = orginvoicedata.BuyerAddress;
+                                        objdatKetqua.InvBuyerEmail = orginvoicedata.BuyerEmail;
                                         objdatKetqua.InvBuyerBankAccount = "";
                                         objdatKetqua.InvBuyerBankName = "";
                                         objdatKetqua.InvPaymentMethodName = orginvoicedata.PaymentMethodName;
@@ -1594,6 +1595,498 @@ namespace VMS.Invoice
                             log.Trace(eMessage);
                             return false;
                         }
+                    }
+                    else
+                    {
+                        eMessage = "Không có dữ liệu để gửi hóa đơn";
+                        RaiseStatus(eMessage, true);
+                        return false;
+                    }
+
+                }
+                else
+                {
+                    eMessage = "Không có dữ liệu để gửi hóa đơn";
+                    RaiseStatus(eMessage, true);
+                    return false;
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                RaiseStatus(ex.Message, true);
+                log.Trace(ex.Message);
+                Utility.ShowMsg(ex.Message);
+                return false;
+            }
+            finally
+            {
+                if (!string.IsNullOrEmpty(tranSactionID))
+                {
+                    string eMessageDownload = "";
+                    //bool thongbaomofile = THU_VIEN_CHUNG.Laygiatrithamsohethong("MISA_THONGBAOMOFILE", true) == "1";
+                    RaiseStatus(string.Format("Đang tải hóa đơn với mã: {0}", tranSactionID), false);
+                    bool kt = tai_hoadon(tranSactionID, false, ref eMessageDownload);
+                    if (kt)
+                    {
+                        StoredProcedure sp =
+                                      SPs.EInvoiceCapnhapHoadonLog(Utility.sDbnull(tranSactionID, ""),
+                                          globalVariables.gv_intIDNhanvien.ToString(), globalVariables.SysDate, 1);
+                        sp.Execute();
+                    }
+                    log.Trace(eMessageDownload);
+                }
+            }
+        }
+        /// <summary>
+        /// Hàm update lại các thông tin hóa đơn cho chứng từ do lỗi trong transaction khiến hóa đơn phát hành thành công nhưng ko đc đánh dấu
+        /// </summary>
+        /// <param name="str_IdThanhtoan"></param>
+        /// <param name="kieu"></param>
+        /// <param name="lstIdThanhtoanChitiet"></param>
+        /// <param name="eMessage"></param>
+        /// <returns></returns>
+        public bool phathanh_hoadon_update_his(string str_IdThanhtoan, int kieu, string lstIdThanhtoanChitiet, string TransactionID, string RefID, string KiHieu, string Serie, ref string eMessage)
+        {
+            string tranSactionID = TransactionID;
+            int num = 0;
+            try
+            {
+
+                KcbThanhtoan objThanhtoan = null;
+                List<string> stringList = str_IdThanhtoan.Split(',').ToList<string>();
+                List<long> lstID = stringList.ConvertAll(long.Parse);
+
+                List<string> stringListchitiet = lstIdThanhtoanChitiet.Split(',').ToList<string>();
+                List<long> lstIDChitiet = stringListchitiet.ConvertAll(long.Parse);
+
+                log.Trace(string.Format("------------Bắt đầu cập nhật hóa đơn có serie {0} cho id_thanhtoan={1}---------------", Serie, str_IdThanhtoan));
+                if (kieu == 0)
+                {
+                    objThanhtoan = KcbThanhtoan.FetchByID(lstID[0]);
+                    if (objThanhtoan == null)
+                    {
+                        string.Format("Không tồn tại phiếu thanh toán với id_thanhtoan={0}", str_IdThanhtoan);
+                        log.Trace(eMessage);
+                        return false;
+                    }
+                }
+                RaiseStatus(string.Format("Đang kiểm tra trạng thái phát hành của hóa đơn..."), false);
+                DataSet dtkiemtra = SPs.EInvoiceKiemtraHoadon(lstIdThanhtoanChitiet, 0, kieu).GetDataSet();
+                if (dtkiemtra != null && dtkiemtra.Tables.Count > 0 && dtkiemtra.Tables[0].Rows.Count > 0)
+                {
+                    eMessage = string.Format("Chi tiết thanh toán {0} đã được lấy hóa đơn. Vui lòng làm mới lại dữ liệu", lstIdThanhtoanChitiet);
+                    log.Trace(eMessage);
+                    return false;
+                }
+                else
+                {
+
+                    log.Trace(eMessage);
+                }
+
+                RaiseStatus(string.Format("Đang lấy dữ liệu để phát hành hóa đơn..."), false);
+                DataSet ds = SPs.EInvoiceLaydulieuTaohoadon(Utility.sDbnull(str_IdThanhtoan), kieu, lstIdThanhtoanChitiet, 0, VAT).GetDataSet();
+                DataTable dtOrginvoicedata = ds.Tables[0];
+                DataTable dtOriginalinvoicedetail = ds.Tables[1];
+                DataTable dtTaxRateInfo = ds.Tables[2];
+                DataTable dtOptionUserDefined = ds.Tables[3];
+                DataTable dKcbThanhtoan = ds.Tables[4];
+                if (dtOrginvoicedata.Rows.Count <= 0 || dtOriginalinvoicedetail.Rows.Count <= 0)
+                {
+                    eMessage = "Không lấy được dữ liệu tạo hóa đơn phát hành từ phiếu thanh toán đang chọn dtOrginvoicedata.Rows.Count <= 0";
+                    log.Trace(eMessage);
+                    return false;
+                }
+                ReplaceBuyerInfor(ref dtOrginvoicedata);
+                log.Trace("Tổng số người bệnh:  " + dtOrginvoicedata.Rows.Count);
+                if (dtOriginalinvoicedetail.Rows.Count > 0 && dtOrginvoicedata.Rows.Count > 0)
+                {
+                    log.Trace("Bắt đầu tạo dữ liệu chi tiết cho hóa đơn từ {0} dịch vụ" + dtOriginalinvoicedetail.Rows.Count);
+                    // Tạo dữ liệu chi tiết hóa đơn 
+                    var lstOriginalinvoicedetail = new List<Originalinvoicedetail>();
+                    foreach (DataRow row in dtOriginalinvoicedetail.AsEnumerable())
+                    {
+                        Originalinvoicedetail item = new Originalinvoicedetail();
+                        item.ItemType = Utility.Int32Dbnull(row["ItemType"], 0);
+                        item.LineNumber = Utility.Int32Dbnull(row["LineNumber"], 0);
+                        item.ItemCode = Utility.sDbnull(row["ItemCode"], "");
+                        item.ItemName = Utility.sDbnull(row["ItemName"], "");
+                        item.UnitName = Utility.sDbnull(row["UnitName"], "");
+                        item.Quantity = Utility.DecimaltoDbnull(row["Quantity"], 0);
+                        item.UnitPrice = Utility.DecimaltoDbnull(row["UnitPrice"], 0);
+                        // thong tin thuế xuất
+                        item.AmountOC = Utility.DecimaltoDbnull(row["AmountOC"], 0);
+                        item.Amount = Utility.DecimaltoDbnull(row["Amount"], 0);
+                        item.AmountWithoutVATOC = Utility.DecimaltoDbnull(row["AmountWithoutVATOC"], 0);
+                        // thông tin chiết khấu
+                        item.DiscountRate = Utility.DecimaltoDbnull(row["DiscountRate"], 0);
+                        item.DiscountAmountOC = Utility.DecimaltoDbnull(row["DiscountAmountOC"], 0);
+                        item.DiscountAmount = Utility.DecimaltoDbnull(row["DiscountAmount"], 0);
+
+                        item.VATRateName = Utility.sDbnull(row["VATRateName"]);
+                        item.AmountAfterTax = Utility.DecimaltoDbnull(row["AmountAfterTax"], 0);
+                        item.VATAmountOC = Utility.DecimaltoDbnull(row["VATAmountOC"], 0);
+                        item.VATAmount = Utility.DecimaltoDbnull(row["VATAmount"], 0);
+                        item.SortOrder = Utility.Int32Dbnull(row["SortOrder"], 0);
+
+                        lstOriginalinvoicedetail.Add(item);
+                    }
+                    // Tạo dữ liệu chi tiết VATRateName 
+                    var lsttaxrateinfo = new List<Taxrateinfo>();
+                    foreach (DataRow row in dtTaxRateInfo.AsEnumerable())
+                    {
+                        Taxrateinfo item = new Taxrateinfo();
+                        item.VATRateName = Utility.sDbnull(row["VATRateName"]);
+                        item.AmountWithoutVATOC = Utility.DecimaltoDbnull(row["AmountWithoutVATOC"]);
+                        item.VATAmountOC = Utility.DecimaltoDbnull(row["VATAmountOC"]);
+                        lsttaxrateinfo.Add(item);
+                    }
+                    // Tạo dữ liệu chi tiết #OptionUserDefined  
+                    var optionuserdefined = new Optionuserdefined();
+                    foreach (DataRow row in dtOptionUserDefined.AsEnumerable())
+                    {
+                        optionuserdefined.MainCurrency = Utility.sDbnull(row["MainCurrency"]);
+                        optionuserdefined.AmountDecimalDigits = Utility.sDbnull(row["AmountDecimalDigits"]);
+                        optionuserdefined.AmountOCDecimalDigits = Utility.sDbnull(row["AmountOCDecimalDigits"]);
+                        optionuserdefined.UnitPriceOCDecimalDigits = Utility.sDbnull(row["UnitPriceOCDecimalDigits"]);
+                        optionuserdefined.UnitPriceDecimalDigits = Utility.sDbnull(row["UnitPriceDecimalDigits"]);
+                        optionuserdefined.QuantityDecimalDigits = Utility.sDbnull(row["QuantityDecimalDigits"]);
+                        optionuserdefined.CoefficientDecimalDigits = Utility.sDbnull(row["QuantityDecimalDigits"]);
+                        optionuserdefined.ExchangRateDecimalDigits = Utility.sDbnull(row["ExchangRateDecimalDigits"]);
+                        optionuserdefined.ClockDecimalDigits = Utility.sDbnull(row["ClockDecimalDigits"]);
+                    }
+
+                    log.Trace("Kết thúc tạo dữ liệu chi tiết hóa đơn");
+
+                    // Thực hiện tạo data hóa đơn để gửi đi  
+                    List<MisaPhatHanhHoaDon> lstDataSendInvoiceses = new List<MisaPhatHanhHoaDon>();
+                    //var lstOrginvoicedata = new List<Orginvoicedata>();
+
+                    //RaiseStatus(string.Format("Đang lấy dữ liệu mẫu hóa đơn..."), false);
+                    //TemplateData thongbaophathanh = lay_danhsach_mauhoadon(InvoiceType);
+                    //if (thongbaophathanh != null)
+                    //{
+                    //    invInvoiceSeries = thongbaophathanh.InvSeries;
+                    //    mauHd = thongbaophathanh.IPTemplateID;
+                    //    invoiceName = thongbaophathanh.TemplateName;
+                    //}
+                    //else
+                    //{
+                    //    eMessage = "Không tồn tại thông báo phát hành hóa đơn";
+                    //    return false;
+                    //}
+
+                    MisaPhatHanhHoaDon objdataSendInvoices = new MisaPhatHanhHoaDon();
+                    Orginvoicedata orginvoicedata = new Orginvoicedata();
+                    CultureInfo cultures = new CultureInfo("en-US");
+                    if (Utility.sDbnull(invInvoiceSeries, "") == "")
+                    {
+
+                        eMessage = "Ký hiệu hóa đơn không được để trống";
+                        log.Trace(eMessage);
+                        return false;
+                    }
+                    orginvoicedata.RefID = RefID;
+                    orginvoicedata.InvSeries = invInvoiceSeries;
+                    log.Trace("inv_invoiceSeries: " + orginvoicedata.InvSeries);
+                    orginvoicedata.InvoiceName = invoiceName;
+                    // Convert.ToDateTime(dtThontin.Rows[0]["inv_invoiceIssuedDate"], cultures).ToString("yyyy-MM-dd");
+                    orginvoicedata.InvDate =
+                        Convert.ToDateTime(dtOrginvoicedata.Rows[0]["InvDate"], cultures).ToString("yyyy-MM-dd");
+                    orginvoicedata.CurrencyCode = Utility.sDbnull(dtOrginvoicedata.Rows[0]["CurrencyCode"]);
+                    orginvoicedata.ExchangeRate = Utility.Int16Dbnull(dtOrginvoicedata.Rows[0]["ExchangeRate"]);
+                    orginvoicedata.PaymentMethodName = Utility.sDbnull(dtOrginvoicedata.Rows[0]["PaymentMethodName"]);
+                    try
+                    {
+                        orginvoicedata.BuyerLegalName = Utility.sDbnull(dtOrginvoicedata.Rows[0]["BuyerLegalName"]);
+                        orginvoicedata.BuyerTaxCode = Utility.sDbnull(dtOrginvoicedata.Rows[0]["BuyerTaxCode"]);
+                    }
+                    catch (Exception ex)
+                    {
+                        Utility.ShowMsg(ex.Message);
+                        eMessage = ex.Message;
+                        return false;
+                    }
+                    orginvoicedata.AccountObjectIdentificationNumber = Utility.sDbnull(dtOrginvoicedata.Rows[0]["CMT"]);
+                    orginvoicedata.BuyerFullName = Utility.sDbnull(dtOrginvoicedata.Rows[0]["BuyerFullName"]);
+                    orginvoicedata.BuyerAddress = Utility.sDbnull(dtOrginvoicedata.Rows[0]["BuyerAddress"]);
+                    orginvoicedata.BuyerEmail = Utility.sDbnull(dtOrginvoicedata.Rows[0]["BuyerEmail"]);
+                    orginvoicedata.ContactName = Utility.sDbnull(dtOrginvoicedata.Rows[0]["ContactName"]);
+                    if (_buyer != null)
+                    {
+                        List<string> lstEmail = _buyer.ReceiverEmail.Split(';').ToList<string>();
+                        orginvoicedata.BuyerLegalName = _buyer.BuyerLegalName;
+                        orginvoicedata.BuyerEmail = _buyer.BuyerEmail;
+                        orginvoicedata.IsSendEmail = _buyer.IsSendEmail;
+                        orginvoicedata.ReceiverEmail = _buyer.ReceiverEmail;
+                        orginvoicedata.ReceiverName = _buyer.ReceiverName;
+                        orginvoicedata.BuyerFullName = _buyer.BuyerFullName;
+                        orginvoicedata.BuyerAddress = _buyer.BuyerAddress;
+                        orginvoicedata.BuyerTaxCode = _buyer.BuyerTaxCode;
+                        orginvoicedata.BuyerBankAccount = _buyer.BuyerBankAccount;
+                        orginvoicedata.AccountObjectIdentificationNumber = _buyer.BuyerIDNumber;
+                    }
+                    orginvoicedata.TotalAmountWithoutVATOC = Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalAmountWithoutVATOC)", "1=1"), 0);
+                    orginvoicedata.TotalVATAmountOC = Utility.DecimaltoDbnull(dtTaxRateInfo.Rows[0]["VATAmountOC"]);// Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalVATAmountOC)", "1=1"), 0);
+                    orginvoicedata.TotalAmount = Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalAmount)", "1=1"), 0);
+                    orginvoicedata.TotalAmountWithoutVAT = Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalAmountWithoutVAT)", "1=1"), 0);
+                    orginvoicedata.TotalVATAmount = Utility.DecimaltoDbnull(dtTaxRateInfo.Rows[0]["VATAmountOC"]);// Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalVATAmount)", "1=1"), 0);
+                    orginvoicedata.TotalSaleAmountOC = Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalSaleAmountOC)", "1=1"), 0);
+                    orginvoicedata.TotalSaleAmount = Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalSaleAmount)", "1=1"), 0);
+                    orginvoicedata.TotalAmountOC = Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalAmountOC)", "1=1"), 0);
+                    orginvoicedata.TotalDiscountAmount = Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalDiscountAmount)", "1=1"), 0);
+                    orginvoicedata.TotalDiscountAmountOC = Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalDiscountAmountOC)", "1=1"), 0);
+                    orginvoicedata.TotalAmountInWords = Utility.DocSoThanhChu(Utility.DecimaltoDbnull(dtOrginvoicedata.Compute("sum(TotalAmountInWords)", "1=1"), 0).ToString("####"));
+                    orginvoicedata.OriginalInvoiceDetail = lstOriginalinvoicedetail;
+                    orginvoicedata.IsTaxReduction43 = Utility.Int32Dbnull(dtOrginvoicedata.Rows[0]["IsTaxReduction43"], 0) == 1;
+                    orginvoicedata.CustomField1 = Utility.sDbnull(dtOrginvoicedata.Rows[0]["CustomField1"], "");
+                    orginvoicedata.TaxRateInfo = lsttaxrateinfo;
+                    orginvoicedata.OptionUserDefined = optionuserdefined;
+                    orginvoicedata.IsInvoiceCalculatingMachine = true;
+                    // tạo ra object DataSendInvoices 
+                    objdataSendInvoices.InvoiceData = new List<Orginvoicedata>() { orginvoicedata };
+                    objdataSendInvoices.SignType = 2;
+
+                    lstDataSendInvoiceses.Add(objdataSendInvoices);
+                    string url = InvoiceServicesUrl + Utility.sDbnull(apiMisaPhathanh, "/api/MisaInvoice/phathanh_hoadon");
+                    const string contentType = "application/json";
+                    string sDataRequest = JsonConvert.SerializeObject(objdataSendInvoices);
+
+
+                    log.Trace("sDataRequest:" + sDataRequest);
+                    RaiseStatus(string.Format("Đang gửi lệnh phát hành hóa đơn. Vui lòng chờ..."), false);
+                    string result = Serie;// CreateRequest.WebRequest(url, sDataRequest, "", "POST", contentType);
+                    if (result != null)
+                    {
+                        if (tranSactionID != "")
+                        {
+                            RaiseStatus(string.Format("Đã phát hành thành công. Đang lưu trữ dữ liệu phát hành..."), false);
+                            using (var scope = new TransactionScope())
+                            {
+                                using (var sh = new SharedDbConnectionScope())
+                                {
+
+                                    if (kieu == 0)//Hóa đơn theo từng thanh toán
+                                    {
+
+
+                                        foreach (DataRow row in dKcbThanhtoan.AsEnumerable())
+                                        {
+                                            HoadonLog objhoalog = new HoadonLog();
+                                            objhoalog.IdThanhtoan = Utility.sDbnull(row["id_thanhtoan"]);
+                                            objhoalog.TongTien = Utility.DecimaltoDbnull(row["SOTIEN"]);
+                                            objhoalog.IdBenhnhan = Utility.Int32Dbnull(row["id_benhnhan"]);
+                                            objhoalog.MaLuotkham = Utility.sDbnull(row["ma_luotkham"]);
+                                            objhoalog.MauHoadon = mauHd;
+                                            objhoalog.KiHieu = KiHieu;
+                                            objhoalog.IdCapphat = -1;
+                                            objhoalog.MaQuyen = mauHd;
+                                            objhoalog.Serie = Serie;//Hay InvNo
+                                            objhoalog.MaNhanvien = globalVariables.UserName;
+                                            objhoalog.MaLydo = string.Empty;
+                                            objhoalog.NgayIn = THU_VIEN_CHUNG.GetSysDateTime();
+                                            objhoalog.NgayTao = DateTime.Now;
+                                            objhoalog.NgayHoadon = DateTime.Now;
+                                            objhoalog.NguoiTao = globalVariables.UserName;
+                                            objhoalog.IpMaytao = THU_VIEN_CHUNG.GetIP4Address();
+                                            objhoalog.MacMaytao = THU_VIEN_CHUNG.GetMACAddress();
+                                            objhoalog.DaGui = Utility.Bool2byte(true);
+                                            objhoalog.TrangThai = 0;
+                                            objhoalog.TthaiHuy = false;
+                                            objhoalog.QrDatacode = "";
+                                            objhoalog.TransactionId = TransactionID;
+                                            objhoalog.InvInvoiceCodeId = TransactionID;
+                                            objhoalog.Sobaomat = "";
+                                            objhoalog.LoaiXuathdon = 0;//0= phiếu thu;1= phiếu tạm ứng
+                                            objhoalog.RefID = RefID;
+                                            objhoalog.InvInvoiceAuthId = RefID;
+                                            objhoalog.HoadonTaotay = false;
+                                            objhoalog.BuyerTaxCode = orginvoicedata.BuyerTaxCode;
+                                            objhoalog.BuyerFullName = orginvoicedata.BuyerFullName;
+                                            objhoalog.BuyerLegalName = orginvoicedata.BuyerLegalName;
+                                            objhoalog.BuyerAddress = orginvoicedata.BuyerAddress;
+                                            objhoalog.BuyerEmail = orginvoicedata.BuyerEmail;
+                                            objhoalog.LoaiHoadon = 0;
+
+                                            objhoalog.Save();
+                                            QheHoadondientuPhieuthanhtoan objqhe = new QheHoadondientuPhieuthanhtoan();
+                                            objqhe.IdHoadon = objhoalog.IdHdonLog;
+                                            objqhe.IdThanhtoan = Utility.Int64Dbnull(row["id_thanhtoan"]);
+                                            objqhe.MaTracuu = TransactionID;
+                                            objqhe.Save();
+                                            num = new Update(KcbThanhtoan.Schema)
+                                            .Set(KcbThanhtoan.Columns.TthaiXuatHddt).EqualTo(1)
+                                            .Set(KcbThanhtoan.Columns.RefId).EqualTo(RefID)
+                                             .Set(KcbThanhtoan.Columns.TransactionId).EqualTo(objhoalog.TransactionId)
+                                             .Set(KcbThanhtoan.Columns.TthaiDangphathanh).EqualTo(0)
+                                             .Set(KcbThanhtoan.Columns.UsedBy).EqualTo("")
+                                            .Where(KcbThanhtoan.Columns.IdThanhtoan).IsEqualTo(objhoalog.IdThanhtoan)
+                                            .Execute();
+
+                                            string sResult = string.Format("Xuất hóa đơn thành công cho các lần thanh toán {0} với serie {1}, mẫu hóa đơn {2}, tên mẫu {3}, transaction_id {4} và RefId {5}", objhoalog.IdThanhtoan, objhoalog.Serie, objhoalog.MauHoadon, invoiceName, TransactionID, RefID);
+                                            Utility.Log("MisaInvoice", globalVariables.UserName, sResult, newaction.Upload, "Service");
+                                            log.Trace(sResult);
+                                        }
+
+                                    }
+                                    else//Hóa đơn theo ma_luotkham hoặc id_benhnhan
+                                    {
+                                        DataRow row = dKcbThanhtoan.AsEnumerable().FirstOrDefault();
+                                        HoadonLog objhoalog = new HoadonLog();
+                                        objhoalog.IdThanhtoan = str_IdThanhtoan;
+                                        objhoalog.TongTien = Utility.DecimaltoDbnull(orginvoicedata.TotalAmount);
+                                        objhoalog.IdBenhnhan = Utility.Int64Dbnull(row["id_benhnhan"]);
+                                        objhoalog.MaLuotkham = Utility.sDbnull(row["ma_luotkham"]);
+                                        objhoalog.MauHoadon = mauHd;
+                                        objhoalog.KiHieu = KiHieu;
+                                        objhoalog.IdCapphat = -1;
+                                        objhoalog.MaQuyen = mauHd;
+                                        objhoalog.Serie = Serie;
+                                        objhoalog.MaNhanvien = globalVariables.UserName;
+                                        objhoalog.MaLydo = string.Empty;
+                                        objhoalog.NgayIn = THU_VIEN_CHUNG.GetSysDateTime();
+                                        objhoalog.NgayTao = DateTime.Now;
+                                        objhoalog.NguoiTao = globalVariables.UserName;
+                                        objhoalog.IpMaytao = THU_VIEN_CHUNG.GetIP4Address();
+                                        objhoalog.MacMaytao = THU_VIEN_CHUNG.GetMACAddress();
+                                        objhoalog.DaGui = Utility.Bool2byte(true);
+                                        objhoalog.TrangThai = 0;
+                                        objhoalog.TthaiHuy = false;
+                                        objhoalog.QrDatacode = "";
+                                        objhoalog.TransactionId = TransactionID;
+                                        objhoalog.InvInvoiceCodeId = TransactionID;
+                                        objhoalog.Sobaomat = "";
+                                        objhoalog.LoaiXuathdon = 1;//0= xuất theo thanh toán;1= xuất theo lượt khám
+                                        objhoalog.RefID = RefID;
+                                        objhoalog.InvInvoiceAuthId = RefID;
+
+                                        objhoalog.BuyerTaxCode = orginvoicedata.BuyerTaxCode;
+                                        objhoalog.BuyerFullName = orginvoicedata.BuyerFullName;
+                                        objhoalog.BuyerLegalName = orginvoicedata.BuyerLegalName;
+                                        objhoalog.BuyerAddress = orginvoicedata.BuyerAddress;
+                                        objhoalog.BuyerEmail = orginvoicedata.BuyerEmail;
+
+                                        objhoalog.Save();
+
+                                        num = new Update(KcbThanhtoan.Schema)
+                                               .Set(KcbThanhtoan.Columns.TthaiXuatHddt).EqualTo(1)
+                                               .Set(KcbThanhtoan.Columns.RefId).EqualTo(RefID)
+                                                .Set(KcbThanhtoan.Columns.TransactionId).EqualTo(objhoalog.TransactionId)
+                                                 .Set(KcbThanhtoan.Columns.TthaiDangphathanh).EqualTo(0)
+                                                 .Set(KcbThanhtoan.Columns.UsedBy).EqualTo("")
+                                               .Where(KcbThanhtoan.Columns.IdThanhtoan).In(lstID)
+                                               .Execute();
+                                        string sResult = string.Format("Xuất hóa đơn thành công cho các lần thanh toán {0} với serie {1}, mẫu hóa đơn {2}, tên mẫu {3}, transaction_id {4} và RefId {5}", str_IdThanhtoan, objhoalog.Serie, objhoalog.MauHoadon, invoiceName, TransactionID, RefID);
+                                        Utility.Log("MisaInvoice", globalVariables.UserName, sResult, newaction.Upload, "Service");
+                                        log.Trace(sResult);
+                                    }
+                                    num = new Update(KcbThanhtoanChitiet.Schema)
+                                              .Set(KcbThanhtoanChitiet.Columns.TthaiXuatHddt).EqualTo(1)
+                                              .Set(KcbThanhtoanChitiet.Columns.RefId).EqualTo(RefID)
+                                               .Set(KcbThanhtoanChitiet.Columns.TransactionId).EqualTo(TransactionID)
+                                              .Where(KcbThanhtoanChitiet.Columns.IdChitiet).In(lstIDChitiet)
+                                              .Execute();
+
+                                    //// lưu thông tin bảng data_ketqua 
+                                    DataKetqua objdatKetqua = new DataKetqua();
+                                    objdatKetqua.TransactionID = TransactionID;
+                                    objdatKetqua.RefID = RefID;
+                                    objdatKetqua.InvInvoiceAuthId = RefID;
+                                    objdatKetqua.PaymentId = Utility.sDbnull(str_IdThanhtoan);
+                                    objdatKetqua.InvInvoiceType = null;
+                                    objdatKetqua.InvInvoiceCodeId = TransactionID;
+                                    objdatKetqua.InvInvoiceSeries = KiHieu;
+                                    objdatKetqua.InvInvoiceNumber = Serie;
+                                    objdatKetqua.InvInvoiceName = invoiceName;
+                                    objdatKetqua.InvInvoiceIssuedDate = orginvoicedata.InvDate;
+                                    objdatKetqua.InvSubmittedDate = null;
+                                    objdatKetqua.InvContractNumber = null;
+                                    objdatKetqua.InvContractDate = null;
+                                    objdatKetqua.InvCurrencyCode = orginvoicedata.CurrencyCode;
+                                    objdatKetqua.InvExchangeRate = "1";
+                                    objdatKetqua.InvInvoiceNote = null;
+                                    objdatKetqua.InvAdjustmentType = "1";
+                                    objdatKetqua.InvOriginalInvoiceId = null;
+                                    objdatKetqua.InvAdditionalReferenceDes = null;
+                                    objdatKetqua.InvAdditionalReferenceDate = null;
+                                    objdatKetqua.InvBuyerDisplayName = orginvoicedata.ContactName;
+                                    objdatKetqua.MaDt = orginvoicedata.CustomField1;
+                                    objdatKetqua.InvBuyerLegalName = orginvoicedata.BuyerLegalName;
+                                    objdatKetqua.InvBuyerTaxCode = orginvoicedata.BuyerTaxCode;
+                                    objdatKetqua.InvBuyerAddressLine = orginvoicedata.BuyerAddress;
+                                    objdatKetqua.InvBuyerEmail = orginvoicedata.BuyerEmail;
+                                    objdatKetqua.InvBuyerBankAccount = "";
+                                    objdatKetqua.InvBuyerBankName = "";
+                                    objdatKetqua.InvPaymentMethodName = orginvoicedata.PaymentMethodName;
+                                    objdatKetqua.InvSellerBankAccount = null;
+                                    objdatKetqua.InvSellerBankName = null;
+                                    objdatKetqua.InvDiscountAmount = "";
+                                    objdatKetqua.TrangThai = null;
+                                    objdatKetqua.UserNew = null;
+                                    objdatKetqua.DateNew = null;
+                                    objdatKetqua.MaDvcs = null;
+                                    objdatKetqua.DatabaseCode = null;
+                                    objdatKetqua.MaCt = null;
+                                    objdatKetqua.SignedDate = null;
+                                    objdatKetqua.SubmittedDate = null;
+                                    objdatKetqua.MauHd = mauHd;
+                                    objdatKetqua.SoBenhAn = null;
+                                    objdatKetqua.Sovb = null;
+                                    objdatKetqua.Ngayvb = null;
+                                    objdatKetqua.GhiChu = null;
+                                    objdatKetqua.SoHdDc = null;
+                                    objdatKetqua.InvOriginalId = null;
+                                    objdatKetqua.Signature = null;
+                                    objdatKetqua.DieuTri = null;
+                                    objdatKetqua.Ma1 = null;
+                                    objdatKetqua.InvItemCode = null;
+                                    objdatKetqua.InvUnitCode = null;
+                                    objdatKetqua.InvUnitName = null;
+                                    objdatKetqua.InvUnitPrice = null;
+                                    objdatKetqua.InvQuantity = null;
+                                    objdatKetqua.InvTotalAmountWithoutVat =
+                                        orginvoicedata.TotalAmountWithoutVAT.ToString("N");
+                                    objdatKetqua.InvVatPercentage = null;
+                                    objdatKetqua.InvVatAmount = null;
+                                    objdatKetqua.InvTotalAmount = orginvoicedata.TotalAmount.ToString("N");
+                                    objdatKetqua.NguoiKy = null;
+                                    objdatKetqua.Sobaomat = null;
+                                    objdatKetqua.TrangThaiHd = null;
+                                    objdatKetqua.InChuyenDoi = null;
+                                    objdatKetqua.NgayKy = null;
+                                    objdatKetqua.NguoiInCdoi = null;
+                                    objdatKetqua.NgayInCdoi = null;
+                                    objdatKetqua.InvDeliveryOrderNumber = null;
+                                    objdatKetqua.InvDeliveryOrderDate = null;
+                                    objdatKetqua.InvDeliveryBy = null;
+                                    objdatKetqua.InvTransportationMethod = null;
+                                    objdatKetqua.InvFromWarehouseName = null;
+                                    objdatKetqua.InvToWarehouseName = null;
+                                    objdatKetqua.InvSobangke = null;
+                                    objdatKetqua.InvNgaybangke = null;
+                                    objdatKetqua.KeyApi = null;
+                                    objdatKetqua.Id = RefID;
+                                    objdatKetqua.IsNew = true;
+                                    objdatKetqua.Save();
+
+                                    eMessage =
+                                        string.Format("Lấy hóa đơn thành công cho người mua: {0} với số hóa đơn là: {1}",
+                                            orginvoicedata.BuyerLegalName, Serie);
+                                }
+                                scope.Complete();
+                            }
+                            return true;
+                        }
+                        else
+                        {
+                            eMessage = result;
+                            RaiseStatus("Phát hành thành công nhưng Transaction=''-->Xem log để biết chi tiết bản tin bên HĐĐT trả về", true);
+                            log.Trace(eMessage);
+                            return false;
+                        }
+
                     }
                     else
                     {
@@ -1863,7 +2356,7 @@ namespace VMS.Invoice
                                     objdatKetqua.InvBuyerLegalName = orginvoicedata.BuyerLegalName;
                                     objdatKetqua.InvBuyerTaxCode = orginvoicedata.BuyerTaxCode;
                                     objdatKetqua.InvBuyerAddressLine = orginvoicedata.BuyerAddress;
-                                    objdatKetqua.InvBuyerEmail = orginvoicedata.BuyerAddress;
+                                    objdatKetqua.InvBuyerEmail = orginvoicedata.BuyerEmail;
                                     objdatKetqua.InvBuyerBankAccount = "";
                                     objdatKetqua.InvBuyerBankName = "";
                                     objdatKetqua.InvPaymentMethodName = orginvoicedata.PaymentMethodName;
@@ -2196,7 +2689,7 @@ namespace VMS.Invoice
                                     objdatKetqua.InvBuyerLegalName = orginvoicedata.BuyerLegalName;
                                     objdatKetqua.InvBuyerTaxCode = orginvoicedata.BuyerTaxCode;
                                     objdatKetqua.InvBuyerAddressLine = orginvoicedata.BuyerAddress;
-                                    objdatKetqua.InvBuyerEmail = orginvoicedata.BuyerAddress;
+                                    objdatKetqua.InvBuyerEmail = orginvoicedata.BuyerEmail;
                                     objdatKetqua.InvBuyerBankAccount = "";
                                     objdatKetqua.InvBuyerBankName = "";
                                     objdatKetqua.InvPaymentMethodName = orginvoicedata.PaymentMethodName;

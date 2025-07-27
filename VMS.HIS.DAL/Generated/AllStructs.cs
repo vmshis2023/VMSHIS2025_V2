@@ -106,6 +106,24 @@ namespace VMS.HIS.DAL
         
 		public static readonly string EmrBa = @"emr_ba";
         
+		public static readonly string EmrBaBak = @"emr_ba_bak";
+        
+		public static readonly string EmrBaIvfChong = @"emr_ba_ivf_chong";
+        
+		public static readonly string EmrBaIvfVo = @"emr_ba_ivf_vo";
+        
+		public static readonly string EmrBaNamkhoa = @"emr_ba_namkhoa";
+        
+		public static readonly string EmrBaNoikhoa = @"emr_ba_noikhoa";
+        
+		public static readonly string EmrBaNgoaikhoa = @"emr_ba_ngoaikhoa";
+        
+		public static readonly string EmrBaNgoaitru = @"emr_ba_ngoaitru";
+        
+		public static readonly string EmrBaPhukhoa = @"emr_ba_phukhoa";
+        
+		public static readonly string EmrBaSankhoa = @"emr_ba_sankhoa";
+        
 		public static readonly string EmrChandoan = @"emr_chandoan";
         
 		public static readonly string EmrChandoanSankhoa = @"emr_chandoan_sankhoa";
@@ -137,6 +155,10 @@ namespace VMS.HIS.DAL
 		public static readonly string EmrPt07Phieutheodoitaiphonghoitinh = @"emr_pt07_phieutheodoitaiphonghoitinh";
         
 		public static readonly string EmrPt08Phieudanhgiatruockhichonguoibenhrakhoiphonghoitinh = @"emr_pt08_phieudanhgiatruockhichonguoibenhrakhoiphonghoitinh";
+        
+		public static readonly string EmrPhieubangiaonguoibenhchuyenkhoa = @"emr_phieubangiaonguoibenhchuyenkhoa";
+        
+		public static readonly string EmrPhieucamketchapnhanPttt = @"emr_phieucamketchapnhan_pttt";
         
 		public static readonly string EmrPhieuchuyenvien = @"emr_phieuchuyenvien";
         
@@ -867,6 +889,51 @@ namespace VMS.HIS.DAL
             get { return DataService.GetSchema("emr_ba", "ORM"); }
 		}
         
+		public static TableSchema.Table EmrBaBak
+		{
+            get { return DataService.GetSchema("emr_ba_bak", "ORM"); }
+		}
+        
+		public static TableSchema.Table EmrBaIvfChong
+		{
+            get { return DataService.GetSchema("emr_ba_ivf_chong", "ORM"); }
+		}
+        
+		public static TableSchema.Table EmrBaIvfVo
+		{
+            get { return DataService.GetSchema("emr_ba_ivf_vo", "ORM"); }
+		}
+        
+		public static TableSchema.Table EmrBaNamkhoa
+		{
+            get { return DataService.GetSchema("emr_ba_namkhoa", "ORM"); }
+		}
+        
+		public static TableSchema.Table EmrBaNoikhoa
+		{
+            get { return DataService.GetSchema("emr_ba_noikhoa", "ORM"); }
+		}
+        
+		public static TableSchema.Table EmrBaNgoaikhoa
+		{
+            get { return DataService.GetSchema("emr_ba_ngoaikhoa", "ORM"); }
+		}
+        
+		public static TableSchema.Table EmrBaNgoaitru
+		{
+            get { return DataService.GetSchema("emr_ba_ngoaitru", "ORM"); }
+		}
+        
+		public static TableSchema.Table EmrBaPhukhoa
+		{
+            get { return DataService.GetSchema("emr_ba_phukhoa", "ORM"); }
+		}
+        
+		public static TableSchema.Table EmrBaSankhoa
+		{
+            get { return DataService.GetSchema("emr_ba_sankhoa", "ORM"); }
+		}
+        
 		public static TableSchema.Table EmrChandoan
 		{
             get { return DataService.GetSchema("emr_chandoan", "ORM"); }
@@ -945,6 +1012,16 @@ namespace VMS.HIS.DAL
 		public static TableSchema.Table EmrPt08Phieudanhgiatruockhichonguoibenhrakhoiphonghoitinh
 		{
             get { return DataService.GetSchema("emr_pt08_phieudanhgiatruockhichonguoibenhrakhoiphonghoitinh", "ORM"); }
+		}
+        
+		public static TableSchema.Table EmrPhieubangiaonguoibenhchuyenkhoa
+		{
+            get { return DataService.GetSchema("emr_phieubangiaonguoibenhchuyenkhoa", "ORM"); }
+		}
+        
+		public static TableSchema.Table EmrPhieucamketchapnhanPttt
+		{
+            get { return DataService.GetSchema("emr_phieucamketchapnhan_pttt", "ORM"); }
 		}
         
 		public static TableSchema.Table EmrPhieuchuyenvien
