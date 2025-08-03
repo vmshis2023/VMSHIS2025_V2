@@ -85,6 +85,17 @@ namespace VMS.HIS.UI.EMR
             
 
             PhanquyenTinhnang();
+            txtChieuCao.Leave += txtChieucao_Leave;
+            txtCanNang.Leave += txtCannang_Leave;
+        }
+        private void txtChieucao_Leave(object sender, EventArgs e)
+        {
+            Utility.CalculateIBM(Utility.DecimaltoDbnull(Utility.chuanhoaDecimal(txtChieuCao.Text), 0), Utility.DecimaltoDbnull(Utility.chuanhoaDecimal(txtCanNang.Text), 0), txtBMI);
+        }
+
+        private void txtCannang_Leave(object sender, EventArgs e)
+        {
+            Utility.CalculateIBM(Utility.DecimaltoDbnull(Utility.chuanhoaDecimal(txtChieuCao.Text), 0), Utility.DecimaltoDbnull(Utility.chuanhoaDecimal(txtCanNang.Text), 0), txtBMI);
         }
 
         private void Txt_chandoan_sauphauthuat__OnEnterMe()

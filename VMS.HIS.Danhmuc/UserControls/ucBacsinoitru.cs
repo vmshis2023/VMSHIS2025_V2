@@ -8,6 +8,8 @@ using System.Text;
 using System.Windows.Forms;
 using VMS.HIS.DAL;
 using VNS.Libs;
+using System.IO;
+
 namespace VNS.HIS.UI.Forms.Dungchung.UCs
 {
     public partial class ucBacsinoitru : UserControl
@@ -65,29 +67,57 @@ namespace VNS.HIS.UI.Forms.Dungchung.UCs
         {
             InitializeComponent();
             this.drData = drData;
-            if(Utility.sDbnull( drData[DmucNhanvien.Columns.IdGioitinh],"-1")=="0")
-                picBSi.Image = global::VMS.Resources.Properties.Resources.BSNAM;
-            else
-                picBSi.Image = global::VMS.Resources.Properties.Resources.BSNU;
+           
             LoadData();
             ID = drData[DmucNhanvien.Columns.IdNhanvien].ToString();
             picBSi.MouseHover += _MouseHover;
             picBSi.MouseLeave += _MouseLeave;
             picBSi.MouseClick += _MouseClick;
             picBSi.MouseDoubleClick += picBSi_MouseDoubleClick;
+            LoadAnhNhanvien();
             //lblKhoa.MouseHover += _MouseHover;
             //lblName.MouseHover += _MouseHover;
             //lblTheodoi.MouseHover += _MouseHover;
-           
+
             //lblKhoa.MouseLeave += _MouseLeave;
             //lblName.MouseHover += _MouseLeave;
             //lblTheodoi.MouseHover += _MouseLeave;
-            
+
             //lblKhoa.MouseClick += _MouseClick;
             //lblName.MouseClick += _MouseClick;
             //lblTheodoi.MouseClick += _MouseClick;
         }
+        void LoadAnhNhanvien()
+        {
+            try
+            {
+                var old = picBSi.Image;
+                picBSi.Image = null;    // ✳️ Bỏ tham chiếu đến ảnh cũ
+                old?.Dispose();
+                object imgObj = drData[DmucNhanvien.Columns.Hinhanh];
+                if (imgObj != null && imgObj != DBNull.Value)
+                {
+                    byte[] imgBytes = (byte[])imgObj;
+                    using (var ms = new MemoryStream(imgBytes))
+                    {
+                        picBSi.Image = Image.FromStream(ms);
+                    }
+                }
+                else
+                {
+                    // Gán ảnh mặc định nếu không có hình
+                    if (Utility.sDbnull(drData[DmucNhanvien.Columns.IdGioitinh], "-1") == "0")
+                        picBSi.Image = global::VMS.Resources.Properties.Resources.BSNAM;
+                    else
+                        picBSi.Image = global::VMS.Resources.Properties.Resources.BSNU;
+                }
 
+            }
+            catch (Exception ex)
+            {
+                //Utility.CatchException(ex);
+            }
+        }
         void picBSi_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if (_OnSelectme != null) _OnSelectme(this);

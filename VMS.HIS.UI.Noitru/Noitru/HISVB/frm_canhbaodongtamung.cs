@@ -36,21 +36,9 @@ namespace VNS.HIS.UI.NOITRU
             optNgoaitru_0.CheckedChanged += optAll_CheckedChanged;
             this.FormClosing += Frm_canhbaodongtamung_FormClosing;
             this.Shown += Frm_canhbaodongtamung_Shown;
-            AutoBindCheckedComboBox(cboNgaydieutri);
+           Utility.AutoBindCheckedComboBox(cboNgaydieutri);
         }
-        public  void AutoBindCheckedComboBox(Janus.Windows.GridEX.EditControls.CheckedComboBox cbo)
-        {
-            cbo.CheckedValuesChanged += (s, e) =>
-            {
-                var checkedItems = cbo.CheckedValues;
-                cbo.Text = string.Join(",", checkedItems.Cast<object>()); // Gán lại vào text
-            };
-
-            cbo.DropDown += (s, e) =>
-            {
-                cbo.Focus();
-            };
-        }
+       
         void Try2Splitter()
         {
             try
@@ -688,6 +676,11 @@ namespace VNS.HIS.UI.NOITRU
         }
 
         private void grdThongTinChuaThanhToan_FormattingRow(object sender, Janus.Windows.GridEX.RowLoadEventArgs e)
+        {
+
+        }
+
+        private void cboNgaydieutri_CheckedValuesChanged(object sender, EventArgs e)
         {
 
         }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_Themmoi_Phieunhapkho));
             Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel1 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
             Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel2 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
@@ -106,13 +107,13 @@
             this.label16 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.lblChietkhau = new System.Windows.Forms.Label();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider();
-            this.errorProvider2 = new System.Windows.Forms.ErrorProvider();
-            this.errorProvider3 = new System.Windows.Forms.ErrorProvider();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider3 = new System.Windows.Forms.ErrorProvider(this.components);
             this.label17 = new System.Windows.Forms.Label();
             this.lblThangdu = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
-            this.toolTip1 = new System.Windows.Forms.ToolTip();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.cmdHuyThongTin = new Janus.Windows.EditControls.UIButton();
             this.cmdAddDetail = new Janus.Windows.EditControls.UIButton();
             this.lblBHYTcu = new System.Windows.Forms.Label();
@@ -285,6 +286,7 @@
             this.txtsoQDthau_Dmuc.RaiseEventEnter = false;
             this.txtsoQDthau_Dmuc.RaiseEventEnterWhenEmpty = false;
             this.txtsoQDthau_Dmuc.SelectedIndex = -1;
+            this.txtsoQDthau_Dmuc.SetDefaultWhenInit = true;
             this.txtsoQDthau_Dmuc.ShowCodeWithValue = false;
             this.txtsoQDthau_Dmuc.Size = new System.Drawing.Size(125, 21);
             this.txtsoQDthau_Dmuc.splitChar = '@';
@@ -537,6 +539,7 @@
             this.txtKieuthuocVT.RaiseEventEnter = true;
             this.txtKieuthuocVT.RaiseEventEnterWhenEmpty = false;
             this.txtKieuthuocVT.SelectedIndex = -1;
+            this.txtKieuthuocVT.SetDefaultWhenInit = true;
             this.txtKieuthuocVT.ShowCodeWithValue = false;
             this.txtKieuthuocVT.Size = new System.Drawing.Size(349, 21);
             this.txtKieuthuocVT.splitChar = '@';
@@ -675,6 +678,7 @@
             this.txtNguoiGiao.RaiseEventEnter = false;
             this.txtNguoiGiao.RaiseEventEnterWhenEmpty = false;
             this.txtNguoiGiao.SelectedIndex = -1;
+            this.txtNguoiGiao.SetDefaultWhenInit = true;
             this.txtNguoiGiao.ShowCodeWithValue = false;
             this.txtNguoiGiao.Size = new System.Drawing.Size(164, 21);
             this.txtNguoiGiao.splitChar = '@';
@@ -720,6 +724,7 @@
             this.txtNguoinhan.RaiseEventEnter = false;
             this.txtNguoinhan.RaiseEventEnterWhenEmpty = false;
             this.txtNguoinhan.SelectedIndex = -1;
+            this.txtNguoinhan.SetDefaultWhenInit = true;
             this.txtNguoinhan.ShowCodeWithValue = false;
             this.txtNguoinhan.Size = new System.Drawing.Size(349, 21);
             this.txtNguoinhan.splitChar = '@';
@@ -780,6 +785,7 @@
             this.txtLyDoNhap.RaiseEventEnter = false;
             this.txtLyDoNhap.RaiseEventEnterWhenEmpty = false;
             this.txtLyDoNhap.SelectedIndex = -1;
+            this.txtLyDoNhap.SetDefaultWhenInit = true;
             this.txtLyDoNhap.ShowCodeWithValue = false;
             this.txtLyDoNhap.Size = new System.Drawing.Size(381, 21);
             this.txtLyDoNhap.splitChar = '@';
@@ -1370,7 +1376,7 @@
             this.cmdHuyThongTin.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdHuyThongTin.Image = ((System.Drawing.Image)(resources.GetObject("cmdHuyThongTin.Image")));
             this.cmdHuyThongTin.ImageSize = new System.Drawing.Size(28, 28);
-            this.cmdHuyThongTin.Location = new System.Drawing.Point(1130, 267);
+            this.cmdHuyThongTin.Location = new System.Drawing.Point(1124, 267);
             this.cmdHuyThongTin.Name = "cmdHuyThongTin";
             this.cmdHuyThongTin.Size = new System.Drawing.Size(126, 44);
             this.cmdHuyThongTin.TabIndex = 28;
@@ -1384,7 +1390,7 @@
             this.cmdAddDetail.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdAddDetail.Image = ((System.Drawing.Image)(resources.GetObject("cmdAddDetail.Image")));
             this.cmdAddDetail.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdAddDetail.Location = new System.Drawing.Point(1130, 195);
+            this.cmdAddDetail.Location = new System.Drawing.Point(1124, 189);
             this.cmdAddDetail.Name = "cmdAddDetail";
             this.cmdAddDetail.Size = new System.Drawing.Size(126, 67);
             this.cmdAddDetail.TabIndex = 27;
@@ -1718,6 +1724,7 @@
             this.txtsoDK.RaiseEventEnter = false;
             this.txtsoDK.RaiseEventEnterWhenEmpty = false;
             this.txtsoDK.SelectedIndex = -1;
+            this.txtsoDK.SetDefaultWhenInit = true;
             this.txtsoDK.ShowCodeWithValue = false;
             this.txtsoDK.Size = new System.Drawing.Size(184, 21);
             this.txtsoDK.splitChar = '@';

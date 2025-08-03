@@ -30,13 +30,13 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_chonbacsidieutri));
             this.pnlTop = new System.Windows.Forms.Panel();
+            this.cmdSearch = new Janus.Windows.EditControls.UIButton();
             this.label1 = new System.Windows.Forms.Label();
             this.pnlAct = new System.Windows.Forms.Panel();
-            this.pnlBsi = new System.Windows.Forms.FlowLayoutPanel();
-            this.txtBacsi = new VNS.HIS.UCs.AutoCompleteTextbox();
             this.cmdAccept = new Janus.Windows.EditControls.UIButton();
             this.cmdExit = new Janus.Windows.EditControls.UIButton();
-            this.cmdSearch = new Janus.Windows.EditControls.UIButton();
+            this.pnlBsi = new System.Windows.Forms.FlowLayoutPanel();
+            this.txtBacsi = new VNS.HIS.UCs.AutoCompleteTextbox();
             this.pnlTop.SuspendLayout();
             this.pnlAct.SuspendLayout();
             this.SuspendLayout();
@@ -51,6 +51,18 @@
             this.pnlTop.Name = "pnlTop";
             this.pnlTop.Size = new System.Drawing.Size(1008, 54);
             this.pnlTop.TabIndex = 0;
+            // 
+            // cmdSearch
+            // 
+            this.cmdSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmdSearch.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmdSearch.Image = ((System.Drawing.Image)(resources.GetObject("cmdSearch.Image")));
+            this.cmdSearch.Location = new System.Drawing.Point(977, 18);
+            this.cmdSearch.Name = "cmdSearch";
+            this.cmdSearch.Size = new System.Drawing.Size(21, 21);
+            this.cmdSearch.TabIndex = 17;
+            this.cmdSearch.TabStop = false;
+            this.cmdSearch.VisualStyle = Janus.Windows.UI.VisualStyle.Office2007;
             // 
             // label1
             // 
@@ -72,8 +84,34 @@
             this.pnlAct.Size = new System.Drawing.Size(1008, 54);
             this.pnlAct.TabIndex = 0;
             // 
+            // cmdAccept
+            // 
+            this.cmdAccept.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmdAccept.Image = ((System.Drawing.Image)(resources.GetObject("cmdAccept.Image")));
+            this.cmdAccept.ImageSize = new System.Drawing.Size(24, 24);
+            this.cmdAccept.Location = new System.Drawing.Point(760, 9);
+            this.cmdAccept.Name = "cmdAccept";
+            this.cmdAccept.Size = new System.Drawing.Size(120, 35);
+            this.cmdAccept.TabIndex = 7;
+            this.cmdAccept.Text = "Chấp nhận";
+            this.cmdAccept.Click += new System.EventHandler(this.cmdAccept_Click);
+            // 
+            // cmdExit
+            // 
+            this.cmdExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.cmdExit.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmdExit.Image = global::VMS.HIS.Noitru.Properties.Resources.close_24;
+            this.cmdExit.ImageSize = new System.Drawing.Size(24, 24);
+            this.cmdExit.Location = new System.Drawing.Point(886, 9);
+            this.cmdExit.Name = "cmdExit";
+            this.cmdExit.Size = new System.Drawing.Size(120, 35);
+            this.cmdExit.TabIndex = 8;
+            this.cmdExit.Text = "Thoát(Esc)";
+            this.cmdExit.Click += new System.EventHandler(this.cmdExit_Click);
+            // 
             // pnlBsi
             // 
+            this.pnlBsi.AutoScroll = true;
             this.pnlBsi.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlBsi.Location = new System.Drawing.Point(0, 54);
             this.pnlBsi.Name = "pnlBsi";
@@ -89,6 +127,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBacsi.AutoCompleteList = ((System.Collections.Generic.List<string>)(resources.GetObject("txtBacsi.AutoCompleteList")));
             this.txtBacsi.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtBacsi.buildShortcut = false;
             this.txtBacsi.CaseSensitive = false;
             this.txtBacsi.CompareNoID = true;
             this.txtBacsi.DefaultCode = "-1";
@@ -104,6 +143,7 @@
             this.txtBacsi.MyCode = "-1";
             this.txtBacsi.MyID = "-1";
             this.txtBacsi.MyText = "";
+            this.txtBacsi.MyTextOnly = "";
             this.txtBacsi.Name = "txtBacsi";
             this.txtBacsi.RaiseEvent = true;
             this.txtBacsi.RaiseEventEnter = true;
@@ -121,43 +161,6 @@
             this.txtBacsi.txtMyName = null;
             this.txtBacsi.txtMyName_Edit = null;
             this.txtBacsi.txtNext = null;
-            // 
-            // cmdAccept
-            // 
-            this.cmdAccept.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdAccept.Image = global::VMS.Resources.Properties.Resources.SAVE1;
-            this.cmdAccept.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdAccept.Location = new System.Drawing.Point(760, 9);
-            this.cmdAccept.Name = "cmdAccept";
-            this.cmdAccept.Size = new System.Drawing.Size(120, 35);
-            this.cmdAccept.TabIndex = 7;
-            this.cmdAccept.Text = "Chấp nhận";
-            this.cmdAccept.Click += new System.EventHandler(this.cmdAccept_Click);
-            // 
-            // cmdExit
-            // 
-            this.cmdExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cmdExit.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdExit.Image = global::VMS.Resources.Properties.Resources.arrow_left_11;
-            this.cmdExit.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdExit.Location = new System.Drawing.Point(886, 9);
-            this.cmdExit.Name = "cmdExit";
-            this.cmdExit.Size = new System.Drawing.Size(120, 35);
-            this.cmdExit.TabIndex = 8;
-            this.cmdExit.Text = "Thoát(Esc)";
-            this.cmdExit.Click += new System.EventHandler(this.cmdExit_Click);
-            // 
-            // cmdSearch
-            // 
-            this.cmdSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmdSearch.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdSearch.Image = ((System.Drawing.Image)(resources.GetObject("cmdSearch.Image")));
-            this.cmdSearch.Location = new System.Drawing.Point(977, 18);
-            this.cmdSearch.Name = "cmdSearch";
-            this.cmdSearch.Size = new System.Drawing.Size(21, 21);
-            this.cmdSearch.TabIndex = 17;
-            this.cmdSearch.TabStop = false;
-            this.cmdSearch.VisualStyle = Janus.Windows.UI.VisualStyle.Office2007;
             // 
             // frm_chonbacsidieutri
             // 

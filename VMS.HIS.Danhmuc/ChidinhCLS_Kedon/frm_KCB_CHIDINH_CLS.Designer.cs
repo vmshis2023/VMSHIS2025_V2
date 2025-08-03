@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel1 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
             Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel2 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
             Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel3 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
@@ -44,7 +45,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_KCB_CHIDINH_CLS));
             Janus.Windows.GridEX.GridEXLayout grdChitietChidinhCLS_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             this.uiStatusBar1 = new Janus.Windows.UI.StatusBar.UIStatusBar();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
@@ -53,9 +54,9 @@
             this.mnuSaveAs = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuUpdateprice = new System.Windows.Forms.ToolStripMenuItem();
-            this.janusSuperTip1 = new Janus.Windows.Common.JanusSuperTip();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider();
-            this.toolTip1 = new System.Windows.Forms.ToolTip();
+            this.janusSuperTip1 = new Janus.Windows.Common.JanusSuperTip(this.components);
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.txtChanDoan = new VNS.HIS.UCs.AutoCompleteTextbox_Danhmucchung();
             this.grpPhieuChiDinh = new Janus.Windows.EditControls.UIGroupBox();
             this.txtBacsi = new VNS.HIS.UCs.AutoCompleteTextbox();

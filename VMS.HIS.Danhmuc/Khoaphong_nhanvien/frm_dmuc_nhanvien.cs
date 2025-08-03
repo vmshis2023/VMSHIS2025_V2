@@ -286,6 +286,7 @@ namespace VNS.HIS.UI.DANHMUC
             finally
             {
                 LoadAnhChuKy();
+                LoadAnhNhanvien();
             }
             
 
@@ -1381,6 +1382,34 @@ namespace VNS.HIS.UI.DANHMUC
                 Utility.CatchException(ex);
             }
         }
+        void LoadAnhNhanvien()
+        {
+            try
+            {
+                var old = picHinhanhBS.Image;
+                picHinhanhBS.Image = null;    // ✳️ Bỏ tham chiếu đến ảnh cũ
+                old?.Dispose();
+
+                if (objNhanvien != null)
+                {
+                    if (objNhanvien.Hinhanh != null)
+                    {
+                        using (var ms = new MemoryStream(objNhanvien.Hinhanh))
+                        {
+                            picHinhanhBS.Image = Image.FromStream(ms);
+                        }
+                    }
+                    else
+                    {
+                        picHinhanhBS.Image = null;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+            }
+        }
         private void picSignImg_Click(object sender, EventArgs e)
         {
             try
@@ -1407,18 +1436,116 @@ namespace VNS.HIS.UI.DANHMUC
                             objNhanvien.IsNew = false;
                             objNhanvien.MarkOld();
                             objNhanvien.Save();
+                            Utility.Log(this.Name, globalVariables.UserName, string.Format("Thay đổi Chữ kí cho nhân viên {0} thành công", objNhanvien.TenNhanvien), newaction.Update, this.GetType().Assembly.ManifestModule.Name);
                         }
                         LoadAnhChuKy();
 
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Utility.CatchException(ex);
+            }
 
-              
+        }
+
+        private void picHinhanhBS_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!Utility.Coquyen("EMR_CAPNHAT_HINHANH_NHANVIEN"))
+                {
+                    Utility.thongbaokhongcoquyen("EMR_CAPNHAT_HINHANH_NHANVIEN", "cập nhật hình ảnh của người dùng trong hệ thống");
+                    return;
+                }
+                using (var dlg = new OpenFileDialog())
+                {
+                    dlg.Title = "Chọn ảnh chữ ký";
+                    dlg.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp;*.tif;*.tiff|All files (*.*)|*.*";
+                    dlg.Multiselect = false; // chỉ được chọn 1 file
+                    dlg.CheckFileExists = true;
+
+                    if (dlg.ShowDialog() == DialogResult.OK)
+                    {
+                        string selectedFile = dlg.FileName;
+
+                        if (objNhanvien != null)
+                        {
+                            objNhanvien.Hinhanh = File.ReadAllBytes(selectedFile);
+                            objNhanvien.IsNew = false;
+                            objNhanvien.MarkOld();
+                            objNhanvien.Save();
+                          
+                                Utility.Log(this.Name, globalVariables.UserName, string.Format("Thay đổi hình ảnh cho nhân viên {0} thành công", objNhanvien.TenNhanvien), newaction.Update, this.GetType().Assembly.ManifestModule.Name);
+                        }
+                        LoadAnhNhanvien();
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+            }
+        }
+
+        private void lnkXoahinhanh_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                if (objNhanvien != null)
+                {
+                    if (Utility.AcceptQuestion(string.Format("Bạn có chắc chắn muốn xóa hình ảnh của {0} hay không?", objNhanvien.TenNhanvien), "Xác nhận xóa hình ảnh", true))
+                    {
+                        int num = new Update(DmucNhanvien.Schema)
+                            .Set(DmucNhanvien.Columns.Hinhanh).EqualTo(null)
+                            .Where(DmucNhanvien.Columns.IdNhanvien).IsEqualTo(objNhanvien.IdNhanvien)
+                            .Execute();
+                        if (num > 0)
+                        {
+                            Utility.Log(this.Name, globalVariables.UserName, string.Format("Xóa hình ảnh cho nhân viên {0} thành công", objNhanvien.TenNhanvien), newaction.Delete, this.GetType().Assembly.ManifestModule.Name);
+                            var old = picHinhanhBS.Image;
+                            picHinhanhBS.Image = null;    // ✳️ Bỏ tham chiếu đến ảnh cũ
+                            old?.Dispose();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
             }
            
+        }
+
+        private void lnkXoachuki_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                if (objNhanvien != null)
+                {
+                    if (Utility.AcceptQuestion(string.Format("Bạn có chắc chắn muốn xóa chữ ký của {0} hay không?", objNhanvien.TenNhanvien), "Xác nhận xóa chữ kí", true))
+                    {
+                        int num = new Update(DmucNhanvien.Schema)
+                            .Set(DmucNhanvien.Columns.ChuKy).EqualTo(null)
+                            .Where(DmucNhanvien.Columns.IdNhanvien).IsEqualTo(objNhanvien.IdNhanvien)
+                            .Execute();
+
+                        if (num > 0)
+                        {
+                            Utility.Log(this.Name, globalVariables.UserName, string.Format("Xóa chữ ký cho nhân viên {0} thành công", objNhanvien.TenNhanvien), newaction.Delete, this.GetType().Assembly.ManifestModule.Name);
+                            var old = picSignImg.Image;
+                            picSignImg.Image = null;    // ✳️ Bỏ tham chiếu đến ảnh cũ
+                            old?.Dispose();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+            }
         }
     }
 }

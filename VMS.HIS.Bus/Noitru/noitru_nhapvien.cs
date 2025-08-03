@@ -1051,6 +1051,7 @@ namespace VNS.HIS.BusRule.Classes
                                //.Set(KcbLuotkham.Columns.SoBenhAn).EqualTo(objLuotkham.SoBenhAn)
                                .Set(KcbLuotkham.Columns.IdKhoanoitru).EqualTo(objBuongGiuong.IdKhoanoitru)
                                .Set(KcbLuotkham.Columns.SoVaovien).EqualTo(objLuotkham.SoVaovien)
+                               .Set(KcbLuotkham.Columns.IdBsDieutrinoitruChinh).EqualTo(objLuotkham.IdBsDieutrinoitruChinh)
                                .Set(KcbLuotkham.Columns.IdBacsiNhapvien).EqualTo(objBuongGiuong.IdBacsiChidinh)
                                .Set(KcbLuotkham.Columns.NgayNhapvien).EqualTo(objBuongGiuong.NgayVaokhoa)
                                .Set(KcbLuotkham.Columns.MotaNhapvien).EqualTo(objLuotkham.MotaNhapvien)
@@ -1122,6 +1123,9 @@ namespace VNS.HIS.BusRule.Classes
                 return ActionResult.Error;
             }
         }
+
+       
+
         public ActionResult Huynhapvien(KcbLuotkham objLuotkham)
         {
             try

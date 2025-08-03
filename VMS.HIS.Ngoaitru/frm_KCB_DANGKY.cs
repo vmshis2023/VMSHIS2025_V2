@@ -185,7 +185,20 @@ namespace VNS.HIS.UI.NGOAITRU
             chkThongtuyen.CheckedChanged += chkThongtuyen_CheckedChanged;
             chkChuyenVien.CheckedChanged += new EventHandler(chkChuyenVien_CheckedChanged);
             txtKieuKham._OnSelectionChanged += new VNS.HIS.UCs.AutoCompleteTextbox.OnSelectionChanged(txtKieuKham__OnSelectionChanged);
-            cboPatientSex.SelectedIndex = 0;
+            try
+            {
+                string TIEPDON_GIOITINHMACDINH = THU_VIEN_CHUNG.Laygiatrithamsohethong("TIEPDON_GIOITINHMACDINH", "-1", false);
+                if (TIEPDON_GIOITINHMACDINH != "-1")
+                    cboPatientSex.SelectedIndex =Utility.Int32Dbnull( TIEPDON_GIOITINHMACDINH,-1);
+                else
+                    cboPatientSex.SelectedIndex = -1;
+            }
+            catch (Exception)
+            {
+
+             
+            }
+           
             txtPhongkham._OnSelectionChanged += new VNS.HIS.UCs.AutoCompleteTextbox.OnSelectionChanged(txtPhongkham__OnSelectionChanged);
             cmdConfig.Click += new EventHandler(cmdConfig_Click);
             
@@ -2733,7 +2746,7 @@ namespace VNS.HIS.UI.NGOAITRU
                 txtDiachi_bhyt.lblWords = lblAdd1;
                 txtDiachi_bhyt.lblTest = lblAdd0;
                 cmdThemmoiDiachinh.Visible = Utility.Coquyen("TIEPDON_THEMNHANH_DONVIDIACHINH");
-                chkThutienkhamsau.Enabled = Utility.Coquyen("tiepdon_chon_thanhtoancongkhamsau");
+                chkThutienkhamsau.Enabled = Utility.Coquyen("tiepdon_chon_thanhtoancongkhamsau") && THU_VIEN_CHUNG.Laygiatrithamsohethong("TIEPDON_CHON_THANHTOANCONGKHAMSAU", "1", false) == "1";
                 autotxtdiachilienhe.lblWords = lblAdd1;
                 autotxtdiachilienhe.lblTest = lblAdd0;
                 if (this.Args.Split('-')[0] == "KTC") lblBATC.Visible = txtSoBATCQG.Visible = true;
@@ -2744,6 +2757,7 @@ namespace VNS.HIS.UI.NGOAITRU
                 Utility.SetColor(lblDiachiBHYT, THU_VIEN_CHUNG.Laygiatrithamsohethong("TIEPDON_BATNHAP_DIACHI_BHYT", "1", false) == "1" ? lblHoten.ForeColor : lblDoituongKCB.ForeColor);
                 Utility.SetColor(lnkDiachiBN, THU_VIEN_CHUNG.Laygiatrithamsohethong("TIEPDON_BATNHAP_DIACHI_BENHNHAN", "1", false) == "1" ? lblHoten.ForeColor : lblDoituongKCB.ForeColor);
                 Utility.SetColor(lblSDT, THU_VIEN_CHUNG.Laygiatrithamsohethong("KCB_BATNHAP_SDT", "1", false) == "1" ? lblHoten.ForeColor : lblDoituongKCB.ForeColor);
+                Utility.SetColor(lblCCCD, THU_VIEN_CHUNG.Laygiatrithamsohethong("TIEPDON_BATNHAP_CCCD", "1", false) == "1" ? lblHoten.ForeColor : lblDoituongKCB.ForeColor);
                 Utility.SetColor(lblNguonGT, THU_VIEN_CHUNG.Laygiatrithamsohethong("KCB_BATNHAP_NGUONGT", "1", false) == "1" ? lblHoten.ForeColor : lblDoituongKCB.ForeColor);
                 chkTraiTuyen.Visible = THU_VIEN_CHUNG.Laygiatrithamsohethong("KCB_CHOPHEPTIEPDON_TRAITUYEN", "1", false) == "1";
                 chkLaysokham.Enabled = THU_VIEN_CHUNG.Laygiatrithamsohethong("KCB_BATBUOCLAY_SOKHAMCHUABENH", "0", false) == "0";
@@ -5348,12 +5362,15 @@ namespace VNS.HIS.UI.NGOAITRU
                 cboPatientSex.Focus();
                 return false;
             }
-            if (Utility.sDbnull(txtCMT.Text, "").Length <= 0)
+            if (THU_VIEN_CHUNG.Laygiatrithamsohethong("TIEPDON_BATNHAP_CCCD", "0", false) == "1")
             {
-                Utility.SetMsg(uiStatusBar1.Panels["MSG"], "Bạn phải nhập số CCCD/CMT của người bệnh", true);
-                errorProvider1.SetError(txtCMT, uiStatusBar1.Panels["MSG"].Text);
-                txtCMT.Focus();
-                return false;
+                if (Utility.sDbnull(txtCMT.Text, "").Length <= 0)
+                {
+                    Utility.SetMsg(uiStatusBar1.Panels["MSG"], "Bạn phải nhập số CCCD/CMT của người bệnh", true);
+                    errorProvider1.SetError(txtCMT, uiStatusBar1.Panels["MSG"].Text);
+                    txtCMT.Focus();
+                    return false;
+                }
             }
             if (THU_VIEN_CHUNG.Laygiatrithamsohethong("KCB_BATNHAP_SDT", "0", false) == "1")
             {
@@ -5612,6 +5629,7 @@ namespace VNS.HIS.UI.NGOAITRU
 
         void ChangeObjectRegion()
         {
+          
             if (_objDoituongKcb == null) return;
             _idDoituongKcb = _objDoituongKcb.IdDoituongKcb;
             _idLoaidoituongKcb = _objDoituongKcb.IdLoaidoituongKcb;
@@ -5622,7 +5640,8 @@ namespace VNS.HIS.UI.NGOAITRU
             txtptramDauthe.Text = _objDoituongKcb.PhantramTraituyen.ToString();
             if (THU_VIEN_CHUNG.IsBaoHiem( _objDoituongKcb.IdLoaidoituongKcb ))//ĐỐi tượng BHYT
             {
-                chknothe.Enabled = txtdoituongnothe.Enabled = true;
+                pnlBHYT.Height = 222;
+              chknothe.Enabled = txtdoituongnothe.Enabled = true;
                 pnlBHYT.Enabled = true;
                 lblPtram.Text = @"Mức hưởng:";
                 TinhPtramBhyt();
@@ -5638,6 +5657,7 @@ namespace VNS.HIS.UI.NGOAITRU
             }
             else//Đối tượng khác BHYT
             {
+                pnlBHYT.Height = 0;
                 chknothe.Enabled = txtdoituongnothe.Enabled = false;
                 lblTuyenBHYT.Visible = false;
                 pnlBHYT.Enabled = false;
@@ -5826,8 +5846,9 @@ namespace VNS.HIS.UI.NGOAITRU
             if (e.KeyCode == Keys.F10) LoadThongTinChoKham();
             if (e.KeyCode == Keys.F1)
             {
-                uiTab1.SelectedTab = uiTab1.TabPages[0];
-                return;
+                cmdThemMoiBN.PerformClick();
+                //uiTab1.SelectedTab = uiTab1.TabPages[0];
+                //return;
             }
             if (e.KeyCode == Keys.F2)
             {

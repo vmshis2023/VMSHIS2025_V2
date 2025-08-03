@@ -180,16 +180,16 @@
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(169, 28);
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(165, 28);
             this.toolStripDropDownButton1.Text = "Bệnh nhân cấp cứu";
-            this.toolStripDropDownButton1.Visible = false;
             // 
             // mnuAdd
             // 
-            this.mnuAdd.Image = ((System.Drawing.Image)(resources.GetObject("mnuAdd.Image")));
+            this.mnuAdd.Image = global::VMS.HIS.Noitru.Properties.Resources.add_04_32;
             this.mnuAdd.Name = "mnuAdd";
             this.mnuAdd.Size = new System.Drawing.Size(248, 26);
             this.mnuAdd.Text = "Thêm người bệnh cấp cứu";
+            this.mnuAdd.Click += new System.EventHandler(this.mnuAdd_Click_1);
             // 
             // mnuEdit
             // 
@@ -204,6 +204,7 @@
             this.mnuDelete.Name = "mnuDelete";
             this.mnuDelete.Size = new System.Drawing.Size(248, 26);
             this.mnuDelete.Text = "Xóa người bệnh cấp cứu";
+            this.mnuDelete.Click += new System.EventHandler(this.mnuDelete_Click_1);
             // 
             // cmdThemMoiBN
             // 
@@ -412,7 +413,7 @@
             this.cmdChuyenKhoa.Image = ((System.Drawing.Image)(resources.GetObject("cmdChuyenKhoa.Image")));
             this.cmdChuyenKhoa.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdChuyenKhoa.Name = "cmdChuyenKhoa";
-            this.cmdChuyenKhoa.Size = new System.Drawing.Size(116, 28);
+            this.cmdChuyenKhoa.Size = new System.Drawing.Size(116, 24);
             this.cmdChuyenKhoa.Text = "Chuyển khoa";
             this.cmdChuyenKhoa.ToolTipText = "Chuyển khoa cho các Bệnh nhân đang nằm ở khoa khác";
             this.cmdChuyenKhoa.Visible = false;
@@ -422,7 +423,7 @@
             this.cmdHuychuyenkhoa.Image = ((System.Drawing.Image)(resources.GetObject("cmdHuychuyenkhoa.Image")));
             this.cmdHuychuyenkhoa.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdHuychuyenkhoa.Name = "cmdHuychuyenkhoa";
-            this.cmdHuychuyenkhoa.Size = new System.Drawing.Size(141, 28);
+            this.cmdHuychuyenkhoa.Size = new System.Drawing.Size(141, 24);
             this.cmdHuychuyenkhoa.Text = "Hủy chuyển khoa";
             this.cmdHuychuyenkhoa.ToolTipText = "Hủy chuyển khoa nội trú để quay về khoa cũ";
             this.cmdHuychuyenkhoa.Visible = false;
@@ -432,7 +433,7 @@
             this.cmdChuyenkhoasua.Image = ((System.Drawing.Image)(resources.GetObject("cmdChuyenkhoasua.Image")));
             this.cmdChuyenkhoasua.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdChuyenkhoasua.Name = "cmdChuyenkhoasua";
-            this.cmdChuyenkhoasua.Size = new System.Drawing.Size(144, 28);
+            this.cmdChuyenkhoasua.Size = new System.Drawing.Size(144, 24);
             this.cmdChuyenkhoasua.Tag = "1";
             this.cmdChuyenkhoasua.Text = "Chuyển khoa sửa";
             this.cmdChuyenkhoasua.Visible = false;
@@ -443,7 +444,7 @@
             this.cmdConfig.Image = ((System.Drawing.Image)(resources.GetObject("cmdConfig.Image")));
             this.cmdConfig.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdConfig.Name = "cmdConfig";
-            this.cmdConfig.Size = new System.Drawing.Size(90, 28);
+            this.cmdConfig.Size = new System.Drawing.Size(90, 24);
             this.cmdConfig.Text = "Cấu hình";
             // 
             // cmdsuabuonggiuong
@@ -451,7 +452,7 @@
             this.cmdsuabuonggiuong.Image = ((System.Drawing.Image)(resources.GetObject("cmdsuabuonggiuong.Image")));
             this.cmdsuabuonggiuong.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdsuabuonggiuong.Name = "cmdsuabuonggiuong";
-            this.cmdsuabuonggiuong.Size = new System.Drawing.Size(151, 28);
+            this.cmdsuabuonggiuong.Size = new System.Drawing.Size(151, 24);
             this.cmdsuabuonggiuong.Text = "Sửa buồng giường";
             this.cmdsuabuonggiuong.Visible = false;
             this.cmdsuabuonggiuong.Click += new System.EventHandler(this.cmdsuabuonggiuong_Click);

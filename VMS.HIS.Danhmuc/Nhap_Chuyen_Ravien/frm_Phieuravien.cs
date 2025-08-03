@@ -19,6 +19,8 @@ using VNS.HIS.UI.NGOAITRU;
 using Janus.Windows.GridEX;
 using VNS.HIS.UI.Forms.Noitru;
 using VMS.HIS.Bus.Emr;
+using VNS.Properties;
+using System.Drawing.Printing;
 
 namespace VNS.HIS.UI.Forms.NGOAITRU
 {
@@ -65,7 +67,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
             ucThongtinnguoibenh1._OnEnterMe += ucThongtinnguoibenh1__OnEnterMe;
             txtSongayhentaikham.LostFocus += txtSongayhentaikham_LostFocus;
             txtSoNgayHen.LostFocus+=txtSoNgayHen_LostFocus;
-            grdPresDetail.SelectionChanged += grdPresDetail_SelectionChanged;
+            grd_Donthuocravien.SelectionChanged += grdPresDetail_SelectionChanged;
             txtChandoan._OnShowDataV1+=_OnShowDataV1;
              txtKqdieutri._OnShowDataV1+=_OnShowDataV1;
              txtTinhtrangravien._OnShowDataV1+=_OnShowDataV1;
@@ -77,9 +79,9 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
              txtPhuongphapdieutri._OnEnterMe += txtPhuongphapdieutri__OnEnterMe;
              txtBenhchinh._OnEnterMe += txtBenhchinh__OnEnterMe;
              txtTinhtrangravien._OnEnterMe += txtTinhtrangravien__OnEnterMe;
-
+            
         }
-
+        
         void txtTinhtrangravien__OnEnterMe()
         {
             try
@@ -126,7 +128,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
 
         void grdPresDetail_SelectionChanged(object sender, EventArgs e)
         {
-             RowThuoc = Utility.findthelastChild(grdPresDetail.CurrentRow);
+             RowThuoc = Utility.findthelastChild(grd_Donthuocravien.CurrentRow);
         }
         private void txtSoNgayHen_LostFocus(object sender, EventArgs e)
         {
@@ -1173,6 +1175,13 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
                     using (var dbscope = new SharedDbConnectionScope())
                     {
                         objRavien.Save();
+                        //Cập nhật lời dặn bác sĩ vào đơn thuốc ra viện nếu có
+                        new Update(KcbDonthuoc.Schema)
+                            .Set(KcbDonthuoc.Columns.LoidanBacsi).EqualTo(Utility.sDbnull(txtLoidanBS.Text))
+                            .Where(KcbDonthuoc.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
+                            .And(KcbDonthuoc.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
+                            .And(KcbDonthuoc.Columns.KieuDonthuoc).IsEqualTo(3)
+                            .Execute();
                         emrdoc.InitDocument(Utility.Int64Dbnull( objRavien.IdBenhnhan), objRavien.MaLuotkham, Utility.Int64Dbnull(objRavien.IdRavien), objRavien.NgayRavien, Loaiphieu_HIS.PHIEURAVIEN, "PHIEU_RAVIEN", objRavien.NguoiTao, Utility.Int16Dbnull(objRavien.IdKhoanoitru), -1, Utility.Byte2Bool(1), "");
                         emrdoc.Save();
                         if (_phieuchuyenvien != null)
@@ -1325,11 +1334,43 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
                 txtKieuchuyenvien.Focus();
             }
         }
+        string m_strDefaultLazerPrinterName = "";
+        private void LoadLaserPrinters()
+        {
+            if (!string.IsNullOrEmpty(PropertyLib._MayInProperties.TenMayInBienlai))
+            {
+                PropertyLib._MayInProperties.TenMayInBienlai = Utility.GetDefaultPrinter();
+                m_strDefaultLazerPrinterName = Utility.sDbnull(PropertyLib._MayInProperties.TenMayInBienlai);
+            }
+            if (PropertyLib._ThamKhamProperties != null)
+            {
+                try
+                {
+                    //khoi tao may in
+                    String pkInstalledPrinters;
+                    cboLaserPrinters.Items.Clear();
+                    for (int i = 0; i < PrinterSettings.InstalledPrinters.Count; i++)
+                    {
+                        pkInstalledPrinters = PrinterSettings.InstalledPrinters[i];
+                        cboLaserPrinters.Items.Add(pkInstalledPrinters);
+                    }
+                }
+                catch
+                {
+                }
+                finally
+                {
+                    m_strDefaultLazerPrinterName = Utility.sDbnull(PropertyLib._MayInProperties.TenMayInBienlai);
 
+                    cboLaserPrinters.Text = m_strDefaultLazerPrinterName;
+                }
+            }
+        }
         private void frm_Phieuravien_Load(object sender, EventArgs e)
         {
             try
             {
+                LoadLaserPrinters();
                 LoadUserConfigs();
                 DataTable v_dtkhoanoitru = THU_VIEN_CHUNG.Laydanhmuckhoa("NOI", 0);
                 DataBinding.BindDataCombobox(cboKhoaRavien, v_dtkhoanoitru, DmucKhoaphong.Columns.IdKhoaphong, DmucKhoaphong.Columns.TenKhoaphong);
@@ -1808,7 +1849,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
                         
                     }
                     LayDanhsachdonthuoc();
-                    Utility.GotoNewRowJanus(grdPresDetail, KcbDonthuoc.Columns.IdDonthuoc,
+                    Utility.GotoNewRowJanus(grd_Donthuocravien, KcbDonthuoc.Columns.IdDonthuoc,
                                             Utility.sDbnull(frm.txtPres_ID.Text));
                 }
                 frm.Dispose();
@@ -1835,7 +1876,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
             {
                 m_dtPresDetail =
                      new KCB_THAMKHAM().KcbThamkhamLayDanhsachDonThuocTheolankham(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, -1l,-1l,3, "THUOC",-1,0).Tables[0];
-                Utility.SetDataSourceForDataGridEx(grdPresDetail, m_dtPresDetail, false, true, "",
+                Utility.SetDataSourceForDataGridEx(grd_Donthuocravien, m_dtPresDetail, false, true, "",
                                                KcbDonthuocChitiet.Columns.SttIn);
             }
             catch (Exception ex)
@@ -1846,8 +1887,8 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
         }
         void ModifyCommmands()
         {
-            cmdCreateNewPres.Enabled = objLuotkham != null && objRavien != null && objLuotkham.TrangthaiNoitru<=5;
-            cmdUpdatePres.Enabled = cmdDeletePres.Enabled = cmdPrintPres.Enabled = cmdWords.Enabled = Utility.isValidGrid(grdPresDetail) && objLuotkham != null && objRavien != null && objLuotkham.TrangthaiNoitru <= 5;
+            cmdCreateNewPres.Enabled =cmdKedon.Enabled= objLuotkham != null && objRavien != null && objLuotkham.TrangthaiNoitru<=5;
+            cmdUpdatePres.Enabled = cmdDeletePres.Enabled = cmdPrintPres.Enabled = cmdWords.Enabled = Utility.isValidGrid(grd_Donthuocravien) && objLuotkham != null && objRavien != null && objLuotkham.TrangthaiNoitru <= 5;
         }
         private void dtpNgayHen_ValueChanged(object sender, EventArgs e)
         {
@@ -1905,7 +1946,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
         {
             try
             {
-                if (grdPresDetail.RowCount > 0)//grdPresDetail.CurrentRow != null && grdPresDetail.CurrentRow.RowType == RowType.Record)
+                if (grd_Donthuocravien.RowCount > 0)//grdPresDetail.CurrentRow != null && grdPresDetail.CurrentRow.RowType == RowType.Record)
                 {
                     if (objLuotkham != null)
                     {
@@ -1950,7 +1991,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
                             frm.txtPres_ID.Text = Utility.sDbnull(objPrescription.IdDonthuoc);
                             frm.dtNgayKhamLai.MinDate = dtpNgayHen.Value;
                             frm._ngayhenkhamlai = dtpNgayravien.Value.ToString("yyMMdd") == dtpNgayHen.Value.ToString("yyMMdd") ? "" : dtpNgayHen.Text;
-
+                            frm.txtLoiDanBS._Text = txtLoidanBS.Text;
                             frm.CallActionKeDon = CallActionKieuKeDon.TheoDoiTuong;
                             frm.ShowDialog();
                             if (!frm.m_blnCancel)
@@ -1966,7 +2007,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
                                 }
                               
                                 LayDanhsachdonthuoc();
-                                Utility.GotoNewRowJanus(grdPresDetail, KcbDonthuocChitiet.Columns.IdDonthuoc, Utility.sDbnull(frm.txtPres_ID.Text));
+                                Utility.GotoNewRowJanus(grd_Donthuocravien, KcbDonthuocChitiet.Columns.IdDonthuoc, Utility.sDbnull(frm.txtPres_ID.Text));
                             }
                             frm.Dispose();
                             frm = null;
@@ -1994,7 +2035,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
         {
             string s = "";
             var lstIdchitiet = new List<int>();
-            if (grdPresDetail.GetCheckedRows().Count() <= 0 && RowThuoc != null)
+            if (grd_Donthuocravien.GetCheckedRows().Count() <= 0 && RowThuoc != null)
             {
                 try
                 {
@@ -2008,7 +2049,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
                     return;
                 }
             }
-            foreach (GridEXRow gridExRow in grdPresDetail.GetCheckedRows())
+            foreach (GridEXRow gridExRow in grd_Donthuocravien.GetCheckedRows())
             {
                 string stempt = "";
                 int id_thuoc = Utility.Int32Dbnull(gridExRow.Cells[KcbDonthuocChitiet.Columns.IdThuoc].Value, 0m);
@@ -2018,7 +2059,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
                 s += "," + stempt;
                 lstIdchitiet.AddRange(_temp);
                 gridExRow.Delete();
-                grdPresDetail.UpdateData();
+                grd_Donthuocravien.UpdateData();
             }
             if (lstIdchitiet.Count <= 0) return;
             _KCB_KEDONTHUOC.XoaChitietDonthuoc(s);
@@ -2075,11 +2116,11 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
             {
                 Utility.ShowMsg("Bạn phải chọn một bản ghi thực hiện việc xóa thông tin thuốc ", "Thông báo",
                                 MessageBoxIcon.Warning);
-                grdPresDetail.Focus();
+                grd_Donthuocravien.Focus();
                 return false;
             }
 
-            foreach (GridEXRow gridExRow in grdPresDetail.GetCheckedRows())
+            foreach (GridEXRow gridExRow in grd_Donthuocravien.GetCheckedRows())
             {
                 if (Utility.Coquyen("quyen_suadonthuoc") || globalVariables.IsAdmin ||
                     Utility.sDbnull(gridExRow.Cells[KcbChidinhclsChitiet.Columns.NguoiTao].Value, "") ==
@@ -2093,7 +2134,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
                     return false;
                 }
             }
-            foreach (GridEXRow gridExRow in grdPresDetail.GetCheckedRows())
+            foreach (GridEXRow gridExRow in grd_Donthuocravien.GetCheckedRows())
             {
                 if (gridExRow.RowType == RowType.Record)
                 {
@@ -2114,7 +2155,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
                     "Một số thuốc bạn chọn đã thanh toán hoặc đã phát thuốc cho Bệnh nhân nên bạn không được phép xóa. Mời bạn kiểm tra lại ",
                     "Thông báo",
                     MessageBoxIcon.Warning);
-                grdPresDetail.Focus();
+                grd_Donthuocravien.Focus();
                 return false;
             }
             return true;
@@ -2292,6 +2333,408 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
         {
             txtChandoanGiaiphauTuthi.Enabled = chkChandoangiaiphaututhi.Checked;
             if (txtChandoanGiaiphauTuthi.Enabled) txtChandoanGiaiphauTuthi.Focus();
+        }
+
+        private void cmdPrintPres_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!Utility.isValidGrid(grd_Donthuocravien)) return;
+                long Pres_ID = Utility.Int64Dbnull(grd_Donthuocravien.GetValue(KcbDonthuocChitiet.Columns.IdDonthuoc));
+                KcbDonthuoc objDonthuoc = KcbDonthuoc.FetchByID(Pres_ID);
+                if (THU_VIEN_CHUNG.Laygiatrithamsohethong_off("NOITRU_PHIEUDIEUTRI_DONTHUOC_INTACH", "0", false) == "1")
+                {
+                    if (RowThuoc == null)
+                    {
+                        Utility.ShowMsg("Bạn phải chọn một bản ghi thực hiện việc xóa thông tin thuốc ", "Thông báo", MessageBoxIcon.Warning);
+                        grd_Donthuocravien.Focus();
+                        return;
+                    }
+                    int presId = Utility.Int32Dbnull(RowThuoc.Cells[KcbDonthuocChitiet.Columns.IdDonthuoc].Value);
+                    PrintPres(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, 1, objDonthuoc.NgayKedon, presId, "", true);
+                }
+                else
+                {
+                    string maLanKham = objDonthuoc.MaLuotkham;
+                    PrintPresGop(objLuotkham.MaLuotkham, Pres_ID, "");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Utility.ShowMsg("Lỗi:" + ex.Message);
+                // throw;
+            }
+        }
+        private void GetChanDoan(string ICD_chinh, string IDC_Phu, ref string ICD_Name, ref string ICD_Code)
+        {
+            try
+            {
+                List<string> lstICD = ICD_chinh.Split(',').ToList();
+                DmucBenhCollection _list =
+                    new DmucBenhController().FetchByQuery(
+                        DmucBenh.CreateQuery().AddWhere(DmucBenh.MaBenhColumn.ColumnName, Comparison.In, lstICD));
+                foreach (DmucBenh _item in _list)
+                {
+                    ICD_Name += _item.TenBenh + ";";
+                    ICD_Code += _item.MaBenh + ";";
+                }
+                lstICD = IDC_Phu.Split(',').ToList();
+                _list =
+                    new DmucBenhController().FetchByQuery(
+                        DmucBenh.CreateQuery().AddWhere(DmucBenh.MaBenhColumn.ColumnName, Comparison.In, lstICD));
+                foreach (DmucBenh _item in _list)
+                {
+                    ICD_Name += _item.TenBenh + ";";
+                    ICD_Code += _item.MaBenh + ";";
+                }
+                if (ICD_Name.Trim() != "") ICD_Name = ICD_Name.Substring(0, ICD_Name.Length - 1);
+                if (ICD_Code.Trim() != "") ICD_Code = ICD_Code.Substring(0, ICD_Code.Length - 1);
+            }
+            catch
+            {
+            }
+        }
+        private void PrintPresGop(string maLanKham, long id_donthuoc, string forcedTitle)
+        {
+            DataTable v_dtData = _KCB_KEDONTHUOC.LaythongtinDonthuoc_In((int)id_donthuoc); ;// _KCB_KEDONTHUOC.LaythongtinDonthuoc_InGop(maLanKham);
+            Utility.AddColumToDataTable(ref v_dtData, "BarCode", typeof(byte[]));
+            int Pres_ID = Utility.Int32Dbnull(grd_Donthuocravien.GetValue(KcbDonthuocChitiet.Columns.IdDonthuoc));
+            THU_VIEN_CHUNG.CreateXML(v_dtData, "thamkham_InDonthuocA5.xml");
+            byte[] Barcode = null;
+            Utility.CreateBarcodeData(ref v_dtData, objLuotkham.MaLuotkham, ref Barcode);
+            string ICD_Name = "";
+            string ICD_Code = "";
+            if (v_dtData != null && v_dtData.Rows.Count > 0)
+                GetChanDoan(Utility.sDbnull(v_dtData.Rows[0]["mabenh_chinh"], ""),
+                            Utility.sDbnull(v_dtData.Rows[0]["mabenh_phu"], ""), ref ICD_Name, ref ICD_Code);
+
+            foreach (DataRow drv in v_dtData.Rows)
+            {
+                drv["BarCode"] = Barcode;
+                drv["chan_doan"] = Utility.sDbnull(drv["chan_doan"]).Trim() == ""
+                                       ? ICD_Name
+                                       : Utility.sDbnull(drv["chan_doan"]) + ";" + ICD_Name;
+                drv["ma_icd"] = ICD_Code;
+            }
+            //  THU_VIEN_CHUNG.CreateXML(v_dtData, "thamkham_InDonthuocA4.xml");
+            v_dtData.AcceptChanges();
+            // log.Info("Thuc hien in don thuoc");
+            Utility.UpdateLogotoDatatable(ref v_dtData);
+            string KhoGiay = "A5";
+            if (PropertyLib._MayInProperties.CoGiayInDonthuoc == Papersize.A4) KhoGiay = "A4";
+            var reportDocument = new ReportDocument();
+            string tieude = "", reportname = "", reportCode = "";
+            switch (KhoGiay)
+            {
+                case "A5":
+                    reportCode = "thamkham_InDonthuocA5";
+                    reportDocument = Utility.GetReport("thamkham_InDonthuocA5", ref tieude, ref reportname);
+                    break;
+                case "A4":
+                    reportCode = "thamkham_InDonthuocA4";
+                    reportDocument = Utility.GetReport("thamkham_InDonthuocA4", ref tieude, ref reportname);
+                    break;
+                default:
+                    reportCode = "thamkham_InDonthuocA5";
+                    reportDocument = Utility.GetReport("thamkham_InDonthuocA5", ref tieude, ref reportname);
+                    break;
+            }
+            if (reportDocument == null) return;
+            if (Utility.DoTrim(forcedTitle).Length > 0)
+                tieude = forcedTitle;
+            Utility.WaitNow(this);
+            ReportDocument crpt = reportDocument;
+            var objForm = new frmPrintPreview("IN ĐƠN THUỐC BỆNH NHÂN", crpt, true, true);
+            try
+            {
+                objForm.mv_sReportFileName = Path.GetFileName(reportname);
+                objForm.mv_sReportCode = reportCode;
+                crpt.SetDataSource(v_dtData);
+                Utility.SetParameterValue(crpt, "ParentBranchName", globalVariables.ParentBranch_Name);
+                Utility.SetParameterValue(crpt, "BranchName", globalVariables.Branch_Name);
+                Utility.SetParameterValue(crpt, "Address", globalVariables.Branch_Address);
+                Utility.SetParameterValue(crpt, "Phone", globalVariables.Branch_Phone);
+                Utility.SetParameterValue(crpt, "ReportTitle", "ĐƠN THUỐC");
+                Utility.SetParameterValue(crpt, "CurrentDate", Utility.FormatDateTime(globalVariables.SysDate));
+                Utility.SetParameterValue(crpt, "BottomCondition", THU_VIEN_CHUNG.BottomCondition());
+                objForm.crptViewer.ReportSource = crpt;
+                if (Utility.isPrintPreview(PropertyLib._MayInProperties.TenMayInBienlai,
+                                           PropertyLib._MayInProperties.PreviewInDonthuoc))
+                {
+                    objForm.SetDefaultPrinter(PropertyLib._MayInProperties.TenMayInBienlai, 0);
+                    objForm.ShowDialog();
+                    cboLaserPrinters.Text = PropertyLib._MayInProperties.TenMayInBienlai;
+                }
+                else
+                {
+                    objForm.addTrinhKy_OnFormLoad();
+                    crpt.PrintOptions.PrinterName = PropertyLib._MayInProperties.TenMayInBienlai;
+                    crpt.PrintToPrinter(1, false, 0, 0);
+                }
+                Utility.DefaultNow(this);
+            }
+            catch (Exception ex)
+            {
+                Utility.DefaultNow(this);
+            }
+        }
+        private void PrintPres(long id_benhnhan, string ma_luotkham, byte noitru, DateTime ngay_kedon, int presID, string forcedTitle, bool donravien)
+        {
+            try
+            {
+                DataTable v_dtDataOrg = _KCB_KEDONTHUOC.LaythongtinDonthuoc_In(presID);
+
+                DataRow[] arrDR = v_dtDataOrg.Select("tuvan_them=0");
+                if (arrDR.Length <= 0)
+                {
+                    PrintTuvanthem(presID, forcedTitle, v_dtDataOrg);
+                    return;
+                }
+                DataTable v_dtData = arrDR.CopyToDataTable();
+
+
+                Utility.AddColumToDataTable(ref v_dtData, "BarCode", typeof(byte[]));
+                int Pres_ID = Utility.Int32Dbnull(grd_Donthuocravien.GetValue(KcbDonthuocChitiet.Columns.IdDonthuoc));
+                THU_VIEN_CHUNG.CreateXML(v_dtData, "thamkham_InDonthuocA5.xml");
+                byte[] Barcode = null;
+                Utility.CreateBarcodeData(ref v_dtData, objLuotkham.MaLuotkham, ref Barcode);
+                string ICD_Name = "";
+                string ICD_Code = "";
+                string chan_doan = "";
+                if (v_dtData != null && v_dtData.Rows.Count > 0)
+                    GetChanDoan(Utility.sDbnull(v_dtData.Rows[0]["mabenh_chinh"], ""),
+                                Utility.sDbnull(v_dtData.Rows[0]["mabenh_phu"], ""), ref ICD_Name, ref ICD_Code);
+                Utility.GetChandoanNoitru(id_benhnhan, ma_luotkham, ngay_kedon, ref ICD_Code, ref ICD_Name, ref chan_doan);
+                string chandoan_ravien = Utility.sDbnull(v_dtData.Rows[0]["chandoan_ravien"]);
+                foreach (DataRow drv in v_dtData.Rows)
+                {
+                    drv["BarCode"] = Barcode;
+                    if (noitru == 0)
+                        drv["chan_doan"] = Utility.sDbnull(drv["chan_doan"]).Trim() == ""
+                                               ? ICD_Name
+                                               : Utility.sDbnull(drv["chan_doan"]) + ";" + ICD_Name;
+                    else
+                        drv["chan_doan"] = string.Format("{0}, {1}", ICD_Name, chan_doan);
+                    drv["ma_icd"] = ICD_Code;
+                    if (donravien)
+                        drv["chan_doan"] = chandoan_ravien;
+                }
+                //  THU_VIEN_CHUNG.CreateXML(v_dtData, "thamkham_InDonthuocA4.xml");
+                v_dtData.AcceptChanges();
+                // log.Info("Thuc hien in don thuoc");
+                Utility.UpdateLogotoDatatable(ref v_dtData);
+                List<string> lstmatinhchat = (from p in v_dtData.AsEnumerable()
+                                              select Utility.sDbnull(p["ma_tinhchat"], "")).Distinct().ToList<string>();
+                foreach (string ma_tinhchat in lstmatinhchat)
+                {
+                    DataRow[] arrTemp = v_dtData.Select(string.Format("(ma_tinhchat='{0}' or ma_tinhchat is null) and printed=0", ma_tinhchat));
+                    DataTable v_PrintData = v_dtData.Clone();
+                    if (arrTemp.Length > 0) v_PrintData = arrTemp.CopyToDataTable();//Chắc chắn có dữ liệu nên hàm copy ko bị lỗi
+                    if (v_PrintData.Rows.Count <= 0) continue;
+                    //Lấy danh sách các reportcode của từng tính chất thuốc
+                    string report_code = Utility.sDbnull(v_PrintData.Rows[0]["report_code"], "DONTHUOC_THUONG");
+                    //Lấy lại dữ liệu của tất cả các thuốc có cùng report nhưng khác tính chất để in đảm bảo ko bị tách đơn
+                    v_PrintData = v_dtData.Select(string.Format("report_code='{0}' and printed=0", report_code)).CopyToDataTable();
+                    //Đánh dấu trạng thái đã in để tránh in lại ở vòng for tính chất
+                    (from p in v_dtData.AsEnumerable() where Utility.sDbnull(p["report_code"], "") == report_code select p).ToList().ForEach(x => x["printed"] = 1);
+
+                    List<string> lstReportCode = v_PrintData.Rows[0]["report_code"].ToString().Split('@')[0].Split(';').ToList<string>();
+                    if (lstReportCode.Count <= 0) lstReportCode.Add("thamkham_InDonthuocA4");
+                    foreach (string _rcode in lstReportCode)
+                    {
+                        string KhoGiay = "A100";// "A5";//Truyền giá trị này để giữ nguyên report
+                        if (PropertyLib._MayInProperties.CoGiayInDonthuoc == Papersize.A4) KhoGiay = "A4";
+                        var reportDocument = new ReportDocument();
+                        string tieude = "", reportname = "", reportCode = "";
+                        reportCode = _rcode;
+                        reportDocument = Utility.GetReport(reportCode, KhoGiay, ref tieude, ref reportname);
+                        if (reportDocument == null)
+                        {
+                            //Lấy mặc định do chưa được khai báo trong danh mục tính chất thuốc
+                            switch (KhoGiay)
+                            {
+                                case "A5":
+                                    reportCode = "thamkham_InDonthuocA5";
+                                    reportDocument = Utility.GetReport("thamkham_InDonthuocA5", ref tieude, ref reportname);
+                                    break;
+                                case "A4":
+                                    reportCode = "thamkham_InDonthuocA4";
+                                    reportDocument = Utility.GetReport("thamkham_InDonthuocA4", ref tieude, ref reportname);
+                                    break;
+                                default:
+                                    reportCode = "thamkham_InDonthuocA5";
+                                    reportDocument = Utility.GetReport("thamkham_InDonthuocA5", ref tieude, ref reportname);
+                                    break;
+                            }
+                        }
+                        if (reportDocument == null) return;
+                        if (Utility.DoTrim(forcedTitle).Length > 0)
+                            tieude = forcedTitle;
+                        Utility.WaitNow(this);
+                        ReportDocument crpt = reportDocument;
+                        frmPrintPreview objForm = new frmPrintPreview("IN ĐƠN THUỐC BỆNH NHÂN", crpt, true, true);
+                        objForm.nguoi_thuchien = Utility.sDbnull(v_dtData.Rows[0]["ten_bacsikedon"], "");
+                        try
+                        {
+                            objForm.NGAY = ngay_kedon;
+                            objForm.mv_sReportFileName = Path.GetFileName(reportname);
+                            objForm.mv_sReportCode = reportCode;
+                            crpt.SetDataSource(v_PrintData);
+                            Utility.SetParameterValue(crpt, "ParentBranchName", globalVariables.ParentBranch_Name);
+                            Utility.SetParameterValue(crpt, "BranchName", globalVariables.Branch_Name);
+                            Utility.SetParameterValue(crpt, "Address", globalVariables.Branch_Address);
+                            Utility.SetParameterValue(crpt, "Phone", globalVariables.Branch_Phone);
+                            Utility.SetParameterValue(crpt, "sTitleReport", tieude);
+                            Utility.SetParameterValue(crpt, "ReportTitle", "ĐƠN THUỐC");
+                            Utility.SetParameterValue(crpt, "CurrentDate", Utility.FormatDateTime(globalVariables.SysDate));
+                            Utility.SetParameterValue(crpt, "BottomCondition", THU_VIEN_CHUNG.BottomCondition());
+                            objForm.crptViewer.ReportSource = crpt;
+                            if (Utility.isPrintPreview(PropertyLib._MayInProperties.TenMayInBienlai,
+                                                       PropertyLib._MayInProperties.PreviewInDonthuoc))
+                            {
+                                objForm.SetDefaultPrinter(PropertyLib._MayInProperties.TenMayInBienlai, 0);
+                                objForm.ShowDialog();
+                                cboLaserPrinters.Text = PropertyLib._MayInProperties.TenMayInBienlai;
+                            }
+                            else
+                            {
+                                objForm.addTrinhKy_OnFormLoad();
+                                crpt.PrintOptions.PrinterName = PropertyLib._MayInProperties.TenMayInBienlai;
+                                crpt.PrintToPrinter(1, false, 0, 0);
+                            }
+
+                            Utility.DefaultNow(this);
+                        }
+                        catch (Exception ex)
+                        {
+                            Utility.DefaultNow(this);
+                        }
+                        finally
+                        {
+
+                        }
+                    }//Kết thúc vòng for qua các liên trong tính chất
+                }//Kết thúc vòng for tính chất
+                //In đơn tư vấn thêm(nếu có)
+                PrintTuvanthem(presID, forcedTitle, v_dtDataOrg);
+            }
+            catch (Exception ex)
+            {
+
+                Utility.CatchException(ex);
+            }
+
+        }
+        private void PrintTuvanthem(int presID, string forcedTitle, DataTable p_dtData)
+        {
+
+            DataRow[] arrDR = p_dtData.Select("tuvan_them=1");
+            if (arrDR.Length <= 0) return;
+            DataTable v_dtData = arrDR.CopyToDataTable();
+            Utility.AddColumToDataTable(ref v_dtData, "BarCode", typeof(byte[]));
+            int Pres_ID = Utility.Int32Dbnull(grd_Donthuocravien.GetValue(KcbDonthuocChitiet.Columns.IdDonthuoc));
+            THU_VIEN_CHUNG.CreateXML(v_dtData, "thamkham_InDonthuocA5.xml");
+            byte[] Barcode = null;
+            Utility.CreateBarcodeData(ref v_dtData, objLuotkham.MaLuotkham, ref Barcode);
+            string ICD_Name = "";
+            string ICD_Code = "";
+            if (v_dtData != null && v_dtData.Rows.Count > 0)
+                GetChanDoan(Utility.sDbnull(v_dtData.Rows[0]["mabenh_chinh"], ""),
+                            Utility.sDbnull(v_dtData.Rows[0]["mabenh_phu"], ""), ref ICD_Name, ref ICD_Code);
+
+            foreach (DataRow drv in v_dtData.Rows)
+            {
+                drv["BarCode"] = Barcode;
+                drv["chan_doan"] = Utility.sDbnull(drv["chan_doan"]).Trim() == ""
+                                       ? ICD_Name
+                                       : Utility.sDbnull(drv["chan_doan"]) + ";" + ICD_Name;
+                drv["ma_icd"] = ICD_Code;
+            }
+            //  THU_VIEN_CHUNG.CreateXML(v_dtData, "thamkham_InDonthuocA4.xml");
+            v_dtData.AcceptChanges();
+            // log.Info("Thuc hien in don thuoc");
+            Utility.UpdateLogotoDatatable(ref v_dtData);
+            string KhoGiay = "A5";
+            if (PropertyLib._MayInProperties.CoGiayInDonthuoc == Papersize.A4) KhoGiay = "A4";
+            var reportDocument = new ReportDocument();
+            string tieude = "", reportname = "", reportCode = "";
+            switch (KhoGiay)
+            {
+                case "A5":
+                    reportCode = "thamkham_InDonTuvanA4";
+                    reportDocument = Utility.GetReport("thamkham_InDonTuvanA4", ref tieude, ref reportname);
+                    break;
+                case "A4":
+                    reportCode = "thamkham_InDonTuvanA4";
+                    reportDocument = Utility.GetReport("thamkham_InDonTuvanA4", ref tieude, ref reportname);
+                    break;
+                default:
+                    reportCode = "thamkham_InDonTuvanA4";
+                    reportDocument = Utility.GetReport("thamkham_InDonTuvanA4", ref tieude, ref reportname);
+                    break;
+            }
+            if (reportDocument == null) return;
+            if (Utility.DoTrim(forcedTitle).Length > 0)
+                tieude = forcedTitle;
+            Utility.WaitNow(this);
+            ReportDocument crpt = reportDocument;
+            frmPrintPreview objForm = new frmPrintPreview("IN ĐƠN TƯ VẤN", crpt, true, true);
+            objForm.nguoi_thuchien = Utility.sDbnull(v_dtData.Rows[0]["ten_bacsikedon"], "");
+            try
+            {
+                objForm.mv_sReportFileName = Path.GetFileName(reportname);
+                objForm.mv_sReportCode = reportCode;
+                crpt.SetDataSource(v_dtData);
+                Utility.SetParameterValue(crpt, "ParentBranchName", globalVariables.ParentBranch_Name);
+                Utility.SetParameterValue(crpt, "BranchName", globalVariables.Branch_Name);
+                Utility.SetParameterValue(crpt, "Address", globalVariables.Branch_Address);
+                Utility.SetParameterValue(crpt, "Phone", globalVariables.Branch_Phone);
+                Utility.SetParameterValue(crpt, "ReportTitle", tieude);
+                Utility.SetParameterValue(crpt, "CurrentDate", Utility.FormatDateTime(globalVariables.SysDate));
+                Utility.SetParameterValue(crpt, "BottomCondition", THU_VIEN_CHUNG.BottomCondition());
+                objForm.crptViewer.ReportSource = crpt;
+                if (Utility.isPrintPreview(PropertyLib._MayInProperties.TenMayInBienlai,
+                                           PropertyLib._MayInProperties.PreviewInDonthuoc))
+                {
+                    objForm.SetDefaultPrinter(PropertyLib._MayInProperties.TenMayInBienlai, 0);
+                    objForm.ShowDialog();
+                    cboLaserPrinters.Text = PropertyLib._MayInProperties.TenMayInBienlai;
+                }
+                else
+                {
+                    objForm.addTrinhKy_OnFormLoad();
+                    crpt.PrintOptions.PrinterName = PropertyLib._MayInProperties.TenMayInBienlai;
+                    crpt.PrintToPrinter(1, false, 0, 0);
+                }
+                Utility.DefaultNow(this);
+            }
+            catch (Exception ex)
+            {
+                Utility.DefaultNow(this);
+            }
+        }
+
+        private void cmdPrint_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmdKedon_Click(object sender, EventArgs e)
+        {
+            uiTab1.SelectedTab = uiTabPagedonthuoc;
+            if (cmdUpdatePres.Enabled)
+            {
+                cmdUpdatePres.PerformClick();
+                return;
+            }    
+               
+            if (cmdCreateNewPres.Enabled)
+            {
+                cmdCreateNewPres.PerformClick();
+                return;
+            }    
+               
         }
     }
 }

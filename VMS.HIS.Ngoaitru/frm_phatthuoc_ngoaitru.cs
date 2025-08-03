@@ -71,6 +71,7 @@ namespace VNS.HIS.UI.THUOC
                 CauHinh();
                 cmdConfig.Visible = globalVariables.IsAdmin;
                 dtPaymentDate.ReadOnly = !Utility.Coquyen("thanhtoan_suangaythanhtoan");
+
             }
             catch (Exception ex)
             {

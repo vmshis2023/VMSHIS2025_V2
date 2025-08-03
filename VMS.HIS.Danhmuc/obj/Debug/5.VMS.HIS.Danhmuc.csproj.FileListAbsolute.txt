@@ -1,5 +1,4 @@
-C:\HIS_BVSG\Running\VMS.HIS.Danhmuc.dll
-C:\HIS_BVSG\Running\VMS.HIS.Danhmuc.pdb
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Danhmuc\obj\Debug\5.VMS.HIS.Danhmuc.csproj.AssemblyReference.cache
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Danhmuc\obj\Debug\VNS.HIS.UCs.AutoCompleteTextbox_Danhmucchung.resources
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Danhmuc\obj\Debug\VNS.HIS.UCs.AutoCompleteTextbox_Danhmucchung_Multiline.resources
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Danhmuc\obj\Debug\VNS.HIS.UCs.AutoCompleteTextbox_DynamicField.resources
@@ -27,6 +26,7 @@ F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Danhmuc\obj\Debug\VMS.HIS.Danhmuc.Aut
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Danhmuc\obj\Debug\VNS.HIS.UI.THANHTOAN.frm_PhanbotientheoPTTT_V1.resources
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Danhmuc\obj\Debug\VNS.HIS.UI.THANHTOAN.frm_XemphieuTralai_Quaythuoc.resources
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Danhmuc\obj\Debug\VNS.HIS.UI.Forms.Dungchung.FrmBarCodePrint.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Danhmuc\obj\Debug\VNS.HIS.UI.Forms.NGOAITRU.frm_thuchien_donthuoc.resources
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Danhmuc\obj\Debug\VMS.HIS.Danhmuc.ChidinhCLS_Kedon.frm_chidandungthuoc_bacsi.resources
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Danhmuc\obj\Debug\VMS.HIS.Danhmuc.ChidinhCLS_Kedon.frm_chitietdonthuocmau.resources
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Danhmuc\obj\Debug\VMS.HIS.Danhmuc.Dungchung.frm_XemKQCLS.resources
@@ -182,6 +182,8 @@ F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Danhmuc\obj\Debug\VMS.HIS.Danhmuc.Use
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Danhmuc\obj\Debug\5.VMS.HIS.Danhmuc.csproj.GenerateResource.cache
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Danhmuc\obj\Debug\VMS.HIS.Danhmuc.dll.licenses
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Danhmuc\obj\Debug\5.VMS.HIS.Danhmuc.csproj.CoreCompileInputs.cache
+C:\HIS_BVSG\Running\VMS.HIS.Danhmuc.dll
+C:\HIS_BVSG\Running\VMS.HIS.Danhmuc.pdb
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Danhmuc\obj\Debug\5.VMS.HIS.Danhmuc.csproj.CopyComplete
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Danhmuc\obj\Debug\VMS.HIS.Danhmuc.dll
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Danhmuc\obj\Debug\VMS.HIS.Danhmuc.pdb

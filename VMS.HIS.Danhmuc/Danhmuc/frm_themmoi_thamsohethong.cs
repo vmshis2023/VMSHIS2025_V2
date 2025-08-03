@@ -10,6 +10,7 @@ using SubSonic;
 using VMS.HIS.DAL;
 using VNS.Libs;
 using VNS.HIS.UI.DANHMUC;
+using VNS.Libs.AppUI;
 
 namespace VMS.HIS.Danhmuc.UI
 {
@@ -116,7 +117,7 @@ namespace VMS.HIS.Danhmuc.UI
                 }
 
                 lblMessage.Visible = true;
-                lblMessage.Text = @"Bạn thực hiện sửa thông tin thành công!";
+                UIAction.SetTextStatus(lblMessage, @"Bạn thực hiện sửa thông tin thành công!", false);
                 objSys = SysSystemParameter.FetchByID(Utility.sDbnull(txtID.Text));
                 if (objSys != null)
                 {
@@ -126,7 +127,7 @@ namespace VMS.HIS.Danhmuc.UI
             }
             catch (Exception ex)
             {
-                throw;
+                UIAction.SetTextStatus(lblMessage,ex.Message, true);
             }
         }
 
@@ -162,7 +163,7 @@ namespace VMS.HIS.Danhmuc.UI
                         Utility.GonewRowJanus(grd, SysSystemParameter.Columns.Id, Utility.sDbnull(txtID.Text));
                     }
                     lblMessage.Visible = true;
-                    lblMessage.Text = "Bạn thực hiện thêm mới tham số thành công!";
+                    UIAction.SetTextStatus(lblMessage, "Bạn thực hiện thêm mới tham số thành công!", false);
                 }
 
                 

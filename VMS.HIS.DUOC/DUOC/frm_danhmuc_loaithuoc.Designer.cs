@@ -240,6 +240,7 @@
             this.txtKieuthuocVT.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtKieuthuocVT.buildShortcut = false;
             this.txtKieuthuocVT.CaseSensitive = false;
+            this.txtKieuthuocVT.cmdDropDown = null;
             this.txtKieuthuocVT.CompareNoID = true;
             this.txtKieuthuocVT.DefaultCode = "-1";
             this.txtKieuthuocVT.DefaultID = "-1";
@@ -258,6 +259,7 @@
             this.txtKieuthuocVT.RaiseEventEnter = false;
             this.txtKieuthuocVT.RaiseEventEnterWhenEmpty = false;
             this.txtKieuthuocVT.SelectedIndex = -1;
+            this.txtKieuthuocVT.SetDefaultWhenInit = true;
             this.txtKieuthuocVT.ShowCodeWithValue = false;
             this.txtKieuthuocVT.Size = new System.Drawing.Size(451, 21);
             this.txtKieuthuocVT.splitChar = '@';
@@ -296,6 +298,7 @@
             this.txtNhom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtNhom.buildShortcut = false;
             this.txtNhom.CaseSensitive = false;
+            this.txtNhom.cmdDropDown = null;
             this.txtNhom.CompareNoID = true;
             this.txtNhom.DefaultCode = "-1";
             this.txtNhom.DefaultID = "-1";
@@ -314,6 +317,7 @@
             this.txtNhom.RaiseEventEnter = false;
             this.txtNhom.RaiseEventEnterWhenEmpty = false;
             this.txtNhom.SelectedIndex = -1;
+            this.txtNhom.SetDefaultWhenInit = true;
             this.txtNhom.ShowCodeWithValue = false;
             this.txtNhom.Size = new System.Drawing.Size(272, 21);
             this.txtNhom.splitChar = '@';
@@ -552,7 +556,7 @@
             // 
             this.cmdClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdClose.Image = ((System.Drawing.Image)(resources.GetObject("cmdClose.Image")));
+            this.cmdClose.Image = global::VMS.HIS.Duoc.Properties.Resources.close_24;
             this.cmdClose.ImageSize = new System.Drawing.Size(20, 20);
             this.cmdClose.Location = new System.Drawing.Point(877, 653);
             this.cmdClose.Name = "cmdClose";
@@ -613,7 +617,7 @@
             // 
             this.cmdInsert.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdInsert.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdInsert.Image = ((System.Drawing.Image)(resources.GetObject("cmdInsert.Image")));
+            this.cmdInsert.Image = global::VMS.HIS.Duoc.Properties.Resources.add_04_32;
             this.cmdInsert.ImageSize = new System.Drawing.Size(20, 20);
             this.cmdInsert.Location = new System.Drawing.Point(247, 653);
             this.cmdInsert.Name = "cmdInsert";

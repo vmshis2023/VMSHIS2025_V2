@@ -21,9 +21,23 @@ namespace VMS.HIS.Danhmuc.UI
         {
             InitializeComponent();
             Utility.SetVisualStyle(this);
+            this.KeyDown += Frm_dmucthamsohethong_KeyDown;
             grdList.MouseDoubleClick += GrdList_MouseDoubleClick;
             grdList.CellValueChanged += GrdList_CellValueChanged;
             thamSo = "";
+        }
+
+        private void Frm_dmucthamsohethong_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.N)
+                cmdAdd.PerformClick();
+            else if (e.Control && e.KeyCode == Keys.U)
+                cmdEdit.PerformClick();
+            else if(e.Control && e.KeyCode == Keys.D)
+                cmdDelete.PerformClick();
+            else if(e.KeyCode==Keys.F5)
+                LoadData();
+
         }
 
         private void GrdList_CellValueChanged(object sender, ColumnActionEventArgs e)
@@ -85,6 +99,10 @@ namespace VMS.HIS.Danhmuc.UI
         }
         private void frm_dmucthamsohethong_Load(object sender, EventArgs e)
         {
+            LoadData();
+        }
+        void LoadData()
+        {
             if (thamSo != "")
             {
                 m_dtThamso =
@@ -96,12 +114,11 @@ namespace VMS.HIS.Danhmuc.UI
             }
             else
             {
-                m_dtThamso = new Select().From(SysSystemParameter.Schema).ExecuteDataSet().Tables[0]; 
+                m_dtThamso = new Select().From(SysSystemParameter.Schema).ExecuteDataSet().Tables[0];
             }
             Utility.SetDataSourceForDataGridEx(grdList, m_dtThamso, true, true, "1=1", "");
             ModifyCommand();
         }
-
         private void cmdAdd_Click(object sender, EventArgs e)
         {
             try

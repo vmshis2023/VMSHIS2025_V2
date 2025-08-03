@@ -62,6 +62,7 @@
             // toolStrip
             // 
             this.toolStrip.BackColor = System.Drawing.Color.AliceBlue;
+            this.toolStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cmdThemMoi,
             this.toolStripSeparator1,
@@ -78,8 +79,7 @@
             // cmdThemMoi
             // 
             this.cmdThemMoi.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.cmdThemMoi.Image = ((System.Drawing.Image)(resources.GetObject("cmdThemMoi.Image")));
-            this.cmdThemMoi.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.cmdThemMoi.Image = global::VMS.HIS.Duoc.Properties.Resources.add_04_32;
             this.cmdThemMoi.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdThemMoi.Name = "cmdThemMoi";
             this.cmdThemMoi.Size = new System.Drawing.Size(91, 28);
@@ -95,7 +95,6 @@
             // 
             this.cmdSua.Font = new System.Drawing.Font("Tahoma", 9F);
             this.cmdSua.Image = ((System.Drawing.Image)(resources.GetObject("cmdSua.Image")));
-            this.cmdSua.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.cmdSua.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdSua.Name = "cmdSua";
             this.cmdSua.Size = new System.Drawing.Size(80, 28);
@@ -111,7 +110,6 @@
             // 
             this.cmdXoa.Font = new System.Drawing.Font("Tahoma", 9F);
             this.cmdXoa.Image = ((System.Drawing.Image)(resources.GetObject("cmdXoa.Image")));
-            this.cmdXoa.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.cmdXoa.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdXoa.Name = "cmdXoa";
             this.cmdXoa.Size = new System.Drawing.Size(79, 28);
@@ -120,8 +118,7 @@
             // 
             // cmdThoat
             // 
-            this.cmdThoat.Image = ((System.Drawing.Image)(resources.GetObject("cmdThoat.Image")));
-            this.cmdThoat.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.cmdThoat.Image = global::VMS.HIS.Duoc.Properties.Resources.close_24;
             this.cmdThoat.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdThoat.Name = "cmdThoat";
             this.cmdThoat.Size = new System.Drawing.Size(90, 28);

@@ -260,6 +260,8 @@ namespace VMS.HIS.DAL
         
 		public static readonly string KcbDonthuocChitiet = @"kcb_donthuoc_chitiet";
         
+		public static readonly string KcbDonthuocMuangoai = @"kcb_donthuoc_muangoai";
+        
 		public static readonly string KcbKetquaCl = @"kcb_ketqua_cls";
         
 		public static readonly string KcbKetquaHa = @"kcb_ketqua_ha";
@@ -320,6 +322,8 @@ namespace VMS.HIS.DAL
         
 		public static readonly string KcbThanhtoanChitiet = @"kcb_thanhtoan_chitiet";
         
+		public static readonly string KcbThanhtoanGhino = @"kcb_thanhtoan_ghino";
+        
 		public static readonly string KcbThanhtoanPhanbotheoPTTT = @"kcb_thanhtoan_phanbotheoPTTT";
         
 		public static readonly string KcbThanhtoanTamungTrului = @"kcb_thanhtoan_tamung_trului";
@@ -327,6 +331,8 @@ namespace VMS.HIS.DAL
 		public static readonly string KcbThoigianchidinhCl = @"kcb_thoigianchidinh_cls";
         
 		public static readonly string KcbThongtinchung = @"kcb_thongtinchung";
+        
+		public static readonly string KcbThuchiendonthuoc = @"kcb_thuchiendonthuoc";
         
 		public static readonly string KnChidinhChitiet = @"kn_chidinh_chitiet";
         
@@ -1274,6 +1280,11 @@ namespace VMS.HIS.DAL
             get { return DataService.GetSchema("kcb_donthuoc_chitiet", "ORM"); }
 		}
         
+		public static TableSchema.Table KcbDonthuocMuangoai
+		{
+            get { return DataService.GetSchema("kcb_donthuoc_muangoai", "ORM"); }
+		}
+        
 		public static TableSchema.Table KcbKetquaCl
 		{
             get { return DataService.GetSchema("kcb_ketqua_cls", "ORM"); }
@@ -1424,6 +1435,11 @@ namespace VMS.HIS.DAL
             get { return DataService.GetSchema("kcb_thanhtoan_chitiet", "ORM"); }
 		}
         
+		public static TableSchema.Table KcbThanhtoanGhino
+		{
+            get { return DataService.GetSchema("kcb_thanhtoan_ghino", "ORM"); }
+		}
+        
 		public static TableSchema.Table KcbThanhtoanPhanbotheoPTTT
 		{
             get { return DataService.GetSchema("kcb_thanhtoan_phanbotheoPTTT", "ORM"); }
@@ -1442,6 +1458,11 @@ namespace VMS.HIS.DAL
 		public static TableSchema.Table KcbThongtinchung
 		{
             get { return DataService.GetSchema("kcb_thongtinchung", "ORM"); }
+		}
+        
+		public static TableSchema.Table KcbThuchiendonthuoc
+		{
+            get { return DataService.GetSchema("kcb_thuchiendonthuoc", "ORM"); }
 		}
         
 		public static TableSchema.Table KnChidinhChitiet

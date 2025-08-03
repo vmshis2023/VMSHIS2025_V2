@@ -12697,6 +12697,7 @@ namespace VNS.HIS.UI.NGOAITRU
                                .And(KcbDonthuoc.Columns.IdBenhnhan).IsEqualTo(objCongkham.IdBenhnhan)
                                .And(KcbDonthuoc.Columns.MaLuotkham).IsEqualTo(objCongkham.MaLuotkham)
                                .Execute();
+                           
                         }
                         scope.Complete();
                     }

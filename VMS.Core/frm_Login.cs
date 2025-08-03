@@ -760,6 +760,8 @@ namespace VNSCore
                     Utility.AutoCompeleteAddress(globalVariables.gv_dtDmucDiachinh);
                 else
                     Utility.AutoCompeleteAddress_New(globalVariables.gv_dtDmucDiachinh);
+                if (globalVariables.dtAutocompleteAddress_New == null)
+                    globalVariables.dtAutocompleteAddress_New = globalVariables.dtAutocompleteAddress.Clone();
                 UIAction.SetTextStatus(lblMsg, "Nạp dữ liệu danh mục nơi KCBBĐ...", false);
                 globalVariables.gv_dtDmucNoiKCBBD = ds.Tables[9];// new Select().From(VDmucNoiKCBBD.Schema).ExecuteDataSet().Tables[0];
                 UIAction.SetTextStatus(lblMsg, "Nạp dữ liệu dịch vụ CLS...", false);

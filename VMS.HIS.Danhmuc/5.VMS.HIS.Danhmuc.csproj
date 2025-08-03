@@ -304,6 +304,12 @@
     <Compile Include="Barcode\FrmBarCodePrint.Designer.cs">
       <DependentUpon>FrmBarCodePrint.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChidinhCLS_Kedon\frm_thuchien_donthuoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChidinhCLS_Kedon\frm_thuchien_donthuoc.Designer.cs">
+      <DependentUpon>frm_thuchien_donthuoc.cs</DependentUpon>
+    </Compile>
     <Compile Include="ChidinhCLS_Kedon\frm_chidandungthuoc_bacsi.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1307,6 +1313,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Barcode\FrmBarCodePrint.resx">
       <DependentUpon>FrmBarCodePrint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChidinhCLS_Kedon\frm_thuchien_donthuoc.resx">
+      <DependentUpon>frm_thuchien_donthuoc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ChidinhCLS_Kedon\frm_chidandungthuoc_bacsi.resx">
       <DependentUpon>frm_chidandungthuoc_bacsi.cs</DependentUpon>

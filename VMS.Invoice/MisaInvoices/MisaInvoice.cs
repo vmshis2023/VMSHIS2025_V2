@@ -245,6 +245,7 @@ namespace VMS.Invoice
                
                 if (dtOrginvoicedata.Rows.Count <= 0 || dtOriginalinvoicedetail.Rows.Count <= 0)
                 {
+                    Utility.ShowMsg("Không lấy được dữ liệu để phát hành hóa đơn. Vui lòng kiểm tra xem dịch vụ có bị trả lại hoặc bị hủy hay không!");
                     eMessage = "Không lấy được dữ liệu tạo hóa đơn phát hành từ phiếu thanh toán đang chọn dtOrginvoicedata.Rows.Count <= 0";
                     log.Trace(eMessage);
                     return false;

@@ -319,29 +319,19 @@ namespace VNS.HIS.UI.NOITRU
         }
         void ThemBN()
         {
-            var taobenhnhancapcuu = new frm_Taobenhnhancapcuu
-            {
-                m_enAction = action.Insert,
-                m_dtPatient = _mDtTimKiembenhNhan,
-                grdList = grdList
-            };
+            frm_KCB_DANGKY_BENHNHAN_CAPCUU taobenhnhancapcuu = new frm_KCB_DANGKY_BENHNHAN_CAPCUU();
             taobenhnhancapcuu._OnActionSuccess += _Taobenhnhancapcuu__OnActionSuccess;
             taobenhnhancapcuu.ShowDialog();
         }
-        void _Taobenhnhancapcuu__OnActionSuccess()
+
+        private void _Taobenhnhancapcuu__OnActionSuccess(string ma_luotkham, action m_enAct)
         {
             ModifyCommand();
         }
+
         void SuaBN()
         {
-            var taobenhnhancapcuu = new frm_Taobenhnhancapcuu
-            {
-                txtMaBN = { Text = Utility.sDbnull(grdList.GetValue(KcbLuotkham.Columns.IdBenhnhan)) },
-                txtMaLankham = { Text = Utility.sDbnull(grdList.GetValue(KcbLuotkham.Columns.MaLuotkham)) },
-                m_enAction = action.Update,
-                m_dtPatient = _mDtTimKiembenhNhan,
-                grdList = grdList
-            };
+            frm_KCB_DANGKY_BENHNHAN_CAPCUU taobenhnhancapcuu = new frm_KCB_DANGKY_BENHNHAN_CAPCUU();
             taobenhnhancapcuu._OnActionSuccess += _Taobenhnhancapcuu__OnActionSuccess;
             taobenhnhancapcuu.ShowDialog();
         }
@@ -1544,7 +1534,7 @@ namespace VNS.HIS.UI.NOITRU
         {
             try
             {
-                if (!isValidData_Phanbuonggiuong()) return;
+                //if (!isValidData_Phanbuonggiuong()) return;
                 int id = Utility.Int32Dbnull(grdList.GetValue(NoitruPhanbuonggiuong.Columns.Id));
                 NoitruPhanbuonggiuong objPhanbuonggiuong = NoitruPhanbuonggiuong.FetchByID(id);
                 objLuotkham = Utility.getKcbLuotkham(objPhanbuonggiuong.IdBenhnhan, objPhanbuonggiuong.MaLuotkham);
@@ -1576,11 +1566,12 @@ namespace VNS.HIS.UI.NOITRU
             {
                 if (objLuotkham != null)
                 {
-                    objLuotkham.MarkOld();
-                    objLuotkham.IsNew = false;
-                    objLuotkham.IdBsDieutrinoitruChinh = Utility.Int32Dbnull( ID);
-                    objLuotkham.IdBsDieutrinoitruPhu = -1;
-                    objLuotkham.Save();
+                    int num = Utility.ExecuteNonQuery(string.Format("update kcb_luotkham set id_bs_dieutrinoitru_chinh={0} where id_benhnhan={1} and ma_luotkham='{2}'", Utility.Int32Dbnull(ID), objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham), CommandType.Text);
+                    if (num > 0)
+                    {
+                        objLuotkham.IdBsDieutrinoitruChinh = Utility.Int32Dbnull(ID);
+                        Utility.Log(this.Name, globalVariables.UserName, string.Format("Cập nhật Bác sĩ điều trị của bệnh nhân ID={0}, PID={1}, Tên={2}, từ {3} thành {4} ", Utility.getValueOfGridCell(grdList, "id_benhnhan"), Utility.getValueOfGridCell(grdList, "ma_luotkham"), Utility.getValueOfGridCell(grdList, "ten_benhnhan"), objLuotkham.IdBsDieutrinoitruChinh, ID), newaction.Update, this.GetType().Assembly.ManifestModule.Name);
+                    }
                 }
             }
             catch (Exception ex)
@@ -1947,5 +1938,15 @@ namespace VNS.HIS.UI.NOITRU
                 Utility.DefaultNow(this);
             }
         }
-}
+
+        private void mnuAdd_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void mnuDelete_Click_1(object sender, EventArgs e)
+        {
+
+        }
+    }
 }

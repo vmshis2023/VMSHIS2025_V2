@@ -86,7 +86,7 @@
             this.dtNgayInPhieu.DropDownCalendar.Name = "";
             this.dtNgayInPhieu.DropDownCalendar.VisualStyle = Janus.Windows.CalendarCombo.VisualStyle.Office2007;
             this.dtNgayInPhieu.Font = new System.Drawing.Font("Arial", 9F);
-            this.dtNgayInPhieu.Location = new System.Drawing.Point(81, 530);
+            this.dtNgayInPhieu.Location = new System.Drawing.Point(81, 664);
             this.dtNgayInPhieu.Name = "dtNgayInPhieu";
             this.dtNgayInPhieu.ShowUpDown = true;
             this.dtNgayInPhieu.Size = new System.Drawing.Size(200, 21);
@@ -100,7 +100,7 @@
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 9F);
-            this.label3.Location = new System.Drawing.Point(3, 534);
+            this.label3.Location = new System.Drawing.Point(3, 668);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(48, 15);
             this.label3.TabIndex = 88;
@@ -123,7 +123,7 @@
             this.grdChitiet.Name = "grdChitiet";
             this.grdChitiet.RecordNavigator = true;
             this.grdChitiet.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
-            this.grdChitiet.Size = new System.Drawing.Size(916, 309);
+            this.grdChitiet.Size = new System.Drawing.Size(1554, 443);
             this.grdChitiet.TabIndex = 21;
             this.grdChitiet.TabStop = false;
             this.grdChitiet.TotalRow = Janus.Windows.GridEX.InheritableBoolean.True;
@@ -151,7 +151,7 @@
             this.grdListEBM.Name = "grdListEBM";
             this.grdListEBM.RecordNavigator = true;
             this.grdListEBM.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
-            this.grdListEBM.Size = new System.Drawing.Size(916, 309);
+            this.grdListEBM.Size = new System.Drawing.Size(1554, 443);
             this.grdListEBM.TabIndex = 22;
             this.grdListEBM.TabStop = false;
             this.grdListEBM.TotalRow = Janus.Windows.GridEX.InheritableBoolean.True;
@@ -182,7 +182,7 @@
             this.uiGroupBox2.Image = ((System.Drawing.Image)(resources.GetObject("uiGroupBox2.Image")));
             this.uiGroupBox2.Location = new System.Drawing.Point(0, 59);
             this.uiGroupBox2.Name = "uiGroupBox2";
-            this.uiGroupBox2.Size = new System.Drawing.Size(928, 465);
+            this.uiGroupBox2.Size = new System.Drawing.Size(1566, 599);
             this.uiGroupBox2.TabIndex = 116;
             this.uiGroupBox2.Text = "Thông tin tìm kiếm";
             // 
@@ -276,7 +276,7 @@
             this.panel1.Controls.Add(this.grdList);
             this.panel1.Location = new System.Drawing.Point(6, 150);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(916, 309);
+            this.panel1.Size = new System.Drawing.Size(1554, 443);
             this.panel1.TabIndex = 46;
             // 
             // grdList
@@ -291,7 +291,7 @@
             this.grdList.Name = "grdList";
             this.grdList.RecordNavigator = true;
             this.grdList.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
-            this.grdList.Size = new System.Drawing.Size(916, 309);
+            this.grdList.Size = new System.Drawing.Size(1554, 443);
             this.grdList.TabIndex = 23;
             this.grdList.TabStop = false;
             this.grdList.TotalRow = Janus.Windows.GridEX.InheritableBoolean.True;
@@ -420,18 +420,18 @@
             this.baocaO_TIEUDE1.ShortcutAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             this.baocaO_TIEUDE1.ShortcutFont = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.baocaO_TIEUDE1.showHelp = false;
-            this.baocaO_TIEUDE1.Size = new System.Drawing.Size(928, 53);
+            this.baocaO_TIEUDE1.Size = new System.Drawing.Size(1566, 53);
             this.baocaO_TIEUDE1.TabIndex = 115;
             this.baocaO_TIEUDE1.TIEUDE = "BÁO CÁO DOANH THU PHÒNG KHÁM";
             this.baocaO_TIEUDE1.TitleFont = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             // 
             // cmdExportToExcel
             // 
-            this.cmdExportToExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cmdExportToExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdExportToExcel.Font = new System.Drawing.Font("Arial", 9F);
             this.cmdExportToExcel.Image = ((System.Drawing.Image)(resources.GetObject("cmdExportToExcel.Image")));
             this.cmdExportToExcel.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdExportToExcel.Location = new System.Drawing.Point(364, 530);
+            this.cmdExportToExcel.Location = new System.Drawing.Point(1128, 664);
             this.cmdExportToExcel.Name = "cmdExportToExcel";
             this.cmdExportToExcel.Size = new System.Drawing.Size(133, 30);
             this.cmdExportToExcel.TabIndex = 9;
@@ -442,11 +442,11 @@
             // 
             // cmdInPhieuXN
             // 
-            this.cmdInPhieuXN.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cmdInPhieuXN.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdInPhieuXN.Font = new System.Drawing.Font("Arial", 9F);
             this.cmdInPhieuXN.Image = ((System.Drawing.Image)(resources.GetObject("cmdInPhieuXN.Image")));
             this.cmdInPhieuXN.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdInPhieuXN.Location = new System.Drawing.Point(503, 530);
+            this.cmdInPhieuXN.Location = new System.Drawing.Point(1267, 664);
             this.cmdInPhieuXN.Name = "cmdInPhieuXN";
             this.cmdInPhieuXN.Size = new System.Drawing.Size(133, 30);
             this.cmdInPhieuXN.TabIndex = 8;
@@ -457,11 +457,11 @@
             // 
             // cmdExit
             // 
-            this.cmdExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cmdExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdExit.Font = new System.Drawing.Font("Arial", 9F);
-            this.cmdExit.Image = ((System.Drawing.Image)(resources.GetObject("cmdExit.Image")));
+            this.cmdExit.Image = global::VMS.HIS.BAOCAO.Properties.Resources.close_24;
             this.cmdExit.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdExit.Location = new System.Drawing.Point(642, 530);
+            this.cmdExit.Location = new System.Drawing.Point(1406, 664);
             this.cmdExit.Name = "cmdExit";
             this.cmdExit.Size = new System.Drawing.Size(133, 30);
             this.cmdExit.TabIndex = 10;
@@ -472,7 +472,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(928, 562);
+            this.ClientSize = new System.Drawing.Size(1566, 696);
             this.Controls.Add(this.uiGroupBox2);
             this.Controls.Add(this.baocaO_TIEUDE1);
             this.Controls.Add(this.cmdExportToExcel);

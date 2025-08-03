@@ -94,3 +94,4 @@ C:\HIS_BVSG\Running\VMS.HIS.Baocao.pdb
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BAOCAO\obj\Debug\6.VMS.HIS.Baocao.csproj.CopyComplete
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BAOCAO\obj\Debug\VMS.HIS.Baocao.dll
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BAOCAO\obj\Debug\VMS.HIS.Baocao.pdb
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BAOCAO\obj\Debug\VNS.HIS.UI.Baocao.frm_baocaodoanhthuphongkham_Hongphat.resources

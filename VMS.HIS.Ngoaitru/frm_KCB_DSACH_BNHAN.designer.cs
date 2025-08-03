@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_KCB_DSACH_BNHAN));
             Janus.Windows.GridEX.GridEXLayout grdRegExam_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem1 = new Janus.Windows.EditControls.UIComboBoxItem();
@@ -73,7 +72,7 @@
             this.cmdDown = new Janus.Windows.EditControls.UIButton();
             this.cmdUp = new Janus.Windows.EditControls.UIButton();
             this.grdRegExam = new Janus.Windows.GridEX.GridEX();
-            this.ctxCongkham = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ctxCongkham = new System.Windows.Forms.ContextMenuStrip();
             this.mnuUpdateSTT = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2 = new System.Windows.Forms.Panel();
             this.cmdDoiphongdoThiluc = new Janus.Windows.EditControls.UIButton();
@@ -145,7 +144,7 @@
             this.cmdXoaChiDinh = new Janus.Windows.EditControls.UIButton();
             this.cmdSuaChiDinh = new Janus.Windows.EditControls.UIButton();
             this.cmdThemChiDinh = new Janus.Windows.EditControls.UIButton();
-            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip();
             this.mnuCapnhatNguonGT_Doitac = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuMaDVu = new System.Windows.Forms.ToolStripMenuItem();
@@ -183,16 +182,16 @@
             this.chkByDate = new System.Windows.Forms.CheckBox();
             this.Label1 = new System.Windows.Forms.Label();
             this.cmdTimKiem = new Janus.Windows.EditControls.UIButton();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider();
             this.uiGroupBox2 = new Janus.Windows.EditControls.UIGroupBox();
             this.grdList = new Janus.Windows.GridEX.GridEX();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.ctxDelFile = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolTip1 = new System.Windows.Forms.ToolTip();
+            this.ctxDelFile = new System.Windows.Forms.ContextMenuStrip();
             this.mnuDelFile = new System.Windows.Forms.ToolStripMenuItem();
             this.lblSample = new System.Windows.Forms.Label();
             this.txtNoiDung = new Janus.Windows.GridEX.EditControls.EditBox();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timer1 = new System.Windows.Forms.Timer();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.uiTab1 = new Janus.Windows.UI.Tab.UITab();
             this.uiTabPageDanhsach = new Janus.Windows.UI.Tab.UITabPage();
@@ -1123,7 +1122,7 @@
             this.tabPageChiDinh.Controls.Add(this.uiGroupBox3);
             this.tabPageChiDinh.Location = new System.Drawing.Point(1, 23);
             this.tabPageChiDinh.Name = "tabPageChiDinh";
-            this.tabPageChiDinh.Size = new System.Drawing.Size(620, 656);
+            this.tabPageChiDinh.Size = new System.Drawing.Size(709, 712);
             this.tabPageChiDinh.TabStop = true;
             this.tabPageChiDinh.Text = "Chỉ định không qua khám";
             // 
@@ -1137,7 +1136,7 @@
             this.uiGroupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uiGroupBox4.Location = new System.Drawing.Point(0, 0);
             this.uiGroupBox4.Name = "uiGroupBox4";
-            this.uiGroupBox4.Size = new System.Drawing.Size(620, 574);
+            this.uiGroupBox4.Size = new System.Drawing.Size(709, 630);
             this.uiGroupBox4.TabIndex = 1;
             this.uiGroupBox4.Text = "Danh sách các chỉ định CLS Bệnh nhân đã đăng ký";
             this.uiGroupBox4.VisualStyle = Janus.Windows.UI.Dock.PanelVisualStyle.Office2003;
@@ -1163,7 +1162,7 @@
             this.grdAssignDetail.Name = "grdAssignDetail";
             this.grdAssignDetail.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
             this.grdAssignDetail.SelectedFormatStyle.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.grdAssignDetail.Size = new System.Drawing.Size(614, 494);
+            this.grdAssignDetail.Size = new System.Drawing.Size(703, 550);
             this.grdAssignDetail.TabIndex = 262;
             this.grdAssignDetail.TabKeyBehavior = Janus.Windows.GridEX.TabKeyBehavior.ControlNavigation;
             this.toolTip1.SetToolTip(this.grdAssignDetail, "Nhấn chuột phải để xóa từng chi tiết cận lâm sàng đang chọn");
@@ -1206,9 +1205,9 @@
             this.pnlXQ.Controls.Add(this.webBrowser1);
             this.pnlXQ.Controls.Add(this.label11);
             this.pnlXQ.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlXQ.Location = new System.Drawing.Point(617, 17);
+            this.pnlXQ.Location = new System.Drawing.Point(706, 17);
             this.pnlXQ.Name = "pnlXQ";
-            this.pnlXQ.Size = new System.Drawing.Size(0, 494);
+            this.pnlXQ.Size = new System.Drawing.Size(0, 550);
             this.pnlXQ.TabIndex = 261;
             // 
             // cmdConfig
@@ -1226,7 +1225,7 @@
             // 
             this.lnkMore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lnkMore.AutoSize = true;
-            this.lnkMore.Location = new System.Drawing.Point(73, 467);
+            this.lnkMore.Location = new System.Drawing.Point(73, 523);
             this.lnkMore.Name = "lnkMore";
             this.lnkMore.Size = new System.Drawing.Size(107, 15);
             this.lnkMore.TabIndex = 81;
@@ -1238,7 +1237,7 @@
             this.txtDenghi.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDenghi.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDenghi.Location = new System.Drawing.Point(76, 443);
+            this.txtDenghi.Location = new System.Drawing.Point(76, 499);
             this.txtDenghi.Name = "txtDenghi";
             this.txtDenghi.Size = new System.Drawing.Size(0, 21);
             this.txtDenghi.TabIndex = 78;
@@ -1247,7 +1246,7 @@
             // 
             this.label44.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label44.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label44.Location = new System.Drawing.Point(0, 445);
+            this.label44.Location = new System.Drawing.Point(0, 501);
             this.label44.Name = "label44";
             this.label44.Size = new System.Drawing.Size(68, 15);
             this.label44.TabIndex = 80;
@@ -1258,7 +1257,7 @@
             // 
             this.label45.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label45.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label45.Location = new System.Drawing.Point(2, 370);
+            this.label45.Location = new System.Drawing.Point(2, 426);
             this.label45.Name = "label45";
             this.label45.Size = new System.Drawing.Size(68, 16);
             this.label45.TabIndex = 79;
@@ -1272,7 +1271,7 @@
             this.richtxtKetluan.BackColor = System.Drawing.Color.White;
             this.richtxtKetluan.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.richtxtKetluan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richtxtKetluan.Location = new System.Drawing.Point(76, 370);
+            this.richtxtKetluan.Location = new System.Drawing.Point(76, 426);
             this.richtxtKetluan.Name = "richtxtKetluan";
             this.richtxtKetluan.Size = new System.Drawing.Size(0, 67);
             this.richtxtKetluan.TabIndex = 77;
@@ -1287,7 +1286,7 @@
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.ScriptErrorsSuppressed = true;
-            this.webBrowser1.Size = new System.Drawing.Size(20, 358);
+            this.webBrowser1.Size = new System.Drawing.Size(20, 414);
             this.webBrowser1.TabIndex = 76;
             // 
             // label11
@@ -1305,9 +1304,9 @@
             this.pnlAttachedFiles.Controls.Add(this.cmdFileAttach);
             this.pnlAttachedFiles.Controls.Add(this.flowAttachedFiles);
             this.pnlAttachedFiles.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlAttachedFiles.Location = new System.Drawing.Point(3, 511);
+            this.pnlAttachedFiles.Location = new System.Drawing.Point(3, 567);
             this.pnlAttachedFiles.Name = "pnlAttachedFiles";
-            this.pnlAttachedFiles.Size = new System.Drawing.Size(614, 60);
+            this.pnlAttachedFiles.Size = new System.Drawing.Size(703, 60);
             this.pnlAttachedFiles.TabIndex = 260;
             // 
             // cmdFileAttach
@@ -1315,7 +1314,7 @@
             this.cmdFileAttach.Dock = System.Windows.Forms.DockStyle.Right;
             this.cmdFileAttach.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdFileAttach.Image = ((System.Drawing.Image)(resources.GetObject("cmdFileAttach.Image")));
-            this.cmdFileAttach.Location = new System.Drawing.Point(525, 0);
+            this.cmdFileAttach.Location = new System.Drawing.Point(614, 0);
             this.cmdFileAttach.Name = "cmdFileAttach";
             this.cmdFileAttach.Size = new System.Drawing.Size(89, 60);
             this.cmdFileAttach.TabIndex = 258;
@@ -1330,7 +1329,7 @@
             this.flowAttachedFiles.Location = new System.Drawing.Point(0, 0);
             this.flowAttachedFiles.Name = "flowAttachedFiles";
             this.flowAttachedFiles.Padding = new System.Windows.Forms.Padding(10);
-            this.flowAttachedFiles.Size = new System.Drawing.Size(614, 60);
+            this.flowAttachedFiles.Size = new System.Drawing.Size(703, 60);
             this.flowAttachedFiles.TabIndex = 257;
             // 
             // uiGroupBox5
@@ -1340,9 +1339,9 @@
             this.uiGroupBox5.Controls.Add(this.txtTongChiPhi);
             this.uiGroupBox5.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.uiGroupBox5.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiGroupBox5.Location = new System.Drawing.Point(0, 574);
+            this.uiGroupBox5.Location = new System.Drawing.Point(0, 630);
             this.uiGroupBox5.Name = "uiGroupBox5";
-            this.uiGroupBox5.Size = new System.Drawing.Size(620, 0);
+            this.uiGroupBox5.Size = new System.Drawing.Size(709, 0);
             this.uiGroupBox5.TabIndex = 3;
             this.uiGroupBox5.Text = "&Thông tin chi phí";
             // 
@@ -1390,9 +1389,9 @@
             this.uiGroupBox3.Controls.Add(this.cmdThemChiDinh);
             this.uiGroupBox3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.uiGroupBox3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiGroupBox3.Location = new System.Drawing.Point(0, 574);
+            this.uiGroupBox3.Location = new System.Drawing.Point(0, 630);
             this.uiGroupBox3.Name = "uiGroupBox3";
-            this.uiGroupBox3.Size = new System.Drawing.Size(620, 82);
+            this.uiGroupBox3.Size = new System.Drawing.Size(709, 82);
             this.uiGroupBox3.TabIndex = 0;
             // 
             // cmdInchung
@@ -1401,7 +1400,7 @@
             this.cmdInchung.Font = new System.Drawing.Font("Arial", 9F);
             this.cmdInchung.Image = ((System.Drawing.Image)(resources.GetObject("cmdInchung.Image")));
             this.cmdInchung.ImageSize = new System.Drawing.Size(20, 20);
-            this.cmdInchung.Location = new System.Drawing.Point(523, 48);
+            this.cmdInchung.Location = new System.Drawing.Point(612, 48);
             this.cmdInchung.Name = "cmdInchung";
             this.cmdInchung.Size = new System.Drawing.Size(91, 28);
             this.cmdInchung.TabIndex = 707;
@@ -1415,7 +1414,7 @@
             this.cmdIntachPhieu.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdIntachPhieu.Image = ((System.Drawing.Image)(resources.GetObject("cmdIntachPhieu.Image")));
             this.cmdIntachPhieu.ImageSize = new System.Drawing.Size(20, 20);
-            this.cmdIntachPhieu.Location = new System.Drawing.Point(426, 48);
+            this.cmdIntachPhieu.Location = new System.Drawing.Point(515, 48);
             this.cmdIntachPhieu.Name = "cmdIntachPhieu";
             this.cmdIntachPhieu.Size = new System.Drawing.Size(91, 28);
             this.cmdIntachPhieu.TabIndex = 708;
@@ -1428,7 +1427,7 @@
             this.cmdPrintAssign.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdPrintAssign.Image = ((System.Drawing.Image)(resources.GetObject("cmdPrintAssign.Image")));
             this.cmdPrintAssign.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdPrintAssign.Location = new System.Drawing.Point(563, 6);
+            this.cmdPrintAssign.Location = new System.Drawing.Point(652, 6);
             this.cmdPrintAssign.Name = "cmdPrintAssign";
             this.cmdPrintAssign.Size = new System.Drawing.Size(10, 28);
             this.cmdPrintAssign.TabIndex = 706;
@@ -1441,7 +1440,7 @@
             // 
             this.chkIntach.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.chkIntach.AutoSize = true;
-            this.chkIntach.Location = new System.Drawing.Point(145, 14);
+            this.chkIntach.Location = new System.Drawing.Point(234, 14);
             this.chkIntach.Name = "chkIntach";
             this.chkIntach.Size = new System.Drawing.Size(69, 19);
             this.chkIntach.TabIndex = 705;
@@ -1454,7 +1453,7 @@
             this.cboServicePrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cboServicePrint.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboServicePrint.FormattingEnabled = true;
-            this.cboServicePrint.Location = new System.Drawing.Point(220, 11);
+            this.cboServicePrint.Location = new System.Drawing.Point(309, 11);
             this.cboServicePrint.Name = "cboServicePrint";
             this.cboServicePrint.Size = new System.Drawing.Size(321, 23);
             this.cboServicePrint.TabIndex = 704;
@@ -1465,7 +1464,7 @@
             this.cmdXoaChiDinh.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdXoaChiDinh.Image = global::VMS.HIS.Ngoaitru.Properties.Resources.trash_full_24;
             this.cmdXoaChiDinh.ImageSize = new System.Drawing.Size(20, 20);
-            this.cmdXoaChiDinh.Location = new System.Drawing.Point(329, 48);
+            this.cmdXoaChiDinh.Location = new System.Drawing.Point(418, 48);
             this.cmdXoaChiDinh.Name = "cmdXoaChiDinh";
             this.cmdXoaChiDinh.Size = new System.Drawing.Size(91, 28);
             this.cmdXoaChiDinh.TabIndex = 702;
@@ -1478,7 +1477,7 @@
             this.cmdSuaChiDinh.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdSuaChiDinh.Image = ((System.Drawing.Image)(resources.GetObject("cmdSuaChiDinh.Image")));
             this.cmdSuaChiDinh.ImageSize = new System.Drawing.Size(20, 20);
-            this.cmdSuaChiDinh.Location = new System.Drawing.Point(232, 48);
+            this.cmdSuaChiDinh.Location = new System.Drawing.Point(321, 48);
             this.cmdSuaChiDinh.Name = "cmdSuaChiDinh";
             this.cmdSuaChiDinh.Size = new System.Drawing.Size(91, 28);
             this.cmdSuaChiDinh.TabIndex = 701;
@@ -1489,9 +1488,9 @@
             // 
             this.cmdThemChiDinh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdThemChiDinh.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdThemChiDinh.Image = global::VMS.HIS.Ngoaitru.Properties.Resources.Add;
+            this.cmdThemChiDinh.Image = global::VMS.HIS.Ngoaitru.Properties.Resources.add_04_32;
             this.cmdThemChiDinh.ImageSize = new System.Drawing.Size(20, 20);
-            this.cmdThemChiDinh.Location = new System.Drawing.Point(135, 48);
+            this.cmdThemChiDinh.Location = new System.Drawing.Point(224, 48);
             this.cmdThemChiDinh.Name = "cmdThemChiDinh";
             this.cmdThemChiDinh.Size = new System.Drawing.Size(91, 28);
             this.cmdThemChiDinh.TabIndex = 700;

@@ -395,6 +395,8 @@ namespace CIS.CoreApp
                     Utility.AutoCompeleteAddress(globalVariables.gv_dtDmucDiachinh);
                 else
                     Utility.AutoCompeleteAddress_New(globalVariables.gv_dtDmucDiachinh);
+                if (globalVariables.dtAutocompleteAddress_New == null)
+                    globalVariables.dtAutocompleteAddress_New = globalVariables.dtAutocompleteAddress.Clone();
                 Utility.SetMsg(statusStrip1.Panels["lblStatus"], "Nạp dữ liệu danh mục nơi KCBBĐ...", false);
                 globalVariables.gv_dtDmucNoiKCBBD = ds.Tables[9];// new Select().From(VDmucNoiKCBBD.Schema).ExecuteDataSet().Tables[0];
                 Utility.SetMsg(statusStrip1.Panels["lblStatus"], "Nạp dữ liệu dịch vụ CLS...", false);
@@ -964,6 +966,7 @@ namespace CIS.CoreApp
         }
         private void frm_MainForm_new_KeyDown(object sender, KeyEventArgs e)
         {
+            DataRow[] arrDrAuto = null;
             if (e.KeyCode == Keys.F12)
             {
                 if (pnlHeader.Height == 0)
@@ -1001,6 +1004,24 @@ namespace CIS.CoreApp
             else if (e.KeyCode == Keys.F10)
             {
                 txtFunction.Focus();
+            }
+            else if (e.KeyCode == Keys.F1)//Bật form tiếp đón
+            {
+                arrDrAuto = dtSysRoles.Select("FK_iFunctionId=248");
+                if (arrDrAuto.Length > 0)
+                    DisplaySingleFunction(arrDrAuto[0]);
+            }
+            else if (e.KeyCode == Keys.F2)//Bật form thăm khám
+            {
+                arrDrAuto = dtSysRoles.Select("FK_iFunctionId=247");
+                if (arrDrAuto.Length > 0)
+                    DisplaySingleFunction(arrDrAuto[0]);
+            }
+            else if (e.KeyCode == Keys.F3)//Bật form thanh toán
+            {
+                arrDrAuto = dtSysRoles.Select("FK_iFunctionId=240");
+                if (arrDrAuto.Length > 0)
+                    DisplaySingleFunction(arrDrAuto[0]);
             }
         }
 

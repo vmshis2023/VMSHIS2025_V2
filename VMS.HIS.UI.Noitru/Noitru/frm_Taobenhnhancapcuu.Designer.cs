@@ -365,6 +365,7 @@ namespace VNS.HIS.UI.NOITRU
             this.txtTrieuChungBD.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtTrieuChungBD.buildShortcut = false;
             this.txtTrieuChungBD.CaseSensitive = false;
+            this.txtTrieuChungBD.cmdDropDown = null;
             this.txtTrieuChungBD.CompareNoID = true;
             this.txtTrieuChungBD.DefaultCode = "-1";
             this.txtTrieuChungBD.DefaultID = "-1";
@@ -383,6 +384,7 @@ namespace VNS.HIS.UI.NOITRU
             this.txtTrieuChungBD.RaiseEventEnter = false;
             this.txtTrieuChungBD.RaiseEventEnterWhenEmpty = false;
             this.txtTrieuChungBD.SelectedIndex = -1;
+            this.txtTrieuChungBD.SetDefaultWhenInit = true;
             this.txtTrieuChungBD.ShowCodeWithValue = false;
             this.txtTrieuChungBD.Size = new System.Drawing.Size(348, 21);
             this.txtTrieuChungBD.splitChar = '@';
@@ -412,6 +414,7 @@ namespace VNS.HIS.UI.NOITRU
             this.txtDantoc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtDantoc.buildShortcut = false;
             this.txtDantoc.CaseSensitive = false;
+            this.txtDantoc.cmdDropDown = null;
             this.txtDantoc.CompareNoID = true;
             this.txtDantoc.DefaultCode = "-1";
             this.txtDantoc.DefaultID = "-1";
@@ -430,6 +433,7 @@ namespace VNS.HIS.UI.NOITRU
             this.txtDantoc.RaiseEventEnter = false;
             this.txtDantoc.RaiseEventEnterWhenEmpty = false;
             this.txtDantoc.SelectedIndex = -1;
+            this.txtDantoc.SetDefaultWhenInit = true;
             this.txtDantoc.ShowCodeWithValue = false;
             this.txtDantoc.Size = new System.Drawing.Size(384, 21);
             this.txtDantoc.splitChar = '@';
@@ -1158,6 +1162,7 @@ namespace VNS.HIS.UI.NOITRU
             this.txtSoKcb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtSoKcb.buildShortcut = false;
             this.txtSoKcb.CaseSensitive = false;
+            this.txtSoKcb.cmdDropDown = null;
             this.txtSoKcb.CompareNoID = true;
             this.txtSoKcb.DefaultCode = "-1";
             this.txtSoKcb.DefaultID = "-1";
@@ -1177,6 +1182,7 @@ namespace VNS.HIS.UI.NOITRU
             this.txtSoKcb.RaiseEventEnter = false;
             this.txtSoKcb.RaiseEventEnterWhenEmpty = false;
             this.txtSoKcb.SelectedIndex = -1;
+            this.txtSoKcb.SetDefaultWhenInit = true;
             this.txtSoKcb.ShowCodeWithValue = false;
             this.txtSoKcb.Size = new System.Drawing.Size(348, 21);
             this.txtSoKcb.splitChar = '@';
@@ -1369,6 +1375,7 @@ namespace VNS.HIS.UI.NOITRU
             this.txtNgheNghiep.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtNgheNghiep.buildShortcut = false;
             this.txtNgheNghiep.CaseSensitive = false;
+            this.txtNgheNghiep.cmdDropDown = null;
             this.txtNgheNghiep.CompareNoID = true;
             this.txtNgheNghiep.DefaultCode = "-1";
             this.txtNgheNghiep.DefaultID = "-1";
@@ -1387,6 +1394,7 @@ namespace VNS.HIS.UI.NOITRU
             this.txtNgheNghiep.RaiseEventEnter = false;
             this.txtNgheNghiep.RaiseEventEnterWhenEmpty = false;
             this.txtNgheNghiep.SelectedIndex = -1;
+            this.txtNgheNghiep.SetDefaultWhenInit = true;
             this.txtNgheNghiep.ShowCodeWithValue = false;
             this.txtNgheNghiep.Size = new System.Drawing.Size(384, 21);
             this.txtNgheNghiep.splitChar = '@';
@@ -1457,7 +1465,7 @@ namespace VNS.HIS.UI.NOITRU
             this.tabPage3.Location = new System.Drawing.Point(4, 24);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(192, 72);
+            this.tabPage3.Size = new System.Drawing.Size(995, 399);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Tạm ứng(F2)";
             // 
@@ -1466,7 +1474,7 @@ namespace VNS.HIS.UI.NOITRU
             this.ucTamung1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucTamung1.Location = new System.Drawing.Point(3, 3);
             this.ucTamung1.Name = "ucTamung1";
-            this.ucTamung1.Size = new System.Drawing.Size(186, 66);
+            this.ucTamung1.Size = new System.Drawing.Size(989, 393);
             this.ucTamung1.TabIndex = 0;
             // 
             // txtNoichuyenden

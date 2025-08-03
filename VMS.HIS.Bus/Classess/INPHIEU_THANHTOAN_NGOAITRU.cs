@@ -1008,7 +1008,7 @@ namespace VNS.HIS.Classes
 
            }
        }
-       public void In_Bangke_CPKCB(long payment_id, bool IsTongHop, byte noitru)
+       public void In_Bangke_CPKCB(long payment_id, bool IsTongHop, byte noitru, byte boqua_cacdichvu_tralai=1)
        {
            try
            {
@@ -1033,7 +1033,18 @@ namespace VNS.HIS.Classes
                log.Trace(exception.Message);
            }
        }
-       void Inbienlai_Dichvu(long payment_id, long id_donthuoc, bool IsTongHop, byte noitru, byte boqua_cacdichvu_tralai=100)
+        void AddLien(DataTable source, string ma_lien,string ten_lien, DataTable target)
+        {
+            foreach (DataRow row in source.Rows)
+            {
+                DataRow newRow = target.NewRow();
+                newRow.ItemArray = row.ItemArray.Clone() as object[];
+                newRow["ma_lien"] = ma_lien;
+                newRow["ten_lien"] = ten_lien;
+                target.Rows.Add(newRow);
+            }
+        }
+        void Inbienlai_Dichvu(long payment_id, long id_donthuoc, bool IsTongHop, byte noitru, byte boqua_cacdichvu_tralai=100)
        {
            try
            {
@@ -1041,17 +1052,50 @@ namespace VNS.HIS.Classes
                if (IsTongHop) objPayment.IdThanhtoan = -1;
                ///lấy thông tin vào phiếu thu
                DataTable mDtReportPhieuThu = new KCB_THANHTOAN().LaythongtininbienlaiDichvu(objPayment, id_donthuoc, noitru, boqua_cacdichvu_tralai);
-               THU_VIEN_CHUNG.Sapxepthutuin(ref mDtReportPhieuThu, false);
-               mDtReportPhieuThu.DefaultView.Sort = "stt_hthi_khoaphong,stt_in,stt_hthi_loaidichvu ,stt_hthi_dichvu,stt_hthi_chitiet,ten_chitietdichvu";
+                Utility.AddColums2DataTable(mDtReportPhieuThu, new List<string>() { "ma_lien", "ten_lien" }, new List<Type>() { typeof(string), typeof(string) });
+                DataTable dtResult = mDtReportPhieuThu.Clone();
+                //Xử lý duplicate dữ liệu dựa theo hình thức thanh toán để tạo các liên
+                List<string> lstPttt = mDtReportPhieuThu.AsEnumerable().Select(c=>Utility.sDbnull(c["ma_pttt"])).ToList<string>();
+                List<string> lstPhanbo = THU_VIEN_CHUNG.Laygiatrithamsohethong("THANHTOAN_PTTT_BATBUOCPHANBO", false).Split(',').ToList<string>();
+                if (lstPttt.Contains("PB"))//4 liên
+                {
+                    DmucChung objPttt = new Select().From(DmucChung.Schema).Where(DmucChung.Columns.Loai).IsEqualTo("PHUONGTHUCTHANHTOAN").And(DmucChung.Columns.Ma).IsEqualTo("PB")
+                                            .ExecuteSingle<DmucChung>();
+                    //Thông tin các liên lưu trong mô tả thêm
+                    List<string> lstLien = objPttt.MotaThem.Split(';').ToList<string>();//Cấu trúc malien:tenlien;malien1:tenlien1;....
+                    foreach(string lien in lstLien)
+                    {
+                        string ma_lien = lien.Split('@')[0];
+                        string ten_lien = lien.Split('@')[1];
+                        AddLien(mDtReportPhieuThu, ma_lien, ten_lien, dtResult);
+                    }    
+
+                }   
+                else//3 liên
+                {
+                    DmucChung objPttt = new Select().From(DmucChung.Schema).Where(DmucChung.Columns.Loai).IsEqualTo("PHUONGTHUCTHANHTOAN").And(DmucChung.Columns.Ma).IsEqualTo(lstPttt[0])
+                                                               .ExecuteSingle<DmucChung>();
+                    //Thông tin các liên lưu trong mô tả thêm
+                    List<string> lstLien = objPttt.MotaThem.Split(';').ToList<string>();//Cấu trúc malien:tenlien;malien1:tenlien1;....
+                    foreach (string lien in lstLien)
+                    {
+                        string ma_lien = lien.Split('@')[0];
+                        string ten_lien = lien.Split('@')[1];
+                        AddLien(mDtReportPhieuThu, ma_lien, ten_lien, dtResult);
+                    }
+                }
+                //dtResult đã chứa thông tin của 4 liên
+                THU_VIEN_CHUNG.Sapxepthutuin(ref dtResult, false);
+                dtResult.DefaultView.Sort = "ma_lien,stt_hthi_khoaphong,stt_in,stt_hthi_loaidichvu ,stt_hthi_dichvu,stt_hthi_chitiet,ten_chitietdichvu";
 
                THU_VIEN_CHUNG.CreateXML(mDtReportPhieuThu, Application.StartupPath + @"\Xml4Reports\Thanhtoan_InBienLai_DV.XML");
-               if (mDtReportPhieuThu.Rows.Count <= 0)
+               if (dtResult.Rows.Count <= 0)
                {
                    Utility.ShowMsg("Không tìm thấy dữ liệu in phiếu (Kcb_Thanhtoan_Laythongtin_Inbienlai_Dv_2023)", "Thông báo");
                    return;
                }
                // Utility.CreateBarcodeData(ref mDtReportPhieuThu, objPayment.MaLuotkham);
-               INPHIEU_DICHVU(mDtReportPhieuThu, objPayment, PropertyLib._MayInProperties.CoGiayInBienlai == Papersize.A4 ? "A4" : "A5");
+               INPHIEU_DICHVU(dtResult, objPayment, PropertyLib._MayInProperties.CoGiayInBienlai == Papersize.A4 ? "A4" : "A5");
 
            }
            catch (Exception exception)

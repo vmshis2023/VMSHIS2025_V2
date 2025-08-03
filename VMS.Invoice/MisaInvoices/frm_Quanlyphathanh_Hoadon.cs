@@ -795,10 +795,14 @@ namespace VMS.Invoice
                             Utility.ShowMsg("Chứng từ này đã được phát hành HĐĐT, vui lòng kiểm tra lại");
                             return;
                         }
-                        if (!Utility.Bool2Bool(objCheck.TthaiXuatHddt) && Utility.Bool2Bool(objCheck.TthaiDangphathanh))
+                        string used_by = Utility.GetValueFromGridColumn(grdPayment, "used_by");
+                        if (!Utility.Bool2Bool(objCheck.TthaiXuatHddt) && Utility.Bool2Bool(objCheck.TthaiDangphathanh) )
                         {
-                            Utility.ShowMsg(string.Format("Chứng từ với Id={0} đang được sử dụng để phát hành Hóa đơn điện tử bởi người dùng {1} nên bạn không thể phát hành tiếp(tránh 1 chứng từ 2 hóa đơn trên Misa).\nVui lòng liên hệ người dùng {2} để phối hợp", str_IdThanhtoan, Utility.sDbnull(dtCheck.Rows[0]["used_by"]), Utility.sDbnull(dtCheck.Rows[0]["used_by"])));
-                            return;
+                            if (globalVariables.UserName != used_by && used_by!="")
+                            {
+                                Utility.ShowMsg(string.Format("Chứng từ với Id={0} đang được sử dụng để phát hành Hóa đơn điện tử bởi người dùng {1} nên bạn không thể phát hành tiếp(tránh 1 chứng từ 2 hóa đơn trên Misa).\nVui lòng liên hệ người dùng {2} để phối hợp", str_IdThanhtoan, used_by, used_by));
+                                return;
+                            }
                         }
                     }
                     if (num > 0)
@@ -2451,12 +2455,21 @@ namespace VMS.Invoice
                     }
                     else
                     {
-                       
-                        if (Utility.Bool2Bool(objCheck.TthaiDangphathanh))
+                        string used_by = Utility.GetValueFromGridColumn(grdPayment, "used_by");
+                        if (!Utility.Bool2Bool(objCheck.TthaiXuatHddt) && Utility.Bool2Bool(objCheck.TthaiDangphathanh))
                         {
-                            Utility.ShowMsg(string.Format("Chứng từ với Id={0} đang được sử dụng để phát hành Hóa đơn điện tử bởi người dùng {1} nên bạn không thể phát hành tiếp(tránh 1 chứng từ 2 hóa đơn trên Misa).\nVui lòng liên hệ người dùng {2} để phối hợp", str_IdThanhtoan, Utility.sDbnull(dtCheck.Rows[0]["used_by"]), Utility.sDbnull(dtCheck.Rows[0]["used_by"])));
-                            return;
+                            if (globalVariables.UserName != used_by && used_by != "")
+                            {
+                                Utility.ShowMsg(string.Format("Chứng từ với Id={0} đang được sử dụng để phát hành Hóa đơn điện tử bởi người dùng {1} nên bạn không thể phát hành tiếp(tránh 1 chứng từ 2 hóa đơn trên Misa).\nVui lòng liên hệ người dùng {2} để phối hợp", str_IdThanhtoan, used_by, used_by));
+                                return;
+                            }
                         }
+
+                        //if (Utility.Bool2Bool(objCheck.TthaiDangphathanh))
+                        //{
+                        //    Utility.ShowMsg(string.Format("Chứng từ với Id={0} đang được sử dụng để phát hành Hóa đơn điện tử bởi người dùng {1} nên bạn không thể phát hành tiếp(tránh 1 chứng từ 2 hóa đơn trên Misa).\nVui lòng liên hệ người dùng {2} để phối hợp", str_IdThanhtoan, Utility.sDbnull(dtCheck.Rows[0]["used_by"]), Utility.sDbnull(dtCheck.Rows[0]["used_by"])));
+                        //    return;
+                        //}
                     }
                     if (num > 0)
                     {

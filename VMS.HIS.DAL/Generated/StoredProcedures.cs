@@ -4640,8 +4640,8 @@ namespace VMS.HIS.DAL{
         	
             sp.Command.AddParameter("@id_ba", idba, DbType.Int64, 0, 19);
         	
-            sp.Command.AddParameter("@ma_ba", maba, DbType.String, null, null);
-        	
+            sp.Command.AddOutputParameter("@ma_ba", DbType.String, null, null);
+            
             sp.Command.AddParameter("@id_benhnhan", idbenhnhan, DbType.Int64, 0, 19);
         	
             sp.Command.AddParameter("@ma_luotkham", maluotkham, DbType.String, null, null);
@@ -7742,6 +7742,24 @@ namespace VMS.HIS.DAL{
         }
         
         /// <summary>
+        /// Creates an object wrapper for the kcb_thanhtoan_ghino_Laydanhsach Procedure
+        /// </summary>
+        public static StoredProcedure KcbThanhtoanGhinoLaydanhsach(DateTime? tungay, DateTime? denngay, long? idbenhnhan, string maluotkham)
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("kcb_thanhtoan_ghino_Laydanhsach", DataService.GetInstance("ORM"), "dbo");
+        	
+            sp.Command.AddParameter("@tungay", tungay, DbType.DateTime, null, null);
+        	
+            sp.Command.AddParameter("@denngay", denngay, DbType.DateTime, null, null);
+        	
+            sp.Command.AddParameter("@id_benhnhan", idbenhnhan, DbType.Int64, 0, 19);
+        	
+            sp.Command.AddParameter("@maluotkham", maluotkham, DbType.String, null, null);
+        	
+            return sp;
+        }
+        
+        /// <summary>
         /// Creates an object wrapper for the Kcb_Thanhtoan_Huychot Procedure
         /// </summary>
         public static StoredProcedure KcbThanhtoanHuychot(string ngaychot, string ngaythanhtoan, string UserName)
@@ -8315,6 +8333,18 @@ namespace VMS.HIS.DAL{
             sp.Command.AddParameter("@NGUOI_SUA", NGUOISUA, DbType.String, null, null);
         	
             sp.Command.AddParameter("@NGAY_SUA", NGAYSUA, DbType.DateTime, null, null);
+        	
+            return sp;
+        }
+        
+        /// <summary>
+        /// Creates an object wrapper for the kcb_thuchiendonthuoc_laychitietthuoc_theodon Procedure
+        /// </summary>
+        public static StoredProcedure KcbThuchiendonthuocLaychitietthuocTheodon(long? iddonthuoc)
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("kcb_thuchiendonthuoc_laychitietthuoc_theodon", DataService.GetInstance("ORM"), "dbo");
+        	
+            sp.Command.AddParameter("@id_donthuoc", iddonthuoc, DbType.Int64, 0, 19);
         	
             return sp;
         }
@@ -10848,6 +10878,26 @@ namespace VMS.HIS.DAL{
         }
         
         /// <summary>
+        /// Creates an object wrapper for the Noitru_Tonghop_Chiphi_Ravien_Test Procedure
+        /// </summary>
+        public static StoredProcedure NoitruTonghopChiphiRavienTest(string maluotkham, int? idbenhnhan, byte? laycadulieungoaitruchuathanhtoan, string idKhoanoitru, string idphieudieutri)
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("Noitru_Tonghop_Chiphi_Ravien_Test", DataService.GetInstance("ORM"), "dbo");
+        	
+            sp.Command.AddParameter("@ma_luotkham", maluotkham, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@id_benhnhan", idbenhnhan, DbType.Int32, 0, 10);
+        	
+            sp.Command.AddParameter("@layca_dulieu_ngoaitru_chuathanhtoan", laycadulieungoaitruchuathanhtoan, DbType.Byte, 0, 3);
+        	
+            sp.Command.AddParameter("@idKhoanoitru", idKhoanoitru, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@idphieudieutri", idphieudieutri, DbType.String, null, null);
+        	
+            return sp;
+        }
+        
+        /// <summary>
         /// Creates an object wrapper for the noitru_xemlichsunamgiuong Procedure
         /// </summary>
         public static StoredProcedure NoitruXemlichsunamgiuong(int? idkhoanoitru, int? idbuong, int? idgiuong)
@@ -12168,7 +12218,7 @@ namespace VMS.HIS.DAL{
         /// <summary>
         /// Creates an object wrapper for the sp_KCB_Capnhat_ChitietDonthuoc Procedure
         /// </summary>
-        public static StoredProcedure SpKcbCapnhatChitietDonthuoc(long? idchitietdonthuoc, decimal? soluong, decimal? sang, decimal? trua, decimal? chieu, decimal? toi, string motathem, short? sttin, DateTime? ngaysua, string nguoisua, string ipmaysua, string tenmaysua)
+        public static StoredProcedure SpKcbCapnhatChitietDonthuoc(long? idchitietdonthuoc, decimal? soluong, string sang, string trua, string chieu, string toi, string motathem, short? sttin, DateTime? ngaysua, string nguoisua, string ipmaysua, string tenmaysua)
         {
             SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("sp_KCB_Capnhat_ChitietDonthuoc", DataService.GetInstance("ORM"), "dbo");
         	
@@ -12176,13 +12226,13 @@ namespace VMS.HIS.DAL{
         	
             sp.Command.AddParameter("@so_luong", soluong, DbType.Decimal, 2, 10);
         	
-            sp.Command.AddParameter("@sang", sang, DbType.Decimal, 2, 10);
+            sp.Command.AddParameter("@sang", sang, DbType.String, null, null);
         	
-            sp.Command.AddParameter("@trua", trua, DbType.Decimal, 2, 10);
+            sp.Command.AddParameter("@trua", trua, DbType.String, null, null);
         	
-            sp.Command.AddParameter("@chieu", chieu, DbType.Decimal, 2, 10);
+            sp.Command.AddParameter("@chieu", chieu, DbType.String, null, null);
         	
-            sp.Command.AddParameter("@toi", toi, DbType.Decimal, 2, 10);
+            sp.Command.AddParameter("@toi", toi, DbType.String, null, null);
         	
             sp.Command.AddParameter("@mota_them", motathem, DbType.String, null, null);
         	
@@ -13682,7 +13732,7 @@ namespace VMS.HIS.DAL{
         /// <summary>
         /// Creates an object wrapper for the sp_KCB_Themmoi_ChitietDonthuoc Procedure
         /// </summary>
-        public static StoredProcedure SpKcbThemmoiChitietDonthuoc(long? idchitietdonthuoc, long? iddonthuoc, long? iddonthuocchuyengoi, long? idbenhnhan, string maluotkham, long? idkham, int? idkho, int? idthuoc, DateTime? ngayhethan, decimal? soluong, decimal? sluongsua, decimal? sluonglinh, decimal? sang, decimal? trua, decimal? chieu, decimal? toi, decimal? dongia, long? idthuockho, DateTime? ngaynhap, decimal? gianhap, decimal? giaban, decimal? giabhyt, string solo, decimal? vat, string manhacungcap, decimal? phuthu, decimal? phuthudungtuyen, decimal? phuthutraituyen, string motathem, int? soluonghuy, byte? trangthaihuy, string nguoihuy, DateTime? ngayhuy, byte? tutuc, byte? trangthai, byte? trangthaitonghop, DateTime? ngayxacnhan, byte? trangthaibhyt, short? sttin, string madoituonggia, decimal? ptrambhytgoc, decimal? ptrambhyt, decimal? bhytchitra, decimal? bnhanchitra, string madoituongkcb, int? idthanhtoan, byte? trangthaithanhtoan, DateTime? ngaythanhtoan, string cachdung, string chidanthem, string donvitinh, string solandung, string soluongdung, byte? trangthaichuyen, DateTime? ngaytao, string nguoitao, decimal? tilechietkhau, decimal? tienchietkhau, string kieuchietkhau, int? idgoi, byte? tronggoi, string kieubiendong, byte? nguonthanhtoan, string ipmaytao, string tenmaytao, byte? dadung, string lydotiemchung, short? nguoitiem, string vitritiem, byte? muithu, DateTime? ngayhenmuiketiep, string phanungsautiem, string xutri, string ketluannguyennhan, string ketqua, DateTime? ngaysudung, string sodky, string soqdinhthau, DateTime? ngaykedon, long? idthe, decimal? tylett, int? iddangky, byte? bhytnguonkhac, decimal? bhytgiatyle, decimal? bnttt, decimal? bncct)
+        public static StoredProcedure SpKcbThemmoiChitietDonthuoc(long? idchitietdonthuoc, long? iddonthuoc, long? iddonthuocchuyengoi, long? idbenhnhan, string maluotkham, long? idkham, int? idkho, int? idthuoc, DateTime? ngayhethan, decimal? soluong, decimal? sluongsua, decimal? sluonglinh, string sang, string trua, string chieu, string toi, decimal? dongia, long? idthuockho, DateTime? ngaynhap, decimal? gianhap, decimal? giaban, decimal? giabhyt, string solo, decimal? vat, string manhacungcap, decimal? phuthu, decimal? phuthudungtuyen, decimal? phuthutraituyen, string motathem, int? soluonghuy, byte? trangthaihuy, string nguoihuy, DateTime? ngayhuy, byte? tutuc, byte? trangthai, byte? trangthaitonghop, DateTime? ngayxacnhan, byte? trangthaibhyt, short? sttin, string madoituonggia, decimal? ptrambhytgoc, decimal? ptrambhyt, decimal? bhytchitra, decimal? bnhanchitra, string madoituongkcb, int? idthanhtoan, byte? trangthaithanhtoan, DateTime? ngaythanhtoan, string cachdung, string chidanthem, string donvitinh, string solandung, string soluongdung, byte? trangthaichuyen, DateTime? ngaytao, string nguoitao, decimal? tilechietkhau, decimal? tienchietkhau, string kieuchietkhau, int? idgoi, byte? tronggoi, string kieubiendong, byte? nguonthanhtoan, string ipmaytao, string tenmaytao, byte? dadung, string lydotiemchung, short? nguoitiem, string vitritiem, byte? muithu, DateTime? ngayhenmuiketiep, string phanungsautiem, string xutri, string ketluannguyennhan, string ketqua, DateTime? ngaysudung, string sodky, string soqdinhthau, DateTime? ngaykedon, long? idthe, decimal? tylett, int? iddangky, byte? bhytnguonkhac, decimal? bhytgiatyle, decimal? bnttt, decimal? bncct)
         {
             SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("sp_KCB_Themmoi_ChitietDonthuoc", DataService.GetInstance("ORM"), "dbo");
         	
@@ -13710,13 +13760,13 @@ namespace VMS.HIS.DAL{
         	
             sp.Command.AddParameter("@sluong_linh", sluonglinh, DbType.Decimal, 2, 10);
         	
-            sp.Command.AddParameter("@sang", sang, DbType.Decimal, 2, 10);
+            sp.Command.AddParameter("@sang", sang, DbType.String, null, null);
         	
-            sp.Command.AddParameter("@trua", trua, DbType.Decimal, 2, 10);
+            sp.Command.AddParameter("@trua", trua, DbType.String, null, null);
         	
-            sp.Command.AddParameter("@chieu", chieu, DbType.Decimal, 2, 10);
+            sp.Command.AddParameter("@chieu", chieu, DbType.String, null, null);
         	
-            sp.Command.AddParameter("@toi", toi, DbType.Decimal, 2, 10);
+            sp.Command.AddParameter("@toi", toi, DbType.String, null, null);
         	
             sp.Command.AddParameter("@don_gia", dongia, DbType.Decimal, 3, 18);
         	
@@ -14810,6 +14860,34 @@ namespace VMS.HIS.DAL{
         }
         
         /// <summary>
+        /// Creates an object wrapper for the sp_update_trangthai_ghino Procedure
+        /// </summary>
+        public static StoredProcedure SpUpdateTrangthaiGhino(byte? idloaithanhtoan, long? idtamthu, DateTime? ngaytamthu, byte? kieuthanhtoan, long? idphieu, long? idphieuchitiet, DateTime? ngaytao, string nguoitao, byte? Huytamthu)
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("sp_update_trangthai_ghino", DataService.GetInstance("ORM"), "dbo");
+        	
+            sp.Command.AddParameter("@id_loaithanhtoan", idloaithanhtoan, DbType.Byte, 0, 3);
+        	
+            sp.Command.AddParameter("@id_tamthu", idtamthu, DbType.Int64, 0, 19);
+        	
+            sp.Command.AddParameter("@ngay_tamthu", ngaytamthu, DbType.DateTime, null, null);
+        	
+            sp.Command.AddParameter("@kieu_thanhtoan", kieuthanhtoan, DbType.Byte, 0, 3);
+        	
+            sp.Command.AddParameter("@id_phieu", idphieu, DbType.Int64, 0, 19);
+        	
+            sp.Command.AddParameter("@id_phieu_chitiet", idphieuchitiet, DbType.Int64, 0, 19);
+        	
+            sp.Command.AddParameter("@ngay_tao", ngaytao, DbType.DateTime, null, null);
+        	
+            sp.Command.AddParameter("@nguoi_tao", nguoitao, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@Huy_tamthu", Huytamthu, DbType.Byte, 0, 3);
+        	
+            return sp;
+        }
+        
+        /// <summary>
         /// Creates an object wrapper for the sp_update_trangthaitamthu Procedure
         /// </summary>
         public static StoredProcedure SpUpdateTrangthaitamthu(byte? idloaithanhtoan, long? idtamthu, DateTime? ngaytamthu, byte? kieuthanhtoan, string kieuchietkhau, decimal? tilechietkhau, decimal? tienchietkhau, long? idphieu, long? idphieuchitiet, DateTime? ngaytao, string nguoitao, byte? Huytamthu)
@@ -15521,6 +15599,18 @@ namespace VMS.HIS.DAL{
             sp.Command.AddParameter("@tinhtrang", tinhtrang, DbType.Int32, 0, 10);
         	
             sp.Command.AddParameter("@ghichu", ghichu, DbType.String, null, null);
+        	
+            return sp;
+        }
+        
+        /// <summary>
+        /// Creates an object wrapper for the thanhtoan_ghino_taoma Procedure
+        /// </summary>
+        public static StoredProcedure ThanhtoanGhinoTaoma(DateTime? ngayghino)
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("thanhtoan_ghino_taoma", DataService.GetInstance("ORM"), "dbo");
+        	
+            sp.Command.AddParameter("@ngay_ghino", ngayghino, DbType.DateTime, null, null);
         	
             return sp;
         }

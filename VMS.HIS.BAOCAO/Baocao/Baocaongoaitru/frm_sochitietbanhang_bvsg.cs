@@ -238,7 +238,10 @@ namespace VNS.HIS.UI.Baocao
                 string manhanvien = Utility.sDbnull(cboNhanvien.SelectedValue, "-1");
                 byte noitrungoaitru = Utility.ByteDbnull(cboLoaiDieutri.SelectedValue, 100);
                 string khoa = Utility.sDbnull(cboKhoa.SelectedValue, -1);
-                _dtData = BAOCAO_NGOAITRU.BaocaoSochitietbanhang_bvsg(tungay, dengay, maDoituongKCB, Utility.sDbnull(txtMaluotkham.Text),Utility.Int64Dbnull(txtIdbenhnhan.Text,-1), Utility.sDbnull(txtTenBN.Text), manhanvien, noitrungoaitru, khoa, Utility.sDbnull(cboPttt.SelectedValue, "-1"), Utility.sDbnull(cboNganhang.SelectedValue, "-1"),id_loaithanhtoan,lstDichvu, Utility.Bool2byte(optTonghop.Checked));
+                byte loaibaocao = 1;
+                if (optChitiet.Checked) loaibaocao = 0;
+                else if (optChitiettheomathang.Checked) loaibaocao = 2;
+                _dtData = BAOCAO_NGOAITRU.BaocaoSochitietbanhang_bvsg(tungay, dengay, maDoituongKCB, Utility.sDbnull(txtMaluotkham.Text),Utility.Int64Dbnull(txtIdbenhnhan.Text,-1), Utility.sDbnull(txtTenBN.Text), manhanvien, noitrungoaitru, khoa, Utility.sDbnull(cboPttt.SelectedValue, "-1"), Utility.sDbnull(cboNganhang.SelectedValue, "-1"),id_loaithanhtoan,lstDichvu,loaibaocao );
                 if (optTonghop.Checked)
                     THU_VIEN_CHUNG.CreateXML(_dtData, "baocao_sochitietbanhang_tonghop.xml");
                     else
@@ -261,10 +264,12 @@ namespace VNS.HIS.UI.Baocao
                                                  );
                 if (optTonghop.Checked)
                     noitru_inphieu.InPhieu(_dtData, DateTime.Now, dieukientimkiem, true, "baocao_sochitietbanhang_tonghop");
-                else
+                else if (optChitiet.Checked)
                     noitru_inphieu.InPhieu(_dtData, DateTime.Now, dieukientimkiem, true, "baocao_sochitietbanhang");
+                else if (optChitiettheomathang.Checked)
+                    noitru_inphieu.InPhieu(_dtData, DateTime.Now, dieukientimkiem, true, "baocao_sochitietbanhang_theomathang");
                 //Xuất thẳng ra excel do quá nhiều cột
-               // XuatExcel();
+                // XuatExcel();
             }
             catch (Exception ex)
             {

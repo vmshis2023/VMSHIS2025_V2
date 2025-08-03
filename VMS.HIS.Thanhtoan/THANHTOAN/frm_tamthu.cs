@@ -626,11 +626,13 @@ namespace VNS.HIS.UI.THANHTOAN
                         return;
                     }
                     ActionResult actionResult = ActionResult.UNKNOW;
-                    if (THU_VIEN_CHUNG.Laygiatrithamsohethong("THANHTOAN_TAMUNG_TAMTHU_DVU", "0", true) == "1")
+                    //1= tạm ứng tạm thu;2= tạm thu như phiếu thanh toán;3= ghi nợ không cần vào các báo cáo doanh thu
+                    string THANHTOAN_TAMUNG_TAMTHU_DVU = THU_VIEN_CHUNG.Laygiatrithamsohethong("THANHTOAN_TAMUNG_TAMTHU_DVU", "0", true);
+                    if (THANHTOAN_TAMUNG_TAMTHU_DVU == "1")
                     {
                         actionResult = TamungTamthu(lstItems);
                     }
-                    else//Dùng phương pháp tạo bản ghi thanh toán và thực hiện kết chuyển
+                    else if (THANHTOAN_TAMUNG_TAMTHU_DVU == "2")//Dùng phương pháp tạo bản ghi thanh toán và thực hiện kết chuyển
                     {
                         actionResult= _THANHTOAN.TamthuChiphiDvuKcb(v_objPayment, objLuotkham,
                             lstItems, lstChietkhau, ref v_Payment_ID, IdHdonLog,
@@ -638,6 +640,18 @@ namespace VNS.HIS.UI.THANHTOAN
                             THU_VIEN_CHUNG.Laygiatrithamsohethong("KCB_THANHTOAN_SUDUNGHOADONDO", "0", false) == "1", bo_ckchitiet, ma_uudai,
                             ref ttbnChitrathucsu, ref ErrMsg);
                     }
+                    else//Ghi nợ
+                    {
+                        KcbThanhtoanGhino ghino = new KcbThanhtoanGhino();
+                        ghino.IdBenhnhan = objLuotkham.IdBenhnhan;
+                        ghino.MaLuotkham = objLuotkham.MaLuotkham;
+                        ghino.IdNguoiGhino = globalVariables.gv_intIDNhanvien;
+                        ghino.NgayTao = globalVariables.SysDate;
+                        ghino.NguoiTao = globalVariables.UserName;
+                        ghino.SoTien = v_objPayment.TongTien;
+                        actionResult = _THANHTOAN.Ghino(ghino, objLuotkham,
+                            lstItems,  ref v_Payment_ID, ref ErrMsg);
+                    }    
                     bool IN_HOADON = true;
                     switch (actionResult)
                     {

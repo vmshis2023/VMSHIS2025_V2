@@ -597,6 +597,18 @@ namespace VMS.HIS.DAL{
                 
                 schema.Columns.Add(colvarChuKy);
                 
+                TableSchema.TableColumn colvarHinhanh = new TableSchema.TableColumn(schema);
+                colvarHinhanh.ColumnName = "hinhanh";
+                colvarHinhanh.DataType = DbType.Binary;
+                colvarHinhanh.MaxLength = 2147483647;
+                colvarHinhanh.AutoIncrement = false;
+                colvarHinhanh.IsNullable = true;
+                colvarHinhanh.IsPrimaryKey = false;
+                colvarHinhanh.IsForeignKey = false;
+                colvarHinhanh.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarHinhanh);
+                
                 TableSchema.TableColumn colvarLaTruongkhoa = new TableSchema.TableColumn(schema);
                 colvarLaTruongkhoa.ColumnName = "la_truongkhoa";
                 colvarLaTruongkhoa.DataType = DbType.Byte;
@@ -1361,6 +1373,20 @@ namespace VMS.HIS.DAL{
             }
         }
 	      
+        [XmlAttribute("Hinhanh")]
+        [Bindable(true)]
+        public byte[] Hinhanh 
+	    {
+		    get
+		    {
+			    return GetColumnValue<byte[]>("hinhanh");
+		    }
+            set 
+		    {
+			    SetColumnValue("hinhanh", value);
+            }
+        }
+	      
         [XmlAttribute("LaTruongkhoa")]
         [Bindable(true)]
         public byte? LaTruongkhoa 
@@ -1555,6 +1581,8 @@ namespace VMS.HIS.DAL{
             public static string DienThoai = @"dien_thoai";
             
             public static string ChuKy = @"chu_ky";
+            
+            public static string Hinhanh = @"hinhanh";
             
             public static string LaTruongkhoa = @"la_truongkhoa";
             

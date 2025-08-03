@@ -244,6 +244,7 @@ namespace VNS.HIS.UI.NOITRU
                     {
                         txtChandoanbandau.Text = Utility.sDbnull(objLuotkham.TrieuChung);
                     }
+                    txt_bacsidieutri.SetId(objLuotkham.IdBsDieutrinoitruChinh);
                     txtNguoiLienhe.Text = objLuotkham.NguoiLienhe;
                     txtSDTLienhe.Text = objLuotkham.DienthoaiLienhe;
                     txtDiachiLienhe.Text = objLuotkham.DiachiLienhe;
@@ -649,6 +650,7 @@ namespace VNS.HIS.UI.NOITRU
                                       DmucNhanvien.Columns.MaNhanvien,
                                       DmucNhanvien.Columns.TenNhanvien
                                   });
+                txt_bacsidieutri.Init(txtBacsi.AutoCompleteSource, txtBacsi.defaultItem);
                 if (id_bskham > 0)
                 {
                     txtBacsi.SetId(id_bskham);
@@ -908,6 +910,7 @@ namespace VNS.HIS.UI.NOITRU
                 //    : Utility.sDbnull(txtSoBenhAn.Text, "-1");
                 //if (Utility.AcceptQuestion("Bạn có muốn nhập viện cho bệnh nhân này không","Thông báo nhập viện",true))
                 //{
+                objLuotkham.IdBsDieutrinoitruChinh = Utility.Int16Dbnull(txt_bacsidieutri.MyID);
                 objLuotkham.IdBacsiNhapvien = Utility.Int16Dbnull(txtBacsi.MyID);
                 objLuotkham.IdKhoanoitru = Utility.Int16Dbnull(txtKhoanoitru.MyID, -1);
                 objLuotkham.NgayNhapvien = dtNgayNhapVien.Value;

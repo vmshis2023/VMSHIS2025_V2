@@ -839,7 +839,7 @@ namespace VNS.HIS.UI.NOITRU
         void ShowHideMienGiam()
         {
             bool MIENGIAM_CHOPHEPTHUCHIEN_TONGHOPCHIPHI_KCB = THU_VIEN_CHUNG.Laygiatrithamsohethong("MIENGIAM_CHOPHEPTHUCHIEN_TONGHOPCHIPHI_KCB","1",true)=="1";
-            if(MIENGIAM_CHOPHEPTHUCHIEN_TONGHOPCHIPHI_KCB)
+            if(!MIENGIAM_CHOPHEPTHUCHIEN_TONGHOPCHIPHI_KCB)
             {
                 pnlMienGiam.Height = 0;
                 grdThongTinChuaThanhToan.RootTable.Columns["tile_chietkhau"].Visible = false;

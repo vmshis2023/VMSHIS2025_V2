@@ -149,25 +149,25 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.cmdThoat});
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(1008, 31);
+            this.toolStrip.Size = new System.Drawing.Size(1008, 39);
             this.toolStrip.TabIndex = 9;
             this.toolStrip.Text = "toolStrip1";
             // 
             // cmdThemMoi
             // 
             this.cmdThemMoi.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.cmdThemMoi.Image = ((System.Drawing.Image)(resources.GetObject("cmdThemMoi.Image")));
+            this.cmdThemMoi.Image = global::VMS.HIS.Duoc.Properties.Resources.add_04_32;
             this.cmdThemMoi.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.cmdThemMoi.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdThemMoi.Name = "cmdThemMoi";
-            this.cmdThemMoi.Size = new System.Drawing.Size(90, 28);
+            this.cmdThemMoi.Size = new System.Drawing.Size(98, 36);
             this.cmdThemMoi.Text = "&Thêm mới";
             this.cmdThemMoi.Click += new System.EventHandler(this.cmdThemMoi_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
             // 
             // cmdSua
             // 
@@ -176,14 +176,14 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.cmdSua.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.cmdSua.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdSua.Name = "cmdSua";
-            this.cmdSua.Size = new System.Drawing.Size(115, 28);
+            this.cmdSua.Size = new System.Drawing.Size(115, 36);
             this.cmdSua.Text = "&Sửa thông tin ";
             this.cmdSua.Click += new System.EventHandler(this.cmdSua_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 39);
             // 
             // cmdXoa
             // 
@@ -192,17 +192,17 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.cmdXoa.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.cmdXoa.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdXoa.Name = "cmdXoa";
-            this.cmdXoa.Size = new System.Drawing.Size(114, 28);
+            this.cmdXoa.Size = new System.Drawing.Size(114, 36);
             this.cmdXoa.Text = "&Xóa thông tin ";
             this.cmdXoa.Click += new System.EventHandler(this.cmdXoa_Click);
             // 
             // cmdThoat
             // 
-            this.cmdThoat.Image = ((System.Drawing.Image)(resources.GetObject("cmdThoat.Image")));
+            this.cmdThoat.Image = global::VMS.HIS.Duoc.Properties.Resources.close_24;
             this.cmdThoat.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.cmdThoat.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdThoat.Name = "cmdThoat";
-            this.cmdThoat.Size = new System.Drawing.Size(90, 28);
+            this.cmdThoat.Size = new System.Drawing.Size(90, 36);
             this.cmdThoat.Text = "&Thoát(Esc)";
             this.cmdThoat.Click += new System.EventHandler(this.cmdThoat_Click);
             // 
@@ -255,9 +255,9 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             // 
             this.grptuongtac.Controls.Add(this.uiTab1);
             this.grptuongtac.Dock = System.Windows.Forms.DockStyle.Right;
-            this.grptuongtac.Location = new System.Drawing.Point(454, 31);
+            this.grptuongtac.Location = new System.Drawing.Point(454, 39);
             this.grptuongtac.Name = "grptuongtac";
-            this.grptuongtac.Size = new System.Drawing.Size(554, 671);
+            this.grptuongtac.Size = new System.Drawing.Size(554, 663);
             this.grptuongtac.TabIndex = 13;
             this.grptuongtac.Text = "Thông tin tương tác";
             this.grptuongtac.Visible = false;
@@ -267,7 +267,7 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.uiTab1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiTab1.Location = new System.Drawing.Point(3, 17);
             this.uiTab1.Name = "uiTab1";
-            this.uiTab1.Size = new System.Drawing.Size(548, 651);
+            this.uiTab1.Size = new System.Drawing.Size(548, 643);
             this.uiTab1.TabIndex = 0;
             this.uiTab1.TabPages.AddRange(new Janus.Windows.UI.Tab.UITabPage[] {
             this.uiTabPage1,
@@ -279,7 +279,7 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.uiTabPage1.Controls.Add(this.panel1);
             this.uiTabPage1.Location = new System.Drawing.Point(1, 23);
             this.uiTabPage1.Name = "uiTabPage1";
-            this.uiTabPage1.Size = new System.Drawing.Size(544, 625);
+            this.uiTabPage1.Size = new System.Drawing.Size(544, 617);
             this.uiTabPage1.TabStop = true;
             this.uiTabPage1.Text = "Tương tác thuốc/thuốc";
             // 
@@ -290,7 +290,7 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(544, 625);
+            this.panel1.Size = new System.Drawing.Size(544, 617);
             this.panel1.TabIndex = 0;
             // 
             // uiGroupBox3
@@ -299,7 +299,7 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.uiGroupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiGroupBox3.Location = new System.Drawing.Point(0, 316);
             this.uiGroupBox3.Name = "uiGroupBox3";
-            this.uiGroupBox3.Size = new System.Drawing.Size(544, 309);
+            this.uiGroupBox3.Size = new System.Drawing.Size(544, 301);
             this.uiGroupBox3.TabIndex = 2;
             this.uiGroupBox3.Text = "Danh mục tương tác ";
             // 
@@ -328,7 +328,7 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.grdthuocthuoc.Name = "grdthuocthuoc";
             this.grdthuocthuoc.RecordNavigator = true;
             this.grdthuocthuoc.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
-            this.grdthuocthuoc.Size = new System.Drawing.Size(538, 289);
+            this.grdthuocthuoc.Size = new System.Drawing.Size(538, 281);
             this.grdthuocthuoc.TabIndex = 14;
             this.grdthuocthuoc.VisualStyle = Janus.Windows.GridEX.VisualStyle.VS2005;
             // 
@@ -393,6 +393,7 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.txtmucdotuongtac.AutoCompleteList = ((System.Collections.Generic.List<string>)(resources.GetObject("txtmucdotuongtac.AutoCompleteList")));
             this.txtmucdotuongtac.buildShortcut = false;
             this.txtmucdotuongtac.CaseSensitive = false;
+            this.txtmucdotuongtac.cmdDropDown = null;
             this.txtmucdotuongtac.CompareNoID = true;
             this.txtmucdotuongtac.DefaultCode = "";
             this.txtmucdotuongtac.DefaultID = "-1";
@@ -410,6 +411,7 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.txtmucdotuongtac.RaiseEventEnter = false;
             this.txtmucdotuongtac.RaiseEventEnterWhenEmpty = false;
             this.txtmucdotuongtac.SelectedIndex = -1;
+            this.txtmucdotuongtac.SetDefaultWhenInit = true;
             this.txtmucdotuongtac.ShowCodeWithValue = false;
             this.txtmucdotuongtac.Size = new System.Drawing.Size(468, 21);
             this.txtmucdotuongtac.splitChar = '@';
@@ -437,6 +439,7 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.txtnoidung.AutoCompleteList = ((System.Collections.Generic.List<string>)(resources.GetObject("txtnoidung.AutoCompleteList")));
             this.txtnoidung.buildShortcut = false;
             this.txtnoidung.CaseSensitive = true;
+            this.txtnoidung.cmdDropDown = null;
             this.txtnoidung.CompareNoID = true;
             this.txtnoidung.DefaultCode = "";
             this.txtnoidung.DefaultID = "-1";
@@ -455,6 +458,7 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.txtnoidung.RaiseEventEnter = false;
             this.txtnoidung.RaiseEventEnterWhenEmpty = false;
             this.txtnoidung.SelectedIndex = -1;
+            this.txtnoidung.SetDefaultWhenInit = true;
             this.txtnoidung.ShowCodeWithValue = false;
             this.txtnoidung.Size = new System.Drawing.Size(468, 41);
             this.txtnoidung.splitChar = '@';
@@ -482,6 +486,7 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.txtxutri.AutoCompleteList = ((System.Collections.Generic.List<string>)(resources.GetObject("txtxutri.AutoCompleteList")));
             this.txtxutri.buildShortcut = false;
             this.txtxutri.CaseSensitive = true;
+            this.txtxutri.cmdDropDown = null;
             this.txtxutri.CompareNoID = true;
             this.txtxutri.DefaultCode = "";
             this.txtxutri.DefaultID = "-1";
@@ -500,6 +505,7 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.txtxutri.RaiseEventEnter = false;
             this.txtxutri.RaiseEventEnterWhenEmpty = false;
             this.txtxutri.SelectedIndex = -1;
+            this.txtxutri.SetDefaultWhenInit = true;
             this.txtxutri.ShowCodeWithValue = false;
             this.txtxutri.Size = new System.Drawing.Size(468, 41);
             this.txtxutri.splitChar = '@';
@@ -527,6 +533,7 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.txthauqua.AutoCompleteList = ((System.Collections.Generic.List<string>)(resources.GetObject("txthauqua.AutoCompleteList")));
             this.txthauqua.buildShortcut = false;
             this.txthauqua.CaseSensitive = true;
+            this.txthauqua.cmdDropDown = null;
             this.txthauqua.CompareNoID = true;
             this.txthauqua.DefaultCode = "";
             this.txthauqua.DefaultID = "-1";
@@ -545,6 +552,7 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.txthauqua.RaiseEventEnter = false;
             this.txthauqua.RaiseEventEnterWhenEmpty = false;
             this.txthauqua.SelectedIndex = -1;
+            this.txthauqua.SetDefaultWhenInit = true;
             this.txthauqua.ShowCodeWithValue = false;
             this.txthauqua.Size = new System.Drawing.Size(468, 41);
             this.txthauqua.splitChar = '@';
@@ -572,6 +580,7 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.txtcoche.AutoCompleteList = ((System.Collections.Generic.List<string>)(resources.GetObject("txtcoche.AutoCompleteList")));
             this.txtcoche.buildShortcut = false;
             this.txtcoche.CaseSensitive = true;
+            this.txtcoche.cmdDropDown = null;
             this.txtcoche.CompareNoID = true;
             this.txtcoche.DefaultCode = "";
             this.txtcoche.DefaultID = "-1";
@@ -590,6 +599,7 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.txtcoche.RaiseEventEnter = false;
             this.txtcoche.RaiseEventEnterWhenEmpty = false;
             this.txtcoche.SelectedIndex = -1;
+            this.txtcoche.SetDefaultWhenInit = true;
             this.txtcoche.ShowCodeWithValue = false;
             this.txtcoche.Size = new System.Drawing.Size(468, 41);
             this.txtcoche.splitChar = '@';
@@ -857,6 +867,7 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.txtmucdo2.AutoCompleteList = ((System.Collections.Generic.List<string>)(resources.GetObject("txtmucdo2.AutoCompleteList")));
             this.txtmucdo2.buildShortcut = false;
             this.txtmucdo2.CaseSensitive = false;
+            this.txtmucdo2.cmdDropDown = null;
             this.txtmucdo2.CompareNoID = true;
             this.txtmucdo2.DefaultCode = "";
             this.txtmucdo2.DefaultID = "-1";
@@ -874,6 +885,7 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.txtmucdo2.RaiseEventEnter = false;
             this.txtmucdo2.RaiseEventEnterWhenEmpty = false;
             this.txtmucdo2.SelectedIndex = -1;
+            this.txtmucdo2.SetDefaultWhenInit = true;
             this.txtmucdo2.ShowCodeWithValue = false;
             this.txtmucdo2.Size = new System.Drawing.Size(468, 21);
             this.txtmucdo2.splitChar = '@';
@@ -901,6 +913,7 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.txtnoidung2.AutoCompleteList = ((System.Collections.Generic.List<string>)(resources.GetObject("txtnoidung2.AutoCompleteList")));
             this.txtnoidung2.buildShortcut = false;
             this.txtnoidung2.CaseSensitive = true;
+            this.txtnoidung2.cmdDropDown = null;
             this.txtnoidung2.CompareNoID = true;
             this.txtnoidung2.DefaultCode = "";
             this.txtnoidung2.DefaultID = "-1";
@@ -919,6 +932,7 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.txtnoidung2.RaiseEventEnter = false;
             this.txtnoidung2.RaiseEventEnterWhenEmpty = false;
             this.txtnoidung2.SelectedIndex = -1;
+            this.txtnoidung2.SetDefaultWhenInit = true;
             this.txtnoidung2.ShowCodeWithValue = false;
             this.txtnoidung2.Size = new System.Drawing.Size(468, 41);
             this.txtnoidung2.splitChar = '@';
@@ -946,6 +960,7 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.txtxutri2.AutoCompleteList = ((System.Collections.Generic.List<string>)(resources.GetObject("txtxutri2.AutoCompleteList")));
             this.txtxutri2.buildShortcut = false;
             this.txtxutri2.CaseSensitive = true;
+            this.txtxutri2.cmdDropDown = null;
             this.txtxutri2.CompareNoID = true;
             this.txtxutri2.DefaultCode = "";
             this.txtxutri2.DefaultID = "-1";
@@ -964,6 +979,7 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.txtxutri2.RaiseEventEnter = false;
             this.txtxutri2.RaiseEventEnterWhenEmpty = false;
             this.txtxutri2.SelectedIndex = -1;
+            this.txtxutri2.SetDefaultWhenInit = true;
             this.txtxutri2.ShowCodeWithValue = false;
             this.txtxutri2.Size = new System.Drawing.Size(468, 41);
             this.txtxutri2.splitChar = '@';
@@ -991,6 +1007,7 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.txthauqua2.AutoCompleteList = ((System.Collections.Generic.List<string>)(resources.GetObject("txthauqua2.AutoCompleteList")));
             this.txthauqua2.buildShortcut = false;
             this.txthauqua2.CaseSensitive = true;
+            this.txthauqua2.cmdDropDown = null;
             this.txthauqua2.CompareNoID = true;
             this.txthauqua2.DefaultCode = "";
             this.txthauqua2.DefaultID = "-1";
@@ -1009,6 +1026,7 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.txthauqua2.RaiseEventEnter = false;
             this.txthauqua2.RaiseEventEnterWhenEmpty = false;
             this.txthauqua2.SelectedIndex = -1;
+            this.txthauqua2.SetDefaultWhenInit = true;
             this.txthauqua2.ShowCodeWithValue = false;
             this.txthauqua2.Size = new System.Drawing.Size(468, 41);
             this.txthauqua2.splitChar = '@';
@@ -1036,6 +1054,7 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.txtcoche2.AutoCompleteList = ((System.Collections.Generic.List<string>)(resources.GetObject("txtcoche2.AutoCompleteList")));
             this.txtcoche2.buildShortcut = false;
             this.txtcoche2.CaseSensitive = true;
+            this.txtcoche2.cmdDropDown = null;
             this.txtcoche2.CompareNoID = true;
             this.txtcoche2.DefaultCode = "";
             this.txtcoche2.DefaultID = "-1";
@@ -1054,6 +1073,7 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.txtcoche2.RaiseEventEnter = false;
             this.txtcoche2.RaiseEventEnterWhenEmpty = false;
             this.txtcoche2.SelectedIndex = -1;
+            this.txtcoche2.SetDefaultWhenInit = true;
             this.txtcoche2.ShowCodeWithValue = false;
             this.txtcoche2.Size = new System.Drawing.Size(468, 41);
             this.txtcoche2.splitChar = '@';
@@ -1197,6 +1217,7 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.txtdotuoi.BackColor = System.Drawing.Color.LemonChiffon;
             this.txtdotuoi.buildShortcut = false;
             this.txtdotuoi.CaseSensitive = false;
+            this.txtdotuoi.cmdDropDown = null;
             this.txtdotuoi.CompareNoID = true;
             this.txtdotuoi.DefaultCode = "";
             this.txtdotuoi.DefaultID = "-1";
@@ -1214,6 +1235,7 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.txtdotuoi.RaiseEventEnter = false;
             this.txtdotuoi.RaiseEventEnterWhenEmpty = false;
             this.txtdotuoi.SelectedIndex = -1;
+            this.txtdotuoi.SetDefaultWhenInit = true;
             this.txtdotuoi.ShowCodeWithValue = false;
             this.txtdotuoi.Size = new System.Drawing.Size(468, 21);
             this.txtdotuoi.splitChar = '@';
@@ -1275,6 +1297,7 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.txtmucdo3.AutoCompleteList = ((System.Collections.Generic.List<string>)(resources.GetObject("txtmucdo3.AutoCompleteList")));
             this.txtmucdo3.buildShortcut = false;
             this.txtmucdo3.CaseSensitive = false;
+            this.txtmucdo3.cmdDropDown = null;
             this.txtmucdo3.CompareNoID = true;
             this.txtmucdo3.DefaultCode = "";
             this.txtmucdo3.DefaultID = "-1";
@@ -1292,6 +1315,7 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.txtmucdo3.RaiseEventEnter = false;
             this.txtmucdo3.RaiseEventEnterWhenEmpty = false;
             this.txtmucdo3.SelectedIndex = -1;
+            this.txtmucdo3.SetDefaultWhenInit = true;
             this.txtmucdo3.ShowCodeWithValue = false;
             this.txtmucdo3.Size = new System.Drawing.Size(468, 21);
             this.txtmucdo3.splitChar = '@';
@@ -1319,6 +1343,7 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.txtnoidung3.AutoCompleteList = ((System.Collections.Generic.List<string>)(resources.GetObject("txtnoidung3.AutoCompleteList")));
             this.txtnoidung3.buildShortcut = false;
             this.txtnoidung3.CaseSensitive = true;
+            this.txtnoidung3.cmdDropDown = null;
             this.txtnoidung3.CompareNoID = true;
             this.txtnoidung3.DefaultCode = "";
             this.txtnoidung3.DefaultID = "-1";
@@ -1337,6 +1362,7 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.txtnoidung3.RaiseEventEnter = false;
             this.txtnoidung3.RaiseEventEnterWhenEmpty = false;
             this.txtnoidung3.SelectedIndex = -1;
+            this.txtnoidung3.SetDefaultWhenInit = true;
             this.txtnoidung3.ShowCodeWithValue = false;
             this.txtnoidung3.Size = new System.Drawing.Size(468, 41);
             this.txtnoidung3.splitChar = '@';
@@ -1364,6 +1390,7 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.txtxutri3.AutoCompleteList = ((System.Collections.Generic.List<string>)(resources.GetObject("txtxutri3.AutoCompleteList")));
             this.txtxutri3.buildShortcut = false;
             this.txtxutri3.CaseSensitive = true;
+            this.txtxutri3.cmdDropDown = null;
             this.txtxutri3.CompareNoID = true;
             this.txtxutri3.DefaultCode = "";
             this.txtxutri3.DefaultID = "-1";
@@ -1382,6 +1409,7 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.txtxutri3.RaiseEventEnter = false;
             this.txtxutri3.RaiseEventEnterWhenEmpty = false;
             this.txtxutri3.SelectedIndex = -1;
+            this.txtxutri3.SetDefaultWhenInit = true;
             this.txtxutri3.ShowCodeWithValue = false;
             this.txtxutri3.Size = new System.Drawing.Size(468, 41);
             this.txtxutri3.splitChar = '@';
@@ -1409,6 +1437,7 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.txthauqua3.AutoCompleteList = ((System.Collections.Generic.List<string>)(resources.GetObject("txthauqua3.AutoCompleteList")));
             this.txthauqua3.buildShortcut = false;
             this.txthauqua3.CaseSensitive = true;
+            this.txthauqua3.cmdDropDown = null;
             this.txthauqua3.CompareNoID = true;
             this.txthauqua3.DefaultCode = "";
             this.txthauqua3.DefaultID = "-1";
@@ -1427,6 +1456,7 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.txthauqua3.RaiseEventEnter = false;
             this.txthauqua3.RaiseEventEnterWhenEmpty = false;
             this.txthauqua3.SelectedIndex = -1;
+            this.txthauqua3.SetDefaultWhenInit = true;
             this.txthauqua3.ShowCodeWithValue = false;
             this.txthauqua3.Size = new System.Drawing.Size(468, 41);
             this.txthauqua3.splitChar = '@';
@@ -1454,6 +1484,7 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.txtcoche3.AutoCompleteList = ((System.Collections.Generic.List<string>)(resources.GetObject("txtcoche3.AutoCompleteList")));
             this.txtcoche3.buildShortcut = false;
             this.txtcoche3.CaseSensitive = true;
+            this.txtcoche3.cmdDropDown = null;
             this.txtcoche3.CompareNoID = true;
             this.txtcoche3.DefaultCode = "";
             this.txtcoche3.DefaultID = "-1";
@@ -1472,6 +1503,7 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.txtcoche3.RaiseEventEnter = false;
             this.txtcoche3.RaiseEventEnterWhenEmpty = false;
             this.txtcoche3.SelectedIndex = -1;
+            this.txtcoche3.SetDefaultWhenInit = true;
             this.txtcoche3.ShowCodeWithValue = false;
             this.txtcoche3.Size = new System.Drawing.Size(468, 41);
             this.txtcoche3.splitChar = '@';
@@ -1536,9 +1568,9 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             // 
             this.uiGroupBox1.Controls.Add(this.grdHoatChat);
             this.uiGroupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiGroupBox1.Location = new System.Drawing.Point(0, 31);
+            this.uiGroupBox1.Location = new System.Drawing.Point(0, 39);
             this.uiGroupBox1.Name = "uiGroupBox1";
-            this.uiGroupBox1.Size = new System.Drawing.Size(454, 671);
+            this.uiGroupBox1.Size = new System.Drawing.Size(454, 663);
             this.uiGroupBox1.TabIndex = 14;
             this.uiGroupBox1.Text = "Danh sách hoạt chất";
             // 
@@ -1566,7 +1598,7 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.grdHoatChat.Name = "grdHoatChat";
             this.grdHoatChat.RecordNavigator = true;
             this.grdHoatChat.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
-            this.grdHoatChat.Size = new System.Drawing.Size(448, 651);
+            this.grdHoatChat.Size = new System.Drawing.Size(448, 643);
             this.grdHoatChat.TabIndex = 11;
             this.grdHoatChat.VisualStyle = Janus.Windows.GridEX.VisualStyle.VS2005;
             this.grdHoatChat.SelectionChanged += new System.EventHandler(this.grdHoatChat_SelectionChanged);

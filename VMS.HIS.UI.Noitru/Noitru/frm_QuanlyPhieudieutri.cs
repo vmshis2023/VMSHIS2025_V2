@@ -39,6 +39,7 @@ using VMS.HIS.Danhmuc;
 using Aspose.Words;
 using System.Transactions;
 using VMS.HIS.Bus.Emr;
+using VNS.HIS.UI.Forms.Noitru;
 
 namespace VNS.HIS.UI.NOITRU
 {
@@ -2645,7 +2646,7 @@ namespace VNS.HIS.UI.NOITRU
                             where lstMaduongdung.Contains(Utility.sDbnull( p["ma_duongdung"],""))
                             select p;
                 cmdInPhieutruyendich.Visible =objLuotkham!=null && objPhieudieutri!=null && Utility.isValidGrid(grdPresDetail) && hasPTD.Any();
-                cmdDeletePres.Enabled = cmdUpdatePres.Enabled = !isReadOnly && objLuotkham != null && grdPresDetail.RowCount > 0 && objPhieudieutri != null;// && IsValidCommon();
+               cmd_thuchien_donthuoc.Enabled= cmdDeletePres.Enabled = cmdUpdatePres.Enabled = !isReadOnly && objLuotkham != null && grdPresDetail.RowCount > 0 && objPhieudieutri != null;// && IsValidCommon();
                 cmdSuadonthuocravien.Enabled = cmdXoadonthuocravien.Enabled = !isReadOnly && objLuotkham != null && grdDonthuocravien.RowCount > 0 && objPhieudieutri != null && RowThuocRavien!=null;// && IsValidCommon();
                 cmdConfirm.Enabled = cmd_suaphieuchidinhCLS.Enabled = cmd_xoaphieuchidinhCLS.Enabled = !isReadOnly && objLuotkham != null && grdAssignDetail.RowCount > 0 && objPhieudieutri != null && objLuotkham.TrangthaiNoitru < 3; // && IsValidCommon();
                 cmdViewPDF.Enabled = objLuotkham != null && grdAssignDetail.RowCount > 0 && objPhieudieutri != null;
@@ -8622,6 +8623,82 @@ namespace VNS.HIS.UI.NOITRU
         private void lnkChandoan_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             ShowChandoan();
+        }
+
+        private void mnuThuchiendonthuoc_Click(object sender, EventArgs e)
+        {
+            if (RowThuoc == null)
+            {
+                Utility.ShowMsg("Vui lòng chọn 1 dòng thuốc trong đơn để thực hiện cập nhật đơn thuốc");
+                return;
+            }
+            int IdDonthuoc = Utility.Int32Dbnull(RowThuoc.Cells[KcbDonthuocChitiet.Columns.IdDonthuoc].Value);
+            frm_thuchien_donthuoc _thuchien_donthuoc = new frm_thuchien_donthuoc(IdDonthuoc);
+            _thuchien_donthuoc.objLuotkham = this.objLuotkham;
+            _thuchien_donthuoc.ShowDialog();
+        }
+
+        private void cmd_thuchien_donthuoc_Click(object sender, EventArgs e)
+        {
+            if (RowThuoc == null)
+            {
+                Utility.ShowMsg("Vui lòng chọn đơn thuốc để bắt đầu thực hiện");
+                return;
+            }
+            int IdDonthuoc = Utility.Int32Dbnull(RowThuoc.Cells[KcbDonthuocChitiet.Columns.IdDonthuoc].Value);
+            frm_thuchien_donthuoc _thuchien_donthuoc = new frm_thuchien_donthuoc(IdDonthuoc);
+            _thuchien_donthuoc.objLuotkham = this.objLuotkham;
+            _thuchien_donthuoc.ShowDialog();
+        }
+
+        private void cmd_chonbacsi_dieutri_Click(object sender, EventArgs e)
+        {
+            ChonBSDieutri();
+        }
+        void ChonBSDieutri()
+        {
+            try
+            {
+                //if (!isValidData_Phanbuonggiuong()) return;
+                int id = Utility.Int32Dbnull(grdList.GetValue(NoitruPhanbuonggiuong.Columns.Id));
+                NoitruPhanbuonggiuong objPhanbuonggiuong = NoitruPhanbuonggiuong.FetchByID(id);
+                objLuotkham = Utility.getKcbLuotkham(objPhanbuonggiuong.IdBenhnhan, objPhanbuonggiuong.MaLuotkham);
+                //if (Utility.Int32Dbnull(objLuotkham.IdBsDieutrinoitruChinh, -1) > 0)
+                //{
+                //    DmucNhanvien nhanvien = DmucNhanvien.FetchByID(objLuotkham.IdBsDieutrinoitruChinh);
+                //    if(nhanvien!=null)
+                //        if (!Utility.AcceptQuestion(string.Format("Người bệnh {0} đang được giao cho bác sĩ điều trị chính {1}. Bạn có chắc chắn muốn đổi bác sĩ điều trị cho người bệnh này?", grdList.GetValue(KcbDanhsachBenhnhan.Columns.TenBenhnhan), nhanvien.TenNhanvien), "Cảnh báo", true)) return;
+                //}
+                frm_chonbacsidieutri _chonbacsidieutri = new frm_chonbacsidieutri(objPhanbuonggiuong.IdKhoanoitru, objLuotkham);
+                _chonbacsidieutri._OnAccept += _chonbacsidieutri__OnAccept;
+                _chonbacsidieutri.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+
+            }
+        }
+        void _chonbacsidieutri__OnAccept(object ID)
+        {
+            try
+            {
+                if (objLuotkham != null)
+                {
+                    int num=Utility.ExecuteNonQuery(string.Format("update kcb_luotkham set id_bs_dieutrinoitru_chinh={0} where id_benhnhan={1} and ma_luotkham='{2}'", Utility.Int32Dbnull(ID), objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham), CommandType.Text);
+                    if (num > 0)
+                    {
+                        objLuotkham.IdBsDieutrinoitruChinh = Utility.Int32Dbnull(ID);
+                        Utility.Log(this.Name, globalVariables.UserName, string.Format("Cập nhật Bác sĩ điều trị của bệnh nhân ID={0}, PID={1}, Tên={2}, từ {3} thành {4} ", Utility.getValueOfGridCell(grdList, "id_benhnhan"), Utility.getValueOfGridCell(grdList, "ma_luotkham"), Utility.getValueOfGridCell(grdList, "ten_benhnhan"), objLuotkham.IdBsDieutrinoitruChinh, ID), newaction.Update, this.GetType().Assembly.ManifestModule.Name);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Utility.CatchException(ex);
+            }
+
         }
     }
 }

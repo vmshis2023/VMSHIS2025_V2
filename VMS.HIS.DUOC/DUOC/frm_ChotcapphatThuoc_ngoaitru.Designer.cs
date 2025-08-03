@@ -91,7 +91,7 @@
             // uiStatusBar2
             // 
             this.uiStatusBar2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiStatusBar2.Location = new System.Drawing.Point(0, 706);
+            this.uiStatusBar2.Location = new System.Drawing.Point(0, 705);
             this.uiStatusBar2.Name = "uiStatusBar2";
             uiStatusBarPanel1.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
             uiStatusBarPanel1.BorderColor = System.Drawing.Color.Empty;
@@ -106,11 +106,11 @@
             uiStatusBarPanel2.Key = "1";
             uiStatusBarPanel2.ProgressBarValue = 0;
             uiStatusBarPanel2.Text = "Thông báo";
-            uiStatusBarPanel2.Width = 854;
+            uiStatusBarPanel2.Width = 1135;
             this.uiStatusBar2.Panels.AddRange(new Janus.Windows.UI.StatusBar.UIStatusBarPanel[] {
             uiStatusBarPanel1,
             uiStatusBarPanel2});
-            this.uiStatusBar2.Size = new System.Drawing.Size(1008, 23);
+            this.uiStatusBar2.Size = new System.Drawing.Size(1289, 23);
             this.uiStatusBar2.TabIndex = 3;
             this.uiStatusBar2.VisualStyle = Janus.Windows.UI.VisualStyle.OfficeXP;
             // 
@@ -131,7 +131,7 @@
             this.uiGroupBox1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uiGroupBox1.Location = new System.Drawing.Point(0, 0);
             this.uiGroupBox1.Name = "uiGroupBox1";
-            this.uiGroupBox1.Size = new System.Drawing.Size(1008, 81);
+            this.uiGroupBox1.Size = new System.Drawing.Size(1289, 81);
             this.uiGroupBox1.TabIndex = 4;
             this.uiGroupBox1.Text = "Thông tin tìm kiếm";
             // 
@@ -261,7 +261,7 @@
             this.cmdSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdSearch.Image = ((System.Drawing.Image)(resources.GetObject("cmdSearch.Image")));
             this.cmdSearch.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdSearch.Location = new System.Drawing.Point(869, 18);
+            this.cmdSearch.Location = new System.Drawing.Point(1150, 18);
             this.cmdSearch.Name = "cmdSearch";
             this.cmdSearch.Size = new System.Drawing.Size(133, 42);
             this.cmdSearch.TabIndex = 8;
@@ -286,9 +286,9 @@
             this.uiGroupBox3.Controls.Add(this.cmdPhatThuoc);
             this.uiGroupBox3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.uiGroupBox3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiGroupBox3.Location = new System.Drawing.Point(0, 572);
+            this.uiGroupBox3.Location = new System.Drawing.Point(0, 571);
             this.uiGroupBox3.Name = "uiGroupBox3";
-            this.uiGroupBox3.Size = new System.Drawing.Size(1008, 53);
+            this.uiGroupBox3.Size = new System.Drawing.Size(1289, 53);
             this.uiGroupBox3.TabIndex = 0;
             this.uiGroupBox3.Text = "Chức năng";
             // 
@@ -319,7 +319,7 @@
             this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(683, 28);
+            this.label9.Location = new System.Drawing.Point(964, 28);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(61, 15);
             this.label9.TabIndex = 454;
@@ -336,7 +336,7 @@
             this.dtNgayPhatThuoc.DropDownCalendar.Name = "";
             this.dtNgayPhatThuoc.Enabled = false;
             this.dtNgayPhatThuoc.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtNgayPhatThuoc.Location = new System.Drawing.Point(752, 24);
+            this.dtNgayPhatThuoc.Location = new System.Drawing.Point(1033, 24);
             this.dtNgayPhatThuoc.Name = "dtNgayPhatThuoc";
             this.dtNgayPhatThuoc.ShowUpDown = true;
             this.dtNgayPhatThuoc.Size = new System.Drawing.Size(107, 21);
@@ -350,7 +350,7 @@
             this.cmdPhatThuoc.ImageHorizontalAlignment = Janus.Windows.EditControls.ImageHorizontalAlignment.Near;
             this.cmdPhatThuoc.ImageSize = new System.Drawing.Size(24, 24);
             this.cmdPhatThuoc.ImageVerticalAlignment = Janus.Windows.EditControls.ImageVerticalAlignment.Near;
-            this.cmdPhatThuoc.Location = new System.Drawing.Point(878, 14);
+            this.cmdPhatThuoc.Location = new System.Drawing.Point(1159, 14);
             this.cmdPhatThuoc.Name = "cmdPhatThuoc";
             this.cmdPhatThuoc.Size = new System.Drawing.Size(124, 36);
             this.cmdPhatThuoc.TabIndex = 0;
@@ -366,7 +366,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 81);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1008, 625);
+            this.panel1.Size = new System.Drawing.Size(1289, 624);
             this.panel1.TabIndex = 6;
             // 
             // splitContainer1
@@ -385,8 +385,8 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.uiGroupBox4);
             this.splitContainer1.Panel2MinSize = 0;
-            this.splitContainer1.Size = new System.Drawing.Size(1008, 572);
-            this.splitContainer1.SplitterDistance = 582;
+            this.splitContainer1.Size = new System.Drawing.Size(1289, 571);
+            this.splitContainer1.SplitterDistance = 744;
             this.splitContainer1.TabIndex = 6;
             // 
             // uiGroupBox2
@@ -396,7 +396,7 @@
             this.uiGroupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uiGroupBox2.Location = new System.Drawing.Point(0, 0);
             this.uiGroupBox2.Name = "uiGroupBox2";
-            this.uiGroupBox2.Size = new System.Drawing.Size(580, 570);
+            this.uiGroupBox2.Size = new System.Drawing.Size(742, 569);
             this.uiGroupBox2.TabIndex = 0;
             this.uiGroupBox2.Text = "Danh sách các đơn thuốc ";
             // 
@@ -423,7 +423,7 @@
             this.grdPres.Name = "grdPres";
             this.grdPres.RecordNavigator = true;
             this.grdPres.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
-            this.grdPres.Size = new System.Drawing.Size(574, 550);
+            this.grdPres.Size = new System.Drawing.Size(736, 549);
             this.grdPres.TabIndex = 2;
             this.grdPres.VisualStyle = Janus.Windows.GridEX.VisualStyle.VS2005;
             // 
@@ -473,7 +473,7 @@
             this.uiGroupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiGroupBox4.Location = new System.Drawing.Point(0, 0);
             this.uiGroupBox4.Name = "uiGroupBox4";
-            this.uiGroupBox4.Size = new System.Drawing.Size(420, 570);
+            this.uiGroupBox4.Size = new System.Drawing.Size(539, 569);
             this.uiGroupBox4.TabIndex = 1;
             this.uiGroupBox4.Text = "Chi tiết đơn thuốc";
             // 
@@ -490,7 +490,7 @@
             this.grdPresDetail.Location = new System.Drawing.Point(3, 16);
             this.grdPresDetail.Name = "grdPresDetail";
             this.grdPresDetail.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
-            this.grdPresDetail.Size = new System.Drawing.Size(414, 551);
+            this.grdPresDetail.Size = new System.Drawing.Size(533, 550);
             this.grdPresDetail.TabIndex = 455;
             this.grdPresDetail.TotalRow = Janus.Windows.GridEX.InheritableBoolean.True;
             this.grdPresDetail.TotalRowFormatStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
@@ -505,7 +505,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.ClientSize = new System.Drawing.Size(1289, 728);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.uiGroupBox1);
             this.Controls.Add(this.uiStatusBar2);

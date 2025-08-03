@@ -87,6 +87,7 @@
             this.cmdExportToExcel = new Janus.Windows.EditControls.UIButton();
             this.cmdInPhieuXN = new Janus.Windows.EditControls.UIButton();
             this.cmdExit = new Janus.Windows.EditControls.UIButton();
+            this.optChitiettheomathang = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.grdList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox2)).BeginInit();
             this.uiGroupBox2.SuspendLayout();
@@ -435,6 +436,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.optChitiettheomathang);
             this.panel2.Controls.Add(this.optTonghop);
             this.panel2.Controls.Add(this.optChitiet);
             this.panel2.Location = new System.Drawing.Point(123, 187);
@@ -457,11 +459,10 @@
             // 
             this.optChitiet.AutoSize = true;
             this.optChitiet.Checked = true;
-            this.optChitiet.Location = new System.Drawing.Point(190, 3);
+            this.optChitiet.Location = new System.Drawing.Point(174, 3);
             this.optChitiet.Name = "optChitiet";
             this.optChitiet.Size = new System.Drawing.Size(131, 19);
             this.optChitiet.TabIndex = 18;
-            this.optChitiet.TabStop = true;
             this.optChitiet.Text = "Chi tiết theo dịch vụ";
             this.optChitiet.UseVisualStyleBackColor = true;
             this.optChitiet.CheckedChanged += new System.EventHandler(this.optChitiet_CheckedChanged);
@@ -712,6 +713,16 @@
             this.cmdExit.TabIndex = 35;
             this.cmdExit.Text = "Thoát (Esc)";
             // 
+            // optChitiettheomathang
+            // 
+            this.optChitiettheomathang.AutoSize = true;
+            this.optChitiettheomathang.Location = new System.Drawing.Point(349, 4);
+            this.optChitiettheomathang.Name = "optChitiettheomathang";
+            this.optChitiettheomathang.Size = new System.Drawing.Size(145, 19);
+            this.optChitiettheomathang.TabIndex = 19;
+            this.optChitiettheomathang.Text = "Chi tiết theo mặt hàng";
+            this.optChitiettheomathang.UseVisualStyleBackColor = true;
+            // 
             // frm_sochitietbanhang_bvsg
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -797,5 +808,6 @@
         private Janus.Windows.EditControls.UIComboBox cboNganhang;
         private Janus.Windows.EditControls.UIComboBox cboPttt;
         public Janus.Windows.GridEX.EditControls.MaskedEditBox txtIdbenhnhan;
+        private System.Windows.Forms.RadioButton optChitiettheomathang;
     }
 }

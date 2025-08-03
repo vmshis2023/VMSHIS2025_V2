@@ -949,6 +949,67 @@ namespace VNS.HIS.BusRule.Classes
             }
         }
         /// <summary>
+        /// Ghi nợ
+        /// </summary>
+        /// <param name="objThanhtoan"></param>
+        /// <param name="objLuotkham"></param>
+        /// <param name="objArrPaymentDetail"></param>
+        /// <param name="lstChietkhau"></param>
+        /// <param name="idThanhtoan"></param>
+        /// <param name="idHdonLog"></param>
+        /// <param name="layhoadondo"></param>
+        /// <param name="bo_ckchitiet"></param>
+        /// <param name="ma_uudai"></param>
+        /// <param name="tongtienBNchitra"></param>
+        /// <param name="ErrMsg"></param>
+        /// <returns></returns>
+        public ActionResult Ghino(KcbThanhtoanGhino objGhino, KcbLuotkham objLuotkham,
+           List<KcbThanhtoanChitiet> objArrPaymentDetail, ref long id_ghino, ref string ErrMsg)
+        {
+            ErrMsg = "";
+            decimal ptramBhyt = 0;
+
+            //tổng tiền đã thanh toán
+            decimal v_TotalPaymentDetail = 0;
+            try
+            {
+                using (var scope = new TransactionScope())
+                {
+                    using (var dbscope = new SharedDbConnectionScope())
+                    {
+                        objGhino.MaGhino =
+                            THU_VIEN_CHUNG.TaoMaGhino(Convert.ToDateTime(objGhino.NgayGhino));
+                        //objGhino.MaCoso = objLuotkham.MaCoso;
+                        objGhino.Save();
+                        id_ghino = Utility.Int64Dbnull(objGhino.Id, -1);
+                        int reval = -1;
+                        foreach (KcbThanhtoanChitiet objChitietThanhtoan in objArrPaymentDetail)
+                        {
+                            StoredProcedure spupdate = SPs.SpUpdateTrangthaiGhino(objChitietThanhtoan.IdLoaithanhtoan,
+                   objGhino.Id, objGhino.NgayGhino, objLuotkham.Noitru,
+                   objChitietThanhtoan.IdPhieu, objChitietThanhtoan.IdPhieuChitiet,
+                   objChitietThanhtoan.NgayTao, objChitietThanhtoan.NguoiTao, 0);
+                            reval = spupdate.Execute();
+                            if (reval <= 0)
+                            {
+                                ErrMsg = string.Format("Cập nhật thông tin ghi nợ không thành công dịch vụ loại {0} với id_phieu={1},id_phieuchitiet={2}", objChitietThanhtoan.IdLoaithanhtoan, objChitietThanhtoan.IdPhieu, objChitietThanhtoan.IdPhieuChitiet);
+                                Utility.Log("Ghi nợ", globalVariables.UserName, ErrMsg, newaction.Error, "frm_ghino");
+                                return ActionResult.Cancel;
+                            }
+                        }
+
+                    }
+                    scope.Complete();
+                    return ActionResult.Success;
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Error("Loi thuc hien thanh toan:" + ex);
+                return ActionResult.Error;
+            }
+        }
+        /// <summary>
         /// </summary>
         /// <param name="objThanhtoan"></param>
         /// <param name="objLuotkham"></param>

@@ -306,6 +306,14 @@ namespace VNS.HIS.UCs
             get;
             set;
         }
+        /// <summary>
+        /// Để vị trí y dâng lên cao trong tình huống control đặt gần đáy ở form
+        /// </summary>
+        public int ExtraTop
+        {
+            get;
+            set;
+        }
         public int ExtraWidth
         {
             get;
@@ -1397,6 +1405,7 @@ namespace VNS.HIS.UCs
                     panel.Height = GetMyHeigh();// ;
                     // and the Location to use
                     panel.Location = FindLocation(this) + new Size(0, this.Height); //this.Location + new Size(0, this.Height);
+                   
                     // Panel and ListBox have to be added to TopLevelControl.Controls before calling BingingContext
                     if (!this.TopLevelControl.Controls.Contains(panel))
                     {
@@ -1421,7 +1430,7 @@ namespace VNS.HIS.UCs
         {
 
             Point locationOnForm = ctrl.TopLevelControl.PointToClient(ctrl.Parent.PointToScreen(ctrl.Location));
-            return new Point(locationOnForm.X - (GridView ? ExtraWidth_Pre : 0), locationOnForm.Y);
+            return new Point(locationOnForm.X - (GridView ? ExtraWidth_Pre : 0), locationOnForm.Y-ExtraTop);
             //if (ctrl.Parent is Form)
             //    return ctrl.Location;
             //else

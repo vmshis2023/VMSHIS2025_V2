@@ -47,3 +47,4 @@ F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.UI.Noitru\obj\Debug\9_2.VMS.HIS.Noitr
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.UI.Noitru\obj\Debug\9_2.VMS.HIS.Noitru.csproj.CopyComplete
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.UI.Noitru\obj\Debug\VMS.HIS.Noitru.dll
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.UI.Noitru\obj\Debug\VMS.HIS.Noitru.pdb
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.UI.Noitru\obj\Debug\VNS.HIS.UI.NOITRU.frm_KCB_DANGKY_BENHNHAN_CAPCUU.resources

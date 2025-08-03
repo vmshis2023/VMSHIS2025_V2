@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_NhaptraKQ));
             Janus.Windows.GridEX.GridEXLayout gridEX1_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.GridEX.GridEXLayout grdKetqua_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
@@ -59,7 +60,7 @@
             this.txtKet_Luan = new System.Windows.Forms.RichTextBox();
             this.lblKetluan = new System.Windows.Forms.Label();
             this.flowDynamics = new System.Windows.Forms.FlowLayoutPanel();
-            this.ctxCkEditor = new System.Windows.Forms.ContextMenuStrip();
+            this.ctxCkEditor = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuRefresh = new System.Windows.Forms.ToolStripMenuItem();
             this.grbSelectedImgs = new Janus.Windows.EditControls.UIGroupBox();
             this.pnlImgs = new System.Windows.Forms.FlowLayoutPanel();
@@ -84,11 +85,11 @@
             this.uiTabPageKQXN = new Janus.Windows.UI.Tab.UITabPage();
             this.cmdViewPdf2 = new Janus.Windows.EditControls.UIButton();
             this.grdKetqua = new Janus.Windows.GridEX.GridEX();
-            this.ctxKQXN = new System.Windows.Forms.ContextMenuStrip();
+            this.ctxKQXN = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuRefreshKQXN = new System.Windows.Forms.ToolStripMenuItem();
             this.uiTabPageDonthuoc = new Janus.Windows.UI.Tab.UITabPage();
             this.grdPresDetail = new Janus.Windows.GridEX.GridEX();
-            this.ctxDonthuoc = new System.Windows.Forms.ContextMenuStrip();
+            this.ctxDonthuoc = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuRefreshDonthuoc = new System.Windows.Forms.ToolStripMenuItem();
             this.uiGroupBox8 = new Janus.Windows.EditControls.UIGroupBox();
             this.cmdSaveAndPrint = new Janus.Windows.EditControls.UIButton();
@@ -150,24 +151,24 @@
             this.txtObjectType_Name = new Janus.Windows.GridEX.EditControls.EditBox();
             this.label26 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolChooseBN = new System.Windows.Forms.ToolStripMenuItem();
             this.toolAccept = new System.Windows.Forms.ToolStripMenuItem();
             this.toolUnAccept = new System.Windows.Forms.ToolStripMenuItem();
             this.toolPrintRadio = new System.Windows.Forms.ToolStripMenuItem();
-            this.ctxImage = new System.Windows.Forms.ContextMenuStrip();
+            this.ctxImage = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuBrowseImage = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDeleteImage = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuView = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.gridEXExporter1 = new Janus.Windows.GridEX.Export.GridEXExporter();
-            this.gridEXExporter2 = new Janus.Windows.GridEX.Export.GridEXExporter();
+            this.gridEXExporter1 = new Janus.Windows.GridEX.Export.GridEXExporter(this.components);
+            this.gridEXExporter2 = new Janus.Windows.GridEX.Export.GridEXExporter(this.components);
             this.uiGroupBox13 = new Janus.Windows.EditControls.UIGroupBox();
-            this.toolTip1 = new System.Windows.Forms.ToolTip();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
-            this.timer2 = new System.Windows.Forms.Timer();
-            this.timer1 = new System.Windows.Forms.Timer();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.uiTab1 = new Janus.Windows.UI.Tab.UITab();
             this.uiTabPageKQ = new Janus.Windows.UI.Tab.UITabPage();
             this.uiTabPageCauhinh = new Janus.Windows.UI.Tab.UITabPage();
@@ -180,7 +181,7 @@
             this.vbLine2 = new VNS.UCs.VBLine();
             this.vbLine1 = new VNS.UCs.VBLine();
             this.chkInsauluu = new Janus.Windows.EditControls.UICheckBox();
-            this.ctxFunctions = new System.Windows.Forms.ContextMenuStrip();
+            this.ctxFunctions = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuLuu_In = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuViewPDF = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
@@ -189,7 +190,7 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuHuyKQ = new System.Windows.Forms.ToolStripMenuItem();
             this.lblImgSize = new System.Windows.Forms.Label();
-            this.timer3 = new System.Windows.Forms.Timer();
+            this.timer3 = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TabInfo)).BeginInit();
             this.TabInfo.SuspendLayout();

@@ -86,8 +86,82 @@ namespace VMS.HIS.UI.EMR
             txtNguoiKy._OnEnterMe += TxtNguoiKy__OnEnterMe;
             richEdit.KeyDown += RichEdit_KeyDown;
             richEdit.SelectionChanged += RichEdit_SelectionChanged;
+            // Sự kiện chuột
+            richEdit.MouseDown += richEditControl1_MouseDown;
+            richEdit.MouseMove += richEditControl1_MouseMove;
+            richEdit.MouseUp += richEditControl1_MouseUp;
+            richEdit.Paint += richEditControl1_Paint;
+        }
+        #region "Vẽ vùng ký"
+        private Rectangle selectionRect = Rectangle.Empty;
+        private bool isSelecting = false;
+        private Point startPoint;
+        private void richEditControl1_MouseDown(object sender, MouseEventArgs e)
+        {
+            isSelecting = true;
+            startPoint = e.Location;
         }
 
+        private void richEditControl1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isSelecting)
+            {
+                Point current = e.Location;
+                selectionRect = new Rectangle(
+                    Math.Min(startPoint.X, current.X),
+                    Math.Min(startPoint.Y, current.Y),
+                    Math.Abs(startPoint.X - current.X),
+                    Math.Abs(startPoint.Y - current.Y)
+                );
+                richEdit.Invalidate(); // trigger Paint
+            }
+        }
+
+        private void richEditControl1_MouseUp(object sender, MouseEventArgs e)
+        {
+            isSelecting = false;
+
+            if (selectionRect.Width < 5 || selectionRect.Height < 5)
+            {
+                selectionRect = Rectangle.Empty;
+                richEdit.Invalidate();
+                return;
+            }
+
+            // Bước 1: Chụp ảnh vùng RichEdit theo screen tọa độ
+            Bitmap bmp = new Bitmap(selectionRect.Width, selectionRect.Height);
+            Graphics g = Graphics.FromImage(bmp);
+            Point screenPoint = richEdit.PointToScreen(selectionRect.Location);
+            g.CopyFromScreen(screenPoint, Point.Empty, selectionRect.Size);
+            g.Dispose();
+
+            // Bước 2: Chèn ảnh vào vị trí con trỏ văn bản
+            using (MemoryStream ms = new MemoryStream())
+            {
+                bmp.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                ms.Position = 0;
+
+                var doc = richEdit.Document;
+                doc.Images.Insert(doc.CaretPosition, DocumentImageSource.FromStream(ms));
+            }
+
+            bmp.Dispose();
+            selectionRect = Rectangle.Empty;
+            richEdit.Invalidate();
+        }
+
+        private void richEditControl1_Paint(object sender, PaintEventArgs e)
+        {
+            if (isSelecting && selectionRect != Rectangle.Empty)
+            {
+                using (Pen pen = new Pen(Color.Red, 1))
+                {
+                    pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+                    e.Graphics.DrawRectangle(pen, selectionRect);
+                }
+            }
+        }
+#endregion
         private void GrdDocs_SelectionChanged(object sender, EventArgs e)
         {
           
@@ -148,7 +222,7 @@ namespace VMS.HIS.UI.EMR
         }
         void InitTitle()
         {
-            this.Text = string.Format("Quản lý hồ sơ Bệnh án điện từ EMR - Xin chào người dùng {0} - {1}",globalVariables.UserName, globalVariables.gv_strTenNhanvien);
+           // this.Text = string.Format("Quản lý hồ sơ Bệnh án điện từ EMR - Xin chào người dùng {0} - {1}",globalVariables.UserName, globalVariables.gv_strTenNhanvien);
         }    
         private void GrdEmrDocuments_KeyDown(object sender, KeyEventArgs e)
         {
@@ -507,14 +581,35 @@ namespace VMS.HIS.UI.EMR
                 flowSignInfor.ResumeLayout();
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ten_vitri_ky">lười chưa thay đổi tên, bản chất=nguoiky+@+ten_vitri_ky</param>
         private void _nguoiky__OnClickMe(string ten_vitri_ky)
         {
             try
             {
+                List<string> lstThongtinKy = ten_vitri_ky.Split('@').ToList<string>();
+                if (globalVariables.IsAdmin || globalVariables.isSuperAdmin)
+                {
+                    try
+                    {
+                        DmucNhanvien objNhanvien = new Select().From(DmucNhanvien.Schema).Where(DmucNhanvien.Columns.UserName).IsEqualTo(lstThongtinKy[0]).ExecuteSingle<DmucNhanvien>();
+                        if (objNhanvien != null)
+                        {
+                            txtNguoiKy.SetId(objNhanvien.IdNhanvien);
+                        }
+                        txtNguoiKy.RaiseEnterEvents();
+                    }
+                    catch (Exception)
+                    {
+
+                      
+                    }
+                }   
                 var document = richEdit.Document;
 
-                DevExpress.XtraRichEdit.API.Native.Bookmark bookmark = document.Bookmarks[ten_vitri_ky];
+                DevExpress.XtraRichEdit.API.Native.Bookmark bookmark = document.Bookmarks[lstThongtinKy[1]];
                 if (bookmark != null)
                 {
                     //document.CaretPosition = document.CreatePosition(bookmark.Range.Start.ToInt());
@@ -2359,7 +2454,8 @@ namespace VMS.HIS.UI.EMR
                                       DmucNhanvien.Columns.TenNhanvien
                                  });
                 txtNguoiKy.Enabled = globalVariables.isSuperAdmin || globalVariables.IsAdmin;
-                txtNguoiKy.SetCode(globalVariables.gv_intIDNhanvien);
+                txtNguoiKy.SetId(globalVariables.gv_intIDNhanvien);
+                txtNguoiKy.RaiseEnterEvents();
                 LoadUserConfigs();
                 DataTable dtPhieuEMR = new Select("*").From(DmucChung.Schema).Where(DmucChung.Columns.Loai).IsEqualTo("EMR_PHIEU")
            .OrderAsc(DmucChung.Columns.SttHthi)
@@ -2868,7 +2964,7 @@ namespace VMS.HIS.UI.EMR
                 }    
                 List<string> lstIdFiles= (from p in grdEmrDocuments.GetCheckedRows()  select Utility.sDbnull(p.Cells[EmrDocument.Columns.IdFile].Value)).Distinct().ToList<string>();
                 //Lấy về thông tin kí của người dùng trên các file đang chọn
-                DataTable dtSignInfo = SPs.EmrLaythongtinChukyTrenphieu(string.Join(",", lstIdFiles),globalVariables.UserName,100).GetDataSet().Tables[0];
+                DataTable dtSignInfo = SPs.EmrLaythongtinChukyTrenphieu(string.Join(",", lstIdFiles), globalVariablesPrivate.objNhanvien.UserName, 100).GetDataSet().Tables[0];
                 //Lấy về danh sách các file liên quan đến người dùng
                 List<long> lstIdFiles_NguoiKy = dtSignInfo.AsEnumerable().Select(c => Utility.Int64Dbnull(c["file_id"])).Distinct().ToList<long>();
                 //Lấy về các phiếu đang chọn mà không liên quan đến người dùng(gặp người dùng ẩu chọn bừa khi ký)
@@ -4025,6 +4121,11 @@ namespace VMS.HIS.UI.EMR
            //     ["NgaySinh"] = "01/01/1990",
            //     ["GioiTinh"] = "Nam"
            // });
+        }
+
+        private void cmdPrintPreview_Click(object sender, EventArgs e)
+        {
+            richEdit.ShowPrintDialog();
         }
     }
     class HandleMergeBarcode : IFieldMergingCallback

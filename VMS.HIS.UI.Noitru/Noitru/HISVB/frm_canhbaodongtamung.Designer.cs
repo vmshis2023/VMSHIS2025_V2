@@ -96,8 +96,15 @@
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.pnlData = new System.Windows.Forms.Panel();
             this.pnlTonghopchiphi = new System.Windows.Forms.Panel();
-            this.pnlAct = new System.Windows.Forms.Panel();
             this.grdThongTinChuaThanhToan = new Janus.Windows.GridEX.GridEX();
+            this.pnlAct = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label10 = new System.Windows.Forms.Label();
+            this.optAll_0 = new System.Windows.Forms.RadioButton();
+            this.optNgoaitru_0 = new System.Windows.Forms.RadioButton();
+            this.optNoitru_0 = new System.Windows.Forms.RadioButton();
+            this.uiButton1 = new Janus.Windows.EditControls.UIButton();
+            this.cmdPrint = new Janus.Windows.EditControls.UIButton();
             this.label8 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
@@ -107,13 +114,6 @@
             this.cboNgaydieutri = new Janus.Windows.GridEX.EditControls.CheckedComboBox();
             this.cboKhoadieutri = new Janus.Windows.EditControls.UIComboBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.cmdPrint = new Janus.Windows.EditControls.UIButton();
-            this.uiButton1 = new Janus.Windows.EditControls.UIButton();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label10 = new System.Windows.Forms.Label();
-            this.optAll_0 = new System.Windows.Forms.RadioButton();
-            this.optNgoaitru_0 = new System.Windows.Forms.RadioButton();
-            this.optNoitru_0 = new System.Windows.Forms.RadioButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox1)).BeginInit();
             this.uiGroupBox1.SuspendLayout();
@@ -138,10 +138,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdListGoiDV)).BeginInit();
             this.pnlData.SuspendLayout();
             this.pnlTonghopchiphi.SuspendLayout();
-            this.pnlAct.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdThongTinChuaThanhToan)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.pnlAct.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -831,22 +831,6 @@
             this.pnlTonghopchiphi.Size = new System.Drawing.Size(494, 788);
             this.pnlTonghopchiphi.TabIndex = 0;
             // 
-            // pnlAct
-            // 
-            this.pnlAct.Controls.Add(this.panel2);
-            this.pnlAct.Controls.Add(this.uiButton1);
-            this.pnlAct.Controls.Add(this.cmdPrint);
-            this.pnlAct.Controls.Add(this.label8);
-            this.pnlAct.Controls.Add(this.panel1);
-            this.pnlAct.Controls.Add(this.cboNgaydieutri);
-            this.pnlAct.Controls.Add(this.cboKhoadieutri);
-            this.pnlAct.Controls.Add(this.label11);
-            this.pnlAct.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlAct.Location = new System.Drawing.Point(0, 613);
-            this.pnlAct.Name = "pnlAct";
-            this.pnlAct.Size = new System.Drawing.Size(494, 175);
-            this.pnlAct.TabIndex = 0;
-            // 
             // grdThongTinChuaThanhToan
             // 
             this.grdThongTinChuaThanhToan.AlternatingColors = true;
@@ -884,6 +868,115 @@
             this.grdThongTinChuaThanhToan.UseGroupRowSelector = true;
             this.grdThongTinChuaThanhToan.VisualStyle = Janus.Windows.GridEX.VisualStyle.VS2005;
             this.grdThongTinChuaThanhToan.FormattingRow += new Janus.Windows.GridEX.RowLoadEventHandler(this.grdThongTinChuaThanhToan_FormattingRow);
+            // 
+            // pnlAct
+            // 
+            this.pnlAct.Controls.Add(this.panel2);
+            this.pnlAct.Controls.Add(this.uiButton1);
+            this.pnlAct.Controls.Add(this.cmdPrint);
+            this.pnlAct.Controls.Add(this.label8);
+            this.pnlAct.Controls.Add(this.panel1);
+            this.pnlAct.Controls.Add(this.cboNgaydieutri);
+            this.pnlAct.Controls.Add(this.cboKhoadieutri);
+            this.pnlAct.Controls.Add(this.label11);
+            this.pnlAct.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlAct.Location = new System.Drawing.Point(0, 613);
+            this.pnlAct.Name = "pnlAct";
+            this.pnlAct.Size = new System.Drawing.Size(494, 175);
+            this.pnlAct.TabIndex = 0;
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Controls.Add(this.label10);
+            this.panel2.Controls.Add(this.optAll_0);
+            this.panel2.Controls.Add(this.optNgoaitru_0);
+            this.panel2.Controls.Add(this.optNoitru_0);
+            this.panel2.Location = new System.Drawing.Point(3, 6);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(467, 27);
+            this.panel2.TabIndex = 455;
+            // 
+            // label10
+            // 
+            this.label10.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(9, 1);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(94, 23);
+            this.label10.TabIndex = 277;
+            this.label10.Text = "Dữ liệu hiển thị";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // optAll_0
+            // 
+            this.optAll_0.AutoSize = true;
+            this.optAll_0.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.optAll_0.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.optAll_0.Location = new System.Drawing.Point(116, 4);
+            this.optAll_0.Name = "optAll_0";
+            this.optAll_0.Size = new System.Drawing.Size(60, 19);
+            this.optAll_0.TabIndex = 276;
+            this.optAll_0.Text = "Tất cả";
+            this.optAll_0.UseVisualStyleBackColor = true;
+            // 
+            // optNgoaitru_0
+            // 
+            this.optNgoaitru_0.AutoSize = true;
+            this.optNgoaitru_0.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.optNgoaitru_0.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.optNgoaitru_0.Location = new System.Drawing.Point(319, 4);
+            this.optNgoaitru_0.Name = "optNgoaitru_0";
+            this.optNgoaitru_0.Size = new System.Drawing.Size(76, 19);
+            this.optNgoaitru_0.TabIndex = 279;
+            this.optNgoaitru_0.Text = "Ngoại trú";
+            this.optNgoaitru_0.UseVisualStyleBackColor = true;
+            // 
+            // optNoitru_0
+            // 
+            this.optNoitru_0.AutoSize = true;
+            this.optNoitru_0.Checked = true;
+            this.optNoitru_0.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.optNoitru_0.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.optNoitru_0.Location = new System.Drawing.Point(220, 4);
+            this.optNoitru_0.Name = "optNoitru_0";
+            this.optNoitru_0.Size = new System.Drawing.Size(62, 19);
+            this.optNoitru_0.TabIndex = 278;
+            this.optNoitru_0.TabStop = true;
+            this.optNoitru_0.Text = "Nội trú";
+            this.optNoitru_0.UseVisualStyleBackColor = true;
+            // 
+            // uiButton1
+            // 
+            this.uiButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiButton1.ButtonStyle = Janus.Windows.EditControls.ButtonStyle.Button;
+            this.uiButton1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uiButton1.Image = global::VMS.HIS.Noitru.Properties.Resources.printer_24;
+            this.uiButton1.ImageSize = new System.Drawing.Size(20, 20);
+            this.uiButton1.Location = new System.Drawing.Point(362, 134);
+            this.uiButton1.Name = "uiButton1";
+            this.uiButton1.Office2007ColorScheme = Janus.Windows.UI.Office2007ColorScheme.Custom;
+            this.uiButton1.Office2007CustomColor = System.Drawing.Color.WhiteSmoke;
+            this.uiButton1.Size = new System.Drawing.Size(120, 35);
+            this.uiButton1.TabIndex = 454;
+            this.uiButton1.Text = "In chi tiết";
+            this.uiButton1.Click += new System.EventHandler(this.uiButton1_Click);
+            // 
+            // cmdPrint
+            // 
+            this.cmdPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmdPrint.ButtonStyle = Janus.Windows.EditControls.ButtonStyle.Button;
+            this.cmdPrint.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmdPrint.Image = global::VMS.HIS.Noitru.Properties.Resources.printtype1_24;
+            this.cmdPrint.ImageSize = new System.Drawing.Size(20, 20);
+            this.cmdPrint.Location = new System.Drawing.Point(239, 134);
+            this.cmdPrint.Name = "cmdPrint";
+            this.cmdPrint.Office2007ColorScheme = Janus.Windows.UI.Office2007ColorScheme.Custom;
+            this.cmdPrint.Office2007CustomColor = System.Drawing.Color.WhiteSmoke;
+            this.cmdPrint.Size = new System.Drawing.Size(120, 35);
+            this.cmdPrint.TabIndex = 453;
+            this.cmdPrint.Text = "In tổng hợp";
+            this.cmdPrint.Click += new System.EventHandler(this.cmdPrint_Click);
             // 
             // label8
             // 
@@ -971,6 +1064,7 @@
             this.cboNgaydieutri.TabIndex = 450;
             this.cboNgaydieutri.ValueItemDataMember = "(None)";
             this.cboNgaydieutri.ValuesDataMember = null;
+            this.cboNgaydieutri.CheckedValuesChanged += new System.EventHandler(this.cboNgaydieutri_CheckedValuesChanged);
             // 
             // cboKhoadieutri
             // 
@@ -1012,99 +1106,6 @@
             this.label11.TabIndex = 449;
             this.label11.Text = "Khoa điều trị";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // cmdPrint
-            // 
-            this.cmdPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmdPrint.ButtonStyle = Janus.Windows.EditControls.ButtonStyle.Button;
-            this.cmdPrint.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdPrint.Image = global::VMS.HIS.Noitru.Properties.Resources.printtype1_24;
-            this.cmdPrint.ImageSize = new System.Drawing.Size(20, 20);
-            this.cmdPrint.Location = new System.Drawing.Point(239, 134);
-            this.cmdPrint.Name = "cmdPrint";
-            this.cmdPrint.Office2007ColorScheme = Janus.Windows.UI.Office2007ColorScheme.Custom;
-            this.cmdPrint.Office2007CustomColor = System.Drawing.Color.WhiteSmoke;
-            this.cmdPrint.Size = new System.Drawing.Size(120, 35);
-            this.cmdPrint.TabIndex = 453;
-            this.cmdPrint.Text = "In tổng hợp";
-            this.cmdPrint.Click += new System.EventHandler(this.cmdPrint_Click);
-            // 
-            // uiButton1
-            // 
-            this.uiButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiButton1.ButtonStyle = Janus.Windows.EditControls.ButtonStyle.Button;
-            this.uiButton1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiButton1.Image = global::VMS.HIS.Noitru.Properties.Resources.printer_24;
-            this.uiButton1.ImageSize = new System.Drawing.Size(20, 20);
-            this.uiButton1.Location = new System.Drawing.Point(362, 134);
-            this.uiButton1.Name = "uiButton1";
-            this.uiButton1.Office2007ColorScheme = Janus.Windows.UI.Office2007ColorScheme.Custom;
-            this.uiButton1.Office2007CustomColor = System.Drawing.Color.WhiteSmoke;
-            this.uiButton1.Size = new System.Drawing.Size(120, 35);
-            this.uiButton1.TabIndex = 454;
-            this.uiButton1.Text = "In chi tiết";
-            this.uiButton1.Click += new System.EventHandler(this.uiButton1_Click);
-            // 
-            // panel2
-            // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.Controls.Add(this.label10);
-            this.panel2.Controls.Add(this.optAll_0);
-            this.panel2.Controls.Add(this.optNgoaitru_0);
-            this.panel2.Controls.Add(this.optNoitru_0);
-            this.panel2.Location = new System.Drawing.Point(3, 6);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(467, 27);
-            this.panel2.TabIndex = 455;
-            // 
-            // label10
-            // 
-            this.label10.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(9, 1);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(94, 23);
-            this.label10.TabIndex = 277;
-            this.label10.Text = "Dữ liệu hiển thị";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // optAll_0
-            // 
-            this.optAll_0.AutoSize = true;
-            this.optAll_0.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.optAll_0.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.optAll_0.Location = new System.Drawing.Point(116, 4);
-            this.optAll_0.Name = "optAll_0";
-            this.optAll_0.Size = new System.Drawing.Size(60, 19);
-            this.optAll_0.TabIndex = 276;
-            this.optAll_0.Text = "Tất cả";
-            this.optAll_0.UseVisualStyleBackColor = true;
-            // 
-            // optNgoaitru_0
-            // 
-            this.optNgoaitru_0.AutoSize = true;
-            this.optNgoaitru_0.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.optNgoaitru_0.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.optNgoaitru_0.Location = new System.Drawing.Point(319, 4);
-            this.optNgoaitru_0.Name = "optNgoaitru_0";
-            this.optNgoaitru_0.Size = new System.Drawing.Size(76, 19);
-            this.optNgoaitru_0.TabIndex = 279;
-            this.optNgoaitru_0.Text = "Ngoại trú";
-            this.optNgoaitru_0.UseVisualStyleBackColor = true;
-            // 
-            // optNoitru_0
-            // 
-            this.optNoitru_0.AutoSize = true;
-            this.optNoitru_0.Checked = true;
-            this.optNoitru_0.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.optNoitru_0.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.optNoitru_0.Location = new System.Drawing.Point(220, 4);
-            this.optNoitru_0.Name = "optNoitru_0";
-            this.optNoitru_0.Size = new System.Drawing.Size(62, 19);
-            this.optNoitru_0.TabIndex = 278;
-            this.optNoitru_0.TabStop = true;
-            this.optNoitru_0.Text = "Nội trú";
-            this.optNoitru_0.UseVisualStyleBackColor = true;
             // 
             // splitContainer1
             // 
@@ -1162,13 +1163,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdListGoiDV)).EndInit();
             this.pnlData.ResumeLayout(false);
             this.pnlTonghopchiphi.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grdThongTinChuaThanhToan)).EndInit();
             this.pnlAct.ResumeLayout(false);
             this.pnlAct.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdThongTinChuaThanhToan)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();

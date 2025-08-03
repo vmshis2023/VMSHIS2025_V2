@@ -18,7 +18,7 @@ namespace VMS.HIS.EMR.Forms.BA_Phieukham.Ucs
         {
             InitializeComponent();
             lnkNguoiky.Text = Utility.sDbnull(drInfor["ten_nguoiky"]);
-            lnkNguoiky.Tag= Utility.sDbnull(drInfor["ten_vitri_ky"]);
+            lnkNguoiky.Tag=string.Format("{0}@{1}", Utility.sDbnull(drInfor["nguoi_ky"]), Utility.sDbnull(drInfor["ten_vitri_ky"]));
             if (Utility.ByteDbnull(drInfor["tthai_ky"]) ==1)
             {
                 pic.Width = 30;

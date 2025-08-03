@@ -4184,6 +4184,16 @@ namespace VNS.Libs
                 return "";
             }
         }
+        public static string TaoMaGhino(DateTime dateTime)
+        {
+            DataTable dataTable = new DataTable();
+            dataTable = SPs.ThanhtoanGhinoTaoma(dateTime).GetDataSet().Tables[0];
+            if (dataTable.Rows.Count > 0) return dataTable.Rows[0]["ma_ghino"].ToString();
+            else
+            {
+                return "";
+            }
+        }
         public static string TaomaDongChiTra(DateTime dateTime)
         {
             DataTable dataTable = new DataTable();

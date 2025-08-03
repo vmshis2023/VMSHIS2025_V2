@@ -105,6 +105,12 @@
     <Compile Include="THANHTOAN\frm_ChonTamthu_Ketchuyen.Designer.cs">
       <DependentUpon>frm_ChonTamthu_Ketchuyen.cs</DependentUpon>
     </Compile>
+    <Compile Include="THANHTOAN\frm_Ghino.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="THANHTOAN\frm_Ghino.Designer.cs">
+      <DependentUpon>frm_Ghino.cs</DependentUpon>
+    </Compile>
     <Compile Include="THANHTOAN\frm_tamthu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -202,6 +208,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="THANHTOAN\frm_ChonTamthu_Ketchuyen.resx">
       <DependentUpon>frm_ChonTamthu_Ketchuyen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="THANHTOAN\frm_Ghino.resx">
+      <DependentUpon>frm_Ghino.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="THANHTOAN\frm_tamthu.resx">
       <DependentUpon>frm_tamthu.cs</DependentUpon>

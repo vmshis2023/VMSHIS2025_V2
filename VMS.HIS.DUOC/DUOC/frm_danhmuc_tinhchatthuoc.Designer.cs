@@ -532,7 +532,7 @@
             // 
             this.cmdClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdClose.Image = ((System.Drawing.Image)(resources.GetObject("cmdClose.Image")));
+            this.cmdClose.Image = global::VMS.HIS.Duoc.Properties.Resources.close_24;
             this.cmdClose.ImageSize = new System.Drawing.Size(20, 20);
             this.cmdClose.Location = new System.Drawing.Point(878, 653);
             this.cmdClose.Name = "cmdClose";
@@ -592,7 +592,7 @@
             // 
             this.cmdInsert.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdInsert.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdInsert.Image = ((System.Drawing.Image)(resources.GetObject("cmdInsert.Image")));
+            this.cmdInsert.Image = global::VMS.HIS.Duoc.Properties.Resources.add_04_32;
             this.cmdInsert.ImageSize = new System.Drawing.Size(20, 20);
             this.cmdInsert.Location = new System.Drawing.Point(248, 653);
             this.cmdInsert.Name = "cmdInsert";

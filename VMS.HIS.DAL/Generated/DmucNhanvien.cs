@@ -720,6 +720,19 @@ namespace VMS.HIS.DAL
 				colvarChuKy.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarChuKy);
 				
+				TableSchema.TableColumn colvarHinhanh = new TableSchema.TableColumn(schema);
+				colvarHinhanh.ColumnName = "hinhanh";
+				colvarHinhanh.DataType = DbType.Binary;
+				colvarHinhanh.MaxLength = 2147483647;
+				colvarHinhanh.AutoIncrement = false;
+				colvarHinhanh.IsNullable = true;
+				colvarHinhanh.IsPrimaryKey = false;
+				colvarHinhanh.IsForeignKey = false;
+				colvarHinhanh.IsReadOnly = false;
+				colvarHinhanh.DefaultSetting = @"";
+				colvarHinhanh.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarHinhanh);
+				
 				TableSchema.TableColumn colvarLaTruongkhoa = new TableSchema.TableColumn(schema);
 				colvarLaTruongkhoa.ColumnName = "la_truongkhoa";
 				colvarLaTruongkhoa.DataType = DbType.Byte;
@@ -1118,6 +1131,14 @@ namespace VMS.HIS.DAL
 			set { SetColumnValue(Columns.ChuKy, value); }
 		}
 		  
+		[XmlAttribute("Hinhanh")]
+		[Bindable(true)]
+		public byte[] Hinhanh 
+		{
+			get { return GetColumnValue<byte[]>(Columns.Hinhanh); }
+			set { SetColumnValue(Columns.Hinhanh, value); }
+		}
+		  
 		[XmlAttribute("LaTruongkhoa")]
 		[Bindable(true)]
 		public byte? LaTruongkhoa 
@@ -1153,7 +1174,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(string varMaNhanvien,string varTenNhanvien,short varIdPhong,int? varIdKhoa,string varMaLoainhanvien,string varUserName,string varMaChungchi,byte? varPtramCkhau,byte? varCungthuchien,decimal? varChiphiCungthuchien,string varMaCoso,byte? varTrangThai,int? varSttHthi,string varMotaThem,string varNguoiTao,DateTime? varNgayTao,string varNguoiSua,DateTime? varNgaySua,byte? varIdGioitinh,string varGioiTinh,string varMaLoaiKcb,string varMaKhoa,string varTenKhoa,string varMaBhxh,string varMaChucdanh,DateTime? varNgaycapCchn,string varNoicapCchn,string varPhamviChuyenmo,string varPhamviChuyenmonBacsi,string varDvktKhac,string varVbanPhancong,byte? varThoigianDky,string varThoigianNgay,string varThoigianTuan,string varCskcbKhac,string varCskcbCgkt,string varQdinhCgkt,bool? varAnhxaBhyt,decimal? varTranKedon,string varChucDanh,string varChucVu,string varViTri,string varDienThoai,byte[] varChuKy,byte? varLaTruongkhoa,byte? varLaNguoidaidienDonvi)
+		public static void Insert(string varMaNhanvien,string varTenNhanvien,short varIdPhong,int? varIdKhoa,string varMaLoainhanvien,string varUserName,string varMaChungchi,byte? varPtramCkhau,byte? varCungthuchien,decimal? varChiphiCungthuchien,string varMaCoso,byte? varTrangThai,int? varSttHthi,string varMotaThem,string varNguoiTao,DateTime? varNgayTao,string varNguoiSua,DateTime? varNgaySua,byte? varIdGioitinh,string varGioiTinh,string varMaLoaiKcb,string varMaKhoa,string varTenKhoa,string varMaBhxh,string varMaChucdanh,DateTime? varNgaycapCchn,string varNoicapCchn,string varPhamviChuyenmo,string varPhamviChuyenmonBacsi,string varDvktKhac,string varVbanPhancong,byte? varThoigianDky,string varThoigianNgay,string varThoigianTuan,string varCskcbKhac,string varCskcbCgkt,string varQdinhCgkt,bool? varAnhxaBhyt,decimal? varTranKedon,string varChucDanh,string varChucVu,string varViTri,string varDienThoai,byte[] varChuKy,byte[] varHinhanh,byte? varLaTruongkhoa,byte? varLaNguoidaidienDonvi)
 		{
 			DmucNhanvien item = new DmucNhanvien();
 			
@@ -1245,6 +1266,8 @@ namespace VMS.HIS.DAL
 			
 			item.ChuKy = varChuKy;
 			
+			item.Hinhanh = varHinhanh;
+			
 			item.LaTruongkhoa = varLaTruongkhoa;
 			
 			item.LaNguoidaidienDonvi = varLaNguoidaidienDonvi;
@@ -1259,7 +1282,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(short varIdNhanvien,string varMaNhanvien,string varTenNhanvien,short varIdPhong,int? varIdKhoa,string varMaLoainhanvien,string varUserName,string varMaChungchi,byte? varPtramCkhau,byte? varCungthuchien,decimal? varChiphiCungthuchien,string varMaCoso,byte? varTrangThai,int? varSttHthi,string varMotaThem,string varNguoiTao,DateTime? varNgayTao,string varNguoiSua,DateTime? varNgaySua,byte? varIdGioitinh,string varGioiTinh,string varMaLoaiKcb,string varMaKhoa,string varTenKhoa,string varMaBhxh,string varMaChucdanh,DateTime? varNgaycapCchn,string varNoicapCchn,string varPhamviChuyenmo,string varPhamviChuyenmonBacsi,string varDvktKhac,string varVbanPhancong,byte? varThoigianDky,string varThoigianNgay,string varThoigianTuan,string varCskcbKhac,string varCskcbCgkt,string varQdinhCgkt,bool? varAnhxaBhyt,decimal? varTranKedon,string varChucDanh,string varChucVu,string varViTri,string varDienThoai,byte[] varChuKy,byte? varLaTruongkhoa,byte? varLaNguoidaidienDonvi)
+		public static void Update(short varIdNhanvien,string varMaNhanvien,string varTenNhanvien,short varIdPhong,int? varIdKhoa,string varMaLoainhanvien,string varUserName,string varMaChungchi,byte? varPtramCkhau,byte? varCungthuchien,decimal? varChiphiCungthuchien,string varMaCoso,byte? varTrangThai,int? varSttHthi,string varMotaThem,string varNguoiTao,DateTime? varNgayTao,string varNguoiSua,DateTime? varNgaySua,byte? varIdGioitinh,string varGioiTinh,string varMaLoaiKcb,string varMaKhoa,string varTenKhoa,string varMaBhxh,string varMaChucdanh,DateTime? varNgaycapCchn,string varNoicapCchn,string varPhamviChuyenmo,string varPhamviChuyenmonBacsi,string varDvktKhac,string varVbanPhancong,byte? varThoigianDky,string varThoigianNgay,string varThoigianTuan,string varCskcbKhac,string varCskcbCgkt,string varQdinhCgkt,bool? varAnhxaBhyt,decimal? varTranKedon,string varChucDanh,string varChucVu,string varViTri,string varDienThoai,byte[] varChuKy,byte[] varHinhanh,byte? varLaTruongkhoa,byte? varLaNguoidaidienDonvi)
 		{
 			DmucNhanvien item = new DmucNhanvien();
 			
@@ -1352,6 +1375,8 @@ namespace VMS.HIS.DAL
 				item.DienThoai = varDienThoai;
 			
 				item.ChuKy = varChuKy;
+			
+				item.Hinhanh = varHinhanh;
 			
 				item.LaTruongkhoa = varLaTruongkhoa;
 			
@@ -1685,16 +1710,23 @@ namespace VMS.HIS.DAL
         
         
         
-        public static TableSchema.TableColumn LaTruongkhoaColumn
+        public static TableSchema.TableColumn HinhanhColumn
         {
             get { return Schema.Columns[45]; }
         }
         
         
         
-        public static TableSchema.TableColumn LaNguoidaidienDonviColumn
+        public static TableSchema.TableColumn LaTruongkhoaColumn
         {
             get { return Schema.Columns[46]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn LaNguoidaidienDonviColumn
+        {
+            get { return Schema.Columns[47]; }
         }
         
         
@@ -1748,6 +1780,7 @@ namespace VMS.HIS.DAL
 			 public static string ViTri = @"vi_tri";
 			 public static string DienThoai = @"dien_thoai";
 			 public static string ChuKy = @"chu_ky";
+			 public static string Hinhanh = @"hinhanh";
 			 public static string LaTruongkhoa = @"la_truongkhoa";
 			 public static string LaNguoidaidienDonvi = @"la_nguoidaidien_donvi";
 						

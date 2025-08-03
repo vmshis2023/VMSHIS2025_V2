@@ -1147,6 +1147,19 @@ namespace VMS.HIS.DAL
 				colvarMaPhieuEmr.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarMaPhieuEmr);
 				
+				TableSchema.TableColumn colvarKhongbatbuoccoketqua = new TableSchema.TableColumn(schema);
+				colvarKhongbatbuoccoketqua.ColumnName = "khongbatbuoccoketqua";
+				colvarKhongbatbuoccoketqua.DataType = DbType.Boolean;
+				colvarKhongbatbuoccoketqua.MaxLength = 0;
+				colvarKhongbatbuoccoketqua.AutoIncrement = false;
+				colvarKhongbatbuoccoketqua.IsNullable = true;
+				colvarKhongbatbuoccoketqua.IsPrimaryKey = false;
+				colvarKhongbatbuoccoketqua.IsForeignKey = false;
+				colvarKhongbatbuoccoketqua.IsReadOnly = false;
+				colvarKhongbatbuoccoketqua.DefaultSetting = @"";
+				colvarKhongbatbuoccoketqua.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarKhongbatbuoccoketqua);
+				
 				BaseSchema = schema;
 				//add this schema to the provider
 				//so we can query it later
@@ -1780,6 +1793,14 @@ namespace VMS.HIS.DAL
 			get { return GetColumnValue<string>(Columns.MaPhieuEmr); }
 			set { SetColumnValue(Columns.MaPhieuEmr, value); }
 		}
+		  
+		[XmlAttribute("Khongbatbuoccoketqua")]
+		[Bindable(true)]
+		public bool? Khongbatbuoccoketqua 
+		{
+			get { return GetColumnValue<bool?>(Columns.Khongbatbuoccoketqua); }
+			set { SetColumnValue(Columns.Khongbatbuoccoketqua, value); }
+		}
 		
 		#endregion
 		
@@ -1800,7 +1821,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(string varMaChitietdichvu,string varMaChitietdichvuBhyt,string varMaQd,string varSttDmbhyt,string varTenChitietdichvu,string varTenChitietdichvuBhyt,short varIdDichvu,string varMaDonvitinh,string varBinhthuongNam,string varBinhthuongNu,byte? varTrangThai,byte? varHienThi,decimal? varDonGia,string varMotaThem,int? varSttHthi,short? varIdKhoaThuchien,short? varIdPhongThuchien,string varChiDan,string varNhomBaocao,DateTime? varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua,string varMaKhoathuchien,byte? varTuTuc,decimal? varGiaBhyt,decimal? varPhuthuDungtuyen,decimal? varPhuthuTraituyen,byte? varCoChitiet,int? varIdCha,string varBodypart,string varViewPosition,string varMauChuan,string varMauCanhan,byte? varLaChiphithem,int? varSoluongChitieu,string varMaPhuongphapthu,string varKihieuDinhtinhDat,string varIdCamchidinhchungphieu,byte? varSingleService,string varNhomInphoiBHYT,byte? varLaDvuKiemnghiem,string varLoaiPttt,string varPpVocam,DateTime? varNgayBatdau,DateTime? varNgayCongbo,DateTime? varNgayKetthuc,string varXmlMadichvu,string varXmlMachiso,string varXmlTenchiso,string varXmlMamay,string varDsachVungkhaosat,decimal? varGiaGoc,byte? varTinhChkhau,string varCachthucPttt,byte? varSongayChophepChidinhtiep,byte? varTnvChidinh,string varNhomInClsChitiet,byte? varLaDvuTieuhao,byte? varBhytNguonKhac,decimal? varTyleTtNguonkhac,decimal? varTyleHotro,string varNhomChiphi,string varMaQdinh,string varMaCongbo,string varLoaiBenhpham,string varQuyTrinh,string varCskcbCgkt,string varCskcbCls,int? varMaPttt,bool? varHiv,int? varViTriThDvkt,string varChuyenkhoa,string varMaKetnoi,string varCanhBao,decimal? varGiaCu,string varMaPhieuEmr)
+		public static void Insert(string varMaChitietdichvu,string varMaChitietdichvuBhyt,string varMaQd,string varSttDmbhyt,string varTenChitietdichvu,string varTenChitietdichvuBhyt,short varIdDichvu,string varMaDonvitinh,string varBinhthuongNam,string varBinhthuongNu,byte? varTrangThai,byte? varHienThi,decimal? varDonGia,string varMotaThem,int? varSttHthi,short? varIdKhoaThuchien,short? varIdPhongThuchien,string varChiDan,string varNhomBaocao,DateTime? varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua,string varMaKhoathuchien,byte? varTuTuc,decimal? varGiaBhyt,decimal? varPhuthuDungtuyen,decimal? varPhuthuTraituyen,byte? varCoChitiet,int? varIdCha,string varBodypart,string varViewPosition,string varMauChuan,string varMauCanhan,byte? varLaChiphithem,int? varSoluongChitieu,string varMaPhuongphapthu,string varKihieuDinhtinhDat,string varIdCamchidinhchungphieu,byte? varSingleService,string varNhomInphoiBHYT,byte? varLaDvuKiemnghiem,string varLoaiPttt,string varPpVocam,DateTime? varNgayBatdau,DateTime? varNgayCongbo,DateTime? varNgayKetthuc,string varXmlMadichvu,string varXmlMachiso,string varXmlTenchiso,string varXmlMamay,string varDsachVungkhaosat,decimal? varGiaGoc,byte? varTinhChkhau,string varCachthucPttt,byte? varSongayChophepChidinhtiep,byte? varTnvChidinh,string varNhomInClsChitiet,byte? varLaDvuTieuhao,byte? varBhytNguonKhac,decimal? varTyleTtNguonkhac,decimal? varTyleHotro,string varNhomChiphi,string varMaQdinh,string varMaCongbo,string varLoaiBenhpham,string varQuyTrinh,string varCskcbCgkt,string varCskcbCls,int? varMaPttt,bool? varHiv,int? varViTriThDvkt,string varChuyenkhoa,string varMaKetnoi,string varCanhBao,decimal? varGiaCu,string varMaPhieuEmr,bool? varKhongbatbuoccoketqua)
 		{
 			DmucDichvuclsChitiet item = new DmucDichvuclsChitiet();
 			
@@ -1958,6 +1979,8 @@ namespace VMS.HIS.DAL
 			
 			item.MaPhieuEmr = varMaPhieuEmr;
 			
+			item.Khongbatbuoccoketqua = varKhongbatbuoccoketqua;
+			
 		
 			if (System.Web.HttpContext.Current != null)
 				item.Save(System.Web.HttpContext.Current.User.Identity.Name);
@@ -1968,7 +1991,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(int varIdChitietdichvu,string varMaChitietdichvu,string varMaChitietdichvuBhyt,string varMaQd,string varSttDmbhyt,string varTenChitietdichvu,string varTenChitietdichvuBhyt,short varIdDichvu,string varMaDonvitinh,string varBinhthuongNam,string varBinhthuongNu,byte? varTrangThai,byte? varHienThi,decimal? varDonGia,string varMotaThem,int? varSttHthi,short? varIdKhoaThuchien,short? varIdPhongThuchien,string varChiDan,string varNhomBaocao,DateTime? varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua,string varMaKhoathuchien,byte? varTuTuc,decimal? varGiaBhyt,decimal? varPhuthuDungtuyen,decimal? varPhuthuTraituyen,byte? varCoChitiet,int? varIdCha,string varBodypart,string varViewPosition,string varMauChuan,string varMauCanhan,byte? varLaChiphithem,int? varSoluongChitieu,string varMaPhuongphapthu,string varKihieuDinhtinhDat,string varIdCamchidinhchungphieu,byte? varSingleService,string varNhomInphoiBHYT,byte? varLaDvuKiemnghiem,string varLoaiPttt,string varPpVocam,DateTime? varNgayBatdau,DateTime? varNgayCongbo,DateTime? varNgayKetthuc,string varXmlMadichvu,string varXmlMachiso,string varXmlTenchiso,string varXmlMamay,string varDsachVungkhaosat,decimal? varGiaGoc,byte? varTinhChkhau,string varCachthucPttt,byte? varSongayChophepChidinhtiep,byte? varTnvChidinh,string varNhomInClsChitiet,byte? varLaDvuTieuhao,byte? varBhytNguonKhac,decimal? varTyleTtNguonkhac,decimal? varTyleHotro,string varNhomChiphi,string varMaQdinh,string varMaCongbo,string varLoaiBenhpham,string varQuyTrinh,string varCskcbCgkt,string varCskcbCls,int? varMaPttt,bool? varHiv,int? varViTriThDvkt,string varChuyenkhoa,string varMaKetnoi,string varCanhBao,decimal? varGiaCu,string varMaPhieuEmr)
+		public static void Update(int varIdChitietdichvu,string varMaChitietdichvu,string varMaChitietdichvuBhyt,string varMaQd,string varSttDmbhyt,string varTenChitietdichvu,string varTenChitietdichvuBhyt,short varIdDichvu,string varMaDonvitinh,string varBinhthuongNam,string varBinhthuongNu,byte? varTrangThai,byte? varHienThi,decimal? varDonGia,string varMotaThem,int? varSttHthi,short? varIdKhoaThuchien,short? varIdPhongThuchien,string varChiDan,string varNhomBaocao,DateTime? varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua,string varMaKhoathuchien,byte? varTuTuc,decimal? varGiaBhyt,decimal? varPhuthuDungtuyen,decimal? varPhuthuTraituyen,byte? varCoChitiet,int? varIdCha,string varBodypart,string varViewPosition,string varMauChuan,string varMauCanhan,byte? varLaChiphithem,int? varSoluongChitieu,string varMaPhuongphapthu,string varKihieuDinhtinhDat,string varIdCamchidinhchungphieu,byte? varSingleService,string varNhomInphoiBHYT,byte? varLaDvuKiemnghiem,string varLoaiPttt,string varPpVocam,DateTime? varNgayBatdau,DateTime? varNgayCongbo,DateTime? varNgayKetthuc,string varXmlMadichvu,string varXmlMachiso,string varXmlTenchiso,string varXmlMamay,string varDsachVungkhaosat,decimal? varGiaGoc,byte? varTinhChkhau,string varCachthucPttt,byte? varSongayChophepChidinhtiep,byte? varTnvChidinh,string varNhomInClsChitiet,byte? varLaDvuTieuhao,byte? varBhytNguonKhac,decimal? varTyleTtNguonkhac,decimal? varTyleHotro,string varNhomChiphi,string varMaQdinh,string varMaCongbo,string varLoaiBenhpham,string varQuyTrinh,string varCskcbCgkt,string varCskcbCls,int? varMaPttt,bool? varHiv,int? varViTriThDvkt,string varChuyenkhoa,string varMaKetnoi,string varCanhBao,decimal? varGiaCu,string varMaPhieuEmr,bool? varKhongbatbuoccoketqua)
 		{
 			DmucDichvuclsChitiet item = new DmucDichvuclsChitiet();
 			
@@ -2127,6 +2150,8 @@ namespace VMS.HIS.DAL
 				item.GiaCu = varGiaCu;
 			
 				item.MaPhieuEmr = varMaPhieuEmr;
+			
+				item.Khongbatbuoccoketqua = varKhongbatbuoccoketqua;
 			
 			item.IsNew = false;
 			if (System.Web.HttpContext.Current != null)
@@ -2687,6 +2712,13 @@ namespace VMS.HIS.DAL
         
         
         
+        public static TableSchema.TableColumn KhongbatbuoccoketquaColumn
+        {
+            get { return Schema.Columns[78]; }
+        }
+        
+        
+        
         #endregion
 		#region Columns Struct
 		public struct Columns
@@ -2769,6 +2801,7 @@ namespace VMS.HIS.DAL
 			 public static string CanhBao = @"canh_bao";
 			 public static string GiaCu = @"gia_cu";
 			 public static string MaPhieuEmr = @"ma_phieu_emr";
+			 public static string Khongbatbuoccoketqua = @"khongbatbuoccoketqua";
 						
 		}
 		#endregion

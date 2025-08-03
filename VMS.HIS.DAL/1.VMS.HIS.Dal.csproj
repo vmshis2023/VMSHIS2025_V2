@@ -307,6 +307,8 @@
     <Compile Include="Generated\KcbDonthuocChitiet.cs" />
     <Compile Include="Generated\KcbDonthuocChitietController.cs" />
     <Compile Include="Generated\KcbDonthuocController.cs" />
+    <Compile Include="Generated\KcbDonthuocMuangoai.cs" />
+    <Compile Include="Generated\KcbDonthuocMuangoaiController.cs" />
     <Compile Include="Generated\KcbKetquaCl.cs" />
     <Compile Include="Generated\KcbKetquaClController.cs" />
     <Compile Include="Generated\KcbKetquaHa.cs" />
@@ -365,6 +367,8 @@
     <Compile Include="Generated\KcbThanhtoanChitiet.cs" />
     <Compile Include="Generated\KcbThanhtoanChitietController.cs" />
     <Compile Include="Generated\KcbThanhtoanController.cs" />
+    <Compile Include="Generated\KcbThanhtoanGhino.cs" />
+    <Compile Include="Generated\KcbThanhtoanGhinoController.cs" />
     <Compile Include="Generated\KcbThanhtoanPhanbotheoPTTT.cs" />
     <Compile Include="Generated\KcbThanhtoanPhanbotheoPTTTController.cs" />
     <Compile Include="Generated\KcbThanhtoanTamungTrului.cs" />
@@ -373,6 +377,8 @@
     <Compile Include="Generated\KcbThoigianchidinhClController.cs" />
     <Compile Include="Generated\KcbThongtinchung.cs" />
     <Compile Include="Generated\KcbThongtinchungController.cs" />
+    <Compile Include="Generated\KcbThuchiendonthuoc.cs" />
+    <Compile Include="Generated\KcbThuchiendonthuocController.cs" />
     <Compile Include="Generated\KcbTongketBA.cs" />
     <Compile Include="Generated\KcbTongketBAController.cs" />
     <Compile Include="Generated\KnChidinhChitiet.cs">

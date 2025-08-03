@@ -2663,7 +2663,7 @@ namespace VNS.Libs
                                               new DataColumn("ComparedValue", typeof (string))
                                           });
                 }
-                if (globalVariables.dtAutocompleteAddress_New == null || globalVariables.dtAutocompleteAddress_New.Rows.Count > 0) return;//Đã được nạp lần login đầu tiên
+                if (globalVariables.dtAutocompleteAddress_New != null && globalVariables.dtAutocompleteAddress_New.Rows.Count > 0) return;//Đã được nạp lần login đầu tiên
                 if (!globalVariables.dtAutocompleteAddress_New.Columns.Contains("ShortCut")) globalVariables.dtAutocompleteAddress_New.Columns.Add(new DataColumn("ShortCut", typeof(string)));
                 foreach (DataRow dr in dtData.Select("loai_diachinh=0 and isNew=true"))
                 {
@@ -2961,6 +2961,31 @@ namespace VNS.Libs
             //    }
             //}
         }
+        public static void AutoBindCheckedComboBox(Janus.Windows.GridEX.EditControls.CheckedComboBox cbo)
+        {
+            try
+            {
+                cbo.CheckedValuesChanged += (s, e) =>
+                {
+                    var checkedItems = cbo.CheckedValues;
+                    if (checkedItems != null && checkedItems.Count() > 0)
+                        cbo.Text = string.Join(",", checkedItems.Cast<object>()); // Gán lại vào text
+                    else
+                        cbo.Text = "";
+                };
+
+                cbo.DropDown += (s, e) =>
+                {
+                    cbo.Focus();  // Hạn chế văng
+                };
+            }
+            catch (Exception ex)
+            {
+
+            }
+            
+        }
+
         public static void CatchException(Exception ex)
         {
             //if (globalVariables.IsAdmin)
@@ -6073,6 +6098,18 @@ namespace VNS.Libs
             }
         }
 
+        public static byte[] image2Dbnull(object obj, byte[] DefaultVal)
+        {
+            if (obj == null || obj == DBNull.Value)
+            {
+                return DefaultVal;
+            }
+            else
+            {
+                return obj as byte[];
+            }
+        }
+
         /// <summary>
         /// Hàm chuyển đổi một giá trị chuỗi nếu rỗng thành một giá trị mặc định
         /// </summary>
@@ -6481,7 +6518,7 @@ namespace VNS.Libs
         /// <param name="txtBox"></param>
         public static void FormatCurrencyHIS(Janus.Windows.GridEX.EditControls.EditBox txtBox)
         {
-            if (!Utility.IsNumeric(txtBox.Text)) return;
+            if (!Utility.IsNumeric(txtBox.Text) || txtBox.Text=="(0)") return;
             if ((txtBox.Text != null) && txtBox.Text.Trim() != "")
                 if (Utility.DecimaltoDbnull(txtBox.Text, 0) > 0)
                     txtBox.Text = String.Format(FormatCurrecy(), Convert.ToDouble(txtBox.Text));
@@ -7104,6 +7141,31 @@ namespace VNS.Libs
                 return Convert.ToDouble(obj);
             }
         }
+        public static void CalculateIBM(decimal chieucao,decimal cannang, Janus.Windows.GridEX.EditControls.MaskedEditBox txtbox)
+        {
+            if (chieucao>0 && cannang>0)
+            {
+                Decimal IBM = cannang / ((chieucao / 100) * (chieucao / 100));
+                txtbox.Text = String.Format("{0:0.##}", IBM);
+            }
+            else
+            {
+                txtbox.Text = "";
+            }    
+        }
+        public static void CalculateIBM(decimal chieucao, decimal cannang, Janus.Windows.GridEX.EditControls.EditBox txtbox)
+        {
+            if (chieucao > 0 && cannang > 0)
+            {
+                Decimal IBM = cannang / ((chieucao / 100) * (chieucao / 100));
+                txtbox.Text = String.Format("{0:0.##}", IBM);
+            }
+            else
+            {
+                txtbox.Text = "";
+            }
+        }
+       
 
         /// <summary>
         /// Hàm thực hiện convert đối tượng thành Decimal
@@ -7181,12 +7243,12 @@ namespace VNS.Libs
                 if (grdList.CurrentRow != null && grdList.RootTable.Columns.Contains(ColumnName))
                     return Utility.sDbnull(grdList.CurrentRow.Cells[ColumnName].Value);
                 else
-                    return "-1";
+                    return "";
             }
             catch (Exception)
             {
 
-                return "null";
+                return "";
             }
             
         }
@@ -9402,6 +9464,17 @@ namespace VNS.Libs
             }
             dataTable.AcceptChanges();
         }
+        public static void AddColums2DataTable( DataTable dataTable, List<string> lstFieldNames, List<Type> lstTypes)
+        {
+            int idx = 0;
+            foreach (string FieldName in lstFieldNames)
+            {
+                if (!dataTable.Columns.Contains(FieldName))
+                    dataTable.Columns.Add(FieldName, lstTypes[idx]);
+                idx++;
+            }
+            dataTable.AcceptChanges();
+        }
         public static void AddColums2DataTable(ref DataTable dataTable, List<string> lstFieldNames,Type FieldType)
         {
             foreach (string FieldName in lstFieldNames)
@@ -10819,35 +10892,52 @@ namespace VNS.Libs
         }
         public static Control getActiveControl(Control root)
         {
-            if (root == null)
-                return null;
-
-            Control current = root;
-
-            while (current is ContainerControl container && container.ActiveControl != null)
+            try
             {
-                current = container.ActiveControl;
-            }
+                if (root == null)
+                    return null;
 
-            return current;
+                Control current = root;
+
+                while (current is ContainerControl container && container.ActiveControl != null)
+                {
+                    current = container.ActiveControl;
+                }
+
+                return current;
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+            
         }
         public static Control getActiveControl_Dequy(Control container)
         {
-            if (container == null)
+            try
+            {
+                if (container == null)
+                    return null;
+
+                Control active = null;
+
+                if (container is ContainerControl cc && cc.ActiveControl != null)
+                    active = cc.ActiveControl;
+                else
+                    active = container;
+
+                // Nếu control này lại là ContainerControl và có ActiveControl, thì đệ quy tiếp
+                if (active is ContainerControl innerCc && innerCc.ActiveControl != null)
+                    return getActiveControl(innerCc.ActiveControl);
+
+                return active;
+            }
+            catch (Exception)
+            {
                 return null;
-
-            Control active = null;
-
-            if (container is ContainerControl cc && cc.ActiveControl != null)
-                active = cc.ActiveControl;
-            else
-                active = container;
-
-            // Nếu control này lại là ContainerControl và có ActiveControl, thì đệ quy tiếp
-            if (active is ContainerControl innerCc && innerCc.ActiveControl != null)
-                return getActiveControl(innerCc.ActiveControl);
-
-            return active;
+            }
+           
         }
         public static Control getActiveControl_bak(ContainerControl ctrl)
         {

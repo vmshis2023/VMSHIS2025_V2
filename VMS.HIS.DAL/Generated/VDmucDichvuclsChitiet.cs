@@ -993,6 +993,18 @@ namespace VMS.HIS.DAL{
                 
                 schema.Columns.Add(colvarMaPhieuEmr);
                 
+                TableSchema.TableColumn colvarKhongbatbuoccoketqua = new TableSchema.TableColumn(schema);
+                colvarKhongbatbuoccoketqua.ColumnName = "khongbatbuoccoketqua";
+                colvarKhongbatbuoccoketqua.DataType = DbType.Boolean;
+                colvarKhongbatbuoccoketqua.MaxLength = 0;
+                colvarKhongbatbuoccoketqua.AutoIncrement = false;
+                colvarKhongbatbuoccoketqua.IsNullable = true;
+                colvarKhongbatbuoccoketqua.IsPrimaryKey = false;
+                colvarKhongbatbuoccoketqua.IsForeignKey = false;
+                colvarKhongbatbuoccoketqua.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarKhongbatbuoccoketqua);
+                
                 TableSchema.TableColumn colvarMotaThemChitiet = new TableSchema.TableColumn(schema);
                 colvarMotaThemChitiet.ColumnName = "mota_them_chitiet";
                 colvarMotaThemChitiet.DataType = DbType.String;
@@ -2627,6 +2639,20 @@ namespace VMS.HIS.DAL{
             }
         }
 	      
+        [XmlAttribute("Khongbatbuoccoketqua")]
+        [Bindable(true)]
+        public bool? Khongbatbuoccoketqua 
+	    {
+		    get
+		    {
+			    return GetColumnValue<bool?>("khongbatbuoccoketqua");
+		    }
+            set 
+		    {
+			    SetColumnValue("khongbatbuoccoketqua", value);
+            }
+        }
+	      
         [XmlAttribute("MotaThemChitiet")]
         [Bindable(true)]
         public string MotaThemChitiet 
@@ -3363,6 +3389,8 @@ namespace VMS.HIS.DAL{
             public static string GiaCu = @"gia_cu";
             
             public static string MaPhieuEmr = @"ma_phieu_emr";
+            
+            public static string Khongbatbuoccoketqua = @"khongbatbuoccoketqua";
             
             public static string MotaThemChitiet = @"mota_them_chitiet";
             

@@ -82,11 +82,21 @@ namespace VMS.HIS.UI.EMR
             //txt_chandoan_sauphauthuat._OnGridSelectionChanged += txt_chandoan_sauphauthuat_OnGridSelectionChanged;
             //txt_chandoan_sauphauthuat._OnSelectionChanged += txt_chandoan_sauphauthuat_OnSelectionChanged;
             txt_chandoan_sauphauthuat._OnEnterMe += txt_chandoan_sauphauthuat_OnEnterMe;
-            
 
+           
             PhanquyenTinhnang();
+            txtChieuCao.Leave += txtChieucao_Leave;
+            txtCanNang.Leave += txtCannang_Leave;
+        }
+        private void txtChieucao_Leave(object sender, EventArgs e)
+        {
+            Utility.CalculateIBM(Utility.DecimaltoDbnull(Utility.chuanhoaDecimal(txtChieuCao.Text), 0), Utility.DecimaltoDbnull(Utility.chuanhoaDecimal(txtCanNang.Text), 0), txtBMI);
         }
 
+        private void txtCannang_Leave(object sender, EventArgs e)
+        {
+            Utility.CalculateIBM(Utility.DecimaltoDbnull(Utility.chuanhoaDecimal(txtChieuCao.Text), 0), Utility.DecimaltoDbnull(Utility.chuanhoaDecimal(txtCanNang.Text), 0), txtBMI);
+        }
         private void Txt_chandoan_sauphauthuat__OnEnterMe()
         {
             throw new NotImplementedException();
@@ -845,7 +855,7 @@ namespace VMS.HIS.UI.EMR
 
         }
        
-        private bool IsValidData()
+        private bool IsValidData(bool khoitaoBA)
         {
             if (objLuotkham != null)
                 objLuotkham = Utility.getKcbLuotkham(objLuotkham);
@@ -870,59 +880,66 @@ namespace VMS.HIS.UI.EMR
                 txtBSlamBA.Focus();
                 return false;
             }
-            if (Utility.Int32Dbnull(txtBacsiKham.MyID, -1) <= 0)
+            if (!khoitaoBA)
             {
-                uiTabBA.SelectedTab = tabpageTo2;
-                Utility.SetMsg(lblMsg, "Bạn cần chọn Bác sĩ khám từ danh mục Bác sĩ trong hệ thống", true);
-                txtBacsiKham.Focus();
-                return false;
+                if (Utility.Int32Dbnull(txtBacsiKham.MyID, -1) <= 0)
+                {
+                    uiTabBA.SelectedTab = tabpageTo2;
+                    Utility.SetMsg(lblMsg, "Bạn cần chọn Bác sĩ khám từ danh mục Bác sĩ trong hệ thống", true);
+                    txtBacsiKham.Focus();
+                    return false;
+                }
+                if (Utility.Int32Dbnull(txtNguoiGiaoHoSo.MyID, -1) <= 0)
+                {
+                    uiTabBA.SelectedTab = tabpageTo4;
+                    Utility.SetMsg(lblMsg, "Bạn cần chọn Người giao hồ sơ trong danh mục hệ thống", true);
+                    txtNguoiGiaoHoSo.Focus();
+                    return false;
+                }
+                if (Utility.Int32Dbnull(txtNguoiNhanHoSo.MyID, -1) <= 0)
+                {
+                    uiTabBA.SelectedTab = tabpageTo4;
+                    Utility.SetMsg(lblMsg, "Bạn cần chọn Người nhận hồ sơ trong danh mục hệ thống", true);
+                    txtNguoiNhanHoSo.Focus();
+                    return false;
+                }
+                if (Utility.Int32Dbnull(txtBSDieuTri.MyID, -1) <= 0)
+                {
+                    uiTabBA.SelectedTab = tabpageTo4;
+                    Utility.SetMsg(lblMsg, "Bạn cần chọn Bác sĩ điều trị từ danh mục Bác sĩ trong hệ thống", true);
+                    txtBSDieuTri.Focus();
+                    return false;
+                }
+                if (Utility.Int32Dbnull(txtTruongkhoa.MyID, -1) <= 0)
+                {
+                    uiTabBA.SelectedTab = tabpageTo4;
+                    Utility.SetMsg(lblMsg, "Bạn cần chọn Trưởng khoa điều trị từ danh mục Bác sĩ trong hệ thống", true);
+                    txtTruongkhoa.Focus();
+                    return false;
+                }
+                if (Utility.Int32Dbnull(txtGDBV.MyID, -1) <= 0)
+                {
+                    uiTabBA.SelectedTab = tabpageTo4;
+                    Utility.SetMsg(lblMsg, "Bạn cần chọn Giám đốc bệnh viện", true);
+                    txtGDBV.Focus();
+                    return false;
+                }
             }
-            if (Utility.Int32Dbnull(txtNguoiGiaoHoSo.MyID, -1) <= 0)
-            {
-                uiTabBA.SelectedTab = tabpageTo4;
-                Utility.SetMsg(lblMsg, "Bạn cần chọn Người giao hồ sơ trong danh mục hệ thống", true);
-                txtNguoiGiaoHoSo.Focus();
-                return false;
-            }
-            if (Utility.Int32Dbnull(txtNguoiNhanHoSo.MyID, -1) <= 0)
-            {
-                uiTabBA.SelectedTab = tabpageTo4;
-                Utility.SetMsg(lblMsg, "Bạn cần chọn Người nhận hồ sơ trong danh mục hệ thống", true);
-                txtNguoiNhanHoSo.Focus();
-                return false;
-            }
-            if (Utility.Int32Dbnull(txtBSDieuTri.MyID, -1) <= 0)
-            {
-                uiTabBA.SelectedTab = tabpageTo4;
-                Utility.SetMsg(lblMsg, "Bạn cần chọn Bác sĩ điều trị từ danh mục Bác sĩ trong hệ thống", true);
-                txtBSDieuTri.Focus();
-                return false;
-            }
-            if (Utility.Int32Dbnull(txtTruongkhoa.MyID, -1) <= 0)
-            {
-                uiTabBA.SelectedTab = tabpageTo4;
-                Utility.SetMsg(lblMsg, "Bạn cần chọn Trưởng khoa điều trị từ danh mục Bác sĩ trong hệ thống", true);
-                txtTruongkhoa.Focus();
-                return false;
-            }
-            if (Utility.Int32Dbnull(txtGDBV.MyID, -1) <= 0)
-            {
-                uiTabBA.SelectedTab = tabpageTo4;
-                Utility.SetMsg(lblMsg, "Bạn cần chọn Giám đốc bệnh viện", true);
-                txtGDBV.Focus();
-                return false;
-            }
-
             return true;
         }
         EmrDocuments emrdoc = new EmrDocuments();
         bool isSuccess = false;
         private void cmdSave_Click(object sender, EventArgs e)
         {
+            LuuBenhAn(false);
+        }
+
+        void LuuBenhAn(bool khoitaoBA)
+        {
             try
             {
                 isSuccess = false;
-                if (!IsValidData()) return;
+                if (!IsValidData(khoitaoBA)) return;
                 TaoPhieuKCB();
                 TaoPhieuKhamNamkhoa();
                 objEmrBa = TaoEmrBa();
@@ -931,7 +948,7 @@ namespace VMS.HIS.UI.EMR
                 {
                     if (!Utility.isValidSignStatus4UpdateDelete(objLuotkham, objEmrBa.IdBa, Loaiphieu_HIS.BA_SANKHOA, "Bệnh án Sản khoa"))
                         return;
-                }    
+                }
                 //if (objEmrBa.IdBa > 0 && objEmrBa.MaBa != maBA)
                 //{
                 //    if(Utility.AcceptQuestion("Mã bệnh án cũ :{0} đang khác với mã bệnh án nhập tay: {1}. Bạn có chắc chắn muốn cập nhật lại thành mã bệnh án mới","",))
@@ -1047,7 +1064,7 @@ namespace VMS.HIS.UI.EMR
                 //}
 
             }
-        }
+        }    
         void TaoPhieuKhamNamkhoa()
         {
             objPhieukhamNamkhoa = new Select().From(EmrPhieukhamNamkhoa.Schema)
@@ -3101,7 +3118,7 @@ namespace VMS.HIS.UI.EMR
 
         private void cmdKhoitaoBA_Click(object sender, EventArgs e)
         {
-            cmdSave.PerformClick();
+            LuuBenhAn(true);
         }
 
         private void cmdLaythongtinKCB_Click(object sender, EventArgs e)

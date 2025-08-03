@@ -1994,7 +1994,7 @@ namespace VNS.HIS.UI.NOITRU
             errorProvider1.Clear();
             //this.myTrace.FunctionID = globalVariables.FunctionID;
             //this.myTrace.FunctionName = globalVariables.FunctionName;
-            ActionResult actionResult = _KCB_DANGKY.ThemmoiBenhnhanCapcuu(this.myTrace, objBenhnhan, objLuotkham, objSokham, _objBuonggiuong,
+            ActionResult actionResult = _KCB_DANGKY.ThemmoiBenhnhanCapcuu_bak(this.myTrace, objBenhnhan, objLuotkham, objSokham, _objBuonggiuong,
                                                                             ngaychuyenkhoa, ref msg);
 
             if (msg.Trim() != "")

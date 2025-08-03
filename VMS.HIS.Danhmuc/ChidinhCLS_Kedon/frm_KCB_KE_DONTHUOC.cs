@@ -400,10 +400,10 @@ namespace VNS.HIS.UI.NGOAITRU
                 string errMsg_temp = string.Empty;
                 setMsg(lblMsg, "", false);
                 tu_tuc = chkTutuc.Checked || Utility.Byte2Bool(objThuoc.TuTuc) ? 1 : 0;
-                decimal sang = Utility.DecimaltoDbnull(txtsang.Text, 0);
-                decimal trua = Utility.DecimaltoDbnull(txttrua.Text, 0);
-                decimal chieu = Utility.DecimaltoDbnull(txtchieu.Text, 0);
-                decimal toi = Utility.DecimaltoDbnull(txttoi.Text, 0);
+                string sang = Utility.sDbnull(txtsang.Text, "");
+                string trua = Utility.sDbnull(txttrua.Text, "");
+                string chieu = Utility.sDbnull(txtchieu.Text, "");
+                string toi = Utility.sDbnull(txttoi.Text, "");
                 if (objDKho == null)
                 {
                     setMsg(lblMsg, "Bạn cần chọn kho thuốc trước khi chọn thuốc kê đơn", true);
@@ -447,18 +447,18 @@ namespace VNS.HIS.UI.NGOAITRU
                 {
                     if (STCT)
                     {
-                        if (sang + trua + chieu + toi <= 0)
+                        if (sang==""  && trua=="" && chieu=="" && toi =="")
                         {
                             Utility.ShowMsg("Cần nhập ít nhất một trong các thông tin Số lượng Sáng-Trưa-Chiều-Tối", "Thông báo");
                             txtsang.Focus();
                             return;
                         }
-                        if (sang + trua + chieu + toi > Utility.DecimaltoDbnull(txtSoluong.Text, 0))
-                        {
-                            Utility.ShowMsg("Tổng số lượng Sáng-Trưa-Chiều-Tối phải <= Số lượng kê", "Thông báo");
-                            txtSoluong.Focus();
-                            return;
-                        }
+                        //if (sang + trua + chieu + toi > Utility.DecimaltoDbnull(txtSoluong.Text, 0))
+                        //{
+                        //    Utility.ShowMsg("Tổng số lượng Sáng-Trưa-Chiều-Tối phải <= Số lượng kê", "Thông báo");
+                        //    txtSoluong.Focus();
+                        //    return;
+                        //}
                     }
                 }
                 if (noitru == 0 || objPhieudieutriNoitru == null)//Hiện chỉ cảnh báo cho kê đơn ngoại trú
@@ -2543,6 +2543,7 @@ namespace VNS.HIS.UI.NGOAITRU
         {
             try
             {
+                string loidanbacsi = txtLoiDanBS.Text;//Để lát set lại
                 grdPresDetail.RootTable.Columns["so_luong"].EditType = Utility.Laygiatrithamsohethong("THUOC_SOLUONG_CHOPHEPSUATRENLUOI", "0", true) == "0" ? EditType.NoEdit : EditType.TextBox;
                 Slton_mausac = Utility.Int32Dbnull(Utility.Laygiatrithamsohethong("THUOC_SOLUONG_CANHBAOMAUSAC", "50", true), 50);
                 STCT = Utility.Laygiatrithamsohethong("SANGTRUACHIEUTOI", "0", true) == "1";
@@ -2570,6 +2571,7 @@ namespace VNS.HIS.UI.NGOAITRU
                 LaydanhsachMayin();
                 txtCachDung.Init();
                 txtLoiDanBS.Init();
+                txtLoiDanBS._Text = loidanbacsi;
                 txtKieuthuocVT.Init();
                 txtKieuthuocVT.SetCode(KIEU_THUOC_VT);
                 cboKieuKedonthuocVT.DataSource = txtKieuthuocVT.dtData;
@@ -2897,25 +2899,25 @@ namespace VNS.HIS.UI.NGOAITRU
             {
                 string yourString = "";
                 //   yourString = yourString + this.txtCachDung.Text + " ";
-                if (Utility.Int16Dbnull(txtsang.Text,0)>0)
+                if (Utility.sDbnull(txtsang.Text,0)!="")
                 {
                     yourString = "Sáng " + txtsang.Text.Trim() + " " + txtDonViTinh.Text;
                 }
-                if (Utility.Int16Dbnull(txttrua.Text,0)>0)
+                if (Utility.sDbnull(txttrua.Text,0)!="")
                 {
                     if (!string.IsNullOrEmpty(yourString))
                         yourString += ", Trưa " + txttrua.Text.Trim() + " " + txtDonViTinh.Text;
                     else
                         yourString += "Trưa " + txttrua.Text.Trim() + " " + txtDonViTinh.Text;
                 }
-                if (Utility.Int16Dbnull(txtchieu.Text,0)>0)
+                if (Utility.sDbnull(txtchieu.Text,0)!="")
                 {
                     if (!string.IsNullOrEmpty(yourString))
                         yourString += ", Chiều " + txtchieu.Text.Trim() + " " + txtDonViTinh.Text;
                     else
                         yourString += "Chiều " + txtchieu.Text.Trim() + " " + txtDonViTinh.Text;
                 }
-                if (Utility.Int16Dbnull(txttoi.Text,0)>0)
+                if (Utility.sDbnull(txttoi.Text,0)!="")
                 {
                     if (!string.IsNullOrEmpty(yourString))
                         yourString += ", Tối " + txtsang.Text.Trim() + " " + txtDonViTinh.Text;
@@ -2924,8 +2926,8 @@ namespace VNS.HIS.UI.NGOAITRU
                 if (!string.IsNullOrEmpty(txtCachDung.Text))
                 {
                     if (!string.IsNullOrEmpty(yourString))
-                        yourString += ", " + txtCachDung.Text.Trim() + " " + txtDonViTinh.Text;
-                    else yourString +=  txtCachDung.Text.Trim() + " " + txtDonViTinh.Text;
+                        yourString += ", " + txtCachDung.Text.Trim() + " ";// + txtDonViTinh.Text;
+                    else yourString += txtCachDung.Text.Trim() + " ";// + txtDonViTinh.Text;
                 }
                 //if (!string.IsNullOrEmpty(this.txtChiDanThem.Text))
                 //{
@@ -3062,7 +3064,8 @@ namespace VNS.HIS.UI.NGOAITRU
             if (donthuoc != null)
             {
                 IdDonthuoc = Utility.Int32Dbnull(donthuoc.IdDonthuoc);
-                txtLoiDanBS._Text = Utility.sDbnull(donthuoc.LoidanBacsi);
+                if (donthuoc.LoidanBacsi != "")//Để load lời dặn bác sĩ trong tình huống tạo đơn thuốc-->lưu lời dặn giấy ra viện-->sửa đơn thuốc(lời dặn đơn thuốc bị trống sẽ lấy lời dặn bên ngoài)
+                    txtLoiDanBS._Text = Utility.sDbnull(donthuoc.LoidanBacsi);
                 txtKhamLai.Text = Utility.sDbnull(donthuoc.TaiKham);
                 txtChandoantheodon.Text = donthuoc.ChanDoan;
                     txtBacsi.SetId(Utility.sDbnull(donthuoc.IdBacsiChidinh, ""));
@@ -3204,10 +3207,10 @@ namespace VNS.HIS.UI.NGOAITRU
                 NguonThanhtoan = (byte) (noitru == 0 ? 0 : 1),
                 TuTuc = Utility.ByteDbnull(drv[KcbDonthuocChitiet.Columns.TuTuc], 0),
                 SoLuong = Utility.DecimaltoDbnull(drv[KcbDonthuocChitiet.Columns.SoLuong], 0),
-                Sang = Utility.DecimaltoDbnull(drv[KcbDonthuocChitiet.Columns.Sang], 0),
-                Trua = Utility.DecimaltoDbnull(drv[KcbDonthuocChitiet.Columns.Trua], 0),
-                Chieu = Utility.DecimaltoDbnull(drv[KcbDonthuocChitiet.Columns.Chieu], 0),
-                Toi = Utility.DecimaltoDbnull(drv[KcbDonthuocChitiet.Columns.Toi], 0),
+                Sang = Utility.sDbnull(drv[KcbDonthuocChitiet.Columns.Sang], ""),
+                Trua = Utility.sDbnull(drv[KcbDonthuocChitiet.Columns.Trua], ""),
+                Chieu = Utility.sDbnull(drv[KcbDonthuocChitiet.Columns.Chieu], ""),
+                Toi = Utility.sDbnull(drv[KcbDonthuocChitiet.Columns.Toi], ""),
                 DonGia = Utility.DecimaltoDbnull(drv[KcbDonthuocChitiet.Columns.DonGia], 0),
                 PhuThu = Utility.DecimaltoDbnull(drv[KcbDonthuocChitiet.Columns.PhuThu], 0),
                 PhuthuDungtuyen = Utility.DecimaltoDbnull(drv[KcbDonthuocChitiet.Columns.PhuthuDungtuyen], 0),

@@ -103,6 +103,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Noitru\frm_KCB_DANGKY_BENHNHAN_CAPCUU.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Noitru\frm_KCB_DANGKY_BENHNHAN_CAPCUU.Designer.cs">
+      <DependentUpon>frm_KCB_DANGKY_BENHNHAN_CAPCUU.cs</DependentUpon>
+    </Compile>
     <Compile Include="Noitru\frm_PhieuChamSoc.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -336,6 +342,10 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Noitru\frm_KCB_DANGKY_BENHNHAN_CAPCUU.resx">
+      <DependentUpon>frm_KCB_DANGKY_BENHNHAN_CAPCUU.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Noitru\frm_PhieuChamSoc.resx">
       <DependentUpon>frm_PhieuChamSoc.cs</DependentUpon>
     </EmbeddedResource>
@@ -480,6 +490,10 @@
     <ProjectReference Include="..\VMS.HIS.BA\9_1.VMS.HIS.EMR.csproj">
       <Project>{0fb2fda1-6238-415d-afa9-acca3094c1d1}</Project>
       <Name>9_1.VMS.HIS.EMR</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VMS.HIS.BHYT\4_1.VMS.HIS.BHYT.csproj">
+      <Project>{c68b076c-ad56-46bb-a16a-88f357aee6f4}</Project>
+      <Name>4_1.VMS.HIS.BHYT</Name>
     </ProjectReference>
     <ProjectReference Include="..\VMS.HIS.Bus\3.VMS.HIS.Bus.csproj">
       <Project>{a99e7072-450c-430d-ac3d-63cbb74c01ad}</Project>

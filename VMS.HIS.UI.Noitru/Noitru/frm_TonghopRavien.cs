@@ -2114,7 +2114,7 @@ namespace VNS.HIS.UI.NOITRU
                 cmdRavien.Enabled = objLuotkham != null && objLuotkham.TrangthaiNoitru <= 3 && isMe;
                 cmdTonghop.Enabled = objLuotkham != null;// && isMe;
                 cmdIngoiDV.Enabled = objLuotkham != null && grdGoidichvu.RowCount > 0 && objPhieudieutri != null;
-                chkXacnhan.Checked = Utility.ByteDbnull(objLuotkham.TthaiThopNoitru, 0) == 1;
+                chkXacnhan.Checked = objLuotkham != null ? Utility.ByteDbnull(objLuotkham.TthaiThopNoitru, 0) == 1 : false;
                 chkintachgoidichvu.Enabled = objLuotkham != null && cmdIngoiDV.Enabled && isMe;
                 cmdInphoiBHYT.Enabled = objLuotkham != null && THU_VIEN_CHUNG.IsBaoHiem( objLuotkham.IdLoaidoituongKcb);
                 //if (objLuotkham != null )

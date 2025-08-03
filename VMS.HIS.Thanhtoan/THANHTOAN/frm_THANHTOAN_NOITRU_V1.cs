@@ -3215,8 +3215,9 @@ namespace  VNS.HIS.UI.THANHTOAN
         private string PathXml = "";
         private void frm_THANHTOAN_NOITRU_V1_Load(object sender, EventArgs e)
         {
-            cmdKetchuyen.Visible = cmdTamthu.Visible = mnuKetchuyen.Visible = mnuTamthu.Visible = THU_VIEN_CHUNG.Laygiatrithamsohethong("THANHTOAN_CHOPHEP_TAMTHU_NOITRU", "0", true) == "1";
-            mnuFixError.Enabled = globalVariables.isSuperAdmin;
+           cmdTamthu.Visible =  mnuTamthu.Visible = THU_VIEN_CHUNG.Laygiatrithamsohethong("THANHTOAN_CHOPHEP_TAMTHU_NOITRU", "0", true) == "1";
+            cmdKetchuyen.Visible = mnuKetchuyen.Visible = false;//Tạm khóa lại
+           mnuFixError.Enabled = globalVariables.isSuperAdmin;
             LoadUserConfigs();
             pnlTangGiamDonGia.Enabled = Utility.Coquyen("thanhtoan_tanggiam_tile_dongia");
             InitData();
@@ -5666,8 +5667,8 @@ namespace  VNS.HIS.UI.THANHTOAN
                
                 DataTable dtPhanbo = Utility.ExecuteSql(string.Format( "select * from kcb_thanhtoan_phanbotheoPTTT where id_thanhtoan={0}", id_thanhtoan), CommandType.Text).Tables[0];
                 bool hasCK = (from p in dtPhanbo.AsEnumerable() where lstAllowQR.Contains(Utility.sDbnull(p[KcbThanhtoanPhanbotheoPTTT.Columns.MaPttt])) select p).Any();
-                cmdTaoQR.Enabled = isActiveQRPay && hasCK && IdQrcode <= 0 && grdPayment.GetDataRows().Length > 0;
-                cmdHuyQR.Enabled = isActiveQRPay && hasCK && IdQrcode > 0 && grdPayment.GetDataRows().Length > 0;
+                cmdTaoQR.Visible = isActiveQRPay && hasCK && IdQrcode <= 0 && grdPayment.GetDataRows().Length > 0;
+                cmdHuyQR.Visible = isActiveQRPay && hasCK && IdQrcode > 0 && grdPayment.GetDataRows().Length > 0;
                 if (THU_VIEN_CHUNG.Laygiatrithamsohethong("KCB_THANHTOAN_SUDUNGHOADONDO", "0", false)!="1") return;
                
                 mnuSuaSoBienLai.Visible = IdHdonLog > 0  && Utility.Coquyen("thanhtoan_quyen_suasobienlai") ;
@@ -7314,16 +7315,16 @@ namespace  VNS.HIS.UI.THANHTOAN
                 DataTable dtData = m_dtChiPhiThanhtoan.Clone();
                 if (arrDr.Length <= 0)
                 {
-                    Utility.ShowMsg("Toàn bộ các dịch vụ bạn đang nhìn thấy đã được thanh toán hoặc tạm thu. Vui lòng chọn lại người bệnh để làm mới lại các dữ liệu có thể tạm thu");
-                    return;
+                    Utility.ShowMsg("Toàn bộ các dịch vụ bạn đang nhìn thấy đã được thanh toán hoặc Ghi nợ. Vui lòng chọn lại người bệnh để làm mới lại các dữ liệu có thể Ghi nợ");
+                    //return;
                 }
                 dtData = arrDr.CopyToDataTable();
-                frm_tamthu _tamthu = new frm_tamthu(dtData, this.log, this.v_bytNoitru, this.lst_IDLoaithanhtoan);
-                _tamthu.objLuotkham = this.objLuotkham;
-                _tamthu.ShowDialog();
-                if (!_tamthu.isCancel && _tamthu.v_Payment_ID > 0)
+                frm_Ghino _ghino = new frm_Ghino(m_dtChiPhiThanhtoan,dtData, this.log, this.v_bytNoitru, this.lst_IDLoaithanhtoan);
+                _ghino.objLuotkham = this.objLuotkham;
+                _ghino.ShowDialog();
+                if (!_ghino.isCancel )
                 {
-                    SimpleRefresh(_tamthu.v_Payment_ID);
+                    SimpleRefresh_Ghino();
 
                 }
             }
@@ -7332,6 +7333,11 @@ namespace  VNS.HIS.UI.THANHTOAN
 
                 Utility.CatchException(ex);
             }
+        }
+        void SimpleRefresh_Ghino()
+        {
+            GetDataChiTiet();
+            SetSumTotalProperties();
         }
         void SimpleRefresh(long v_Payment_ID)
         {
@@ -7347,7 +7353,12 @@ namespace  VNS.HIS.UI.THANHTOAN
         }
         private void mnuKetchuyen_Click(object sender, EventArgs e)
         {
-            KetchuyenTamthu();
+            DataTable dtData = m_dtChiPhiThanhtoan.Clone();
+            frm_Ghino _ghino = new frm_Ghino(m_dtChiPhiThanhtoan,dtData, this.log, this.v_bytNoitru, this.lst_IDLoaithanhtoan);
+            _ghino.ghi_no = false;
+            _ghino.objLuotkham = this.objLuotkham;
+            _ghino.ShowDialog();
+           // KetchuyenTamthu();
         }
 
         private void cmdXemchitietkhuyenmai_Click(object sender, EventArgs e)
@@ -7381,6 +7392,17 @@ namespace  VNS.HIS.UI.THANHTOAN
 
 
             }
+        }
+
+        private void mnu_inbangkechiphi_kcb_dathanhtoan_Click(object sender, EventArgs e)
+        {
+            long _Payment_ID = Utility.Int64Dbnull(grdPayment.GetValue(KcbThanhtoan.Columns.IdThanhtoan), -1);
+            new INPHIEU_THANHTOAN_NGOAITRU().In_Bangke_CPKCB(_Payment_ID, true, 1);
+        }
+
+        private void cmdTamthu_Click(object sender, EventArgs e)
+        {
+            Tamthu();
         }
 
         void KetchuyenTamthu()

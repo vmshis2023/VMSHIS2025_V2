@@ -251,7 +251,6 @@ namespace VMS.HIS.UI.EMR
             this.label52 = new System.Windows.Forms.Label();
             this.label53 = new System.Windows.Forms.Label();
             this.txtBenhAnQuaTrinhBenhLy = new System.Windows.Forms.RichTextBox();
-            this.label54 = new System.Windows.Forms.Label();
             this.label55 = new System.Windows.Forms.Label();
             this.label56 = new System.Windows.Forms.Label();
             this.txtBenhAnVaoNgayThu = new System.Windows.Forms.TextBox();
@@ -263,6 +262,7 @@ namespace VMS.HIS.UI.EMR
             this.cmdLaythongtinPhieunhapvien = new Janus.Windows.EditControls.UIButton();
             this.txtBacsiKham = new VNS.HIS.UCs.AutoCompleteTextbox();
             this.txtBenhAnLyDoNhapVien = new VNS.HIS.UCs.AutoCompleteTextbox_Danhmucchung();
+            this.label54 = new System.Windows.Forms.Label();
             this.tabpageTo3 = new Janus.Windows.UI.Tab.UITabPage();
             this.pTo3 = new System.Windows.Forms.Panel();
             this.cmdKhamPhuKhoa2 = new Janus.Windows.EditControls.UIButton();
@@ -1243,6 +1243,7 @@ namespace VMS.HIS.UI.EMR
             this.cmdLayThongtinRavien.Name = "cmdLayThongtinRavien";
             this.cmdLayThongtinRavien.Size = new System.Drawing.Size(35, 35);
             this.cmdLayThongtinRavien.TabIndex = 599;
+            this.cmdLayThongtinRavien.TabStop = false;
             this.cmdLayThongtinRavien.ToolTipText = "Lấy lại thông tin ra viện";
             // 
             // txtCDRavienMaBenhKemTheo
@@ -2000,6 +2001,7 @@ namespace VMS.HIS.UI.EMR
             this.cmdKhoitaoBA.Name = "cmdKhoitaoBA";
             this.cmdKhoitaoBA.Size = new System.Drawing.Size(254, 36);
             this.cmdKhoitaoBA.TabIndex = 5;
+            this.cmdKhoitaoBA.TabStop = false;
             this.cmdKhoitaoBA.Text = "Khởi tạo Bệnh án";
             this.cmdKhoitaoBA.Visible = false;
             this.cmdKhoitaoBA.Click += new System.EventHandler(this.cmdKhoitaoBA_Click);
@@ -2304,7 +2306,6 @@ namespace VMS.HIS.UI.EMR
             this.txtDaniemmac.BackColor = System.Drawing.Color.White;
             this.txtDaniemmac.Location = new System.Drawing.Point(726, 561);
             this.txtDaniemmac.Name = "txtDaniemmac";
-            this.txtDaniemmac.ReadOnly = true;
             this.txtDaniemmac.Size = new System.Drawing.Size(314, 83);
             this.txtDaniemmac.TabIndex = 51;
             this.txtDaniemmac.Text = "";
@@ -2326,7 +2327,6 @@ namespace VMS.HIS.UI.EMR
             this.txtVu.BackColor = System.Drawing.Color.White;
             this.txtVu.Location = new System.Drawing.Point(726, 650);
             this.txtVu.Name = "txtVu";
-            this.txtVu.ReadOnly = true;
             this.txtVu.Size = new System.Drawing.Size(316, 61);
             this.txtVu.TabIndex = 53;
             this.txtVu.Text = "";
@@ -2346,7 +2346,6 @@ namespace VMS.HIS.UI.EMR
             this.txtHach.BackColor = System.Drawing.Color.White;
             this.txtHach.Location = new System.Drawing.Point(239, 650);
             this.txtHach.Name = "txtHach";
-            this.txtHach.ReadOnly = true;
             this.txtHach.Size = new System.Drawing.Size(407, 61);
             this.txtHach.TabIndex = 52;
             this.txtHach.Text = "";
@@ -2779,7 +2778,6 @@ namespace VMS.HIS.UI.EMR
             this.txtChieuCao.MaxLength = 3;
             this.txtChieuCao.Name = "txtChieuCao";
             this.txtChieuCao.Numeric = true;
-            this.txtChieuCao.ReadOnly = true;
             this.txtChieuCao.Size = new System.Drawing.Size(91, 23);
             this.txtChieuCao.TabIndex = 44;
             this.txtChieuCao.TabStop = false;
@@ -2791,7 +2789,6 @@ namespace VMS.HIS.UI.EMR
             this.txtBMI.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.txtBMI.Location = new System.Drawing.Point(70, 143);
             this.txtBMI.Name = "txtBMI";
-            this.txtBMI.ReadOnly = true;
             this.txtBMI.Size = new System.Drawing.Size(91, 23);
             this.txtBMI.TabIndex = 45;
             this.txtBMI.TabStop = false;
@@ -2804,7 +2801,6 @@ namespace VMS.HIS.UI.EMR
             this.txtCanNang.Location = new System.Drawing.Point(70, 99);
             this.txtCanNang.Name = "txtCanNang";
             this.txtCanNang.Numeric = true;
-            this.txtCanNang.ReadOnly = true;
             this.txtCanNang.Size = new System.Drawing.Size(91, 23);
             this.txtCanNang.TabIndex = 43;
             this.txtCanNang.TabStop = false;
@@ -2846,7 +2842,6 @@ namespace VMS.HIS.UI.EMR
             this.txtNhipTho.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.txtNhipTho.Location = new System.Drawing.Point(70, 77);
             this.txtNhipTho.Name = "txtNhipTho";
-            this.txtNhipTho.ReadOnly = true;
             this.txtNhipTho.Size = new System.Drawing.Size(91, 23);
             this.txtNhipTho.TabIndex = 42;
             this.txtNhipTho.TabStop = false;
@@ -2857,7 +2852,6 @@ namespace VMS.HIS.UI.EMR
             this.txtha.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.txtha.Location = new System.Drawing.Point(70, 55);
             this.txtha.Name = "txtha";
-            this.txtha.ReadOnly = true;
             this.txtha.Size = new System.Drawing.Size(91, 23);
             this.txtha.TabIndex = 41;
             this.txtha.TabStop = false;
@@ -2868,7 +2862,6 @@ namespace VMS.HIS.UI.EMR
             this.txtNhietDo.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.txtNhietDo.Location = new System.Drawing.Point(70, 33);
             this.txtNhietDo.Name = "txtNhietDo";
-            this.txtNhietDo.ReadOnly = true;
             this.txtNhietDo.Size = new System.Drawing.Size(91, 23);
             this.txtNhietDo.TabIndex = 40;
             this.txtNhietDo.TabStop = false;
@@ -2945,7 +2938,6 @@ namespace VMS.HIS.UI.EMR
             this.txtMach.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.txtMach.Location = new System.Drawing.Point(70, 11);
             this.txtMach.Name = "txtMach";
-            this.txtMach.ReadOnly = true;
             this.txtMach.Size = new System.Drawing.Size(91, 23);
             this.txtMach.TabIndex = 39;
             this.txtMach.TabStop = false;
@@ -3022,7 +3014,6 @@ namespace VMS.HIS.UI.EMR
             this.txtBenhAnToanThan.BackColor = System.Drawing.Color.White;
             this.txtBenhAnToanThan.Location = new System.Drawing.Point(239, 561);
             this.txtBenhAnToanThan.Name = "txtBenhAnToanThan";
-            this.txtBenhAnToanThan.ReadOnly = true;
             this.txtBenhAnToanThan.Size = new System.Drawing.Size(407, 85);
             this.txtBenhAnToanThan.TabIndex = 50;
             this.txtBenhAnToanThan.Text = "";
@@ -3043,7 +3034,6 @@ namespace VMS.HIS.UI.EMR
             this.txtBenhAnTieuHoa.BackColor = System.Drawing.Color.White;
             this.txtBenhAnTieuHoa.Location = new System.Drawing.Point(239, 827);
             this.txtBenhAnTieuHoa.Name = "txtBenhAnTieuHoa";
-            this.txtBenhAnTieuHoa.ReadOnly = true;
             this.txtBenhAnTieuHoa.Size = new System.Drawing.Size(803, 55);
             this.txtBenhAnTieuHoa.TabIndex = 56;
             this.txtBenhAnTieuHoa.Text = "";
@@ -3065,7 +3055,6 @@ namespace VMS.HIS.UI.EMR
             this.txtBenhAnHoHap.BackColor = System.Drawing.Color.White;
             this.txtBenhAnHoHap.Location = new System.Drawing.Point(237, 763);
             this.txtBenhAnHoHap.Name = "txtBenhAnHoHap";
-            this.txtBenhAnHoHap.ReadOnly = true;
             this.txtBenhAnHoHap.Size = new System.Drawing.Size(803, 58);
             this.txtBenhAnHoHap.TabIndex = 55;
             this.txtBenhAnHoHap.Text = "";
@@ -3087,7 +3076,6 @@ namespace VMS.HIS.UI.EMR
             this.txtBenhAnTuanHoan.BackColor = System.Drawing.Color.White;
             this.txtBenhAnTuanHoan.Location = new System.Drawing.Point(237, 715);
             this.txtBenhAnTuanHoan.Name = "txtBenhAnTuanHoan";
-            this.txtBenhAnTuanHoan.ReadOnly = true;
             this.txtBenhAnTuanHoan.Size = new System.Drawing.Size(803, 42);
             this.txtBenhAnTuanHoan.TabIndex = 54;
             this.txtBenhAnTuanHoan.Text = "";
@@ -3171,16 +3159,6 @@ namespace VMS.HIS.UI.EMR
             this.txtBenhAnQuaTrinhBenhLy.Size = new System.Drawing.Size(875, 58);
             this.txtBenhAnQuaTrinhBenhLy.TabIndex = 3;
             this.txtBenhAnQuaTrinhBenhLy.Text = "";
-            // 
-            // label54
-            // 
-            this.label54.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.label54.Location = new System.Drawing.Point(3, 69);
-            this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(226, 51);
-            this.label54.TabIndex = 24;
-            this.label54.Text = "(khởi phát, diễn biến, chẩn đoán, điều trị các tuyến dưới vv...)";
-            this.label54.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label55
             // 
@@ -3354,7 +3332,6 @@ namespace VMS.HIS.UI.EMR
             this.txtBenhAnLyDoNhapVien.RaiseEvent = false;
             this.txtBenhAnLyDoNhapVien.RaiseEventEnter = false;
             this.txtBenhAnLyDoNhapVien.RaiseEventEnterWhenEmpty = false;
-            this.txtBenhAnLyDoNhapVien.ReadOnly = true;
             this.txtBenhAnLyDoNhapVien.SelectedIndex = -1;
             this.txtBenhAnLyDoNhapVien.SetDefaultWhenInit = false;
             this.txtBenhAnLyDoNhapVien.ShowCodeWithValue = false;
@@ -3371,6 +3348,16 @@ namespace VMS.HIS.UI.EMR
             this.txtBenhAnLyDoNhapVien.txtMyName_Edit = null;
             this.txtBenhAnLyDoNhapVien.txtNext = null;
             this.txtBenhAnLyDoNhapVien.txtNext1 = null;
+            // 
+            // label54
+            // 
+            this.label54.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.label54.Location = new System.Drawing.Point(3, 69);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(226, 51);
+            this.label54.TabIndex = 24;
+            this.label54.Text = "(khởi phát, diễn biến, chẩn đoán, điều trị các tuyến dưới vv...)";
+            this.label54.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // tabpageTo3
             // 
@@ -3464,51 +3451,51 @@ namespace VMS.HIS.UI.EMR
             // 
             this.txtAmdao.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAmdao.BorderStyle = Janus.Windows.GridEX.BorderStyle.None;
+            this.txtAmdao.BorderStyle = Janus.Windows.GridEX.BorderStyle.Flat;
             this.txtAmdao.Location = new System.Drawing.Point(807, 253);
             this.txtAmdao.Name = "txtAmdao";
             this.txtAmdao.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtAmdao.Size = new System.Drawing.Size(410, 19);
+            this.txtAmdao.Size = new System.Drawing.Size(410, 21);
             this.txtAmdao.TabIndex = 72;
             // 
             // txtPhanphu
             // 
             this.txtPhanphu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPhanphu.BorderStyle = Janus.Windows.GridEX.BorderStyle.None;
+            this.txtPhanphu.BorderStyle = Janus.Windows.GridEX.BorderStyle.Flat;
             this.txtPhanphu.Location = new System.Drawing.Point(807, 329);
             this.txtPhanphu.Name = "txtPhanphu";
             this.txtPhanphu.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtPhanphu.Size = new System.Drawing.Size(410, 19);
+            this.txtPhanphu.Size = new System.Drawing.Size(410, 21);
             this.txtPhanphu.TabIndex = 75;
             // 
             // txtThantucung
             // 
             this.txtThantucung.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtThantucung.BorderStyle = Janus.Windows.GridEX.BorderStyle.None;
+            this.txtThantucung.BorderStyle = Janus.Windows.GridEX.BorderStyle.Flat;
             this.txtThantucung.Location = new System.Drawing.Point(807, 304);
             this.txtThantucung.Name = "txtThantucung";
             this.txtThantucung.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtThantucung.Size = new System.Drawing.Size(410, 19);
+            this.txtThantucung.Size = new System.Drawing.Size(410, 21);
             this.txtThantucung.TabIndex = 74;
             // 
             // txtCotucung
             // 
             this.txtCotucung.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCotucung.BorderStyle = Janus.Windows.GridEX.BorderStyle.None;
+            this.txtCotucung.BorderStyle = Janus.Windows.GridEX.BorderStyle.Flat;
             this.txtCotucung.Location = new System.Drawing.Point(807, 280);
             this.txtCotucung.Name = "txtCotucung";
             this.txtCotucung.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtCotucung.Size = new System.Drawing.Size(410, 19);
+            this.txtCotucung.Size = new System.Drawing.Size(410, 21);
             this.txtCotucung.TabIndex = 73;
             // 
             // txtCactuicung
             // 
             this.txtCactuicung.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCactuicung.BorderStyle = Janus.Windows.GridEX.BorderStyle.None;
+            this.txtCactuicung.BorderStyle = Janus.Windows.GridEX.BorderStyle.Flat;
             this.txtCactuicung.Location = new System.Drawing.Point(807, 353);
             this.txtCactuicung.Multiline = true;
             this.txtCactuicung.Name = "txtCactuicung";
@@ -3578,11 +3565,11 @@ namespace VMS.HIS.UI.EMR
             // 
             // txtCacdauhieusinhducthuphat
             // 
-            this.txtCacdauhieusinhducthuphat.BorderStyle = Janus.Windows.GridEX.BorderStyle.None;
+            this.txtCacdauhieusinhducthuphat.BorderStyle = Janus.Windows.GridEX.BorderStyle.Flat;
             this.txtCacdauhieusinhducthuphat.Location = new System.Drawing.Point(181, 256);
             this.txtCacdauhieusinhducthuphat.Name = "txtCacdauhieusinhducthuphat";
             this.txtCacdauhieusinhducthuphat.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtCacdauhieusinhducthuphat.Size = new System.Drawing.Size(496, 19);
+            this.txtCacdauhieusinhducthuphat.Size = new System.Drawing.Size(496, 21);
             this.txtCacdauhieusinhducthuphat.TabIndex = 65;
             // 
             // label116
@@ -3597,11 +3584,11 @@ namespace VMS.HIS.UI.EMR
             // 
             // txtAmvat
             // 
-            this.txtAmvat.BorderStyle = Janus.Windows.GridEX.BorderStyle.None;
+            this.txtAmvat.BorderStyle = Janus.Windows.GridEX.BorderStyle.Flat;
             this.txtAmvat.Location = new System.Drawing.Point(181, 332);
             this.txtAmvat.Name = "txtAmvat";
             this.txtAmvat.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtAmvat.Size = new System.Drawing.Size(496, 19);
+            this.txtAmvat.Size = new System.Drawing.Size(496, 21);
             this.txtAmvat.TabIndex = 68;
             // 
             // label117
@@ -3616,20 +3603,20 @@ namespace VMS.HIS.UI.EMR
             // 
             // txtMoibe
             // 
-            this.txtMoibe.BorderStyle = Janus.Windows.GridEX.BorderStyle.None;
+            this.txtMoibe.BorderStyle = Janus.Windows.GridEX.BorderStyle.Flat;
             this.txtMoibe.Location = new System.Drawing.Point(181, 307);
             this.txtMoibe.Name = "txtMoibe";
             this.txtMoibe.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtMoibe.Size = new System.Drawing.Size(496, 19);
+            this.txtMoibe.Size = new System.Drawing.Size(496, 21);
             this.txtMoibe.TabIndex = 67;
             // 
             // txtMoilon
             // 
-            this.txtMoilon.BorderStyle = Janus.Windows.GridEX.BorderStyle.None;
+            this.txtMoilon.BorderStyle = Janus.Windows.GridEX.BorderStyle.Flat;
             this.txtMoilon.Location = new System.Drawing.Point(181, 283);
             this.txtMoilon.Name = "txtMoilon";
             this.txtMoilon.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtMoilon.Size = new System.Drawing.Size(496, 19);
+            this.txtMoilon.Size = new System.Drawing.Size(496, 21);
             this.txtMoilon.TabIndex = 66;
             // 
             // label118
@@ -3644,11 +3631,11 @@ namespace VMS.HIS.UI.EMR
             // 
             // txtTangsinhmon
             // 
-            this.txtTangsinhmon.BorderStyle = Janus.Windows.GridEX.BorderStyle.None;
+            this.txtTangsinhmon.BorderStyle = Janus.Windows.GridEX.BorderStyle.Flat;
             this.txtTangsinhmon.Location = new System.Drawing.Point(181, 408);
             this.txtTangsinhmon.Name = "txtTangsinhmon";
             this.txtTangsinhmon.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtTangsinhmon.Size = new System.Drawing.Size(496, 19);
+            this.txtTangsinhmon.Size = new System.Drawing.Size(496, 21);
             this.txtTangsinhmon.TabIndex = 71;
             // 
             // label119
@@ -3663,11 +3650,11 @@ namespace VMS.HIS.UI.EMR
             // 
             // txtMangtrinh
             // 
-            this.txtMangtrinh.BorderStyle = Janus.Windows.GridEX.BorderStyle.None;
+            this.txtMangtrinh.BorderStyle = Janus.Windows.GridEX.BorderStyle.Flat;
             this.txtMangtrinh.Location = new System.Drawing.Point(181, 381);
             this.txtMangtrinh.Name = "txtMangtrinh";
             this.txtMangtrinh.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtMangtrinh.Size = new System.Drawing.Size(496, 19);
+            this.txtMangtrinh.Size = new System.Drawing.Size(496, 21);
             this.txtMangtrinh.TabIndex = 70;
             // 
             // label120
@@ -3682,11 +3669,11 @@ namespace VMS.HIS.UI.EMR
             // 
             // txtAmho
             // 
-            this.txtAmho.BorderStyle = Janus.Windows.GridEX.BorderStyle.None;
+            this.txtAmho.BorderStyle = Janus.Windows.GridEX.BorderStyle.Flat;
             this.txtAmho.Location = new System.Drawing.Point(181, 356);
             this.txtAmho.Name = "txtAmho";
             this.txtAmho.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtAmho.Size = new System.Drawing.Size(496, 19);
+            this.txtAmho.Size = new System.Drawing.Size(496, 21);
             this.txtAmho.TabIndex = 69;
             // 
             // label121
@@ -3895,7 +3882,6 @@ namespace VMS.HIS.UI.EMR
             this.txtBenhAnMat.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBenhAnMat.Location = new System.Drawing.Point(807, 123);
             this.txtBenhAnMat.Name = "txtBenhAnMat";
-            this.txtBenhAnMat.ReadOnly = true;
             this.txtBenhAnMat.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.txtBenhAnMat.Size = new System.Drawing.Size(466, 48);
             this.txtBenhAnMat.TabIndex = 58;
@@ -3929,7 +3915,6 @@ namespace VMS.HIS.UI.EMR
             this.txtBenhAnRangHamMat.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBenhAnRangHamMat.Location = new System.Drawing.Point(180, 131);
             this.txtBenhAnRangHamMat.Name = "txtBenhAnRangHamMat";
-            this.txtBenhAnRangHamMat.ReadOnly = true;
             this.txtBenhAnRangHamMat.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.txtBenhAnRangHamMat.Size = new System.Drawing.Size(497, 48);
             this.txtBenhAnRangHamMat.TabIndex = 57;
@@ -3964,7 +3949,6 @@ namespace VMS.HIS.UI.EMR
             this.txtBenhAnTaiMuiHong.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBenhAnTaiMuiHong.Location = new System.Drawing.Point(807, 72);
             this.txtBenhAnTaiMuiHong.Name = "txtBenhAnTaiMuiHong";
-            this.txtBenhAnTaiMuiHong.ReadOnly = true;
             this.txtBenhAnTaiMuiHong.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.txtBenhAnTaiMuiHong.Size = new System.Drawing.Size(466, 48);
             this.txtBenhAnTaiMuiHong.TabIndex = 56;
@@ -3986,7 +3970,6 @@ namespace VMS.HIS.UI.EMR
             this.txtBenhAnCoXuongKhop.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBenhAnCoXuongKhop.Location = new System.Drawing.Point(180, 77);
             this.txtBenhAnCoXuongKhop.Name = "txtBenhAnCoXuongKhop";
-            this.txtBenhAnCoXuongKhop.ReadOnly = true;
             this.txtBenhAnCoXuongKhop.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.txtBenhAnCoXuongKhop.Size = new System.Drawing.Size(497, 48);
             this.txtBenhAnCoXuongKhop.TabIndex = 55;
@@ -4010,7 +3993,6 @@ namespace VMS.HIS.UI.EMR
             this.txtBenhAnThanKinh.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBenhAnThanKinh.Location = new System.Drawing.Point(807, 23);
             this.txtBenhAnThanKinh.Name = "txtBenhAnThanKinh";
-            this.txtBenhAnThanKinh.ReadOnly = true;
             this.txtBenhAnThanKinh.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.txtBenhAnThanKinh.Size = new System.Drawing.Size(466, 48);
             this.txtBenhAnThanKinh.TabIndex = 54;
@@ -4022,7 +4004,6 @@ namespace VMS.HIS.UI.EMR
             this.txtBenhAnThanTietNieuSinhDuc.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBenhAnThanTietNieuSinhDuc.Location = new System.Drawing.Point(180, 23);
             this.txtBenhAnThanTietNieuSinhDuc.Name = "txtBenhAnThanTietNieuSinhDuc";
-            this.txtBenhAnThanTietNieuSinhDuc.ReadOnly = true;
             this.txtBenhAnThanTietNieuSinhDuc.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.txtBenhAnThanTietNieuSinhDuc.Size = new System.Drawing.Size(497, 48);
             this.txtBenhAnThanTietNieuSinhDuc.TabIndex = 53;
