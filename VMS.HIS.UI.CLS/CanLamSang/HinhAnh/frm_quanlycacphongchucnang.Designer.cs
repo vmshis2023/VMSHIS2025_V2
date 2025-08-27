@@ -29,51 +29,35 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Janus.Windows.GridEX.GridEXLayout grdVungKs_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.GridEX.GridEXLayout grdList_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_quanlycacphongchucnang));
             Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem1 = new Janus.Windows.EditControls.UIComboBoxItem();
             Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem2 = new Janus.Windows.EditControls.UIComboBoxItem();
             Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem3 = new Janus.Windows.EditControls.UIComboBoxItem();
             Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem4 = new Janus.Windows.EditControls.UIComboBoxItem();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_quanlycacphongchucnang));
+            Janus.Windows.GridEX.GridEXLayout grdVungKs_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblMsg = new System.Windows.Forms.ToolStripStatusLabel();
             this.TabInfo = new Janus.Windows.UI.Tab.UITab();
+            this.tabDanhsach = new Janus.Windows.UI.Tab.UITabPage();
+            this.grdList = new Janus.Windows.GridEX.GridEX();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolChooseBN = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuCancel = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolPrintRadio = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolAccept = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolUnAccept = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuVungKS = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuKeVTTH = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuBatdaukham = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuHuytiepnhan = new System.Windows.Forms.ToolStripMenuItem();
-            this.grdVungKs = new Janus.Windows.GridEX.GridEX();
-            this.toolStrip = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.ctxImage = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.mnuBrowseImage = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuDeleteImage = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnuView = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.gridEXExporter1 = new Janus.Windows.GridEX.Export.GridEXExporter(this.components);
-            this.gridEXExporter2 = new Janus.Windows.GridEX.Export.GridEXExporter(this.components);
-            this.uiGroupBox13 = new Janus.Windows.EditControls.UIGroupBox();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.ctxQMSFunction = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.mnuQMSConfig = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuQmsColor = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem14 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnuCallbyQMS = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuQmsMan = new System.Windows.Forms.ToolStripMenuItem();
-            this.tabDanhsach = new Janus.Windows.UI.Tab.UITabPage();
-            this.grdList = new Janus.Windows.GridEX.GridEX();
             this.grpTimKiem = new Janus.Windows.EditControls.UIGroupBox();
             this.pnlQMS = new System.Windows.Forms.Panel();
             this.lnkGoto = new System.Windows.Forms.LinkLabel();
@@ -127,29 +111,40 @@
             this.cboPatientSex = new Janus.Windows.EditControls.UIComboBox();
             this.cmdSearch = new Janus.Windows.EditControls.UIButton();
             this.uiTabPage1 = new Janus.Windows.UI.Tab.UITabPage();
-            this.toolChooseBN = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolPrintRadio = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolAccept = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolUnAccept = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuVungKS = new System.Windows.Forms.ToolStripMenuItem();
+            this.grdVungKs = new Janus.Windows.GridEX.GridEX();
+            this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.cmdThemMoi = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.cmdSua = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.cmdXoa = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.btnLayDuLieu = new System.Windows.Forms.ToolStripButton();
             this.cmdDynamicFields = new System.Windows.Forms.ToolStripButton();
             this.cmdCopy = new System.Windows.Forms.ToolStripButton();
             this.cmdGanVungKS = new System.Windows.Forms.ToolStripButton();
+            this.ctxImage = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnuBrowseImage = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuDeleteImage = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuView = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.gridEXExporter1 = new Janus.Windows.GridEX.Export.GridEXExporter(this.components);
+            this.gridEXExporter2 = new Janus.Windows.GridEX.Export.GridEXExporter(this.components);
+            this.uiGroupBox13 = new Janus.Windows.EditControls.UIGroupBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.ctxQMSFunction = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnuQMSConfig = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuQmsColor = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem14 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuCallbyQMS = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuQmsMan = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TabInfo)).BeginInit();
             this.TabInfo.SuspendLayout();
-            this.contextMenuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdVungKs)).BeginInit();
-            this.toolStrip.SuspendLayout();
-            this.ctxImage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox13)).BeginInit();
-            this.ctxQMSFunction.SuspendLayout();
             this.tabDanhsach.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdList)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grpTimKiem)).BeginInit();
             this.grpTimKiem.SuspendLayout();
             this.pnlQMS.SuspendLayout();
@@ -160,6 +155,11 @@
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.uiTabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdVungKs)).BeginInit();
+            this.toolStrip.SuspendLayout();
+            this.ctxImage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox13)).BeginInit();
+            this.ctxQMSFunction.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -223,6 +223,54 @@
             this.TabInfo.ChangingSelectedTab += new Janus.Windows.UI.Tab.TabCancelEventHandler(this.TabInfo_ChangingSelectedTab);
             this.TabInfo.TabIndexChanged += new System.EventHandler(this.TabInfo_TabIndexChanged);
             // 
+            // tabDanhsach
+            // 
+            this.tabDanhsach.Controls.Add(this.grdList);
+            this.tabDanhsach.Controls.Add(this.grpTimKiem);
+            this.tabDanhsach.Image = ((System.Drawing.Image)(resources.GetObject("tabDanhsach.Image")));
+            this.tabDanhsach.Location = new System.Drawing.Point(1, 27);
+            this.tabDanhsach.Name = "tabDanhsach";
+            this.tabDanhsach.Size = new System.Drawing.Size(1266, 711);
+            this.tabDanhsach.TabStop = true;
+            this.tabDanhsach.Text = "Danh sách bệnh nhân chờ nhập KQ";
+            // 
+            // grdList
+            // 
+            this.grdList.AllowEdit = Janus.Windows.GridEX.InheritableBoolean.False;
+            this.grdList.AutoEdit = true;
+            this.grdList.BuiltInTextsData = "<LocalizableData ID=\"LocalizableStrings\" Collection=\"true\"><FilterRowInfoText>Lọc" +
+    " thông tin bệnh nhân làm chỉ định cận lâm sàng</FilterRowInfoText></LocalizableD" +
+    "ata>";
+            this.grdList.CellSelectionMode = Janus.Windows.GridEX.CellSelectionMode.SingleCell;
+            this.grdList.ContextMenuStrip = this.contextMenuStrip1;
+            this.grdList.DefaultFilterRowComparison = Janus.Windows.GridEX.FilterConditionOperator.Contains;
+            grdList_DesignTimeLayout.LayoutString = resources.GetString("grdList_DesignTimeLayout.LayoutString");
+            this.grdList.DesignTimeLayout = grdList_DesignTimeLayout;
+            this.grdList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdList.DynamicFiltering = true;
+            this.grdList.FilterMode = Janus.Windows.GridEX.FilterMode.Automatic;
+            this.grdList.FilterRowButtonStyle = Janus.Windows.GridEX.FilterRowButtonStyle.ConditionOperatorDropDown;
+            this.grdList.FilterRowFormatStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.grdList.FilterRowUpdateMode = Janus.Windows.GridEX.FilterRowUpdateMode.WhenValueChanges;
+            this.grdList.FocusCellFormatStyle.FontBold = Janus.Windows.GridEX.TriState.True;
+            this.grdList.Font = new System.Drawing.Font("Arial", 9F);
+            this.grdList.GroupByBoxVisible = false;
+            this.grdList.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight;
+            this.grdList.Location = new System.Drawing.Point(0, 203);
+            this.grdList.Name = "grdList";
+            this.grdList.RecordNavigator = true;
+            this.grdList.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
+            this.grdList.Size = new System.Drawing.Size(1266, 508);
+            this.grdList.TabIndex = 1;
+            this.grdList.TabStop = false;
+            this.toolTip1.SetToolTip(this.grdList, "Nhấn nút cập nhật hoặc Kích đúp chuột vào dịch vụ để bắt đầu nhập kết quả");
+            this.grdList.TotalRow = Janus.Windows.GridEX.InheritableBoolean.True;
+            this.grdList.TotalRowPosition = Janus.Windows.GridEX.TotalRowPosition.BottomFixed;
+            this.grdList.VisualStyle = Janus.Windows.GridEX.VisualStyle.VS2005;
+            this.grdList.ColumnButtonClick += new Janus.Windows.GridEX.ColumnActionEventHandler(this.grdList_ColumnButtonClick);
+            this.grdList.ApplyingFilter += new System.ComponentModel.CancelEventHandler(this.grdList_ApplyingFilter);
+            this.grdList.DoubleClick += new System.EventHandler(this.grdList_DoubleClick);
+            // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -243,6 +291,14 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(278, 262);
             // 
+            // toolChooseBN
+            // 
+            this.toolChooseBN.Image = ((System.Drawing.Image)(resources.GetObject("toolChooseBN.Image")));
+            this.toolChooseBN.Name = "toolChooseBN";
+            this.toolChooseBN.Size = new System.Drawing.Size(277, 26);
+            this.toolChooseBN.Text = "Nhập kết quả";
+            this.toolChooseBN.Click += new System.EventHandler(this.toolChooseBN_Click);
+            // 
             // mnuCancel
             // 
             this.mnuCancel.Name = "mnuCancel";
@@ -250,17 +306,52 @@
             this.mnuCancel.Text = "Hủy kết quả CĐHA";
             this.mnuCancel.Click += new System.EventHandler(this.mnuCancel_Click);
             // 
+            // toolPrintRadio
+            // 
+            this.toolPrintRadio.Image = ((System.Drawing.Image)(resources.GetObject("toolPrintRadio.Image")));
+            this.toolPrintRadio.Name = "toolPrintRadio";
+            this.toolPrintRadio.Size = new System.Drawing.Size(277, 26);
+            this.toolPrintRadio.Text = "In phiếu kết quả";
+            this.toolPrintRadio.Visible = false;
+            this.toolPrintRadio.Click += new System.EventHandler(this.toolPrintRadio_Click);
+            // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(274, 6);
             this.toolStripMenuItem2.Visible = false;
             // 
+            // toolAccept
+            // 
+            this.toolAccept.Image = ((System.Drawing.Image)(resources.GetObject("toolAccept.Image")));
+            this.toolAccept.Name = "toolAccept";
+            this.toolAccept.Size = new System.Drawing.Size(277, 26);
+            this.toolAccept.Text = "Duyệt kết quả";
+            this.toolAccept.Visible = false;
+            this.toolAccept.Click += new System.EventHandler(this.toolAccept_Click);
+            // 
+            // toolUnAccept
+            // 
+            this.toolUnAccept.Image = ((System.Drawing.Image)(resources.GetObject("toolUnAccept.Image")));
+            this.toolUnAccept.Name = "toolUnAccept";
+            this.toolUnAccept.Size = new System.Drawing.Size(277, 26);
+            this.toolUnAccept.Text = "Hủy duyệt kết quả";
+            this.toolUnAccept.Visible = false;
+            this.toolUnAccept.Click += new System.EventHandler(this.toolUnAccept_Click);
+            // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             this.toolStripMenuItem3.Size = new System.Drawing.Size(274, 6);
             this.toolStripMenuItem3.Visible = false;
+            // 
+            // mnuVungKS
+            // 
+            this.mnuVungKS.Image = global::VMS.HIS.Cls.Properties.Resources.pin1_24;
+            this.mnuVungKS.Name = "mnuVungKS";
+            this.mnuVungKS.Size = new System.Drawing.Size(277, 26);
+            this.mnuVungKS.Text = "Gắn vùng khảo sát";
+            this.mnuVungKS.Visible = false;
             // 
             // toolStripMenuItem4
             // 
@@ -292,206 +383,6 @@
             this.mnuHuytiepnhan.Size = new System.Drawing.Size(277, 26);
             this.mnuHuytiepnhan.Text = "Hủy đang thực hiện";
             this.mnuHuytiepnhan.Click += new System.EventHandler(this.mnuHuytiepnhan_Click);
-            // 
-            // grdVungKs
-            // 
-            this.grdVungKs.AlternatingColors = true;
-            this.grdVungKs.DefaultFilterRowComparison = Janus.Windows.GridEX.FilterConditionOperator.Contains;
-            grdVungKs_DesignTimeLayout.LayoutString = resources.GetString("grdVungKs_DesignTimeLayout.LayoutString");
-            this.grdVungKs.DesignTimeLayout = grdVungKs_DesignTimeLayout;
-            this.grdVungKs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdVungKs.FilterMode = Janus.Windows.GridEX.FilterMode.Automatic;
-            this.grdVungKs.FilterRowButtonStyle = Janus.Windows.GridEX.FilterRowButtonStyle.ConditionOperatorDropDown;
-            this.grdVungKs.FilterRowFormatStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.grdVungKs.FilterRowUpdateMode = Janus.Windows.GridEX.FilterRowUpdateMode.WhenValueChanges;
-            this.grdVungKs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.grdVungKs.GroupByBoxVisible = false;
-            this.grdVungKs.GroupRowFormatStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.grdVungKs.GroupRowFormatStyle.ForeColor = System.Drawing.Color.Red;
-            this.grdVungKs.GroupRowVisualStyle = Janus.Windows.GridEX.GroupRowVisualStyle.Outlook2003;
-            this.grdVungKs.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight;
-            this.grdVungKs.Location = new System.Drawing.Point(0, 31);
-            this.grdVungKs.Name = "grdVungKs";
-            this.grdVungKs.RecordNavigator = true;
-            this.grdVungKs.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
-            this.grdVungKs.Size = new System.Drawing.Size(1006, 521);
-            this.grdVungKs.TabIndex = 7;
-            this.grdVungKs.VisualStyle = Janus.Windows.GridEX.VisualStyle.VS2005;
-            // 
-            // toolStrip
-            // 
-            this.toolStrip.BackColor = System.Drawing.SystemColors.Control;
-            this.toolStrip.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cmdThemMoi,
-            this.toolStripSeparator1,
-            this.cmdSua,
-            this.toolStripSeparator2,
-            this.cmdXoa,
-            this.toolStripSeparator3,
-            this.btnLayDuLieu,
-            this.cmdDynamicFields,
-            this.cmdCopy,
-            this.cmdGanVungKS});
-            this.toolStrip.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(1006, 31);
-            this.toolStrip.TabIndex = 5;
-            this.toolStrip.Text = "toolStrip1";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 31);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 31);
-            // 
-            // ctxImage
-            // 
-            this.ctxImage.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuBrowseImage,
-            this.mnuDeleteImage,
-            this.toolStripMenuItem1,
-            this.mnuView});
-            this.ctxImage.Name = "contextMenuStrip1";
-            this.ctxImage.Size = new System.Drawing.Size(127, 76);
-            // 
-            // mnuBrowseImage
-            // 
-            this.mnuBrowseImage.Name = "mnuBrowseImage";
-            this.mnuBrowseImage.Size = new System.Drawing.Size(126, 22);
-            this.mnuBrowseImage.Text = "Chọn ảnh";
-            // 
-            // mnuDeleteImage
-            // 
-            this.mnuDeleteImage.Name = "mnuDeleteImage";
-            this.mnuDeleteImage.Size = new System.Drawing.Size(126, 22);
-            this.mnuDeleteImage.Text = "Hủy ảnh";
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(123, 6);
-            // 
-            // mnuView
-            // 
-            this.mnuView.Name = "mnuView";
-            this.mnuView.Size = new System.Drawing.Size(126, 22);
-            this.mnuView.Text = "View ảnh";
-            // 
-            // uiGroupBox13
-            // 
-            this.uiGroupBox13.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.uiGroupBox13.Location = new System.Drawing.Point(0, 586);
-            this.uiGroupBox13.Name = "uiGroupBox13";
-            this.uiGroupBox13.Size = new System.Drawing.Size(1057, 56);
-            this.uiGroupBox13.TabIndex = 1;
-            this.uiGroupBox13.Text = "&Chức năng";
-            // 
-            // toolTip1
-            // 
-            this.toolTip1.IsBalloon = true;
-            this.toolTip1.ToolTipTitle = "Trợ giúp";
-            // 
-            // ctxQMSFunction
-            // 
-            this.ctxQMSFunction.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuQMSConfig,
-            this.mnuQmsColor,
-            this.toolStripMenuItem14,
-            this.mnuCallbyQMS,
-            this.mnuQmsMan});
-            this.ctxQMSFunction.Name = "ctxDelDrug";
-            this.ctxQMSFunction.Size = new System.Drawing.Size(371, 98);
-            // 
-            // mnuQMSConfig
-            // 
-            this.mnuQMSConfig.Name = "mnuQMSConfig";
-            this.mnuQMSConfig.Size = new System.Drawing.Size(370, 22);
-            this.mnuQMSConfig.Text = "Cấu hình QMS";
-            this.mnuQMSConfig.Click += new System.EventHandler(this.mnuQMSConfig_Click);
-            // 
-            // mnuQmsColor
-            // 
-            this.mnuQmsColor.Name = "mnuQmsColor";
-            this.mnuQmsColor.Size = new System.Drawing.Size(370, 22);
-            this.mnuQmsColor.Text = "Cấu hình màu sắc, cỡ chữ";
-            this.mnuQmsColor.Click += new System.EventHandler(this.mnuQmsColor_Click);
-            // 
-            // toolStripMenuItem14
-            // 
-            this.toolStripMenuItem14.Name = "toolStripMenuItem14";
-            this.toolStripMenuItem14.Size = new System.Drawing.Size(367, 6);
-            // 
-            // mnuCallbyQMS
-            // 
-            this.mnuCallbyQMS.Name = "mnuCallbyQMS";
-            this.mnuCallbyQMS.Size = new System.Drawing.Size(370, 22);
-            this.mnuCallbyQMS.Text = "Chọn người bệnh để khám theo số QMS đang thực hiện";
-            this.mnuCallbyQMS.Click += new System.EventHandler(this.mnuCallbyQMS_Click);
-            // 
-            // mnuQmsMan
-            // 
-            this.mnuQmsMan.Name = "mnuQmsMan";
-            this.mnuQmsMan.Size = new System.Drawing.Size(370, 22);
-            this.mnuQmsMan.Text = "Quản lý danh sách QMS";
-            this.mnuQmsMan.Click += new System.EventHandler(this.mnuQmsMan_Click);
-            // 
-            // tabDanhsach
-            // 
-            this.tabDanhsach.Controls.Add(this.grdList);
-            this.tabDanhsach.Controls.Add(this.grpTimKiem);
-            this.tabDanhsach.Image = ((System.Drawing.Image)(resources.GetObject("tabDanhsach.Image")));
-            this.tabDanhsach.Location = new System.Drawing.Point(1, 23);
-            this.tabDanhsach.Name = "tabDanhsach";
-            this.tabDanhsach.Size = new System.Drawing.Size(1266, 715);
-            this.tabDanhsach.TabStop = true;
-            this.tabDanhsach.Text = "Danh sách bệnh nhân chờ nhập KQ";
-            // 
-            // grdList
-            // 
-            this.grdList.AllowEdit = Janus.Windows.GridEX.InheritableBoolean.False;
-            this.grdList.AutoEdit = true;
-            this.grdList.BuiltInTextsData = "<LocalizableData ID=\"LocalizableStrings\" Collection=\"true\"><FilterRowInfoText>Lọc" +
-    " thông tin bệnh nhân làm chỉ định cận lâm sàng</FilterRowInfoText></LocalizableD" +
-    "ata>";
-            this.grdList.CellSelectionMode = Janus.Windows.GridEX.CellSelectionMode.SingleCell;
-            this.grdList.ContextMenuStrip = this.contextMenuStrip1;
-            this.grdList.DefaultFilterRowComparison = Janus.Windows.GridEX.FilterConditionOperator.Contains;
-            grdList_DesignTimeLayout.LayoutString = resources.GetString("grdList_DesignTimeLayout.LayoutString");
-            this.grdList.DesignTimeLayout = grdList_DesignTimeLayout;
-            this.grdList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdList.DynamicFiltering = true;
-            this.grdList.FilterMode = Janus.Windows.GridEX.FilterMode.Automatic;
-            this.grdList.FilterRowButtonStyle = Janus.Windows.GridEX.FilterRowButtonStyle.ConditionOperatorDropDown;
-            this.grdList.FilterRowFormatStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.grdList.FilterRowUpdateMode = Janus.Windows.GridEX.FilterRowUpdateMode.WhenValueChanges;
-            this.grdList.FocusCellFormatStyle.FontBold = Janus.Windows.GridEX.TriState.True;
-            this.grdList.Font = new System.Drawing.Font("Arial", 9F);
-            this.grdList.GroupByBoxVisible = false;
-            this.grdList.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight;
-            this.grdList.Location = new System.Drawing.Point(0, 203);
-            this.grdList.Name = "grdList";
-            this.grdList.RecordNavigator = true;
-            this.grdList.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
-            this.grdList.Size = new System.Drawing.Size(1266, 512);
-            this.grdList.TabIndex = 1;
-            this.grdList.TabStop = false;
-            this.toolTip1.SetToolTip(this.grdList, "Nhấn nút cập nhật hoặc Kích đúp chuột vào dịch vụ để bắt đầu nhập kết quả");
-            this.grdList.TotalRow = Janus.Windows.GridEX.InheritableBoolean.True;
-            this.grdList.TotalRowPosition = Janus.Windows.GridEX.TotalRowPosition.BottomFixed;
-            this.grdList.VisualStyle = Janus.Windows.GridEX.VisualStyle.VS2005;
-            this.grdList.ColumnButtonClick += new Janus.Windows.GridEX.ColumnActionEventHandler(this.grdList_ColumnButtonClick);
-            this.grdList.ApplyingFilter += new System.ComponentModel.CancelEventHandler(this.grdList_ApplyingFilter);
-            this.grdList.DoubleClick += new System.EventHandler(this.grdList_DoubleClick);
             // 
             // grpTimKiem
             // 
@@ -1171,50 +1062,54 @@
             this.uiTabPage1.Name = "uiTabPage1";
             this.uiTabPage1.Size = new System.Drawing.Size(1006, 552);
             this.uiTabPage1.TabStop = true;
+            this.uiTabPage1.TabVisible = false;
             this.uiTabPage1.Text = "Quản lý vùng khảo sát";
             // 
-            // toolChooseBN
+            // grdVungKs
             // 
-            this.toolChooseBN.Image = ((System.Drawing.Image)(resources.GetObject("toolChooseBN.Image")));
-            this.toolChooseBN.Name = "toolChooseBN";
-            this.toolChooseBN.Size = new System.Drawing.Size(277, 26);
-            this.toolChooseBN.Text = "Nhập kết quả";
-            this.toolChooseBN.Click += new System.EventHandler(this.toolChooseBN_Click);
+            this.grdVungKs.AlternatingColors = true;
+            this.grdVungKs.DefaultFilterRowComparison = Janus.Windows.GridEX.FilterConditionOperator.Contains;
+            grdVungKs_DesignTimeLayout.LayoutString = resources.GetString("grdVungKs_DesignTimeLayout.LayoutString");
+            this.grdVungKs.DesignTimeLayout = grdVungKs_DesignTimeLayout;
+            this.grdVungKs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdVungKs.FilterMode = Janus.Windows.GridEX.FilterMode.Automatic;
+            this.grdVungKs.FilterRowButtonStyle = Janus.Windows.GridEX.FilterRowButtonStyle.ConditionOperatorDropDown;
+            this.grdVungKs.FilterRowFormatStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.grdVungKs.FilterRowUpdateMode = Janus.Windows.GridEX.FilterRowUpdateMode.WhenValueChanges;
+            this.grdVungKs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.grdVungKs.GroupByBoxVisible = false;
+            this.grdVungKs.GroupRowFormatStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.grdVungKs.GroupRowFormatStyle.ForeColor = System.Drawing.Color.Red;
+            this.grdVungKs.GroupRowVisualStyle = Janus.Windows.GridEX.GroupRowVisualStyle.Outlook2003;
+            this.grdVungKs.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight;
+            this.grdVungKs.Location = new System.Drawing.Point(0, 31);
+            this.grdVungKs.Name = "grdVungKs";
+            this.grdVungKs.RecordNavigator = true;
+            this.grdVungKs.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
+            this.grdVungKs.Size = new System.Drawing.Size(1006, 521);
+            this.grdVungKs.TabIndex = 7;
+            this.grdVungKs.VisualStyle = Janus.Windows.GridEX.VisualStyle.VS2005;
             // 
-            // toolPrintRadio
+            // toolStrip
             // 
-            this.toolPrintRadio.Image = ((System.Drawing.Image)(resources.GetObject("toolPrintRadio.Image")));
-            this.toolPrintRadio.Name = "toolPrintRadio";
-            this.toolPrintRadio.Size = new System.Drawing.Size(277, 26);
-            this.toolPrintRadio.Text = "In phiếu kết quả";
-            this.toolPrintRadio.Visible = false;
-            this.toolPrintRadio.Click += new System.EventHandler(this.toolPrintRadio_Click);
-            // 
-            // toolAccept
-            // 
-            this.toolAccept.Image = ((System.Drawing.Image)(resources.GetObject("toolAccept.Image")));
-            this.toolAccept.Name = "toolAccept";
-            this.toolAccept.Size = new System.Drawing.Size(277, 26);
-            this.toolAccept.Text = "Duyệt kết quả";
-            this.toolAccept.Visible = false;
-            this.toolAccept.Click += new System.EventHandler(this.toolAccept_Click);
-            // 
-            // toolUnAccept
-            // 
-            this.toolUnAccept.Image = ((System.Drawing.Image)(resources.GetObject("toolUnAccept.Image")));
-            this.toolUnAccept.Name = "toolUnAccept";
-            this.toolUnAccept.Size = new System.Drawing.Size(277, 26);
-            this.toolUnAccept.Text = "Hủy duyệt kết quả";
-            this.toolUnAccept.Visible = false;
-            this.toolUnAccept.Click += new System.EventHandler(this.toolUnAccept_Click);
-            // 
-            // mnuVungKS
-            // 
-            this.mnuVungKS.Image = global::VMS.HIS.Cls.Properties.Resources.pin1_24;
-            this.mnuVungKS.Name = "mnuVungKS";
-            this.mnuVungKS.Size = new System.Drawing.Size(277, 26);
-            this.mnuVungKS.Text = "Gắn vùng khảo sát";
-            this.mnuVungKS.Visible = false;
+            this.toolStrip.BackColor = System.Drawing.SystemColors.Control;
+            this.toolStrip.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmdThemMoi,
+            this.toolStripSeparator1,
+            this.cmdSua,
+            this.toolStripSeparator2,
+            this.cmdXoa,
+            this.toolStripSeparator3,
+            this.btnLayDuLieu,
+            this.cmdDynamicFields,
+            this.cmdCopy,
+            this.cmdGanVungKS});
+            this.toolStrip.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip.Name = "toolStrip";
+            this.toolStrip.Size = new System.Drawing.Size(1006, 31);
+            this.toolStrip.TabIndex = 5;
+            this.toolStrip.Text = "toolStrip1";
             // 
             // cmdThemMoi
             // 
@@ -1227,6 +1122,11 @@
             this.cmdThemMoi.Text = "Thêm mới";
             this.cmdThemMoi.Click += new System.EventHandler(this.cmdThemMoi_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
+            // 
             // cmdSua
             // 
             this.cmdSua.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1238,6 +1138,11 @@
             this.cmdSua.Text = "Sửa thông tin ";
             this.cmdSua.Click += new System.EventHandler(this.cmdSua_Click);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 31);
+            // 
             // cmdXoa
             // 
             this.cmdXoa.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1248,6 +1153,11 @@
             this.cmdXoa.Size = new System.Drawing.Size(109, 28);
             this.cmdXoa.Text = "Xóa thông tin ";
             this.cmdXoa.Click += new System.EventHandler(this.cmdXoa_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 31);
             // 
             // btnLayDuLieu
             // 
@@ -1288,6 +1198,97 @@
             this.cmdGanVungKS.ToolTipText = "Gắn các vùng khảo sát với dịch vụ đang được chọn";
             this.cmdGanVungKS.Click += new System.EventHandler(this.cmdGanVungKS_Click);
             // 
+            // ctxImage
+            // 
+            this.ctxImage.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuBrowseImage,
+            this.mnuDeleteImage,
+            this.toolStripMenuItem1,
+            this.mnuView});
+            this.ctxImage.Name = "contextMenuStrip1";
+            this.ctxImage.Size = new System.Drawing.Size(127, 76);
+            // 
+            // mnuBrowseImage
+            // 
+            this.mnuBrowseImage.Name = "mnuBrowseImage";
+            this.mnuBrowseImage.Size = new System.Drawing.Size(126, 22);
+            this.mnuBrowseImage.Text = "Chọn ảnh";
+            // 
+            // mnuDeleteImage
+            // 
+            this.mnuDeleteImage.Name = "mnuDeleteImage";
+            this.mnuDeleteImage.Size = new System.Drawing.Size(126, 22);
+            this.mnuDeleteImage.Text = "Hủy ảnh";
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(123, 6);
+            // 
+            // mnuView
+            // 
+            this.mnuView.Name = "mnuView";
+            this.mnuView.Size = new System.Drawing.Size(126, 22);
+            this.mnuView.Text = "View ảnh";
+            // 
+            // uiGroupBox13
+            // 
+            this.uiGroupBox13.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.uiGroupBox13.Location = new System.Drawing.Point(0, 586);
+            this.uiGroupBox13.Name = "uiGroupBox13";
+            this.uiGroupBox13.Size = new System.Drawing.Size(1057, 56);
+            this.uiGroupBox13.TabIndex = 1;
+            this.uiGroupBox13.Text = "&Chức năng";
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.IsBalloon = true;
+            this.toolTip1.ToolTipTitle = "Trợ giúp";
+            // 
+            // ctxQMSFunction
+            // 
+            this.ctxQMSFunction.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuQMSConfig,
+            this.mnuQmsColor,
+            this.toolStripMenuItem14,
+            this.mnuCallbyQMS,
+            this.mnuQmsMan});
+            this.ctxQMSFunction.Name = "ctxDelDrug";
+            this.ctxQMSFunction.Size = new System.Drawing.Size(371, 98);
+            // 
+            // mnuQMSConfig
+            // 
+            this.mnuQMSConfig.Name = "mnuQMSConfig";
+            this.mnuQMSConfig.Size = new System.Drawing.Size(370, 22);
+            this.mnuQMSConfig.Text = "Cấu hình QMS";
+            this.mnuQMSConfig.Click += new System.EventHandler(this.mnuQMSConfig_Click);
+            // 
+            // mnuQmsColor
+            // 
+            this.mnuQmsColor.Name = "mnuQmsColor";
+            this.mnuQmsColor.Size = new System.Drawing.Size(370, 22);
+            this.mnuQmsColor.Text = "Cấu hình màu sắc, cỡ chữ";
+            this.mnuQmsColor.Click += new System.EventHandler(this.mnuQmsColor_Click);
+            // 
+            // toolStripMenuItem14
+            // 
+            this.toolStripMenuItem14.Name = "toolStripMenuItem14";
+            this.toolStripMenuItem14.Size = new System.Drawing.Size(367, 6);
+            // 
+            // mnuCallbyQMS
+            // 
+            this.mnuCallbyQMS.Name = "mnuCallbyQMS";
+            this.mnuCallbyQMS.Size = new System.Drawing.Size(370, 22);
+            this.mnuCallbyQMS.Text = "Chọn người bệnh để khám theo số QMS đang thực hiện";
+            this.mnuCallbyQMS.Click += new System.EventHandler(this.mnuCallbyQMS_Click);
+            // 
+            // mnuQmsMan
+            // 
+            this.mnuQmsMan.Name = "mnuQmsMan";
+            this.mnuQmsMan.Size = new System.Drawing.Size(370, 22);
+            this.mnuQmsMan.Text = "Quản lý danh sách QMS";
+            this.mnuQmsMan.Click += new System.EventHandler(this.mnuQmsMan_Click);
+            // 
             // frm_quanlycacphongchucnang
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1307,15 +1308,9 @@
             this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TabInfo)).EndInit();
             this.TabInfo.ResumeLayout(false);
-            this.contextMenuStrip1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grdVungKs)).EndInit();
-            this.toolStrip.ResumeLayout(false);
-            this.toolStrip.PerformLayout();
-            this.ctxImage.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox13)).EndInit();
-            this.ctxQMSFunction.ResumeLayout(false);
             this.tabDanhsach.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdList)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grpTimKiem)).EndInit();
             this.grpTimKiem.ResumeLayout(false);
             this.grpTimKiem.PerformLayout();
@@ -1330,6 +1325,12 @@
             this.panel2.ResumeLayout(false);
             this.uiTabPage1.ResumeLayout(false);
             this.uiTabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdVungKs)).EndInit();
+            this.toolStrip.ResumeLayout(false);
+            this.toolStrip.PerformLayout();
+            this.ctxImage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox13)).EndInit();
+            this.ctxQMSFunction.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

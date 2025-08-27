@@ -740,6 +740,11 @@ namespace  VNS.HIS.UI.THANHTOAN
             List<string> lstPTTT = THU_VIEN_CHUNG.Laygiatrithamsohethong("THANHTOAN_PTTT_CHONNGANHANG", false).Split(',').ToList<string>();
             cboNganhang.Enabled = lstPTTT.Contains(Utility.sDbnull(cboPttt.SelectedValue, "-1"));
             if (!cboNganhang.Enabled) cboNganhang.SelectedIndex = -1;
+            else//Nếu PTTT CK/Cà thẻ
+            {
+                if(cboNganhang.SelectedIndex == -1)
+                    cboNganhang.SelectedValue = THU_VIEN_CHUNG.Laygiatrimacdinh(dtNganhang);
+            }    
         }
         void ucTamung1__OnChangedData()
         {
@@ -2814,7 +2819,7 @@ namespace  VNS.HIS.UI.THANHTOAN
         {
             LoadUserConfigs();
              cmdTamthu.Visible =  mnuTamthu.Visible = THU_VIEN_CHUNG.Laygiatrithamsohethong("THANHTOAN_CHOPHEP_TAMTHU", "0", true) == "1";
-            cmdKetchuyen.Visible = mnuKetChuyen.Visible = false;//Khóa lại
+            cmdKetchuyen.Visible = mnuKetChuyen.Visible = mnuTamthu.Visible;
             pnlTangGiamDonGia.Enabled = Utility.Coquyen("thanhtoan_tanggiam_tile_dongia");
             InitData();
             log.Trace("InitData finished");
@@ -3283,7 +3288,7 @@ namespace  VNS.HIS.UI.THANHTOAN
                 DataTable dtMGKhac=SPs.KcbLaythongtinMiengiamkhac(objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan, 0).GetDataSet().Tables[0];
                 decimal ckkhac = dtMGKhac.Rows.Count <= 0 ? 0 : Utility.DecimaltoDbnull(dtMGKhac.Rows[0]["tongtien_miengiamkhac"], 0);
                     txtDachietkhau.Text = (cktheothanhtoan + ckkhac).ToString();
-                    txtsotiendathu.Text = (Utility.DecimaltoDbnull(m_dtPayment.Compute("SUM(TT_BN)", "1=1"), 0) - Utility.DecimaltoDbnull(txtDachietkhau.Text, 0)).ToString();
+                    txtsotiendathu.Text = (Utility.DecimaltoDbnull(m_dtPayment.Compute("SUM(TT_BN)", "kieu_thanhtoan=0"), 0) - Utility.DecimaltoDbnull(txtDachietkhau.Text, 0)).ToString();
             }
             catch (Exception ex)
             {
@@ -7219,6 +7224,7 @@ namespace  VNS.HIS.UI.THANHTOAN
                     Utility.ShowMsg("Toàn bộ các dịch vụ bạn đang nhìn thấy đã được thanh toán hoặc Ghi nợ. Vui lòng chọn lại người bệnh để làm mới lại các dữ liệu có thể Ghi nợ");
                    // return;
                 }
+                else
                 dtData = arrDr.CopyToDataTable();
                 frm_Ghino _ghino = new frm_Ghino(m_dtChiPhiThanhtoan,dtData, this.log, this.v_bytNoitru, this.lst_IDLoaithanhtoan);
                 _ghino.objLuotkham = this.objLuotkham;
@@ -7455,6 +7461,16 @@ namespace  VNS.HIS.UI.THANHTOAN
         {
             long _Payment_ID = Utility.Int64Dbnull(grdPayment.GetValue(KcbThanhtoan.Columns.IdThanhtoan), -1);
             new INPHIEU_THANHTOAN_NGOAITRU().In_Bangke_CPKCB(_Payment_ID, true, 0);
+        }
+
+        private void mnu_chitietcongnophaithu_Click(object sender, EventArgs e)
+        {
+            frm_ChonTungayDenngay _ChonTungayDenngay = new frm_ChonTungayDenngay();
+            if (_ChonTungayDenngay.ShowDialog() == DialogResult.OK)
+            {
+                DataTable dtData = SPs.CongnoBaocaoChitietcongnoPhaithu(Utility.GetBeginDate(_ChonTungayDenngay.dtp_tungay.Value), Utility.GetEndDate(_ChonTungayDenngay.dtp_denngay.Value), objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham).GetDataSet().Tables[0];
+                VNS.HIS.UI.Classess.Baocao.InPhieu(dtData, globalVariables.SysDate, "", true, "congno_baocao_chitietcongno_phaithu");
+            }
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

@@ -35,6 +35,10 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Aspose.PDF, Version=20.7.0.0, Culture=neutral, PublicKeyToken=f0262d67fe233d63, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\LABLink_Code_2024\LABLink-UI\LABLink_2025\library\Aspose.PDF.dll</HintPath>
+    </Reference>
     <Reference Include="Aspose.Words, Version=16.6.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Running_QLPKEBM\Aspose.Words.dll</HintPath>
@@ -201,6 +205,12 @@
     <Compile Include="Forms\BA_Phieukham\frm_khamNamkhoa.Designer.cs">
       <DependentUpon>frm_khamNamkhoa.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_themphieutruyendich.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_themphieutruyendich.Designer.cs">
+      <DependentUpon>frm_themphieutruyendich.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\BA_Phieukham\frm_phieubangiaonguoibenhchuyenkhoa.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -212,6 +222,12 @@
     </Compile>
     <Compile Include="Forms\BA_Phieukham\frm_phieucamketchapnhan_pttt.Designer.cs">
       <DependentUpon>frm_phieucamketchapnhan_pttt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_QuanlyPhieuTruyenDich.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_QuanlyPhieuTruyenDich.Designer.cs">
+      <DependentUpon>frm_QuanlyPhieuTruyenDich.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\BA_Phieukham\frm_QuanlyPhieubangiaonguoibenhchuyenkhoa.cs">
       <SubType>Form</SubType>
@@ -327,11 +343,23 @@
     <Compile Include="Forms\BA_Phieukham\frm_ThemPhieukhamthai.Designer.cs">
       <DependentUpon>frm_ThemPhieukhamthai.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_ThemChitietTruyendich.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_ThemChitietTruyendich.Designer.cs">
+      <DependentUpon>frm_ThemChitietTruyendich.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\BA_Phieukham\frm_ThemtiensuSankhoa.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\BA_Phieukham\frm_ThemtiensuSankhoa.Designer.cs">
       <DependentUpon>frm_ThemtiensuSankhoa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_KhoitaoBA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BA_Phieukham\frm_KhoitaoBA.Designer.cs">
+      <DependentUpon>frm_KhoitaoBA.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\BA_Phieukham\frm_Tiensubenh_Cacdacdiemlienquan.cs">
       <SubType>Form</SubType>
@@ -569,11 +597,17 @@
     <EmbeddedResource Include="Forms\BA_Phieukham\frm_khamNamkhoa.resx">
       <DependentUpon>frm_khamNamkhoa.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\frm_themphieutruyendich.resx">
+      <DependentUpon>frm_themphieutruyendich.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\BA_Phieukham\frm_phieubangiaonguoibenhchuyenkhoa.resx">
       <DependentUpon>frm_phieubangiaonguoibenhchuyenkhoa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\BA_Phieukham\frm_phieucamketchapnhan_pttt.resx">
       <DependentUpon>frm_phieucamketchapnhan_pttt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\frm_QuanlyPhieuTruyenDich.resx">
+      <DependentUpon>frm_QuanlyPhieuTruyenDich.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\BA_Phieukham\frm_QuanlyPhieubangiaonguoibenhchuyenkhoa.resx">
       <DependentUpon>frm_QuanlyPhieubangiaonguoibenhchuyenkhoa.cs</DependentUpon>
@@ -632,8 +666,14 @@
     <EmbeddedResource Include="Forms\BA_Phieukham\frm_ThemPhieukhamthai.resx">
       <DependentUpon>frm_ThemPhieukhamthai.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\frm_ThemChitietTruyendich.resx">
+      <DependentUpon>frm_ThemChitietTruyendich.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\BA_Phieukham\frm_ThemtiensuSankhoa.resx">
       <DependentUpon>frm_ThemtiensuSankhoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BA_Phieukham\frm_KhoitaoBA.resx">
+      <DependentUpon>frm_KhoitaoBA.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\BA_Phieukham\frm_Tiensubenh_Cacdacdiemlienquan.resx">
       <DependentUpon>frm_Tiensubenh_Cacdacdiemlienquan.cs</DependentUpon>

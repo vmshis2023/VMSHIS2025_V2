@@ -35,6 +35,21 @@ namespace VMS.HIS.UI.EMR.Ucs
         {
             InitializeComponent();
             txt_bacsi_pttt._OnEnterMe += txt_bacsi_pttt_OnEnterMe;
+            txt_chucdanh_bacsi_pttt._OnShowDataV1 += _OnShowDataV1;
+            txt_chucdanh_bacsi_gaymehoisuc._OnShowDataV1 += _OnShowDataV1;
+        }
+
+        private void _OnShowDataV1(AutoCompleteTextbox_Danhmucchung obj)
+        {
+            DMUC_DCHUNG dmucDchung = new DMUC_DCHUNG(obj.LOAI_DANHMUC);
+            dmucDchung.ShowDialog();
+            if (!dmucDchung.m_blnCancel)
+            {
+                string oldCode = obj.myCode;
+                obj.Init();
+                obj.SetCode(oldCode);
+                obj.Focus();
+            }
         }
 
         private void txt_bacsi_pttt_OnEnterMe()
@@ -146,7 +161,7 @@ namespace VMS.HIS.UI.EMR.Ucs
                     txt_chucdanh_bacsi_pttt._Text = phieucamket.ChucdanhBacsiPttt;
                     txt_khoa.SetId(phieucamket.IdKhoa);
                     txt_bacsi_gaymehoisuc.SetId(phieucamket.IdBacsiGaymehoisuc);
-                    txt_chucdanh_bacsi_pttt._Text = phieucamket.ChucdanhBacsiGaymehoisuc;
+                    txt_chucdanh_bacsi_gaymehoisuc._Text = phieucamket.ChucdanhBacsiGaymehoisuc;
                     txt_chandoan.Text = phieucamket.ChandoanMota;
                     chk_chandoan.Checked = Utility.Bool2Bool(phieucamket.Chandoan);
                     chk_lydo_pttt.Checked = Utility.Bool2Bool(phieucamket.LydoPttt);
@@ -348,7 +363,7 @@ namespace VMS.HIS.UI.EMR.Ucs
                         phieucamket.IdKhoa = Utility.Int16Dbnull(txt_khoa.MyID);
                         phieucamket.TenKhoa= Utility.sDbnull(txt_khoa.Text);
                         phieucamket.IdBacsiGaymehoisuc = Utility.Int16Dbnull(txt_bacsi_gaymehoisuc.MyID);
-                        phieucamket.ChucdanhBacsiGaymehoisuc = txt_chucdanh_bacsi_pttt.Text;
+                        phieucamket.ChucdanhBacsiGaymehoisuc = txt_chucdanh_bacsi_gaymehoisuc.Text;
                         phieucamket.ChandoanMota = Utility.sDbnull(txt_chandoan.Text);
                         phieucamket.Chandoan = chk_chandoan.Checked;
                         phieucamket.LydoPttt = chk_lydo_pttt.Checked;
@@ -389,6 +404,8 @@ namespace VMS.HIS.UI.EMR.Ucs
                         phieucamket.Quanhevoinguoibenh = txt_quanhevoinguoibenh.Text;
 
                         phieucamket.Save();
+                        if (objBacsiPttt == null)
+                            objBacsiPttt = DmucNhanvien.FetchByID(Utility.Int32Dbnull(txt_bacsi_pttt.MyID));
                         emrdoc.InitDocument(phieucamket.IdBenhnhan, phieucamket.MaLuotkham, Utility.Int64Dbnull(phieucamket.IdPhieu), phieucamket.NgayCamket, Loaiphieu_HIS.PHIEU_CAMKET_PTTT, "PHIEU_CAMKET_PTTT", phieucamket.NguoiTao,Utility.Int16Dbnull( objBacsiPttt.IdKhoa), Utility.Int16Dbnull(objBacsiPttt.IdPhong), Utility.Byte2Bool(0),"");
                         emrdoc.Save();
 

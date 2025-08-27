@@ -1,0 +1,9 @@
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Vnpt\obj\Debug\netcoreapp3.1\VMS.Chukyso.Vnpt.csproj.AssemblyReference.cache
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Vnpt\obj\Debug\netcoreapp3.1\VMS.Chukyso.Vnpt.Properties.Resources.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Vnpt\obj\Debug\netcoreapp3.1\VMS.Chukyso.Vnpt.csproj.GenerateResource.cache
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Vnpt\obj\Debug\netcoreapp3.1\VMS.Chukyso.Vnpt.GeneratedMSBuildEditorConfig.editorconfig
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Vnpt\obj\Debug\netcoreapp3.1\VMS.Chukyso.Vnpt.AssemblyInfoInputs.cache
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Vnpt\obj\Debug\netcoreapp3.1\VMS.Chukyso.Vnpt.AssemblyInfo.cs
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Vnpt\obj\Debug\netcoreapp3.1\VMS.Chukyso.Vnpt.csproj.CoreCompileInputs.cache
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Vnpt\obj\Debug\netcoreapp3.1\VMS.Chukyso.Vnpt.MvcApplicationPartsAssemblyInfo.cs
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Vnpt\obj\Debug\netcoreapp3.1\VMS.Chukyso.Vnpt.MvcApplicationPartsAssemblyInfo.cache

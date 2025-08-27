@@ -462,17 +462,20 @@ namespace UpdateVersion
                 Tientrinh.Value = 1;
                 foreach (DataRow dr in dtData.Rows)
                 {
+                    string fullfilePath = "";
+                    if (sDbnull(dr["sFolder"], "") != "")
+                        fullfilePath = Application.StartupPath + @"\" + sDbnull(dr["sFolder"], "") + @"\" + sDbnull(dr["sFileName"], "");
+                    else
+                        fullfilePath = Application.StartupPath + @"\" + sDbnull(dr["sFileName"], "");
+                    log.Trace(fullfilePath);
                     if (Tientrinh.Value + 1 > Tientrinh.Maximum)
                         Tientrinh.Value = Tientrinh.Maximum;
                     else
                         Tientrinh.Value += 1;
                    
-                    string fullfilePath = "";
+                 
                     
-                    if (sDbnull(dr["sFolder"], "") != "")
-                        fullfilePath = Application.StartupPath + @"\" + sDbnull(dr["sFolder"], "") + @"\" + sDbnull(dr["sFileName"], "");
-                    else
-                        fullfilePath = Application.StartupPath + @"\" + sDbnull(dr["sFileName"], "");
+                   
                     lblStatus.Visible = true;
                     lblStatus.Text = "Đang kiểm tra: " + fullfilePath + "...";
                     Application.DoEvents();

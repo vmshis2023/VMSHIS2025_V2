@@ -51,6 +51,7 @@ namespace VNS.HIS.UI.DANHMUC
         {
             try
             {
+              
                 //Form load
                 this.Load += new EventHandler(DMUC_KIEUDMUC_Load);
                 //Bắt sự kiện KeyDown trên form

@@ -1,0 +1,100 @@
+2023-09-20 06:17:29.9423||INFO|Startup|BaseDirectory: E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\ 
+2023-09-20 06:17:32.1746||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- 
+2023-09-20 06:17:32.1787||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user ADMIN with appId: b257158e9f6141fd8b31437d0ff13716, secret: moDDm/t/8IvklPBhzRpNNqT9QYLtIa0NPQ60BrPX 
+2023-09-20 06:17:32.2173||DEBUG|DigitalSignatureCheckAccount|endpointUri: https://sign-hn10.vin-hsm.com 
+2023-09-20 06:17:33.0233||DEBUG|DigitalSignatureCheckAccount|Successfully !!! 
+2023-09-20 06:17:34.2350||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- 
+2023-09-20 06:17:34.2350||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user ADMIN with appId: b257158e9f6141fd8b31437d0ff13716, secret: moDDm/t/8IvklPBhzRpNNqT9QYLtIa0NPQ60BrPX 
+2023-09-20 06:17:34.2350||DEBUG|DigitalSignatureCheckAccount|endpointUri: https://sign-hn10.vin-hsm.com 
+2023-09-20 06:17:34.2927||DEBUG|DigitalSignatureCheckAccount|Successfully !!! 
+2023-09-20 06:17:37.7918||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- 
+2023-09-20 06:17:37.7918||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user ADMIN with appId: b257158e9f6141fd8b31437d0ff13716, secret: moDDm/t/8IvklPBhzRpNNqT9QYLtIa0NPQ60BrPX 
+2023-09-20 06:17:37.8019||DEBUG|DigitalSignatureCheckAccount|endpointUri: https://sign-hn10.vin-hsm.com 
+2023-09-20 06:17:37.8989||DEBUG|DigitalSignatureCheckAccount|Successfully !!! 
+2023-09-20 06:18:04.6042||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- 
+2023-09-20 06:18:04.6042||DEBUG|DigitalSignaturePdfFileSign|Begin signing for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: 'b257158e9f6141fd8b31437d0ff13716', secret: 'moDDm/t/8IvklPBhzRpNNqT9QYLtIa0NPQ60BrPX' 
+2023-09-20 06:18:04.6288||DEBUG|DigitalSignaturePdfFileSign|endpointUri: https://sign-hn10.vin-hsm.com 
+2023-09-20 06:18:04.6325||DEBUG|DigitalSignaturePdfFileSign|Before signing base64Pdf length: 415860 
+2023-09-20 06:18:04.6325||DEBUG|DigitalSignaturePdfFileSign|pageSign: '1', llx: '75', lly: '482', urx: '236', ury: '534' 
+2023-09-20 06:18:04.6325||DEBUG|DigitalSignaturePdfFileSign|endpointUri: https://sign-hn10.vin-hsm.com 
+2023-09-20 06:18:52.0309||INFO|Startup|BaseDirectory: E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\ 
+2023-09-20 06:18:58.8634||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- 
+2023-09-20 06:18:58.8634||DEBUG|DigitalSignaturePdfFileSign|Begin signing for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: 'b257158e9f6141fd8b31437d0ff13716', secret: 'moDDm/t/8IvklPBhzRpNNqT9QYLtIa0NPQ60BrPX' 
+2023-09-20 06:18:58.8976||DEBUG|DigitalSignaturePdfFileSign|endpointUri: https://sign-hn10.vin-hsm.com 
+2023-09-20 06:18:58.8976||DEBUG|DigitalSignaturePdfFileSign|Before signing base64Pdf length: 415860 
+2023-09-20 06:18:58.8976||DEBUG|DigitalSignaturePdfFileSign|pageSign: '1', llx: '75', lly: '482', urx: '236', ury: '534' 
+2023-09-20 06:18:58.8976||DEBUG|DigitalSignaturePdfFileSign|endpointUri: https://sign-hn10.vin-hsm.com 
+2023-09-20 06:19:08.9113||DEBUG|DigitalSignaturePdfFileSign|After signing base64Pdf length: 436596 
+2023-09-20 06:19:08.9113||DEBUG|DigitalSignaturePdfFileSign|End signing 
+2023-09-20 06:22:52.5309||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- 
+2023-09-20 06:22:52.5369||DEBUG|DigitalSignaturePdfFileSign|Begin signing for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: 'b257158e9f6141fd8b31437d0ff13716', secret: 'moDDm/t/8IvklPBhzRpNNqT9QYLtIa0NPQ60BrPX' 
+2023-09-20 06:22:52.5369||DEBUG|DigitalSignaturePdfFileSign|endpointUri: https://sign-hn10.vin-hsm.com 
+2023-09-20 06:22:52.5369||DEBUG|DigitalSignaturePdfFileSign|Before signing base64Pdf length: 415860 
+2023-09-20 06:22:52.5369||DEBUG|DigitalSignaturePdfFileSign|pageSign: '1', llx: '75', lly: '482', urx: '236', ury: '534' 
+2023-09-20 06:22:52.5369||DEBUG|DigitalSignaturePdfFileSign|endpointUri: https://sign-hn10.vin-hsm.com 
+2023-09-20 06:23:14.8184||DEBUG|DigitalSignaturePdfFileSign|After signing base64Pdf length: 436596 
+2023-09-20 06:23:15.8348||DEBUG|DigitalSignaturePdfFileSign|End signing 
+2023-09-20 06:24:32.6562||INFO|Startup|BaseDirectory: E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\ 
+2023-09-20 06:24:34.0853||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- 
+2023-09-20 06:24:34.0853||DEBUG|DigitalSignaturePdfFileSign|Begin signing for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: 'b257158e9f6141fd8b31437d0ff13716', secret: 'moDDm/t/8IvklPBhzRpNNqT9QYLtIa0NPQ60BrPX' 
+2023-09-20 06:24:34.1105||DEBUG|DigitalSignaturePdfFileSign|endpointUri: https://sign-hn10.vin-hsm.com 
+2023-09-20 06:24:34.1144||DEBUG|DigitalSignaturePdfFileSign|Before signing base64Pdf length: 415860 
+2023-09-20 06:24:34.1144||DEBUG|DigitalSignaturePdfFileSign|pageSign: '1', llx: '75', lly: '482', urx: '236', ury: '534' 
+2023-09-20 06:24:34.1144||DEBUG|DigitalSignaturePdfFileSign|endpointUri: https://sign-hn10.vin-hsm.com 
+2023-09-20 06:24:35.7884||DEBUG|DigitalSignaturePdfFileSign|After signing base64Pdf length: 436596 
+2023-09-20 06:24:35.7884||DEBUG|DigitalSignaturePdfFileSign|End signing 
+2023-09-20 06:25:09.8874||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- 
+2023-09-20 06:25:09.8874||DEBUG|DigitalSignaturePdfFileSign|Begin signing for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: 'b257158e9f6141fd8b31437d0ff13716', secret: 'moDDm/t/8IvklPBhzRpNNqT9QYLtIa0NPQ60BrPX' 
+2023-09-20 06:25:09.8949||DEBUG|DigitalSignaturePdfFileSign|endpointUri: https://sign-hn10.vin-hsm.com 
+2023-09-20 06:25:09.8949||DEBUG|DigitalSignaturePdfFileSign|Before signing base64Pdf length: 415860 
+2023-09-20 06:25:09.9105||DEBUG|DigitalSignaturePdfFileSign|pageSign: '1', llx: '75', lly: '482', urx: '236', ury: '534' 
+2023-09-20 06:25:09.9105||DEBUG|DigitalSignaturePdfFileSign|endpointUri: https://sign-hn10.vin-hsm.com 
+2023-09-20 06:25:10.1924||ERROR|DigitalSignaturePdfFileSign|There was an error on 'DigitalSignaturePdfFileSign' invocation: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at iTextSharp.text.Image.GetInstance(Byte[] imgb, Boolean recoverFromImageError)
+   at iTextSharp.text.Image.GetInstance(Byte[] imgb)
+   at VietBaIT.ChuKySo.Api.HaDongVinCA.PdfHash.getHashPkcs(X509Certificate cer, ICollection`1 chain, SignClient client, String sHash, Int32 typeSignature, String base64Image, String textOut, String font, String signatureName, Nullable`1 dateSigned, String& errMsg, Int32 pageSign, Int32 xPoint, Int32 yPoint, Int32 width, Int32 height) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\DigitalSignature\HaDongVinCA\PdfHash.cs:line 242
+   at VietBaIT.ChuKySo.Api.HaDongVinCA.PDFSigner.SignHashPkcs(Byte[] input, String sHash, Int32 typeSignature, String base64Image, String textOut, String signatureName, Nullable`1 dateSigned, String& errMsg, Int32 pageSign, Int32 xPoint, Int32 yPoint, Int32 width, Int32 height) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\DigitalSignature\HaDongVinCA\PdfSigner.cs:line 102
+   at VietBaIT.ChuKySo.Api.Controllers.HaDongVinCAController.DigitalSignaturePdfFileSign(VietBaDigitalSignature objDigitalSignature) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\Controllers\HaDongVinCAController.cs:line 162 
+2023-09-20 06:25:18.5977||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- 
+2023-09-20 06:25:18.6011||DEBUG|DigitalSignaturePdfFileSign|Begin signing for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: 'b257158e9f6141fd8b31437d0ff13716', secret: 'moDDm/t/8IvklPBhzRpNNqT9QYLtIa0NPQ60BrPX' 
+2023-09-20 06:25:18.6011||DEBUG|DigitalSignaturePdfFileSign|endpointUri: https://sign-hn10.vin-hsm.com 
+2023-09-20 06:25:18.6011||DEBUG|DigitalSignaturePdfFileSign|Before signing base64Pdf length: 415860 
+2023-09-20 06:25:18.6011||DEBUG|DigitalSignaturePdfFileSign|pageSign: '1', llx: '75', lly: '482', urx: '236', ury: '534' 
+2023-09-20 06:25:18.6011||DEBUG|DigitalSignaturePdfFileSign|endpointUri: https://sign-hn10.vin-hsm.com 
+2023-09-20 06:25:18.9232||DEBUG|DigitalSignaturePdfFileSign|After signing base64Pdf length: 436596 
+2023-09-20 06:25:18.9232||DEBUG|DigitalSignaturePdfFileSign|End signing 
+2023-09-20 06:29:13.6474||INFO|Startup|BaseDirectory: E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\ 
+2023-09-20 06:29:44.9696||INFO|Startup|BaseDirectory: E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\ 
+2023-09-20 06:29:55.7269||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- 
+2023-09-20 06:29:55.7269||DEBUG|DigitalSignaturePdfFileSign|Begin signing for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: 'b257158e9f6141fd8b31437d0ff13716', secret: 'moDDm/t/8IvklPBhzRpNNqT9QYLtIa0NPQ60BrPX' 
+2023-09-20 06:32:38.6017||INFO|Startup|BaseDirectory: E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\ 
+2023-09-20 06:32:41.8617||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- 
+2023-09-20 06:32:41.8639||DEBUG|DigitalSignaturePdfFileSign|Begin signing for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: 'b257158e9f6141fd8b31437d0ff13716', secret: 'moDDm/t/8IvklPBhzRpNNqT9QYLtIa0NPQ60BrPX' 
+2023-09-20 06:33:17.6075||INFO|Startup|BaseDirectory: E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\ 
+2023-09-20 06:33:26.0275||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- 
+2023-09-20 06:33:26.0275||DEBUG|DigitalSignaturePdfFileSign|Begin signing for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: 'b257158e9f6141fd8b31437d0ff13716', secret: 'moDDm/t/8IvklPBhzRpNNqT9QYLtIa0NPQ60BrPX' 
+2023-09-20 06:34:02.8217||INFO|Startup|BaseDirectory: E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\ 
+2023-09-20 06:34:04.6324||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- 
+2023-09-20 06:34:04.6324||DEBUG|DigitalSignaturePdfFileSign|Begin signing for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: 'b257158e9f6141fd8b31437d0ff13716', secret: 'moDDm/t/8IvklPBhzRpNNqT9QYLtIa0NPQ60BrPX' 
+2023-09-20 06:35:45.7534||INFO|Startup|BaseDirectory: E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\ 
+2023-09-20 06:35:47.6712||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- 
+2023-09-20 06:35:47.6712||DEBUG|DigitalSignaturePdfFileSign|Begin signing for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: 'b257158e9f6141fd8b31437d0ff13716', secret: 'moDDm/t/8IvklPBhzRpNNqT9QYLtIa0NPQ60BrPX' 
+2023-09-20 06:37:10.4118||INFO|Startup|BaseDirectory: E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\ 
+2023-09-20 06:37:51.6347||INFO|Startup|BaseDirectory: E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\ 
+2023-09-20 06:37:55.1908||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- 
+2023-09-20 06:37:55.1949||DEBUG|DigitalSignaturePdfFileSign|Begin signing for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: 'b257158e9f6141fd8b31437d0ff13716', secret: 'moDDm/t/8IvklPBhzRpNNqT9QYLtIa0NPQ60BrPX' 
+2023-09-20 06:38:09.1076||DEBUG|DigitalSignaturePdfFileSign|endpointUri: https://sign-hn10.vin-hsm.com 
+2023-09-20 06:38:09.1076||DEBUG|DigitalSignaturePdfFileSign|Before signing base64Pdf length: 415860 
+2023-09-20 06:38:09.1161||DEBUG|DigitalSignaturePdfFileSign|pageSign: '1', llx: '75', lly: '482', urx: '236', ury: '534' 
+2023-09-20 06:38:09.1161||DEBUG|DigitalSignaturePdfFileSign|endpointUri: https://sign-hn10.vin-hsm.com 
+2023-09-20 06:38:14.0214||DEBUG|DigitalSignaturePdfFileSign|After signing base64Pdf length: 436596 
+2023-09-20 06:38:14.0214||DEBUG|DigitalSignaturePdfFileSign|End signing 
+2023-09-20 06:42:26.8050||INFO|Startup|BaseDirectory: E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\ 
+2023-09-20 06:42:32.4873||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- 
+2023-09-20 06:42:32.4914||DEBUG|DigitalSignaturePdfFileSign|Begin signing for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: 'b257158e9f6141fd8b31437d0ff13716', secret: 'moDDm/t/8IvklPBhzRpNNqT9QYLtIa0NPQ60BrPX' 
+2023-09-20 06:42:34.6468||DEBUG|DigitalSignaturePdfFileSign|endpointUri: https://sign-hn10.vin-hsm.com 
+2023-09-20 06:42:34.6468||DEBUG|DigitalSignaturePdfFileSign|Before signing base64Pdf length: 415860 
+2023-09-20 06:42:34.6468||DEBUG|DigitalSignaturePdfFileSign|pageSign: '1', llx: '75', lly: '482', urx: '236', ury: '534' 
+2023-09-20 06:42:34.6468||DEBUG|DigitalSignaturePdfFileSign|endpointUri: https://sign-hn10.vin-hsm.com 
+2023-09-20 06:42:36.3294||DEBUG|DigitalSignaturePdfFileSign|After signing base64Pdf length: 538360 
+2023-09-20 06:42:36.3294||DEBUG|DigitalSignaturePdfFileSign|End signing 

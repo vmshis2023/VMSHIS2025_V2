@@ -51,6 +51,7 @@ namespace VNS.HIS.UI.GOIKHAM
             this.txtnhomchidinh = new VNS.HIS.UCs.AutoCompleteTextbox();
             this.label14 = new System.Windows.Forms.Label();
             this.uiGroupBox3 = new Janus.Windows.EditControls.UIGroupBox();
+            this.chkMGTong = new System.Windows.Forms.CheckBox();
             this.cboKieuCK = new Janus.Windows.EditControls.UIComboBox();
             this.label15 = new System.Windows.Forms.Label();
             this.chkChiDinhNhanh = new Janus.Windows.EditControls.UICheckBox();
@@ -110,7 +111,6 @@ namespace VNS.HIS.UI.GOIKHAM
             this.label9 = new System.Windows.Forms.Label();
             this.cmdDelete = new Janus.Windows.EditControls.UIButton();
             this.txtThanhTienThamChieu = new MaskedTextBox.MaskedTextBox();
-            this.chkMGTong = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox1)).BeginInit();
             this.uiGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox3)).BeginInit();
@@ -342,6 +342,19 @@ namespace VNS.HIS.UI.GOIKHAM
             this.uiGroupBox3.Size = new System.Drawing.Size(1559, 110);
             this.uiGroupBox3.TabIndex = 0;
             this.uiGroupBox3.Text = "Thông tin chương trình";
+            // 
+            // chkMGTong
+            // 
+            this.chkMGTong.AutoSize = true;
+            this.chkMGTong.Checked = true;
+            this.chkMGTong.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkMGTong.Location = new System.Drawing.Point(1261, 47);
+            this.chkMGTong.Name = "chkMGTong";
+            this.chkMGTong.Size = new System.Drawing.Size(117, 19);
+            this.chkMGTong.TabIndex = 635;
+            this.chkMGTong.TabStop = false;
+            this.chkMGTong.Text = "Miễn giảm tổng?";
+            this.chkMGTong.UseVisualStyleBackColor = true;
             // 
             // cboKieuCK
             // 
@@ -1378,19 +1391,6 @@ namespace VNS.HIS.UI.GOIKHAM
             this.txtThanhTienThamChieu.TabIndex = 10;
             this.txtThanhTienThamChieu.TabStop = false;
             this.txtThanhTienThamChieu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // chkMGTong
-            // 
-            this.chkMGTong.AutoSize = true;
-            this.chkMGTong.Checked = true;
-            this.chkMGTong.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkMGTong.Location = new System.Drawing.Point(1261, 47);
-            this.chkMGTong.Name = "chkMGTong";
-            this.chkMGTong.Size = new System.Drawing.Size(117, 19);
-            this.chkMGTong.TabIndex = 635;
-            this.chkMGTong.TabStop = false;
-            this.chkMGTong.Text = "Miễn giảm tổng?";
-            this.chkMGTong.UseVisualStyleBackColor = true;
             // 
             // frm_TaoChuongtrinhKhuyenmai_Voucher
             // 

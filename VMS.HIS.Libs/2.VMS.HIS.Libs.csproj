@@ -62,6 +62,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\HIS_BVSG\Running\Aspose.Cells.dll</HintPath>
     </Reference>
+    <Reference Include="Aspose.PDF, Version=20.7.0.0, Culture=neutral, PublicKeyToken=f0262d67fe233d63, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\LABLink_Code_2024\LABLink-UI\LABLink_2025\library\Aspose.PDF.dll</HintPath>
+    </Reference>
     <Reference Include="Aspose.Words, Version=16.6.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\HIS_BVSG\Running\Aspose.Words.dll</HintPath>

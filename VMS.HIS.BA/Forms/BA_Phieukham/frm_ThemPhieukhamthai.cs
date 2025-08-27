@@ -1035,14 +1035,14 @@ namespace VMS.HIS.UI.EMR
                 {
                     Utility.Log(this.Name, globalVariables.UserName, string.Format("Thêm mới Phiếu khám thai bệnh nhân: {0}-{1} thành công", _pkt.MaLuotkham, ucThongtinnguoibenh_doc_v61.txtTenBN.Text), _pkt.IsNew ? newaction.Insert : newaction.Update, "UI");
 
-                    MessageBox.Show("Đã thêm mới Phiếu khám thai thành công. Nhấn Ok để kết thúc");
+                    MessageBox.Show("Đã thêm mới Phiếu khám thai thành công");
                     m_enAct = action.Update;
                 }
                 else if (m_enAct == action.Update)
                 {
                     Utility.Log(this.Name, globalVariables.UserName, string.Format("Cập nhật Phiếu khám thai bệnh nhân: {0}-{1} thành công", _pkt.MaLuotkham, ucThongtinnguoibenh_doc_v61.txtTenBN.Text), _pkt.IsNew ? newaction.Insert : newaction.Update, "UI");
 
-                    MessageBox.Show("Đã Cập nhật Phiếu khám thai thành công. Nhấn Ok để kết thúc");
+                    MessageBox.Show("Đã Cập nhật Phiếu khám thai thành công");
                     m_enAct = action.Update;
                 }
             }

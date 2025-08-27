@@ -1208,6 +1208,7 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
 
         private void uiButton1_Click(object sender, EventArgs e)
         {
+            
             txtthuoc.ShowMe();
         }
     }

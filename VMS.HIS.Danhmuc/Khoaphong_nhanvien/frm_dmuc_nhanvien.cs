@@ -106,6 +106,10 @@ namespace VNS.HIS.UI.DANHMUC
         {
             if (e.KeyCode == Keys.Escape) toolStripButton1.PerformClick();
             if (e.KeyCode == Keys.F3) cmdSearch.PerformClick();
+            if (e.KeyCode == Keys.F5)
+            {
+                InitData();
+            }
             if (e.Control && e.KeyCode == Keys.N) cmdNew.PerformClick();
             if (e.Control && e.KeyCode == Keys.E) cmdEdit.PerformClick();
             if (e.Control && e.KeyCode == Keys.D) cmdDelete.PerformClick();
@@ -1541,6 +1545,58 @@ namespace VNS.HIS.UI.DANHMUC
                         }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+            }
+        }
+
+        private void cmd_create_user_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if(Utility.Coquyen("QTHT_TAONGUOIDUNG_TUNHANVIEN") || globalVariables.IsAdmin || globalVariables.isSuperAdmin)
+                {
+                    int num = 0;
+                    foreach (GridEXRow row in grdNhanvien.GetCheckedRows())
+                    {
+                        int id_nhanvien = Utility.Int32Dbnull(row.Cells["id_nhanvien"].Value);
+                        string ma_nhanvien = Utility.sDbnull(row.Cells["ma_nhanvien"].Value).ToUpper();
+                        string ten_nhanvien = Utility.sDbnull(row.Cells["ten_nhanvien"].Value);
+                        string ten_khoa = Utility.sDbnull(row.Cells["ten_khoa"].Value);
+                        string ten_phong = Utility.sDbnull(row.Cells["ten_phong"].Value);
+                        SysUser newUser = new Select().From(SysUser.Schema).Where(SysUser.Columns.PkSuid).IsEqualTo(ma_nhanvien).ExecuteSingle<SysUser>();
+                        if (newUser == null)
+                        {
+                            newUser = new SysUser();
+                            newUser.TDateCreated = globalVariables.SysDate;
+                            newUser.SPwd = "boMVYzC67kUZgy8JNIkDtg==";
+                            newUser.PkSuid = ma_nhanvien;
+                            newUser.ISecurityLevel = 0;
+                            newUser.SDesc = "";
+                        }
+                        newUser.FpSBranchID = "HIS";
+                        newUser.SFullName = ten_nhanvien;
+                        newUser.SDepart = ten_khoa;
+                        newUser.Save();
+                        num = new Update(DmucNhanvien.Schema).Set(DmucNhanvien.Columns.UserName).EqualTo(ma_nhanvien)
+                            .Where(DmucNhanvien.Columns.IdNhanvien).IsEqualTo(id_nhanvien)
+                            .Execute();
+                        if (num > 0)
+                        {
+                            row.BeginEdit();
+                            row.Cells[DmucNhanvien.Columns.UserName].Value = ma_nhanvien;
+                            row.EndEdit();
+                        }
+                    }
+                    Utility.ShowMsg("Đã tạo tài khoản người dùng và ánh xạ vào nhân viên.\nVui lòng vào phần mềm quản trị hệ thống để phân quyền chức năng cho người dùng");
+                }
+                else
+                {
+                    Utility.ShowMsg("Bạn không có quyền tạo người dùng từ nhân viên. Phải có quyền Quản trị hệ thống hoặc được gán quyền có mã QTHT_TAONGUOIDUNG_TUNHANVIEN");
+                }    
+                
             }
             catch (Exception ex)
             {

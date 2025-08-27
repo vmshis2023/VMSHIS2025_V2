@@ -1,0 +1,39 @@
+2023-09-11 00:31:38.8361||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- |url: |action: 
+2023-09-11 00:31:38.8500||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user string with appId: b257158e9f6141fd8b31437d0ff13716, secret: eHi3xmoDDm/t/8IvklPBhzRpNNqT9QYLtIa0NPQ60BrPX |url: |action: 
+2023-09-11 00:33:28.7912||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- |url: |action: 
+2023-09-11 00:33:28.7912||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user string with appId: b257158e9f6141fd8b31437d0ff13716, secret: eHi3xmoDDm/t/8IvklPBhzRpNNqT9QYLtIa0NPQ60BrPX |url: |action: 
+2023-09-11 00:36:09.4798||DEBUG|DigitalSignatureCheckAccount|Invalid userName and password !!! |url: |action: 
+2023-09-11 00:36:11.3101||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- |url: |action: 
+2023-09-11 00:36:11.3101||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user string with appId: b257158e9f6141fd8b31437d0ff13716, secret: eHi3xmoDDm/t/8IvklPBhzRpNNqT9QYLtIa0NPQ60BrPX |url: |action: 
+2023-09-11 00:36:44.0684||DEBUG|DigitalSignatureCheckAccount|Invalid userName and password !!! |url: |action: 
+2023-09-11 00:36:45.9267||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- |url: |action: 
+2023-09-11 00:36:45.9368||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user string with appId: b257158e9f6141fd8b31437d0ff13716, secret: eHi3xmoDDm/t/8IvklPBhzRpNNqT9QYLtIa0NPQ60BrPX |url: |action: 
+2023-09-11 00:37:07.3143||DEBUG|DigitalSignatureCheckAccount|Invalid userName and password !!! |url: |action: 
+2023-09-11 00:37:13.0310||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- |url: |action: 
+2023-09-11 00:37:13.0310||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user string with appId: b257158e9f6141fd8b31437d0ff13716, secret: eHi3xmoDDm/t/8IvklPBhzRpNNqT9QYLtIa0NPQ60BrPX |url: |action: 
+2023-09-11 00:42:01.1719||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- |url: |action: 
+2023-09-11 00:42:01.1719||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user string with appId: b257158e9f6141fd8b31437d0ff13716, secret: eHi3xmoDDm/t/8IvklPBhzRpNNqT9QYLtIa0NPQ60BrPX |url: |action: 
+2023-09-11 00:42:31.2817||DEBUG|DigitalSignatureCheckAccount|VietBaIT.ChuKySo.Api.HaDongVinCA.ApiResp |url: |action: 
+2023-09-11 00:42:31.2817||DEBUG|DigitalSignatureCheckAccount|Invalid userName and password !!! |url: |action: 
+2023-09-11 00:43:43.8122||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- |url: |action: 
+2023-09-11 00:43:43.8122||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user string with appId: b257158e9f6141fd8b31437d0ff13716, secret: eHi3xmoDDm/t/8IvklPBhzRpNNqT9QYLtIa0NPQ60BrPX |url: |action: 
+2023-09-11 00:43:46.5289||DEBUG|DigitalSignatureCheckAccount|{"description":"X�c th�c kh�ng th�nh c�ng. Ch� k� HMAC kh�ng h�p l�","error":"X�c th�c kh�ng th�nh c�ng","status":2010,"obj":null} |url: |action: 
+2023-09-11 00:43:46.5289||DEBUG|DigitalSignatureCheckAccount|Invalid userName and password !!! |url: |action: 
+2023-09-11 00:43:59.3713||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- |url: |action: 
+2023-09-11 00:43:59.3713||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user string with appId: b257158e9f6141fd8b31437d0ff13716, secret: eHi3xmoDDm/t/8IvklPBhzRpNNqT9QYLtIa0NPQ60BrPX |url: |action: 
+2023-09-11 00:44:27.4224||DEBUG|DigitalSignatureCheckAccount|{"description":"X�c th�c kh�ng th�nh c�ng. Ch� k� HMAC kh�ng h�p l�","error":"X�c th�c kh�ng th�nh c�ng","status":2010,"obj":null} |url: |action: 
+2023-09-11 00:44:27.4224||DEBUG|DigitalSignatureCheckAccount|Invalid userName and password !!! |url: |action: 
+2023-09-11 00:44:29.0142||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- |url: |action: 
+2023-09-11 00:44:29.0142||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user string with appId: b257158e9f6141fd8b31437d0ff13716, secret: eHi3xmoDDm/t/8IvklPBhzRpNNqT9QYLtIa0NPQ60BrPX |url: |action: 
+2023-09-11 00:46:14.4568||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- |url: |action: 
+2023-09-11 00:46:14.4568||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user string with appId: b257158e9f6141fd8b31437d0ff13716, secret: eHi3xmoDDm/t/8IvklPBhzRpNNqT9QYLtIa0NPQ60BrPX |url: |action: 
+2023-09-11 00:46:45.8355||DEBUG|DigitalSignatureCheckAccount|{"description":"X�c th�c kh�ng th�nh c�ng. Ch� k� HMAC kh�ng h�p l�","error":"X�c th�c kh�ng th�nh c�ng","status":2010,"obj":null} |url: |action: 
+2023-09-11 00:46:45.8355||DEBUG|DigitalSignatureCheckAccount|Invalid userName and password !!! |url: |action: 
+2023-09-11 00:46:54.8908||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- |url: |action: 
+2023-09-11 00:46:54.8908||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user string with appId: b257158e9f6141fd8b31437d0ff13716, secret: eHi3xmoDDm/t/8IvklPBhzRpNNqT9QYLtIa0NPQ60BrPX |url: |action: 
+2023-09-11 00:46:58.3665||DEBUG|DigitalSignatureCheckAccount|{"description":"X�c th�c kh�ng th�nh c�ng. Ch� k� HMAC kh�ng h�p l�","error":"X�c th�c kh�ng th�nh c�ng","status":2010,"obj":null} |url: |action: 
+2023-09-11 00:46:58.3665||DEBUG|DigitalSignatureCheckAccount|Invalid userName and password !!! |url: |action: 
+2023-09-11 00:47:12.9762||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- |url: |action: 
+2023-09-11 00:47:12.9787||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user string with appId: b257158e9f6141fd8b31437d0ff13716, secret: eHi3xmoDDm/t/8IvklPBhzRpNNqT9QYLtIa0NPQ60BrPX |url: |action: 
+2023-09-11 00:47:41.7729||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- |url: |action: 
+2023-09-11 00:47:41.7784||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user string with appId: b257158e9f6141fd8b31437d0ff13716, secret: eHi3xmoDDm/t/8IvklPBhzRpNNqT9QYLtIa0NPQ60BrPX |url: |action: 

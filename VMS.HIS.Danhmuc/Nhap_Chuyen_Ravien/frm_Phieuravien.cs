@@ -2397,7 +2397,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
         }
         private void PrintPresGop(string maLanKham, long id_donthuoc, string forcedTitle)
         {
-            DataTable v_dtData = _KCB_KEDONTHUOC.LaythongtinDonthuoc_In((int)id_donthuoc); ;// _KCB_KEDONTHUOC.LaythongtinDonthuoc_InGop(maLanKham);
+            DataTable v_dtData = _KCB_KEDONTHUOC.LaythongtinDonthuoc_In(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, 0, (int)id_donthuoc); ;// _KCB_KEDONTHUOC.LaythongtinDonthuoc_InGop(maLanKham);
             Utility.AddColumToDataTable(ref v_dtData, "BarCode", typeof(byte[]));
             int Pres_ID = Utility.Int32Dbnull(grd_Donthuocravien.GetValue(KcbDonthuocChitiet.Columns.IdDonthuoc));
             THU_VIEN_CHUNG.CreateXML(v_dtData, "thamkham_InDonthuocA5.xml");
@@ -2483,7 +2483,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
         {
             try
             {
-                DataTable v_dtDataOrg = _KCB_KEDONTHUOC.LaythongtinDonthuoc_In(presID);
+                DataTable v_dtDataOrg = _KCB_KEDONTHUOC.LaythongtinDonthuoc_In(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, 0, presID);
 
                 DataRow[] arrDR = v_dtDataOrg.Select("tuvan_them=0");
                 if (arrDR.Length <= 0)

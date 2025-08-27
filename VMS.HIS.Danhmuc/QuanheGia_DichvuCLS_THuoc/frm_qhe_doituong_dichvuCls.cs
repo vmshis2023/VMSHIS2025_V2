@@ -314,6 +314,52 @@ namespace VNS.HIS.UI.DANHMUC
             }
            
         }
+
+        private void mnuResetAndAutoCreate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Utility.Log(this.Name, globalVariables.UserName, "Tạo giá quan hệ đối tượng cận lâm sàng dựa theo đối tượng tham chiếu", newaction.Reset, this.GetType().Assembly.ManifestModule.Name);
+                if (!globalVariables.isSuperAdmin)
+                {
+                    Utility.ShowMsg("Chỉ có super Admin mới được phép sử dụng tính năng này");
+                    return;
+                }
+                if (Utility.Int32Dbnull(cboBogia.SelectedValue, -1) <= 0)
+                {
+                    if (Utility.AcceptQuestion("Nếu bạn muốn tạo giá cho đối tượng BHYT thì cần chọn bộ giá BHYT trước khi dùng chức năng này. Nhấn Yes để quay lại chọn bộ giá BHYT, nhấn No để tiếp tục", "Xác nhận", true))
+                        return;
+                }
+                Utility.WaitNow(this);
+                //if (grdList.GetCheckedRows().Length <= 0)
+                //{
+                //    Utility.ShowMsg("Bạn cần chọn ít nhất 1 dịch vụ cận lâm sàng để thực hiện chức năng này");
+                //    return;
+                //}
+                frm_ChonDoituongKCB_All frm = new frm_ChonDoituongKCB_All();
+                frm._enObjectType = enObjectType.DichvuCLS;
+                frm.m_dtQheDoituong_CLS = m_dtGiaDichvu.Clone();
+                frm.Original_Price =
+                    Utility.DecimaltoDbnull(grdList.CurrentRow.Cells["gia_dichvu"].Value, 0);
+                frm.MaKhoaTHIEN = Utility.sDbnull(cboKhoaTH.SelectedValue, "");
+                frm.DetailService =
+                    Utility.Int32Dbnull(grdList.CurrentRow.Cells[DmucDichvuclsChitiet.Columns.IdChitietdichvu].Value, 0);
+                frm.ShowDialog();
+                if (!frm.m_blnCancel)
+                    AutoCreate(frm.m_dtQheDoituong_CLS, frm.id_doituongkcb_thamchieu, true);
+
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+            }
+            finally
+            {
+                Utility.DefaultNow(this);
+                ModifyCommand1();
+                ModifyCommand();
+            }
+        }
         void AutoCreate(DataTable dtDoituongKcb, Int16 id_doituongKcb_thamchieu,bool isreset)
         {
             try
@@ -1485,51 +1531,6 @@ namespace VNS.HIS.UI.DANHMUC
             LoadBogia();
         }
 
-        private void mnuResetAndAutoCreate_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Utility.Log(this.Name, globalVariables.UserName, "Tạo giá quan hệ đối tượng cận lâm sàng dựa theo đối tượng tham chiếu", newaction.Reset, this.GetType().Assembly.ManifestModule.Name);
-                if (!globalVariables.isSuperAdmin)
-                {
-                    Utility.ShowMsg("Chỉ có super Admin mới được phép sử dụng tính năng này");
-                    return;
-                }
-                if (Utility.Int32Dbnull(cboBogia.SelectedValue, -1) <= 0)
-                {
-                    if (Utility.AcceptQuestion("Nếu bạn muốn tạo giá cho đối tượng BHYT thì cần chọn bộ giá BHYT trước khi dùng chức năng này. Nhấn Yes để quay lại chọn bộ giá BHYT, nhấn No để tiếp tục", "Xác nhận", true))
-                        return;
-                }
-                Utility.WaitNow(this);
-                //if (grdList.GetCheckedRows().Length <= 0)
-                //{
-                //    Utility.ShowMsg("Bạn cần chọn ít nhất 1 dịch vụ cận lâm sàng để thực hiện chức năng này");
-                //    return;
-                //}
-                frm_ChonDoituongKCB_All frm = new frm_ChonDoituongKCB_All();
-                frm._enObjectType = enObjectType.DichvuCLS;
-                frm.m_dtQheDoituong_CLS = m_dtGiaDichvu.Clone();
-                frm.Original_Price =
-                    Utility.DecimaltoDbnull(grdList.CurrentRow.Cells["gia_dichvu"].Value, 0);
-                frm.MaKhoaTHIEN = Utility.sDbnull(cboKhoaTH.SelectedValue, "");
-                frm.DetailService =
-                    Utility.Int32Dbnull(grdList.CurrentRow.Cells[DmucDichvuclsChitiet.Columns.IdChitietdichvu].Value, 0);
-                frm.ShowDialog();
-                if (!frm.m_blnCancel)
-                    AutoCreate(frm.m_dtQheDoituong_CLS, frm.id_doituongkcb_thamchieu, true);
-
-            }
-            catch (Exception ex)
-            {
-                Utility.CatchException(ex);
-            }
-            finally
-            {
-                Utility.DefaultNow(this);
-                ModifyCommand1();
-                ModifyCommand();
-            }
-        }
 
         private void mnuTaoQheGiaDvuCLS_DoituongKCB_Click_1(object sender, EventArgs e)
         {

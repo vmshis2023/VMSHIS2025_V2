@@ -110,9 +110,23 @@ namespace VNS.HIS.UCs.Noitru
             autoNguonkiqui._OnEnterMe += autoNguonkiqui__OnEnterMe;
             //cboPttt._OnShowData += cboPttt__OnShowData;
             autoNguonkiqui._OnShowData += autoNguonkiqui__OnShowData;
+            txtNhomthuchi._OnShowDataV1 += _OnShowDataV1;
             //cboNganhang._OnShowData += cboNganhang__OnShowData;
             optPhieuThu.CheckedChanged+=optPhieuThu_CheckedChanged;
             optPhieuChi.CheckedChanged += optPhieuThu_CheckedChanged;
+        }
+
+        private void _OnShowDataV1(AutoCompleteTextbox_Danhmucchung obj)
+        {
+            DMUC_DCHUNG dmucDchung = new DMUC_DCHUNG(obj.LOAI_DANHMUC);
+            dmucDchung.ShowDialog();
+            if (!dmucDchung.m_blnCancel)
+            {
+                string oldCode = obj.myCode;
+                obj.Init();
+                obj.SetCode(oldCode);
+                obj.Focus();
+            }
         }
 
         void cboNganhang__OnShowData()
@@ -285,6 +299,8 @@ namespace VNS.HIS.UCs.Noitru
                     objPhieuthuchi.IdBuong = objLuotkham.IdBuong;
                     objPhieuthuchi.IdGiuong = objLuotkham.IdGiuong;
                     objPhieuthuchi.IdNhanvien = Utility.Int16Dbnull(txtNguoithu.MyID);
+                    objPhieuthuchi.MaNhom = Utility.sDbnull(txtNhomthuchi.MyCode);
+                    objPhieuthuchi.TenNhom = Utility.sDbnull(txtNhomthuchi.Text);
                     objPhieuthuchi.NoiDung = txtMotathem.Text;
                     objPhieuthuchi.MaCoso = objLuotkham.MaCoso;
                     objPhieuthuchi.IsNew = true;
@@ -438,6 +454,13 @@ namespace VNS.HIS.UCs.Noitru
                 Utility.SetMsg(lblMsg, string.Format("Bạn cần nhập tên người {0} tiền (Có thể xóa trắng và nhập phím cách để ra tất cả các nhân viên trong hệ thống)",thuchi), true);
                 txtNguoithu.SelectAll();
                 txtNguoithu.Focus();
+                return false;
+            }
+            if (txtNhomthuchi.MyCode.ToString() == "-1")
+            {
+                Utility.SetMsg(lblMsg, string.Format("Bạn cần nhập Nhóm {0} (Có thể xóa trắng và nhập phím cách để ra tất cả các nhân viên trong hệ thống)", thuchi), true);
+                txtNhomthuchi.SelectAll();
+                txtNhomthuchi.Focus();
                 return false;
             }
             if (Utility.sDbnull(cboPttt.SelectedValue, "-1") == "-1")
@@ -773,6 +796,7 @@ namespace VNS.HIS.UCs.Noitru
                     txtSotien.Text = "0";
                     txtLydo.SetCode("-1");
                     txtNguoithu.SetCode("-1");
+                    txtNhomthuchi.SetCode("-1");
                     cboNganhang.SelectedIndex = -1;
                     cboPttt.SelectedIndex = -1;
                     txtMotathem.Clear();
@@ -789,6 +813,7 @@ namespace VNS.HIS.UCs.Noitru
                         txtSotien.Text = "0";
                         txtLydo.SetCode("-1");
                         txtNguoithu.SetCode("-1");
+                        txtNhomthuchi.SetCode("-1");
                         cboNganhang.SelectedIndex = -1;
                         cboPttt.SelectedIndex = -1;
                         txtMotathem.Clear();
@@ -804,6 +829,7 @@ namespace VNS.HIS.UCs.Noitru
                         txtSotien.Text = objPhieuthuchi.SoTien.ToString();
                         txtLydo._Text = objPhieuthuchi.LydoNop;
                         txtNguoithu.SetId(objPhieuthuchi.IdNhanvien);
+                        txtNhomthuchi.SetCode(objPhieuthuchi.MaNhom);
                         txtMotathem.Text = objPhieuthuchi.NoiDung;
                         cboNganhang.SelectedValue = objPhieuthuchi.MaNganhang;
                         cboPttt.SelectedValue = objPhieuthuchi.MaPttt;
@@ -841,6 +867,7 @@ namespace VNS.HIS.UCs.Noitru
         void AutoCompleteTextBox()
         {
             if (hasLoadedDmuc) return;
+            txtNhomthuchi.Init();
             txtLydo.Init();
             AutoCompleteTextBox_nguoithu();
             txtNguoithu.SetId(globalVariables.gv_intIDNhanvien);

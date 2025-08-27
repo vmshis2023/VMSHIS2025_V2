@@ -196,7 +196,7 @@ namespace VMS.HIS.DAL
         
 		public static readonly string EmrTiensusanphukhoa = @"emr_tiensusanphukhoa";
         
-		public static readonly string EmrTongketBenhan = @"emr_tongket_benhan";
+		public static readonly string EmrTomtatBa = @"emr_tomtat_BA";
         
 		public static readonly string EmrThongtinNguoibenh = @"emr_thongtin_nguoibenh";
         
@@ -390,6 +390,8 @@ namespace VMS.HIS.DAL
         
 		public static readonly string NoitruPhieudichtruyen = @"noitru_phieudichtruyen";
         
+		public static readonly string NoitruPhieudichtruyenChitiet = @"noitru_phieudichtruyen_chitiet";
+        
 		public static readonly string NoitruPhieudieutri = @"noitru_phieudieutri";
         
 		public static readonly string NoitruPhieudinhduong = @"noitru_phieudinhduong";
@@ -537,6 +539,10 @@ namespace VMS.HIS.DAL
 		public static readonly string SysConfigRadio = @"SysConfigRadio";
         
 		public static readonly string SysUserPrinter = @"SysUserPrinter";
+        
+		public static readonly string TBienbanKiemnhap = @"t_bienban_kiemnhap";
+        
+		public static readonly string TBienbanKiemnhapChitiet = @"t_bienban_kiemnhap_chitiet";
         
 		public static readonly string TBiendongThuoc = @"t_biendong_thuoc";
         
@@ -1120,9 +1126,9 @@ namespace VMS.HIS.DAL
             get { return DataService.GetSchema("emr_tiensusanphukhoa", "ORM"); }
 		}
         
-		public static TableSchema.Table EmrTongketBenhan
+		public static TableSchema.Table EmrTomtatBa
 		{
-            get { return DataService.GetSchema("emr_tongket_benhan", "ORM"); }
+            get { return DataService.GetSchema("emr_tomtat_BA", "ORM"); }
 		}
         
 		public static TableSchema.Table EmrThongtinNguoibenh
@@ -1605,6 +1611,11 @@ namespace VMS.HIS.DAL
             get { return DataService.GetSchema("noitru_phieudichtruyen", "ORM"); }
 		}
         
+		public static TableSchema.Table NoitruPhieudichtruyenChitiet
+		{
+            get { return DataService.GetSchema("noitru_phieudichtruyen_chitiet", "ORM"); }
+		}
+        
 		public static TableSchema.Table NoitruPhieudieutri
 		{
             get { return DataService.GetSchema("noitru_phieudieutri", "ORM"); }
@@ -1973,6 +1984,16 @@ namespace VMS.HIS.DAL
 		public static TableSchema.Table SysUserPrinter
 		{
             get { return DataService.GetSchema("SysUserPrinter", "ORM"); }
+		}
+        
+		public static TableSchema.Table TBienbanKiemnhap
+		{
+            get { return DataService.GetSchema("t_bienban_kiemnhap", "ORM"); }
+		}
+        
+		public static TableSchema.Table TBienbanKiemnhapChitiet
+		{
+            get { return DataService.GetSchema("t_bienban_kiemnhap_chitiet", "ORM"); }
 		}
         
 		public static TableSchema.Table TBiendongThuoc

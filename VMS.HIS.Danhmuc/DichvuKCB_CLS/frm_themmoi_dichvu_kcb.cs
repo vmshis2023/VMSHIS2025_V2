@@ -143,7 +143,7 @@ namespace VNS.HIS.UI.DANHMUC
             {
                 DataTable _dsStaffList = THU_VIEN_CHUNG.Laydanhsachnhanvienthuockhoa(departmentID);
                 Utility.AddColumnAlltoDataTable(ref _dsStaffList, DmucNhanvien.Columns.IdNhanvien,
-                                                DmucNhanvien.Columns.TenNhanvien, "====Chọn====");
+                                                DmucNhanvien.Columns.TenNhanvien, "====Tất cả====");
                 _dsStaffList.DefaultView.Sort = DmucNhanvien.Columns.IdNhanvien + " ASC";
                 cboBacSy.DataSource = _dsStaffList.DefaultView;
                 cboBacSy.ValueMember = DmucNhanvien.Columns.IdNhanvien;
@@ -174,7 +174,7 @@ namespace VNS.HIS.UI.DANHMUC
         {
             dtPK = THU_VIEN_CHUNG.Laydanhsachphongthuockhoa(Dept_Id, 0);
             Utility.AddColumnAlltoDataTable(ref dtPK, DmucDichvukcb.Columns.IdKhoaphong,
-                                            DmucKhoaphong.Columns.TenKhoaphong, "====Chọn====");
+                                            DmucKhoaphong.Columns.TenKhoaphong, "====Tất cả====");
             cmdSave.Enabled = dtPK.Rows.Count > 0;
             dtPK.DefaultView.Sort = DmucKhoaphong.Columns.TenKhoaphong + " ASC";
             cboRoomDept.DataSource = dtPK.DefaultView;

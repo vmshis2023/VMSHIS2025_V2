@@ -80,7 +80,7 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(string MaLoaidvu,string MaKhaosat,string TenVungkhaosat,string TenfileKq,string Mota,string MotaHtml,string KetLuan,string DeNghi,bool TrangThai,string Kichthuocanh,string NguoiTao,DateTime NgayTao,DateTime? NgaySua,string NguoiSua)
+	    public void Insert(string MaLoaidvu,string MaKhaosat,string TenVungkhaosat,string TenfileKq,string Mota,string MotaHtml,string KetLuan,string DeNghi,bool TrangThai,string Kichthuocanh,string NguoiTao,DateTime NgayTao,DateTime? NgaySua,string NguoiSua,bool? HienthiKetluanDenghi)
 	    {
 		    DmucVungkhaosat item = new DmucVungkhaosat();
 		    
@@ -112,6 +112,8 @@ namespace VMS.HIS.DAL
             
             item.NguoiSua = NguoiSua;
             
+            item.HienthiKetluanDenghi = HienthiKetluanDenghi;
+            
 	    
 		    item.Save(UserName);
 	    }
@@ -120,7 +122,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(int Id,string MaLoaidvu,string MaKhaosat,string TenVungkhaosat,string TenfileKq,string Mota,string MotaHtml,string KetLuan,string DeNghi,bool TrangThai,string Kichthuocanh,string NguoiTao,DateTime NgayTao,DateTime? NgaySua,string NguoiSua)
+	    public void Update(int Id,string MaLoaidvu,string MaKhaosat,string TenVungkhaosat,string TenfileKq,string Mota,string MotaHtml,string KetLuan,string DeNghi,bool TrangThai,string Kichthuocanh,string NguoiTao,DateTime NgayTao,DateTime? NgaySua,string NguoiSua,bool? HienthiKetluanDenghi)
 	    {
 		    DmucVungkhaosat item = new DmucVungkhaosat();
 	        item.MarkOld();
@@ -155,6 +157,8 @@ namespace VMS.HIS.DAL
 			item.NgaySua = NgaySua;
 				
 			item.NguoiSua = NguoiSua;
+				
+			item.HienthiKetluanDenghi = HienthiKetluanDenghi;
 				
 	        item.Save(UserName);
 	    }

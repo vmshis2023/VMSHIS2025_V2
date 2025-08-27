@@ -1,0 +1,56 @@
+2023-09-14 10:51:51.1399||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-09-14 10:51:51.1605||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '001092030130_3048529_20230824082257', secret: '' |url: |action: 
+2023-09-14 10:51:51.1605||DEBUG|DigitalSignaturePdfFileSign|File Length: 311893 |url: |action: 
+2023-09-14 10:51:51.1605||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 0 |url: |action: 
+2023-09-14 10:52:56.9286||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-09-14 10:52:56.9335||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '001092030130_3048529_20230824082257', secret: '' |url: |action: 
+2023-09-14 10:52:56.9335||DEBUG|DigitalSignaturePdfFileSign|File Length: 311893 |url: |action: 
+2023-09-14 10:52:56.9489||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 0 |url: |action: 
+2023-09-14 10:53:14.7907||DEBUG|DigitalSignaturePdfFileSign|Ký hash thành công |url: |action: 
+2023-09-14 10:53:14.8335||DEBUG|DigitalSignaturePdfFileSign|Ký thành công |url: |action: 
+2023-09-14 10:57:34.8238||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-09-14 10:57:34.8238||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '001092030130_3048529_20230824082257', secret: '' |url: |action: 
+2023-09-14 10:57:34.8371||DEBUG|DigitalSignaturePdfFileSign|File Length: 311893 |url: |action: 
+2023-09-14 10:57:34.8371||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 0 |url: |action: 
+2023-09-14 10:58:05.8896||DEBUG|DigitalSignaturePdfFileSign|Ký hash thành công |url: |action: 
+2023-09-14 10:58:05.9203||DEBUG|DigitalSignaturePdfFileSign|Ký thành công |url: |action: 
+2023-09-14 14:56:28.6050||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-09-14 14:56:28.6050||DEBUG|DigitalSignaturePdfFileSign|Begin signing for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: 'b257158e9f6141fd8b31437d0ff13716', secret: 'moDDm/t/8IvklPBhzRpNNqT9QYLtIa0NPQ60BrPX' |url: |action: 
+2023-09-14 14:56:28.6196||DEBUG|DigitalSignaturePdfFileSign|Before signing base64Pdf length: 415860 |url: |action: 
+2023-09-14 14:56:28.6196||DEBUG|DigitalSignaturePdfFileSign|pageSign: '1', llx: '75', lly: '482', urx: '236', ury: '534' |url: |action: 
+2023-09-14 14:56:46.4299||ERROR|DigitalSignaturePdfFileSign|There was an error on 'DigitalSignaturePdfFileSign' invocation: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at iTextSharp.text.Image.GetInstance(Byte[] imgb, Boolean recoverFromImageError)
+   at iTextSharp.text.Image.GetInstance(Byte[] imgb)
+   at VietBaIT.ChuKySo.Api.HaDongVinCA.PdfHash.getHashPkcs(X509Certificate cer, ICollection`1 chain, SignClient client, String sHash, Int32 typeSignature, String base64Image, String textOut, String font, String signatureName, Nullable`1 dateSigned, String& errMsg, Int32 pageSign, Int32 xPoint, Int32 yPoint, Int32 width, Int32 height) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\DigitalSignature\HaDongVinCA\PdfHash.cs:line 291
+   at VietBaIT.ChuKySo.Api.HaDongVinCA.PDFSigner.SignHashPkcs(Byte[] input, String sHash, Int32 typeSignature, String base64Image, String textOut, String signatureName, Nullable`1 dateSigned, String& errMsg, Int32 pageSign, Int32 xPoint, Int32 yPoint, Int32 width, Int32 height) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\DigitalSignature\HaDongVinCA\PdfSigner.cs:line 102
+   at VietBaIT.ChuKySo.Api.Controllers.HaDongVinCAController.DigitalSignaturePdfFileSign(VietBaDigitalSignature objDigitalSignature) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\Controllers\HaDongVinCAController.cs:line 162 |url: |action: 
+2023-09-14 14:57:02.0596||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-09-14 14:57:02.0596||DEBUG|DigitalSignaturePdfFileSign|Begin signing for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: 'b257158e9f6141fd8b31437d0ff13716', secret: 'moDDm/t/8IvklPBhzRpNNqT9QYLtIa0NPQ60BrPX' |url: |action: 
+2023-09-14 14:57:02.0736||DEBUG|DigitalSignaturePdfFileSign|Before signing base64Pdf length: 415860 |url: |action: 
+2023-09-14 14:57:02.0736||DEBUG|DigitalSignaturePdfFileSign|pageSign: '1', llx: '75', lly: '482', urx: '236', ury: '534' |url: |action: 
+2023-09-14 14:57:12.0364||ERROR|DigitalSignaturePdfFileSign|There was an error on 'DigitalSignaturePdfFileSign' invocation: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at iTextSharp.text.Image.GetInstance(Byte[] imgb, Boolean recoverFromImageError)
+   at iTextSharp.text.Image.GetInstance(Byte[] imgb)
+   at VietBaIT.ChuKySo.Api.HaDongVinCA.PdfHash.getHashPkcs(X509Certificate cer, ICollection`1 chain, SignClient client, String sHash, Int32 typeSignature, String base64Image, String textOut, String font, String signatureName, Nullable`1 dateSigned, String& errMsg, Int32 pageSign, Int32 xPoint, Int32 yPoint, Int32 width, Int32 height) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\DigitalSignature\HaDongVinCA\PdfHash.cs:line 291
+   at VietBaIT.ChuKySo.Api.HaDongVinCA.PDFSigner.SignHashPkcs(Byte[] input, String sHash, Int32 typeSignature, String base64Image, String textOut, String signatureName, Nullable`1 dateSigned, String& errMsg, Int32 pageSign, Int32 xPoint, Int32 yPoint, Int32 width, Int32 height) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\DigitalSignature\HaDongVinCA\PdfSigner.cs:line 102
+   at VietBaIT.ChuKySo.Api.Controllers.HaDongVinCAController.DigitalSignaturePdfFileSign(VietBaDigitalSignature objDigitalSignature) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\Controllers\HaDongVinCAController.cs:line 162 |url: |action: 
+2023-09-14 14:58:06.0188||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-09-14 14:58:06.0188||DEBUG|DigitalSignaturePdfFileSign|Begin signing for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: 'b257158e9f6141fd8b31437d0ff13716', secret: 'moDDm/t/8IvklPBhzRpNNqT9QYLtIa0NPQ60BrPX' |url: |action: 
+2023-09-14 14:58:06.0365||DEBUG|DigitalSignaturePdfFileSign|Before signing base64Pdf length: 415860 |url: |action: 
+2023-09-14 14:58:06.0365||DEBUG|DigitalSignaturePdfFileSign|pageSign: '1', llx: '75', lly: '482', urx: '236', ury: '534' |url: |action: 
+2023-09-14 14:58:25.4740||ERROR|DigitalSignaturePdfFileSign|There was an error on 'DigitalSignaturePdfFileSign' invocation: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at iTextSharp.text.Image.GetInstance(Byte[] imgb, Boolean recoverFromImageError)
+   at iTextSharp.text.Image.GetInstance(Byte[] imgb)
+   at VietBaIT.ChuKySo.Api.HaDongVinCA.PdfHash.getHashPkcs(X509Certificate cer, ICollection`1 chain, SignClient client, String sHash, Int32 typeSignature, String base64Image, String textOut, String font, String signatureName, Nullable`1 dateSigned, String& errMsg, Int32 pageSign, Int32 xPoint, Int32 yPoint, Int32 width, Int32 height) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\DigitalSignature\HaDongVinCA\PdfHash.cs:line 291
+   at VietBaIT.ChuKySo.Api.HaDongVinCA.PDFSigner.SignHashPkcs(Byte[] input, String sHash, Int32 typeSignature, String base64Image, String textOut, String signatureName, Nullable`1 dateSigned, String& errMsg, Int32 pageSign, Int32 xPoint, Int32 yPoint, Int32 width, Int32 height) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\DigitalSignature\HaDongVinCA\PdfSigner.cs:line 102
+   at VietBaIT.ChuKySo.Api.Controllers.HaDongVinCAController.DigitalSignaturePdfFileSign(VietBaDigitalSignature objDigitalSignature) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\Controllers\HaDongVinCAController.cs:line 162 |url: |action: 
+2023-09-14 14:58:35.1863||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-09-14 14:58:35.1863||DEBUG|DigitalSignaturePdfFileSign|Begin signing for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: 'b257158e9f6141fd8b31437d0ff13716', secret: 'moDDm/t/8IvklPBhzRpNNqT9QYLtIa0NPQ60BrPX' |url: |action: 
+2023-09-14 14:58:35.1863||DEBUG|DigitalSignaturePdfFileSign|Before signing base64Pdf length: 415860 |url: |action: 
+2023-09-14 14:58:35.1863||DEBUG|DigitalSignaturePdfFileSign|pageSign: '1', llx: '75', lly: '482', urx: '236', ury: '534' |url: |action: 
+2023-09-14 15:12:17.5760||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-09-14 15:12:17.5760||DEBUG|DigitalSignaturePdfFileSign|Begin signing for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: 'b257158e9f6141fd8b31437d0ff13716', secret: 'moDDm/t/8IvklPBhzRpNNqT9QYLtIa0NPQ60BrPX' |url: |action: 
+2023-09-14 15:12:17.5977||DEBUG|DigitalSignaturePdfFileSign|Before signing base64Pdf length: 415860 |url: |action: 
+2023-09-14 15:12:17.5977||DEBUG|DigitalSignaturePdfFileSign|pageSign: '1', llx: '75', lly: '482', urx: '236', ury: '534' |url: |action: 
+2023-09-14 15:12:21.6654||DEBUG|DigitalSignaturePdfFileSign|After signing base64Pdf length: 461268 |url: |action: 
+2023-09-14 15:12:21.6654||DEBUG|DigitalSignaturePdfFileSign|End signing |url: |action: 

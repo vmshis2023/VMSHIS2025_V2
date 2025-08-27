@@ -1436,7 +1436,7 @@ namespace VMS.HIS.UI.EMR
                         Utility.CatchException(ex);
                     }
                 }
-                Utility.ShowMsg("Cập nhật phân nhóm thành công. Nhấn OK để kết thúc");
+                Utility.ShowMsg("Cập nhật phân nhóm thành công");
                 SearchData();
             }
         }
@@ -1474,7 +1474,7 @@ namespace VMS.HIS.UI.EMR
                         Utility.CatchException(ex);
                     }
                 }
-                Utility.ShowMsg("Cập nhật loại danh mục thành công. Nhấn OK để kết thúc");
+                Utility.ShowMsg("Cập nhật loại danh mục thành công");
                 m_strListType = Utility.sDbnull(txtLoai.Text);
                 SearchData();
             }
@@ -1505,7 +1505,7 @@ namespace VMS.HIS.UI.EMR
                     Utility.CatchException(ex);
                 }
 
-                Utility.ShowMsg("Cập nhật loại danh mục thành công. Nhấn OK để kết thúc");
+                Utility.ShowMsg("Cập nhật loại danh mục thành công");
                 m_strListType = Utility.sDbnull(txtLoai.Text);
                 SearchData();
             }

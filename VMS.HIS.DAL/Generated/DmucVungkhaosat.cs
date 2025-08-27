@@ -322,6 +322,20 @@ namespace VMS.HIS.DAL
 				colvarNguoiSua.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarNguoiSua);
 				
+				TableSchema.TableColumn colvarHienthiKetluanDenghi = new TableSchema.TableColumn(schema);
+				colvarHienthiKetluanDenghi.ColumnName = "hienthi_ketluan_denghi";
+				colvarHienthiKetluanDenghi.DataType = DbType.Boolean;
+				colvarHienthiKetluanDenghi.MaxLength = 0;
+				colvarHienthiKetluanDenghi.AutoIncrement = false;
+				colvarHienthiKetluanDenghi.IsNullable = true;
+				colvarHienthiKetluanDenghi.IsPrimaryKey = false;
+				colvarHienthiKetluanDenghi.IsForeignKey = false;
+				colvarHienthiKetluanDenghi.IsReadOnly = false;
+				
+						colvarHienthiKetluanDenghi.DefaultSetting = @"((0))";
+				colvarHienthiKetluanDenghi.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarHienthiKetluanDenghi);
+				
 				BaseSchema = schema;
 				//add this schema to the provider
 				//so we can query it later
@@ -451,6 +465,14 @@ namespace VMS.HIS.DAL
 			get { return GetColumnValue<string>(Columns.NguoiSua); }
 			set { SetColumnValue(Columns.NguoiSua, value); }
 		}
+		  
+		[XmlAttribute("HienthiKetluanDenghi")]
+		[Bindable(true)]
+		public bool? HienthiKetluanDenghi 
+		{
+			get { return GetColumnValue<bool?>(Columns.HienthiKetluanDenghi); }
+			set { SetColumnValue(Columns.HienthiKetluanDenghi, value); }
+		}
 		
 		#endregion
 		
@@ -471,7 +493,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(string varMaLoaidvu,string varMaKhaosat,string varTenVungkhaosat,string varTenfileKq,string varMota,string varMotaHtml,string varKetLuan,string varDeNghi,bool varTrangThai,string varKichthuocanh,string varNguoiTao,DateTime varNgayTao,DateTime? varNgaySua,string varNguoiSua)
+		public static void Insert(string varMaLoaidvu,string varMaKhaosat,string varTenVungkhaosat,string varTenfileKq,string varMota,string varMotaHtml,string varKetLuan,string varDeNghi,bool varTrangThai,string varKichthuocanh,string varNguoiTao,DateTime varNgayTao,DateTime? varNgaySua,string varNguoiSua,bool? varHienthiKetluanDenghi)
 		{
 			DmucVungkhaosat item = new DmucVungkhaosat();
 			
@@ -503,6 +525,8 @@ namespace VMS.HIS.DAL
 			
 			item.NguoiSua = varNguoiSua;
 			
+			item.HienthiKetluanDenghi = varHienthiKetluanDenghi;
+			
 		
 			if (System.Web.HttpContext.Current != null)
 				item.Save(System.Web.HttpContext.Current.User.Identity.Name);
@@ -513,7 +537,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(int varId,string varMaLoaidvu,string varMaKhaosat,string varTenVungkhaosat,string varTenfileKq,string varMota,string varMotaHtml,string varKetLuan,string varDeNghi,bool varTrangThai,string varKichthuocanh,string varNguoiTao,DateTime varNgayTao,DateTime? varNgaySua,string varNguoiSua)
+		public static void Update(int varId,string varMaLoaidvu,string varMaKhaosat,string varTenVungkhaosat,string varTenfileKq,string varMota,string varMotaHtml,string varKetLuan,string varDeNghi,bool varTrangThai,string varKichthuocanh,string varNguoiTao,DateTime varNgayTao,DateTime? varNgaySua,string varNguoiSua,bool? varHienthiKetluanDenghi)
 		{
 			DmucVungkhaosat item = new DmucVungkhaosat();
 			
@@ -546,6 +570,8 @@ namespace VMS.HIS.DAL
 				item.NgaySua = varNgaySua;
 			
 				item.NguoiSua = varNguoiSua;
+			
+				item.HienthiKetluanDenghi = varHienthiKetluanDenghi;
 			
 			item.IsNew = false;
 			if (System.Web.HttpContext.Current != null)
@@ -665,6 +691,13 @@ namespace VMS.HIS.DAL
         
         
         
+        public static TableSchema.TableColumn HienthiKetluanDenghiColumn
+        {
+            get { return Schema.Columns[15]; }
+        }
+        
+        
+        
         #endregion
 		#region Columns Struct
 		public struct Columns
@@ -684,6 +717,7 @@ namespace VMS.HIS.DAL
 			 public static string NgayTao = @"ngay_tao";
 			 public static string NgaySua = @"ngay_sua";
 			 public static string NguoiSua = @"nguoi_sua";
+			 public static string HienthiKetluanDenghi = @"hienthi_ketluan_denghi";
 						
 		}
 		#endregion

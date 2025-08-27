@@ -73,6 +73,11 @@ namespace VNS.HIS.UI.DANHMUC
 
         void grdList_CellUpdated(object sender, ColumnActionEventArgs e)
         {
+            if(!Utility.Coquyen("DMUC_CANLAMSANG_SUANHOM_TRENLUOI"))
+            {
+                Utility.thongbaokhongcoquyen("DMUC_CANLAMSANG_SUANHOM_TRENLUOI","quyền sửa các nhóm in, nhóm chi phí, nhóm BHYT, nhóm phiếu EMR trên lưới. Vui lòng liên hệ IT bệnh viện");
+                return;
+            }    
             string colKey = e.Column.Key;
             string colValue = Utility.sDbnull(grdList.GetValue(colKey));
             int v_intIdDichvu = Utility.Int32Dbnull(grdList.GetValue(DmucDichvucl.Columns.IdDichvu));
@@ -80,6 +85,18 @@ namespace VNS.HIS.UI.DANHMUC
             if (colKey == DmucDichvucl.Columns.MaPhieuEmr)
             {
                 num = new Update(DmucDichvucl.Schema).Set(DmucDichvucl.Columns.MaPhieuEmr).EqualTo(colValue).Where(DmucDichvucl.Columns.IdDichvu).IsEqualTo(v_intIdDichvu).Execute();
+            }
+            else if (colKey == DmucDichvucl.Columns.NhomBaocao)
+            {
+                num = new Update(DmucDichvucl.Schema).Set(DmucDichvucl.Columns.NhomBaocao).EqualTo(colValue).Where(DmucDichvucl.Columns.IdDichvu).IsEqualTo(v_intIdDichvu).Execute();
+            }
+            else if (colKey == DmucDichvucl.Columns.NhomInCls)
+            {
+                num = new Update(DmucDichvucl.Schema).Set(DmucDichvucl.Columns.NhomInCls).EqualTo(colValue).Where(DmucDichvucl.Columns.IdDichvu).IsEqualTo(v_intIdDichvu).Execute();
+            }
+            else if (colKey == DmucDichvucl.Columns.NhomInphoiBHYT)
+            {
+                num = new Update(DmucDichvucl.Schema).Set(DmucDichvucl.Columns.NhomInphoiBHYT).EqualTo(colValue).Where(DmucDichvucl.Columns.IdDichvu).IsEqualTo(v_intIdDichvu).Execute();
             }
         }
 
@@ -113,6 +130,29 @@ namespace VNS.HIS.UI.DANHMUC
                 {
                     grdList.DropDowns["cboPhieuEmr"].DataSource = dtPhieuEMR;
                 }
+                DataTable dtNhomchiphi = new Select("*").From(DmucChung.Schema).Where(DmucChung.Columns.Loai).IsEqualTo("NHOMBAOCAOCLS")
+              .OrderAsc(DmucChung.Columns.SttHthi)
+              .ExecuteDataSet().Tables[0];
+                if (grdList.DropDowns.Contains("cboNhomChiphi"))
+                {
+                    grdList.DropDowns["cboNhomChiphi"].DataSource = dtNhomchiphi;
+                }
+                DataTable dtNhominphieuCLS = new Select("*").From(DmucChung.Schema).Where(DmucChung.Columns.Loai).IsEqualTo("NHOM_INPHIEU_CLS")
+              .OrderAsc(DmucChung.Columns.SttHthi)
+              .ExecuteDataSet().Tables[0];
+                if (grdList.DropDowns.Contains("cboNhominphieu"))
+                {
+                    grdList.DropDowns["cboNhominphieu"].DataSource = dtNhominphieuCLS;
+                }
+                DataTable dtnhominphoi = new Select().From(DmucChung.Schema)
+                 .Where(DmucChung.Columns.Loai).IsEqualTo(THU_VIEN_CHUNG.Laygiatrithamsohethong("BHYT_STT_INPHOI", "STT_INPHOIBHYT", true))
+                 .And(DmucChung.Columns.VietTat).IsEqualTo("2")
+                 .ExecuteDataSet().Tables[0];
+                if (grdList.DropDowns.Contains("cbo_nhom_inphoiBHYT"))
+                {
+                    grdList.DropDowns["cbo_nhom_inphoiBHYT"].DataSource = dtnhominphoi;
+                }
+
 
                 m_dtLoaiDichvuCLS = THU_VIEN_CHUNG.LayDulieuDanhmucChung("LOAIDICHVUCLS", true);
                 DataTable m_dtLoaiDichvuCLS_new = m_dtLoaiDichvuCLS.Clone();
@@ -132,8 +172,7 @@ namespace VNS.HIS.UI.DANHMUC
                     }
                 }
                 DataBinding.BindDataCombox(cboServiceType, m_dtLoaiDichvuCLS_new, DmucChung.Columns.Ma, DmucChung.Columns.Ten,"---Chọn---", false);
-                DataTable m_dtNhomDichVu = THU_VIEN_CHUNG.LayDulieuDanhmucChung("NHOMBAOCAOCLS", true);
-                DataBinding.BindDataCombox(cbonhombaocao, m_dtNhomDichVu, DmucChung.Columns.Ma, DmucChung.Columns.Ten);
+                DataBinding.BindDataCombox(cbonhombaocao, dtNhomchiphi, DmucChung.Columns.Ma, DmucChung.Columns.Ten);
                 DataTable m_dtKhoaChucNang = THU_VIEN_CHUNG.Laydanhmuckhoa("ALL",1);
                 DataBinding.BindDataCombobox(cboDepartment, m_dtKhoaChucNang, DmucKhoaphong.Columns.IdKhoaphong, DmucKhoaphong.Columns.TenKhoaphong, "---Chọn---", true);
             }
@@ -429,7 +468,186 @@ namespace VNS.HIS.UI.DANHMUC
             
 
         }
+        int num = 0;
+        private void mnu_capnhat_nhomchiphi_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if(!Utility.isValidGrid(grdList))
+                {
+                    Utility.ShowMsg("Cần chọn một Dịch vụ trên lưới để lấy nhóm chi phí của dịch vụ đó làm nguồn dữ liệu cập nhật cho các Dịch vụ đang chọn khác");
+                    return;
+                }
+                List<int> lstIdDichvu = grdList.GetCheckedRows().Select(c => Utility.Int32Dbnull(c.Cells["id_dichvu"].Value)).ToList<int>();
+               
+                    string nhom_baocao = Utility.sDbnull(grdList.CurrentRow.Cells["nhom_baocao"].Value);
+                num= new Update(DmucDichvucl.Schema)
+                .Set(DmucDichvucl.Columns.NhomBaocao).EqualTo(nhom_baocao)
+                .Where(DmucDichvucl.Columns.IdDichvu).In(lstIdDichvu)
+                .Execute();
+                if(num>0)
+                {
+                    // Cập nhật cột nhom_baocao
+                    foreach (var row in grdList.GetCheckedRows())
+                    {
+                        // Nếu dữ liệu gốc từ DataRow:
+                        var drv = row.DataRow as DataRowView;
+                        if (drv != null)
+                        {
+                            drv["nhom_baocao"] = nhom_baocao;
+                        }
+                        else
+                        {
+                            // Trong trường hợp grid bind trực tiếp với object model:
+                            row.BeginEdit();
+                            row.Cells["nhom_baocao"].Value = nhom_baocao;
+                            row.EndEdit();
+                        }
+                    }
+                    Utility.Log(this.Name, globalVariables.UserName, string.Format("Cập nhật nhóm chi phí cho các dịch vụ {0} về giá trị {1} thành công ", lstIdDichvu.ToString(), nhom_baocao), newaction.Update, this.GetType().Assembly.ManifestModule.Name);
+                }    
+               
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+            }
 
+        }
 
+        private void mnu_capnhat_nhominphieu_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!Utility.isValidGrid(grdList))
+                {
+                    Utility.ShowMsg("Cần chọn một Dịch vụ trên lưới để lấy Nhóm in phiếu CĐ của dịch vụ đó làm nguồn dữ liệu cập nhật cho các Dịch vụ đang chọn khác");
+                    return;
+                }
+                List<int> lstIdDichvu = grdList.GetCheckedRows().Select(c => Utility.Int32Dbnull(c.Cells["id_dichvu"].Value)).ToList<int>();
+
+                string nhom_in_cls = Utility.sDbnull(grdList.CurrentRow.Cells["nhom_in_cls"].Value);
+                num = new Update(DmucDichvucl.Schema)
+                .Set(DmucDichvucl.Columns.NhomInCls).EqualTo(nhom_in_cls)
+                .Where(DmucDichvucl.Columns.IdDichvu).In(lstIdDichvu)
+                .Execute();
+                if (num > 0)
+                {
+                    // Cập nhật cột nhom_baocao
+                    foreach (GridEXRow row in grdList.GetCheckedRows())
+                    {
+                        // Nếu dữ liệu gốc từ DataRow:
+                        var drv = row.DataRow as DataRowView;
+                        if (drv != null)
+                        {
+                            drv["nhom_in_cls"] = nhom_in_cls;
+                        }
+                        else
+                        {
+                            // Trong trường hợp grid bind trực tiếp với object model:
+                            row.BeginEdit();
+                            row.Cells["nhom_in_cls"].Value = nhom_in_cls;
+                            row.EndEdit();
+                        }
+                    }
+                    Utility.Log(this.Name, globalVariables.UserName, string.Format("Cập nhật Nhóm in phiếu CĐ cho các dịch vụ {0} về giá trị {1} thành công ", lstIdDichvu.ToString(), nhom_in_cls), newaction.Update, this.GetType().Assembly.ManifestModule.Name);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+            }
+        }
+
+        private void mnu_capnhat_nhominphoiBHYT_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!Utility.isValidGrid(grdList))
+                {
+                    Utility.ShowMsg("Cần chọn một Dịch vụ trên lưới để lấy Nhóm in phôi BHYT của dịch vụ đó làm nguồn dữ liệu cập nhật cho các Dịch vụ đang chọn khác");
+                    return;
+                }
+                List<int> lstIdDichvu = grdList.GetCheckedRows().Select(c => Utility.Int32Dbnull(c.Cells["id_dichvu"].Value)).ToList<int>();
+
+                string nhom_inphoiBHYT = Utility.sDbnull(grdList.CurrentRow.Cells["nhom_inphoiBHYT"].Value);
+                num = new Update(DmucDichvucl.Schema)
+                .Set(DmucDichvucl.Columns.NhomInphoiBHYT).EqualTo(nhom_inphoiBHYT)
+                .Where(DmucDichvucl.Columns.IdDichvu).In(lstIdDichvu)
+                .Execute();
+                if (num > 0)
+                {
+                    // Cập nhật cột nhom_baocao
+                    foreach (var row in grdList.GetCheckedRows())
+                    {
+                        // Nếu dữ liệu gốc từ DataRow:
+                        var drv = row.DataRow as DataRowView;
+                        if (drv != null)
+                        {
+                            drv["nhom_inphoiBHYT"] = nhom_inphoiBHYT;
+                        }
+                        else
+                        {
+                            // Trong trường hợp grid bind trực tiếp với object model:
+                            row.BeginEdit();
+                            row.Cells["nhom_inphoiBHYT"].Value = nhom_inphoiBHYT;
+                            row.EndEdit();
+                        }
+                    }
+                    Utility.Log(this.Name, globalVariables.UserName, string.Format("Cập nhật Nhóm in phôi BHYT, Biên lai, Bảng kê chi phí KCB cho các dịch vụ {0} về giá trị {1} thành công ", lstIdDichvu.ToString(), nhom_inphoiBHYT), newaction.Update, this.GetType().Assembly.ManifestModule.Name);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+            }
+        }
+
+        private void mnu_capnhat_phieu_emr_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!Utility.isValidGrid(grdList))
+                {
+                    Utility.ShowMsg("Cần chọn một Dịch vụ trên lưới để lấy Mã phiếu EMR của dịch vụ đó làm nguồn dữ liệu cập nhật cho các Dịch vụ đang chọn khác");
+                    return;
+                }
+                List<int> lstIdDichvu = grdList.GetCheckedRows().Select(c => Utility.Int32Dbnull(c.Cells["id_dichvu"].Value)).ToList<int>();
+
+                string ma_phieu_emr = Utility.sDbnull(grdList.CurrentRow.Cells["ma_phieu_emr"].Value);
+                num = new Update(DmucDichvucl.Schema)
+                .Set(DmucDichvucl.Columns.MaPhieuEmr).EqualTo(ma_phieu_emr)
+                .Where(DmucDichvucl.Columns.IdDichvu).In(lstIdDichvu)
+                .Execute();
+                if (num > 0)
+                {
+                    // Cập nhật cột nhom_baocao
+                    foreach (var row in grdList.GetCheckedRows())
+                    {
+                        // Nếu dữ liệu gốc từ DataRow:
+                        var drv = row.DataRow as DataRowView;
+                        if (drv != null)
+                        {
+                            drv["ma_phieu_emr"] = ma_phieu_emr;
+                        }
+                        else
+                        {
+                            // Trong trường hợp grid bind trực tiếp với object model:
+                            row.BeginEdit();
+                            row.Cells["ma_phieu_emr"].Value = ma_phieu_emr;
+                            row.EndEdit();
+                        }
+                    }
+                    Utility.Log(this.Name, globalVariables.UserName, string.Format("Cập nhật Mã phiếu EMR cho các dịch vụ {0} về giá trị {1} thành công ", lstIdDichvu.ToString(), ma_phieu_emr), newaction.Update, this.GetType().Assembly.ManifestModule.Name);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+            }
+        }
     }
 }

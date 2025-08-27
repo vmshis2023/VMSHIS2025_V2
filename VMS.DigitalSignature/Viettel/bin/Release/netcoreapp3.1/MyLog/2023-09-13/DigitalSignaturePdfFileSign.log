@@ -1,0 +1,16 @@
+2023-09-13 23:37:31.9770||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-09-13 23:37:31.9770||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '001092030130_3048529_20230824082257', secret: '' |url: |action: 
+2023-09-13 23:37:31.9770||DEBUG|DigitalSignaturePdfFileSign|File Length: 311893 |url: |action: 
+2023-09-13 23:37:31.9770||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 0 |url: |action: 
+2023-09-13 23:40:37.4097||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-09-13 23:40:37.4097||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '001092030130_3048529_20230824082257', secret: '' |url: |action: 
+2023-09-13 23:40:37.4174||DEBUG|DigitalSignaturePdfFileSign|File Length: 311893 |url: |action: 
+2023-09-13 23:40:37.4174||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 0 |url: |action: 
+2023-09-13 23:40:56.0944||DEBUG|DigitalSignaturePdfFileSign|Ký hash thành công |url: |action: 
+2023-09-13 23:40:56.1195||DEBUG|DigitalSignaturePdfFileSign|Ký thành công |url: |action: 
+2023-09-13 23:42:32.5177||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-09-13 23:42:32.5177||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '001092030130_3048529_20230824082257', secret: '' |url: |action: 
+2023-09-13 23:42:32.5177||DEBUG|DigitalSignaturePdfFileSign|File Length: 311893 |url: |action: 
+2023-09-13 23:42:32.5177||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 0 |url: |action: 
+2023-09-13 23:42:44.1163||DEBUG|DigitalSignaturePdfFileSign|Ký hash thành công |url: |action: 
+2023-09-13 23:42:44.1352||DEBUG|DigitalSignaturePdfFileSign|Ký thành công |url: |action: 

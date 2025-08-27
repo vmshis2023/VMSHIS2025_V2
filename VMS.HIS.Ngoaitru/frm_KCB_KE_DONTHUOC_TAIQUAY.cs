@@ -3911,7 +3911,7 @@ namespace VNS.HIS.UI.NGOAITRU
 
         private void PrintPres(int PresID)
         {
-            DataTable dataTable = _kedonthuoc.LaythongtinDonthuoc_In(PresID);
+            DataTable dataTable = _kedonthuoc.LaythongtinDonthuoc_In(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, 0, PresID);
             if (dataTable.Rows.Count <= 0)
             {
                 Utility.ShowMsg(

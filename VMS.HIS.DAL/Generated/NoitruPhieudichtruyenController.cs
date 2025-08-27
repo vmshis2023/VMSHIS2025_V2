@@ -80,35 +80,27 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(long IdBenhnhan,string MaLuotkham,long? IdBuonggiuong,int IdKhoadieutri,int IdBacsichidinh,int IdYtathuchien,int SoLuong,int IdThuoc,int TocDo,DateTime ThoigianBatdau,DateTime ThoigianKetthuc,string NguoiThuchien,DateTime NgayThuchien,DateTime NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua,long IdChitietdonthuoc,byte TrangthaiIn,string IdThuocKethop,long IdDonthuoc)
+	    public void Insert(string MaPhieu,long IdBenhnhan,string MaLuotkham,int IdKhoadieutri,string Khoa,string Buong,string Giuong,bool? Noitru,string ChanDoan,DateTime NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua)
 	    {
 		    NoitruPhieudichtruyen item = new NoitruPhieudichtruyen();
 		    
+            item.MaPhieu = MaPhieu;
+            
             item.IdBenhnhan = IdBenhnhan;
             
             item.MaLuotkham = MaLuotkham;
             
-            item.IdBuonggiuong = IdBuonggiuong;
-            
             item.IdKhoadieutri = IdKhoadieutri;
             
-            item.IdBacsichidinh = IdBacsichidinh;
+            item.Khoa = Khoa;
             
-            item.IdYtathuchien = IdYtathuchien;
+            item.Buong = Buong;
             
-            item.SoLuong = SoLuong;
+            item.Giuong = Giuong;
             
-            item.IdThuoc = IdThuoc;
+            item.Noitru = Noitru;
             
-            item.TocDo = TocDo;
-            
-            item.ThoigianBatdau = ThoigianBatdau;
-            
-            item.ThoigianKetthuc = ThoigianKetthuc;
-            
-            item.NguoiThuchien = NguoiThuchien;
-            
-            item.NgayThuchien = NgayThuchien;
+            item.ChanDoan = ChanDoan;
             
             item.NgayTao = NgayTao;
             
@@ -118,14 +110,6 @@ namespace VMS.HIS.DAL
             
             item.NguoiSua = NguoiSua;
             
-            item.IdChitietdonthuoc = IdChitietdonthuoc;
-            
-            item.TrangthaiIn = TrangthaiIn;
-            
-            item.IdThuocKethop = IdThuocKethop;
-            
-            item.IdDonthuoc = IdDonthuoc;
-            
 	    
 		    item.Save(UserName);
 	    }
@@ -134,7 +118,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(long IdPhieu,long IdBenhnhan,string MaLuotkham,long? IdBuonggiuong,int IdKhoadieutri,int IdBacsichidinh,int IdYtathuchien,int SoLuong,int IdThuoc,int TocDo,DateTime ThoigianBatdau,DateTime ThoigianKetthuc,string NguoiThuchien,DateTime NgayThuchien,DateTime NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua,long IdChitietdonthuoc,byte TrangthaiIn,string IdThuocKethop,long IdDonthuoc)
+	    public void Update(long IdPhieu,string MaPhieu,long IdBenhnhan,string MaLuotkham,int IdKhoadieutri,string Khoa,string Buong,string Giuong,bool? Noitru,string ChanDoan,DateTime NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua)
 	    {
 		    NoitruPhieudichtruyen item = new NoitruPhieudichtruyen();
 	        item.MarkOld();
@@ -142,31 +126,23 @@ namespace VMS.HIS.DAL
 		    
 			item.IdPhieu = IdPhieu;
 				
+			item.MaPhieu = MaPhieu;
+				
 			item.IdBenhnhan = IdBenhnhan;
 				
 			item.MaLuotkham = MaLuotkham;
 				
-			item.IdBuonggiuong = IdBuonggiuong;
-				
 			item.IdKhoadieutri = IdKhoadieutri;
 				
-			item.IdBacsichidinh = IdBacsichidinh;
+			item.Khoa = Khoa;
 				
-			item.IdYtathuchien = IdYtathuchien;
+			item.Buong = Buong;
 				
-			item.SoLuong = SoLuong;
+			item.Giuong = Giuong;
 				
-			item.IdThuoc = IdThuoc;
+			item.Noitru = Noitru;
 				
-			item.TocDo = TocDo;
-				
-			item.ThoigianBatdau = ThoigianBatdau;
-				
-			item.ThoigianKetthuc = ThoigianKetthuc;
-				
-			item.NguoiThuchien = NguoiThuchien;
-				
-			item.NgayThuchien = NgayThuchien;
+			item.ChanDoan = ChanDoan;
 				
 			item.NgayTao = NgayTao;
 				
@@ -175,14 +151,6 @@ namespace VMS.HIS.DAL
 			item.NgaySua = NgaySua;
 				
 			item.NguoiSua = NguoiSua;
-				
-			item.IdChitietdonthuoc = IdChitietdonthuoc;
-				
-			item.TrangthaiIn = TrangthaiIn;
-				
-			item.IdThuocKethop = IdThuocKethop;
-				
-			item.IdDonthuoc = IdDonthuoc;
 				
 	        item.Save(UserName);
 	    }

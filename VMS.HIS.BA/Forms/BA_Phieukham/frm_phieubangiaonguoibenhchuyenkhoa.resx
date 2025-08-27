@@ -145,6 +145,9 @@
         zeFBvlq+vrFbfH257N27uWwfnzi2t/f/z26/lO3/AYd5Z1iL2nhOAAAAAElFTkSuQmCC
 </value>
   </data>
+  <metadata name="ctxIn.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>647, 58</value>
+  </metadata>
   <data name="cmdInphieu.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
@@ -173,4 +176,7 @@
         UGAAAAAASUVORK5CYII=
 </value>
   </data>
+  <metadata name="visualStyleManager1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 97</value>
+  </metadata>
 </root>

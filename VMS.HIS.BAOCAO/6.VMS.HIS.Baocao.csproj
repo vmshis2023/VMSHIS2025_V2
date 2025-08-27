@@ -118,6 +118,12 @@
     <Compile Include="Baocao\BaocaoMiengiam_tamung_hoanung\frm_baocaotonghop_chiphibenhvien.Designer.cs">
       <DependentUpon>frm_baocaotonghop_chiphibenhvien.cs</DependentUpon>
     </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\frm_baocaocongno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocaongoaitru\frm_baocaocongno.Designer.cs">
+      <DependentUpon>frm_baocaocongno.cs</DependentUpon>
+    </Compile>
     <Compile Include="Baocao\Baocaongoaitru\frm_baocaodoanhthuphongkham_Hongphat.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -633,6 +639,9 @@
     <EmbeddedResource Include="Baocao\BaocaoMiengiam_tamung_hoanung\frm_baocaotonghop_chiphibenhvien.resx">
       <DependentUpon>frm_baocaotonghop_chiphibenhvien.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocaongoaitru\frm_baocaocongno.resx">
+      <DependentUpon>frm_baocaocongno.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Baocao\Baocaongoaitru\frm_baocaodoanhthuphongkham_Hongphat.resx">
       <DependentUpon>frm_baocaodoanhthuphongkham_Hongphat.cs</DependentUpon>
     </EmbeddedResource>
@@ -1110,6 +1119,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\user_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_04_32.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_04_321.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

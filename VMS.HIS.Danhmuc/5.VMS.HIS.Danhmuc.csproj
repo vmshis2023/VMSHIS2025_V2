@@ -166,6 +166,9 @@
     <Compile Include="AutoComplete\AutoCompleteTextbox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="AutoComplete\AutoCompleteTextbox_Goikham.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="AutoComplete\AutoCompleteTextbox_Danhmucchung.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -262,6 +265,12 @@
     <Compile Include="AutoComplete\DynamicReport_Ucs\ucDatetime.Designer.cs">
       <DependentUpon>ucDatetime.cs</DependentUpon>
     </Compile>
+    <Compile Include="AutoComplete\uc_grdGoikham.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AutoComplete\uc_grdGoikham.Designer.cs">
+      <DependentUpon>uc_grdGoikham.cs</DependentUpon>
+    </Compile>
     <Compile Include="AutoComplete\uc_grdCongkham.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -303,6 +312,12 @@
     </Compile>
     <Compile Include="Barcode\FrmBarCodePrint.Designer.cs">
       <DependentUpon>FrmBarCodePrint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChidinhCLS_Kedon\frm_KCB_CHIDINH_CLS_Auto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChidinhCLS_Kedon\frm_KCB_CHIDINH_CLS_Auto.Designer.cs">
+      <DependentUpon>frm_KCB_CHIDINH_CLS_Auto.cs</DependentUpon>
     </Compile>
     <Compile Include="ChidinhCLS_Kedon\frm_thuchien_donthuoc.cs">
       <SubType>Form</SubType>
@@ -418,6 +433,12 @@
     </Compile>
     <Compile Include="Dungchung\Frm_CapNhat_Thongtin_Thue.Designer.cs">
       <DependentUpon>Frm_CapNhat_Thongtin_Thue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dungchung\frm_ChonTungayDenngay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dungchung\frm_ChonTungayDenngay.Designer.cs">
+      <DependentUpon>frm_ChonTungayDenngay.cs</DependentUpon>
     </Compile>
     <Compile Include="Goikham\frm_ChitietdichvuTronggoi1Lan.cs">
       <SubType>Form</SubType>
@@ -1233,6 +1254,9 @@
     <Compile Include="UserControls\uc_tamthu.Designer.cs">
       <DependentUpon>uc_tamthu.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AutoComplete\AutoCompleteTextbox_Goikham.resx">
+      <DependentUpon>AutoCompleteTextbox_Goikham.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AutoComplete\AutoCompleteTextbox_Danhmucchung.resx">
       <DependentUpon>AutoCompleteTextbox_Danhmucchung.cs</DependentUpon>
     </EmbeddedResource>
@@ -1293,6 +1317,9 @@
     <EmbeddedResource Include="AutoComplete\DynamicReport_Ucs\ucDatetime.resx">
       <DependentUpon>ucDatetime.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AutoComplete\uc_grdGoikham.resx">
+      <DependentUpon>uc_grdGoikham.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AutoComplete\uc_grdCongkham.resx">
       <DependentUpon>uc_grdCongkham.cs</DependentUpon>
     </EmbeddedResource>
@@ -1313,6 +1340,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Barcode\FrmBarCodePrint.resx">
       <DependentUpon>FrmBarCodePrint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChidinhCLS_Kedon\frm_KCB_CHIDINH_CLS_Auto.resx">
+      <DependentUpon>frm_KCB_CHIDINH_CLS_Auto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ChidinhCLS_Kedon\frm_thuchien_donthuoc.resx">
       <DependentUpon>frm_thuchien_donthuoc.cs</DependentUpon>
@@ -1372,6 +1402,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dungchung\Frm_CapNhat_Thongtin_Thue.resx">
       <DependentUpon>Frm_CapNhat_Thongtin_Thue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dungchung\frm_ChonTungayDenngay.resx">
+      <DependentUpon>frm_ChonTungayDenngay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Goikham\frm_ChitietdichvuTronggoi1Lan.resx">
       <DependentUpon>frm_ChitietdichvuTronggoi1Lan.cs</DependentUpon>
@@ -2020,7 +2053,7 @@
     <None Include="Resources\tick2424.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ChidinhCLS_Kedon\backup\" />
+    <Folder Include="ChidinhCLS_Kedon\backup\Kenhieukho\" />
     <Folder Include="LichsuKCB\LamLichSuDuLieu\" />
     <Folder Include="QMS\" />
     <Folder Include="UserControls\Backup\240823\" />

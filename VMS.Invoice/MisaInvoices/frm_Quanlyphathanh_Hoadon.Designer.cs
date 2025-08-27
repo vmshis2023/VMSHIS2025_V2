@@ -86,6 +86,8 @@ namespace VMS.Invoice
             this.cmdGetRight = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuPhathanhtiep = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuUpdateHIS = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cmdCapnhatthongtinthue = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -136,8 +138,6 @@ namespace VMS.Invoice
             this.chkAnChitietdaPhathanh = new System.Windows.Forms.CheckBox();
             this.chkBodichvutronggoi = new System.Windows.Forms.CheckBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnuUpdateHIS = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -696,7 +696,7 @@ namespace VMS.Invoice
             this.toolStripMenuItem3,
             this.mnuUpdateHIS});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(643, 110);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(643, 88);
             // 
             // toolStripMenuItem1
             // 
@@ -721,6 +721,19 @@ namespace VMS.Invoice
             this.mnuPhathanhtiep.Size = new System.Drawing.Size(642, 22);
             this.mnuPhathanhtiep.Text = "Phát hành các chi tiết bị xuất thiếu của chứng từ đang chọn";
             this.mnuPhathanhtiep.Click += new System.EventHandler(this.mnuPhathanhtiep_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(639, 6);
+            // 
+            // mnuUpdateHIS
+            // 
+            this.mnuUpdateHIS.Name = "mnuUpdateHIS";
+            this.mnuUpdateHIS.Size = new System.Drawing.Size(642, 22);
+            this.mnuUpdateHIS.Text = "Cập nhật thông tin chứng từ sau phát hành( Phát hành HĐ thành công nhưng bị lỗi c" +
+    "hưa lưu vào CSDL HIS)";
+            this.mnuUpdateHIS.Click += new System.EventHandler(this.mnuUpdateHIS_Click);
             // 
             // contextMenuStrip2
             // 
@@ -1442,19 +1455,6 @@ namespace VMS.Invoice
             // 
             this.toolTip1.IsBalloon = true;
             this.toolTip1.ToolTipTitle = "Trợ giúp";
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(639, 6);
-            // 
-            // mnuUpdateHIS
-            // 
-            this.mnuUpdateHIS.Name = "mnuUpdateHIS";
-            this.mnuUpdateHIS.Size = new System.Drawing.Size(642, 22);
-            this.mnuUpdateHIS.Text = "Cập nhật thông tin chứng từ sau phát hành( Phát hành HĐ thành công nhưng bị lỗi c" +
-    "hưa lưu vào CSDL HIS)";
-            this.mnuUpdateHIS.Click += new System.EventHandler(this.mnuUpdateHIS_Click);
             // 
             // frm_Quanlyphathanh_Hoadon
             // 

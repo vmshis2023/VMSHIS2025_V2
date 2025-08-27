@@ -94,7 +94,7 @@ namespace VNS.HIS.UI.Forms.Cauhinh
             // panel2
             // 
             this.panel2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel2.BackgroundImage")));
-            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
@@ -149,6 +149,7 @@ namespace VNS.HIS.UI.Forms.Cauhinh
             this.txtLydoHuy.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtLydoHuy.buildShortcut = false;
             this.txtLydoHuy.CaseSensitive = false;
+            this.txtLydoHuy.cmdDropDown = null;
             this.txtLydoHuy.CompareNoID = true;
             this.txtLydoHuy.DefaultCode = "-1";
             this.txtLydoHuy.DefaultID = "-1";
@@ -167,6 +168,7 @@ namespace VNS.HIS.UI.Forms.Cauhinh
             this.txtLydoHuy.RaiseEventEnter = false;
             this.txtLydoHuy.RaiseEventEnterWhenEmpty = false;
             this.txtLydoHuy.SelectedIndex = -1;
+            this.txtLydoHuy.SetDefaultWhenInit = true;
             this.txtLydoHuy.ShowCodeWithValue = false;
             this.txtLydoHuy.Size = new System.Drawing.Size(440, 22);
             this.txtLydoHuy.splitChar = '@';

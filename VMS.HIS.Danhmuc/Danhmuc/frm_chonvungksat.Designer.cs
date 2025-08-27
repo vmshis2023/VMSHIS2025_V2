@@ -33,6 +33,7 @@
             this.grdList = new Janus.Windows.GridEX.GridEX();
             this.panel1 = new System.Windows.Forms.Panel();
             this.cmdInsertVKS = new Janus.Windows.EditControls.UIButton();
+            this.cmdAccept = new Janus.Windows.EditControls.UIButton();
             ((System.ComponentModel.ISupportInitialize)(this.grdList)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -63,35 +64,51 @@
             this.grdList.Name = "grdList";
             this.grdList.RecordNavigator = true;
             this.grdList.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
-            this.grdList.Size = new System.Drawing.Size(584, 376);
+            this.grdList.Size = new System.Drawing.Size(662, 489);
             this.grdList.TabIndex = 7;
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.cmdAccept);
             this.panel1.Controls.Add(this.cmdInsertVKS);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 376);
+            this.panel1.Location = new System.Drawing.Point(0, 489);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(584, 45);
+            this.panel1.Size = new System.Drawing.Size(662, 45);
             this.panel1.TabIndex = 8;
             // 
             // cmdInsertVKS
             // 
             this.cmdInsertVKS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cmdInsertVKS.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdInsertVKS.Image = ((System.Drawing.Image)(resources.GetObject("cmdInsertVKS.Image")));
-            this.cmdInsertVKS.Location = new System.Drawing.Point(426, 5);
+            this.cmdInsertVKS.Image = global::VMS.HIS.Danhmuc.Properties.Resources.add_04_32;
+            this.cmdInsertVKS.ImageSize = new System.Drawing.Size(24, 24);
+            this.cmdInsertVKS.Location = new System.Drawing.Point(3, 6);
             this.cmdInsertVKS.Name = "cmdInsertVKS";
-            this.cmdInsertVKS.Size = new System.Drawing.Size(150, 35);
+            this.cmdInsertVKS.Size = new System.Drawing.Size(122, 35);
             this.cmdInsertVKS.TabIndex = 1;
-            this.cmdInsertVKS.Text = "Thêm vùng khảo sát";
+            this.cmdInsertVKS.TabStop = false;
+            this.cmdInsertVKS.Text = "Thêm mới VKS";
             this.cmdInsertVKS.Click += new System.EventHandler(this.cmdInsertVKS_Click);
+            // 
+            // cmdAccept
+            // 
+            this.cmdAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmdAccept.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmdAccept.Image = ((System.Drawing.Image)(resources.GetObject("cmdAccept.Image")));
+            this.cmdAccept.ImageSize = new System.Drawing.Size(24, 24);
+            this.cmdAccept.Location = new System.Drawing.Point(528, 6);
+            this.cmdAccept.Name = "cmdAccept";
+            this.cmdAccept.Size = new System.Drawing.Size(122, 35);
+            this.cmdAccept.TabIndex = 2;
+            this.cmdAccept.Text = "Chấp nhận";
+            this.cmdAccept.Click += new System.EventHandler(this.cmdAccept_Click);
             // 
             // frm_chonvungksat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 421);
+            this.ClientSize = new System.Drawing.Size(662, 534);
             this.Controls.Add(this.grdList);
             this.Controls.Add(this.panel1);
             this.KeyPreview = true;
@@ -112,5 +129,6 @@
         private Janus.Windows.GridEX.GridEX grdList;
         private System.Windows.Forms.Panel panel1;
         private Janus.Windows.EditControls.UIButton cmdInsertVKS;
+        private Janus.Windows.EditControls.UIButton cmdAccept;
     }
 }

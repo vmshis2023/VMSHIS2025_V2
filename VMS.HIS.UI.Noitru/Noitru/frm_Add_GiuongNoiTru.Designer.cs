@@ -33,6 +33,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_Add_GiuongNoiTru));
             Janus.Windows.GridEX.GridEXLayout grdQuanheGiuong_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             this.grpControl = new Janus.Windows.EditControls.UIGroupBox();
+            this.chkFull = new Janus.Windows.EditControls.UICheckBox();
             this.label18 = new System.Windows.Forms.Label();
             this.uiTabHoadon_chiphi = new Janus.Windows.UI.Tab.UITab();
             this.tabpageLoaiGiuong = new Janus.Windows.UI.Tab.UITabPage();
@@ -91,7 +92,6 @@
             this.cmdThemMoi = new Janus.Windows.EditControls.UIButton();
             this.cmdExit = new Janus.Windows.EditControls.UIButton();
             this.cmdSave = new Janus.Windows.EditControls.UIButton();
-            this.chkFull = new Janus.Windows.EditControls.UICheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.grpControl)).BeginInit();
             this.grpControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiTabHoadon_chiphi)).BeginInit();
@@ -161,6 +161,15 @@
             this.grpControl.Size = new System.Drawing.Size(996, 678);
             this.grpControl.TabIndex = 0;
             this.grpControl.Text = "Thông tin giường";
+            // 
+            // chkFull
+            // 
+            this.chkFull.Location = new System.Drawing.Point(630, 352);
+            this.chkFull.Name = "chkFull";
+            this.chkFull.Size = new System.Drawing.Size(235, 23);
+            this.chkFull.TabIndex = 1640;
+            this.chkFull.TabStop = false;
+            this.chkFull.Text = "Thuê nguyên buồng?";
             // 
             // label18
             // 
@@ -379,7 +388,7 @@
             // label13
             // 
             this.label13.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.Color.Red;
+            this.label13.ForeColor = System.Drawing.Color.Black;
             this.label13.Location = new System.Drawing.Point(211, 225);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(82, 15);
@@ -448,7 +457,7 @@
             // label14
             // 
             this.label14.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.ForeColor = System.Drawing.Color.Red;
+            this.label14.ForeColor = System.Drawing.Color.Black;
             this.label14.Location = new System.Drawing.Point(6, 224);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(94, 15);
@@ -562,6 +571,7 @@
             this.txtDonvitinh.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtDonvitinh.buildShortcut = false;
             this.txtDonvitinh.CaseSensitive = false;
+            this.txtDonvitinh.cmdDropDown = null;
             this.txtDonvitinh.CompareNoID = true;
             this.txtDonvitinh.DefaultCode = "-1";
             this.txtDonvitinh.DefaultID = "-1";
@@ -580,6 +590,7 @@
             this.txtDonvitinh.RaiseEventEnter = false;
             this.txtDonvitinh.RaiseEventEnterWhenEmpty = false;
             this.txtDonvitinh.SelectedIndex = -1;
+            this.txtDonvitinh.SetDefaultWhenInit = true;
             this.txtDonvitinh.ShowCodeWithValue = false;
             this.txtDonvitinh.Size = new System.Drawing.Size(794, 21);
             this.txtDonvitinh.splitChar = '@';
@@ -614,6 +625,7 @@
             this.cmdSaoChep.TabIndex = 4;
             this.cmdSaoChep.TabStop = true;
             this.cmdSaoChep.Text = "&Sao chép";
+            this.cmdSaoChep.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.cmdSaoChep_LinkClicked_1);
             // 
             // label10
             // 
@@ -819,7 +831,7 @@
             // cmdThemMoi
             // 
             this.cmdThemMoi.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdThemMoi.Image = ((System.Drawing.Image)(resources.GetObject("cmdThemMoi.Image")));
+            this.cmdThemMoi.Image = global::VMS.HIS.Noitru.Properties.Resources.add_04_32;
             this.cmdThemMoi.ImageSize = new System.Drawing.Size(24, 24);
             this.cmdThemMoi.Location = new System.Drawing.Point(620, 684);
             this.cmdThemMoi.Name = "cmdThemMoi";
@@ -830,7 +842,7 @@
             // cmdExit
             // 
             this.cmdExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdExit.Image = ((System.Drawing.Image)(resources.GetObject("cmdExit.Image")));
+            this.cmdExit.Image = global::VMS.HIS.Noitru.Properties.Resources.close_24;
             this.cmdExit.ImageSize = new System.Drawing.Size(24, 24);
             this.cmdExit.Location = new System.Drawing.Point(870, 684);
             this.cmdExit.Name = "cmdExit";
@@ -848,15 +860,7 @@
             this.cmdSave.Size = new System.Drawing.Size(120, 35);
             this.cmdSave.TabIndex = 22;
             this.cmdSave.Text = "Lưu (Ctrl+S)";
-            // 
-            // chkFull
-            // 
-            this.chkFull.Location = new System.Drawing.Point(630, 352);
-            this.chkFull.Name = "chkFull";
-            this.chkFull.Size = new System.Drawing.Size(235, 23);
-            this.chkFull.TabIndex = 1640;
-            this.chkFull.TabStop = false;
-            this.chkFull.Text = "Thuê nguyên buồng?";
+            this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click_1);
             // 
             // frm_Add_GiuongNoiTru
             // 

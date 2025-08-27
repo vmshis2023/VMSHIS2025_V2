@@ -648,6 +648,250 @@ namespace VNS.Libs
 
 
         }
+        public static void Inphieucongkhai_Word(System.Data.DataSet dsData, string worksheetName, string saveAsLocation, string ReporType)
+        {
+            try
+            {
+                DataTable m_dtExportExcel = dsData.Tables[0];
+                string sfileName = AppDomain.CurrentDomain.BaseDirectory + "\\phieucongkhai\\phieucongkhai.xls";
+                string sfileNameSave = AppDomain.CurrentDomain.BaseDirectory + "\\phieucongkhai" + DateTime.Now.ToString("yyyyMMddhhmmss") + ".xls";
+                object misValue = System.Reflection.Missing.Value;
+                Aspose.Cells.Workbook workbook = new Aspose.Cells.Workbook();
+                workbook.Open(sfileName);
+                Aspose.Cells.Worksheet worksheet = workbook.Worksheets[0];
+
+
+                worksheet.Cells["A3"].PutValue(Utility.sDbnull(string.Format("{0} Buồng: {1}  Giường: {2} ", Utility.sDbnull(dsData.Tables[1].Rows[0]["ten_khoanoitru"]),
+                    Utility.sDbnull(dsData.Tables[1].Rows[0]["ten_buong"], ""), Utility.sDbnull(dsData.Tables[1].Rows[0]["ten_giuong"], ""))));
+                // worksheet.Cells["F3"].PutValue(Utility.sDbnull(string.Format("Buồng: {0}  Giường: {1} ", Utility.sDbnull(dsData.Tables[1].Rows[0]["ten_buong"], ""), Utility.sDbnull(dsData.Tables[1].Rows[0]["ten_giuong"], ""))));
+                worksheet.Cells["A4"].PutValue(Utility.sDbnull(string.Format("Tên bệnh nhân: {0} Tuổi: {1}  Giới tính: {2}", dsData.Tables[1].Rows[0]["ten_benhnhan"], dsData.Tables[1].Rows[0]["tuoi"], dsData.Tables[1].Rows[0]["gioi_tinh"])));
+                //worksheet.Cells["C4"].PutValue(Utility.sDbnull(string.Format("Tuổi: {0}  Giới tính: {1}", dsData.Tables[1].Rows[0]["tuoi"], dsData.Tables[1].Rows[0]["gioi_tinh"])));
+                worksheet.Cells["A5"].PutValue(Utility.sDbnull(string.Format("Ngày vào viện: {0} - Ngày ra viện: {1}", Utility.sDbnull(dsData.Tables[1].Rows[0]["sngay_nhapvien"], ""), Utility.sDbnull(dsData.Tables[1].Rows[0]["ngay_ravien"], ""))));
+                worksheet.AutoFitColumn(0, 2, 4);
+                worksheet.AutoFitColumn(1, 2, 4);
+                worksheet.AutoFitColumn(2, 2, 4);
+                Cells objcells = worksheet.Cells;
+                Cell objcell = objcells["B3"];
+                int icol = 0;
+                int iStartRowContent = 7;
+                int iCurrentRow = 7;
+                int imaxrow = 0;
+                int colngayfrom = 12;
+                int startcolExcel = 2;//Cột 1 tên dịch vụ, cột 2 tên đơn vị tính
+                List<int> lstCol2print = new List<int>() { 8, 9 };
+                int totaldays = 0;
+                Cell _mycell;
+                Aspose.Cells.Range range;
+                Aspose.Cells.Style objstyle;
+                //Tạo dữ liệu ngày
+                for (int j = colngayfrom; j < m_dtExportExcel.Columns.Count; j++)
+                {
+                    totaldays++;
+                    _mycell = worksheet.Cells[6, startcolExcel];
+                    _mycell.PutValue(m_dtExportExcel.Columns[j].ColumnName);
+                    objstyle = _mycell.GetStyle();
+                    SetBorderStyle(objstyle, Color.DarkRed, "Times New Roman", 12, TextAlignmentType.Center, TextAlignmentType.Center, true);
+                    _mycell.SetStyle(objstyle);
+                    startcolExcel++;
+                }
+                //Merge cột ngày
+                range = worksheet.Cells.CreateRange(5, 2, 1, totaldays);
+                range.Merge();
+                //Cột tổng cộng sau ngày. Merge 2 hàng 1 cột
+                _mycell = worksheet.Cells[5, 2 + totaldays];
+                _mycell.PutValue("Tổng cộng");
+                //Merge và set border cho cột tổng cộng
+                range = worksheet.Cells.CreateRange(5, 2 + totaldays, 2, 1);
+                range.Merge();
+                worksheet.AutoFitColumn(2 + totaldays, 5, 6);//Fit để hiển thị toàn bộ chữ tổng cộng
+                range.SetOutlineBorders(CellBorderType.Thin, Color.Black);
+
+                //Set style
+                objstyle = _mycell.GetStyle();
+                SetBorderStyle(objstyle, Color.DarkBlue, "Times New Roman", 12, TextAlignmentType.Center, TextAlignmentType.Center, true);
+                _mycell.SetStyle(objstyle);
+                List<int> lstLoai = (from p in m_dtExportExcel.AsEnumerable()
+                                     orderby Utility.Int32Dbnull(p["stt_in"], -1)
+                                     select Utility.Int32Dbnull(p["id_loaithanhtoan"], -1)
+
+                                     ).Distinct().ToList<int>();
+                int totalColunm = 0;
+
+                foreach (int id_loaithanhtoan in lstLoai)
+                {
+                    DataTable dtLoaiData = m_dtExportExcel.Select("id_loaithanhtoan=" + id_loaithanhtoan.ToString(), "stt_in,stt_hthi_loaidichvu ,stt_hthi_dichvu,stt_hthi_chitiet,ten").CopyToDataTable();
+                    #region "Nhóm loại thanh toán"
+                    worksheet.Cells.InsertRow(iCurrentRow);
+                    _mycell = worksheet.Cells[iCurrentRow, 0];
+                    range = worksheet.Cells.CreateRange(iCurrentRow, 0, 1, totaldays + 3);//+3 cho 3 cột tên dịch vụ, đơn vị tính, tổng cộng
+                    range.Merge();
+                    range.SetOutlineBorders(CellBorderType.Thin, Color.Black);
+                    _mycell.PutValue(Utility.sDbnull(dtLoaiData.Rows[0]["ten_loaithanhtoan"]));
+                    objstyle = _mycell.GetStyle();
+                    SetBorderStyle(objstyle, Color.DarkBlue, "Times New Roman", 14, TextAlignmentType.Left, TextAlignmentType.Center, true);
+                    _mycell.SetStyle(objstyle);
+                    #endregion
+                    //Tăng để ghi chi tiết
+                    iCurrentRow++;
+                    //reset lại để in
+                    startcolExcel = 10;
+
+                    if (id_loaithanhtoan != 2)//Chẩn đoán hình ảnh tách tiếp bên trong
+                    {
+                        for (int i = 0; i < dtLoaiData.Rows.Count; i++)
+                        {
+                            worksheet.Cells.InsertRow(i + iCurrentRow);
+                            totalColunm = 0;
+                            for (int j = startcolExcel; j < dtLoaiData.Columns.Count; j++)
+                            {
+                                _mycell = worksheet.Cells[i + iCurrentRow, j - startcolExcel];
+                                string sValue = Utility.sDbnull(dtLoaiData.Rows[i][j]);
+                                _mycell.PutValue(sValue);
+                                if (j >= 12)//Các cột giá trị. Cột 10 là tên; Cột 11 là đơn vị tính
+                                    totalColunm += Utility.Int32Dbnull(sValue, 0);
+                                //  Aspose.Cells.Range _range;
+                                //Setting the line style of the top border
+                                objstyle = _mycell.GetStyle();
+                                objstyle.Font.Name = "Times New Roman";
+                                SetBorderStyle(objstyle, Color.Black, "Times New Roman", 12, TextAlignmentType.Left, TextAlignmentType.Center, false);
+                                if (dtLoaiData.Rows.Count == i)
+                                {
+                                    objstyle.Font.IsBold = true;
+                                    objstyle.Font.Size = 12;
+                                }
+                                objstyle.IsTextWrapped = true;
+                                _mycell.SetStyle(objstyle);
+                                //sheetData.Cells[i + iStartRowContent, j].SetStyle(s3);
+
+                            }
+                            //Điền giá trị cho cột tổng cộng sau các cột ngày. 
+                            _mycell = worksheet.Cells[i + iCurrentRow, 2 + totaldays];
+                            _mycell.PutValue(totalColunm.ToString());
+                            objstyle = _mycell.GetStyle();
+                            objstyle.Font.IsBold = true;
+                            objstyle.Font.Size = 14;
+                            SetBorderStyle(objstyle, Color.Black, "Times New Roman", 12, TextAlignmentType.Center, TextAlignmentType.Center, true);
+                            _mycell.SetStyle(objstyle);
+                            imaxrow++;
+
+                        }
+                        iCurrentRow += dtLoaiData.Rows.Count;
+                    }
+                    else//Nhóm CLS tách tiếp theo các loại dịch vụ XN, XQ,SA,...
+                    {
+                        DataTable dtCDHA = dtLoaiData.Clone();
+                        List<string> lstid_loaidvu = (from p in dtLoaiData.AsEnumerable()
+                                                      orderby Utility.Int32Dbnull(p["stt_in"], -1), Utility.Int32Dbnull(p["stt_hthi_loaidichvu"], -1)
+                                                      select Utility.sDbnull(p["id_loaidichvu"], "-1")
+                                    ).Distinct().ToList<string>();
+                        foreach (string id_loaidichvu in lstid_loaidvu)
+                        {
+                            dtCDHA = dtLoaiData.Select("id_loaidichvu='" + id_loaidichvu.ToString() + "'", "stt_in,stt_hthi_loaidichvu ,stt_hthi_dichvu,stt_hthi_chitiet,ten").CopyToDataTable();
+                            #region "Nhóm loại thanh toán"
+                            worksheet.Cells.InsertRow(iCurrentRow);
+                            _mycell = worksheet.Cells[iCurrentRow, 0];
+                            range = worksheet.Cells.CreateRange(iCurrentRow, 0, 1, totaldays + 3);//+3 cho 3 cột tên dịch vụ, đơn vị tính, tổng cộng
+                            range.Merge();
+                            range.SetOutlineBorders(CellBorderType.Thin, Color.Black);
+                            _mycell.PutValue(Utility.sDbnull(dtCDHA.Rows[0]["ten_loaidichvu"]));
+                            objstyle = _mycell.GetStyle();
+                            SetBorderStyle(objstyle, Color.DarkBlue, "Times New Roman", 14, TextAlignmentType.Left, TextAlignmentType.Center, true);
+                            _mycell.SetStyle(objstyle);
+                            #endregion
+                            //Tăng để ghi chi tiết
+                            iCurrentRow++;
+                            //reset lại để in
+                            startcolExcel = 10;
+                            //range = worksheet.Cells.CreateRange(5, 2, 1, totaldays);
+                            //range.Merge();
+
+                            for (int i = 0; i < dtCDHA.Rows.Count; i++)
+                            {
+                                worksheet.Cells.InsertRow(i + iCurrentRow);
+                                totalColunm = 0;
+                                for (int j = startcolExcel; j < dtCDHA.Columns.Count; j++)
+                                {
+                                    _mycell = worksheet.Cells[i + iCurrentRow, j - startcolExcel];
+                                    string sValue = Utility.sDbnull(dtCDHA.Rows[i][j]);
+                                    _mycell.PutValue(sValue);
+                                    if (j >= 12)//Các cột giá trị. Cột 10 là tên; Cột 11 là đơn vị tính
+                                        totalColunm += Utility.Int32Dbnull(sValue, 0);
+                                    //  Aspose.Cells.Range _range;
+                                    //Setting the line style of the top border
+                                    objstyle = _mycell.GetStyle();
+                                    objstyle.Font.Name = "Times New Roman";
+                                    SetBorderStyle(objstyle, Color.Black, "Times New Roman", 12, TextAlignmentType.Left, TextAlignmentType.Center, false);
+                                    if (dtCDHA.Rows.Count == i)
+                                    {
+                                        objstyle.Font.IsBold = true;
+                                        objstyle.Font.Size = 12;
+                                    }
+                                    objstyle.IsTextWrapped = true;
+                                    _mycell.SetStyle(objstyle);
+                                    //sheetData.Cells[i + iStartRowContent, j].SetStyle(s3);
+
+                                }
+                                //Điền giá trị cho cột tổng cộng sau các cột ngày. 
+                                _mycell = worksheet.Cells[i + iCurrentRow, 2 + totaldays];
+                                _mycell.PutValue(totalColunm.ToString());
+                                objstyle = _mycell.GetStyle();
+                                objstyle.Font.IsBold = true;
+                                objstyle.Font.Size = 14;
+                                SetBorderStyle(objstyle, Color.Black, "Times New Roman", 12, TextAlignmentType.Center, TextAlignmentType.Center, true);
+                                _mycell.SetStyle(objstyle);
+                                imaxrow++;
+
+                            }
+                            iCurrentRow += dtCDHA.Rows.Count;
+                        }
+
+                    }
+
+
+                }
+                // range = worksheet.Cells.CreateRange(iCurrentRow, 0, 1,  2);
+                //            range.Merge();
+                //            range.SetOutlineBorders(CellBorderType.Thin, Color.Black);
+                //_mycell = worksheet.Cells[iCurrentRow,0];
+                //_mycell.PutValue("Người lập phiếu(hằng ngày ghi tên vào ô:");
+                //objstyle = _mycell.GetStyle();
+                //SetBorderStyle(objstyle, Color.Black, "Times New Roman", 12, true);
+                //range = worksheet.Cells.CreateRange(iCurrentRow, 0, 1, 2);
+                //range.Merge();
+                //range.SetOutlineBorders(CellBorderType.Thin, Color.Black);
+                //_mycell = worksheet.Cells[iCurrentRow, 0];
+                //_mycell.PutValue("Ký xác nhận của người bệnh/người nhà:");
+                //objstyle = _mycell.GetStyle();
+                //SetBorderStyle(objstyle, Color.Black, "Times New Roman", 12, true);
+                // worksheet.AutoFitRow();
+                worksheet.AutoFitRows();
+                //worksheet.AutoFitColumns();
+
+
+                // worksheet.Cells.ImportDataTable(m_dtExportExcel, true, "A5");
+
+                if (System.IO.File.Exists(saveAsLocation)) File.Delete(saveAsLocation);
+                workbook.Save(saveAsLocation);
+                System.Diagnostics.Process.Start(saveAsLocation);
+                //if (isPrinpreview)
+                //{
+
+                //    PrintMyExcelFile(saveAsLocation);
+                //}
+                //else
+                //{
+                //    
+                //}
+            }
+            catch (Exception ex)
+            {
+
+                Utility.CatchException(ex);
+            }
+
+
+
+        }
         static void PrintMyExcelFile(string sFileName)
         {
             Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();

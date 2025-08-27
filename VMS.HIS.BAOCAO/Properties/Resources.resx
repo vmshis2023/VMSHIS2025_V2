@@ -118,65 +118,44 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Add" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="HOME" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HOME.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Add32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Add32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="refresh_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\refresh_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="add_01_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\add_01_24.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="user_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\user_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ADMIN" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SUPPORT21.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="QR_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\QR_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="arrow_left_11" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\arrow_left_11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="add_04_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\add_04_32.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="arrow_left_11_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\arrow_left_11_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="plus_243" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\plus_243.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="arrow_left_16_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\arrow_left_16_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Print_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Print_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="arrow_left_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\arrow_left_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Bed_no196" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Bed_no196.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Bed_no24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Bed_no24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Bed_yes196" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Bed_yes196.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="BSNAM" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\BSNAM.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="PEACE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PEACE.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="BSNU" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BSNU.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="BS_96" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\BS_96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="BS_961" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\BS_961.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Cancel" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="clock_196" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\clock_196.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="clock_20" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\clock_20.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="clock_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\clock_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="clock_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\clock_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="QR_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\QR_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Hospital_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Hospital_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="arrow_left_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrow_left_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="close_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\close_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -184,124 +163,151 @@
   <data name="copy_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\copy_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="direction_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\direction_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Down" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\arrow_left_up1 - Copy (2)1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Down1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\arrow_left_up1 - Copy (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Add32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Add32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="file_edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\file edit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="FOLDER3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\FOLDER3.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="direction_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\direction_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="FOLDERS" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\FOLDERS.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="GO_HOME" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\GO_HOME.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="HOME" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\HOME.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="HOME_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\HOME_24.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Hospital_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Hospital_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="hospital_241" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\hospital_241.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Lock" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PADLOCKE1.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="patient_color_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\patient_color_24.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="PEACE" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PEACE.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="plus_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\plus_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="plus_241" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\plus_241.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="plus_243" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\plus_243.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="printer_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\printer-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="printer_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\printer-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="printtype1_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\printtype1_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="printtype1_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\printtype1_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Print_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Print_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="QR" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\QR.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="QR_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\QR_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="QR_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\QR_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="arrow_left_11_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrow_left_11_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="refresh03_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\refresh03_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="refresh_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\refresh_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="right_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\right_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="SAVE" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SAVE.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="SAVE1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SAVE1.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="SAVE_AS" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SAVE_AS.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="SAVE__2_" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SAVE (2).PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="SEARCH__2_" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SEARCH (2).PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="STOP__2_" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\STOP (2).PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SUPPORT2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SUPPORT22.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="TOOL" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TOOL.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="GO_HOME" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GO_HOME.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="trash_full_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\trash-full_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="BSNAM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BSNAM.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BS_96" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BS_96.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FOLDER3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FOLDER3.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="plus_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\plus_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="hospital_241" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hospital_241.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="patient_color_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\patient_color_24.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SAVE_AS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SAVE_AS.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BS_961" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BS_961.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Up" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\arrow_left_up1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="user_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\user_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Bed_no24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Bed_no24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Cancel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Bed_yes196" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Bed_yes196.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="printer_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\printer-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Lock" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PADLOCKE1.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TOOL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TOOL.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="plus_241" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\plus_241.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Bed_no196" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Bed_no196.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Add" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="clock_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\clock_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SEARCH__2_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SEARCH (2).PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="printtype1_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\printtype1_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="QR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\QR.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="arrow_left_16_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrow_left_16_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SAVE__2_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SAVE (2).PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_237510__1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\237510 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SAVE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SAVE.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ADMIN" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SUPPORT21.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HOME_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HOME_24.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrow_left_up1 - Copy (2)1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SUPPORT2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SUPPORT22.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="clock_196" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\clock_196.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FOLDERS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FOLDERS.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="printer_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\printer-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SAVE1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SAVE1.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="clock_20" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\clock_20.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="right_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\right_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="printtype1_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\printtype1_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="add_01_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\add_01_24.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Down1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrow_left_up1 - Copy (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="arrow_left_11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrow_left_11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="add_04_321" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\add_04_321.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

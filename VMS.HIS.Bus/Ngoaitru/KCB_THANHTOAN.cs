@@ -3658,7 +3658,7 @@ namespace VNS.HIS.BusRule.Classes
         /// <param name="noidunghuy"></param>
         /// <param name="lydotratien"></param>
         /// <returns></returns>
-        public ActionResult Trathuoctaiquay_Rieng(KcbThanhtoan objPhieuchi, KcbLuotkham objLuotkham, long idphieutralaithuoc,
+        public ActionResult Trathuoctaiquay_Rieng_bak(KcbThanhtoan objPhieuchi, KcbLuotkham objLuotkham, long idphieutralaithuoc,
            string malydohuy, string noidunghuy, string lydotratien)
         {
             decimal ptramBhyt = 0;
@@ -3954,7 +3954,316 @@ namespace VNS.HIS.BusRule.Classes
                 return ActionResult.Exception;
             }
         }
+        /// <summary>
+        /// Hàm này chỉ lập thông tin phiếu chi. Phần thuốc cộng vào kho đã được xử lý ở bước Dược nhận lại thuốc
+        /// </summary>
+        /// <param name="objPhieuchi"></param>
+        /// <param name="objLuotkham"></param>
+        /// <param name="idphieutralaithuoc"></param>
+        /// <param name="malydohuy"></param>
+        /// <param name="noidunghuy"></param>
+        /// <param name="lydotratien"></param>
+        /// <returns></returns>
+        public ActionResult Trathuoctaiquay_Rieng(KcbThanhtoan objPhieuchi, KcbLuotkham objLuotkham, long idphieutralaithuoc,
+          string malydohuy, string noidunghuy, string lydotratien)
+        {
+            decimal ptramBhyt = 0;
+            ///tổng tiền hiện tại truyền vào của lần payment đang thực hiện
+            decimal vDblTongtienHuy = 0;
+            ///tổng tiền đã thanh toán
+            decimal v_TotalPaymentDetail = 0;
+            bool THUOC_CONGVAOKHO_NGAYSAUKHI_NHANTHUOCTRALAI = THU_VIEN_CHUNG.Laygiatrithamsohethong("THUOC_CONGVAOKHO_NGAYSAUKHI_NHANTHUOCTRALAI", "0", true)=="1";
+            try
+            {
+                ThuocLichsuTralaithuoctaiquayPhieu newPhieu = ThuocLichsuTralaithuoctaiquayPhieu.FetchByID(idphieutralaithuoc);
+                if (newPhieu.TrangThai == 0)//Chưa được lập phiếu chi
+                {
+                    ThuocLichsuTralaithuoctaiquayChitietCollection lstChitiet =
+                        new Select().
+                        From(ThuocLichsuTralaithuoctaiquayChitiet.Schema)
+                        .Where(ThuocLichsuTralaithuoctaiquayChitiet.Columns.IdTralaithuoc).IsEqualTo(idphieutralaithuoc)
+                        .And(ThuocLichsuTralaithuoctaiquayChitiet.Columns.IdPhieuchi).IsEqualTo(-1)//Chưa được lập phiếu chi mới làm
+                        .ExecuteAsCollection<ThuocLichsuTralaithuoctaiquayChitietCollection>();
+                    if (lstChitiet.Count > 0)
+                    {
+                        using (var scope = new TransactionScope())
+                        {
+                            using (var sh = new SharedDbConnectionScope())
+                            {
 
+                                decimal TT_BN = 0m;
+                                decimal TT_BNCT = 0m;
+                                decimal TT_PT = 0m;
+                                decimal TT_TT = 0m;
+                                decimal TT_BHYT = 0m;
+                                decimal TT_Chietkhau_Chitiet = 0m;
+                                //Thêm mới dòng thanh toán hủy
+                                objPhieuchi.KieuThanhtoan = 1;
+                                objPhieuchi.IdNhanvienThanhtoan = globalVariables.gv_intIDNhanvien;
+                                objPhieuchi.NgayThanhtoan = DateTime.Now;
+
+                                objPhieuchi.MaThanhtoan = THU_VIEN_CHUNG.TaoMathanhtoan(DateTime.Now);
+                                objPhieuchi.MaLydoHuy = malydohuy;
+                                objPhieuchi.IsNew = true;
+                                objPhieuchi.Save();
+
+                                //Cập nhật trạng thái phiếu đã được trả lại=1
+                                newPhieu.IdPhieuchi = objPhieuchi.IdThanhtoan;
+                                newPhieu.TrangThai = 1;
+                                newPhieu.Save();
+                                //Reset và tính toán các số tiền liên quan đến các bản ghi hủy
+                                TT_BN = 0m;
+                                TT_BNCT = 0m;
+                                TT_PT = 0m;
+                                TT_TT = 0m;
+                                TT_BHYT = 0m;
+                                TT_Chietkhau_Chitiet = 0;
+                                //Cập nhật các dòng chi tiết được chọn hủy về trạng thái hủy và các dịch vụ trong các bảng tương ứng theo id_loaithanhtoan
+                                foreach (ThuocLichsuTralaithuoctaiquayChitiet item in lstChitiet)
+                                {
+
+                                    KcbThanhtoanChitiet objKcbThanhtoanChitiet = KcbThanhtoanChitiet.FetchByID(item.IdChitietThanhtoanGoc);
+                                    if (objKcbThanhtoanChitiet == null)
+                                    {
+                                        return ActionResult.Error;
+                                    }
+                                    if (!Utility.Byte2Bool(objKcbThanhtoanChitiet.TuTuc))
+                                        TT_BHYT += objKcbThanhtoanChitiet.BhytChitra * Utility.DecimaltoDbnull(item.SoLuong);
+                                    TT_Chietkhau_Chitiet += Utility.DecimaltoDbnull(objKcbThanhtoanChitiet.TienChietkhau, 0);
+                                    TT_PT += objKcbThanhtoanChitiet.PhuThu * Utility.DecimaltoDbnull(item.SoLuong);
+                                    if (Utility.Byte2Bool(objKcbThanhtoanChitiet.TuTuc))
+                                        TT_TT += objKcbThanhtoanChitiet.BnhanChitra * Utility.DecimaltoDbnull(item.SoLuong);
+                                    else
+                                        TT_BNCT += objKcbThanhtoanChitiet.BnhanChitra * Utility.DecimaltoDbnull(item.SoLuong);
+
+                                    //Tạo dữ liệu hủy tiền
+                                    objKcbThanhtoanChitiet.IdThanhtoanhuy = objPhieuchi.IdThanhtoan;
+                                    //Để biết dòng hủy này hủy cho chi tiết thanh toán nào
+                                    objKcbThanhtoanChitiet.TrangthaiHuy = 1;
+                                    //objKcbThanhtoanChitiet.TongTralai = item.sl_tralai;
+                                    objKcbThanhtoanChitiet.IsNew = false;
+                                    objKcbThanhtoanChitiet.MarkOld();
+                                    objKcbThanhtoanChitiet.Save();
+                                    //Thêm 1 dòng chi tiết trả(Áp dụng cho việc trả thuốc nhiều lần tránh id_thanhtoanhuy bị cập nhật đè)
+                                    objKcbThanhtoanChitiet.IsNew = true;
+                                    objKcbThanhtoanChitiet.MultiCancel = 1;
+                                    objKcbThanhtoanChitiet.IdThanhtoan = objPhieuchi.IdThanhtoan;
+                                    objKcbThanhtoanChitiet.IdThanhtoanhuy = objPhieuchi.IdThanhtoan;
+                                    objKcbThanhtoanChitiet.SoLuong = item.SoLuong;
+                                    objKcbThanhtoanChitiet.TongTralai = item.SoLuong;
+                                    objKcbThanhtoanChitiet.Save();
+
+                                    //Cập nhật dòng lịch sử trả lại thuốc
+                                    new Update(ThuocLichsuTralaithuoctaiquayChitiet.Schema)
+                                    .Set(ThuocLichsuTralaithuoctaiquayChitiet.Columns.IdPhieuchi).EqualTo(objPhieuchi.IdThanhtoan)
+                                    .Set(ThuocLichsuTralaithuoctaiquayChitiet.Columns.IdChitietThanhtoan).EqualTo(objKcbThanhtoanChitiet.IdChitiet)
+                                    .Where(ThuocLichsuTralaithuoctaiquayChitiet.Columns.Id).IsEqualTo(item.Id)
+                                    .Execute();
+                                    if (!THUOC_CONGVAOKHO_NGAYSAUKHI_NHANTHUOCTRALAI)//Nếu chưa được trả ở bước nhận thuốc thì mới làm
+                                    {
+                                        //Cộng thuốc vào kho
+                                        DataTable dtchitietdonthuoc = new Select().From(KcbDonthuocChitiet.Schema).Where(KcbDonthuocChitiet.Columns.IdChitietdonthuoc).IsEqualTo(item.IdChitietdonthuoc).ExecuteDataSet().Tables[0];
+                                        if (dtchitietdonthuoc.Rows.Count > 0)
+                                        {
+                                            int num = SPs.ThuocTrathuoctaiquayvaokho(Utility.Int64Dbnull(dtchitietdonthuoc.Rows[0]["id_thuockho"]), Utility.Int32Dbnull(dtchitietdonthuoc.Rows[0]["id_thuoc"]), item.SoLuong).Execute();
+                                        }
+                                        else//Chi tiết trong bảng đơn thuốc bị xóa do lỗi gì đó
+                                            return ActionResult.Cancel;
+                                        int numoftralai = SPs.KcbThanhtoanChitietCapnhatsluongTralai(item.IdChitietThanhtoanGoc, item.SoLuong).Execute();
+                                        //Tạo dòng biến động trả lại trong bảng biến động cho thuốc trả lại
+                                        //B1: Lấy chi tiết phiếu xuất thuốc người bệnh
+                                        TPhieuXuatthuocBenhnhanChitiet objpxct = new Select().From(TPhieuXuatthuocBenhnhanChitiet.Schema).Where(TPhieuXuatthuocBenhnhanChitiet.Columns.IdChitietdonthuoc).IsEqualTo(item.IdChitietdonthuoc).ExecuteSingle<TPhieuXuatthuocBenhnhanChitiet>();
+                                        if (objpxct != null)//100% trừ khi bị xóa tay
+                                        {
+                                            //B2: Lấy dòng biến động tương ứng để duplicate+ thay số lượng và loại phiếu
+                                            TBiendongThuoc objnewBiendong = new Select().From(TBiendongThuoc.Schema)
+                                                .Where(TBiendongThuoc.Columns.IdPhieu).IsEqualTo(objpxct.IdPhieu)
+                                                .And(TBiendongThuoc.Columns.IdPhieuChitiet).IsEqualTo(objpxct.IdPhieuChitiet)
+                                                .And(TBiendongThuoc.Columns.MaLoaiphieu).IsEqualTo(3)
+                                                 .And(TBiendongThuoc.Columns.MaLuotkham).IsEqualTo(objPhieuchi.MaLuotkham)
+                                                  .And(TBiendongThuoc.Columns.IdBenhnhan).IsEqualTo(objPhieuchi.IdBenhnhan)
+                                                .ExecuteSingle<TBiendongThuoc>();
+                                            //B3 duplicate phiếu này
+                                            if (objnewBiendong != null)//100% trừ khi bị xóa tay
+                                            {
+                                                objnewBiendong.IsNew = true;
+                                                objnewBiendong.SoLuong = item.SoLuong;//Số lượng trả lại
+                                                objnewBiendong.IdPhieuchi = objPhieuchi.IdThanhtoan;
+                                                objnewBiendong.MaLoaiphieu = Utility.ByteDbnull(LoaiPhieu.PhieuTralaithuocTaiQuay);
+                                                objnewBiendong.TenLoaiphieu = Utility.TenLoaiPhieu(LoaiPhieu.PhieuTralaithuocTaiQuay);
+                                                objnewBiendong.NgayBiendong = objPhieuchi.NgayThanhtoan;
+                                                objnewBiendong.NgayHoadon = objnewBiendong.NgayBiendong;
+                                                objnewBiendong.NgayTao = objnewBiendong.NgayBiendong;
+                                                objnewBiendong.NgayNhap = objnewBiendong.NgayBiendong;
+                                                objnewBiendong.IdNhanvien = globalVariables.gv_intIDNhanvien;
+                                                objnewBiendong.NguoiTao = globalVariables.UserName;
+                                                objnewBiendong.MotaThem = "Trả lại thuốc tại quầy";
+                                                objnewBiendong.Save();
+                                            }
+                                        }
+                                    }
+                                }
+                                TT_BN += TT_PT + TT_BNCT + TT_TT;
+
+                                //Update lại tiền thanh toán
+                                new Update(KcbThanhtoan.Schema)
+                                .Set(KcbThanhtoan.Columns.TongTien).EqualTo(TT_BHYT + TT_BN)
+                                .Set(KcbThanhtoan.Columns.BnhanChitra).EqualTo(TT_BNCT)
+                                .Set(KcbThanhtoan.Columns.BhytChitra).EqualTo(TT_BHYT)
+                                .Set(KcbThanhtoan.Columns.PhuThu).EqualTo(TT_PT)
+                                .Set(KcbThanhtoan.Columns.TuTuc).EqualTo(TT_TT)
+                                .Set(KcbThanhtoan.Columns.TongtienChietkhauChitiet).EqualTo(TT_Chietkhau_Chitiet)
+                                .Where(KcbThanhtoan.Columns.IdThanhtoan).IsEqualTo(objPhieuchi.IdThanhtoan).Execute();
+                                var objPhieuthu = new KcbPhieuthu();
+                                objPhieuthu.IdThanhtoan = objPhieuchi.IdThanhtoan;
+                                objPhieuthu.IdBenhnhan = objPhieuchi.IdBenhnhan;
+                                objPhieuthu.MaLuotkham = objPhieuchi.MaLuotkham;
+                                objPhieuthu.NoiDung = noidunghuy;
+                                objPhieuthu.SoluongChungtugoc = 1;
+                                objPhieuthu.LoaiPhieuthu = Convert.ToByte(1); //0= phiếu thu tiền;1= phiếu chi
+                                objPhieuthu.MaPhieuthu = THU_VIEN_CHUNG.GetMaPhieuThu(DateTime.Now, 1);
+                                objPhieuthu.NgayThuchien = DateTime.Now;
+                                objPhieuthu.SoTien = TT_BN - TT_Chietkhau_Chitiet;
+                                objPhieuthu.SotienGoc = TT_BN;
+                                objPhieuthu.MaLydoChietkhau = objPhieuchi.MaLydoChietkhau;
+                                objPhieuthu.TienChietkhauchitiet = TT_Chietkhau_Chitiet;
+                                objPhieuthu.TienChietkhau = objPhieuchi.TongtienChietkhau;
+                                objPhieuthu.TienChietkhauhoadon = objPhieuthu.TienChietkhau - objPhieuthu.TienChietkhauchitiet;
+                                objPhieuthu.NguoiNop = globalVariables.UserName;
+                                objPhieuthu.MaPttt = objPhieuchi.MaPttt;
+                                objPhieuthu.MaNganhang = objPhieuchi.MaNganhang;
+                                objPhieuthu.TaikhoanCo = "";
+                                objPhieuthu.TaikhoanNo = "";
+                                objPhieuthu.NoiTru = objPhieuchi.NoiTru;
+                                objPhieuthu.LydoNop = lydotratien;
+                                objPhieuthu.IdKhoaThuchien = globalVariables.idKhoatheoMay;
+                                objPhieuthu.IdNhanvien = globalVariables.gv_intIDNhanvien;
+                                objPhieuthu.IsNew = true;
+                                objPhieuthu.Save();
+                                //Tạo bản ghi trong bảng phân bổ tiền theo phương thức thanh toán
+                                SPs.SpKcbThanhtoanPhanbotheoPTTTInsert(objPhieuchi.IdThanhtoan, -1l, -1l, objPhieuchi.MaPttt, objPhieuchi.MaNganhang,
+                                    objPhieuchi.IdBenhnhan, objPhieuchi.MaLuotkham,
+                                    objPhieuchi.NoiTru, objPhieuthu.SoTien, objPhieuthu.SoTien,
+                                    objPhieuchi.NguoiTao, objPhieuchi.NgayTao, "", objPhieuchi.NgayTao, -1l, 0, (byte)1).Execute();
+                                List<KcbThanhtoanChitiet> arrKcbThanhtoanChitietHuy = new List<KcbThanhtoanChitiet>();
+                                #region "BHYT"
+                                //Kết thúc tạo thông tin phiếu trả tiền(Phiếu chi)-->Kế tiếp cần tính toán lại % BHYT và tiền chênh lệch cho đối tượng BHYT
+                                //Riêng đối tượng dịch vụ Giữ nguyên các giá trị thanh toán(Thực thu= Tổng thanh toán-Tổng trả lại)
+                                if (THU_VIEN_CHUNG.IsBaoHiem(objLuotkham.IdLoaidoituongKcb))
+                                {
+                                    vDblTongtienHuy = TongtienKhongTutuc(arrKcbThanhtoanChitietHuy);
+                                    //Thường chỉ trả về 1 bản ghi thanh toán duy nhất vì là đối tượng BHYT
+                                    KcbThanhtoanCollection lstKcbThanhtoanCollection =
+                                        new KcbThanhtoanController()
+                                            .FetchByQuery(
+                                                KcbThanhtoan.CreateQuery()
+                                                    .AddWhere(KcbThanhtoan.Columns.MaLuotkham, Comparison.Equals,
+                                                        objLuotkham.MaLuotkham)
+                                                    .AND(KcbThanhtoan.Columns.IdBenhnhan, Comparison.Equals,
+                                                        objLuotkham.IdBenhnhan)
+                                                    .AND(KcbThanhtoan.Columns.KieuThanhtoan, Comparison.Equals, 0)
+                                            );
+                                    List<long> lstIdThanhtoanAll = (from q in lstKcbThanhtoanCollection
+                                                                    select q.IdThanhtoan).Distinct().ToList();
+                                    //Biến chứa danh sách tất cả các chi tiết dùng để tính lại tổng tiền thanh toán cho thanh toán có bản ghi bị hủy
+                                    var lstKcbThanhtoanChitiet_Tatca = new List<KcbThanhtoanChitiet>();
+                                    if (lstIdThanhtoanAll.Count > 0)
+                                        lstKcbThanhtoanChitiet_Tatca =
+                                            new Select().From(KcbThanhtoanChitiet.Schema)
+                                                .Where(KcbThanhtoanChitiet.Columns.IdThanhtoan).In(lstIdThanhtoanAll)
+                                                .ExecuteAsCollection<KcbThanhtoanChitietCollection>()
+                                                .ToList<KcbThanhtoanChitiet>();
+
+                                    v_TotalPaymentDetail = (from p in lstKcbThanhtoanChitiet_Tatca
+                                                            where p.TuTuc == 0
+                                                            select p).Sum(c => Utility.DecimaltoDbnull(c.SoLuong) * c.DonGia);
+
+                                    //Tính lại % BHYT mới sau khi đã trả lại tiền một số dịch vụ
+                                    LayThongtinPtramBhyt(v_TotalPaymentDetail - vDblTongtienHuy, objLuotkham, ref ptramBhyt);
+
+
+                                    //Tính lại thông tin BHYT,BN chi trả cho toàn bộ các chi tiết của BN đã thanh toán mà không bị hủy
+                                    var lsttemp = new List<KcbThanhtoanChitiet>();
+                                    THU_VIEN_CHUNG.TinhPhamTramBHYT(objLuotkham, ref lsttemp, ref lstKcbThanhtoanChitiet_Tatca,
+                                        ptramBhyt);
+                                    List<long> lstIdThanhtoanTinhlai = (from q in lstKcbThanhtoanChitiet_Tatca
+                                                                        select q.IdThanhtoan).Distinct().ToList();
+                                    //99% đặt thông số này=1
+                                    if (
+                                        THU_VIEN_CHUNG.Laygiatrithamsohethong(
+                                            "KCB_THANHTOAN_TINHLAITONGTIEN_CACTHANHTOAN_BITRALAITIEN", "1", false) == "1")
+                                    {
+                                        foreach (int IdThanhtoan in lstIdThanhtoanTinhlai)
+                                        //Chỉ thực hiện tính lại thanh toán có chứa các chi tiết bị thay đổi
+                                        {
+                                            TT_BN = 0m;
+                                            TT_BNCT = 0m;
+                                            TT_PT = 0m;
+                                            TT_TT = 0m;
+                                            TT_BHYT = 0m;
+                                            TT_Chietkhau_Chitiet = 0;
+                                            //Lấy lại từ CSDL
+                                            List<KcbThanhtoanChitiet> _LstChitiet = (from p in lstKcbThanhtoanChitiet_Tatca
+                                                                                     where p.IdThanhtoan == IdThanhtoan
+                                                                                     select p).ToList<KcbThanhtoanChitiet>();
+
+                                            if (_LstChitiet.Count > 0)
+                                            {
+                                                foreach (KcbThanhtoanChitiet objChitietThanhtoan in _LstChitiet)
+                                                {
+                                                    objChitietThanhtoan.MarkOld();
+                                                    objChitietThanhtoan.IsNew = false;
+                                                    objChitietThanhtoan.Save();
+                                                    if (!Utility.Byte2Bool(objChitietThanhtoan.TrangthaiHuy))
+                                                    //Bỏ qua các bản ghi đã bị hủy
+                                                    {
+                                                        if (!Utility.Byte2Bool(objChitietThanhtoan.TuTuc))
+                                                            TT_BHYT += objChitietThanhtoan.BhytChitra *
+                                                                       Utility.DecimaltoDbnull(objChitietThanhtoan.SoLuong);
+                                                        TT_Chietkhau_Chitiet +=
+                                                            Utility.DecimaltoDbnull(objChitietThanhtoan.TienChietkhau, 0);
+                                                        TT_PT += objChitietThanhtoan.PhuThu * Utility.DecimaltoDbnull(objChitietThanhtoan.SoLuong);
+                                                        if (Utility.Byte2Bool(objChitietThanhtoan.TuTuc))
+                                                            TT_TT += objChitietThanhtoan.BnhanChitra * Utility.DecimaltoDbnull(objChitietThanhtoan.SoLuong);
+                                                        else
+                                                            TT_BNCT += objChitietThanhtoan.BnhanChitra *
+                                                                       Utility.DecimaltoDbnull(objChitietThanhtoan.SoLuong);
+                                                    }
+                                                }
+                                                TT_BN += TT_PT + TT_BNCT + TT_TT;
+                                                //Update lại tiền thanh toán
+                                                new Update(KcbThanhtoan.Schema)
+                                                    .Set(KcbThanhtoan.Columns.TongTien).EqualTo(TT_BHYT + TT_BN)
+                                                    .Set(KcbThanhtoan.Columns.BnhanChitra).EqualTo(TT_BNCT)
+                                                    .Set(KcbThanhtoan.Columns.BhytChitra).EqualTo(TT_BHYT)
+                                                    .Set(KcbThanhtoan.Columns.PhuThu).EqualTo(TT_PT)
+                                                    .Set(KcbThanhtoan.Columns.TuTuc).EqualTo(TT_TT)
+                                                    .Where(KcbThanhtoan.Columns.IdThanhtoan).IsEqualTo(IdThanhtoan).Execute();
+                                                //Update phiếu thu
+                                                new Update(KcbPhieuthu.Schema)
+                                                    .Set(KcbPhieuthu.Columns.SoTien).EqualTo(TT_BN - TT_Chietkhau_Chitiet)
+                                                    .Set(KcbPhieuthu.Columns.SotienGoc).EqualTo(TT_BN)
+                                                    .Where(KcbPhieuthu.Columns.IdThanhtoan).IsEqualTo(IdThanhtoan).Execute();
+                                            }
+                                        }
+                                    }
+                                }
+                                #endregion
+
+                            }
+                            scope.Complete();
+                            return ActionResult.Success;
+                        }
+                    }
+                }
+                return ActionResult.Success;
+            }
+            catch (Exception exception)
+            {
+                log.Error("Loi trong qua trinh tra tien lai:{0}", exception.ToString());
+                return ActionResult.Exception;
+            }
+        }
         public ActionResult HoanThuocvaoKho( KcbLuotkham objLuotkham, long idphieutralaithuoc,
            string malydohuy, string noidunghuy, string lydotratien)
         {
@@ -4067,10 +4376,16 @@ namespace VNS.HIS.BusRule.Classes
         {
             try
             {
+                bool THUOC_CONGVAOKHO_NGAYSAUKHI_NHANTHUOCTRALAI = THU_VIEN_CHUNG.Laygiatrithamsohethong("THUOC_CONGVAOKHO_NGAYSAUKHI_NHANTHUOCTRALAI", "0", true) == "1";
                 using (var scope = new TransactionScope())
                 {
                     using (var sh = new SharedDbConnectionScope())
                     {
+                        if (THUOC_CONGVAOKHO_NGAYSAUKHI_NHANTHUOCTRALAI)
+                        {
+                            newPhieu.IdPhieuchi = -1;
+                            newPhieu.TrangThai = 1;
+                        }
                         newPhieu.Save();
                         //Cập nhật các dòng chi tiết được chọn hủy về trạng thái hủy và các dịch vụ trong các bảng tương ứng theo id_loaithanhtoan
                         foreach (Tralaithuoctaiquay item in lstTralai)
@@ -4096,7 +4411,51 @@ namespace VNS.HIS.BusRule.Classes
                             tralai.NguoiTao = newPhieu.NguoiTao;
                             tralai.IsNew = true;
                             tralai.Save();
-                            
+
+                            if (THUOC_CONGVAOKHO_NGAYSAUKHI_NHANTHUOCTRALAI)//Cộng ngay thuốc vào kho sau khi trả lại
+                            {
+                                //Cộng thuốc vào kho
+                                DataTable dtchitietdonthuoc = new Select().From(KcbDonthuocChitiet.Schema).Where(KcbDonthuocChitiet.Columns.IdChitietdonthuoc).IsEqualTo(tralai.IdChitietdonthuoc).ExecuteDataSet().Tables[0];
+                                if (dtchitietdonthuoc.Rows.Count > 0)
+                                {
+                                    int num = SPs.ThuocTrathuoctaiquayvaokho(Utility.Int64Dbnull(dtchitietdonthuoc.Rows[0]["id_thuockho"]), Utility.Int32Dbnull(dtchitietdonthuoc.Rows[0]["id_thuoc"]), tralai.SoLuong).Execute();
+                                }
+                                else//Chi tiết trong bảng đơn thuốc bị xóa do lỗi gì đó
+                                    return ActionResult.Cancel;
+                                int numoftralai = SPs.KcbThanhtoanChitietCapnhatsluongTralai(tralai.IdChitietThanhtoanGoc, item.sl_tralai).Execute();
+                                //Tạo dòng biến động trả lại trong bảng biến động cho thuốc trả lại
+                                //B1: Lấy chi tiết phiếu xuất thuốc người bệnh
+                                TPhieuXuatthuocBenhnhanChitiet objpxct = new Select().From(TPhieuXuatthuocBenhnhanChitiet.Schema).Where(TPhieuXuatthuocBenhnhanChitiet.Columns.IdChitietdonthuoc).IsEqualTo(tralai.IdChitietdonthuoc).ExecuteSingle<TPhieuXuatthuocBenhnhanChitiet>();
+                                if (objpxct != null)//100% trừ khi bị xóa tay
+                                {
+                                    //B2: Lấy dòng biến động tương ứng để duplicate+ thay số lượng và loại phiếu
+                                    TBiendongThuoc objnewBiendong = new Select().From(TBiendongThuoc.Schema)
+                                        .Where(TBiendongThuoc.Columns.IdPhieu).IsEqualTo(objpxct.IdPhieu)
+                                        .And(TBiendongThuoc.Columns.IdPhieuChitiet).IsEqualTo(objpxct.IdPhieuChitiet)
+                                        .And(TBiendongThuoc.Columns.MaLoaiphieu).IsEqualTo(3)
+                                         .And(TBiendongThuoc.Columns.MaLuotkham).IsEqualTo(newPhieu.MaLuotkham)
+                                          .And(TBiendongThuoc.Columns.IdBenhnhan).IsEqualTo(newPhieu.IdBenhnhan)
+                                        .ExecuteSingle<TBiendongThuoc>();
+                                    //B3 duplicate phiếu này
+                                    if (objnewBiendong != null)//100% trừ khi bị xóa tay
+                                    {
+                                        objnewBiendong.IsNew = true;
+                                        objnewBiendong.SoLuong = tralai.SoLuong;//Số lượng trả lại
+                                        objnewBiendong.IdPhieuchi = -1;
+                                        objnewBiendong.MaLoaiphieu = Utility.ByteDbnull(LoaiPhieu.PhieuTralaithuocTaiQuay);
+                                        objnewBiendong.TenLoaiphieu = Utility.TenLoaiPhieu(LoaiPhieu.PhieuTralaithuocTaiQuay);
+                                        objnewBiendong.NgayBiendong = newPhieu.NgayTao;
+                                        objnewBiendong.NgayHoadon = objnewBiendong.NgayBiendong;
+                                        objnewBiendong.NgayTao = objnewBiendong.NgayBiendong;
+                                        objnewBiendong.NgayNhap = objnewBiendong.NgayBiendong;
+                                        objnewBiendong.IdNhanvien = globalVariables.gv_intIDNhanvien;
+                                        objnewBiendong.NguoiTao = globalVariables.UserName;
+                                        objnewBiendong.MotaThem = "Trả lại thuốc tại quầy";
+                                        objnewBiendong.Save();
+                                    }
+                                }
+                            }
+
                         }
                     }
                     scope.Complete();

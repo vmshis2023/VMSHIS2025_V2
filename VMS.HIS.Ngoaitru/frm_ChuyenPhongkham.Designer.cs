@@ -156,7 +156,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
             // 
             this.cmdDangkyKCB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdDangkyKCB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdDangkyKCB.Image = global::VMS.HIS.Ngoaitru.Properties.Resources.SAVE__2_;
+            this.cmdDangkyKCB.Image = global::VMS.HIS.Ngoaitru.Properties.Resources.add_04_32;
             this.cmdDangkyKCB.ImageSize = new System.Drawing.Size(24, 24);
             this.cmdDangkyKCB.Location = new System.Drawing.Point(463, 501);
             this.cmdDangkyKCB.Name = "cmdDangkyKCB";
@@ -268,6 +268,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
             this.txtLydo.RaiseEventEnter = false;
             this.txtLydo.RaiseEventEnterWhenEmpty = false;
             this.txtLydo.SelectedIndex = -1;
+            this.txtLydo.SetDefaultWhenInit = true;
             this.txtLydo.ShowCodeWithValue = false;
             this.txtLydo.Size = new System.Drawing.Size(713, 21);
             this.txtLydo.splitChar = '@';
@@ -330,6 +331,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
             this.autoComplete_Congkham.DefaultCode = "-1";
             this.autoComplete_Congkham.DefaultID = "-1";
             this.autoComplete_Congkham.Drug_ID = null;
+            this.autoComplete_Congkham.ExtraTop = 0;
             this.autoComplete_Congkham.ExtraWidth = 0;
             this.autoComplete_Congkham.ExtraWidth_Pre = 0;
             this.autoComplete_Congkham.FillValueAfterSelect = false;
@@ -417,8 +419,6 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
             // 
             // chkThutienkhamsau
             // 
-            this.chkThutienkhamsau.Checked = true;
-            this.chkThutienkhamsau.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkThutienkhamsau.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkThutienkhamsau.ForeColor = System.Drawing.Color.DarkGreen;
             this.chkThutienkhamsau.Location = new System.Drawing.Point(140, 329);
@@ -427,7 +427,6 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
             this.chkThutienkhamsau.TabIndex = 629;
             this.chkThutienkhamsau.TabStop = false;
             this.chkThutienkhamsau.Text = "Thu tiền khám sau?";
-            this.chkThutienkhamsau.Visible = false;
             // 
             // frm_ChuyenPhongkham
             // 

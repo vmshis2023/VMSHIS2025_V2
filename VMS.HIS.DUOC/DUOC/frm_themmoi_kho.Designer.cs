@@ -89,6 +89,7 @@
             this.errorProvider3 = new System.Windows.Forms.ErrorProvider(this.components);
             this.cmdExit = new Janus.Windows.EditControls.UIButton();
             this.cmdSave = new Janus.Windows.EditControls.UIButton();
+            this.chk_tinhthangdu = new Janus.Windows.EditControls.UICheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.grpControl)).BeginInit();
             this.grpControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox4)).BeginInit();
@@ -105,6 +106,7 @@
             // 
             // grpControl
             // 
+            this.grpControl.Controls.Add(this.chk_tinhthangdu);
             this.grpControl.Controls.Add(this.txtCosoKCB);
             this.grpControl.Controls.Add(this.label13);
             this.grpControl.Controls.Add(this.chkTuthuoccapcuu);
@@ -182,6 +184,7 @@
             this.txtCosoKCB.RaiseEventEnter = false;
             this.txtCosoKCB.RaiseEventEnterWhenEmpty = false;
             this.txtCosoKCB.SelectedIndex = -1;
+            this.txtCosoKCB.SetDefaultWhenInit = true;
             this.txtCosoKCB.ShowCodeWithValue = false;
             this.txtCosoKCB.Size = new System.Drawing.Size(351, 21);
             this.txtCosoKCB.splitChar = '@';
@@ -444,6 +447,7 @@
             this.txtKieubiendong.RaiseEventEnter = false;
             this.txtKieubiendong.RaiseEventEnterWhenEmpty = false;
             this.txtKieubiendong.SelectedIndex = -1;
+            this.txtKieubiendong.SetDefaultWhenInit = true;
             this.txtKieubiendong.ShowCodeWithValue = false;
             this.txtKieubiendong.Size = new System.Drawing.Size(164, 21);
             this.txtKieubiendong.splitChar = '@';
@@ -803,6 +807,18 @@
             this.cmdSave.Text = "Lưu lại";
             this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click);
             // 
+            // chk_tinhthangdu
+            // 
+            this.chk_tinhthangdu.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chk_tinhthangdu.Location = new System.Drawing.Point(449, 412);
+            this.chk_tinhthangdu.Name = "chk_tinhthangdu";
+            this.chk_tinhthangdu.Size = new System.Drawing.Size(198, 23);
+            this.chk_tinhthangdu.TabIndex = 642;
+            this.chk_tinhthangdu.TabStop = false;
+            this.chk_tinhthangdu.Text = "Tính thặng dư?";
+            this.toolTip1.SetToolTip(this.chk_tinhthangdu, "Chọn mục này để khi nhập thuốc vào kho sẽ tự check vào mục Tính thặng dư hoặc Khô" +
+        "ng tính thặng dư");
+            // 
             // frm_themmoi_kho
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -894,5 +910,6 @@
         private Janus.Windows.EditControls.UICheckBox chkTuthuoccapcuu;
         private UCs.AutoCompleteTextbox_Danhmucchung txtCosoKCB;
         private System.Windows.Forms.Label label13;
+        private Janus.Windows.EditControls.UICheckBox chk_tinhthangdu;
     }
 }

@@ -1,0 +1,63 @@
+2023-09-30 09:05:57.8312||INFO|Startup|BaseDirectory: E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\ 
+2023-09-30 09:07:06.1879||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- 
+2023-09-30 09:07:06.1972||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user ADMIN with appId: b257158e9f6141fd8b31437d0ff13716, secret: moDDm/t/8IvklPBhzRpNNqT9QYLtIa0NPQ60BrPX 
+2023-09-30 09:07:07.9361||DEBUG|DigitalSignatureCheckAccount|Invalid userName !!! 
+2023-09-30 09:07:12.0223||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- 
+2023-09-30 09:07:12.0236||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user ADMIN with appId: b257158e9f6141fd8b31437d0ff13716, secret: moDDm/t/8IvklPBhzRpNNqT9QYLtIa0NPQ60BrPX 
+2023-09-30 09:07:13.1284||DEBUG|DigitalSignatureCheckAccount|Invalid userName !!! 
+2023-09-30 09:07:15.7519||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- 
+2023-09-30 09:07:15.7519||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user ADMIN with appId: 001092030130_3048529_20230824082257, secret:  
+2023-09-30 09:07:16.8721||DEBUG|DigitalSignatureCheckAccount|Successfully !!! 
+2023-09-30 09:07:48.4598||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- 
+2023-09-30 09:07:48.4693||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '001092030130_3048529_20230824082257', secret: '' 
+2023-09-30 09:07:48.4693||DEBUG|DigitalSignaturePdfFileSign|File Length: 311893 
+2023-09-30 09:07:48.4693||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 0 
+2023-09-30 09:08:01.3438||ERROR|VietBaIT.ChuKySo.Api.DigitalSignature.Viettel.MobileCA|Error: The remote server returned an error: (412) Precondition Failed. 
+2023-09-30 09:08:01.3438||ERROR|VietBaIT.ChuKySo.Api.DigitalSignature.Viettel.MobileCA|ERROR: Get SAD 
+2023-09-30 09:08:01.3438||DEBUG|DigitalSignaturePdfFileSign|Ký không thành công 
+2023-09-30 09:08:01.3438||DEBUG|DigitalSignaturePdfFileSign|Ký hash thành công 
+2023-09-30 09:08:17.6133||ERROR|DigitalSignaturePdfFileSign|There was an error on 'DigitalSignaturePdfFileSign' invocation: System.NullReferenceException: Object reference not set to an instance of an object.
+   at VietBaIT.ChuKySo.Api.Controllers.ViettelController.DigitalSignaturePdfFileSign(VietBaDigitalSignature objDigitalSignature) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\Controllers\ViettelController.cs:line 249 
+2023-09-30 09:08:26.0749||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- 
+2023-09-30 09:08:26.0888||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '001092030130_3048529_20230824082257', secret: '' 
+2023-09-30 09:08:26.0888||DEBUG|DigitalSignaturePdfFileSign|File Length: 311893 
+2023-09-30 09:08:26.0888||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 0 
+2023-09-30 09:08:34.3238||ERROR|VietBaIT.ChuKySo.Api.DigitalSignature.Viettel.MobileCA|Error: The remote server returned an error: (412) Precondition Failed. 
+2023-09-30 09:11:02.5534||ERROR|VietBaIT.ChuKySo.Api.DigitalSignature.Viettel.MobileCA|ERROR: Get SAD 
+2023-09-30 09:11:02.5608||DEBUG|DigitalSignaturePdfFileSign|Ký không thành công 
+2023-09-30 09:11:02.5608||DEBUG|DigitalSignaturePdfFileSign|Ký hash thành công 
+2023-09-30 09:11:03.8193||ERROR|DigitalSignaturePdfFileSign|There was an error on 'DigitalSignaturePdfFileSign' invocation: System.NullReferenceException: Object reference not set to an instance of an object.
+   at VietBaIT.ChuKySo.Api.Controllers.ViettelController.DigitalSignaturePdfFileSign(VietBaDigitalSignature objDigitalSignature) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\Controllers\ViettelController.cs:line 249 
+2023-09-30 09:11:03.8319||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- 
+2023-09-30 09:11:03.8319||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user ADMIN with appId: 001092030130_3048529_20230824082257, secret:  
+2023-09-30 09:11:04.9105||DEBUG|DigitalSignatureCheckAccount|Successfully !!! 
+2023-09-30 09:11:06.9944||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- 
+2023-09-30 09:11:06.9944||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user ADMIN with appId: 0100109106-998_2355554_20220707141143, secret:  
+2023-09-30 09:11:07.9666||DEBUG|DigitalSignatureCheckAccount|Invalid userName !!! 
+2023-09-30 09:11:15.8015||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- 
+2023-09-30 09:11:15.8015||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user ADMIN with appId: 0100109106-998_2355554_20220707141143, secret:  
+2023-09-30 09:11:16.8546||DEBUG|DigitalSignatureCheckAccount|Invalid userName !!! 
+2023-09-30 09:11:27.2093||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- 
+2023-09-30 09:11:27.2093||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user ADMIN with appId: 0100109106-998_2355554_20220707141143, secret:  
+2023-09-30 09:17:20.9100||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- 
+2023-09-30 09:17:20.9100||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user ADMIN with appId: 001092030130_3048529_20230824082257, secret:  
+2023-09-30 09:17:22.9020||DEBUG|DigitalSignatureCheckAccount|Successfully !!! 
+2023-09-30 09:17:22.9020||DEBUG|DigitalSignatureCheckAccount|Invalid userName !!! 
+2023-09-30 09:17:32.1776||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- 
+2023-09-30 09:17:32.1893||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user ADMIN with appId: 001092030130_3048529_20230824082257, secret:  
+2023-09-30 09:17:55.2372||DEBUG|DigitalSignatureCheckAccount|Successfully !!! 
+2023-09-30 09:20:15.4951||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- 
+2023-09-30 09:20:15.4951||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '001092030130_3048529_20230824082257', secret: '' 
+2023-09-30 09:20:15.4951||DEBUG|DigitalSignaturePdfFileSign|File Length: 311893 
+2023-09-30 09:20:15.4951||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 0 
+2023-09-30 09:20:36.1966||ERROR|VietBaIT.ChuKySo.Api.DigitalSignature.Viettel.MobileCA|Error: The remote server returned an error: (412) Precondition Failed. 
+2023-09-30 09:21:46.1726||ERROR|VietBaIT.ChuKySo.Api.DigitalSignature.Viettel.MobileCA|ERROR: Get SAD 
+2023-09-30 09:21:46.1726||DEBUG|DigitalSignaturePdfFileSign|Ký không thành công 
+2023-09-30 09:21:46.1726||DEBUG|DigitalSignaturePdfFileSign|Ký hash thành công 
+2023-09-30 09:21:47.7141||ERROR|DigitalSignaturePdfFileSign|There was an error on 'DigitalSignaturePdfFileSign' invocation: System.NullReferenceException: Object reference not set to an instance of an object.
+   at VietBaIT.ChuKySo.Api.Controllers.ViettelController.DigitalSignaturePdfFileSign(VietBaDigitalSignature objDigitalSignature) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\Controllers\ViettelController.cs:line 249 
+2023-09-30 09:23:51.5346||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- 
+2023-09-30 09:23:51.5346||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '001092030130_3048529_20230824082257', secret: '' 
+2023-09-30 09:23:51.5419||DEBUG|DigitalSignaturePdfFileSign|File Length: 311893 
+2023-09-30 09:23:51.5419||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 0 
+2023-09-30 09:24:47.5593||ERROR|VietBaIT.ChuKySo.Api.DigitalSignature.Viettel.MobileCA|Error: The remote server returned an error: (412) Precondition Failed. 

@@ -115,6 +115,8 @@
             this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.gridEXExporter1 = new Janus.Windows.GridEX.Export.GridEXExporter(this.components);
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnu_huyvungkhaosat = new System.Windows.Forms.ToolStripMenuItem();
             this.sysColor.SuspendLayout();
             this.tabVKS.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -326,26 +328,28 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuTnvChidinh,
             this.toolStripMenuItem1,
-            this.mnuHuyTvnChidinh});
+            this.mnuHuyTvnChidinh,
+            this.toolStripMenuItem2,
+            this.mnu_huyvungkhaosat});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(238, 54);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(320, 104);
             // 
             // mnuTnvChidinh
             // 
             this.mnuTnvChidinh.Name = "mnuTnvChidinh";
-            this.mnuTnvChidinh.Size = new System.Drawing.Size(237, 22);
+            this.mnuTnvChidinh.Size = new System.Drawing.Size(319, 22);
             this.mnuTnvChidinh.Text = "Chuyển thu ngân viên chỉ định";
             this.mnuTnvChidinh.Click += new System.EventHandler(this.mnuTnvChidinh_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(234, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(316, 6);
             // 
             // mnuHuyTvnChidinh
             // 
             this.mnuHuyTvnChidinh.Name = "mnuHuyTvnChidinh";
-            this.mnuHuyTvnChidinh.Size = new System.Drawing.Size(237, 22);
+            this.mnuHuyTvnChidinh.Size = new System.Drawing.Size(319, 22);
             this.mnuHuyTvnChidinh.Text = "Hủy thu ngân viên chỉ định";
             this.mnuHuyTvnChidinh.Click += new System.EventHandler(this.mnuHuyTvnChidinh_Click);
             // 
@@ -1048,6 +1052,18 @@
             this.toolTip1.IsBalloon = true;
             this.toolTip1.ToolTipTitle = "Trợ giúp";
             // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(316, 6);
+            // 
+            // mnu_huyvungkhaosat
+            // 
+            this.mnu_huyvungkhaosat.Name = "mnu_huyvungkhaosat";
+            this.mnu_huyvungkhaosat.Size = new System.Drawing.Size(319, 22);
+            this.mnu_huyvungkhaosat.Text = "Hủy vùng khảo sát cho các dịch vụ đang chọn";
+            this.mnu_huyvungkhaosat.Click += new System.EventHandler(this.mnu_huyvungkhaosat_Click);
+            // 
             // frm_dmuc_dichvuCLS_chitiet
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
@@ -1171,6 +1187,7 @@
         private System.Windows.Forms.ToolStripMenuItem mnuHuyTvnChidinh;
         private System.Windows.Forms.ToolStripButton cmdExcel;
         private Janus.Windows.GridEX.Export.GridEXExporter gridEXExporter1;
-
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem mnu_huyvungkhaosat;
     }
 }

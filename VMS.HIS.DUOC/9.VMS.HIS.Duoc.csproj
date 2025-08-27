@@ -102,6 +102,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DUOC\frm_bienban_kiemnhap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DUOC\frm_bienban_kiemnhap.Designer.cs">
+      <DependentUpon>frm_bienban_kiemnhap.cs</DependentUpon>
+    </Compile>
     <Compile Include="DUOC\frm_PhieuXuatthuocNgoai.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -434,6 +440,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="DUOC\frm_bienban_kiemnhap.resx">
+      <DependentUpon>frm_bienban_kiemnhap.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DUOC\frm_PhieuXuatthuocNgoai.resx">
       <DependentUpon>frm_PhieuXuatthuocNgoai.cs</DependentUpon>
     </EmbeddedResource>

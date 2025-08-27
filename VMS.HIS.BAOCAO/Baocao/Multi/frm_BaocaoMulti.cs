@@ -440,7 +440,7 @@ namespace VNS.MultiReport
                     for (int i = 0; i < arrTenThamSo.Count(); i++)
                     {
                         //So sánh số lượng tham số trong query và số lượng tham số được nhập vào
-                        if (i < arrThamSo.Count()) sQuery = sQuery.Replace("{" + arrTenThamSo[i] + "}", arrThamSo[i]);
+                        if (i < arrThamSo.Count()) sQuery = sQuery.Replace("{" + arrTenThamSo[i] + "}",Utility.sDbnull( arrThamSo[i])==""?"-1" : arrThamSo[i]);
                         else
                         {
                             int idx = sQuery.IndexOf("{" + arrTenThamSo[i] + "}");
@@ -486,6 +486,7 @@ namespace VNS.MultiReport
         DataSet dsData = null;
         private void GenerateResult(string sQuery, string sQueryType)
         {
+            string MultiReport_ID = Utility.sDbnull( grdReportList.GetValue("MultiReport_ID"));
             QueryCommand cmd = SysMultiReport.CreateQuery().BuildCommand();
             cmd.CommandType = CommandType.Text;
             cmd.CommandSql = sQuery;
@@ -637,6 +638,7 @@ namespace VNS.MultiReport
                     }
                 }
                 count++;
+                gridEx.Name = string.Format("{0}_{1}",MultiReport_ID,count.ToString());
                 gridEx.DataSource = dtResult;
                 gridEx.ContextMenuStrip = ctxGridSettings;
                 if (dtResult.Rows.Count <= AutoResizeColumnsWhenRecordCountLessthanOrEqualTo)

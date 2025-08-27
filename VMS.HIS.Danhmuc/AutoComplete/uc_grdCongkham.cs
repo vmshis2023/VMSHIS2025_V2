@@ -13,13 +13,13 @@ namespace VNS.HIS.UCs
 {
     public partial class uc_grdCongkham : UserControl
     {
-        public delegate void OnKeyDown(int id_congkham, string ma_congkham, string ten_congkham,string ten_phongkham);
+        public delegate void OnKeyDown(int LOAI,int id_congkham, List<int> lstSelectedID, List<int> lstLoai , string ma_congkham, string ten_congkham,string ten_phongkham);
         public event OnKeyDown _OnKeyDown;
 
-        public delegate void OnSelectionChanged(int id_congkham, string ma_congkham, string ten_congkham, string ten_phongkham);
+        public delegate void OnSelectionChanged(int LOAI, int id_congkham, List<int> lstSelectedID, List<int> lstLoai, string ma_congkham, string ten_congkham, string ten_phongkham);
         public event OnSelectionChanged _OnSelectionChanged;
 
-        public delegate void OnCellValueChanged(int id_congkham, string ma_congkham, string ten_congkham, string ten_phongkham);
+        public delegate void OnCellValueChanged(int LOAI,int id_congkham, List<int> lstSelectedID, List<int> lstLoai, string ma_congkham, string ten_congkham, string ten_phongkham);
         public event OnCellValueChanged _OnCellValueChanged;
         public delegate void OnPreviewKeyDown();
         public event OnPreviewKeyDown _OnPreviewKeyDown;
@@ -51,7 +51,7 @@ namespace VNS.HIS.UCs
 
         void grdICD_Click(object sender, EventArgs e)
         {
-            if (!Utility.isValidGrid(grdList)) return;
+            if (!Utility.isValidGrid(grdList) || grdList.CurrentColumn.Key== "CHON") return;
             grdICD_KeyDown(grdList, new KeyEventArgs(Keys.Enter));
         }
 
@@ -69,8 +69,20 @@ namespace VNS.HIS.UCs
             {
                 if (e.KeyCode == Keys.Enter && Utility.isValidGrid(grdList) && grdList.Visible)
                 {
+                    List<int> lstSelectedID = new List<int>();
+                    List<int> lstLoai = new List<int>();
+                    if (grdList.GetCheckedRows().Count() <= 0)
+                    {
+                        lstSelectedID = new List<int>() { Utility.Int32Dbnull(grdList.CurrentRow.Cells["id_dichvukcb"].Value) };
+                        lstLoai = new List<int>() { Utility.Int32Dbnull(grdList.CurrentRow.Cells["Loai"].Value) };
+                    }
+                    else
+                    {
+                        lstSelectedID = grdList.GetCheckedRows().Select(c => Utility.Int32Dbnull(c.Cells["id_dichvukcb"].Value)).ToList<int>();
+                       lstLoai = grdList.GetCheckedRows().Select(c => Utility.Int32Dbnull(c.Cells["Loai"].Value)).ToList<int>();
+                    }
                     RowIndex = 1;
-                    _OnKeyDown(Utility.Int32Dbnull( grdList.CurrentRow.Cells["id_dichvukcb"].Value.ToString()), grdList.CurrentRow.Cells["ma_dichvukcb"].Value.ToString(), Utility.sDbnull(grdList.CurrentRow.Cells["ten_dichvukcb"].Value, ""), Utility.sDbnull(grdList.CurrentRow.Cells["ten_phongkham"].Value, ""));
+                    _OnKeyDown(Utility.Int32Dbnull(grdList.CurrentRow.Cells["loai"].Value, ""), Utility.Int32Dbnull( grdList.CurrentRow.Cells["id_dichvukcb"].Value.ToString()), lstSelectedID, lstLoai,grdList.CurrentRow.Cells["ma_dichvukcb"].Value.ToString(), Utility.sDbnull(grdList.CurrentRow.Cells["ten_dichvukcb"].Value, ""), Utility.sDbnull(grdList.CurrentRow.Cells["ten_phongkham"].Value, ""));
                 }
                 if (e.KeyCode == Keys.Escape) grdList.Visible = false;
             }
@@ -93,12 +105,12 @@ namespace VNS.HIS.UCs
                 if (!Utility.isValidGrid(grdList))
                 {
                     RowIndex = -1;
-                    _OnSelectionChanged(-1,"","","");
+                    _OnSelectionChanged(-1,-1,new List<int>(),new List<int>(), "","","");
                 }
                 else
                 {
                     RowIndex = 1;
-                    _OnSelectionChanged(Utility.Int32Dbnull(grdList.CurrentRow.Cells["id_dichvukcb"].Value.ToString()), grdList.CurrentRow.Cells["ma_dichvukcb"].Value.ToString(), Utility.sDbnull(grdList.CurrentRow.Cells["ten_dichvukcb"].Value, ""), Utility.sDbnull(grdList.CurrentRow.Cells["ten_phongkham"].Value, ""));
+                    _OnSelectionChanged(Utility.Int32Dbnull(grdList.CurrentRow.Cells["loai"].Value, ""), Utility.Int32Dbnull(grdList.CurrentRow.Cells["id_dichvukcb"].Value.ToString()), new List<int>(), new List<int>(), grdList.CurrentRow.Cells["ma_dichvukcb"].Value.ToString(), Utility.sDbnull(grdList.CurrentRow.Cells["ten_dichvukcb"].Value, ""), Utility.sDbnull(grdList.CurrentRow.Cells["ten_phongkham"].Value, ""));
                 }
             }
             catch (Exception ex)
@@ -111,13 +123,13 @@ namespace VNS.HIS.UCs
         {
             try
             {
-                if (!AllowedChanged) return;
-                if (Utility.isValidGrid(grdList))
-                {
-                    RowIndex = 1;
-                    _OnCellValueChanged(Utility.Int32Dbnull(grdList.CurrentRow.Cells["id_dichvukcb"].Value.ToString()), grdList.CurrentRow.Cells["ma_dichvukcb"].Value.ToString(), Utility.sDbnull(grdList.CurrentRow.Cells["ten_dichvukcb"].Value, ""), Utility.sDbnull(grdList.CurrentRow.Cells["ten_phongkham"].Value, ""));
+                //if (!AllowedChanged) return;
+                //if (Utility.isValidGrid(grdList))
+                //{
+                //    RowIndex = 1;
+                //    _OnCellValueChanged(Utility.Int32Dbnull(grdList.CurrentRow.Cells["loai"].Value, ""), Utility.Int32Dbnull(grdList.CurrentRow.Cells["id_dichvukcb"].Value.ToString()), grdList.CurrentRow.Cells["ma_dichvukcb"].Value.ToString(), Utility.sDbnull(grdList.CurrentRow.Cells["ten_dichvukcb"].Value, ""), Utility.sDbnull(grdList.CurrentRow.Cells["ten_phongkham"].Value, ""));
 
-                }
+                //}
             }
             catch (Exception ex)
             {

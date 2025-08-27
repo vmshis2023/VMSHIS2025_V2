@@ -130,6 +130,22 @@ namespace VNS.HIS.UI.DANHMUC
             try
             {
                 string idvungks = "";
+                if (grdVungKs.GetCheckedRows().Count() > 0)
+                {
+
+                    var query = (from chk in grdVungKs.GetCheckedRows()
+                                 let x = Utility.sDbnull(chk.Cells[DmucVungkhaosat.Columns.Id].Value)
+                                 select x).ToArray();
+                    if (query != null && query.Count() > 0)
+                    {
+                        idvungks = string.Join(",", query);
+                    }
+                }
+                else
+                {
+
+                   // idvungks = Utility.GetValueFromGridColumn(grdVungKs, DmucVungkhaosat.Columns.Id);
+                }
                 if (grdList.GetCheckedRows().Length > 0)
                 {
                     foreach (GridEXRow _row in grdList.GetCheckedRows())
@@ -137,22 +153,7 @@ namespace VNS.HIS.UI.DANHMUC
                         DmucDichvuclsChitiet objDvu = DmucDichvuclsChitiet.FetchByID(Utility.sDbnull(_row.Cells["id_chitietdichvu"].Value, ""));
                         if (objDvu != null)
                         {
-                            if (grdVungKs.GetCheckedRows().Count() > 0)
-                            {
-
-                                var query = (from chk in grdVungKs.GetCheckedRows()
-                                             let x = Utility.sDbnull(chk.Cells[DmucVungkhaosat.Columns.Id].Value)
-                                             select x).ToArray();
-                                if (query != null && query.Count() > 0)
-                                {
-                                    idvungks = string.Join(",", query);
-                                }
-                            }
-                            else
-                            {
-
-                                idvungks = Utility.GetValueFromGridColumn(grdVungKs, DmucVungkhaosat.Columns.Id);
-                            }
+                            
                             objDvu.DsachVungkhaosat = idvungks;
                             objDvu.Save();
                             foreach (DataRow dr in dsTable.Rows)
@@ -167,22 +168,7 @@ namespace VNS.HIS.UI.DANHMUC
                     DmucDichvuclsChitiet objDvu = DmucDichvuclsChitiet.FetchByID(Utility.GetValueFromGridColumn(grdList, "id_chitietdichvu"));
                     if (objDvu != null)
                     {
-                        if (grdVungKs.GetCheckedRows().Count() > 0)
-                        {
-
-                            var query = (from chk in grdVungKs.GetCheckedRows()
-                                         let x = Utility.sDbnull(chk.Cells[DmucVungkhaosat.Columns.Id].Value)
-                                         select x).ToArray();
-                            if (query != null && query.Count() > 0)
-                            {
-                                idvungks = string.Join(",", query);
-                            }
-                        }
-                        else
-                        {
-
-                            idvungks = Utility.GetValueFromGridColumn(grdVungKs, DmucVungkhaosat.Columns.Id);
-                        }
+                        
                         objDvu.DsachVungkhaosat = idvungks;
                         objDvu.Save();
                         foreach (DataRow dr in dsTable.Rows)
@@ -1350,7 +1336,32 @@ namespace VNS.HIS.UI.DANHMUC
             }
         }
 
+        private void mnu_huyvungkhaosat_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if(Utility.AcceptQuestion("Bạn có chắc chắn muốn hủy vùng khảo sát cho tất cả các dịch vụ đang chọn?","Xác nhận hủy vùng KS",true))
+                {
+                    int num = 0;
+                    foreach(GridEXRow row in grdList.GetCheckedRows())
+                    {
+                        int IdChitietdichvu = Utility.Int32Dbnull(row.Cells[DmucDichvuclsChitiet.Columns.IdChitietdichvu].Value);
+                        num += new Update(DmucDichvuclsChitiet.Schema)
+                            .Set(DmucDichvuclsChitiet.Columns.DsachVungkhaosat).EqualTo("")
+                            .Where(DmucDichvuclsChitiet.Columns.IdChitietdichvu).IsEqualTo(IdChitietdichvu)
+                            .Execute();
+                    }    
+                    if(num>0)
+                    {
+                        Utility.ShowMsg(string.Format( "Đã hủy vùng khảo sát cho {0} dịch vụ đang chọn. Nhấn OK để kết thúc",num));
+                    }    
+                }    
+            }
+            catch (Exception)
+            {
 
-
+                throw;
+            }
+        }
     }
 }

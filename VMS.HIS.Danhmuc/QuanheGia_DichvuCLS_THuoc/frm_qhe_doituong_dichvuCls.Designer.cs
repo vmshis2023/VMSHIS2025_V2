@@ -145,7 +145,7 @@
             // 
             // cmdThemMoi
             // 
-            this.cmdThemMoi.Image = global::VMS.HIS.Danhmuc.Properties.Resources.Add32;
+            this.cmdThemMoi.Image = global::VMS.HIS.Danhmuc.Properties.Resources.add_04_32;
             this.cmdThemMoi.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdThemMoi.Name = "cmdThemMoi";
             this.cmdThemMoi.Size = new System.Drawing.Size(94, 26);

@@ -53,7 +53,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
         {
             try
             {
-
+                chkThutienkhamsau.Enabled = Utility.Coquyen("tiepdon_chon_thanhtoancongkhamsau") && THU_VIEN_CHUNG.Laygiatrithamsohethong("TIEPDON_CHON_THANHTOANCONGKHAMSAU", "1", false) == "1";
                 objLuotkham = KcbLuotkham.FetchByID(objCongkham_Cu.MaLuotkham);
                 _objDoituongKcb =
                   new Select().From(DmucDoituongkcb.Schema)
@@ -77,7 +77,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
             }
         }
 
-        private void AutoComplete_Congkham__OnGridSelectionChanged(int id_congkham, string ma_congkham, string ten_congkham, string ten_phongkham)
+        private void AutoComplete_Congkham__OnGridSelectionChanged(int Loai,int id_congkham, List<int> lstSelectedID, List<int> lstLoai, string ma_congkham, string ten_congkham, string ten_phongkham)
         {
             objDichvuKcb = DmucDichvukcb.FetchByID(id_congkham);
             if (objDichvuKcb != null)
@@ -563,7 +563,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
                     objCongkham.IdKieukham = objDichvuKcb.IdKieukham;
                     objCongkham.NhomBaocao = objDichvuKcb.NhomBaocao;
                     //Thêm công khám tại phòng khám sẽ không tính tiền khám
-                    objCongkham.DonGia = 0;//  THU_VIEN_CHUNG.IsBaoHiem(objLuotkham.IdLoaidoituongKcb) ? Utility.DecimaltoDbnull(objDichvuKcb.DonGia, 0) : Utility.DecimaltoDbnull(objDichvuKcb.DonGia, 0) * (1 + Utility.DecimaltoDbnull(_objDoituongKcb.MotaThem, 0) / 100);
+                    objCongkham.DonGia = THU_VIEN_CHUNG.IsBaoHiem(objLuotkham.IdLoaidoituongKcb) ? Utility.DecimaltoDbnull(objDichvuKcb.DonGia, 0) : Utility.DecimaltoDbnull(objDichvuKcb.DonGia, 0) * (1 + Utility.DecimaltoDbnull(_objDoituongKcb.MotaThem, 0) / 100);
                     if (min > 1)
                         objCongkham.SttTt37 = Utility.ByteDbnull(min - 1);
                     else

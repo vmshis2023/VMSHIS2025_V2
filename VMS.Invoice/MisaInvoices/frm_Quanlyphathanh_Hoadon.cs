@@ -52,6 +52,7 @@ namespace VMS.Invoice
             _MisaInvoices._OnStatus += _MisaInvoices__OnStatus;
             log = LogManager.GetCurrentClassLogger();
             Utility.SetVisualStyle(this);
+            grdChitietThanhtoan.CellSelectionMode = CellSelectionMode.SingleCell;
             m_oWorker = new BackgroundWorker();
             m_oWorker.DoWork += m_oWorker_DoWork;
             m_oWorker.ProgressChanged += m_oWorker_ProgressChanged;
@@ -420,6 +421,7 @@ namespace VMS.Invoice
                 cboVAT.DataSource = lstVAT;
                 cmdHoadonThaythe.Visible = Utility.Int32Dbnull(grdPayment.GetValue("co_tralai")) == 1;
                 chkHienthiChitietThucthubang0_CheckedChanged(chkHienthiChitietThucthubang0, e);
+                Utility.focusCellofCurrentRow(grdChitietThanhtoan, "transaction_id");
             }
             catch (Exception)
             {

@@ -1326,11 +1326,11 @@ namespace VNS.HIS.UI.NOITRU
                 }
                 //emrdoc.InitDocument(objpttt.IdBenhnhan, objpttt.MaLuotkham, Utility.Int64Dbnull(objpttt.IdPhieu), objpttt.NgayPttt, Loaiphieu_HIS.PHIEU_CAMKET_PTTT, "PHIEU_CAMKET_PTTT", objpttt.NguoiTao, objpttt.IdKhoadieutri, -1, Utility.Byte2Bool(objpttt.Noitru), "",true,false,"", Loaiphieu_HIS.PHIEUPTTT);
                 //emrdoc.Save();
-                emrdoc.InitDocument(objpttt.IdBenhnhan, objpttt.MaLuotkham, Utility.Int64Dbnull(objpttt.IdPhieu), objpttt.NgayPttt, Loaiphieu_HIS.PHIEU_CHUNGNHAN_PTTT, "PHIEU_CHUNGNHAN_PTTT", objpttt.NguoiTao, objpttt.IdKhoadieutri, -1, Utility.Byte2Bool(objpttt.Noitru), "", true, false, "", Loaiphieu_HIS.PHIEUPTTT);
+                emrdoc.InitDocument(objpttt.IdBenhnhan, objpttt.MaLuotkham, Utility.Int64Dbnull(objpttt.IdPhieu), objpttt.NgayPttt, Loaiphieu_HIS.PHIEU_CHUNGNHAN_PTTT, "PHIEU_CHUNGNHAN_PTTT", objpttt.NguoiTao, objpttt.IdKhoadieutri, -1, Utility.Byte2Bool(objpttt.Noitru), "", false, false, "", Loaiphieu_HIS.PHIEUPTTT);
                 emrdoc.Save();
-                emrdoc.InitDocument(objpttt.IdBenhnhan, objpttt.MaLuotkham, Utility.Int64Dbnull(objpttt.IdPhieu), objpttt.NgayPttt, Loaiphieu_HIS.PHIEUPTTT, "PHIEU_PTTT", objpttt.NguoiTao, objpttt.IdKhoadieutri, -1, Utility.Byte2Bool(objpttt.Noitru), "", true, false, "", Loaiphieu_HIS.PHIEUPTTT);
+                emrdoc.InitDocument(objpttt.IdBenhnhan, objpttt.MaLuotkham, Utility.Int64Dbnull(objpttt.IdPhieu), objpttt.NgayPttt, Loaiphieu_HIS.PHIEUPTTT, "PHIEU_PTTT", objpttt.NguoiTao, objpttt.IdKhoadieutri, -1, Utility.Byte2Bool(objpttt.Noitru), "", false, false, "", Loaiphieu_HIS.PHIEUPTTT);
                 emrdoc.Save();
-                emrdoc.InitDocument(objpttt.IdBenhnhan, objpttt.MaLuotkham, Utility.Int64Dbnull(objpttt.IdPhieu), objpttt.NgayPttt, Loaiphieu_HIS.PHIEU_TUONGTRINH_PTTT, "PHIEU_TUONGTRINH_PTTT", objpttt.NguoiTao, objpttt.IdKhoadieutri, -1, Utility.Byte2Bool(objpttt.Noitru), "", true, false, "", Loaiphieu_HIS.PHIEUPTTT);
+                emrdoc.InitDocument(objpttt.IdBenhnhan, objpttt.MaLuotkham, Utility.Int64Dbnull(objpttt.IdPhieu), objpttt.NgayPttt, Loaiphieu_HIS.PHIEU_TUONGTRINH_PTTT, "PHIEU_TUONGTRINH_PTTT", objpttt.NguoiTao, objpttt.IdKhoadieutri, -1, Utility.Byte2Bool(objpttt.Noitru), "", false, false, "", Loaiphieu_HIS.PHIEUPTTT);
                 emrdoc.Save();
                 cmdExit.BringToFront();
                 cmdCancel.PerformClick();

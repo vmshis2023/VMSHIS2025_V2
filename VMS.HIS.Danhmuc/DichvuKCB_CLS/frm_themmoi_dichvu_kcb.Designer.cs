@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_themmoi_dichvu_kcb));
             this.uiGroupBox1 = new Janus.Windows.EditControls.UIGroupBox();
+            this.chkThemlientuc = new Janus.Windows.EditControls.UICheckBox();
             this.chkCapkinh = new Janus.Windows.EditControls.UICheckBox();
             this.chkKhamthiluc = new Janus.Windows.EditControls.UICheckBox();
             this.chkhoatdong = new Janus.Windows.EditControls.UICheckBox();
@@ -74,7 +75,6 @@
             this.cmdSave = new Janus.Windows.EditControls.UIButton();
             this.cmdExit = new Janus.Windows.EditControls.UIButton();
             this.cmdSaveAll = new Janus.Windows.EditControls.UIButton();
-            this.chkThemlientuc = new Janus.Windows.EditControls.UICheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox1)).BeginInit();
             this.uiGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nmrSTT)).BeginInit();
@@ -129,6 +129,18 @@
             this.uiGroupBox1.Size = new System.Drawing.Size(787, 524);
             this.uiGroupBox1.TabIndex = 0;
             this.uiGroupBox1.Text = "Thông tin cần nhập";
+            // 
+            // chkThemlientuc
+            // 
+            this.chkThemlientuc.Checked = true;
+            this.chkThemlientuc.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkThemlientuc.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkThemlientuc.Location = new System.Drawing.Point(125, 397);
+            this.chkThemlientuc.Name = "chkThemlientuc";
+            this.chkThemlientuc.Size = new System.Drawing.Size(294, 25);
+            this.chkThemlientuc.TabIndex = 145;
+            this.chkThemlientuc.Text = "Thêm mới liên tục?";
+            this.chkThemlientuc.VisualStyle = Janus.Windows.UI.VisualStyle.VS2005;
             // 
             // chkCapkinh
             // 
@@ -563,7 +575,7 @@
             // 
             this.cmdExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdExit.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdExit.Image = ((System.Drawing.Image)(resources.GetObject("cmdExit.Image")));
+            this.cmdExit.Image = global::VMS.HIS.Danhmuc.Properties.Resources.close_24;
             this.cmdExit.ImageSize = new System.Drawing.Size(20, 20);
             this.cmdExit.Location = new System.Drawing.Point(628, 530);
             this.cmdExit.Name = "cmdExit";
@@ -586,18 +598,6 @@
             this.cmdSaveAll.TabIndex = 3;
             this.cmdSaveAll.Text = "Lưu hàng loạt";
             this.cmdSaveAll.Click += new System.EventHandler(this.cmdSaveAll_Click);
-            // 
-            // chkThemlientuc
-            // 
-            this.chkThemlientuc.Checked = true;
-            this.chkThemlientuc.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkThemlientuc.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkThemlientuc.Location = new System.Drawing.Point(125, 397);
-            this.chkThemlientuc.Name = "chkThemlientuc";
-            this.chkThemlientuc.Size = new System.Drawing.Size(294, 25);
-            this.chkThemlientuc.TabIndex = 145;
-            this.chkThemlientuc.Text = "Thêm mới liên tục?";
-            this.chkThemlientuc.VisualStyle = Janus.Windows.UI.VisualStyle.VS2005;
             // 
             // frm_themmoi_dichvu_kcb
             // 

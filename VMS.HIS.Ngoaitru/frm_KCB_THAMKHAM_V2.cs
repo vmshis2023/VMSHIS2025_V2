@@ -475,8 +475,15 @@ namespace VNS.HIS.UI.NGOAITRU
                             Utility.ShowMsg(string.Format("Gói {0} đã được thanh toán nên bạn không thể xóa các dịch vụ trong gói. Vui lòng liên hệ quầy thu ngân để kiểm tra", ten_goi));
                             return;
                         }
-                        string sql = string.Format("select 1 from kcb_chidinhcls_chitiet where id_dangky={0} and id_goi={1} and trang_thai>0", id_dangky, _goi.IdGoi);
+                        string sql = string.Format("select 1 from kcb_dangky_kcb where id_dangky={0} and id_goi={1} and trang_thai=1", id_dangky, _goi.IdGoi);
                         DataTable dtCheck = Utility.ExecuteSql(sql, CommandType.Text).Tables[0];
+                        if (dtCheck.Rows.Count > 0)
+                        {
+                            Utility.ShowMsg(string.Format("Gói {0} đã có công khám đã kết thúc nên bạn không thể xóa. Bạn có thể hủy kết thúc công khám trước khi thực hiện xóa gói", ten_goi));
+                            return;
+                        }
+                         sql = string.Format("select 1 from kcb_chidinhcls_chitiet where id_dangky={0} and id_goi={1} and trang_thai>0", id_dangky, _goi.IdGoi);
+                         dtCheck = Utility.ExecuteSql(sql, CommandType.Text).Tables[0];
                         if (dtCheck.Rows.Count > 0)
                         {
                             Utility.ShowMsg(string.Format("Gói {0} đã có dịch vụ được chuyển CLS hoặc có kết quả nên bạn không thể xóa. Bạn có thể đưa các dịch vụ đã có kết quả ra ngoài gói trước khi thực hiện xóa gói", ten_goi));
@@ -487,6 +494,7 @@ namespace VNS.HIS.UI.NGOAITRU
                         {
                             using (var sh = new SharedDbConnectionScope())
                             {
+                                num = new Delete().From(KcbDangkyKcb.Schema).Where(KcbDangkyKcb.Columns.IdDangky).IsEqualTo(id_dangky).And(KcbDangkyKcb.Columns.IdGoi).IsEqualTo(_goi.IdGoi).Execute();
                                 num = new Delete().From(KcbChidinhclsChitiet.Schema).Where(KcbChidinhclsChitiet.Columns.IdDangky).IsEqualTo(id_dangky).And(KcbChidinhclsChitiet.Columns.IdGoi).IsEqualTo(_goi.IdGoi).Execute();
                                 num = new Delete().From(GoiDangki.Schema).Where(GoiDangki.Columns.IdDangky).IsEqualTo(id_dangky).And(GoiDangki.Columns.IdGoi).IsEqualTo(_goi.IdGoi).Execute();
                                 num = new Delete().From(GoiTinhtrangsudung.Schema).Where(GoiTinhtrangsudung.Columns.IdDangky).IsEqualTo(id_dangky).And(GoiTinhtrangsudung.Columns.IdGoi).IsEqualTo(_goi.IdGoi).Execute();
@@ -7572,7 +7580,7 @@ namespace VNS.HIS.UI.NGOAITRU
                         if (Utility.DoTrim(Utility.sDbnull(grdAssignDetail.CurrentRow.Cells["dsach_vungkhaosat"].Value, "")) == "")
                         {
                             Utility.ShowMsg("Dịch vụ này chưa gán vùng khảo sát nên không thể nhập kết quả.\r\nNhấn OK để thực hiện gán vùng khảo sát cho dịch vụ đang chọn");
-                            frm_chonvungksat _chonvungks = new frm_chonvungksat(new List<string>());
+                            frm_chonvungksat _chonvungks = new frm_chonvungksat(new List<string>(),"ALL");
                             _chonvungks.Hthi_Chon = true;
                             _chonvungks.ten_dvu = Utility.GetValueFromGridColumn(grdAssignDetail, "ten_chitietdichvu");
                             if (_chonvungks.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -7617,7 +7625,7 @@ namespace VNS.HIS.UI.NGOAITRU
                         lstID = Utility.sDbnull(grdAssignDetail.CurrentRow.Cells["dsach_vungkhaosat"].Value, "-1").Split(',').ToList<string>();
                         if (lstID.Count >= 2)
                         {
-                            frm_chonvungksat _chonvungksat = new frm_chonvungksat(lstID);
+                            frm_chonvungksat _chonvungksat = new frm_chonvungksat(lstID,"ALL");
                             if (_chonvungksat.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                                 id_VungKS = _chonvungksat.Id;
                             else
@@ -8562,7 +8570,7 @@ namespace VNS.HIS.UI.NGOAITRU
         /// <param name="forcedTitle"></param>
         private void PrintPres(int presID, string forcedTitle)
         {
-            DataTable v_dtDataOrg = _KCB_KEDONTHUOC.LaythongtinDonthuoc_In(presID);
+            DataTable v_dtDataOrg = _KCB_KEDONTHUOC.LaythongtinDonthuoc_In(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, 0, presID);
             DataRow[] arrDR = v_dtDataOrg.Select("tuvan_them=0");
             if (arrDR.Length <= 0)
             {
@@ -8696,7 +8704,7 @@ namespace VNS.HIS.UI.NGOAITRU
         }
         private void PrintPres_bak(int presID, string forcedTitle)
         {
-            DataTable v_dtDataOrg = _KCB_KEDONTHUOC.LaythongtinDonthuoc_In(presID);
+            DataTable v_dtDataOrg = _KCB_KEDONTHUOC.LaythongtinDonthuoc_In(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, 0, presID);
 
             DataRow[] arrDR = v_dtDataOrg.Select("tuvan_them=0");
             if (arrDR.Length <= 0)
@@ -10435,7 +10443,7 @@ namespace VNS.HIS.UI.NGOAITRU
             
                 if (!Utility.isValidGrid(grdPresDetail)) return;
                 int presId = Utility.Int32Dbnull(grdPresDetail.GetValue(KcbDonthuocChitiet.Columns.IdDonthuoc));
-                DataTable v_dtDataOrg = _KCB_KEDONTHUOC.LaythongtinDonthuoc_In(presId);
+                DataTable v_dtDataOrg = _KCB_KEDONTHUOC.LaythongtinDonthuoc_In(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, 0, presId);
 
                 DataRow[] arrDR = v_dtDataOrg.Select("tuvan_them=0");
                 if (arrDR.Length <= 0)
@@ -13038,6 +13046,16 @@ namespace VNS.HIS.UI.NGOAITRU
             {
                 GC.Collect();
             }
+        }
+
+        private void mnuTronggoi_CLS_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void mnuXoaGoi_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

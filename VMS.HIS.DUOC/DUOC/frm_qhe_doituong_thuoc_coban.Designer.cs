@@ -131,8 +131,7 @@
             // 
             // cmdThemMoi
             // 
-            this.cmdThemMoi.Image = ((System.Drawing.Image)(resources.GetObject("cmdThemMoi.Image")));
-            this.cmdThemMoi.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.cmdThemMoi.Image = global::VMS.HIS.Duoc.Properties.Resources.add_04_32;
             this.cmdThemMoi.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdThemMoi.Name = "cmdThemMoi";
             this.cmdThemMoi.Size = new System.Drawing.Size(125, 28);
@@ -142,7 +141,6 @@
             // cmdCapNhap
             // 
             this.cmdCapNhap.Image = ((System.Drawing.Image)(resources.GetObject("cmdCapNhap.Image")));
-            this.cmdCapNhap.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.cmdCapNhap.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdCapNhap.Name = "cmdCapNhap";
             this.cmdCapNhap.Size = new System.Drawing.Size(118, 28);
@@ -199,7 +197,6 @@
             // cmdExportExcel
             // 
             this.cmdExportExcel.Image = ((System.Drawing.Image)(resources.GetObject("cmdExportExcel.Image")));
-            this.cmdExportExcel.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.cmdExportExcel.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdExportExcel.Name = "cmdExportExcel";
             this.cmdExportExcel.Size = new System.Drawing.Size(101, 28);
@@ -208,7 +205,7 @@
             // 
             // cmdClose
             // 
-            this.cmdClose.Image = ((System.Drawing.Image)(resources.GetObject("cmdClose.Image")));
+            this.cmdClose.Image = global::VMS.HIS.Duoc.Properties.Resources.close_24;
             this.cmdClose.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdClose.Name = "cmdClose";
             this.cmdClose.Size = new System.Drawing.Size(95, 28);
@@ -402,7 +399,7 @@
             // 
             this.cmdAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdAdd.Image = global::VMS.HIS.Duoc.Properties.Resources.Add32;
+            this.cmdAdd.Image = global::VMS.HIS.Duoc.Properties.Resources.add_04_32;
             this.cmdAdd.ImageSize = new System.Drawing.Size(20, 20);
             this.cmdAdd.Location = new System.Drawing.Point(129, 13);
             this.cmdAdd.Name = "cmdAdd";

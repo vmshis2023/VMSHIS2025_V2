@@ -21,6 +21,7 @@ namespace VNS.HIS.UI.NOITRU
         public frm_dmuc_buonggiuong()
         {
             InitializeComponent();
+            Utility.SetVisualStyle(this);
             InitEvents();
             Utility.VisiableGridEx(grdBed,NoitruDmucGiuongbenh.Columns.IdGiuong,globalVariables.IsAdmin);
             Utility.VisiableGridEx(grdRoom,NoitruDmucBuong.Columns.IdBuong,globalVariables.IsAdmin);

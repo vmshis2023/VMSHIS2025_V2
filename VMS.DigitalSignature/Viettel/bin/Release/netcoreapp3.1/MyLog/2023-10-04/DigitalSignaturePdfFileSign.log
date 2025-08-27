@@ -1,0 +1,166 @@
+2023-10-04 10:26:32.9906||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-10-04 10:26:33.0060||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '026084000490_3149784_20230930094614', secret: '' |url: |action: 
+2023-10-04 10:26:33.0060||DEBUG|DigitalSignaturePdfFileSign|File Length: 311893 |url: |action: 
+2023-10-04 10:26:33.0060||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 0 |url: |action: 
+2023-10-04 10:28:54.6967||DEBUG|DigitalSignaturePdfFileSign|Ký không thành công |url: |action: 
+2023-10-04 10:28:54.6967||DEBUG|DigitalSignaturePdfFileSign|Ký hash thành công |url: |action: 
+2023-10-04 10:28:55.8242||ERROR|DigitalSignaturePdfFileSign|There was an error on 'DigitalSignaturePdfFileSign' invocation: System.NullReferenceException: Object reference not set to an instance of an object.
+   at VietBaIT.ChuKySo.Api.Controllers.ViettelController.DigitalSignaturePdfFileSign(VietBaDigitalSignature objDigitalSignature) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\Controllers\ViettelController.cs:line 249 |url: |action: 
+2023-10-04 10:29:03.3608||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-10-04 10:29:03.3608||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '026084000490_3149784_20230930094614', secret: '' |url: |action: 
+2023-10-04 10:29:03.3608||DEBUG|DigitalSignaturePdfFileSign|File Length: 311893 |url: |action: 
+2023-10-04 10:29:03.3608||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 0 |url: |action: 
+2023-10-04 10:36:00.4950||DEBUG|DigitalSignaturePdfFileSign|Ký không thành công |url: |action: 
+2023-10-04 10:36:00.4950||DEBUG|DigitalSignaturePdfFileSign|Ký hash thành công |url: |action: 
+2023-10-04 10:36:01.5196||ERROR|DigitalSignaturePdfFileSign|There was an error on 'DigitalSignaturePdfFileSign' invocation: System.NullReferenceException: Object reference not set to an instance of an object.
+   at VietBaIT.ChuKySo.Api.Controllers.ViettelController.DigitalSignaturePdfFileSign(VietBaDigitalSignature objDigitalSignature) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\Controllers\ViettelController.cs:line 249 |url: |action: 
+2023-10-04 10:36:10.9174||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-10-04 10:36:10.9174||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '026084000490_3149784_20230930094614', secret: '' |url: |action: 
+2023-10-04 10:36:10.9227||DEBUG|DigitalSignaturePdfFileSign|File Length: 311893 |url: |action: 
+2023-10-04 10:36:10.9227||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 0 |url: |action: 
+2023-10-04 10:36:36.5824||DEBUG|DigitalSignaturePdfFileSign|Ký hash thành công |url: |action: 
+2023-10-04 10:36:36.6057||DEBUG|DigitalSignaturePdfFileSign|Ký thành công |url: |action: 
+2023-10-04 10:36:53.8387||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-10-04 10:36:53.8387||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '026084000490_3149784_20230930094614', secret: '' |url: |action: 
+2023-10-04 10:36:53.8387||DEBUG|DigitalSignaturePdfFileSign|File Length: 311893 |url: |action: 
+2023-10-04 10:36:53.8466||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 0 |url: |action: 
+2023-10-04 10:37:10.7972||DEBUG|DigitalSignaturePdfFileSign|Ký hash thành công |url: |action: 
+2023-10-04 10:37:10.8147||DEBUG|DigitalSignaturePdfFileSign|Ký thành công |url: |action: 
+2023-10-04 10:37:26.9907||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-10-04 10:37:26.9907||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '026084000490_3149784_20230930094614', secret: '' |url: |action: 
+2023-10-04 10:37:26.9907||DEBUG|DigitalSignaturePdfFileSign|File Length: 311893 |url: |action: 
+2023-10-04 10:37:27.0006||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 0 |url: |action: 
+2023-10-04 10:38:10.5891||DEBUG|DigitalSignaturePdfFileSign|Ký hash thành công |url: |action: 
+2023-10-04 10:38:10.6016||DEBUG|DigitalSignaturePdfFileSign|Ký thành công |url: |action: 
+2023-10-04 10:48:34.1489||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-10-04 10:48:34.1489||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '026084000490_3149784_20230930094614', secret: '' |url: |action: 
+2023-10-04 10:48:34.1607||DEBUG|DigitalSignaturePdfFileSign|File Length: 311893 |url: |action: 
+2023-10-04 10:48:34.1607||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 0 |url: |action: 
+2023-10-04 10:50:40.5921||DEBUG|DigitalSignaturePdfFileSign|Ký hash thành công |url: |action: 
+2023-10-04 10:50:40.6300||DEBUG|DigitalSignaturePdfFileSign|Ký thành công |url: |action: 
+2023-10-04 10:50:42.0495||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-10-04 10:50:42.0495||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '026084000490_3149784_20230930094614', secret: '' |url: |action: 
+2023-10-04 10:50:42.0495||DEBUG|DigitalSignaturePdfFileSign|File Length: 311893 |url: |action: 
+2023-10-04 10:50:42.0495||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 0 |url: |action: 
+2023-10-04 14:31:17.7737||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-10-04 14:31:17.7737||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '026084000490_3149784_20230930094614', secret: '' |url: |action: 
+2023-10-04 14:31:17.7737||DEBUG|DigitalSignaturePdfFileSign|File Length: 311893 |url: |action: 
+2023-10-04 14:31:17.7851||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 0 |url: |action: 
+2023-10-04 14:44:44.7170||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-10-04 14:44:44.7209||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '026084000490_3149784_20230930094614', secret: '' |url: |action: 
+2023-10-04 14:44:44.7209||DEBUG|DigitalSignaturePdfFileSign|File Length: 311893 |url: |action: 
+2023-10-04 14:44:44.7209||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 0 |url: |action: 
+2023-10-04 14:44:45.1934||DEBUG|DigitalSignaturePdfFileSign|Ký không thành công |url: |action: 
+2023-10-04 14:44:45.1934||DEBUG|DigitalSignaturePdfFileSign|Ký hash thành công |url: |action: 
+2023-10-04 14:44:46.0758||ERROR|DigitalSignaturePdfFileSign|There was an error on 'DigitalSignaturePdfFileSign' invocation: System.NullReferenceException: Object reference not set to an instance of an object.
+   at VietBaIT.ChuKySo.Api.Controllers.ViettelController.DigitalSignaturePdfFileSign(VietBaDigitalSignature objDigitalSignature) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\Controllers\ViettelController.cs:line 249 |url: |action: 
+2023-10-04 14:46:47.5425||DEBUG|DigitalSignaturePdfFileSign|Ký không thành công |url: |action: 
+2023-10-04 14:46:47.5425||DEBUG|DigitalSignaturePdfFileSign|Ký hash thành công |url: |action: 
+2023-10-04 14:49:30.7898||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-10-04 14:49:30.7898||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '026084000490_3149784_20230930094614', secret: '' |url: |action: 
+2023-10-04 14:49:30.8041||DEBUG|DigitalSignaturePdfFileSign|File Length: 311893 |url: |action: 
+2023-10-04 14:49:30.8041||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 0 |url: |action: 
+2023-10-04 14:50:24.4723||DEBUG|DigitalSignaturePdfFileSign|Ký không thành công |url: |action: 
+2023-10-04 14:50:24.4723||DEBUG|DigitalSignaturePdfFileSign|Ký hash thành công |url: |action: 
+2023-10-04 14:56:24.1275||ERROR|DigitalSignaturePdfFileSign|There was an error on 'DigitalSignaturePdfFileSign' invocation: System.NullReferenceException: Object reference not set to an instance of an object.
+   at VietBaIT.ChuKySo.Api.Controllers.ViettelController.DigitalSignaturePdfFileSign(VietBaDigitalSignature objDigitalSignature) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\Controllers\ViettelController.cs:line 249 |url: |action: 
+2023-10-04 14:56:29.7297||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-10-04 14:56:29.7377||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '026084000490_3149784_20230930094614', secret: '' |url: |action: 
+2023-10-04 14:56:29.7377||DEBUG|DigitalSignaturePdfFileSign|File Length: 311893 |url: |action: 
+2023-10-04 14:56:29.7377||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 0 |url: |action: 
+2023-10-04 14:56:57.0250||DEBUG|DigitalSignaturePdfFileSign|Ký hash thành công |url: |action: 
+2023-10-04 14:56:57.0628||DEBUG|DigitalSignaturePdfFileSign|Ký thành công |url: |action: 
+2023-10-04 15:02:02.9835||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-10-04 15:02:02.9835||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '026084000490_3149784_20230930094614', secret: '' |url: |action: 
+2023-10-04 15:02:02.9835||DEBUG|DigitalSignaturePdfFileSign|File Length: 311893 |url: |action: 
+2023-10-04 15:02:02.9835||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 0 |url: |action: 
+2023-10-04 15:02:23.6591||DEBUG|DigitalSignaturePdfFileSign|Ký hash thành công |url: |action: 
+2023-10-04 15:02:23.6725||DEBUG|DigitalSignaturePdfFileSign|Ký thành công |url: |action: 
+2023-10-04 15:02:28.7736||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-10-04 15:02:28.7736||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '026084000490_3149784_20230930094614', secret: '' |url: |action: 
+2023-10-04 15:02:28.7736||DEBUG|DigitalSignaturePdfFileSign|File Length: 311893 |url: |action: 
+2023-10-04 15:02:28.7736||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 0 |url: |action: 
+2023-10-04 15:02:40.3016||DEBUG|DigitalSignaturePdfFileSign|Ký hash thành công |url: |action: 
+2023-10-04 15:02:40.3174||DEBUG|DigitalSignaturePdfFileSign|Ký thành công |url: |action: 
+2023-10-04 15:02:47.1891||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-10-04 15:02:47.1891||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '026084000490_3149784_20230930094614', secret: '' |url: |action: 
+2023-10-04 15:02:47.1891||DEBUG|DigitalSignaturePdfFileSign|File Length: 311893 |url: |action: 
+2023-10-04 15:02:47.1891||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 0 |url: |action: 
+2023-10-04 15:04:49.1226||DEBUG|DigitalSignaturePdfFileSign|Ký không thành công |url: |action: 
+2023-10-04 15:04:49.1247||DEBUG|DigitalSignaturePdfFileSign|Ký hash thành công |url: |action: 
+2023-10-04 15:45:13.4918||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-10-04 15:45:13.4918||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '026084000490_3149784_20230930094614', secret: '' |url: |action: 
+2023-10-04 15:45:13.5108||DEBUG|DigitalSignaturePdfFileSign|File Length: 311893 |url: |action: 
+2023-10-04 15:45:13.5108||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 0 |url: |action: 
+2023-10-04 15:46:28.8198||ERROR|DigitalSignaturePdfFileSign|There was an error on 'DigitalSignaturePdfFileSign' invocation: System.NullReferenceException: Object reference not set to an instance of an object.
+   at VietBaIT.ChuKySo.Api.Controllers.ViettelController.DigitalSignaturePdfFileSign(VietBaDigitalSignature objDigitalSignature) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\Controllers\ViettelController.cs:line 183 |url: |action: 
+2023-10-04 15:46:39.3599||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-10-04 15:46:39.3599||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '026084000490_3149784_20230930094614', secret: '' |url: |action: 
+2023-10-04 15:46:39.3599||DEBUG|DigitalSignaturePdfFileSign|File Length: 311893 |url: |action: 
+2023-10-04 15:46:39.3599||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 0 |url: |action: 
+2023-10-04 15:50:21.4180||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-10-04 15:50:21.4220||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '026084000490_3149784_20230930094614', secret: '' |url: |action: 
+2023-10-04 15:50:21.4220||DEBUG|DigitalSignaturePdfFileSign|File Length: 311893 |url: |action: 
+2023-10-04 15:50:21.4220||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 0 |url: |action: 
+2023-10-04 15:51:19.0036||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-10-04 15:51:19.0036||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '026084000490_3149784_20230930094614', secret: '' |url: |action: 
+2023-10-04 15:51:19.0214||DEBUG|DigitalSignaturePdfFileSign|File Length: 311893 |url: |action: 
+2023-10-04 15:51:19.0214||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 0 |url: |action: 
+2023-10-04 15:52:37.8723||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-10-04 15:52:37.8778||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '026084000490_3149784_20230930094614', secret: '' |url: |action: 
+2023-10-04 15:52:37.8778||DEBUG|DigitalSignaturePdfFileSign|File Length: 311893 |url: |action: 
+2023-10-04 15:52:37.8778||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 0 |url: |action: 
+2023-10-04 15:54:17.3300||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-10-04 15:54:17.3300||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '026084000490_3149784_20230930094614', secret: '' |url: |action: 
+2023-10-04 15:54:17.3468||DEBUG|DigitalSignaturePdfFileSign|File Length: 311893 |url: |action: 
+2023-10-04 15:54:17.3468||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 0 |url: |action: 
+2023-10-04 15:57:32.6203||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-10-04 15:57:32.6203||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '026084000490_3149784_20230930094614', secret: '' |url: |action: 
+2023-10-04 15:57:32.6312||DEBUG|DigitalSignaturePdfFileSign|File Length: 311893 |url: |action: 
+2023-10-04 15:57:32.6312||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 0 |url: |action: 
+2023-10-04 16:01:35.8934||DEBUG|DigitalSignaturePdfFileSign|Ký không thành công |url: |action: 
+2023-10-04 16:01:35.8934||DEBUG|DigitalSignaturePdfFileSign|Ký hash thành công |url: |action: 
+2023-10-04 16:01:36.9817||ERROR|DigitalSignaturePdfFileSign|There was an error on 'DigitalSignaturePdfFileSign' invocation: System.NullReferenceException: Object reference not set to an instance of an object.
+   at VietBaIT.ChuKySo.Api.Controllers.ViettelController.DigitalSignaturePdfFileSign(VietBaDigitalSignature objDigitalSignature) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\Controllers\ViettelController.cs:line 247 |url: |action: 
+2023-10-04 16:01:44.0189||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-10-04 16:01:44.0189||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '026084000490_3149784_20230930094614', secret: '' |url: |action: 
+2023-10-04 16:01:44.0189||DEBUG|DigitalSignaturePdfFileSign|File Length: 311893 |url: |action: 
+2023-10-04 16:01:44.0189||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 0 |url: |action: 
+2023-10-04 16:23:02.8866||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-10-04 16:23:02.8925||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '026084000490_3149784_20230930094614', secret: '' |url: |action: 
+2023-10-04 16:23:02.8925||DEBUG|DigitalSignaturePdfFileSign|File Length: 311893 |url: |action: 
+2023-10-04 16:23:02.9125||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 0 |url: |action: 
+2023-10-04 16:26:53.8553||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-10-04 16:26:53.8644||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '026084000490_3149784_20230930094614', secret: '' |url: |action: 
+2023-10-04 16:26:53.8644||DEBUG|DigitalSignaturePdfFileSign|File Length: 311893 |url: |action: 
+2023-10-04 16:26:53.8644||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 0 |url: |action: 
+2023-10-04 16:29:36.1074||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-10-04 16:29:36.1138||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '026084000490_3149784_20230930094614', secret: '' |url: |action: 
+2023-10-04 16:29:36.1252||DEBUG|DigitalSignaturePdfFileSign|File Length: 311893 |url: |action: 
+2023-10-04 16:29:36.1252||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 0 |url: |action: 
+2023-10-04 16:38:38.6563||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-10-04 16:38:38.6563||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '026084000490_3149784_20230930094614', secret: '' |url: |action: 
+2023-10-04 16:38:38.6725||DEBUG|DigitalSignaturePdfFileSign|File Length: 311893 |url: |action: 
+2023-10-04 16:38:38.6725||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 0 |url: |action: 
+2023-10-04 16:43:05.9254||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-10-04 16:43:05.9254||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '026084000490_3149784_20230930094614', secret: '' |url: |action: 
+2023-10-04 16:43:05.9419||DEBUG|DigitalSignaturePdfFileSign|File Length: 311893 |url: |action: 
+2023-10-04 16:43:05.9419||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 0 |url: |action: 
+2023-10-04 16:46:22.7760||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-10-04 16:46:22.7760||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '026084000490_3149784_20230930094614', secret: '' |url: |action: 
+2023-10-04 16:46:22.7760||DEBUG|DigitalSignaturePdfFileSign|File Length: 311893 |url: |action: 
+2023-10-04 16:46:22.7811||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 0 |url: |action: 
+2023-10-04 16:46:44.3495||DEBUG|DigitalSignaturePdfFileSign|Ký hash thành công |url: |action: 
+2023-10-04 16:46:44.3866||DEBUG|DigitalSignaturePdfFileSign|Ký thành công |url: |action: 
+2023-10-04 16:46:49.2147||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-10-04 16:46:49.2183||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '026084000490_3149784_20230930094614', secret: '' |url: |action: 
+2023-10-04 16:46:49.2183||DEBUG|DigitalSignaturePdfFileSign|File Length: 311893 |url: |action: 
+2023-10-04 16:46:49.2183||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 0 |url: |action: 
+2023-10-04 16:47:20.8484||DEBUG|DigitalSignaturePdfFileSign|Ký hash thành công |url: |action: 
+2023-10-04 16:47:20.8790||DEBUG|DigitalSignaturePdfFileSign|Ký thành công |url: |action: 
+2023-10-04 16:47:25.7992||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-10-04 16:47:25.7992||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '026084000490_3149784_20230930094614', secret: '' |url: |action: 
+2023-10-04 16:47:25.7992||DEBUG|DigitalSignaturePdfFileSign|File Length: 311893 |url: |action: 
+2023-10-04 16:47:25.7992||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 0 |url: |action: 
+2023-10-04 16:47:50.9765||DEBUG|DigitalSignaturePdfFileSign|Ký hash thành công |url: |action: 
+2023-10-04 16:47:50.9927||DEBUG|DigitalSignaturePdfFileSign|Ký thành công |url: |action: 

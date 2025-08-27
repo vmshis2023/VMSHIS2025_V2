@@ -34,6 +34,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.chkIntachphieu = new System.Windows.Forms.CheckBox();
             this.grpControl = new Janus.Windows.EditControls.UIGroupBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.cboPhieuEMR = new VNS.HIS.UCs.EasyCompletionComboBox();
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.txttenphieutrakqCDHA = new System.Windows.Forms.TextBox();
@@ -86,8 +88,6 @@
             this.txtID = new System.Windows.Forms.TextBox();
             this.cmdThoat = new System.Windows.Forms.Button();
             this.cmdGhi = new System.Windows.Forms.Button();
-            this.label19 = new System.Windows.Forms.Label();
-            this.cboPhieuEMR = new VNS.HIS.UCs.EasyCompletionComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.grpControl)).BeginInit();
             this.grpControl.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -179,6 +179,27 @@
             this.grpControl.Size = new System.Drawing.Size(784, 495);
             this.grpControl.TabIndex = 0;
             this.grpControl.Text = "Thông tin dịch vụ";
+            // 
+            // label19
+            // 
+            this.label19.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.ForeColor = System.Drawing.Color.Green;
+            this.label19.Location = new System.Drawing.Point(44, 189);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(87, 20);
+            this.label19.TabIndex = 140;
+            this.label19.Text = "Mã phiếu EMR";
+            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // cboPhieuEMR
+            // 
+            this.cboPhieuEMR.FormattingEnabled = true;
+            this.cboPhieuEMR.Location = new System.Drawing.Point(135, 187);
+            this.cboPhieuEMR.Name = "cboPhieuEMR";
+            this.cboPhieuEMR.Next_Control = null;
+            this.cboPhieuEMR.RaiseEnterEventWhenInvisible = true;
+            this.cboPhieuEMR.Size = new System.Drawing.Size(640, 23);
+            this.cboPhieuEMR.TabIndex = 139;
             // 
             // label18
             // 
@@ -875,7 +896,7 @@
             // 
             this.cmdThoat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cmdThoat.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdThoat.Image = ((System.Drawing.Image)(resources.GetObject("cmdThoat.Image")));
+            this.cmdThoat.Image = global::VMS.HIS.Danhmuc.Properties.Resources.close_24;
             this.cmdThoat.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdThoat.Location = new System.Drawing.Point(656, 514);
             this.cmdThoat.Name = "cmdThoat";
@@ -899,27 +920,6 @@
             this.cmdGhi.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdGhi.UseVisualStyleBackColor = true;
             this.cmdGhi.Click += new System.EventHandler(this.cmdGhi_Click_1);
-            // 
-            // label19
-            // 
-            this.label19.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.ForeColor = System.Drawing.Color.Green;
-            this.label19.Location = new System.Drawing.Point(44, 189);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(87, 20);
-            this.label19.TabIndex = 140;
-            this.label19.Text = "Mã phiếu EMR";
-            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // cboPhieuEMR
-            // 
-            this.cboPhieuEMR.FormattingEnabled = true;
-            this.cboPhieuEMR.Location = new System.Drawing.Point(135, 187);
-            this.cboPhieuEMR.Name = "cboPhieuEMR";
-            this.cboPhieuEMR.Next_Control = null;
-            this.cboPhieuEMR.RaiseEnterEventWhenInvisible = true;
-            this.cboPhieuEMR.Size = new System.Drawing.Size(640, 23);
-            this.cboPhieuEMR.TabIndex = 139;
             // 
             // frm_themmoi_dichvucls
             // 

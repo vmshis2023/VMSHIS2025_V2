@@ -1,0 +1,18 @@
+signatureRawData:
+GET
+http
+10.0.30.199:80
+/api/account/endcert
+PID033084000210
+3028902275274d65a6484bd9a8d554a7
+Wed, 28 Jun 2023 04:28:23 GMT
+
+
+
+================================================
+digest signatureRawData:6FnxV581htBuNDLm82K1GfFVaqm6SLztkvIRyoqGL+c=
+
+================================================
+Authorization:HmacSHA256 PID033084000210:3028902275274d65a6484bd9a8d554a7:6FnxV581htBuNDLm82K1GfFVaqm6SLztkvIRyoqGL+c=:1687926503
+
+================================================

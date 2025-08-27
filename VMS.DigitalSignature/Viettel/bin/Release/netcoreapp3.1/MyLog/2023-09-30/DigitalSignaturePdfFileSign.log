@@ -1,0 +1,28 @@
+2023-09-30 09:07:48.4598||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-09-30 09:07:48.4693||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '001092030130_3048529_20230824082257', secret: '' |url: |action: 
+2023-09-30 09:07:48.4693||DEBUG|DigitalSignaturePdfFileSign|File Length: 311893 |url: |action: 
+2023-09-30 09:07:48.4693||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 0 |url: |action: 
+2023-09-30 09:08:01.3438||DEBUG|DigitalSignaturePdfFileSign|Ký không thành công |url: |action: 
+2023-09-30 09:08:01.3438||DEBUG|DigitalSignaturePdfFileSign|Ký hash thành công |url: |action: 
+2023-09-30 09:08:17.6133||ERROR|DigitalSignaturePdfFileSign|There was an error on 'DigitalSignaturePdfFileSign' invocation: System.NullReferenceException: Object reference not set to an instance of an object.
+   at VietBaIT.ChuKySo.Api.Controllers.ViettelController.DigitalSignaturePdfFileSign(VietBaDigitalSignature objDigitalSignature) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\Controllers\ViettelController.cs:line 249 |url: |action: 
+2023-09-30 09:08:26.0749||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-09-30 09:08:26.0888||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '001092030130_3048529_20230824082257', secret: '' |url: |action: 
+2023-09-30 09:08:26.0888||DEBUG|DigitalSignaturePdfFileSign|File Length: 311893 |url: |action: 
+2023-09-30 09:08:26.0888||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 0 |url: |action: 
+2023-09-30 09:11:02.5608||DEBUG|DigitalSignaturePdfFileSign|Ký không thành công |url: |action: 
+2023-09-30 09:11:02.5608||DEBUG|DigitalSignaturePdfFileSign|Ký hash thành công |url: |action: 
+2023-09-30 09:11:03.8193||ERROR|DigitalSignaturePdfFileSign|There was an error on 'DigitalSignaturePdfFileSign' invocation: System.NullReferenceException: Object reference not set to an instance of an object.
+   at VietBaIT.ChuKySo.Api.Controllers.ViettelController.DigitalSignaturePdfFileSign(VietBaDigitalSignature objDigitalSignature) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\Controllers\ViettelController.cs:line 249 |url: |action: 
+2023-09-30 09:20:15.4951||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-09-30 09:20:15.4951||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '001092030130_3048529_20230824082257', secret: '' |url: |action: 
+2023-09-30 09:20:15.4951||DEBUG|DigitalSignaturePdfFileSign|File Length: 311893 |url: |action: 
+2023-09-30 09:20:15.4951||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 0 |url: |action: 
+2023-09-30 09:21:46.1726||DEBUG|DigitalSignaturePdfFileSign|Ký không thành công |url: |action: 
+2023-09-30 09:21:46.1726||DEBUG|DigitalSignaturePdfFileSign|Ký hash thành công |url: |action: 
+2023-09-30 09:21:47.7141||ERROR|DigitalSignaturePdfFileSign|There was an error on 'DigitalSignaturePdfFileSign' invocation: System.NullReferenceException: Object reference not set to an instance of an object.
+   at VietBaIT.ChuKySo.Api.Controllers.ViettelController.DigitalSignaturePdfFileSign(VietBaDigitalSignature objDigitalSignature) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\Controllers\ViettelController.cs:line 249 |url: |action: 
+2023-09-30 09:23:51.5346||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-09-30 09:23:51.5346||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '001092030130_3048529_20230824082257', secret: '' |url: |action: 
+2023-09-30 09:23:51.5419||DEBUG|DigitalSignaturePdfFileSign|File Length: 311893 |url: |action: 
+2023-09-30 09:23:51.5419||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 0 |url: |action: 

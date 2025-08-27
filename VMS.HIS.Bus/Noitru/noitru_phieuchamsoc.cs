@@ -149,7 +149,7 @@ namespace newBus.Noitru
                             objPhieutheodoichucnangsong.Save();
                         }
                         EmrDocuments emrdoc = new EmrDocuments();
-                        emrdoc.InitDocument((long)objPhieutheodoichucnangsong.IdBenhnhan, objPhieutheodoichucnangsong.MaLuotkham, Utility.Int64Dbnull(objPhieutheodoichucnangsong.Id), objPhieutheodoichucnangsong.NgayTao, Loaiphieu_HIS.PHIEUTHEODOI, "PHIEUTHEODOI", objPhieutheodoichucnangsong.NguoiTao, (Int16)objPhieutheodoichucnangsong.IdKhoanoitru, -1, true, "");
+                        emrdoc.InitDocument((long)objPhieutheodoichucnangsong.IdBenhnhan, objPhieutheodoichucnangsong.MaLuotkham, Utility.Int64Dbnull(objPhieutheodoichucnangsong.Id), objPhieutheodoichucnangsong.NgayTao, Loaiphieu_HIS.PHIEUTHEODOI_TRUYENDICH, "PHIEUTHEODOI_TRUYENDICH", objPhieutheodoichucnangsong.NguoiTao, (Int16)objPhieutheodoichucnangsong.IdKhoanoitru, -1, true, "");
                         emrdoc.Save();
                     }
                     scope.Complete();

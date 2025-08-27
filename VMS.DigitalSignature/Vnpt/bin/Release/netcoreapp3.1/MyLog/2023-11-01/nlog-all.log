@@ -1,0 +1,65 @@
+2023-11-01 09:40:17.5799||INFO|Startup|BaseDirectory: E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\ 
+2023-11-01 09:42:57.8055||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- 
+2023-11-01 09:42:57.8152||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user ADMIN with appId: 026084000490_3149784_20230930094614, secret:  
+2023-11-01 09:42:58.6937||ERROR|VietBaIT.ChuKySo.Api.DigitalSignature.Viettel.MobileCA|ERROR: Login to Cloud CA 
+2023-11-01 09:42:58.6937||DEBUG|DigitalSignatureCheckAccount|Invalid userName !!! 
+2023-11-01 09:42:59.7765||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- 
+2023-11-01 09:42:59.7765||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user ADMIN with appId: 026084000490_3149784_20230930094614, secret:  
+2023-11-01 09:43:00.0216||ERROR|VietBaIT.ChuKySo.Api.DigitalSignature.Viettel.MobileCA|ERROR: Login to Cloud CA 
+2023-11-01 09:43:00.0216||DEBUG|DigitalSignatureCheckAccount|Invalid userName !!! 
+2023-11-01 09:43:02.6759||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- 
+2023-11-01 09:43:02.6759||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user ADMIN with appId: 026084000490_3149784_20230930094614, secret:  
+2023-11-01 09:43:02.9190||ERROR|VietBaIT.ChuKySo.Api.DigitalSignature.Viettel.MobileCA|ERROR: Login to Cloud CA 
+2023-11-01 09:43:02.9190||DEBUG|DigitalSignatureCheckAccount|Invalid userName !!! 
+2023-11-01 09:43:06.4062||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- 
+2023-11-01 09:43:06.4062||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user ADMIN with appId: 026084000490_3149784_20230930094614, secret: 026084000490 
+2023-11-01 09:43:06.8259||DEBUG|DigitalSignatureCheckAccount|026084000490_3149784_20230930094614 
+2023-11-01 09:43:06.8259||DEBUG|DigitalSignatureCheckAccount|Successfully !!! 
+2023-11-01 09:43:43.8002||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- 
+2023-11-01 09:43:43.8002||DEBUG|DigitalSignaturePdfFileSign|SignatureImagePath: E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\signature.png 
+2023-11-01 09:43:43.8268||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2311010001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '026084000490_3149784_20230930094614', secret: '026084000490' 
+2023-11-01 09:43:43.8268||DEBUG|DigitalSignaturePdfFileSign|File Length: 310685 
+2023-11-01 09:43:43.8286||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 53368 
+2023-11-01 09:44:46.2857||INFO|Startup|BaseDirectory: E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\ 
+2023-11-01 09:44:48.6098||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- 
+2023-11-01 09:44:48.6098||DEBUG|DigitalSignaturePdfFileSign|SignatureImagePath: E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\signature.png 
+2023-11-01 09:44:48.6098||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2311010001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '026084000490_3149784_20230930094614', secret: '026084000490' 
+2023-11-01 09:44:48.6281||DEBUG|DigitalSignaturePdfFileSign|File Length: 310685 
+2023-11-01 09:44:48.6281||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 53368 
+2023-11-01 09:45:44.7562||INFO|Startup|BaseDirectory: E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\ 
+2023-11-01 09:46:25.3769||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- 
+2023-11-01 09:46:25.3769||DEBUG|DigitalSignaturePdfFileSign|SignatureImagePath: E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\signature_image.jpg 
+2023-11-01 09:46:25.4018||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2311010001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '026084000490_3149784_20230930094614', secret: '026084000490' 
+2023-11-01 09:46:25.4120||DEBUG|DigitalSignaturePdfFileSign|File Length: 310685 
+2023-11-01 09:46:25.4120||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 52590 
+2023-11-01 09:46:57.2795||INFO|Startup|BaseDirectory: E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\ 
+2023-11-01 09:47:33.5891||INFO|Startup|BaseDirectory: E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\ 
+2023-11-01 09:47:44.7978||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- 
+2023-11-01 09:47:44.7978||DEBUG|DigitalSignaturePdfFileSign|SignatureImagePath: E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\signature_image.jpg 
+2023-11-01 09:47:44.7978||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2311010001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '026084000490_3149784_20230930094614', secret: '026084000490' 
+2023-11-01 09:47:44.8210||DEBUG|DigitalSignaturePdfFileSign|File Length: 310685 
+2023-11-01 09:47:44.8210||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 52590 
+2023-11-01 09:48:35.1031||INFO|Startup|BaseDirectory: E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\ 
+2023-11-01 09:48:38.1657||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- 
+2023-11-01 09:48:38.1657||DEBUG|DigitalSignaturePdfFileSign|SignatureImagePath: E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\signature_image.jpg 
+2023-11-01 09:48:38.1731||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2311010001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '026084000490_3149784_20230930094614', secret: '026084000490' 
+2023-11-01 09:48:38.1731||DEBUG|DigitalSignaturePdfFileSign|File Length: 310685 
+2023-11-01 09:48:38.1731||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 52590 
+2023-11-01 09:51:23.1311||INFO|Startup|BaseDirectory: E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\ 
+2023-11-01 09:51:27.1299||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- 
+2023-11-01 09:51:27.1299||DEBUG|DigitalSignaturePdfFileSign|SignatureImagePath: E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\signature_image.jpg 
+2023-11-01 09:51:27.1299||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2311010001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '026084000490_3149784_20230930094614', secret: '026084000490' 
+2023-11-01 09:51:27.1537||DEBUG|DigitalSignaturePdfFileSign|File Length: 310685 
+2023-11-01 09:51:27.1537||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 52590 
+2023-11-01 09:52:29.7255||INFO|Startup|BaseDirectory: E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\ 
+2023-11-01 09:52:35.3541||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- 
+2023-11-01 09:52:35.3603||DEBUG|DigitalSignaturePdfFileSign|SignatureImagePath: E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\signature_image.jpg 
+2023-11-01 09:52:35.3603||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2311010001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '026084000490_3149784_20230930094614', secret: '026084000490' 
+2023-11-01 09:52:35.3818||DEBUG|DigitalSignaturePdfFileSign|File Length: 310685 
+2023-11-01 09:52:35.3818||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 52590 
+2023-11-01 09:54:15.5620||INFO|Startup|BaseDirectory: E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\ 
+2023-11-01 09:54:28.4164||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- 
+2023-11-01 09:54:28.4164||DEBUG|DigitalSignaturePdfFileSign|SignatureImagePath: E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\signature_image.jpg 
+2023-11-01 09:54:28.4239||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2311010001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '026084000490_3149784_20230930094614', secret: '026084000490' 
+2023-11-01 09:54:28.4239||DEBUG|DigitalSignaturePdfFileSign|File Length: 310685 
+2023-11-01 09:54:28.4239||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 52590 

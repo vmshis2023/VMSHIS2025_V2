@@ -685,6 +685,8 @@ namespace VNS.HIS.NGHIEPVU.THUOC
                             .Where(TPhieuCapphatNoitru.IdCapphatColumn).IsEqualTo(_phieucapphat.IdCapphat).Execute();
                         List<string> lstIddonthuoc = (from p in lstPhieuCapphatCt.AsEnumerable()
                                                     select Utility.sDbnull(p.IdDonthuoc, "-1")).ToList<string>();
+                        List<string> lstIdChitietdonthuoc = (from p in lstPhieuCapphatCt.AsEnumerable()
+                                                      select Utility.sDbnull(p.IdChitietdonthuoc, "-1")).ToList<string>();
                         new Delete().From(TPhieuCapphatChitiet.Schema).Where(TPhieuCapphatChitiet.Columns.IdCapphat).IsEqualTo(
                             _phieucapphat.IdCapphat).Execute();
                         foreach (var _PhieuCapphatCt in lstPhieuCapphatCt)
@@ -701,7 +703,7 @@ namespace VNS.HIS.NGHIEPVU.THUOC
                             _ThuocCapphatCt.IsNew = true;
                             _ThuocCapphatCt.Save();
                         }
-                        SPs.ThuocCapnhatthongtincapphatDonthuocChitiet(string.Join(",", lstIddonthuoc.ToArray<string>()), _phieucapphat.IdCapphat, 1).Execute();
+                        SPs.ThuocCapnhatthongtincapphatDonthuocChitiet(string.Join(",", lstIddonthuoc.ToArray<string>()), string.Join(",", lstIdChitietdonthuoc.ToArray<string>()), _phieucapphat.IdCapphat, 1).Execute();
                         Scope.Complete();
                     }
                     return ActionResult.Success;
@@ -1292,6 +1294,8 @@ namespace VNS.HIS.NGHIEPVU.THUOC
                         {
                             List<string> lstIddonthuoc = (from p in lstPhieuCapphatCt.AsEnumerable()
                                                           select Utility.sDbnull(p.IdDonthuoc, "-1")).ToList<string>();
+                            List<string> lstIdChitietdonthuoc = (from p in lstPhieuCapphatCt.AsEnumerable()
+                                                          select Utility.sDbnull(p.IdChitietdonthuoc, "-1")).ToList<string>();
                             foreach (var _PhieuCapphatCt in lstPhieuCapphatCt)
                             {
                                 _PhieuCapphatCt.IdCapphat = _phieucapphat.IdCapphat;
@@ -1306,7 +1310,7 @@ namespace VNS.HIS.NGHIEPVU.THUOC
                                 //Xóa trong bảng kê tạm và cập nhật id theo id phiếu cấp phát để lúc duyệt và hủy tăng tốc độ xử lý. Bỏ phần này thì cần mở các phần ở duyệt phiếu với phần xóa t_tamke theo đơn chi tiết và khóa xóa t_tamke theo id cấp phát
 
                             }
-                            SPs.ThuocCapnhatthongtincapphatDonthuocChitiet(string.Join(",", lstIddonthuoc.ToArray<string>()), _phieucapphat.IdCapphat, 0).Execute();
+                            SPs.ThuocCapnhatthongtincapphatDonthuocChitiet(string.Join(",", lstIddonthuoc.ToArray<string>()), string.Join(",", lstIdChitietdonthuoc.ToArray<string>()), _phieucapphat.IdCapphat, 0).Execute();
 
                         }
                        

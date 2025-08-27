@@ -370,10 +370,10 @@ namespace VNS.HIS.UI.THANHTOAN
             try
             {
                 bool chotratienngoaitrukhidangnoitru = THU_VIEN_CHUNG.Laygiatrithamsohethong("THANHTOAN_CHOTRALAITIENNGOAITRU_KHIDANHAPVIEN", "0", false) == "1";
-                cmdCancel.Enabled = objLuotkham != null && objLuotkham.TrangthaiNoitru <= 0;
-                cmdAccept.Enabled = grdThongTinChuaThanhToan.GetCheckedRows().Length > 0 && objLuotkham != null && objLuotkham.TrangthaiNoitru <= 0 && Utility.ByteDbnull(objLuotkham.Noitru) <= 0;
+                //cmdCancel.Enabled = objLuotkham != null && objLuotkham.TrangthaiNoitru <= 0;
+                cmdAccept.Enabled = grdThongTinChuaThanhToan.GetCheckedRows().Length > 0 && objLuotkham != null;//&& objLuotkham.TrangthaiNoitru <= 0 && Utility.ByteDbnull(objLuotkham.Noitru) <= 0;
                 cmdInhoadon.Enabled = Utility.isValidGrid(grd_danhsach_ghino) && objLuotkham != null;
-                cmdInBienlai.Visible = Utility.isValidGrid(grd_danhsach_ghino) && objLuotkham != null;
+                //cmdInBienlai.Visible = Utility.isValidGrid(grd_danhsach_ghino) && objLuotkham != null;
                 //cmdInBienlaiTonghop.Visible = Utility.isValidGrid(grdList) && Utility.isValidGrid( grd_danhsach_ghino) &&  grd_danhsach_ghino.GetDataRows().Length > 1 && objLuotkham != null;
                 int TotalPayment = grd_danhsach_ghino.GetDataRows().Length;
                 if (TotalPayment > 1 && objLuotkham != null)
@@ -381,19 +381,19 @@ namespace VNS.HIS.UI.THANHTOAN
                     string _value = THU_VIEN_CHUNG.Laygiatrithamsohethong("THANHTOAN_KIEUHIEUTHI_INBIENLAITONGHOP", "0", false);
                     if (_value == "0")
                     {
-                        chkIntonghop.Visible = false;
+                        //chkIntonghop.Visible = false;
                     }
                     else
                     {
-                        chkIntonghop.Visible = true;
+                        //chkIntonghop.Visible = true;
                     }
 
                 }
 
                 else
                 {
-                    chkIntonghop.Visible = false;
-                    chkIntonghop.Checked = false;
+                    //chkIntonghop.Visible = false;
+                   // chkIntonghop.Checked = false;
                 }
             }
             catch (Exception ex)
@@ -487,7 +487,7 @@ namespace VNS.HIS.UI.THANHTOAN
                                   select Convert.ToDateTime(p.Cells["CreatedDate"].Value)).Max();
                     v_objPayment.MaxNgayTao = q;
                     List<KcbChietkhau> lstChietkhau = new List<KcbChietkhau>();
-                    List<string> lstKey = grdThongTinChuaThanhToan.GetCheckedRows().Select(c=>Utility.sDbnull(c.Cells[""].Value)).Distinct().ToList<string>();
+                    List<string> lstKey = grdThongTinChuaThanhToan.GetCheckedRows().Select(c=>Utility.sDbnull(c.Cells["privatekey"].Value)).Distinct().ToList<string>();
                     List<KcbThanhtoanChitiet> lstItems = Taodulieuthanhtoanchitiet(ref ErrMsg);
                     if (Utility.DoTrim(ErrMsg).Length > 0)
                     {
@@ -527,6 +527,13 @@ namespace VNS.HIS.UI.THANHTOAN
         r["id_tamthu"] = v_Payment_ID;
         r["tthai_tamthu"] = 1;
     });
+                            m_dtChiPhiThanhtoan.AsEnumerable()
+   .Where(r => lstKey.Contains(Utility.sDbnull(r["privatekey"])))
+   .ToList()
+   .ForEach(r => {
+       r["id_tamthu"] = v_Payment_ID;
+       r["tthai_tamthu"] = 1;
+   });
                             Utility.GotoNewRowJanus(grd_danhsach_ghino, "id", v_Payment_ID.ToString());
                             if (v_Payment_ID <= 0)
                             {
@@ -804,6 +811,8 @@ namespace VNS.HIS.UI.THANHTOAN
                     grd_danhsach_ghino.CurrentRow.IsChecked = true;
                     grd_danhsach_ghino.CurrentRow.EndEdit();
                 }
+                if (!Utility.AcceptQuestion("Bạn có chắc chắn muốn xóa các phiếu Ghi nợ đang chọn?","Xác nhận xóa phiếu ghi nợ",true))
+                    return;
                 GridEXRow[] lstRows = grd_danhsach_ghino.GetCheckedRows();
                 foreach (GridEXRow row in lstRows)
                 {
@@ -819,6 +828,28 @@ namespace VNS.HIS.UI.THANHTOAN
                                 return;
                             }
                         }
+                        if(objGhino.TrangThai==1)
+                        {
+                            Utility.ShowMsg(string.Format("Phiếu ghi nợ {0} đã được gạch nợ(hoặc thanh toán) nên bạn không thể xóa", id));
+                            return;
+                        }    
+                        //Kiểm tra trạng thái dịch vụ đã ghi nợ
+                        DataTable dtCheck = SPs.GhinoKiemtradieukienxoa(id,objLuotkham.IdBenhnhan,objLuotkham.MaLuotkham).GetDataSet().Tables[0];
+                        if(dtCheck.Rows.Count>0)
+                        {
+                            string s = "";
+                            var q = from p in dtCheck.AsEnumerable()
+                                    select Utility.sDbnull(p["ten_dvu"]);
+
+                            if (q.Any())
+                                s = string.Join("\r\n", q.ToArray<string>());
+                            if (s.Length > 0)
+                            {
+                                Utility.ShowMsg(string.Format("Phiếu ghi nợ {0} có một số dịch vụ đã bắt đầu thực hiện nên bạn không thể xóa\r\n{1}\r\nVui lòng hủy trạng thái thực hiện của các dịch vụ trước khi xóa Ghi nợ", id, s));
+                                return;
+                            }
+                          
+                        }    
                         using (var scope = new TransactionScope())
                         {
                             using (var dbscope = new SharedDbConnectionScope())

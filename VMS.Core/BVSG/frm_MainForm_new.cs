@@ -253,7 +253,7 @@ namespace CIS.CoreApp
             }
             finally
             {
-                LoadBackground("default",ImageLayout.Zoom);
+                LoadBackground("default", ImageLayout.Zoom);
                 SetLogo("logo_top");
             }
         }

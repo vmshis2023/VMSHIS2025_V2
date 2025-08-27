@@ -30,13 +30,15 @@ using Aspose.Words.Markup;
 using Aspose.Words.BuildingBlocks;
 using VMS.HIS.EMR.Forms.BA_Phieukham.Ucs;
 using VMS.HIS.EMR.Classes;
+using VNS.HIS.UI.Forms.NGOAITRU;
+using VMS.API.Libs;
 
 namespace VMS.HIS.UI.EMR
 {
     public partial class frm_Emr : Form
     {
         KcbLuotkham objLuotkham;
-        bool isAutoLoad = false;
+       public bool isAutoLoad = false;
         bool isAllowSelectionChanged = false;
         bool isAllowSelectedIndexChanged = false;//Cbobox
         private Logger _log;
@@ -56,6 +58,11 @@ namespace VMS.HIS.UI.EMR
         RichEditControl richEdit = new DevExpress.XtraRichEdit.RichEditControl();
         byte SearchTypeKeyDown = 0;//0= mã lượt khám;1= id bệnh nhân;2= mã bệnh án;3= số vào viện;4= tên người bệnh;10=bấm nút tìm kiếm
         BarManager barManager;
+
+        //Panel panelZoom;
+        //TrackBar trackBarZoom;
+        //Label lblZoom;
+        Timer hideTimer;
         public frm_Emr()
         {
             InitializeComponent();
@@ -84,13 +91,70 @@ namespace VMS.HIS.UI.EMR
             cboLoaiphieuEmr.KeyDown += CboLoaiphieuEmr_KeyDown;
             cboLoaiphieuHIS.KeyDown += CboLoaiphieuHIS_KeyDown;
             txtNguoiKy._OnEnterMe += TxtNguoiKy__OnEnterMe;
-            richEdit.KeyDown += RichEdit_KeyDown;
-            richEdit.SelectionChanged += RichEdit_SelectionChanged;
-            // Sự kiện chuột
-            richEdit.MouseDown += richEditControl1_MouseDown;
-            richEdit.MouseMove += richEditControl1_MouseMove;
-            richEdit.MouseUp += richEditControl1_MouseUp;
-            richEdit.Paint += richEditControl1_Paint;
+
+           
+            panelZoom.BackColor = Color.FromArgb(150, 0, 0, 0);
+
+
+            trackBarZoom.Minimum = 10;  // 10%
+                trackBarZoom.Maximum = 500; // 500%
+            trackBarZoom.Value = 100;   // 100% mặc định
+            trackBarZoom.TickFrequency = 10;
+
+            trackBarZoom.Scroll += TrackBarZoom_Scroll;
+                lblZoom.ForeColor = Color.White;
+                lblZoom.AutoSize = true;
+            lblZoom.Font = new System.Drawing.Font("Segoe UI", 10, FontStyle.Bold);
+            lblZoom.BackColor = Color.Transparent;
+      
+            lblZoom.Text = "100%";
+            //panelZoom.Controls.Add(lblZoom);
+
+            // ===== Timer ẩn panel =====
+            hideTimer = new Timer { Interval = 1500 };
+            hideTimer.Tick += (s, e) =>
+            {
+                panelZoom.Visible = false;
+                hideTimer.Stop();
+            };
+
+            // ===== Sự kiện di chuột trong RichEditControl =====
+            richEdit.MouseMove += RichEditControl1_MouseMove;
+
+            
+
+            //richEdit.KeyDown += RichEdit_KeyDown;
+            //richEdit.SelectionChanged += RichEdit_SelectionChanged;
+            //// Sự kiện chuột
+            //richEdit.MouseDown += richEditControl1_MouseDown;
+            //richEdit.MouseMove += richEditControl1_MouseMove;
+            //richEdit.MouseUp += richEditControl1_MouseUp;
+            //richEdit.Paint += richEditControl1_Paint;
+        }
+        // Xử lý zoom khi kéo TrackBar
+        private void TrackBarZoom_Scroll(object sender, EventArgs e)
+        {
+            // Zoom nội dung RichEditControl
+            richEdit.ActiveView.ZoomFactor = trackBarZoom.Value / 100f;
+
+            // Cập nhật % zoom hiển thị
+            lblZoom.Text = $"{trackBarZoom.Value}%";
+        }
+
+        // Hiện panel khi chuột gần đáy RichEditControl
+        private void RichEditControl1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Y > richEdit.Height - 80) // gần đáy
+            {
+                panelZoom.Visible = true;
+                hideTimer.Stop(); // dừng hẳn đếm ẩn
+            }
+            else
+            {
+                // Nếu chuột không ở đáy thì bắt đầu đếm ẩn
+                if (panelZoom.Visible && !hideTimer.Enabled)
+                    hideTimer.Start();
+            }
         }
         #region "Vẽ vùng ký"
         private Rectangle selectionRect = Rectangle.Empty;
@@ -268,7 +332,7 @@ namespace VMS.HIS.UI.EMR
         {
             ucThongtinnguoibenh_emr_basic1.txtMaluotkham.Text = Utility.sDbnull(grdPatient.GetValue("ma_luotkham"));
             ucThongtinnguoibenh_emr_basic1.Refresh();
-            uiTab.SelectedTab = uiTabPageThongtin;
+            uiTab.SelectedTab = uiTabPageEmr;
         }
         private void TxtSovaovien_KeyDown(object sender, KeyEventArgs e)
         {
@@ -569,7 +633,9 @@ namespace VMS.HIS.UI.EMR
                         flowSignInfor.Controls.Add(_nguoiky);
                     }
                 }
-                
+                flowSignInfor.Height = flowSignInfor.Controls.Count > 0 ? 50 : 0;
+
+
             }
             catch (Exception)
             {
@@ -667,14 +733,20 @@ namespace VMS.HIS.UI.EMR
             sql += " where id_benhnhan={0} and ma_luotkham='{1}' order by ngay_pttt";
             sql = string.Format(sql, objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham);
             dtPhieuPttt = Utility.ExecuteSql(sql, CommandType.Text).Tables[0];
-        }    
+        }
+        string File2View = "";
+        string FileKiso= "";
+        string FileIn = "";
         private void grdEmrDocuments_SelectionChanged(object sender, EventArgs e)
         {
 
-           
+            File2View = "";
+            FileKiso = "";
+            FileIn = "";
             if (!isAllowSelectionChanged)
             {
-                pdfViewer1.CloseDocument();
+                if (pdfViewer1 != null)
+                    pdfViewer1.CloseDocument();
                 return;
             }
             
@@ -702,6 +774,7 @@ namespace VMS.HIS.UI.EMR
                 string reportcode = "";
                 long IdPhieu = -1;
                 long IdFile = Utility.Int64Dbnull(currRow.Cells[EmrDocument.Columns.IdFile].Value);
+                bool tthai_kiso = false;
                 //Bắt đầu xử lý sinh lại file dựa vào loại phiếu HIS và report_code
                 EmrDocument objDoc = EmrDocument.FetchByID(Utility.Int64Dbnull(currRow.Cells[EmrDocument.Columns.IdFile].Value));
                 if (objDoc != null)
@@ -710,6 +783,8 @@ namespace VMS.HIS.UI.EMR
                     loaiphieuhis = objDoc.LoaiPhieuHis;
                     loaiphieu_cha = objDoc.LoaiphieuCha;
                     reportcode = objDoc.ReportCode;
+                    FileKiso =Utility.sDbnull( objDoc.FileKiso,"");
+                    FileIn = objDoc.FileIn;
                 }
                 else
                 {
@@ -724,7 +799,7 @@ namespace VMS.HIS.UI.EMR
                 
                 DataTable v_dtEmrData;
                 SysReport objReport;
-                string pdfFileName = "";
+
                 if (loaiphieuhis == Loaiphieu_HIS.FILE_DINHKEM)
                 {
                 }
@@ -742,10 +817,23 @@ namespace VMS.HIS.UI.EMR
                         Utility.ShowMsg(string.Format("Không tồn tại dữ liệu của phiếu {0} với id={1}. Có thể đã bị xóa. Vui lòng kiểm tra lại", loaiphieuhis, IdPhieu));
                         return;
                     }
-                    pdfFileName = WordPrinter.InPhieu(null, v_dtEmrData, "PHIEUDANGKYKCB.doc", true);// Utility.sDbnull(objReport.FileWord));
+                    File2View = WordPrinter.InPhieu(null, v_dtEmrData, "PHIEUDANGKYKCB.doc", true);// Utility.sDbnull(objReport.FileWord));
 
                 }
-                else if (loaiphieuhis == Loaiphieu_HIS.PHIEUPTTT)
+                else if (loaiphieuhis == Loaiphieu_HIS.PHIEU_CAMKET_PTTT)
+                {
+                    EmrPhieucamketchapnhanPttt phieucamket = EmrPhieucamketchapnhanPttt.FetchByID(IdPhieu);
+                    if (phieucamket.IdPhieu <= 0)
+                    {
+                        Utility.ShowMsg("Phiếu Cam kết chấp nhận PTTT không tồn tại, vui lòng kiểm tra nội bộ xem có bị xóa trong lúc bạn đang bật EMR hay không");
+                        return;
+                    }
+                    DataTable dtData = SPs.EmrPhieucamketchapnhanPtttLaythongtinIn(phieucamket.IdPhieu).GetDataSet().Tables[0];
+                    dtData.TableName = "phieucamketchapnhan_pttt";
+                    dtData.Rows[0]["sngay_camket"] = phieucamket != null ? Utility.FormatDateTime_gio_ngay_thang_nam(phieucamket.NgayCamket, "") : "Ngày ......./......./..........";
+                    File2View = WordPrinter.InPhieu(null,dtData, "phieucamketchapnhan_pttt.doc", true);
+                }
+                else if (loaiphieuhis == Loaiphieu_HIS.PHIEUPTTT || loaiphieu_cha == Loaiphieu_HIS.PHIEUPTTT)
                 {
                     KcbPhieupttt objPttt = KcbPhieupttt.FetchByID(IdPhieu);
                     v_dtEmrData = SPs.KcbPtttInphieu(IdPhieu).GetDataSet().Tables[0];
@@ -756,31 +844,41 @@ namespace VMS.HIS.UI.EMR
                     }
                     v_dtEmrData.TableName = "kcb_phieu_pttt";
                     string ma_loaidvu = "PTTT";
-                    if (reportcode == "PHIEU_CAMKET_PTTT")
+                     if (reportcode == Loaiphieu_HIS.PHIEU_CHUNGNHAN_PTTT)
                     {
-                        pdfFileName = InPhieuCamKetPTTT(v_dtEmrData, objPttt, ma_loaidvu);
+                        File2View = InPhieuChungNhanPTTT(v_dtEmrData, objPttt, ma_loaidvu);
                     }
-                    else if (reportcode == "PHIEU_CHUNGNHAN_PTTT")
+                    else if (reportcode == Loaiphieu_HIS.PHIEUPTTT)
                     {
-                        pdfFileName = InPhieuChungNhanPTTT(v_dtEmrData, objPttt, ma_loaidvu);
+                        File2View = InPhieuPTTT(v_dtEmrData, objPttt);
                     }
-                    else if (reportcode == "PHIEU_PTTT_NOITRU")
+                    else if (reportcode == Loaiphieu_HIS.PHIEU_TUONGTRINH_PTTT)
                     {
-                        pdfFileName = InPhieuPTTT(v_dtEmrData, objPttt);
-                    }
-                    else if (reportcode == "PHIEU_TUONGTRINH_PTTT")
-                    {
-                        pdfFileName = InPhieuTuongTrinhPTTT(v_dtEmrData, objPttt, ma_loaidvu);
+                        File2View = InPhieuTuongTrinhPTTT(v_dtEmrData, objPttt, ma_loaidvu);
                     }
 
                 }
-                else if (loaiphieuhis == Loaiphieu_HIS.BENHAN_TO1 || loaiphieuhis == Loaiphieu_HIS.BENHAN_TO2 || loaiphieuhis == Loaiphieu_HIS.BENHAN_TO3 || loaiphieuhis == Loaiphieu_HIS.BENHAN_TO4 
-                    || loaiphieuhis == Loaiphieu_HIS.BA_IVF_CHONG || loaiphieuhis == Loaiphieu_HIS.BENHAN_BIA
-                    || loaiphieuhis == Loaiphieu_HIS.BA_IVF_VO || loaiphieuhis == Loaiphieu_HIS.BA_NAMKHOA
-                    || loaiphieuhis == Loaiphieu_HIS.BA_NGOAIKHOA || loaiphieuhis == Loaiphieu_HIS.BA_NGOAITRU
-                    || loaiphieuhis == Loaiphieu_HIS.BA_NHIKHOA || loaiphieuhis == Loaiphieu_HIS.BA_NOIKHOA
-                    || loaiphieuhis == Loaiphieu_HIS.BA_PHUKHOA || loaiphieuhis == Loaiphieu_HIS.BA_SANKHOA
-                    || loaiphieuhis == Loaiphieu_HIS.BA_SOSINH )
+                else if(loaiphieuhis==Loaiphieu_HIS.PHIEU_TTBA)
+                {
+                    EmrTomtatBa ttba = new Select().From(EmrTomtatBa.Schema)
+               .Where(EmrTomtatBa.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
+               .And(EmrTomtatBa.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
+               .ExecuteSingle<EmrTomtatBa>();
+                    if (ttba == null || ttba.Id <= 0)
+                    {
+                        Utility.ShowMsg(string.Format("Không tồn tại dữ liệu của phiếu {0} với id={1}. Có thể đã bị xóa. Vui lòng kiểm tra lại", loaiphieuhis, IdPhieu));
+                        return;
+                    }
+                    File2View = clsInBA.InTomTatBA(ttba,true);
+                }
+                //else if (loaiphieuhis == Loaiphieu_HIS.BENHAN_TO1 || loaiphieuhis == Loaiphieu_HIS.BENHAN_TO2 || loaiphieuhis == Loaiphieu_HIS.BENHAN_TO3 || loaiphieuhis == Loaiphieu_HIS.BENHAN_TO4
+                //    || loaiphieuhis == Loaiphieu_HIS.BA_IVF_CHONG || loaiphieuhis == Loaiphieu_HIS.BENHAN_BIA
+                //    || loaiphieuhis == Loaiphieu_HIS.BA_IVF_VO || loaiphieuhis == Loaiphieu_HIS.BA_NAMKHOA
+                //    || loaiphieuhis == Loaiphieu_HIS.BA_NGOAIKHOA || loaiphieuhis == Loaiphieu_HIS.BA_NGOAITRU
+                //    || loaiphieuhis == Loaiphieu_HIS.BA_NHIKHOA || loaiphieuhis == Loaiphieu_HIS.BA_NOIKHOA
+                //    || loaiphieuhis == Loaiphieu_HIS.BA_PHUKHOA || loaiphieuhis == Loaiphieu_HIS.BA_SANKHOA
+                //    || loaiphieuhis == Loaiphieu_HIS.BA_SOSINH)
+                else if (LoaiBA.All.Contains(loaiphieu_cha))
                 {
                     int ToBA = 0;
                     if (loaiphieuhis == Loaiphieu_HIS.BENHAN_TO1) ToBA = 1;
@@ -788,9 +886,9 @@ namespace VMS.HIS.UI.EMR
                     else if (loaiphieuhis == Loaiphieu_HIS.BENHAN_TO3) ToBA = 3;
                     else if (loaiphieuhis == Loaiphieu_HIS.BENHAN_TO4) ToBA = 4;
                     else if (loaiphieuhis == Loaiphieu_HIS.BENHAN_BIA) ToBA = 0;
-                    else  ToBA = 100;
+                    else ToBA = 100;
                     string ma_ba = "";
-                    pdfFileName = clsInBA.InBA(IdPhieu, ma_ba, loaiphieu_cha,objLuotkham, dtkhoanhapvien,dtkhoachuyen,dt_tssk,dtPhieuPttt, ToBA, true);
+                    File2View = clsInBA.InBA(IdPhieu, ma_ba, loaiphieu_cha, objLuotkham, dtkhoanhapvien, dtkhoachuyen, dt_tssk, dtPhieuPttt, ToBA, true);
                 }
                 else if (loaiphieuhis == Loaiphieu_HIS.PHIEUTOMTATDIEUTRINGOAITRU)//Phiếu tóm tắt điều trị ngoại trú
                 {
@@ -807,7 +905,7 @@ namespace VMS.HIS.UI.EMR
                     ChangeData(ref v_dtEmrData, drInfor, dsData.Tables[2], dsData.Tables[4]);
                     //List<string> lstBarcodeFields = new List<string>() { "ma_luotkham_barcode" };
                     //List<string> lstBarcodeValues = new List<string>() { Utility.sDbnull(drInfor["ma_luotkham_barcode"]) };
-                    pdfFileName = WordPrinter.InPhieu(null, v_dtEmrData, "PHIEUTOMTATDIEUTRINGOAITRU.doc", null, null, true);// Utility.sDbnull(objReport.FileWord));
+                    File2View = WordPrinter.InPhieu(null, v_dtEmrData, "PHIEUTOMTATDIEUTRINGOAITRU.doc", null, null, true);// Utility.sDbnull(objReport.FileWord));
                 }
                 else if (loaiphieuhis == Loaiphieu_HIS.PHIEURAVIEN)
                 {
@@ -817,11 +915,11 @@ namespace VMS.HIS.UI.EMR
                         Utility.ShowMsg(string.Format("Không tồn tại dữ liệu của phiếu {0} với id={1}. Có thể đã bị xóa. Vui lòng kiểm tra lại", loaiphieuhis, IdPhieu));
                         return;
                     }
-                    pdfFileName = VMS.HIS.Bus.WordPrinter.InPhieu(null, v_dtEmrData, "PHIEU_RAVIEN.doc", true);
+                    File2View = VMS.HIS.Bus.WordPrinter.InPhieu(null, v_dtEmrData, "PHIEU_RAVIEN.doc", true);
                 }
                 else if (loaiphieuhis == Loaiphieu_HIS.PHIEUNHAPVIEN)
                 {
-                    pdfFileName = IN_PHIEU_KHAM_VAO_VIEN(reportcode);
+                    File2View = IN_PHIEU_KHAM_VAO_VIEN(reportcode);
                 }
                 else if (loaiphieuhis == Loaiphieu_HIS.PHIEUCHUYENVIEN)
                 {
@@ -841,15 +939,15 @@ namespace VMS.HIS.UI.EMR
                     dtData.Rows[0]["sngaygio_nhapvien"] = giayxacnhan != null ? Utility.FormatDateTime_giophut_ngay_thang_nam(giayxacnhan.NgayVaovien, "") : ".......... giờ ....... ngày ........./........./.............";
                     dtData.Rows[0]["sngaygio_ravien"] = giayxacnhan != null ? Utility.FormatDateTime_giophut_ngay_thang_nam(giayxacnhan.NgayRavien, "") : ".......... giờ ....... ngày ........./........./.............";
                     dtData.Rows[0]["sngayxacnhan"] = Utility.FormatDateTime(Utility.sDbnull(dtData.Rows[0]["sngayxacnhan"], ""), "ngày......tháng......năm.........");
-                    pdfFileName= WordPrinter.InPhieu(dtData, "TT25_GIAYCHUNGNHAN_TAINANTHUONGTICH.doc","", true);
+                    File2View = WordPrinter.InPhieu(dtData, "TT25_GIAYCHUNGNHAN_TAINANTHUONGTICH.doc", "", true);
 
                 }
                 else if (loaiphieuhis == Loaiphieu_HIS.TT25_GIAYXACNHAN_NGHIDUONGTHAI)
                 {
-                  Tt25GiayxacnhanNghiduongthai  giayxacnhan = new Select().From(Tt25GiayxacnhanNghiduongthai.Schema)
-                       .Where(Tt25GiayxacnhanNghiduongthai.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
-                       .And(Tt25GiayxacnhanNghiduongthai.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
-                       .ExecuteSingle<Tt25GiayxacnhanNghiduongthai>();
+                    Tt25GiayxacnhanNghiduongthai giayxacnhan = new Select().From(Tt25GiayxacnhanNghiduongthai.Schema)
+                         .Where(Tt25GiayxacnhanNghiduongthai.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
+                         .And(Tt25GiayxacnhanNghiduongthai.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
+                         .ExecuteSingle<Tt25GiayxacnhanNghiduongthai>();
                     if (giayxacnhan.Id <= 0)
                     {
                         Utility.ShowMsg("Bạn cần lưu thông tin Giấy xác nhận nghỉ dưỡng thai trước khi thực hiện in phiếu");
@@ -858,14 +956,14 @@ namespace VMS.HIS.UI.EMR
                     DataTable dtData = SPs.Tt25GiayxacnhanNghiduongthaiLaythongtinIn(giayxacnhan.Id).GetDataSet().Tables[0];
                     dtData.TableName = "TT25_GIAYXACNHAN_NGHIDUONGTHAI";
                     dtData.Rows[0]["sngayxacnhan"] = Utility.FormatDateTime(Utility.sDbnull(dtData.Rows[0]["sngayxacnhan"], ""), "ngày......tháng......năm.........");
-                    pdfFileName = WordPrinter.InPhieu(dtData, "TT25_GIAYXACNHAN_NGHIDUONGTHAI.doc", "", true);
+                    File2View = WordPrinter.InPhieu(dtData, "TT25_GIAYXACNHAN_NGHIDUONGTHAI.doc", "", true);
                 }
                 else if (loaiphieuhis == Loaiphieu_HIS.TT25_GIAYXACNHAN_NGUOIMEKHONGDUSUCKHOE_CHAMSOCCON)
                 {
-                 Tt25GiayxacnhanNguoimekhongdusuckhoeChamsoccon   giayxacnhan = new Select().From(Tt25GiayxacnhanNguoimekhongdusuckhoeChamsoccon.Schema)
-                        .Where(Tt25GiayxacnhanNguoimekhongdusuckhoeChamsoccon.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
-                        .And(Tt25GiayxacnhanNguoimekhongdusuckhoeChamsoccon.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
-                        .ExecuteSingle<Tt25GiayxacnhanNguoimekhongdusuckhoeChamsoccon>();
+                    Tt25GiayxacnhanNguoimekhongdusuckhoeChamsoccon giayxacnhan = new Select().From(Tt25GiayxacnhanNguoimekhongdusuckhoeChamsoccon.Schema)
+                           .Where(Tt25GiayxacnhanNguoimekhongdusuckhoeChamsoccon.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
+                           .And(Tt25GiayxacnhanNguoimekhongdusuckhoeChamsoccon.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
+                           .ExecuteSingle<Tt25GiayxacnhanNguoimekhongdusuckhoeChamsoccon>();
                     if (giayxacnhan.Id <= 0)
                     {
                         Utility.ShowMsg("Bạn cần lưu thông tin Giấy xác nhận người mẹ không đủ điều kiện chăm sóc con trước khi thực hiện in phiếu");
@@ -877,7 +975,7 @@ namespace VMS.HIS.UI.EMR
                     dtData.Rows[0]["sngaygio_nhapvien"] = giayxacnhan != null ? Utility.FormatDateTime_giophut_ngay_thang_nam(giayxacnhan.Ngayvaovien, "") : ".......... giờ ....... ngày ........./........./.............";
 
                     dtData.Rows[0]["sngayxacnhan"] = Utility.FormatDateTime(Utility.sDbnull(dtData.Rows[0]["sngayxacnhan"], ""), "ngày......tháng......năm.........");
-                    pdfFileName = WordPrinter.InPhieu(dtData, "TT25_GIAYXACNHAN_NGUOIMEKHONGDUSUCKHOE_CHAMSOCCON.doc", "", true);
+                    File2View = WordPrinter.InPhieu(dtData, "TT25_GIAYXACNHAN_NGUOIMEKHONGDUSUCKHOE_CHAMSOCCON.doc", "", true);
                 }
                 else if (loaiphieuhis == Loaiphieu_HIS.TT25_GIAYXACNHAN_QUATRINHDIEUTRINOITRU)
                 {
@@ -895,11 +993,11 @@ namespace VMS.HIS.UI.EMR
                     dtData.Rows[0]["sngaygio_nhapvien"] = giayxacnhan != null ? Utility.FormatDateTime_giophut_ngay_thang_nam(giayxacnhan.NgayVaovien, "") : ".......... giờ ....... ngày ........./........./.............";
                     dtData.Rows[0]["sngaygio_ravien"] = giayxacnhan != null ? Utility.FormatDateTime_giophut_ngay_thang_nam(giayxacnhan.NgayRavien, "") : ".......... giờ ....... ngày ........./........./.............";
                     dtData.Rows[0]["sngayxacnhan"] = Utility.FormatDateTime(Utility.sDbnull(dtData.Rows[0]["sngayxacnhan"], ""), "ngày......tháng......năm.........");
-                    pdfFileName = WordPrinter.InPhieu(dtData, "TT25_GIAYXACNHAN_QUATRINHDIEUTRINOITRU.doc", "", true);
+                    File2View = WordPrinter.InPhieu(dtData, "TT25_GIAYXACNHAN_QUATRINHDIEUTRINOITRU.doc", "", true);
                 }
                 else if (loaiphieuhis == Loaiphieu_HIS.TT25_GIAYXACNHAN_QUATRINHDIEUTRIVOSINH)
                 {
-                    Tt25Giayxacnhanquatrinhdieutrivosinh  giayxacnhan = new Select().From(Tt25Giayxacnhanquatrinhdieutrivosinh.Schema)
+                    Tt25Giayxacnhanquatrinhdieutrivosinh giayxacnhan = new Select().From(Tt25Giayxacnhanquatrinhdieutrivosinh.Schema)
                         .Where(Tt25Giayxacnhanquatrinhdieutrivosinh.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
                         .And(Tt25Giayxacnhanquatrinhdieutrivosinh.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
                         .ExecuteSingle<Tt25Giayxacnhanquatrinhdieutrivosinh>();
@@ -913,7 +1011,7 @@ namespace VMS.HIS.UI.EMR
                     dtData.Rows[0]["sngaygio_nhapvien"] = giayxacnhan != null ? Utility.FormatDateTime_giophut_ngay_thang_nam(giayxacnhan.NgayVaovien, "") : ".......... giờ ....... ngày ........./........./.............";
                     dtData.Rows[0]["sngaygio_ravien"] = giayxacnhan != null ? Utility.FormatDateTime_giophut_ngay_thang_nam(giayxacnhan.NgayRavien, "") : ".......... giờ ....... ngày ........./........./.............";
                     dtData.Rows[0]["sngayxacnhan"] = Utility.FormatDateTime(Utility.sDbnull(dtData.Rows[0]["sngayxacnhan"], ""), "ngày......tháng......năm.........");
-                    pdfFileName = WordPrinter.InPhieu(dtData, "TT25_GIAYXACNHAN_QUATRINHDIEUTRIVOSINH.doc", "", true);
+                    File2View = WordPrinter.InPhieu(dtData, "TT25_GIAYXACNHAN_QUATRINHDIEUTRIVOSINH.doc", "", true);
                 }
                 else if (loaiphieuhis == Loaiphieu_HIS.PHIEUCHIDINH)
                 {
@@ -942,12 +1040,12 @@ namespace VMS.HIS.UI.EMR
                     }
                     flowKQCLS.ResumeLayout();
                     if (flowKQCLS.Controls.Count > 1) flowKQCLS.Height = 50;
-                    pdfFileName = string.Format(@"{0}\EMR_DOCUMENTS\{1}\{2}\{3}_{4}.doc", Application.StartupPath, objLuotkham.MaLuotkham, loaiphieuhis, IdPhieu, reportcode);
-                    Utility.Try2CreateFolder(Path.GetDirectoryName(pdfFileName));
+                    File2View = string.Format(@"{0}\EMR_DOCUMENTS\{1}\{2}\{3}_{4}.doc", Application.StartupPath, objLuotkham.MaLuotkham, loaiphieuhis, IdPhieu, reportcode);
+                    Utility.Try2CreateFolder(Path.GetDirectoryName(File2View));
                     if (objDoc != null)
                     {
                         DataTable m_dtChitietPhieuCLS = new KCB_CHIDINH_CANLAMSANG().LaythongtinCLS_Thuoc((int)IdPhieu, "DICHVU");
-                        ResetNhominCLS(m_dtChitietPhieuCLS, reportcode, ref pdfFileName, Utility.Bool2Bool(objDoc.LaPhieutach));
+                        ResetNhominCLS(m_dtChitietPhieuCLS, reportcode, ref File2View, Utility.Bool2Bool(objDoc.LaPhieutach));
                     }
                 }
                 else if (loaiphieuhis == Loaiphieu_HIS.PHIEU_KQCDHA || loaiphieuhis == Loaiphieu_HIS.PHIEU_KQXN)
@@ -994,7 +1092,7 @@ namespace VMS.HIS.UI.EMR
                             else
                                 FtpClientRIS.Download(ftpFile, localFile, true);
                         }
-                        pdfFileName = localFile;
+                        File2View = localFile;
                         //string Url = string.Format("{0}?zoom=100%#navpanes=1&toolbar=1", localFile);
                         //this.Text = string.Format("Xem kết quả PDF từ file: {0}", Url);
 
@@ -1008,47 +1106,89 @@ namespace VMS.HIS.UI.EMR
                 {
                     string lstIdPhieu = Utility.sDbnull(grdEmrDocuments.GetValue("lst_id_phieu"), "");
                     //Kiểm tra nếu phiếu điều trị chung có id_phieu=-1 thì cần insert lại các chữ ký của bác sỹ chưa ký
-                    if (IdPhieu==-1)
+                    if (IdPhieu == -1)
                     {
                         //Lấy danh sách các ID phiếu điều trị trong trường hợp người dùng tạo phiếu điều trị theo dải ngày
                         SPs.EmrTaochukyTuPhieudieutrichung(objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan, -1, "PHIEUDIEUTRI", lstIdPhieu).Execute();
                         //Riêng phiếu điều trị thì sẽ lấy lại thông tin ký trên phiếu
                         globalVariables.dtSignInfor = SPs.EmrLaythongtinChukyPhieudieutrichung(objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan, lstIdPhieu, "PHIEUDIEUTRI", "PHIEUDIEUTRI").GetDataSet().Tables[0];
                         LoadSignInfor();
-                    } 
+                    }
                     else
                     {
                         lstIdPhieu = IdPhieu.ToString();
-                    }    
-                    pdfFileName = string.Format(@"{0}\EMR_DOCUMENTS\{1}\{2}\{3}_{4}.Doc", Application.StartupPath, objLuotkham.MaLuotkham, loaiphieuhis, IdPhieu, reportcode);
-                    InphieuDieutri(pdfFileName, lstIdPhieu, false);
+                    }
+                    File2View = string.Format(@"{0}\EMR_DOCUMENTS\{1}\{2}\{3}_{4}.Doc", Application.StartupPath, objLuotkham.MaLuotkham, loaiphieuhis, IdPhieu, reportcode);
+                    InphieuDieutri(File2View, lstIdPhieu, false);
+                }
+                else if (loaiphieuhis == Loaiphieu_HIS.PHIEUTHEODOI_TRUYENDICH)
+                {
+                    try
+                    {
+                        NoitruPhieudichtruyen PDT = new Select().From(NoitruPhieudichtruyen.Schema)
+                               .Where(NoitruPhieudichtruyen.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
+                               .And(NoitruPhieudichtruyen.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
+                               .And(NoitruPhieudichtruyen.Columns.IdPhieu).IsEqualTo(IdPhieu)
+                               .ExecuteSingle<NoitruPhieudichtruyen>();
+                        if (PDT.IdPhieu <= 0)
+                        {
+                            Utility.ShowMsg("Phiếu truyền dịch không tồn tại. Vui lòng kiểm tra xem có bị xóa hay không?");
+                            //cmdGhi.Focus();
+                            return;
+                        }
+                        DataTable dtData = SPs.NoitruPhieutruyendichLaydulieuinphieu(PDT.MaLuotkham, PDT.IdBenhnhan, PDT.IdPhieu).GetDataSet().Tables[0];
+                        dtData.TableName = "PHIEUTHEODOI_TRUYENDICH";
+                        //dtData.Rows[0]["sngaygio_nhapvien"] = PDT != null ? Utility.FormatDateTime_giophut_ngay_thang_nam(PDT.NgayVaovien, "") : ".......... giờ ....... ngày ........./........./.............";
+                        //dtData.Rows[0]["sngaygio_ravien"] = PDT != null ? Utility.FormatDateTime_giophut_ngay_thang_nam(PDT.NgayRavien, "") : ".......... giờ ....... ngày ........./........./.............";
+                        //dtData.Rows[0]["sngayxacnhan"] = Utility.FormatDateTime(Utility.sDbnull(dtData.Rows[0]["sngayxacnhan"], ""), "ngày......tháng......năm.........");
+                        WordPrinter.InPhieuTruyenDich(dtData, "PHIEUTHEODOI_TRUYENDICH.doc", "");
+
+
+                    }
+                    catch (Exception ex)
+                    {
+                        Utility.CatchException(ex);
+                    }
+                }
+                else if (loaiphieuhis == Loaiphieu_HIS.PHIEU_CONGKHAI)
+                {
+                    string lst_idphieu = Utility.GetValueFromGridColumn(grdEmrDocuments, "lst_id_phieu");
+                    DataSet dsData = SPs.NoitruPhieucongkhaiLaydulieuinExcel(DateTime.Now, DateTime.Now, objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, lst_idphieu,
+                        1, 1, 1, 1).GetDataSet();//2 tham số từ ngày....đến ngày không dùng
+                    THU_VIEN_CHUNG.SapxepthutuinPhieucongkhai(dsData.Tables[0], false);
+                    dsData.Tables[0].DefaultView.Sort = "stt_in,stt_hthi_loaidichvu ,stt_hthi_dichvu,stt_hthi_chitiet,ten";
+
+                    THU_VIEN_CHUNG.CreateXML_NOLOGO(dsData.Tables[0], Application.StartupPath + @"\Xml4Reports\noitru_phieucongkhai_Excel.XML");
+
+                    if (dsData == null || dsData.Tables.Count <= 0 || dsData.Tables[0].Rows.Count <= 0)
+                    {
+                        Utility.ShowMsg("Không tìm thấy dữ liệu in phiếu công khai.", "Thông báo", MessageBoxIcon.Warning);
+                        return;
+                    }
+                    dsData.Tables[0].TableName = "PHIEU_CONGKHAI";
+                    dsData.Tables[1].Rows[0]["sngaygio_nhapvien"] =  Utility.FormatDateTime_giophut_ngay_thang_nam(PDT.NgayVaovien, "") : ".......... giờ ....... ngày ........./........./.............";
+                    dsData.Tables[1].Rows[0]["sngaygio_ravien"] = PDT != null ? Utility.FormatDateTime_giophut_ngay_thang_nam(PDT.NgayRavien, "") : ".......... giờ ....... ngày ........./........./.............";
+                    //dtData.Rows[0]["sngayxacnhan"] = Utility.FormatDateTime(Utility.sDbnull(dtData.Rows[0]["sngayxacnhan"], ""), "ngày......tháng......năm.........");
+                    WordPrinter.InPhieuCongKhai(dsData, "PHIEU_CONGKHAI.doc", "");
                 }
                 else if (loaiphieuhis == Loaiphieu_HIS.PHIEUCHIDINH)
                 {
 
                 }
-                else if (loaiphieuhis == Loaiphieu_HIS.PHIEUCHIDINH)
-                {
-
-                }
-                else if (loaiphieuhis == Loaiphieu_HIS.PHIEUCHIDINH)
-                {
-
-                }
-                if(!pdfFileName.ToLower().Contains(".pdf"))
+                if(!File2View.ToLower().Contains(".pdf"))
                 {
                     SetDocView(true);
-                    LoadWordFile(pdfFileName, true);
+                    LoadWordFile(File2View, true);
                 }   
                 else
                 {
                     #region PDFViewer
                     SetDocView(false);
-                    pdfViewer1.CloseDocument();
-                    if (pdfFileName != "" && File.Exists(pdfFileName))
+                    if (pdfViewer1 != null) pdfViewer1.CloseDocument();
+                    if (File2View != "" && File.Exists(File2View))
                     {
                         if (stream == null)
-                            stream = new FileStream(pdfFileName, FileMode.Open);
+                            stream = new FileStream(File2View, FileMode.Open);
                         pdfViewer1.LoadDocument(stream);
                     }
                     #endregion
@@ -1060,6 +1200,10 @@ namespace VMS.HIS.UI.EMR
             }
             finally
             {
+                if (FileKiso != "")
+                {
+                    cmdKidientu.Enabled = cmdHuyKyDientu.Enabled = false;
+                }
                 Utility.DefaultNow(this);
             }
         }
@@ -1350,6 +1494,7 @@ namespace VMS.HIS.UI.EMR
                         File.Delete(pdfFileName);
                     }
                     doc.Save(pdfFileName, SaveFormat.Doc);
+                   
 
                 }
             }
@@ -1718,6 +1863,13 @@ namespace VMS.HIS.UI.EMR
                         File.Delete(fileKetqua);
                     }
                     doc.Save(fileKetqua, SaveFormat.Doc);
+
+                    //Lưu ra pdf
+                    //string pdf2sign = Application.StartupPath + @"\pdf2sign";
+                    //Utility.Try2CreateFolder(pdf2sign);
+                    //string pdfFile = pdf2sign + @"\" + Guid.NewGuid().ToString() + ".pdf";
+                    //KisoBookmarks(fileKetqua, pdfFile,"","");
+                    //doc.Save(pdfFile, Aspose.Words.SaveFormat.Pdf);
                     return fileKetqua;
 
                     //if (File.Exists(path))
@@ -1747,7 +1899,119 @@ namespace VMS.HIS.UI.EMR
                 return "";
             }
         }
+        void KisoBookmarks(SignatureLocation signloc,string wordPath, string pdfOutPath, string certPath, string certPassword)
+        {
+            try
+            {
+                // Step 1: Load Word document
+                var doc = new Aspose.Words.Document(wordPath);
 
+                // Step 2: Prepare layout tools
+                var collector = new Aspose.Words.Layout.LayoutCollector(doc);
+                var enumerator = new Aspose.Words.Layout.LayoutEnumerator(doc);
+
+                var bookmarkLocations = new List<VMSDigitalSignatureLocation>();
+                var pdfRect = new VMSDigitalSignatureRect() {StartX = Convert.ToInt32(signloc.PdfRect.X), StartY = Convert.ToInt32(signloc.PdfRect.Y), EndX = Convert.ToInt32(signloc.PdfRect.X + signloc.PdfRect.Width), EndY = Convert.ToInt32(signloc.PdfRect.Y + signloc.PdfRect.Height)};
+                bookmarkLocations.Add(new VMSDigitalSignatureLocation
+                {
+                    SignName = signloc.SignerName,
+                    pageSign = signloc.Page,
+                    lstRect = new List<VMSDigitalSignatureRect>() { pdfRect }
+                });
+
+                //foreach (Aspose.Words.Bookmark bookmark in doc.Range.Bookmarks)
+                //{
+                //    var startNode = bookmark.BookmarkStart;
+                //    var entity = collector.GetEntity(startNode);
+                //    if (entity == null) continue;
+
+                //    enumerator.Current = entity;
+                //    RectangleF rect = enumerator.Rectangle;
+                //    int pageIndex = collector.GetStartPageIndex(startNode);
+
+                //    var section = (Aspose.Words.Section)doc.GetChild(NodeType.Section, pageIndex - 1, true);
+                //    double pageHeight = section.PageSetup.PageHeight;
+                //    float pdfY = (float)(pageHeight - rect.Y - rect.Height);
+
+                //    var pdfRect = new VMSDigitalSignatureRect() { StartX = Convert.ToInt32(rect.X), StartY = Convert.ToInt32(pdfY), EndX = Convert.ToInt32(rect.X + rect.Width), EndY = Convert.ToInt32(pdfY + rect.Height) };
+                //    bookmarkLocations.Add(new VMSDigitalSignatureLocation
+                //    {
+                //        SignName = bookmark.Name,
+                //        pageSign = pageIndex,
+                //        lstRect =new List<VMSDigitalSignatureRect>() { pdfRect }
+                //    });
+                //}
+
+                // Step 3: Save Word to PDF
+                doc.Save(pdfOutPath, SaveFormat.Pdf);
+                string pdfOutPath_signed = string.Format(@"{0}\{1}_signed.pdf",Path.GetDirectoryName(pdfOutPath),Path.GetFileNameWithoutExtension(pdfOutPath));
+                byte[] fileContent = File.ReadAllBytes(pdfOutPath);
+                string dataTobeSign = Convert.ToBase64String(fileContent);
+
+                //Gọi hàm kí số
+                string webApiLink = "https://localhost:44378/api/ID";
+                string errMsg = "";
+                var objDigitalSignature = new VMSDigitalSignature();
+                objDigitalSignature.base64Pdf = dataTobeSign;
+                objDigitalSignature.base64Signature = null;
+                objDigitalSignature.signatureType = "0";
+                objDigitalSignature.signatureName = "CKS_BACSI";
+                objDigitalSignature.pdfFileName = pdfOutPath;
+                objDigitalSignature.userName = "";
+                objDigitalSignature.userFullName = "";
+                objDigitalSignature.userDesc = "";
+                objDigitalSignature.appId = "";
+                objDigitalSignature.secret ="pwd";
+                objDigitalSignature.locations = bookmarkLocations;
+                objDigitalSignature.dateSigned = DateTime.Now;
+                var base64Pdf = HisLisWebApi.INST.DigitalSignaturePdfFileSign(webApiLink, objDigitalSignature, ref errMsg);
+                //var pdf = new Aspose.Pdf.Document(pdfOutPath);
+                //foreach (var field in pdf.Form.Fields)
+                //{
+                //    if (field is Aspose.Pdf.Forms.SignatureField sig)
+                //    {
+                //        Console.WriteLine($"Field Name: {sig.PartialName}, Page: {sig.PageIndex}, Rect: {sig.Rect}");
+                //        // Ví dụ: sig.PartialName == "cc#signature1" hoặc tương tự
+                //    }
+                //}
+
+                //// Step 4: Apply digital signatures to PDF
+                //var pdfDoc = new Aspose.Pdf.Document(pdfOutPath);
+                //var cert = new Aspose.Pdf.Forms.PKCS7(certPath, certPassword);
+
+                //foreach (var bm in bookmarkLocations)
+                //{
+                //    var page = pdfDoc.Pages[bm.Page];
+                //    var rect = new Aspose.Pdf.Rectangle(
+                //        bm.Rect.Left,
+                //        bm.Rect.Bottom,
+                //        bm.Rect.Right,
+                //        bm.Rect.Top
+                //    );
+
+                //    var sigField = new  Aspose.Pdf.Forms.SignatureField(page, rect)
+                //    {
+                //        PartialName = $"Signature_{bm.Name}"
+                //    };
+
+                //    pdfDoc.Form.Add(sigField);
+                //   // sigField.Signature = new Signature(cert)
+                //   //sigField.Signature = cert;
+                //   // sigField.Reason = "Ký tại vị trí bookmark";
+                //   // sigField.ContactInfo = "cuong@example.com";
+                //   // sigField.Location = "Hanoi";
+                //}
+
+                var pdfBytes = Convert.FromBase64String(base64Pdf);
+                File.WriteAllBytes(pdfOutPath_signed, pdfBytes);
+            }
+            catch (Exception ex)
+            {
+
+                
+            }
+           
+        }
         private string InPhieuPTTT(DataTable dtEmrDocuments, KcbPhieupttt objpttt)
         {
             try
@@ -1767,7 +2031,7 @@ namespace VMS.HIS.UI.EMR
                 drData["email_bv"] = globalVariables.Branch_Email;
                 List<string> fieldNames = new List<string>();
                 drData["sngay_pttt"] = Utility.FormatDateTime(Utility.sDbnull(drData["sngay_pttt"], ""), "ngày......tháng......năm.........");//BHYT giá trị đến
-                string PathDoc = AppDomain.CurrentDomain.BaseDirectory + "Doc\\PHIEU_PTTT_NOITRU.doc";
+                string PathDoc = AppDomain.CurrentDomain.BaseDirectory + "Doc\\PHIEU_PTTT.doc";
                 string writePathdoc = AppDomain.CurrentDomain.BaseDirectory + "tempDoc\\";
                 if (!Directory.Exists(writePathdoc)) Directory.CreateDirectory(writePathdoc);
                 string mergeFields = AppDomain.CurrentDomain.BaseDirectory + "MergeFields\\";
@@ -1776,7 +2040,7 @@ namespace VMS.HIS.UI.EMR
                 if (!File.Exists(PathDoc))
                 {
                     string tieude = "";
-                    Utility.GetReport("PHIEU_PTTT_NOITRU", ref tieude, ref PathDoc);
+                    Utility.GetReport("PHIEU_PTTT", ref tieude, ref PathDoc);
                 }
                 if (!File.Exists(PathDoc))
                 {
@@ -1795,7 +2059,7 @@ namespace VMS.HIS.UI.EMR
 
                 string fileKetqua = string.Format("{0}{1}{2}{3}{4}_{5}_{6}_{7}",
                                Path.GetDirectoryName(writePathdoc), Path.DirectorySeparatorChar,
-                               Path.GetFileNameWithoutExtension(PathDoc), "PHIEU_PTTT_NOITRU", objLuotkham.MaLuotkham, Utility.sDbnull(objpttt.IdPhieu), Guid.NewGuid().ToString(), Path.GetExtension(PathDoc));
+                               Path.GetFileNameWithoutExtension(PathDoc), "PHIEU_PTTT", objLuotkham.MaLuotkham, Utility.sDbnull(objpttt.IdPhieu), Guid.NewGuid().ToString(), Path.GetExtension(PathDoc));
 
 
                 if ((drData != null) && File.Exists(PathDoc))
@@ -1863,6 +2127,13 @@ namespace VMS.HIS.UI.EMR
                         File.Delete(fileKetqua);
                     }
                     doc.Save(fileKetqua, SaveFormat.Doc);
+                    //Lấy tọa độ
+                    SignatureLocation signloc = GetSignatureLineLocation(fileKetqua, "CKS_BACSI");
+                    //Lưu ra pdf
+                    string pdf2sign = Application.StartupPath + @"\pdf2sign";
+                    Utility.Try2CreateFolder(pdf2sign);
+                    string pdfFile = pdf2sign + @"\" + Guid.NewGuid().ToString() + ".pdf";
+                    KisoBookmarks( signloc,fileKetqua, pdfFile, "", "");
                     return fileKetqua;
 
                     //if (File.Exists(path))
@@ -1892,7 +2163,47 @@ namespace VMS.HIS.UI.EMR
                 return "";
             }
         }
+       
+        public static SignatureLocation GetSignatureLineLocation(string wordPath, string signerName)
+        {
+            var doc = new Aspose.Words.Document(wordPath);
+            var collector = new Aspose.Words.Layout.LayoutCollector(doc);
+            var enumerator = new Aspose.Words.Layout.LayoutEnumerator(doc);
 
+            foreach (Aspose.Words.Drawing.Shape shape in doc.GetChildNodes(NodeType.Shape, true))
+            {
+                if (shape.Name == signerName)
+                {
+                    var entity = collector.GetEntity(shape);
+                    if (entity == null)
+                        continue;
+
+                    enumerator.Current = entity;
+                    var rect = enumerator.Rectangle;
+
+                    int pageIndex = collector.GetStartPageIndex(shape);
+                    //int pageIndex = collector.GetStartPageIndex(shape);
+                    var section = (Aspose.Words.Section)shape.GetAncestor(NodeType.Section);
+                    if (section == null)
+                        continue;
+                    //var section = (Aspose.Words.Section)doc.GetChild(NodeType.Section, pageIndex - 1, true);
+                    double pageHeight = section.PageSetup.PageHeight;
+
+                    // Chuyển sang toạ độ PDF (gốc dưới)
+                    float pdfY = (float)(pageHeight - rect.Y - rect.Height);
+                    var pdfRect = new RectangleF(rect.X, pdfY, rect.Width, rect.Height);
+
+                    return new SignatureLocation
+                    {
+                        SignerName = signerName,
+                        Page = pageIndex,
+                        PdfRect = pdfRect
+                    };
+                }
+            }
+
+            return null;
+        }
         private string InPhieuCamKetPTTT(DataTable dtEmrDocuments, KcbPhieupttt objpttt, string ma_loaidvu)
         {
             try
@@ -2205,7 +2516,11 @@ namespace VMS.HIS.UI.EMR
         {
             isAllowSelectionChanged = false;
             if (optPdfView.Checked)
-                pdfViewer1.CloseDocument();
+
+            {
+                if (pdfViewer1 != null) 
+                    pdfViewer1.CloseDocument();
+            }
             else
                 richEdit.CreateNewDocument();
             if (ucThongtinnguoibenh_emr_basic1.objLuotkham != null)
@@ -2223,12 +2538,33 @@ namespace VMS.HIS.UI.EMR
                 LoadEmrData();
                 LoadDocsAndSigns();
                 isAllowSelectionChanged = true;
+                TuybienMenuBenhAn();
             }
             else
             {
                 grdDocs.DataSource = null;
                 grdSign.DataSource = null;
                 grdEmrDocuments.DataSource = null;
+            }    
+        }
+        void TuybienMenuBenhAn()
+        {
+            if(Utility.Int64Dbnull( objLuotkham.IdBa)<=0)//Thực hiện khởi tạo
+            {
+                mnu01BV_BANoikhoa.Enabled = false;
+                mnu10BV_BANgoaikhoa.Enabled = false;
+                mnu15BV_BANgoaitru.Enabled = false;
+                mnuBAPhukhoa.Enabled = false;
+                mnuBASanKhoa.Enabled = false;
+               
+            }  
+            else
+            {
+                mnu01BV_BANoikhoa.Enabled = objLuotkham.LoaiBenhAn == LoaiBA.BA_NOIKHOA;
+                mnu10BV_BANgoaikhoa.Enabled = objLuotkham.LoaiBenhAn == LoaiBA.BA_NGOAIKHOA;
+                mnu15BV_BANgoaitru.Enabled = objLuotkham.LoaiBenhAn == LoaiBA.BA_NGOAITRU;
+                mnuBAPhukhoa.Enabled = objLuotkham.LoaiBenhAn == LoaiBA.BA_PHUKHOA;
+                mnuBASanKhoa.Enabled = objLuotkham.LoaiBenhAn == LoaiBA.BA_SANKHOA;
             }    
         }
         void LoadDocsAndSigns()
@@ -2495,7 +2831,10 @@ namespace VMS.HIS.UI.EMR
                 cboGay.SelectionLength = 0;
                 isAllowSelectedIndexChanged = true;
                 if (isAutoLoad)
+                {
+                    uiTab.SelectedTab = uiTabPageEmr;
                     ucThongtinnguoibenh_emr_basic1.Refresh();
+                }
             }
             catch (Exception ex)
             {
@@ -2787,7 +3126,7 @@ namespace VMS.HIS.UI.EMR
                     }
 
                     richEdit.ActiveViewType = DevExpress.XtraRichEdit.RichEditViewType.PrintLayout;
-                    richEdit.ActiveView.ZoomFactor = 1.0f; // 100%
+                    richEdit.ActiveView.ZoomFactor = trackBarZoom.Value / 100f;
                 }
                 else
                 {
@@ -2852,7 +3191,7 @@ namespace VMS.HIS.UI.EMR
                     //    richEdit.Options.Behavior.ShowPopupMenu = DevExpress.XtraRichEdit.DocumentCapability.Disabled;
                     //}
                     richEdit.ActiveViewType = DevExpress.XtraRichEdit.RichEditViewType.PrintLayout;
-                    richEdit.ActiveView.ZoomFactor = 1.0f; // 100%
+                    richEdit.ActiveView.ZoomFactor = trackBarZoom.Value / 100f; //1.0f; // 100%
                 }
                 else
                 {
@@ -2891,45 +3230,23 @@ namespace VMS.HIS.UI.EMR
         {
             richEdit.SaveDocument(templatefile, DocumentFormat.OpenXml);
         }
-
+        
         private void cmdSign_Click(object sender, EventArgs e)
         {
-            if (stream != null)
+            try
             {
-                stream.Close();
-                stream = null;
+                
             }
-            pdfViewer1.CloseDocument();
-            string loaiphieuhis = "";
-            string reportcode = "";
-            long IdPhieu = -1;
-            //Bắt đầu xử lý sinh lại file dựa vào loại phiếu HIS và report_code
-            EmrDocument objDoc = EmrDocument.FetchByID(Utility.Int64Dbnull(currRow.Cells[EmrDocument.Columns.IdFile].Value));
-            if (objDoc != null)
+            catch (Exception ex)
             {
-                IdPhieu = Utility.Int64Dbnull(objDoc.IdPhieu);// Utility.Int64Dbnull(currRow.Cells[EmrDocument.Columns.IdPhieu].Value);
-                loaiphieuhis = objDoc.LoaiPhieuHis;
-                reportcode = objDoc.ReportCode;
-            }
-            else
-            {
-                loaiphieuhis = Utility.sDbnull(currRow.Cells[EmrDocument.Columns.LoaiPhieuHis].Value);
-                reportcode = Utility.sDbnull(currRow.Cells[EmrDocument.Columns.ReportCode].Value);
-            }
-            nguoi_tao = Utility.sDbnull(currRow.Cells[EmrDocument.Columns.NguoiTao].Value);
 
-            string pdfFileName = "";
-            if (loaiphieuhis == Loaiphieu_HIS.PHIEUDIEUTRI)
-            {
-                pdfFileName = string.Format(@"{0}\EMR_DOCUMENTS\{1}\{2}\{3}_{4}.pdf", Application.StartupPath, objLuotkham.MaLuotkham, loaiphieuhis, IdPhieu, reportcode);
-                InphieuDieutri(pdfFileName, IdPhieu.ToString(), true);
+
             }
-            pdfViewer1.CloseDocument();
-            if (pdfFileName != "" && File.Exists(pdfFileName))
+            finally
             {
-                if (stream == null)
-                    stream = new FileStream(pdfFileName, FileMode.Open);
-                pdfViewer1.LoadDocument(stream);
+                grdEmrDocuments.CurrentRow.BeginEdit();
+                grdEmrDocuments.CurrentRow.IsChecked = false;
+                grdEmrDocuments.CurrentRow.EndEdit();
             }
         }
 
@@ -3018,7 +3335,7 @@ namespace VMS.HIS.UI.EMR
                         }
                         if (num > 0)
                         {
-                            Utility.ShowMsg("Đã ký các phiếu thành công. Nhấn OK để kết thúc");
+                            Utility.ShowMsg("Đã ký các phiếu thành công");
                         }
                     }
                 }
@@ -3107,7 +3424,7 @@ namespace VMS.HIS.UI.EMR
                         }
                         if (num > 0)
                         {
-                            Utility.ShowMsg("Đã ký các phiếu thành công. Nhấn OK để kết thúc");
+                            Utility.ShowMsg("Đã ký các phiếu thành công");
                         }
                     }
                 }
@@ -3184,7 +3501,7 @@ namespace VMS.HIS.UI.EMR
                         }
                         if (num > 0)
                         {
-                            Utility.ShowMsg("Đã Hủy ký các phiếu thành công. Nhấn OK để kết thúc");
+                            Utility.ShowMsg("Đã Hủy ký các phiếu thành công");
                         }
                     }
                 }
@@ -3263,7 +3580,7 @@ namespace VMS.HIS.UI.EMR
                         }
                         if (num > 0)
                         {
-                            Utility.ShowMsg("Đã Hủy ký các phiếu thành công. Nhấn OK để kết thúc");
+                            Utility.ShowMsg("Đã Hủy ký các phiếu thành công");
                         }
                     }
                 }
@@ -3353,7 +3670,7 @@ namespace VMS.HIS.UI.EMR
                         }
                         if (num > 0)
                         {
-                            Utility.ShowMsg("Đã ẩn các phiếu thành công. Nhấn OK để kết thúc");
+                            Utility.ShowMsg("Đã ẩn các phiếu thành công");
                         }
                     }
                 }
@@ -3403,7 +3720,7 @@ namespace VMS.HIS.UI.EMR
                         }
                         if (num > 0)
                         {
-                            Utility.ShowMsg("Đã Hiển thị lại các phiếu thành công. Nhấn OK để kết thúc");
+                            Utility.ShowMsg("Đã Hiển thị lại các phiếu thành công");
                         }
                     }
                 }
@@ -3418,45 +3735,70 @@ namespace VMS.HIS.UI.EMR
         private string FtpClientCurrentDirectoryAttatchmentFiles = "";
         private readonly string _baseDirectoryAttatchmentFiles = string.Format("{0}{1}", AppDomain.CurrentDomain.BaseDirectory, "emr_attachmentfiles\\");
         int num = 0;
-        
+
         private void cmdXoaphieu_Click(object sender, EventArgs e)
         {
+
             try
             {
-              
-                if(grdEmrDocuments.GetCheckedRows().Count()<=0)
+
+                if (grdEmrDocuments.GetCheckedRows().Count() <= 0)
                 {
                     grdEmrDocuments.CurrentRow.BeginEdit();
                     grdEmrDocuments.CurrentRow.IsChecked = true;
                     grdEmrDocuments.CurrentRow.EndEdit();
                 }
+
                 grdEmrDocuments.SelectionChanged -= grdEmrDocuments_SelectionChanged;
+
+                if(!Utility.AcceptQuestion("Bạn có chắc chắn muốn xóa các phiếu đang chọn hay không?","Xác nhận xóa",true))
+                {
+                    return;
+                }    
                 foreach (GridEXRow row in grdEmrDocuments.GetCheckedRows())
                 {
                     string nguon_tao = Utility.sDbnull(row.Cells["nguon_tao"].Value);
                     string nguoi_tao = Utility.sDbnull(row.Cells["nguoi_tao"].Value);
                     string ten_phieu = Utility.sDbnull(row.Cells["ten_phieu"].Value);
+                    string loai_phieu_his = Utility.sDbnull(row.Cells["loai_phieu_his"].Value);
                     string file_path = Utility.sDbnull(row.Cells["file_path"].Value);
                     string file_name = Utility.sDbnull(row.Cells["file_in"].Value);
+                    long id_phieu = Utility.Int64Dbnull(row.Cells["id_phieu"].Value);
                     long id_file = Utility.Int64Dbnull(row.Cells["id_file"].Value);
-                    if (nguon_tao == "5")
+                    if (Utility.Coquyen("EMR_XOA_PHIEU") || globalVariables.UserName == nguoi_tao)
                     {
-                        if (globalVariables.UserName != nguoi_tao)
+                        EmrDocument objEmrDoc = EmrDocument.FetchByID(id_file);
+                        if (objEmrDoc == null)
                         {
-                            Utility.ShowMsg(string.Format("Phiếu đính kèm {0} được tạo bởi người dùng {1} nên bạn không được phép xóa khỏi hệ thống.\nVui lòng kiểm tra lại", ten_phieu, nguoi_tao));
-                            continue;
+                            if (Utility.AcceptQuestion("Phiếu không tồn tại (Có thể bị xóa bởi người khác). Vui lòng kiểm tra nội bộ để biết thêm chi tiết\nBạn có muốn tiếp tục xóa các phiếu còn lại hay không?", "Thông báo", true))
+                            {
+                                continue;
+                            }
+                            else
+                                break;
                         }
                         else
                         {
-
-                            num = new Delete().From(EmrDocument.Schema).Where(EmrDocument.Columns.IdFile).IsEqualTo(id_file).Execute();
+                            if (Utility.Bool2Bool(objEmrDoc.TthaiKydientu))
+                            {
+                                if (Utility.AcceptQuestion(string.Format("Phiếu {0} được kí điện tử bởi {1} nên bạn không được phép xóa khỏi hệ thống\nLiên hệ người kí thực hiện hủy kí trước khi xóa\nBạn có muốn tiếp tục xóa các phiếu còn lại hay không?", ten_phieu, objEmrDoc.NguoiKydientu), "Thông báo", true))
+                                {
+                                    continue;
+                                }
+                                else
+                                    break;
+                            }
+                            num = SPs.EmrXoaPhieu(id_file, objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, id_phieu, loai_phieu_his, "").Execute();// new Delete().From(EmrDocument.Schema).Where(EmrDocument.Columns.IdFile).IsEqualTo(id_file).Execute();
                             if (num > 0)
                             {
-                                //Thực hiện xóa phiếu, xóa khỏi cả từ Server
-                                if (FtpClientAttatchmentFiles.FtpFileExists(string.Format("{0}/{1}", file_path, file_name)))
+                                if (nguon_tao == "5")
                                 {
-                                    FtpClientAttatchmentFiles.FtpDelete(string.Format("{0}/{1}", file_path, file_name));
+                                    //Thực hiện xóa phiếu, xóa khỏi cả từ Server
+                                    if (FtpClientAttatchmentFiles.FtpFileExists(string.Format("{0}/{1}", file_path, file_name)))
+                                    {
+                                        FtpClientAttatchmentFiles.FtpDelete(string.Format("{0}/{1}", file_path, file_name));
 
+                                    }
                                 }
                                 row.Delete();
                             }
@@ -3464,51 +3806,22 @@ namespace VMS.HIS.UI.EMR
                     }
                     else
                     {
-                        if (!Utility.Coquyen("EMR_XOA_PHIEU"))//Các phiếu sinh từ hệ thống trong quá trình KCB, nhập liệu, không phải phiếu đính kèm
+                        if (Utility.AcceptQuestion(string.Format("Phiếu {0} được tạo bởi người dùng {1} nên bạn không được phép xóa khỏi hệ thống.\nVui lòng kiểm tra lại\nBạn có muốn tiếp tục xóa các phiếu còn lại hay không?", ten_phieu, nguoi_tao), "Thông báo", true))
                         {
-                            Utility.thongbaokhongcoquyen("EMR_XOA_PHIEU", " xóa phiếu");
-                            return;
+                            continue;
                         }
-                        List<long> lstIdPhieu_Other = (from p in grdEmrDocuments.GetCheckedRows() where Utility.sDbnull(p.Cells["nguoi_tao"].Value) != globalVariables.UserName select Utility.Int64Dbnull(p.Cells[EmrDocument.Columns.IdPhieu].Value)).Distinct().ToList<long>();
-                        List<long> lstIdPhieu_DaHuy = (from p in grdEmrDocuments.GetCheckedRows() where Utility.sDbnull(p.Cells["tthai_huy"].Value) == "1" && Utility.sDbnull(p.Cells["nguoi_tao"].Value) == globalVariables.UserName select Utility.Int64Dbnull(p.Cells[EmrDocument.Columns.IdPhieu].Value)).Distinct().ToList<long>();
-                        List<long> lstIdPhieu_ChuaHuy = (from p in grdEmrDocuments.GetCheckedRows() where Utility.sDbnull(p.Cells["tthai_huy"].Value) == "0" && Utility.sDbnull(p.Cells["nguoi_tao"].Value) == globalVariables.UserName select Utility.Int64Dbnull(p.Cells[EmrDocument.Columns.IdPhieu].Value)).Distinct().ToList<long>();
-                        if (lstIdPhieu_Other.Count > 0)
-                        {
-                            Utility.ShowMsg("Bạn đang chọn lẫn các phiếu của người khác để Xóa (Có thể do bạn đang có Full quyền xem EMR nên nhìn thấy phiếu của người khác).\nChú ý: Tất cả các phiếu lẫn này hệ thống sẽ không tác động cập nhật lại trạng thái.\nNhấn OK để tiếp tục");
-                        }
-                        if (lstIdPhieu_DaHuy.Count > 0)
-                        {
-                            Utility.ShowMsg("Bạn đang chọn lẫn cả các phiếu đã Hủy.\nChú ý: Tất cả các phiếu lẫn này hệ thống sẽ không tác động cập nhật lại trạng thái.\nNhấn OK để tiếp tục");
-                        }
-                        if (lstIdPhieu_ChuaHuy.Count > 0)
-                        {
-                            if (Utility.AcceptQuestion("Bạn có chắc chắn muốn Hủy cho các phiếu đang chọn. Sau khi Hủy xong, Những người dùng khác sẽ không nhìn thấy các phiếu này(Trừ Admin hoặc người có full Quyền xem hồ sơ EMR)", "Xác nhận", true))
-                            {
-                                foreach (GridEXRow _row in grdEmrDocuments.GetCheckedRows())
-                                {
-                                    if (Utility.sDbnull(_row.Cells["tthai_huy"].Value) == "0" && Utility.sDbnull(_row.Cells["nguoi_tao"].Value) == globalVariables.UserName)
-                                    {
-                                        long id_phieu = Utility.Int64Dbnull(_row.Cells[EmrDocument.Columns.IdPhieu].Value);
-                                        long IdFile = Utility.Int64Dbnull(_row.Cells[EmrDocument.Columns.IdFile].Value);
-                                        string LoaiPhieuHis = Utility.sDbnull(_row.Cells[EmrDocument.Columns.LoaiPhieuHis].Value);
-                                        num += SPs.EmrThaydoitrangthai(IdFile, id_phieu, LoaiPhieuHis, 1, true, globalVariables.UserName, DateTime.Now).Execute();
-
-                                    }
-                                }
-                                if (num > 0)
-                                {
-                                    Utility.ShowMsg("Đã Hủy các phiếu thành công. Nhấn OK để kết thúc");
-                                }
-                            }
-                        }
-                    }    
-                }   
-                
+                        else
+                            break;
+                    }
+                }
+                if (num > 0)
+                {
+                    ResetView();
+                    Utility.ShowMsg("Đã Hủy các phiếu thành công");
+                }
             }
             catch (Exception ex)
             {
-
-
             }
             finally
             {
@@ -3554,7 +3867,7 @@ namespace VMS.HIS.UI.EMR
                         }
                         if (num > 0)
                         {
-                            Utility.ShowMsg("Đã khôi phục các phiếu Hủy thành công. Nhấn OK để kết thúc");
+                            Utility.ShowMsg("Đã khôi phục các phiếu Hủy thành công");
                         }
                     }
                 }
@@ -3671,7 +3984,9 @@ namespace VMS.HIS.UI.EMR
                     Utility.ShowMsg(string.Format("Đã reset toàn bộ các phiếu liên quan đến người bệnh {0}-{1}. Nhấn OK để bắt đầu dựng hồ sơ EMR", ucThongtinnguoibenh_emr_basic1.txtMaluotkham.Text, ucThongtinnguoibenh_emr_basic1.txtTenBN.Text));
                     isAllowSelectionChanged = false;
                     if (optPdfView.Checked)
-                        pdfViewer1.CloseDocument();
+                    {
+                        if (pdfViewer1 != null) pdfViewer1.CloseDocument();
+                    }
                     else
                         richEdit.CreateNewDocument();
                     dtEmrDocuments = SPs.EmrLaydanhsachDocuments(objLuotkham.MaLuotkham, -1, globalVariables.UserName, Utility.ByteDbnull(globalVariables.IsAdmin || globalVariables.isSuperAdmin || Utility.Coquyen("EMR_FULL") ? 1 : 0), "").GetDataSet().Tables[0];
@@ -3722,7 +4037,7 @@ namespace VMS.HIS.UI.EMR
                 }
                 else
                 {
-                    lstNguoiKy = emrDoc.GetThongtinKy(objDoc.IdPhieu.Value, objDoc.LoaiPhieuHis);//username+ vị trí ký
+                    lstNguoiKy = emrDoc.GetThongtinKy(objDoc.IdPhieu.Value, objDoc.LoaiPhieuHis, objDoc.LoaiphieuCha);//username+ vị trí ký
 
                     foreach (var nguoiky in lstNguoiKy)
                     {
@@ -3766,7 +4081,10 @@ namespace VMS.HIS.UI.EMR
                 {
                     isAllowSelectionChanged = false;
                     if (optPdfView.Checked)
-                        pdfViewer1.CloseDocument();
+                    {
+                        if (pdfViewer1 != null)
+                            pdfViewer1.CloseDocument();
+                    }
                     else
                         richEdit.CreateNewDocument();
 
@@ -4077,10 +4395,7 @@ namespace VMS.HIS.UI.EMR
                     DevExpress.XtraRichEdit.API.Native.Bookmark bookmark = document.Bookmarks[chuky];
                     if (bookmark != null)
                     {
-                        //document.CaretPosition = document.CreatePosition(bookmark.Range.Start.ToInt());
-                        //richEdit.ScrollToCaret();
-                        //break;
-
+                        
                         int bmStart = bookmark.Range.Start.ToInt();
 
                         foreach (DocumentImage img in document.Images)
@@ -4089,6 +4404,7 @@ namespace VMS.HIS.UI.EMR
 
                             if (imgStart >= bmStart)
                             {
+
                                 // Di chuyển caret đến ảnh
                                 document.CaretPosition = document.CreatePosition(img.Range.Start.ToInt());
                                 document.Selection = document.CreateRange(img.Range.Start, img.Range.Length);
@@ -4126,6 +4442,227 @@ namespace VMS.HIS.UI.EMR
         private void cmdPrintPreview_Click(object sender, EventArgs e)
         {
             richEdit.ShowPrintDialog();
+        }
+
+        private void cmdCollapse_Click(object sender, EventArgs e)
+        {
+            if (ucThongtinnguoibenh_emr_basic1.Height == 30)
+            {
+                cmdCollapse.Image = global::VMS.HIS.EMR.Properties.Resources.Up;
+                ucThongtinnguoibenh_emr_basic1.Height = 204;
+            }
+            else
+            {
+                cmdCollapse.Image= global::VMS.HIS.EMR.Properties.Resources.Down;
+                ucThongtinnguoibenh_emr_basic1.Height = 30;
+            }
+        }
+
+        private void mnuGiayRavien_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                objLuotkham = Utility.getKcbLuotkham(objLuotkham);
+                if (objLuotkham == null)
+                {
+                    Utility.ShowMsg("Bạn cần chọn bệnh nhân trước khi thực hiện hủy chuyển viện");
+                    return;
+                }
+                if (objLuotkham.TrangthaiNoitru == 4)
+                {
+                    Utility.ShowMsg(
+                        "Bệnh nhân đã được xác nhận dữ liệu nội trú để ra viện nên bạn không thể điều chỉnh phiếu ra viện");
+                    return;
+                }
+                if (objLuotkham.TrangthaiNoitru == 5)
+                {
+                    Utility.ShowMsg(
+                        "Bệnh nhân đã được duyệt thanh toán nội trú để ra viện nên bạn không thể điều chỉnh phiếu ra viện");
+                    return;
+                }
+                if (objLuotkham.TrangthaiNoitru == 6)
+                {
+                    Utility.ShowMsg(
+                        "Bệnh nhân đã kết thúc điều trị nội trú(Đã thanh toán xong) nên bạn không thể điều chỉnh phiếu ra viện");
+                    return;
+                }
+                // Kiểm tra các lý do ra viện khác
+                if (THU_VIEN_CHUNG.Laygiatrithamsohethong("noitru_kiemtradieukien_ravien", "1", true) == "1")
+                {
+                    long reval = 0;
+                    StoredProcedure sp = SPs.NoitruCanhbaotruockhiravien(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, reval);
+                    sp.Execute();
+                    reval = Utility.Int64Dbnull(sp.OutputValues[0], 0);
+                    if (reval > 0)
+                    {
+                        switch (reval)
+                        {
+                            case 1:
+                                Utility.ShowMsg(string.Format("Người bệnh {0} còn đơn thuốc chưa được tổng hợp lĩnh thuốc nội trú. Vui lòng kiểm tra lại", ucThongtinnguoibenh_emr_basic1.txtTenBN.Text));
+                                return;
+                            case 2:
+                                Utility.ShowMsg(string.Format("Người bệnh {0} còn đơn thuốc đã tổng hợp lĩnh thuốc nội trú nhưng chưa được cấp phát. Vui lòng kiểm tra lại", ucThongtinnguoibenh_emr_basic1.txtTenBN.Text));
+                                return;
+                            case 3:
+                                Utility.ShowMsg(string.Format("Người bệnh {0} còn đơn thuốc có thuốc trả thừa trả lại nhưng chưa được lập phiếu trả lại. Vui lòng kiểm tra lại", ucThongtinnguoibenh_emr_basic1.txtTenBN.Text));
+                                return;
+                            case 4:
+                                Utility.ShowMsg(string.Format("Người bệnh {0} còn đơn thuốc đã lập phiếu trả thuốc thừa nhưng chưa được xác nhận trả lại. Vui lòng kiểm tra lại", ucThongtinnguoibenh_emr_basic1.txtTenBN.Text));
+                                return;
+                            case 5:
+                                Utility.ShowMsg(string.Format("Người bệnh {0} còn tồn tại chỉ định dịch vụ cận lâm sàng chưa có kết quả. Vui lòng kiểm tra lại", ucThongtinnguoibenh_emr_basic1.txtTenBN.Text));
+                                return;
+                        }
+                    }
+                }
+               
+                var _Phieuravien = new frm_Phieuravien();
+                _Phieuravien.objLuotkham = objLuotkham;
+                _Phieuravien.AutoLoad = true;
+                _Phieuravien.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+
+             
+            }
+        }
+       
+        private void mnuBanTKBA_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (objLuotkham == null)
+                {
+                    Utility.ShowMsg("Chưa có thông tin người bệnh để thực hiện thao tác in bệnh án");
+                    return;
+                }
+                frm_TomtatBA _PhieuTTBA = new frm_TomtatBA();
+                _PhieuTTBA.m_enAct = action.Insert;
+                _PhieuTTBA.ucThongtinnguoibenh_emr_basic1.txtMaluotkham.Focus();
+                _PhieuTTBA.ucThongtinnguoibenh_emr_basic1.txtMaluotkham.Text = objLuotkham.MaLuotkham;
+                _PhieuTTBA.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+
+                Utility.CatchException(ex);
+            }
+        }
+
+        private void mnuTKBA_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void mnuKhoiTaoBA_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void mnu01BV_BANoikhoa_Click(object sender, EventArgs e)
+        {
+            if (Utility.Int64Dbnull(objLuotkham.IdBa) <= 0)
+            {
+                frm_BenhAn_NoiKhoa frm_Ba = new frm_BenhAn_NoiKhoa(LoaiBA.BA_NOIKHOA);
+                frm_Ba.m_enAct = action.Insert;
+                // BenhAn_NoiKhoa._OnCreated += _OnCreated;
+                frm_Ba.ShowDialog();
+            }
+            else
+            {
+                frm_BenhAn_NoiKhoa frm_Ba = new frm_BenhAn_NoiKhoa(LoaiBA.BA_NOIKHOA);
+                EmrBa ba = EmrBa.FetchByID(objLuotkham.IdBa);
+                frm_Ba.objEmrBa = ba;
+                frm_Ba.ucThongtinnguoibenh_emr_basic1.txtMaluotkham.Text = objLuotkham.MaLuotkham;
+                frm_Ba.m_enAct = action.Update;
+                // BenhAn_NoiKhoa._OnCreated += _OnCreated;
+                frm_Ba.ShowDialog();
+            }    
+        }
+
+        private void mnuBAPhukhoa_Click(object sender, EventArgs e)
+        {
+            if (Utility.Int64Dbnull(objLuotkham.IdBa) <= 0)
+            {
+                frm_BenhAn_PhuKhoa frm_Ba = new frm_BenhAn_PhuKhoa(LoaiBA.BA_PHUKHOA);
+                frm_Ba.m_enAct = action.Insert;
+                // BenhAn_NoiKhoa._OnCreated += _OnCreated;
+                frm_Ba.ShowDialog();
+            }
+            else
+            {
+                frm_BenhAn_PhuKhoa frm_Ba = new frm_BenhAn_PhuKhoa(LoaiBA.BA_PHUKHOA);
+                EmrBa ba = EmrBa.FetchByID(objLuotkham.IdBa);
+                frm_Ba.objEmrBa = ba;
+                frm_Ba.ucThongtinnguoibenh_emr_basic1.txtMaluotkham.Text = objLuotkham.MaLuotkham;
+                frm_Ba.m_enAct = action.Update;
+                // BenhAn_NoiKhoa._OnCreated += _OnCreated;
+                frm_Ba.ShowDialog();
+            }
+        }
+
+        private void mnuBASanKhoa_Click(object sender, EventArgs e)
+        {
+            if (Utility.Int64Dbnull(objLuotkham.IdBa) <= 0)
+            {
+                frm_BenhAn_SanKhoa frm_Ba = new frm_BenhAn_SanKhoa(LoaiBA.BA_SANKHOA);
+                frm_Ba.m_enAct = action.Insert;
+                // BenhAn_NoiKhoa._OnCreated += _OnCreated;
+                frm_Ba.ShowDialog();
+            }
+            else
+            {
+                frm_BenhAn_SanKhoa frm_Ba = new frm_BenhAn_SanKhoa(LoaiBA.BA_SANKHOA);
+                EmrBa ba = EmrBa.FetchByID(objLuotkham.IdBa);
+                frm_Ba.objEmrBa = ba;
+                frm_Ba.ucThongtinnguoibenh_emr_basic1.txtMaluotkham.Text = objLuotkham.MaLuotkham;
+                frm_Ba.m_enAct = action.Update;
+                // BenhAn_NoiKhoa._OnCreated += _OnCreated;
+                frm_Ba.ShowDialog();
+            }
+        }
+
+        private void mnu10BV_BANgoaikhoa_Click(object sender, EventArgs e)
+        {
+            if (Utility.Int64Dbnull(objLuotkham.IdBa) <= 0)
+            {
+                frm_BenhAn_NgoaiKhoa frm_Ba = new frm_BenhAn_NgoaiKhoa(LoaiBA.BA_NGOAIKHOA);
+                frm_Ba.m_enAct = action.Insert;
+                // BenhAn_NoiKhoa._OnCreated += _OnCreated;
+                frm_Ba.ShowDialog();
+            }
+            else
+            {
+                frm_BenhAn_NgoaiKhoa frm_Ba = new frm_BenhAn_NgoaiKhoa(LoaiBA.BA_NGOAIKHOA);
+                EmrBa ba = EmrBa.FetchByID(objLuotkham.IdBa);
+                frm_Ba.objEmrBa = ba;
+                frm_Ba.ucThongtinnguoibenh_emr_basic1.txtMaluotkham.Text = objLuotkham.MaLuotkham;
+                frm_Ba.m_enAct = action.Update;
+                // BenhAn_NoiKhoa._OnCreated += _OnCreated;
+                frm_Ba.ShowDialog();
+            }
+        }
+
+        private void mnu15BV_BANgoaitru_Click(object sender, EventArgs e)
+        {
+            if (Utility.Int64Dbnull(objLuotkham.IdBa) <= 0)
+            {
+                frm_BenhAn_NgoaiTru frm_Ba = new frm_BenhAn_NgoaiTru(LoaiBA.BA_NGOAITRU);
+                frm_Ba.m_enAct = action.Insert;
+                // BenhAn_NoiKhoa._OnCreated += _OnCreated;
+                frm_Ba.ShowDialog();
+            }
+            else
+            {
+                frm_BenhAn_NgoaiTru frm_Ba = new frm_BenhAn_NgoaiTru(LoaiBA.BA_NGOAITRU);
+                EmrBa ba = EmrBa.FetchByID(objLuotkham.IdBa);
+                frm_Ba.objEmrBa = ba;
+                frm_Ba.ucThongtinnguoibenh_emr_basic1.txtMaluotkham.Text = objLuotkham.MaLuotkham;
+                frm_Ba.m_enAct = action.Update;
+                // BenhAn_NoiKhoa._OnCreated += _OnCreated;
+                frm_Ba.ShowDialog();
+            }
         }
     }
     class HandleMergeBarcode : IFieldMergingCallback

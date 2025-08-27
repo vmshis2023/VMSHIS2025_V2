@@ -1425,6 +1425,7 @@
             this.mnuTronggoi_CLS.Name = "mnuTronggoi_CLS";
             this.mnuTronggoi_CLS.Size = new System.Drawing.Size(333, 22);
             this.mnuTronggoi_CLS.Text = "Trong gói";
+            this.mnuTronggoi_CLS.Click += new System.EventHandler(this.mnuTronggoi_CLS_Click);
             // 
             // mnuNgoaigoi_CLS
             // 
@@ -1443,6 +1444,7 @@
             this.mnuXoaGoi.Name = "mnuXoaGoi";
             this.mnuXoaGoi.Size = new System.Drawing.Size(333, 22);
             this.mnuXoaGoi.Text = "Xóa gói";
+            this.mnuXoaGoi.Click += new System.EventHandler(this.mnuXoaGoi_Click_1);
             // 
             // ctxDelDrug
             // 

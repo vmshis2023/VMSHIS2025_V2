@@ -34,7 +34,7 @@ namespace VNS.HIS.UI.DANHMUC
         /// Biến trả về khi thực hiện DoubleClick trên lưới với điều kiện blnCallFromMenu=false
         /// </summary>
         public DmucNhanvien m_objObjectReturn = null;
-
+        bool isLoaded = false;
        
 
         #endregion
@@ -145,6 +145,7 @@ namespace VNS.HIS.UI.DANHMUC
                             new Select(DmucNhanvien.Columns.UserName).From(DmucNhanvien.Schema)).ExecuteDataSet().Tables
                             [0];
                     DataBinding.BindData(cboUserName, v_dtUserList, SysUser.Columns.PkSuid, SysUser.Columns.PkSuid);
+                    cboUserName.SelectedIndex = -1;
                 }
                 else
                 {
@@ -202,9 +203,11 @@ namespace VNS.HIS.UI.DANHMUC
         /// <param name="e"></param>
         private void frm_themmoi_nhanvien_Load(object sender, EventArgs e)
         {
+            isLoaded = false;
             InitData();
             if (em_Action == action.Update) GetData();
             SetStatusAlter();
+            isLoaded = true;
         }
 
         private void frm_themmoi_nhanvien_KeyDown(object sender, KeyEventArgs e)
@@ -1036,8 +1039,15 @@ namespace VNS.HIS.UI.DANHMUC
             DataBinding.BindData(cboDepart, dataTable, DmucKhoaphong.Columns.IdKhoaphong, DmucKhoaphong.Columns.TenKhoaphong);
         }
 
-        private void cboUserName_SelectedValueChanged(object sender, System.EventArgs e)
+
+        private void chkCungthuchien_CheckedChanged(object sender, System.EventArgs e)
         {
+            txtDongia.Enabled = chkCungthuchien.Checked;
+        }
+
+        private void cboUserName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!isLoaded) return;
             DataTable objNhanvien =
                 new Select("*").From(SysUser.Schema).Where(SysUser.Columns.PkSuid).IsEqualTo(
                     Utility.sDbnull(cboUserName.SelectedValue)).ExecuteDataSet().Tables[0];
@@ -1050,13 +1060,6 @@ namespace VNS.HIS.UI.DANHMUC
                     txtKhoa.Text = row["sDepart"].ToString();
                 }
             }
-
         }
-
-        private void chkCungthuchien_CheckedChanged(object sender, System.EventArgs e)
-        {
-            txtDongia.Enabled = chkCungthuchien.Checked;
-        }
-
     }
 }

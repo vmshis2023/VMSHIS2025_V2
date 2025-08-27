@@ -202,5 +202,10 @@ namespace VNS.HIS.UI.DANHMUC
         {
             
         }
+
+        private void cmdAccept_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

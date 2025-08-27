@@ -197,7 +197,7 @@ namespace VNS.HIS.UI.NOITRU
             CreateNewPhieu();
             objPhieudichtruyen.Save();
             EmrDocuments emrdoc = new EmrDocuments();
-            emrdoc.InitDocument((long)objPhieudichtruyen.IdBenhnhan, objPhieudichtruyen.MaLuotkham, Utility.Int64Dbnull(objPhieudichtruyen.IdPhieu), objPhieudichtruyen.NgayTao, Loaiphieu_HIS.PHIEUTRUYENDICH, "PHIEUTRUYENDICH", objPhieudichtruyen.NguoiTao, (Int16)objPhieudichtruyen.IdKhoadieutri, -1, true, "");
+            emrdoc.InitDocument((long)objPhieudichtruyen.IdBenhnhan, objPhieudichtruyen.MaLuotkham, Utility.Int64Dbnull(objPhieudichtruyen.IdPhieu), objPhieudichtruyen.NgayTao, Loaiphieu_HIS.PHIEUTHEODOI_TRUYENDICH, "PHIEUTRUYENDICH", objPhieudichtruyen.NguoiTao, (Int16)objPhieudichtruyen.IdKhoadieutri, -1, true, "");
             emrdoc.Save();
             actionResult = ActionResult.Success;
             IdPhieu = objPhieudichtruyen.IdPhieu;
@@ -230,34 +230,34 @@ namespace VNS.HIS.UI.NOITRU
         {
             try
             {
-                DataRow newDr = p_DataPhieuDich.NewRow();
-                newDr[NoitruPhieudichtruyen.Columns.IdPhieu] = IdPhieu;
-                newDr[NoitruPhieudichtruyen.Columns.NgayThuchien] = dtpNgaythuchien.Value;
-                newDr[NoitruPhieudichtruyen.Columns.ThoigianBatdau] = dtp_thoigianbatdau.Value;
-                newDr[NoitruPhieudichtruyen.Columns.ThoigianKetthuc] = dtp_thoigianketthuc.Value;
-                newDr[NoitruPhieudichtruyen.Columns.MaLuotkham] = objLuotkham.MaLuotkham;
-                newDr[NoitruPhieudichtruyen.Columns.IdBenhnhan] = objLuotkham.IdBenhnhan;
-                newDr[NoitruPhieudichtruyen.Columns.IdThuoc] = Utility.Int32Dbnull(txtDrug_Id.Text, -1);
-                newDr[NoitruPhieudichtruyen.Columns.NguoiThuchien] = globalVariables.UserName;
-                newDr["ten_thuoc"] = txtTenThuoc.Text;
-                newDr[NoitruPhieudichtruyen.Columns.IdChitietdonthuoc] = id_chitietdonthuoc;
-                newDr[NoitruPhieudichtruyen.Columns.NgayTao] = DateTime.Now;
-                newDr[NoitruPhieudichtruyen.Columns.NguoiTao] = globalVariables.UserName;
-                newDr[NoitruPhieudichtruyen.Columns.IdDonthuoc] = id_donthuoc;
-                newDr[NoitruPhieudichtruyen.Columns.TrangthaiIn] = 0;
-                newDr[NoitruPhieudichtruyen.Columns.IdKhoadieutri] = id_khoadieutri;
-                newDr[NoitruPhieudichtruyen.Columns.IdBuonggiuong] = id_BG;
-                newDr[NoitruPhieudichtruyen.Columns.TocDo] = Utility.sDbnull(txtTocDo.Text, "");
-                newDr[NoitruPhieudichtruyen.Columns.SoLuong] = Utility.Int32Dbnull(txtQuantity.Text, 0);
-                newDr[NoitruPhieudichtruyen.Columns.IdBacsichidinh] = Utility.Int32Dbnull(txtBacSyCD.MyID, -1);
-                newDr[NoitruPhieudichtruyen.Columns.IdYtathuchien] = Utility.Int32Dbnull(txtYta.MyID, -1);
-                // newDr["BSStaffName"] =cboBacSyCD.SelectedIndex>0? Utility.sDbnull(cboBacSyCD.Text,""):"";
-                newDr["ten_bacsi_chidinh"] = txtBacSyCD.Text;
-                newDr["ten_yta_thuchien"] = txtYta.Text;
-                newDr["ten_khoaphong"] = txtKhoaphong.Text;
-                newDr["SO_LO"] = txtSoLo.Text;
-                p_DataPhieuDich.Rows.Add(newDr);
-                p_DataPhieuDich.AcceptChanges();
+                //DataRow newDr = p_DataPhieuDich.NewRow();
+                //newDr[NoitruPhieudichtruyen.Columns.IdPhieu] = IdPhieu;
+                //newDr[NoitruPhieudichtruyen.Columns.NgayThuchien] = dtpNgaythuchien.Value;
+                //newDr[NoitruPhieudichtruyen.Columns.ThoigianBatdau] = dtp_thoigianbatdau.Value;
+                //newDr[NoitruPhieudichtruyen.Columns.ThoigianKetthuc] = dtp_thoigianketthuc.Value;
+                //newDr[NoitruPhieudichtruyen.Columns.MaLuotkham] = objLuotkham.MaLuotkham;
+                //newDr[NoitruPhieudichtruyen.Columns.IdBenhnhan] = objLuotkham.IdBenhnhan;
+                //newDr[NoitruPhieudichtruyen.Columns.IdThuoc] = Utility.Int32Dbnull(txtDrug_Id.Text, -1);
+                //newDr[NoitruPhieudichtruyen.Columns.NguoiThuchien] = globalVariables.UserName;
+                //newDr["ten_thuoc"] = txtTenThuoc.Text;
+                //newDr[NoitruPhieudichtruyen.Columns.IdChitietdonthuoc] = id_chitietdonthuoc;
+                //newDr[NoitruPhieudichtruyen.Columns.NgayTao] = DateTime.Now;
+                //newDr[NoitruPhieudichtruyen.Columns.NguoiTao] = globalVariables.UserName;
+                //newDr[NoitruPhieudichtruyen.Columns.IdDonthuoc] = id_donthuoc;
+                //newDr[NoitruPhieudichtruyen.Columns.TrangthaiIn] = 0;
+                //newDr[NoitruPhieudichtruyen.Columns.IdKhoadieutri] = id_khoadieutri;
+                //newDr[NoitruPhieudichtruyen.Columns.IdBuonggiuong] = id_BG;
+                //newDr[NoitruPhieudichtruyen.Columns.TocDo] = Utility.sDbnull(txtTocDo.Text, "");
+                //newDr[NoitruPhieudichtruyen.Columns.SoLuong] = Utility.Int32Dbnull(txtQuantity.Text, 0);
+                //newDr[NoitruPhieudichtruyen.Columns.IdBacsichidinh] = Utility.Int32Dbnull(txtBacSyCD.MyID, -1);
+                //newDr[NoitruPhieudichtruyen.Columns.IdYtathuchien] = Utility.Int32Dbnull(txtYta.MyID, -1);
+                //// newDr["BSStaffName"] =cboBacSyCD.SelectedIndex>0? Utility.sDbnull(cboBacSyCD.Text,""):"";
+                //newDr["ten_bacsi_chidinh"] = txtBacSyCD.Text;
+                //newDr["ten_yta_thuchien"] = txtYta.Text;
+                //newDr["ten_khoaphong"] = txtKhoaphong.Text;
+                //newDr["SO_LO"] = txtSoLo.Text;
+                //p_DataPhieuDich.Rows.Add(newDr);
+                //p_DataPhieuDich.AcceptChanges();
             }
             catch (Exception ex)
             {
@@ -277,25 +277,25 @@ namespace VNS.HIS.UI.NOITRU
                 DataRow[] newDr = p_DataPhieuDich.Select("id_phieu=" + Utility.Int64Dbnull(txtID.Text, -1));
                 if (newDr.GetLength(0) > 0)
                 {
-                    newDr[0][NoitruPhieudichtruyen.Columns.NgayThuchien] = dtpNgaythuchien.Value;
-                    newDr[0][NoitruPhieudichtruyen.Columns.ThoigianBatdau] = dtp_thoigianbatdau.Value;
-                    newDr[0][NoitruPhieudichtruyen.Columns.ThoigianKetthuc] = dtp_thoigianketthuc.Value;
-                    newDr[0][NoitruPhieudichtruyen.Columns.MaLuotkham] = objLuotkham.MaLuotkham;
-                    newDr[0][NoitruPhieudichtruyen.Columns.IdBenhnhan] = objLuotkham.IdBenhnhan;
-                    newDr[0][NoitruPhieudichtruyen.Columns.IdThuoc] = id_thuoc;
-                    newDr[0][NoitruPhieudichtruyen.Columns.IdChitietdonthuoc] = id_chitietdonthuoc;
-                    newDr[0][NoitruPhieudichtruyen.Columns.IdDonthuoc] = id_donthuoc;
-                    newDr[0][NoitruPhieudichtruyen.Columns.IdBuonggiuong] = id_BG;
-                    newDr[0][NoitruPhieudichtruyen.Columns.IdKhoadieutri] = id_khoadieutri;
-                    newDr[0][NoitruPhieudichtruyen.Columns.TocDo] = Utility.sDbnull(txtTocDo.Text, "");
-                    newDr[0][NoitruPhieudichtruyen.Columns.SoLuong] = Utility.Int32Dbnull(txtQuantity.Text, 0);
-                    newDr[0][NoitruPhieudichtruyen.Columns.IdBacsichidinh] = Utility.Int32Dbnull(txtBacSyCD.MyID, -1);
-                    newDr[0][NoitruPhieudichtruyen.Columns.IdYtathuchien] = Utility.Int32Dbnull(txtYta.MyID, -1);
-                    //  newDr[0]["BSStaffName"] = cboBacSyCD.SelectedIndex > 0 ? Utility.sDbnull(cboBacSyCD.Text, "") : "";
-                    newDr[0]["ten_bacsi_chidinh"] = txtBacSyCD.Text;
-                    newDr[0]["ten_yta_thuchien"] = txtYta.Text;
-                    newDr[0]["ten_khoaphong"] = txtKhoaphong.Text;
-                    newDr[0]["SO_LO"] = txtSoLo.Text;
+                    //newDr[0][NoitruPhieudichtruyen.Columns.NgayThuchien] = dtpNgaythuchien.Value;
+                    //newDr[0][NoitruPhieudichtruyen.Columns.ThoigianBatdau] = dtp_thoigianbatdau.Value;
+                    //newDr[0][NoitruPhieudichtruyen.Columns.ThoigianKetthuc] = dtp_thoigianketthuc.Value;
+                    //newDr[0][NoitruPhieudichtruyen.Columns.MaLuotkham] = objLuotkham.MaLuotkham;
+                    //newDr[0][NoitruPhieudichtruyen.Columns.IdBenhnhan] = objLuotkham.IdBenhnhan;
+                    //newDr[0][NoitruPhieudichtruyen.Columns.IdThuoc] = id_thuoc;
+                    //newDr[0][NoitruPhieudichtruyen.Columns.IdChitietdonthuoc] = id_chitietdonthuoc;
+                    //newDr[0][NoitruPhieudichtruyen.Columns.IdDonthuoc] = id_donthuoc;
+                    //newDr[0][NoitruPhieudichtruyen.Columns.IdBuonggiuong] = id_BG;
+                    //newDr[0][NoitruPhieudichtruyen.Columns.IdKhoadieutri] = id_khoadieutri;
+                    //newDr[0][NoitruPhieudichtruyen.Columns.TocDo] = Utility.sDbnull(txtTocDo.Text, "");
+                    //newDr[0][NoitruPhieudichtruyen.Columns.SoLuong] = Utility.Int32Dbnull(txtQuantity.Text, 0);
+                    //newDr[0][NoitruPhieudichtruyen.Columns.IdBacsichidinh] = Utility.Int32Dbnull(txtBacSyCD.MyID, -1);
+                    //newDr[0][NoitruPhieudichtruyen.Columns.IdYtathuchien] = Utility.Int32Dbnull(txtYta.MyID, -1);
+                    ////  newDr[0]["BSStaffName"] = cboBacSyCD.SelectedIndex > 0 ? Utility.sDbnull(cboBacSyCD.Text, "") : "";
+                    //newDr[0]["ten_bacsi_chidinh"] = txtBacSyCD.Text;
+                    //newDr[0]["ten_yta_thuchien"] = txtYta.Text;
+                    //newDr[0]["ten_khoaphong"] = txtKhoaphong.Text;
+                    //newDr[0]["SO_LO"] = txtSoLo.Text;
 
 
                 }
@@ -309,49 +309,49 @@ namespace VNS.HIS.UI.NOITRU
         private NoitruPhieudichtruyen CreateNewPhieu()
         {
 
-            if (objPhieudichtruyen == null) objPhieudichtruyen = new NoitruPhieudichtruyen();
-            objPhieudichtruyen.MaLuotkham = objLuotkham.MaLuotkham;
-            objPhieudichtruyen.IdBenhnhan = objLuotkham.IdBenhnhan;
-            objPhieudichtruyen.NguoiThuchien = globalVariables.UserName;
-            objPhieudichtruyen.NgayThuchien = Convert.ToDateTime(dtpNgaythuchien.Value);
-            objPhieudichtruyen.SoLuong = Utility.Int32Dbnull(txtQuantity.Value);
-            objPhieudichtruyen.IdThuoc = Utility.Int32Dbnull(id_thuoc);
-            objPhieudichtruyen.ThoigianBatdau = Convert.ToDateTime(dtp_thoigianbatdau.Value);
-            objPhieudichtruyen.ThoigianKetthuc = Convert.ToDateTime(dtp_thoigianketthuc.Value);
-            //objPhieudichtruyen.BsCd = Utility.Int32Dbnull(cboBacSyCD.SelectedValue, -1);
-            objPhieudichtruyen.IdBacsichidinh = Utility.Int32Dbnull(txtBacSyCD.MyID, -1);
-            objPhieudichtruyen.IdYtathuchien = Utility.Int32Dbnull(txtYta.MyID, -1);
-            objPhieudichtruyen.IdBuonggiuong = id_BG;
-            objPhieudichtruyen.IdKhoadieutri = id_khoadieutri;
-            objPhieudichtruyen.TocDo = Utility.Int32Dbnull(txtTocDo.Text, null);
-            objPhieudichtruyen.IdChitietdonthuoc = id_chitietdonthuoc;
-            objPhieudichtruyen.IdDonthuoc = id_donthuoc;
-            int recordRow = 0;
-            var sthuockethop = new StringBuilder("");
-            if (dt_ThuocKetHop.Rows.Count > 0)
-            {
-                foreach (DataRow row in dt_ThuocKetHop.Rows)
-                {
-                    if (recordRow > 0) sthuockethop.Append(",");
-                    sthuockethop.Append(Utility.sDbnull(row["id_thuoc"], ""));
-                    recordRow++;
-                }
-            }
-            objPhieudichtruyen.IdThuocKethop = Utility.sDbnull(sthuockethop.ToString(), "");
-            if (em_Action == action.Insert || objPhieudichtruyen.IdPhieu <= 0)
-            {
-                objPhieudichtruyen.IsNew = true;
-                objPhieudichtruyen.NguoiTao = globalVariables.UserName;
-                objPhieudichtruyen.NgayTao = DateTime.Now;
-                objPhieudichtruyen.TrangthaiIn = 0;
-            }
-            if (em_Action == action.Update)
-            {
-                objPhieudichtruyen.MarkOld();
-                objPhieudichtruyen.IdPhieu = Utility.Int64Dbnull(txtID.Text, -1);
-                objPhieudichtruyen.NguoiSua = globalVariables.UserName;
-                objPhieudichtruyen.NgaySua = DateTime.Now;
-            }
+            //if (objPhieudichtruyen == null) objPhieudichtruyen = new NoitruPhieudichtruyen();
+            //objPhieudichtruyen.MaLuotkham = objLuotkham.MaLuotkham;
+            //objPhieudichtruyen.IdBenhnhan = objLuotkham.IdBenhnhan;
+            //objPhieudichtruyen.NguoiThuchien = globalVariables.UserName;
+            //objPhieudichtruyen.NgayThuchien = Convert.ToDateTime(dtpNgaythuchien.Value);
+            //objPhieudichtruyen.SoLuong = Utility.Int32Dbnull(txtQuantity.Value);
+            //objPhieudichtruyen.IdThuoc = Utility.Int32Dbnull(id_thuoc);
+            //objPhieudichtruyen.ThoigianBatdau = Convert.ToDateTime(dtp_thoigianbatdau.Value);
+            //objPhieudichtruyen.ThoigianKetthuc = Convert.ToDateTime(dtp_thoigianketthuc.Value);
+            ////objPhieudichtruyen.BsCd = Utility.Int32Dbnull(cboBacSyCD.SelectedValue, -1);
+            //objPhieudichtruyen.IdBacsichidinh = Utility.Int32Dbnull(txtBacSyCD.MyID, -1);
+            //objPhieudichtruyen.IdYtathuchien = Utility.Int32Dbnull(txtYta.MyID, -1);
+            //objPhieudichtruyen.IdBuonggiuong = id_BG;
+            //objPhieudichtruyen.IdKhoadieutri = id_khoadieutri;
+            //objPhieudichtruyen.TocDo = Utility.Int32Dbnull(txtTocDo.Text, null);
+            //objPhieudichtruyen.IdChitietdonthuoc = id_chitietdonthuoc;
+            //objPhieudichtruyen.IdDonthuoc = id_donthuoc;
+            //int recordRow = 0;
+            //var sthuockethop = new StringBuilder("");
+            //if (dt_ThuocKetHop.Rows.Count > 0)
+            //{
+            //    foreach (DataRow row in dt_ThuocKetHop.Rows)
+            //    {
+            //        if (recordRow > 0) sthuockethop.Append(",");
+            //        sthuockethop.Append(Utility.sDbnull(row["id_thuoc"], ""));
+            //        recordRow++;
+            //    }
+            //}
+            //objPhieudichtruyen.IdThuocKethop = Utility.sDbnull(sthuockethop.ToString(), "");
+            //if (em_Action == action.Insert || objPhieudichtruyen.IdPhieu <= 0)
+            //{
+            //    objPhieudichtruyen.IsNew = true;
+            //    objPhieudichtruyen.NguoiTao = globalVariables.UserName;
+            //    objPhieudichtruyen.NgayTao = DateTime.Now;
+            //    objPhieudichtruyen.TrangthaiIn = 0;
+            //}
+            //if (em_Action == action.Update)
+            //{
+            //    objPhieudichtruyen.MarkOld();
+            //    objPhieudichtruyen.IdPhieu = Utility.Int64Dbnull(txtID.Text, -1);
+            //    objPhieudichtruyen.NguoiSua = globalVariables.UserName;
+            //    objPhieudichtruyen.NgaySua = DateTime.Now;
+            //}
             return objPhieudichtruyen;
         }
       
@@ -471,40 +471,40 @@ namespace VNS.HIS.UI.NOITRU
         /// </summary>
         private void BindData()
         {
-            objPhieudichtruyen = NoitruPhieudichtruyen.FetchByID(Utility.Int64Dbnull(txtID.Text, -1));
-            if(objPhieudichtruyen!=null)
-            {
+            //objPhieudichtruyen = NoitruPhieudichtruyen.FetchByID(Utility.Int64Dbnull(txtID.Text, -1));
+            //if(objPhieudichtruyen!=null)
+            //{
 
-                dtpNgaythuchien.Value = objPhieudichtruyen.NgayThuchien;
-                txtQuantity.Value = Utility.Int32Dbnull(objPhieudichtruyen.SoLuong);
-                dtp_thoigianbatdau.Value = objPhieudichtruyen.ThoigianBatdau;
-                dtp_thoigianketthuc.Value = objPhieudichtruyen.ThoigianKetthuc;
-                txtTocDo.Value = Utility.Int32Dbnull(objPhieudichtruyen.TocDo);
-                txtDrug_Id.Text = Utility.sDbnull(objPhieudichtruyen.IdThuoc);
-                txtBacSyCD.SetId(objPhieudichtruyen.IdBacsichidinh);
-                txtYta.SetId(objPhieudichtruyen.IdYtathuchien);
-                txtKhoaphong.SetId(objPhieudichtruyen.IdKhoadieutri);
-                string dataString = Utility.sDbnull(objPhieudichtruyen.IdThuocKethop, "");
-                dt_ThuocKetHop.Clear();
-                if (!string.IsNullOrEmpty(dataString))
-                {
-                    string[] lstid_thuoc = dataString.Split(',');
-                    foreach (string id_thuoc in lstid_thuoc)
-                    {
-                        if (!string.IsNullOrEmpty(id_thuoc))
-                        {
-                            DataRow newDr = dt_ThuocKetHop.NewRow();
-                            newDr["id_thuoc"] = id_thuoc;
-                            newDr["ten_thuoc"] = gettenthuoc(id_thuoc);
-                            dt_ThuocKetHop.Rows.Add(newDr);
-                            dt_ThuocKetHop.AcceptChanges();
-                        }
-                    }
-                    grdThuockethop.DataSource = dt_ThuocKetHop;
+            //    dtpNgaythuchien.Value = objPhieudichtruyen.NgayThuchien;
+            //    txtQuantity.Value = Utility.Int32Dbnull(objPhieudichtruyen.SoLuong);
+            //    dtp_thoigianbatdau.Value = objPhieudichtruyen.ThoigianBatdau;
+            //    dtp_thoigianketthuc.Value = objPhieudichtruyen.ThoigianKetthuc;
+            //    txtTocDo.Value = Utility.Int32Dbnull(objPhieudichtruyen.TocDo);
+            //    txtDrug_Id.Text = Utility.sDbnull(objPhieudichtruyen.IdThuoc);
+            //    txtBacSyCD.SetId(objPhieudichtruyen.IdBacsichidinh);
+            //    txtYta.SetId(objPhieudichtruyen.IdYtathuchien);
+            //    txtKhoaphong.SetId(objPhieudichtruyen.IdKhoadieutri);
+            //    string dataString = Utility.sDbnull(objPhieudichtruyen.IdThuocKethop, "");
+            //    dt_ThuocKetHop.Clear();
+            //    if (!string.IsNullOrEmpty(dataString))
+            //    {
+            //        string[] lstid_thuoc = dataString.Split(',');
+            //        foreach (string id_thuoc in lstid_thuoc)
+            //        {
+            //            if (!string.IsNullOrEmpty(id_thuoc))
+            //            {
+            //                DataRow newDr = dt_ThuocKetHop.NewRow();
+            //                newDr["id_thuoc"] = id_thuoc;
+            //                newDr["ten_thuoc"] = gettenthuoc(id_thuoc);
+            //                dt_ThuocKetHop.Rows.Add(newDr);
+            //                dt_ThuocKetHop.AcceptChanges();
+            //            }
+            //        }
+            //        grdThuockethop.DataSource = dt_ThuocKetHop;
                    
-                }
+            //    }
 
-            }
+            //}
         }
         string gettenthuoc(string id_thuoc)
         {

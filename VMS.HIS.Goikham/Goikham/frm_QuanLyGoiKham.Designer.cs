@@ -1166,6 +1166,7 @@ namespace VNS.HIS.UI.GOIKHAM
             this.txtLyDoHuy.RaiseEventEnter = true;
             this.txtLyDoHuy.RaiseEventEnterWhenEmpty = false;
             this.txtLyDoHuy.SelectedIndex = -1;
+            this.txtLyDoHuy.SetDefaultWhenInit = true;
             this.txtLyDoHuy.ShowCodeWithValue = false;
             this.txtLyDoHuy.Size = new System.Drawing.Size(10, 21);
             this.txtLyDoHuy.splitChar = '@';

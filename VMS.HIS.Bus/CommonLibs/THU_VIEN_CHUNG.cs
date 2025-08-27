@@ -887,12 +887,12 @@ namespace VNS.Libs
                 return null;
             }
         }
-        public static DataTable LayDulieuDanhmucChung(DataTable dtData, string Loaidmuc)
+        public static DataTable LayDulieuDanhmucChung(DataTable dtData, string Loaidmuc, bool tthai_hieuluc=true)
         {
             DataTable dtTemp = dtData.Clone();
             try
             {
-                DataRow[] arrDr = dtData.Select(string.Format("{0}='{1}'", DmucChung.Columns.Loai, Loaidmuc));
+                DataRow[] arrDr = dtData.Select(string.Format("{0}='{1}' and TRANG_THAI={2}", DmucChung.Columns.Loai, Loaidmuc, tthai_hieuluc ? 1 : 0));
                 if (arrDr.Length > 0)
                     dtTemp = arrDr.CopyToDataTable();
                 return dtTemp;
@@ -903,11 +903,12 @@ namespace VNS.Libs
                 return dtTemp;
             }
         }
-        public static DataTable LayDulieuDanhmucChung(string Loaidmuc, bool fromDB)
+        public static DataTable LayDulieuDanhmucChung(string Loaidmuc, bool fromDB, bool tthai_hieuluc = true)
         {
             try
             {
                 DataTable m_NN = new DataTable();
+                DataTable dt_ResultData = new DataTable();
                 if (fromDB)
                 {
                     m_NN =
@@ -930,7 +931,14 @@ namespace VNS.Libs
                     else
                         m_NN = q.CopyToDataTable();
                 }
-                return m_NN;
+                dt_ResultData= m_NN.Clone();
+                if (tthai_hieuluc)
+                {
+                    DataRow[] arrDr = m_NN.Select("TRANG_THAI=1");
+                    if (arrDr.Length > 0)
+                        dt_ResultData = arrDr.CopyToDataTable();
+                }    
+                return dt_ResultData;
             }
             catch (Exception ex)
             {

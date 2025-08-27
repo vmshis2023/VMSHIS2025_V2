@@ -380,7 +380,101 @@ namespace VNS.HIS.BusRule.Classes
                 GC.Collect();
             }
         }
-       
+
+        public ActionResult InsertDataChiDinhCls_Auto(KcbChidinhcl objChidinh, KcbLuotkham objLuotkham,
+          KcbChidinhclsChitiet[] arrAssignDetails,  ref string ErrMsg)
+        {
+            try
+            {
+                using (var scope = new TransactionScope())
+                {
+                    using (var sh = new SharedDbConnectionScope())
+                    {
+                        if (objChidinh != null)
+                        {
+                            log.Trace("BEGIN INSERTING..........................................................");
+                            if (objLuotkham == null)
+                            {
+                                log.Trace(
+                                    "Lieu co the vao day duoc khong..........................................................");
+                                objLuotkham = new Select().From(KcbLuotkham.Schema)
+                                    .Where(KcbLuotkham.Columns.MaLuotkham).IsEqualTo(objChidinh.MaLuotkham)
+                                    .And(KcbLuotkham.Columns.IdBenhnhan).IsEqualTo(
+                                        Utility.Int32Dbnull(objChidinh.IdBenhnhan)).ExecuteSingle<KcbLuotkham>();
+                            }
+                            if (objLuotkham != null)
+                            {
+                                log.Trace("0.1. Bat dau sinh code");
+                                objChidinh.MaChidinh = THU_VIEN_CHUNG.SinhMaChidinhCLS();
+                                objChidinh.MaDoituongKcb = objLuotkham.MaDoituongKcb;
+                                objChidinh.IdLoaidoituongKcb = objLuotkham.IdLoaidoituongKcb;
+                                objChidinh.IdDoituongKcb = objLuotkham.IdDoituongKcb;
+                                objChidinh.MaKhoaChidinh = globalVariables.MA_KHOA_THIEN;
+                                log.Trace("0.2. Bat dau them moi chi dinh CLS");
+                                StoredProcedure sp = SPs.SpKcbThemmoiChidinh(objChidinh.IdChidinh, objChidinh.IdKham,
+                                    objChidinh.IdBuongGiuong, objChidinh.IdDieutri, objChidinh.IdKhoadieutri
+                                    , objChidinh.MaLuotkham, objChidinh.IdBenhnhan, objChidinh.NgayChidinh,
+                                    objChidinh.IdBacsiChidinh, objChidinh.IdPhongChidinh, objChidinh.NgayThanhtoan
+                                    , objChidinh.TrangthaiThanhtoan, Utility.ByteDbnull(objChidinh.TrangThai, 0),
+                                    objChidinh.NguoiTao, objChidinh.NgayTao, objChidinh.TinhtrangIn, objChidinh.Barcode,
+                                    objChidinh.Noitru
+                                    , objChidinh.IdKhoaChidinh, objChidinh.MaKhoaChidinh, objChidinh.MaChidinh,
+                                    objChidinh.MaBenhpham, objChidinh.IdDoituongKcb, objChidinh.IdLoaidoituongKcb
+                                    , objChidinh.MaDoituongKcb, objChidinh.KieuChidinh, objChidinh.IdLichsuDoituongKcb,
+                                    objChidinh.MatheBhyt, objChidinh.IpMaytao, objChidinh.TenMaytao
+                                    , objChidinh.NguoigiaoMau, objChidinh.NguoinhanMau, objChidinh.MotaThem,
+                                    objChidinh.DaBangiaomau, objChidinh.LuongmauHoaly, objChidinh.LuongmauVisinh,
+                                    objChidinh.LuongmauGui
+                                    , objChidinh.LuuMau, objChidinh.DieukienLuumau, objChidinh.ThanhlyMau,
+                                    objChidinh.NgayThanhly, objChidinh.NguoiThanhly, objChidinh.LoaiPhieu, objChidinh.LastActionName, objChidinh.MaCoso);
+                                sp.Execute();
+                                log.Trace("0.3 Da thuc hien xong cau SP");
+                                objChidinh.IdChidinh = Utility.Int64Dbnull(sp.OutputValues[0]);
+                                log.Trace("1. Da them moi chi dinh CLS");
+
+                                SPs.SpKcbCapnhatBacsiKham(objChidinh.IdKham, objChidinh.IdBacsiChidinh, 1).Execute();
+                                InsertAssignDetail(objChidinh, objLuotkham, arrAssignDetails);
+                                log.Trace("2. Da them moi chi tiet chi dinh CLS");
+                                ActionResult result = ActionResult.Success;
+                                //Xử lý tự thanh toán cho gói trừ đuổi(gói thai sản dùng cho nhiều đợt khám)
+                                //if (lstDichvutronggoi.Count > 0)
+                                //{
+                                //    foreach (int id_dangky in lst_id_dangky)
+                                //    {
+                                //        GoiDangki objgoiDK = GoiDangki.FetchByID(id_dangky);
+                                //        if (objgoiDK != null )
+                                //            result = new clsGoikham().ThanhToanGoi(objLuotkham, lstDichvutronggoi, 2, objgoiDK.IdDangky, objgoiDK.IdGoi, Utility.ByteDbnull(objLuotkham.Noitru), ref ErrMsg);
+                                //        if (result != ActionResult.Success) return result;
+                                //    }
+                                //}
+                                //if (lst_id_goi.Count > 0 && lst_id_dangky.Count <= 0)//Gói mổ BV mắt(dùng 1 lần)
+                                //{
+                                //    foreach (int id_goi in lst_id_goi)
+                                //        new clsGoikham().ThemGoiKham_BVM(objChidinh, (int)objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, id_goi, DateTime.Now);
+                                //}
+                            }
+                            else
+                            {
+                                return ActionResult.Error;
+                            }
+                        }
+                    }
+                    scope.Complete();
+                    log.Trace("FINISH INSERTING..........................................................");
+                    return ActionResult.Success;
+                }
+            }
+            catch (Exception exception)
+            {
+                log.Error(string.Format("Loi khi them moi chi dinh dich vu CLS {0}", exception.Message));
+                return ActionResult.Error;
+            }
+            finally
+            {
+                GC.Collect();
+            }
+        }
+
         void InsertEmrPhieuChidinh(KcbChidinhcl objChidinh)
         {
             EmrDocuments emrdoc = new EmrDocuments();

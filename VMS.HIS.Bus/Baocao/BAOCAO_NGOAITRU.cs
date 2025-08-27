@@ -77,6 +77,14 @@ namespace VNS.HIS.BusRule.Classes
             return SPs.BaocaoChidinhclsTonghop(FromDate, ToDate, MaDoiTuong, CreateBy, nhomdichvu, MAKHOATHIEN, NoExam, KieuBenhNhan).GetDataSet().Tables[0];
         }
 
+        public static DataTable CongnoBaocaoChitietcongnoPhaithu(DateTime? FromDate, DateTime? ToDate, long id_benhnhan, string ma_luotkham)
+        {
+            return SPs.CongnoBaocaoChitietcongnoPhaithu(FromDate, ToDate, id_benhnhan, ma_luotkham).GetDataSet().Tables[0];
+        }
+        public static DataTable CongnoBaocaoTonghopcongnoPhaithu(DateTime? FromDate, DateTime? ToDate, long id_benhnhan,string ma_luotkham)
+        {
+            return SPs.CongnoBaocaoTonghopcongnoPhaithu(FromDate, ToDate, id_benhnhan, ma_luotkham).GetDataSet().Tables[0];
+        }
 
 
         public static DataTable BaocaoThutienkhamTonghop(DateTime? FromDate, DateTime? ToDate, string maDoituongKCB, string maTNV,short idLoaithanhtoan, string MAKHOATHIEN)
@@ -90,6 +98,10 @@ namespace VNS.HIS.BusRule.Classes
         public static DataTable BaocaoDoanhthuphongkhamTonghop(DateTime? FromDate, DateTime? ToDate, string maDoituongKCB, string maTNV, byte noitru, string MAKHOATHIEN)
         {
             return SPs.BaocaoDoanhthuphongkhamTonghop(FromDate, ToDate, maDoituongKCB, maTNV, noitru, MAKHOATHIEN).GetDataSet().Tables[0];
+        }
+        public static DataTable BaocaoDoanhthuphongkhamHongphat(DateTime? FromDate, DateTime? ToDate, string maDoituongKCB, string maTNV, byte noitru, string MAKHOATHIEN, string mahttt, string manganhang, int idLoaidvu, int idDvu, byte loaibaocao)
+        {
+            return SPs.BaocaoDoanhthuphongkhamHongphat(FromDate, ToDate, maDoituongKCB, maTNV, noitru, MAKHOATHIEN, mahttt, manganhang, idLoaidvu, idDvu, loaibaocao).GetDataSet().Tables[0];
         }
         public static DataTable BaocaoDoanhthuphongkhamBvsg(DateTime? FromDate, DateTime? ToDate, string maDoituongKCB, string maTNV, byte noitru, string MAKHOATHIEN, string mahttt, string manganhang, int idLoaidvu, int idDvu, byte loaibaocao)
         {

@@ -19,7 +19,7 @@ namespace VNS.HIS.UI.THUOC
         #region "Public Variables(Class Level)
         public bool m_blnCancel = true;
         /// <summary>
-        /// Biến xác định xem form được gọi từ đâu
+        /// Biến xác định xem form được gọi từ đâuautoHoatchat
         /// true: Gọi từ Menu
         /// false: Gọi từ một Form khác và thường trả về đối tượng khi chọn trên lưới hoặc nhấn nút chọn
         /// </summary>

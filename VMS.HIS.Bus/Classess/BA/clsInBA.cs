@@ -20,7 +20,7 @@ using VNS.Libs;
         public clsInBA()
         {
         }
-        public static string InTomTatBA(EmrTongketBenhan ttba, bool returnFile = false)
+        public static string InTomTatBA(EmrTomtatBa ttba, bool returnFile = false)
         {
             try
             {
@@ -51,6 +51,16 @@ using VNS.Libs;
                 dtData.TableName = "noitru_tomtatBA";
                 Document doc;
                 DataRow drData = dtData.Rows[0];
+                if (dtData.Columns.Contains("ten_benhvien")) drData["ten_benhvien"] = globalVariables.Branch_Name;
+                if (dtData.Columns.Contains("ten_SYT")) drData["ten_SYT"] = globalVariables.ParentBranch_Name;
+                if (dtData.Columns.Contains("ten_dvicaptren")) drData["ten_dvicaptren"] = globalVariables.ParentBranch_Name;
+                if (dtData.Columns.Contains("ten_benhvien")) drData["ten_benhvien"] = globalVariables.Branch_Name;
+                if (dtData.Columns.Contains("diahchi_benhvien")) drData["diahchi_benhvien"] = globalVariables.Branch_Address;
+                if (dtData.Columns.Contains("SDT_bv")) drData["SDT_bv"] = globalVariables.Branch_Phone;
+                if (dtData.Columns.Contains("Hotline_bv")) drData["Hotline_bv"] = globalVariables.Branch_Hotline;
+                if (dtData.Columns.Contains("Fax_bv")) drData["Fax_bv"] = globalVariables.Branch_Fax;
+                if (dtData.Columns.Contains("website_bv")) drData["website_bv"] = globalVariables.Branch_Website;
+                if (dtData.Columns.Contains("email_bv")) drData["email_bv"] = globalVariables.Branch_Email;
                 drData["dia_diem"] = globalVariables.gv_strDiadiem;
                 drData["ngay_thang_nam"] = Utility.FormatDateTime(ttba.NgayTtba.Value);
                 //Dictionary<string, string> dicMF = new Dictionary<string, string>();
@@ -340,8 +350,17 @@ using VNS.Libs;
                .And(NoitruPhieunhapvien.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham).ExecuteSingle<NoitruPhieunhapvien>();
                 dtData.TableName = "BA_EMR";
                 Document doc;
-                drData["ten_dvicaptren"] = globalVariables.ParentBranch_Name;
-                drData["ten_benhvien"] = globalVariables.Branch_Name;
+                if (dtData.Columns.Contains("ten_benhvien")) drData["ten_benhvien"] = globalVariables.Branch_Name;
+                if (dtData.Columns.Contains("ten_SYT")) drData["ten_SYT"] = globalVariables.ParentBranch_Name;
+                if (dtData.Columns.Contains("ten_dvicaptren")) drData["ten_dvicaptren"] = globalVariables.ParentBranch_Name;
+                if (dtData.Columns.Contains("ten_benhvien")) drData["ten_benhvien"] = globalVariables.Branch_Name;
+                if (dtData.Columns.Contains("diahchi_benhvien")) drData["diahchi_benhvien"] = globalVariables.Branch_Address;
+                if (dtData.Columns.Contains("SDT_bv")) drData["SDT_bv"] = globalVariables.Branch_Phone;
+                if (dtData.Columns.Contains("Hotline_bv")) drData["Hotline_bv"] = globalVariables.Branch_Hotline;
+                if (dtData.Columns.Contains("Fax_bv")) drData["Fax_bv"] = globalVariables.Branch_Fax;
+                if (dtData.Columns.Contains("website_bv")) drData["website_bv"] = globalVariables.Branch_Website;
+                if (dtData.Columns.Contains("email_bv")) drData["email_bv"] = globalVariables.Branch_Email;
+
                 drData["p102"] = globalVariables.Branch_Name;
                 drData["p101"] = globalVariables.ParentBranch_Name;
                 drData["p132"] = _phieunv != null ? Utility.FormatDateTime_giophut_ngay_thang_nam(_phieunv.NgayNhapvien, "") : ".......... giờ ....... ngày ........./........./.............";//Vào viện
@@ -470,8 +489,17 @@ using VNS.Libs;
                .And(NoitruPhieunhapvien.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham).ExecuteSingle<NoitruPhieunhapvien>();
                 dtData.TableName = LayMaBA(LoaiBa); ;
                 Document doc;
-                drData["ten_dvicaptren"] = globalVariables.ParentBranch_Name;
-                drData["ten_benhvien"] = globalVariables.Branch_Name;
+                if (dtData.Columns.Contains("ten_benhvien")) drData["ten_benhvien"] = globalVariables.Branch_Name;
+                if (dtData.Columns.Contains("ten_SYT")) drData["ten_SYT"] = globalVariables.ParentBranch_Name;
+                if (dtData.Columns.Contains("ten_dvicaptren")) drData["ten_dvicaptren"] = globalVariables.ParentBranch_Name;
+                if (dtData.Columns.Contains("ten_benhvien")) drData["ten_benhvien"] = globalVariables.Branch_Name;
+                if (dtData.Columns.Contains("diahchi_benhvien")) drData["diahchi_benhvien"] = globalVariables.Branch_Address;
+                if (dtData.Columns.Contains("SDT_bv")) drData["SDT_bv"] = globalVariables.Branch_Phone;
+                if (dtData.Columns.Contains("Hotline_bv")) drData["Hotline_bv"] = globalVariables.Branch_Hotline;
+                if (dtData.Columns.Contains("Fax_bv")) drData["Fax_bv"] = globalVariables.Branch_Fax;
+                if (dtData.Columns.Contains("website_bv")) drData["website_bv"] = globalVariables.Branch_Website;
+                if (dtData.Columns.Contains("email_bv")) drData["email_bv"] = globalVariables.Branch_Email;
+
                 if (dtData.Columns.Contains("p102")) drData["p102"] = globalVariables.Branch_Name;
                 if (dtData.Columns.Contains("p101")) drData["p101"] = globalVariables.ParentBranch_Name;
                 if (dtData.Columns.Contains("p132")) drData["p132"] = _phieunv != null ? Utility.FormatDateTime_giophut_ngay_thang_nam(_phieunv.NgayNhapvien, "") : ".......... giờ ....... ngày ........./........./.............";//Vào viện
@@ -536,6 +564,7 @@ using VNS.Libs;
                         return "";
                     }
                     if (builder.MoveToMergeField("logo") && globalVariables.SysLogo != null)
+                    {
                         if (sysLogosize != null)
                         {
                             int w = Utility.Int32Dbnull(sysLogosize.SValue.Split('x')[0], 0);
@@ -546,8 +575,13 @@ using VNS.Libs;
                                 builder.InsertImage(globalVariables.SysLogo);
                         }
                         else
+                        {
                             if (globalVariables.SysLogo != null)
-                            builder.InsertImage(globalVariables.SysLogo);
+                            {
+                                builder.InsertImage(globalVariables.SysLogo);
+                            }
+                        }
+                    }
                     Utility.MergeFieldsCheckBox2Doc(builder, null, lstcheckboxfields, drData);
                     string loai_ba = Utility.sDbnull(drData["loai_ba"]);
                     //Nạp tiền sử sản khoa. Nhảy đến bảng số 3 trong file doc mẫu

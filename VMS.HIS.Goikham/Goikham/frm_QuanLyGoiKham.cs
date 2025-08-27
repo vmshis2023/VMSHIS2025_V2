@@ -2905,7 +2905,7 @@ namespace VNS.HIS.UI.GOIKHAM
             try
             {
                 int _Payment_ID = Utility.Int32Dbnull(grdPayment.GetValue(KcbThanhtoan.Columns.IdThanhtoan), -1);
-                new INPHIEU_THANHTOAN_NGOAITRU().InHoaDon_BanHang(_Payment_ID,-1,Utility.ByteDbnull( objLuotkham.TrangthaiNoitru > 0 ? 1 : 0));
+                new INPHIEU_THANHTOAN_NGOAITRU().InHoaDon_BanHang(_Payment_ID,-1,Utility.ByteDbnull( objLuotkham.TrangthaiNoitru > 0 ? 1 : 0),1);
             }
             catch (Exception ex)
             {

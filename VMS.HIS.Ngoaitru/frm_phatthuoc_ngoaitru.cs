@@ -178,6 +178,7 @@ namespace VNS.HIS.UI.THUOC
                 }
                 else if (e.Column.Key == "NHAN")
                 {
+                    dtp_ngaychitra.Value = globalVariables.SysDate;
                      long id_tralaithuoc = Utility.Int64Dbnull(grdLichsutrathuoc.GetValue("id_tralaithuoc"));
                      AutoFill(id_tralaithuoc);
                 }
@@ -1721,6 +1722,8 @@ namespace VNS.HIS.UI.THUOC
             DataBinding.BindData(cboKho, m_dtKhothuoc,
                                      TDmucKho.Columns.IdKho, TDmucKho.Columns.TenKho);
             dtNgayPhatThuoc.Value = globalVariables.SysDate;
+            dtp_ngaychitra.Value = globalVariables.SysDate;
+            dtp_ngaychitra.Enabled = Utility.Coquyen("thanhtoan_suangaychi");
             DataTable dtTthai = new Select().From(DmucChung.Schema).Where(DmucChung.Columns.Loai).IsEqualTo("TRANGTHAI_DONTHUOC").And(DmucChung.Columns.TrangThai).IsEqualTo(1).OrderAsc(DmucChung.Columns.SttHthi).ExecuteDataSet().Tables[0];
             DataBinding.BindDataCombobox(cboTrangthai, dtTthai, DmucChung.Columns.Ma, DmucChung.Columns.Ten);
             txtPttt.Init();
@@ -2777,7 +2780,7 @@ namespace VNS.HIS.UI.THUOC
         private readonly KCB_KEDONTHUOC _kcbKedonthuoc = new KCB_KEDONTHUOC();
         private void PrintPres(int presID, string forcedTitle)
         {
-            DataTable v_dtDataOrg = _kcbKedonthuoc.LaythongtinDonthuoc_In(presID);
+            DataTable v_dtDataOrg = _kcbKedonthuoc.LaythongtinDonthuoc_In(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, 0, presID);
 
             DataRow[] arrDR = v_dtDataOrg.Select("tuvan_them=0");
             if (arrDR.Length <= 0)

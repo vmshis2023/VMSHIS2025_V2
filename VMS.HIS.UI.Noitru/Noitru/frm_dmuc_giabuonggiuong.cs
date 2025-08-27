@@ -44,6 +44,7 @@ namespace VNS.HIS.UI.NOITRU
         public frm_dmuc_giabuonggiuong()
         {
             InitializeComponent();
+            Utility.SetVisualStyle(this);
             //Khởi tạo sự kiện
             InitEvents();
             
@@ -1010,5 +1011,10 @@ namespace VNS.HIS.UI.NOITRU
         {
         }
         #endregion
+
+        private void cmdDelete_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -80,7 +80,7 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(long IdPhieu,DateTime NgayHethan,int IdThuoc,decimal GiaNhap,decimal GiaBan,decimal? DonGia,short ThangDu,decimal? SoLuong,decimal? SluongChia,string SoLo,decimal? ChietKhau,decimal? ThanhTien,decimal? Vat,long? IdThuockho,long? IdChuyen,string MaNhacungcap,string MotaThem,string KieuThuocvattu,byte? CoBhyt,decimal? GiaBhyt,decimal? GiaBhytCu,decimal? GiaPhuthuDungtuyen,decimal? GiaPhuthuTraituyen,DateTime? NgayNhap,string SoDky,string SoQdinhthau,long? IdQdinh,long? IdThau,long? IdThauCt)
+	    public void Insert(long IdPhieu,DateTime NgayHethan,int IdThuoc,decimal GiaNhap,decimal? DongiaTruocVAT,decimal? DonGia,decimal GiaBan,short ThangDu,decimal? SoLuong,decimal? SluongChia,string SoLo,decimal? ChietKhau,decimal? ThanhTien,decimal? Vat,long? IdThuockho,long? IdChuyen,string MaNhacungcap,string MotaThem,string KieuThuocvattu,byte? CoBhyt,decimal? GiaBhyt,decimal? GiaBhytCu,decimal? GiaPhuthuDungtuyen,decimal? GiaPhuthuTraituyen,DateTime? NgayNhap,string SoDky,string SoQdinhthau,long? IdQdinh,long? IdThau,long? IdThauCt)
 	    {
 		    TPhieuNhapxuatthuocChitiet item = new TPhieuNhapxuatthuocChitiet();
 		    
@@ -92,9 +92,11 @@ namespace VMS.HIS.DAL
             
             item.GiaNhap = GiaNhap;
             
-            item.GiaBan = GiaBan;
+            item.DongiaTruocVAT = DongiaTruocVAT;
             
             item.DonGia = DonGia;
+            
+            item.GiaBan = GiaBan;
             
             item.ThangDu = ThangDu;
             
@@ -150,7 +152,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(long IdPhieuchitiet,long IdPhieu,DateTime NgayHethan,int IdThuoc,decimal GiaNhap,decimal GiaBan,decimal? DonGia,short ThangDu,decimal? SoLuong,decimal? SluongChia,string SoLo,decimal? ChietKhau,decimal? ThanhTien,decimal? Vat,long? IdThuockho,long? IdChuyen,string MaNhacungcap,string MotaThem,string KieuThuocvattu,byte? CoBhyt,decimal? GiaBhyt,decimal? GiaBhytCu,decimal? GiaPhuthuDungtuyen,decimal? GiaPhuthuTraituyen,DateTime? NgayNhap,string SoDky,string SoQdinhthau,long? IdQdinh,long? IdThau,long? IdThauCt)
+	    public void Update(long IdPhieuchitiet,long IdPhieu,DateTime NgayHethan,int IdThuoc,decimal GiaNhap,decimal? DongiaTruocVAT,decimal? DonGia,decimal GiaBan,short ThangDu,decimal? SoLuong,decimal? SluongChia,string SoLo,decimal? ChietKhau,decimal? ThanhTien,decimal? Vat,long? IdThuockho,long? IdChuyen,string MaNhacungcap,string MotaThem,string KieuThuocvattu,byte? CoBhyt,decimal? GiaBhyt,decimal? GiaBhytCu,decimal? GiaPhuthuDungtuyen,decimal? GiaPhuthuTraituyen,DateTime? NgayNhap,string SoDky,string SoQdinhthau,long? IdQdinh,long? IdThau,long? IdThauCt)
 	    {
 		    TPhieuNhapxuatthuocChitiet item = new TPhieuNhapxuatthuocChitiet();
 	        item.MarkOld();
@@ -166,9 +168,11 @@ namespace VMS.HIS.DAL
 				
 			item.GiaNhap = GiaNhap;
 				
-			item.GiaBan = GiaBan;
+			item.DongiaTruocVAT = DongiaTruocVAT;
 				
 			item.DonGia = DonGia;
+				
+			item.GiaBan = GiaBan;
 				
 			item.ThangDu = ThangDu;
 				

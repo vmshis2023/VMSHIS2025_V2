@@ -2046,7 +2046,7 @@ namespace  VNS.HIS.UI.THANHTOAN
                     {
                         var txtFormantTongTien = new EditBox();
                         txtFormantTongTien = ((EditBox) (control));
-                        if (txtFormantTongTien.Name != txtGhichu.Name)
+                        if (txtFormantTongTien.Name != txtGhichu.Name && txtFormantTongTien.Name != txt_tongtien_tralai.Name)
                         {
                             txtFormantTongTien.Clear();
                             txtFormantTongTien.ReadOnly = true;
@@ -3035,6 +3035,8 @@ namespace  VNS.HIS.UI.THANHTOAN
                 {
                     txtTuTuc.BackColor = Color.Honeydew;
                 }
+                decimal tongtien_tralai = m_dtChiPhiDaThanhToan == null || m_dtChiPhiDaThanhToan.Columns.Count <= 0 ? 0m : Utility.DecimaltoDbnull(m_dtChiPhiDaThanhToan.Compute("SUM(THUC_THU)", "trangthai_huy=1"), 0);
+                txt_tongtien_tralai.Text = "(" + String.Format(Utility.FormatCurrecy(), tongtien_tralai) + ")";
                 txtTuTuc.Text = Utility.sDbnull(tt_tutuc);
                 txtBHYT_CCT.Text = Utility.sDbnull(tt_bhyt_cct, "0");
                 txtBN_CCT.Text = Utility.sDbnull(tt_bn_cct, "0");
@@ -3216,7 +3218,7 @@ namespace  VNS.HIS.UI.THANHTOAN
         private void frm_THANHTOAN_NOITRU_V1_Load(object sender, EventArgs e)
         {
            cmdTamthu.Visible =  mnuTamthu.Visible = THU_VIEN_CHUNG.Laygiatrithamsohethong("THANHTOAN_CHOPHEP_TAMTHU_NOITRU", "0", true) == "1";
-            cmdKetchuyen.Visible = mnuKetchuyen.Visible = false;//Tạm khóa lại
+            cmdKetchuyen.Visible = mnuKetchuyen.Visible = cmdTamthu.Visible;
            mnuFixError.Enabled = globalVariables.isSuperAdmin;
             LoadUserConfigs();
             pnlTangGiamDonGia.Enabled = Utility.Coquyen("thanhtoan_tanggiam_tile_dongia");
@@ -3647,7 +3649,7 @@ namespace  VNS.HIS.UI.THANHTOAN
                 else
                 {
                     txtDachietkhau.Text = m_dtPayment.Compute("SUM(tongtien_chietkhau)", "1=1").ToString();
-                    txtsotiendathu.Text = (Utility.DecimaltoDbnull(m_dtPayment.Compute("SUM(TT_BN)", "1=1"), 0) - Utility.DecimaltoDbnull(txtDachietkhau.Text, 0)).ToString();
+                    txtsotiendathu.Text = (Utility.DecimaltoDbnull(m_dtPayment.Compute("SUM(TT_BN)", "kieu_thanhtoan=0"), 0) - Utility.DecimaltoDbnull(txtDachietkhau.Text, 0)).ToString();
                 }
             }
             catch (Exception exception)
@@ -7318,7 +7320,8 @@ namespace  VNS.HIS.UI.THANHTOAN
                     Utility.ShowMsg("Toàn bộ các dịch vụ bạn đang nhìn thấy đã được thanh toán hoặc Ghi nợ. Vui lòng chọn lại người bệnh để làm mới lại các dữ liệu có thể Ghi nợ");
                     //return;
                 }
-                dtData = arrDr.CopyToDataTable();
+                else
+                    dtData = arrDr.CopyToDataTable();
                 frm_Ghino _ghino = new frm_Ghino(m_dtChiPhiThanhtoan,dtData, this.log, this.v_bytNoitru, this.lst_IDLoaithanhtoan);
                 _ghino.objLuotkham = this.objLuotkham;
                 _ghino.ShowDialog();

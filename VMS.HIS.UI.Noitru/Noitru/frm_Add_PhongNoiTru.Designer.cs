@@ -334,7 +334,7 @@
             // cmdExit
             // 
             this.cmdExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdExit.Image = ((System.Drawing.Image)(resources.GetObject("cmdExit.Image")));
+            this.cmdExit.Image = global::VMS.HIS.Noitru.Properties.Resources.close_24;
             this.cmdExit.ImageSize = new System.Drawing.Size(24, 24);
             this.cmdExit.Location = new System.Drawing.Point(448, 321);
             this.cmdExit.Name = "cmdExit";

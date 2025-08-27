@@ -34,10 +34,10 @@ namespace VNS.HIS.UI.Baocao
         void Initevents()
         {
             cboReportType.SelectedIndex = 0;
-            this.KeyDown += new KeyEventHandler(frm_BAOCAO_TONGHOP_TAI_KKB_DTUONG_THUPHI_KeyDown);
+            this.KeyDown += new KeyEventHandler(frm_baocaodoanhthuphongkham_Hongphat_KeyDown);
             this.cmdExit.Click += new EventHandler(cmdExit_Click);
             chkByDate.CheckedChanged += new EventHandler(chkByDate_CheckedChanged);
-            this.Load += new EventHandler(frm_BAOCAO_TONGHOP_TAI_KKB_DTUONG_THUPHI_Load);
+            this.Load += new EventHandler(frm_baocaodoanhthuphongkham_Hongphat_Load);
             chkTachCDHA.CheckedChanged+=new EventHandler(chkChitiet_CheckedChanged);
             ShowGrid();
         }
@@ -47,6 +47,7 @@ namespace VNS.HIS.UI.Baocao
         }
         void ShowGrid()
         {
+            cboReportType.SelectedIndex = 1;
             if (cboReportType.SelectedIndex == 0)
             {
                 grdListEBM.BringToFront();
@@ -67,13 +68,15 @@ namespace VNS.HIS.UI.Baocao
             }
         }
         DataTable m_dtKhoathucHien=new DataTable();
-        private void frm_BAOCAO_TONGHOP_TAI_KKB_DTUONG_THUPHI_Load(object sender, EventArgs eventArgs)
+        private void frm_baocaodoanhthuphongkham_Hongphat_Load(object sender, EventArgs eventArgs)
         {
             try
             {
                 DataBinding.BindDataCombobox(cboDoituongKCB, THU_VIEN_CHUNG.LaydanhsachDoituongKcb(),
                                            DmucDoituongkcb.Columns.MaDoituongKcb, DmucDoituongkcb.Columns.TenDoituongKcb, "Chọn đối tượng KCB", true);
-                DataBinding.BindDataCombobox(cboNhanvien, THU_VIEN_CHUNG.LaydanhsachThunganvien(),
+                DataBinding.BindDataCombobox(cbo_bacsi_chidinh, THU_VIEN_CHUNG.LaydanhsachBacsi(-1,-1),
+                                     DmucNhanvien.Columns.UserName, DmucNhanvien.Columns.TenNhanvien, "Chọn Bác sĩ chỉ định", true);
+                DataBinding.BindDataCombobox(cbo_thunganvien, THU_VIEN_CHUNG.LaydanhsachThunganvien(),
                                       DmucNhanvien.Columns.UserName, DmucNhanvien.Columns.TenNhanvien, "Chọn nhân viên thu ngân", true);
                 m_dtKhoathucHien = THU_VIEN_CHUNG.Laydanhmuckhoa("NGOAI", 0);
                 DataBinding.BindDataCombobox(cboKhoa, m_dtKhoathucHien,
@@ -106,7 +109,7 @@ namespace VNS.HIS.UI.Baocao
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void frm_BAOCAO_TONGHOP_TAI_KKB_DTUONG_THUPHI_KeyDown(object sender, KeyEventArgs e)
+        private void frm_baocaodoanhthuphongkham_Hongphat_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape) cmdExit.PerformClick();
             if (e.KeyCode == Keys.F4) cmdInPhieuXN.PerformClick();
@@ -179,28 +182,27 @@ namespace VNS.HIS.UI.Baocao
         {
             if (chkTachCDHA.Checked)
             {
-                _dtData =
-                    BAOCAO_NGOAITRU.BaocaoDoanhthuphongkham(
-                        chkByDate.Checked ? dtFromDate.Value : Convert.ToDateTime("01/01/1900"),
-                        chkByDate.Checked ? dtToDate.Value : globalVariables.SysDate,
-                        Utility.sDbnull(cboDoituongKCB.SelectedValue, -1),
-                        Utility.sDbnull(cboNhanvien.SelectedValue, -1),
-                        Utility.ByteDbnull(cboLoaidichvu.SelectedValue, 2), Utility.sDbnull(cboKhoa.SelectedValue, -1));
-                THU_VIEN_CHUNG.CreateXML(_dtData, "BaocaoDoanhthuphongkham.xml");
-                Utility.SetDataSourceForDataGridEx(grdChitiet, _dtData, false, true, "1=1", "");
-                Janus.Windows.GridEX.GridEXColumn gridExColumnTientong = grdChitiet.RootTable.Columns["TONGCONG"];
-                tong_tien = Utility.DecimaltoDbnull(grdChitiet.GetTotal(gridExColumnTientong, Janus.Windows.GridEX.AggregateFunction.Sum));
+                //_dtData =
+                //    BAOCAO_NGOAITRU.BaocaoDoanhthuphongkham(
+                //        chkByDate.Checked ? dtFromDate.Value : Convert.ToDateTime("01/01/1900"),
+                //        chkByDate.Checked ? dtToDate.Value : globalVariables.SysDate,
+                //        Utility.sDbnull(cboDoituongKCB.SelectedValue, -1),
+                //        Utility.sDbnull(cboNhanvien.SelectedValue, -1),
+                //        Utility.ByteDbnull(cboLoaidichvu.SelectedValue, 2), Utility.sDbnull(cboKhoa.SelectedValue, -1));
+                //THU_VIEN_CHUNG.CreateXML(_dtData, "BaocaoDoanhthuphongkham.xml");
+                //Utility.SetDataSourceForDataGridEx(grdChitiet, _dtData, false, true, "1=1", "");
+                //Janus.Windows.GridEX.GridEXColumn gridExColumnTientong = grdChitiet.RootTable.Columns["TONGCONG"];
+                //tong_tien = Utility.DecimaltoDbnull(grdChitiet.GetTotal(gridExColumnTientong, Janus.Windows.GridEX.AggregateFunction.Sum));
             }
             else
             {
                 _dtData =
-                    BAOCAO_NGOAITRU.BaocaoDoanhthuphongkhamTonghop(
-                        chkByDate.Checked ? dtFromDate.Value : Convert.ToDateTime("01/01/1900"),
-                        chkByDate.Checked ? dtToDate.Value : globalVariables.SysDate,
+                    BAOCAO_NGOAITRU.BaocaoDoanhthuphongkhamHongphat(
+                        chkByDate.Checked ? dtFromDate.Value.Date : Convert.ToDateTime("01/01/1900"),
+                        chkByDate.Checked ? dtToDate.Value.Date.AddHours(23).AddMinutes(59).AddSeconds(59) : globalVariables.SysDate,
                         Utility.sDbnull(cboDoituongKCB.SelectedValue, -1),
-                        Utility.sDbnull(cboNhanvien.SelectedValue, -1),
-                        Utility.ByteDbnull(cboLoaidichvu.SelectedValue, 2), Utility.sDbnull(cboKhoa.SelectedValue, -1));
-                THU_VIEN_CHUNG.CreateXML(_dtData, "BaocaoDoanhthuphongkhamTonghop.xml");
+                        Utility.sDbnull(cbo_thunganvien.SelectedValue, -1),100, Utility.sDbnull(cboKhoa.SelectedValue, -1), "-1","-1",-1,-1,0);
+                THU_VIEN_CHUNG.CreateXML(_dtData, "baocao_doanhthuphongkham_hongphat.xml");
                 Utility.SetDataSourceForDataGridEx(grdList, _dtData, false, true, "1=1", "");
                 Janus.Windows.GridEX.GridEXColumn gridExColumnTientong = grdList.RootTable.Columns["TONGCONG"];
                 tong_tien = Utility.DecimaltoDbnull(grdList.GetTotal(gridExColumnTientong, Janus.Windows.GridEX.AggregateFunction.Sum));
@@ -218,10 +220,10 @@ namespace VNS.HIS.UI.Baocao
                                           cboDoituongKCB.SelectedIndex >= 0
                                               ? Utility.sDbnull(cboDoituongKCB.Text)
                                               : "Tất cả",
-                                          cboNhanvien.SelectedIndex > 0
-                                              ? Utility.sDbnull(cboNhanvien.Text)
+                                          cbo_thunganvien.SelectedIndex > 0
+                                              ? Utility.sDbnull(cbo_thunganvien.Text)
                                               : "Tất cả");
-            string reportcode = chkTachCDHA.Checked ? "baocao_doanhthuphongkham_chitiet" : "baocao_doanhthuphongkham_tonghop";
+            string reportcode = chkTachCDHA.Checked ? "baocao_doanhthuphongkham_hongphat" : "baocao_doanhthuphongkham_hongphat";
             var crpt = Utility.GetReport(reportcode, ref tieude, ref reportname);
             if (crpt == null) return;
 
@@ -260,7 +262,7 @@ namespace VNS.HIS.UI.Baocao
                       chkByDate.Checked ? dtFromDate.Value : Convert.ToDateTime("01/01/1900"),
                       chkByDate.Checked ? dtToDate.Value : globalVariables.SysDate,
                       Utility.sDbnull(cboDoituongKCB.SelectedValue, -1),
-                      Utility.sDbnull(cboNhanvien.SelectedValue, -1),
+                      Utility.sDbnull(cbo_thunganvien.SelectedValue, -1),
                       Utility.ByteDbnull(cboLoaidichvu.SelectedValue, 2), Utility.sDbnull(cboKhoa.SelectedValue, -1));
 
             Utility.SetDataSourceForDataGridEx(grdListEBM, _dtData, false, true, "1=1", "");
@@ -280,8 +282,8 @@ namespace VNS.HIS.UI.Baocao
                                           cboDoituongKCB.SelectedIndex >= 0
                                               ? Utility.sDbnull(cboDoituongKCB.Text)
                                               : "Tất cả",
-                                          cboNhanvien.SelectedIndex > 0
-                                              ? Utility.sDbnull(cboNhanvien.Text)
+                                          cbo_thunganvien.SelectedIndex > 0
+                                              ? Utility.sDbnull(cbo_thunganvien.Text)
                                               : "Tất cả");
             string reportcode = "baocao_doanhthuphongkham_tonghopEBM";
             var crpt = Utility.GetReport(reportcode, ref tieude, ref reportname);

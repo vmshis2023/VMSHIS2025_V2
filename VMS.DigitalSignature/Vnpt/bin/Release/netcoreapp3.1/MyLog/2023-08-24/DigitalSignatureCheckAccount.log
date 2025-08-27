@@ -1,0 +1,70 @@
+2023-08-24 03:55:58.4026||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- |url: |action: 
+2023-08-24 03:55:58.4120||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user string with appId: string, secret: string |url: |action: 
+2023-08-24 03:57:35.5235||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- |url: |action: 
+2023-08-24 03:57:35.5235||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user string with appId: string, secret: string |url: |action: 
+2023-08-24 03:57:55.7668||ERROR|DigitalSignatureCheckAccount|There was an error on 'DigitalSignatureCheckAccount' invocation: System.Exception: Error: /api/account/endcertSystem.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at VietBaIT.ChuKySo.Api.DigitalSignature.CyberLotus.HMACDelegatingHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\DigitalSignature\CyberLotus\HmacClient.cs:line 85
+   at System.Net.Http.HttpClient.FinishSendAsyncBuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)
+   at VietBaIT.ChuKySo.Api.Controllers.ViettelController.getCertificate(String appId, String secret) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\Controllers\ViettelController.cs:line 262
+   at VietBaIT.ChuKySo.Api.Controllers.ViettelController.getCertificate(String appId, String secret) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\Controllers\ViettelController.cs:line 272
+   at VietBaIT.ChuKySo.Api.Controllers.ViettelController.DigitalSignatureCheckAccount(VietBaDigitalSignature objDigitalSignature) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\Controllers\ViettelController.cs:line 65 |url: |action: 
+2023-08-24 03:57:57.4703||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- |url: |action: 
+2023-08-24 03:57:57.4703||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user string with appId: string, secret: string |url: |action: 
+2023-08-24 03:59:20.8692||ERROR|DigitalSignatureCheckAccount|There was an error on 'DigitalSignatureCheckAccount' invocation: System.Exception: Error: /api/account/endcertSystem.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at VietBaIT.ChuKySo.Api.DigitalSignature.CyberLotus.HMACDelegatingHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\DigitalSignature\CyberLotus\HmacClient.cs:line 85
+   at System.Net.Http.HttpClient.FinishSendAsyncBuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)
+   at VietBaIT.ChuKySo.Api.Controllers.ViettelController.getCertificate(String appId, String secret) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\Controllers\ViettelController.cs:line 262
+   at VietBaIT.ChuKySo.Api.Controllers.ViettelController.getCertificate(String appId, String secret) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\Controllers\ViettelController.cs:line 272
+   at VietBaIT.ChuKySo.Api.Controllers.ViettelController.DigitalSignatureCheckAccount(VietBaDigitalSignature objDigitalSignature) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\Controllers\ViettelController.cs:line 65 |url: |action: 
+2023-08-24 03:59:22.3771||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- |url: |action: 
+2023-08-24 03:59:22.3771||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user string with appId: string, secret: string |url: |action: 
+2023-08-24 03:59:28.2514||ERROR|DigitalSignatureCheckAccount|There was an error on 'DigitalSignatureCheckAccount' invocation: System.Exception: Error: /api/account/endcertSystem.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at VietBaIT.ChuKySo.Api.DigitalSignature.CyberLotus.HMACDelegatingHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\DigitalSignature\CyberLotus\HmacClient.cs:line 85
+   at System.Net.Http.HttpClient.FinishSendAsyncBuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)
+   at VietBaIT.ChuKySo.Api.Controllers.ViettelController.getCertificate(String appId, String secret) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\Controllers\ViettelController.cs:line 262
+   at VietBaIT.ChuKySo.Api.Controllers.ViettelController.getCertificate(String appId, String secret) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\Controllers\ViettelController.cs:line 272
+   at VietBaIT.ChuKySo.Api.Controllers.ViettelController.DigitalSignatureCheckAccount(VietBaDigitalSignature objDigitalSignature) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\Controllers\ViettelController.cs:line 65 |url: |action: 
+2023-08-24 03:59:29.8773||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- |url: |action: 
+2023-08-24 03:59:29.8773||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user string with appId: string, secret: string |url: |action: 
+2023-08-24 04:00:52.5745||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- |url: |action: 
+2023-08-24 04:00:52.5792||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user string with appId: string, secret: string |url: |action: 
+2023-08-24 21:44:56.9110||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- |url: |action: 
+2023-08-24 21:44:56.9110||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user string with appId: string, secret: string |url: |action: 
+2023-08-24 21:47:38.9773||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- |url: |action: 
+2023-08-24 21:47:38.9908||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user string with appId: string, secret: string |url: |action: 
+2023-08-24 22:04:06.0461||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- |url: |action: 
+2023-08-24 22:04:06.0488||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user string with appId: 001092030130_3048529_20230824082257, secret: string |url: |action: 
+2023-08-24 22:59:50.1330||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- |url: |action: 
+2023-08-24 22:59:50.1330||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user string with appId: 001092030130_3048529_20230824082257, secret: string |url: |action: 
+2023-08-24 22:59:52.6348||DEBUG|DigitalSignatureCheckAccount|Successfully !!! |url: |action: 
+2023-08-24 23:00:15.4258||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- |url: |action: 
+2023-08-24 23:00:15.4258||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user string with appId: 001092030130_3048529_20230824082257, secret: string |url: |action: 
+2023-08-24 23:03:09.7762||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- |url: |action: 
+2023-08-24 23:03:09.7809||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user string with appId: 001092030130_3048529_20230824082257, secret: string |url: |action: 
+2023-08-24 23:10:28.3831||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- |url: |action: 
+2023-08-24 23:10:28.3831||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user string with appId: 001092030130_3048529_20230824082257, secret: string |url: |action: 
+2023-08-24 23:10:30.3078||DEBUG|DigitalSignatureCheckAccount|Successfully !!! |url: |action: 
+2023-08-24 23:10:49.4311||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- |url: |action: 
+2023-08-24 23:10:49.4311||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user string with appId: 001092030130_3048529_20230824082257, secret: string |url: |action: 
+2023-08-24 23:11:08.5076||DEBUG|DigitalSignatureCheckAccount|Successfully !!! |url: |action: 
+2023-08-24 23:35:08.3585||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- |url: |action: 
+2023-08-24 23:35:08.3585||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user ADMIN with appId: 001092030130, secret:  |url: |action: 
+2023-08-24 23:35:09.7041||DEBUG|DigitalSignatureCheckAccount|Invalid userName !!! |url: |action: 
+2023-08-24 23:35:22.3922||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- |url: |action: 
+2023-08-24 23:35:25.8014||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user ADMIN with appId: 001092030130, secret:  |url: |action: 
+2023-08-24 23:36:02.8091||DEBUG|DigitalSignatureCheckAccount|Invalid userName !!! |url: |action: 
+2023-08-24 23:36:08.6439||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- |url: |action: 
+2023-08-24 23:36:11.5779||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user ADMIN with appId: 001092030130_3048529_20230824082257, secret:  |url: |action: 
+2023-08-24 23:36:12.8482||DEBUG|DigitalSignatureCheckAccount|Successfully !!! |url: |action: 
+2023-08-24 23:36:41.2310||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- |url: |action: 
+2023-08-24 23:36:41.2337||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user ADMIN with appId: 001092030130_3048529_20230824082257, secret:  |url: |action: 
+2023-08-24 23:36:42.2765||DEBUG|DigitalSignatureCheckAccount|Successfully !!! |url: |action: 
+2023-08-24 23:37:59.2186||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- |url: |action: 
+2023-08-24 23:37:59.2186||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user ADMIN with appId: 001092030130_3048529_20230824082257, secret:  |url: |action: 
+2023-08-24 23:38:00.3512||DEBUG|DigitalSignatureCheckAccount|Successfully !!! |url: |action: 

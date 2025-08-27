@@ -228,7 +228,8 @@ namespace VMS.HIS.UI.EMR
                     EmrDocument emrdoc = new EmrDocument();
                     emrdoc.IsNew = true;
                     emrdoc.FileIn = string.Format("{0}.{1}", Utility.sDbnull(row.Cells["ma_file"].Value), Path.GetExtension(Utility.sDbnull(row.Cells["file_path"].Value)));
-                    emrdoc.NguonTao = 5;//File đính kèm từ ngoài hệ thống
+                    emrdoc.FileKiso = emrdoc.FileIn;
+                   emrdoc.NguonTao = 5;//File đính kèm từ ngoài hệ thống
                     emrdoc.NgayTao = globalVariables.SysDate;
                     emrdoc.NguoiTao = globalVariables.UserName;
                     emrdoc.Title = Utility.sDbnull(row.Cells["ten_file"].Value);
@@ -243,10 +244,10 @@ namespace VMS.HIS.UI.EMR
                     emrdoc.FilePath = Utility.sDbnull(row.Cells["file_path"].Value);
                     emrdoc.TthaiAn = false;
                     emrdoc.TthaiChiase = false;
-                    emrdoc.TthaiDuyet = 0;
+                    emrdoc.TthaiDuyet = 1;
                     emrdoc.TthaiHuy = false;
-                    emrdoc.TthaiKydientu = false;
-                    emrdoc.TthaiKyso = false;
+                    emrdoc.TthaiKydientu = true;
+                    emrdoc.TthaiKyso = true;
                     emrdoc.TthaiXoa = false;
                     emrdoc.Save();
                     string upload_file= Utility.sDbnull(row.Cells["upload_file"].Value); 

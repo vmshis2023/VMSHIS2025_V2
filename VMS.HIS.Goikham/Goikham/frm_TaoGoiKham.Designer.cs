@@ -37,8 +37,8 @@ namespace VNS.HIS.UI.GOIKHAM
             Janus.Windows.GridEX.GridEXLayout grdGiuong_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.GridEX.GridEXLayout grdVTu_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.GridEX.GridEXLayout grdChitiet_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
-            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem1 = new Janus.Windows.EditControls.UIComboBoxItem();
-            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem2 = new Janus.Windows.EditControls.UIComboBoxItem();
+            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem3 = new Janus.Windows.EditControls.UIComboBoxItem();
+            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem4 = new Janus.Windows.EditControls.UIComboBoxItem();
             this.uiGroupBox1 = new Janus.Windows.EditControls.UIGroupBox();
             this.cmdSave = new Janus.Windows.EditControls.UIButton();
             this.cmdThoat = new Janus.Windows.EditControls.UIButton();
@@ -379,6 +379,7 @@ namespace VNS.HIS.UI.GOIKHAM
             this.cmdAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdAccept.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdAccept.Image = ((System.Drawing.Image)(resources.GetObject("cmdAccept.Image")));
+            this.cmdAccept.ImageSize = new System.Drawing.Size(20, 20);
             this.cmdAccept.Location = new System.Drawing.Point(1156, 80);
             this.cmdAccept.Name = "cmdAccept";
             this.cmdAccept.Size = new System.Drawing.Size(144, 40);
@@ -832,17 +833,17 @@ namespace VNS.HIS.UI.GOIKHAM
             // 
             // cboKieugoi
             // 
-            uiComboBoxItem1.FormatStyle.Alpha = 0;
-            uiComboBoxItem1.IsSeparator = false;
-            uiComboBoxItem1.Text = "Gói dùng 1 lần";
-            uiComboBoxItem1.Value = ((byte)(0));
-            uiComboBoxItem2.FormatStyle.Alpha = 0;
-            uiComboBoxItem2.IsSeparator = false;
-            uiComboBoxItem2.Text = "Gói trừ dần";
-            uiComboBoxItem2.Value = ((byte)(1));
+            uiComboBoxItem3.FormatStyle.Alpha = 0;
+            uiComboBoxItem3.IsSeparator = false;
+            uiComboBoxItem3.Text = "Gói dùng 1 lần";
+            uiComboBoxItem3.Value = ((byte)(0));
+            uiComboBoxItem4.FormatStyle.Alpha = 0;
+            uiComboBoxItem4.IsSeparator = false;
+            uiComboBoxItem4.Text = "Gói trừ dần";
+            uiComboBoxItem4.Value = ((byte)(1));
             this.cboKieugoi.Items.AddRange(new Janus.Windows.EditControls.UIComboBoxItem[] {
-            uiComboBoxItem1,
-            uiComboBoxItem2});
+            uiComboBoxItem3,
+            uiComboBoxItem4});
             this.cboKieugoi.Location = new System.Drawing.Point(248, 22);
             this.cboKieugoi.Name = "cboKieugoi";
             this.cboKieugoi.Size = new System.Drawing.Size(231, 21);

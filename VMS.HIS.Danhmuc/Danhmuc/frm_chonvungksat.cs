@@ -22,10 +22,12 @@ namespace VNS.HIS.UI.HinhAnh
         public bool Hthi_Chon = false;
         public string vungks = "";
         public string ten_dvu = "";
-        public frm_chonvungksat(List<string> lstId)
+        string serviceCode = "";
+        public frm_chonvungksat(List<string> lstId,string serviceCode)
         {
             InitializeComponent();
             Utility.SetVisualStyle(this);
+            this.serviceCode = serviceCode;
             this.lstId = lstId;
             this.Load += frm_chonvungksat_Load;
             this.FormClosing += frm_chonvungksat_FormClosing;
@@ -82,11 +84,12 @@ namespace VNS.HIS.UI.HinhAnh
         void LoadData()
         {
             
-            string serviceCode = "ALL";
-            serviceCode =Util.getMaKieuDichVu();
+            //string serviceCode = "ALL";
+            //serviceCode =Util.getMaKieuDichVu();
             if (lstId.Count <= 0 || (lstId.Count == 1 && lstId[0].TrimEnd().TrimStart() == ""))
             {
-                if (serviceCode == "ALL" || globalVariables.IsAdmin)
+
+                if (serviceCode == "ALL" ||(THU_VIEN_CHUNG.Laygiatrithamsohethong("VKS_HIENTHITATCA_DECHON_ADMIN","0",true)=="1" &&  (globalVariables.IsAdmin || globalVariables.isSuperAdmin)))
                     _dtVungKS = new Select().From(DmucVungkhaosat.Schema.Name)
                         .Where(DmucVungkhaosat.Columns.TrangThai).IsEqualTo(1)
                     .ExecuteDataSet().Tables[0];
@@ -113,6 +116,11 @@ namespace VNS.HIS.UI.HinhAnh
             var obj = new DmucVungkhaosat { NgayTao = DateTime.Now };
             var f = new frm_themmoi_vungkhaosat("ALL") { m_enAct = action.Insert, Table = _dtVungKS, Obj = obj };
             f.ShowDialog();
+        }
+
+        private void cmdAccept_Click(object sender, EventArgs e)
+        {
+            Accept();
         }
     }
     

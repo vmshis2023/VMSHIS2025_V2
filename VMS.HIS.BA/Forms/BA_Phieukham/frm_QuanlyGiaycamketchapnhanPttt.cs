@@ -43,7 +43,14 @@ namespace VNS.HIS.UI.NOITRU
             chkByDate.CheckedChanged += chkByDate_CheckedChanged;
             Load += frm_QuanlyGiaycamketchapnhanPttt_Load;
             KeyDown += frm_QuanlyGiaycamketchapnhanPttt_KeyDown;
+            grdList.MouseDoubleClick += GrdList_MouseDoubleClick;
         }
+
+        private void GrdList_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            cmdUpdate.PerformClick();
+        }
+
         /// <summary>
         /// hàm thực hiện việc thoát Form hiện tại
         /// </summary>
@@ -202,7 +209,7 @@ namespace VNS.HIS.UI.NOITRU
                 }
                 if (m_enAct == action.Update && m_dtData != null && m_dtData.Columns.Count > 0 && dt_temp.Rows.Count > 0)
                 {
-                    DataRow[] arrDr = m_dtData.Select("id=" + id);
+                    DataRow[] arrDr = m_dtData.Select("id_phieu=" + id);
                     if (arrDr.Length > 0)
                     {
                         arrDr[0]["ngay_camket"] = dt_temp.Rows[0]["ngay_camket"];

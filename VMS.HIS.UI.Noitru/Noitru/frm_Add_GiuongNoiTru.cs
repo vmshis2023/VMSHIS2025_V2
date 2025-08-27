@@ -291,36 +291,36 @@ namespace VNS.HIS.UI.NOITRU
                 return false;
             }
             
-            if (Utility.DecimaltoDbnull(txtDongia.Text, 0) < 0)
-            {
-                Utility.SetMsg(lblMsg, "Giá áp dụng cho đối tượng Dịch vụ phải >=0.", true);
-                txtDongia.Focus();
-                return false;
-            }
-            if (Utility.DecimaltoDbnull(txtGiaBHYT.Text, 0) < 0)
-            {
-                Utility.SetMsg(lblMsg, "Giá áp dụng cho đối tượng BHYT phải >=0.", true);
-                txtGiaBHYT.Focus();
-                return false;
-            }
-            if (Utility.DecimaltoDbnull(txtGiakhac.Text, 0) < 0)
-            {
-                Utility.SetMsg(lblMsg, "Giá áp dụng cho đối tượng khác phải >=0.", true);
-                txtGiakhac.Focus();
-                return false;
-            }
-            if (Utility.DecimaltoDbnull(txtPTDT.Text, 0) < 0)
-            {
-                Utility.SetMsg(lblMsg, "Giá phụ thu đúng tuyến áp dụng cho đối tượng BHYT phải >=0.", true);
-                txtPTDT.Focus();
-                return false;
-            }
-            if (Utility.DecimaltoDbnull(txtPTTT.Text, 0) < 0)
-            {
-                Utility.SetMsg(lblMsg, "Giá phụ thu trái tuyến áp dụng cho đối tượng BHYT phải >=0.", true);
-                txtPTTT.Focus();
-                return false;
-            }
+            //if (Utility.DecimaltoDbnull(txtDongia.Text, 0) < 0)
+            //{
+            //    Utility.SetMsg(lblMsg, "Giá áp dụng cho đối tượng Dịch vụ phải >=0.", true);
+            //    txtDongia.Focus();
+            //    return false;
+            //}
+            //if (Utility.DecimaltoDbnull(txtGiaBHYT.Text, 0) < 0)
+            //{
+            //    Utility.SetMsg(lblMsg, "Giá áp dụng cho đối tượng BHYT phải >=0.", true);
+            //    txtGiaBHYT.Focus();
+            //    return false;
+            //}
+            //if (Utility.DecimaltoDbnull(txtGiakhac.Text, 0) < 0)
+            //{
+            //    Utility.SetMsg(lblMsg, "Giá áp dụng cho đối tượng khác phải >=0.", true);
+            //    txtGiakhac.Focus();
+            //    return false;
+            //}
+            //if (Utility.DecimaltoDbnull(txtPTDT.Text, 0) < 0)
+            //{
+            //    Utility.SetMsg(lblMsg, "Giá phụ thu đúng tuyến áp dụng cho đối tượng BHYT phải >=0.", true);
+            //    txtPTDT.Focus();
+            //    return false;
+            //}
+            //if (Utility.DecimaltoDbnull(txtPTTT.Text, 0) < 0)
+            //{
+            //    Utility.SetMsg(lblMsg, "Giá phụ thu trái tuyến áp dụng cho đối tượng BHYT phải >=0.", true);
+            //    txtPTTT.Focus();
+            //    return false;
+            //}
             if (m_enAct == action.Insert)
             {
                 if (!chkcodefrom.Checked)//Thêm đơn lẻ từng chiếc mới kiểm tra
@@ -466,7 +466,7 @@ namespace VNS.HIS.UI.NOITRU
         {
             try
             {
-                NoitruQheGiuongGiumCollection lstQhe = GetQuanheGiuongLoaiGiuong(-1);
+              //  NoitruQheGiuongGiumCollection lstQhe = GetQuanheGiuongLoaiGiuong(-1);
                  using (var scope = new TransactionScope())
                 {
                     using (var sh = new SharedDbConnectionScope())
@@ -519,11 +519,16 @@ namespace VNS.HIS.UI.NOITRU
                             objBed.Save();
                             new Delete().From(NoitruQheGiuongGium.Schema).Where(NoitruQheGiuongGium.Columns.IdGiuong).IsEqualTo(objBed.IdGiuong).Execute();
 
-                            foreach (NoitruQheGiuongGium obj in lstQhe)
+                            foreach (Janus.Windows.GridEX.GridEXRow gridExRow in grdGiaGiuong.GetCheckedRows())
                             {
-                                obj.IdGiuong = objBed.IdGiuong;
+                                NoitruQheGiuongGium objQhe = new NoitruQheGiuongGium();
+                                objQhe.IdGia = Utility.Int16Dbnull(gridExRow.Cells[NoitruGiabuonggiuong.Columns.IdGia].Value);
+                                objQhe.IdGiuong = objBed.IdGiuong;
+                                objQhe.IsNew = true;
+                                objQhe.Save();
                             }
-                            lstQhe.SaveAll();
+
+                            //  lstQhe.SaveAll();
                             if (objBed != null)
                             {
 
@@ -579,10 +584,9 @@ namespace VNS.HIS.UI.NOITRU
                     Close();
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-               
+                Utility.CatchException(ex);
             }
 
         }
@@ -867,6 +871,16 @@ namespace VNS.HIS.UI.NOITRU
         }
 
         private void grdQuanheGiuong_FormattingRow(object sender, Janus.Windows.GridEX.RowLoadEventArgs e)
+        {
+
+        }
+
+        private void cmdSaoChep_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
+
+        private void cmdSave_Click_1(object sender, EventArgs e)
         {
 
         }

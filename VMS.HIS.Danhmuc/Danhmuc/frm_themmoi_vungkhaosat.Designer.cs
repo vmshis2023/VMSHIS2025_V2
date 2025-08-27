@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel4 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
-            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel5 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
-            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel6 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
+            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel10 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
+            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel11 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
+            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel12 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_themmoi_vungkhaosat));
             this.uiStatusBar1 = new Janus.Windows.UI.StatusBar.UIStatusBar();
             this.cmdExit = new Janus.Windows.EditControls.UIButton();
@@ -46,8 +46,8 @@
             this.txtMoTa = new System.Windows.Forms.WebBrowser();
             this.txtDenghi = new Janus.Windows.GridEX.EditControls.EditBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lbl_denghi = new System.Windows.Forms.Label();
+            this.lbl_ketluan = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.txtFileMau = new Janus.Windows.GridEX.EditControls.EditBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -60,6 +60,7 @@
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.chkChoPhepNhapLienTuc = new Janus.Windows.EditControls.UICheckBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.chk_hienthi_ketluan_denghi = new Janus.Windows.EditControls.UICheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.grpControl)).BeginInit();
             this.grpControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -70,28 +71,28 @@
             this.uiStatusBar1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uiStatusBar1.Location = new System.Drawing.Point(0, 706);
             this.uiStatusBar1.Name = "uiStatusBar1";
-            uiStatusBarPanel4.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
-            uiStatusBarPanel4.BorderColor = System.Drawing.Color.Empty;
-            uiStatusBarPanel4.Key = "";
-            uiStatusBarPanel4.ProgressBarValue = 0;
-            uiStatusBarPanel4.Text = "Ctrl+S: Lưu thông tin ";
-            uiStatusBarPanel4.Width = 130;
-            uiStatusBarPanel5.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
-            uiStatusBarPanel5.BorderColor = System.Drawing.Color.Empty;
-            uiStatusBarPanel5.Key = "";
-            uiStatusBarPanel5.ProgressBarValue = 0;
-            uiStatusBarPanel5.Text = "Esc:Thoát Form hiện tại";
-            uiStatusBarPanel5.Width = 145;
-            uiStatusBarPanel6.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
-            uiStatusBarPanel6.BorderColor = System.Drawing.Color.Empty;
-            uiStatusBarPanel6.Key = "";
-            uiStatusBarPanel6.ProgressBarValue = 0;
-            uiStatusBarPanel6.Text = "F5: Thêm mới";
-            uiStatusBarPanel6.Width = 92;
+            uiStatusBarPanel10.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
+            uiStatusBarPanel10.BorderColor = System.Drawing.Color.Empty;
+            uiStatusBarPanel10.Key = "";
+            uiStatusBarPanel10.ProgressBarValue = 0;
+            uiStatusBarPanel10.Text = "Ctrl+S: Lưu thông tin ";
+            uiStatusBarPanel10.Width = 130;
+            uiStatusBarPanel11.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
+            uiStatusBarPanel11.BorderColor = System.Drawing.Color.Empty;
+            uiStatusBarPanel11.Key = "";
+            uiStatusBarPanel11.ProgressBarValue = 0;
+            uiStatusBarPanel11.Text = "Esc:Thoát Form hiện tại";
+            uiStatusBarPanel11.Width = 145;
+            uiStatusBarPanel12.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
+            uiStatusBarPanel12.BorderColor = System.Drawing.Color.Empty;
+            uiStatusBarPanel12.Key = "";
+            uiStatusBarPanel12.ProgressBarValue = 0;
+            uiStatusBarPanel12.Text = "F5: Thêm mới";
+            uiStatusBarPanel12.Width = 92;
             this.uiStatusBar1.Panels.AddRange(new Janus.Windows.UI.StatusBar.UIStatusBarPanel[] {
-            uiStatusBarPanel4,
-            uiStatusBarPanel5,
-            uiStatusBarPanel6});
+            uiStatusBarPanel10,
+            uiStatusBarPanel11,
+            uiStatusBarPanel12});
             this.uiStatusBar1.Size = new System.Drawing.Size(1008, 23);
             this.uiStatusBar1.TabIndex = 100;
             this.uiStatusBar1.TabStop = false;
@@ -137,8 +138,8 @@
             this.grpControl.Controls.Add(this.txtMoTa);
             this.grpControl.Controls.Add(this.txtDenghi);
             this.grpControl.Controls.Add(this.label10);
-            this.grpControl.Controls.Add(this.label2);
-            this.grpControl.Controls.Add(this.label4);
+            this.grpControl.Controls.Add(this.lbl_denghi);
+            this.grpControl.Controls.Add(this.lbl_ketluan);
             this.grpControl.Controls.Add(this.label6);
             this.grpControl.Controls.Add(this.txtFileMau);
             this.grpControl.Controls.Add(this.label9);
@@ -218,12 +219,11 @@
             this.txtKet_Luan.BackColor = System.Drawing.Color.White;
             this.txtKet_Luan.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtKet_Luan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtKet_Luan.Location = new System.Drawing.Point(104, 498);
+            this.txtKet_Luan.Location = new System.Drawing.Point(104, 527);
             this.txtKet_Luan.Name = "txtKet_Luan";
-            this.txtKet_Luan.Size = new System.Drawing.Size(892, 114);
+            this.txtKet_Luan.Size = new System.Drawing.Size(892, 85);
             this.txtKet_Luan.TabIndex = 5;
             this.txtKet_Luan.Text = "";
-            this.txtKet_Luan.Visible = false;
             // 
             // txtMoTa
             // 
@@ -234,7 +234,7 @@
             this.txtMoTa.MinimumSize = new System.Drawing.Size(20, 20);
             this.txtMoTa.Name = "txtMoTa";
             this.txtMoTa.ScriptErrorsSuppressed = true;
-            this.txtMoTa.Size = new System.Drawing.Size(892, 573);
+            this.txtMoTa.Size = new System.Drawing.Size(892, 449);
             this.txtMoTa.TabIndex = 4;
             // 
             // txtDenghi
@@ -245,9 +245,8 @@
             this.txtDenghi.Location = new System.Drawing.Point(104, 620);
             this.txtDenghi.Multiline = true;
             this.txtDenghi.Name = "txtDenghi";
-            this.txtDenghi.Size = new System.Drawing.Size(814, 25);
+            this.txtDenghi.Size = new System.Drawing.Size(892, 25);
             this.txtDenghi.TabIndex = 6;
-            this.txtDenghi.Visible = false;
             // 
             // label10
             // 
@@ -259,31 +258,29 @@
             this.label10.TabIndex = 27;
             this.label10.Text = "Tên file mẫu KQ";
             // 
-            // label2
+            // lbl_denghi
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(12, 625);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(86, 15);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "Đề nghị:";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label2.Visible = false;
+            this.lbl_denghi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbl_denghi.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_denghi.ForeColor = System.Drawing.Color.Black;
+            this.lbl_denghi.Location = new System.Drawing.Point(12, 625);
+            this.lbl_denghi.Name = "lbl_denghi";
+            this.lbl_denghi.Size = new System.Drawing.Size(86, 15);
+            this.lbl_denghi.TabIndex = 11;
+            this.lbl_denghi.Text = "Đề nghị:";
+            this.lbl_denghi.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label4
+            // lbl_ketluan
             // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label4.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(12, 498);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(86, 15);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Kết luận";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label4.Visible = false;
+            this.lbl_ketluan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbl_ketluan.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_ketluan.ForeColor = System.Drawing.Color.Black;
+            this.lbl_ketluan.Location = new System.Drawing.Point(12, 527);
+            this.lbl_ketluan.Name = "lbl_ketluan";
+            this.lbl_ketluan.Size = new System.Drawing.Size(86, 15);
+            this.lbl_ketluan.TabIndex = 7;
+            this.lbl_ketluan.Text = "Kết luận";
+            this.lbl_ketluan.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label6
             // 
@@ -405,11 +402,25 @@
             this.timer1.Interval = 200;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // chk_hienthi_ketluan_denghi
+            // 
+            this.chk_hienthi_ketluan_denghi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.chk_hienthi_ketluan_denghi.AutoSize = true;
+            this.chk_hienthi_ketluan_denghi.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chk_hienthi_ketluan_denghi.Location = new System.Drawing.Point(329, 676);
+            this.chk_hienthi_ketluan_denghi.Name = "chk_hienthi_ketluan_denghi";
+            this.chk_hienthi_ketluan_denghi.Size = new System.Drawing.Size(248, 18);
+            this.chk_hienthi_ketluan_denghi.TabIndex = 102;
+            this.chk_hienthi_ketluan_denghi.TabStop = false;
+            this.chk_hienthi_ketluan_denghi.Text = "Hiển thị Kết luận-Đề nghị khi nhập trả KQ?";
+            this.chk_hienthi_ketluan_denghi.CheckedChanged += new System.EventHandler(this.chk_hienthi_ketluan_denghi_CheckedChanged);
+            // 
             // frm_themmoi_vungkhaosat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.Controls.Add(this.chk_hienthi_ketluan_denghi);
             this.Controls.Add(this.chkChoPhepNhapLienTuc);
             this.Controls.Add(this.grpControl);
             this.Controls.Add(this.chkTrangthai);
@@ -438,11 +449,11 @@
         private Janus.Windows.EditControls.UIButton cmdExit;
         private Janus.Windows.EditControls.UIButton cmdSave;
         private Janus.Windows.EditControls.UIGroupBox grpControl;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lbl_ketluan;
         private Janus.Windows.GridEX.EditControls.EditBox txtDenghi;
         private System.Windows.Forms.Label label1;
         internal Janus.Windows.GridEX.EditControls.EditBox txtIdVungKs;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lbl_denghi;
         private System.Windows.Forms.Label label5;
         private Janus.Windows.GridEX.EditControls.EditBox txtTenVungKs;
         private System.Windows.Forms.Label label6;
@@ -461,5 +472,6 @@
         private Janus.Windows.EditControls.UICheckBox chkTrangthai;
         private System.Windows.Forms.Label label7;
         private Janus.Windows.GridEX.EditControls.EditBox txtKichthuocanh;
+        private Janus.Windows.EditControls.UICheckBox chk_hienthi_ketluan_denghi;
     }
 }

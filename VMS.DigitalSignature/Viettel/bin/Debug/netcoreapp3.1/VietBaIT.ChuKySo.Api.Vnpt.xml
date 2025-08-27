@@ -1,0 +1,150 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>VietBaIT.ChuKySo.Api.Vnpt</name>
+    </assembly>
+    <members>
+        <member name="M:VietBaIT.ChuKySo.Api.Controllers.BvlkController.DigitalSignatureCheckAccount(VietBaIT.ChuKySo.Api.DigitalSignature.VietBa.VietBaDigitalSignature)">
+            <summary>
+            POST: DigitalSignatureCheckAccount
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:VietBaIT.ChuKySo.Api.Controllers.BvlkController.DigitalSignatureXMLSign(VietBaIT.ChuKySo.Api.DigitalSignature.VietBa.VietBaDigitalSignature)">
+            <summary>
+            POST: DigitalSignatureXMLSign
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:VietBaIT.ChuKySo.Api.Controllers.BvlkController.DigitalSignaturePdfFileSign(VietBaIT.ChuKySo.Api.DigitalSignature.VietBa.VietBaDigitalSignature)">
+            <summary>
+            POST: DigitalSignaturePdfFileSign
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:VietBaIT.ChuKySo.Api.Controllers.VnptController.#ctor(Microsoft.Extensions.Options.IOptions{VietBaIT.ChuKySo.Api.AppSettings})">
+            <summary>
+            
+            </summary>
+            <param name="appIdentitySettingsAccessor"></param>
+        </member>
+        <member name="M:VietBaIT.ChuKySo.Api.Controllers.VnptController.DigitalSignatureCheckAccount(VietBaIT.ChuKySo.Api.DigitalSignature.VietBa.VietBaDigitalSignature)">
+            <summary>
+            POST: DigitalSignatureCheckAccount
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:VietBaIT.ChuKySo.Api.Controllers.VnptController.DigitalSignatureXMLSign(VietBaIT.ChuKySo.Api.DigitalSignature.VietBa.VietBaDigitalSignature)">
+            <summary>
+            POST: DigitalSignatureXMLSign
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:VietBaIT.ChuKySo.Api.Controllers.VnptController.DigitalSignaturePdfFileSign(VietBaIT.ChuKySo.Api.DigitalSignature.VietBa.VietBaDigitalSignature)">
+            <summary>
+            POST: DigitalSignaturePdfFileSign
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:VietBaIT.ChuKySo.Api.Controllers.VnptController._getAccountCert(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="uri"></param>
+            <returns></returns>
+        </member>
+        <member name="T:VietBaIT.ChuKySo.Api.Helpers.Base64UrlEncoder">
+            <summary>
+            Encodes and Decodes strings using Base64 URL encoding.
+            </summary>
+        </member>
+        <member name="M:VietBaIT.ChuKySo.Api.Helpers.Base64UrlEncoder.Decode(System.String)">
+            <summary>
+            Converts the specified Base64 URL encoded string to a UTF8 string.
+            </summary>
+            <param name="s">The Base64 URL encoded string to convert</param>
+            <returns>A UTF8 string</returns>
+        </member>
+        <member name="M:VietBaIT.ChuKySo.Api.Helpers.Base64UrlEncoder.DecodeBytes(System.String)">
+            <summary>
+            Converts the specified Base64 URL encoded string to a byte array.</summary>
+            <param name="s">The Base64 URL encoded string to convert</param>
+            <returns>A byte array</returns>
+        </member>
+        <member name="M:VietBaIT.ChuKySo.Api.Helpers.Base64UrlEncoder.Encode(System.String)">
+            <summary>
+            Converts the specified UTF8 string into a Base64 URL encoded string.
+            </summary>
+            <param name="s">The UTF8 string to convert</param>
+            <returns>A Base64 URL encoded string</returns>
+        </member>
+        <member name="M:VietBaIT.ChuKySo.Api.Helpers.Base64UrlEncoder.Encode(System.Byte[])">
+            <summary>
+            Converts the specified byte array to a Base64 URL encoded string.
+            </summary>
+            <param name="bytes">The byte array to convert</param>
+            <returns>A Base64 URL encoded string</returns>
+        </member>
+        <member name="M:VietBaIT.ChuKySo.Api.Helpers.Base64UrlEncoder.Encode(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Converts the specified byte array to a Base64 URL encoded string.
+            </summary>
+            <param name="bytes">The byte array to convert</param>
+            <param name="offset">The byte array offset</param>
+            <param name="length">The number of elements in the byte array to convert</param>
+            <returns>A Base64 URL encoded string</returns>
+        </member>
+        <member name="T:VietBaIT.ChuKySo.Api.Vnpt.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:VietBaIT.ChuKySo.Api.Vnpt.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:VietBaIT.ChuKySo.Api.Vnpt.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:VietBaIT.ChuKySo.Api.Vnpt.Properties.Resources.segoeui">
+            <summary>
+              Looks up a localized resource of type System.Byte[].
+            </summary>
+        </member>
+        <member name="P:VietBaIT.ChuKySo.Api.Vnpt.Properties.Resources.times">
+            <summary>
+              Looks up a localized resource of type System.Byte[].
+            </summary>
+        </member>
+        <member name="P:VietBaIT.ChuKySo.Api.Vnpt.Properties.Resources.timesbd">
+            <summary>
+              Looks up a localized resource of type System.Byte[].
+            </summary>
+        </member>
+        <member name="P:VietBaIT.ChuKySo.Api.Vnpt.Properties.Resources.timesbi">
+            <summary>
+              Looks up a localized resource of type System.Byte[].
+            </summary>
+        </member>
+        <member name="P:VietBaIT.ChuKySo.Api.Vnpt.Properties.Resources.timesi">
+            <summary>
+              Looks up a localized resource of type System.Byte[].
+            </summary>
+        </member>
+        <member name="M:SmartCATHWithServiceHash.SslHelper.ValidateRemoteCertificate(System.Object,System.Security.Cryptography.X509Certificates.X509Certificate,System.Security.Cryptography.X509Certificates.X509Chain,System.Net.Security.SslPolicyErrors)">
+            <summary>
+            Validate server ssl certificate
+            Do real validate 
+            </summary>
+            <param name="sender"></param>
+            <param name="cert"></param>
+            <param name="chain"></param>
+            <param name="policyErrors"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

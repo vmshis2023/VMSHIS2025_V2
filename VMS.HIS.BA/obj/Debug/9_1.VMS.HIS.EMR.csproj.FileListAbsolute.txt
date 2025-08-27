@@ -1,5 +1,3 @@
-C:\HIS_BVSG\Running\VMS.HIS.EMR.dll
-C:\HIS_BVSG\Running\VMS.HIS.EMR.pdb
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VMS.HIS.BA.Form1.resources
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VMS.HIS.UI.EMR.frm_Chandoan_Sankhoa.resources
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VMS.HIS.UI.EMR.frm_giayxacnhan_nghiduongthai.resources
@@ -8,8 +6,10 @@ F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VMS.HIS.UI.EMR.frm_giayx
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VMS.HIS.UI.EMR.frm_khamIVF_vo.resources
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VMS.HIS.UI.EMR.frm_khamIVF_chong.resources
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VMS.HIS.UI.EMR.frm_khamNamkhoa.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VMS.HIS.UI.EMR.frm_themphieutruyendich.resources
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VMS.HIS.UI.EMR.frm_phieubangiaonguoibenhchuyenkhoa.resources
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VMS.HIS.UI.EMR.frm_phieucamketchapnhan_pttt.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VNS.HIS.UI.NOITRU.frm_QuanlyPhieuTruyenDich.resources
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VNS.HIS.UI.NOITRU.frm_QuanlyPhieubangiaonguoibenhchuyenkhoa.resources
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VNS.HIS.UI.NOITRU.frm_QuanlyGiaycamketchapnhanPttt.resources
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VNS.HIS.UI.NOITRU.frm_QuanlyGiayxacnhan_quatrinhdieutrinoitru.resources
@@ -29,7 +29,9 @@ F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VNS.HIS.UI.BA.frm_Quanly
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VMS.HIS.UI.EMR.frm_giaychungnhan_tainanthuongtich.resources
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VMS.HIS.UI.EMR.frm_QuatrinhThaiky.resources
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VMS.HIS.UI.EMR.frm_ThemPhieukhamthai.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VMS.HIS.UI.EMR.frm_ThemChitietTruyendich.resources
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VMS.HIS.UI.EMR.frm_ThemtiensuSankhoa.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VMS.HIS.UI.EMR.frm_KhoitaoBA.resources
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VMS.HIS.UI.EMR.frm_Tiensubenh_Cacdacdiemlienquan.resources
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VMS.HIS.UI.EMR.frm_theodoitaibuongde.resources
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VMS.HIS.UI.EMR.frm_TiensuSanphukhoa.resources
@@ -69,7 +71,9 @@ F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VMS.HIS.EMR.Properties.R
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\9_1.VMS.HIS.EMR.csproj.GenerateResource.cache
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VMS.HIS.EMR.dll.licenses
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\9_1.VMS.HIS.EMR.csproj.CoreCompileInputs.cache
+C:\HIS_BVSG\Running\VMS.HIS.EMR.dll
+C:\HIS_BVSG\Running\VMS.HIS.EMR.pdb
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\9_1.VMS.HIS.EMR.csproj.AssemblyReference.cache
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\9_1.VMS.HIS.EMR.csproj.CopyComplete
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VMS.HIS.EMR.dll
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\VMS.HIS.EMR.pdb
-F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BA\obj\Debug\9_1.VMS.HIS.EMR.csproj.AssemblyReference.cache

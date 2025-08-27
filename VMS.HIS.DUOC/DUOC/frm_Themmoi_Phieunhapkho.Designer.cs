@@ -30,10 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_Themmoi_Phieunhapkho));
-            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel1 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
-            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel2 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
-            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel3 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
-            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel4 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
+            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel9 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
+            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel10 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
+            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel11 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
+            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel12 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
             Janus.Windows.GridEX.GridEXLayout grdChitiet_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             this.grpControl = new Janus.Windows.EditControls.UIGroupBox();
             this.pnlHide = new System.Windows.Forms.Panel();
@@ -111,7 +111,6 @@
             this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProvider3 = new System.Windows.Forms.ErrorProvider(this.components);
             this.label17 = new System.Windows.Forms.Label();
-            this.lblThangdu = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.cmdHuyThongTin = new Janus.Windows.EditControls.UIButton();
@@ -146,11 +145,16 @@
             this.txtPhuthuTT = new MaskedTextBox.MaskedTextBox();
             this.txtPhuthuDT = new MaskedTextBox.MaskedTextBox();
             this.txtGiaBHYT = new MaskedTextBox.MaskedTextBox();
-            this.txtGiaDV = new MaskedTextBox.MaskedTextBox();
             this.txtChietkhau = new MaskedTextBox.MaskedTextBox();
-            this.txtDongia = new MaskedTextBox.MaskedTextBox();
-            this.txtSoluong = new MaskedTextBox.MaskedTextBox();
             this.txtDrugName = new VNS.HIS.UCs.AutoCompleteTextbox_Thuoc();
+            this.txtVATChitiet = new Janus.Windows.GridEX.EditControls.MaskedEditBox();
+            this.label35 = new System.Windows.Forms.Label();
+            this.lbl_giatruocVAT = new System.Windows.Forms.Label();
+            this.chk_tinhthangdu = new Janus.Windows.EditControls.UICheckBox();
+            this.nmrSoluong = new System.Windows.Forms.NumericUpDown();
+            this.nmr_giatruoc_VAT = new System.Windows.Forms.NumericUpDown();
+            this.nmr_giasau_VAT = new System.Windows.Forms.NumericUpDown();
+            this.nmr_giaban_dvu = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.grpControl)).BeginInit();
             this.grpControl.SuspendLayout();
             this.pnlHide.SuspendLayout();
@@ -164,6 +168,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmrThangDu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmrSoluong)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmr_giatruoc_VAT)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmr_giasau_VAT)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmr_giaban_dvu)).BeginInit();
             this.SuspendLayout();
             // 
             // grpControl
@@ -446,6 +454,7 @@
             this.cboKhonhap.RaiseEnterEventWhenInvisible = true;
             this.cboKhonhap.Size = new System.Drawing.Size(349, 23);
             this.cboKhonhap.TabIndex = 6;
+            this.cboKhonhap.SelectedIndexChanged += new System.EventHandler(this.cboKhonhap_SelectedIndexChanged_1);
             // 
             // txtTongTien
             // 
@@ -603,6 +612,7 @@
             this.chkPhieuvay.TabIndex = 12;
             this.chkPhieuvay.TabStop = false;
             this.chkPhieuvay.Text = "Phiếu vay?";
+            this.chkPhieuvay.Visible = false;
             this.chkPhieuvay.VisualStyle = Janus.Windows.UI.VisualStyle.VS2005;
             // 
             // label29
@@ -999,37 +1009,37 @@
             this.uiStatusBar1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uiStatusBar1.Location = new System.Drawing.Point(0, 758);
             this.uiStatusBar1.Name = "uiStatusBar1";
-            uiStatusBarPanel1.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
-            uiStatusBarPanel1.BorderColor = System.Drawing.Color.Empty;
-            uiStatusBarPanel1.Key = "";
-            uiStatusBarPanel1.ProgressBarValue = 0;
-            uiStatusBarPanel1.Text = "Ctrl+N: Thêm phiếu";
-            uiStatusBarPanel1.Width = 122;
-            uiStatusBarPanel2.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
-            uiStatusBarPanel2.BorderColor = System.Drawing.Color.Empty;
-            uiStatusBarPanel2.Key = "";
-            uiStatusBarPanel2.ProgressBarValue = 0;
-            uiStatusBarPanel2.Text = "Ctrl+S: Lưu lại";
-            uiStatusBarPanel2.Width = 93;
-            uiStatusBarPanel3.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
-            uiStatusBarPanel3.BorderColor = System.Drawing.Color.Empty;
-            uiStatusBarPanel3.Key = "";
-            uiStatusBarPanel3.ProgressBarValue = 0;
-            uiStatusBarPanel3.Text = "Esc: Thoát Form";
-            uiStatusBarPanel3.Width = 105;
-            uiStatusBarPanel4.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
-            uiStatusBarPanel4.BorderColor = System.Drawing.Color.Empty;
-            uiStatusBarPanel4.FormatStyle.FontBold = Janus.Windows.UI.TriState.True;
-            uiStatusBarPanel4.FormatStyle.ForeColor = System.Drawing.Color.Navy;
-            uiStatusBarPanel4.Key = "MSG";
-            uiStatusBarPanel4.ProgressBarValue = 0;
-            uiStatusBarPanel4.Text = "Thông báo";
-            uiStatusBarPanel4.Width = 74;
+            uiStatusBarPanel9.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
+            uiStatusBarPanel9.BorderColor = System.Drawing.Color.Empty;
+            uiStatusBarPanel9.Key = "";
+            uiStatusBarPanel9.ProgressBarValue = 0;
+            uiStatusBarPanel9.Text = "Ctrl+N: Thêm phiếu";
+            uiStatusBarPanel9.Width = 122;
+            uiStatusBarPanel10.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
+            uiStatusBarPanel10.BorderColor = System.Drawing.Color.Empty;
+            uiStatusBarPanel10.Key = "";
+            uiStatusBarPanel10.ProgressBarValue = 0;
+            uiStatusBarPanel10.Text = "Ctrl+S: Lưu lại";
+            uiStatusBarPanel10.Width = 93;
+            uiStatusBarPanel11.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
+            uiStatusBarPanel11.BorderColor = System.Drawing.Color.Empty;
+            uiStatusBarPanel11.Key = "";
+            uiStatusBarPanel11.ProgressBarValue = 0;
+            uiStatusBarPanel11.Text = "Esc: Thoát Form";
+            uiStatusBarPanel11.Width = 105;
+            uiStatusBarPanel12.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
+            uiStatusBarPanel12.BorderColor = System.Drawing.Color.Empty;
+            uiStatusBarPanel12.FormatStyle.FontBold = Janus.Windows.UI.TriState.True;
+            uiStatusBarPanel12.FormatStyle.ForeColor = System.Drawing.Color.Navy;
+            uiStatusBarPanel12.Key = "MSG";
+            uiStatusBarPanel12.ProgressBarValue = 0;
+            uiStatusBarPanel12.Text = "Thông báo";
+            uiStatusBarPanel12.Width = 74;
             this.uiStatusBar1.Panels.AddRange(new Janus.Windows.UI.StatusBar.UIStatusBarPanel[] {
-            uiStatusBarPanel1,
-            uiStatusBarPanel2,
-            uiStatusBarPanel3,
-            uiStatusBarPanel4});
+            uiStatusBarPanel9,
+            uiStatusBarPanel10,
+            uiStatusBarPanel11,
+            uiStatusBarPanel12});
             this.uiStatusBar1.Size = new System.Drawing.Size(1262, 23);
             this.uiStatusBar1.TabIndex = 2;
             this.uiStatusBar1.TabStop = false;
@@ -1157,7 +1167,7 @@
             this.cmdQuickCreate.Image = ((System.Drawing.Image)(resources.GetObject("cmdQuickCreate.Image")));
             this.cmdQuickCreate.ImageSize = new System.Drawing.Size(28, 28);
             this.cmdQuickCreate.ImageVerticalAlignment = Janus.Windows.EditControls.ImageVerticalAlignment.Far;
-            this.cmdQuickCreate.Location = new System.Drawing.Point(417, 10);
+            this.cmdQuickCreate.Location = new System.Drawing.Point(465, 10);
             this.cmdQuickCreate.Name = "cmdQuickCreate";
             this.cmdQuickCreate.Size = new System.Drawing.Size(120, 35);
             this.cmdQuickCreate.TabIndex = 533;
@@ -1175,15 +1185,15 @@
             this.cmdCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdCancel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdCancel.Image = ((System.Drawing.Image)(resources.GetObject("cmdCancel.Image")));
-            this.cmdCancel.ImageSize = new System.Drawing.Size(24, 24);
+            this.cmdCancel.ImageHorizontalAlignment = Janus.Windows.EditControls.ImageHorizontalAlignment.Center;
+            this.cmdCancel.ImageSize = new System.Drawing.Size(28, 28);
             this.cmdCancel.ImageVerticalAlignment = Janus.Windows.EditControls.ImageVerticalAlignment.Far;
             this.cmdCancel.Location = new System.Drawing.Point(417, 10);
             this.cmdCancel.Name = "cmdCancel";
-            this.cmdCancel.Size = new System.Drawing.Size(120, 35);
+            this.cmdCancel.Size = new System.Drawing.Size(42, 35);
             this.cmdCancel.TabIndex = 536;
             this.cmdCancel.TabStop = false;
             this.cmdCancel.Tag = "NN";
-            this.cmdCancel.Text = "Hủy";
             this.cmdCancel.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Far;
             this.toolTip1.SetToolTip(this.cmdCancel, "Hủy việc nhập nhanh");
             this.cmdCancel.Visible = false;
@@ -1277,11 +1287,11 @@
             // 
             this.label15.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.Red;
-            this.label15.Location = new System.Drawing.Point(239, 296);
+            this.label15.Location = new System.Drawing.Point(538, 297);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(66, 15);
+            this.label15.Size = new System.Drawing.Size(81, 15);
             this.label15.TabIndex = 22;
-            this.label15.Text = "Giá nhập:";
+            this.label15.Text = "Giá sau VAT";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label16
@@ -1342,24 +1352,12 @@
             this.label17.Text = "Thành tiền:";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // lblThangdu
-            // 
-            this.lblThangdu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblThangdu.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThangdu.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lblThangdu.Location = new System.Drawing.Point(724, 225);
-            this.lblThangdu.Name = "lblThangdu";
-            this.lblThangdu.Size = new System.Drawing.Size(84, 15);
-            this.lblThangdu.TabIndex = 507;
-            this.lblThangdu.Text = "Thặng dư:";
-            this.lblThangdu.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // label22
             // 
             this.label22.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label22.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label22.ForeColor = System.Drawing.Color.Red;
-            this.label22.Location = new System.Drawing.Point(519, 298);
+            this.label22.Location = new System.Drawing.Point(728, 297);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(84, 15);
             this.label22.TabIndex = 508;
@@ -1390,9 +1388,9 @@
             this.cmdAddDetail.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdAddDetail.Image = ((System.Drawing.Image)(resources.GetObject("cmdAddDetail.Image")));
             this.cmdAddDetail.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdAddDetail.Location = new System.Drawing.Point(1124, 189);
+            this.cmdAddDetail.Location = new System.Drawing.Point(1124, 214);
             this.cmdAddDetail.Name = "cmdAddDetail";
-            this.cmdAddDetail.Size = new System.Drawing.Size(126, 67);
+            this.cmdAddDetail.Size = new System.Drawing.Size(126, 50);
             this.cmdAddDetail.TabIndex = 27;
             this.cmdAddDetail.Text = "Chấp nhận";
             this.cmdAddDetail.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Far;
@@ -1403,7 +1401,7 @@
             this.lblBHYTcu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblBHYTcu.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBHYTcu.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lblBHYTcu.Location = new System.Drawing.Point(931, 247);
+            this.lblBHYTcu.Location = new System.Drawing.Point(730, 248);
             this.lblBHYTcu.Name = "lblBHYTcu";
             this.lblBHYTcu.Size = new System.Drawing.Size(82, 15);
             this.lblBHYTcu.TabIndex = 513;
@@ -1416,7 +1414,7 @@
             this.lblPhuthuDt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblPhuthuDt.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPhuthuDt.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lblPhuthuDt.Location = new System.Drawing.Point(928, 271);
+            this.lblPhuthuDt.Location = new System.Drawing.Point(928, 246);
             this.lblPhuthuDt.Name = "lblPhuthuDt";
             this.lblPhuthuDt.Size = new System.Drawing.Size(84, 15);
             this.lblPhuthuDt.TabIndex = 516;
@@ -1429,7 +1427,7 @@
             this.lblPhuthuTT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblPhuthuTT.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPhuthuTT.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.lblPhuthuTT.Location = new System.Drawing.Point(929, 296);
+            this.lblPhuthuTT.Location = new System.Drawing.Point(929, 271);
             this.lblPhuthuTT.Name = "lblPhuthuTT";
             this.lblPhuthuTT.Size = new System.Drawing.Size(84, 15);
             this.lblPhuthuTT.TabIndex = 518;
@@ -1443,9 +1441,9 @@
             this.nmrThangDu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.nmrThangDu.DecimalPlaces = 2;
             this.nmrThangDu.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nmrThangDu.Location = new System.Drawing.Point(813, 220);
+            this.nmrThangDu.Location = new System.Drawing.Point(840, 220);
             this.nmrThangDu.Name = "nmrThangDu";
-            this.nmrThangDu.Size = new System.Drawing.Size(112, 21);
+            this.nmrThangDu.Size = new System.Drawing.Size(85, 21);
             this.nmrThangDu.TabIndex = 19;
             this.nmrThangDu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.nmrThangDu.ThousandsSeparator = true;
@@ -1455,9 +1453,9 @@
             this.label19.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label19.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.label19.Location = new System.Drawing.Point(724, 296);
+            this.label19.Location = new System.Drawing.Point(935, 296);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(84, 15);
+            this.label19.Size = new System.Drawing.Size(71, 15);
             this.label19.TabIndex = 520;
             this.label19.Tag = "BHYT";
             this.label19.Text = "Giá BHYT:";
@@ -1760,10 +1758,10 @@
             this.txtGiaBHYT_cu.BackColor = System.Drawing.SystemColors.Control;
             this.txtGiaBHYT_cu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtGiaBHYT_cu.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGiaBHYT_cu.Location = new System.Drawing.Point(1012, 242);
+            this.txtGiaBHYT_cu.Location = new System.Drawing.Point(813, 245);
             this.txtGiaBHYT_cu.Masked = MaskedTextBox.Mask.Decimal;
             this.txtGiaBHYT_cu.Name = "txtGiaBHYT_cu";
-            this.txtGiaBHYT_cu.Size = new System.Drawing.Size(108, 21);
+            this.txtGiaBHYT_cu.Size = new System.Drawing.Size(112, 21);
             this.txtGiaBHYT_cu.TabIndex = 24;
             this.txtGiaBHYT_cu.TabStop = false;
             this.txtGiaBHYT_cu.Tag = "BHYT";
@@ -1774,7 +1772,7 @@
             this.txtPhuthuTT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPhuthuTT.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPhuthuTT.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPhuthuTT.Location = new System.Drawing.Point(1012, 291);
+            this.txtPhuthuTT.Location = new System.Drawing.Point(1012, 266);
             this.txtPhuthuTT.Masked = MaskedTextBox.Mask.Decimal;
             this.txtPhuthuTT.Name = "txtPhuthuTT";
             this.txtPhuthuTT.Size = new System.Drawing.Size(108, 21);
@@ -1787,7 +1785,7 @@
             this.txtPhuthuDT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPhuthuDT.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPhuthuDT.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPhuthuDT.Location = new System.Drawing.Point(1012, 267);
+            this.txtPhuthuDT.Location = new System.Drawing.Point(1012, 242);
             this.txtPhuthuDT.Masked = MaskedTextBox.Mask.Decimal;
             this.txtPhuthuDT.Name = "txtPhuthuDT";
             this.txtPhuthuDT.Size = new System.Drawing.Size(108, 21);
@@ -1800,26 +1798,13 @@
             this.txtGiaBHYT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtGiaBHYT.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtGiaBHYT.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGiaBHYT.Location = new System.Drawing.Point(813, 291);
+            this.txtGiaBHYT.Location = new System.Drawing.Point(1012, 290);
             this.txtGiaBHYT.Masked = MaskedTextBox.Mask.Decimal;
             this.txtGiaBHYT.Name = "txtGiaBHYT";
-            this.txtGiaBHYT.Size = new System.Drawing.Size(112, 21);
+            this.txtGiaBHYT.Size = new System.Drawing.Size(108, 21);
             this.txtGiaBHYT.TabIndex = 23;
             this.txtGiaBHYT.Tag = "BHYT";
             this.txtGiaBHYT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // txtGiaDV
-            // 
-            this.txtGiaDV.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtGiaDV.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtGiaDV.Enabled = false;
-            this.txtGiaDV.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGiaDV.Location = new System.Drawing.Point(604, 293);
-            this.txtGiaDV.Masked = MaskedTextBox.Mask.Decimal;
-            this.txtGiaDV.Name = "txtGiaDV";
-            this.txtGiaDV.Size = new System.Drawing.Size(116, 21);
-            this.txtGiaDV.TabIndex = 21;
-            this.txtGiaDV.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtChietkhau
             // 
@@ -1833,30 +1818,6 @@
             this.txtChietkhau.TabIndex = 20;
             this.txtChietkhau.TabStop = false;
             this.txtChietkhau.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // txtDongia
-            // 
-            this.txtDongia.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDongia.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtDongia.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDongia.Location = new System.Drawing.Point(305, 291);
-            this.txtDongia.Masked = MaskedTextBox.Mask.Decimal;
-            this.txtDongia.Name = "txtDongia";
-            this.txtDongia.Size = new System.Drawing.Size(184, 21);
-            this.txtDongia.TabIndex = 18;
-            this.txtDongia.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // txtSoluong
-            // 
-            this.txtSoluong.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSoluong.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSoluong.Location = new System.Drawing.Point(108, 292);
-            this.txtSoluong.Masked = MaskedTextBox.Mask.Decimal;
-            this.txtSoluong.Name = "txtSoluong";
-            this.txtSoluong.Size = new System.Drawing.Size(125, 21);
-            this.txtSoluong.TabIndex = 17;
-            this.txtSoluong.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtDrugName
             // 
@@ -1902,10 +1863,125 @@
             this.txtDrugName.txtMyName_Edit = null;
             this.txtDrugName.txtNext = null;
             // 
+            // txtVATChitiet
+            // 
+            this.txtVATChitiet.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtVATChitiet.Location = new System.Drawing.Point(305, 292);
+            this.txtVATChitiet.Name = "txtVATChitiet";
+            this.txtVATChitiet.Numeric = true;
+            this.txtVATChitiet.Size = new System.Drawing.Size(35, 21);
+            this.txtVATChitiet.TabIndex = 17;
+            this.txtVATChitiet.Text = "0";
+            this.txtVATChitiet.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center;
+            this.txtVATChitiet.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
+            this.txtVATChitiet.Click += new System.EventHandler(this.txtVATChitiet_Click);
+            // 
+            // label35
+            // 
+            this.label35.Location = new System.Drawing.Point(264, 293);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(35, 20);
+            this.label35.TabIndex = 557;
+            this.label35.Text = "VAT:";
+            this.label35.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lbl_giatruocVAT
+            // 
+            this.lbl_giatruocVAT.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_giatruocVAT.ForeColor = System.Drawing.Color.Red;
+            this.lbl_giatruocVAT.Location = new System.Drawing.Point(343, 297);
+            this.lbl_giatruocVAT.Name = "lbl_giatruocVAT";
+            this.lbl_giatruocVAT.Size = new System.Drawing.Size(84, 15);
+            this.lbl_giatruocVAT.TabIndex = 559;
+            this.lbl_giatruocVAT.Text = "Giá trước VAT";
+            this.lbl_giatruocVAT.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // chk_tinhthangdu
+            // 
+            this.chk_tinhthangdu.Font = new System.Drawing.Font("Arial", 9F);
+            this.chk_tinhthangdu.ForeColor = System.Drawing.Color.Navy;
+            this.chk_tinhthangdu.Location = new System.Drawing.Point(726, 220);
+            this.chk_tinhthangdu.Name = "chk_tinhthangdu";
+            this.chk_tinhthangdu.Size = new System.Drawing.Size(108, 23);
+            this.chk_tinhthangdu.TabIndex = 560;
+            this.chk_tinhthangdu.TabStop = false;
+            this.chk_tinhthangdu.Text = "Tính thặng dư:";
+            this.chk_tinhthangdu.VisualStyle = Janus.Windows.UI.VisualStyle.VS2005;
+            this.chk_tinhthangdu.CheckedChanged += new System.EventHandler(this.chk_tinhthangdu_CheckedChanged);
+            // 
+            // nmrSoluong
+            // 
+            this.nmrSoluong.Font = new System.Drawing.Font("Arial", 9F);
+            this.nmrSoluong.Location = new System.Drawing.Point(107, 292);
+            this.nmrSoluong.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
+            this.nmrSoluong.Name = "nmrSoluong";
+            this.nmrSoluong.Size = new System.Drawing.Size(126, 21);
+            this.nmrSoluong.TabIndex = 17;
+            this.nmrSoluong.ThousandsSeparator = true;
+            this.nmrSoluong.ValueChanged += new System.EventHandler(this.nmrSoluong_ValueChanged);
+            // 
+            // nmr_giatruoc_VAT
+            // 
+            this.nmr_giatruoc_VAT.DecimalPlaces = 4;
+            this.nmr_giatruoc_VAT.Font = new System.Drawing.Font("Arial", 9F);
+            this.nmr_giatruoc_VAT.Location = new System.Drawing.Point(430, 294);
+            this.nmr_giatruoc_VAT.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
+            this.nmr_giatruoc_VAT.Name = "nmr_giatruoc_VAT";
+            this.nmr_giatruoc_VAT.Size = new System.Drawing.Size(112, 21);
+            this.nmr_giatruoc_VAT.TabIndex = 18;
+            this.nmr_giatruoc_VAT.ThousandsSeparator = true;
+            this.nmr_giatruoc_VAT.ValueChanged += new System.EventHandler(this.nmr_giatruoc_VAT_ValueChanged);
+            // 
+            // nmr_giasau_VAT
+            // 
+            this.nmr_giasau_VAT.DecimalPlaces = 4;
+            this.nmr_giasau_VAT.Font = new System.Drawing.Font("Arial", 9F);
+            this.nmr_giasau_VAT.Location = new System.Drawing.Point(621, 294);
+            this.nmr_giasau_VAT.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
+            this.nmr_giasau_VAT.Name = "nmr_giasau_VAT";
+            this.nmr_giasau_VAT.Size = new System.Drawing.Size(112, 21);
+            this.nmr_giasau_VAT.TabIndex = 19;
+            this.nmr_giasau_VAT.ThousandsSeparator = true;
+            this.nmr_giasau_VAT.ValueChanged += new System.EventHandler(this.nmr_giasau_VAT_ValueChanged);
+            // 
+            // nmr_giaban_dvu
+            // 
+            this.nmr_giaban_dvu.DecimalPlaces = 4;
+            this.nmr_giaban_dvu.Font = new System.Drawing.Font("Arial", 9F);
+            this.nmr_giaban_dvu.Location = new System.Drawing.Point(813, 292);
+            this.nmr_giaban_dvu.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
+            this.nmr_giaban_dvu.Name = "nmr_giaban_dvu";
+            this.nmr_giaban_dvu.Size = new System.Drawing.Size(112, 21);
+            this.nmr_giaban_dvu.TabIndex = 20;
+            this.nmr_giaban_dvu.ThousandsSeparator = true;
+            // 
             // frm_Themmoi_Phieunhapkho
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.ClientSize = new System.Drawing.Size(1262, 781);
+            this.Controls.Add(this.nmr_giaban_dvu);
+            this.Controls.Add(this.nmr_giasau_VAT);
+            this.Controls.Add(this.nmr_giatruoc_VAT);
+            this.Controls.Add(this.nmrSoluong);
+            this.Controls.Add(this.chk_tinhthangdu);
+            this.Controls.Add(this.lbl_giatruocVAT);
+            this.Controls.Add(this.label35);
             this.Controls.Add(this.txtSLthau);
             this.Controls.Add(this.txtDonViTinh);
             this.Controls.Add(this.txtmathuoc);
@@ -1932,10 +2008,8 @@
             this.Controls.Add(this.txtPhuthuTT);
             this.Controls.Add(this.txtPhuthuDT);
             this.Controls.Add(this.txtGiaBHYT);
-            this.Controls.Add(this.txtGiaDV);
             this.Controls.Add(this.txtChietkhau);
-            this.Controls.Add(this.txtDongia);
-            this.Controls.Add(this.txtSoluong);
+            this.Controls.Add(this.txtVATChitiet);
             this.Controls.Add(this.nmrThangDu);
             this.Controls.Add(this.lblPhuthuTT);
             this.Controls.Add(this.lblBHYTcu);
@@ -1959,7 +2033,6 @@
             this.Controls.Add(this.label19);
             this.Controls.Add(this.lblPhuthuDt);
             this.Controls.Add(this.label22);
-            this.Controls.Add(this.lblThangdu);
             this.ForeColor = System.Drawing.SystemColors.WindowText;
             this.KeyPreview = true;
             this.MaximizeBox = false;
@@ -1983,6 +2056,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmrThangDu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmrSoluong)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmr_giatruoc_VAT)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmr_giasau_VAT)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmr_giaban_dvu)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2033,7 +2110,6 @@
         private System.Windows.Forms.Label label4;
         private Janus.Windows.GridEX.GridEX grdChitiet;
         private System.Windows.Forms.Label lblTongtien;
-        private System.Windows.Forms.Label lblThangdu;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.ToolTip toolTip1;
         private Janus.Windows.EditControls.UIButton cmdCauHinh;
@@ -2051,13 +2127,10 @@
         private System.Windows.Forms.CheckBox chkCloseAfterSaving;
         private System.Windows.Forms.Label lblPhuthuTT;
         private System.Windows.Forms.Label lblPhuthuDt;
-        private MaskedTextBox.MaskedTextBox txtSoluong;
         private MaskedTextBox.MaskedTextBox txtPhuthuTT;
         private MaskedTextBox.MaskedTextBox txtPhuthuDT;
         private MaskedTextBox.MaskedTextBox txtGiaBHYT;
-        private MaskedTextBox.MaskedTextBox txtGiaDV;
         private MaskedTextBox.MaskedTextBox txtChietkhau;
-        private MaskedTextBox.MaskedTextBox txtDongia;
         private System.Windows.Forms.NumericUpDown nmrThangDu;
         private MaskedTextBox.MaskedTextBox txtGiaBHYT_cu;
         private MaskedTextBox.MaskedTextBox txtTongtienHD;
@@ -2107,5 +2180,13 @@
         private System.Windows.Forms.Label label33;
         private UCs.EasyCompletionComboBox cboNhaCungcap;
         private UCs.EasyCompletionComboBox cboKhonhap;
+        private System.Windows.Forms.Label label35;
+        private Janus.Windows.GridEX.EditControls.MaskedEditBox txtVATChitiet;
+        private System.Windows.Forms.Label lbl_giatruocVAT;
+        private Janus.Windows.EditControls.UICheckBox chk_tinhthangdu;
+        private System.Windows.Forms.NumericUpDown nmr_giaban_dvu;
+        private System.Windows.Forms.NumericUpDown nmr_giasau_VAT;
+        private System.Windows.Forms.NumericUpDown nmr_giatruoc_VAT;
+        private System.Windows.Forms.NumericUpDown nmrSoluong;
     }
 }

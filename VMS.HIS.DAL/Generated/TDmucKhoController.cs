@@ -80,7 +80,7 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(string MaKho,string TenKho,int? SttHthi,string KieuKho,string KhoThuocVt,short IdKhoaphong,string MotaThem,byte? LaQuaythuoc,byte? KtraTon,DateTime? NgaySua,DateTime? NgayTao,string NguoiSua,string NguoiTao,byte? LaTuthuoc,string LoaiBnhan,byte? TrangThai,byte? TuTuc,byte? ChophepChongia,string KieuBiendong,byte? LoaiKho,double? SongayNhaton,bool? LoaibothuocHethan,bool? KhongTinhgia,byte? CapCuu,string MaCoso)
+	    public void Insert(string MaKho,string TenKho,int? SttHthi,string KieuKho,string KhoThuocVt,short IdKhoaphong,string MotaThem,byte? LaQuaythuoc,byte? KtraTon,DateTime? NgaySua,DateTime? NgayTao,string NguoiSua,string NguoiTao,byte? LaTuthuoc,string LoaiBnhan,byte? TrangThai,byte? TuTuc,byte? ChophepChongia,string KieuBiendong,byte? LoaiKho,double? SongayNhaton,bool? LoaibothuocHethan,bool? KhongTinhgia,byte? CapCuu,string MaCoso,bool? TinhThangdu)
 	    {
 		    TDmucKho item = new TDmucKho();
 		    
@@ -134,6 +134,8 @@ namespace VMS.HIS.DAL
             
             item.MaCoso = MaCoso;
             
+            item.TinhThangdu = TinhThangdu;
+            
 	    
 		    item.Save(UserName);
 	    }
@@ -142,7 +144,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(int IdKho,string MaKho,string TenKho,int? SttHthi,string KieuKho,string KhoThuocVt,short IdKhoaphong,string MotaThem,byte? LaQuaythuoc,byte? KtraTon,DateTime? NgaySua,DateTime? NgayTao,string NguoiSua,string NguoiTao,byte? LaTuthuoc,string LoaiBnhan,byte? TrangThai,byte? TuTuc,byte? ChophepChongia,string KieuBiendong,byte? LoaiKho,double? SongayNhaton,bool? LoaibothuocHethan,bool? KhongTinhgia,byte? CapCuu,string MaCoso)
+	    public void Update(int IdKho,string MaKho,string TenKho,int? SttHthi,string KieuKho,string KhoThuocVt,short IdKhoaphong,string MotaThem,byte? LaQuaythuoc,byte? KtraTon,DateTime? NgaySua,DateTime? NgayTao,string NguoiSua,string NguoiTao,byte? LaTuthuoc,string LoaiBnhan,byte? TrangThai,byte? TuTuc,byte? ChophepChongia,string KieuBiendong,byte? LoaiKho,double? SongayNhaton,bool? LoaibothuocHethan,bool? KhongTinhgia,byte? CapCuu,string MaCoso,bool? TinhThangdu)
 	    {
 		    TDmucKho item = new TDmucKho();
 	        item.MarkOld();
@@ -199,6 +201,8 @@ namespace VMS.HIS.DAL
 			item.CapCuu = CapCuu;
 				
 			item.MaCoso = MaCoso;
+				
+			item.TinhThangdu = TinhThangdu;
 				
 	        item.Save(UserName);
 	    }

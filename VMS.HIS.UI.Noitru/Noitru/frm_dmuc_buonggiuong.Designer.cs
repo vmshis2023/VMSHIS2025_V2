@@ -28,15 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             Janus.Windows.GridEX.GridEXLayout grdRoom_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_dmuc_buonggiuong));
             Janus.Windows.GridEX.GridEXLayout grdBed_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.GridEX.GridEXLayout grdGiaGiuong_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
-            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel1 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
-            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel2 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
-            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel3 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
-            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel4 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
-            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel5 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
+            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel6 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
+            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel7 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
+            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel8 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
+            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel9 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
+            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel10 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
             this.tabBuonGiuong = new Janus.Windows.UI.Tab.UITab();
             this.tabPagePhong = new Janus.Windows.UI.Tab.UITabPage();
             this.uiGroupBox1 = new Janus.Windows.EditControls.UIGroupBox();
@@ -74,7 +75,7 @@
             this.cmdExcel = new System.Windows.Forms.ToolStripButton();
             this.cmdThoatGiuong = new System.Windows.Forms.ToolStripButton();
             this.uiStatusBar1 = new Janus.Windows.UI.StatusBar.UIStatusBar();
-            this.gridEXExporter1 = new Janus.Windows.GridEX.Export.GridEXExporter();
+            this.gridEXExporter1 = new Janus.Windows.GridEX.Export.GridEXExporter(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.tabBuonGiuong)).BeginInit();
             this.tabBuonGiuong.SuspendLayout();
             this.tabPagePhong.SuspendLayout();
@@ -179,7 +180,7 @@
             // cmdThemMoi
             // 
             this.cmdThemMoi.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.cmdThemMoi.Image = ((System.Drawing.Image)(resources.GetObject("cmdThemMoi.Image")));
+            this.cmdThemMoi.Image = global::VMS.HIS.Noitru.Properties.Resources.add_04_32;
             this.cmdThemMoi.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdThemMoi.Name = "cmdThemMoi";
             this.cmdThemMoi.Size = new System.Drawing.Size(106, 28);
@@ -371,7 +372,7 @@
             // 
             this.txtBed_Name.Location = new System.Drawing.Point(303, 51);
             this.txtBed_Name.Name = "txtBed_Name";
-            this.txtBed_Name.Size = new System.Drawing.Size(541, 21);
+            this.txtBed_Name.Size = new System.Drawing.Size(365, 21);
             this.txtBed_Name.TabIndex = 7;
             // 
             // label3
@@ -403,7 +404,7 @@
             // 
             this.cboPhongNoiTru.Location = new System.Drawing.Point(447, 25);
             this.cboPhongNoiTru.Name = "cboPhongNoiTru";
-            this.cboPhongNoiTru.Size = new System.Drawing.Size(397, 21);
+            this.cboPhongNoiTru.Size = new System.Drawing.Size(221, 21);
             this.cboPhongNoiTru.TabIndex = 3;
             this.cboPhongNoiTru.Text = "uiComboBox1";
             // 
@@ -459,7 +460,7 @@
             // cmdThemGiuong
             // 
             this.cmdThemGiuong.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.cmdThemGiuong.Image = ((System.Drawing.Image)(resources.GetObject("cmdThemGiuong.Image")));
+            this.cmdThemGiuong.Image = global::VMS.HIS.Noitru.Properties.Resources.add_04_32;
             this.cmdThemGiuong.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdThemGiuong.Name = "cmdThemGiuong";
             this.cmdThemGiuong.Size = new System.Drawing.Size(109, 28);
@@ -519,42 +520,42 @@
             this.uiStatusBar1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uiStatusBar1.Location = new System.Drawing.Point(0, 706);
             this.uiStatusBar1.Name = "uiStatusBar1";
-            uiStatusBarPanel1.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
-            uiStatusBarPanel1.BorderColor = System.Drawing.Color.Empty;
-            uiStatusBarPanel1.Key = "";
-            uiStatusBarPanel1.ProgressBarValue = 0;
-            uiStatusBarPanel1.Text = "Ctrl+N:Thêm mới";
-            uiStatusBarPanel1.Width = 108;
-            uiStatusBarPanel2.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
-            uiStatusBarPanel2.BorderColor = System.Drawing.Color.Empty;
-            uiStatusBarPanel2.Key = "";
-            uiStatusBarPanel2.ProgressBarValue = 0;
-            uiStatusBarPanel2.Text = "Ctrl+E:Sửa thông tin ";
-            uiStatusBarPanel2.Width = 126;
-            uiStatusBarPanel3.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
-            uiStatusBarPanel3.BorderColor = System.Drawing.Color.Empty;
-            uiStatusBarPanel3.Key = "";
-            uiStatusBarPanel3.ProgressBarValue = 0;
-            uiStatusBarPanel3.Text = "Ctrl+D:Xóa thông tin chọn";
-            uiStatusBarPanel3.Width = 154;
-            uiStatusBarPanel4.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
-            uiStatusBarPanel4.BorderColor = System.Drawing.Color.Empty;
-            uiStatusBarPanel4.Key = "";
-            uiStatusBarPanel4.ProgressBarValue = 0;
-            uiStatusBarPanel4.Text = "F9: Lấy lại dữ liệu";
-            uiStatusBarPanel4.Width = 110;
-            uiStatusBarPanel5.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
-            uiStatusBarPanel5.BorderColor = System.Drawing.Color.Empty;
-            uiStatusBarPanel5.Key = "";
-            uiStatusBarPanel5.ProgressBarValue = 0;
-            uiStatusBarPanel5.Text = "Esc:Thoát";
-            uiStatusBarPanel5.Width = 69;
+            uiStatusBarPanel6.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
+            uiStatusBarPanel6.BorderColor = System.Drawing.Color.Empty;
+            uiStatusBarPanel6.Key = "";
+            uiStatusBarPanel6.ProgressBarValue = 0;
+            uiStatusBarPanel6.Text = "Ctrl+N:Thêm mới";
+            uiStatusBarPanel6.Width = 108;
+            uiStatusBarPanel7.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
+            uiStatusBarPanel7.BorderColor = System.Drawing.Color.Empty;
+            uiStatusBarPanel7.Key = "";
+            uiStatusBarPanel7.ProgressBarValue = 0;
+            uiStatusBarPanel7.Text = "Ctrl+E:Sửa thông tin ";
+            uiStatusBarPanel7.Width = 126;
+            uiStatusBarPanel8.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
+            uiStatusBarPanel8.BorderColor = System.Drawing.Color.Empty;
+            uiStatusBarPanel8.Key = "";
+            uiStatusBarPanel8.ProgressBarValue = 0;
+            uiStatusBarPanel8.Text = "Ctrl+D:Xóa thông tin chọn";
+            uiStatusBarPanel8.Width = 154;
+            uiStatusBarPanel9.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
+            uiStatusBarPanel9.BorderColor = System.Drawing.Color.Empty;
+            uiStatusBarPanel9.Key = "";
+            uiStatusBarPanel9.ProgressBarValue = 0;
+            uiStatusBarPanel9.Text = "F9: Lấy lại dữ liệu";
+            uiStatusBarPanel9.Width = 110;
+            uiStatusBarPanel10.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
+            uiStatusBarPanel10.BorderColor = System.Drawing.Color.Empty;
+            uiStatusBarPanel10.Key = "";
+            uiStatusBarPanel10.ProgressBarValue = 0;
+            uiStatusBarPanel10.Text = "Esc:Thoát";
+            uiStatusBarPanel10.Width = 69;
             this.uiStatusBar1.Panels.AddRange(new Janus.Windows.UI.StatusBar.UIStatusBarPanel[] {
-            uiStatusBarPanel1,
-            uiStatusBarPanel2,
-            uiStatusBarPanel3,
-            uiStatusBarPanel4,
-            uiStatusBarPanel5});
+            uiStatusBarPanel6,
+            uiStatusBarPanel7,
+            uiStatusBarPanel8,
+            uiStatusBarPanel9,
+            uiStatusBarPanel10});
             this.uiStatusBar1.Size = new System.Drawing.Size(1344, 23);
             this.uiStatusBar1.TabIndex = 5;
             this.uiStatusBar1.VisualStyle = Janus.Windows.UI.VisualStyle.OfficeXP;

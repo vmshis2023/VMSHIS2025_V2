@@ -3089,7 +3089,7 @@ namespace VNS.HIS.UI.NGOAITRU
         /// <param name="presId"></param>
         private void PrintPres(int presId, string forcedTitle)
         {
-            DataTable v_dtData = _KCB_KEDONTHUOC.LaythongtinDonthuoc_In(presId);
+            DataTable v_dtData = _KCB_KEDONTHUOC.LaythongtinDonthuoc_In(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, 0, presId);
             Utility.AddColumToDataTable(ref v_dtData, "BarCode", typeof (byte[]));
             Utility.Int32Dbnull(grdPresDetail.GetValue(KcbDonthuocChitiet.Columns.IdDonthuoc));
             //barcode.Data = Utility.sDbnull(Pres_ID);

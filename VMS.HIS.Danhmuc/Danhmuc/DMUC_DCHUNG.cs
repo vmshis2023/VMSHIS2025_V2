@@ -59,7 +59,13 @@ namespace VNS.HIS.UI.DANHMUC
             //Phân tích tham số để khởi tạo User interface(UI)
             AnalyzeArguments(p_strArgs);
         }
-
+        public DMUC_DCHUNG()
+        {
+            InitializeComponent();
+            Utility.SetVisualStyle(this);
+            //Khởi tạo sự kiện
+            InitEvents();
+        }
         #region Khai báo các hàm khởi tạo
         /// <summary>
         /// Khởi tạo các sự kiện của các Control trên form

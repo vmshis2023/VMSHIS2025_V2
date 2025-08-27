@@ -43,6 +43,12 @@ namespace VNS.HIS.UI.NOITRU
             chkByDate.CheckedChanged += chkByDate_CheckedChanged;
             Load += frm_QuanlyPhieubangiaonguoibenhchuyenkhoa_Load;
             KeyDown += frm_QuanlyPhieubangiaonguoibenhchuyenkhoa_KeyDown;
+            grdList.MouseDoubleClick += GrdList_MouseDoubleClick;
+        }
+
+        private void GrdList_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            cmdUpdate.PerformClick();
         }
         /// <summary>
         /// hàm thực hiện việc thoát Form hiện tại
@@ -98,8 +104,8 @@ namespace VNS.HIS.UI.NOITRU
                 denngay = new DateTime(1900, 1, 1);
                 ten_benhnhan = "";
             }
-            m_dtData = SPs.EmrPhieucamketchapnhanPtttLaydanhsach(-1,tungay, denngay, "", ma_luotkham,ten_benhnhan).GetDataSet().Tables[0];
-            Utility.SetDataSourceForDataGridEx(grdList, m_dtData, true, true, "1=1", "ngay_camket,ten_benhnhan");
+            m_dtData = SPs.EmrPhieubangiaonguoibenhchuyenkhoaLaydanhsach(-1,tungay, denngay, "", ma_luotkham,ten_benhnhan,-1,-1,-1,-1,-1,-1,-1).GetDataSet().Tables[0];
+            Utility.SetDataSourceForDataGridEx(grdList, m_dtData, true, true, "1=1", "ngay_bangiao,ten_benhnhan");
             ModifyCommand();
         }
 
@@ -162,34 +168,34 @@ namespace VNS.HIS.UI.NOITRU
 
         private void cmdInsert_Click(object sender, EventArgs e)
         {
-            frm_phieucamketchapnhan_pttt giayxacnhan = new frm_phieucamketchapnhan_pttt();
-            giayxacnhan.mv_blnCallFromMenu = false;
-            giayxacnhan._OnCreated += _OnCreated;
-            giayxacnhan.m_enAct = action.Insert;
-            giayxacnhan.ShowDialog();
+            frm_phieubangiaonguoibenhchuyenkhoa phieu = new frm_phieubangiaonguoibenhchuyenkhoa();
+            phieu.mv_blnCallFromMenu = false;
+            phieu._OnCreated += _OnCreated;
+            phieu.m_enAct = action.Insert;
+            phieu.ShowDialog();
         }
 
         private void cmdUpdate_Click(object sender, EventArgs e)
         {
-            frm_phieucamketchapnhan_pttt giayxacnhan = new frm_phieucamketchapnhan_pttt();
-            giayxacnhan.mv_blnCallFromMenu = false;
-            giayxacnhan.m_enAct = action.Update;
-            giayxacnhan._OnCreated += _OnCreated;
-            giayxacnhan.ucThongtinnguoibenh_emr_basic1.txtMaluotkham.Text = grdList.GetValue(KcbLuotkham.Columns.MaLuotkham).ToString();
-            giayxacnhan.ucThongtinnguoibenh_emr_basic1.Refresh();
-            giayxacnhan.ShowDialog();
+            frm_phieubangiaonguoibenhchuyenkhoa phieu = new frm_phieubangiaonguoibenhchuyenkhoa();
+            phieu.mv_blnCallFromMenu = false;
+            phieu.m_enAct = action.Update;
+            phieu._OnCreated += _OnCreated;
+            phieu.ucThongtinnguoibenh_emr_basic1.txtMaluotkham.Text = grdList.GetValue(KcbLuotkham.Columns.MaLuotkham).ToString();
+            phieu.ucThongtinnguoibenh_emr_basic1.Refresh();
+            phieu.ShowDialog();
 
         }
         void _OnCreated(long id, action m_enAct)
         {
             try
             {
-                DataTable dt_temp = SPs.EmrPhieucamketchapnhanPtttLaydanhsach(id, new DateTime(1900, 1, 1), new DateTime(1900, 1, 1),"","","").GetDataSet().Tables[0];
+                DataTable dt_temp = SPs.EmrPhieubangiaonguoibenhchuyenkhoaLaydanhsach(id, new DateTime(1900, 1, 1), new DateTime(1900, 1, 1),"","","",-1,-1,-1,-1,-1,-1,-1).GetDataSet().Tables[0];
                 if (m_enAct == action.Delete)
                 {
                     if (DeleteMe())
                     {
-                        DataRow[] arrDr = m_dtData.Select(string.Format("{0}={1}", EmrPhieucamketchapnhanPttt.Columns.IdPhieu, grdList.GetValue(EmrPhieucamketchapnhanPttt.Columns.IdPhieu)));
+                        DataRow[] arrDr = m_dtData.Select(string.Format("{0}={1}", EmrPhieubangiaonguoibenhchuyenkhoa.Columns.IdPhieu, grdList.GetValue(EmrPhieubangiaonguoibenhchuyenkhoa.Columns.IdPhieu)));
                         if (arrDr.Length > 0)
                             m_dtData.Rows.Remove(arrDr[0]);
                         m_dtData.AcceptChanges();
@@ -205,7 +211,7 @@ namespace VNS.HIS.UI.NOITRU
                     DataRow[] arrDr = m_dtData.Select("id=" + id);
                     if (arrDr.Length > 0)
                     {
-                        arrDr[0]["ngay_camket"] = dt_temp.Rows[0]["ngay_camket"];
+                        arrDr[0]["ngay_bangiao"] = dt_temp.Rows[0]["ngay_bangiao"];
                         arrDr[0]["ma_phieu"] = dt_temp.Rows[0]["ma_phieu"];
                      
                     }
@@ -214,7 +220,7 @@ namespace VNS.HIS.UI.NOITRU
 
                 }
                 m_dtData.AcceptChanges();
-                Utility.GotoNewRowJanus(grdList, EmrPhieucamketchapnhanPttt.Columns.IdPhieu, id.ToString());
+                Utility.GotoNewRowJanus(grdList, EmrPhieubangiaonguoibenhchuyenkhoa.Columns.IdPhieu, id.ToString());
             }
             catch (Exception ex)
             {
@@ -234,9 +240,9 @@ namespace VNS.HIS.UI.NOITRU
                 {
                     using (var dbscope = new SharedDbConnectionScope())
                     {
-                        long IdPhieu = Utility.Int32Dbnull(grdList.GetValue(EmrPhieucamketchapnhanPttt.Columns.IdPhieu), -1);
-                        new Delete().From(EmrPhieucamketchapnhanPttt.Schema).Where(EmrPhieucamketchapnhanPttt.Columns.IdPhieu).IsEqualTo(IdPhieu).Execute();
-                        emrdoc.DeleteDocument(IdPhieu, Loaiphieu_HIS.PHIEU_CAMKET_PTTT, Loaiphieu_HIS.PHIEU_CAMKET_PTTT);
+                        long IdPhieu = Utility.Int32Dbnull(grdList.GetValue(EmrPhieubangiaonguoibenhchuyenkhoa.Columns.IdPhieu), -1);
+                        new Delete().From(EmrPhieubangiaonguoibenhchuyenkhoa.Schema).Where(EmrPhieubangiaonguoibenhchuyenkhoa.Columns.IdPhieu).IsEqualTo(IdPhieu).Execute();
+                        emrdoc.DeleteDocument(IdPhieu, Loaiphieu_HIS.PHIEU_BANGIAO_NGUOIBENHCHUYENKHOA, Loaiphieu_HIS.PHIEU_BANGIAO_NGUOIBENHCHUYENKHOA);
                     }
                     scope.Complete();
 
@@ -254,19 +260,19 @@ namespace VNS.HIS.UI.NOITRU
         {
             try
             {
-                EmrPhieucamketchapnhanPttt objGiayXacnhan = EmrPhieucamketchapnhanPttt.FetchByID(Utility.Int32Dbnull(grdList.GetValue(EmrPhieucamketchapnhanPttt.Columns.IdPhieu), -1));
+                EmrPhieubangiaonguoibenhchuyenkhoa objGiayXacnhan = EmrPhieubangiaonguoibenhchuyenkhoa.FetchByID(Utility.Int32Dbnull(grdList.GetValue(EmrPhieubangiaonguoibenhchuyenkhoa.Columns.IdPhieu), -1));
                 if (objGiayXacnhan == null)
                 {
-                    Utility.ShowMsg(string.Format("Phiếu chấp nhận cam kết PTTT và Gây mê hồi sức của người bệnh {0} có thể đã bị người khác xóa ở chức năng khác. Vui lòng kiểm tra lại bằng cách nhấn nút tìm kiếm", grdList.GetValue("ten_benhnhan").ToString()));
+                    Utility.ShowMsg(string.Format("Phiếu Bàn giao người bệnh chuyển khoa của người bệnh {0} có thể đã bị người khác xóa ở chức năng khác. Vui lòng kiểm tra lại bằng cách nhấn nút tìm kiếm", grdList.GetValue("ten_benhnhan").ToString()));
                     return;
                 }
                 
-                if (Utility.AcceptQuestion(string.Format("Bạn có chắc chắn muốn xóa phiếu {0} của người bệnh {1} hay không?", grdList.GetValue(EmrPhieucamketchapnhanPttt.Columns.MaPhieu).ToString(), grdList.GetValue("ten_benhnhan").ToString()), "Xác nhận xóa", true))
+                if (Utility.AcceptQuestion(string.Format("Bạn có chắc chắn muốn xóa phiếu {0} của người bệnh {1} hay không?", grdList.GetValue(EmrPhieubangiaonguoibenhchuyenkhoa.Columns.MaPhieu).ToString(), grdList.GetValue("ten_benhnhan").ToString()), "Xác nhận xóa", true))
                 {
                     if (DeleteMe())
                     {
-                        Utility.ShowMsg(string.Format("Xóa phiếu giấy xác nhận tai nạn thương tích cho người bệnh {0} thành công", grdList.GetValue("ten_benhnhan").ToString()));
-                        DataRow[] arrDr = m_dtData.Select(string.Format("{0}={1}", EmrPhieucamketchapnhanPttt.Columns.IdPhieu, grdList.GetValue(EmrPhieucamketchapnhanPttt.Columns.IdPhieu)));
+                        Utility.ShowMsg(string.Format("Xóa phiếu Phiếu bàn giao người bệnh chuyển khoa của người bệnh {0} thành công", grdList.GetValue("ten_benhnhan").ToString()));
+                        DataRow[] arrDr = m_dtData.Select(string.Format("{0}={1}", EmrPhieubangiaonguoibenhchuyenkhoa.Columns.IdPhieu, grdList.GetValue(EmrPhieubangiaonguoibenhchuyenkhoa.Columns.IdPhieu)));
                         if (arrDr.Length > 0)
                             m_dtData.Rows.Remove(arrDr[0]);
                         m_dtData.AcceptChanges();
@@ -286,18 +292,18 @@ namespace VNS.HIS.UI.NOITRU
                 Utility.WaitNow(this);
                 try
                 {
-                    EmrPhieucamketchapnhanPttt phieucamket    = new Select().From(EmrPhieucamketchapnhanPttt.Schema)
-                           .Where(EmrPhieucamketchapnhanPttt.Columns.IdPhieu).IsEqualTo(Utility.Int64Dbnull(grdList.GetValue(EmrPhieucamketchapnhanPttt.Columns.IdPhieu)))
-                           .ExecuteSingle<EmrPhieucamketchapnhanPttt>();
+                    EmrPhieubangiaonguoibenhchuyenkhoa phieucamket    = new Select().From(EmrPhieubangiaonguoibenhchuyenkhoa.Schema)
+                           .Where(EmrPhieubangiaonguoibenhchuyenkhoa.Columns.IdPhieu).IsEqualTo(Utility.Int64Dbnull(grdList.GetValue(EmrPhieubangiaonguoibenhchuyenkhoa.Columns.IdPhieu)))
+                           .ExecuteSingle<EmrPhieubangiaonguoibenhchuyenkhoa>();
                     if (phieucamket.IdPhieu <= 0)
                     {
-                        Utility.ShowMsg("Bạn cần lưu thông tin phiếu chấp thuận PTTT và Gây mê hồi sức trước khi thực hiện in phiếu");
+                        Utility.ShowMsg("Bạn cần lưu thông tin phiếu Bàn giao người bệnh chuyển khoa trước khi thực hiện in phiếu");
                         return;
                     }
-                    DataTable dtData = SPs.EmrPhieucamketchapnhanPtttLaythongtinIn(phieucamket.IdPhieu).GetDataSet().Tables[0];
-                    dtData.TableName = "phieucamketchapnhan_pttt";
-                    dtData.Rows[0]["sngay_camket"] = phieucamket != null ? Utility.FormatDateTime_gio_ngay_thang_nam(phieucamket.NgayCamket, "") : "Ngày ......./......./..........";
-                    WordPrinter.InPhieu(dtData, "phieucamketchapnhan_pttt.doc", "");
+                    DataTable dtData = SPs.EmrPhieubangiaonguoibenhchuyenkhoaLaythongtinIn(phieucamket.IdPhieu).GetDataSet().Tables[0];
+                    dtData.TableName = "PHIEU_BANGIAO_NGUOIBENHCHUYENKHOA";
+                    dtData.Rows[0]["sngay_bangiao"] = phieucamket != null ? Utility.FormatDateTime_gio_ngay_thang_nam(phieucamket.NgayBangiao, "") : "Ngày ......./......./..........";
+                    WordPrinter.InPhieu(dtData, "PHIEU_BANGIAO_NGUOIBENHCHUYENKHOA.doc", "");
 
 
                 }

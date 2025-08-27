@@ -3775,8 +3775,7 @@ namespace VNS.HIS.UI.NOITRU
                         //return;
                     }
                     Utility.SetMsg(lblMsg, Utility.Laythongtintrangthainguoibenh(objLuotkham), false);
-                    txtBsdieutrichinh.Text = grdList.GetValue("ten_bsi_dieutrichinh").ToString();
-                    txtbsUyquyen.Text = grdList.GetValue("ten_bsi_dieutriphu").ToString();
+                   
                     objkhoaphonghientai = DmucKhoaphong.FetchByID(objLuotkham.IdKhoanoitru);
                     if (CheckDachuyenkhoa()) return;
                     //if (objLuotkham.IdKhoanoitru != objNoitruPhanbuonggiuong.IdKhoanoitru)//Bệnh nhân đã chuyển khoa nên không được phép thao tác và chỉ được phép xem thông tin
@@ -3791,6 +3790,8 @@ namespace VNS.HIS.UI.NOITRU
                     //else
                     //    flowCls.Enabled = flowCongkham.Enabled = flowGoi.Enabled = FlowGoi1.Enabled = flowThuoc.Enabled = flowVTTH.Enabled = flowPhieudieutri.Enabled = true;
                     ClearControl();
+                    txtBsdieutrichinh.Text = grdList.GetValue("ten_bsi_dieutrichinh").ToString();
+                    txtbsUyquyen.Text = grdList.GetValue("ten_bsi_dieutriphu").ToString();
                     LaythongtinChandoan();
                     _idDoituongKcb = objLuotkham.IdDoituongKcb;
                     _objDoituongKcb = DmucDoituongkcb.FetchByID(_idDoituongKcb);
@@ -6866,7 +6867,7 @@ namespace VNS.HIS.UI.NOITRU
         /// <param name="PresID"></param>
         private void PrintPres_Backup(int PresID,string forcedTitle)
         {
-            DataTable v_dtData = _KCB_KEDONTHUOC.LaythongtinDonthuoc_In(PresID);
+            DataTable v_dtData = _KCB_KEDONTHUOC.LaythongtinDonthuoc_In(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, 1,PresID);
             Utility.AddColumToDataTable(ref v_dtData, "BarCode", typeof (byte[]));
             int Pres_ID = Utility.Int32Dbnull(grdPresDetail.GetValue(KcbDonthuocChitiet.Columns.IdDonthuoc));
             //barcode.Data = Utility.sDbnull(Pres_ID);
@@ -6956,7 +6957,7 @@ namespace VNS.HIS.UI.NOITRU
         {
             try
             {
-                DataTable v_dtDataOrg = _KCB_KEDONTHUOC.LaythongtinDonthuoc_In(presID);
+                DataTable v_dtDataOrg = _KCB_KEDONTHUOC.LaythongtinDonthuoc_In(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, 1, presID);
 
                 DataRow[] arrDR = v_dtDataOrg.Select("tuvan_them=0");
                 if (arrDR.Length <= 0)
@@ -7021,6 +7022,8 @@ namespace VNS.HIS.UI.NOITRU
                         var reportDocument = new ReportDocument();
                         string tieude = "", reportname = "", reportCode = "";
                         reportCode = _rcode;
+                        if (presID <= 0)
+                            reportCode = reportCode + "_GOP";
                         reportDocument = Utility.GetReport(reportCode, KhoGiay, ref tieude, ref reportname);
                         if (reportDocument == null)
                         {
@@ -7809,7 +7812,7 @@ namespace VNS.HIS.UI.NOITRU
      
         private void PrintPresGop(string maLanKham,int id_donthuoc, string forcedTitle)
         {
-            DataTable v_dtData = _KCB_KEDONTHUOC.LaythongtinDonthuoc_In(id_donthuoc); ;// _KCB_KEDONTHUOC.LaythongtinDonthuoc_InGop(maLanKham);
+            DataTable v_dtData = _KCB_KEDONTHUOC.LaythongtinDonthuoc_In(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, 1, id_donthuoc); ;// _KCB_KEDONTHUOC.LaythongtinDonthuoc_InGop(maLanKham);
             Utility.AddColumToDataTable(ref v_dtData, "BarCode", typeof(byte[]));
             int Pres_ID = Utility.Int32Dbnull(grdPresDetail.GetValue(KcbDonthuocChitiet.Columns.IdDonthuoc));
             THU_VIEN_CHUNG.CreateXML(v_dtData, "thamkham_InDonthuocA5.xml");
@@ -7906,12 +7909,12 @@ namespace VNS.HIS.UI.NOITRU
                     string ID_Phieu = string.Join(",", (from p in grdPresDetail.GetCheckedRows() select p.Cells["id_phieu"].Value.ToString()).Distinct().ToArray<string>());
                     string id_thuoc = string.Join(",", (from p in grdPresDetail.GetCheckedRows() select p.Cells["id_thuoc"].Value.ToString()).Distinct().ToArray<string>());
 
-                    foreach (GridEXRow gridExRow in grdPresDetail.GetCheckedRows())
-                    {
-                        gridExRow.BeginEdit();
-                        gridExRow.Cells[NoitruPhieudichtruyen.Columns.TrangthaiIn].Value = 1;
-                        gridExRow.EndEdit();
-                    }
+                    //foreach (GridEXRow gridExRow in grdPresDetail.GetCheckedRows())
+                    //{
+                    //    gridExRow.BeginEdit();
+                    //    gridExRow.Cells[NoitruPhieudichtruyen.Columns.TrangthaiIn].Value = 1;
+                    //    gridExRow.EndEdit();
+                    //}
                     grdPresDetail.UpdateData();
                     DataTable dt_dataprint = SPs.NoitruLayThongTinThuocTruyenDichIntam(objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan, objPhieudieutri.IdPhieudieutri, Utility.Int64Dbnull(RowThuoc.Cells["id_donthuoc"].Value)).GetDataSet().Tables[0];
 
@@ -8699,6 +8702,36 @@ namespace VNS.HIS.UI.NOITRU
                 Utility.CatchException(ex);
             }
 
+        }
+
+        private void cmd_intonghop_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!Utility.isValidGrid(grdPresDetail)) return;
+                int Pres_ID = Utility.Int32Dbnull(grdPresDetail.GetValue(KcbDonthuocChitiet.Columns.IdDonthuoc));
+                //if (THU_VIEN_CHUNG.Laygiatrithamsohethong_off("NOITRU_PHIEUDIEUTRI_DONTHUOC_INTACH", "0", false) == "1")
+                //{
+                if (RowThuoc == null)
+                {
+                    Utility.ShowMsg("Chưa có đơn thuốc để in. Vui lòng chọn một đơn thuốc trên lưới danh sách", "Thông báo", MessageBoxIcon.Warning);
+                    return;
+                }
+                int presId = -1;
+                PrintPres(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, 1, objPhieudieutri.NgayDieutri.Value, presId, "", false);
+                //}
+                //else
+                //{
+                //    string maLanKham = Utility.sDbnull(txtPatient_Code.Text.Trim());
+                //    PrintPresGop(objLuotkham.MaLuotkham, Pres_ID, "");
+                //}
+
+            }
+            catch (Exception ex)
+            {
+                Utility.ShowMsg("Lỗi:" + ex.Message);
+                // throw;
+            }
         }
     }
 }

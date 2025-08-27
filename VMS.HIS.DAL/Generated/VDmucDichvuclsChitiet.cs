@@ -1005,6 +1005,102 @@ namespace VMS.HIS.DAL{
                 
                 schema.Columns.Add(colvarKhongbatbuoccoketqua);
                 
+                TableSchema.TableColumn colvarDongiaBh = new TableSchema.TableColumn(schema);
+                colvarDongiaBh.ColumnName = "dongia_BH";
+                colvarDongiaBh.DataType = DbType.Decimal;
+                colvarDongiaBh.MaxLength = 0;
+                colvarDongiaBh.AutoIncrement = false;
+                colvarDongiaBh.IsNullable = true;
+                colvarDongiaBh.IsPrimaryKey = false;
+                colvarDongiaBh.IsForeignKey = false;
+                colvarDongiaBh.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarDongiaBh);
+                
+                TableSchema.TableColumn colvarDongiaYc = new TableSchema.TableColumn(schema);
+                colvarDongiaYc.ColumnName = "dongia_YC";
+                colvarDongiaYc.DataType = DbType.Decimal;
+                colvarDongiaYc.MaxLength = 0;
+                colvarDongiaYc.AutoIncrement = false;
+                colvarDongiaYc.IsNullable = true;
+                colvarDongiaYc.IsPrimaryKey = false;
+                colvarDongiaYc.IsForeignKey = false;
+                colvarDongiaYc.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarDongiaYc);
+                
+                TableSchema.TableColumn colvarDongiaNg = new TableSchema.TableColumn(schema);
+                colvarDongiaNg.ColumnName = "dongia_NG";
+                colvarDongiaNg.DataType = DbType.Decimal;
+                colvarDongiaNg.MaxLength = 0;
+                colvarDongiaNg.AutoIncrement = false;
+                colvarDongiaNg.IsNullable = true;
+                colvarDongiaNg.IsPrimaryKey = false;
+                colvarDongiaNg.IsForeignKey = false;
+                colvarDongiaNg.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarDongiaNg);
+                
+                TableSchema.TableColumn colvarDongiaNn = new TableSchema.TableColumn(schema);
+                colvarDongiaNn.ColumnName = "dongia_NN";
+                colvarDongiaNn.DataType = DbType.Decimal;
+                colvarDongiaNn.MaxLength = 0;
+                colvarDongiaNn.AutoIncrement = false;
+                colvarDongiaNn.IsNullable = true;
+                colvarDongiaNn.IsPrimaryKey = false;
+                colvarDongiaNn.IsForeignKey = false;
+                colvarDongiaNn.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarDongiaNn);
+                
+                TableSchema.TableColumn colvarDongiaNnng = new TableSchema.TableColumn(schema);
+                colvarDongiaNnng.ColumnName = "dongia_NNNG";
+                colvarDongiaNnng.DataType = DbType.Decimal;
+                colvarDongiaNnng.MaxLength = 0;
+                colvarDongiaNnng.AutoIncrement = false;
+                colvarDongiaNnng.IsNullable = true;
+                colvarDongiaNnng.IsPrimaryKey = false;
+                colvarDongiaNnng.IsForeignKey = false;
+                colvarDongiaNnng.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarDongiaNnng);
+                
+                TableSchema.TableColumn colvarDongiaTn = new TableSchema.TableColumn(schema);
+                colvarDongiaTn.ColumnName = "dongia_TN";
+                colvarDongiaTn.DataType = DbType.Decimal;
+                colvarDongiaTn.MaxLength = 0;
+                colvarDongiaTn.AutoIncrement = false;
+                colvarDongiaTn.IsNullable = true;
+                colvarDongiaTn.IsPrimaryKey = false;
+                colvarDongiaTn.IsForeignKey = false;
+                colvarDongiaTn.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarDongiaTn);
+                
+                TableSchema.TableColumn colvarDongiaTnnn = new TableSchema.TableColumn(schema);
+                colvarDongiaTnnn.ColumnName = "dongia_TNNN";
+                colvarDongiaTnnn.DataType = DbType.Decimal;
+                colvarDongiaTnnn.MaxLength = 0;
+                colvarDongiaTnnn.AutoIncrement = false;
+                colvarDongiaTnnn.IsNullable = true;
+                colvarDongiaTnnn.IsPrimaryKey = false;
+                colvarDongiaTnnn.IsForeignKey = false;
+                colvarDongiaTnnn.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarDongiaTnnn);
+                
+                TableSchema.TableColumn colvarTrongGoi = new TableSchema.TableColumn(schema);
+                colvarTrongGoi.ColumnName = "trong_goi";
+                colvarTrongGoi.DataType = DbType.Boolean;
+                colvarTrongGoi.MaxLength = 0;
+                colvarTrongGoi.AutoIncrement = false;
+                colvarTrongGoi.IsNullable = true;
+                colvarTrongGoi.IsPrimaryKey = false;
+                colvarTrongGoi.IsForeignKey = false;
+                colvarTrongGoi.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarTrongGoi);
+                
                 TableSchema.TableColumn colvarMotaThemChitiet = new TableSchema.TableColumn(schema);
                 colvarMotaThemChitiet.ColumnName = "mota_them_chitiet";
                 colvarMotaThemChitiet.DataType = DbType.String;
@@ -2653,6 +2749,118 @@ namespace VMS.HIS.DAL{
             }
         }
 	      
+        [XmlAttribute("DongiaBh")]
+        [Bindable(true)]
+        public decimal? DongiaBh 
+	    {
+		    get
+		    {
+			    return GetColumnValue<decimal?>("dongia_BH");
+		    }
+            set 
+		    {
+			    SetColumnValue("dongia_BH", value);
+            }
+        }
+	      
+        [XmlAttribute("DongiaYc")]
+        [Bindable(true)]
+        public decimal? DongiaYc 
+	    {
+		    get
+		    {
+			    return GetColumnValue<decimal?>("dongia_YC");
+		    }
+            set 
+		    {
+			    SetColumnValue("dongia_YC", value);
+            }
+        }
+	      
+        [XmlAttribute("DongiaNg")]
+        [Bindable(true)]
+        public decimal? DongiaNg 
+	    {
+		    get
+		    {
+			    return GetColumnValue<decimal?>("dongia_NG");
+		    }
+            set 
+		    {
+			    SetColumnValue("dongia_NG", value);
+            }
+        }
+	      
+        [XmlAttribute("DongiaNn")]
+        [Bindable(true)]
+        public decimal? DongiaNn 
+	    {
+		    get
+		    {
+			    return GetColumnValue<decimal?>("dongia_NN");
+		    }
+            set 
+		    {
+			    SetColumnValue("dongia_NN", value);
+            }
+        }
+	      
+        [XmlAttribute("DongiaNnng")]
+        [Bindable(true)]
+        public decimal? DongiaNnng 
+	    {
+		    get
+		    {
+			    return GetColumnValue<decimal?>("dongia_NNNG");
+		    }
+            set 
+		    {
+			    SetColumnValue("dongia_NNNG", value);
+            }
+        }
+	      
+        [XmlAttribute("DongiaTn")]
+        [Bindable(true)]
+        public decimal? DongiaTn 
+	    {
+		    get
+		    {
+			    return GetColumnValue<decimal?>("dongia_TN");
+		    }
+            set 
+		    {
+			    SetColumnValue("dongia_TN", value);
+            }
+        }
+	      
+        [XmlAttribute("DongiaTnnn")]
+        [Bindable(true)]
+        public decimal? DongiaTnnn 
+	    {
+		    get
+		    {
+			    return GetColumnValue<decimal?>("dongia_TNNN");
+		    }
+            set 
+		    {
+			    SetColumnValue("dongia_TNNN", value);
+            }
+        }
+	      
+        [XmlAttribute("TrongGoi")]
+        [Bindable(true)]
+        public bool? TrongGoi 
+	    {
+		    get
+		    {
+			    return GetColumnValue<bool?>("trong_goi");
+		    }
+            set 
+		    {
+			    SetColumnValue("trong_goi", value);
+            }
+        }
+	      
         [XmlAttribute("MotaThemChitiet")]
         [Bindable(true)]
         public string MotaThemChitiet 
@@ -3391,6 +3599,22 @@ namespace VMS.HIS.DAL{
             public static string MaPhieuEmr = @"ma_phieu_emr";
             
             public static string Khongbatbuoccoketqua = @"khongbatbuoccoketqua";
+            
+            public static string DongiaBh = @"dongia_BH";
+            
+            public static string DongiaYc = @"dongia_YC";
+            
+            public static string DongiaNg = @"dongia_NG";
+            
+            public static string DongiaNn = @"dongia_NN";
+            
+            public static string DongiaNnng = @"dongia_NNNG";
+            
+            public static string DongiaTn = @"dongia_TN";
+            
+            public static string DongiaTnnn = @"dongia_TNNN";
+            
+            public static string TrongGoi = @"trong_goi";
             
             public static string MotaThemChitiet = @"mota_them_chitiet";
             

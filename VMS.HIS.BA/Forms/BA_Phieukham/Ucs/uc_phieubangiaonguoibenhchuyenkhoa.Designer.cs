@@ -29,6 +29,7 @@ namespace VMS.HIS.UI.EMR.Ucs
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uc_phieubangiaonguoibenhchuyenkhoa));
             this.label100 = new System.Windows.Forms.Label();
             this.txt_chandoan = new Janus.Windows.GridEX.EditControls.EditBox();
@@ -176,6 +177,7 @@ namespace VMS.HIS.UI.EMR.Ucs
             this.label49 = new System.Windows.Forms.Label();
             this.txtBuong = new System.Windows.Forms.TextBox();
             this.txtGiuong = new System.Windows.Forms.TextBox();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.panel7.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -189,6 +191,7 @@ namespace VMS.HIS.UI.EMR.Ucs
             this.panel8.SuspendLayout();
             this.uiTabPage1.SuspendLayout();
             this.panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // label100
@@ -534,9 +537,9 @@ namespace VMS.HIS.UI.EMR.Ucs
             // 
             this.label9.Font = new System.Drawing.Font("Arial", 9.75F);
             this.label9.ForeColor = System.Drawing.Color.Black;
-            this.label9.Location = new System.Drawing.Point(14, 297);
+            this.label9.Location = new System.Drawing.Point(128, 297);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(159, 20);
+            this.label9.Size = new System.Drawing.Size(45, 20);
             this.label9.TabIndex = 2618;
             this.label9.Text = "Khác";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -757,7 +760,6 @@ namespace VMS.HIS.UI.EMR.Ucs
             // 
             this.txt_khac.BackColor = System.Drawing.Color.White;
             this.txt_khac.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txt_khac.Enabled = false;
             this.txt_khac.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_khac.Location = new System.Drawing.Point(176, 295);
             this.txt_khac.Name = "txt_khac";
@@ -2374,7 +2376,6 @@ namespace VMS.HIS.UI.EMR.Ucs
             // 
             this.txtBuong.BackColor = System.Drawing.Color.White;
             this.txtBuong.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtBuong.Enabled = false;
             this.txtBuong.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBuong.Location = new System.Drawing.Point(630, 29);
             this.txtBuong.Name = "txtBuong";
@@ -2385,12 +2386,15 @@ namespace VMS.HIS.UI.EMR.Ucs
             // 
             this.txtGiuong.BackColor = System.Drawing.Color.White;
             this.txtGiuong.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtGiuong.Enabled = false;
             this.txtGiuong.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtGiuong.Location = new System.Drawing.Point(824, 29);
             this.txtGiuong.Name = "txtGiuong";
             this.txtGiuong.Size = new System.Drawing.Size(127, 22);
             this.txtGiuong.TabIndex = 5;
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // uc_phieubangiaonguoibenhchuyenkhoa
             // 
@@ -2448,6 +2452,7 @@ namespace VMS.HIS.UI.EMR.Ucs
             this.uiTabPage1.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2600,5 +2605,6 @@ namespace VMS.HIS.UI.EMR.Ucs
         private System.Windows.Forms.Label label49;
         private System.Windows.Forms.TextBox txtBuong;
         private System.Windows.Forms.TextBox txtGiuong;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

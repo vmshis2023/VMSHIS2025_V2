@@ -8,8 +8,6 @@ using VNS.Libs;
 using VMS.HIS.DAL;
 
 using System.Text;
-
-using SubSonic;
 using NLog;
 using VNS.Properties;
 using System.Collections.Generic;

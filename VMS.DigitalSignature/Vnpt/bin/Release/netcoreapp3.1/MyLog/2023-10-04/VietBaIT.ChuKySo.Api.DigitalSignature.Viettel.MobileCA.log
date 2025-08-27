@@ -1,0 +1,19 @@
+2023-10-04 10:15:58.3163||ERROR|VietBaIT.ChuKySo.Api.DigitalSignature.Viettel.MobileCA|Error: The remote server returned an error: (404) Not Found. |url: |action: 
+2023-10-04 10:15:58.3163||ERROR|VietBaIT.ChuKySo.Api.DigitalSignature.Viettel.MobileCA|ERROR: Login to Cloud CA |url: |action: 
+2023-10-04 10:28:51.1233||ERROR|VietBaIT.ChuKySo.Api.DigitalSignature.Viettel.MobileCA|Error: The operation has timed out. |url: |action: 
+2023-10-04 10:28:54.6967||ERROR|VietBaIT.ChuKySo.Api.DigitalSignature.Viettel.MobileCA|ERROR: Get SAD |url: |action: 
+2023-10-04 10:35:56.6122||ERROR|VietBaIT.ChuKySo.Api.DigitalSignature.Viettel.MobileCA|Error: The remote server returned an error: (400) Bad Request. |url: |action: 
+2023-10-04 10:36:00.4950||ERROR|VietBaIT.ChuKySo.Api.DigitalSignature.Viettel.MobileCA|ERROR: Sign Hash |url: |action: 
+2023-10-04 14:44:45.1934||ERROR|VietBaIT.ChuKySo.Api.DigitalSignature.Viettel.MobileCA|Error: The remote server returned an error: (400) Bad Request. |url: |action: 
+2023-10-04 14:44:45.1934||ERROR|VietBaIT.ChuKySo.Api.DigitalSignature.Viettel.MobileCA|ERROR: Sign Hash |url: |action: 
+2023-10-04 14:46:47.5425||ERROR|VietBaIT.ChuKySo.Api.DigitalSignature.Viettel.MobileCA|Error: The operation has timed out. |url: |action: 
+2023-10-04 14:46:47.5425||ERROR|VietBaIT.ChuKySo.Api.DigitalSignature.Viettel.MobileCA|ERROR: Get SAD |url: |action: 
+2023-10-04 14:50:24.4723||ERROR|VietBaIT.ChuKySo.Api.DigitalSignature.Viettel.MobileCA|Error: The SSL connection could not be established, see inner exception. Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.. |url: |action: 
+2023-10-04 14:50:24.4723||ERROR|VietBaIT.ChuKySo.Api.DigitalSignature.Viettel.MobileCA|ERROR: Sign Hash |url: |action: 
+2023-10-04 15:04:49.1226||ERROR|VietBaIT.ChuKySo.Api.DigitalSignature.Viettel.MobileCA|Error: The operation has timed out. |url: |action: 
+2023-10-04 15:04:49.1226||ERROR|VietBaIT.ChuKySo.Api.DigitalSignature.Viettel.MobileCA|ERROR: Get SAD |url: |action: 
+2023-10-04 15:46:24.1948||ERROR|VietBaIT.ChuKySo.Api.DigitalSignature.Viettel.MobileCA|Error: An error occurred while sending the request. Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.. |url: |action: 
+2023-10-04 15:46:24.1948||ERROR|VietBaIT.ChuKySo.Api.DigitalSignature.Viettel.MobileCA|ERROR: Get Credentials list |url: |action: 
+2023-10-04 16:01:19.3494||ERROR|VietBaIT.ChuKySo.Api.DigitalSignature.Viettel.MobileCA|Error: The remote server returned an error: (400) Bad Request. |url: |action: 
+2023-10-04 16:01:35.8884||ERROR|VietBaIT.ChuKySo.Api.DigitalSignature.Viettel.MobileCA|Error: The remote server returned an error: (500) Internal Server Error. |url: |action: 
+2023-10-04 16:01:35.8934||ERROR|VietBaIT.ChuKySo.Api.DigitalSignature.Viettel.MobileCA|ERROR: Sign Hash |url: |action: 

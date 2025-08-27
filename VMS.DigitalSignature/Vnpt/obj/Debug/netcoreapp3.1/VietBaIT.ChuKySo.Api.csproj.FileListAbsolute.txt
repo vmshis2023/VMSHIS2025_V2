@@ -1,0 +1,103 @@
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\obj\Debug\netcoreapp3.1\VietBaIT.ChuKySo.Api.Properties.Resources.resources
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\obj\Debug\netcoreapp3.1\VietBaIT.ChuKySo.Api.csproj.GenerateResource.cache
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\obj\Debug\netcoreapp3.1\VietBaIT.ChuKySo.Api.AssemblyInfoInputs.cache
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\obj\Debug\netcoreapp3.1\VietBaIT.ChuKySo.Api.AssemblyInfo.cs
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\obj\Debug\netcoreapp3.1\VietBaIT.ChuKySo.Api.csproj.CoreCompileInputs.cache
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\obj\Debug\netcoreapp3.1\VietBaIT.ChuKySo.Api.MvcApplicationPartsAssemblyInfo.cache
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\nlog.config
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\appsettings.Development.json
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\appsettings.json
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\VietBaIT.ChuKySo.Api.exe
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\VietBaIT.ChuKySo.Api.deps.json
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\VietBaIT.ChuKySo.Api.runtimeconfig.json
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\VietBaIT.ChuKySo.Api.runtimeconfig.dev.json
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\VietBaIT.ChuKySo.Api.dll
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\VietBaIT.ChuKySo.Api.pdb
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\NLog.dll
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\NLog.Extensions.Logging.dll
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\NLog.Web.AspNetCore.dll
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\obj\Debug\netcoreapp3.1\staticwebassets\VietBaIT.ChuKySo.Api.StaticWebAssets.Manifest.cache
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\obj\Debug\netcoreapp3.1\staticwebassets\VietBaIT.ChuKySo.Api.StaticWebAssets.xml
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\obj\Debug\netcoreapp3.1\scopedcss\bundle\VietBaIT.ChuKySo.Api.styles.css
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\obj\Debug\netcoreapp3.1\VietBaIT.ChuKySo.Api.RazorTargetAssemblyInfo.cache
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\obj\Debug\netcoreapp3.1\VietBaIT.ChuKySo.Api.csproj.CopyComplete
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\obj\Debug\netcoreapp3.1\VietBaIT.ChuKySo.Api.dll
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\obj\Debug\netcoreapp3.1\VietBaIT.ChuKySo.Api.pdb
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\obj\Debug\netcoreapp3.1\VietBaIT.ChuKySo.Api.genruntimeconfig.cache
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\VietBaIT.ChuKySo.Api.xml
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\obj\Debug\netcoreapp3.1\VietBaIT.ChuKySo.Api.MvcApplicationPartsAssemblyInfo.cs
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\Microsoft.Win32.SystemEvents.dll
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\System.Drawing.Common.dll
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\System.Net.Http.WinHttpHandler.dll
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\System.ServiceModel.Duplex.dll
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\System.ServiceModel.Http.dll
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\System.ServiceModel.NetTcp.dll
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\System.ServiceModel.Primitives.dll
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\System.ServiceModel.dll
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\System.ServiceModel.Security.dll
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Net.Http.WinHttpHandler.dll
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netstandard2.0\System.Private.ServiceModel.dll
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\runtimes\win7\lib\netstandard2.0\System.Private.ServiceModel.dll
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\obj\Debug\netcoreapp3.1\VietBaIT.ChuKySo.Api.csprojAssemblyReference.cache
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\itextsharp.dll
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.1\Microsoft.Win32.SystemEvents.dll
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp3.1\System.Drawing.Common.dll
+E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.1\System.Drawing.Common.dll
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\obj\Debug\netcoreapp3.1\VietBaIT.ChuKySo.Api.csproj.AssemblyReference.cache
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\obj\Debug\netcoreapp3.1\VietBaIT.ChuKySo.Api.Properties.Resources.resources
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\obj\Debug\netcoreapp3.1\VietBaIT.ChuKySo.Api.csproj.GenerateResource.cache
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\obj\Debug\netcoreapp3.1\VietBaIT.ChuKySo.Api.GeneratedMSBuildEditorConfig.editorconfig
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\obj\Debug\netcoreapp3.1\VietBaIT.ChuKySo.Api.AssemblyInfoInputs.cache
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\obj\Debug\netcoreapp3.1\VietBaIT.ChuKySo.Api.AssemblyInfo.cs
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\obj\Debug\netcoreapp3.1\VietBaIT.ChuKySo.Api.csproj.CoreCompileInputs.cache
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\obj\Debug\netcoreapp3.1\VietBaIT.ChuKySo.Api.MvcApplicationPartsAssemblyInfo.cs
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\obj\Debug\netcoreapp3.1\VietBaIT.ChuKySo.Api.MvcApplicationPartsAssemblyInfo.cache
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\obj\Debug\netcoreapp3.1\VietBaIT.ChuKySo.Api.dll
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\obj\Debug\netcoreapp3.1\VietBaIT.ChuKySo.Api.pdb
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\appsettings.Development.json
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\appsettings.json
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\nlog.config
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\VietBaIT.ChuKySo.Api.exe
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\VietBaIT.ChuKySo.Api.xml
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\VietBaIT.ChuKySo.Api.deps.json
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\VietBaIT.ChuKySo.Api.runtimeconfig.json
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\VietBaIT.ChuKySo.Api.runtimeconfig.dev.json
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\VietBaIT.ChuKySo.Api.dll
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\VietBaIT.ChuKySo.Api.pdb
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\itextsharp.dll
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\Microsoft.Win32.SystemEvents.dll
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\NLog.dll
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\NLog.Extensions.Logging.dll
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\NLog.Web.AspNetCore.dll
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\System.Drawing.Common.dll
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\System.Net.Http.WinHttpHandler.dll
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\System.ServiceModel.Duplex.dll
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\System.ServiceModel.Http.dll
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\System.ServiceModel.NetTcp.dll
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\System.ServiceModel.Primitives.dll
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\System.ServiceModel.dll
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\System.ServiceModel.Security.dll
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.1\Microsoft.Win32.SystemEvents.dll
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp3.1\System.Drawing.Common.dll
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.1\System.Drawing.Common.dll
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Net.Http.WinHttpHandler.dll
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netstandard2.0\System.Private.ServiceModel.dll
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\runtimes\win7\lib\netstandard2.0\System.Private.ServiceModel.dll
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\bin\Debug\netcoreapp3.1\ViettelFileSigner.dll
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\obj\Debug\netcoreapp3.1\staticwebassets\VietBaIT.ChuKySo.Api.StaticWebAssets.Manifest.cache
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\obj\Debug\netcoreapp3.1\VietBaIT.ChuKySo.Api.RazorTargetAssemblyInfo.cache
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\obj\Debug\netcoreapp3.1\VietBaIT.ChuKySo.Api.genruntimeconfig.cache
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\obj\Debug\netcoreapp3.1\staticwebassets\VietBaIT.ChuKySo.Api.StaticWebAssets.xml
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\obj\Debug\netcoreapp3.1\scopedcss\bundle\VietBaIT.ChuKySo.Api.styles.css
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\obj\Debug\netcoreapp3.1\VietBaIT.ChuKySo.Api.csproj.CopyComplete

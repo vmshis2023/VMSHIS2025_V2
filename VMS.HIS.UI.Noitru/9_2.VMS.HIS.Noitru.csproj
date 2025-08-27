@@ -307,12 +307,6 @@
     <Compile Include="Noitru\HISVB\frm_canhbaodongtamung.Designer.cs">
       <DependentUpon>frm_canhbaodongtamung.cs</DependentUpon>
     </Compile>
-    <Compile Include="Noitru\HISVB\frm_themphieutruyendich.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Noitru\HISVB\frm_themphieutruyendich.Designer.cs">
-      <DependentUpon>frm_themphieutruyendich.cs</DependentUpon>
-    </Compile>
     <Compile Include="Noitru\HISVB\frm_PhieuPTTT.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -330,6 +324,12 @@
     </Compile>
     <Compile Include="Noitru\HISVB\frm_ThemBbanhoichan.Designer.cs">
       <DependentUpon>frm_ThemBbanhoichan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Noitru\HISVB\frm_themphieutruyendich.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Noitru\HISVB\frm_themphieutruyendich.Designer.cs">
+      <DependentUpon>frm_themphieutruyendich.cs</DependentUpon>
     </Compile>
     <Compile Include="Noitru\HISVB\frm_TongKetBenhAn.cs">
       <SubType>Form</SubType>
@@ -446,9 +446,6 @@
     <EmbeddedResource Include="Noitru\HISVB\frm_canhbaodongtamung.resx">
       <DependentUpon>frm_canhbaodongtamung.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Noitru\HISVB\frm_themphieutruyendich.resx">
-      <DependentUpon>frm_themphieutruyendich.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Noitru\HISVB\frm_PhieuPTTT.resx">
       <DependentUpon>frm_PhieuPTTT.cs</DependentUpon>
     </EmbeddedResource>
@@ -457,6 +454,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Noitru\HISVB\frm_ThemBbanhoichan.resx">
       <DependentUpon>frm_ThemBbanhoichan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Noitru\HISVB\frm_themphieutruyendich.resx">
+      <DependentUpon>frm_themphieutruyendich.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Noitru\HISVB\frm_TongKetBenhAn.resx">
       <DependentUpon>frm_TongKetBenhAn.cs</DependentUpon>

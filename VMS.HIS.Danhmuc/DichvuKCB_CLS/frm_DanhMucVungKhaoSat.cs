@@ -162,7 +162,20 @@ namespace VNS.HIS.UI.HinhAnh
         private void cmdSua_Click(object sender, EventArgs e)
         {
             if (grdList.GetDataRows().Length<=0 || grdList.CurrentRow == null || !grdList.CurrentRow.RowType.Equals(RowType.Record)) return;
+
             var obj = new DmucVungkhaosat(grdList.GetValue(DmucVungkhaosat.Columns.Id));
+            if(obj!=null)
+            {
+                if(Utility.Coquyen("cdha_quyensua_vungkhaosat") ||  obj.NguoiTao==globalVariables.UserName)
+                {
+
+                }  
+                else
+                {
+                    Utility.ShowMsg(string.Format( "Bạn không có quyền sửa vùng khảo sát do {0} tạo. Vui lòng liên hệ bộ phận IT để được cấp quyền (cdha_quyensua_vungkhaosat)", obj.NguoiTao));
+                    return;
+                }    
+            }    
             var f = new frm_themmoi_vungkhaosat(this.args) {m_enAct  = action.Update, Obj = obj, Table = _dataTable};
             f.ShowDialog();
         }
@@ -183,6 +196,19 @@ namespace VNS.HIS.UI.HinhAnh
                     Utility.ShowMsg(string.Format("Vùng khảo sát {0} đã được gắn với dịch vụ cận lâm sàng hoặc đã được sử dụng nhập trả kết quả nên bạn không thể xóa.", tenvungks));
                     return false;
                 }
+                var obj = new DmucVungkhaosat(grdList.GetValue(DmucVungkhaosat.Columns.Id));
+                if (obj != null)
+                {
+                    if (Utility.Coquyen("cdha_quyensua_vungkhaosat") || obj.NguoiTao == globalVariables.UserName)
+                    {
+
+                    }
+                    else
+                    {
+                        Utility.ShowMsg(string.Format("Bạn không có quyền sửa vùng khảo sát do {0} tạo. Vui lòng liên hệ bộ phận IT để được cấp quyền (cdha_quyensua_vungkhaosat)", obj.NguoiTao));
+                        return false;
+                    }
+                }
                 return true;
             }
             catch (Exception ex)
@@ -196,16 +222,23 @@ namespace VNS.HIS.UI.HinhAnh
         {
             try
             {
+
                 if (Utility.AcceptQuestion("Bạn có chắc chắn muốn xóa các vùng khảo sát đang được chọn", "Xác nhận xóa vùng khảo sát", true))
                 {
-                    if (grdList.GetCheckedRows().Count() > 0)
+                    if (grdList.GetCheckedRows().Count() <= 0)
+                    {
+                        grdList.CurrentRow.BeginEdit();
+                        grdList.CurrentRow.IsChecked = true;
+                        grdList.CurrentRow.EndEdit();
+                    } 
+                        if (grdList.GetCheckedRows().Count() > 0)
                     {
 
                         foreach (GridEXRow row in grdList.GetCheckedRows())
                         {
                             var keyId = (int)row.Cells[DmucVungkhaosat.Columns.Id].Value;
                             string tenvungks = row.Cells[DmucVungkhaosat.Columns.TenVungkhaosat].Value.ToString();
-                            if (!isValidbeforeDelete(keyId.ToString(), tenvungks)) continue;
+                            if (!isValidbeforeDelete(keyId.ToString(), tenvungks)) return;
                             else
                             {
                                 DataRow dr = (from datarow in _dataTable.AsEnumerable()
@@ -216,7 +249,7 @@ namespace VNS.HIS.UI.HinhAnh
                             }
                         }
                     }
-                    else
+                    else//99.99% ko rơi vào đây, để đó chưa cần xóa
                     {
                         if (grdList.CurrentRow == null) return;
                         if (!grdList.CurrentRow.RowType.Equals(RowType.Record)) return;
@@ -234,9 +267,9 @@ namespace VNS.HIS.UI.HinhAnh
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+             
             }
         }
 

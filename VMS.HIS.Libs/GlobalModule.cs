@@ -24,6 +24,19 @@ namespace VNS.Libs
         public const string BA_NAMKHOA = "BA_NAMKHOA";
         public const string BA_IVF_VO = "BA_IVF_VO";
         public const string BA_IVF_CHONG = "BA_IVF_CHONG";
+        public static readonly HashSet<string> All = new HashSet<string>
+    {
+        BA_NOIKHOA,
+        BA_NHIKHOA,
+        BA_PHUKHOA,
+        BA_SANKHOA,
+        BA_SOSINH,
+        BA_NGOAIKHOA,
+        BA_NGOAITRU,
+        BA_NAMKHOA,
+        BA_IVF_VO,
+        BA_IVF_CHONG
+    };
     }
     public class globalVariables
     {

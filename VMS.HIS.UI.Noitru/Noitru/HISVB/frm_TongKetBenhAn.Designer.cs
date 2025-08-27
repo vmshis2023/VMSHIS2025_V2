@@ -121,6 +121,7 @@ namespace VNS.HIS.UI.NOITRU
             this.txtTinhTrangHienTai.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtTinhTrangHienTai.buildShortcut = false;
             this.txtTinhTrangHienTai.CaseSensitive = false;
+            this.txtTinhTrangHienTai.cmdDropDown = null;
             this.txtTinhTrangHienTai.CompareNoID = true;
             this.txtTinhTrangHienTai.DefaultCode = "-1";
             this.txtTinhTrangHienTai.DefaultID = "-1";
@@ -140,6 +141,7 @@ namespace VNS.HIS.UI.NOITRU
             this.txtTinhTrangHienTai.RaiseEventEnter = false;
             this.txtTinhTrangHienTai.RaiseEventEnterWhenEmpty = false;
             this.txtTinhTrangHienTai.SelectedIndex = -1;
+            this.txtTinhTrangHienTai.SetDefaultWhenInit = true;
             this.txtTinhTrangHienTai.ShowCodeWithValue = false;
             this.txtTinhTrangHienTai.Size = new System.Drawing.Size(852, 21);
             this.txtTinhTrangHienTai.splitChar = '@';
@@ -184,6 +186,7 @@ namespace VNS.HIS.UI.NOITRU
             this.autoLydovv.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.autoLydovv.buildShortcut = false;
             this.autoLydovv.CaseSensitive = false;
+            this.autoLydovv.cmdDropDown = null;
             this.autoLydovv.CompareNoID = true;
             this.autoLydovv.DefaultCode = "-1";
             this.autoLydovv.DefaultID = "-1";
@@ -202,6 +205,7 @@ namespace VNS.HIS.UI.NOITRU
             this.autoLydovv.RaiseEventEnter = false;
             this.autoLydovv.RaiseEventEnterWhenEmpty = false;
             this.autoLydovv.SelectedIndex = -1;
+            this.autoLydovv.SetDefaultWhenInit = true;
             this.autoLydovv.ShowCodeWithValue = false;
             this.autoLydovv.Size = new System.Drawing.Size(852, 21);
             this.autoLydovv.splitChar = '@';
@@ -230,6 +234,7 @@ namespace VNS.HIS.UI.NOITRU
             this.txtPPdieutri.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPPdieutri.buildShortcut = false;
             this.txtPPdieutri.CaseSensitive = false;
+            this.txtPPdieutri.cmdDropDown = null;
             this.txtPPdieutri.CompareNoID = true;
             this.txtPPdieutri.DefaultCode = "-1";
             this.txtPPdieutri.DefaultID = "-1";
@@ -249,6 +254,7 @@ namespace VNS.HIS.UI.NOITRU
             this.txtPPdieutri.RaiseEventEnter = false;
             this.txtPPdieutri.RaiseEventEnterWhenEmpty = false;
             this.txtPPdieutri.SelectedIndex = -1;
+            this.txtPPdieutri.SetDefaultWhenInit = true;
             this.txtPPdieutri.ShowCodeWithValue = false;
             this.txtPPdieutri.Size = new System.Drawing.Size(852, 21);
             this.txtPPdieutri.splitChar = '@';
@@ -575,7 +581,7 @@ namespace VNS.HIS.UI.NOITRU
             // 
             this.cmdThemmoi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdThemmoi.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdThemmoi.Image = ((System.Drawing.Image)(resources.GetObject("cmdThemmoi.Image")));
+            this.cmdThemmoi.Image = global::VMS.HIS.Noitru.Properties.Resources.add_04_32;
             this.cmdThemmoi.ImageSize = new System.Drawing.Size(24, 24);
             this.cmdThemmoi.Location = new System.Drawing.Point(363, 16);
             this.cmdThemmoi.Name = "cmdThemmoi";

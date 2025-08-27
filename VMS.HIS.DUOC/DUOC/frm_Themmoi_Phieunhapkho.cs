@@ -82,7 +82,6 @@ namespace VNS.HIS.UI.THUOC
             txtTongTien.KeyDown += new KeyEventHandler(txtTongTien_KeyDown);
             this.FormClosing += frm_Themmoi_Phieunhapkho_FormClosing;
             
-            txtSoluong.TextChanged += new EventHandler(txtSoluong_TextChanged);
             this.txtTongTien.TextChanged += new System.EventHandler(this.txtTongTien_TextChanged);
             this.txtTongTien.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTongTien_KeyPress);
             this.txtVAT.TextChanged += new System.EventHandler(this.txtVAT_TextChanged);
@@ -114,8 +113,6 @@ namespace VNS.HIS.UI.THUOC
             txtNguoiGiao._OnShowData += new UCs.AutoCompleteTextbox_Danhmucchung.OnShowData(txtNguoiGiao__OnShowData);
             txtNguoinhan._OnShowData += new UCs.AutoCompleteTextbox_Danhmucchung.OnShowData(txtNguoinhan__OnShowData);
 
-            txtDongia._OnTextChanged += txtDongia__OnTextChanged;
-            txtGiaDV._OnTextChanged += txtGiaban__OnTextChanged;
            // txtKhonhap._OnEnterMe += txtKhonhap__OnEnterMe;
             txtsoDK._OnShowData += txtsoDK__OnShowData;
             txtsoQDthau_Dmuc._OnShowData += txtsoQDthau__OnShowData;
@@ -126,31 +123,84 @@ namespace VNS.HIS.UI.THUOC
             cboSoQDthau.SelectedIndexChanged += cboSoQDthau_SelectedIndexChanged;
             cboKhonhap.KeyDown += cboKhoThuoc_KeyDown;
             grdChitiet.RowDoubleClick += GrdChitiet_RowDoubleClick;
+            txtVATChitiet.TextChanged += TxtVATChitiet_TextChanged;
+            SetProperties(this);
         }
+        void SetProperties(Control parent)
+        {
+            foreach (Control ctr in parent.Controls)
+                if (ctr.GetType().Equals(nmrSoluong.GetType()))
+                {
+                    NumericUpDown nmr = ctr as NumericUpDown;
+                    nmr.Tag = 0;
+                    nmr.MouseUp += nmr_MouseUp;
+                    nmr.GotFocus += nmr_GotFocus;
+                    nmr.Leave += nmr_Leave;
+
+                }
+                else
+                    SetProperties(ctr);
+        }
+
+        private void nmr_GotFocus(object sender, EventArgs e)
+        {
+
+            NumericUpDown nmr = sender as NumericUpDown;
+            // focus từ bàn phím (TAB), chưa có mouse event, chọn toàn bộ
+            nmr.Select(0, nmr.Text.Length);
+            nmr.Tag = 1;
+        }
+
+        private void nmr_MouseUp(object sender, MouseEventArgs e)
+        {
+            NumericUpDown nmr = sender as NumericUpDown;
+            // chọn toàn bộ sau khi click, tránh lặp lại nếu đã chọn
+            if (nmr.Tag.ToString() != "1")
+            {
+                nmr.BeginInvoke((MethodInvoker)(() =>
+                {
+                    nmr.Select(0, nmr.Text.Length);
+                }));
+                nmr.Tag = 1;
+            }
+        }
+
+        private void nmr_Leave(object sender, EventArgs e)
+        {
+            NumericUpDown nmr = sender as NumericUpDown;
+            nmr.Tag = 0; // reset khi rời khỏi control
+        }
+        private void TxtVATChitiet_TextChanged(object sender, EventArgs e)
+        {
+            TinhgiaSauVAT();
+        }
+
         bool isUpdate = false;
         private void GrdChitiet_RowDoubleClick(object sender, RowActionEventArgs e)
         {
             try
             {
+                isAllowedVATChanged = false;
                 if (!Utility.isValidGrid(grdChitiet) || m_enAction==action.View) return;
-                //Load dữ liệu lên để sửa
-                if (Utility.ByteDbnull(grdChitiet.GetValue("trang_thai")) == 1)
-                {
-                    Utility.ShowMsg("Chi tiết Thuốc-VTTH trong phiếu đã được xác nhận nên bạn không thể chỉnh sửa");
-                    return;
-                }
+                //REM lại 250817
+                //if (Utility.ByteDbnull(grdChitiet.GetValue("trang_thai")) == 1)
+                //{
+                //    Utility.ShowMsg("Chi tiết Thuốc-VTTH trong phiếu đã được xác nhận nên bạn không thể chỉnh sửa");
+                //    return;
+                //}
                 txtDrugName.SetId(grdChitiet.GetValue("id_thuoc"));
                 txtDrug_ID.Text = Utility.sDbnull(grdChitiet.GetValue("id_thuoc"));
                 txtmathuoc.Text = Utility.sDbnull(grdChitiet.GetValue("ma_thuoc"));
-
+               
+                txtVATChitiet.Text = Utility.sDbnull(grdChitiet.GetValue("VAT"));
                 txtTCCL.Text = Utility.sDbnull(grdChitiet.GetValue("tccl"));
                 txtsoDK.Text = Utility.sDbnull(grdChitiet.GetValue("so_dky"));
                 dtNgayHetHan.Value = Convert.ToDateTime(grdChitiet.GetValue("ngay_hethan"));
                 txtSoLo.Text = Utility.sDbnull(grdChitiet.GetValue("so_lo"));
-                txtSoluong.Text = Utility.sDbnull(grdChitiet.GetValue("so_luong"));
-
-                txtDongia.Text = Utility.sDbnull(grdChitiet.GetValue("gia_nhap"));
-                txtGiaDV.Text = Utility.sDbnull(grdChitiet.GetValue("gia_ban"));
+                nmrSoluong.Text = Utility.sDbnull(grdChitiet.GetValue("so_luong"));
+                nmr_giatruoc_VAT.Text = Utility.sDbnull(grdChitiet.GetValue("dongia_truocVAT"));
+                nmr_giasau_VAT.Text = Utility.sDbnull(grdChitiet.GetValue("gia_nhap"));
+                nmr_giaban_dvu.Text = Utility.sDbnull(grdChitiet.GetValue("gia_ban"));
                 txtGiaBHYT.Text = Utility.sDbnull(grdChitiet.GetValue("gia_bhyt"));
                 txtPhuthuDT.Text = Utility.sDbnull(grdChitiet.GetValue("gia_phuthu_dungtuyen"));
                 txtPhuthuTT.Text = Utility.sDbnull(grdChitiet.GetValue("gia_phuthu_traituyen"));
@@ -160,6 +210,10 @@ namespace VNS.HIS.UI.THUOC
             catch (Exception ex)
             {
 
+            }
+            finally
+            {
+                isAllowedVATChanged = true;
             }
         }
 
@@ -226,9 +280,9 @@ namespace VNS.HIS.UI.THUOC
                     {
                         dtNgayHetHan.Text = "01/01/2050";
                         //if (objThuoc != null)//Tự động điền số tồn đầu vào mục số lượng. Chỉ có tác dụng khi muốn khởi tạo danh mục thuốc và tồn đầu
-                        //    txtSoluong.Text = Utility.sDbnull(objThuoc.TonDau, 10000);
+                        //    nmrSoluong.Text = Utility.sDbnull(objThuoc.TonDau, 10000);
                         //else
-                        txtSoluong.Text = sl;
+                        nmrSoluong.Text = sl;
                         if (txtsoQDthau_Dmuc.Text.TrimStart().TrimEnd().Length <= 0) txtsoQDthau_Dmuc.Text = "QD01";
                         if (txtsoDK.Text.TrimStart().TrimEnd().Length <= 0) txtsoDK.Text = "DK1";
                         if (txtSoLo.Text.TrimStart().TrimEnd().Length <= 0) txtSoLo.Text = "LO1";
@@ -290,19 +344,15 @@ namespace VNS.HIS.UI.THUOC
         void txtGiaban__OnTextChanged(string text)
         {
             //if (_bhytGiabhytBangGiaban)
-            //    txtGiaBHYT.Text = txtGiaDV.Text;
+            //    txtGiaBHYT.Text = nmr_giaban_dvu.Text;
             //else
-            //    txtGiaBHYT.Text = txtDongia.Text;
+            //    txtGiaBHYT.Text = nmr_giasau_VAT.Text;
         }
 
-        void txtDongia__OnTextChanged(string text)
+        void nmr_giasau_VAT__OnTextChanged(string text)
         {
-            if (_phuongphapTinhgiaban == "0")
-                nmrThangDu.Value = TinhThangDutheoQuyetDinhBYT(Utility.DecimaltoDbnull(txtDongia.Text, 0));
-            else
-                nmrThangDu.Value = 0;
-            TinhGiaBan();
-            ThanhTien();
+            //if (_phuongphapTinhgiaban == "0")
+           
         }
 
         void frm_Themmoi_Phieunhapkho_FormClosing(object sender, FormClosingEventArgs e)
@@ -367,19 +417,19 @@ namespace VNS.HIS.UI.THUOC
             nmrThangDu.Enabled = _phuongphapTinhgiaban=="0";
             chkCloseAfterSaving.Checked = !PropertyLib._NhapkhoProperties.Themmoilientuc;
             if (_phuongphapTinhgiaban!="0") nmrThangDu.Value = 0;
-            txtGiaDV.Enabled = _chophepNhapgiaban;
-            txtGiaDV.BackColor = _chophepNhapgiaban ? txtSoluong.BackColor : txtThanhTien.BackColor;
+            nmr_giaban_dvu.Enabled = _chophepNhapgiaban;
+            nmr_giaban_dvu.BackColor = _chophepNhapgiaban ? nmrSoluong.BackColor : txtThanhTien.BackColor;
            
             //chkGiaBHYT.Enabled = BHYT_CHOPHEPNHAPGIA;
             //if (!BHYT_CHOPHEPNHAPGIA) chkGiaBHYT.Checked = false;
             //txtGiaBHYT.Enabled = chkGiaBHYT.Checked && BHYT_CHOPHEPNHAPGIA;
-            //txtGiaBHYT.BackColor = chkGiaBHYT.Checked && BHYT_CHOPHEPNHAPGIA ? txtSoluong.BackColor : txtThanhTien.BackColor;
+            //txtGiaBHYT.BackColor = chkGiaBHYT.Checked && BHYT_CHOPHEPNHAPGIA ? nmrSoluong.BackColor : txtThanhTien.BackColor;
 
             //txtPhuthuDT.Enabled = chkGiaBHYT.Checked && BHYT_CHOPHEPNHAPGIA;
-            //txtPhuthuDT.BackColor = chkGiaBHYT.Checked && BHYT_CHOPHEPNHAPGIA ? txtSoluong.BackColor : txtThanhTien.BackColor;
+            //txtPhuthuDT.BackColor = chkGiaBHYT.Checked && BHYT_CHOPHEPNHAPGIA ? nmrSoluong.BackColor : txtThanhTien.BackColor;
 
             //txtPhuthuTT.Enabled = chkGiaBHYT.Checked && BHYT_CHOPHEPNHAPGIA;
-            //txtPhuthuTT.BackColor = chkGiaBHYT.Checked && BHYT_CHOPHEPNHAPGIA ? txtSoluong.BackColor : txtThanhTien.BackColor;
+            //txtPhuthuTT.BackColor = chkGiaBHYT.Checked && BHYT_CHOPHEPNHAPGIA ? nmrSoluong.BackColor : txtThanhTien.BackColor;
         }
         void txtTongTien_KeyDown(object sender, KeyEventArgs e)
         {
@@ -440,7 +490,7 @@ namespace VNS.HIS.UI.THUOC
                 bool BatnhapQDthau = THU_VIEN_CHUNG.Laygiatrithamsohethong("THUOC_NHAPKHO_BATNHAPTHONGTIN_QDTHAU", "0", false) == "1";
                 lblQDthau.ForeColor = lblSTTThau.ForeColor = BatnhapQDthau ? Color.Red : Color.Black;
                 txtsoQDthau_Dmuc.Enabled = txtsoDK.Enabled = BatnhapQDthau;
-                _phuongphapTinhgiaban = THU_VIEN_CHUNG.Laygiatrithamsohethong("THUOC_NHAPKHO_PHUONGPHAP_TINHGIABAN", "1", false);
+                _phuongphapTinhgiaban = THU_VIEN_CHUNG.Laygiatrithamsohethong("THUOC_NHAPKHO_PHUONGPHAP_TINHGIABAN", "1", false);//0= Tính theo thặng dư;1= Tính theo VAT+Thặng dư;2= Tính theo % VAT;3=để nguyên
                 _phantramSovoigianhap = Utility.DecimaltoDbnull(THU_VIEN_CHUNG.Laygiatrithamsohethong("THUOC_NHAPKHO_PHANTRAM_SOVOIGIANHAP", "0", false), 0);
                 _chophepNhapgiaban = THU_VIEN_CHUNG.Laygiatrithamsohethong("THUOC_NHAPKHO_CHOPHEP_NHAPGIABAN", "1", false) == "1";
                 lblChietkhau.Visible = THU_VIEN_CHUNG.Laygiatrithamsohethong("THUOC_NHAPKHO_HIENTHI_CHIETKHAUCHITIET", "0", false) == "1";
@@ -460,7 +510,7 @@ namespace VNS.HIS.UI.THUOC
                 songaycanhbao = Utility.Int32Dbnull(THU_VIEN_CHUNG.Laygiatrithamsohethong("THUOC_NHAPKHO_KHOANGTHOIGIAN_CANHBAONGAYHETHAN", "10", false), 10);
                 lblSTTThau.Enabled = lblQDthau.Enabled = txtsoDK.Enabled = txtsoQDthau_Dmuc.Enabled = THU_VIEN_CHUNG.Laygiatrithamsohethong("THUOC_NHAPKHO_BATNHAPTHONGTIN_QDTHAU", "0", false) == "1";
                 if (!txtsoDK.Enabled)
-                    lblSTTThau.ForeColor = lblQDthau.ForeColor = lblThangdu.ForeColor;
+                    lblSTTThau.ForeColor = lblQDthau.ForeColor = lblChietkhau.ForeColor;
 
                 InitStocks();
 
@@ -546,13 +596,13 @@ namespace VNS.HIS.UI.THUOC
              //lblBHYTcu.Visible = _bhytHienthigia;
 
              //txtGiaBHYT.Enabled = _bhytChophepnhapgia;// chkGiaBHYT.Checked && BHYT_CHOPHEPNHAPGIA;Từ các dòng sau bỏ chkGiaBHYT.Checked &&
-             //txtGiaBHYT.BackColor = _bhytChophepnhapgia ? txtSoluong.BackColor : txtThanhTien.BackColor;
+             //txtGiaBHYT.BackColor = _bhytChophepnhapgia ? nmrSoluong.BackColor : txtThanhTien.BackColor;
 
              //txtPhuthuDT.Enabled = _bhytChophepnhapgiaphuthu;
-             //txtPhuthuDT.BackColor =  _bhytChophepnhapgiaphuthu ? txtSoluong.BackColor : txtThanhTien.BackColor;
+             //txtPhuthuDT.BackColor =  _bhytChophepnhapgiaphuthu ? nmrSoluong.BackColor : txtThanhTien.BackColor;
 
              //txtPhuthuTT.Enabled = _bhytChophepnhapgiaphuthu;
-             //txtPhuthuTT.BackColor =  _bhytChophepnhapgiaphuthu ? txtSoluong.BackColor : txtThanhTien.BackColor;
+             //txtPhuthuTT.BackColor =  _bhytChophepnhapgiaphuthu ? nmrSoluong.BackColor : txtThanhTien.BackColor;
 
 
         }
@@ -663,8 +713,10 @@ namespace VNS.HIS.UI.THUOC
         {
             try
             {
+                isAllowedVATChanged = false;
                 if (Utility.Int32Dbnull(txtDrug_ID.Text,-1)>0)
                 {
+                    txtVATChitiet.Text = txtVAT.Text;
                    objThuoc= DmucThuoc.FetchByID(Utility.Int32Dbnull(txtDrug_ID.Text));
                    if (objThuoc != null)
                    {
@@ -684,8 +736,8 @@ namespace VNS.HIS.UI.THUOC
                            txtsoDK.Text = Utility.sDbnull(arrThuoc[0]["so_dangky"], "0");
                            txtsoQDthau_Dmuc.Text = Utility.sDbnull(arrThuoc[0]["maso_qdinh"], "0");
                            txtTCCL.Text = Utility.sDbnull(arrThuoc[0]["tccl"], "0");
-                           txtGiaDV.Text = Utility.sDbnull(arrThuoc[0]["gia_bhyt_thau"], "0");
-                           txtDongia.Text = Utility.sDbnull(arrThuoc[0]["gia_nhap_thau"], "0");
+                           nmr_giaban_dvu.Text = Utility.sDbnull(arrThuoc[0]["gia_bhyt_thau"], "0");
+                           nmr_giasau_VAT.Text = Utility.sDbnull(arrThuoc[0]["gia_nhap_thau"], "0");
                            txtGiaBHYT.Text = Utility.sDbnull(arrThuoc[0]["gia_bhyt_thau"], "0");
                            txtSLthau.Text = Utility.sDbnull(arrThuoc[0]["sl_thau"], "0");
                            txtSlnhapkho.Text = Utility.sDbnull(arrThuoc[0]["sl_nhap"], "0");
@@ -693,8 +745,8 @@ namespace VNS.HIS.UI.THUOC
                        }
                        else
                        {
-                           txtGiaDV.Text = Utility.sDbnull(objThuoc.GiaDv, "0");
-                           txtDongia.Text = Utility.sDbnull(objThuoc.DonGia, "0");
+                           nmr_giaban_dvu.Value = Utility.DecimaltoDbnull(objThuoc.GiaDv, 0);
+                           nmr_giasau_VAT.Value = Utility.DecimaltoDbnull(objThuoc.DonGia, 0);
                            txtsoDK.Text = objThuoc.SoDangky;
                             txtsoQDthau_Dmuc.Text = Utility.sDbnull(objThuoc.QD31, "");// string.Format("{0};{1};{2}", Utility.sDbnull(objThuoc.QD31, ""), Utility.sDbnull(objThuoc.LoaiThau), Utility.sDbnull(objThuoc.NhomThau));
                            QheDoituongThuoc _objQhe = new Select().From(QheDoituongThuoc.Schema).Where(QheDoituongThuoc.Columns.IdThuoc).IsEqualTo(objThuoc.IdThuoc)
@@ -741,15 +793,15 @@ namespace VNS.HIS.UI.THUOC
                      
 
                        //Bỏ chkGiaBHYT.Checked &&
-                       //txtGiaBHYT.BackColor = _bhytChophepnhapgia ? txtSoluong.BackColor : txtThanhTien.BackColor;
+                       //txtGiaBHYT.BackColor = _bhytChophepnhapgia ? nmrSoluong.BackColor : txtThanhTien.BackColor;
 
-                       //txtPhuthuDT.BackColor = _bhytChophepnhapgiaphuthu ? txtSoluong.BackColor : txtThanhTien.BackColor;
+                       //txtPhuthuDT.BackColor = _bhytChophepnhapgiaphuthu ? nmrSoluong.BackColor : txtThanhTien.BackColor;
 
-                       //txtPhuthuTT.BackColor = _bhytChophepnhapgiaphuthu ? txtSoluong.BackColor : txtThanhTien.BackColor;
+                       //txtPhuthuTT.BackColor = _bhytChophepnhapgiaphuthu ? nmrSoluong.BackColor : txtThanhTien.BackColor;
 
-                       //txtGiaBHYT.BackColor = chkGiaBHYT.Checked && BHYT_CHOPHEPNHAPGIA ? txtSoluong.BackColor : txtThanhTien.BackColor;
-                       //txtPhuthuDT.BackColor = chkGiaBHYT.Checked && BHYT_CHOPHEPNHAPGIA ? txtSoluong.BackColor : txtThanhTien.BackColor;
-                       //txtPhuthuTT.BackColor = chkGiaBHYT.Checked && BHYT_CHOPHEPNHAPGIA ? txtSoluong.BackColor : txtThanhTien.BackColor;
+                       //txtGiaBHYT.BackColor = chkGiaBHYT.Checked && BHYT_CHOPHEPNHAPGIA ? nmrSoluong.BackColor : txtThanhTien.BackColor;
+                       //txtPhuthuDT.BackColor = chkGiaBHYT.Checked && BHYT_CHOPHEPNHAPGIA ? nmrSoluong.BackColor : txtThanhTien.BackColor;
+                       //txtPhuthuTT.BackColor = chkGiaBHYT.Checked && BHYT_CHOPHEPNHAPGIA ? nmrSoluong.BackColor : txtThanhTien.BackColor;
                        //txtGiaBHYT.Enabled = chkGiaBHYT.Checked;
                    }
                    else
@@ -757,7 +809,7 @@ namespace VNS.HIS.UI.THUOC
                        txtDrug_ID.Clear();
                        txtmathuoc.Clear();
                        txtTCCL.Clear();
-                       txtDongia.Clear();
+                       nmr_giasau_VAT.ResetText();
                        txtGiaBHYT.Clear();
                        txtPhuthuDT.Clear();
                        txtPhuthuTT.Clear();
@@ -773,7 +825,7 @@ namespace VNS.HIS.UI.THUOC
                     txtTCCL.Clear();
                     txtsoDK.Clear();
                     txtsoQDthau_Dmuc.Clear();
-                    txtDongia.Clear();
+                    nmr_giasau_VAT.ResetText();
                     txtGiaBHYT.Clear();
                     txtPhuthuDT.Clear();
                     txtPhuthuTT.Clear();
@@ -784,6 +836,10 @@ namespace VNS.HIS.UI.THUOC
             {
 
                 //throw;
+            }
+            finally
+            {
+                isAllowedVATChanged = true;
             }
         }
         /// <summary>
@@ -801,6 +857,8 @@ namespace VNS.HIS.UI.THUOC
             m_dtDataPhieuChiTiet.AcceptChanges();
             ModifyCommand();
         }
+        bool THUOC_NHAPKHO_CANHBAO_GIANHAP_BANGKHONG = THU_VIEN_CHUNG.Laygiatrithamsohethong("THUOC_NHAPKHO_CANHBAO_GIANHAP_BANGKHONG", "1", false) == "1";
+        bool THUOC_NHAPKHO_CANHBAO_GIABAN_BANGKHONG = THU_VIEN_CHUNG.Laygiatrithamsohethong("THUOC_NHAPKHO_CANHBAO_GIABAN_BANGKHONG", "1", false) == "1";
         /// <summary>
         /// hàm thực hiện việc thêm mới thông tin 
         /// </summary>
@@ -886,10 +944,10 @@ namespace VNS.HIS.UI.THUOC
             //    txtSoLo.Focus();
             //    return false;
             //}
-            if (Utility.DecimaltoDbnull(txtSoluong.Text) <= 0)
+            if (Utility.DecimaltoDbnull(nmrSoluong.Text) <= 0)
             {
                 Utility.SetMsg(uiStatusBar1.Panels["MSG"], "Số lượng >0", true);
-                txtSoluong.Focus();
+                nmrSoluong.Focus();
                 return false;
             }
             //Kiểm tra liên quan đến thuốc thầu
@@ -900,40 +958,49 @@ namespace VNS.HIS.UI.THUOC
                 //Lấy số lượng chờ trong chính phiếu đang có
                 int slcho_trongphieu = Utility.Int32Dbnull(m_dtDataPhieuChiTiet.Compute("sum(so_luong)", TThauDieutietCt.Columns.IdThauCt + "=" + id_thau_ct.ToString()), 0);
                 slkhachuyen -= slcho_trongphieu;
-                if (slkhachuyen < Utility.DecimaltoDbnull(txtSoluong.Text, 0))
+                if (slkhachuyen < Utility.DecimaltoDbnull(nmrSoluong.Text, 0))
                 {
-                    Utility.SetMsg(uiStatusBar1.Panels["MSG"], string.Format("Số lượng nhập kho {0} phải <= Số lượng khả nhập {1}", txtSoluong.Text, slkhachuyen.ToString()), true);
-                    txtSoluong.SelectAll();
-                    txtSoluong.Focus();
+                    Utility.SetMsg(uiStatusBar1.Panels["MSG"], string.Format("Số lượng nhập kho {0} phải <= Số lượng khả nhập {1}", nmrSoluong.Text, slkhachuyen.ToString()), true);
+                    
+                    nmrSoluong.Focus();
                     return false;
                 }
             }
-            if (txtDongia.Text.Length == 0) txtDongia.Text = "0";
-            if (txtGiaDV.Text.Length == 0) txtGiaDV.Text = "0";
-            if (Utility.DecimaltoDbnull(txtGiaDV.Text, 0) <= 0)
+            if (nmr_giasau_VAT.Text.Length == 0) nmr_giasau_VAT.Text = "0";
+            if (nmr_giaban_dvu.Text.Length == 0) nmr_giaban_dvu.Text = "0";
+            //if (THUOC_NHAPKHO_CANHBAO_GIABAN_BANGKHONG)
+            //{
+            //    if (Utility.DecimaltoDbnull(nmr_giaban_dvu.Text, 0) <= 0)
+            //    {
+            //        if (!Utility.AcceptQuestion("Cảnh báo giá bán đang <=0. Nhấn Yes để tiếp tục thực hiện, nhấn No để quay trở lại nhập giá bán", "Cảnh báo giá đơn thuốc<=0", true))
+            //        {
+            //            nmr_giaban_dvu.Focus();
+            //            return false;
+            //        }
+            //    }
+            //}
+            if (THUOC_NHAPKHO_CANHBAO_GIANHAP_BANGKHONG)
             {
-                if (!Utility.AcceptQuestion("Cảnh báo giá bán đang <=0. Nhấn Yes để tiếp tục thực hiện, nhấn No để quay trở lại nhập giá bán", "Cảnh báo giá đơn thuốc<=0", true))
+                if (Utility.DecimaltoDbnull(nmr_giasau_VAT.Value, 0) <= 0)
                 {
-                    txtGiaDV.Focus();
-                    return false;
+                    if (!Utility.AcceptQuestion("Đơn giá bạn đang để <=0. Bạn có muốn hủy thao tác để nhập lại Đơn giá hay không(nhấn YES), hoặc tiếp tục chấp nhận Đơn giá này(Nhấn NO)?", "Xác nhận", true))
+                    {
+                        Utility.SetMsg(uiStatusBar1.Panels["MSG"], "Đơn giá phải >=0", true);
+                        nmr_giasau_VAT.Focus();
+                        return false;
+                    }
                 }
             }
-            if (Utility.DecimaltoDbnull(txtDongia.Text, 0) <= 0)
+            if (THUOC_NHAPKHO_CANHBAO_GIABAN_BANGKHONG)
             {
-                if (!Utility.AcceptQuestion("Đơn giá bạn đang để <=0. Bạn có muốn hủy thao tác để nhập lại Đơn giá hay không(nhấn YES), hoặc tiếp tục chấp nhận Đơn giá này(Nhấn NO)?", "Xác nhận", true))
+                if (Utility.DecimaltoDbnull(nmr_giaban_dvu.Text, 0) <= 0)
                 {
-                    Utility.SetMsg(uiStatusBar1.Panels["MSG"], "Đơn giá phải >=0", true);
-                    txtDongia.Focus();
-                    return false;
-                }
-            }
-            if (Utility.DecimaltoDbnull(txtGiaDV.Text,0) <=0)
-            {
-                if (!Utility.AcceptQuestion("Giá bán bạn đang để <=0. Bạn có muốn hủy thao tác để nhập lại giá bán hay không(nhấn YES), hoặc tiếp tục chấp nhận giá bán này(Nhấn NO)?", "Xác nhận", true))
-                {
-                    Utility.SetMsg(uiStatusBar1.Panels["MSG"], "Giá bán phải >=0", true);
-                    txtGiaDV.Focus();
-                    return false;
+                    if (!Utility.AcceptQuestion("Giá bán bạn đang để <=0. Bạn có muốn hủy thao tác để nhập lại giá bán hay không(nhấn YES), hoặc tiếp tục chấp nhận giá bán này(Nhấn NO)?", "Xác nhận", true))
+                    {
+                        Utility.SetMsg(uiStatusBar1.Panels["MSG"], "Giá bán phải >=0", true);
+                        nmr_giaban_dvu.Focus();
+                        return false;
+                    }
                 }
             }
             if (_bhytLuachonApdung && _bhytHienthigia && THU_VIEN_CHUNG.Laygiatrithamsohethong("THUOC_NHAPKHO_CANHBAO_KHACGIA", "1", false) == "1")
@@ -966,14 +1033,14 @@ namespace VNS.HIS.UI.THUOC
                 if (sluongvuottran > 0)
                 {
                     int tongnhap = THUOC_NHAPKHO.ThuocTongnhapngoaiTrongNam(dtNgayhoadon.Value.Year, Utility.Int32Dbnull(txtDrug_ID.Text, 0));
-                    if (tongnhap + Utility.DecimaltoDbnull(txtSoluong.Text, 0) > sluongvuottran)
+                    if (tongnhap + Utility.DecimaltoDbnull(nmrSoluong.Text, 0) > sluongvuottran)
                     {
-                        string msg = string.Format("Thuốc {0} được cấu hình nhập mỗi năm không quá {1} {2}. Tổng số lượng đã nhập: {3} + Số lượng nhập lần này: {4} đang vượt quá số lượng vượt trần. Đề nghị bạn kiểm tra lại\nCó thể chỉnh tham số hệ thống THUOC_CANHBAO_NHAPVUOTTRAN_BHYT", txtDrugName.Text, sluongvuottran.ToString(), txtDonViTinh.Text, tongnhap.ToString(), txtSoluong.Text);
+                        string msg = string.Format("Thuốc {0} được cấu hình nhập mỗi năm không quá {1} {2}. Tổng số lượng đã nhập: {3} + Số lượng nhập lần này: {4} đang vượt quá số lượng vượt trần. Đề nghị bạn kiểm tra lại\nCó thể chỉnh tham số hệ thống THUOC_CANHBAO_NHAPVUOTTRAN_BHYT", txtDrugName.Text, sluongvuottran.ToString(), txtDonViTinh.Text, tongnhap.ToString(), nmrSoluong.Text);
                         Utility.ShowMsg(msg);
                         if (THUOC_CANHBAO_NHAPVUOTTRAN_BHYT == "2")
                         {
-                            txtSoluong.SelectAll();
-                            txtSoluong.Focus();
+                           
+                            nmrSoluong.Focus();
                             return false;
                         }
                     }
@@ -988,9 +1055,11 @@ namespace VNS.HIS.UI.THUOC
             grdChitiet.CurrentRow.Cells["so_dky"].Value = Utility.sDbnull(txtsoDK.Text);
             grdChitiet.CurrentRow.Cells["ngay_hethan"].Value = dtNgayHetHan.Value;
             grdChitiet.CurrentRow.Cells["so_lo"].Value = Utility.sDbnull(txtSoLo.Text);
-            grdChitiet.CurrentRow.Cells["so_luong"].Value = Utility.DecimaltoDbnull(txtSoluong.Text);
-            grdChitiet.CurrentRow.Cells["gia_nhap"].Value = Utility.DecimaltoDbnull(txtDongia.Text);
-            grdChitiet.CurrentRow.Cells["gia_ban"].Value = Utility.DecimaltoDbnull(txtGiaDV.Text);
+            grdChitiet.CurrentRow.Cells["so_luong"].Value = Utility.DecimaltoDbnull(nmrSoluong.Text);
+            grdChitiet.CurrentRow.Cells["gia_nhap"].Value = Utility.DecimaltoDbnull(nmr_giasau_VAT.Value);
+            grdChitiet.CurrentRow.Cells["don_gia"].Value = Utility.DecimaltoDbnull(nmr_giasau_VAT.Value);
+            grdChitiet.CurrentRow.Cells["dongia_truocVAT"].Value = Utility.DecimaltoDbnull(nmr_giatruoc_VAT.Value);
+            grdChitiet.CurrentRow.Cells["gia_ban"].Value = Utility.DecimaltoDbnull(nmr_giaban_dvu.Value);
             grdChitiet.CurrentRow.Cells["gia_bhyt"].Value = Utility.DecimaltoDbnull(txtGiaBHYT.Text);
             grdChitiet.CurrentRow.Cells["gia_phuthu_dungtuyen"].Value = Utility.DecimaltoDbnull(txtPhuthuDT.Text);
             grdChitiet.CurrentRow.Cells["gia_phuthu_traituyen"].Value = Utility.DecimaltoDbnull(txtPhuthuTT.Text);
@@ -1028,16 +1097,16 @@ namespace VNS.HIS.UI.THUOC
                  else
                      _data = from p in m_dtDataPhieuChiTiet.AsEnumerable()
                              where Utility.Int32Dbnull(p[TPhieuNhapxuatthuocChitiet.Columns.IdThuoc], -1) == Utility.Int32Dbnull(txtDrug_ID.Text, -1)
-                             && Utility.DecimaltoDbnull(p[TPhieuNhapxuatthuocChitiet.Columns.GiaNhap]) == Utility.DecimaltoDbnull(txtDongia.Text, 0)
+                             && Utility.DecimaltoDbnull(p[TPhieuNhapxuatthuocChitiet.Columns.GiaNhap]) == Utility.DecimaltoDbnull(nmr_giasau_VAT.Value, 0)
                              && Utility.sDbnull(p[TPhieuNhapxuatthuocChitiet.Columns.SoLo]) == Utility.DoTrim(txtSoLo.Text)
-                             && Utility.Int32Dbnull(p[TPhieuNhapxuatthuocChitiet.Columns.Vat]) == Utility.Int32Dbnull(txtVAT.Text, 0)
+                             && Utility.Int32Dbnull(p[TPhieuNhapxuatthuocChitiet.Columns.Vat]) == Utility.Int32Dbnull(txtVATChitiet.Text, 0)
                              && Utility.sDbnull(p[TPhieuNhapxuatthuocChitiet.Columns.NgayHethan]) == dtNgayHetHan.Text
                              && Utility.Int32Dbnull(p[TPhieuNhapxuatthuocChitiet.Columns.GiaBhyt]) == Utility.DecimaltoDbnull(txtGiaBHYT.Text, 0)
                              && Utility.Int32Dbnull(p[TPhieuNhapxuatthuocChitiet.Columns.GiaPhuthuDungtuyen]) == Utility.DecimaltoDbnull(txtPhuthuDT.Text, 0)
                              && Utility.Int32Dbnull(p[TPhieuNhapxuatthuocChitiet.Columns.GiaPhuthuTraituyen]) == Utility.DecimaltoDbnull(txtPhuthuTT.Text, 0)
                              && Utility.sDbnull(p[TPhieuNhapxuatthuocChitiet.Columns.SoQdinhthau]) == Utility.sDbnull(txtsoQDthau_Dmuc.Text, "")
                               && Utility.sDbnull(p[TPhieuNhapxuatthuocChitiet.Columns.SoDky]) == Utility.sDbnull(txtsoDK.Text, "")
-                               && Utility.Int32Dbnull(p[TPhieuNhapxuatthuocChitiet.Columns.GiaBan]) == Utility.DecimaltoDbnull(txtGiaDV.Text, 0)
+                               && Utility.Int32Dbnull(p[TPhieuNhapxuatthuocChitiet.Columns.GiaBan]) == Utility.DecimaltoDbnull(nmr_giaban_dvu.Text, 0)
                              select p;
                  if (_data.Any())
                  {
@@ -1047,9 +1116,9 @@ namespace VNS.HIS.UI.THUOC
                 //    .Select
                 //    (
                 //    TPhieuNhapxuatthuocChitiet.Columns.IdThuoc + "=" + txtDrug_ID.Text + " AND "
-                //    + TPhieuNhapxuatthuocChitiet.Columns.GiaNhap + "=" + Utility.DecimaltoDbnull(txtDongia.Text,0) + " AND "
+                //    + TPhieuNhapxuatthuocChitiet.Columns.GiaNhap + "=" + Utility.DecimaltoDbnull(nmr_giasau_VAT.Text,0) + " AND "
                 //    + TPhieuNhapxuatthuocChitiet.Columns.SoLo + "='" + Utility.DoTrim(txtSoLo.Text) + "' AND "
-                //    + TPhieuNhapxuatthuocChitiet.Columns.Vat + "=" + Utility.Int32Dbnull(txtVAT.Text, 0) + " AND "
+                //    + TPhieuNhapxuatthuocChitiet.Columns.Vat + "=" + Utility.Int32Dbnull(txtVATChitiet.Text, 0) + " AND "
                 //    + TPhieuNhapxuatthuocChitiet.Columns.NgayHethan + "='" + dtNgayHetHan.Text + "' AND "
                 //    + TPhieuNhapxuatthuocChitiet.Columns.GiaBhyt + "='" + Utility.DecimaltoDbnull(txtGiaBHYT.Text, 0) + "' AND "
                 //    + TPhieuNhapxuatthuocChitiet.Columns.GiaPhuthuDungtuyen + "=" +Utility.DecimaltoDbnull(txtPhuthuDT.Text, 0) + " AND "
@@ -1060,7 +1129,7 @@ namespace VNS.HIS.UI.THUOC
                 //    );
                 if (arrDr.Length > 0)
                 {
-                    int newquantity =(int)( Utility.DecimaltoDbnull(arrDr[0][TPhieuNhapxuatthuocChitiet.Columns.SoLuong], 0) + Utility.DecimaltoDbnull(txtSoluong.Text));
+                    int newquantity =(int)( Utility.DecimaltoDbnull(arrDr[0][TPhieuNhapxuatthuocChitiet.Columns.SoLuong], 0) + Utility.DecimaltoDbnull(nmrSoluong.Text));
                     arrDr[0][TPhieuNhapxuatthuocChitiet.Columns.SoLuong] = newquantity;
                     m_dtDataPhieuChiTiet.AcceptChanges();
                 }
@@ -1089,14 +1158,15 @@ namespace VNS.HIS.UI.THUOC
                         drv[TPhieuNhapxuatthuocChitiet.Columns.SoLo] = Utility.DoTrim(txtSoLo.Text);
                         drv[TPhieuNhapxuatthuocChitiet.Columns.SoQdinhthau] = Utility.DoTrim(txtsoQDthau_Dmuc.Text);
                         drv[TPhieuNhapxuatthuocChitiet.Columns.SoDky] = Utility.DoTrim(txtsoDK.Text);
-                        drv[TPhieuNhapxuatthuocChitiet.Columns.GiaNhap] = Utility.DecimaltoDbnull(txtDongia.Text, 0);
-                        drv[TPhieuNhapxuatthuocChitiet.Columns.SoLuong] = Utility.DecimaltoDbnull(txtSoluong.Text);
+                        drv[TPhieuNhapxuatthuocChitiet.Columns.GiaNhap] = Utility.DecimaltoDbnull(nmr_giasau_VAT.Value, 0);
+                        drv[TPhieuNhapxuatthuocChitiet.Columns.DongiaTruocVAT] = Utility.DecimaltoDbnull(nmr_giatruoc_VAT.Value, 0);
+                        drv[TPhieuNhapxuatthuocChitiet.Columns.SoLuong] = Utility.DecimaltoDbnull(nmrSoluong.Text);
                         drv[TPhieuNhapxuatthuocChitiet.Columns.ThanhTien] = Utility.DecimaltoDbnull(txtThanhTien.Text);
                         drv[TPhieuNhapxuatthuocChitiet.Columns.ChietKhau] = Utility.DecimaltoDbnull(Utility.DecimaltoDbnull(txtChietkhau.Text));
                         drv[TPhieuNhapxuatthuocChitiet.Columns.ThangDu] = Utility.Int32Dbnull(nmrThangDu.Value, 0);
-                        drv[TPhieuNhapxuatthuocChitiet.Columns.Vat] = Utility.DecimaltoDbnull(txtVAT.Text, 0);
-                        drv[TPhieuNhapxuatthuocChitiet.Columns.GiaBan] = Utility.DecimaltoDbnull(txtGiaDV.Text, 0);
-                        drv[TPhieuNhapxuatthuocChitiet.Columns.DonGia] = Utility.DecimaltoDbnull(txtDongia.Text, 0);
+                        drv[TPhieuNhapxuatthuocChitiet.Columns.Vat] = Utility.DecimaltoDbnull(txtVATChitiet.Text, 0);
+                        drv[TPhieuNhapxuatthuocChitiet.Columns.GiaBan] = Utility.DecimaltoDbnull(nmr_giaban_dvu.Text, 0);
+                        drv[TPhieuNhapxuatthuocChitiet.Columns.DonGia] = Utility.DecimaltoDbnull(nmr_giasau_VAT.Value, 0);
                         drv[TPhieuNhapxuatthuocChitiet.Columns.NgayHethan] = dtNgayHetHan.Text;
                         drv["NGAY_HET_HAN"] = dtNgayHetHan.Value.Date;
                         m_dtDataPhieuChiTiet.Rows.Add(drv);
@@ -1110,7 +1180,22 @@ namespace VNS.HIS.UI.THUOC
         }
         private void SetStatusControl()
         {
-             
+            try
+            {
+                TDmucKho objKho = TDmucKho.FetchByID(Utility.Int16Dbnull(cboKhonhap.SelectedValue));
+                if (objKho != null)
+                {
+                    chk_tinhthangdu.Checked = Utility.Bool2Bool(objKho.TinhThangdu);
+                }
+                else
+                    chk_tinhthangdu.Checked = false;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+           
              
         }
         /// <summary>
@@ -1196,11 +1281,11 @@ namespace VNS.HIS.UI.THUOC
                     //Lấy số lượng chờ trong chính phiếu đang có
                     int slcho_trongphieu = Utility.Int32Dbnull(m_dtDataPhieuChiTiet.Compute("sum(so_luong)", TThauDieutietCt.Columns.IdThauCt + "=" + id_thau_ct.ToString()), 0);
                     slkhachuyen += slcho_trongphieu;
-                    if (slkhachuyen < Utility.DecimaltoDbnull(txtSoluong.Text, 0))
+                    if (slkhachuyen < Utility.DecimaltoDbnull(nmrSoluong.Text, 0))
                     {
                         Utility.SetMsg(uiStatusBar1.Panels["MSG"], string.Format("Số lượng nhập kho của thuốc {0} phải <= Số lượng khả nhập {1}",Utility.sDbnull( dr["ten_thuoc"]), slkhachuyen.ToString()), true);
-                        txtSoluong.SelectAll();
-                        txtSoluong.Focus();
+                       
+                        nmrSoluong.Focus();
                         return false;
                     }
                 }
@@ -1267,9 +1352,10 @@ namespace VNS.HIS.UI.THUOC
             txtDrug_ID.Clear();
             txtmathuoc.Clear();
             txtTCCL.Clear();
-            txtSoluong.Clear();
-            txtDongia.Clear();
-            txtGiaDV.Clear();
+            nmrSoluong.ResetText();
+            nmr_giatruoc_VAT.ResetText();
+            nmr_giasau_VAT.ResetText();
+            nmr_giaban_dvu.ResetText();
             txtThanhTien.Clear();
             nmrThangDu.Value = 0;
             txtChietkhau.Clear();
@@ -1350,8 +1436,8 @@ namespace VNS.HIS.UI.THUOC
         }
         private void ThanhTien()
         {
-            decimal thanhtien = Utility.DecimaltoDbnull(txtDongia.Text,0)*Utility.DecimaltoDbnull(txtSoluong.Text);
-            thanhtien = thanhtien + thanhtien * Utility.DecimaltoDbnull(txtVAT.Text) / 100;
+            decimal thanhtien = Utility.DecimaltoDbnull(nmr_giasau_VAT.Value, 0)*Utility.DecimaltoDbnull(nmrSoluong.Value);
+            thanhtien = thanhtien + thanhtien * Utility.DecimaltoDbnull(txtVATChitiet.Text) / 100;
                decimal ChietKhau= Utility.DecimaltoDbnull(txtChietkhau.Text);
             if (thanhtien < ChietKhau)
             {
@@ -1362,16 +1448,16 @@ namespace VNS.HIS.UI.THUOC
             txtThanhTien.Text = Utility.sDbnull(thanhtien);
             TinhSumThanhTien();
         }
-        private void txtDongia_Click(object sender, EventArgs e)
+        private void nmr_giasau_VAT_Click(object sender, EventArgs e)
         {
             ThanhTien();
         }
 
         
 
-        private void txtSoluong_TextChanged(object sender, EventArgs e)
+        private void nmrSoluong_TextChanged(object sender, EventArgs e)
         {
-            ThanhTien();
+           
             
         }
         /// <summary>
@@ -1483,7 +1569,7 @@ namespace VNS.HIS.UI.THUOC
                         newItem.SoLuong = Utility.DecimaltoDbnull(gridExRow.Cells[TPhieuNhapxuatthuocChitiet.Columns.SoLuong].Value);
                         newItem.ThanhTien = Utility.DecimaltoDbnull(gridExRow.Cells[TPhieuNhapxuatthuocChitiet.Columns.ThanhTien].Value);
                         newItem.ChietKhau = Utility.DecimaltoDbnull(gridExRow.Cells[TPhieuNhapxuatthuocChitiet.Columns.ChietKhau].Value);
-                        newItem.Vat = Utility.DecimaltoDbnull(txtVAT.Text);
+                        newItem.Vat = Utility.DecimaltoDbnull(gridExRow.Cells[TPhieuNhapxuatthuocChitiet.Columns.Vat].Value);
                         newItem.GiaBan = Utility.DecimaltoDbnull(gridExRow.Cells[TPhieuNhapxuatthuocChitiet.Columns.GiaBan].Value, 0);
                         newItem.DonGia = Utility.DecimaltoDbnull(gridExRow.Cells[TPhieuNhapxuatthuocChitiet.Columns.DonGia].Value, 0);
                         newItem.SluongChia = 1;
@@ -1723,7 +1809,7 @@ namespace VNS.HIS.UI.THUOC
                 //Lấy số lượng chờ trong chính phiếu đang có
                 int slcho_trongphieu = Utility.Int32Dbnull(m_dtDataPhieuChiTiet.Compute("sum(so_luong)", TThauDieutietCt.Columns.IdThauCt + "=" + id_thau_ct.ToString()), 0);
                 slkhachuyen += slcho_trongphieu;
-                if (slkhachuyen < Utility.DecimaltoDbnull(txtSoluong.Text, 0))
+                if (slkhachuyen < Utility.DecimaltoDbnull(nmrSoluong.Text, 0))
                 {
                     Utility.ShowMsg(string.Format("Số lượng nhập kho {0} phải <= Số lượng khả nhập {1}", e.Value, slkhachuyen.ToString()));
                     e.Value = e.InitialValue;
@@ -1775,8 +1861,8 @@ namespace VNS.HIS.UI.THUOC
                 int  thangDu = Utility.Int32Dbnull(e.Value,0);
                 if (_phuongphapTinhgiaban!="0") thangDu = 0;
                 decimal giaNhap = Utility.Int32Dbnull(grdChitiet.GetValue(TPhieuNhapxuatthuocChitiet.Columns.GiaNhap), 0);
-                
-                decimal giaBan = TinhGiaBan(giaNhap, Utility.Int32Dbnull(txtVAT.Text, 0), thangDu);
+                Int32 VAT = Utility.Int32Dbnull(grdChitiet.CurrentRow.Cells["VAT"].Value,0);
+                decimal giaBan = TinhGiaBan(giaNhap, VAT, thangDu);
                 grdChitiet.CurrentRow.BeginEdit();
                 grdChitiet.CurrentRow.Cells[TPhieuNhapxuatthuocChitiet.Columns.GiaBan].Value = giaBan;
                 grdChitiet.CurrentRow.EndEdit();
@@ -1807,8 +1893,9 @@ namespace VNS.HIS.UI.THUOC
         }
         private decimal ThanhTienTrenLuoi(decimal  GiaNhap, decimal soluong,decimal  chietkhau)
         {
+            Int32 VAT = Utility.Int32Dbnull(grdChitiet.CurrentRow.Cells["VAT"].Value, 0);
             decimal thanhtien = GiaNhap * soluong;
-            thanhtien = thanhtien + thanhtien * Utility.DecimaltoDbnull(txtVAT.Text) / 100 - chietkhau;
+            thanhtien = thanhtien + thanhtien * Utility.DecimaltoDbnull(VAT) / 100 - chietkhau;
             return thanhtien;
         }
         /// <summary>
@@ -1820,9 +1907,9 @@ namespace VNS.HIS.UI.THUOC
         {
             try
             {
-                UpdateWhenChanged();
-                ThanhTien();
-                TinhGiaBan();
+                //UpdateWhenChanged();
+                //ThanhTien();
+                //TinhGiaBan();
             }
             catch
             {
@@ -1834,11 +1921,12 @@ namespace VNS.HIS.UI.THUOC
             {
                 foreach (Janus.Windows.GridEX.GridEXRow gridExRow in grdChitiet.GetDataRows())
                 {
+                    Int32 VAT = Utility.Int32Dbnull(gridExRow.Cells["VAT"].Value, 0);
                     Int32 soluong = Utility.Int32Dbnull(gridExRow.Cells[TPhieuNhapxuatthuocChitiet.Columns.SoLuong].Value);
                     int THANG_DU = Utility.Int32Dbnull(gridExRow.Cells[TPhieuNhapxuatthuocChitiet.Columns.ThangDu].Value, 0);
                     decimal GiaNhap = Utility.DecimaltoDbnull(gridExRow.Cells[TPhieuNhapxuatthuocChitiet.Columns.GiaNhap].Value);
                     decimal ChietKhau = Utility.DecimaltoDbnull(gridExRow.Cells[TPhieuNhapxuatthuocChitiet.Columns.ChietKhau].Value);
-                    decimal thanhtien = soluong * GiaNhap + (soluong * GiaNhap) * Utility.Int32Dbnull(txtVAT.Text, 0) / 100 - ChietKhau;
+                    decimal thanhtien = soluong * GiaNhap + (soluong * GiaNhap) * VAT / 100 - ChietKhau;
                     //REM lại để tính giá bán theo giá bán trong danh mục                   
                    // decimal Gia_ban = TinhGiaBan(GiaNhap, Utility.Int32Dbnull(txtVAT.Text, 0), THANG_DU);
                     gridExRow.BeginEdit();
@@ -1856,45 +1944,76 @@ namespace VNS.HIS.UI.THUOC
         }
 
        
-        void TinhGiaBan()
+        void TinhGiaBan_bak()
         {
             try
             {
                 if (_phuongphapTinhgiaban == "3") return;
-                if (!Utility.IsNumeric(txtDongia.Text))
-                {
-                    txtGiaDV.Text = "0";
-                    return;
-                }
-                decimal GIA_Nhap = Utility.DecimaltoDbnull(txtDongia.Text, 0);
+                
+                decimal GIA_Nhap = Utility.DecimaltoDbnull(nmr_giasau_VAT.Value, 0);
                 decimal GIA_BAn = 0;
                 decimal GiaThangDu = 0;
                 decimal GiaVAT = 0;
-                if (_phuongphapTinhgiaban == "0")
+                if (_phuongphapTinhgiaban == "0")//Tính theo thặng dư;
                 {
                     GiaVAT = GIA_Nhap;
                     GiaThangDu = (decimal)(GiaVAT * nmrThangDu.Value / 100);
                     GIA_BAn = GiaThangDu + GiaVAT;
                 }
-                else if (_phuongphapTinhgiaban == "1")
+                else if (_phuongphapTinhgiaban == "1")//Tính theo VAT+Thặng dư. NGhĩa là tính giá sau VAT trước. Sau đó tính thặng dư trên giá sau VAT này
                 {
                     //Giá VAT
-                    GiaVAT = GIA_Nhap + (decimal)(GIA_Nhap * Utility.DecimaltoDbnull(txtVAT.Text) / 100);
+                    GiaVAT = GIA_Nhap + (decimal)(GIA_Nhap * Utility.DecimaltoDbnull(txtVATChitiet.Text) / 100);
                     //Thặng dư so với giá VAT
                     GiaThangDu = (decimal)(GiaVAT * nmrThangDu.Value / 100);
                     GIA_BAn = GiaThangDu + GiaVAT;
                 }
-                else
+                else//Tính theo VAT
                 {
-                    GIA_BAn = GIA_Nhap + (decimal)(GIA_Nhap * Utility.DecimaltoDbnull(txtVAT.Text) / 100);
+                    GIA_BAn = GIA_Nhap + (decimal)(GIA_Nhap * Utility.DecimaltoDbnull(txtVATChitiet.Text) / 100);
                 }
-                txtGiaDV.Text = GIA_BAn.ToString();
+                nmr_giaban_dvu.Text = GIA_BAn.ToString();
             }
             catch
             {
             }
         }
-        decimal TinhGiaBan(decimal GiaNhap,int VAT,int ThangDu)
+        void TinhGiaBan()
+        {
+            try
+            {
+                if (_phuongphapTinhgiaban == "3") return;
+                
+                if (!chk_tinhthangdu.Checked) nmrThangDu.Value = 0;
+                decimal GIA_Nhap = Utility.DecimaltoDbnull(nmr_giasau_VAT.Value, 0);
+                decimal GIA_BAn = 0;
+                decimal GiaThangDu = 0;
+                decimal GiaVAT = 0;
+                if (_phuongphapTinhgiaban == "0" || _phuongphapTinhgiaban == "1")//Tính theo thặng dư;
+                {
+                    GiaVAT = GIA_Nhap;
+                    GiaThangDu = (decimal)(GiaVAT * nmrThangDu.Value / 100);
+                    GIA_BAn = GiaThangDu + GiaVAT;
+                }
+                else if (_phuongphapTinhgiaban == "1")//REM lại do có giá trước và sau VAT, thặng dư luôn tính theo giá sau VAT
+                {
+                    ////Giá VAT
+                    //GiaVAT = GIA_Nhap + (decimal)(GIA_Nhap * Utility.DecimaltoDbnull(txtVATChitiet.Text) / 100);
+                    ////Thặng dư so với giá VAT
+                    //GiaThangDu = (decimal)(GiaVAT * nmrThangDu.Value / 100);
+                    //GIA_BAn = GiaThangDu + GiaVAT;
+                }
+                else//Bỏ 
+                {
+                    GIA_BAn = GIA_Nhap + (decimal)(GIA_Nhap * Utility.DecimaltoDbnull(txtVATChitiet.Text) / 100);
+                }
+                nmr_giaban_dvu.Text = GIA_BAn.ToString();
+            }
+            catch
+            {
+            }
+        }
+        decimal TinhGiaBan(decimal GiaNhap, int VAT, int ThangDu)
         {
             try
             {
@@ -1902,13 +2021,13 @@ namespace VNS.HIS.UI.THUOC
                 decimal GIA_BAn = GiaNhap;
                 decimal giaThangDu = 0;
                 decimal giaVat = 0;
-                if (_phuongphapTinhgiaban == "0")
+                if (_phuongphapTinhgiaban == "0")//Tính theo thặng dư;
                 {
                     giaVat = GiaNhap;
                     giaThangDu = (decimal)(giaVat * ThangDu / 100);
                     GIA_BAn = giaThangDu + giaVat;
                 }
-                else if (_phuongphapTinhgiaban == "1")
+                else if (_phuongphapTinhgiaban == "1")//Tính theo VAT+Thặng dư. NGhĩa là tính giá sau VAT trước. Sau đó tính thặng dư trên giá sau VAT này
                 {
                     //Giá VAT
                     giaVat = GiaNhap + (decimal)(GiaNhap * VAT / 100);
@@ -1916,9 +2035,9 @@ namespace VNS.HIS.UI.THUOC
                     giaThangDu = (decimal)(giaVat * ThangDu / 100);
                     GIA_BAn = giaThangDu + giaVat;
                 }
-                else
+                else//Tính theo VAT
                 {
-                    GIA_BAn = GiaNhap +(decimal)( GiaNhap * _phantramSovoigianhap / 100);
+                    GIA_BAn = GiaNhap + (decimal)(GiaNhap * _phantramSovoigianhap / 100);
                 }
                 return GIA_BAn;
             }
@@ -1927,7 +2046,7 @@ namespace VNS.HIS.UI.THUOC
                 return GiaNhap;
             }
         }
-       
+
         int TinhThangDutheoQuyetDinhBYT(decimal GiaMua)
         {
             //if (KIEU_THUOC_VT == "VT") return 0;
@@ -1938,7 +2057,7 @@ namespace VNS.HIS.UI.THUOC
             if (GiaMua > 1000000) return 2;
             return 0;
         }
-        private void txtDongia_KeyPress(object sender, KeyPressEventArgs e)
+        private void nmr_giasau_VAT_KeyPress(object sender, KeyPressEventArgs e)
         {
             Utility.OnlyDigit(e);
         }
@@ -2032,9 +2151,90 @@ namespace VNS.HIS.UI.THUOC
                 Utility.CatchException(ex);
             }
         }
-        
-       
 
+        private void txtVATChitiet_Click(object sender, EventArgs e)
+        {
+            
+        }
+        bool isAllowedVATChanged = false;
+        void TinhgiaSauVAT()
+        {
+            try
+            {
+                if (!isAllowedVATChanged) return;
+                if (THU_VIEN_CHUNG.Laygiatrithamsohethong("PHIEUNHAPKHO_TUDONGTINH_GIASAU_VAT","0",false) == "0") return;
+                decimal VAT = Utility.DecimaltoDbnull(txtVATChitiet.Text, 0);
+
+                if (VAT <= 0)//Disable giá trước VAT-->Chỉ nhập giá sau VAT
+                {
+                    //lbl_giatruocVAT.Enabled = txt_dongiatruocVAT.Enabled = true;
+                    //lbl_giatruocVAT.Enabled = txt_dongiatruocVAT.Enabled = false;
+
+                }
+                else//Giá sau VAT tự suy ra từ giá trước VAT *(1+VAT/100)
+                {
+                    //lbl_giatruocVAT.Enabled = txt_dongiatruocVAT.Enabled = true;
+                    //lbl_giatruocVAT.Enabled = txt_dongiatruocVAT.Enabled = false;
+
+                    decimal giatruocVAT = Utility.DecimaltoDbnull(nmr_giatruoc_VAT.Value, 0);
+                    decimal giasauVAT = Utility.DecimaltoDbnull(nmr_giasau_VAT.Value, 0);
+                    //Kiểm tra 
+                    if (giatruocVAT > 0)
+                    {
+                        nmr_giasau_VAT.Value = (giatruocVAT * (1m + VAT / 100));
+                    }
+                    //else if (giasauVAT > 0)
+                    //{
+                    //    bool TinhgiatruocVAT_tugiasauVAT = THU_VIEN_CHUNG.Laygiatrithamsohethong("THUOC_TINHGIATRUOCVAT_TUGIASAUVAT", "0", false) == "1";
+                    //    if (TinhgiatruocVAT_tugiasauVAT)
+                    //        nmr_giasau_VAT.Text = (giasauVAT / (1m + VAT / 100)).ToString();
+                    //}
+                }
+            }
+            catch (Exception)
+            {
+
+
+            }
+        }
       
+
+        private void nmr_giasau_VAT_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cboKhonhap_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chk_tinhthangdu_CheckedChanged(object sender, EventArgs e)
+        {
+            //if (!chk_tinhthangdu.Checked)
+            //    nmrThangDu.Value = 0;
+            //else
+
+        }
+
+        private void nmrSoluong_ValueChanged(object sender, EventArgs e)
+        {
+            ThanhTien();
+        }
+
+        private void nmr_giatruoc_VAT_ValueChanged(object sender, EventArgs e)
+        {
+            TinhgiaSauVAT();
+        }
+
+        private void nmr_giasau_VAT_ValueChanged(object sender, EventArgs e)
+        {
+            if (chk_tinhthangdu.Checked)
+                nmrThangDu.Value = TinhThangDutheoQuyetDinhBYT(Utility.DecimaltoDbnull(nmr_giasau_VAT.Value, 0));
+            else
+                nmrThangDu.Value = 0;
+            TinhGiaBan();
+            ThanhTien();
+        }
     }
 }

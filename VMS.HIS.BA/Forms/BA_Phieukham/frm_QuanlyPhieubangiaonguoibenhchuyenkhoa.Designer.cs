@@ -483,7 +483,7 @@
             this.Name = "frm_QuanlyPhieubangiaonguoibenhchuyenkhoa";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Quản lý giấy cam kết chấp thuận PTTT và Gây mê hồi sức";
+            this.Text = "Quản lý Phiếu bàn giao người bệnh chuyển khoa";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();

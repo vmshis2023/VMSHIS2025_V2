@@ -1,0 +1,126 @@
+2023-06-28 11:05:15.3678||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- |url: |action: 
+2023-06-28 11:05:15.3678||DEBUG|DigitalSignatureCheckAccount|api: /api/account/endcert |url: |action: 
+2023-06-28 11:05:15.3815||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user NTHANHSH with appId: PID033084000210, secret: JYeBaHJ8eVjTJJyUUEXhy8FfKBhPwi/VlGFMVzIqvVg=
+ |url: |action: 
+2023-06-28 11:05:15.6152||ERROR|DigitalSignatureCheckAccount|There was an error on 'DigitalSignatureCheckAccount' invocation: System.Exception: Error: /api/account/endcertSystem.Net.WebException: Could not find a part of the path 'E:\api\account\endcert'.
+ ---> System.Net.WebException: Could not find a part of the path 'E:\api\account\endcert'.
+ ---> System.IO.DirectoryNotFoundException: Could not find a part of the path 'E:\api\account\endcert'.
+   at System.IO.FileStream.ValidateFileHandle(SafeFileHandle fileHandle)
+   at System.IO.FileStream.CreateFileOpenHandle(FileMode mode, FileShare share, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, Boolean useAsync)
+   at System.Net.FileWebResponse..ctor(FileWebRequest request, Uri uri, FileAccess access, Boolean useAsync)
+   --- End of inner exception stack trace ---
+   at System.Net.FileWebResponse..ctor(FileWebRequest request, Uri uri, FileAccess access, Boolean useAsync)
+   at System.Net.FileWebRequest.CreateResponse()
+   --- End of inner exception stack trace ---
+   at System.Net.FileWebRequest.CreateResponse()
+   at System.Net.FileWebRequest.<>c.<BeginGetResponse>b__59_0(Object s)
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__274_0(Object obj)
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.TaskToApm.End[TResult](IAsyncResult asyncResult)
+   at System.Net.FileWebRequest.EndGetResponse(IAsyncResult asyncResult)
+   at System.Net.FileWebRequest.GetResponse()
+   at System.Net.WebClient.GetWebResponse(WebRequest request)
+   at System.Net.WebClient.DownloadBits(WebRequest request, Stream writeStream)
+   at System.Net.WebClient.DownloadDataInternal(Uri address, WebRequest& request)
+   at System.Net.WebClient.DownloadData(Uri address)
+   at System.Net.WebClient.DownloadData(String address)
+   at CyberClient.CyberClientLib.SignClient.DownloadData(String address) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\DigitalSignature\CyberLotus_PhoiTW\SignClient.cs:line 265
+   at VietBaIT.ChuKySo.Api.Controllers.PhoiTWCyberLotusController.getCertificate(String appId, String secret) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\Controllers\PhoiTWCyberLotusController.cs:line 308
+   at VietBaIT.ChuKySo.Api.Controllers.PhoiTWCyberLotusController.getCertificate(String appId, String secret) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\Controllers\PhoiTWCyberLotusController.cs:line 314
+   at VietBaIT.ChuKySo.Api.Controllers.PhoiTWCyberLotusController.DigitalSignatureCheckAccount(VietBaDigitalSignature objDigitalSignature) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\Controllers\PhoiTWCyberLotusController.cs:line 62 |url: |action: 
+2023-06-28 11:07:06.4300||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- |url: |action: 
+2023-06-28 11:07:06.4300||DEBUG|DigitalSignatureCheckAccount|api: /api/account/endcert |url: |action: 
+2023-06-28 11:07:06.4300||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user NTHANHSH with appId: PID033084000210, secret: JYeBaHJ8eVjTJJyUUEXhy8FfKBhPwi/VlGFMVzIqvVg=
+ |url: |action: 
+2023-06-28 11:07:06.4577||ERROR|DigitalSignatureCheckAccount|There was an error on 'DigitalSignatureCheckAccount' invocation: System.Exception: Error: /api/account/endcertSystem.Net.WebException: Could not find a part of the path 'E:\api\account\endcert'.
+ ---> System.Net.WebException: Could not find a part of the path 'E:\api\account\endcert'.
+ ---> System.IO.DirectoryNotFoundException: Could not find a part of the path 'E:\api\account\endcert'.
+   at System.IO.FileStream.ValidateFileHandle(SafeFileHandle fileHandle)
+   at System.IO.FileStream.CreateFileOpenHandle(FileMode mode, FileShare share, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, Boolean useAsync)
+   at System.Net.FileWebResponse..ctor(FileWebRequest request, Uri uri, FileAccess access, Boolean useAsync)
+   --- End of inner exception stack trace ---
+   at System.Net.FileWebResponse..ctor(FileWebRequest request, Uri uri, FileAccess access, Boolean useAsync)
+   at System.Net.FileWebRequest.CreateResponse()
+   --- End of inner exception stack trace ---
+   at System.Net.FileWebRequest.CreateResponse()
+   at System.Net.FileWebRequest.<>c.<BeginGetResponse>b__59_0(Object s)
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__274_0(Object obj)
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.TaskToApm.End[TResult](IAsyncResult asyncResult)
+   at System.Net.FileWebRequest.EndGetResponse(IAsyncResult asyncResult)
+   at System.Net.FileWebRequest.GetResponse()
+   at System.Net.WebClient.GetWebResponse(WebRequest request)
+   at System.Net.WebClient.DownloadBits(WebRequest request, Stream writeStream)
+   at System.Net.WebClient.DownloadDataInternal(Uri address, WebRequest& request)
+   at System.Net.WebClient.DownloadData(Uri address)
+   at System.Net.WebClient.DownloadData(String address)
+   at CyberClient.CyberClientLib.SignClient.DownloadData(String address) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\DigitalSignature\CyberLotus_PhoiTW\SignClient.cs:line 265
+   at VietBaIT.ChuKySo.Api.Controllers.PhoiTWCyberLotusController.getCertificate(String appId, String secret) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\Controllers\PhoiTWCyberLotusController.cs:line 308
+   at VietBaIT.ChuKySo.Api.Controllers.PhoiTWCyberLotusController.getCertificate(String appId, String secret) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\Controllers\PhoiTWCyberLotusController.cs:line 314
+   at VietBaIT.ChuKySo.Api.Controllers.PhoiTWCyberLotusController.DigitalSignatureCheckAccount(VietBaDigitalSignature objDigitalSignature) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\Controllers\PhoiTWCyberLotusController.cs:line 62 |url: |action: 
+2023-06-28 11:07:30.5873||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- |url: |action: 
+2023-06-28 11:07:30.5873||DEBUG|DigitalSignatureCheckAccount|api: /api/account/endcert |url: |action: 
+2023-06-28 11:07:30.5988||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user NTHANHSH with appId: PID033084000210, secret: JYeBaHJ8eVjTJJyUUEXhy8FfKBhPwi/VlGFMVzIqvVg=
+ |url: |action: 
+2023-06-28 11:07:30.6232||ERROR|DigitalSignatureCheckAccount|There was an error on 'DigitalSignatureCheckAccount' invocation: System.Exception: Error: /api/account/endcertSystem.Net.WebException: Could not find a part of the path 'E:\api\account\endcert'.
+ ---> System.Net.WebException: Could not find a part of the path 'E:\api\account\endcert'.
+ ---> System.IO.DirectoryNotFoundException: Could not find a part of the path 'E:\api\account\endcert'.
+   at System.IO.FileStream.ValidateFileHandle(SafeFileHandle fileHandle)
+   at System.IO.FileStream.CreateFileOpenHandle(FileMode mode, FileShare share, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, Boolean useAsync)
+   at System.Net.FileWebResponse..ctor(FileWebRequest request, Uri uri, FileAccess access, Boolean useAsync)
+   --- End of inner exception stack trace ---
+   at System.Net.FileWebResponse..ctor(FileWebRequest request, Uri uri, FileAccess access, Boolean useAsync)
+   at System.Net.FileWebRequest.CreateResponse()
+   --- End of inner exception stack trace ---
+   at System.Net.FileWebRequest.CreateResponse()
+   at System.Net.FileWebRequest.<>c.<BeginGetResponse>b__59_0(Object s)
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__274_0(Object obj)
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.Tasks.TaskToApm.End[TResult](IAsyncResult asyncResult)
+   at System.Net.FileWebRequest.EndGetResponse(IAsyncResult asyncResult)
+   at System.Net.FileWebRequest.GetResponse()
+   at System.Net.WebClient.GetWebResponse(WebRequest request)
+   at System.Net.WebClient.DownloadBits(WebRequest request, Stream writeStream)
+   at System.Net.WebClient.DownloadDataInternal(Uri address, WebRequest& request)
+   at System.Net.WebClient.DownloadData(Uri address)
+   at System.Net.WebClient.DownloadData(String address)
+   at CyberClient.CyberClientLib.SignClient.DownloadData(String address) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\DigitalSignature\CyberLotus_PhoiTW\SignClient.cs:line 265
+   at VietBaIT.ChuKySo.Api.Controllers.PhoiTWCyberLotusController.getCertificate(String appId, String secret) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\Controllers\PhoiTWCyberLotusController.cs:line 308
+   at VietBaIT.ChuKySo.Api.Controllers.PhoiTWCyberLotusController.getCertificate(String appId, String secret) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\Controllers\PhoiTWCyberLotusController.cs:line 314
+   at VietBaIT.ChuKySo.Api.Controllers.PhoiTWCyberLotusController.DigitalSignatureCheckAccount(VietBaDigitalSignature objDigitalSignature) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\Controllers\PhoiTWCyberLotusController.cs:line 62 |url: |action: 
+2023-06-28 11:11:10.0771||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- |url: |action: 
+2023-06-28 11:11:10.0771||DEBUG|DigitalSignatureCheckAccount|api: http://10.0.30.199/api/account/endcert |url: |action: 
+2023-06-28 11:11:10.0892||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user NTHANHSH with appId: PID033084000210, secret: JYeBaHJ8eVjTJJyUUEXhy8FfKBhPwi/VlGFMVzIqvVg=
+ |url: |action: 
+2023-06-28 11:11:10.4745||DEBUG|DigitalSignatureCheckAccount|Successfully !!! |url: |action: 
+2023-06-28 11:11:37.9888||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- |url: |action: 
+2023-06-28 11:11:37.9888||DEBUG|DigitalSignatureCheckAccount|api: http://10.0.30.199/api/account/endcert |url: |action: 
+2023-06-28 11:11:37.9888||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user NTHANHSH with appId: PID033084000210, secret: JYeBaHJ8eVjTJJyUUEXhy8FfKBhPwi/VlGFMVzIqvVg=
+ |url: |action: 
+2023-06-28 11:11:38.0873||DEBUG|DigitalSignatureCheckAccount|Successfully !!! |url: |action: 
+2023-06-28 11:28:23.3434||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- |url: |action: 
+2023-06-28 11:28:23.3434||DEBUG|DigitalSignatureCheckAccount|api: http://10.0.30.199/api/account/endcert |url: |action: 
+2023-06-28 11:28:23.3544||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user NTHANHSH with appId: PID033084000210, secret: JYeBaHJ8eVjTJJyUUEXhy8FfKBhPwi/VlGFMVzIqvVg=
+ |url: |action: 
+2023-06-28 11:28:23.8544||DEBUG|DigitalSignatureCheckAccount|Successfully !!! |url: |action: 

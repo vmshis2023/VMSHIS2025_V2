@@ -69,7 +69,7 @@
             this.cmdSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdSave.Image = ((System.Drawing.Image)(resources.GetObject("cmdSave.Image")));
             this.cmdSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdSave.Location = new System.Drawing.Point(268, 556);
+            this.cmdSave.Location = new System.Drawing.Point(532, 556);
             this.cmdSave.Name = "cmdSave";
             this.cmdSave.Size = new System.Drawing.Size(119, 42);
             this.cmdSave.TabIndex = 64;
@@ -83,7 +83,7 @@
             this.cmdExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdExit.Image = ((System.Drawing.Image)(resources.GetObject("cmdExit.Image")));
             this.cmdExit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdExit.Location = new System.Drawing.Point(393, 556);
+            this.cmdExit.Location = new System.Drawing.Point(657, 556);
             this.cmdExit.Name = "cmdExit";
             this.cmdExit.Size = new System.Drawing.Size(119, 42);
             this.cmdExit.TabIndex = 65;

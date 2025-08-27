@@ -174,8 +174,9 @@ namespace VNS.HIS.BusRule.Goikham
             var dt = SPs.GoiLayGoiKhamTheoBN(patientId, soLo).GetDataSet().Tables[0];
             return dt;
         }
-        public void ThemGoiKham_BVM(KcbChidinhcl objChidinh, int patientId, string ma_luotkham, int idGoiDVu,DateTime ngay_dangky)
+        public int ThemGoiKham_BVM(KcbChidinhcl objChidinh, int patientId, string ma_luotkham, int idGoiDVu,DateTime ngay_dangky)
         {
+            int id_dangky = -1;
             GoiDanhsach _goi = GoiDanhsach.FetchByID(idGoiDVu);
             if (_goi != null)
             {
@@ -206,7 +207,7 @@ namespace VNS.HIS.BusRule.Goikham
                 _goidangky.IdNvienTao = objChidinh.IdBacsiChidinh;
 
                 _goidangky.Save();
-                var id_dangky = _goidangky.IdDangky;
+                id_dangky = _goidangky.IdDangky;
                int num= new Update(KcbChidinhclsChitiet.Schema)
                     .Set(KcbChidinhclsChitiet.Columns.IdDangky).EqualTo(id_dangky)
                     .Where(KcbChidinhclsChitiet.Columns.IdGoi).IsEqualTo(_goidangky.IdGoi)
@@ -238,7 +239,79 @@ namespace VNS.HIS.BusRule.Goikham
                     goiQuanHe.Save();
                 }
             }
+            return id_dangky;
         }
+
+        public int ThemGoiKham_BVM(KcbDangkyKcb objCongkham, int patientId, string ma_luotkham, int idGoiDVu, DateTime ngay_dangky)
+        {
+            int id_dangky = -1;
+            GoiDanhsach _goi = GoiDanhsach.FetchByID(idGoiDVu);
+            if (_goi != null)
+            {
+                GoiDangki _goidangky = new GoiDangki();
+
+                _goidangky.IdGoi = idGoiDVu;
+                _goidangky.IdBenhnhan = patientId;
+                _goidangky.MaLuotkham = ma_luotkham;
+                _goidangky.HieulucTungay = _goi.HieulucTungay;
+                _goidangky.HieulucDenngay = _goi.HieulucDenngay;
+                _goidangky.NgayTao = DateTime.Now;
+                _goidangky.NguoiTao = globalVariables.UserName;
+                _goidangky.SoTien = _goi.SoTien;
+                _goidangky.MienGiam = _goi.MienGiam;
+                _goidangky.GiamBhyt = _goi.GiamBhyt;
+                _goidangky.Solo = "";
+                _goidangky.NgayDangky = ngay_dangky;
+                _goidangky.TthaiHuy = false;
+                _goidangky.TthaiKichhoat = true;
+                _goidangky.TthaiTtoan = false;
+                _goidangky.IdKhoaChidinh = objCongkham.IdKhoakcb;
+                _goidangky.IdKhoadieutri = objCongkham.IdKhoakcb;
+                _goidangky.IdPhongChidinh = objCongkham.IdPhongkham;
+                _goidangky.IdKhoaThuchien = objCongkham.IdKhoakcb;
+                _goidangky.IdThe = objCongkham.IdLichsuDoituongKcb;
+                _goidangky.IdKham = objCongkham.IdKham;
+                _goidangky.Noitru = 0;
+                _goidangky.IdNvienTao = globalVariables.gv_intIDNhanvien;
+
+                _goidangky.Save();
+                id_dangky = _goidangky.IdDangky;
+                //int num = new Update(KcbChidinhclsChitiet.Schema)
+                //     .Set(KcbChidinhclsChitiet.Columns.IdDangky).EqualTo(id_dangky)
+                //     .Where(KcbChidinhclsChitiet.Columns.IdGoi).IsEqualTo(_goidangky.IdGoi)
+                //     .And(KcbChidinhclsChitiet.Columns.IdChidinh).IsEqualTo(objChidinh.IdChidinh)
+                //     .Execute();
+                var dtDichVuTrongGoi =
+                    new Select().From(GoiChitiet.Schema).Where(GoiChitiet.Columns.IdGoi).IsEqualTo(idGoiDVu).
+                        ExecuteDataSet().Tables[0];
+                foreach (DataRow row in dtDichVuTrongGoi.Rows)
+                {
+                    var serviceId = Utility.Int32Dbnull(row["id_dichvu"]);
+                    var serviceDetailId = Utility.Int32Dbnull(row["id_chitietdichvu"]);
+                    var serviceDetailName = Utility.sDbnull(row["ten_chitietdichvu"]);
+                    var loaiDv = Utility.Int16Dbnull(row["loai_dvu"]);
+                    var soLuong = Utility.Int16Dbnull(row["SO_LUONG"]);
+                    decimal donGia = Utility.DecimaltoDbnull(row["DON_GIA"]);
+
+                    var goiQuanHe = new GoiTinhtrangsudung();
+                    goiQuanHe.IdDangky = id_dangky;
+                    goiQuanHe.IdGoi = idGoiDVu;
+                    goiQuanHe.IdDichvu = serviceId;
+                    goiQuanHe.IdChitietdichvu = serviceDetailId;
+                    goiQuanHe.TenChitietdichvu = serviceDetailName;
+                    goiQuanHe.LoaiDvu = loaiDv;
+                    goiQuanHe.SoLuong = soLuong;
+                    goiQuanHe.DonGia = donGia;
+                    goiQuanHe.TrangThai = 1;
+                    goiQuanHe.SoluongDung = soLuong;
+                    goiQuanHe.Save();
+                }
+            }
+            return id_dangky;
+        }
+
+
+
         public int ThemGoiKhamChoBN(int patientId,string ma_luotkham, int idGoiDVu, decimal tienGoi, decimal mienGiam, decimal giamTruBhyt, DateTime hieuLucTu, DateTime hieuLucDen,DateTime ngay_dangky, string soLo)
         {
             var _goidangky = new GoiDangki();

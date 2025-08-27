@@ -88,6 +88,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Running\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Office.Interop.Word, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -134,6 +135,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\ApiHelper.cs" />
+    <Compile Include="API\DigitalSignatureHelper.cs" />
+    <Compile Include="API\HisLisWebApi.cs" />
     <Compile Include="Baocao\BAOCAO_THUOC.cs" />
     <Compile Include="Baocao\BAOCAO_NGOAITRU.cs" />
     <Compile Include="BHYT\BHYT_InPhieu.cs" />

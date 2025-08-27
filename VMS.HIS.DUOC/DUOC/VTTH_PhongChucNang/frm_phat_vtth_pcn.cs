@@ -1269,7 +1269,7 @@ namespace VNS.HIS.UI.THUOC
             }
             DataTable v_dtData = arrDR.CopyToDataTable();
             Utility.AddColumToDataTable(ref v_dtData, "BarCode", typeof(byte[]));
-            THU_VIEN_CHUNG.CreateXML(v_dtData, "thamkham_InDonthuocA5.xml");
+            THU_VIEN_CHUNG.CreateXML(v_dtData, "thuoc_indon_vtth_phongchucnnang.xml");
             byte[] Barcode = null;
             Utility.CreateBarcodeData(ref v_dtData, m_strMaLuotkham, ref Barcode);
             string ICD_Name = "";
@@ -1297,24 +1297,22 @@ namespace VNS.HIS.UI.THUOC
             switch (KhoGiay)
             {
                 case "A5":
-                    reportCode = "thamkham_InDonthuocA5";
-                    reportDocument = Utility.GetReport("thamkham_InDonthuocA5", ref tieude, ref reportname);
+                    reportCode = "cls_InDonvtthA5";
                     break;
                 case "A4":
-                    reportCode = "thamkham_InDonthuocA4";
-                    reportDocument = Utility.GetReport("thamkham_InDonthuocA4", ref tieude, ref reportname);
+                    reportCode = "cls_InDonvtthA4";
                     break;
                 default:
-                    reportCode = "thamkham_InDonthuocA5";
-                    reportDocument = Utility.GetReport("thamkham_InDonthuocA5", ref tieude, ref reportname);
+                    reportCode = "cls_InDonvtthA5";
                     break;
             }
+            reportDocument = Utility.GetReport(reportCode, ref tieude, ref reportname);
             if (reportDocument == null) return;
             if (Utility.DoTrim(forcedTitle).Length > 0)
                 tieude = forcedTitle;
             Utility.WaitNow(this);
             ReportDocument crpt = reportDocument;
-            frmPrintPreview objForm = new frmPrintPreview("IN ĐƠN THUỐC BỆNH NHÂN", crpt, true, true);
+            frmPrintPreview objForm = new frmPrintPreview("IN ĐƠN VTTH BỆNH NHÂN", crpt, true, true);
             objForm.nguoi_thuchien = Utility.sDbnull(v_dtData.Rows[0]["ten_bacsikedon"], "");
             try
             {
@@ -1325,7 +1323,7 @@ namespace VNS.HIS.UI.THUOC
                 Utility.SetParameterValue(crpt, "BranchName", globalVariables.Branch_Name);
                 Utility.SetParameterValue(crpt, "Address", globalVariables.Branch_Address);
                 Utility.SetParameterValue(crpt, "Phone", globalVariables.Branch_Phone);
-                Utility.SetParameterValue(crpt, "ReportTitle", "ĐƠN THUỐC");
+                Utility.SetParameterValue(crpt, "ReportTitle", "ĐƠN VTTH");
                 Utility.SetParameterValue(crpt, "CurrentDate", Utility.FormatDateTime(globalVariables.SysDate));
                 Utility.SetParameterValue(crpt, "BottomCondition", THU_VIEN_CHUNG.BottomCondition());
                 objForm.crptViewer.ReportSource = crpt;

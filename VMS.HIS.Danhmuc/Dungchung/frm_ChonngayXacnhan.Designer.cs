@@ -56,9 +56,9 @@ namespace VNS.HIS.UI.Forms.Cauhinh
             // cmdAccept
             // 
             this.cmdAccept.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdAccept.Image = global::VMS.Resources.Properties.Resources.SAVE1;
+            this.cmdAccept.Image = ((System.Drawing.Image)(resources.GetObject("cmdAccept.Image")));
             this.cmdAccept.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdAccept.Location = new System.Drawing.Point(123, 217);
+            this.cmdAccept.Location = new System.Drawing.Point(229, 217);
             this.cmdAccept.Name = "cmdAccept";
             this.cmdAccept.Size = new System.Drawing.Size(125, 33);
             this.cmdAccept.TabIndex = 5;
@@ -70,9 +70,9 @@ namespace VNS.HIS.UI.Forms.Cauhinh
             // cmdExit
             // 
             this.cmdExit.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdExit.Image = global::VMS.Resources.Properties.Resources.arrow_left_11;
+            this.cmdExit.Image = global::VMS.HIS.Danhmuc.Properties.Resources.close_24;
             this.cmdExit.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdExit.Location = new System.Drawing.Point(263, 217);
+            this.cmdExit.Location = new System.Drawing.Point(369, 217);
             this.cmdExit.Name = "cmdExit";
             this.cmdExit.Size = new System.Drawing.Size(119, 33);
             this.cmdExit.TabIndex = 6;
@@ -128,10 +128,12 @@ namespace VNS.HIS.UI.Forms.Cauhinh
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNhanvien.AutoCompleteList = ((System.Collections.Generic.List<string>)(resources.GetObject("txtNhanvien.AutoCompleteList")));
             this.txtNhanvien.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtNhanvien.buildShortcut = false;
             this.txtNhanvien.CaseSensitive = false;
             this.txtNhanvien.CompareNoID = true;
             this.txtNhanvien.DefaultCode = "-1";
             this.txtNhanvien.DefaultID = "-1";
+            this.txtNhanvien.DisplayType = 0;
             this.txtNhanvien.Drug_ID = null;
             this.txtNhanvien.ExtraWidth = 0;
             this.txtNhanvien.FillValueAfterSelect = false;
@@ -142,6 +144,7 @@ namespace VNS.HIS.UI.Forms.Cauhinh
             this.txtNhanvien.MyCode = "-1";
             this.txtNhanvien.MyID = "-1";
             this.txtNhanvien.MyText = "";
+            this.txtNhanvien.MyTextOnly = "";
             this.txtNhanvien.Name = "txtNhanvien";
             this.txtNhanvien.RaiseEvent = true;
             this.txtNhanvien.RaiseEventEnter = true;

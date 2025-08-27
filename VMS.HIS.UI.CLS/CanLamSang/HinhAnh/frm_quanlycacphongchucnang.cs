@@ -421,16 +421,19 @@ namespace VNS.HIS.UI.Forms.HinhAnh
                         }
                         KcbLuotkham objluotkham = Utility.getKcbLuotkham(objChitiet.IdBenhnhan, objChitiet.MaLuotkham);
                         KcbChidinhcl objChidinh=KcbChidinhcl.FetchByID(objChitiet.IdChidinh);
-                        if (objluotkham != null && objChidinh != null && objChidinh.Noitru == 0 && objluotkham.TrangthaiCapcuu == 0 && objChitiet.TrangThai<=0)
+                        if (objluotkham != null && objChidinh != null && objChidinh.Noitru == 0 && objluotkham.TrangthaiCapcuu == 0 && objChitiet.TrangThai<=0 && Utility.Int64Dbnull( objChitiet.IdTamthu)<=0)
                         {
                             //Lấy tiền tạm ứng ngoại trú
                             decimal tstamung = noitru_TamungHoanung.LaySoTienTamUng(objluotkham.MaLuotkham, Utility.Int64Dbnull(objluotkham.IdBenhnhan), 0);
                             if (tstamung <= 0)//Nếu ko có tạm ứng thì chỉ thanh toán mới được phép thực hiện
                             {
-                                if (objChitiet.TrangthaiThanhtoan <= 0)
+                                if (objChitiet.IdTamthu <= 0)
                                 {
-                                    Utility.ShowMsg("Dịch vụ bạn chọn thuộc ngoại trú và chưa được thanh toán nên không thể thực hiện nhập trả kết quả");
-                                    return;
+                                    if (objChitiet.TrangthaiThanhtoan <= 0)
+                                    {
+                                        Utility.ShowMsg("Dịch vụ bạn chọn thuộc ngoại trú và chưa được thanh toán hoặc ghi nợ nên không thể thực hiện nhập trả kết quả");
+                                        return;
+                                    }
                                 }
                             }
                             else
@@ -453,7 +456,7 @@ namespace VNS.HIS.UI.Forms.HinhAnh
                         if (Utility.DoTrim(Utility.sDbnull(grdList.CurrentRow.Cells["dsach_vungkhaosat"].Value, "")) == "")
                         {
                             Utility.ShowMsg("Dịch vụ này chưa gán vùng khảo sát nên không thể nhập kết quả.\nNhấn OK để thực hiện gán vùng khảo sát cho dịch vụ đang chọn");
-                            frm_chonvungksat _chonvungks = new frm_chonvungksat(new List<string>());
+                            frm_chonvungksat _chonvungks = new frm_chonvungksat(new List<string>(), m_strMaDichvu.Split('@')[0]);
                             _chonvungks.Hthi_Chon = true;
                             _chonvungks.ten_dvu = Utility.GetValueFromGridColumn(grdList, "ten_chitietdichvu");
                             if (_chonvungks.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -508,7 +511,7 @@ namespace VNS.HIS.UI.Forms.HinhAnh
                         lstID = Utility.sDbnull(grdList.CurrentRow.Cells["dsach_vungkhaosat"].Value, "-1").Split(',').ToList<string>();
                         if (lstID.Count >= 2)
                         {
-                            frm_chonvungksat _chonvungksat = new frm_chonvungksat(lstID);
+                            frm_chonvungksat _chonvungksat = new frm_chonvungksat(lstID, m_strMaDichvu.Split('@')[0]);
                             if (_chonvungksat.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                                 id_VungKS = _chonvungksat.Id;
                             else

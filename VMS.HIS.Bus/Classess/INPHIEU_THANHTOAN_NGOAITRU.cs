@@ -1015,7 +1015,7 @@ namespace VNS.HIS.Classes
                KcbThanhtoan objPayment = KcbThanhtoan.FetchByID(payment_id);
                if (IsTongHop) objPayment.IdThanhtoan = -1;
                ///lấy thông tin vào phiếu thu
-               DataTable mDtReportPhieuThu = new KCB_THANHTOAN().LaythongtininbienlaiDichvu(objPayment,-1, noitru,100);
+               DataTable mDtReportPhieuThu = new KCB_THANHTOAN().LaythongtininbienlaiDichvu(objPayment,-1, noitru,1);
                THU_VIEN_CHUNG.Sapxepthutuin(ref mDtReportPhieuThu, false);
                mDtReportPhieuThu.DefaultView.Sort = "stt_in ,stt_hthi_loaidichvu,stt_hthi_dichvu,stt_hthi_chitiet,ten_chitietdichvu";
 

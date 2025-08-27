@@ -80,6 +80,7 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuPrint = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuRefresh = new System.Windows.Forms.ToolStripMenuItem();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlBottom.SuspendLayout();
             this.pnlView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiTab1)).BeginInit();
@@ -87,6 +88,7 @@
             this.uiTabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdList)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlTOP
@@ -160,11 +162,7 @@
             // 
             // pnlBottom
             // 
-            this.pnlBottom.Controls.Add(this.cmdCancel);
-            this.pnlBottom.Controls.Add(this.cmdUpdate);
-            this.pnlBottom.Controls.Add(this.cmdNew);
-            this.pnlBottom.Controls.Add(this.cmdDelete);
-            this.pnlBottom.Controls.Add(this.cmdSave);
+            this.pnlBottom.Controls.Add(this.flowLayoutPanel1);
             this.pnlBottom.Controls.Add(this.chkAutoNew);
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlBottom.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -175,9 +173,9 @@
             // 
             // cmdCancel
             // 
-            this.cmdCancel.Image = ((System.Drawing.Image)(resources.GetObject("cmdCancel.Image")));
+            this.cmdCancel.Image = global::VMS.HIS.Noitru.Properties.Resources.close_24;
             this.cmdCancel.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdCancel.Location = new System.Drawing.Point(876, 5);
+            this.cmdCancel.Location = new System.Drawing.Point(507, 3);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(120, 35);
             this.cmdCancel.TabIndex = 9;
@@ -187,7 +185,7 @@
             // 
             this.cmdUpdate.Image = ((System.Drawing.Image)(resources.GetObject("cmdUpdate.Image")));
             this.cmdUpdate.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdUpdate.Location = new System.Drawing.Point(498, 5);
+            this.cmdUpdate.Location = new System.Drawing.Point(129, 3);
             this.cmdUpdate.Name = "cmdUpdate";
             this.cmdUpdate.Size = new System.Drawing.Size(120, 35);
             this.cmdUpdate.TabIndex = 1;
@@ -195,9 +193,9 @@
             // 
             // cmdNew
             // 
-            this.cmdNew.Image = ((System.Drawing.Image)(resources.GetObject("cmdNew.Image")));
+            this.cmdNew.Image = global::VMS.HIS.Noitru.Properties.Resources.add_04_32;
             this.cmdNew.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdNew.Location = new System.Drawing.Point(372, 5);
+            this.cmdNew.Location = new System.Drawing.Point(3, 3);
             this.cmdNew.Name = "cmdNew";
             this.cmdNew.Size = new System.Drawing.Size(120, 35);
             this.cmdNew.TabIndex = 0;
@@ -207,17 +205,18 @@
             // 
             this.cmdDelete.Image = ((System.Drawing.Image)(resources.GetObject("cmdDelete.Image")));
             this.cmdDelete.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdDelete.Location = new System.Drawing.Point(624, 5);
+            this.cmdDelete.Location = new System.Drawing.Point(255, 3);
             this.cmdDelete.Name = "cmdDelete";
             this.cmdDelete.Size = new System.Drawing.Size(120, 35);
             this.cmdDelete.TabIndex = 2;
             this.cmdDelete.Text = "Xóa";
+            this.cmdDelete.Click += new System.EventHandler(this.cmdDelete_Click_1);
             // 
             // cmdSave
             // 
             this.cmdSave.Image = ((System.Drawing.Image)(resources.GetObject("cmdSave.Image")));
             this.cmdSave.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdSave.Location = new System.Drawing.Point(750, 5);
+            this.cmdSave.Location = new System.Drawing.Point(381, 3);
             this.cmdSave.Name = "cmdSave";
             this.cmdSave.Size = new System.Drawing.Size(120, 35);
             this.cmdSave.TabIndex = 8;
@@ -608,6 +607,19 @@
             this.mnuRefresh.Size = new System.Drawing.Size(141, 22);
             this.mnuRefresh.Text = "Refresh (F5)";
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.cmdNew);
+            this.flowLayoutPanel1.Controls.Add(this.cmdUpdate);
+            this.flowLayoutPanel1.Controls.Add(this.cmdDelete);
+            this.flowLayoutPanel1.Controls.Add(this.cmdSave);
+            this.flowLayoutPanel1.Controls.Add(this.cmdCancel);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(374, 0);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(634, 43);
+            this.flowLayoutPanel1.TabIndex = 13;
+            // 
             // frm_dmuc_giabuonggiuong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -632,6 +644,7 @@
             this.uiTabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdList)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -687,5 +700,6 @@
         internal System.Windows.Forms.Label label8;
         internal System.Windows.Forms.Label label14;
         private Janus.Windows.EditControls.UICheckBox chkChungGia;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }

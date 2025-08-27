@@ -93,13 +93,14 @@ namespace VNS.HIS.UI.DANHMUC
             // 
             this.cmdAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdAccept.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdAccept.Image = global::VMS.HIS.Danhmuc.Properties.Resources.tick2424;
+            this.cmdAccept.Image = ((System.Drawing.Image)(resources.GetObject("cmdAccept.Image")));
             this.cmdAccept.ImageSize = new System.Drawing.Size(20, 20);
             this.cmdAccept.Location = new System.Drawing.Point(351, 434);
             this.cmdAccept.Name = "cmdAccept";
             this.cmdAccept.Size = new System.Drawing.Size(103, 30);
             this.cmdAccept.TabIndex = 28;
             this.cmdAccept.Text = "Đồng ý";
+            this.cmdAccept.Click += new System.EventHandler(this.cmdAccept_Click_1);
             // 
             // panel1
             // 

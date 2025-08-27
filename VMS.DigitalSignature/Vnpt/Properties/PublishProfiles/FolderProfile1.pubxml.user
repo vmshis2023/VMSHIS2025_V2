@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>D:\Publish Webservice\VietBaIT.ChuKySo.Api.Vnpt1</_PublishTargetUrl>
+    <History>True|2025-05-11T04:57:53.5931103Z;True|2025-05-11T11:42:03.0040753+07:00;True|2025-05-09T11:52:45.0193907+07:00;True|2025-03-25T13:53:12.5123395+07:00;True|2025-03-25T13:49:35.4526687+07:00;True|2025-03-25T13:48:50.1138211+07:00;True|2025-03-25T13:46:53.8851724+07:00;True|2025-03-25T11:07:08.0981233+07:00;</History>
+  </PropertyGroup>
+</Project>

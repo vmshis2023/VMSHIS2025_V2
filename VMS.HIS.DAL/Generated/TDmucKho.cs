@@ -474,6 +474,20 @@ namespace VMS.HIS.DAL
 				colvarMaCoso.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarMaCoso);
 				
+				TableSchema.TableColumn colvarTinhThangdu = new TableSchema.TableColumn(schema);
+				colvarTinhThangdu.ColumnName = "tinh_thangdu";
+				colvarTinhThangdu.DataType = DbType.Boolean;
+				colvarTinhThangdu.MaxLength = 0;
+				colvarTinhThangdu.AutoIncrement = false;
+				colvarTinhThangdu.IsNullable = true;
+				colvarTinhThangdu.IsPrimaryKey = false;
+				colvarTinhThangdu.IsForeignKey = false;
+				colvarTinhThangdu.IsReadOnly = false;
+				
+						colvarTinhThangdu.DefaultSetting = @"((0))";
+				colvarTinhThangdu.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarTinhThangdu);
+				
 				BaseSchema = schema;
 				//add this schema to the provider
 				//so we can query it later
@@ -691,6 +705,14 @@ namespace VMS.HIS.DAL
 			get { return GetColumnValue<string>(Columns.MaCoso); }
 			set { SetColumnValue(Columns.MaCoso, value); }
 		}
+		  
+		[XmlAttribute("TinhThangdu")]
+		[Bindable(true)]
+		public bool? TinhThangdu 
+		{
+			get { return GetColumnValue<bool?>(Columns.TinhThangdu); }
+			set { SetColumnValue(Columns.TinhThangdu, value); }
+		}
 		
 		#endregion
 		
@@ -711,7 +733,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(string varMaKho,string varTenKho,int? varSttHthi,string varKieuKho,string varKhoThuocVt,short varIdKhoaphong,string varMotaThem,byte? varLaQuaythuoc,byte? varKtraTon,DateTime? varNgaySua,DateTime? varNgayTao,string varNguoiSua,string varNguoiTao,byte? varLaTuthuoc,string varLoaiBnhan,byte? varTrangThai,byte? varTuTuc,byte? varChophepChongia,string varKieuBiendong,byte? varLoaiKho,double? varSongayNhaton,bool? varLoaibothuocHethan,bool? varKhongTinhgia,byte? varCapCuu,string varMaCoso)
+		public static void Insert(string varMaKho,string varTenKho,int? varSttHthi,string varKieuKho,string varKhoThuocVt,short varIdKhoaphong,string varMotaThem,byte? varLaQuaythuoc,byte? varKtraTon,DateTime? varNgaySua,DateTime? varNgayTao,string varNguoiSua,string varNguoiTao,byte? varLaTuthuoc,string varLoaiBnhan,byte? varTrangThai,byte? varTuTuc,byte? varChophepChongia,string varKieuBiendong,byte? varLoaiKho,double? varSongayNhaton,bool? varLoaibothuocHethan,bool? varKhongTinhgia,byte? varCapCuu,string varMaCoso,bool? varTinhThangdu)
 		{
 			TDmucKho item = new TDmucKho();
 			
@@ -765,6 +787,8 @@ namespace VMS.HIS.DAL
 			
 			item.MaCoso = varMaCoso;
 			
+			item.TinhThangdu = varTinhThangdu;
+			
 		
 			if (System.Web.HttpContext.Current != null)
 				item.Save(System.Web.HttpContext.Current.User.Identity.Name);
@@ -775,7 +799,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(int varIdKho,string varMaKho,string varTenKho,int? varSttHthi,string varKieuKho,string varKhoThuocVt,short varIdKhoaphong,string varMotaThem,byte? varLaQuaythuoc,byte? varKtraTon,DateTime? varNgaySua,DateTime? varNgayTao,string varNguoiSua,string varNguoiTao,byte? varLaTuthuoc,string varLoaiBnhan,byte? varTrangThai,byte? varTuTuc,byte? varChophepChongia,string varKieuBiendong,byte? varLoaiKho,double? varSongayNhaton,bool? varLoaibothuocHethan,bool? varKhongTinhgia,byte? varCapCuu,string varMaCoso)
+		public static void Update(int varIdKho,string varMaKho,string varTenKho,int? varSttHthi,string varKieuKho,string varKhoThuocVt,short varIdKhoaphong,string varMotaThem,byte? varLaQuaythuoc,byte? varKtraTon,DateTime? varNgaySua,DateTime? varNgayTao,string varNguoiSua,string varNguoiTao,byte? varLaTuthuoc,string varLoaiBnhan,byte? varTrangThai,byte? varTuTuc,byte? varChophepChongia,string varKieuBiendong,byte? varLoaiKho,double? varSongayNhaton,bool? varLoaibothuocHethan,bool? varKhongTinhgia,byte? varCapCuu,string varMaCoso,bool? varTinhThangdu)
 		{
 			TDmucKho item = new TDmucKho();
 			
@@ -830,6 +854,8 @@ namespace VMS.HIS.DAL
 				item.CapCuu = varCapCuu;
 			
 				item.MaCoso = varMaCoso;
+			
+				item.TinhThangdu = varTinhThangdu;
 			
 			item.IsNew = false;
 			if (System.Web.HttpContext.Current != null)
@@ -1026,6 +1052,13 @@ namespace VMS.HIS.DAL
         
         
         
+        public static TableSchema.TableColumn TinhThangduColumn
+        {
+            get { return Schema.Columns[26]; }
+        }
+        
+        
+        
         #endregion
 		#region Columns Struct
 		public struct Columns
@@ -1056,6 +1089,7 @@ namespace VMS.HIS.DAL
 			 public static string KhongTinhgia = @"khong_tinhgia";
 			 public static string CapCuu = @"cap_cuu";
 			 public static string MaCoso = @"ma_coso";
+			 public static string TinhThangdu = @"tinh_thangdu";
 						
 		}
 		#endregion

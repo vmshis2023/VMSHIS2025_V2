@@ -1,0 +1,9 @@
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\obj\Debug\net5.0\VietBaIT.ChuKySo.Api.csproj.AssemblyReference.cache
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\obj\Debug\net5.0\VietBaIT.ChuKySo.Api.Properties.Resources.resources
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\obj\Debug\net5.0\VietBaIT.ChuKySo.Api.csproj.GenerateResource.cache
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\obj\Debug\net5.0\VietBaIT.ChuKySo.Api.GeneratedMSBuildEditorConfig.editorconfig
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\obj\Debug\net5.0\VietBaIT.ChuKySo.Api.AssemblyInfoInputs.cache
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\obj\Debug\net5.0\VietBaIT.ChuKySo.Api.AssemblyInfo.cs
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\obj\Debug\net5.0\VietBaIT.ChuKySo.Api.csproj.CoreCompileInputs.cache
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\obj\Debug\net5.0\VietBaIT.ChuKySo.Api.MvcApplicationPartsAssemblyInfo.cs
+F:\LABLink_Code_2024\ChuKySo\VietBaIT.ChuKySo.Api\obj\Debug\net5.0\VietBaIT.ChuKySo.Api.MvcApplicationPartsAssemblyInfo.cache

@@ -633,6 +633,42 @@ namespace VMS.HIS.DAL{
                 
                 schema.Columns.Add(colvarLaNguoidaidienDonvi);
                 
+                TableSchema.TableColumn colvarUserId = new TableSchema.TableColumn(schema);
+                colvarUserId.ColumnName = "user_id";
+                colvarUserId.DataType = DbType.String;
+                colvarUserId.MaxLength = 255;
+                colvarUserId.AutoIncrement = false;
+                colvarUserId.IsNullable = true;
+                colvarUserId.IsPrimaryKey = false;
+                colvarUserId.IsForeignKey = false;
+                colvarUserId.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarUserId);
+                
+                TableSchema.TableColumn colvarUserSecret = new TableSchema.TableColumn(schema);
+                colvarUserSecret.ColumnName = "user_secret";
+                colvarUserSecret.DataType = DbType.String;
+                colvarUserSecret.MaxLength = 255;
+                colvarUserSecret.AutoIncrement = false;
+                colvarUserSecret.IsNullable = true;
+                colvarUserSecret.IsPrimaryKey = false;
+                colvarUserSecret.IsForeignKey = false;
+                colvarUserSecret.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarUserSecret);
+                
+                TableSchema.TableColumn colvarUserTotp = new TableSchema.TableColumn(schema);
+                colvarUserTotp.ColumnName = "user_totp";
+                colvarUserTotp.DataType = DbType.String;
+                colvarUserTotp.MaxLength = 255;
+                colvarUserTotp.AutoIncrement = false;
+                colvarUserTotp.IsNullable = true;
+                colvarUserTotp.IsPrimaryKey = false;
+                colvarUserTotp.IsForeignKey = false;
+                colvarUserTotp.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarUserTotp);
+                
                 TableSchema.TableColumn colvarTenCosokcb = new TableSchema.TableColumn(schema);
                 colvarTenCosokcb.ColumnName = "ten_cosokcb";
                 colvarTenCosokcb.DataType = DbType.String;
@@ -1415,6 +1451,48 @@ namespace VMS.HIS.DAL{
             }
         }
 	      
+        [XmlAttribute("UserId")]
+        [Bindable(true)]
+        public string UserId 
+	    {
+		    get
+		    {
+			    return GetColumnValue<string>("user_id");
+		    }
+            set 
+		    {
+			    SetColumnValue("user_id", value);
+            }
+        }
+	      
+        [XmlAttribute("UserSecret")]
+        [Bindable(true)]
+        public string UserSecret 
+	    {
+		    get
+		    {
+			    return GetColumnValue<string>("user_secret");
+		    }
+            set 
+		    {
+			    SetColumnValue("user_secret", value);
+            }
+        }
+	      
+        [XmlAttribute("UserTotp")]
+        [Bindable(true)]
+        public string UserTotp 
+	    {
+		    get
+		    {
+			    return GetColumnValue<string>("user_totp");
+		    }
+            set 
+		    {
+			    SetColumnValue("user_totp", value);
+            }
+        }
+	      
         [XmlAttribute("TenCosokcb")]
         [Bindable(true)]
         public string TenCosokcb 
@@ -1587,6 +1665,12 @@ namespace VMS.HIS.DAL{
             public static string LaTruongkhoa = @"la_truongkhoa";
             
             public static string LaNguoidaidienDonvi = @"la_nguoidaidien_donvi";
+            
+            public static string UserId = @"user_id";
+            
+            public static string UserSecret = @"user_secret";
+            
+            public static string UserTotp = @"user_totp";
             
             public static string TenCosokcb = @"ten_cosokcb";
             

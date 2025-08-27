@@ -455,7 +455,7 @@ namespace VNSCore
                     Utility.DefaultNow(this);
                     return;
                 }
-                this.Opacity = 0;
+                //this.Opacity = 0;
                 //if (chkRemember.Checked)
                 //{
                 PropertyLib._AppProperties.UID = Utility.sDbnull(txtUserName.Text);

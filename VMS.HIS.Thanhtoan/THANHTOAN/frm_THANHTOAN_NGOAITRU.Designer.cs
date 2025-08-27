@@ -351,6 +351,8 @@
             this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuTamthu = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuKetChuyen = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnu_chitietcongnophaithu = new System.Windows.Forms.ToolStripMenuItem();
             this.ctxBienlai.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -2730,7 +2732,7 @@
             this.cmdShowHide.Appearance = Janus.Windows.UI.Appearance.Flat;
             this.cmdShowHide.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdShowHide.Image = ((System.Drawing.Image)(resources.GetObject("cmdShowHide.Image")));
-            this.cmdShowHide.ImageSize = new System.Drawing.Size(22, 22);
+            this.cmdShowHide.ImageSize = new System.Drawing.Size(18, 18);
             this.cmdShowHide.Location = new System.Drawing.Point(1, 1);
             this.cmdShowHide.Name = "cmdShowHide";
             this.cmdShowHide.Office2007ColorScheme = Janus.Windows.UI.Office2007ColorScheme.Custom;
@@ -3603,7 +3605,7 @@
             this.uiTabPageMG.Controls.Add(this.ucMiengiamkhac1);
             this.uiTabPageMG.Location = new System.Drawing.Point(1, 23);
             this.uiTabPageMG.Name = "uiTabPageMG";
-            this.uiTabPageMG.Size = new System.Drawing.Size(1096, 762);
+            this.uiTabPageMG.Size = new System.Drawing.Size(1096, 698);
             this.uiTabPageMG.TabStop = true;
             this.uiTabPageMG.Text = "Miễn giảm khác";
             // 
@@ -3612,7 +3614,7 @@
             this.ucMiengiamkhac1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucMiengiamkhac1.Location = new System.Drawing.Point(0, 0);
             this.ucMiengiamkhac1.Name = "ucMiengiamkhac1";
-            this.ucMiengiamkhac1.Size = new System.Drawing.Size(1096, 762);
+            this.ucMiengiamkhac1.Size = new System.Drawing.Size(1096, 698);
             this.ucMiengiamkhac1.TabIndex = 0;
             // 
             // uiTabLSuPhieuTT
@@ -3629,7 +3631,7 @@
             this.uiTabPageTamung.Controls.Add(this.ucTamung1);
             this.uiTabPageTamung.Location = new System.Drawing.Point(1, 23);
             this.uiTabPageTamung.Name = "uiTabPageTamung";
-            this.uiTabPageTamung.Size = new System.Drawing.Size(1096, 762);
+            this.uiTabPageTamung.Size = new System.Drawing.Size(1096, 698);
             this.uiTabPageTamung.TabStop = true;
             this.uiTabPageTamung.Text = "Tạm ứng(Alt+F6)";
             // 
@@ -3638,7 +3640,7 @@
             this.ucTamung1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucTamung1.Location = new System.Drawing.Point(0, 0);
             this.ucTamung1.Name = "ucTamung1";
-            this.ucTamung1.Size = new System.Drawing.Size(1096, 762);
+            this.ucTamung1.Size = new System.Drawing.Size(1096, 698);
             this.ucTamung1.TabIndex = 1;
             // 
             // uiTabPageThuchikhac
@@ -3646,7 +3648,7 @@
             this.uiTabPageThuchikhac.Controls.Add(this.ucThuchikhac1);
             this.uiTabPageThuchikhac.Location = new System.Drawing.Point(1, 23);
             this.uiTabPageThuchikhac.Name = "uiTabPageThuchikhac";
-            this.uiTabPageThuchikhac.Size = new System.Drawing.Size(1096, 762);
+            this.uiTabPageThuchikhac.Size = new System.Drawing.Size(1096, 698);
             this.uiTabPageThuchikhac.TabStop = true;
             this.uiTabPageThuchikhac.Text = "Thu khác-chi khác";
             // 
@@ -3655,7 +3657,7 @@
             this.ucThuchikhac1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucThuchikhac1.Location = new System.Drawing.Point(0, 0);
             this.ucThuchikhac1.Name = "ucThuchikhac1";
-            this.ucThuchikhac1.Size = new System.Drawing.Size(1096, 762);
+            this.ucThuchikhac1.Size = new System.Drawing.Size(1096, 698);
             this.ucThuchikhac1.TabIndex = 0;
             // 
             // TabpageCauhinh
@@ -3693,7 +3695,7 @@
             this.TabpageCauhinh.Controls.Add(this.vbLine2);
             this.TabpageCauhinh.Location = new System.Drawing.Point(1, 23);
             this.TabpageCauhinh.Name = "TabpageCauhinh";
-            this.TabpageCauhinh.Size = new System.Drawing.Size(1096, 762);
+            this.TabpageCauhinh.Size = new System.Drawing.Size(1096, 698);
             this.TabpageCauhinh.TabStop = true;
             this.TabpageCauhinh.Text = "Cấu hình(Alt+F7)";
             // 
@@ -4167,10 +4169,12 @@
             this.mnuInhoanung,
             this.toolStripMenuItem7,
             this.mnuTamthu,
-            this.mnuKetChuyen});
+            this.mnuKetChuyen,
+            this.toolStripMenuItem6,
+            this.mnu_chitietcongnophaithu});
             this.ctxChucnangkhac.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.ctxChucnangkhac.Name = "contextMenuStrip1";
-            this.ctxChucnangkhac.Size = new System.Drawing.Size(336, 348);
+            this.ctxChucnangkhac.Size = new System.Drawing.Size(336, 376);
             // 
             // mnu_inbangkechiphikcb_dathanhtoan
             // 
@@ -4308,6 +4312,18 @@
             this.mnuKetChuyen.Size = new System.Drawing.Size(335, 22);
             this.mnuKetChuyen.Text = "Gạch nợ";
             this.mnuKetChuyen.Click += new System.EventHandler(this.mnuKetChuyen_Click);
+            // 
+            // toolStripMenuItem6
+            // 
+            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(332, 6);
+            // 
+            // mnu_chitietcongnophaithu
+            // 
+            this.mnu_chitietcongnophaithu.Name = "mnu_chitietcongnophaithu";
+            this.mnu_chitietcongnophaithu.Size = new System.Drawing.Size(335, 22);
+            this.mnu_chitietcongnophaithu.Text = "Chi tiết công nợ phải thu";
+            this.mnu_chitietcongnophaithu.Click += new System.EventHandler(this.mnu_chitietcongnophaithu_Click);
             // 
             // frm_THANHTOAN_NGOAITRU
             // 
@@ -4711,5 +4727,7 @@
         private System.Windows.Forms.Label label51;
         private Janus.Windows.GridEX.EditControls.EditBox txt_tongtien_tralai;
         private System.Windows.Forms.ToolStripMenuItem mnu_inbangkechiphikcb_dathanhtoan;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem6;
+        private System.Windows.Forms.ToolStripMenuItem mnu_chitietcongnophaithu;
     }
 }

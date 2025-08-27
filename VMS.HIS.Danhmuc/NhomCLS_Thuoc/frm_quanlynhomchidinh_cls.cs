@@ -156,7 +156,7 @@ namespace VNS.HIS.UI.NGOAITRU
                 if (tennhom == "") tennhom = "-1";
                 string MaLoainhom = Utility.DoTrim(txtLoainhom.myCode);
                 if (MaLoainhom == "") MaLoainhom = "-1";
-                m_dtData = _KCB_CHIDINH_CANLAMSANG.DmucTimkiemNhomchidinhCls(IdNhom, tennhom, manhom, MaLoainhom, loainhom, Utility.Int32Dbnull(txtDmucDichvuCLS.MyID, -1), globalVariables.UserName,Utility.Bool2byte( globalVariables.IsAdmin));
+                m_dtData = _KCB_CHIDINH_CANLAMSANG.DmucTimkiemNhomchidinhCls(IdNhom, manhom, tennhom, MaLoainhom, loainhom, Utility.Int32Dbnull(txtDmucDichvuCLS.MyID, -1), globalVariables.UserName,Utility.Bool2byte( globalVariables.IsAdmin));
                 Utility.SetDataSourceForDataGridEx(grdList, m_dtData, true, true, "1=1", DmucNhomcanlamsang.Columns.TenNhom );
                 if (grdList.GetDataRows().Length <= 0)
                     m_dataDataRegExam.Rows.Clear();

@@ -527,7 +527,10 @@ namespace VNS.HIS.UCs
 
             }
         }
-
+        public void RaiseEnterEvents()
+        {
+            if (_OnEnterMe != null) _OnEnterMe();
+        }
         public void SetId(object _Id)
         {
             try

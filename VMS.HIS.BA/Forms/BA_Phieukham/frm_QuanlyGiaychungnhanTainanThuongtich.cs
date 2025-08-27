@@ -43,6 +43,12 @@ namespace VNS.HIS.UI.NOITRU
             chkByDate.CheckedChanged += chkByDate_CheckedChanged;
             Load += frm_QuanlyGiaychungnhanTainanThuongtich_Load;
             KeyDown += frm_QuanlyGiaychungnhanTainanThuongtich_KeyDown;
+            grdList.MouseDoubleClick += GrdList_MouseDoubleClick;
+        }
+
+        private void GrdList_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            cmdUpdate.PerformClick();
         }
         /// <summary>
         /// hàm thực hiện việc thoát Form hiện tại

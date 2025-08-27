@@ -25,7 +25,7 @@ namespace VNS.HIS.UCs
         public delegate void OnChangedView(bool gridview);
         public event OnChangedView _OnChangedView;
         public event OnSelectionChanged _OnSelectionChanged;
-        public delegate void OnGridSelectionChanged(int id_congkham, string ma_congkham, string ten_congkham, string ten_phongkham);
+        public delegate void OnGridSelectionChanged(int Loai,int id_congkham, List<int> lstSelectedID, List<int> lstLoai, string ma_congkham, string ten_congkham, string ten_phongkham);
         public event OnGridSelectionChanged _OnGridSelectionChanged;
         public delegate void OnEnterMe();
         public event OnEnterMe _OnEnterMe;
@@ -44,7 +44,9 @@ namespace VNS.HIS.UCs
         private System.ComponentModel.IContainer components;
         public object MyID { get; set; }
         public string MyCode { get; set; }
-
+        public int Loai { get; set; }
+        public List<int> lstSelectedID { get; set; }
+        public List<int> lstLoai { get; set; }
         public Control txtNext { get; set; }
         // a Panel for displaying
         private Panel panel;
@@ -171,34 +173,40 @@ namespace VNS.HIS.UCs
             
         }
 
-        private void _grid__OnKeyDown1(int id_congkham, string ma_congkham, string ten_congkham, string ten_phongkham)
+        private void _grid__OnKeyDown1(int Loai,int id_congkham, List<int> lstSelectedID, List<int> lstLoai, string ma_congkham, string ten_congkham, string ten_phongkham)
         {
             _Text = ten_congkham;
             MyText = ten_congkham;
             MyCode = ma_congkham;
             MyID = id_congkham;
+            this.Loai = Loai;
+            this.lstSelectedID = lstSelectedID;
+            this.lstLoai = lstLoai;
             OnKeyDown(new KeyEventArgs(Keys.Enter));
             //if(_OnGridSelectionChanged != null) _OnGridSelectionChanged(id_congkham, ma_congkham, ten_congkham, ten_phongkham);
         }
 
-        private void _grid__OnCellValueChanged1(int id_congkham, string ma_congkham, string ten_congkham, string ten_phongkham)
+        private void _grid__OnCellValueChanged1(int Loai,int id_congkham, List<int> lstSelectedID, List<int> lstLoai, string ma_congkham, string ten_congkham, string ten_phongkham)
         {
            
         }
 
-        private void _grid__OnSelectionChanged1(int id_congkham, string ma_congkham, string ten_congkham, string ten_phongkham)
+        private void _grid__OnSelectionChanged1(int loai,int id_congkham, List<int> lstSelectedID, List<int> lstLoai, string ma_congkham, string ten_congkham, string ten_phongkham)
         {
+            this.lstSelectedID = lstSelectedID;
+            this.lstLoai = lstLoai;
             if (!AllowTextChanged) return;
             if (txtMyID != null)
                 txtMyID.Text = id_congkham.ToString();
             if (txtMyID_Edit != null)
                 txtMyID_Edit.Text = id_congkham.ToString();
             MyID = id_congkham;
+            this.Loai = Loai;
             if (txtMyName != null)
                 txtMyName.Text = ten_congkham;
             if (txtMyName_Edit != null)
                 txtMyName_Edit.Text = ten_congkham;
-            if (_OnGridSelectionChanged != null) _OnGridSelectionChanged(id_congkham, ma_congkham, ten_congkham, ten_phongkham);
+            if (_OnGridSelectionChanged != null) _OnGridSelectionChanged(loai,id_congkham, lstSelectedID, lstLoai, ma_congkham, ten_congkham, ten_phongkham);
         }
 
         bool _RaiseEvent_old, RaiseEventEnter_old, RaiseEventEnterWhenEmpty_old;
@@ -1006,7 +1014,13 @@ namespace VNS.HIS.UCs
                         _Text = _grid.grdList.GetValue(DmucDichvukcb.Columns.TenDichvukcb).ToString();
                         MyID = Utility.Int32Dbnull(_grid.grdList.GetValue("id_dichvukcb"), "-1");
                         MyCode = Utility.sDbnull(_grid.grdList.GetValue("ma_dichvukcb"), "");
-
+                        //Nếu thích thì thêm vào mục này để luôn có giá trị khi nhấn lưu chỗ form đăng ký
+                        //if (this.lstSelectedID == null)
+                        //{
+                        //    this.lstSelectedID = new List<int>();
+                        //}
+                        //if (!this.lstSelectedID.Contains(Convert.ToInt32( MyID)))
+                        //    this.lstSelectedID.Add(Convert.ToInt32(MyID));
                         this.Select(this.Text.Length, 0);
                         AllowTextChanged = false;
                         _grid.AllowedChanged = AllowTextChanged;
@@ -1036,7 +1050,15 @@ namespace VNS.HIS.UCs
                                 txtMyCode_Edit.Text = arrValues[1];
                             MyID = arrValues[0];
                             MyCode = arrValues[1];
-                            MyText = listBox.SelectedItem.ToString(); 
+                            MyText = listBox.SelectedItem.ToString();
+                            //Nếu thích thì thêm vào mục này để luôn có giá trị khi nhấn lưu chỗ form đăng ký. Còn không phía form đăngký nếu kiểm tra !=null && count<=0 thì add ID công khám này để tránh lỗi lưu không có công khám
+                            //if (this.lstSelectedID == null)
+                            //{
+                            //    this.lstSelectedID = new List<int>();
+                            //}
+                            //if (!this.lstSelectedID.Contains(Convert.ToInt32( MyID)))
+                            //    this.lstSelectedID.Add(Convert.ToInt32(MyID));
+
                             //find id_thuockho
                             //DataRow[] arrDr = dtData.Select("id_thuoc=" + MyID);
                             //if (arrDr.Length > 0)
@@ -1193,7 +1215,7 @@ namespace VNS.HIS.UCs
                 }
                 // prevent overlapping problems with other controls
                 panel.ResumeLayout(true);
-                if (Utility.DoTrim(_content) == "" || Utility.sDbnull(MyID)=="")
+                if (Utility.DoTrim(_content) == "" && Utility.sDbnull(MyID)=="")
                 {
                     setDefaultValue();
                 }

@@ -32,11 +32,12 @@ namespace VMS.HIS.UI.EMR
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_QuanlyBA_Namkhoa));
-            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel4 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
-            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel5 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
-            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel6 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
+            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel1 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
+            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel2 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
+            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel3 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
             Janus.Windows.GridEX.GridEXLayout grdList_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.cmdInsert = new System.Windows.Forms.ToolStripButton();
             this.cmdUpdate = new System.Windows.Forms.ToolStripButton();
             this.cmdDelete = new System.Windows.Forms.ToolStripButton();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
@@ -83,7 +84,6 @@ namespace VMS.HIS.UI.EMR
             this.uiStatusBar1 = new Janus.Windows.UI.StatusBar.UIStatusBar();
             this.uiGroupBox2 = new Janus.Windows.EditControls.UIGroupBox();
             this.grdList = new Janus.Windows.GridEX.GridEX();
-            this.cmdInsert = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox1)).BeginInit();
             this.uiGroupBox1.SuspendLayout();
@@ -111,9 +111,18 @@ namespace VMS.HIS.UI.EMR
             this.cmdExit});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1279, 31);
+            this.toolStrip1.Size = new System.Drawing.Size(1279, 27);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // cmdInsert
+            // 
+            this.cmdInsert.Image = global::VMS.HIS.EMR.Properties.Resources.add_04_32;
+            this.cmdInsert.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.cmdInsert.Name = "cmdInsert";
+            this.cmdInsert.Size = new System.Drawing.Size(95, 24);
+            this.cmdInsert.Text = "Thêm mới";
+            this.cmdInsert.Click += new System.EventHandler(this.cmdInsert_Click_1);
             // 
             // cmdUpdate
             // 
@@ -121,7 +130,7 @@ namespace VMS.HIS.UI.EMR
             this.cmdUpdate.Image = ((System.Drawing.Image)(resources.GetObject("cmdUpdate.Image")));
             this.cmdUpdate.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdUpdate.Name = "cmdUpdate";
-            this.cmdUpdate.Size = new System.Drawing.Size(94, 28);
+            this.cmdUpdate.Size = new System.Drawing.Size(90, 24);
             this.cmdUpdate.Text = "Cập nhật";
             this.cmdUpdate.ToolTipText = "Cập nhật thông tin phiếu chuyển tuyến";
             this.cmdUpdate.Click += new System.EventHandler(this.cmdUpdate_Click);
@@ -131,7 +140,7 @@ namespace VMS.HIS.UI.EMR
             this.cmdDelete.Image = ((System.Drawing.Image)(resources.GetObject("cmdDelete.Image")));
             this.cmdDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdDelete.Name = "cmdDelete";
-            this.cmdDelete.Size = new System.Drawing.Size(117, 28);
+            this.cmdDelete.Size = new System.Drawing.Size(113, 24);
             this.cmdDelete.Text = "Xóa Bệnh án";
             this.cmdDelete.ToolTipText = "Xóa phiếu chuyển tuyến";
             this.cmdDelete.Click += new System.EventHandler(this.cmdDelete_Click);
@@ -151,7 +160,7 @@ namespace VMS.HIS.UI.EMR
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(113, 28);
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(109, 24);
             this.toolStripDropDownButton1.Text = "In Bệnh án";
             // 
             // mnuInTo1
@@ -222,15 +231,15 @@ namespace VMS.HIS.UI.EMR
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // cmdTomtatBA
             // 
             this.cmdTomtatBA.Image = ((System.Drawing.Image)(resources.GetObject("cmdTomtatBA.Image")));
             this.cmdTomtatBA.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdTomtatBA.Name = "cmdTomtatBA";
-            this.cmdTomtatBA.Size = new System.Drawing.Size(114, 28);
-            this.cmdTomtatBA.Text = "Tổng kết BA";
+            this.cmdTomtatBA.Size = new System.Drawing.Size(137, 24);
+            this.cmdTomtatBA.Text = "Tóm tắt Bệnh án";
             this.cmdTomtatBA.Click += new System.EventHandler(this.cmdTomtatBA_Click);
             // 
             // cmdEmr
@@ -238,7 +247,7 @@ namespace VMS.HIS.UI.EMR
             this.cmdEmr.Image = ((System.Drawing.Image)(resources.GetObject("cmdEmr.Image")));
             this.cmdEmr.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdEmr.Name = "cmdEmr";
-            this.cmdEmr.Size = new System.Drawing.Size(66, 28);
+            this.cmdEmr.Size = new System.Drawing.Size(62, 24);
             this.cmdEmr.Text = "EMR";
             this.cmdEmr.Click += new System.EventHandler(this.cmdEmr_Click);
             // 
@@ -247,7 +256,7 @@ namespace VMS.HIS.UI.EMR
             this.cmdDongBA.Image = ((System.Drawing.Image)(resources.GetObject("cmdDongBA.Image")));
             this.cmdDongBA.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdDongBA.Name = "cmdDongBA";
-            this.cmdDongBA.Size = new System.Drawing.Size(127, 28);
+            this.cmdDongBA.Size = new System.Drawing.Size(123, 24);
             this.cmdDongBA.Text = "Đóng Bệnh án";
             this.cmdDongBA.Click += new System.EventHandler(this.cmdDongBA_Click);
             // 
@@ -257,7 +266,7 @@ namespace VMS.HIS.UI.EMR
             this.cmdExit.Image = ((System.Drawing.Image)(resources.GetObject("cmdExit.Image")));
             this.cmdExit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdExit.Name = "cmdExit";
-            this.cmdExit.Size = new System.Drawing.Size(73, 28);
+            this.cmdExit.Size = new System.Drawing.Size(69, 24);
             this.cmdExit.Text = "Thoát";
             // 
             // uiGroupBox1
@@ -279,7 +288,7 @@ namespace VMS.HIS.UI.EMR
             this.uiGroupBox1.Controls.Add(this.dtFromDate);
             this.uiGroupBox1.Controls.Add(this.label1);
             this.uiGroupBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.uiGroupBox1.Location = new System.Drawing.Point(0, 31);
+            this.uiGroupBox1.Location = new System.Drawing.Point(0, 27);
             this.uiGroupBox1.Name = "uiGroupBox1";
             this.uiGroupBox1.Size = new System.Drawing.Size(1279, 110);
             this.uiGroupBox1.TabIndex = 5;
@@ -288,8 +297,6 @@ namespace VMS.HIS.UI.EMR
             // 
             // cboLoaiBA
             // 
-            this.cboLoaiBA.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.cboLoaiBA.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
             this.cboLoaiBA.FormattingEnabled = true;
             this.cboLoaiBA.Location = new System.Drawing.Point(635, 26);
@@ -368,7 +375,7 @@ namespace VMS.HIS.UI.EMR
             this.txtmaBA.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtmaBA.Location = new System.Drawing.Point(956, 26);
             this.txtmaBA.Name = "txtmaBA";
-            this.txtmaBA.Size = new System.Drawing.Size(167, 21);
+            this.txtmaBA.Size = new System.Drawing.Size(122, 21);
             this.txtmaBA.TabIndex = 2;
             this.txtmaBA.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center;
             this.txtmaBA.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
@@ -584,26 +591,26 @@ namespace VMS.HIS.UI.EMR
             this.uiStatusBar1.Font = new System.Drawing.Font("Arial", 9F);
             this.uiStatusBar1.Location = new System.Drawing.Point(0, 706);
             this.uiStatusBar1.Name = "uiStatusBar1";
-            uiStatusBarPanel4.BorderColor = System.Drawing.Color.Empty;
-            uiStatusBarPanel4.Key = "";
-            uiStatusBarPanel4.ProgressBarValue = 0;
-            uiStatusBarPanel4.Text = "F3: Tìm kiếm ";
-            uiStatusBarPanel5.BorderColor = System.Drawing.Color.Empty;
-            uiStatusBarPanel5.Key = "";
-            uiStatusBarPanel5.ProgressBarValue = 0;
-            uiStatusBarPanel5.Text = "Esc: Thoát";
-            uiStatusBarPanel6.Alignment = System.Windows.Forms.HorizontalAlignment.Right;
-            uiStatusBarPanel6.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Spring;
-            uiStatusBarPanel6.BorderColor = System.Drawing.Color.Empty;
-            uiStatusBarPanel6.Key = "";
-            uiStatusBarPanel6.ProgressBarValue = 0;
-            uiStatusBarPanel6.Text = "Với mã khám nhập các số cuối khác số 0 và nhấn Enter. Ví dụ tìm mã khám 2300012 t" +
+            uiStatusBarPanel1.BorderColor = System.Drawing.Color.Empty;
+            uiStatusBarPanel1.Key = "";
+            uiStatusBarPanel1.ProgressBarValue = 0;
+            uiStatusBarPanel1.Text = "F3: Tìm kiếm ";
+            uiStatusBarPanel2.BorderColor = System.Drawing.Color.Empty;
+            uiStatusBarPanel2.Key = "";
+            uiStatusBarPanel2.ProgressBarValue = 0;
+            uiStatusBarPanel2.Text = "Esc: Thoát";
+            uiStatusBarPanel3.Alignment = System.Windows.Forms.HorizontalAlignment.Right;
+            uiStatusBarPanel3.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Spring;
+            uiStatusBarPanel3.BorderColor = System.Drawing.Color.Empty;
+            uiStatusBarPanel3.Key = "";
+            uiStatusBarPanel3.ProgressBarValue = 0;
+            uiStatusBarPanel3.Text = "Với mã khám nhập các số cuối khác số 0 và nhấn Enter. Ví dụ tìm mã khám 2300012 t" +
     "hì chỉ cần gõ 12 và Enter.                                       ";
-            uiStatusBarPanel6.Width = 1069;
+            uiStatusBarPanel3.Width = 1069;
             this.uiStatusBar1.Panels.AddRange(new Janus.Windows.UI.StatusBar.UIStatusBarPanel[] {
-            uiStatusBarPanel4,
-            uiStatusBarPanel5,
-            uiStatusBarPanel6});
+            uiStatusBarPanel1,
+            uiStatusBarPanel2,
+            uiStatusBarPanel3});
             this.uiStatusBar1.Size = new System.Drawing.Size(1279, 23);
             this.uiStatusBar1.TabIndex = 359;
             this.uiStatusBar1.TabStop = false;
@@ -612,9 +619,9 @@ namespace VMS.HIS.UI.EMR
             // 
             this.uiGroupBox2.Controls.Add(this.grdList);
             this.uiGroupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiGroupBox2.Location = new System.Drawing.Point(0, 141);
+            this.uiGroupBox2.Location = new System.Drawing.Point(0, 137);
             this.uiGroupBox2.Name = "uiGroupBox2";
-            this.uiGroupBox2.Size = new System.Drawing.Size(1279, 565);
+            this.uiGroupBox2.Size = new System.Drawing.Size(1279, 569);
             this.uiGroupBox2.TabIndex = 360;
             this.uiGroupBox2.Text = "Danh sách Bệnh án";
             this.uiGroupBox2.VisualStyle = Janus.Windows.UI.Dock.PanelVisualStyle.Office2003;
@@ -643,19 +650,10 @@ namespace VMS.HIS.UI.EMR
             this.grdList.RecordNavigator = true;
             this.grdList.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
             this.grdList.SelectedFormatStyle.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.grdList.Size = new System.Drawing.Size(1273, 545);
+            this.grdList.Size = new System.Drawing.Size(1273, 549);
             this.grdList.TabIndex = 553;
             this.grdList.TabStop = false;
             this.grdList.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007;
-            // 
-            // cmdInsert
-            // 
-            this.cmdInsert.Image = global::VMS.HIS.EMR.Properties.Resources.add_04_32;
-            this.cmdInsert.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.cmdInsert.Name = "cmdInsert";
-            this.cmdInsert.Size = new System.Drawing.Size(99, 28);
-            this.cmdInsert.Text = "Thêm mới";
-            this.cmdInsert.Click += new System.EventHandler(this.cmdInsert_Click_1);
             // 
             // frm_QuanlyBA_Namkhoa
             // 

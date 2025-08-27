@@ -214,7 +214,7 @@ namespace VNS.HIS.UI.NGOAITRU
             cmdThemDonthuoc.Click += cmdCreateNewPres_Click;
             cmdSuadonthuoc.Click += cmdUpdatePres_Click;
             cmdXoadonthuoc.Click += cmdDeletePres_Click;
-            cmdIndonthuoc.Click += cmdPrintPres_Click;
+            cmdIndonthuoc.Click += cmdIndonthuoc_Click;
 
             mnuDelDrug.Click += mnuDelDrug_Click;
             mnuDelVTTH.Click += mnuDelVTTH_Click;
@@ -396,17 +396,18 @@ namespace VNS.HIS.UI.NGOAITRU
         }
         private void _ngoaigoi(object sender, EventArgs e)
         {
-            Tronggoi_ngoaigoi(false, ((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl.Name);
+            Tronggoi_ngoaigoi(false, ((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl);
         }
 
         private void _tronggoi(object sender, EventArgs e)
         {
-            Tronggoi_ngoaigoi(true, ((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl.Name);
+            Tronggoi_ngoaigoi(true, ((ContextMenuStrip)((ToolStripMenuItem)sender).Owner).SourceControl);
         }
-        void Tronggoi_ngoaigoi(bool tronggoi, string ctrlName)
+        void Tronggoi_ngoaigoi(bool tronggoi, Control sourceGrd)
         {
             try
             {
+                GridEX _myGrd = sourceGrd as GridEX;
                 if (!Utility.Coquyen("tronggoi_ngoaigoi"))
                 {
                     Utility.thongbaokhongcoquyen("tronggoi_ngoaigoi", " chuyển các dịch vụ của người bệnh vào trong gói hoặc ngoài gói. Liên hệ IT bệnh viện để được bổ sung quyền");
@@ -426,10 +427,60 @@ namespace VNS.HIS.UI.NGOAITRU
                 }
                 string sDichvu = "";
                 string sDichvu_Exception = "";
-
+                byte loai_dvu = 0;
+                loai_dvu = Utility.ByteDbnull(_myGrd.Name == grdAssignDetail.Name ? 2 : (_myGrd.Name == grdPresDetail.Name ? 3 : (_myGrd.Name == grdVTTH.Name ? 5 : 0)));
                 if (tronggoi) //Đưa vào trong gói
                 {
-                    if (ctrlName == grdAssignDetail.Name)
+                    DataTable dtGoi = m_dtAssignDetail.Clone();
+                    int v_intIdgoi = 0;
+                    int v_intIdDangky = 0;
+                    string ten_goi = "Ngoài gói";
+                    string lstException = "";
+                    var q = (from p in m_dtAssignDetail.AsEnumerable()
+                             where Utility.Int32Dbnull(p["id_goi"]) > 0
+                             select p).Distinct() ;
+                    if (q.Any())
+                    {
+                        dtGoi = q.CopyToDataTable();
+                    }
+                    if (dtGoi.Rows.Count > 0)
+                    {
+                        VMS.HIS.Danhmuc.Goikham.frm_tronggoi_tuychon _tronggoi_tuychon = new VMS.HIS.Danhmuc.Goikham.frm_tronggoi_tuychon(dtGoi);
+                        _tronggoi_tuychon.ShowDialog();
+                        if (!_tronggoi_tuychon.mv_blnCancel)
+                        {
+                            DataRow[] arrDr = m_dtAssignDetail.Select("id_dangky=" + _tronggoi_tuychon.id_dangky);
+                            if (arrDr.Length > 0)
+                            {
+                                v_intIdgoi = Utility.Int32Dbnull(arrDr[0]["id_goi"]);
+                                v_intIdDangky = Utility.Int32Dbnull(arrDr[0]["id_dangky"]);
+                                ten_goi = Utility.sDbnull(arrDr[0]["ten_goi"]);
+                                //Kiểm tra điều kiện đưa vào gói là dịch vụ phải là thành phần cấu hình nên gói
+                                DataTable dtCheck = Utility.ExecuteSql(string.Format("select id_chitietdichvu,loai_dvu from goi_chitiet where id_goi={0}", v_intIdgoi), CommandType.Text).Tables[0];
+                                if (dtCheck.Rows.Count > 0)
+                                {
+                                    GridEXRow[] lstCheckedRow = _myGrd.GetCheckedRows();
+                                    foreach (GridEXRow _row in lstCheckedRow)
+                                    {
+                                        long id_chitietdichvu = Utility.Int64Dbnull(_row.Cells[KcbChidinhclsChitiet.Columns.IdChitietdichvu].Value, -1);
+                                        if (dtCheck.Select(string.Format("id_chitietdichvu={0} and loai_dvu={1}", id_chitietdichvu, loai_dvu)).Length <= 0)
+                                        {
+                                            _row.IsChecked = false;
+                                            lstException += Utility.sDbnull(_row.Cells["ten_chitietdichvu"].Value) + ", ";
+                                        }
+                                    }
+                                    if (lstException.Length > 0)
+                                    {
+                                        Utility.ShowMsg(string.Format("Một số dịch vụ sau không đưa được vào gói {0} do không phải là thành phần cấu thành lên gói:\r\n{1}", ten_goi, lstException));
+                                    }
+                                }
+                            }
+                        }
+                        else
+                            return;
+                    }
+
+                    if (_myGrd.Name == grdAssignDetail.Name)
                     {
                         if (grdAssignDetail.GetCheckedRows().Count() <= 0 && Utility.isValidGrid(grdAssignDetail))
                         {
@@ -449,12 +500,18 @@ namespace VNS.HIS.UI.NGOAITRU
                                 Utility.ShowMsg("Dịch vụ CLS bạn đang chọn không tồn tại (Có thể đã bị xóa bởi người khác trong lúc bạn đang thao tác). Đề nghị bạn kiểm tra lại");
                                 return;
                             }
-                            new Update(KcbChidinhclsChitiet.Schema).Set(KcbChidinhclsChitiet.Columns.TrongGoi).EqualTo(1)
+                            new Update(KcbChidinhclsChitiet.Schema)
+                                .Set("trong_goi").EqualTo(v_intIdgoi <= 0 ? 1 : 0)
+                                .Set("id_goi").EqualTo(v_intIdgoi)
+                                .Set("id_dangky").EqualTo(v_intIdDangky)
                                 .Where(KcbChidinhclsChitiet.Columns.IdChitietchidinh).IsEqualTo(Id).Execute();
                             Utility.Log(this.Name, globalVariables.UserName, string.Format("Chuyển các dịch vụ CLS của bệnh nhân có mã lần khám {0} và ID bệnh nhân: {1} tên= {2} vào trong gói: {3}", objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan, objBenhnhan.TenBenhnhan, sDichvu), newaction.Move, this.GetType().Assembly.ManifestModule.Name);
-                            grdAssignDetail.CurrentRow.BeginEdit();
-                            grdAssignDetail.CurrentRow.Cells[KcbChidinhclsChitiet.Columns.TrongGoi].Value = 1;
-                            grdAssignDetail.CurrentRow.EndEdit();
+                            _myGrd.CurrentRow.BeginEdit();
+                            _myGrd.CurrentRow.Cells["trong_goi"].Value = v_intIdgoi <= 0 ? 1 : 0;
+                            _myGrd.CurrentRow.Cells["id_goi"].Value = v_intIdgoi;
+                            _myGrd.CurrentRow.Cells["ten_goi"].Value = ten_goi;
+                            _myGrd.CurrentRow.Cells["id_dangky"].Value = v_intIdDangky;
+                            _myGrd.CurrentRow.EndEdit();
                         }
                         else
                         {
@@ -476,10 +533,16 @@ namespace VNS.HIS.UI.NGOAITRU
                                     continue;
                                 }
                                 sDichvu += Utility.sDbnull(_row.Cells["ten_chitietdichvu"].Value) + ", ";
-                                new Update(KcbChidinhclsChitiet.Schema).Set(KcbChidinhclsChitiet.Columns.TrongGoi).EqualTo(1)
+                                new Update(KcbChidinhclsChitiet.Schema)
+                                     .Set("trong_goi").EqualTo(v_intIdgoi <= 0 ? 1 : 0)
+                                .Set("id_goi").EqualTo(v_intIdgoi)
+                                .Set("id_dangky").EqualTo(v_intIdDangky)
                                     .Where(KcbChidinhclsChitiet.Columns.IdChitietchidinh).IsEqualTo(Id).Execute();
                                 _row.BeginEdit();
-                                _row.Cells[KcbChidinhclsChitiet.Columns.TrongGoi].Value = 1;
+                                _row.Cells["trong_goi"].Value = v_intIdgoi <= 0 ? 1 : 0;
+                                _row.Cells["id_goi"].Value = v_intIdgoi;
+                                _row.Cells["ten_goi"].Value = ten_goi;
+                                _row.Cells["id_dangky"].Value = v_intIdDangky;
                                 _row.EndEdit();
 
 
@@ -494,7 +557,7 @@ namespace VNS.HIS.UI.NGOAITRU
                         grdAssignDetail.Refresh();
                         //ChangeMenu(grdAssignDetail.CurrentRow);
                     }
-                    else if (ctrlName == grdPresDetail.Name)
+                    else if (_myGrd.Name == grdPresDetail.Name)
                     {
                         if (grdPresDetail.GetCheckedRows().Count() <= 0 && Utility.isValidGrid(grdPresDetail))
                         {
@@ -514,12 +577,17 @@ namespace VNS.HIS.UI.NGOAITRU
                                 Utility.ShowMsg("Thuốc bạn đang chọn không tồn tại (Có thể đã bị xóa bởi người khác trong lúc bạn đang thao tác). Đề nghị bạn kiểm tra lại");
                                 return;
                             }
-                            new Update(KcbDonthuocChitiet.Schema).Set(KcbDonthuocChitiet.Columns.TrongGoi).EqualTo(1)
+                            new Update(KcbDonthuocChitiet.Schema).Set("trong_goi").EqualTo(v_intIdgoi <= 0 ? 1 : 0)
+                                .Set("id_goi").EqualTo(v_intIdgoi)
+                                .Set("id_dangky").EqualTo(v_intIdDangky)
                                 .Where(KcbDonthuocChitiet.Columns.IdChitietdonthuoc).IsEqualTo(Id).Execute();
                             Utility.Log(this.Name, globalVariables.UserName, string.Format("Chuyển các Thuốc của bệnh nhân có mã lần khám {0} và ID bệnh nhân: {1} tên= {2} vào trong gói: {3}", objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan, objBenhnhan.TenBenhnhan, sDichvu), newaction.Move, this.GetType().Assembly.ManifestModule.Name);
-                            grdPresDetail.CurrentRow.BeginEdit();
-                            grdPresDetail.CurrentRow.Cells[KcbDonthuocChitiet.Columns.TrongGoi].Value = 1;
-                            grdPresDetail.CurrentRow.EndEdit();
+                            _myGrd.CurrentRow.BeginEdit();
+                            _myGrd.CurrentRow.Cells["trong_goi"].Value = v_intIdgoi <= 0 ? 1 : 0;
+                            _myGrd.CurrentRow.Cells["id_goi"].Value = v_intIdgoi;
+                            _myGrd.CurrentRow.Cells["ten_goi"].Value = ten_goi;
+                            _myGrd.CurrentRow.Cells["id_dangky"].Value = v_intIdDangky;
+                            _myGrd.CurrentRow.EndEdit();
                         }
                         else
                         {
@@ -540,11 +608,16 @@ namespace VNS.HIS.UI.NGOAITRU
                                     sDichvu_Exception += Utility.sDbnull(_row.Cells["ten_thuoc"].Value) + ", ";
                                     continue;
                                 }
-                                new Update(KcbDonthuocChitiet.Schema).Set(KcbDonthuocChitiet.Columns.TrongGoi).EqualTo(1)
+                                new Update(KcbDonthuocChitiet.Schema).Set("trong_goi").EqualTo(v_intIdgoi <= 0 ? 1 : 0)
+                                .Set("id_goi").EqualTo(v_intIdgoi)
+                                .Set("id_dangky").EqualTo(v_intIdDangky)
                                     .Where(KcbDonthuocChitiet.Columns.IdChitietdonthuoc).IsEqualTo(Id).Execute();
                                 sDichvu += Utility.sDbnull(_row.Cells["ten_thuoc"].Value) + ", ";
                                 _row.BeginEdit();
-                                _row.Cells[KcbDonthuocChitiet.Columns.TrongGoi].Value = 1;
+                                _row.Cells["trong_goi"].Value = v_intIdgoi <= 0 ? 1 : 0;
+                                _row.Cells["id_goi"].Value = v_intIdgoi;
+                                _row.Cells["ten_goi"].Value = ten_goi;
+                                _row.Cells["id_dangky"].Value = v_intIdDangky;
                                 _row.EndEdit();
                             }
 
@@ -558,7 +631,7 @@ namespace VNS.HIS.UI.NGOAITRU
                         grdPresDetail.Refresh();
                         //ChangeMenu(grdPresDetail.CurrentRow);
                     }
-                    else if (ctrlName == grdVTTH.Name) //VTTH
+                    else if (_myGrd.Name == grdVTTH.Name) //VTTH
                     {
                         if (grdVTTH.GetCheckedRows().Count() <= 0 && Utility.isValidGrid(grdVTTH))
                         {
@@ -578,12 +651,17 @@ namespace VNS.HIS.UI.NGOAITRU
                                 Utility.ShowMsg("VTTH bạn đang chọn không tồn tại (Có thể đã bị xóa bởi người khác trong lúc bạn đang thao tác). Đề nghị bạn kiểm tra lại");
                                 return;
                             }
-                            new Update(KcbDonthuocChitiet.Schema).Set(KcbDonthuocChitiet.Columns.TrongGoi).EqualTo(1)
+                            new Update(KcbDonthuocChitiet.Schema).Set("trong_goi").EqualTo(v_intIdgoi <= 0 ? 1 : 0)
+                                .Set("id_goi").EqualTo(v_intIdgoi)
+                                .Set("id_dangky").EqualTo(v_intIdDangky)
                                 .Where(KcbDonthuocChitiet.Columns.IdChitietdonthuoc).IsEqualTo(Id).Execute();
                             Utility.Log(this.Name, globalVariables.UserName, string.Format("Chuyển các VTTH của bệnh nhân có mã lần khám {0} và ID bệnh nhân: {1} tên= {2} vào trong gói: {3}", objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan, objBenhnhan.TenBenhnhan, sDichvu), newaction.Move, this.GetType().Assembly.ManifestModule.Name);
-                            grdVTTH.CurrentRow.BeginEdit();
-                            grdVTTH.CurrentRow.Cells[KcbDonthuocChitiet.Columns.TrongGoi].Value = 1;
-                            grdVTTH.CurrentRow.EndEdit();
+                            _myGrd.CurrentRow.BeginEdit();
+                            _myGrd.CurrentRow.Cells["trong_goi"].Value = v_intIdgoi <= 0 ? 1 : 0;
+                            _myGrd.CurrentRow.Cells["id_goi"].Value = v_intIdgoi;
+                            _myGrd.CurrentRow.Cells["ten_goi"].Value = ten_goi;
+                            _myGrd.CurrentRow.Cells["id_dangky"].Value = v_intIdDangky;
+                            _myGrd.CurrentRow.EndEdit();
                         }
                         else
                         {
@@ -604,11 +682,16 @@ namespace VNS.HIS.UI.NGOAITRU
                                     sDichvu_Exception += Utility.sDbnull(_row.Cells["ten_thuoc"].Value) + ", ";
                                     continue;
                                 }
-                                new Update(KcbDonthuocChitiet.Schema).Set(KcbDonthuocChitiet.Columns.TrongGoi).EqualTo(1)
+                                new Update(KcbDonthuocChitiet.Schema).Set("trong_goi").EqualTo(v_intIdgoi <= 0 ? 1 : 0)
+                                .Set("id_goi").EqualTo(v_intIdgoi)
+                                .Set("id_dangky").EqualTo(v_intIdDangky)
                                     .Where(KcbDonthuocChitiet.Columns.IdChitietdonthuoc).IsEqualTo(Id).Execute();
                                 sDichvu += Utility.sDbnull(_row.Cells["ten_thuoc"].Value) + ", ";
                                 _row.BeginEdit();
-                                _row.Cells[KcbDonthuocChitiet.Columns.TrongGoi].Value = 1;
+                                _row.Cells["trong_goi"].Value = v_intIdgoi <= 0 ? 1 : 0;
+                                _row.Cells["id_goi"].Value = v_intIdgoi;
+                                _row.Cells["ten_goi"].Value = ten_goi;
+                                _row.Cells["id_dangky"].Value = v_intIdDangky;
                                 _row.EndEdit();
                             }
                             Utility.Log(this.Name, globalVariables.UserName, string.Format("Chuyển các VTTH của bệnh nhân có mã lần khám {0} và ID bệnh nhân: {1} tên= {2} vào trong gói: {3}", objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan, objBenhnhan.TenBenhnhan, sDichvu), newaction.Move, this.GetType().Assembly.ManifestModule.Name);
@@ -624,7 +707,7 @@ namespace VNS.HIS.UI.NGOAITRU
                 }
                 else //Ngoài gói
                 {
-                    if (ctrlName == grdAssignDetail.Name)
+                    if (_myGrd.Name == grdAssignDetail.Name)
                     {
                         if (grdAssignDetail.GetCheckedRows().Count() <= 0 && Utility.isValidGrid(grdAssignDetail))
                         {
@@ -649,12 +732,14 @@ namespace VNS.HIS.UI.NGOAITRU
                                 .Set(KcbChidinhclsChitiet.Columns.IdDangky).EqualTo(0)
                                 .Where(KcbChidinhclsChitiet.Columns.IdChitietchidinh).IsEqualTo(Id).Execute();
                             Utility.Log(this.Name, globalVariables.UserName, string.Format("Chuyển các dịch vụ CLS của bệnh nhân có mã lần khám {0} và ID bệnh nhân: {1} tên= {2} ra ngoài gói: {3}", objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan, objBenhnhan.TenBenhnhan, sDichvu), newaction.Move, this.GetType().Assembly.ManifestModule.Name);
-                            grdAssignDetail.CurrentRow.BeginEdit();
-                            grdAssignDetail.CurrentRow.Cells[KcbChidinhclsChitiet.Columns.TrongGoi].Value = 0;
-                            grdAssignDetail.CurrentRow.Cells[KcbChidinhclsChitiet.Columns.IdGoi].Value = 0;
-                            grdAssignDetail.CurrentRow.Cells[KcbChidinhclsChitiet.Columns.IdDangky].Value = 0;
-                            grdAssignDetail.CurrentRow.EndEdit();
-                            grdAssignDetail.Refresh();
+                            _myGrd.CurrentRow.BeginEdit();
+                            _myGrd.CurrentRow.Cells["trong_goi"].Value = 0;
+                            _myGrd.CurrentRow.Cells["id_goi"].Value = 0;
+                            _myGrd.CurrentRow.Cells["ten_goi"].Value = "Ngoài gói";
+                            _myGrd.CurrentRow.Cells["id_dangky"].Value = 0;
+                            _myGrd.CurrentRow.EndEdit();
+                            _myGrd.Refresh();
+
                         }
                         else
                         {
@@ -681,10 +766,11 @@ namespace VNS.HIS.UI.NGOAITRU
                                     .Where(KcbChidinhclsChitiet.Columns.IdChitietchidinh).IsEqualTo(Id).Execute();
                                 sDichvu += Utility.sDbnull(_row.Cells["ten_chitietdichvu"].Value) + ", ";
                                 _row.BeginEdit();
-
-                                _row.Cells[KcbChidinhclsChitiet.Columns.TrongGoi].Value = 0;
-                                _row.Cells[KcbChidinhclsChitiet.Columns.IdGoi].Value = 0;
-                                _row.Cells[KcbChidinhclsChitiet.Columns.IdDangky].Value = 0;
+                                _row.BeginEdit();
+                                _row.Cells["trong_goi"].Value = 0;
+                                _row.Cells["id_goi"].Value = 0;
+                                _row.Cells["ten_goi"].Value = "Ngoài gói";
+                                _row.Cells["id_dangky"].Value = 0;
                                 _row.EndEdit();
                             }
                             Utility.Log(this.Name, globalVariables.UserName, string.Format("Chuyển các dịch vụ CLS của bệnh nhân có mã lần khám {0} và ID bệnh nhân: {1} tên= {2} ra ngoài gói: {3}", objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan, objBenhnhan.TenBenhnhan, sDichvu), newaction.Move, this.GetType().Assembly.ManifestModule.Name);
@@ -697,7 +783,7 @@ namespace VNS.HIS.UI.NGOAITRU
                         grdAssignDetail.Refresh();
                         //ChangeMenu(grdAssignDetail.CurrentRow);
                     }
-                    else if (ctrlName == grdPresDetail.Name)
+                    else if (_myGrd.Name == grdPresDetail.Name)
                     {
                         if (grdPresDetail.GetCheckedRows().Count() <= 0 && Utility.isValidGrid(grdPresDetail))
                         {
@@ -722,11 +808,13 @@ namespace VNS.HIS.UI.NGOAITRU
                                  .Set(KcbDonthuocChitiet.Columns.IdDangky).EqualTo(0)
                                 .Where(KcbDonthuocChitiet.Columns.IdChitietdonthuoc).IsEqualTo(Id).Execute();
                             Utility.Log(this.Name, globalVariables.UserName, string.Format("Chuyển các Thuốc của bệnh nhân có mã lần khám {0} và ID bệnh nhân: {1} tên= {2} ra ngoài gói: {3}", objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan, objBenhnhan.TenBenhnhan, sDichvu), newaction.Move, this.GetType().Assembly.ManifestModule.Name);
-                            grdPresDetail.CurrentRow.BeginEdit();
-                            grdPresDetail.CurrentRow.Cells[KcbDonthuocChitiet.Columns.TrongGoi].Value = 0;
-                            grdPresDetail.CurrentRow.Cells[KcbDonthuocChitiet.Columns.IdGoi].Value = 0;
-                            grdPresDetail.CurrentRow.Cells[KcbDonthuocChitiet.Columns.IdDangky].Value = 0;
-                            grdPresDetail.CurrentRow.EndEdit();
+                            _myGrd.CurrentRow.BeginEdit();
+                            _myGrd.CurrentRow.Cells["trong_goi"].Value = 0;
+                            _myGrd.CurrentRow.Cells["id_goi"].Value = 0;
+                            _myGrd.CurrentRow.Cells["ten_goi"].Value = "Ngoài gói";
+                            _myGrd.CurrentRow.Cells["id_dangky"].Value = 0;
+                            _myGrd.CurrentRow.EndEdit();
+                            _myGrd.Refresh();
                         }
                         else
                         {
@@ -753,9 +841,10 @@ namespace VNS.HIS.UI.NGOAITRU
                                     .Where(KcbDonthuocChitiet.Columns.IdChitietdonthuoc).IsEqualTo(Id).Execute();
                                 sDichvu += Utility.sDbnull(_row.Cells["ten_thuoc"].Value) + ", ";
                                 _row.BeginEdit();
-                                _row.Cells[KcbDonthuocChitiet.Columns.TrongGoi].Value = 0;
-                                _row.Cells[KcbDonthuocChitiet.Columns.IdGoi].Value = 0;
-                                _row.Cells[KcbDonthuocChitiet.Columns.IdDangky].Value = 0;
+                                _row.Cells["trong_goi"].Value = 0;
+                                _row.Cells["id_goi"].Value = 0;
+                                _row.Cells["ten_goi"].Value = "Ngoài gói";
+                                _row.Cells["id_dangky"].Value = 0;
                                 _row.EndEdit();
                             }
                             Utility.Log(this.Name, globalVariables.UserName, string.Format("Chuyển các Thuốc của bệnh nhân có mã lần khám {0} và ID bệnh nhân: {1} tên= {2} ra ngoài gói: {3}", objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan, objBenhnhan.TenBenhnhan, sDichvu), newaction.Move, this.GetType().Assembly.ManifestModule.Name);
@@ -768,7 +857,7 @@ namespace VNS.HIS.UI.NGOAITRU
                         grdPresDetail.Refresh();
                         //ChangeMenu(grdPresDetail.CurrentRow);
                     }
-                    if (ctrlName == grdVTTH.Name)
+                    if (_myGrd.Name == grdVTTH.Name)
                     {
                         if (grdVTTH.GetCheckedRows().Count() <= 0 && Utility.isValidGrid(grdVTTH))
                         {
@@ -793,11 +882,13 @@ namespace VNS.HIS.UI.NGOAITRU
                                  .Set(KcbDonthuocChitiet.Columns.IdDangky).EqualTo(0)
                                 .Where(KcbDonthuocChitiet.Columns.IdChitietdonthuoc).IsEqualTo(Id).Execute();
                             Utility.Log(this.Name, globalVariables.UserName, string.Format("Chuyển các VTTH của bệnh nhân có mã lần khám {0} và ID bệnh nhân: {1} tên= {2} ra ngoài gói: {3}", objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan, objBenhnhan.TenBenhnhan, sDichvu), newaction.Move, this.GetType().Assembly.ManifestModule.Name);
-                            grdVTTH.CurrentRow.BeginEdit();
-                            grdVTTH.CurrentRow.Cells[KcbDonthuocChitiet.Columns.TrongGoi].Value = 0;
-                            grdVTTH.CurrentRow.Cells[KcbDonthuocChitiet.Columns.IdGoi].Value = 0;
-                            grdVTTH.CurrentRow.Cells[KcbDonthuocChitiet.Columns.IdDangky].Value = 0;
-                            grdVTTH.CurrentRow.EndEdit();
+                            _myGrd.CurrentRow.BeginEdit();
+                            _myGrd.CurrentRow.Cells["trong_goi"].Value = 0;
+                            _myGrd.CurrentRow.Cells["id_goi"].Value = 0;
+                            _myGrd.CurrentRow.Cells["ten_goi"].Value = "Ngoài gói";
+                            _myGrd.CurrentRow.Cells["id_dangky"].Value = 0;
+                            _myGrd.CurrentRow.EndEdit();
+                            _myGrd.Refresh();
                         }
                         else
                         {
@@ -824,10 +915,12 @@ namespace VNS.HIS.UI.NGOAITRU
                                     .Where(KcbDonthuocChitiet.Columns.IdChitietdonthuoc).IsEqualTo(Id).Execute();
                                 sDichvu += Utility.sDbnull(_row.Cells["ten_thuoc"].Value) + ", ";
                                 _row.BeginEdit();
-                                _row.Cells[KcbDonthuocChitiet.Columns.TrongGoi].Value = 0;
-                                _row.Cells[KcbDonthuocChitiet.Columns.IdGoi].Value = 0;
-                                _row.Cells[KcbDonthuocChitiet.Columns.IdDangky].Value = 0;
+                                _row.Cells["trong_goi"].Value = 0;
+                                _row.Cells["id_goi"].Value = 0;
+                                _row.Cells["ten_goi"].Value = "Ngoài gói";
+                                _row.Cells["id_dangky"].Value = 0;
                                 _row.EndEdit();
+
                             }
                             Utility.Log(this.Name, globalVariables.UserName, string.Format("Chuyển các VTTH của bệnh nhân có mã lần khám {0} và ID bệnh nhân: {1} tên= {2} ra ngoài gói: {3}", objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan, objBenhnhan.TenBenhnhan, sDichvu), newaction.Move, this.GetType().Assembly.ManifestModule.Name);
                             if (sDichvu_Exception.Length > 0)
@@ -847,6 +940,500 @@ namespace VNS.HIS.UI.NGOAITRU
                 Utility.CatchException(ex);
             }
         }
+        //void Tronggoi_ngoaigoi_bak(bool tronggoi, string ctrlName)
+        //{
+        //    try
+        //    {
+        //        GridEX _myGrd = sourceGrd as GridEX;
+        //        if (!Utility.Coquyen("tronggoi_ngoaigoi"))
+        //        {
+        //            Utility.thongbaokhongcoquyen("tronggoi_ngoaigoi", " chuyển các dịch vụ của người bệnh vào trong gói hoặc ngoài gói. Liên hệ IT bệnh viện để được bổ sung quyền");
+        //            return;
+        //        }
+        //        objLuotkham = Utility.getKcbLuotkham(objLuotkham);
+        //        if (objLuotkham.TrangthaiNoitru == 5)
+        //        {
+        //            Utility.ShowMsg("Bệnh nhân đã được duyệt thanh toán nội trú nên bạn không thể thay đổi trạng thái trong gói/ngoài gói");
+        //            return;
+        //        }
+
+        //        if (Utility.Byte2Bool(objLuotkham.TthaiThanhtoannoitru) || objLuotkham.TrangthaiNoitru == 6)
+        //        {
+        //            Utility.ShowMsg("Bệnh nhân đã được thanh toán nội trú nên bạn không thể thay đổi trạng thái trong gói/ngoài gói");
+        //            return;
+        //        }
+        //        string sDichvu = "";
+        //        string sDichvu_Exception = "";
+
+        //        if (tronggoi) //Đưa vào trong gói
+        //        {
+        //            DataTable dtGoi = m_dtAssignDetail.Clone();
+        //            int v_intIdgoi = 0;
+        //            int v_intIdDangky = 0;
+        //            string ten_goi = "Ngoài gói";
+        //            string lstException = "";
+        //            var q = from p in m_dtAssignDetail.AsEnumerable()
+        //                    where Utility.Int32Dbnull(p["id_goi"]) > 0
+        //                    select p;
+        //            if (q.Any())
+        //            {
+        //                dtGoi = q.CopyToDataTable();
+        //            }
+        //            if (dtGoi.Rows.Count > 0)
+        //            {
+        //                VMS.HIS.Danhmuc.Goikham.frm_tronggoi_tuychon _tronggoi_tuychon = new VMS.HIS.Danhmuc.Goikham.frm_tronggoi_tuychon(dtGoi);
+        //                _tronggoi_tuychon.ShowDialog();
+        //                if (!_tronggoi_tuychon.mv_blnCancel)
+        //                {
+        //                    DataRow[] arrDr = m_dtAssignDetail.Select("id_dangky=" + _tronggoi_tuychon.id_dangky);
+        //                    if (arrDr.Length > 0)
+        //                    {
+        //                        v_intIdgoi = Utility.Int32Dbnull(arrDr[0]["id_goi"]);
+        //                        v_intIdDangky = Utility.Int32Dbnull(arrDr[0]["id_dangky"]);
+        //                        ten_goi = Utility.sDbnull(arrDr[0]["ten_goi"]);
+        //                        //Kiểm tra điều kiện đưa vào gói là dịch vụ phải là thành phần cấu hình nên gói
+        //                        DataTable dtCheck = Utility.ExecuteSql(string.Format("select id_chitietdichvu,loai_dvu from goi_chitiet where id_goi={0}", v_intIdgoi), CommandType.Text).Tables[0];
+        //                        if (dtCheck.Rows.Count > 0)
+        //                        {
+        //                            GridEXRow[] lstCheckedRow = _myGrd.GetCheckedRows();
+        //                            foreach (GridEXRow _row in lstCheckedRow)
+        //                            {
+        //                                long id_chitietdichvu = Utility.Int64Dbnull(_row.Cells[KcbChidinhclsChitiet.Columns.IdChitietdichvu].Value, -1);
+        //                                if (dtCheck.Select(string.Format("id_chitietdichvu={0} and loai_dvu={1}", id_chitietdichvu, loai_dvu)).Length <= 0)
+        //                                {
+        //                                    _row.IsChecked = false;
+        //                                    lstException += Utility.sDbnull(_row.Cells["ten_chitietdichvu"].Value) + ", ";
+        //                                }
+        //                            }
+        //                            if (lstException.Length > 0)
+        //                            {
+        //                                Utility.ShowMsg(string.Format("Một số dịch vụ sau không đưa được vào gói {0} do không phải là thành phần cấu thành lên gói:\r\n{1}", ten_goi, lstException));
+        //                            }
+        //                        }
+        //                    }
+        //                }
+        //                else
+        //                    return;
+        //            }
+
+        //            if (ctrlName == grdAssignDetail.Name)
+        //            {
+        //                if (grdAssignDetail.GetCheckedRows().Count() <= 0 && Utility.isValidGrid(grdAssignDetail))
+        //                {
+        //                    sDichvu = Utility.sDbnull(grdAssignDetail.GetValue("ten_chitietdichvu"));
+        //                    long Id = Utility.Int64Dbnull(Utility.GetValueFromGridColumn(grdAssignDetail, KcbChidinhclsChitiet.Columns.IdChitietchidinh), -1);
+        //                    KcbChidinhclsChitiet objCheck = KcbChidinhclsChitiet.FetchByID(Id);
+        //                    if (objCheck != null)
+        //                    {
+        //                        if (Utility.Byte2Bool(objCheck.TrangthaiThanhtoan)) //Đã thanh toán
+        //                        {
+        //                            Utility.ShowMsg("Dịch vụ CLS bạn đang chọn đã thanh toán nên không cho phép thay đổi trạng thái trong gói/ngoài gói. Đề nghị bạn kiểm tra lại");
+        //                            return;
+        //                        }
+        //                    }
+        //                    else
+        //                    {
+        //                        Utility.ShowMsg("Dịch vụ CLS bạn đang chọn không tồn tại (Có thể đã bị xóa bởi người khác trong lúc bạn đang thao tác). Đề nghị bạn kiểm tra lại");
+        //                        return;
+        //                    }
+        //                    new Update(KcbChidinhclsChitiet.Schema).Set(KcbChidinhclsChitiet.Columns.TrongGoi).EqualTo(1)
+        //                        .Where(KcbChidinhclsChitiet.Columns.IdChitietchidinh).IsEqualTo(Id).Execute();
+        //                    Utility.Log(this.Name, globalVariables.UserName, string.Format("Chuyển các dịch vụ CLS của bệnh nhân có mã lần khám {0} và ID bệnh nhân: {1} tên= {2} vào trong gói: {3}", objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan, objBenhnhan.TenBenhnhan, sDichvu), newaction.Move, this.GetType().Assembly.ManifestModule.Name);
+        //                    grdAssignDetail.CurrentRow.BeginEdit();
+        //                    grdAssignDetail.CurrentRow.Cells[KcbChidinhclsChitiet.Columns.TrongGoi].Value = 1;
+        //                    grdAssignDetail.CurrentRow.EndEdit();
+        //                }
+        //                else
+        //                {
+        //                    foreach (GridEXRow _row in grdAssignDetail.GetCheckedRows())
+        //                    {
+        //                        long Id = Utility.Int64Dbnull(_row.Cells[KcbChidinhclsChitiet.Columns.IdChitietchidinh].Value, -1);
+        //                        KcbChidinhclsChitiet objCheck = KcbChidinhclsChitiet.FetchByID(Id);
+        //                        if (objCheck != null)
+        //                        {
+        //                            if (Utility.Byte2Bool(objCheck.TrangthaiThanhtoan)) //Đã thanh toán
+        //                            {
+        //                                sDichvu_Exception += Utility.sDbnull(_row.Cells["ten_chitietdichvu"].Value) + ", ";
+        //                                continue;
+        //                            }
+        //                        }
+        //                        else
+        //                        {
+        //                            sDichvu_Exception += Utility.sDbnull(_row.Cells["ten_chitietdichvu"].Value) + ", ";
+        //                            continue;
+        //                        }
+        //                        sDichvu += Utility.sDbnull(_row.Cells["ten_chitietdichvu"].Value) + ", ";
+        //                        new Update(KcbChidinhclsChitiet.Schema).Set(KcbChidinhclsChitiet.Columns.TrongGoi).EqualTo(1)
+        //                            .Where(KcbChidinhclsChitiet.Columns.IdChitietchidinh).IsEqualTo(Id).Execute();
+        //                        _row.BeginEdit();
+        //                        _row.Cells[KcbChidinhclsChitiet.Columns.TrongGoi].Value = 1;
+        //                        _row.EndEdit();
+
+
+        //                    }
+        //                    Utility.Log(this.Name, globalVariables.UserName, string.Format("Chuyển các dịch vụ CLS của bệnh nhân có mã lần khám {0} và ID bệnh nhân: {1} tên= {2} vào trong gói: {3}", objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan, objBenhnhan.TenBenhnhan, sDichvu), newaction.Move, this.GetType().Assembly.ManifestModule.Name);
+        //                    if (sDichvu_Exception.Length > 0)
+        //                    {
+        //                        Utility.ShowMsg(string.Format("Hệ thống phát hiện một số dịch vụ bạn chọn đã thanh toán(hoặc không tồn tại) nên không cho phép chuyển vào gói:\r\n{0}", sDichvu_Exception));
+        //                        return;
+        //                    }
+        //                }
+        //                grdAssignDetail.Refresh();
+        //                //ChangeMenu(grdAssignDetail.CurrentRow);
+        //            }
+        //            else if (ctrlName == grdPresDetail.Name)
+        //            {
+        //                if (grdPresDetail.GetCheckedRows().Count() <= 0 && Utility.isValidGrid(grdPresDetail))
+        //                {
+        //                    sDichvu = Utility.sDbnull(grdPresDetail.GetValue("ten_thuoc"));
+        //                    long Id = Utility.Int64Dbnull(Utility.GetValueFromGridColumn(grdPresDetail, KcbDonthuocChitiet.Columns.IdChitietdonthuoc), -1);
+        //                    KcbDonthuocChitiet objCheck = KcbDonthuocChitiet.FetchByID(Id);
+        //                    if (objCheck != null)
+        //                    {
+        //                        if (Utility.Byte2Bool(objCheck.TrangthaiThanhtoan)) //Đã thanh toán
+        //                        {
+        //                            Utility.ShowMsg("Thuốc bạn đang chọn đã thanh toán nên không cho phép thay đổi trạng thái trong gói/ngoài gói. Đề nghị bạn kiểm tra lại");
+        //                            return;
+        //                        }
+        //                    }
+        //                    else
+        //                    {
+        //                        Utility.ShowMsg("Thuốc bạn đang chọn không tồn tại (Có thể đã bị xóa bởi người khác trong lúc bạn đang thao tác). Đề nghị bạn kiểm tra lại");
+        //                        return;
+        //                    }
+        //                    new Update(KcbDonthuocChitiet.Schema).Set(KcbDonthuocChitiet.Columns.TrongGoi).EqualTo(1)
+        //                        .Where(KcbDonthuocChitiet.Columns.IdChitietdonthuoc).IsEqualTo(Id).Execute();
+        //                    Utility.Log(this.Name, globalVariables.UserName, string.Format("Chuyển các Thuốc của bệnh nhân có mã lần khám {0} và ID bệnh nhân: {1} tên= {2} vào trong gói: {3}", objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan, objBenhnhan.TenBenhnhan, sDichvu), newaction.Move, this.GetType().Assembly.ManifestModule.Name);
+        //                    grdPresDetail.CurrentRow.BeginEdit();
+        //                    grdPresDetail.CurrentRow.Cells[KcbDonthuocChitiet.Columns.TrongGoi].Value = 1;
+        //                    grdPresDetail.CurrentRow.EndEdit();
+        //                }
+        //                else
+        //                {
+        //                    foreach (GridEXRow _row in grdPresDetail.GetCheckedRows())
+        //                    {
+        //                        long Id = Utility.Int64Dbnull(_row.Cells[KcbDonthuocChitiet.Columns.IdChitietdonthuoc].Value, -1);
+        //                        KcbDonthuocChitiet objCheck = KcbDonthuocChitiet.FetchByID(Id);
+        //                        if (objCheck != null)
+        //                        {
+        //                            if (Utility.Byte2Bool(objCheck.TrangthaiThanhtoan)) //Đã thanh toán
+        //                            {
+        //                                sDichvu_Exception += Utility.sDbnull(_row.Cells["ten_thuoc"].Value) + ", ";
+        //                                continue;
+        //                            }
+        //                        }
+        //                        else
+        //                        {
+        //                            sDichvu_Exception += Utility.sDbnull(_row.Cells["ten_thuoc"].Value) + ", ";
+        //                            continue;
+        //                        }
+        //                        new Update(KcbDonthuocChitiet.Schema).Set(KcbDonthuocChitiet.Columns.TrongGoi).EqualTo(1)
+        //                            .Where(KcbDonthuocChitiet.Columns.IdChitietdonthuoc).IsEqualTo(Id).Execute();
+        //                        sDichvu += Utility.sDbnull(_row.Cells["ten_thuoc"].Value) + ", ";
+        //                        _row.BeginEdit();
+        //                        _row.Cells[KcbDonthuocChitiet.Columns.TrongGoi].Value = 1;
+        //                        _row.EndEdit();
+        //                    }
+
+        //                    Utility.Log(this.Name, globalVariables.UserName, string.Format("Chuyển các Thuốc của bệnh nhân có mã lần khám {0} và ID bệnh nhân: {1} tên= {2} vào trong gói: {3}", objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan, objBenhnhan.TenBenhnhan, sDichvu), newaction.Move, this.GetType().Assembly.ManifestModule.Name);
+        //                    if (sDichvu_Exception.Length > 0)
+        //                    {
+        //                        Utility.ShowMsg(string.Format("Hệ thống phát hiện một số dịch vụ bạn chọn đã thanh toán(hoặc không tồn tại) nên không cho phép chuyển vào gói:\r\n{0}", sDichvu_Exception));
+        //                        return;
+        //                    }
+        //                }
+        //                grdPresDetail.Refresh();
+        //                //ChangeMenu(grdPresDetail.CurrentRow);
+        //            }
+        //            else if (ctrlName == grdVTTH.Name) //VTTH
+        //            {
+        //                if (grdVTTH.GetCheckedRows().Count() <= 0 && Utility.isValidGrid(grdVTTH))
+        //                {
+        //                    sDichvu = Utility.sDbnull(grdVTTH.GetValue("ten_thuoc"));
+        //                    long Id = Utility.Int64Dbnull(Utility.GetValueFromGridColumn(grdVTTH, KcbDonthuocChitiet.Columns.IdChitietdonthuoc), -1);
+        //                    KcbDonthuocChitiet objCheck = KcbDonthuocChitiet.FetchByID(Id);
+        //                    if (objCheck != null)
+        //                    {
+        //                        if (Utility.Byte2Bool(objCheck.TrangthaiThanhtoan)) //Đã thanh toán
+        //                        {
+        //                            Utility.ShowMsg("Vật tư bạn đang chọn đã thanh toán nên không cho phép thay đổi trạng thái trong gói/ngoài gói. Đề nghị bạn kiểm tra lại");
+        //                            return;
+        //                        }
+        //                    }
+        //                    else
+        //                    {
+        //                        Utility.ShowMsg("VTTH bạn đang chọn không tồn tại (Có thể đã bị xóa bởi người khác trong lúc bạn đang thao tác). Đề nghị bạn kiểm tra lại");
+        //                        return;
+        //                    }
+        //                    new Update(KcbDonthuocChitiet.Schema).Set(KcbDonthuocChitiet.Columns.TrongGoi).EqualTo(1)
+        //                        .Where(KcbDonthuocChitiet.Columns.IdChitietdonthuoc).IsEqualTo(Id).Execute();
+        //                    Utility.Log(this.Name, globalVariables.UserName, string.Format("Chuyển các VTTH của bệnh nhân có mã lần khám {0} và ID bệnh nhân: {1} tên= {2} vào trong gói: {3}", objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan, objBenhnhan.TenBenhnhan, sDichvu), newaction.Move, this.GetType().Assembly.ManifestModule.Name);
+        //                    grdVTTH.CurrentRow.BeginEdit();
+        //                    grdVTTH.CurrentRow.Cells[KcbDonthuocChitiet.Columns.TrongGoi].Value = 1;
+        //                    grdVTTH.CurrentRow.EndEdit();
+        //                }
+        //                else
+        //                {
+        //                    foreach (GridEXRow _row in grdVTTH.GetCheckedRows())
+        //                    {
+        //                        long Id = Utility.Int64Dbnull(_row.Cells[KcbDonthuocChitiet.Columns.IdChitietdonthuoc].Value, -1);
+        //                        KcbDonthuocChitiet objCheck = KcbDonthuocChitiet.FetchByID(Id);
+        //                        if (objCheck != null)
+        //                        {
+        //                            if (Utility.Byte2Bool(objCheck.TrangthaiThanhtoan)) //Đã thanh toán
+        //                            {
+        //                                sDichvu_Exception += Utility.sDbnull(_row.Cells["ten_thuoc"].Value) + ", ";
+        //                                continue;
+        //                            }
+        //                        }
+        //                        else
+        //                        {
+        //                            sDichvu_Exception += Utility.sDbnull(_row.Cells["ten_thuoc"].Value) + ", ";
+        //                            continue;
+        //                        }
+        //                        new Update(KcbDonthuocChitiet.Schema).Set(KcbDonthuocChitiet.Columns.TrongGoi).EqualTo(1)
+        //                            .Where(KcbDonthuocChitiet.Columns.IdChitietdonthuoc).IsEqualTo(Id).Execute();
+        //                        sDichvu += Utility.sDbnull(_row.Cells["ten_thuoc"].Value) + ", ";
+        //                        _row.BeginEdit();
+        //                        _row.Cells[KcbDonthuocChitiet.Columns.TrongGoi].Value = 1;
+        //                        _row.EndEdit();
+        //                    }
+        //                    Utility.Log(this.Name, globalVariables.UserName, string.Format("Chuyển các VTTH của bệnh nhân có mã lần khám {0} và ID bệnh nhân: {1} tên= {2} vào trong gói: {3}", objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan, objBenhnhan.TenBenhnhan, sDichvu), newaction.Move, this.GetType().Assembly.ManifestModule.Name);
+        //                    if (sDichvu_Exception.Length > 0)
+        //                    {
+        //                        Utility.ShowMsg(string.Format("Hệ thống phát hiện một số dịch vụ bạn chọn đã thanh toán(hoặc không tồn tại) nên không cho phép chuyển vào gói:\r\n{0}", sDichvu_Exception));
+        //                        return;
+        //                    }
+        //                }
+        //                grdVTTH.Refresh();
+        //                //ChangeMenu(grdVTTH.CurrentRow);
+        //            }
+        //        }
+        //        else //Ngoài gói
+        //        {
+        //            if (ctrlName == grdAssignDetail.Name)
+        //            {
+        //                if (grdAssignDetail.GetCheckedRows().Count() <= 0 && Utility.isValidGrid(grdAssignDetail))
+        //                {
+        //                    sDichvu = Utility.sDbnull(grdAssignDetail.GetValue("ten_chitietdichvu"));
+        //                    long Id = Utility.Int64Dbnull(Utility.GetValueFromGridColumn(grdAssignDetail, KcbChidinhclsChitiet.Columns.IdChitietchidinh), -1);
+        //                    KcbChidinhclsChitiet objCheck = KcbChidinhclsChitiet.FetchByID(Id);
+        //                    if (objCheck != null)
+        //                    {
+        //                        if (Utility.Byte2Bool(objCheck.TrangthaiThanhtoan)) //Đã thanh toán
+        //                        {
+        //                            Utility.ShowMsg("Dịch vụ CLS bạn đang chọn đã thanh toán nên không cho phép thay đổi trạng thái trong gói/ngoài gói. Đề nghị bạn kiểm tra lại");
+        //                            return;
+        //                        }
+        //                    }
+        //                    else
+        //                    {
+        //                        Utility.ShowMsg("Dịch vụ CLS bạn đang chọn không tồn tại (Có thể đã bị xóa bởi người khác trong lúc bạn đang thao tác). Đề nghị bạn kiểm tra lại");
+        //                        return;
+        //                    }
+        //                    new Update(KcbChidinhclsChitiet.Schema).Set(KcbChidinhclsChitiet.Columns.TrongGoi).EqualTo(0)
+        //                        .Set(KcbChidinhclsChitiet.Columns.IdGoi).EqualTo(0)
+        //                        .Set(KcbChidinhclsChitiet.Columns.IdDangky).EqualTo(0)
+        //                        .Where(KcbChidinhclsChitiet.Columns.IdChitietchidinh).IsEqualTo(Id).Execute();
+        //                    Utility.Log(this.Name, globalVariables.UserName, string.Format("Chuyển các dịch vụ CLS của bệnh nhân có mã lần khám {0} và ID bệnh nhân: {1} tên= {2} ra ngoài gói: {3}", objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan, objBenhnhan.TenBenhnhan, sDichvu), newaction.Move, this.GetType().Assembly.ManifestModule.Name);
+        //                    grdAssignDetail.CurrentRow.BeginEdit();
+        //                    grdAssignDetail.CurrentRow.Cells[KcbChidinhclsChitiet.Columns.TrongGoi].Value = 0;
+        //                    grdAssignDetail.CurrentRow.Cells[KcbChidinhclsChitiet.Columns.IdGoi].Value = 0;
+        //                    grdAssignDetail.CurrentRow.Cells[KcbChidinhclsChitiet.Columns.IdDangky].Value = 0;
+        //                    grdAssignDetail.CurrentRow.EndEdit();
+        //                    grdAssignDetail.Refresh();
+        //                }
+        //                else
+        //                {
+        //                    foreach (GridEXRow _row in grdAssignDetail.GetCheckedRows())
+        //                    {
+        //                        long Id = Utility.Int64Dbnull(_row.Cells[KcbChidinhclsChitiet.Columns.IdChitietchidinh].Value, -1);
+        //                        KcbChidinhclsChitiet objCheck = KcbChidinhclsChitiet.FetchByID(Id);
+        //                        if (objCheck != null)
+        //                        {
+        //                            if (Utility.Byte2Bool(objCheck.TrangthaiThanhtoan)) //Đã thanh toán
+        //                            {
+        //                                sDichvu_Exception += Utility.sDbnull(_row.Cells["ten_chitietdichvu"].Value) + ", ";
+        //                                continue;
+        //                            }
+        //                        }
+        //                        else
+        //                        {
+        //                            sDichvu_Exception += Utility.sDbnull(_row.Cells["ten_chitietdichvu"].Value) + ", ";
+        //                            continue;
+        //                        }
+        //                        new Update(KcbChidinhclsChitiet.Schema).Set(KcbChidinhclsChitiet.Columns.TrongGoi).EqualTo(0)
+        //                            .Set(KcbChidinhclsChitiet.Columns.IdGoi).EqualTo(0)
+        //                            .Set(KcbChidinhclsChitiet.Columns.IdDangky).EqualTo(0)
+        //                            .Where(KcbChidinhclsChitiet.Columns.IdChitietchidinh).IsEqualTo(Id).Execute();
+        //                        sDichvu += Utility.sDbnull(_row.Cells["ten_chitietdichvu"].Value) + ", ";
+        //                        _row.BeginEdit();
+
+        //                        _row.Cells[KcbChidinhclsChitiet.Columns.TrongGoi].Value = 0;
+        //                        _row.Cells[KcbChidinhclsChitiet.Columns.IdGoi].Value = 0;
+        //                        _row.Cells[KcbChidinhclsChitiet.Columns.IdDangky].Value = 0;
+        //                        _row.EndEdit();
+        //                    }
+        //                    Utility.Log(this.Name, globalVariables.UserName, string.Format("Chuyển các dịch vụ CLS của bệnh nhân có mã lần khám {0} và ID bệnh nhân: {1} tên= {2} ra ngoài gói: {3}", objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan, objBenhnhan.TenBenhnhan, sDichvu), newaction.Move, this.GetType().Assembly.ManifestModule.Name);
+        //                    if (sDichvu_Exception.Length > 0)
+        //                    {
+        //                        Utility.ShowMsg(string.Format("Hệ thống phát hiện một số dịch vụ bạn chọn đã thanh toán(hoặc không tồn tại) nên không cho phép chuyển ra ngoài gói:\r\n{0}", sDichvu_Exception));
+        //                        return;
+        //                    }
+        //                }
+        //                grdAssignDetail.Refresh();
+        //                //ChangeMenu(grdAssignDetail.CurrentRow);
+        //            }
+        //            else if (ctrlName == grdPresDetail.Name)
+        //            {
+        //                if (grdPresDetail.GetCheckedRows().Count() <= 0 && Utility.isValidGrid(grdPresDetail))
+        //                {
+        //                    sDichvu = Utility.sDbnull(grdVTTH.GetValue("ten_thuoc"));
+        //                    long Id = Utility.Int64Dbnull(Utility.GetValueFromGridColumn(grdPresDetail, KcbDonthuocChitiet.Columns.IdChitietdonthuoc), -1);
+        //                    KcbDonthuocChitiet objCheck = KcbDonthuocChitiet.FetchByID(Id);
+        //                    if (objCheck != null)
+        //                    {
+        //                        if (Utility.Byte2Bool(objCheck.TrangthaiThanhtoan)) //Đã thanh toán
+        //                        {
+        //                            Utility.ShowMsg("Thuốc bạn đang chọn đã thanh toán nên không cho phép thay đổi trạng thái trong gói/ngoài gói. Đề nghị bạn kiểm tra lại");
+        //                            return;
+        //                        }
+        //                    }
+        //                    else
+        //                    {
+        //                        Utility.ShowMsg("Thuốc bạn đang chọn không tồn tại (Có thể đã bị xóa bởi người khác trong lúc bạn đang thao tác). Đề nghị bạn kiểm tra lại");
+        //                        return;
+        //                    }
+        //                    new Update(KcbDonthuocChitiet.Schema).Set(KcbDonthuocChitiet.Columns.TrongGoi).EqualTo(0)
+        //                        .Set(KcbDonthuocChitiet.Columns.IdGoi).EqualTo(0)
+        //                         .Set(KcbDonthuocChitiet.Columns.IdDangky).EqualTo(0)
+        //                        .Where(KcbDonthuocChitiet.Columns.IdChitietdonthuoc).IsEqualTo(Id).Execute();
+        //                    Utility.Log(this.Name, globalVariables.UserName, string.Format("Chuyển các Thuốc của bệnh nhân có mã lần khám {0} và ID bệnh nhân: {1} tên= {2} ra ngoài gói: {3}", objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan, objBenhnhan.TenBenhnhan, sDichvu), newaction.Move, this.GetType().Assembly.ManifestModule.Name);
+        //                    grdPresDetail.CurrentRow.BeginEdit();
+        //                    grdPresDetail.CurrentRow.Cells[KcbDonthuocChitiet.Columns.TrongGoi].Value = 0;
+        //                    grdPresDetail.CurrentRow.Cells[KcbDonthuocChitiet.Columns.IdGoi].Value = 0;
+        //                    grdPresDetail.CurrentRow.Cells[KcbDonthuocChitiet.Columns.IdDangky].Value = 0;
+        //                    grdPresDetail.CurrentRow.EndEdit();
+        //                }
+        //                else
+        //                {
+        //                    foreach (GridEXRow _row in grdPresDetail.GetCheckedRows())
+        //                    {
+        //                        long Id = Utility.Int64Dbnull(_row.Cells[KcbDonthuocChitiet.Columns.IdChitietdonthuoc].Value, -1);
+        //                        KcbDonthuocChitiet objCheck = KcbDonthuocChitiet.FetchByID(Id);
+        //                        if (objCheck != null)
+        //                        {
+        //                            if (Utility.Byte2Bool(objCheck.TrangthaiThanhtoan)) //Đã thanh toán
+        //                            {
+        //                                sDichvu_Exception += Utility.sDbnull(_row.Cells["ten_thuoc"].Value) + ", ";
+        //                                continue;
+        //                            }
+        //                        }
+        //                        else
+        //                        {
+        //                            sDichvu_Exception += Utility.sDbnull(_row.Cells["ten_thuoc"].Value) + ", ";
+        //                            continue;
+        //                        }
+        //                        new Update(KcbDonthuocChitiet.Schema).Set(KcbDonthuocChitiet.Columns.TrongGoi).EqualTo(0)
+        //                            .Set(KcbDonthuocChitiet.Columns.IdGoi).EqualTo(0)
+        //                            .Set(KcbDonthuocChitiet.Columns.IdDangky).EqualTo(0)
+        //                            .Where(KcbDonthuocChitiet.Columns.IdChitietdonthuoc).IsEqualTo(Id).Execute();
+        //                        sDichvu += Utility.sDbnull(_row.Cells["ten_thuoc"].Value) + ", ";
+        //                        _row.BeginEdit();
+        //                        _row.Cells[KcbDonthuocChitiet.Columns.TrongGoi].Value = 0;
+        //                        _row.Cells[KcbDonthuocChitiet.Columns.IdGoi].Value = 0;
+        //                        _row.Cells[KcbDonthuocChitiet.Columns.IdDangky].Value = 0;
+        //                        _row.EndEdit();
+        //                    }
+        //                    Utility.Log(this.Name, globalVariables.UserName, string.Format("Chuyển các Thuốc của bệnh nhân có mã lần khám {0} và ID bệnh nhân: {1} tên= {2} ra ngoài gói: {3}", objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan, objBenhnhan.TenBenhnhan, sDichvu), newaction.Move, this.GetType().Assembly.ManifestModule.Name);
+        //                    if (sDichvu_Exception.Length > 0)
+        //                    {
+        //                        Utility.ShowMsg(string.Format("Hệ thống phát hiện một số dịch vụ bạn chọn đã thanh toán(hoặc không tồn tại) nên không cho phép chuyển ra ngoài gói:\r\n{0}", sDichvu_Exception));
+        //                        return;
+        //                    }
+        //                }
+        //                grdPresDetail.Refresh();
+        //                //ChangeMenu(grdPresDetail.CurrentRow);
+        //            }
+        //            if (ctrlName == grdVTTH.Name)
+        //            {
+        //                if (grdVTTH.GetCheckedRows().Count() <= 0 && Utility.isValidGrid(grdVTTH))
+        //                {
+        //                    sDichvu = Utility.sDbnull(grdVTTH.GetValue("ten_thuoc"));
+        //                    long Id = Utility.Int64Dbnull(Utility.GetValueFromGridColumn(grdVTTH, KcbDonthuocChitiet.Columns.IdChitietdonthuoc), -1);
+        //                    KcbDonthuocChitiet objCheck = KcbDonthuocChitiet.FetchByID(Id);
+        //                    if (objCheck != null)
+        //                    {
+        //                        if (Utility.Byte2Bool(objCheck.TrangthaiThanhtoan)) //Đã thanh toán
+        //                        {
+        //                            Utility.ShowMsg("Vật tư bạn đang chọn đã thanh toán nên không cho phép thay đổi trạng thái trong gói/ngoài gói. Đề nghị bạn kiểm tra lại");
+        //                            return;
+        //                        }
+        //                    }
+        //                    else
+        //                    {
+        //                        Utility.ShowMsg("VTTH bạn đang chọn không tồn tại (Có thể đã bị xóa bởi người khác trong lúc bạn đang thao tác). Đề nghị bạn kiểm tra lại");
+        //                        return;
+        //                    }
+        //                    new Update(KcbDonthuocChitiet.Schema).Set(KcbDonthuocChitiet.Columns.TrongGoi).EqualTo(0)
+        //                        .Set(KcbDonthuocChitiet.Columns.IdGoi).EqualTo(0)
+        //                         .Set(KcbDonthuocChitiet.Columns.IdDangky).EqualTo(0)
+        //                        .Where(KcbDonthuocChitiet.Columns.IdChitietdonthuoc).IsEqualTo(Id).Execute();
+        //                    Utility.Log(this.Name, globalVariables.UserName, string.Format("Chuyển các VTTH của bệnh nhân có mã lần khám {0} và ID bệnh nhân: {1} tên= {2} ra ngoài gói: {3}", objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan, objBenhnhan.TenBenhnhan, sDichvu), newaction.Move, this.GetType().Assembly.ManifestModule.Name);
+        //                    grdVTTH.CurrentRow.BeginEdit();
+        //                    grdVTTH.CurrentRow.Cells[KcbDonthuocChitiet.Columns.TrongGoi].Value = 0;
+        //                    grdVTTH.CurrentRow.Cells[KcbDonthuocChitiet.Columns.IdGoi].Value = 0;
+        //                    grdVTTH.CurrentRow.Cells[KcbDonthuocChitiet.Columns.IdDangky].Value = 0;
+        //                    grdVTTH.CurrentRow.EndEdit();
+        //                }
+        //                else
+        //                {
+        //                    foreach (GridEXRow _row in grdVTTH.GetCheckedRows())
+        //                    {
+        //                        long Id = Utility.Int64Dbnull(_row.Cells[KcbDonthuocChitiet.Columns.IdChitietdonthuoc].Value, -1);
+        //                        KcbDonthuocChitiet objCheck = KcbDonthuocChitiet.FetchByID(Id);
+        //                        if (objCheck != null)
+        //                        {
+        //                            if (Utility.Byte2Bool(objCheck.TrangthaiThanhtoan)) //Đã thanh toán
+        //                            {
+        //                                sDichvu_Exception += Utility.sDbnull(_row.Cells["ten_thuoc"].Value) + ", ";
+        //                                continue;
+        //                            }
+        //                        }
+        //                        else
+        //                        {
+        //                            sDichvu_Exception += Utility.sDbnull(_row.Cells["ten_thuoc"].Value) + ", ";
+        //                            continue;
+        //                        }
+        //                        new Update(KcbDonthuocChitiet.Schema).Set(KcbDonthuocChitiet.Columns.TrongGoi).EqualTo(0)
+        //                            .Set(KcbDonthuocChitiet.Columns.IdGoi).EqualTo(0)
+        //                             .Set(KcbDonthuocChitiet.Columns.IdDangky).EqualTo(0)
+        //                            .Where(KcbDonthuocChitiet.Columns.IdChitietdonthuoc).IsEqualTo(Id).Execute();
+        //                        sDichvu += Utility.sDbnull(_row.Cells["ten_thuoc"].Value) + ", ";
+        //                        _row.BeginEdit();
+        //                        _row.Cells[KcbDonthuocChitiet.Columns.TrongGoi].Value = 0;
+        //                        _row.Cells[KcbDonthuocChitiet.Columns.IdGoi].Value = 0;
+        //                        _row.Cells[KcbDonthuocChitiet.Columns.IdDangky].Value = 0;
+        //                        _row.EndEdit();
+        //                    }
+        //                    Utility.Log(this.Name, globalVariables.UserName, string.Format("Chuyển các VTTH của bệnh nhân có mã lần khám {0} và ID bệnh nhân: {1} tên= {2} ra ngoài gói: {3}", objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan, objBenhnhan.TenBenhnhan, sDichvu), newaction.Move, this.GetType().Assembly.ManifestModule.Name);
+        //                    if (sDichvu_Exception.Length > 0)
+        //                    {
+        //                        Utility.ShowMsg(string.Format("Hệ thống phát hiện một số dịch vụ bạn chọn đã thanh toán(hoặc không tồn tại) nên không cho phép chuyển ra ngoài gói:\r\n{0}", sDichvu_Exception));
+        //                        return;
+        //                    }
+        //                }
+        //                grdVTTH.Refresh();
+        //                // ChangeMenu(grdVTTH.CurrentRow);
+        //            }
+
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Utility.CatchException(ex);
+        //    }
+        //}
         private void CmdChuyenCLS_Click(object sender, EventArgs e)
         {
             cmdChuyenCLS.Enabled = false;
@@ -2535,13 +3122,13 @@ namespace VNS.HIS.UI.NGOAITRU
             //}
         }
         DataTable dtCheck;
-        EmrBaNgoaitru emr_ba;
+        EmrBa emr_ba;
         private void ThongBaoBenhAn()
         {
-            emr_ba = new Select().From(EmrBaNgoaitru.Schema)
-                .Where(EmrBaNgoaitru.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
-                .And(EmrBaNgoaitru.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
-                .ExecuteSingle<EmrBaNgoaitru>();
+            emr_ba = new Select().From(EmrBa.Schema)
+                .Where(EmrBa.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
+                .And(EmrBa.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
+                .ExecuteSingle<EmrBa>();
             dtCheck = Utility.ExecuteSql(string.Format("select ma_ba,NGUOI_TAO,NGAY_TAO,LOAI_BA from emr_ba_ngoaitru where id_benhnhan={0} and ma_luotkham='{1}'", objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham),CommandType.Text).Tables[0];// SPs.EmrBenhanThongbao(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham).GetDataSet().Tables[0];
             cmdInToBA.Visible = emr_ba != null;
             //Đã Tồn tại thông tin bệnh án ngoại trú.
@@ -2559,7 +3146,7 @@ namespace VNS.HIS.UI.NGOAITRU
             //chưa tồn tại thông tin ngoại tru. 
             else
             {
-                dtCheck = Utility.ExecuteSql(string.Format("select id,NGUOI_TAO,NGAY_TAO from emr_tongket_benhan where id_benhnhan={0} and ma_luotkham='{1}'", objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham), CommandType.Text).Tables[0];
+                dtCheck = Utility.ExecuteSql(string.Format("select id,NGUOI_TAO,NGAY_TAO from emr_tomtat_BA where id_benhnhan={0} and ma_luotkham='{1}'", objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham), CommandType.Text).Tables[0];
                 if (dtCheck.Rows.Count > 0)
                 {
                     lblBANgoaitru.ForeColor = Color.Black;
@@ -3175,6 +3762,7 @@ namespace VNS.HIS.UI.NGOAITRU
                 cmdInKQXN.Enabled = grdKetqua.RowCount > 0 && objCongkham != null && objLuotkham != null && grdAssignDetail.RowCount > 0;
                 cmdNhapVien.Visible =  
                     mnuNhapvien.Visible =(objLuotkham!=null && objLuotkham.TrangthaiNoitru > 0) || (objCongkham!=null && objCongkham.TrangThai == 1 && THU_VIEN_CHUNG.Laygiatrithamsohethong("KCB_MAHUONGDIEUTRI_NOITRU", false).ToUpper().Split(',').ToList<string>().Contains(autoHuongdieutri.myCode.ToUpper()));
+                cmdInGoi.Visible = cmdDenghiMG.Visible = m_dtAssignDetail != null && m_dtAssignDetail.Columns.Count > 0 && m_dtAssignDetail.Select("id_dangky>0 and id_goi>0").Length > 0;
             }
             catch (Exception exception)
             {
@@ -4712,7 +5300,7 @@ namespace VNS.HIS.UI.NGOAITRU
                 if (tabDiagInfo.SelectedTab == tabPageChanDoan)
                     cmdInTTDieuTri_Click(cmdInTTDieuTri, new EventArgs());
                 else
-                    cmdPrintPres_Click(cmdIndonthuoc, new EventArgs());
+                    cmdIndonthuoc_Click(cmdIndonthuoc, new EventArgs());
             }
             if (e.Control & e.KeyCode == Keys.C) SaochepIdBN();
             if (e.Control & e.KeyCode == Keys.F) cmdSearch.PerformClick();
@@ -7533,7 +8121,7 @@ namespace VNS.HIS.UI.NGOAITRU
                         if (Utility.DoTrim(Utility.sDbnull(grdList.CurrentRow.Cells["dsach_vungkhaosat"].Value, "")) == "")
                         {
                             Utility.ShowMsg("Dịch vụ này chưa gán vùng khảo sát nên không thể nhập kết quả.\nNhấn OK để thực hiện gán vùng khảo sát cho dịch vụ đang chọn");
-                            frm_chonvungksat _chonvungks = new frm_chonvungksat(new List<string>());
+                            frm_chonvungksat _chonvungks = new frm_chonvungksat(new List<string>(),"ALL");
                             _chonvungks.Hthi_Chon = true;
                             _chonvungks.ten_dvu = Utility.GetValueFromGridColumn(grdList, "ten_chitietdichvu");
                             if (_chonvungks.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -7588,7 +8176,7 @@ namespace VNS.HIS.UI.NGOAITRU
                         lstID = Utility.sDbnull(grdList.CurrentRow.Cells["dsach_vungkhaosat"].Value, "-1").Split(',').ToList<string>();
                         if (lstID.Count >= 2)
                         {
-                            frm_chonvungksat _chonvungksat = new frm_chonvungksat(lstID);
+                            frm_chonvungksat _chonvungksat = new frm_chonvungksat(lstID,"ALL");
                             if (_chonvungksat.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                                 id_VungKS = _chonvungksat.Id;
                             else
@@ -7675,7 +8263,7 @@ namespace VNS.HIS.UI.NGOAITRU
                         if (Utility.DoTrim(Utility.sDbnull(grdAssignDetail.CurrentRow.Cells["dsach_vungkhaosat"].Value, "")) == "")
                         {
                             Utility.ShowMsg("Dịch vụ này chưa gán vùng khảo sát nên không thể nhập kết quả.\r\nNhấn OK để thực hiện gán vùng khảo sát cho dịch vụ đang chọn");
-                            frm_chonvungksat _chonvungks = new frm_chonvungksat(new List<string>());
+                            frm_chonvungksat _chonvungks = new frm_chonvungksat(new List<string>(),"ALL");
                             _chonvungks.Hthi_Chon = true;
                             _chonvungks.ten_dvu = Utility.GetValueFromGridColumn(grdAssignDetail, "ten_chitietdichvu");
                             if (_chonvungks.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -7720,7 +8308,7 @@ namespace VNS.HIS.UI.NGOAITRU
                         lstID = Utility.sDbnull(grdAssignDetail.CurrentRow.Cells["dsach_vungkhaosat"].Value, "-1").Split(',').ToList<string>();
                         if (lstID.Count >= 2)
                         {
-                            frm_chonvungksat _chonvungksat = new frm_chonvungksat(lstID);
+                            frm_chonvungksat _chonvungksat = new frm_chonvungksat(lstID, "ALL");
                             if (_chonvungksat.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                                 id_VungKS = _chonvungksat.Id;
                             else
@@ -8471,12 +9059,12 @@ namespace VNS.HIS.UI.NGOAITRU
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cmdPrintPres_Click(object sender, EventArgs e)
+        private void cmdIndonthuoc_Click(object sender, EventArgs e)
         {
             try
             {
-                if (THU_VIEN_CHUNG.Laygiatrithamsohethong_off("KCB_THAMKHAM_TACHDONTHUOC", "0", false) == "1")
-                {
+                //if (THU_VIEN_CHUNG.Laygiatrithamsohethong_off("KCB_THAMKHAM_TACHDONTHUOC", "0", false) == "1")
+                //{
                     if (RowThuoc == null)
                     {
                         Utility.ShowMsg("Bạn phải chọn một bản ghi thực hiện việc xóa thông tin thuốc ", "Thông báo", MessageBoxIcon.Warning);
@@ -8485,12 +9073,12 @@ namespace VNS.HIS.UI.NGOAITRU
                     }
                     int presId = Utility.Int32Dbnull(RowThuoc.Cells[KcbDonthuocChitiet.Columns.IdDonthuoc].Value);
                     InDonthuoc(presId, "");
-                }
-                else
-                {
-                    string  maLanKham = Utility.sDbnull(txtPatient_Code.Text.Trim());
-                    PrintPresGop(maLanKham, "");
-                }
+                //}
+                //else
+                //{
+                //    string  maLanKham = Utility.sDbnull(txtPatient_Code.Text.Trim());
+                //    PrintPresGop(maLanKham, "");
+                //}
 
             }
             catch (Exception ex)
@@ -8678,7 +9266,7 @@ namespace VNS.HIS.UI.NGOAITRU
         /// <param name="forcedTitle"></param>
         private void InDonthuoc(int presID, string forcedTitle)
         {
-            DataTable v_dtDataOrg = _KCB_KEDONTHUOC.LaythongtinDonthuoc_In(presID);
+            DataTable v_dtDataOrg = _KCB_KEDONTHUOC.LaythongtinDonthuoc_In(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham,0, presID);
             DataRow[] arrDR = v_dtDataOrg.Select("tuvan_them=0");
             if (arrDR.Length <= 0)
             {
@@ -8715,6 +9303,13 @@ namespace VNS.HIS.UI.NGOAITRU
             Utility.UpdateLogotoDatatable(ref v_dtData);
             List<string> lstmatinhchat = (from p in v_dtData.AsEnumerable()
                                           select Utility.sDbnull(p["ma_tinhchat"], "")).Distinct().ToList<string>();
+            DataRow[] arrMatinhChat_Khongco = v_dtData.Select("ma_tinhchat='' or ma_tinhchat='-1' or ma_tinhchat is null");
+            if(arrMatinhChat_Khongco.Length>0)
+            {
+                string danhsach_thuoc = string.Join(Environment.NewLine,
+                       arrMatinhChat_Khongco.Select(r => r["ten_thuoc"].ToString()));
+                Utility.ShowMsg(string.Format("Một số hạng mục dưới đây chưa được gán Tính chất nên có thể không in được.\nVui lòng vào danh mục Thuốc-VTTH và gán tính chất cho các hạng mục này:\n{0}", danhsach_thuoc));
+            }    
             foreach (string ma_tinhchat in lstmatinhchat)
             {
                 DataRow[] arrTemp = v_dtData.Select(string.Format("(ma_tinhchat='{0}' or ma_tinhchat is null) and printed=0", ma_tinhchat));
@@ -8732,11 +9327,14 @@ namespace VNS.HIS.UI.NGOAITRU
                 if (lstReportCode.Count <= 0) lstReportCode.Add("thamkham_InDonthuocA4");
                 foreach (string _rcode in lstReportCode)
                 {
+                   
                     string KhoGiay = "A100";// "A5";//Truyền giá trị này để giữ nguyên report
                     if (PropertyLib._MayInProperties.CoGiayInDonthuoc == Papersize.A4) KhoGiay = "A4";
                     var reportDocument = new ReportDocument();
                     string tieude = "", reportname = "", reportCode = "";
                     reportCode = _rcode;
+                    if (presID <= 0)
+                        reportCode = reportCode + "_GOP";
                     reportDocument = Utility.GetReport(reportCode,KhoGiay, ref tieude, ref reportname);
                     if (reportDocument == null)
                     {
@@ -8812,7 +9410,7 @@ namespace VNS.HIS.UI.NGOAITRU
         }
         private void PrintPres_bak(int presID, string forcedTitle)
         {
-            DataTable v_dtDataOrg = _KCB_KEDONTHUOC.LaythongtinDonthuoc_In(presID);
+            DataTable v_dtDataOrg = _KCB_KEDONTHUOC.LaythongtinDonthuoc_In(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, 0, presID);
 
             DataRow[] arrDR = v_dtDataOrg.Select("tuvan_them=0");
             if (arrDR.Length <= 0)
@@ -10534,7 +11132,7 @@ namespace VNS.HIS.UI.NGOAITRU
             
                 if (!Utility.isValidGrid(grdPresDetail)) return;
                 int presId = Utility.Int32Dbnull(grdPresDetail.GetValue(KcbDonthuocChitiet.Columns.IdDonthuoc));
-                DataTable v_dtDataOrg = _KCB_KEDONTHUOC.LaythongtinDonthuoc_In(presId);
+                DataTable v_dtDataOrg = _KCB_KEDONTHUOC.LaythongtinDonthuoc_In(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, 0, presId);
 
                 DataRow[] arrDR = v_dtDataOrg.Select("tuvan_them=0");
                 if (arrDR.Length <= 0)
@@ -13092,10 +13690,10 @@ namespace VNS.HIS.UI.NGOAITRU
             }
             if (THU_VIEN_CHUNG.Laygiatrithamsohethong("BA_TKBA_TRUOCKHILAM_BA", "0", true) == "1")
             {
-                EmrTongketBenhan objTKBA = new Select().From(EmrTongketBenhan.Schema)
-                      .Where(EmrTongketBenhan.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
-                      .And(EmrTongketBenhan.Columns.IdBenhnhan).IsEqualTo(Utility.Int32Dbnull(objLuotkham.IdBenhnhan))
-                      .ExecuteSingle<EmrTongketBenhan>();
+                EmrTomtatBa objTKBA = new Select().From(EmrTomtatBa.Schema)
+                      .Where(EmrTomtatBa.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
+                      .And(EmrTomtatBa.Columns.IdBenhnhan).IsEqualTo(Utility.Int32Dbnull(objLuotkham.IdBenhnhan))
+                      .ExecuteSingle<EmrTomtatBa>();
                 if (objTKBA == null)
                 {
                     Utility.ShowMsg("Cần làm Tổng kết Bệnh Án trước khi khởi tạo Bệnh án (BA_TKBA_TRUOCKHILAM_BA=1)");
@@ -13152,10 +13750,10 @@ namespace VNS.HIS.UI.NGOAITRU
                 Utility.ShowMsg("Chưa có thông tin người bệnh để thực hiện thao tác in tóm tắt bệnh án");
                 return;
             }
-            EmrTongketBenhan objTKBA = new Select().From(EmrTongketBenhan.Schema)
-                .Where(EmrTongketBenhan.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
-                .And(EmrTongketBenhan.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
-                .ExecuteSingle<EmrTongketBenhan>();
+            EmrTomtatBa objTKBA = new Select().From(EmrTomtatBa.Schema)
+                .Where(EmrTomtatBa.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
+                .And(EmrTomtatBa.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
+                .ExecuteSingle<EmrTomtatBa>();
             if (objTKBA == null || objTKBA.Id <= 0)
             {
                 Utility.ShowMsg("Bạn cần tạo Tổng kết bệnh án trước khi thực hiện in");
@@ -13177,7 +13775,7 @@ namespace VNS.HIS.UI.NGOAITRU
                 FillThongtinTienSuSanKhoa();
             if (dtPhieuPttt == null)
                 FillThongtinPTTT();
-            emr_ba = EmrBaNgoaitru.FetchByID(Utility.Int64Dbnull(grdList.GetValue(EmrBaNgoaitru.Columns.IdBa)));
+            emr_ba = EmrBa.FetchByID(Utility.Int64Dbnull(grdList.GetValue(EmrBa.Columns.IdBa)));
         }
         void FillThongtinChuyenKhoa()
         {
@@ -13333,6 +13931,101 @@ namespace VNS.HIS.UI.NGOAITRU
         {
             if (THU_VIEN_CHUNG.Laygiatrithamsohethong("THAMKHAM_TUDONGTIMKIEM_KHICHON_TRANGTHAI", "0", false) == "1")
                 cmdSearch.PerformClick();
+        }
+
+        private void cmd_intonghop_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //if (THU_VIEN_CHUNG.Laygiatrithamsohethong_off("KCB_THAMKHAM_TACHDONTHUOC", "0", false) == "1")
+                //{
+                if (RowThuoc == null)
+                {
+                    Utility.ShowMsg("Chưa có đơn thuốc để in. Vui lòng chọn một đơn thuốc trên lưới danh sách", "Thông báo", MessageBoxIcon.Warning);
+                    grdPresDetail.Focus();
+                    return;
+                }
+                int presId = -1;// Utility.Int32Dbnull(RowThuoc.Cells[KcbDonthuocChitiet.Columns.IdDonthuoc].Value);
+                InDonthuoc(presId, "");
+                //}
+                //else
+                //{
+                //    string maLanKham = Utility.sDbnull(txtPatient_Code.Text.Trim());
+                //    PrintPresGop(maLanKham, "");
+                //}
+
+            }
+            catch (Exception ex)
+            {
+                Utility.ShowMsg("Lỗi:" + ex.Message);
+                // throw;
+            }
+        }
+
+
+        private void mnu_xoagoi_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                long id_dangky = Utility.Int64Dbnull(RowCLS.Cells["id_dangky"].Value);
+                long IdChidinh = Utility.Int64Dbnull(RowCLS.Cells["id_chidinh"].Value);
+                string ten_goi = Utility.sDbnull(RowCLS.Cells["ten_goi"].Value);
+                if (id_dangky > 0)
+                {
+                    GoiDangki _goi = GoiDangki.FetchByID(id_dangky);
+                    int num = 0;
+                    if (_goi != null)
+                    {
+                        KcbThanhtoanChitiet _ttct = new Select().From(KcbThanhtoanChitiet.Schema)
+                            .Where(KcbThanhtoanChitiet.Columns.IdPhieu).IsEqualTo(id_dangky)
+                            .And(KcbThanhtoanChitiet.Columns.IdLoaithanhtoan).IsEqualTo(13)
+                            .ExecuteSingle<KcbThanhtoanChitiet>();
+                        if (Utility.Bool2Bool(_goi.TthaiTtoan) || _ttct != null)
+                        {
+                            Utility.ShowMsg(string.Format("Gói {0} đã được thanh toán nên bạn không thể xóa các dịch vụ trong gói. Vui lòng liên hệ quầy thu ngân để kiểm tra", ten_goi));
+                            return;
+                        }
+                        string sql = string.Format("select 1 from kcb_dangky_kcb where id_dangky={0} and id_goi={1} and trang_thai=1", id_dangky, _goi.IdGoi);
+                        DataTable dtCheck = Utility.ExecuteSql(sql, CommandType.Text).Tables[0];
+                        if (dtCheck.Rows.Count > 0)
+                        {
+                            Utility.ShowMsg(string.Format("Gói {0} đã có công khám đã kết thúc nên bạn không thể xóa. Bạn có thể hủy kết thúc công khám trước khi thực hiện xóa gói", ten_goi));
+                            return;
+                        }
+                        sql = string.Format("select 1 from kcb_chidinhcls_chitiet where id_dangky={0} and id_goi={1} and trang_thai>0", id_dangky, _goi.IdGoi);
+                        dtCheck = Utility.ExecuteSql(sql, CommandType.Text).Tables[0];
+                        if (dtCheck.Rows.Count > 0)
+                        {
+                            Utility.ShowMsg(string.Format("Gói {0} đã có dịch vụ được chuyển CLS hoặc có kết quả nên bạn không thể xóa. Bạn có thể đưa các dịch vụ đã có kết quả ra ngoài gói trước khi thực hiện xóa gói", ten_goi));
+                            return;
+                        }
+                        //Thực hiện xóa gói
+                        using (var scope = new TransactionScope())
+                        {
+                            using (var sh = new SharedDbConnectionScope())
+                            {
+                                num = new Delete().From(KcbDangkyKcb.Schema).Where(KcbDangkyKcb.Columns.IdDangky).IsEqualTo(id_dangky).And(KcbDangkyKcb.Columns.IdGoi).IsEqualTo(_goi.IdGoi).Execute();
+                                num = new Delete().From(KcbChidinhclsChitiet.Schema).Where(KcbChidinhclsChitiet.Columns.IdDangky).IsEqualTo(id_dangky).And(KcbChidinhclsChitiet.Columns.IdGoi).IsEqualTo(_goi.IdGoi).Execute();
+                                num = new Delete().From(GoiDangki.Schema).Where(GoiDangki.Columns.IdDangky).IsEqualTo(id_dangky).And(GoiDangki.Columns.IdGoi).IsEqualTo(_goi.IdGoi).Execute();
+                                num = new Delete().From(GoiTinhtrangsudung.Schema).Where(GoiTinhtrangsudung.Columns.IdDangky).IsEqualTo(id_dangky).And(GoiTinhtrangsudung.Columns.IdGoi).IsEqualTo(_goi.IdGoi).Execute();
+                                num = new Delete().From(QheChidinhclsGoi.Schema).Where(QheChidinhclsGoi.Columns.IdChidinh).IsEqualTo(IdChidinh).And(GoiTinhtrangsudung.Columns.IdGoi).IsEqualTo(_goi.IdGoi).Execute();
+                                Utility.Log(this.Name, globalVariables.UserName, string.Format("Xóa gói của người bệnh mã lần khám {0}, ID bệnh nhân: {1} tên= {2}, tên gói: {3}", objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan, objBenhnhan.TenBenhnhan, Utility.sDbnull(RowCLS.Cells["ten_goi"].Value)), newaction.Delete, this.GetType().Assembly.ManifestModule.Name);
+                            }
+                            scope.Complete();
+                        }
+                        //Xóa khỏi lưới danh sách
+                        m_dtAssignDetail.AsEnumerable()
+                   .Where(r => r.Field<int>(KcbChidinhclsChitiet.Columns.IdDangky) == _goi.IdDangky && r.Field<int>(KcbChidinhclsChitiet.Columns.IdGoi) == _goi.IdGoi).ToList()
+                   .ForEach(row => row.Delete());
+                        m_dtAssignDetail.AcceptChanges();
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+            }
         }
     }
 }

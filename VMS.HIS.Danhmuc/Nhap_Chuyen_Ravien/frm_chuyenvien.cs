@@ -738,10 +738,10 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
                     {
                         if (Utility.Byte2Bool(objLuotkham.Noitru))
                         {
-                            EmrTongketBenhan objTKBA = new Select().From(EmrTongketBenhan.Schema)
-                      .Where(EmrTongketBenhan.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
-                      .And(EmrTongketBenhan.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
-                      .ExecuteSingle<EmrTongketBenhan>();
+                            EmrTomtatBa objTKBA = new Select().From(EmrTomtatBa.Schema)
+                      .Where(EmrTomtatBa.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
+                      .And(EmrTomtatBa.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
+                      .ExecuteSingle<EmrTomtatBa>();
                             if (objTKBA != null)
                             {
                                 txt_dauhieulamsang._Text = objTKBA.DauhieuLamsang;

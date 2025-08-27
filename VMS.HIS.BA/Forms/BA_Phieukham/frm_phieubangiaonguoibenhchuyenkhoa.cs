@@ -27,8 +27,9 @@ namespace VMS.HIS.UI.EMR
             this.Shown += frm_phieubangiaonguoibenhchuyenkhoa_Shown;
             this.KeyDown += frm_phieubangiaonguoibenhchuyenkhoa_KeyDown;
             ucThongtinnguoibenh_emr_basic1._OnEnterMe += UcThongtinnguoibenh_emr_basic1__OnEnterMe;
-            uc_tt32_giaycamketchapnhanpttt_gaymehoisuc1._OnMsg += _OnMsg;
-            uc_tt32_giaycamketchapnhanpttt_gaymehoisuc1._OnStatus += _OnStatus;
+            uc_phieubangiaonguoibenhchuyenkhoa1._OnMsg += _OnMsg;
+            uc_phieubangiaonguoibenhchuyenkhoa1._OnStatus += _OnStatus;
+            cmdInphieu.DropDownContextMenu = null;
         }
         public void InitData(KcbLuotkham objLuotkham)
         {
@@ -47,19 +48,19 @@ namespace VMS.HIS.UI.EMR
         private void UcThongtinnguoibenh_emr_basic1__OnEnterMe()
         {
             objLuotkham = ucThongtinnguoibenh_emr_basic1.objLuotkham;
-            uc_tt32_giaycamketchapnhanpttt_gaymehoisuc1.Init(objLuotkham);
-            uc_tt32_giaycamketchapnhanpttt_gaymehoisuc1.dtp_ngaycamket.Focus();
+            uc_phieubangiaonguoibenhchuyenkhoa1.Init(objLuotkham);
+            uc_phieubangiaonguoibenhchuyenkhoa1.dtp_ngaybangiao.Focus();
         }
 
         private void frm_phieubangiaonguoibenhchuyenkhoa_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
-                uc_tt32_giaycamketchapnhanpttt_gaymehoisuc1.HandleKeyEnter();
+                uc_phieubangiaonguoibenhchuyenkhoa1.HandleKeyEnter();
         }
 
         private void frm_phieubangiaonguoibenhchuyenkhoa_Shown(object sender, EventArgs e)
         {
-            uc_tt32_giaycamketchapnhanpttt_gaymehoisuc1.Init();
+            uc_phieubangiaonguoibenhchuyenkhoa1.Init();
             if (mv_blnCallFromMenu)
             {
                 chkCloseAfterSave.Checked = false;
@@ -107,11 +108,11 @@ namespace VMS.HIS.UI.EMR
         }
         private void cmdSave_Click(object sender, EventArgs e)
         {
-          bool result= uc_tt32_giaycamketchapnhanpttt_gaymehoisuc1.Save();
+          bool result= uc_phieubangiaonguoibenhchuyenkhoa1.Save();
             if (result)
             {
                 m_enAct = action.Update;
-                if (_OnCreated != null) _OnCreated(uc_tt32_giaycamketchapnhanpttt_gaymehoisuc1.phieucamket.IdPhieu, m_enAct);
+                if (_OnCreated != null) _OnCreated(uc_phieubangiaonguoibenhchuyenkhoa1.phieubangiao.IdPhieu, m_enAct);
                 if (chkCloseAfterSave.Visible && chkCloseAfterSave.Checked)
                     this.Close();
             }
@@ -126,7 +127,17 @@ namespace VMS.HIS.UI.EMR
 
         private void cmdInphieu_Click(object sender, EventArgs e)
         {
-            uc_tt32_giaycamketchapnhanpttt_gaymehoisuc1.Print();
+            ctxIn.Show(cmdInphieu, new Point(0, cmdInphieu.Height));
+        }
+
+        private void mnu_in_bacsi_Click(object sender, EventArgs e)
+        {
+            uc_phieubangiaonguoibenhchuyenkhoa1.Print(true);
+        }
+
+        private void mnu_in_dieuduong_Click(object sender, EventArgs e)
+        {
+            uc_phieubangiaonguoibenhchuyenkhoa1.Print(false);
         }
     }
 }

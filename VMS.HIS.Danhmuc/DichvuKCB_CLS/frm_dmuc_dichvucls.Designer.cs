@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_dmuc_dichvucls));
             Janus.Windows.GridEX.GridEXLayout grdList_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel1 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
@@ -75,11 +76,18 @@
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnu_capnhat_nhomchiphi = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnu_capnhat_nhominphieu = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnu_capnhat_nhominphoiBHYT = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnu_capnhat_phieu_emr = new System.Windows.Forms.ToolStripMenuItem();
             this.sysColor.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdList)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // sysColor
@@ -498,6 +506,51 @@
             this.dataGridViewTextBoxColumn11.ToolTipText = "H";
             this.dataGridViewTextBoxColumn11.Visible = false;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnu_capnhat_nhomchiphi,
+            this.toolStripMenuItem1,
+            this.mnu_capnhat_nhominphieu,
+            this.mnu_capnhat_nhominphoiBHYT,
+            this.mnu_capnhat_phieu_emr});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(630, 98);
+            // 
+            // mnu_capnhat_nhomchiphi
+            // 
+            this.mnu_capnhat_nhomchiphi.Name = "mnu_capnhat_nhomchiphi";
+            this.mnu_capnhat_nhomchiphi.Size = new System.Drawing.Size(629, 22);
+            this.mnu_capnhat_nhomchiphi.Text = "Cập nhật Nhóm Chi phí của dòng hiện tại cho tất cả các dịch vụ đang chọn";
+            this.mnu_capnhat_nhomchiphi.Click += new System.EventHandler(this.mnu_capnhat_nhomchiphi_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(626, 6);
+            // 
+            // mnu_capnhat_nhominphieu
+            // 
+            this.mnu_capnhat_nhominphieu.Name = "mnu_capnhat_nhominphieu";
+            this.mnu_capnhat_nhominphieu.Size = new System.Drawing.Size(629, 22);
+            this.mnu_capnhat_nhominphieu.Text = "Cập nhật Nhóm in phiếu CĐ của dòng hiện tại cho tất cả các dịch vụ đang chọn";
+            this.mnu_capnhat_nhominphieu.Click += new System.EventHandler(this.mnu_capnhat_nhominphieu_Click);
+            // 
+            // mnu_capnhat_nhominphoiBHYT
+            // 
+            this.mnu_capnhat_nhominphoiBHYT.Name = "mnu_capnhat_nhominphoiBHYT";
+            this.mnu_capnhat_nhominphoiBHYT.Size = new System.Drawing.Size(629, 22);
+            this.mnu_capnhat_nhominphoiBHYT.Text = "Cập nhật Nhóm in BHYT,Biên lai, Bảng kê chi phí KCB của dòng hiện tại cho tất cả " +
+    "các dịch vụ đang chọn";
+            this.mnu_capnhat_nhominphoiBHYT.Click += new System.EventHandler(this.mnu_capnhat_nhominphoiBHYT_Click);
+            // 
+            // mnu_capnhat_phieu_emr
+            // 
+            this.mnu_capnhat_phieu_emr.Name = "mnu_capnhat_phieu_emr";
+            this.mnu_capnhat_phieu_emr.Size = new System.Drawing.Size(629, 22);
+            this.mnu_capnhat_phieu_emr.Text = "Cập nhật Phiếu EMR của dòng hiện tại cho tất cả các dịch vụ đang chọn";
+            this.mnu_capnhat_phieu_emr.Click += new System.EventHandler(this.mnu_capnhat_phieu_emr_Click);
+            // 
             // frm_dmuc_dichvucls
             // 
             this.AcceptButton = this.cmdSearch;
@@ -522,6 +575,7 @@
             this.tabPage2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdList)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -569,5 +623,11 @@
         private Janus.Windows.EditControls.UIComboBox cboDepartment;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cbonhombaocao;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem mnu_capnhat_nhomchiphi;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem mnu_capnhat_nhominphieu;
+        private System.Windows.Forms.ToolStripMenuItem mnu_capnhat_nhominphoiBHYT;
+        private System.Windows.Forms.ToolStripMenuItem mnu_capnhat_phieu_emr;
     }
 }

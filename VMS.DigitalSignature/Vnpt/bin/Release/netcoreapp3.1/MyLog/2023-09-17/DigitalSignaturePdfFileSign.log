@@ -1,0 +1,44 @@
+2023-09-17 09:45:32.7392||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-09-17 09:45:32.7392||DEBUG|DigitalSignaturePdfFileSign|Begin signing for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: 'b257158e9f6141fd8b31437d0ff13716', secret: 'moDDm/t/8IvklPBhzRpNNqT9QYLtIa0NPQ60BrPX' |url: |action: 
+2023-09-17 09:45:32.7514||DEBUG|DigitalSignaturePdfFileSign|endpointUri: https://sign-hn10.vin-hsm.com |url: |action: 
+2023-09-17 09:45:32.7514||DEBUG|DigitalSignaturePdfFileSign|Before signing base64Pdf length: 415860 |url: |action: 
+2023-09-17 09:45:32.7514||DEBUG|DigitalSignaturePdfFileSign|pageSign: '1', llx: '75', lly: '482', urx: '236', ury: '534' |url: |action: 
+2023-09-17 09:45:32.7514||DEBUG|DigitalSignaturePdfFileSign|endpointUri: https://sign-hn10.vin-hsm.com |url: |action: 
+2023-09-17 09:45:36.1313||DEBUG|DigitalSignaturePdfFileSign|After signing base64Pdf length: 436648 |url: |action: 
+2023-09-17 09:45:36.1313||DEBUG|DigitalSignaturePdfFileSign|End signing |url: |action: 
+2023-09-17 15:43:55.5556||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-09-17 15:43:55.5556||DEBUG|DigitalSignaturePdfFileSign|Begin signing for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: 'b257158e9f6141fd8b31437d0ff13716', secret: 'moDDm/t/8IvklPBhzRpNNqT9QYLtIa0NPQ60BrPX' |url: |action: 
+2023-09-17 15:43:55.5636||DEBUG|DigitalSignaturePdfFileSign|endpointUri: https://sign-hn10.vin-hsm.com |url: |action: 
+2023-09-17 15:43:55.5636||DEBUG|DigitalSignaturePdfFileSign|Before signing base64Pdf length: 415860 |url: |action: 
+2023-09-17 15:43:55.5636||DEBUG|DigitalSignaturePdfFileSign|pageSign: '1', llx: '75', lly: '482', urx: '236', ury: '534' |url: |action: 
+2023-09-17 15:43:55.5636||DEBUG|DigitalSignaturePdfFileSign|endpointUri: https://sign-hn10.vin-hsm.com |url: |action: 
+2023-09-17 15:44:27.7577||DEBUG|DigitalSignaturePdfFileSign|After signing base64Pdf length: 436648 |url: |action: 
+2023-09-17 15:44:27.7577||DEBUG|DigitalSignaturePdfFileSign|End signing |url: |action: 
+2023-09-17 15:45:41.8986||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-09-17 15:45:41.8986||DEBUG|DigitalSignaturePdfFileSign|Begin signing for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: 'b257158e9f6141fd8b31437d0ff13716', secret: 'moDDm/t/8IvklPBhzRpNNqT9QYLtIa0NPQ60BrPX' |url: |action: 
+2023-09-17 15:45:41.9072||DEBUG|DigitalSignaturePdfFileSign|endpointUri: https://sign-hn10.vin-hsm.com |url: |action: 
+2023-09-17 15:45:41.9072||DEBUG|DigitalSignaturePdfFileSign|Before signing base64Pdf length: 415860 |url: |action: 
+2023-09-17 15:45:41.9072||DEBUG|DigitalSignaturePdfFileSign|pageSign: '1', llx: '75', lly: '482', urx: '236', ury: '534' |url: |action: 
+2023-09-17 15:45:41.9072||DEBUG|DigitalSignaturePdfFileSign|endpointUri: https://sign-hn10.vin-hsm.com |url: |action: 
+2023-09-17 15:46:08.9643||DEBUG|DigitalSignaturePdfFileSign|After signing base64Pdf length: 436648 |url: |action: 
+2023-09-17 15:46:13.3407||DEBUG|DigitalSignaturePdfFileSign|End signing |url: |action: 
+2023-09-17 15:46:31.7180||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-09-17 15:46:31.7180||DEBUG|DigitalSignaturePdfFileSign|Begin signing for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: 'b257158e9f6141fd8b31437d0ff13716', secret: 'moDDm/t/8IvklPBhzRpNNqT9QYLtIa0NPQ60BrPX' |url: |action: 
+2023-09-17 15:46:31.7180||DEBUG|DigitalSignaturePdfFileSign|endpointUri: https://sign-hn10.vin-hsm.com |url: |action: 
+2023-09-17 15:46:31.7180||DEBUG|DigitalSignaturePdfFileSign|Before signing base64Pdf length: 415860 |url: |action: 
+2023-09-17 15:46:31.7180||DEBUG|DigitalSignaturePdfFileSign|pageSign: '1', llx: '75', lly: '482', urx: '236', ury: '534' |url: |action: 
+2023-09-17 15:46:31.7180||DEBUG|DigitalSignaturePdfFileSign|endpointUri: https://sign-hn10.vin-hsm.com |url: |action: 
+2023-09-17 15:47:01.9307||DEBUG|DigitalSignaturePdfFileSign|After signing base64Pdf length: 436648 |url: |action: 
+2023-09-17 15:47:01.9307||DEBUG|DigitalSignaturePdfFileSign|End signing |url: |action: 
+2023-09-17 15:47:08.4311||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-09-17 15:47:08.4311||DEBUG|DigitalSignaturePdfFileSign|Begin signing for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: 'b257158e9f6141fd8b31437d0ff13716', secret: 'moDDm/t/8IvklPBhzRpNNqT9QYLtIa0NPQ60BrPX' |url: |action: 
+2023-09-17 15:47:08.4328||DEBUG|DigitalSignaturePdfFileSign|endpointUri: https://sign-hn10.vin-hsm.com |url: |action: 
+2023-09-17 15:47:08.4328||DEBUG|DigitalSignaturePdfFileSign|Before signing base64Pdf length: 415860 |url: |action: 
+2023-09-17 15:47:08.4328||DEBUG|DigitalSignaturePdfFileSign|pageSign: '1', llx: '75', lly: '482', urx: '236', ury: '534' |url: |action: 
+2023-09-17 15:47:08.4328||DEBUG|DigitalSignaturePdfFileSign|endpointUri: https://sign-hn10.vin-hsm.com |url: |action: 
+2023-09-17 15:48:54.0352||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-09-17 15:48:54.0352||DEBUG|DigitalSignaturePdfFileSign|Begin signing for pdf file '2109300001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: 'b257158e9f6141fd8b31437d0ff13716', secret: 'moDDm/t/8IvklPBhzRpNNqT9QYLtIa0NPQ60BrPX' |url: |action: 
+2023-09-17 15:49:03.8635||DEBUG|DigitalSignaturePdfFileSign|endpointUri: https://sign-hn10.vin-hsm.com |url: |action: 
+2023-09-17 15:49:04.2554||DEBUG|DigitalSignaturePdfFileSign|Before signing base64Pdf length: 415860 |url: |action: 
+2023-09-17 15:49:04.5084||DEBUG|DigitalSignaturePdfFileSign|pageSign: '1', llx: '75', lly: '482', urx: '236', ury: '534' |url: |action: 
+2023-09-17 15:49:05.1711||DEBUG|DigitalSignaturePdfFileSign|endpointUri: https://sign-hn10.vin-hsm.com |url: |action: 

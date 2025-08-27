@@ -49,6 +49,7 @@ using System.Diagnostics;
 using QRCoder;
 using NLog;
 
+
 namespace VNS.Libs
 {
     public class Tralaithuoctaiquay
@@ -61,6 +62,48 @@ namespace VNS.Libs
         public byte id_loaithanhtoan { get; set; }
         public decimal don_gia { get; set; }
     }
+    public class SignatureLocation
+    {
+        public string SignerName { get; set; }
+        public int Page { get; set; }
+        public RectangleF PdfRect { get; set; }
+    }
+
+    public class SignaturePosition
+    {
+        public string BookmarkName { get; set; }
+        public int PageNumber { get; set; }         // 1-based
+        public float X { get; set; }                // Toạ độ PDF (gốc dưới trái)
+        public float Y { get; set; }
+        public float Width { get; set; }
+        public float Height { get; set; }
+    }
+    public class BookmarkLocation
+    {
+        public string Name { get; set; }        // Tên bookmark
+        public int Page { get; set; }           // Số trang
+        public RectangleF Rect { get; set; }    // Tọa độ trong PDF
+    }
+    public class PdfSignaturePosition
+    {
+        public string userName { get; set; }
+        public string password { get; set; }
+        public string BookmarkName { get; set; }
+        public int Page { get; set; }
+        public double X { get; set; }
+        public double Y { get; set; }
+        public double Width { get; set; }
+        public double Height { get; set; }
+        public string base64Pdf { get; set; }
+        public string base64Signature { get; set; }
+    }
+    public class SignaturePosition_BookMark
+    {
+        public string BookmarkName { get; set; }
+        public int Page { get; set; }
+        public RectangleF Rectangle { get; set; }
+    }
+
     public class HamDungChung
     {
 
@@ -87,7 +130,7 @@ namespace VNS.Libs
             XLStyle style = new XLStyle(book);
 
             style.Format = "";
-            style.Font = new Font("Times New Roman", 11, FontStyle.Regular);
+            style.Font =  new System.Drawing.Font("Times New Roman", 11, FontStyle.Regular);
             style.AlignVert = XLAlignVertEnum.Center;
             style.BorderBottom = XLLineStyleEnum.Thin;
             style.BorderTop = XLLineStyleEnum.Thin;
@@ -102,7 +145,7 @@ namespace VNS.Libs
         {
             XLStyle style = new XLStyle(book);
 
-            style.Font = new Font("Times New Roman", 11, FontStyle.Regular);
+            style.Font = new System.Drawing.Font("Times New Roman", 11, FontStyle.Regular);
             style.Format = "### ### ### ### ###";
             style.AlignHorz = XLAlignHorzEnum.Center;
             style.AlignVert = XLAlignVertEnum.Center;
@@ -1256,17 +1299,190 @@ namespace VNS.Libs
             }
 
         }
-        public static void SignDoc( Aspose.Words.Document doc, Aspose.Words.DocumentBuilder builder, string Signsize, bool SearchbyNguoiKy = false)
+
+      
+        public static List<PdfSignaturePosition> GetSignaturePositions_bak(Aspose.Words.Document doc, List<string> bookmarkNames)
+        {
+            var results = new List<PdfSignaturePosition>();
+
+            var collector = new Aspose.Words.Layout.LayoutCollector(doc);
+            var enumerator = new Aspose.Words.Layout.LayoutEnumerator(doc);
+
+            foreach (var name in bookmarkNames)
+            {
+                Aspose.Words.Bookmark bookmark = doc.Range.Bookmarks[name];
+                if (bookmark == null)
+                    continue;
+
+                // Di chuyển LayoutEnumerator tới node bắt đầu của bookmark
+                enumerator.Current = bookmark.BookmarkStart;
+                RectangleF rect = enumerator.Rectangle;
+
+                // Lấy số trang
+                int page = collector.GetStartPageIndex(bookmark.BookmarkStart);
+
+                // Lấy chiều cao trang để đảo trục Y
+                var section = doc.GetChildNodes(Aspose.Words.NodeType.Section, true)[page - 1] as Aspose.Words.Section;
+                double pageHeight = section.PageSetup.PageHeight;
+
+
+                // Tính tọa độ theo hệ trục PDF (gốc dưới-trái)
+                var pdfPosition = new PdfSignaturePosition
+                {
+                    BookmarkName = name,
+                    Page = page,
+                    X = rect.X,
+                    Y = pageHeight - rect.Y - rect.Height,
+                    Width = rect.Width,
+                    Height = rect.Height
+                };
+
+                results.Add(pdfPosition);
+            }
+
+            return results;
+        }
+        public static List<PdfSignaturePosition> GetSignaturePositions(Aspose.Words.Document doc, List<string> bookmarkNames)
+        {
+            var collector = new Aspose.Words.Layout.LayoutCollector(doc);
+            var enumerator = new Aspose.Words.Layout.LayoutEnumerator(doc);
+            var result = new List<PdfSignaturePosition>();
+
+            foreach (string bookmarkName in bookmarkNames)
+            {
+                Aspose.Words.Bookmark bookmark = doc.Range.Bookmarks[bookmarkName];
+                if (bookmark == null)
+                    continue;
+
+                Aspose.Words.Node startNode = bookmark.BookmarkStart.ParentNode;
+                if (startNode == null)
+                    continue;
+
+                try
+                {
+                    var entity = collector.GetEntity(startNode);
+                    if (entity == null)
+                        continue;
+
+                    enumerator.Current = entity;
+                    var rect = enumerator.Rectangle;
+
+                    int pageIndex = collector.GetStartPageIndex(startNode);
+                    var section = (Aspose.Words.Section)doc.GetChild(Aspose.Words.NodeType.Section, pageIndex - 1, true);
+                    double pageHeight = section.PageSetup.PageHeight;
+
+                    result.Add(new PdfSignaturePosition
+                    {
+                        BookmarkName = bookmarkName,
+                        Page = pageIndex,
+                        X = rect.X,
+                        Y = (float)(pageHeight - rect.Y - rect.Height),
+                        Width = rect.Width,
+                        Height = rect.Height
+                    });
+
+                }
+                catch (Exception ex)
+                {
+                    // Nếu lỗi LayoutEnumerator (thường do node không có layout), thì bỏ qua
+                    Console.WriteLine($"Không thể lấy tọa độ cho bookmark {bookmarkName}: {ex.Message}");
+                }
+            }
+
+            return result;
+        }
+        public static bool MoveToAny(Aspose.Words.DocumentBuilder builder, string fieldName)
+        {
+            builder.MoveToDocumentStart();
+            return builder.MoveToMergeField(fieldName,true, false);
+        }
+        public static List<PdfSignaturePosition> SignDoc_Digital(Aspose.Words.Document doc, Aspose.Words.DocumentBuilder builder)
+        {
+            var positions = new List<PdfSignaturePosition>();
+
+            var collector = new Aspose.Words.Layout.LayoutCollector(doc);
+            var enumerator = new Aspose.Words.Layout.LayoutEnumerator(doc);
+
+            try
+            {
+                string[] mergeFields = doc.MailMerge.GetFieldNames();
+
+                foreach (var fieldName in mergeFields)
+                {
+                    if (builder.MoveToMergeField(fieldName))
+                    {
+                        // Tạo bookmark nếu muốn (hoặc bỏ nếu không cần)
+                        builder.StartBookmark(fieldName);
+                        builder.EndBookmark(fieldName);
+
+                        // Lấy node đang trỏ tới
+                        Aspose.Words.Node currentNode = builder.CurrentParagraph != null
+    ? (Aspose.Words.Node)builder.CurrentParagraph
+    : (Aspose.Words.Node)builder.CurrentStory;
+
+                        if (currentNode == null)
+                            continue;
+
+                        // Di chuyển enumerator tới node đó
+                        enumerator.Current = currentNode;
+
+                        // Lấy vị trí chữ ký
+                        var rect = enumerator.Rectangle;
+
+                        // Xác định số trang
+                        int page = collector.GetStartPageIndex(currentNode);
+
+                        // Lấy chiều cao trang để đảo Y
+                        Aspose.Words.Section section = (Aspose.Words.Section)doc.GetChild(Aspose.Words.NodeType.Section, page - 1, true);
+                        double pageHeight = (float)section.PageSetup.PageHeight;
+
+                        // Tính vị trí theo hệ tọa độ PDF (góc dưới trái)
+                        var pdfPos = new PdfSignaturePosition
+                        {
+                            BookmarkName = fieldName,
+                            Page = page,
+                            X = rect.X,
+                            Y = pageHeight - rect.Y - rect.Height,
+                            Width = rect.Width,
+                            Height = rect.Height
+                        };
+
+                        positions.Add(pdfPos);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+            }
+
+            return positions;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="doc"></param>
+        /// <param name="builder"></param>
+        /// <param name="Signsize"></param>
+        /// <param name="SearchbyNguoiKy"></param>
+        /// <param name="isKiso">Nếu kí số =true thì sẽ chèn khung ảnh trống vào vị trí kí, sau đó dùng khung này để lấy tọa độ truyền vào hàm kí số</param>
+        public static void SignDoc(Aspose.Words.Document doc, Aspose.Words.DocumentBuilder builder, string Signsize, bool SearchbyNguoiKy = false, bool isKiso = false)
         {
             try
             {
+                List<BookmarkLocation> lst_bookmarkLocations = new List<BookmarkLocation>();
+                List<string> lst_bookmarkNames = new List<string>();
                 DmucNhanvien objNhanvien;
                 if (globalVariables.dtSignInfor.Rows.Count > 0 && globalVariables.dtSignInfor.Columns.Count > 0)//Tìm các vùng chữ kí để đưa ảnh vào
                 {
                     string _defaultSign = string.Format(@"{0}\{1}\default.png", Application.StartupPath, "sign");
                     string sign_here = string.Format(@"{0}\{1}\signhere", Application.StartupPath, "sign");
+                    if(!File.Exists(sign_here))
+                        sign_here = string.Format(@"{0}\{1}\signhere.png", Application.StartupPath, "sign");
                     string[] remaining = doc.MailMerge.GetFieldNames();
                     globalVariables.lstVitriky = GetDictionaryFromDataTable();
+                    var collector = new Aspose.Words.Layout.LayoutCollector(doc);
+                    var enumerator = new Aspose.Words.Layout.LayoutEnumerator(doc);
                     if (remaining.Length > 0)
                     {
                         if (SearchbyNguoiKy)//Tìm theo người kí. Áp dụng đối với Tờ điều trị chung
@@ -1293,17 +1509,20 @@ namespace VNS.Libs
                                 DataRow[] arrDr = globalVariables.dtSignInfor.Select(string.Format( "id_phieu={0}", v_intID_phieu));
                                 //Bước 3: Kiểm tra tờ này đã ký hay chưa ký
                                 //var p = globalVariables.dtSignInfor.AsEnumerable().Where(c => Utility.ByteDbnull(c["tthai_ky"]) == 0 && Utility.sDbnull(c["nguoi_ky"]) == user_name).FirstOrDefault();
-                                if (arrDr.Length<=0 || Utility.ByteDbnull(arrDr[0]["tthai_ky"])==0)//Chưa ký trên tài liệu này
+                                if (arrDr.Length<=0 || Utility.ByteDbnull(arrDr[0]["tthai_kydientu"])==0)//Chưa ký trên tài liệu này
                                 {
                                     //_sign = null;
                                     _sign = Utility.fromimagepath2byte(sign_here);
                                 }
                                 else//Đã kí trên tài liệu này-->Check chưa có chữ kí thì thông báo
                                 {
-                                    if (_sign == null)
+                                    if (!isKiso)//Chỉ kí điện tử mới kiểm tra
                                     {
-                                        string msg = string.Format("Người ký chưa có hình ảnh chữ ký trên hệ thống. Vui lòng liên hệ Quản trị hệ thống để được bổ sung hình ảnh chữ ký hiển thị trên các phiếu đã ký");
-                                        Utility.ShowMsg(msg);
+                                        if (_sign == null)
+                                        {
+                                            string msg = string.Format("Người ký chưa có hình ảnh chữ ký trên hệ thống. Vui lòng liên hệ Quản trị hệ thống để được bổ sung hình ảnh chữ ký hiển thị trên các phiếu đã ký");
+                                            Utility.ShowMsg(msg);
+                                        }
                                     }
                                 }
                                 if (builder.MoveToMergeField(name))
@@ -1351,6 +1570,7 @@ namespace VNS.Libs
                         }
                         else//Tìm kiếm theo tên vị trí ký, tại vị trí tìm được lấy ảnh theo user ký chèn vào đó
                         {
+                            doc.UpdatePageLayout();
                             foreach (var name in remaining)
                             {
                                 if (globalVariables.lstVitriky.ContainsKey(name))
@@ -1370,7 +1590,7 @@ namespace VNS.Libs
                                     }
                                     //Kiểm tra xem trạng thái ký
 
-                                    var p = globalVariables.dtSignInfor.AsEnumerable().Where(c => Utility.ByteDbnull(c["tthai_ky"]) == 0 && Utility.sDbnull(c["nguoi_ky"]) == nguoi_ky && Utility.sDbnull(c["ten_vitri_ky"]) == name).FirstOrDefault();
+                                    var p = globalVariables.dtSignInfor.AsEnumerable().Where(c => Utility.ByteDbnull(c["tthai_kydientu"]) == 0 && Utility.sDbnull(c["nguoi_ky"]) == nguoi_ky && Utility.sDbnull(c["ten_vitri_ky"]) == name).FirstOrDefault();
                                     if (p != null)//Chưa ký trên tài liệu này
                                     {
                                         //_sign = null;
@@ -1378,10 +1598,13 @@ namespace VNS.Libs
                                     }
                                     else//Đã kí trên tài liệu này-->Check chưa có chữ kí thì thông báo
                                     {
-                                        if (_sign == null)
+                                        if (!isKiso)//Chỉ kí điện tử mới kiểm tra
                                         {
-                                            string msg = string.Format("Người ký chưa có hình ảnh chữ ký trên hệ thống. Vui lòng liên hệ Quản trị hệ thống để được bổ sung hình ảnh chữ ký hiển thị trên các phiếu đã ký");
-                                            Utility.ShowMsg(msg);
+                                            if (_sign == null)
+                                            {
+                                                string msg = string.Format("Người ký chưa có hình ảnh chữ ký trên hệ thống. Vui lòng liên hệ Quản trị hệ thống để được bổ sung hình ảnh chữ ký hiển thị trên các phiếu đã ký");
+                                                Utility.ShowMsg(msg);
+                                            }
                                         }
                                     }
                                     //Kiểm tra xem trạng thái ký
@@ -1409,23 +1632,37 @@ namespace VNS.Libs
                                         //Chèn 2 cái này mục đích đánh dấu vị trí chữ ký phục vụ công tác di chuyển con trỏ đến sau khi ký (nếu muốn)
                                         builder.StartBookmark(name);
                                         builder.EndBookmark(name);
-                                        if (_sign != null)
+                                        lst_bookmarkNames.Add(name);
+                                        
+                                        Aspose.Words.Drawing.Shape insertedImage = null;
+                                        if (!isKiso)//Chỉ kí điện tử mới kiểm tra
                                         {
-                                            if (Signsize != "")
+                                            if (_sign != null)
                                             {
-                                                int w = Utility.Int32Dbnull(Signsize.Split('x')[0], 0);
-                                                int h = Utility.Int32Dbnull(Signsize.Split('x')[1], 0);
-                                                if (w > 0 && h > 0)
-                                                    builder.InsertImage(_sign, w, h);
+                                                if (Signsize != "")
+                                                {
+                                                    int w = Utility.Int32Dbnull(Signsize.Split('x')[0], 0);
+                                                    int h = Utility.Int32Dbnull(Signsize.Split('x')[1], 0);
+                                                    if (w > 0 && h > 0)
+                                                        insertedImage= builder.InsertImage(_sign, w, h);
+                                                    else
+                                                        insertedImage= builder.InsertImage(_sign);
+                                                }
                                                 else
-                                                    builder.InsertImage(_sign);
+                                                    if (_sign != null)
+                                                    insertedImage= builder.InsertImage(_sign);
+                                                if(insertedImage!=null)
+                                                {
+                                                    insertedImage.AlternativeText = $"sign-image-{name}";
+                                                    insertedImage.Name = $"{name}";
+                                                }    
                                             }
-                                            else
-                                                if (_sign != null)
-                                                builder.InsertImage(_sign);
                                         }
-                                        //else//Không cần vì mergefield này ẩn
-                                        //    builder.InsertImage(NoImage, 10, 10);
+                                        else//Kí số-->Chèn khung ảnh ký trống vào đây
+                                        {
+
+                                        }    
+                                       
                                     }
                                 }
                             }
@@ -1435,7 +1672,21 @@ namespace VNS.Libs
                     {
 
                     }
-
+                    ////Lưu file pdf có dòng kí để bước sau sẽ lấy tọa độ
+                    //string pdf2sign = Application.StartupPath + @"\pdf2sign";
+                    //Utility.Try2CreateFolder(pdf2sign);
+                    //string pdfFile = pdf2sign + @"\" + Guid.NewGuid().ToString() + ".pdf";
+                    //doc.Save(pdfFile, Aspose.Words.SaveFormat.Pdf);
+                    //Lấy tọa độ chữ kí
+                    //var pdf = new Aspose.Pdf.Document(pdfFile);
+                    //foreach (var field in pdf.Form.Fields)
+                    //{
+                    //    if (field is Aspose.Pdf.Forms.SignatureField sig)
+                    //    {
+                    //        Console.WriteLine($"Field Name: {sig.PartialName}, Page: {sig.PageIndex}, Rect: {sig.Rect}");
+                    //        // Ví dụ: sig.PartialName == "cc#signature1" hoặc tương tự
+                    //    }
+                    //}
                 }
                 else//Bấm in phiếu
                 {
@@ -1463,6 +1714,174 @@ namespace VNS.Libs
             }
 
         }
+        //public static void SignDoc_Digital(Aspose.Words.Document doc, Aspose.Words.DocumentBuilder builder, string Signsize, bool SearchbyNguoiKy = false)
+        //{
+        //    try
+        //    {
+        //        DmucNhanvien objNhanvien;
+        //        if (globalVariables.dtSignInfor.Rows.Count > 0 && globalVariables.dtSignInfor.Columns.Count > 0)//Tìm các vùng chữ kí để đưa ảnh vào
+        //        {
+        //            string _defaultSign = string.Format(@"{0}\{1}\default.png", Application.StartupPath, "sign");
+        //            string sign_here = string.Format(@"{0}\{1}\signhere", Application.StartupPath, "sign");
+        //            string[] remaining = doc.MailMerge.GetFieldNames();
+        //            globalVariables.lstVitriky = GetDictionaryFromDataTable();
+        //            if (remaining.Length > 0)
+        //            {
+        //                if (SearchbyNguoiKy)//Tìm theo người kí. Áp dụng đối với Tờ điều trị chung
+        //                {
+        //                    foreach (var name in remaining)
+        //                    {
+        //                        string user_name = name.Split('_')[1];
+        //                        objNhanvien = new Select().From(DmucNhanvien.Schema).Where(DmucNhanvien.Columns.UserName).IsEqualTo(user_name).ExecuteSingle<DmucNhanvien>();
+
+        //                        byte[] _sign = null;
+        //                        if (objNhanvien != null)
+        //                        {
+        //                            _sign = objNhanvien.ChuKy;
+        //                        }
+        //                        else
+        //                        {
+        //                            if (File.Exists(_defaultSign))
+        //                                _sign = Utility.fromimagepath2byte(_defaultSign);
+        //                        }
+        //                        //Kiểm tra xem trạng thái ký
+        //                        //B1: Lấy id_phieu từ mergefield=idphieu_nguoiky
+        //                        long v_intID_phieu = Utility.Int64Dbnull(name.Split('_')[0]);
+        //                        //B2: Lấy thông tin ký của phiếu điều trị này
+        //                        DataRow[] arrDr = globalVariables.dtSignInfor.Select(string.Format("id_phieu={0}", v_intID_phieu));
+        //                        //Bước 3: Kiểm tra tờ này đã ký hay chưa ký
+        //                        //var p = globalVariables.dtSignInfor.AsEnumerable().Where(c => Utility.ByteDbnull(c["tthai_ky"]) == 0 && Utility.sDbnull(c["nguoi_ky"]) == user_name).FirstOrDefault();
+        //                        if (arrDr.Length <= 0 || Utility.ByteDbnull(arrDr[0]["tthai_ky"]) == 0)//Chưa ký trên tài liệu này
+        //                        {
+        //                            //_sign = null;
+        //                            _sign = Utility.fromimagepath2byte(sign_here);
+        //                        }
+        //                        else//Đã kí trên tài liệu này-->Check chưa có chữ kí thì thông báo
+        //                        {
+        //                            if (_sign == null)
+        //                            {
+        //                                string msg = string.Format("Người ký chưa có hình ảnh chữ ký trên hệ thống. Vui lòng liên hệ Quản trị hệ thống để được bổ sung hình ảnh chữ ký hiển thị trên các phiếu đã ký");
+        //                                Utility.ShowMsg(msg);
+        //                            }
+        //                        }
+        //                        if (builder.MoveToMergeField(name))//Chèn book mark để lấy tọa độ
+        //                        {
+                                    
+        //                            builder.StartBookmark(user_name);
+        //                            builder.EndBookmark(user_name);
+        //                        }
+        //                    }
+        //                }
+        //                else//Tìm kiếm theo tên vị trí ký, tại vị trí tìm được lấy ảnh theo user ký chèn vào đó
+        //                {
+        //                    foreach (var name in remaining)
+        //                    {
+        //                        if (globalVariables.lstVitriky.ContainsKey(name))
+        //                        {
+        //                            string nguoi_ky = globalVariables.lstVitriky[name];
+
+        //                            objNhanvien = new Select().From(DmucNhanvien.Schema).Where(DmucNhanvien.Columns.UserName).IsEqualTo(nguoi_ky).ExecuteSingle<DmucNhanvien>();
+        //                            byte[] _sign = null;
+        //                            if (objNhanvien != null)
+        //                            {
+        //                                _sign = objNhanvien.ChuKy;
+        //                            }
+        //                            else
+        //                            {
+        //                                if (File.Exists(_defaultSign))
+        //                                    _sign = Utility.fromimagepath2byte(_defaultSign);
+        //                            }
+        //                            //Kiểm tra xem trạng thái ký
+
+        //                            var p = globalVariables.dtSignInfor.AsEnumerable().Where(c => Utility.ByteDbnull(c["tthai_ky"]) == 0 && Utility.sDbnull(c["nguoi_ky"]) == nguoi_ky && Utility.sDbnull(c["ten_vitri_ky"]) == name).FirstOrDefault();
+        //                            if (p != null)//Chưa ký trên tài liệu này
+        //                            {
+        //                                //_sign = null;
+        //                                _sign = Utility.fromimagepath2byte(sign_here);
+        //                            }
+        //                            else//Đã kí trên tài liệu này-->Check chưa có chữ kí thì thông báo
+        //                            {
+        //                                if (_sign == null)
+        //                                {
+        //                                    string msg = string.Format("Người ký chưa có hình ảnh chữ ký trên hệ thống. Vui lòng liên hệ Quản trị hệ thống để được bổ sung hình ảnh chữ ký hiển thị trên các phiếu đã ký");
+        //                                    Utility.ShowMsg(msg);
+        //                                }
+        //                            }
+                                    
+        //                            if (builder.MoveToMergeField(name))
+        //                            {
+        //                                //Chèn 2 cái này mục đích đánh dấu vị trí chữ ký phục vụ công tác di chuyển con trỏ đến sau khi ký (nếu muốn)
+        //                                builder.StartBookmark(name);
+        //                                builder.EndBookmark(name);
+        //                                // Lấy node đang trỏ tới
+        //                                Aspose.Words.Node currentNode = builder.CurrentParagraph != null
+        //            ? (Aspose.Words.Node)builder.CurrentParagraph
+        //            : (Aspose.Words.Node)builder.CurrentStory;
+
+        //                                if (currentNode == null)
+        //                                    continue;
+
+        //                                // Di chuyển enumerator tới node đó
+        //                                enumerator.Current = currentNode;
+
+        //                                // Lấy vị trí chữ ký
+        //                                var rect = enumerator.Rectangle;
+
+        //                                // Xác định số trang
+        //                                int page = collector.GetStartPageIndex(currentNode);
+
+        //                                // Lấy chiều cao trang để đảo Y
+        //                                Aspose.Words.Section section = (Aspose.Words.Section)doc.GetChild(Aspose.Words.NodeType.Section, page - 1, true);
+        //                                double pageHeight = (float)section.PageSetup.PageHeight;
+
+        //                                // Tính vị trí theo hệ tọa độ PDF (góc dưới trái)
+        //                                var pdfPos = new PdfSignaturePosition
+        //                                {
+        //                                    BookmarkName = fieldName,
+        //                                    Page = page,
+        //                                    X = rect.X,
+        //                                    Y = pageHeight - rect.Y - rect.Height,
+        //                                    Width = rect.Width,
+        //                                    Height = rect.Height
+        //                                };
+
+        //                            }
+        //                        }
+        //                    }
+        //                }
+        //            }
+        //            else
+        //            {
+
+        //            }
+
+        //        }
+        //        else//Bấm in phiếu
+        //        {
+        //            string[] remaining = doc.MailMerge.GetFieldNames();
+        //            foreach (var name in remaining)
+        //            {
+        //                if (builder.MoveToMergeField(name))
+        //                {
+        //                    //Chèn 2 cái này mục đích đánh dấu vị trí chữ ký phục vụ công tác di chuyển con trỏ đến sau khi ký (nếu muốn)
+        //                    builder.StartBookmark(name);
+        //                    builder.EndBookmark(name);
+        //                    int numoflines = Utility.Int32Dbnull(Laygiatrithamsohethong("CKS_SODONGTRANG", "2", false));
+        //                    for (int i = 1; i <= numoflines; i++)
+        //                    {
+        //                        builder.Writeln();
+        //                    }
+        //                }
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Utility.CatchException(ex);
+
+        //    }
+
+        //}
         public static Dictionary<string, string> GetDictionaryFromDataTable()
         {
             var dict = new Dictionary<string, string>();
@@ -2838,7 +3257,7 @@ namespace VNS.Libs
                 {
                     foreach (string field in dicMF.Keys)
                     {
-                        if (builder.MoveToMergeField(field))
+                        if (builder.MoveToMergeField(field.Trim()))
                         {
                             if (dicMF[field] == "1")
                             {
@@ -2864,7 +3283,7 @@ namespace VNS.Libs
                         {
                             string s = "";
                         }    
-                        if (builder.MoveToMergeField(field))
+                        if (builder.MoveToMergeField(field.Trim()))
                         {
                             if (drData.Table.Columns.Contains(field) &&  Byte2Bool(drData[field]))
                             {
@@ -5747,6 +6166,15 @@ namespace VNS.Libs
         {
             return obj.Replace("'", "''");
         }
+        public static void AutoCheckGrid(GridEX grd)
+        {
+            if(grd.GetCheckedRows().Count()<=0 && isValidGrid(grd))
+            {
+                grd.CurrentRow.BeginEdit();
+                grd.CurrentRow.IsChecked = true;
+                grd.CurrentRow.EndEdit();
+            }    
+        }
 
         /// <summary>
         /// Hiển thị hộp thoại OKCancel để hỏi người dùng khi cần câu trả lời là có hay không?
@@ -6080,12 +6508,258 @@ namespace VNS.Libs
             }
             return dt;
         }
+        public static string LayMaBA(string loai_ba)
+        {
+            string tenToBA = "BENH_AN";
+            switch (loai_ba)
+            {
+                case LoaiBA.BA_SANKHOA:
+                    tenToBA = "BA_SANKHOA";
+                    break;
+                case LoaiBA.BA_PHUKHOA:
+                    tenToBA = "BA_PHUKHOA";
+                    break;
+                case LoaiBA.BA_NAMKHOA:
+                    tenToBA = "BA_NAMKHOA";
+                    break;
+                case LoaiBA.BA_NOIKHOA:
+                    tenToBA = "BA_NOIKHOA";
+                    break;
+                case LoaiBA.BA_NGOAIKHOA:
+                    tenToBA = "BA_NGOAIKHOA";
+                    break;
+                case LoaiBA.BA_NGOAITRU:
+                    tenToBA = "BA_NGOAITRU";
+                    break;
+                case LoaiBA.BA_SOSINH:
+                    tenToBA = "BA_SOSINH";
+                    break;
+                case LoaiBA.BA_NHIKHOA:
+                    tenToBA = "BA_NHIKHOA";
+                    break;
+                case LoaiBA.BA_IVF_VO:
+                    tenToBA = "BA_IVF_VO";
+                    break;
+                case LoaiBA.BA_IVF_CHONG:
+                    tenToBA = "BA_IVF_CHONG";
+                    break;
+                default:
+                    tenToBA = "BENH_AN";
+                    break;
+
+            }
+            return tenToBA;
+        }
+        public static string LayTenToBA(int toBA, string loai_ba)
+        {
+            string tenToBA = "";
+            switch (loai_ba)
+            {
+                case LoaiBA.BA_SANKHOA:
+                    if (toBA == 1) tenToBA = "BA05_BASANKHOA_TO1.doc";
+                    else if (toBA == 0) tenToBA = "BA05_BASANKHOA_BIA.doc";
+                    else if (toBA == 2) tenToBA = "BA05_BASANKHOA_TO2.doc";
+                    else if (toBA == 3) tenToBA = "BA05_BASANKHOA_TO3.doc";
+                    else if (toBA == 4) tenToBA = "BA05_BASANKHOA_TO4.doc";
+                    else tenToBA = "BA05_BASANKHOA.doc";
+                    break;
+                case LoaiBA.BA_PHUKHOA:
+                    if (toBA == 1) tenToBA = "BA04_BAPHUKHOA_TO1.doc";
+                    else if (toBA == 0) tenToBA = "BA04_BAPHUKHOA_BIA.doc";
+                    else if (toBA == 2) tenToBA = "BA04_BAPHUKHOA_TO2.doc";
+                    else if (toBA == 3) tenToBA = "BA04_BAPHUKHOA_TO3.doc";
+                    else if (toBA == 4) tenToBA = "BA04_BAPHUKHOA_TO4.doc";
+                    else tenToBA = "BA04_BAPHUKHOA.doc";
+                    break;
+                case LoaiBA.BA_NAMKHOA:
+                    if (toBA == 1) tenToBA = "BANK_BANAMKHOA_TO1.doc";
+                    else if (toBA == 0) tenToBA = "BANK_BANAMKHOA_BIA.doc";
+                    else if (toBA == 2) tenToBA = "BANK_BANAMKHOA_TO2.doc";
+                    else if (toBA == 3) tenToBA = "BANK_BANAMKHOA_TO3.doc";
+                    else if (toBA == 4) tenToBA = "BANK_BANAMKHOA_TO4.doc";
+                    else tenToBA = "BANK_BANAMKHOA.doc";
+                    break;
+                case LoaiBA.BA_NOIKHOA:
+                    if (toBA == 1) tenToBA = "BA01_BANOIKHOA_TO1.doc";
+                    else if (toBA == 0) tenToBA = "BA01_BANOIKHOA_BIA.doc";
+                    else if (toBA == 2) tenToBA = "BA01_BANOIKHOA_TO2.doc";
+                    else if (toBA == 3) tenToBA = "BA01_BANOIKHOA_TO3.doc";
+                    else if (toBA == 4) tenToBA = "BA01_BANOIKHOA_TO4.doc";
+                    else tenToBA = "BA01_BANOIKHOA.doc";
+                    break;
+                case LoaiBA.BA_NGOAIKHOA:
+                    if (toBA == 1) tenToBA = "BA10_BANGOAIKHOA_TO1.doc";
+                    else if (toBA == 0) tenToBA = "BA10_BANGOAIKHOA_BIA.doc";
+                    else if (toBA == 2) tenToBA = "BA10_BANGOAIKHOA_TO2.doc";
+                    else if (toBA == 3) tenToBA = "BA10_BANGOAIKHOA_TO3.doc";
+                    else if (toBA == 4) tenToBA = "BA10_BANGOAIKHOA_TO4.doc";
+                    else tenToBA = "BA10_BANGOAIKHOA.doc";
+                    break;
+                case LoaiBA.BA_NGOAITRU:
+                    if (toBA == 1) tenToBA = "BA15_BANGOAITRU_TO1.doc";
+                    else if (toBA == 0) tenToBA = "BA15_BANGOAITRU_BIA.doc";
+                    else if (toBA == 2) tenToBA = "BA15_BANGOAITRU_TO2.doc";
+                    else if (toBA == 3) tenToBA = "BA15_BANGOAITRU_TO3.doc";
+                    else if (toBA == 4) tenToBA = "BA15_BANGOAITRU_TO4.doc";
+                    else tenToBA = "BA15_BANGOAITRU.doc";
+                    break;
+                case LoaiBA.BA_SOSINH:
+                    if (toBA == 1) tenToBA = "BA06_BANSOSINH_TO1.doc";
+                    else if (toBA == 0) tenToBA = "BA06_BANSOSINH_BIA.doc";
+                    else if (toBA == 2) tenToBA = "BA06_BANSOSINH_TO2.doc";
+                    else if (toBA == 3) tenToBA = "BA06_BANSOSINH_TO3.doc";
+                    else if (toBA == 4) tenToBA = "BA06_BANSOSINH_TO4.doc";
+                    else tenToBA = "BA06_BANSOSINH.doc";
+                    break;
+                case LoaiBA.BA_NHIKHOA:
+                    if (toBA == 1) tenToBA = "BA02_BANNHIKHOA_TO1.doc";
+                    else if (toBA == 0) tenToBA = "BA02_BANNHIKHOA_BIA.doc";
+                    else if (toBA == 2) tenToBA = "BA02_BANNHIKHOA_TO2.doc";
+                    else if (toBA == 3) tenToBA = "BA02_BANNHIKHOA_TO3.doc";
+                    else if (toBA == 4) tenToBA = "BA02_BANNHIKHOA_TO4.doc";
+                    else tenToBA = "BA02_BANNHIKHOA.doc";
+                    break;
+                case LoaiBA.BA_IVF_CHONG:
+                    if (toBA == 1) tenToBA = "BA_IVF_CHONG_TO1.doc";
+                    else if (toBA == 0) tenToBA = "BA_IVF_CHONG_BIA.doc";
+                    else if (toBA == 2) tenToBA = "BA_IVF_CHONG_TO2.doc";
+                    else if (toBA == 3) tenToBA = "BA_IVF_CHONG_TO3.doc";
+                    else if (toBA == 4) tenToBA = "BA_IVF_CHONG_TO4.doc";
+                    else tenToBA = "BA_IVF_CHONG.doc";
+                    break;
+                case LoaiBA.BA_IVF_VO:
+                    if (toBA == 1) tenToBA = "BA_IVF_VO_TO1.doc";
+                    else if (toBA == 0) tenToBA = "BA_IVF_VO_BIA.doc";
+                    else if (toBA == 2) tenToBA = "BA_IVF_VO_TO2.doc";
+                    else if (toBA == 3) tenToBA = "BA_IVF_VO_TO3.doc";
+                    else if (toBA == 4) tenToBA = "BA_IVF_VO_TO4.doc";
+                    else tenToBA = "BA_IVF_VO.doc";
+                    break;
+                default:
+                    break;
+
+            }
+            return tenToBA;
+        }
+        public static string Get_ChanDoan_KKB_CapCuu(KcbLuotkham objLuotkham)
+        {
+            string _result = string.Empty;
+            try
+            {
+                SqlQuery sqlQuery = new Select(KcbChandoanKetluan.Columns.Chandoan, KcbChandoanKetluan.Columns.ChandoanKemtheo, KcbChandoanKetluan.Columns.MabenhChinh, KcbChandoanKetluan.Columns.MabenhPhu)
+                                            .From(KcbChandoanKetluan.Schema)
+                                              .Where(KcbChandoanKetluan.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
+                                                      .And(KcbChandoanKetluan.Columns.KieuChandoan).IsEqualTo(0)//0= chan doan tham kham, 1=chan doan vao vien,2=chandoan_noitru,3=chandoan_chuyenvien,4=chan doan ra vien
+                                                      .And(KcbChandoanKetluan.Columns.Noitru).IsEqualTo(0)
+                                                      .And(KcbChandoanKetluan.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
+                                                      .OrderAsc(KcbChandoanKetluan.Columns.NgayChandoan);
+                var objInfoCollection = sqlQuery.ExecuteAsCollection<KcbChandoanKetluanCollection>();
+                string chandoan = "";
+                string mabenh = "";
+                string tenbenhphu = "";
+                string tenbenhchinh = "";
+                string mabenhphu = "";
+                foreach (KcbChandoanKetluan objDiagInfo in objInfoCollection)
+                {
+                    string ICD_Name = "";
+                    string ICD_Code = "";
+                    string ICD_Phu_Name = "";
+                    string ICD_Phu_Code = "";
+                    GetChanDoanChinhPhu(Utility.sDbnull(objDiagInfo.MabenhChinh, ""), Utility.sDbnull(objDiagInfo.MabenhPhu, ""), ref ICD_Name, ref ICD_Code, ref ICD_Phu_Name, ref ICD_Phu_Code);
+                    chandoan += string.IsNullOrEmpty(objDiagInfo.Chandoan) ? "" : Utility.sDbnull(objDiagInfo.Chandoan);
+                    tenbenhchinh += ICD_Name;
+                    mabenh += ICD_Code;
+                    tenbenhphu += ICD_Phu_Name;
+                    mabenhphu += ICD_Phu_Code;
+                }
+                _result = Laygiatrithamsohethong("BA_SUDUNG_ICD_LAM_CHANDOANSOBO", "0", true) == "1" ? tenbenhchinh + tenbenhphu + chandoan : chandoan; //nếu dùng icd làm cdsb thì trên cdsb đã có tên bệnh rồi, ko cần cộng vào nữa
+            }
+            catch (Exception)
+            {
+                _result = string.Empty;
+            }
+            return _result;
+        }
+       public  static void GetChanDoanChinhPhu(string ICD_chinh, string IDC_Phu, ref string ICD_chinh_Name,
+         ref string ICD_chinh_Code, ref string ICD_Phu_Name, ref string ICD_Phu_Code)
+        {
+            try
+            {
+                List<string> lstICD = ICD_chinh.Split(',').ToList();
+                DmucBenhCollection _list = new Select().From(DmucBenh.Schema).Where(DmucBenh.Columns.MaBenh).In(lstICD).ExecuteAsCollection<DmucBenhCollection>();
+                //new DmucBenh().FetchByQuery(               DmucBenh.CreateQuery().AddWhere(DmucBenh.MaBenhColumn.ColumnName, Comparison.In, lstICD));
+                foreach (DmucBenh _objEmrBa in _list)
+                {
+                    ICD_chinh_Name += _objEmrBa.TenBenh + ";";
+                    ICD_chinh_Code += _objEmrBa.MaBenh + ";";
+                }
+                lstICD = IDC_Phu.Split(',').ToList();
+                _list =
+                    new DmucBenhController().FetchByQuery(
+                        DmucBenh.CreateQuery().AddWhere(DmucBenh.MaBenhColumn.ColumnName, Comparison.In, lstICD));
+                foreach (DmucBenh _objEmrBa in _list)
+                {
+                    ICD_Phu_Name += _objEmrBa.TenBenh + ";";
+                    ICD_Phu_Code += _objEmrBa.MaBenh + ";";
+                }
+            }
+            catch (Exception ex)
+            {
+                Utility.ShowMsg(ex.ToString());
+            }
+        }
+        public static void GetChanDoanNoitru(KcbLuotkham objLuotkham,ref string ICD_Khoa_NoITru,ref string Name_Khoa_NoITru)
+        {
+            var dtPatient = new DataTable();
+            dtPatient =
+                new Select("*")
+                    .From(KcbChandoanKetluan.Schema)
+                    .Where(KcbChandoanKetluan.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
+                     .And(KcbChandoanKetluan.Columns.KieuChandoan).IsEqualTo(2)//Chẩn đoán trong quá trình điều trị nội trú.
+                    .And(KcbChandoanKetluan.Columns.Noitru).IsEqualTo(1)
+                    .ExecuteDataSet()
+                    .Tables[0];
+            ICD_Khoa_NoITru = string.Join(",", dtPatient.AsEnumerable().Where(c => Utility.AutoCorrectMa_Am1(c["mabenh_chinh"])!="").Select(c=> Utility.AutoCorrectMa_Am1(c["mabenh_chinh"])).Distinct());
+            Name_Khoa_NoITru = string.Join(",", dtPatient.AsEnumerable().Where(c => Utility.AutoCorrectMa_Am1(c["chandoan"]) != "").Select(c => Utility.AutoCorrectMa_Am1(c["chandoan"])).Distinct());
+            //foreach (DataRow row in dtPatient.Rows)
+            //{
+            //    string id = Utility.AutoCorrectMa_Am1(row["mabenh_chinh"]);
+            //    string ten = Utility.AutoCorrectMa_Am1(row["chandoan"]);
+
+            //    ICD_Khoa_NoITru  + ";";
+            //    Name_Khoa_NoITru += row["chandoan"] + ";";
+            //}
+        }
+        public static string AutoCorrectMa_Am1(string ma)
+        {
+            if (DoTrim(ma) == "-1")
+                return "";
+            return ma;
+        }
+        public static string AutoCorrectMa_Am1(object ma)
+        {
+            string temp = sDbnull(ma);
+            if (temp == "-1")
+                return "";
+            return temp;
+        }
         ///<summary>
         ///<para>Xử lý một Object nếu là null thì trả về giá trị truyền vào</para>
         ///</summary>   
         /// <param name="obj"><para>Object truyền vào <see cref="object"/></para></param>     
         /// <param name="DefaultVal"><para>Giá trị mặc định sẽ trả về nếu obj=null <see cref="object"/></para></param>     
         ///<returns>Đối tượng chuỗi trả về từ Object. Nếu obj=null thì trả về DefaultVal</returns>
+        public static string sDbnull(object obj, object DefaultVal,bool TudongChinhGiatriAm1=false)
+        {
+            if (obj == null || obj == DBNull.Value)
+            {
+                return DefaultVal.ToString();
+            }
+            else
+            {
+                return TudongChinhGiatriAm1 ? DoTrim(AutoCorrectMa_Am1(obj.ToString())) : DoTrim(obj.ToString());
+            }
+        }
         public static string sDbnull(object obj, object DefaultVal)
         {
             if (obj == null || obj == DBNull.Value)
@@ -6094,10 +6768,9 @@ namespace VNS.Libs
             }
             else
             {
-                return DoTrim(obj.ToString());
+                return  DoTrim(obj.ToString());
             }
         }
-
         public static byte[] image2Dbnull(object obj, byte[] DefaultVal)
         {
             if (obj == null || obj == DBNull.Value)
@@ -6846,7 +7519,14 @@ namespace VNS.Libs
                 return Convert.ToInt64(obj);
             }
         }
-
+        public static DateTime GetBeginDate(DateTime dt)
+        {
+            return dt.Date;
+        }
+        public static DateTime GetEndDate(DateTime dt)
+        {
+            return dt.Date.AddHours(23).AddMinutes(59).AddSeconds(59);
+        }
         /// <summary>
         /// Chuyển đổi một đối tượng sang kiểu Int16. Xử lý nếu trường hợp là null thì trả về giá trị DefaultVal
         /// </summary>
@@ -7829,6 +8509,35 @@ namespace VNS.Libs
                     result[i] = char.ToLower(result[i]);
             }
             return result.ToString();
+        }
+        static string CapitalizeEachWord(string text)
+        {
+            if (string.IsNullOrWhiteSpace(text))
+                return text;
+
+            StringBuilder sb = new StringBuilder(text.Length);
+            bool capitalizeNext = true;
+
+            foreach (char c in text)
+            {
+                if (char.IsWhiteSpace(c))
+                {
+                    sb.Append(c);
+                    capitalizeNext = true;
+                }
+                else if (capitalizeNext && char.IsLetter(c))
+                {
+                    sb.Append(char.ToUpper(c));
+                    capitalizeNext = false;
+                }
+                else
+                {
+                    sb.Append(c);
+                    capitalizeNext = false;
+                }
+            }
+
+            return sb.ToString();
         }
         public static string CapitalizeFirstLetters(string value)
         {
@@ -10227,36 +10936,36 @@ namespace VNS.Libs
             return str;
 
         }
-        public static string FormatDateTime(DateTime dt,bool upercaseFirstCharacter=false)
+        public static string FormatDateTime(DateTime dt,bool upercaseFirstCharacter= false)
         {
             string str = "Ngày ";
             str += Strings.Right("0" + dt.Day.ToString(), 2);
-            str += " Tháng ";
+            str += " tháng ";
             str += Strings.Right("0" + dt.Month.ToString(), 2);
-            str += " Năm ";
+            str += " năm ";
             str += dt.Year;
-            return upercaseFirstCharacter?str:str.ToLower();
+            return upercaseFirstCharacter? CapitalizeEachWord(str.ToLower()) : str;
         }
         public static string FormatDateTime(DateTime? dt, bool upercaseFirstCharacter = false)
         {
             string str = "Ngày ";
             str += Strings.Right("0" + dt.Value.Day.ToString(), 2);
-            str += " Tháng ";
+            str += " tháng ";
             str += Strings.Right("0" + dt.Value.Month.ToString(), 2);
-            str += " Năm ";
+            str += " năm ";
             str += dt.Value.Year;
-            return upercaseFirstCharacter ? str : str.ToLower();
+            return upercaseFirstCharacter ? CapitalizeEachWord(str.ToLower()) : str;
         }
         public static string FormatDateTime(DateTime? dt, string defaultVal, bool upercaseFirstCharacter = false)
         {
             if (!dt.HasValue) return defaultVal;
             string str = "Ngày ";
             str += Strings.Right("0" + dt.Value.Day.ToString(), 2);
-            str += " Tháng ";
+            str += " tháng ";
             str += Strings.Right("0" + dt.Value.Month.ToString(), 2);
-            str += " Năm ";
+            str += " năm ";
             str += dt.Value.Year;
-            return upercaseFirstCharacter ? str : str.ToLower();
+            return upercaseFirstCharacter ? CapitalizeEachWord(str.ToLower()) : str;
         }
         public static string FormatDateTime(string ddMMyyyy,string defaultVal,bool withLocaltion =false, bool upercaseFirstCharacter = false)
         {
@@ -10267,31 +10976,31 @@ namespace VNS.Libs
             {
                 str = "Ngày ";
                 str += Strings.Right("0" + lstDMY[0], 2);
-                str += " Tháng ";
+                str += " tháng ";
                 str += Strings.Right("0" + lstDMY[1], 2);
-                str += " Năm ";
+                str += " năm ";
                 str += lstDMY[2];
             }
             string diadiem = Laygiatrithamsohethong("DIA_DIEM", "Hà Nội", false);
             if (withLocaltion)
-                str= string.Format("{0}, {1}", diadiem, (upercaseFirstCharacter ? str : str.ToLower()));
-            return withLocaltion? str:( upercaseFirstCharacter ? str : str.ToLower());
+                str= string.Format("{0}, {1}", diadiem, (upercaseFirstCharacter ? CapitalizeEachWord(str.ToLower()) : str));
+            return withLocaltion? str:( upercaseFirstCharacter ? CapitalizeEachWord(str.ToLower()) : str);
         }
         public static string FormatDateTimeWithLocation(DateTime dt, string location, bool upercaseFirstCharacter = false)
         {
             string str = "Ngày ";
             str += Strings.Right("0" + dt.Day.ToString(), 2);
-            str += " Tháng ";
+            str += " tháng ";
             str += Strings.Right("0" + dt.Month.ToString(), 2);
-            str += " Năm ";
+            str += " năm ";
             str += dt.Year;
-            return location + ", " +  (upercaseFirstCharacter ?  str : str.ToLower());
+            return location + ", " +  (upercaseFirstCharacter ? CapitalizeEachWord(str.ToLower()) : str);
         }
         public static string FormatDateTimeWithLocation(string dt, string location, bool upercaseFirstCharacter = false)
         {
             List<string> lstDMY = dt.Split('/').ToList<string>();
-            string str = string.Format("{0}, Ngày {1} tháng {2} năm {3}", location, lstDMY[0], lstDMY[1], lstDMY[2]);
-            return upercaseFirstCharacter ? str : str.ToLower();
+            string str = string.Format("Ngày {0} tháng {1} năm {2}", lstDMY[0], lstDMY[1], lstDMY[2]);
+            return location + ", " + (upercaseFirstCharacter ? CapitalizeEachWord(str.ToLower()) : str);
         }
         /// <summary>
         /// hàm thực hiện việc format datetime với thành phố
@@ -10312,9 +11021,9 @@ namespace VNS.Libs
             string str = Laygiatrithamsohethong("DIA_DIEM", "Hà Nội", false);
             str += ", Ngày ";
             str += Strings.Right("0" + dt.Day.ToString(), 2);
-            str += " Tháng ";
+            str += " tháng ";
             str += Strings.Right("0" + dt.Month.ToString(), 2);
-            str += " Năm ";
+            str += " năm ";
             str += dt.Year;
             return str;
         }
@@ -13906,7 +14615,7 @@ namespace VNS.Libs
                     DataTable dt = new DataTable();
                     dt = (DataTable)data;
                     DataRow dr = dt.NewRow();
-                    dr[dataTextField] = "--- Chọn ---";
+                    dr[dataTextField] = "--- Tất cả ---";
                     dr[dataValueField] = "-1";
                     dt.Rows.InsertAt(dr, 0);
                     if (combox != null)
@@ -14034,7 +14743,7 @@ namespace VNS.Libs
                         DataTable dt = new DataTable();
                         dt = (DataTable)data;
                         DataRow dr = dt.NewRow();
-                        dr[dataTextField] = "--- Chọn ---";
+                        dr[dataTextField] = "--- Tất cả ---";
                         dr[dataValueField] = "0";
                         dt.Rows.InsertAt(dr, 0);
                         if (combox != null)
@@ -15118,7 +15827,7 @@ namespace VNS.Libs
             DataTable dt = new DataTable();
             dt = (DataTable)data;
             DataRow dr = dt.NewRow();
-            dr[dataTextField] = "--- Chọn ---";
+            dr[dataTextField] = "--- Tất cả ---";
             dr[dataValueField] = "-1";
             dt.Rows.InsertAt(dr, 0);
             if (combox != null)
@@ -15527,7 +16236,7 @@ namespace VNS.Libs
                     DataTable dt = new DataTable();
                     dt = (DataTable)data;
                     DataRow dr = dt.NewRow();
-                    dr[dataTextField] = "--- Chọn ---";
+                    dr[dataTextField] = "--- Tất cả ---";
                     dr[dataValueField] = "0";
                     dt.Rows.InsertAt(dr, 0);
                     if (combox != null)

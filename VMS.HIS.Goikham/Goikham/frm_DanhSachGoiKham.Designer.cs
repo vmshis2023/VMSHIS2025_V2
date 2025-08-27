@@ -32,6 +32,7 @@
             Janus.Windows.GridEX.GridEXLayout grdGoiKham_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.GridEX.GridEXLayout grdChiTietGoiKham_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.GridEX.GridEXLayout gridEX1_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
+            Janus.Windows.GridEX.GridEXLayout grdQhe_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem1 = new Janus.Windows.EditControls.UIComboBoxItem();
             Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem2 = new Janus.Windows.EditControls.UIComboBoxItem();
             Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem3 = new Janus.Windows.EditControls.UIComboBoxItem();
@@ -41,7 +42,6 @@
             Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem7 = new Janus.Windows.EditControls.UIComboBoxItem();
             Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem8 = new Janus.Windows.EditControls.UIComboBoxItem();
             Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem9 = new Janus.Windows.EditControls.UIComboBoxItem();
-            Janus.Windows.GridEX.GridEXLayout grdQhe_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.cmdThemMoi = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -61,6 +61,13 @@
             this.grdChiTietGoiKham = new Janus.Windows.GridEX.GridEX();
             this.uiTabPage2 = new Janus.Windows.UI.Tab.UITabPage();
             this.gridEX1 = new Janus.Windows.GridEX.GridEX();
+            this.uiTabPage3 = new Janus.Windows.UI.Tab.UITabPage();
+            this.grdQhe = new Janus.Windows.GridEX.GridEX();
+            this.pnlAct = new System.Windows.Forms.Panel();
+            this.lblMsg = new System.Windows.Forms.Label();
+            this.cmdSave = new Janus.Windows.EditControls.UIButton();
+            this.cmdDelete = new Janus.Windows.EditControls.UIButton();
+            this.cmdAdd = new Janus.Windows.EditControls.UIButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.uiGroupBox1 = new Janus.Windows.EditControls.UIGroupBox();
             this.cboKieugoi = new Janus.Windows.EditControls.UIComboBox();
@@ -80,13 +87,6 @@
             this.chkByDate = new System.Windows.Forms.CheckBox();
             this.Label1 = new System.Windows.Forms.Label();
             this.cmdTimKiem = new Janus.Windows.EditControls.UIButton();
-            this.uiTabPage3 = new Janus.Windows.UI.Tab.UITabPage();
-            this.pnlAct = new System.Windows.Forms.Panel();
-            this.cmdSave = new Janus.Windows.EditControls.UIButton();
-            this.cmdDelete = new Janus.Windows.EditControls.UIButton();
-            this.cmdAdd = new Janus.Windows.EditControls.UIButton();
-            this.grdQhe = new Janus.Windows.GridEX.GridEX();
-            this.lblMsg = new System.Windows.Forms.Label();
             this.toolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -99,12 +99,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdChiTietGoiKham)).BeginInit();
             this.uiTabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridEX1)).BeginInit();
+            this.uiTabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdQhe)).BeginInit();
+            this.pnlAct.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox1)).BeginInit();
             this.uiGroupBox1.SuspendLayout();
-            this.uiTabPage3.SuspendLayout();
-            this.pnlAct.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdQhe)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip
@@ -350,6 +350,93 @@
             this.gridEX1.Size = new System.Drawing.Size(595, 670);
             this.gridEX1.TabIndex = 2;
             this.gridEX1.TotalRow = Janus.Windows.GridEX.InheritableBoolean.True;
+            // 
+            // uiTabPage3
+            // 
+            this.uiTabPage3.Controls.Add(this.grdQhe);
+            this.uiTabPage3.Controls.Add(this.pnlAct);
+            this.uiTabPage3.Location = new System.Drawing.Point(1, 23);
+            this.uiTabPage3.Name = "uiTabPage3";
+            this.uiTabPage3.Size = new System.Drawing.Size(595, 670);
+            this.uiTabPage3.TabStop = true;
+            this.uiTabPage3.Text = "Giá đối tượng";
+            // 
+            // grdQhe
+            // 
+            this.grdQhe.BackColor = System.Drawing.Color.White;
+            grdQhe_DesignTimeLayout.LayoutString = resources.GetString("grdQhe_DesignTimeLayout.LayoutString");
+            this.grdQhe.DesignTimeLayout = grdQhe_DesignTimeLayout;
+            this.grdQhe.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdQhe.Font = new System.Drawing.Font("Arial", 9F);
+            this.grdQhe.GroupByBoxVisible = false;
+            this.grdQhe.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight;
+            this.grdQhe.Location = new System.Drawing.Point(0, 0);
+            this.grdQhe.Name = "grdQhe";
+            this.grdQhe.Size = new System.Drawing.Size(595, 625);
+            this.grdQhe.TabIndex = 31;
+            // 
+            // pnlAct
+            // 
+            this.pnlAct.Controls.Add(this.lblMsg);
+            this.pnlAct.Controls.Add(this.cmdSave);
+            this.pnlAct.Controls.Add(this.cmdDelete);
+            this.pnlAct.Controls.Add(this.cmdAdd);
+            this.pnlAct.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlAct.Location = new System.Drawing.Point(0, 625);
+            this.pnlAct.Name = "pnlAct";
+            this.pnlAct.Size = new System.Drawing.Size(595, 45);
+            this.pnlAct.TabIndex = 29;
+            // 
+            // lblMsg
+            // 
+            this.lblMsg.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblMsg.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMsg.ForeColor = System.Drawing.Color.Black;
+            this.lblMsg.Location = new System.Drawing.Point(0, 0);
+            this.lblMsg.Name = "lblMsg";
+            this.lblMsg.Size = new System.Drawing.Size(280, 45);
+            this.lblMsg.TabIndex = 519;
+            // 
+            // cmdSave
+            // 
+            this.cmdSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmdSave.Enabled = false;
+            this.cmdSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmdSave.Image = ((System.Drawing.Image)(resources.GetObject("cmdSave.Image")));
+            this.cmdSave.ImageSize = new System.Drawing.Size(20, 20);
+            this.cmdSave.Location = new System.Drawing.Point(488, 8);
+            this.cmdSave.Name = "cmdSave";
+            this.cmdSave.Size = new System.Drawing.Size(96, 30);
+            this.cmdSave.TabIndex = 28;
+            this.cmdSave.Text = "Ghi";
+            this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click);
+            // 
+            // cmdDelete
+            // 
+            this.cmdDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmdDelete.Enabled = false;
+            this.cmdDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmdDelete.Image = ((System.Drawing.Image)(resources.GetObject("cmdDelete.Image")));
+            this.cmdDelete.ImageSize = new System.Drawing.Size(20, 20);
+            this.cmdDelete.Location = new System.Drawing.Point(386, 8);
+            this.cmdDelete.Name = "cmdDelete";
+            this.cmdDelete.Size = new System.Drawing.Size(96, 30);
+            this.cmdDelete.TabIndex = 27;
+            this.cmdDelete.Text = "Xóa";
+            this.cmdDelete.Click += new System.EventHandler(this.cmdDelete_Click);
+            // 
+            // cmdAdd
+            // 
+            this.cmdAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmdAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmdAdd.Image = ((System.Drawing.Image)(resources.GetObject("cmdAdd.Image")));
+            this.cmdAdd.ImageSize = new System.Drawing.Size(24, 24);
+            this.cmdAdd.Location = new System.Drawing.Point(286, 8);
+            this.cmdAdd.Name = "cmdAdd";
+            this.cmdAdd.Size = new System.Drawing.Size(96, 30);
+            this.cmdAdd.TabIndex = 26;
+            this.cmdAdd.Text = "Thêm";
+            this.cmdAdd.Click += new System.EventHandler(this.cmdAdd_Click);
             // 
             // panel1
             // 
@@ -632,93 +719,6 @@
             this.cmdTimKiem.Text = "Tìm kiếm (F3)";
             this.cmdTimKiem.Click += new System.EventHandler(this.cmdTimKiem_Click);
             // 
-            // uiTabPage3
-            // 
-            this.uiTabPage3.Controls.Add(this.grdQhe);
-            this.uiTabPage3.Controls.Add(this.pnlAct);
-            this.uiTabPage3.Location = new System.Drawing.Point(1, 23);
-            this.uiTabPage3.Name = "uiTabPage3";
-            this.uiTabPage3.Size = new System.Drawing.Size(595, 670);
-            this.uiTabPage3.TabStop = true;
-            this.uiTabPage3.Text = "Giá đối tượng";
-            // 
-            // pnlAct
-            // 
-            this.pnlAct.Controls.Add(this.lblMsg);
-            this.pnlAct.Controls.Add(this.cmdSave);
-            this.pnlAct.Controls.Add(this.cmdDelete);
-            this.pnlAct.Controls.Add(this.cmdAdd);
-            this.pnlAct.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlAct.Location = new System.Drawing.Point(0, 625);
-            this.pnlAct.Name = "pnlAct";
-            this.pnlAct.Size = new System.Drawing.Size(595, 45);
-            this.pnlAct.TabIndex = 29;
-            // 
-            // cmdSave
-            // 
-            this.cmdSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmdSave.Enabled = false;
-            this.cmdSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdSave.Image = ((System.Drawing.Image)(resources.GetObject("cmdSave.Image")));
-            this.cmdSave.ImageSize = new System.Drawing.Size(20, 20);
-            this.cmdSave.Location = new System.Drawing.Point(488, 8);
-            this.cmdSave.Name = "cmdSave";
-            this.cmdSave.Size = new System.Drawing.Size(96, 30);
-            this.cmdSave.TabIndex = 28;
-            this.cmdSave.Text = "Ghi";
-            this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click);
-            // 
-            // cmdDelete
-            // 
-            this.cmdDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmdDelete.Enabled = false;
-            this.cmdDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdDelete.Image = ((System.Drawing.Image)(resources.GetObject("cmdDelete.Image")));
-            this.cmdDelete.ImageSize = new System.Drawing.Size(20, 20);
-            this.cmdDelete.Location = new System.Drawing.Point(386, 8);
-            this.cmdDelete.Name = "cmdDelete";
-            this.cmdDelete.Size = new System.Drawing.Size(96, 30);
-            this.cmdDelete.TabIndex = 27;
-            this.cmdDelete.Text = "Xóa";
-            this.cmdDelete.Click += new System.EventHandler(this.cmdDelete_Click);
-            // 
-            // cmdAdd
-            // 
-            this.cmdAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmdAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdAdd.Image = ((System.Drawing.Image)(resources.GetObject("cmdAdd.Image")));
-            this.cmdAdd.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdAdd.Location = new System.Drawing.Point(286, 8);
-            this.cmdAdd.Name = "cmdAdd";
-            this.cmdAdd.Size = new System.Drawing.Size(96, 30);
-            this.cmdAdd.TabIndex = 26;
-            this.cmdAdd.Text = "Thêm";
-            this.cmdAdd.Click += new System.EventHandler(this.cmdAdd_Click);
-            // 
-            // grdQhe
-            // 
-            this.grdQhe.BackColor = System.Drawing.Color.White;
-            grdQhe_DesignTimeLayout.LayoutString = resources.GetString("grdQhe_DesignTimeLayout.LayoutString");
-            this.grdQhe.DesignTimeLayout = grdQhe_DesignTimeLayout;
-            this.grdQhe.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdQhe.Font = new System.Drawing.Font("Arial", 9F);
-            this.grdQhe.GroupByBoxVisible = false;
-            this.grdQhe.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight;
-            this.grdQhe.Location = new System.Drawing.Point(0, 0);
-            this.grdQhe.Name = "grdQhe";
-            this.grdQhe.Size = new System.Drawing.Size(595, 625);
-            this.grdQhe.TabIndex = 31;
-            // 
-            // lblMsg
-            // 
-            this.lblMsg.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lblMsg.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMsg.ForeColor = System.Drawing.Color.Black;
-            this.lblMsg.Location = new System.Drawing.Point(0, 0);
-            this.lblMsg.Name = "lblMsg";
-            this.lblMsg.Size = new System.Drawing.Size(280, 45);
-            this.lblMsg.TabIndex = 519;
-            // 
             // frm_DanhSachGoiKham
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -747,13 +747,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdChiTietGoiKham)).EndInit();
             this.uiTabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridEX1)).EndInit();
+            this.uiTabPage3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grdQhe)).EndInit();
+            this.pnlAct.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox1)).EndInit();
             this.uiGroupBox1.ResumeLayout(false);
             this.uiGroupBox1.PerformLayout();
-            this.uiTabPage3.ResumeLayout(false);
-            this.pnlAct.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grdQhe)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

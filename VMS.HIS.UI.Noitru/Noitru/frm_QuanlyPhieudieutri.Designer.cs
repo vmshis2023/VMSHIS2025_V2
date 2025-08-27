@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem1 = new Janus.Windows.EditControls.UIComboBoxItem();
             Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem2 = new Janus.Windows.EditControls.UIComboBoxItem();
             Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem3 = new Janus.Windows.EditControls.UIComboBoxItem();
@@ -89,7 +90,7 @@
             this.label22 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.vbLine4 = new VNS.UCs.VBLine();
-            this.ctxDelCLS = new System.Windows.Forms.ContextMenuStrip();
+            this.ctxDelCLS = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnu_xoachidinhCLS = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuShowResult = new System.Windows.Forms.ToolStripMenuItem();
@@ -98,11 +99,11 @@
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuChanthuchienCLS = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuHuychanthuchienCLS = new System.Windows.Forms.ToolStripMenuItem();
-            this.ctxDelDrug = new System.Windows.Forms.ContextMenuStrip();
+            this.ctxDelDrug = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuDelDrug = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuThuchiendonthuoc = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolTip1 = new System.Windows.Forms.ToolTip();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.grdAssignDetail = new Janus.Windows.GridEX.GridEX();
             this.chkHienthichitiet = new System.Windows.Forms.CheckBox();
             this.chkViewAll = new Janus.Windows.EditControls.UICheckBox();
@@ -167,11 +168,12 @@
             this.cmd_thuchien_donthuoc = new Janus.Windows.EditControls.UIButton();
             this.cmd_chonbacsi_dieutri = new Janus.Windows.EditControls.UIButton();
             this.lblCanhbao = new Janus.Windows.EditControls.UIButton();
+            this.cmd_intonghop = new Janus.Windows.EditControls.UIButton();
             this.panel3 = new System.Windows.Forms.Panel();
             this.uiGroupBox2 = new Janus.Windows.EditControls.UIGroupBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.grdList = new Janus.Windows.GridEX.GridEX();
-            this.ctxBenhnhan = new System.Windows.Forms.ContextMenuStrip();
+            this.ctxBenhnhan = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuSaochepMaLK = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSaochepIDBN = new System.Windows.Forms.ToolStripMenuItem();
             this.panel16 = new System.Windows.Forms.Panel();
@@ -185,7 +187,7 @@
             this.uiTabPhieudieutri = new Janus.Windows.UI.Tab.UITab();
             this.tabPagePhieuDieuTri = new Janus.Windows.UI.Tab.UITabPage();
             this.grdPhieudieutri = new Janus.Windows.GridEX.GridEX();
-            this.ctxPhieudieutri = new System.Windows.Forms.ContextMenuStrip();
+            this.ctxPhieudieutri = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tabPageBuonggiuong = new Janus.Windows.UI.Tab.UITabPage();
             this.panel1 = new System.Windows.Forms.Panel();
             this.grdBuongGiuong = new Janus.Windows.GridEX.GridEX();
@@ -276,7 +278,7 @@
             this.flowVTTH = new System.Windows.Forms.FlowLayoutPanel();
             this.uiTabPage2 = new Janus.Windows.UI.Tab.UITabPage();
             this.grdCongkham = new Janus.Windows.GridEX.GridEX();
-            this.ctxCongkham = new System.Windows.Forms.ContextMenuStrip();
+            this.ctxCongkham = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuXoacongkham = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuBotinhtien = new System.Windows.Forms.ToolStripMenuItem();
@@ -430,9 +432,9 @@
             this.pnlThongbao = new System.Windows.Forms.Panel();
             this.lblChenhlech = new System.Windows.Forms.Label();
             this.label59 = new System.Windows.Forms.Label();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.ctxCongkhai = new System.Windows.Forms.ContextMenuStrip();
+            this.ctxCongkhai = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnuPhieucongkhai = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuPhieucongkhaiThuoc = new System.Windows.Forms.ToolStripMenuItem();
@@ -451,7 +453,7 @@
             this.mnuXemLichsuKCB = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuLsuChuyenKhoaBG = new System.Windows.Forms.ToolStripMenuItem();
             this.txtNoiDung = new Janus.Windows.GridEX.EditControls.EditBox();
-            this.timer1 = new System.Windows.Forms.Timer();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.grpSearch)).BeginInit();
             this.grpSearch.SuspendLayout();
             this.ctxDelCLS.SuspendLayout();
@@ -1252,13 +1254,12 @@
             this.cmdInPhieutruyendich.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdInPhieutruyendich.Image = ((System.Drawing.Image)(resources.GetObject("cmdInPhieutruyendich.Image")));
             this.cmdInPhieutruyendich.ImageSize = new System.Drawing.Size(20, 20);
-            this.cmdInPhieutruyendich.Location = new System.Drawing.Point(526, 53);
-            this.cmdInPhieutruyendich.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.cmdInPhieutruyendich.Location = new System.Drawing.Point(513, 3);
             this.cmdInPhieutruyendich.Name = "cmdInPhieutruyendich";
             this.cmdInPhieutruyendich.Size = new System.Drawing.Size(135, 30);
             this.cmdInPhieutruyendich.TabIndex = 3;
             this.cmdInPhieutruyendich.TabStop = false;
-            this.cmdInPhieutruyendich.Text = "In phiếu Tr.Dịch";
+            this.cmdInPhieutruyendich.Text = "In phiếu Tr.dịch";
             this.toolTip1.SetToolTip(this.cmdInPhieutruyendich, "Nhấn vào nút này để in phiếu truyền dịch cho các thuốc dịch truyền có trong đơn");
             this.cmdInPhieutruyendich.Visible = false;
             this.cmdInPhieutruyendich.Click += new System.EventHandler(this.cmdInPhieutruyendich_Click);
@@ -1269,8 +1270,7 @@
             this.cmdDeletePres.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdDeletePres.Image = ((System.Drawing.Image)(resources.GetObject("cmdDeletePres.Image")));
             this.cmdDeletePres.ImageSize = new System.Drawing.Size(20, 20);
-            this.cmdDeletePres.Location = new System.Drawing.Point(216, 10);
-            this.cmdDeletePres.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.cmdDeletePres.Location = new System.Drawing.Point(188, 3);
             this.cmdDeletePres.Name = "cmdDeletePres";
             this.cmdDeletePres.Size = new System.Drawing.Size(90, 30);
             this.cmdDeletePres.TabIndex = 2;
@@ -1283,8 +1283,7 @@
             this.cmdUpdatePres.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdUpdatePres.Image = ((System.Drawing.Image)(resources.GetObject("cmdUpdatePres.Image")));
             this.cmdUpdatePres.ImageSize = new System.Drawing.Size(20, 20);
-            this.cmdUpdatePres.Location = new System.Drawing.Point(312, 10);
-            this.cmdUpdatePres.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.cmdUpdatePres.Location = new System.Drawing.Point(284, 3);
             this.cmdUpdatePres.Name = "cmdUpdatePres";
             this.cmdUpdatePres.Size = new System.Drawing.Size(90, 30);
             this.cmdUpdatePres.TabIndex = 1;
@@ -1297,8 +1296,7 @@
             this.cmdCreateNewPres.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdCreateNewPres.Image = global::VMS.HIS.Noitru.Properties.Resources.add_04_32;
             this.cmdCreateNewPres.ImageSize = new System.Drawing.Size(20, 20);
-            this.cmdCreateNewPres.Location = new System.Drawing.Point(120, 10);
-            this.cmdCreateNewPres.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.cmdCreateNewPres.Location = new System.Drawing.Point(92, 3);
             this.cmdCreateNewPres.Name = "cmdCreateNewPres";
             this.cmdCreateNewPres.Size = new System.Drawing.Size(90, 30);
             this.cmdCreateNewPres.TabIndex = 0;
@@ -1660,13 +1658,12 @@
             this.cmdIndonthuoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdIndonthuoc.Image = ((System.Drawing.Image)(resources.GetObject("cmdIndonthuoc.Image")));
             this.cmdIndonthuoc.ImageSize = new System.Drawing.Size(20, 20);
-            this.cmdIndonthuoc.Location = new System.Drawing.Point(541, 10);
-            this.cmdIndonthuoc.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.cmdIndonthuoc.Location = new System.Drawing.Point(654, 3);
             this.cmdIndonthuoc.Name = "cmdIndonthuoc";
-            this.cmdIndonthuoc.Size = new System.Drawing.Size(120, 30);
+            this.cmdIndonthuoc.Size = new System.Drawing.Size(90, 30);
             this.cmdIndonthuoc.TabIndex = 4;
             this.cmdIndonthuoc.TabStop = false;
-            this.cmdIndonthuoc.Text = "In đơn thuốc";
+            this.cmdIndonthuoc.Text = "In đơn";
             this.toolTip1.SetToolTip(this.cmdIndonthuoc, "Nhấn vào nts này để in đơn thuốc cho bệnh nhân");
             this.cmdIndonthuoc.Click += new System.EventHandler(this.cmdIndonthuoc_Click);
             // 
@@ -1853,8 +1850,7 @@
             this.cmd_thuchien_donthuoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmd_thuchien_donthuoc.Image = ((System.Drawing.Image)(resources.GetObject("cmd_thuchien_donthuoc.Image")));
             this.cmd_thuchien_donthuoc.ImageSize = new System.Drawing.Size(20, 20);
-            this.cmd_thuchien_donthuoc.Location = new System.Drawing.Point(408, 10);
-            this.cmd_thuchien_donthuoc.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.cmd_thuchien_donthuoc.Location = new System.Drawing.Point(380, 3);
             this.cmd_thuchien_donthuoc.Name = "cmd_thuchien_donthuoc";
             this.cmd_thuchien_donthuoc.Size = new System.Drawing.Size(127, 30);
             this.cmd_thuchien_donthuoc.TabIndex = 5;
@@ -1886,6 +1882,19 @@
             this.lblCanhbao.TabIndex = 611;
             this.lblCanhbao.TabStop = false;
             this.toolTip1.SetToolTip(this.lblCanhbao, "Cập nhật bác sĩ điều trị");
+            // 
+            // cmd_intonghop
+            // 
+            this.cmd_intonghop.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmd_intonghop.Image = ((System.Drawing.Image)(resources.GetObject("cmd_intonghop.Image")));
+            this.cmd_intonghop.ImageSize = new System.Drawing.Size(20, 20);
+            this.cmd_intonghop.Location = new System.Drawing.Point(51, 3);
+            this.cmd_intonghop.Name = "cmd_intonghop";
+            this.cmd_intonghop.Size = new System.Drawing.Size(35, 30);
+            this.cmd_intonghop.TabIndex = 637;
+            this.cmd_intonghop.TabStop = false;
+            this.toolTip1.SetToolTip(this.cmd_intonghop, "In đơn thuốc tổng hợp tất cả các đơn");
+            this.cmd_intonghop.Click += new System.EventHandler(this.cmd_intonghop_Click);
             // 
             // panel3
             // 
@@ -3389,7 +3398,7 @@
             this.grdPresDetail.RecordNavigator = true;
             this.grdPresDetail.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
             this.grdPresDetail.SelectedFormatStyle.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.grdPresDetail.Size = new System.Drawing.Size(1058, 717);
+            this.grdPresDetail.Size = new System.Drawing.Size(1058, 732);
             this.grdPresDetail.TabIndex = 2;
             this.grdPresDetail.TotalRow = Janus.Windows.GridEX.InheritableBoolean.True;
             this.grdPresDetail.TotalRowFormatStyle.BackColor = System.Drawing.Color.Beige;
@@ -3402,24 +3411,25 @@
             // 
             this.pnlDonthuoc.Controls.Add(this.flowThuoc);
             this.pnlDonthuoc.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlDonthuoc.Location = new System.Drawing.Point(0, 717);
+            this.pnlDonthuoc.Location = new System.Drawing.Point(0, 732);
             this.pnlDonthuoc.Name = "pnlDonthuoc";
-            this.pnlDonthuoc.Size = new System.Drawing.Size(1058, 50);
+            this.pnlDonthuoc.Size = new System.Drawing.Size(1058, 35);
             this.pnlDonthuoc.TabIndex = 1;
             // 
             // flowThuoc
             // 
             this.flowThuoc.Controls.Add(this.cmdIndonthuoc);
+            this.flowThuoc.Controls.Add(this.cmdInPhieutruyendich);
             this.flowThuoc.Controls.Add(this.cmd_thuchien_donthuoc);
             this.flowThuoc.Controls.Add(this.cmdUpdatePres);
             this.flowThuoc.Controls.Add(this.cmdDeletePres);
             this.flowThuoc.Controls.Add(this.cmdCreateNewPres);
-            this.flowThuoc.Controls.Add(this.cmdInPhieutruyendich);
+            this.flowThuoc.Controls.Add(this.cmd_intonghop);
             this.flowThuoc.Dock = System.Windows.Forms.DockStyle.Right;
             this.flowThuoc.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowThuoc.Location = new System.Drawing.Point(394, 0);
+            this.flowThuoc.Location = new System.Drawing.Point(311, 0);
             this.flowThuoc.Name = "flowThuoc";
-            this.flowThuoc.Size = new System.Drawing.Size(664, 50);
+            this.flowThuoc.Size = new System.Drawing.Size(747, 35);
             this.flowThuoc.TabIndex = 4;
             // 
             // TabPageVTTH
@@ -6435,5 +6445,6 @@
         private Janus.Windows.EditControls.UIButton cmd_chonbacsi_dieutri;
         private Janus.Windows.EditControls.UIButton lblCanhbao;
         private Janus.Windows.GridEX.EditControls.EditBox txtCanhbao;
+        private Janus.Windows.EditControls.UIButton cmd_intonghop;
     }
 }

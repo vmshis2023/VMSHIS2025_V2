@@ -37,6 +37,7 @@ namespace VMS.HIS.UI.EMR
             Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel3 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
             Janus.Windows.GridEX.GridEXLayout grdList_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.cmdInsert = new System.Windows.Forms.ToolStripButton();
             this.cmdUpdate = new System.Windows.Forms.ToolStripButton();
             this.cmdDelete = new System.Windows.Forms.ToolStripButton();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
@@ -52,7 +53,10 @@ namespace VMS.HIS.UI.EMR
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.cmdTomtatBA = new System.Windows.Forms.ToolStripButton();
             this.cmdEmr = new System.Windows.Forms.ToolStripButton();
-            this.cmdDongBA = new System.Windows.Forms.ToolStripButton();
+            this.cmd_gui_khth = new System.Windows.Forms.ToolStripButton();
+            this.cmd_duyet = new System.Windows.Forms.ToolStripButton();
+            this.cmd_tuchoi = new System.Windows.Forms.ToolStripButton();
+            this.cmd_dong = new System.Windows.Forms.ToolStripButton();
             this.cmdExit = new System.Windows.Forms.ToolStripButton();
             this.uiGroupBox1 = new Janus.Windows.EditControls.UIGroupBox();
             this.cboLoaiBA = new System.Windows.Forms.ComboBox();
@@ -83,7 +87,6 @@ namespace VMS.HIS.UI.EMR
             this.uiStatusBar1 = new Janus.Windows.UI.StatusBar.UIStatusBar();
             this.uiGroupBox2 = new Janus.Windows.EditControls.UIGroupBox();
             this.grdList = new Janus.Windows.GridEX.GridEX();
-            this.cmdInsert = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox1)).BeginInit();
             this.uiGroupBox1.SuspendLayout();
@@ -107,13 +110,25 @@ namespace VMS.HIS.UI.EMR
             this.toolStripSeparator1,
             this.cmdTomtatBA,
             this.cmdEmr,
-            this.cmdDongBA,
+            this.cmd_gui_khth,
+            this.cmd_duyet,
+            this.cmd_tuchoi,
+            this.cmd_dong,
             this.cmdExit});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1279, 31);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // cmdInsert
+            // 
+            this.cmdInsert.Image = global::VMS.HIS.EMR.Properties.Resources.add_04_32;
+            this.cmdInsert.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.cmdInsert.Name = "cmdInsert";
+            this.cmdInsert.Size = new System.Drawing.Size(99, 28);
+            this.cmdInsert.Text = "Thêm mới";
+            this.cmdInsert.Click += new System.EventHandler(this.cmdInsert_Click_1);
             // 
             // cmdUpdate
             // 
@@ -229,8 +244,8 @@ namespace VMS.HIS.UI.EMR
             this.cmdTomtatBA.Image = ((System.Drawing.Image)(resources.GetObject("cmdTomtatBA.Image")));
             this.cmdTomtatBA.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdTomtatBA.Name = "cmdTomtatBA";
-            this.cmdTomtatBA.Size = new System.Drawing.Size(114, 28);
-            this.cmdTomtatBA.Text = "Tổng kết BA";
+            this.cmdTomtatBA.Size = new System.Drawing.Size(141, 28);
+            this.cmdTomtatBA.Text = "Tóm tắt Bệnh án";
             this.cmdTomtatBA.Click += new System.EventHandler(this.cmdTomtatBA_Click);
             // 
             // cmdEmr
@@ -242,14 +257,38 @@ namespace VMS.HIS.UI.EMR
             this.cmdEmr.Text = "EMR";
             this.cmdEmr.Click += new System.EventHandler(this.cmdEmr_Click);
             // 
-            // cmdDongBA
+            // cmd_gui_khth
             // 
-            this.cmdDongBA.Image = ((System.Drawing.Image)(resources.GetObject("cmdDongBA.Image")));
-            this.cmdDongBA.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.cmdDongBA.Name = "cmdDongBA";
-            this.cmdDongBA.Size = new System.Drawing.Size(127, 28);
-            this.cmdDongBA.Text = "Đóng Bệnh án";
-            this.cmdDongBA.Click += new System.EventHandler(this.cmdDongBA_Click);
+            this.cmd_gui_khth.Image = ((System.Drawing.Image)(resources.GetObject("cmd_gui_khth.Image")));
+            this.cmd_gui_khth.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.cmd_gui_khth.Name = "cmd_gui_khth";
+            this.cmd_gui_khth.Size = new System.Drawing.Size(99, 28);
+            this.cmd_gui_khth.Text = "Gửi KHTH";
+            // 
+            // cmd_duyet
+            // 
+            this.cmd_duyet.Image = ((System.Drawing.Image)(resources.GetObject("cmd_duyet.Image")));
+            this.cmd_duyet.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.cmd_duyet.Name = "cmd_duyet";
+            this.cmd_duyet.Size = new System.Drawing.Size(73, 28);
+            this.cmd_duyet.Text = "Duyệt";
+            // 
+            // cmd_tuchoi
+            // 
+            this.cmd_tuchoi.Image = ((System.Drawing.Image)(resources.GetObject("cmd_tuchoi.Image")));
+            this.cmd_tuchoi.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.cmd_tuchoi.Name = "cmd_tuchoi";
+            this.cmd_tuchoi.Size = new System.Drawing.Size(84, 28);
+            this.cmd_tuchoi.Text = "Từ chối";
+            // 
+            // cmd_dong
+            // 
+            this.cmd_dong.Image = ((System.Drawing.Image)(resources.GetObject("cmd_dong.Image")));
+            this.cmd_dong.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.cmd_dong.Name = "cmd_dong";
+            this.cmd_dong.Size = new System.Drawing.Size(127, 28);
+            this.cmd_dong.Text = "Đóng Bệnh án";
+            this.cmd_dong.Click += new System.EventHandler(this.cmdDongBA_Click);
             // 
             // cmdExit
             // 
@@ -288,8 +327,6 @@ namespace VMS.HIS.UI.EMR
             // 
             // cboLoaiBA
             // 
-            this.cboLoaiBA.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.cboLoaiBA.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
             this.cboLoaiBA.FormattingEnabled = true;
             this.cboLoaiBA.Location = new System.Drawing.Point(635, 26);
@@ -368,7 +405,7 @@ namespace VMS.HIS.UI.EMR
             this.txtmaBA.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtmaBA.Location = new System.Drawing.Point(956, 26);
             this.txtmaBA.Name = "txtmaBA";
-            this.txtmaBA.Size = new System.Drawing.Size(167, 21);
+            this.txtmaBA.Size = new System.Drawing.Size(102, 21);
             this.txtmaBA.TabIndex = 2;
             this.txtmaBA.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center;
             this.txtmaBA.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
@@ -518,7 +555,7 @@ namespace VMS.HIS.UI.EMR
             this.dtpNgayin.DropDownCalendar.Name = "";
             this.dtpNgayin.DropDownCalendar.VisualStyle = Janus.Windows.CalendarCombo.VisualStyle.Office2003;
             this.dtpNgayin.Enabled = false;
-            this.dtpNgayin.Location = new System.Drawing.Point(115, 707);
+            this.dtpNgayin.Location = new System.Drawing.Point(207, 707);
             this.dtpNgayin.Name = "dtpNgayin";
             this.dtpNgayin.ShowUpDown = true;
             this.dtpNgayin.Size = new System.Drawing.Size(115, 21);
@@ -648,15 +685,6 @@ namespace VMS.HIS.UI.EMR
             this.grdList.TabStop = false;
             this.grdList.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007;
             // 
-            // cmdInsert
-            // 
-            this.cmdInsert.Image = global::VMS.HIS.EMR.Properties.Resources.add_04_32;
-            this.cmdInsert.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.cmdInsert.Name = "cmdInsert";
-            this.cmdInsert.Size = new System.Drawing.Size(99, 28);
-            this.cmdInsert.Text = "Thêm mới";
-            this.cmdInsert.Click += new System.EventHandler(this.cmdInsert_Click_1);
-            // 
             // frm_QuanlyBA_Phukhoa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -734,12 +762,15 @@ namespace VMS.HIS.UI.EMR
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem mnuPrintAll;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripButton cmdDongBA;
+        private System.Windows.Forms.ToolStripButton cmd_dong;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton cmdTomtatBA;
         private System.Windows.Forms.ToolStripButton cmdEmr;
         private System.Windows.Forms.ComboBox cboLoaiBA;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ToolStripButton cmdInsert;
+        private System.Windows.Forms.ToolStripButton cmd_gui_khth;
+        private System.Windows.Forms.ToolStripButton cmd_duyet;
+        private System.Windows.Forms.ToolStripButton cmd_tuchoi;
     }
 }

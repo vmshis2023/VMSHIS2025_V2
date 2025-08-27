@@ -100,9 +100,9 @@ namespace VNS.HIS.BusRule.Classes
          {
              return SPs.DmucLaychitietDinhmucVtth(id_chitietdichvu).GetDataSet().Tables[0];
          }
-         public DataTable LaythongtinDonthuoc_In(int idDonthuoc)
+         public DataTable LaythongtinDonthuoc_In(long id_benhnhan,string ma_luotkham,byte noitru, int idDonthuoc,string kieuthuocvt="THUOC")
          {
-             return SPs.DonthuocLaythongtinDein(idDonthuoc).GetDataSet().Tables[0];
+             return SPs.DonthuocLaythongtinDein(id_benhnhan, ma_luotkham, noitru, kieuthuocvt,idDonthuoc).GetDataSet().Tables[0];
          }
          public DataTable LaythongtinDonthuocTaiQuay_In(int idDonthuoc)
          {

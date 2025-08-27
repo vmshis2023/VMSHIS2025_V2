@@ -1,0 +1,19 @@
+2023-08-24 23:25:02.8775||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-08-24 23:25:03.2810||DEBUG|DigitalSignaturePdfFileSign|api: https://api.cyberhsm.vn/api/pdf/sign/originaldata |url: |action: 
+2023-08-24 23:25:04.6424||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '' by user 'ADMIN', userFullName ' ' with appId: '001092030130_3048529_20230824082257', secret: 'MmNmZGQzMzYzYWVlYWFmOWJlODM3MzA2ODZjMGRiODFlMGQ2NGI2ZDY4NDhhNDhjZmFiMzkwMzBjZjc3NTA5ZA==' |url: |action: 
+2023-08-24 23:25:05.2878||DEBUG|DigitalSignaturePdfFileSign|File Length: 146900 |url: |action: 
+2023-08-24 23:25:05.4750||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 2288 |url: |action: 
+2023-08-24 23:29:27.2104||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-08-24 23:29:27.2104||DEBUG|DigitalSignaturePdfFileSign|api: https://api.cyberhsm.vn/api/pdf/sign/originaldata |url: |action: 
+2023-08-24 23:29:27.2184||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '' by user 'ADMIN', userFullName ' ' with appId: '001092030130_3048529_20230824082257', secret: 'MmNmZGQzMzYzYWVlYWFmOWJlODM3MzA2ODZjMGRiODFlMGQ2NGI2ZDY4NDhhNDhjZmFiMzkwMzBjZjc3NTA5ZA==' |url: |action: 
+2023-08-24 23:29:27.2184||DEBUG|DigitalSignaturePdfFileSign|File Length: 146900 |url: |action: 
+2023-08-24 23:29:27.2377||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 2288 |url: |action: 
+2023-08-24 23:30:21.5191||DEBUG|DigitalSignaturePdfFileSign|Ký hash thành công |url: |action: 
+2023-08-24 23:30:46.3191||DEBUG|DigitalSignaturePdfFileSign|Ký thành công |url: |action: 
+2023-08-24 23:39:19.8710||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2023-08-24 23:39:20.2335||DEBUG|DigitalSignaturePdfFileSign|api: https://api.cyberhsm.vn/api/pdf/sign/originaldata |url: |action: 
+2023-08-24 23:39:20.2335||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2308240001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '001092030130_3048529_20230824082257', secret: '' |url: |action: 
+2023-08-24 23:39:20.2335||DEBUG|DigitalSignaturePdfFileSign|File Length: 310449 |url: |action: 
+2023-08-24 23:39:20.2335||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 0 |url: |action: 
+2023-08-24 23:39:41.0546||DEBUG|DigitalSignaturePdfFileSign|Ký hash thành công |url: |action: 
+2023-08-24 23:39:41.0911||DEBUG|DigitalSignaturePdfFileSign|Ký thành công |url: |action: 

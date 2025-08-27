@@ -63,3 +63,4 @@ F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.DUOC\obj\Debug\9.VMS.HIS.Duoc.csproj.
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.DUOC\obj\Debug\VMS.HIS.Duoc.dll
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.DUOC\obj\Debug\VMS.HIS.Duoc.pdb
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.DUOC\obj\Debug\VNS.HIS.UI.THUOC.frm_QuanlyThuoc_VAT.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.DUOC\obj\Debug\VMS.HIS.Duoc.DUOC.frm_bienban_kiemnhap.resources

@@ -219,6 +219,7 @@ namespace VNS.HIS.UI.THUOC
             objDmuckho.LoaibothuocHethan =chkCamthuochethan.Checked;
             objDmuckho.KhongTinhgia = chkKhongtinhgia.Checked;
             objDmuckho.CapCuu = Utility.Bool2byte(chkTuthuoccapcuu.Checked);
+            objDmuckho.TinhThangdu = chk_tinhthangdu.Checked;
             objDmuckho.MaCoso = txtCosoKCB.myCode;
             objDmuckho.NgayTao = globalVariables.SysDate;
             objDmuckho.NguoiTao = globalVariables.UserName;
@@ -401,6 +402,7 @@ namespace VNS.HIS.UI.THUOC
                 chkKhongtinhgia.Checked = Utility.Byte2Bool(objDmucKho.KhongTinhgia);
                 chkCamthuochethan.Checked = Utility.Byte2Bool(objDmucKho.LoaibothuocHethan);
                 chkTuthuoccapcuu.Checked = Utility.Byte2Bool(objDmucKho.CapCuu);
+                chk_tinhthangdu.Checked = Utility.Bool2Bool(objDmucKho.TinhThangdu);
                 txtSongaynhaton.Text =Utility.DoubletoDbnull( objDmucKho.SongayNhaton,1f).ToString();
                 int loaiBN = 0;
                 if (Utility.sDbnull(objDmucKho.LoaiBnhan, "") == "TATCA") loaiBN = 0;

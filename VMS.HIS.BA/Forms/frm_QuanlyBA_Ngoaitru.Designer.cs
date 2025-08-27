@@ -37,6 +37,7 @@ namespace VMS.HIS.UI.EMR
             Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel3 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
             Janus.Windows.GridEX.GridEXLayout grdList_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.cmdInsert = new System.Windows.Forms.ToolStripButton();
             this.cmdUpdate = new System.Windows.Forms.ToolStripButton();
             this.cmdDelete = new System.Windows.Forms.ToolStripButton();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
@@ -83,7 +84,6 @@ namespace VMS.HIS.UI.EMR
             this.uiStatusBar1 = new Janus.Windows.UI.StatusBar.UIStatusBar();
             this.uiGroupBox2 = new Janus.Windows.EditControls.UIGroupBox();
             this.grdList = new Janus.Windows.GridEX.GridEX();
-            this.cmdInsert = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox1)).BeginInit();
             this.uiGroupBox1.SuspendLayout();
@@ -114,6 +114,15 @@ namespace VMS.HIS.UI.EMR
             this.toolStrip1.Size = new System.Drawing.Size(1279, 31);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // cmdInsert
+            // 
+            this.cmdInsert.Image = global::VMS.HIS.EMR.Properties.Resources.add_04_32;
+            this.cmdInsert.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.cmdInsert.Name = "cmdInsert";
+            this.cmdInsert.Size = new System.Drawing.Size(99, 28);
+            this.cmdInsert.Text = "Thêm mới";
+            this.cmdInsert.Click += new System.EventHandler(this.cmdInsert_Click_1);
             // 
             // cmdUpdate
             // 
@@ -229,8 +238,8 @@ namespace VMS.HIS.UI.EMR
             this.cmdTomtatBA.Image = ((System.Drawing.Image)(resources.GetObject("cmdTomtatBA.Image")));
             this.cmdTomtatBA.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdTomtatBA.Name = "cmdTomtatBA";
-            this.cmdTomtatBA.Size = new System.Drawing.Size(114, 28);
-            this.cmdTomtatBA.Text = "Tổng kết BA";
+            this.cmdTomtatBA.Size = new System.Drawing.Size(141, 28);
+            this.cmdTomtatBA.Text = "Tóm tắt Bệnh án";
             this.cmdTomtatBA.Click += new System.EventHandler(this.cmdTomtatBA_Click);
             // 
             // cmdEmr
@@ -288,8 +297,6 @@ namespace VMS.HIS.UI.EMR
             // 
             // cboLoaiBA
             // 
-            this.cboLoaiBA.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.cboLoaiBA.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
             this.cboLoaiBA.FormattingEnabled = true;
             this.cboLoaiBA.Location = new System.Drawing.Point(635, 26);
@@ -368,7 +375,7 @@ namespace VMS.HIS.UI.EMR
             this.txtmaBA.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtmaBA.Location = new System.Drawing.Point(956, 26);
             this.txtmaBA.Name = "txtmaBA";
-            this.txtmaBA.Size = new System.Drawing.Size(167, 21);
+            this.txtmaBA.Size = new System.Drawing.Size(111, 21);
             this.txtmaBA.TabIndex = 2;
             this.txtmaBA.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center;
             this.txtmaBA.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
@@ -647,15 +654,6 @@ namespace VMS.HIS.UI.EMR
             this.grdList.TabIndex = 553;
             this.grdList.TabStop = false;
             this.grdList.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007;
-            // 
-            // cmdInsert
-            // 
-            this.cmdInsert.Image = global::VMS.HIS.EMR.Properties.Resources.add_04_32;
-            this.cmdInsert.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.cmdInsert.Name = "cmdInsert";
-            this.cmdInsert.Size = new System.Drawing.Size(99, 28);
-            this.cmdInsert.Text = "Thêm mới";
-            this.cmdInsert.Click += new System.EventHandler(this.cmdInsert_Click_1);
             // 
             // frm_QuanlyBA_Ngoaitru
             // 

@@ -2728,7 +2728,7 @@ namespace VNS.HIS.UI.NGOAITRU
 
         private void PrintPres(int PresID)
         {
-            DataTable dataTable = this._KEDONTHUOC.LaythongtinDonthuoc_In(PresID);
+            DataTable dataTable = this._KEDONTHUOC.LaythongtinDonthuoc_In(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, 0, PresID);
             if (dataTable.Rows.Count <= 0)
             {
                 Utility.ShowMsg("không tìm  thấy "+ (KIEU_THUOC_VT == "THUOC" ?"thuốc":"vật tư")+", Có thể bạn chưa lưu được "+(KIEU_THUOC_VT == "THUOC" ?"thuốc":"vật tư")+", \nMời bạn kiểm tra lại", "thông báo", MessageBoxIcon.Exclamation);

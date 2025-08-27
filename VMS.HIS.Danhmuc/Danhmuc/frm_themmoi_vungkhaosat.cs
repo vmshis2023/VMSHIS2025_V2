@@ -101,6 +101,7 @@ namespace VNS.HIS.UI.HinhAnh
                     txtDenghi.Text = Obj.DeNghi;
                     txtFileMau.Text = Obj.TenfileKq;
                     txtKichthuocanh.Text = Obj.Kichthuocanh;
+                    chk_hienthi_ketluan_denghi.Checked = Utility.Bool2Bool(Obj.HienthiKetluanDenghi);
                     cboLoaiDvu.SelectedIndex = Utility.GetSelectedIndex(cboLoaiDvu,Utility.sDbnull( Obj.MaLoaidvu));
                     txtNoidung.Text = Obj != null ? Obj.MotaHtml : "";
                     txtMoTa.Document.InvokeScript("setValue", new string[] { txtNoidung.Text });
@@ -120,8 +121,10 @@ namespace VNS.HIS.UI.HinhAnh
                     txtDenghi.Clear();
                     txtNoidung.Clear();
                     txtKichthuocanh.Clear();
+                    chk_hienthi_ketluan_denghi.Checked = false;
 
                 }
+                chk_hienthi_ketluan_denghi_CheckedChanged(chk_hienthi_ketluan_denghi, new EventArgs());
 
             }
             catch (Exception)
@@ -296,7 +299,12 @@ namespace VNS.HIS.UI.HinhAnh
         {
 
         }
-       
 
+        private void chk_hienthi_ketluan_denghi_CheckedChanged(object sender, EventArgs e)
+        {
+            lbl_ketluan.Visible = lbl_denghi.Visible = txtDenghi.Visible = txtKet_Luan.Visible = chk_hienthi_ketluan_denghi.Checked;
+            txtMoTa.Height = chk_hienthi_ketluan_denghi.Checked ? grpControl.Height-220: grpControl.Height - 80 ;
+
+        }
     }
 }

@@ -1193,7 +1193,7 @@
             this.grpThongTinTheoDoi.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpThongTinTheoDoi.Location = new System.Drawing.Point(0, 0);
             this.grpThongTinTheoDoi.Name = "grpThongTinTheoDoi";
-            this.grpThongTinTheoDoi.Size = new System.Drawing.Size(1201, 457);
+            this.grpThongTinTheoDoi.Size = new System.Drawing.Size(1201, 489);
             this.grpThongTinTheoDoi.TabIndex = 0;
             this.grpThongTinTheoDoi.Text = "&Danh sách theo dõi chức năng sống";
             // 
@@ -1208,7 +1208,7 @@
             this.grdTheodoi.Location = new System.Drawing.Point(3, 17);
             this.grdTheodoi.Name = "grdTheodoi";
             this.grdTheodoi.RecordNavigator = true;
-            this.grdTheodoi.Size = new System.Drawing.Size(1195, 437);
+            this.grdTheodoi.Size = new System.Drawing.Size(1195, 469);
             this.grdTheodoi.TabIndex = 2;
             this.grdTheodoi.TabStop = false;
             this.grdTheodoi.VisualStyle = Janus.Windows.GridEX.VisualStyle.VS2005;
@@ -1244,7 +1244,7 @@
             this.grpThemThongTinTheoDoi.Controls.Add(this.txtMACH);
             this.grpThemThongTinTheoDoi.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.grpThemThongTinTheoDoi.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpThemThongTinTheoDoi.Location = new System.Drawing.Point(0, 312);
+            this.grpThemThongTinTheoDoi.Location = new System.Drawing.Point(0, 344);
             this.grpThemThongTinTheoDoi.Name = "grpThemThongTinTheoDoi";
             this.grpThemThongTinTheoDoi.Size = new System.Drawing.Size(1201, 145);
             this.grpThemThongTinTheoDoi.TabIndex = 2;
@@ -1486,7 +1486,7 @@
             this.uiGroupBox2.Controls.Add(this.flowLayoutPanel3);
             this.uiGroupBox2.Controls.Add(this.chkPreview2);
             this.uiGroupBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.uiGroupBox2.Location = new System.Drawing.Point(0, 457);
+            this.uiGroupBox2.Location = new System.Drawing.Point(0, 489);
             this.uiGroupBox2.Name = "uiGroupBox2";
             this.uiGroupBox2.Size = new System.Drawing.Size(1201, 68);
             this.uiGroupBox2.TabIndex = 1;
@@ -1619,7 +1619,7 @@
             this.uiTabPageTheodoi.Controls.Add(this.uiGroupBox2);
             this.uiTabPageTheodoi.Location = new System.Drawing.Point(1, 23);
             this.uiTabPageTheodoi.Name = "uiTabPageTheodoi";
-            this.uiTabPageTheodoi.Size = new System.Drawing.Size(1201, 525);
+            this.uiTabPageTheodoi.Size = new System.Drawing.Size(1201, 557);
             this.uiTabPageTheodoi.TabStop = true;
             this.uiTabPageTheodoi.Text = "Theo dõi ( Ctrl/Alt +2 )";
             // 
@@ -1628,7 +1628,7 @@
             this.uiTabPageChandoan.Controls.Add(this.ucChandoanICD1);
             this.uiTabPageChandoan.Location = new System.Drawing.Point(1, 23);
             this.uiTabPageChandoan.Name = "uiTabPageChandoan";
-            this.uiTabPageChandoan.Size = new System.Drawing.Size(1201, 525);
+            this.uiTabPageChandoan.Size = new System.Drawing.Size(1201, 557);
             this.uiTabPageChandoan.TabStop = true;
             this.uiTabPageChandoan.Text = "Chẩn đoán ( Ctrl/Alt +3 )";
             // 
@@ -1637,7 +1637,7 @@
             this.ucChandoanICD1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucChandoanICD1.Location = new System.Drawing.Point(0, 0);
             this.ucChandoanICD1.Name = "ucChandoanICD1";
-            this.ucChandoanICD1.Size = new System.Drawing.Size(1201, 525);
+            this.ucChandoanICD1.Size = new System.Drawing.Size(1201, 557);
             this.ucChandoanICD1.TabIndex = 2;
             // 
             // uiTabPage1

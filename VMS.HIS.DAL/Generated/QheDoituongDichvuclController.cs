@@ -80,7 +80,7 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(short IdDoituongKcb,short IdDichvu,int? IdChitietdichvu,decimal? TyleGiam,byte KieuGiamgia,decimal? TyleTt,string MotaThem,decimal? DonGia,decimal? PhuthuDungtuyen,int? IdLoaidoituongKcb,decimal? PhuthuTraituyen,string MaDoituongKcb,DateTime? NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua,string MaKhoaThuchien,int? IdBogia,DateTime? NgayBatdau,DateTime? NgayKetthuc)
+	    public void Insert(short IdDoituongKcb,short IdDichvu,int? IdChitietdichvu,decimal? TyleGiam,byte KieuGiamgia,decimal? TyleTt,string MotaThem,decimal? DonGia,decimal? PhuthuDungtuyen,int? IdLoaidoituongKcb,decimal? PhuthuTraituyen,string MaDoituongKcb,DateTime? NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua,string MaKhoaThuchien,int? IdBogia,DateTime? NgayBatdau,DateTime? NgayKetthuc,decimal? DongiaNgoaigio)
 	    {
 		    QheDoituongDichvucl item = new QheDoituongDichvucl();
 		    
@@ -124,6 +124,8 @@ namespace VMS.HIS.DAL
             
             item.NgayKetthuc = NgayKetthuc;
             
+            item.DongiaNgoaigio = DongiaNgoaigio;
+            
 	    
 		    item.Save(UserName);
 	    }
@@ -132,7 +134,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(short IdQuanhe,short IdDoituongKcb,short IdDichvu,int? IdChitietdichvu,decimal? TyleGiam,byte KieuGiamgia,decimal? TyleTt,string MotaThem,decimal? DonGia,decimal? PhuthuDungtuyen,int? IdLoaidoituongKcb,decimal? PhuthuTraituyen,string MaDoituongKcb,DateTime? NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua,string MaKhoaThuchien,int? IdBogia,DateTime? NgayBatdau,DateTime? NgayKetthuc)
+	    public void Update(short IdQuanhe,short IdDoituongKcb,short IdDichvu,int? IdChitietdichvu,decimal? TyleGiam,byte KieuGiamgia,decimal? TyleTt,string MotaThem,decimal? DonGia,decimal? PhuthuDungtuyen,int? IdLoaidoituongKcb,decimal? PhuthuTraituyen,string MaDoituongKcb,DateTime? NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua,string MaKhoaThuchien,int? IdBogia,DateTime? NgayBatdau,DateTime? NgayKetthuc,decimal? DongiaNgoaigio)
 	    {
 		    QheDoituongDichvucl item = new QheDoituongDichvucl();
 	        item.MarkOld();
@@ -179,6 +181,8 @@ namespace VMS.HIS.DAL
 			item.NgayBatdau = NgayBatdau;
 				
 			item.NgayKetthuc = NgayKetthuc;
+				
+			item.DongiaNgoaigio = DongiaNgoaigio;
 				
 	        item.Save(UserName);
 	    }

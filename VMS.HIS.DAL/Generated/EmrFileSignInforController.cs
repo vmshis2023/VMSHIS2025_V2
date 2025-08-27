@@ -80,7 +80,7 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(long? IdBenhnhan,string MaLuotkham,long? FileId,long? IdPhieu,string LoaiphieuCha,string LoaiphieuHis,string NguoiKy,DateTime? NgayKy,string TenVitriKy,bool? TthaiKy,bool? TthaiXoa,string ChucnangKy,string MaytinhKy,string UserKy)
+	    public void Insert(long? IdBenhnhan,string MaLuotkham,long? FileId,long? IdPhieu,string LoaiphieuCha,string LoaiphieuHis,string NguoiKy,DateTime? NgayKy,string TenVitriKy,bool? TthaiKy,bool? TthaiKyso,string NguoiKyso,DateTime? NgayKyso,bool? TthaiKydientu,string NguoiKydientu,DateTime? NgayKydientu,bool? TthaiXoa,string ChucnangKy,string MaytinhKy,string UserKy,string ToadoVitriKy,int? X,int? Y,int? W,int? H,int? Page)
 	    {
 		    EmrFileSignInfor item = new EmrFileSignInfor();
 		    
@@ -104,6 +104,18 @@ namespace VMS.HIS.DAL
             
             item.TthaiKy = TthaiKy;
             
+            item.TthaiKyso = TthaiKyso;
+            
+            item.NguoiKyso = NguoiKyso;
+            
+            item.NgayKyso = NgayKyso;
+            
+            item.TthaiKydientu = TthaiKydientu;
+            
+            item.NguoiKydientu = NguoiKydientu;
+            
+            item.NgayKydientu = NgayKydientu;
+            
             item.TthaiXoa = TthaiXoa;
             
             item.ChucnangKy = ChucnangKy;
@@ -111,6 +123,18 @@ namespace VMS.HIS.DAL
             item.MaytinhKy = MaytinhKy;
             
             item.UserKy = UserKy;
+            
+            item.ToadoVitriKy = ToadoVitriKy;
+            
+            item.X = X;
+            
+            item.Y = Y;
+            
+            item.W = W;
+            
+            item.H = H;
+            
+            item.Page = Page;
             
 	    
 		    item.Save(UserName);
@@ -120,7 +144,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(long Id,long? IdBenhnhan,string MaLuotkham,long? FileId,long? IdPhieu,string LoaiphieuCha,string LoaiphieuHis,string NguoiKy,DateTime? NgayKy,string TenVitriKy,bool? TthaiKy,bool? TthaiXoa,string ChucnangKy,string MaytinhKy,string UserKy)
+	    public void Update(long Id,long? IdBenhnhan,string MaLuotkham,long? FileId,long? IdPhieu,string LoaiphieuCha,string LoaiphieuHis,string NguoiKy,DateTime? NgayKy,string TenVitriKy,bool? TthaiKy,bool? TthaiKyso,string NguoiKyso,DateTime? NgayKyso,bool? TthaiKydientu,string NguoiKydientu,DateTime? NgayKydientu,bool? TthaiXoa,string ChucnangKy,string MaytinhKy,string UserKy,string ToadoVitriKy,int? X,int? Y,int? W,int? H,int? Page)
 	    {
 		    EmrFileSignInfor item = new EmrFileSignInfor();
 	        item.MarkOld();
@@ -148,6 +172,18 @@ namespace VMS.HIS.DAL
 				
 			item.TthaiKy = TthaiKy;
 				
+			item.TthaiKyso = TthaiKyso;
+				
+			item.NguoiKyso = NguoiKyso;
+				
+			item.NgayKyso = NgayKyso;
+				
+			item.TthaiKydientu = TthaiKydientu;
+				
+			item.NguoiKydientu = NguoiKydientu;
+				
+			item.NgayKydientu = NgayKydientu;
+				
 			item.TthaiXoa = TthaiXoa;
 				
 			item.ChucnangKy = ChucnangKy;
@@ -155,6 +191,18 @@ namespace VMS.HIS.DAL
 			item.MaytinhKy = MaytinhKy;
 				
 			item.UserKy = UserKy;
+				
+			item.ToadoVitriKy = ToadoVitriKy;
+				
+			item.X = X;
+				
+			item.Y = Y;
+				
+			item.W = W;
+				
+			item.H = H;
+				
+			item.Page = Page;
 				
 	        item.Save(UserName);
 	    }

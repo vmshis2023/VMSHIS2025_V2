@@ -229,13 +229,13 @@
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(510, 77);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(97, 16);
             this.label2.TabIndex = 4;
             this.label2.Text = "Tên bệnh nhân:";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // chkByDate
             // 
@@ -277,13 +277,13 @@
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label1.Location = new System.Drawing.Point(520, 22);
+            this.label1.Location = new System.Drawing.Point(510, 22);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(87, 16);
+            this.label1.Size = new System.Drawing.Size(97, 16);
             this.label1.TabIndex = 1;
-            this.label1.Text = "ID đơn thuốc:";
+            this.label1.Text = "ID đơn VTTH:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // panel4
             // 
@@ -319,13 +319,13 @@
             // 
             // label9
             // 
-            this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(34, 74);
+            this.label9.Location = new System.Drawing.Point(22, 74);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(107, 16);
+            this.label9.Size = new System.Drawing.Size(119, 16);
             this.label9.TabIndex = 454;
             this.label9.Text = "Ngày xác nhận:";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // cboKhoanoitru
             // 
@@ -401,13 +401,13 @@
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.label4.Location = new System.Drawing.Point(522, 51);
+            this.label4.Location = new System.Drawing.Point(510, 51);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(87, 16);
+            this.label4.Size = new System.Drawing.Size(97, 16);
             this.label4.TabIndex = 16;
-            this.label4.Text = "Kho thuốc/VT";
+            this.label4.Text = "Kho:";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // cboTrangthai
             // 
@@ -455,7 +455,6 @@
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial", 9.75F);
             this.label5.Location = new System.Drawing.Point(709, 22);
             this.label5.Name = "label5";
@@ -465,7 +464,6 @@
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(304, 25);
             this.label3.Name = "label3";
@@ -501,7 +499,7 @@
             this.vbLine1.Size = new System.Drawing.Size(1222, 22);
             this.vbLine1.TabIndex = 0;
             this.vbLine1.TabStop = false;
-            this.vbLine1.YourText = "Tìm kiếm đơn thuốc bệnh nhân";
+            this.vbLine1.YourText = "Tìm kiếm đơn VTTH bệnh nhân";
             // 
             // cmdPhatThuoc
             // 
@@ -731,7 +729,7 @@
             this.uiTabPageCapphat.Name = "uiTabPageCapphat";
             this.uiTabPageCapphat.Size = new System.Drawing.Size(678, 720);
             this.uiTabPageCapphat.TabStop = true;
-            this.uiTabPageCapphat.Text = "Chi tiết đơn thuốc";
+            this.uiTabPageCapphat.Text = "Chi tiết đơn VTTH";
             this.uiTabPageCapphat.ToolTipText = "Nhấn phím tắt F8 để chọn Thông tin Khám chữa bệnh";
             // 
             // grdPresDetail
@@ -1126,7 +1124,7 @@
             this.cmdIndonthuoc.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdIndonthuoc.Name = "cmdIndonthuoc";
             this.cmdIndonthuoc.Size = new System.Drawing.Size(109, 28);
-            this.cmdIndonthuoc.Text = "In đơn thuốc";
+            this.cmdIndonthuoc.Text = "In đơn VTTH";
             this.cmdIndonthuoc.Click += new System.EventHandler(this.cmdIndonthuoc_Click);
             // 
             // toolStripSeparator2
@@ -1141,7 +1139,7 @@
             this.cmdCheck.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdCheck.Name = "cmdCheck";
             this.cmdCheck.Size = new System.Drawing.Size(121, 28);
-            this.cmdCheck.Text = "Kiểm tra thuốc";
+            this.cmdCheck.Text = "Kiểm tra VTTH";
             this.cmdCheck.Visible = false;
             this.cmdCheck.Click += new System.EventHandler(this.cmdCheck_Click);
             // 

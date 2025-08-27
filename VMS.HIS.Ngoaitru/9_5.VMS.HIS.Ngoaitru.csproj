@@ -619,6 +619,8 @@
     <Folder Include="Backup\240822\" />
     <Folder Include="Backup\2409009\" />
     <Folder Include="Backup\240926_Load2Show\" />
+    <Folder Include="Backup\250809\" />
+    <Folder Include="Backup\250814\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Add.png" />

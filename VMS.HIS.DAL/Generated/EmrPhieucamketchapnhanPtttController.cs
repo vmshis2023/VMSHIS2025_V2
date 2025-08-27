@@ -80,10 +80,12 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(string MaPhieu,DateTime NgayCamket,bool? Capcuu,bool? Bancap,bool? ChuongtrinhPhien,long IdBenhnhan,string MaLuotkham,short? IdBacsiPttt,string ChucdanhBacsiPttt,short? IdKhoa,string TenKhoa,short? IdBacsiGaymehoisuc,string ChucdanhBacsiGaymehoisuc,bool? Chandoan,string ChandoanMota,bool? LydoPttt,bool? RuiroNguycoNeukhongthuchienPttt,bool? Ketquasaupttt,string KetquasauptttMota,bool? Phauthuatmo,bool? Phauthuatnoisoi,bool? Thuthuat,bool? Gaymenoikhiquan,bool? Gaytetuysong,bool? Gaytetaicho,bool? GaymeMaskThanhquan,bool? Gaymetinhmach,bool? GayteNgoaimangcung,bool? GayteDamroiThanhkinh,bool? GayteKhac,string GayteKhacMota,bool? CacphuongphapdieutrikhacptttKhong,bool? CacphuongphapdieutrikhacptttCo,string CacphuongphapdieutrikhacptttMota,bool? Phanungthuoc,bool? SuyhohapTuanhoan,bool? Chaymau,bool? Nhiemtrung,bool? Tuvong,bool? Nguycokhac,string NguycokhacMota,string HotenNguoilienhe,int? NamsinhNguoilienhe,string Quanhevoinguoibenh,DateTime NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua)
+	    public void Insert(long? IdChitietchidinh,string MaPhieu,DateTime NgayCamket,bool? Capcuu,bool? Bancap,bool? ChuongtrinhPhien,long IdBenhnhan,string MaLuotkham,short? IdBacsiPttt,string ChucdanhBacsiPttt,short? IdKhoa,string TenKhoa,short? IdBacsiGaymehoisuc,string ChucdanhBacsiGaymehoisuc,bool? Chandoan,string ChandoanMota,bool? LydoPttt,bool? RuiroNguycoNeukhongthuchienPttt,bool? Ketquasaupttt,string KetquasauptttMota,bool? Phauthuatmo,bool? Phauthuatnoisoi,bool? Thuthuat,bool? Gaymenoikhiquan,bool? Gaytetuysong,bool? Gaytetaicho,bool? GaymeMaskThanhquan,bool? Gaymetinhmach,bool? GayteNgoaimangcung,bool? GayteDamroiThanhkinh,bool? GayteKhac,string GayteKhacMota,bool? CacphuongphapdieutrikhacptttKhong,bool? CacphuongphapdieutrikhacptttCo,string CacphuongphapdieutrikhacptttMota,bool? Phanungthuoc,bool? SuyhohapTuanhoan,bool? Chaymau,bool? Nhiemtrung,bool? Tuvong,bool? Nguycokhac,string NguycokhacMota,string HotenNguoilienhe,int? NamsinhNguoilienhe,string Quanhevoinguoibenh,DateTime NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua)
 	    {
 		    EmrPhieucamketchapnhanPttt item = new EmrPhieucamketchapnhanPttt();
 		    
+            item.IdChitietchidinh = IdChitietchidinh;
+            
             item.MaPhieu = MaPhieu;
             
             item.NgayCamket = NgayCamket;
@@ -188,13 +190,15 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(long IdPhieu,string MaPhieu,DateTime NgayCamket,bool? Capcuu,bool? Bancap,bool? ChuongtrinhPhien,long IdBenhnhan,string MaLuotkham,short? IdBacsiPttt,string ChucdanhBacsiPttt,short? IdKhoa,string TenKhoa,short? IdBacsiGaymehoisuc,string ChucdanhBacsiGaymehoisuc,bool? Chandoan,string ChandoanMota,bool? LydoPttt,bool? RuiroNguycoNeukhongthuchienPttt,bool? Ketquasaupttt,string KetquasauptttMota,bool? Phauthuatmo,bool? Phauthuatnoisoi,bool? Thuthuat,bool? Gaymenoikhiquan,bool? Gaytetuysong,bool? Gaytetaicho,bool? GaymeMaskThanhquan,bool? Gaymetinhmach,bool? GayteNgoaimangcung,bool? GayteDamroiThanhkinh,bool? GayteKhac,string GayteKhacMota,bool? CacphuongphapdieutrikhacptttKhong,bool? CacphuongphapdieutrikhacptttCo,string CacphuongphapdieutrikhacptttMota,bool? Phanungthuoc,bool? SuyhohapTuanhoan,bool? Chaymau,bool? Nhiemtrung,bool? Tuvong,bool? Nguycokhac,string NguycokhacMota,string HotenNguoilienhe,int? NamsinhNguoilienhe,string Quanhevoinguoibenh,DateTime NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua)
+	    public void Update(long IdPhieu,long? IdChitietchidinh,string MaPhieu,DateTime NgayCamket,bool? Capcuu,bool? Bancap,bool? ChuongtrinhPhien,long IdBenhnhan,string MaLuotkham,short? IdBacsiPttt,string ChucdanhBacsiPttt,short? IdKhoa,string TenKhoa,short? IdBacsiGaymehoisuc,string ChucdanhBacsiGaymehoisuc,bool? Chandoan,string ChandoanMota,bool? LydoPttt,bool? RuiroNguycoNeukhongthuchienPttt,bool? Ketquasaupttt,string KetquasauptttMota,bool? Phauthuatmo,bool? Phauthuatnoisoi,bool? Thuthuat,bool? Gaymenoikhiquan,bool? Gaytetuysong,bool? Gaytetaicho,bool? GaymeMaskThanhquan,bool? Gaymetinhmach,bool? GayteNgoaimangcung,bool? GayteDamroiThanhkinh,bool? GayteKhac,string GayteKhacMota,bool? CacphuongphapdieutrikhacptttKhong,bool? CacphuongphapdieutrikhacptttCo,string CacphuongphapdieutrikhacptttMota,bool? Phanungthuoc,bool? SuyhohapTuanhoan,bool? Chaymau,bool? Nhiemtrung,bool? Tuvong,bool? Nguycokhac,string NguycokhacMota,string HotenNguoilienhe,int? NamsinhNguoilienhe,string Quanhevoinguoibenh,DateTime NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua)
 	    {
 		    EmrPhieucamketchapnhanPttt item = new EmrPhieucamketchapnhanPttt();
 	        item.MarkOld();
 	        item.IsLoaded = true;
 		    
 			item.IdPhieu = IdPhieu;
+				
+			item.IdChitietchidinh = IdChitietchidinh;
 				
 			item.MaPhieu = MaPhieu;
 				

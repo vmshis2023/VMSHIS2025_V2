@@ -27,7 +27,7 @@ namespace VMS.HIS.UI.EMR
         public delegate void OnCreated(long id, action m_enAct);
         public event OnCreated _OnCreated;
         EmrDocuments emrdoc = new EmrDocuments();
-        public EmrTongketBenhan ttba = new EmrTongketBenhan();
+        public EmrTomtatBa ttba = new EmrTomtatBa();
 
         KcbLuotkham objLuotkham = null;
         VKcbLuotkham objBenhnhan = null;
@@ -97,7 +97,7 @@ namespace VMS.HIS.UI.EMR
                     .And(KcbChandoanKetluan.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
                     .And(KcbChandoanKetluan.Columns.IdKham).IsEqualTo(objLuotkham.IdCongkhamNhapvien)//Công khám kết thúc hoặc công khám nhập viện
                     .ExecuteSingle<KcbChandoanKetluan>();
-                ttba = new Select().From(EmrTongketBenhan.Schema).Where(EmrTongketBenhan.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan).And(EmrTongketBenhan.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham).ExecuteSingle<EmrTongketBenhan>();
+                ttba = new Select().From(EmrTomtatBa.Schema).Where(EmrTomtatBa.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan).And(EmrTomtatBa.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham).ExecuteSingle<EmrTomtatBa>();
                 if (ttba != null) m_enAct = action.Update;
                 //if (THU_VIEN_CHUNG.Laygiatrithamsohethong("BA_KHOITAOBA_TRUOCKHILAM_TKBA", "0", true) == "1")
                 //{
@@ -142,6 +142,11 @@ namespace VMS.HIS.UI.EMR
                 txtTinhtrangRavien.SetCode(objRavien.MaTinhtrangravien);
                 txtTruongkhoa.SetId(objRavien.IdBacsiChuyenvien); 
                 autoKhoa.SetId(objRavien.IdKhoaravien);
+                foreach (CheckBox cb in pnlKetquadieutriravien.Controls)
+                    if (Utility.sDbnull(cb.Tag, "-1") == objRavien.MaKquaDieutri)
+                        cb.Checked = true;
+                    else
+                        cb.Checked = false;
             }
             else if (objLuotkham.TrangthaiNoitru <=0)//TKBA ngoại trú
             {
@@ -178,9 +183,9 @@ namespace VMS.HIS.UI.EMR
                 objTemp = THU_VIEN_CHUNG.LayDulieuDanhmucChung("HDT", objChandoanKetluan.HuongDieutri);
                 if (objTemp != null)
                     txtPPdieutri.Text = objTemp.Ten;
-            }  
+            }
            
-           
+
             if (ttba != null)
             {
                 txtPPdieutri.Text = ttba.PhuongphapDieutri;
@@ -247,33 +252,33 @@ namespace VMS.HIS.UI.EMR
                 txtTomtatCLS.Focus();
                 return false;
             }
-            if (txtNguoiGiaoHoSo.MyID == "-1")
-            {
-                Utility.ShowMsg("Bạn cần chọn người giao hồ sơ");
-                txtNguoiGiaoHoSo.Focus();
-                return false;
-            }
-            if (txtNguoiNhanHoSo.MyID == "-1")
-            {
-                Utility.ShowMsg("Bạn cần chọn người nhận hồ sơ");
-                txtNguoiNhanHoSo.Focus();
-                return false;
-            }
-            if (txtBSDieuTri.MyID == "-1")
-            {
-                Utility.ShowMsg("Bạn cần chọn Bác sĩ điều trị");
-                txtBSDieuTri.Focus();
-                return false;
-            }
-            if (txtTruongkhoa.MyID == "-1")
-            {
-                Utility.ShowMsg("Bạn cần chọn Trưởng khoa điều trị");
-                txtTruongkhoa.Focus();
-                return false;
-            }
+            //if (txtNguoiGiaoHoSo.MyID == "-1")
+            //{
+            //    Utility.ShowMsg("Bạn cần chọn người giao hồ sơ");
+            //    txtNguoiGiaoHoSo.Focus();
+            //    return false;
+            //}
+            //if (txtNguoiNhanHoSo.MyID == "-1")
+            //{
+            //    Utility.ShowMsg("Bạn cần chọn người nhận hồ sơ");
+            //    txtNguoiNhanHoSo.Focus();
+            //    return false;
+            //}
+            //if (txtBSDieuTri.MyID == "-1")
+            //{
+            //    Utility.ShowMsg("Bạn cần chọn Bác sĩ điều trị");
+            //    txtBSDieuTri.Focus();
+            //    return false;
+            //}
+            //if (txtTruongkhoa.MyID == "-1")
+            //{
+            //    Utility.ShowMsg("Bạn cần chọn Trưởng khoa điều trị");
+            //    txtTruongkhoa.Focus();
+            //    return false;
+            //}
             if (txtGDBV.MyID == "-1")
             {
-                Utility.ShowMsg("Bạn cần chọn Giám đốc Bệnh viện");
+                Utility.ShowMsg("Bạn cần chọn Người đại diện đơn vị");
                 txtGDBV.Focus();
                 return false;
             }
@@ -374,7 +379,7 @@ namespace VMS.HIS.UI.EMR
                     using (var dbscope = new SharedDbConnectionScope())
                     {
                         //if (!Utility.AcceptQuestion("Bạn có chắc chắn muốn lưu Tổng kết Bệnh án?", "Thông báo", true)) return;
-                        if (ttba == null) ttba = new EmrTongketBenhan();
+                        if (ttba == null) ttba = new EmrTomtatBa();
                         if (ttba.Id > 0)
                         {
                             ttba.IsNew = false;
@@ -427,7 +432,7 @@ namespace VMS.HIS.UI.EMR
 
                         ttba.Save();
                       
-                        emrdoc.InitDocument(ttba.IdBenhnhan, ttba.MaLuotkham, Utility.Int64Dbnull(ttba.Id), ttba.NgayTtba.Value, Loaiphieu_HIS.PHIEU_TKBA, "BA_TKBA", ttba.NguoiTao, -1, -1, Utility.Byte2Bool(1), "", true);
+                        emrdoc.InitDocument(ttba.IdBenhnhan, ttba.MaLuotkham, Utility.Int64Dbnull(ttba.Id), ttba.NgayTtba.Value, Loaiphieu_HIS.PHIEU_TTBA, "BA_TTBA", ttba.NguoiTao, -1, -1, Utility.Byte2Bool(1), "", true,false,"",Loaiphieu_HIS.PHIEU_TTBA);
                         emrdoc.Save();
                         new Update(KcbLuotkham.Schema).Set(KcbLuotkham.Columns.IdBsDieutrinoitruChinh).EqualTo(txtBSDieuTri.MyID)
                             .Where(KcbLuotkham.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
@@ -459,7 +464,7 @@ namespace VMS.HIS.UI.EMR
                 if (m_enAct == action.Insert)
                 {
                     Utility.Log(this.Name, globalVariables.UserName, string.Format("Thêm mới Tổng kết Bệnh án bệnh nhân: {0}-{1} thành công", ttba.MaLuotkham, ucThongtinnguoibenh_emr_basic1.txtTenBN.Text), ttba.IsNew ? newaction.Insert : newaction.Update, "UI");
-                    MessageBox.Show("Đã thêm mới Tổng kết Bệnh án thành công. Nhấn Ok để kết thúc");
+                    MessageBox.Show("Đã thêm mới Tổng kết Bệnh án thành công");
                     cmdIn.Enabled = cmdXoa.Enabled = true;
                     if (_OnCreated != null) _OnCreated(ttba.Id, action.Insert);
                     m_enAct = action.Update;
@@ -468,7 +473,7 @@ namespace VMS.HIS.UI.EMR
                 {
                     Utility.Log(this.Name, globalVariables.UserName, string.Format("Cập nhật Tổng kết Bệnh án bệnh nhân: {0}-{1} thành công", ttba.MaLuotkham, ucThongtinnguoibenh_emr_basic1.txtTenBN.Text), ttba.IsNew ? newaction.Insert : newaction.Update, "UI");
                     if (_OnCreated != null) _OnCreated(ttba.Id, action.Update);
-                    MessageBox.Show("Đã cập nhật Tổng kết Bệnh án thành công. Nhấn Ok để kết thúc");
+                    MessageBox.Show("Đã cập nhật Tổng kết Bệnh án thành công");
                     m_enAct = action.Update;
                 }
             }
@@ -523,8 +528,8 @@ namespace VMS.HIS.UI.EMR
             //Cần thêm kiểm tra BA đã đóng thì không cho xóa TKBA nữa
             if (Utility.AcceptQuestion("Bạn có muốn xóa thông tin Tổng kết Bệnh án không ?", "Thông báo", true))
             {
-                int banghi = new Delete().From<EmrTongketBenhan>()
-                     .Where(EmrTongketBenhan.Columns.Id)
+                int banghi = new Delete().From<EmrTomtatBa>()
+                     .Where(EmrTomtatBa.Columns.Id)
                      .IsEqualTo(Utility.Int32Dbnull(ttba.Id))
                      .Execute();
                 //Xóa phiếu EMR, dùng cách cập nhật xem sao
@@ -532,7 +537,7 @@ namespace VMS.HIS.UI.EMR
                     emrdoc.DeleteDocument(ttba.Id, Loaiphieu_HIS.PHIEU_TKBA, "BA_TKBA");
                 if (banghi > 0)
                 {
-                    ttba = new EmrTongketBenhan();
+                    ttba = new EmrTomtatBa();
                     Utility.ShowMsg("Bạn xóa thông tin Tổng kết Bệnh án thành công", "Thông báo");
 
                     ucThongtinnguoibenh_emr_basic1.txtMaluotkham.Focus();

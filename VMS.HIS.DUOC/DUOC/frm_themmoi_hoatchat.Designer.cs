@@ -161,7 +161,7 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.lblMessage.ForeColor = System.Drawing.Color.Red;
             this.lblMessage.Location = new System.Drawing.Point(3, 258);
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(537, 23);
+            this.lblMessage.Size = new System.Drawing.Size(553, 23);
             this.lblMessage.TabIndex = 15;
             this.lblMessage.Text = "lblMessage";
             this.lblMessage.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -199,7 +199,7 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.grpControl.Image = ((System.Drawing.Image)(resources.GetObject("grpControl.Image")));
             this.grpControl.Location = new System.Drawing.Point(0, 0);
             this.grpControl.Name = "grpControl";
-            this.grpControl.Size = new System.Drawing.Size(543, 284);
+            this.grpControl.Size = new System.Drawing.Size(559, 284);
             this.grpControl.TabIndex = 3;
             this.grpControl.Text = "&Thông tin hoạt chất";
             // 
@@ -232,6 +232,7 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.txtduongdung.RaiseEventEnter = false;
             this.txtduongdung.RaiseEventEnterWhenEmpty = false;
             this.txtduongdung.SelectedIndex = -1;
+            this.txtduongdung.SetDefaultWhenInit = true;
             this.txtduongdung.ShowCodeWithValue = false;
             this.txtduongdung.Size = new System.Drawing.Size(310, 21);
             this.txtduongdung.splitChar = '@';
@@ -290,7 +291,7 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.cmdExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cmdExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdExit.Image = ((System.Drawing.Image)(resources.GetObject("cmdExit.Image")));
-            this.cmdExit.Location = new System.Drawing.Point(272, 315);
+            this.cmdExit.Location = new System.Drawing.Point(280, 323);
             this.cmdExit.Name = "cmdExit";
             this.cmdExit.Size = new System.Drawing.Size(146, 32);
             this.cmdExit.TabIndex = 7;
@@ -303,7 +304,7 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.cmdSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdSave.Image = ((System.Drawing.Image)(resources.GetObject("cmdSave.Image")));
-            this.cmdSave.Location = new System.Drawing.Point(125, 314);
+            this.cmdSave.Location = new System.Drawing.Point(133, 322);
             this.cmdSave.Name = "cmdSave";
             this.cmdSave.Size = new System.Drawing.Size(136, 32);
             this.cmdSave.TabIndex = 6;
@@ -319,7 +320,7 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(543, 374);
+            this.ClientSize = new System.Drawing.Size(559, 387);
             this.Controls.Add(this.cmdExit);
             this.Controls.Add(this.cmdSave);
             this.Controls.Add(this.grpControl);

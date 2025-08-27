@@ -119,7 +119,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
         }
         private void PrintPres(int presID, string forcedTitle)
         {
-            DataTable v_dtDataOrg = new KCB_KEDONTHUOC().LaythongtinDonthuoc_In(presID);
+            DataTable v_dtDataOrg = new KCB_KEDONTHUOC().LaythongtinDonthuoc_In(objLuotkham.IdBenhnhan,objLuotkham.MaLuotkham,1, presID);
 
             DataRow[] arrDR = v_dtDataOrg.Select("tuvan_them=0");
             if (arrDR.Length <= 0)

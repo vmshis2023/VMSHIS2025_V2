@@ -28,7 +28,7 @@ namespace VMS.HIS.UI.EMR
         public TrangthaiNoitru TrangthaiNoitru = TrangthaiNoitru.NoiTru;
         DataTable _mDtKhoanoitru;
         string lstLoaiBA = "01";
-        public EmrBaNoikhoa objEmrBa;
+        public EmrBa objEmrBa;
         DataTable dtkhoachuyen = new DataTable();
         DataTable dtkhoanhapvien = new DataTable();
         DataTable dtCacKhoa = new DataTable();
@@ -142,7 +142,7 @@ namespace VMS.HIS.UI.EMR
                 ma_BA = "";
                 id_khoadieutri = -1;
             }
-            m_dtData = SPs.EmrBaNoikhoaLaydanhsachBA(tungay, denngay, ma_luotkham, ma_BA, ten_benhnhan, id_khoadieutri).GetDataSet().Tables[0];
+            m_dtData = SPs.EmrLaydanhsachBA(tungay, denngay, ma_luotkham, ma_BA, Utility.sDbnull(cboLoaiBA.SelectedValue), ten_benhnhan, id_khoadieutri).GetDataSet().Tables[0];
             Utility.SetDataSourceForDataGridEx(grdList, m_dtData, true, true, "1=1", "ngay_tao,ten_benhnhan");
             ModifyCommand();
         }
@@ -212,16 +212,16 @@ namespace VMS.HIS.UI.EMR
         {
             if (!Utility.isValidGrid(grdList)) return;
             string MauBA = Utility.sDbnull(grdList.GetValue("loai_ba"));
-            if (MauBA == LoaiBA.BA_NOIKHOA)//Bệnh án nội khoa
-            {
+            //if (MauBA == LoaiBA.BA_NOIKHOA)//Bệnh án nội khoa
+            //{
                 frm_BenhAn_NoiKhoa BenhAn_NoiKhoa = new frm_BenhAn_NoiKhoa(MauBA);
-                EmrBaNoikhoa bant = EmrBaNoikhoa.FetchByID(Utility.Int64Dbnull(grdList.GetValue("id_ba")));
+                EmrBa bant = EmrBa.FetchByID(Utility.Int64Dbnull(grdList.GetValue("id_ba")));
                 BenhAn_NoiKhoa.objEmrBa = bant;
                 BenhAn_NoiKhoa.ucThongtinnguoibenh_emr_basic1.txtMaluotkham.Text = Utility.sDbnull(grdList.GetValue("ma_luotkham"));
                 BenhAn_NoiKhoa.m_enAct = action.Update;
                 BenhAn_NoiKhoa._OnCreated += _OnCreated;
                 BenhAn_NoiKhoa.ShowDialog();
-            }
+            //}
            
         }
         EmrDocuments emrdoc = new EmrDocuments();
@@ -234,7 +234,7 @@ namespace VMS.HIS.UI.EMR
                     Utility.ShowMsg("Bạn không có quyền xóa Bệnh án ");
                     return;
                 }
-                 objEmrBa = EmrBaNoikhoa.FetchByID(Utility.Int64Dbnull(grdList.GetValue(EmrBaNoikhoa.Columns.IdBa)));
+                 objEmrBa = EmrBa.FetchByID(Utility.Int64Dbnull(grdList.GetValue(EmrBa.Columns.IdBa)));
                 if (objEmrBa == null)
                 {
                     Utility.ShowMsg("Bệnh án không tồn tại để xóa. Vui lòng bấm lại nút tìm kiếm");
@@ -262,7 +262,7 @@ namespace VMS.HIS.UI.EMR
                     Utility.ShowMsg("Bệnh án đang ở trạng thái đã được duyệt bởi KHTH và đưa vào lưu trữ nên không thể xóa");
                     return;
                 }
-                if (Utility.AcceptQuestion(string.Format("Bạn có chắc chắn muốn xóa Bệnh án với mã {0} của người bệnh {1} hay không?", grdList.GetValue(EmrBaNoikhoa.Columns.MaBa).ToString(), grdList.GetValue("ten_benhnhan").ToString()), "Xác nhận xóa bệnh án", true))
+                if (Utility.AcceptQuestion(string.Format("Bạn có chắc chắn muốn xóa Bệnh án với mã {0} của người bệnh {1} hay không?", grdList.GetValue(EmrBa.Columns.MaBa).ToString(), grdList.GetValue("ten_benhnhan").ToString()), "Xác nhận xóa bệnh án", true))
                 {
                     try
                     {
@@ -270,23 +270,23 @@ namespace VMS.HIS.UI.EMR
                         {
                             using (var dbScope = new SharedDbConnectionScope())
                             {
-                                new Delete().From(EmrBaNoikhoa.Schema)
-                                      .Where(EmrBaNoikhoa.Columns.IdBa).IsEqualTo(objEmrBa.IdBa)
-                                      .And(EmrBaNoikhoa.Columns.LoaiBa).IsEqualTo(objEmrBa.LoaiBa)
-                                      .And(EmrBaNoikhoa.Columns.MaCoso).IsEqualTo(objEmrBa.MaCoso)
+                                new Delete().From(EmrBa.Schema)
+                                      .Where(EmrBa.Columns.IdBa).IsEqualTo(objEmrBa.IdBa)
+                                      .And(EmrBa.Columns.LoaiBa).IsEqualTo(objEmrBa.LoaiBa)
+                                      .And(EmrBa.Columns.MaCoso).IsEqualTo(objEmrBa.MaCoso)
                                       .Execute();
                                 new Delete().From(EmrHosoluutru.Schema)
                                       .Where(EmrHosoluutru.Columns.IdBa).IsEqualTo(objEmrBa.IdBa)
                                       .And(EmrHosoluutru.Columns.LoaiBa).IsEqualTo(objEmrBa.LoaiBa)
-                                      .And(EmrBaNoikhoa.Columns.MaCoso).IsEqualTo(objEmrBa.MaCoso)
+                                      .And(EmrBa.Columns.MaCoso).IsEqualTo(objEmrBa.MaCoso)
                                       .Execute();
-                                emrdoc.DeleteDocument_WithoutTransaction(objEmrBa.IdBa, new List<string>() { "BENHAN", "BENHAN_BIA", "BENHAN_TO1", "BENHAN_TO2", "BENHAN_TO3", "BENHAN_TO4"}, "");
+                                emrdoc.DeleteDocument_WithoutTransaction(objEmrBa.IdBa, new List<string>() { Utility.LayMaBA(Utility.sDbnull(grdList.GetValue("loai_ba"))), "BENHAN_BIA", "BENHAN_TO1", "BENHAN_TO2", "BENHAN_TO3", "BENHAN_TO4"}, "");
                                 Utility.Log("frm_BenhAn_NoiKhoa", globalVariables.UserName, string.Format("Xóa bệnh án id={0}, loại BA={1}, mã BA={2} của người bệnh id ={3}, mã lần khám {4} thành công", objEmrBa.IdBa, objEmrBa.LoaiBa, objEmrBa.MaBa, objEmrBa.IdBenhnhan, objEmrBa.MaLuotkham), newaction.Delete, "UI");
                             }
                             Scope.Complete();
                         }
                         Utility.ShowMsg(string.Format("Xóa Bệnh cho người bệnh {0} thành công", grdList.GetValue("ten_benhnhan").ToString()));
-                        DataRow[] arrDr = m_dtData.Select(string.Format("{0}={1}", EmrBaNoikhoa.Columns.IdBa, grdList.GetValue(EmrBaNoikhoa.Columns.IdBa)));
+                        DataRow[] arrDr = m_dtData.Select(string.Format("{0}={1}", EmrBa.Columns.IdBa, grdList.GetValue(EmrBa.Columns.IdBa)));
                         if (arrDr.Length > 0)
                             m_dtData.Rows.Remove(arrDr[0]);
                         m_dtData.AcceptChanges();
@@ -307,12 +307,12 @@ namespace VMS.HIS.UI.EMR
         {
             try
             {
-                DataTable dt_temp = SPs.EmrBaNoikhoaLaydanhsachBA(new DateTime(1900, 1, 1), new DateTime(1900, 1, 1), "", ma_ba, "", -1).GetDataSet().Tables[0];
+                DataTable dt_temp = SPs.EmrLaydanhsachBA(new DateTime(1900, 1, 1), new DateTime(1900, 1, 1), "", ma_ba, Utility.sDbnull(cboLoaiBA.SelectedValue), "", -1).GetDataSet().Tables[0];
                 if (m_enAct == action.Delete)
                 {
                     if (DeleteMe())
                     {
-                        DataRow[] arrDr = m_dtData.Select(string.Format("{0}={1}", EmrBaNoikhoa.Columns.IdBa, grdList.GetValue(EmrBaNoikhoa.Columns.IdBa)));
+                        DataRow[] arrDr = m_dtData.Select(string.Format("{0}={1}", EmrBa.Columns.IdBa, grdList.GetValue(EmrBa.Columns.IdBa)));
                         if (arrDr.Length > 0)
                             m_dtData.Rows.Remove(arrDr[0]);
                         m_dtData.AcceptChanges();
@@ -358,7 +358,7 @@ namespace VMS.HIS.UI.EMR
                 {
                     using (var dbscope = new SharedDbConnectionScope())
                     {
-                        new Delete().From(EmrBaNoikhoa.Schema).Where(EmrBaNoikhoa.Columns.IdBa).IsEqualTo(Utility.Int32Dbnull(grdList.GetValue(EmrBaNoikhoa.Columns.IdBa), -1)).Execute();
+                        new Delete().From(EmrBa.Schema).Where(EmrBa.Columns.IdBa).IsEqualTo(Utility.Int32Dbnull(grdList.GetValue(EmrBa.Columns.IdBa), -1)).Execute();
                     }
                     scope.Complete();
 
@@ -377,8 +377,8 @@ namespace VMS.HIS.UI.EMR
             //try
             //{
             //    Utility.WaitNow(this);
-            //    string ma_luotkham = grdList.GetValue(EmrBaNoikhoa.Columns.MaLuotkham).ToString();
-            //    long id_phieu = Utility.Int64Dbnull(grdList.GetValue(EmrBaNoikhoa.Columns.IdPhieu));
+            //    string ma_luotkham = grdList.GetValue(EmrBa.Columns.MaLuotkham).ToString();
+            //    long id_phieu = Utility.Int64Dbnull(grdList.GetValue(EmrBa.Columns.IdPhieu));
             //    DataTable dtData =
             //                     SPs.KcbThamkhamPhieuchuyenvien(id_phieu, ma_luotkham).GetDataSet().Tables[0];
 
@@ -482,10 +482,10 @@ namespace VMS.HIS.UI.EMR
                 Utility.ShowMsg("Chưa có thông tin người bệnh để thực hiện thao tác in tóm tắt bệnh án");
                 return;
             }
-            EmrTongketBenhan ttba = new Select().From(EmrTongketBenhan.Schema)
-                .Where(EmrTongketBenhan.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
-                .And(EmrTongketBenhan.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
-                .ExecuteSingle<EmrTongketBenhan>();
+            EmrTomtatBa ttba = new Select().From(EmrTomtatBa.Schema)
+                .Where(EmrTomtatBa.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
+                .And(EmrTomtatBa.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
+                .ExecuteSingle<EmrTomtatBa>();
             if (ttba == null || ttba.Id <= 0)
             {
                 Utility.ShowMsg("Bạn cần tạo Tóm tắt hồ sơ bệnh án trước khi thực hiện in");
@@ -523,7 +523,7 @@ namespace VMS.HIS.UI.EMR
             FillThongtinChuyenKhoa();
             FillThongtinTienSuSanKhoa();
             FillThongtinPTTT();
-            objEmrBa = EmrBaNoikhoa.FetchByID(Utility.Int64Dbnull(grdList.GetValue(EmrBaNoikhoa.Columns.IdBa)));
+            objEmrBa = EmrBa.FetchByID(Utility.Int64Dbnull(grdList.GetValue(EmrBa.Columns.IdBa)));
         }
         void FillThongtinChuyenKhoa()
         {
@@ -598,6 +598,8 @@ namespace VMS.HIS.UI.EMR
         private void cmdEmr_Click(object sender, EventArgs e)
         {
             frm_Emr _Emr = new frm_Emr();
+            _Emr.isAutoLoad = true;
+            _Emr.ucThongtinnguoibenh_emr_basic1.txtMaluotkham.Text = Utility.sDbnull(grdList.GetValue("ma_luotkham"));
             _Emr.ShowDialog();
         }
 

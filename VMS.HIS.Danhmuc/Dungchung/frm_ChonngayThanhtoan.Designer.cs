@@ -31,8 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_ChonngayThanhtoan));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.uiGroupBox1 = new Janus.Windows.EditControls.UIGroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dtCreateDate = new Janus.Windows.CalendarCombo.CalendarCombo();
@@ -42,14 +40,16 @@
             this.uiGroupBox2 = new Janus.Windows.EditControls.UIGroupBox();
             this.cmdAccept = new Janus.Windows.EditControls.UIButton();
             this.cmdExit = new Janus.Windows.EditControls.UIButton();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.label2 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox1)).BeginInit();
             this.uiGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox2)).BeginInit();
             this.uiGroupBox2.SuspendLayout();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,30 +62,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(584, 300);
             this.panel1.TabIndex = 3;
-            // 
-            // label2
-            // 
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.label2.Location = new System.Drawing.Point(100, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(484, 61);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Hệ thống phát hiện ngày thanh toán khác với ngày đăng ký khám chữa bệnh của Bệnh " +
-    "nhân. Mời bạn xác nhận ngày thanh toán thực tế";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel2
-            // 
-            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.pictureBox1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(584, 61);
-            this.panel2.TabIndex = 6;
             // 
             // uiGroupBox1
             // 
@@ -176,7 +152,7 @@
             // cmdAccept
             // 
             this.cmdAccept.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdAccept.Image = global::VMS.Resources.Properties.Resources.SAVE1;
+            this.cmdAccept.Image = ((System.Drawing.Image)(resources.GetObject("cmdAccept.Image")));
             this.cmdAccept.ImageSize = new System.Drawing.Size(24, 24);
             this.cmdAccept.Location = new System.Drawing.Point(322, 17);
             this.cmdAccept.Name = "cmdAccept";
@@ -188,7 +164,7 @@
             // cmdExit
             // 
             this.cmdExit.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdExit.Image = global::VMS.Resources.Properties.Resources.arrow_left_11;
+            this.cmdExit.Image = global::VMS.HIS.Danhmuc.Properties.Resources.close_24;
             this.cmdExit.ImageSize = new System.Drawing.Size(24, 24);
             this.cmdExit.Location = new System.Drawing.Point(455, 17);
             this.cmdExit.Name = "cmdExit";
@@ -197,10 +173,29 @@
             this.cmdExit.Text = "Thoát(Esc)";
             this.cmdExit.Click += new System.EventHandler(this.cmdExit_Click);
             // 
-            // toolTip1
+            // label2
             // 
-            this.toolTip1.IsBalloon = true;
-            this.toolTip1.ToolTipTitle = "Trợ giúp nhanh:";
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label2.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.label2.Location = new System.Drawing.Point(100, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(484, 61);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Hệ thống phát hiện ngày thanh toán khác với ngày đăng ký khám chữa bệnh của Bệnh " +
+    "nhân. Mời bạn xác nhận ngày thanh toán thực tế";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel2
+            // 
+            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.pictureBox1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(584, 61);
+            this.panel2.TabIndex = 6;
             // 
             // pictureBox1
             // 
@@ -212,6 +207,11 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 8;
             this.pictureBox1.TabStop = false;
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.IsBalloon = true;
+            this.toolTip1.ToolTipTitle = "Trợ giúp nhanh:";
             // 
             // frm_ChonngayThanhtoan
             // 
@@ -232,12 +232,12 @@
             this.Load += new System.EventHandler(this.frm_ChonngayThanhtoan_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frm_ChonngayThanhtoan_KeyDown);
             this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox1)).EndInit();
             this.uiGroupBox1.ResumeLayout(false);
             this.uiGroupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox2)).EndInit();
             this.uiGroupBox2.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 

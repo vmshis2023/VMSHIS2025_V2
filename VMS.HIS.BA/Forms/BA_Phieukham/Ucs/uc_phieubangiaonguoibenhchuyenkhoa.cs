@@ -117,7 +117,10 @@ namespace VMS.HIS.UI.EMR.Ucs
                                       DmucNhanvien.Columns.MaNhanvien,
                                       DmucNhanvien.Columns.TenNhanvien
                                   });
+            txt_bacsi_nhan.Init(txt_bacsi_chidinhchuyen.AutoCompleteSource, txt_bacsi_chidinhchuyen.defaultItem);
             txt_bacsi_chuyen.Init(txt_bacsi_chidinhchuyen.AutoCompleteSource, txt_bacsi_chidinhchuyen.defaultItem);
+            txt_dieuduongnhan.Init(txt_bacsi_chidinhchuyen.AutoCompleteSource, txt_bacsi_chidinhchuyen.defaultItem);
+            txt_dieuduong_chuyen.Init(txt_bacsi_chidinhchuyen.AutoCompleteSource, txt_bacsi_chidinhchuyen.defaultItem);
             DataTable dtKhoaPhong = THU_VIEN_CHUNG.Laydanhmuckhoa("ALL", 0);
             txt_khoachuyen.Init(dtKhoaPhong, new List<string>() { DmucKhoaphong.Columns.IdKhoaphong, DmucKhoaphong.Columns.MaKhoaphong, DmucKhoaphong.Columns.TenKhoaphong });
             txtKhoa.Init(txt_khoachuyen.AutoCompleteSource, txt_khoachuyen.defaultItem);
@@ -301,7 +304,7 @@ namespace VMS.HIS.UI.EMR.Ucs
               .ExecuteDataSet().Tables[0];
             if (dtData.Rows.Count > 0)
             {
-                Msg = "Mã phiếu đã được sử dụng. Vui lòng nhập mã phiếu khác";
+                Msg = "Mã phiếu đã được sử dụng. Vui lòng nhập mã phiếu khác. Hoặc nhấn nút refresh bên cạnh để sinh mã mới";
                 txtSoHoso.Focus();
                 return false;
             }
@@ -466,6 +469,9 @@ namespace VMS.HIS.UI.EMR.Ucs
                             phieubangiao.NgaySua = DateTime.Now;
                             phieubangiao.NguoiSua = globalVariables.UserName;
                         }
+                        phieubangiao.IdBenhnhan = objLuotkham.IdBenhnhan;
+                        phieubangiao.MaLuotkham = objLuotkham.MaLuotkham;
+                        phieubangiao.MaPhieu = Utility.sDbnull(txtSoHoso.Text);
                         phieubangiao.NgayBangiao = dtp_ngaybangiao.Value;
                         phieubangiao.Khoa = Utility.sDbnull(txtKhoa.Text);
                         phieubangiao.Buong = Utility.sDbnull(txtBuong.Text);
@@ -584,9 +590,12 @@ namespace VMS.HIS.UI.EMR.Ucs
                         phieubangiao.TailieubangiaoKhac = chk_tailieubangiao_khac.Checked;
                         phieubangiao.TailieubangiaoMota = txt_tailieubangiao_mota.Text;
 
-
+                        if(objBacsiPttt==null)
+                            objBacsiPttt = DmucNhanvien.FetchByID(Utility.Int32Dbnull(txt_bacsi_chidinhchuyen.MyID));
                         phieubangiao.Save();
-                        emrdoc.InitDocument(phieubangiao.IdBenhnhan, phieubangiao.MaLuotkham, Utility.Int64Dbnull(phieubangiao.IdPhieu), phieubangiao.NgayBangiao, Loaiphieu_HIS.PHIEU_BANGIAO_NGUOIBENHCHUYENKHOA, "PHIEU_BANGIAO_NGUOIBENHCHUYENKHOA", phieubangiao.NguoiTao,Utility.Int16Dbnull( objBacsiPttt.IdKhoa), Utility.Int16Dbnull(objBacsiPttt.IdPhong), Utility.Byte2Bool(0),"");
+                        emrdoc.InitDocument(phieubangiao.IdBenhnhan, phieubangiao.MaLuotkham, Utility.Int64Dbnull(phieubangiao.IdPhieu), phieubangiao.NgayBangiao, Loaiphieu_HIS.PHIEU_BANGIAO_NGUOIBENHCHUYENKHOA_BACSI, "PHIEU_BANGIAO_NGUOIBENHCHUYENKHOA_BACSI", phieubangiao.NguoiTao,Utility.Int16Dbnull( txtKhoa.MyID), Utility.Int16Dbnull(objBacsiPttt.IdPhong), Utility.Byte2Bool(0),"",false,false,"",Loaiphieu_HIS.PHIEU_BANGIAO_NGUOIBENHCHUYENKHOA);
+                        emrdoc.Save();
+                        emrdoc.InitDocument(phieubangiao.IdBenhnhan, phieubangiao.MaLuotkham, Utility.Int64Dbnull(phieubangiao.IdPhieu), phieubangiao.NgayBangiao, Loaiphieu_HIS.PHIEU_BANGIAO_NGUOIBENHCHUYENKHOA_DIEUDUONG, "PHIEU_BANGIAO_NGUOIBENHCHUYENKHOA_DIEUDUONG", phieubangiao.NguoiTao, Utility.Int16Dbnull(txtKhoa.MyID), Utility.Int16Dbnull(objBacsiPttt.IdPhong), Utility.Byte2Bool(0), "", false, false, "", Loaiphieu_HIS.PHIEU_BANGIAO_NGUOIBENHCHUYENKHOA);
                         emrdoc.Save();
 
                     }
@@ -615,7 +624,7 @@ namespace VMS.HIS.UI.EMR.Ucs
         {
             Print();
         }
-        public  void Print()
+        public  void Print(bool isBacsi=false)
         {
             try
             {
@@ -631,7 +640,10 @@ namespace VMS.HIS.UI.EMR.Ucs
                 DataTable dtData = SPs.EmrPhieubangiaonguoibenhchuyenkhoaLaythongtinIn(phieubangiao.IdPhieu).GetDataSet().Tables[0];
                 dtData.TableName = "PHIEU_BANGIAO_NGUOIBENHCHUYENKHOA";
                 dtData.Rows[0]["sngay_bangiao"] = phieubangiao != null ? Utility.FormatDateTime_gio_ngay_thang_nam(phieubangiao.NgayBangiao, "") : "Ngày ......./......./..........";
-                WordPrinter.InPhieu(dtData, "phieubangiaochapnhan_pttt.doc", "");
+                if (isBacsi)
+                    WordPrinter.InPhieu(dtData, "PHIEU_BANGIAO_NGUOIBENHCHUYENKHOA_BACSI.doc", "",false, @"doc\PHIEU_BANGIAO_NGUOIBENHCHUYENKHOA_CHECKED_FIELDS.txt");
+                else
+                    WordPrinter.InPhieu(dtData, "PHIEU_BANGIAO_NGUOIBENHCHUYENKHOA_DIEUDUONG.doc", "",false, @"doc\PHIEU_BANGIAO_NGUOIBENHCHUYENKHOA_CHECKED_FIELDS.txt");
 
 
             }

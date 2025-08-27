@@ -3560,6 +3560,20 @@ namespace VMS.HIS.DAL
 				colvarNgayDieutriDen.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarNgayDieutriDen);
 				
+				TableSchema.TableColumn colvarTrangThai = new TableSchema.TableColumn(schema);
+				colvarTrangThai.ColumnName = "trang_thai";
+				colvarTrangThai.DataType = DbType.Byte;
+				colvarTrangThai.MaxLength = 0;
+				colvarTrangThai.AutoIncrement = false;
+				colvarTrangThai.IsNullable = true;
+				colvarTrangThai.IsPrimaryKey = false;
+				colvarTrangThai.IsForeignKey = false;
+				colvarTrangThai.IsReadOnly = false;
+				
+						colvarTrangThai.DefaultSetting = @"((0))";
+				colvarTrangThai.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarTrangThai);
+				
 				TableSchema.TableColumn colvarNgayTao = new TableSchema.TableColumn(schema);
 				colvarNgayTao.ColumnName = "ngay_tao";
 				colvarNgayTao.DataType = DbType.DateTime;
@@ -3569,7 +3583,8 @@ namespace VMS.HIS.DAL
 				colvarNgayTao.IsPrimaryKey = false;
 				colvarNgayTao.IsForeignKey = false;
 				colvarNgayTao.IsReadOnly = false;
-				colvarNgayTao.DefaultSetting = @"";
+				
+						colvarNgayTao.DefaultSetting = @"((0))";
 				colvarNgayTao.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarNgayTao);
 				
@@ -5814,6 +5829,14 @@ namespace VMS.HIS.DAL
 			set { SetColumnValue(Columns.NgayDieutriDen, value); }
 		}
 		  
+		[XmlAttribute("TrangThai")]
+		[Bindable(true)]
+		public byte? TrangThai 
+		{
+			get { return GetColumnValue<byte?>(Columns.TrangThai); }
+			set { SetColumnValue(Columns.TrangThai, value); }
+		}
+		  
 		[XmlAttribute("NgayTao")]
 		[Bindable(true)]
 		public DateTime? NgayTao 
@@ -5913,7 +5936,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(long varIdBaGoc,string varLoaiBa,string varMaBa,DateTime? varNgaylamBa,string varKhoa,string varBuong,string varGiuong,string varSoLuutru,long varIdBenhnhan,string varMaLuotkham,string varMaYte,string varTenBenhnhan,DateTime? varNgaySinh,short? varTuoi,byte? varLoaiTuoi,string varMaGioitinh,string varGioiTinh,string varMaNghenghiep,string varTenNghenghiep,string varMaDantoc,string varTenDantoc,string varMaTongiao,string varTenTongiao,string varMaQuocgia,string varTenQuocgia,bool? varNgoaiKieu,string varDiaChi,string varSonha,string varThonpho,string varMaXaphuong,string varTenXaphuong,string varMaQuanhuyen,string varTenQuanhuyen,string varMaTinhtp,string varTenTinhtp,string varMaCoquan,string varTenCoquan,byte? varMaDoituong,string varTenDoituong,string varMatheBhyt,DateTime? varBhytTungay,DateTime? varBhytDenngay,string varNguoiLienhe,string varDienthoaiLienhe,string varDiachiLienhe,string varCmtNguoilienhe,string varHotenBo,string varTrinhdoVanhoaBo,string varNghenghiepBo,string varHotenMe,string varTrinhdoVanhoaMe,string varNghenghiepMe,string varCmtCccd,string varSoHochieu,string varDienThoai,string varEmail,DateTime? varVaovienNgay,string varVaovienLydovaovien,byte? varVaovienVaongaythucuabenh,byte? varVaovienTructiepVao,bool? varVaovienCapcuu,bool? varVaovienKkb,bool? varVaovienKhoadieutri,bool? varNoigioithieuCoquanyte,bool? varNoigioithieuTuden,bool? varNoigioithieuKhac,byte? varVaovienLanthu,string varVaovienTenkhoa,string varVaovienMakhoa,short? varVaovienIdKhoa,DateTime? varVaovienNgayvaokhoa,bool? varChuyenvienTuyentren,bool? varChuyenvienTuyenduoi,bool? varChuyenvienKhac,string varChuyenvienNoichuyenden,DateTime? varRavienNgay,string varRavienMatinhtrang,bool? varRavienRavien,bool? varRavienXinve,bool? varRavienBove,bool? varRavienDuave,short? varRavienTongsongayDieutri,string varCdNoichuyenden,string varCdNoichuyendenMa,string varCdKkbCapcuu,string varCdKkbCapcuuMa,string varCdKhoadieutri,string varCdKhoadieutriMa,string varRavienMaBenhchinh,string varRavienTenBenhchinh,string varRavienMaBenhphu,string varRavienTenBenhphu,string varTinhtrangravienMaKetquadieutri,bool? varTinhtrangravienKetquadieutriKhoi,bool? varTinhtrangravienKetquadieutriDogiam,bool? varTinhtrangravienKetquadieutriKhongthaydoi,bool? varTinhtrangravienKetquadieutriNanghon,bool? varTinhtrangravienKetquadieutriTuvong,bool? varTinhtrangravienKetquadieutriChuyenvien,bool? varTinhtrangravienGpbLanhtinh,bool? varTinhtrangravienGpbNghingo,bool? varTinhtrangravienGpbActinh,bool? varTinhtrangravienGpb,DateTime? varTinhtrangravienThoigianTuvong,string varTinhtrangravienMaLydotuvong,bool? varTinhtrangravienLydotuvongDobenh,bool? varTinhtrangravienLydotuvongDotaibiendieutri,bool? varTinhtrangravienLydotuvongKhac,string varTinhtrangravienMaThoigiantuvong,bool? varTinhtrangravienThoigiantuvongTrong24h,bool? varTinhtrangravienThoigiantuvongSau24h,bool? varTinhtrangravienThoigiantuvongTrong48h,bool? varTinhtrangravienThoigiantuvongTrong72h,string varTinhtrangravienMaNguyennhantuvong,string varTinhtrangravienNguyennhantuvong,bool? varTinhtrangravienKhamnghiemtuthi,string varTinhtrangravienMaChandoangiaiphaututhi,string varTinhtrangravienChandoangiauphaututhi,bool? varCdThuthuat,bool? varCdPhauthuat,bool? varCdTaibien,bool? varCdBienchung,bool? varCdDophauthuat,bool? varCdDogayme,bool? varCdDonhiemkhuan,bool? varCdTaibienBienchungKhac,byte? varCdTongsongaydieutriSauphauthuat,byte? varCdTongsolanphauthuat,string varMaChandoanTruocphauthuat,string varChandoanTruocphauthuat,string varMaChandoanSauphauthuat,string varChandoanSauphauthuat,string varHoibenhQuatrinhbenhly,string varHoibenhTiensubanthan,string varHoibenhTiensugiadinh,short? varHoibenhBatdauthaykinhNam,byte? varHoibenhBatdauthaykinhTuoi,string varHoibenhTinhchatkinhnguyet,byte? varHoibenhChukykinh,byte? varHoibenhLuongkinh,short? varHoibenhLaychongNam,byte? varHoibenhLaychongTuoi,string varHoibenhNhungbenhphukhoadadieutri,string varHoibenhPara,string varKbMach,string varKbNhietdo,string varKbHuyetap,string varKbNhiptho,string varKbChieucao,string varKbCannang,string varKbNhommau,string varKbBmi,bool? varTsbDiung,bool? varTsbMatuy,bool? varTsbRuoubia,bool? varTsbThuocla,bool? varTsbThuoclao,bool? varTsbKhac,string varTsbThoigianDiung,string varTsbThoigianMatuy,string varTsbThoigianRuoubia,string varTsbThoigianThuocla,string varTsbThoigianThuoclao,string varTsbThoigianKhac,string varTsbDiungKhac,short? varSongaythaykinh,string varLuongkinh,DateTime? varKinhlancuoingay,bool? varCodaubung,bool? varThoigianTruoc,bool? varThoigianTrong,bool? varThoigianSau,short? varLaychongNam,byte? varLaychongTuoi,short? varHetkinhnam,byte? varHetkinhtuoi,string varKhambenhDaniemmac,string varKhambenhHach,string varKhambenhVu,string varKhamngoaiCacdauhieusinhducthuphat,string varKhamngoaiMoilon,string varKhamngoaiMoibe,string varKhamngoaiAmvat,string varKhamngoaiAmho,string varKhamngoaiMangtrinh,string varKhamngoaiTangsinhmon,string varKhamtrongAmdao,string varKhamtrongCotucung,string varKhamtrongThantucung,string varKhamtrongPhanphu,string varKhamtrongCactuicung,string varKhambenhToanthan,string varKhambenhNgoaikhoa,string varKhambenhCacbophan,string varKhambenhTuanhoan,string varKhambenhHohap,string varKhambenhTieuhoa,string varKhambenhThantietnieusinhduc,string varKhambenhThankinh,string varKhambenhCoxuongkhop,string varKhambenhTaimuihong,string varKhambenhRanghammat,string varKhambenhMat,string varKhambenhNoitietDinhduongBenhlykhac,string varKhambenhXetnghiemClsCanlam,string varKhambenhTomtatbenhan,string varKhambenhDaxulychamsoc,string varCdBandau,string varCdChuyenbiet,string varCdKhivaokhoadieutriMabenhchinh,string varCdKhivaokhoadieutriBenhchinh,string varCdKhivaokhoadieutriMabenhphu,string varCdKhivaokhoadieutriBenhphu,string varCdKhivaokhoadieutriPhanbiet,string varKhambenhTienluong,string varKhambenhHuongdieutri,string varTongketbaQuatrinhbenhlyDienbienlamsang,string varTongketbaTomtatKqcls,string varTongketbaPhuongphapdieutri,bool? varTongketbaThuthuat,bool? varTongketbaPhauthuat,string varTongketbaTinhtrangNguoiravien,string varTongketbaHuongdieutritieptheo,DateTime? varTongketbaNgay,string varTongketbaMaNguoigiaoHoso,string varTongketbaNguoigiaoHoso,string varTongketbaMaNguoiNhanhoso,string varTongketbaNguoiNhanhoso,string varTongketbaMaNguoigiaohoso,string varTongketbaMaNguoinhanhoso,DateTime? varTongketbaNgayGiaonhanhoso,int? varTongketbaSotoXquang,int? varTongketbaSotoCt,int? varTongketbaSotoSieuam,int? varTongketbaSotoXetnghiem,int? varTongketbaSotoKhac,short? varIdNguoigiaoHoso,string varMaNguoigiaoHoso,short? varIdNguoinhanHoso,string varMaNguoinhanHoso,short? varIdBacsiDieutri,string varMabacsiDieutri,string varTenbacsiDieutri,short? varIdBacsiLamBA,string varMabacsiLamBA,string varTenbacsiLamBA,short? varIdBacsiKham,string varMabacsiKham,string varTenbacsiKham,DateTime? varNgayKham,short? varIdTruongkhoadieutri,string varMaTruongkhoadieutri,string varTenTruongkhoadieutri,short? varIdGiamdoc,string varMaGiamdoc,string varTenGiamdoc,short? varIdKhoaravien,string varMaKhoaravien,string varTenKhoaravien,string varTenGdBenhvien,string varMaCoso,DateTime? varNgayDieutriTu,DateTime? varNgayDieutriDen,DateTime? varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua,bool? varTthaiKyso,string varNguoiKyso,DateTime? varNgayKyso,bool? varTthaiKydientu,string varNguoiKydientu,DateTime? varNgayKydientu)
+		public static void Insert(long varIdBaGoc,string varLoaiBa,string varMaBa,DateTime? varNgaylamBa,string varKhoa,string varBuong,string varGiuong,string varSoLuutru,long varIdBenhnhan,string varMaLuotkham,string varMaYte,string varTenBenhnhan,DateTime? varNgaySinh,short? varTuoi,byte? varLoaiTuoi,string varMaGioitinh,string varGioiTinh,string varMaNghenghiep,string varTenNghenghiep,string varMaDantoc,string varTenDantoc,string varMaTongiao,string varTenTongiao,string varMaQuocgia,string varTenQuocgia,bool? varNgoaiKieu,string varDiaChi,string varSonha,string varThonpho,string varMaXaphuong,string varTenXaphuong,string varMaQuanhuyen,string varTenQuanhuyen,string varMaTinhtp,string varTenTinhtp,string varMaCoquan,string varTenCoquan,byte? varMaDoituong,string varTenDoituong,string varMatheBhyt,DateTime? varBhytTungay,DateTime? varBhytDenngay,string varNguoiLienhe,string varDienthoaiLienhe,string varDiachiLienhe,string varCmtNguoilienhe,string varHotenBo,string varTrinhdoVanhoaBo,string varNghenghiepBo,string varHotenMe,string varTrinhdoVanhoaMe,string varNghenghiepMe,string varCmtCccd,string varSoHochieu,string varDienThoai,string varEmail,DateTime? varVaovienNgay,string varVaovienLydovaovien,byte? varVaovienVaongaythucuabenh,byte? varVaovienTructiepVao,bool? varVaovienCapcuu,bool? varVaovienKkb,bool? varVaovienKhoadieutri,bool? varNoigioithieuCoquanyte,bool? varNoigioithieuTuden,bool? varNoigioithieuKhac,byte? varVaovienLanthu,string varVaovienTenkhoa,string varVaovienMakhoa,short? varVaovienIdKhoa,DateTime? varVaovienNgayvaokhoa,bool? varChuyenvienTuyentren,bool? varChuyenvienTuyenduoi,bool? varChuyenvienKhac,string varChuyenvienNoichuyenden,DateTime? varRavienNgay,string varRavienMatinhtrang,bool? varRavienRavien,bool? varRavienXinve,bool? varRavienBove,bool? varRavienDuave,short? varRavienTongsongayDieutri,string varCdNoichuyenden,string varCdNoichuyendenMa,string varCdKkbCapcuu,string varCdKkbCapcuuMa,string varCdKhoadieutri,string varCdKhoadieutriMa,string varRavienMaBenhchinh,string varRavienTenBenhchinh,string varRavienMaBenhphu,string varRavienTenBenhphu,string varTinhtrangravienMaKetquadieutri,bool? varTinhtrangravienKetquadieutriKhoi,bool? varTinhtrangravienKetquadieutriDogiam,bool? varTinhtrangravienKetquadieutriKhongthaydoi,bool? varTinhtrangravienKetquadieutriNanghon,bool? varTinhtrangravienKetquadieutriTuvong,bool? varTinhtrangravienKetquadieutriChuyenvien,bool? varTinhtrangravienGpbLanhtinh,bool? varTinhtrangravienGpbNghingo,bool? varTinhtrangravienGpbActinh,bool? varTinhtrangravienGpb,DateTime? varTinhtrangravienThoigianTuvong,string varTinhtrangravienMaLydotuvong,bool? varTinhtrangravienLydotuvongDobenh,bool? varTinhtrangravienLydotuvongDotaibiendieutri,bool? varTinhtrangravienLydotuvongKhac,string varTinhtrangravienMaThoigiantuvong,bool? varTinhtrangravienThoigiantuvongTrong24h,bool? varTinhtrangravienThoigiantuvongSau24h,bool? varTinhtrangravienThoigiantuvongTrong48h,bool? varTinhtrangravienThoigiantuvongTrong72h,string varTinhtrangravienMaNguyennhantuvong,string varTinhtrangravienNguyennhantuvong,bool? varTinhtrangravienKhamnghiemtuthi,string varTinhtrangravienMaChandoangiaiphaututhi,string varTinhtrangravienChandoangiauphaututhi,bool? varCdThuthuat,bool? varCdPhauthuat,bool? varCdTaibien,bool? varCdBienchung,bool? varCdDophauthuat,bool? varCdDogayme,bool? varCdDonhiemkhuan,bool? varCdTaibienBienchungKhac,byte? varCdTongsongaydieutriSauphauthuat,byte? varCdTongsolanphauthuat,string varMaChandoanTruocphauthuat,string varChandoanTruocphauthuat,string varMaChandoanSauphauthuat,string varChandoanSauphauthuat,string varHoibenhQuatrinhbenhly,string varHoibenhTiensubanthan,string varHoibenhTiensugiadinh,short? varHoibenhBatdauthaykinhNam,byte? varHoibenhBatdauthaykinhTuoi,string varHoibenhTinhchatkinhnguyet,byte? varHoibenhChukykinh,byte? varHoibenhLuongkinh,short? varHoibenhLaychongNam,byte? varHoibenhLaychongTuoi,string varHoibenhNhungbenhphukhoadadieutri,string varHoibenhPara,string varKbMach,string varKbNhietdo,string varKbHuyetap,string varKbNhiptho,string varKbChieucao,string varKbCannang,string varKbNhommau,string varKbBmi,bool? varTsbDiung,bool? varTsbMatuy,bool? varTsbRuoubia,bool? varTsbThuocla,bool? varTsbThuoclao,bool? varTsbKhac,string varTsbThoigianDiung,string varTsbThoigianMatuy,string varTsbThoigianRuoubia,string varTsbThoigianThuocla,string varTsbThoigianThuoclao,string varTsbThoigianKhac,string varTsbDiungKhac,short? varSongaythaykinh,string varLuongkinh,DateTime? varKinhlancuoingay,bool? varCodaubung,bool? varThoigianTruoc,bool? varThoigianTrong,bool? varThoigianSau,short? varLaychongNam,byte? varLaychongTuoi,short? varHetkinhnam,byte? varHetkinhtuoi,string varKhambenhDaniemmac,string varKhambenhHach,string varKhambenhVu,string varKhamngoaiCacdauhieusinhducthuphat,string varKhamngoaiMoilon,string varKhamngoaiMoibe,string varKhamngoaiAmvat,string varKhamngoaiAmho,string varKhamngoaiMangtrinh,string varKhamngoaiTangsinhmon,string varKhamtrongAmdao,string varKhamtrongCotucung,string varKhamtrongThantucung,string varKhamtrongPhanphu,string varKhamtrongCactuicung,string varKhambenhToanthan,string varKhambenhNgoaikhoa,string varKhambenhCacbophan,string varKhambenhTuanhoan,string varKhambenhHohap,string varKhambenhTieuhoa,string varKhambenhThantietnieusinhduc,string varKhambenhThankinh,string varKhambenhCoxuongkhop,string varKhambenhTaimuihong,string varKhambenhRanghammat,string varKhambenhMat,string varKhambenhNoitietDinhduongBenhlykhac,string varKhambenhXetnghiemClsCanlam,string varKhambenhTomtatbenhan,string varKhambenhDaxulychamsoc,string varCdBandau,string varCdChuyenbiet,string varCdKhivaokhoadieutriMabenhchinh,string varCdKhivaokhoadieutriBenhchinh,string varCdKhivaokhoadieutriMabenhphu,string varCdKhivaokhoadieutriBenhphu,string varCdKhivaokhoadieutriPhanbiet,string varKhambenhTienluong,string varKhambenhHuongdieutri,string varTongketbaQuatrinhbenhlyDienbienlamsang,string varTongketbaTomtatKqcls,string varTongketbaPhuongphapdieutri,bool? varTongketbaThuthuat,bool? varTongketbaPhauthuat,string varTongketbaTinhtrangNguoiravien,string varTongketbaHuongdieutritieptheo,DateTime? varTongketbaNgay,string varTongketbaMaNguoigiaoHoso,string varTongketbaNguoigiaoHoso,string varTongketbaMaNguoiNhanhoso,string varTongketbaNguoiNhanhoso,string varTongketbaMaNguoigiaohoso,string varTongketbaMaNguoinhanhoso,DateTime? varTongketbaNgayGiaonhanhoso,int? varTongketbaSotoXquang,int? varTongketbaSotoCt,int? varTongketbaSotoSieuam,int? varTongketbaSotoXetnghiem,int? varTongketbaSotoKhac,short? varIdNguoigiaoHoso,string varMaNguoigiaoHoso,short? varIdNguoinhanHoso,string varMaNguoinhanHoso,short? varIdBacsiDieutri,string varMabacsiDieutri,string varTenbacsiDieutri,short? varIdBacsiLamBA,string varMabacsiLamBA,string varTenbacsiLamBA,short? varIdBacsiKham,string varMabacsiKham,string varTenbacsiKham,DateTime? varNgayKham,short? varIdTruongkhoadieutri,string varMaTruongkhoadieutri,string varTenTruongkhoadieutri,short? varIdGiamdoc,string varMaGiamdoc,string varTenGiamdoc,short? varIdKhoaravien,string varMaKhoaravien,string varTenKhoaravien,string varTenGdBenhvien,string varMaCoso,DateTime? varNgayDieutriTu,DateTime? varNgayDieutriDen,byte? varTrangThai,DateTime? varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua,bool? varTthaiKyso,string varNguoiKyso,DateTime? varNgayKyso,bool? varTthaiKydientu,string varNguoiKydientu,DateTime? varNgayKydientu)
 		{
 			EmrBaPhukhoa item = new EmrBaPhukhoa();
 			
@@ -6443,6 +6466,8 @@ namespace VMS.HIS.DAL
 			
 			item.NgayDieutriDen = varNgayDieutriDen;
 			
+			item.TrangThai = varTrangThai;
+			
 			item.NgayTao = varNgayTao;
 			
 			item.NguoiTao = varNguoiTao;
@@ -6473,7 +6498,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(long varIdBa,long varIdBaGoc,string varLoaiBa,string varMaBa,DateTime? varNgaylamBa,string varKhoa,string varBuong,string varGiuong,string varSoLuutru,long varIdBenhnhan,string varMaLuotkham,string varMaYte,string varTenBenhnhan,DateTime? varNgaySinh,short? varTuoi,byte? varLoaiTuoi,string varMaGioitinh,string varGioiTinh,string varMaNghenghiep,string varTenNghenghiep,string varMaDantoc,string varTenDantoc,string varMaTongiao,string varTenTongiao,string varMaQuocgia,string varTenQuocgia,bool? varNgoaiKieu,string varDiaChi,string varSonha,string varThonpho,string varMaXaphuong,string varTenXaphuong,string varMaQuanhuyen,string varTenQuanhuyen,string varMaTinhtp,string varTenTinhtp,string varMaCoquan,string varTenCoquan,byte? varMaDoituong,string varTenDoituong,string varMatheBhyt,DateTime? varBhytTungay,DateTime? varBhytDenngay,string varNguoiLienhe,string varDienthoaiLienhe,string varDiachiLienhe,string varCmtNguoilienhe,string varHotenBo,string varTrinhdoVanhoaBo,string varNghenghiepBo,string varHotenMe,string varTrinhdoVanhoaMe,string varNghenghiepMe,string varCmtCccd,string varSoHochieu,string varDienThoai,string varEmail,DateTime? varVaovienNgay,string varVaovienLydovaovien,byte? varVaovienVaongaythucuabenh,byte? varVaovienTructiepVao,bool? varVaovienCapcuu,bool? varVaovienKkb,bool? varVaovienKhoadieutri,bool? varNoigioithieuCoquanyte,bool? varNoigioithieuTuden,bool? varNoigioithieuKhac,byte? varVaovienLanthu,string varVaovienTenkhoa,string varVaovienMakhoa,short? varVaovienIdKhoa,DateTime? varVaovienNgayvaokhoa,bool? varChuyenvienTuyentren,bool? varChuyenvienTuyenduoi,bool? varChuyenvienKhac,string varChuyenvienNoichuyenden,DateTime? varRavienNgay,string varRavienMatinhtrang,bool? varRavienRavien,bool? varRavienXinve,bool? varRavienBove,bool? varRavienDuave,short? varRavienTongsongayDieutri,string varCdNoichuyenden,string varCdNoichuyendenMa,string varCdKkbCapcuu,string varCdKkbCapcuuMa,string varCdKhoadieutri,string varCdKhoadieutriMa,string varRavienMaBenhchinh,string varRavienTenBenhchinh,string varRavienMaBenhphu,string varRavienTenBenhphu,string varTinhtrangravienMaKetquadieutri,bool? varTinhtrangravienKetquadieutriKhoi,bool? varTinhtrangravienKetquadieutriDogiam,bool? varTinhtrangravienKetquadieutriKhongthaydoi,bool? varTinhtrangravienKetquadieutriNanghon,bool? varTinhtrangravienKetquadieutriTuvong,bool? varTinhtrangravienKetquadieutriChuyenvien,bool? varTinhtrangravienGpbLanhtinh,bool? varTinhtrangravienGpbNghingo,bool? varTinhtrangravienGpbActinh,bool? varTinhtrangravienGpb,DateTime? varTinhtrangravienThoigianTuvong,string varTinhtrangravienMaLydotuvong,bool? varTinhtrangravienLydotuvongDobenh,bool? varTinhtrangravienLydotuvongDotaibiendieutri,bool? varTinhtrangravienLydotuvongKhac,string varTinhtrangravienMaThoigiantuvong,bool? varTinhtrangravienThoigiantuvongTrong24h,bool? varTinhtrangravienThoigiantuvongSau24h,bool? varTinhtrangravienThoigiantuvongTrong48h,bool? varTinhtrangravienThoigiantuvongTrong72h,string varTinhtrangravienMaNguyennhantuvong,string varTinhtrangravienNguyennhantuvong,bool? varTinhtrangravienKhamnghiemtuthi,string varTinhtrangravienMaChandoangiaiphaututhi,string varTinhtrangravienChandoangiauphaututhi,bool? varCdThuthuat,bool? varCdPhauthuat,bool? varCdTaibien,bool? varCdBienchung,bool? varCdDophauthuat,bool? varCdDogayme,bool? varCdDonhiemkhuan,bool? varCdTaibienBienchungKhac,byte? varCdTongsongaydieutriSauphauthuat,byte? varCdTongsolanphauthuat,string varMaChandoanTruocphauthuat,string varChandoanTruocphauthuat,string varMaChandoanSauphauthuat,string varChandoanSauphauthuat,string varHoibenhQuatrinhbenhly,string varHoibenhTiensubanthan,string varHoibenhTiensugiadinh,short? varHoibenhBatdauthaykinhNam,byte? varHoibenhBatdauthaykinhTuoi,string varHoibenhTinhchatkinhnguyet,byte? varHoibenhChukykinh,byte? varHoibenhLuongkinh,short? varHoibenhLaychongNam,byte? varHoibenhLaychongTuoi,string varHoibenhNhungbenhphukhoadadieutri,string varHoibenhPara,string varKbMach,string varKbNhietdo,string varKbHuyetap,string varKbNhiptho,string varKbChieucao,string varKbCannang,string varKbNhommau,string varKbBmi,bool? varTsbDiung,bool? varTsbMatuy,bool? varTsbRuoubia,bool? varTsbThuocla,bool? varTsbThuoclao,bool? varTsbKhac,string varTsbThoigianDiung,string varTsbThoigianMatuy,string varTsbThoigianRuoubia,string varTsbThoigianThuocla,string varTsbThoigianThuoclao,string varTsbThoigianKhac,string varTsbDiungKhac,short? varSongaythaykinh,string varLuongkinh,DateTime? varKinhlancuoingay,bool? varCodaubung,bool? varThoigianTruoc,bool? varThoigianTrong,bool? varThoigianSau,short? varLaychongNam,byte? varLaychongTuoi,short? varHetkinhnam,byte? varHetkinhtuoi,string varKhambenhDaniemmac,string varKhambenhHach,string varKhambenhVu,string varKhamngoaiCacdauhieusinhducthuphat,string varKhamngoaiMoilon,string varKhamngoaiMoibe,string varKhamngoaiAmvat,string varKhamngoaiAmho,string varKhamngoaiMangtrinh,string varKhamngoaiTangsinhmon,string varKhamtrongAmdao,string varKhamtrongCotucung,string varKhamtrongThantucung,string varKhamtrongPhanphu,string varKhamtrongCactuicung,string varKhambenhToanthan,string varKhambenhNgoaikhoa,string varKhambenhCacbophan,string varKhambenhTuanhoan,string varKhambenhHohap,string varKhambenhTieuhoa,string varKhambenhThantietnieusinhduc,string varKhambenhThankinh,string varKhambenhCoxuongkhop,string varKhambenhTaimuihong,string varKhambenhRanghammat,string varKhambenhMat,string varKhambenhNoitietDinhduongBenhlykhac,string varKhambenhXetnghiemClsCanlam,string varKhambenhTomtatbenhan,string varKhambenhDaxulychamsoc,string varCdBandau,string varCdChuyenbiet,string varCdKhivaokhoadieutriMabenhchinh,string varCdKhivaokhoadieutriBenhchinh,string varCdKhivaokhoadieutriMabenhphu,string varCdKhivaokhoadieutriBenhphu,string varCdKhivaokhoadieutriPhanbiet,string varKhambenhTienluong,string varKhambenhHuongdieutri,string varTongketbaQuatrinhbenhlyDienbienlamsang,string varTongketbaTomtatKqcls,string varTongketbaPhuongphapdieutri,bool? varTongketbaThuthuat,bool? varTongketbaPhauthuat,string varTongketbaTinhtrangNguoiravien,string varTongketbaHuongdieutritieptheo,DateTime? varTongketbaNgay,string varTongketbaMaNguoigiaoHoso,string varTongketbaNguoigiaoHoso,string varTongketbaMaNguoiNhanhoso,string varTongketbaNguoiNhanhoso,string varTongketbaMaNguoigiaohoso,string varTongketbaMaNguoinhanhoso,DateTime? varTongketbaNgayGiaonhanhoso,int? varTongketbaSotoXquang,int? varTongketbaSotoCt,int? varTongketbaSotoSieuam,int? varTongketbaSotoXetnghiem,int? varTongketbaSotoKhac,short? varIdNguoigiaoHoso,string varMaNguoigiaoHoso,short? varIdNguoinhanHoso,string varMaNguoinhanHoso,short? varIdBacsiDieutri,string varMabacsiDieutri,string varTenbacsiDieutri,short? varIdBacsiLamBA,string varMabacsiLamBA,string varTenbacsiLamBA,short? varIdBacsiKham,string varMabacsiKham,string varTenbacsiKham,DateTime? varNgayKham,short? varIdTruongkhoadieutri,string varMaTruongkhoadieutri,string varTenTruongkhoadieutri,short? varIdGiamdoc,string varMaGiamdoc,string varTenGiamdoc,short? varIdKhoaravien,string varMaKhoaravien,string varTenKhoaravien,string varTenGdBenhvien,string varMaCoso,DateTime? varNgayDieutriTu,DateTime? varNgayDieutriDen,DateTime? varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua,bool? varTthaiKyso,string varNguoiKyso,DateTime? varNgayKyso,bool? varTthaiKydientu,string varNguoiKydientu,DateTime? varNgayKydientu)
+		public static void Update(long varIdBa,long varIdBaGoc,string varLoaiBa,string varMaBa,DateTime? varNgaylamBa,string varKhoa,string varBuong,string varGiuong,string varSoLuutru,long varIdBenhnhan,string varMaLuotkham,string varMaYte,string varTenBenhnhan,DateTime? varNgaySinh,short? varTuoi,byte? varLoaiTuoi,string varMaGioitinh,string varGioiTinh,string varMaNghenghiep,string varTenNghenghiep,string varMaDantoc,string varTenDantoc,string varMaTongiao,string varTenTongiao,string varMaQuocgia,string varTenQuocgia,bool? varNgoaiKieu,string varDiaChi,string varSonha,string varThonpho,string varMaXaphuong,string varTenXaphuong,string varMaQuanhuyen,string varTenQuanhuyen,string varMaTinhtp,string varTenTinhtp,string varMaCoquan,string varTenCoquan,byte? varMaDoituong,string varTenDoituong,string varMatheBhyt,DateTime? varBhytTungay,DateTime? varBhytDenngay,string varNguoiLienhe,string varDienthoaiLienhe,string varDiachiLienhe,string varCmtNguoilienhe,string varHotenBo,string varTrinhdoVanhoaBo,string varNghenghiepBo,string varHotenMe,string varTrinhdoVanhoaMe,string varNghenghiepMe,string varCmtCccd,string varSoHochieu,string varDienThoai,string varEmail,DateTime? varVaovienNgay,string varVaovienLydovaovien,byte? varVaovienVaongaythucuabenh,byte? varVaovienTructiepVao,bool? varVaovienCapcuu,bool? varVaovienKkb,bool? varVaovienKhoadieutri,bool? varNoigioithieuCoquanyte,bool? varNoigioithieuTuden,bool? varNoigioithieuKhac,byte? varVaovienLanthu,string varVaovienTenkhoa,string varVaovienMakhoa,short? varVaovienIdKhoa,DateTime? varVaovienNgayvaokhoa,bool? varChuyenvienTuyentren,bool? varChuyenvienTuyenduoi,bool? varChuyenvienKhac,string varChuyenvienNoichuyenden,DateTime? varRavienNgay,string varRavienMatinhtrang,bool? varRavienRavien,bool? varRavienXinve,bool? varRavienBove,bool? varRavienDuave,short? varRavienTongsongayDieutri,string varCdNoichuyenden,string varCdNoichuyendenMa,string varCdKkbCapcuu,string varCdKkbCapcuuMa,string varCdKhoadieutri,string varCdKhoadieutriMa,string varRavienMaBenhchinh,string varRavienTenBenhchinh,string varRavienMaBenhphu,string varRavienTenBenhphu,string varTinhtrangravienMaKetquadieutri,bool? varTinhtrangravienKetquadieutriKhoi,bool? varTinhtrangravienKetquadieutriDogiam,bool? varTinhtrangravienKetquadieutriKhongthaydoi,bool? varTinhtrangravienKetquadieutriNanghon,bool? varTinhtrangravienKetquadieutriTuvong,bool? varTinhtrangravienKetquadieutriChuyenvien,bool? varTinhtrangravienGpbLanhtinh,bool? varTinhtrangravienGpbNghingo,bool? varTinhtrangravienGpbActinh,bool? varTinhtrangravienGpb,DateTime? varTinhtrangravienThoigianTuvong,string varTinhtrangravienMaLydotuvong,bool? varTinhtrangravienLydotuvongDobenh,bool? varTinhtrangravienLydotuvongDotaibiendieutri,bool? varTinhtrangravienLydotuvongKhac,string varTinhtrangravienMaThoigiantuvong,bool? varTinhtrangravienThoigiantuvongTrong24h,bool? varTinhtrangravienThoigiantuvongSau24h,bool? varTinhtrangravienThoigiantuvongTrong48h,bool? varTinhtrangravienThoigiantuvongTrong72h,string varTinhtrangravienMaNguyennhantuvong,string varTinhtrangravienNguyennhantuvong,bool? varTinhtrangravienKhamnghiemtuthi,string varTinhtrangravienMaChandoangiaiphaututhi,string varTinhtrangravienChandoangiauphaututhi,bool? varCdThuthuat,bool? varCdPhauthuat,bool? varCdTaibien,bool? varCdBienchung,bool? varCdDophauthuat,bool? varCdDogayme,bool? varCdDonhiemkhuan,bool? varCdTaibienBienchungKhac,byte? varCdTongsongaydieutriSauphauthuat,byte? varCdTongsolanphauthuat,string varMaChandoanTruocphauthuat,string varChandoanTruocphauthuat,string varMaChandoanSauphauthuat,string varChandoanSauphauthuat,string varHoibenhQuatrinhbenhly,string varHoibenhTiensubanthan,string varHoibenhTiensugiadinh,short? varHoibenhBatdauthaykinhNam,byte? varHoibenhBatdauthaykinhTuoi,string varHoibenhTinhchatkinhnguyet,byte? varHoibenhChukykinh,byte? varHoibenhLuongkinh,short? varHoibenhLaychongNam,byte? varHoibenhLaychongTuoi,string varHoibenhNhungbenhphukhoadadieutri,string varHoibenhPara,string varKbMach,string varKbNhietdo,string varKbHuyetap,string varKbNhiptho,string varKbChieucao,string varKbCannang,string varKbNhommau,string varKbBmi,bool? varTsbDiung,bool? varTsbMatuy,bool? varTsbRuoubia,bool? varTsbThuocla,bool? varTsbThuoclao,bool? varTsbKhac,string varTsbThoigianDiung,string varTsbThoigianMatuy,string varTsbThoigianRuoubia,string varTsbThoigianThuocla,string varTsbThoigianThuoclao,string varTsbThoigianKhac,string varTsbDiungKhac,short? varSongaythaykinh,string varLuongkinh,DateTime? varKinhlancuoingay,bool? varCodaubung,bool? varThoigianTruoc,bool? varThoigianTrong,bool? varThoigianSau,short? varLaychongNam,byte? varLaychongTuoi,short? varHetkinhnam,byte? varHetkinhtuoi,string varKhambenhDaniemmac,string varKhambenhHach,string varKhambenhVu,string varKhamngoaiCacdauhieusinhducthuphat,string varKhamngoaiMoilon,string varKhamngoaiMoibe,string varKhamngoaiAmvat,string varKhamngoaiAmho,string varKhamngoaiMangtrinh,string varKhamngoaiTangsinhmon,string varKhamtrongAmdao,string varKhamtrongCotucung,string varKhamtrongThantucung,string varKhamtrongPhanphu,string varKhamtrongCactuicung,string varKhambenhToanthan,string varKhambenhNgoaikhoa,string varKhambenhCacbophan,string varKhambenhTuanhoan,string varKhambenhHohap,string varKhambenhTieuhoa,string varKhambenhThantietnieusinhduc,string varKhambenhThankinh,string varKhambenhCoxuongkhop,string varKhambenhTaimuihong,string varKhambenhRanghammat,string varKhambenhMat,string varKhambenhNoitietDinhduongBenhlykhac,string varKhambenhXetnghiemClsCanlam,string varKhambenhTomtatbenhan,string varKhambenhDaxulychamsoc,string varCdBandau,string varCdChuyenbiet,string varCdKhivaokhoadieutriMabenhchinh,string varCdKhivaokhoadieutriBenhchinh,string varCdKhivaokhoadieutriMabenhphu,string varCdKhivaokhoadieutriBenhphu,string varCdKhivaokhoadieutriPhanbiet,string varKhambenhTienluong,string varKhambenhHuongdieutri,string varTongketbaQuatrinhbenhlyDienbienlamsang,string varTongketbaTomtatKqcls,string varTongketbaPhuongphapdieutri,bool? varTongketbaThuthuat,bool? varTongketbaPhauthuat,string varTongketbaTinhtrangNguoiravien,string varTongketbaHuongdieutritieptheo,DateTime? varTongketbaNgay,string varTongketbaMaNguoigiaoHoso,string varTongketbaNguoigiaoHoso,string varTongketbaMaNguoiNhanhoso,string varTongketbaNguoiNhanhoso,string varTongketbaMaNguoigiaohoso,string varTongketbaMaNguoinhanhoso,DateTime? varTongketbaNgayGiaonhanhoso,int? varTongketbaSotoXquang,int? varTongketbaSotoCt,int? varTongketbaSotoSieuam,int? varTongketbaSotoXetnghiem,int? varTongketbaSotoKhac,short? varIdNguoigiaoHoso,string varMaNguoigiaoHoso,short? varIdNguoinhanHoso,string varMaNguoinhanHoso,short? varIdBacsiDieutri,string varMabacsiDieutri,string varTenbacsiDieutri,short? varIdBacsiLamBA,string varMabacsiLamBA,string varTenbacsiLamBA,short? varIdBacsiKham,string varMabacsiKham,string varTenbacsiKham,DateTime? varNgayKham,short? varIdTruongkhoadieutri,string varMaTruongkhoadieutri,string varTenTruongkhoadieutri,short? varIdGiamdoc,string varMaGiamdoc,string varTenGiamdoc,short? varIdKhoaravien,string varMaKhoaravien,string varTenKhoaravien,string varTenGdBenhvien,string varMaCoso,DateTime? varNgayDieutriTu,DateTime? varNgayDieutriDen,byte? varTrangThai,DateTime? varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua,bool? varTthaiKyso,string varNguoiKyso,DateTime? varNgayKyso,bool? varTthaiKydientu,string varNguoiKydientu,DateTime? varNgayKydientu)
 		{
 			EmrBaPhukhoa item = new EmrBaPhukhoa();
 			
@@ -7004,6 +7029,8 @@ namespace VMS.HIS.DAL
 				item.NgayDieutriTu = varNgayDieutriTu;
 			
 				item.NgayDieutriDen = varNgayDieutriDen;
+			
+				item.TrangThai = varTrangThai;
 			
 				item.NgayTao = varNgayTao;
 			
@@ -8886,72 +8913,79 @@ namespace VMS.HIS.DAL
         
         
         
-        public static TableSchema.TableColumn NgayTaoColumn
+        public static TableSchema.TableColumn TrangThaiColumn
         {
             get { return Schema.Columns[264]; }
         }
         
         
         
-        public static TableSchema.TableColumn NguoiTaoColumn
+        public static TableSchema.TableColumn NgayTaoColumn
         {
             get { return Schema.Columns[265]; }
         }
         
         
         
-        public static TableSchema.TableColumn NgaySuaColumn
+        public static TableSchema.TableColumn NguoiTaoColumn
         {
             get { return Schema.Columns[266]; }
         }
         
         
         
-        public static TableSchema.TableColumn NguoiSuaColumn
+        public static TableSchema.TableColumn NgaySuaColumn
         {
             get { return Schema.Columns[267]; }
         }
         
         
         
-        public static TableSchema.TableColumn TthaiKysoColumn
+        public static TableSchema.TableColumn NguoiSuaColumn
         {
             get { return Schema.Columns[268]; }
         }
         
         
         
-        public static TableSchema.TableColumn NguoiKysoColumn
+        public static TableSchema.TableColumn TthaiKysoColumn
         {
             get { return Schema.Columns[269]; }
         }
         
         
         
-        public static TableSchema.TableColumn NgayKysoColumn
+        public static TableSchema.TableColumn NguoiKysoColumn
         {
             get { return Schema.Columns[270]; }
         }
         
         
         
-        public static TableSchema.TableColumn TthaiKydientuColumn
+        public static TableSchema.TableColumn NgayKysoColumn
         {
             get { return Schema.Columns[271]; }
         }
         
         
         
-        public static TableSchema.TableColumn NguoiKydientuColumn
+        public static TableSchema.TableColumn TthaiKydientuColumn
         {
             get { return Schema.Columns[272]; }
         }
         
         
         
-        public static TableSchema.TableColumn NgayKydientuColumn
+        public static TableSchema.TableColumn NguoiKydientuColumn
         {
             get { return Schema.Columns[273]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn NgayKydientuColumn
+        {
+            get { return Schema.Columns[274]; }
         }
         
         
@@ -9224,6 +9258,7 @@ namespace VMS.HIS.DAL
 			 public static string MaCoso = @"ma_coso";
 			 public static string NgayDieutriTu = @"ngay_dieutri_tu";
 			 public static string NgayDieutriDen = @"ngay_dieutri_den";
+			 public static string TrangThai = @"trang_thai";
 			 public static string NgayTao = @"ngay_tao";
 			 public static string NguoiTao = @"nguoi_tao";
 			 public static string NgaySua = @"ngay_sua";

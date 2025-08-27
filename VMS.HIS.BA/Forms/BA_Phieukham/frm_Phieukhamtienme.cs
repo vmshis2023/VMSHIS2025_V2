@@ -584,14 +584,14 @@ namespace VMS.HIS.UI.EMR
                 {
                     Utility.Log(this.Name, globalVariables.UserName, string.Format("Thêm mới phiếu khám tiền mê cho bệnh nhân: {0}-{1} thành công", objPkTm.MaLuotkham, ucThongtinnguoibenh_doc_v11.txtTenBN.Text), objPkTm.IsNew ? newaction.Insert : newaction.Update, "UI");
 
-                    MessageBox.Show("Đã thêm mới phiếu khám tiền mê thành công. Nhấn Ok để kết thúc");
+                    MessageBox.Show("Đã thêm mới phiếu khám tiền mê thành công");
                     m_enAct = action.Update;
                 }
                 else if (m_enAct == action.Update)
                 {
                     Utility.Log(this.Name, globalVariables.UserName, string.Format("Cập nhật phiếu khám tiền mê cho bệnh nhân: {0}-{1} thành công", objPkTm.MaLuotkham, ucThongtinnguoibenh_doc_v11.txtTenBN.Text), objPkTm.IsNew ? newaction.Insert : newaction.Update, "UI");
 
-                    MessageBox.Show("Đã cập nhật phiếu khám tiền mê thành công. Nhấn Ok để kết thúc");
+                    MessageBox.Show("Đã cập nhật phiếu khám tiền mê thành công");
                     m_enAct = action.Update;
                 }
                 cmdExit.BringToFront();

@@ -233,7 +233,7 @@ namespace VMS.HIS.DAL
 				
 				TableSchema.TableColumn colvarDonGia = new TableSchema.TableColumn(schema);
 				colvarDonGia.ColumnName = "don_gia";
-				colvarDonGia.DataType = DbType.Currency;
+				colvarDonGia.DataType = DbType.Decimal;
 				colvarDonGia.MaxLength = 0;
 				colvarDonGia.AutoIncrement = false;
 				colvarDonGia.IsNullable = true;
@@ -246,7 +246,7 @@ namespace VMS.HIS.DAL
 				
 				TableSchema.TableColumn colvarPhuthuDungtuyen = new TableSchema.TableColumn(schema);
 				colvarPhuthuDungtuyen.ColumnName = "phuthu_dungtuyen";
-				colvarPhuthuDungtuyen.DataType = DbType.Currency;
+				colvarPhuthuDungtuyen.DataType = DbType.Decimal;
 				colvarPhuthuDungtuyen.MaxLength = 0;
 				colvarPhuthuDungtuyen.AutoIncrement = false;
 				colvarPhuthuDungtuyen.IsNullable = true;
@@ -400,6 +400,19 @@ namespace VMS.HIS.DAL
 				colvarNgayKetthuc.DefaultSetting = @"";
 				colvarNgayKetthuc.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarNgayKetthuc);
+				
+				TableSchema.TableColumn colvarDongiaNgoaigio = new TableSchema.TableColumn(schema);
+				colvarDongiaNgoaigio.ColumnName = "dongia_ngoaigio";
+				colvarDongiaNgoaigio.DataType = DbType.Decimal;
+				colvarDongiaNgoaigio.MaxLength = 0;
+				colvarDongiaNgoaigio.AutoIncrement = false;
+				colvarDongiaNgoaigio.IsNullable = true;
+				colvarDongiaNgoaigio.IsPrimaryKey = false;
+				colvarDongiaNgoaigio.IsForeignKey = false;
+				colvarDongiaNgoaigio.IsReadOnly = false;
+				colvarDongiaNgoaigio.DefaultSetting = @"";
+				colvarDongiaNgoaigio.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarDongiaNgoaigio);
 				
 				BaseSchema = schema;
 				//add this schema to the provider
@@ -578,6 +591,14 @@ namespace VMS.HIS.DAL
 			get { return GetColumnValue<DateTime?>(Columns.NgayKetthuc); }
 			set { SetColumnValue(Columns.NgayKetthuc, value); }
 		}
+		  
+		[XmlAttribute("DongiaNgoaigio")]
+		[Bindable(true)]
+		public decimal? DongiaNgoaigio 
+		{
+			get { return GetColumnValue<decimal?>(Columns.DongiaNgoaigio); }
+			set { SetColumnValue(Columns.DongiaNgoaigio, value); }
+		}
 		
 		#endregion
 		
@@ -598,7 +619,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(short varIdDoituongKcb,short varIdDichvu,int? varIdChitietdichvu,decimal? varTyleGiam,byte varKieuGiamgia,decimal? varTyleTt,string varMotaThem,decimal? varDonGia,decimal? varPhuthuDungtuyen,int? varIdLoaidoituongKcb,decimal? varPhuthuTraituyen,string varMaDoituongKcb,DateTime? varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua,string varMaKhoaThuchien,int? varIdBogia,DateTime? varNgayBatdau,DateTime? varNgayKetthuc)
+		public static void Insert(short varIdDoituongKcb,short varIdDichvu,int? varIdChitietdichvu,decimal? varTyleGiam,byte varKieuGiamgia,decimal? varTyleTt,string varMotaThem,decimal? varDonGia,decimal? varPhuthuDungtuyen,int? varIdLoaidoituongKcb,decimal? varPhuthuTraituyen,string varMaDoituongKcb,DateTime? varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua,string varMaKhoaThuchien,int? varIdBogia,DateTime? varNgayBatdau,DateTime? varNgayKetthuc,decimal? varDongiaNgoaigio)
 		{
 			QheDoituongDichvucl item = new QheDoituongDichvucl();
 			
@@ -642,6 +663,8 @@ namespace VMS.HIS.DAL
 			
 			item.NgayKetthuc = varNgayKetthuc;
 			
+			item.DongiaNgoaigio = varDongiaNgoaigio;
+			
 		
 			if (System.Web.HttpContext.Current != null)
 				item.Save(System.Web.HttpContext.Current.User.Identity.Name);
@@ -652,7 +675,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(short varIdQuanhe,short varIdDoituongKcb,short varIdDichvu,int? varIdChitietdichvu,decimal? varTyleGiam,byte varKieuGiamgia,decimal? varTyleTt,string varMotaThem,decimal? varDonGia,decimal? varPhuthuDungtuyen,int? varIdLoaidoituongKcb,decimal? varPhuthuTraituyen,string varMaDoituongKcb,DateTime? varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua,string varMaKhoaThuchien,int? varIdBogia,DateTime? varNgayBatdau,DateTime? varNgayKetthuc)
+		public static void Update(short varIdQuanhe,short varIdDoituongKcb,short varIdDichvu,int? varIdChitietdichvu,decimal? varTyleGiam,byte varKieuGiamgia,decimal? varTyleTt,string varMotaThem,decimal? varDonGia,decimal? varPhuthuDungtuyen,int? varIdLoaidoituongKcb,decimal? varPhuthuTraituyen,string varMaDoituongKcb,DateTime? varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua,string varMaKhoaThuchien,int? varIdBogia,DateTime? varNgayBatdau,DateTime? varNgayKetthuc,decimal? varDongiaNgoaigio)
 		{
 			QheDoituongDichvucl item = new QheDoituongDichvucl();
 			
@@ -697,6 +720,8 @@ namespace VMS.HIS.DAL
 				item.NgayBatdau = varNgayBatdau;
 			
 				item.NgayKetthuc = varNgayKetthuc;
+			
+				item.DongiaNgoaigio = varDongiaNgoaigio;
 			
 			item.IsNew = false;
 			if (System.Web.HttpContext.Current != null)
@@ -858,6 +883,13 @@ namespace VMS.HIS.DAL
         
         
         
+        public static TableSchema.TableColumn DongiaNgoaigioColumn
+        {
+            get { return Schema.Columns[21]; }
+        }
+        
+        
+        
         #endregion
 		#region Columns Struct
 		public struct Columns
@@ -883,6 +915,7 @@ namespace VMS.HIS.DAL
 			 public static string IdBogia = @"id_bogia";
 			 public static string NgayBatdau = @"ngay_batdau";
 			 public static string NgayKetthuc = @"ngay_ketthuc";
+			 public static string DongiaNgoaigio = @"dongia_ngoaigio";
 						
 		}
 		#endregion

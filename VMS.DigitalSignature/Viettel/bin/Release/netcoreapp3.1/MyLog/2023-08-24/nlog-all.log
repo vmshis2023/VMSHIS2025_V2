@@ -1,0 +1,111 @@
+2023-08-24 03:55:24.0296||INFO|Startup|BaseDirectory: E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\ 
+2023-08-24 03:55:58.4026||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- 
+2023-08-24 03:55:58.4120||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user string with appId: string, secret: string 
+2023-08-24 03:56:02.4993||ERROR|VietBaIT.ChuKySo.Api.DigitalSignature.Viettel.MobileCA|Error: The requested security protocol is not supported. 
+2023-08-24 03:56:02.4993||ERROR|VietBaIT.ChuKySo.Api.DigitalSignature.Viettel.MobileCA|ERROR: Login to Cloud CA 
+2023-08-24 03:56:52.2756||ERROR|VietBaIT.ChuKySo.Api.DigitalSignature.Viettel.MobileCA|Error: The requested security protocol is not supported. 
+2023-08-24 03:57:29.2002||INFO|Startup|BaseDirectory: E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\ 
+2023-08-24 03:57:35.5235||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- 
+2023-08-24 03:57:35.5235||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user string with appId: string, secret: string 
+2023-08-24 03:57:41.8483||ERROR|VietBaIT.ChuKySo.Api.DigitalSignature.Viettel.MobileCA|Error: The requested security protocol is not supported. 
+2023-08-24 03:57:51.3862||ERROR|VietBaIT.ChuKySo.Api.DigitalSignature.Viettel.MobileCA|ERROR: Login to Cloud CA 
+2023-08-24 03:57:55.7668||ERROR|DigitalSignatureCheckAccount|There was an error on 'DigitalSignatureCheckAccount' invocation: System.Exception: Error: /api/account/endcertSystem.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at VietBaIT.ChuKySo.Api.DigitalSignature.CyberLotus.HMACDelegatingHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\DigitalSignature\CyberLotus\HmacClient.cs:line 85
+   at System.Net.Http.HttpClient.FinishSendAsyncBuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)
+   at VietBaIT.ChuKySo.Api.Controllers.ViettelController.getCertificate(String appId, String secret) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\Controllers\ViettelController.cs:line 262
+   at VietBaIT.ChuKySo.Api.Controllers.ViettelController.getCertificate(String appId, String secret) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\Controllers\ViettelController.cs:line 272
+   at VietBaIT.ChuKySo.Api.Controllers.ViettelController.DigitalSignatureCheckAccount(VietBaDigitalSignature objDigitalSignature) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\Controllers\ViettelController.cs:line 65 
+2023-08-24 03:57:57.4703||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- 
+2023-08-24 03:57:57.4703||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user string with appId: string, secret: string 
+2023-08-24 03:59:15.7186||ERROR|VietBaIT.ChuKySo.Api.DigitalSignature.Viettel.MobileCA|Error: The requested security protocol is not supported. 
+2023-08-24 03:59:20.6867||ERROR|VietBaIT.ChuKySo.Api.DigitalSignature.Viettel.MobileCA|ERROR: Login to Cloud CA 
+2023-08-24 03:59:20.8692||ERROR|DigitalSignatureCheckAccount|There was an error on 'DigitalSignatureCheckAccount' invocation: System.Exception: Error: /api/account/endcertSystem.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at VietBaIT.ChuKySo.Api.DigitalSignature.CyberLotus.HMACDelegatingHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\DigitalSignature\CyberLotus\HmacClient.cs:line 85
+   at System.Net.Http.HttpClient.FinishSendAsyncBuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)
+   at VietBaIT.ChuKySo.Api.Controllers.ViettelController.getCertificate(String appId, String secret) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\Controllers\ViettelController.cs:line 262
+   at VietBaIT.ChuKySo.Api.Controllers.ViettelController.getCertificate(String appId, String secret) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\Controllers\ViettelController.cs:line 272
+   at VietBaIT.ChuKySo.Api.Controllers.ViettelController.DigitalSignatureCheckAccount(VietBaDigitalSignature objDigitalSignature) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\Controllers\ViettelController.cs:line 65 
+2023-08-24 03:59:22.3771||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- 
+2023-08-24 03:59:22.3771||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user string with appId: string, secret: string 
+2023-08-24 03:59:28.0455||ERROR|VietBaIT.ChuKySo.Api.DigitalSignature.Viettel.MobileCA|Error: The requested security protocol is not supported. 
+2023-08-24 03:59:28.0508||ERROR|VietBaIT.ChuKySo.Api.DigitalSignature.Viettel.MobileCA|ERROR: Login to Cloud CA 
+2023-08-24 03:59:28.2514||ERROR|DigitalSignatureCheckAccount|There was an error on 'DigitalSignatureCheckAccount' invocation: System.Exception: Error: /api/account/endcertSystem.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at VietBaIT.ChuKySo.Api.DigitalSignature.CyberLotus.HMACDelegatingHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\DigitalSignature\CyberLotus\HmacClient.cs:line 85
+   at System.Net.Http.HttpClient.FinishSendAsyncBuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)
+   at VietBaIT.ChuKySo.Api.Controllers.ViettelController.getCertificate(String appId, String secret) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\Controllers\ViettelController.cs:line 262
+   at VietBaIT.ChuKySo.Api.Controllers.ViettelController.getCertificate(String appId, String secret) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\Controllers\ViettelController.cs:line 272
+   at VietBaIT.ChuKySo.Api.Controllers.ViettelController.DigitalSignatureCheckAccount(VietBaDigitalSignature objDigitalSignature) in E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\Controllers\ViettelController.cs:line 65 
+2023-08-24 03:59:29.8773||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- 
+2023-08-24 03:59:29.8773||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user string with appId: string, secret: string 
+2023-08-24 04:00:50.9175||INFO|Startup|BaseDirectory: E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\ 
+2023-08-24 04:00:52.5745||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- 
+2023-08-24 04:00:52.5792||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user string with appId: string, secret: string 
+2023-08-24 21:44:26.9583||INFO|Startup|BaseDirectory: E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\ 
+2023-08-24 21:44:45.4351||INFO|Startup|BaseDirectory: E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\ 
+2023-08-24 21:44:56.9110||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- 
+2023-08-24 21:44:56.9110||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user string with appId: string, secret: string 
+2023-08-24 21:47:10.1643||INFO|Startup|BaseDirectory: E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\ 
+2023-08-24 21:47:38.9773||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- 
+2023-08-24 21:47:38.9908||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user string with appId: string, secret: string 
+2023-08-24 22:03:53.8758||INFO|Startup|BaseDirectory: E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\ 
+2023-08-24 22:04:06.0461||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- 
+2023-08-24 22:04:06.0488||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user string with appId: 001092030130_3048529_20230824082257, secret: string 
+2023-08-24 22:59:47.8382||INFO|Startup|BaseDirectory: E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\ 
+2023-08-24 22:59:50.1330||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- 
+2023-08-24 22:59:50.1330||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user string with appId: 001092030130_3048529_20230824082257, secret: string 
+2023-08-24 22:59:52.6348||DEBUG|DigitalSignatureCheckAccount|Successfully !!! 
+2023-08-24 23:00:15.4258||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- 
+2023-08-24 23:00:15.4258||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user string with appId: 001092030130_3048529_20230824082257, secret: string 
+2023-08-24 23:03:09.3303||INFO|Startup|BaseDirectory: E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\ 
+2023-08-24 23:03:09.7762||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- 
+2023-08-24 23:03:09.7809||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user string with appId: 001092030130_3048529_20230824082257, secret: string 
+2023-08-24 23:10:26.7165||INFO|Startup|BaseDirectory: E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\ 
+2023-08-24 23:10:28.3831||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- 
+2023-08-24 23:10:28.3831||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user string with appId: 001092030130_3048529_20230824082257, secret: string 
+2023-08-24 23:10:30.3078||DEBUG|DigitalSignatureCheckAccount|Successfully !!! 
+2023-08-24 23:10:49.4311||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- 
+2023-08-24 23:10:49.4311||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user string with appId: 001092030130_3048529_20230824082257, secret: string 
+2023-08-24 23:11:08.5076||DEBUG|DigitalSignatureCheckAccount|Successfully !!! 
+2023-08-24 23:24:44.4234||INFO|Startup|BaseDirectory: E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\ 
+2023-08-24 23:25:02.8775||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- 
+2023-08-24 23:25:03.2810||DEBUG|DigitalSignaturePdfFileSign|api: https://api.cyberhsm.vn/api/pdf/sign/originaldata 
+2023-08-24 23:25:04.6424||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '' by user 'ADMIN', userFullName ' ' with appId: '001092030130_3048529_20230824082257', secret: 'MmNmZGQzMzYzYWVlYWFmOWJlODM3MzA2ODZjMGRiODFlMGQ2NGI2ZDY4NDhhNDhjZmFiMzkwMzBjZjc3NTA5ZA==' 
+2023-08-24 23:25:05.2878||DEBUG|DigitalSignaturePdfFileSign|File Length: 146900 
+2023-08-24 23:25:05.4750||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 2288 
+2023-08-24 23:29:24.5515||INFO|Startup|BaseDirectory: E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\ 
+2023-08-24 23:29:27.2104||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- 
+2023-08-24 23:29:27.2104||DEBUG|DigitalSignaturePdfFileSign|api: https://api.cyberhsm.vn/api/pdf/sign/originaldata 
+2023-08-24 23:29:27.2184||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '' by user 'ADMIN', userFullName ' ' with appId: '001092030130_3048529_20230824082257', secret: 'MmNmZGQzMzYzYWVlYWFmOWJlODM3MzA2ODZjMGRiODFlMGQ2NGI2ZDY4NDhhNDhjZmFiMzkwMzBjZjc3NTA5ZA==' 
+2023-08-24 23:29:27.2184||DEBUG|DigitalSignaturePdfFileSign|File Length: 146900 
+2023-08-24 23:29:27.2377||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 2288 
+2023-08-24 23:30:21.5191||DEBUG|DigitalSignaturePdfFileSign|Ký hash thành công 
+2023-08-24 23:30:46.3191||DEBUG|DigitalSignaturePdfFileSign|Ký thành công 
+2023-08-24 23:33:18.9441||INFO|Startup|BaseDirectory: E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\ 
+2023-08-24 23:35:08.3585||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- 
+2023-08-24 23:35:08.3585||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user ADMIN with appId: 001092030130, secret:  
+2023-08-24 23:35:09.7041||DEBUG|DigitalSignatureCheckAccount|Invalid userName !!! 
+2023-08-24 23:35:22.3922||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- 
+2023-08-24 23:35:25.8014||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user ADMIN with appId: 001092030130, secret:  
+2023-08-24 23:36:02.8091||DEBUG|DigitalSignatureCheckAccount|Invalid userName !!! 
+2023-08-24 23:36:08.6439||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- 
+2023-08-24 23:36:11.5779||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user ADMIN with appId: 001092030130_3048529_20230824082257, secret:  
+2023-08-24 23:36:12.8482||DEBUG|DigitalSignatureCheckAccount|Successfully !!! 
+2023-08-24 23:36:41.2310||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- 
+2023-08-24 23:36:41.2337||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user ADMIN with appId: 001092030130_3048529_20230824082257, secret:  
+2023-08-24 23:36:42.2765||DEBUG|DigitalSignatureCheckAccount|Successfully !!! 
+2023-08-24 23:37:59.2186||DEBUG|DigitalSignatureCheckAccount|---------------------------------------------------------------------- 
+2023-08-24 23:37:59.2186||DEBUG|DigitalSignatureCheckAccount|Begin checking account for user ADMIN with appId: 001092030130_3048529_20230824082257, secret:  
+2023-08-24 23:38:00.3512||DEBUG|DigitalSignatureCheckAccount|Successfully !!! 
+2023-08-24 23:39:19.8710||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- 
+2023-08-24 23:39:20.2335||DEBUG|DigitalSignaturePdfFileSign|api: https://api.cyberhsm.vn/api/pdf/sign/originaldata 
+2023-08-24 23:39:20.2335||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType 'imageWithText' for pdf file '2308240001_SHMD.pdf' by user 'ADMIN', userFullName 'Quản trị hệ thống' with appId: '001092030130_3048529_20230824082257', secret: '' 
+2023-08-24 23:39:20.2335||DEBUG|DigitalSignaturePdfFileSign|File Length: 310449 
+2023-08-24 23:39:20.2335||DEBUG|DigitalSignaturePdfFileSign|Signature Length: 0 
+2023-08-24 23:39:41.0546||DEBUG|DigitalSignaturePdfFileSign|Ký hash thành công 
+2023-08-24 23:39:41.0911||DEBUG|DigitalSignaturePdfFileSign|Ký thành công 

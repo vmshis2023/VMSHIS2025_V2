@@ -172,7 +172,7 @@ namespace VNS.HIS.UI.Forms.HinhAnh
 
         void grdVTTH_SelectionChanged(object sender, EventArgs e)
         {
-            RowThuoc = Utility.findthelastChild(grdVTTH.CurrentRow);
+            RowVTTH = Utility.findthelastChild(grdVTTH.CurrentRow);
             ModifyCommmands();
         }
 
@@ -1817,10 +1817,10 @@ namespace VNS.HIS.UI.Forms.HinhAnh
                 if (dtDynamicData.Rows.Count == 0)
                     CKEditorInput = true;
                 if (CKEditorInput)
-                    pnlCkeditor.BringToFront();
+                    pnlMainCkeditor.BringToFront();
                 else
                 {
-                    pnlCkeditor.SendToBack();
+                    pnlMainCkeditor.SendToBack();
                     FillDynamicValues();
                 }
                 InitAforge();
@@ -2239,7 +2239,7 @@ namespace VNS.HIS.UI.Forms.HinhAnh
             {
                 //if (lstID.Count <= 0 || (lstID.Count ==1 && lstID[0].TrimEnd().TrimStart()=="") || lstID.Count >= 2)
                 //{
-                frm_chonvungksat _chonvungksat = new frm_chonvungksat(new List<string>());
+                frm_chonvungksat _chonvungksat = new frm_chonvungksat(new List<string>(), StrServiceCode.Split('@')[0]);
                 // new RISLink.UI.DanhMuc.frm_chonvungksat(File.Exists(Application.StartupPath+@"\showall.txt")?new List<string>(): lstID);
                 if (_chonvungksat.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
@@ -2863,10 +2863,10 @@ namespace VNS.HIS.UI.Forms.HinhAnh
                 if (_DynamicSetup.ShowDialog() == DialogResult.OK)
                 {
                     if (CKEditorInput)
-                        pnlCkeditor.BringToFront();
+                        pnlMainCkeditor.BringToFront();
                     else
                     {
-                        pnlCkeditor.SendToBack();
+                        pnlMainCkeditor.SendToBack();
                         FillDynamicValues();
                     }
                 }
@@ -2880,10 +2880,10 @@ namespace VNS.HIS.UI.Forms.HinhAnh
         private void mnuRefresh_Click(object sender, EventArgs e)
         {
             if (CKEditorInput)
-                pnlCkeditor.BringToFront();
+                pnlMainCkeditor.BringToFront();
             else
             {
-                pnlCkeditor.SendToBack();
+                pnlMainCkeditor.SendToBack();
                 FillDynamicValues();
             }
         }
@@ -2892,10 +2892,10 @@ namespace VNS.HIS.UI.Forms.HinhAnh
         {
             CKEditorInput = !CKEditorInput;
             if (CKEditorInput)
-                pnlCkeditor.BringToFront();
+                pnlMainCkeditor.BringToFront();
             else
             {
-                pnlCkeditor.SendToBack();
+                pnlMainCkeditor.SendToBack();
                 FillDynamicValues();
             }
         }
@@ -3205,13 +3205,79 @@ namespace VNS.HIS.UI.Forms.HinhAnh
                 Utility.CatchException(ex);
             }
         }
+        void AnhienKetluanDenghi()
+        {
+            try
+            {
+                bool HienThiKetLuan = THU_VIEN_CHUNG.Laygiatrithamsohethong("CLS_HIENTHI_KETLUAN_DENGHI", "0", true) == "1";
+                lblKetluan.Visible = txtKet_Luan.Visible = lblDenghi.Visible = txtDenghi.Visible = HienThiKetLuan;
+                //Thay đổi chiều cao
+                pnlMota.Height = HienThiKetLuan ? pnlMainCkeditor.Height - 120 : pnlMainCkeditor.Height - 20;
+            }
+            catch (Exception ex)
+            {
+
+
+            }
+        }
+        bool isShowHistory = false;
+        private void cmdShowHistory_Click(object sender, EventArgs e)
+        {
+            isShowHistory = !isShowHistory;
+            try
+            {
+                if (isShowHistory)
+                    pnlHistoryCKEditor.Width = Convert.ToInt32(Math.Ceiling((decimal)((pnlCkeditor.Width - 70) / 2)));
+                else
+                    pnlHistoryCKEditor.Width = 0;
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        private void cboDichvu_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!isShowHistory) return;
+                long id_chitietchidinh = Utility.Int64Dbnull(cboDichvu.SelectedValue);
+                DataTable dtData = Utility.ExecuteSql(string.Format("select * from KQCLS.dbo.kcb_ketqua_cdha where id_chitietchidinh={0}", id_chitietchidinh), CommandType.Text).Tables[0];
+                if (dtData.Rows.Count > 0)
+                {
+                    txtNoidungHistory.Text = Utility.sDbnull(dtData.Rows[0]["mota_html"], "");
+                    timer3.Start();
+                    LoadHTMLHistory();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Utility.CatchException(ex);
+            }
+        }
+        void LoadHTMLHistory()
+        {
+            string noidung = txtNoidungHistory.Text;
+            webBrowserHistory.Document.InvokeScript("setValue", new[] { noidung });
+        }
+        private void timer3_Tick(object sender, EventArgs e)
+        {
+
+        }
+        private void ClickDataHistory()
+        {
+            webBrowserHistory.Document.InvokeScript("setValue", new[] { txtNoidungHistory.Text });
+            timer3.Stop();
+        }
         #region Kê VTTH
         private void mnuKeVTTH_Click(object sender, EventArgs e)
         {
 
         }
         int Pres_ID = -1;
-        GridEXRow RowThuoc = null;
+        GridEXRow RowVTTH = null;
         KCB_KEDONTHUOC _KCB_KEDONTHUOC = new KCB_KEDONTHUOC();
         
         private void ThemMoiDonVTTH()
@@ -3270,14 +3336,14 @@ namespace VNS.HIS.UI.Forms.HinhAnh
 
             }
         }
-        DataTable m_dtPresDetail = new DataTable();
+        DataTable dtVTTH = new DataTable();
         private void LayDanhsachVTTH()
         {
             try
             {
-                m_dtPresDetail =
+                dtVTTH =
                      new KCB_THAMKHAM().KcbThamkhamLayDanhsachDonThuocTheolankham(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, -1l, -1l, 4, "VT",objKcbChidinhclsChitiet.IdChitietchidinh, 0).Tables[0];
-                Utility.SetDataSourceForDataGridEx(grdVTTH, m_dtPresDetail, false, true, "",
+                Utility.SetDataSourceForDataGridEx(grdVTTH, dtVTTH, false, true, "",
                                                KcbDonthuocChitiet.Columns.SttIn);
             }
             catch (Exception ex)
@@ -3388,17 +3454,17 @@ namespace VNS.HIS.UI.Forms.HinhAnh
         {
             string s = "";
             var lstIdchitiet = new List<int>();
-            if (grdVTTH.GetCheckedRows().Count() <= 0 && RowThuoc != null)
+            if (grdVTTH.GetCheckedRows().Count() <= 0 && RowVTTH != null)
             {
                 try
                 {
-                    RowThuoc.BeginEdit();
-                    RowThuoc.IsChecked = true;
-                    RowThuoc.EndEdit();
+                    RowVTTH.BeginEdit();
+                    RowVTTH.IsChecked = true;
+                    RowVTTH.EndEdit();
                 }
                 catch (Exception ex)
                 {
-                    Utility.ShowMsg("Bạn cần chọn ít nhất 1 chi tiết thuốc để xóa");
+                    Utility.ShowMsg("Bạn cần chọn ít nhất 1 chi tiết VTTH để xóa");
                     return;
                 }
             }
@@ -3417,18 +3483,18 @@ namespace VNS.HIS.UI.Forms.HinhAnh
             if (lstIdchitiet.Count <= 0) return;
             _KCB_KEDONTHUOC.XoaChitietDonthuoc(s);
             DataRow[] rows =
-                         m_dtPresDetail.Select(KcbDonthuocChitiet.Columns.IdChitietdonthuoc + " IN (" + String.Join(",", lstIdchitiet.ToArray()) + ")");
+                         dtVTTH.Select(KcbDonthuocChitiet.Columns.IdChitietdonthuoc + " IN (" + String.Join(",", lstIdchitiet.ToArray()) + ")");
             string _deleteitems = string.Join(",", (from p in rows.AsEnumerable()
                                                     select Utility.sDbnull(p["ten_thuoc"])).ToList<string>());
             // UserName is Column Name
-            Utility.Log(this.Name, globalVariables.UserName, string.Format("Xóa đơn thuốc của bệnh nhân ID={0}, PID={1}, Tên={2}, DS thuốc xóa={3} thành công ", objLuotkham.IdBenhnhan.ToString(), objLuotkham.MaLuotkham, objBenhnhan.TenBenhnhan, _deleteitems), newaction.Delete, this.GetType().Assembly.ManifestModule.Name);
+            Utility.Log(this.Name, globalVariables.UserName, string.Format("Xóa đơn VTTH của bệnh nhân ID={0}, PID={1}, Tên={2}, DS VTTH xóa={3} thành công ", objLuotkham.IdBenhnhan.ToString(), objLuotkham.MaLuotkham, objBenhnhan.TenBenhnhan, _deleteitems), newaction.Delete, this.GetType().Assembly.ManifestModule.Name);
             DeletefromDatatable(lstIdchitiet);
-            m_dtPresDetail.AcceptChanges();
+            dtVTTH.AcceptChanges();
         }
         private List<int> GetIdChitiet(int IdDonthuoc, int id_thuoc, decimal don_gia, ref string s)
         {
             DataRow[] arrDr =
-                m_dtPresDetail.Select(KcbDonthuocChitiet.Columns.IdDonthuoc + "=" + IdDonthuoc.ToString() + " AND " +
+                dtVTTH.Select(KcbDonthuocChitiet.Columns.IdDonthuoc + "=" + IdDonthuoc.ToString() + " AND " +
                                       KcbDonthuocChitiet.Columns.IdThuoc + "=" + id_thuoc.ToString()
                                       + "AND " + KcbDonthuocChitiet.Columns.DonGia + "=" + don_gia.ToString());
             if (arrDr.Length > 0)
@@ -3448,14 +3514,14 @@ namespace VNS.HIS.UI.Forms.HinhAnh
         {
             try
             {
-                DataRow[] p = (from q in m_dtPresDetail.Select("1=1").AsEnumerable()
+                DataRow[] p = (from q in dtVTTH.Select("1=1").AsEnumerable()
                                where
                                    lstIdChitietDonthuoc.Contains(
                                        Utility.Int32Dbnull(q[KcbDonthuocChitiet.Columns.IdChitietdonthuoc]))
                                select q).ToArray<DataRow>();
                 for (int i = 0; i <= p.Length - 1; i++)
-                    m_dtPresDetail.Rows.Remove(p[i]);
-                m_dtPresDetail.AcceptChanges();
+                    dtVTTH.Rows.Remove(p[i]);
+                dtVTTH.AcceptChanges();
             }
             catch
             {
@@ -3465,7 +3531,7 @@ namespace VNS.HIS.UI.Forms.HinhAnh
         {
             bool b_Cancel = false;
             if (!Utility.AcceptQuestion("Bạn có chắc chắn muốn xóa các VTTH đang chọn hay không?", "Xác nhận xóa", true)) return false;
-            if (RowThuoc == null)
+            if (RowVTTH == null)
             {
                 Utility.ShowMsg("Bạn phải chọn một bản ghi thực hiện việc xóa thông tin VTTH ", "Thông báo",
                                 MessageBoxIcon.Warning);
@@ -3559,14 +3625,14 @@ namespace VNS.HIS.UI.Forms.HinhAnh
 
             if (!cmdUpdatePres.Enabled) return;
             
-            if (RowThuoc != null)
+            if (RowVTTH != null)
             {
-                Pres_ID = Utility.Int32Dbnull(Utility.getCellValuefromGridEXRow(RowThuoc, KcbDonthuocChitiet.Columns.IdDonthuoc), -1);// grdPresDetail.GetValue(KcbDonthuocChitiet.Columns.IdDonthuoc));
+                Pres_ID = Utility.Int32Dbnull(Utility.getCellValuefromGridEXRow(RowVTTH, KcbDonthuocChitiet.Columns.IdDonthuoc), -1);// grdPresDetail.GetValue(KcbDonthuocChitiet.Columns.IdDonthuoc));
                 if (!IsValid_UpdateDonthuoc(Pres_ID, "thuốc"))
                 {
                     return;
                 }
-                if (Utility.Coquyen("quyen_suadonthuoc") || Utility.sDbnull(Utility.getCellValuefromGridEXRow(RowThuoc, KcbDonthuocChitiet.Columns.NguoiTao)) == globalVariables.UserName)
+                if (Utility.Coquyen("quyen_suadonthuoc") || Utility.sDbnull(Utility.getCellValuefromGridEXRow(RowVTTH, KcbDonthuocChitiet.Columns.NguoiTao)) == globalVariables.UserName)
                 {
                     UpdateDonVTTH();
                 }
@@ -3599,10 +3665,10 @@ namespace VNS.HIS.UI.Forms.HinhAnh
         }
         private void cmdDeletePres_Click(object sender, EventArgs e)
         {
-            if (RowThuoc != null)
+            if (RowVTTH != null)
             {
-                Pres_ID = Utility.Int32Dbnull(Utility.getCellValuefromGridEXRow(RowThuoc, KcbDonthuocChitiet.Columns.IdDonthuoc), -1);
-                if (!IsValid_UpdateDonthuoc(Pres_ID, "thuốc"))
+                Pres_ID = Utility.Int32Dbnull(Utility.getCellValuefromGridEXRow(RowVTTH, KcbDonthuocChitiet.Columns.IdDonthuoc), -1);
+                if (!IsValid_UpdateDonthuoc(Pres_ID, "vật tư"))
                 {
                     return;
                 }
@@ -4105,6 +4171,8 @@ namespace VNS.HIS.UI.Forms.HinhAnh
         {
 
         }
+
+       
     }
     public sealed class Tools
     {

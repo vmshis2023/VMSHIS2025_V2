@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_dmuc_kieukham));
             Janus.Windows.GridEX.GridEXLayout grdList_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_dmuc_kieukham));
             this.pnlTOP = new System.Windows.Forms.Panel();
             this.ribbonStatusBar1 = new Janus.Windows.Ribbon.RibbonStatusBar();
             this.labelCommand1 = new Janus.Windows.Ribbon.LabelCommand();
@@ -180,7 +180,7 @@
             // 
             // cmdCancel
             // 
-            this.cmdCancel.Image = ((System.Drawing.Image)(resources.GetObject("cmdCancel.Image")));
+            this.cmdCancel.Image = global::VMS.HIS.Danhmuc.Properties.Resources.close_24;
             this.cmdCancel.Location = new System.Drawing.Point(677, 8);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(89, 25);

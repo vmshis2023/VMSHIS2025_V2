@@ -1187,49 +1187,49 @@ namespace VNS.HIS.UI.NOITRU
 
         private void cmdSuaPTD_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (grdListDichTruyen.CurrentRow != null)
-                {
-                    frm_themphieutruyendich frm = new frm_themphieutruyendich();
-                    NoitruPhieudichtruyen objPhieuDichTruyen = NoitruPhieudichtruyen.FetchByID(Utility.Int32Dbnull(grdListDichTruyen.GetValue("id_phieu"), -1));
-                    if (objPhieuDichTruyen != null)
-                    {
-                        KcbDonthuocChitiet objDonthuocchitiet = KcbDonthuocChitiet.FetchByID(Utility.Int32Dbnull(objPhieuDichTruyen.IdChitietdonthuoc));
-                        if (objDonthuocchitiet != null)
-                        {
+            //try
+            //{
+            //    if (grdListDichTruyen.CurrentRow != null)
+            //    {
+            //        frm_themphieutruyendich frm = new frm_themphieutruyendich();
+            //        NoitruPhieudichtruyen objPhieuDichTruyen = NoitruPhieudichtruyen.FetchByID(Utility.Int32Dbnull(grdListDichTruyen.GetValue("id_phieu"), -1));
+            //        if (objPhieuDichTruyen != null)
+            //        {
+            //            KcbDonthuocChitiet objDonthuocchitiet = KcbDonthuocChitiet.FetchByID(Utility.Int32Dbnull(objPhieuDichTruyen.IdChitietdonthuoc));
+            //            if (objDonthuocchitiet != null)
+            //            {
 
-                            frm.em_Action = action.Update;
-                            frm.txtID.Text = objPhieuDichTruyen.IdPhieu.ToString();
-                            frm.p_DataPhieuDich = m_dtDataPhieuDichTruyen;
-                            frm.id_chitietdonthuoc = id_chitietdonthuoc;
-                            frm.id_donthuoc = id_donthuoc;
-                            frm.id_thuoc = id_thuoc;
-                            frm.grdList = grdListDichTruyen;
-                            frm.SoLuong = soluong;
-                            frm.Id_ThuocKho = idthuockho;
-                            frm.TenThuoc = tenthuoc;
-                            frm.solo = solo;
-                            frm.Doctor_ID = doctorid;
-                            frm.id_BG = Patientdeptid;
-                            frm.objPhieuDichTruyen = objPhieuDichTruyen;
-                            frm.id_khoadieutri = id_khoadieutri;
-                            frm.objLuotkham = objLuotkham;
-                            frm.ShowDialog();
-                        }
+            //                frm.em_Action = action.Update;
+            //                frm.txtID.Text = objPhieuDichTruyen.IdPhieu.ToString();
+            //                frm.p_DataPhieuDich = m_dtDataPhieuDichTruyen;
+            //                frm.id_chitietdonthuoc = id_chitietdonthuoc;
+            //                frm.id_donthuoc = id_donthuoc;
+            //                frm.id_thuoc = id_thuoc;
+            //                frm.grdList = grdListDichTruyen;
+            //                frm.SoLuong = soluong;
+            //                frm.Id_ThuocKho = idthuockho;
+            //                frm.TenThuoc = tenthuoc;
+            //                frm.solo = solo;
+            //                frm.Doctor_ID = doctorid;
+            //                frm.id_BG = Patientdeptid;
+            //                frm.objPhieuDichTruyen = objPhieuDichTruyen;
+            //                frm.id_khoadieutri = id_khoadieutri;
+            //                frm.objLuotkham = objLuotkham;
+            //                frm.ShowDialog();
+            //            }
 
-                    }
-                    else
-                    {
-                        Utility.ShowMsg("Phiếu truyền dịch bạn vừa chọn sửa có thể đã bị người khác xóa mất. Vui lòng kiểm tra lại");
-                    }
+            //        }
+            //        else
+            //        {
+            //            Utility.ShowMsg("Phiếu truyền dịch bạn vừa chọn sửa có thể đã bị người khác xóa mất. Vui lòng kiểm tra lại");
+            //        }
 
-                }
-            }
-            catch (Exception ex)
-            {
-                Utility.CatchException(ex);
-            }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Utility.CatchException(ex);
+            //}
         }
 
         private void cmdXoaPTD_Click(object sender, EventArgs e)
@@ -1241,24 +1241,24 @@ namespace VNS.HIS.UI.NOITRU
 
 
 
-                if (Utility.AcceptQuestion("Bạn có muốn thực hiện xóa phiếu truyền dịch đang chọn không", "Thông báo", true))
-                {
-                    NoitruPhieudichtruyen objPhieuDichTruyen = NoitruPhieudichtruyen.FetchByID(idPhieu_xoa);
-                    if (objPhieuDichTruyen != null)
-                    {
+                //if (Utility.AcceptQuestion("Bạn có muốn thực hiện xóa phiếu truyền dịch đang chọn không", "Thông báo", true))
+                //{
+                //    NoitruPhieudichtruyen objPhieuDichTruyen = NoitruPhieudichtruyen.FetchByID(idPhieu_xoa);
+                //    if (objPhieuDichTruyen != null)
+                //    {
 
-                        if (new Delete().From(NoitruPhieudichtruyen.Schema)
-                                 .Where(NoitruPhieudichtruyen.Columns.IdPhieu).IsEqualTo(idPhieu_xoa).Execute() > 0)
-                        {
-                            Utility.Log(this.Name, globalVariables.UserName, string.Format("Xóa phiếu truyền dịch bệnh nhân: {0}, Tên thuốc:  {1}, ID phiếu truyền dịch : {2}, IdChitietdonthuoc : {3}",
-                              objLuotkham.MaLuotkham, TenThuoc_Xoa, idPhieu_xoa, objPhieuDichTruyen.IdChitietdonthuoc), newaction.Delete, "UI");
-                            grdListDichTruyen.CurrentRow.Delete();
-                            grdListDichTruyen.UpdateData();
-                            grdListDichTruyen.Refresh();
-                        }
-                    }
+                //        if (new Delete().From(NoitruPhieudichtruyen.Schema)
+                //                 .Where(NoitruPhieudichtruyen.Columns.IdPhieu).IsEqualTo(idPhieu_xoa).Execute() > 0)
+                //        {
+                //            Utility.Log(this.Name, globalVariables.UserName, string.Format("Xóa phiếu truyền dịch bệnh nhân: {0}, Tên thuốc:  {1}, ID phiếu truyền dịch : {2}, IdChitietdonthuoc : {3}",
+                //              objLuotkham.MaLuotkham, TenThuoc_Xoa, idPhieu_xoa, objPhieuDichTruyen.IdChitietdonthuoc), newaction.Delete, "UI");
+                //            grdListDichTruyen.CurrentRow.Delete();
+                //            grdListDichTruyen.UpdateData();
+                //            grdListDichTruyen.Refresh();
+                //        }
+                //    }
 
-                }
+                //}
                 m_dtDataPhieuDichTruyen.AcceptChanges();
             }
             catch (Exception exception)
@@ -1273,33 +1273,33 @@ namespace VNS.HIS.UI.NOITRU
             try
             {
 
-                if (grdListDichTruyen.CurrentRow != null)
-                {
-                    string ID_Phieu =  string.Join(",", (from p in grdListDichTruyen.GetCheckedRows() select p.Cells["id_phieu"].Value.ToString()).Distinct().ToArray<string>());
-                    string id_thuoc =  string.Join(",", (from p in grdListDichTruyen.GetCheckedRows() select p.Cells["id_thuoc"].Value.ToString()).Distinct().ToArray<string>());
+                //if (grdListDichTruyen.CurrentRow != null)
+                //{
+                //    string ID_Phieu =  string.Join(",", (from p in grdListDichTruyen.GetCheckedRows() select p.Cells["id_phieu"].Value.ToString()).Distinct().ToArray<string>());
+                //    string id_thuoc =  string.Join(",", (from p in grdListDichTruyen.GetCheckedRows() select p.Cells["id_thuoc"].Value.ToString()).Distinct().ToArray<string>());
 
-                    foreach (GridEXRow gridExRow in grdListDichTruyen.GetCheckedRows())
-                    {
-                        gridExRow.BeginEdit();
-                        gridExRow.Cells[NoitruPhieudichtruyen.Columns.TrangthaiIn].Value = 1;
-                        gridExRow.EndEdit();
-                    }
-                    grdListDichTruyen.UpdateData();
-                    DataTable dt_dataprint = SPs.NoitruPhieutruyendichLaydulieuinphieu(objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan, id_thuoc, ID_Phieu).GetDataSet().Tables[0];
+                //    foreach (GridEXRow gridExRow in grdListDichTruyen.GetCheckedRows())
+                //    {
+                //        gridExRow.BeginEdit();
+                //        gridExRow.Cells[NoitruPhieudichtruyen.Columns.TrangthaiIn].Value = 1;
+                //        gridExRow.EndEdit();
+                //    }
+                //    grdListDichTruyen.UpdateData();
+                //    DataTable dt_dataprint = SPs.NoitruPhieutruyendichLaydulieuinphieu(objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan, id_thuoc, ID_Phieu).GetDataSet().Tables[0];
 
-                    if (m_dtDataPhieuDichTruyen.Rows.Count <= 0)
-                    {
-                        Utility.ShowMsg("Không tìm thấy dữ liệu để in", "Thông báo");
-                        return;
-                    }
-                    THU_VIEN_CHUNG.CreateXML(dt_dataprint, Application.StartupPath + @"\Xml4Reports\noitru_phieutruyendich.XML");
-                    if (dt_dataprint.Rows.Count <= 0)
-                    {
-                        Utility.ShowMsg("Không tìm thấy thông tin phiếu truyền dịch để in. Vui lòng chọn một phiếu trên danh sách phiếu truyền dịch trước khi nhấn nút in", "Thông báo", MessageBoxIcon.Error);
-                        return;
-                    }
-                    noitru_inphieu.InPhieutheodoi(dt_dataprint, chkPreview2.Checked, "noitru_phieutruyendich", "");
-                }
+                //    if (m_dtDataPhieuDichTruyen.Rows.Count <= 0)
+                //    {
+                //        Utility.ShowMsg("Không tìm thấy dữ liệu để in", "Thông báo");
+                //        return;
+                //    }
+                //    THU_VIEN_CHUNG.CreateXML(dt_dataprint, Application.StartupPath + @"\Xml4Reports\noitru_phieutruyendich.XML");
+                //    if (dt_dataprint.Rows.Count <= 0)
+                //    {
+                //        Utility.ShowMsg("Không tìm thấy thông tin phiếu truyền dịch để in. Vui lòng chọn một phiếu trên danh sách phiếu truyền dịch trước khi nhấn nút in", "Thông báo", MessageBoxIcon.Error);
+                //        return;
+                //    }
+                //    noitru_inphieu.InPhieutheodoi(dt_dataprint, chkPreview2.Checked, "noitru_phieutruyendich", "");
+                //}
 
             }
             catch (Exception exception)

@@ -1,0 +1,470 @@
+2023-06-28 11:04:47.0797 Info Message Template Auto Format enabled
+2023-06-28 11:04:47.1092 Info Loading assembly: NLog.Web.AspNetCore
+2023-06-28 11:04:47.2469 Info Adding target FileTarget(Name=allfile)
+2023-06-28 11:04:47.2469 Info Adding target FileTarget(Name=ownFile-web)
+2023-06-28 11:04:47.2930 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-06-28 11:08:46.0107 Info Message Template Auto Format enabled
+2023-06-28 11:08:46.0379 Info Loading assembly: NLog.Web.AspNetCore
+2023-06-28 11:08:46.1578 Info Adding target FileTarget(Name=allfile)
+2023-06-28 11:08:46.1593 Info Adding target FileTarget(Name=ownFile-web)
+2023-06-28 11:08:46.1999 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-06-28 11:27:29.7648 Info Message Template Auto Format enabled
+2023-06-28 11:27:29.8152 Info Loading assembly: NLog.Web.AspNetCore
+2023-06-28 11:27:29.9562 Info Adding target FileTarget(Name=allfile)
+2023-06-28 11:27:29.9562 Info Adding target FileTarget(Name=ownFile-web)
+2023-06-28 11:27:30.0089 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-06-28 23:03:07.6103 Info Message Template Auto Format enabled
+2023-06-28 23:03:07.6656 Info Loading assembly: NLog.Web.AspNetCore
+2023-06-28 23:03:07.8146 Info Adding target FileTarget(Name=allfile)
+2023-06-28 23:03:07.8165 Info Adding target FileTarget(Name=ownFile-web)
+2023-06-28 23:03:07.8747 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-06-28 23:09:31.9610 Info Message Template Auto Format enabled
+2023-06-28 23:09:31.9909 Info Loading assembly: NLog.Web.AspNetCore
+2023-06-28 23:09:32.1799 Info Adding target FileTarget(Name=allfile)
+2023-06-28 23:09:32.1799 Info Adding target FileTarget(Name=ownFile-web)
+2023-06-28 23:09:32.2352 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-06-28 23:18:33.3225 Info Message Template Auto Format enabled
+2023-06-28 23:18:33.3894 Info Loading assembly: NLog.Web.AspNetCore
+2023-06-28 23:18:33.5927 Info Adding target FileTarget(Name=allfile)
+2023-06-28 23:18:33.5927 Info Adding target FileTarget(Name=ownFile-web)
+2023-06-28 23:18:33.6509 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-06-28 23:20:24.1370 Info Message Template Auto Format enabled
+2023-06-28 23:20:24.1835 Info Loading assembly: NLog.Web.AspNetCore
+2023-06-28 23:20:24.3481 Info Adding target FileTarget(Name=allfile)
+2023-06-28 23:20:24.3481 Info Adding target FileTarget(Name=ownFile-web)
+2023-06-28 23:20:24.4097 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-07-07 14:07:50.6796 Info Message Template Auto Format enabled
+2023-07-07 14:07:50.7107 Info Loading assembly: NLog.Web.AspNetCore
+2023-07-07 14:07:50.8230 Info Adding target FileTarget(Name=allfile)
+2023-07-07 14:07:50.8230 Info Adding target FileTarget(Name=ownFile-web)
+2023-07-07 14:07:50.8624 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-08-24 03:55:22.4147 Info Message Template Auto Format enabled
+2023-08-24 03:55:22.4352 Info Loading assembly: NLog.Web.AspNetCore
+2023-08-24 03:55:22.5647 Info Adding target FileTarget(Name=allfile)
+2023-08-24 03:55:22.5647 Info Adding target FileTarget(Name=ownFile-web)
+2023-08-24 03:55:22.6149 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-08-24 03:57:28.2869 Info Message Template Auto Format enabled
+2023-08-24 03:57:28.3146 Info Loading assembly: NLog.Web.AspNetCore
+2023-08-24 03:57:28.4399 Info Adding target FileTarget(Name=allfile)
+2023-08-24 03:57:28.4530 Info Adding target FileTarget(Name=ownFile-web)
+2023-08-24 03:57:28.4989 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-08-24 04:00:49.6544 Info Message Template Auto Format enabled
+2023-08-24 04:00:49.6994 Info Loading assembly: NLog.Web.AspNetCore
+2023-08-24 04:00:49.8410 Info Adding target FileTarget(Name=allfile)
+2023-08-24 04:00:49.8431 Info Adding target FileTarget(Name=ownFile-web)
+2023-08-24 04:00:49.8847 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-08-24 21:44:21.3746 Info Message Template Auto Format enabled
+2023-08-24 21:44:21.4296 Info Loading assembly: NLog.Web.AspNetCore
+2023-08-24 21:44:21.8566 Info Adding target FileTarget(Name=allfile)
+2023-08-24 21:44:21.8583 Info Adding target FileTarget(Name=ownFile-web)
+2023-08-24 21:44:21.9313 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-08-24 21:44:44.8218 Info Message Template Auto Format enabled
+2023-08-24 21:44:44.8345 Info Loading assembly: NLog.Web.AspNetCore
+2023-08-24 21:44:44.9248 Info Adding target FileTarget(Name=allfile)
+2023-08-24 21:44:44.9248 Info Adding target FileTarget(Name=ownFile-web)
+2023-08-24 21:44:44.9732 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-08-24 21:47:08.9387 Info Message Template Auto Format enabled
+2023-08-24 21:47:09.0266 Info Loading assembly: NLog.Web.AspNetCore
+2023-08-24 21:47:09.2424 Info Adding target FileTarget(Name=allfile)
+2023-08-24 21:47:09.2424 Info Adding target FileTarget(Name=ownFile-web)
+2023-08-24 21:47:09.3043 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-08-24 22:03:52.8200 Info Message Template Auto Format enabled
+2023-08-24 22:03:52.8917 Info Loading assembly: NLog.Web.AspNetCore
+2023-08-24 22:03:53.0155 Info Adding target FileTarget(Name=allfile)
+2023-08-24 22:03:53.0155 Info Adding target FileTarget(Name=ownFile-web)
+2023-08-24 22:03:53.0612 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-08-24 22:59:46.3773 Info Message Template Auto Format enabled
+2023-08-24 22:59:46.4081 Info Loading assembly: NLog.Web.AspNetCore
+2023-08-24 22:59:46.5458 Info Adding target FileTarget(Name=allfile)
+2023-08-24 22:59:46.5486 Info Adding target FileTarget(Name=ownFile-web)
+2023-08-24 22:59:46.6172 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-08-24 23:03:07.6209 Info Message Template Auto Format enabled
+2023-08-24 23:03:07.6840 Info Loading assembly: NLog.Web.AspNetCore
+2023-08-24 23:03:07.8389 Info Adding target FileTarget(Name=allfile)
+2023-08-24 23:03:07.8389 Info Adding target FileTarget(Name=ownFile-web)
+2023-08-24 23:03:07.9038 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-08-24 23:10:25.1564 Info Message Template Auto Format enabled
+2023-08-24 23:10:25.3076 Info Loading assembly: NLog.Web.AspNetCore
+2023-08-24 23:10:25.5462 Info Adding target FileTarget(Name=allfile)
+2023-08-24 23:10:25.5479 Info Adding target FileTarget(Name=ownFile-web)
+2023-08-24 23:10:25.6019 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-08-24 23:24:41.6085 Info Message Template Auto Format enabled
+2023-08-24 23:24:41.7321 Info Loading assembly: NLog.Web.AspNetCore
+2023-08-24 23:24:41.9979 Info Adding target FileTarget(Name=allfile)
+2023-08-24 23:24:42.0187 Info Adding target FileTarget(Name=ownFile-web)
+2023-08-24 23:24:42.0584 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-08-24 23:29:23.1502 Info Message Template Auto Format enabled
+2023-08-24 23:29:23.2007 Info Loading assembly: NLog.Web.AspNetCore
+2023-08-24 23:29:23.3665 Info Adding target FileTarget(Name=allfile)
+2023-08-24 23:29:23.3665 Info Adding target FileTarget(Name=ownFile-web)
+2023-08-24 23:29:23.4753 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-08-24 23:33:17.8764 Info Message Template Auto Format enabled
+2023-08-24 23:33:17.8992 Info Loading assembly: NLog.Web.AspNetCore
+2023-08-24 23:33:17.9997 Info Adding target FileTarget(Name=allfile)
+2023-08-24 23:33:17.9997 Info Adding target FileTarget(Name=ownFile-web)
+2023-08-24 23:33:18.0396 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-09-11 00:29:35.4764 Info Message Template Auto Format enabled
+2023-09-11 00:29:35.4903 Info Loading assembly: NLog.Web.AspNetCore
+2023-09-11 00:29:35.5831 Info Adding target FileTarget(Name=allfile)
+2023-09-11 00:29:35.5831 Info Adding target FileTarget(Name=ownFile-web)
+2023-09-11 00:29:35.6273 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-09-11 00:30:21.9558 Info Message Template Auto Format enabled
+2023-09-11 00:30:21.9670 Info Loading assembly: NLog.Web.AspNetCore
+2023-09-11 00:30:22.0239 Info Adding target FileTarget(Name=allfile)
+2023-09-11 00:30:22.0257 Info Adding target FileTarget(Name=ownFile-web)
+2023-09-11 00:30:22.0524 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-09-11 00:33:24.6198 Info Message Template Auto Format enabled
+2023-09-11 00:33:24.6401 Info Loading assembly: NLog.Web.AspNetCore
+2023-09-11 00:33:24.7420 Info Adding target FileTarget(Name=allfile)
+2023-09-11 00:33:24.7442 Info Adding target FileTarget(Name=ownFile-web)
+2023-09-11 00:33:24.7748 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-09-11 00:41:57.0360 Info Message Template Auto Format enabled
+2023-09-11 00:41:57.0527 Info Loading assembly: NLog.Web.AspNetCore
+2023-09-11 00:41:57.1350 Info Adding target FileTarget(Name=allfile)
+2023-09-11 00:41:57.1350 Info Adding target FileTarget(Name=ownFile-web)
+2023-09-11 00:41:57.1662 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-09-11 00:43:40.4997 Info Message Template Auto Format enabled
+2023-09-11 00:43:40.5200 Info Loading assembly: NLog.Web.AspNetCore
+2023-09-11 00:43:40.6054 Info Adding target FileTarget(Name=allfile)
+2023-09-11 00:43:40.6054 Info Adding target FileTarget(Name=ownFile-web)
+2023-09-11 00:43:40.6393 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-09-11 00:46:09.7350 Info Message Template Auto Format enabled
+2023-09-11 00:46:09.7515 Info Loading assembly: NLog.Web.AspNetCore
+2023-09-11 00:46:09.8308 Info Adding target FileTarget(Name=allfile)
+2023-09-11 00:46:09.8308 Info Adding target FileTarget(Name=ownFile-web)
+2023-09-11 00:46:09.8591 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-09-11 00:47:39.6652 Info Message Template Auto Format enabled
+2023-09-11 00:47:39.6863 Info Loading assembly: NLog.Web.AspNetCore
+2023-09-11 00:47:39.7800 Info Adding target FileTarget(Name=allfile)
+2023-09-11 00:47:39.7800 Info Adding target FileTarget(Name=ownFile-web)
+2023-09-11 00:47:39.8149 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-09-13 23:37:03.8769 Info Message Template Auto Format enabled
+2023-09-13 23:37:03.9031 Info Loading assembly: NLog.Web.AspNetCore
+2023-09-13 23:37:04.0129 Info Adding target FileTarget(Name=allfile)
+2023-09-13 23:37:04.0129 Info Adding target FileTarget(Name=ownFile-web)
+2023-09-13 23:37:04.0554 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-09-13 23:40:29.9259 Info Message Template Auto Format enabled
+2023-09-13 23:40:29.9547 Info Loading assembly: NLog.Web.AspNetCore
+2023-09-13 23:40:30.0654 Info Adding target FileTarget(Name=allfile)
+2023-09-13 23:40:30.0654 Info Adding target FileTarget(Name=ownFile-web)
+2023-09-13 23:40:30.1031 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-09-14 10:45:19.1482 Info Message Template Auto Format enabled
+2023-09-14 10:45:19.1975 Info Loading assembly: NLog.Web.AspNetCore
+2023-09-14 10:45:19.3972 Info Adding target FileTarget(Name=allfile)
+2023-09-14 10:45:19.4011 Info Adding target FileTarget(Name=ownFile-web)
+2023-09-14 10:45:19.4698 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-09-14 10:50:20.7725 Info Message Template Auto Format enabled
+2023-09-14 10:50:20.8130 Info Loading assembly: NLog.Web.AspNetCore
+2023-09-14 10:50:20.9701 Info Adding target FileTarget(Name=allfile)
+2023-09-14 10:50:20.9701 Info Adding target FileTarget(Name=ownFile-web)
+2023-09-14 10:50:21.0369 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-09-14 10:52:41.0792 Info Message Template Auto Format enabled
+2023-09-14 10:52:41.1112 Info Loading assembly: NLog.Web.AspNetCore
+2023-09-14 10:52:41.2885 Info Adding target FileTarget(Name=allfile)
+2023-09-14 10:52:41.2905 Info Adding target FileTarget(Name=ownFile-web)
+2023-09-14 10:52:41.3472 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-09-14 10:57:00.8820 Info Message Template Auto Format enabled
+2023-09-14 10:57:00.9122 Info Loading assembly: NLog.Web.AspNetCore
+2023-09-14 10:57:01.0922 Info Adding target FileTarget(Name=allfile)
+2023-09-14 10:57:01.0922 Info Adding target FileTarget(Name=ownFile-web)
+2023-09-14 10:57:01.2233 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-09-14 14:55:25.6647 Info Message Template Auto Format enabled
+2023-09-14 14:55:25.7085 Info Loading assembly: NLog.Web.AspNetCore
+2023-09-14 14:55:25.8714 Info Adding target FileTarget(Name=allfile)
+2023-09-14 14:55:25.8714 Info Adding target FileTarget(Name=ownFile-web)
+2023-09-14 14:55:25.9575 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-09-14 15:07:51.7312 Info Message Template Auto Format enabled
+2023-09-14 15:07:51.7827 Info Loading assembly: NLog.Web.AspNetCore
+2023-09-14 15:07:51.9406 Info Adding target FileTarget(Name=allfile)
+2023-09-14 15:07:51.9406 Info Adding target FileTarget(Name=ownFile-web)
+2023-09-14 15:07:51.9957 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-09-17 09:44:44.8269 Info Message Template Auto Format enabled
+2023-09-17 09:44:44.9190 Info Loading assembly: NLog.Web.AspNetCore
+2023-09-17 09:44:45.1314 Info Adding target FileTarget(Name=allfile)
+2023-09-17 09:44:45.1359 Info Adding target FileTarget(Name=ownFile-web)
+2023-09-17 09:44:45.2275 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-09-17 15:42:50.6168 Info Message Template Auto Format enabled
+2023-09-17 15:42:50.6392 Info Loading assembly: NLog.Web.AspNetCore
+2023-09-17 15:42:50.7607 Info Adding target FileTarget(Name=allfile)
+2023-09-17 15:42:50.7607 Info Adding target FileTarget(Name=ownFile-web)
+2023-09-17 15:42:50.8094 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-09-17 15:48:35.2604 Info Message Template Auto Format enabled
+2023-09-17 15:48:35.3146 Info Loading assembly: NLog.Web.AspNetCore
+2023-09-17 15:48:35.4420 Info Adding target FileTarget(Name=allfile)
+2023-09-17 15:48:35.4420 Info Adding target FileTarget(Name=ownFile-web)
+2023-09-17 15:48:35.4896 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-09-20 06:17:27.4429 Info Message Template Auto Format enabled
+2023-09-20 06:17:27.4794 Info Loading assembly: NLog.Web.AspNetCore
+2023-09-20 06:17:27.5945 Info Adding target FileTarget(Name=allfile)
+2023-09-20 06:17:27.5987 Info Adding target FileTarget(Name=ownFile-web)
+2023-09-20 06:17:27.6418 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-09-20 06:18:49.7503 Info Message Template Auto Format enabled
+2023-09-20 06:18:49.8021 Info Loading assembly: NLog.Web.AspNetCore
+2023-09-20 06:18:49.9740 Info Adding target FileTarget(Name=allfile)
+2023-09-20 06:18:49.9740 Info Adding target FileTarget(Name=ownFile-web)
+2023-09-20 06:18:50.0215 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-09-20 06:24:30.2020 Info Message Template Auto Format enabled
+2023-09-20 06:24:30.2952 Info Loading assembly: NLog.Web.AspNetCore
+2023-09-20 06:24:30.5342 Info Adding target FileTarget(Name=allfile)
+2023-09-20 06:24:30.5408 Info Adding target FileTarget(Name=ownFile-web)
+2023-09-20 06:24:30.6132 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-09-20 06:29:12.5231 Info Message Template Auto Format enabled
+2023-09-20 06:29:12.5455 Info Loading assembly: NLog.Web.AspNetCore
+2023-09-20 06:29:12.6538 Info Adding target FileTarget(Name=allfile)
+2023-09-20 06:29:12.6538 Info Adding target FileTarget(Name=ownFile-web)
+2023-09-20 06:29:12.6977 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-09-20 06:29:43.9021 Info Message Template Auto Format enabled
+2023-09-20 06:29:43.9247 Info Loading assembly: NLog.Web.AspNetCore
+2023-09-20 06:29:44.0373 Info Adding target FileTarget(Name=allfile)
+2023-09-20 06:29:44.0373 Info Adding target FileTarget(Name=ownFile-web)
+2023-09-20 06:29:44.0783 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-09-20 06:32:36.4335 Info Message Template Auto Format enabled
+2023-09-20 06:32:36.5012 Info Loading assembly: NLog.Web.AspNetCore
+2023-09-20 06:32:36.6869 Info Adding target FileTarget(Name=allfile)
+2023-09-20 06:32:36.6869 Info Adding target FileTarget(Name=ownFile-web)
+2023-09-20 06:32:36.7685 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-09-20 06:33:15.6643 Info Message Template Auto Format enabled
+2023-09-20 06:33:15.7095 Info Loading assembly: NLog.Web.AspNetCore
+2023-09-20 06:33:15.9062 Info Adding target FileTarget(Name=allfile)
+2023-09-20 06:33:15.9062 Info Adding target FileTarget(Name=ownFile-web)
+2023-09-20 06:33:15.9667 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-09-20 06:34:01.0371 Info Message Template Auto Format enabled
+2023-09-20 06:34:01.0915 Info Loading assembly: NLog.Web.AspNetCore
+2023-09-20 06:34:01.2848 Info Adding target FileTarget(Name=allfile)
+2023-09-20 06:34:01.2878 Info Adding target FileTarget(Name=ownFile-web)
+2023-09-20 06:34:01.3551 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-09-20 06:35:42.3779 Info Message Template Auto Format enabled
+2023-09-20 06:35:42.4669 Info Loading assembly: NLog.Web.AspNetCore
+2023-09-20 06:35:42.6742 Info Adding target FileTarget(Name=allfile)
+2023-09-20 06:35:42.6769 Info Adding target FileTarget(Name=ownFile-web)
+2023-09-20 06:35:42.7410 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-09-20 06:37:09.0862 Info Message Template Auto Format enabled
+2023-09-20 06:37:09.1127 Info Loading assembly: NLog.Web.AspNetCore
+2023-09-20 06:37:09.2464 Info Adding target FileTarget(Name=allfile)
+2023-09-20 06:37:09.2464 Info Adding target FileTarget(Name=ownFile-web)
+2023-09-20 06:37:09.2918 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-09-20 06:37:49.6363 Info Message Template Auto Format enabled
+2023-09-20 06:37:49.7021 Info Loading assembly: NLog.Web.AspNetCore
+2023-09-20 06:37:49.9667 Info Adding target FileTarget(Name=allfile)
+2023-09-20 06:37:49.9667 Info Adding target FileTarget(Name=ownFile-web)
+2023-09-20 06:37:50.0380 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-09-20 06:42:25.3210 Info Message Template Auto Format enabled
+2023-09-20 06:42:25.3689 Info Loading assembly: NLog.Web.AspNetCore
+2023-09-20 06:42:25.5513 Info Adding target FileTarget(Name=allfile)
+2023-09-20 06:42:25.5513 Info Adding target FileTarget(Name=ownFile-web)
+2023-09-20 06:42:25.6137 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-09-30 09:05:55.2439 Info Message Template Auto Format enabled
+2023-09-30 09:05:55.2890 Info Loading assembly: NLog.Web.AspNetCore
+2023-09-30 09:05:55.4358 Info Adding target FileTarget(Name=allfile)
+2023-09-30 09:05:55.4358 Info Adding target FileTarget(Name=ownFile-web)
+2023-09-30 09:05:55.4983 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-10-04 10:12:01.4556 Info Message Template Auto Format enabled
+2023-10-04 10:12:01.4803 Info Loading assembly: NLog.Web.AspNetCore
+2023-10-04 10:12:01.5676 Info Adding target FileTarget(Name=allfile)
+2023-10-04 10:12:01.5676 Info Adding target FileTarget(Name=ownFile-web)
+2023-10-04 10:12:01.5917 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-10-04 10:13:35.6138 Info Message Template Auto Format enabled
+2023-10-04 10:13:35.6306 Info Loading assembly: NLog.Web.AspNetCore
+2023-10-04 10:13:35.7101 Info Adding target FileTarget(Name=allfile)
+2023-10-04 10:13:35.7101 Info Adding target FileTarget(Name=ownFile-web)
+2023-10-04 10:13:35.7421 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-10-04 10:15:48.9219 Info Message Template Auto Format enabled
+2023-10-04 10:15:48.9389 Info Loading assembly: NLog.Web.AspNetCore
+2023-10-04 10:15:49.0273 Info Adding target FileTarget(Name=allfile)
+2023-10-04 10:15:49.0273 Info Adding target FileTarget(Name=ownFile-web)
+2023-10-04 10:15:49.0578 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-10-04 10:16:22.1397 Info Message Template Auto Format enabled
+2023-10-04 10:16:22.1688 Info Loading assembly: NLog.Web.AspNetCore
+2023-10-04 10:16:22.2645 Info Adding target FileTarget(Name=allfile)
+2023-10-04 10:16:22.2660 Info Adding target FileTarget(Name=ownFile-web)
+2023-10-04 10:16:22.2954 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-10-04 10:24:02.1417 Info Message Template Auto Format enabled
+2023-10-04 10:24:02.1799 Info Loading assembly: NLog.Web.AspNetCore
+2023-10-04 10:24:02.2803 Info Adding target FileTarget(Name=allfile)
+2023-10-04 10:24:02.2815 Info Adding target FileTarget(Name=ownFile-web)
+2023-10-04 10:24:02.3129 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-10-04 10:48:07.5633 Info Message Template Auto Format enabled
+2023-10-04 10:48:07.5879 Info Loading assembly: NLog.Web.AspNetCore
+2023-10-04 10:48:07.7162 Info Adding target FileTarget(Name=allfile)
+2023-10-04 10:48:07.7191 Info Adding target FileTarget(Name=ownFile-web)
+2023-10-04 10:48:07.7566 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-10-04 14:22:41.0752 Info Message Template Auto Format enabled
+2023-10-04 14:22:41.0990 Info Loading assembly: NLog.Web.AspNetCore
+2023-10-04 14:22:41.2226 Info Adding target FileTarget(Name=allfile)
+2023-10-04 14:22:41.2226 Info Adding target FileTarget(Name=ownFile-web)
+2023-10-04 14:22:41.2593 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-10-04 14:24:36.7710 Info Message Template Auto Format enabled
+2023-10-04 14:24:36.7949 Info Loading assembly: NLog.Web.AspNetCore
+2023-10-04 14:24:36.9004 Info Adding target FileTarget(Name=allfile)
+2023-10-04 14:24:36.9004 Info Adding target FileTarget(Name=ownFile-web)
+2023-10-04 14:24:36.9623 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-10-04 14:30:42.3725 Info Message Template Auto Format enabled
+2023-10-04 14:30:42.3975 Info Loading assembly: NLog.Web.AspNetCore
+2023-10-04 14:30:42.5469 Info Adding target FileTarget(Name=allfile)
+2023-10-04 14:30:42.5469 Info Adding target FileTarget(Name=ownFile-web)
+2023-10-04 14:30:42.5891 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-10-04 14:49:25.2450 Info Message Template Auto Format enabled
+2023-10-04 14:49:25.2682 Info Loading assembly: NLog.Web.AspNetCore
+2023-10-04 14:49:25.3558 Info Adding target FileTarget(Name=allfile)
+2023-10-04 14:49:25.3558 Info Adding target FileTarget(Name=ownFile-web)
+2023-10-04 14:49:25.3922 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-10-04 15:45:05.7903 Info Message Template Auto Format enabled
+2023-10-04 15:45:05.8557 Info Loading assembly: NLog.Web.AspNetCore
+2023-10-04 15:45:06.0121 Info Adding target FileTarget(Name=allfile)
+2023-10-04 15:45:06.0121 Info Adding target FileTarget(Name=ownFile-web)
+2023-10-04 15:45:06.0753 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-10-04 15:50:07.9976 Info Message Template Auto Format enabled
+2023-10-04 15:50:08.1235 Info Loading assembly: NLog.Web.AspNetCore
+2023-10-04 15:50:08.2772 Info Adding target FileTarget(Name=allfile)
+2023-10-04 15:50:08.2772 Info Adding target FileTarget(Name=ownFile-web)
+2023-10-04 15:50:08.3368 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-10-04 15:51:02.8163 Info Message Template Auto Format enabled
+2023-10-04 15:51:02.9601 Info Loading assembly: NLog.Web.AspNetCore
+2023-10-04 15:51:03.1039 Info Adding target FileTarget(Name=allfile)
+2023-10-04 15:51:03.1039 Info Adding target FileTarget(Name=ownFile-web)
+2023-10-04 15:51:03.1539 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-10-04 15:52:28.4178 Info Message Template Auto Format enabled
+2023-10-04 15:52:28.4551 Info Loading assembly: NLog.Web.AspNetCore
+2023-10-04 15:52:28.6307 Info Adding target FileTarget(Name=allfile)
+2023-10-04 15:52:28.6307 Info Adding target FileTarget(Name=ownFile-web)
+2023-10-04 15:52:28.6828 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-10-04 15:53:51.1926 Info Message Template Auto Format enabled
+2023-10-04 15:53:51.2179 Info Loading assembly: NLog.Web.AspNetCore
+2023-10-04 15:53:51.3223 Info Adding target FileTarget(Name=allfile)
+2023-10-04 15:53:51.3340 Info Adding target FileTarget(Name=ownFile-web)
+2023-10-04 15:53:51.3717 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-10-04 15:57:24.8742 Info Message Template Auto Format enabled
+2023-10-04 15:57:24.8971 Info Loading assembly: NLog.Web.AspNetCore
+2023-10-04 15:57:24.9933 Info Adding target FileTarget(Name=allfile)
+2023-10-04 15:57:24.9933 Info Adding target FileTarget(Name=ownFile-web)
+2023-10-04 15:57:25.0322 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-10-04 16:22:28.6670 Info Message Template Auto Format enabled
+2023-10-04 16:22:28.6899 Info Loading assembly: NLog.Web.AspNetCore
+2023-10-04 16:22:28.7800 Info Adding target FileTarget(Name=allfile)
+2023-10-04 16:22:28.7816 Info Adding target FileTarget(Name=ownFile-web)
+2023-10-04 16:22:28.8145 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-10-04 16:26:47.5200 Info Message Template Auto Format enabled
+2023-10-04 16:26:47.5689 Info Loading assembly: NLog.Web.AspNetCore
+2023-10-04 16:26:47.7584 Info Adding target FileTarget(Name=allfile)
+2023-10-04 16:26:47.7584 Info Adding target FileTarget(Name=ownFile-web)
+2023-10-04 16:26:47.8497 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-10-04 16:29:28.4510 Info Message Template Auto Format enabled
+2023-10-04 16:29:28.4899 Info Loading assembly: NLog.Web.AspNetCore
+2023-10-04 16:29:28.6565 Info Adding target FileTarget(Name=allfile)
+2023-10-04 16:29:28.6565 Info Adding target FileTarget(Name=ownFile-web)
+2023-10-04 16:29:28.7080 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-10-04 16:38:27.7073 Info Message Template Auto Format enabled
+2023-10-04 16:38:27.7314 Info Loading assembly: NLog.Web.AspNetCore
+2023-10-04 16:38:27.8694 Info Adding target FileTarget(Name=allfile)
+2023-10-04 16:38:27.8694 Info Adding target FileTarget(Name=ownFile-web)
+2023-10-04 16:38:27.9252 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-10-04 16:43:00.4789 Info Message Template Auto Format enabled
+2023-10-04 16:43:00.5156 Info Loading assembly: NLog.Web.AspNetCore
+2023-10-04 16:43:00.7876 Info Adding target FileTarget(Name=allfile)
+2023-10-04 16:43:00.7876 Info Adding target FileTarget(Name=ownFile-web)
+2023-10-04 16:43:00.8508 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-10-04 16:45:33.6855 Info Message Template Auto Format enabled
+2023-10-04 16:45:33.7097 Info Loading assembly: NLog.Web.AspNetCore
+2023-10-04 16:45:33.8055 Info Adding target FileTarget(Name=allfile)
+2023-10-04 16:45:33.8055 Info Adding target FileTarget(Name=ownFile-web)
+2023-10-04 16:45:33.8374 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-10-04 16:45:59.6087 Info Message Template Auto Format enabled
+2023-10-04 16:45:59.6309 Info Loading assembly: NLog.Web.AspNetCore
+2023-10-04 16:45:59.7383 Info Adding target FileTarget(Name=allfile)
+2023-10-04 16:45:59.7383 Info Adding target FileTarget(Name=ownFile-web)
+2023-10-04 16:45:59.7850 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-10-30 15:09:53.2647 Info Message Template Auto Format enabled
+2023-10-30 15:09:53.2900 Info Loading assembly: NLog.Web.AspNetCore
+2023-10-30 15:09:53.3708 Info Adding target FileTarget(Name=allfile)
+2023-10-30 15:09:53.3708 Info Adding target FileTarget(Name=ownFile-web)
+2023-10-30 15:09:53.3954 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-10-30 15:11:08.5553 Info Message Template Auto Format enabled
+2023-10-30 15:11:08.6015 Info Loading assembly: NLog.Web.AspNetCore
+2023-10-30 15:11:08.6566 Info Adding target FileTarget(Name=allfile)
+2023-10-30 15:11:08.6566 Info Adding target FileTarget(Name=ownFile-web)
+2023-10-30 15:11:08.6760 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-10-30 15:13:41.9467 Info Message Template Auto Format enabled
+2023-10-30 15:13:41.9717 Info Loading assembly: NLog.Web.AspNetCore
+2023-10-30 15:13:42.0438 Info Adding target FileTarget(Name=allfile)
+2023-10-30 15:13:42.0438 Info Adding target FileTarget(Name=ownFile-web)
+2023-10-30 15:13:42.0663 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-10-30 15:15:01.4231 Info Message Template Auto Format enabled
+2023-10-30 15:15:01.4231 Info Loading assembly: NLog.Web.AspNetCore
+2023-10-30 15:15:01.5035 Info Adding target FileTarget(Name=allfile)
+2023-10-30 15:15:01.5035 Info Adding target FileTarget(Name=ownFile-web)
+2023-10-30 15:15:01.5388 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-10-30 15:16:03.4714 Info Message Template Auto Format enabled
+2023-10-30 15:16:03.5049 Info Loading assembly: NLog.Web.AspNetCore
+2023-10-30 15:16:03.5642 Info Adding target FileTarget(Name=allfile)
+2023-10-30 15:16:03.5642 Info Adding target FileTarget(Name=ownFile-web)
+2023-10-30 15:16:03.5858 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-10-30 15:18:12.5055 Info Message Template Auto Format enabled
+2023-10-30 15:18:12.5247 Info Loading assembly: NLog.Web.AspNetCore
+2023-10-30 15:18:12.5914 Info Adding target FileTarget(Name=allfile)
+2023-10-30 15:18:12.5914 Info Adding target FileTarget(Name=ownFile-web)
+2023-10-30 15:18:12.6113 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-10-30 15:19:00.0950 Info Message Template Auto Format enabled
+2023-10-30 15:19:00.1322 Info Loading assembly: NLog.Web.AspNetCore
+2023-10-30 15:19:00.2034 Info Adding target FileTarget(Name=allfile)
+2023-10-30 15:19:00.2034 Info Adding target FileTarget(Name=ownFile-web)
+2023-10-30 15:19:00.2377 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-10-30 15:20:48.8843 Info Message Template Auto Format enabled
+2023-10-30 15:20:48.9107 Info Loading assembly: NLog.Web.AspNetCore
+2023-10-30 15:20:48.9929 Info Adding target FileTarget(Name=allfile)
+2023-10-30 15:20:48.9929 Info Adding target FileTarget(Name=ownFile-web)
+2023-10-30 15:20:49.0243 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-10-30 15:24:41.2447 Info Message Template Auto Format enabled
+2023-10-30 15:24:41.2617 Info Loading assembly: NLog.Web.AspNetCore
+2023-10-30 15:24:41.3718 Info Adding target FileTarget(Name=allfile)
+2023-10-30 15:24:41.3718 Info Adding target FileTarget(Name=ownFile-web)
+2023-10-30 15:24:41.4049 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-10-30 17:01:12.5997 Info Message Template Auto Format enabled
+2023-10-30 17:01:12.6397 Info Loading assembly: NLog.Web.AspNetCore
+2023-10-30 17:01:12.8113 Info Adding target FileTarget(Name=allfile)
+2023-10-30 17:01:12.8130 Info Adding target FileTarget(Name=ownFile-web)
+2023-10-30 17:01:12.8595 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-11-01 09:40:15.5557 Info Message Template Auto Format enabled
+2023-11-01 09:40:15.5919 Info Loading assembly: NLog.Web.AspNetCore
+2023-11-01 09:40:15.7257 Info Adding target FileTarget(Name=allfile)
+2023-11-01 09:40:15.7257 Info Adding target FileTarget(Name=ownFile-web)
+2023-11-01 09:40:15.7628 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-11-01 09:44:44.8173 Info Message Template Auto Format enabled
+2023-11-01 09:44:44.8464 Info Loading assembly: NLog.Web.AspNetCore
+2023-11-01 09:44:45.0449 Info Adding target FileTarget(Name=allfile)
+2023-11-01 09:44:45.0487 Info Adding target FileTarget(Name=ownFile-web)
+2023-11-01 09:44:45.1137 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-11-01 09:45:43.6958 Info Message Template Auto Format enabled
+2023-11-01 09:45:43.7247 Info Loading assembly: NLog.Web.AspNetCore
+2023-11-01 09:45:43.8295 Info Adding target FileTarget(Name=allfile)
+2023-11-01 09:45:43.8295 Info Adding target FileTarget(Name=ownFile-web)
+2023-11-01 09:45:43.8710 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-11-01 09:46:56.2699 Info Message Template Auto Format enabled
+2023-11-01 09:46:56.2942 Info Loading assembly: NLog.Web.AspNetCore
+2023-11-01 09:46:56.3904 Info Adding target FileTarget(Name=allfile)
+2023-11-01 09:46:56.3904 Info Adding target FileTarget(Name=ownFile-web)
+2023-11-01 09:46:56.4220 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-11-01 09:47:32.4529 Info Message Template Auto Format enabled
+2023-11-01 09:47:32.4791 Info Loading assembly: NLog.Web.AspNetCore
+2023-11-01 09:47:32.5965 Info Adding target FileTarget(Name=allfile)
+2023-11-01 09:47:32.5965 Info Adding target FileTarget(Name=ownFile-web)
+2023-11-01 09:47:32.6441 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-11-01 09:48:33.9053 Info Message Template Auto Format enabled
+2023-11-01 09:48:33.9524 Info Loading assembly: NLog.Web.AspNetCore
+2023-11-01 09:48:34.1000 Info Adding target FileTarget(Name=allfile)
+2023-11-01 09:48:34.1000 Info Adding target FileTarget(Name=ownFile-web)
+2023-11-01 09:48:34.1464 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-11-01 09:51:21.7806 Info Message Template Auto Format enabled
+2023-11-01 09:51:21.8157 Info Loading assembly: NLog.Web.AspNetCore
+2023-11-01 09:51:21.9482 Info Adding target FileTarget(Name=allfile)
+2023-11-01 09:51:21.9482 Info Adding target FileTarget(Name=ownFile-web)
+2023-11-01 09:51:22.0044 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-11-01 09:52:28.3177 Info Message Template Auto Format enabled
+2023-11-01 09:52:28.3388 Info Loading assembly: NLog.Web.AspNetCore
+2023-11-01 09:52:28.4551 Info Adding target FileTarget(Name=allfile)
+2023-11-01 09:52:28.4551 Info Adding target FileTarget(Name=ownFile-web)
+2023-11-01 09:52:28.5085 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config
+2023-11-01 09:54:13.7787 Info Message Template Auto Format enabled
+2023-11-01 09:54:13.8088 Info Loading assembly: NLog.Web.AspNetCore
+2023-11-01 09:54:14.0043 Info Adding target FileTarget(Name=allfile)
+2023-11-01 09:54:14.0043 Info Adding target FileTarget(Name=ownFile-web)
+2023-11-01 09:54:14.0876 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=E:\Viet Ba\VietBaIT.ChuKySo\trunk\VietBaIT.ChuKySo.Api\bin\Release\netcoreapp3.1\nlog.config

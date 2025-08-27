@@ -595,7 +595,6 @@ namespace VNS.HIS.UI.DANHMUC
                 .Set(DmucDichvucl.Columns.TinhthetichTheochitieu).EqualTo(Utility.Bool2byte( chkTinhthetichtheochitieu.Checked))
                 .Set(DmucDichvucl.Columns.CoSosanh).EqualTo(Utility.Bool2byte( chkCososanh.Checked))
                 .Set(DmucDichvucl.Columns.LaDvuKiemnghiem).EqualTo(Utility.Bool2byte(chkKiemnghiem.Checked))
-                .Set(DmucDichvucl.Columns.LaDvuKiemnghiem).EqualTo(Utility.Bool2byte(chkKiemnghiem.Checked))
                 //.Set(DmucDichvucl.Columns.NhomInCls).EqualTo(getNhominCLS(cboNhomin.SelectedIndex))
                 .Set(DmucDichvucl.Columns.NhomInCls).EqualTo(Utility.sDbnull(cboNhomin.SelectedValue,"ALL"))
                 .Set(DmucDichvucl.Columns.CdhaTenphieu).EqualTo(Utility.sDbnull(txttenphieutrakqCDHA.Text))

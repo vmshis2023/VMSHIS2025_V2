@@ -468,7 +468,7 @@ namespace VNS.HIS.UI.NOITRU
            
         }
 
-        private void AutoCompleteTextbox_Congkham1__OnGridSelectionChanged(int id_congkham, string ma_congkham, string ten_congkham, string ten_phongkham)
+        private void AutoCompleteTextbox_Congkham1__OnGridSelectionChanged(int Loai, int id_congkham, List<int> lstSelectedID, List<int> lstLoai, string ma_congkham, string ten_congkham, string ten_phongkham)
         {
         }
 

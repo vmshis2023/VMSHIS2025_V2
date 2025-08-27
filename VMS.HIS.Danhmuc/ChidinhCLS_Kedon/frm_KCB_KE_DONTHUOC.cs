@@ -407,7 +407,7 @@ namespace VNS.HIS.UI.NGOAITRU
                 if (objDKho == null)
                 {
                     setMsg(lblMsg, "Bạn cần chọn kho thuốc trước khi chọn thuốc kê đơn", true);
-                    cboStock.Focus();
+                    cmd_khokedon.Focus();
                     return;
                 }
                 else if (Utility.Int32Dbnull(txtDrugID.Text) < 0)
@@ -517,7 +517,7 @@ namespace VNS.HIS.UI.NGOAITRU
                 //if (Utility.Int32Dbnull(objDKho.KtraTon) == 1)//230709 Bỏ để luôn kiểm tra tồn
                 //{
                 //Lấy số lượng tồn của thuốc trong kho. truyền tham số id_thuockho=-1 để lấy tất cả thuốc trong kho theo id thuốc+ id kho từ các lần nhập, các lô khác nhau
-                decimal num = CommonLoadDuoc.SoLuongTonTrongKho(-1L, Utility.Int32Dbnull(cboStock.SelectedValue), Utility.Int32Dbnull(txtDrugID.Text, -1), -1,
+                decimal num = CommonLoadDuoc.SoLuongTonTrongKho(-1L, Utility.Int32Dbnull(objDKho.IdKho), Utility.Int32Dbnull(txtDrugID.Text, -1), -1,
                     Utility.Int32Dbnull(THU_VIEN_CHUNG.Laygiatrithamsohethong("KIEMTRATHUOC_CHOXACNHAN", "1", false), 1), noitru);
                 log.Trace("1. Lay xong so luong ton kho ke don");
                 txtTonKho.Text = num.ToString();
@@ -552,7 +552,7 @@ namespace VNS.HIS.UI.NGOAITRU
                 //{
                 DataTable listdata =
                     new XuatThuoc().GetObjThuocKhoCollection(
-                        Utility.Int32Dbnull(cboStock.SelectedValue, 0),
+                        Utility.Int32Dbnull(objDKho.IdKho, 0),
                         Utility.Int32Dbnull(txtDrugID.Text, -1),
                         txtdrug.GridView ? id_thuockho : txtdrug.id_thuockho,
                         (decimal)Utility.DecimaltoDbnull(txtSoluong.Text, 0),
@@ -651,8 +651,8 @@ namespace VNS.HIS.UI.NGOAITRU
                                 thuockho[TThuockho.Columns.NgayHethan];
                             row[KcbDonthuocChitiet.Columns.NgayNhap] = thuockho[TThuockho.Columns.NgayNhap];
                             row[KcbDonthuocChitiet.Columns.IdKho] =
-                                Utility.Int32Dbnull(cboStock.SelectedValue, -1);
-                            row[TDmucKho.Columns.TenKho] = Utility.sDbnull(cboStock.Text, -1);
+                                Utility.Int32Dbnull(objDKho.IdKho, -1);
+                            row[TDmucKho.Columns.TenKho] = Utility.sDbnull(cmd_khokedon.Text, -1);
                             row[KcbDonthuocChitiet.Columns.DonviTinh] = txtDonViTinh.Text;
                             row[DmucThuoc.Columns.MaHoatchat] = txtBietduoc.Text;
                             row[KcbDonthuocChitiet.Columns.ChidanThem] = txtChiDanThem.Text;
@@ -723,7 +723,7 @@ namespace VNS.HIS.UI.NGOAITRU
                                         ngay_nhaton = ngay_kedon.AddDays(songaynhaton);
                                 }
                             }
-                            THU_VIEN_CHUNG.UpdateKeTam(id_donthuocchitiet, id_donthuoc, GUID, privateguid, IdThuockho, objThuoc.IdThuoc, Utility.Int16Dbnull(cboStock.SelectedValue), tongsoluong, (byte)LoaiTamKe.KEDONTHUOC,
+                            THU_VIEN_CHUNG.UpdateKeTam(id_donthuocchitiet, id_donthuoc, GUID, privateguid, IdThuockho, objThuoc.IdThuoc, Utility.Int16Dbnull(objDKho.IdKho), tongsoluong, (byte)LoaiTamKe.KEDONTHUOC,
                                 txtPatientCode.Text, Utility.Int32Dbnull(txtPatientID.Text), noitru,ngay_kedon,ngay_nhaton, "Thêm mới thuốc");
                         }
                         UpdateSoluongThuoc(objThuoc.IdThuoc);
@@ -747,7 +747,7 @@ namespace VNS.HIS.UI.NGOAITRU
 
                 //}
                 //}
-                ClearControl(new List<Control>() { txtKieuthuocVT, cboStock, cboKieuKedonthuocVT });
+                ClearControl(new List<Control>() { txtKieuthuocVT, cmd_khokedon, cboKieuKedonthuocVT });
                 this.txtdrug.Focus();
                 this.txtdrug.SelectAll();
                 m_dtDanhmucthuoc.DefaultView.RowFilter = "1=2";
@@ -772,7 +772,7 @@ namespace VNS.HIS.UI.NGOAITRU
         }
         void ModifyUpDownButton()
         {
-            cboStock.Enabled = grdPresDetail.RowCount <= 0;
+            //cmd_khokedon.Enabled = grdPresDetail.RowCount <= 0;
             cboKieuKedonthuocVT.Enabled = grdPresDetail.RowCount <= 0;
             bool canDown = Utility.isValidGrid(grdPresDetail) && grdPresDetail.RowCount > 1 && grdPresDetail.CurrentRow.Position < grdPresDetail.RowCount - 1;
             bool canUp = Utility.isValidGrid(grdPresDetail) && grdPresDetail.RowCount > 1 && grdPresDetail.CurrentRow.Position > 0;
@@ -795,7 +795,7 @@ namespace VNS.HIS.UI.NGOAITRU
                 setMsg(lblMsg, "", false);
                 //if (Utility.Int32Dbnull(objDKho.KtraTon) == 1)
                 //{
-                    decimal sluongton = CommonLoadDuoc.SoLuongTonTrongKho(-1L, Utility.Int32Dbnull(cboStock.SelectedValue),
+                    decimal sluongton = CommonLoadDuoc.SoLuongTonTrongKho(-1L, Utility.Int32Dbnull(objDKho.IdKho),
                         id_thuoc, id_thuockho,
                         Utility.Int32Dbnull(
                             THU_VIEN_CHUNG.Laygiatrithamsohethong("KIEMTRATHUOC_CHOXACNHAN", "1", false), 1),
@@ -814,7 +814,7 @@ namespace VNS.HIS.UI.NGOAITRU
                     }
                 //}
                 DataTable listdata =
-                    new XuatThuoc().GetObjThuocKhoCollection(Utility.Int32Dbnull(cboStock.SelectedValue, 0), id_thuoc,
+                    new XuatThuoc().GetObjThuocKhoCollection(Utility.Int32Dbnull(objDKho.IdKho, 0), id_thuoc,
                         id_thuockho, Soluongthem, Utility.ByteDbnull(objLuotkham.IdLoaidoituongKcb.Value, 0),
                         Utility.ByteDbnull(objLuotkham.DungTuyen.Value, 0), (byte) noitru);
                 decimal soluongke = Soluongthem;
@@ -882,7 +882,7 @@ namespace VNS.HIS.UI.NGOAITRU
                                         ngay_nhaton = ngay_kedon.AddDays(songaynhaton);
                                 }
                             }
-                            THU_VIEN_CHUNG.UpdateKeTam(Utility.Int32Dbnull(rowArray[0][KcbDonthuocChitiet.Columns.IdChitietdonthuoc]), Utility.Int32Dbnull(rowArray[0][KcbDonthuocChitiet.Columns.IdDonthuoc]), GUID, Utility.sDbnull(rowArray[0]["guid"]), IdThuockho, objThuoc.IdThuoc, Utility.Int16Dbnull(cboStock.SelectedValue), Utility.DecimaltoDbnull(moi), (byte)LoaiTamKe.KEDONTHUOC,
+                            THU_VIEN_CHUNG.UpdateKeTam(Utility.Int32Dbnull(rowArray[0][KcbDonthuocChitiet.Columns.IdChitietdonthuoc]), Utility.Int32Dbnull(rowArray[0][KcbDonthuocChitiet.Columns.IdDonthuoc]), GUID, Utility.sDbnull(rowArray[0]["guid"]), IdThuockho, objThuoc.IdThuoc, Utility.Int16Dbnull(objDKho.IdKho), Utility.DecimaltoDbnull(moi), (byte)LoaiTamKe.KEDONTHUOC,
                                        txtPatientCode.Text, Utility.Int32Dbnull(txtPatientID.Text), 0, ngay_kedon,ngay_nhaton, "Cập nhật lại số lượng cho chi tiết cũ(đã kê đơn)");
 
                                 ////Dùng bảng tạm kê để lưu trữ
@@ -945,8 +945,8 @@ namespace VNS.HIS.UI.NGOAITRU
                             row["sNgay_nhap"] = Utility.sDbnull(thuockho["sNgay_nhap"], "");
                             row[KcbDonthuocChitiet.Columns.NgayHethan] = thuockho[TThuockho.Columns.NgayHethan];
                             row[KcbDonthuocChitiet.Columns.NgayNhap] = thuockho[TThuockho.Columns.NgayNhap];
-                            row[KcbDonthuocChitiet.Columns.IdKho] = Utility.Int32Dbnull(cboStock.SelectedValue, -1);
-                            row[TDmucKho.Columns.TenKho] = Utility.sDbnull(cboStock.Text, -1);
+                            row[KcbDonthuocChitiet.Columns.IdKho] = Utility.Int32Dbnull(objDKho.IdKho, -1);
+                            row[TDmucKho.Columns.TenKho] = Utility.sDbnull(objDKho.TenKho, -1);
                             row[KcbDonthuocChitiet.Columns.DonviTinh] = donviTinh;
                             row[DmucThuoc.Columns.MaHoatchat] = hoatchat;
                             row[KcbDonthuocChitiet.Columns.ChidanThem] = chidanThem;
@@ -989,7 +989,7 @@ namespace VNS.HIS.UI.NGOAITRU
                                     }
                                 }
                                 //Dùng bảng tạm kê để lưu trữ
-                                THU_VIEN_CHUNG.UpdateKeTam(-1, -1, GUID,privateguid, IdThuockho, objThuoc.IdThuoc, Utility.Int16Dbnull(cboStock.SelectedValue), Utility.DecimaltoDbnull(_soluong), (byte)LoaiTamKe.KEDONTHUOC,
+                                THU_VIEN_CHUNG.UpdateKeTam(-1, -1, GUID,privateguid, IdThuockho, objThuoc.IdThuoc, Utility.Int16Dbnull(objDKho.IdKho), Utility.DecimaltoDbnull(_soluong), (byte)LoaiTamKe.KEDONTHUOC,
                                        txtPatientCode.Text, Utility.Int32Dbnull(txtPatientID.Text), 0, ngay_kedon,ngay_nhaton, "Cập nhật số lượng với id thuốc kho mới");
                             }
                         }
@@ -1012,7 +1012,7 @@ namespace VNS.HIS.UI.NGOAITRU
                 //PerformAction(list2.ToArray());
                 //Utility.GotoNewRowJanus(grdPresDetail, KcbDonthuocChitiet.Columns.IdThuoc, txtDrugID.Text);
                 //UpdateDataWhenChanged();
-                ClearControl(new List<Control>() { txtKieuthuocVT, cboStock ,cboKieuKedonthuocVT});
+                ClearControl(new List<Control>() { txtKieuthuocVT, cmd_khokedon ,cboKieuKedonthuocVT});
                 txtdrug.Focus();
                 txtdrug.SelectAll();
                 m_dtDanhmucthuoc.DefaultView.RowFilter = "1=2";
@@ -1239,12 +1239,14 @@ namespace VNS.HIS.UI.NGOAITRU
         {
             try
             {
-                if ((blnHasLoaded && (cboStock.Items.Count > 0)) &&
-                    ((cboStock.SelectedValue == null) || (cboStock.SelectedValue.ToString() != "-1")))
+                if ((blnHasLoaded && (cmd_khokedon.Items.Count > 0)) &&
+                    ((cmd_khokedon.SelectedValue == null) || (cmd_khokedon.SelectedValue.ToString() != "-1")))
                 {
-                   
-                    int num = Utility.Int32Dbnull(cboStock.SelectedValue, -1);
-                    if ((num > 0) && ((cboStock.Items.Count > 0)))
+                    txtdrug.SetId(-1);
+                    txtDrugID.Text = "-1";
+                    txtdrug.RaiseEnterEvents();
+                    int num = Utility.Int32Dbnull(cmd_khokedon.SelectedValue, -1);
+                    if ((num > 0) && ((cmd_khokedon.Items.Count > 0)))
                     {
                         AutoSaveKhoID();
                         //if (objLuotkham.DungTuyen != null)
@@ -1358,19 +1360,19 @@ namespace VNS.HIS.UI.NGOAITRU
                 if(objDKho!=null && objDKho.LoaiBnhan=="NOITRU" && noitru==0)
                 {
                     Utility.ShowMsg("Bạn đang kê thuốc ngoại trú nên cần chọn đúng kho của ngoại trú");
-                    cboStock.Focus();
+                    cmd_khokedon.Focus();
                     return;
                 }
                 else if (objDKho != null && objDKho.LoaiBnhan == "NGOAITRU" && noitru == 1)
                 {
                     Utility.ShowMsg("Bạn đang kê thuốc nội trú nên cần chọn đúng kho của nội trú");
-                    cboStock.Focus();
+                    cmd_khokedon.Focus();
                     return;
                 }
                 if (globalVariables.KHOKEDON <= 0)
                 {
                     Utility.ShowMsg("Bạn cần chọn kho trước khi kê đơn");
-                    cboStock.Focus();
+                    cmd_khokedon.Focus();
                     return;
                 }
                 if (Utility.Int32Dbnull(txtBacsi.MyID, -1) <= 0)
@@ -2313,8 +2315,8 @@ namespace VNS.HIS.UI.NGOAITRU
         {
             try
             {
-                globalVariables.KHOKEDON = Utility.Int32Dbnull(cboStock.SelectedValue, -1);
-                string khokedon = Utility.sDbnull(cboStock.SelectedValue, "-1");
+                globalVariables.KHOKEDON = Utility.Int32Dbnull(cmd_khokedon.SelectedValue, -1);
+                string khokedon = Utility.sDbnull(cmd_khokedon.SelectedValue, "-1");
                 if (noitru==1)
                 {
                     if (KIEU_THUOC_VT == "THUOC")
@@ -2471,7 +2473,7 @@ namespace VNS.HIS.UI.NGOAITRU
                 }
                 if (e.KeyCode == Keys.F5)
                 {
-                    cboStock_SelectedIndexChanged(cboStock, new EventArgs());
+                    cboStock_SelectedIndexChanged(cmd_khokedon, new EventArgs());
                 }
                 if (e.KeyCode == Keys.Escape)
                 {
@@ -2520,19 +2522,19 @@ namespace VNS.HIS.UI.NGOAITRU
             }
             if (dtStockList.Select(TDmucKho.Columns.IdKho + "= " + globalVariables.KHOKEDON).Length > 0)
             {
-                cboStock.SelectedIndex = Utility.GetSelectedIndex(cboStock, globalVariables.KHOKEDON.ToString());
-                cboStock_SelectedIndexChanged(cboStock, new EventArgs());
+                cmd_khokedon.SelectedIndex = Utility.GetSelectedIndex(cmd_khokedon, globalVariables.KHOKEDON.ToString());
+                cboStock_SelectedIndexChanged(cmd_khokedon, new EventArgs());
             }
             else
             {
-                cboStock.SelectedIndex = -1;
+                cmd_khokedon.SelectedIndex = -1;
             }
-            if (cboStock.SelectedIndex < 0 && dtStockList.Rows.Count == 1)
+            if (cmd_khokedon.SelectedIndex < 0 && dtStockList.Rows.Count == 1)
             {
-                cboStock.SelectedIndex = 0;
-                cboStock_SelectedIndexChanged(cboStock, new EventArgs());
+                cmd_khokedon.SelectedIndex = 0;
+                cboStock_SelectedIndexChanged(cmd_khokedon, new EventArgs());
             }
-            if (cboStock.Items.Count == 0)
+            if (cmd_khokedon.Items.Count == 0)
             {
                 Utility.ShowMsg(string.Format("Chưa có kho " + THU_VIEN_CHUNG.laytenthuoc_vattu(KIEU_THUOC_VT) + " để kê đơn. Đề nghị kiểm tra phân quyền kho cho khoa"));
             }
@@ -2760,7 +2762,7 @@ namespace VNS.HIS.UI.NGOAITRU
                         }
                     }
                 }
-                ClearControl(new List<Control>() { txtKieuthuocVT, cboStock });
+                ClearControl(new List<Control>() { txtKieuthuocVT, cmd_khokedon });
                 prgBar.SendToBack();
                 prgBar.Visible = false;
             }
@@ -3328,7 +3330,7 @@ namespace VNS.HIS.UI.NGOAITRU
                         //}
                     }
                 }
-                DataBinding.BindDataCombobox(cboStock, dtStockList, TDmucKho.Columns.IdKho, TDmucKho.Columns.TenKho);
+                DataBinding.BindDataCombobox(cmd_khokedon, dtStockList, TDmucKho.Columns.IdKho, TDmucKho.Columns.TenKho);
                
             }
             catch (Exception ex)
@@ -3395,8 +3397,8 @@ namespace VNS.HIS.UI.NGOAITRU
                         }
                     }
                 }
-                DataBinding.BindDataCombobox(cboStock, dtStockList, TDmucKho.Columns.IdKho, TDmucKho.Columns.TenKho);
-                cboStock.SelectedIndex = Utility.GetSelectedIndex(cboStock,
+                DataBinding.BindDataCombobox(cmd_khokedon, dtStockList, TDmucKho.Columns.IdKho, TDmucKho.Columns.TenKho);
+                cmd_khokedon.SelectedIndex = Utility.GetSelectedIndex(cmd_khokedon,
                     PropertyLib._ThamKhamProperties.IDKho.ToString());
             }
             catch (Exception ex)
@@ -3699,7 +3701,7 @@ namespace VNS.HIS.UI.NGOAITRU
                                         ngay_nhaton = ngay_kedon.AddDays(songaynhaton);
                                 }
                             }
-                            THU_VIEN_CHUNG.UpdateKeTam(_IdChitietdonthuoc, _IdDonthuoc, GUID, privateguid, _IdThuockho, idThuoc, Utility.Int16Dbnull(cboStock.SelectedValue), Utility.DecimaltoDbnull(sluong_moi), (byte)LoaiTamKe.KEDONTHUOC,
+                            THU_VIEN_CHUNG.UpdateKeTam(_IdChitietdonthuoc, _IdDonthuoc, GUID, privateguid, _IdThuockho, idThuoc, Utility.Int16Dbnull(objDKho.IdKho), Utility.DecimaltoDbnull(sluong_moi), (byte)LoaiTamKe.KEDONTHUOC,
                                txtPatientCode.Text, Utility.Int32Dbnull(txtPatientID.Text), 0, ngay_kedon,ngay_nhaton, string.Format("Hiệu chỉnh đơn thuốc từ số lượng {0} thành số lượng {1}", sluong_cu.ToString(), sluong_moi.ToString()));
                             if (objChitiet != null)
                             {
@@ -3862,7 +3864,7 @@ namespace VNS.HIS.UI.NGOAITRU
             cmdPrintPres.Click += cmdPrintPres_Click;
             cmdAddDetail.Click += cmdAddDetail_Click;
             cmdCauHinh.Click += cmdCauHinh_Click;
-            cboStock.SelectedIndexChanged += cboStock_SelectedIndexChanged;
+            cmd_khokedon.SelectedIndexChanged += cboStock_SelectedIndexChanged;
             txtdrug._OnGridSelectionChanged += txtdrug__OnGridSelectionChanged;
             cboPrintPreview.SelectedIndexChanged += cboPrintPreview_SelectedIndexChanged;
             cboA4.SelectedIndexChanged += cboA4_SelectedIndexChanged;
@@ -3966,7 +3968,7 @@ namespace VNS.HIS.UI.NGOAITRU
                                         txtDrugID.Text = idThuoc.ToString();
                                         txtSurcharge.Text = row2["PHU_THU"].ToString();
                                         txtDrug_Name.Text = row2[DmucThuoc.Columns.TenThuoc].ToString();
-                                        //txtDonViTinh.Text = row[DmucDonthuocmauChitiet.Columns.DonviTinh].ToString();
+                                        txtDonViTinh.Text = row["ten_donvitinh"].ToString();
                                         txtSoluong.Text = row[DmucDonthuocmauChitiet.Columns.SoLuong].ToString();
                                         //txtsang.Text = row[DmucDonthuocmauChitiet.Columns.Sang].ToString();
                                         //txttrua.Text = row[DmucDonthuocmauChitiet.Columns.Trua].ToString();
@@ -3992,7 +3994,7 @@ namespace VNS.HIS.UI.NGOAITRU
                         }
                     
                 }
-                ClearControl(new List<Control>() { txtKieuthuocVT, cboStock });
+                ClearControl(new List<Control>() { txtKieuthuocVT, cmd_khokedon });
                 prgBar.SendToBack();
                 prgBar.Visible = false;
             }
@@ -4348,7 +4350,7 @@ namespace VNS.HIS.UI.NGOAITRU
             if (globalVariables.KHOKEDON <= 0)
             {
                 Utility.ShowMsg("Bạn cần chọn kho trước khi kê đơn");
-                cboStock.Focus();
+                cmd_khokedon.Focus();
                 return;
             }
             if (Utility.Int32Dbnull(txtdrug.MyID, -1) <= 0) return;
@@ -4655,7 +4657,7 @@ namespace VNS.HIS.UI.NGOAITRU
         }
         private void PrintPres(int presID, string forcedTitle)
         {
-            DataTable v_dtDataOrg = _kedonthuoc.LaythongtinDonthuoc_In(presID);
+            DataTable v_dtDataOrg = _kedonthuoc.LaythongtinDonthuoc_In(objLuotkham.IdBenhnhan,objLuotkham.MaLuotkham,noitru, presID);
 
             DataRow[] arrDR = v_dtDataOrg.Select("tuvan_them=0");
             if (arrDR.Length <= 0)
@@ -4876,7 +4878,7 @@ namespace VNS.HIS.UI.NGOAITRU
         }
         private void PrintPres(int PresID)
         {
-            DataTable dataTable = _kedonthuoc.LaythongtinDonthuoc_In(PresID);
+            DataTable dataTable = _kedonthuoc.LaythongtinDonthuoc_In(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, noitru, PresID);
             if (dataTable.Rows.Count <= 0)
             {
                 Utility.ShowMsg(
@@ -5196,7 +5198,7 @@ namespace VNS.HIS.UI.NGOAITRU
             if (globalVariables.KHOKEDON <= 0)
             {
                 Utility.ShowMsg("Bạn cần chọn kho trước khi kê đơn");
-                cboStock.Focus();
+                cmd_khokedon.Focus();
                 return;
             }
             this.id_thuockho = id_thuockho;
@@ -5256,7 +5258,7 @@ namespace VNS.HIS.UI.NGOAITRU
                 if(globalVariables.KHOKEDON<=0 )
                 {
                     Utility.ShowMsg("Bạn cần chọn kho trước khi kê đơn");
-                    cboStock.Focus();
+                    cmd_khokedon.Focus();
                     return;
                 }    
                 if (!_allowDrugChanged) return;
@@ -5293,7 +5295,7 @@ namespace VNS.HIS.UI.NGOAITRU
                 {
                     madoituong_gia = rowArray[0]["madoituong_gia"].ToString();
                     txtTonKho.Text =
-                        CommonLoadDuoc.SoLuongTonTrongKho(-1L, Utility.Int32Dbnull(cboStock.SelectedValue),
+                        CommonLoadDuoc.SoLuongTonTrongKho(-1L, Utility.Int32Dbnull(objDKho.IdKho),
                             Utility.Int32Dbnull(txtDrugID.Text, -1),
                             txtdrug.GridView
                                 ? id_thuockho
@@ -5802,7 +5804,7 @@ namespace VNS.HIS.UI.NGOAITRU
                 frm.txtPres_ID.Text = Utility.sDbnull(grdListDonThuocCu.GetValue(KcbDonthuoc.Columns.IdDonthuoc));
                 frm.txtYearBirth.Text = Utility.sDbnull(txtYearBirth.Text);
                 frm.txtMaBenhChinh.Text = Utility.sDbnull(grdListDonThuocCu.GetValue("mabenh_chinh"));
-                frm.idkhosaochep = Utility.Int16Dbnull(cboStock.SelectedValue, -1);
+                frm.idkhosaochep = Utility.Int16Dbnull(objDKho.IdKho, -1);
                 frm.id_kham = Utility.Int32Dbnull(id_kham,-1);
                 frm.m_dtDanhmucthuoc = m_dtDanhmucthuoc;
                 frm.grd_ICD = grd_ICD;
@@ -6098,6 +6100,11 @@ namespace VNS.HIS.UI.NGOAITRU
             {
                 Utility.CatchException(ex);
             }
+        }
+
+        private void mnuChuyenDinhmucVTTHvaodon_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

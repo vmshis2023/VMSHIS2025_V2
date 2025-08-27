@@ -191,19 +191,18 @@ namespace VMS.HIS.DAL
 				colvarGiaNhap.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarGiaNhap);
 				
-				TableSchema.TableColumn colvarGiaBan = new TableSchema.TableColumn(schema);
-				colvarGiaBan.ColumnName = "gia_ban";
-				colvarGiaBan.DataType = DbType.Decimal;
-				colvarGiaBan.MaxLength = 0;
-				colvarGiaBan.AutoIncrement = false;
-				colvarGiaBan.IsNullable = false;
-				colvarGiaBan.IsPrimaryKey = false;
-				colvarGiaBan.IsForeignKey = false;
-				colvarGiaBan.IsReadOnly = false;
-				
-						colvarGiaBan.DefaultSetting = @"((0))";
-				colvarGiaBan.ForeignKeyTableName = "";
-				schema.Columns.Add(colvarGiaBan);
+				TableSchema.TableColumn colvarDongiaTruocVAT = new TableSchema.TableColumn(schema);
+				colvarDongiaTruocVAT.ColumnName = "dongia_truocVAT";
+				colvarDongiaTruocVAT.DataType = DbType.Decimal;
+				colvarDongiaTruocVAT.MaxLength = 0;
+				colvarDongiaTruocVAT.AutoIncrement = false;
+				colvarDongiaTruocVAT.IsNullable = true;
+				colvarDongiaTruocVAT.IsPrimaryKey = false;
+				colvarDongiaTruocVAT.IsForeignKey = false;
+				colvarDongiaTruocVAT.IsReadOnly = false;
+				colvarDongiaTruocVAT.DefaultSetting = @"";
+				colvarDongiaTruocVAT.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarDongiaTruocVAT);
 				
 				TableSchema.TableColumn colvarDonGia = new TableSchema.TableColumn(schema);
 				colvarDonGia.ColumnName = "don_gia";
@@ -217,6 +216,20 @@ namespace VMS.HIS.DAL
 				colvarDonGia.DefaultSetting = @"";
 				colvarDonGia.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarDonGia);
+				
+				TableSchema.TableColumn colvarGiaBan = new TableSchema.TableColumn(schema);
+				colvarGiaBan.ColumnName = "gia_ban";
+				colvarGiaBan.DataType = DbType.Decimal;
+				colvarGiaBan.MaxLength = 0;
+				colvarGiaBan.AutoIncrement = false;
+				colvarGiaBan.IsNullable = false;
+				colvarGiaBan.IsPrimaryKey = false;
+				colvarGiaBan.IsForeignKey = false;
+				colvarGiaBan.IsReadOnly = false;
+				
+						colvarGiaBan.DefaultSetting = @"((0))";
+				colvarGiaBan.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarGiaBan);
 				
 				TableSchema.TableColumn colvarThangDu = new TableSchema.TableColumn(schema);
 				colvarThangDu.ColumnName = "thang_du";
@@ -571,12 +584,12 @@ namespace VMS.HIS.DAL
 			set { SetColumnValue(Columns.GiaNhap, value); }
 		}
 		  
-		[XmlAttribute("GiaBan")]
+		[XmlAttribute("DongiaTruocVAT")]
 		[Bindable(true)]
-		public decimal GiaBan 
+		public decimal? DongiaTruocVAT 
 		{
-			get { return GetColumnValue<decimal>(Columns.GiaBan); }
-			set { SetColumnValue(Columns.GiaBan, value); }
+			get { return GetColumnValue<decimal?>(Columns.DongiaTruocVAT); }
+			set { SetColumnValue(Columns.DongiaTruocVAT, value); }
 		}
 		  
 		[XmlAttribute("DonGia")]
@@ -585,6 +598,14 @@ namespace VMS.HIS.DAL
 		{
 			get { return GetColumnValue<decimal?>(Columns.DonGia); }
 			set { SetColumnValue(Columns.DonGia, value); }
+		}
+		  
+		[XmlAttribute("GiaBan")]
+		[Bindable(true)]
+		public decimal GiaBan 
+		{
+			get { return GetColumnValue<decimal>(Columns.GiaBan); }
+			set { SetColumnValue(Columns.GiaBan, value); }
 		}
 		  
 		[XmlAttribute("ThangDu")]
@@ -790,7 +811,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(long varIdPhieu,DateTime varNgayHethan,int varIdThuoc,decimal varGiaNhap,decimal varGiaBan,decimal? varDonGia,short varThangDu,decimal? varSoLuong,decimal? varSluongChia,string varSoLo,decimal? varChietKhau,decimal? varThanhTien,decimal? varVat,long? varIdThuockho,long? varIdChuyen,string varMaNhacungcap,string varMotaThem,string varKieuThuocvattu,byte? varCoBhyt,decimal? varGiaBhyt,decimal? varGiaBhytCu,decimal? varGiaPhuthuDungtuyen,decimal? varGiaPhuthuTraituyen,DateTime? varNgayNhap,string varSoDky,string varSoQdinhthau,long? varIdQdinh,long? varIdThau,long? varIdThauCt)
+		public static void Insert(long varIdPhieu,DateTime varNgayHethan,int varIdThuoc,decimal varGiaNhap,decimal? varDongiaTruocVAT,decimal? varDonGia,decimal varGiaBan,short varThangDu,decimal? varSoLuong,decimal? varSluongChia,string varSoLo,decimal? varChietKhau,decimal? varThanhTien,decimal? varVat,long? varIdThuockho,long? varIdChuyen,string varMaNhacungcap,string varMotaThem,string varKieuThuocvattu,byte? varCoBhyt,decimal? varGiaBhyt,decimal? varGiaBhytCu,decimal? varGiaPhuthuDungtuyen,decimal? varGiaPhuthuTraituyen,DateTime? varNgayNhap,string varSoDky,string varSoQdinhthau,long? varIdQdinh,long? varIdThau,long? varIdThauCt)
 		{
 			TPhieuNhapxuatthuocChitiet item = new TPhieuNhapxuatthuocChitiet();
 			
@@ -802,9 +823,11 @@ namespace VMS.HIS.DAL
 			
 			item.GiaNhap = varGiaNhap;
 			
-			item.GiaBan = varGiaBan;
+			item.DongiaTruocVAT = varDongiaTruocVAT;
 			
 			item.DonGia = varDonGia;
+			
+			item.GiaBan = varGiaBan;
 			
 			item.ThangDu = varThangDu;
 			
@@ -862,7 +885,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(long varIdPhieuchitiet,long varIdPhieu,DateTime varNgayHethan,int varIdThuoc,decimal varGiaNhap,decimal varGiaBan,decimal? varDonGia,short varThangDu,decimal? varSoLuong,decimal? varSluongChia,string varSoLo,decimal? varChietKhau,decimal? varThanhTien,decimal? varVat,long? varIdThuockho,long? varIdChuyen,string varMaNhacungcap,string varMotaThem,string varKieuThuocvattu,byte? varCoBhyt,decimal? varGiaBhyt,decimal? varGiaBhytCu,decimal? varGiaPhuthuDungtuyen,decimal? varGiaPhuthuTraituyen,DateTime? varNgayNhap,string varSoDky,string varSoQdinhthau,long? varIdQdinh,long? varIdThau,long? varIdThauCt)
+		public static void Update(long varIdPhieuchitiet,long varIdPhieu,DateTime varNgayHethan,int varIdThuoc,decimal varGiaNhap,decimal? varDongiaTruocVAT,decimal? varDonGia,decimal varGiaBan,short varThangDu,decimal? varSoLuong,decimal? varSluongChia,string varSoLo,decimal? varChietKhau,decimal? varThanhTien,decimal? varVat,long? varIdThuockho,long? varIdChuyen,string varMaNhacungcap,string varMotaThem,string varKieuThuocvattu,byte? varCoBhyt,decimal? varGiaBhyt,decimal? varGiaBhytCu,decimal? varGiaPhuthuDungtuyen,decimal? varGiaPhuthuTraituyen,DateTime? varNgayNhap,string varSoDky,string varSoQdinhthau,long? varIdQdinh,long? varIdThau,long? varIdThauCt)
 		{
 			TPhieuNhapxuatthuocChitiet item = new TPhieuNhapxuatthuocChitiet();
 			
@@ -876,9 +899,11 @@ namespace VMS.HIS.DAL
 			
 				item.GiaNhap = varGiaNhap;
 			
-				item.GiaBan = varGiaBan;
+				item.DongiaTruocVAT = varDongiaTruocVAT;
 			
 				item.DonGia = varDonGia;
+			
+				item.GiaBan = varGiaBan;
 			
 				item.ThangDu = varThangDu;
 			
@@ -974,7 +999,7 @@ namespace VMS.HIS.DAL
         
         
         
-        public static TableSchema.TableColumn GiaBanColumn
+        public static TableSchema.TableColumn DongiaTruocVATColumn
         {
             get { return Schema.Columns[5]; }
         }
@@ -988,163 +1013,170 @@ namespace VMS.HIS.DAL
         
         
         
-        public static TableSchema.TableColumn ThangDuColumn
+        public static TableSchema.TableColumn GiaBanColumn
         {
             get { return Schema.Columns[7]; }
         }
         
         
         
-        public static TableSchema.TableColumn SoLuongColumn
+        public static TableSchema.TableColumn ThangDuColumn
         {
             get { return Schema.Columns[8]; }
         }
         
         
         
-        public static TableSchema.TableColumn SluongChiaColumn
+        public static TableSchema.TableColumn SoLuongColumn
         {
             get { return Schema.Columns[9]; }
         }
         
         
         
-        public static TableSchema.TableColumn SoLoColumn
+        public static TableSchema.TableColumn SluongChiaColumn
         {
             get { return Schema.Columns[10]; }
         }
         
         
         
-        public static TableSchema.TableColumn ChietKhauColumn
+        public static TableSchema.TableColumn SoLoColumn
         {
             get { return Schema.Columns[11]; }
         }
         
         
         
-        public static TableSchema.TableColumn ThanhTienColumn
+        public static TableSchema.TableColumn ChietKhauColumn
         {
             get { return Schema.Columns[12]; }
         }
         
         
         
-        public static TableSchema.TableColumn VatColumn
+        public static TableSchema.TableColumn ThanhTienColumn
         {
             get { return Schema.Columns[13]; }
         }
         
         
         
-        public static TableSchema.TableColumn IdThuockhoColumn
+        public static TableSchema.TableColumn VatColumn
         {
             get { return Schema.Columns[14]; }
         }
         
         
         
-        public static TableSchema.TableColumn IdChuyenColumn
+        public static TableSchema.TableColumn IdThuockhoColumn
         {
             get { return Schema.Columns[15]; }
         }
         
         
         
-        public static TableSchema.TableColumn MaNhacungcapColumn
+        public static TableSchema.TableColumn IdChuyenColumn
         {
             get { return Schema.Columns[16]; }
         }
         
         
         
-        public static TableSchema.TableColumn MotaThemColumn
+        public static TableSchema.TableColumn MaNhacungcapColumn
         {
             get { return Schema.Columns[17]; }
         }
         
         
         
-        public static TableSchema.TableColumn KieuThuocvattuColumn
+        public static TableSchema.TableColumn MotaThemColumn
         {
             get { return Schema.Columns[18]; }
         }
         
         
         
-        public static TableSchema.TableColumn CoBhytColumn
+        public static TableSchema.TableColumn KieuThuocvattuColumn
         {
             get { return Schema.Columns[19]; }
         }
         
         
         
-        public static TableSchema.TableColumn GiaBhytColumn
+        public static TableSchema.TableColumn CoBhytColumn
         {
             get { return Schema.Columns[20]; }
         }
         
         
         
-        public static TableSchema.TableColumn GiaBhytCuColumn
+        public static TableSchema.TableColumn GiaBhytColumn
         {
             get { return Schema.Columns[21]; }
         }
         
         
         
-        public static TableSchema.TableColumn GiaPhuthuDungtuyenColumn
+        public static TableSchema.TableColumn GiaBhytCuColumn
         {
             get { return Schema.Columns[22]; }
         }
         
         
         
-        public static TableSchema.TableColumn GiaPhuthuTraituyenColumn
+        public static TableSchema.TableColumn GiaPhuthuDungtuyenColumn
         {
             get { return Schema.Columns[23]; }
         }
         
         
         
-        public static TableSchema.TableColumn NgayNhapColumn
+        public static TableSchema.TableColumn GiaPhuthuTraituyenColumn
         {
             get { return Schema.Columns[24]; }
         }
         
         
         
-        public static TableSchema.TableColumn SoDkyColumn
+        public static TableSchema.TableColumn NgayNhapColumn
         {
             get { return Schema.Columns[25]; }
         }
         
         
         
-        public static TableSchema.TableColumn SoQdinhthauColumn
+        public static TableSchema.TableColumn SoDkyColumn
         {
             get { return Schema.Columns[26]; }
         }
         
         
         
-        public static TableSchema.TableColumn IdQdinhColumn
+        public static TableSchema.TableColumn SoQdinhthauColumn
         {
             get { return Schema.Columns[27]; }
         }
         
         
         
-        public static TableSchema.TableColumn IdThauColumn
+        public static TableSchema.TableColumn IdQdinhColumn
         {
             get { return Schema.Columns[28]; }
         }
         
         
         
-        public static TableSchema.TableColumn IdThauCtColumn
+        public static TableSchema.TableColumn IdThauColumn
         {
             get { return Schema.Columns[29]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn IdThauCtColumn
+        {
+            get { return Schema.Columns[30]; }
         }
         
         
@@ -1158,8 +1190,9 @@ namespace VMS.HIS.DAL
 			 public static string NgayHethan = @"ngay_hethan";
 			 public static string IdThuoc = @"id_thuoc";
 			 public static string GiaNhap = @"gia_nhap";
-			 public static string GiaBan = @"gia_ban";
+			 public static string DongiaTruocVAT = @"dongia_truocVAT";
 			 public static string DonGia = @"don_gia";
+			 public static string GiaBan = @"gia_ban";
 			 public static string ThangDu = @"thang_du";
 			 public static string SoLuong = @"so_luong";
 			 public static string SluongChia = @"sluong_chia";

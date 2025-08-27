@@ -1160,6 +1160,111 @@ namespace VMS.HIS.DAL
 				colvarKhongbatbuoccoketqua.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarKhongbatbuoccoketqua);
 				
+				TableSchema.TableColumn colvarDongiaBh = new TableSchema.TableColumn(schema);
+				colvarDongiaBh.ColumnName = "dongia_BH";
+				colvarDongiaBh.DataType = DbType.Decimal;
+				colvarDongiaBh.MaxLength = 0;
+				colvarDongiaBh.AutoIncrement = false;
+				colvarDongiaBh.IsNullable = true;
+				colvarDongiaBh.IsPrimaryKey = false;
+				colvarDongiaBh.IsForeignKey = false;
+				colvarDongiaBh.IsReadOnly = false;
+				colvarDongiaBh.DefaultSetting = @"";
+				colvarDongiaBh.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarDongiaBh);
+				
+				TableSchema.TableColumn colvarDongiaYc = new TableSchema.TableColumn(schema);
+				colvarDongiaYc.ColumnName = "dongia_YC";
+				colvarDongiaYc.DataType = DbType.Decimal;
+				colvarDongiaYc.MaxLength = 0;
+				colvarDongiaYc.AutoIncrement = false;
+				colvarDongiaYc.IsNullable = true;
+				colvarDongiaYc.IsPrimaryKey = false;
+				colvarDongiaYc.IsForeignKey = false;
+				colvarDongiaYc.IsReadOnly = false;
+				colvarDongiaYc.DefaultSetting = @"";
+				colvarDongiaYc.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarDongiaYc);
+				
+				TableSchema.TableColumn colvarDongiaNg = new TableSchema.TableColumn(schema);
+				colvarDongiaNg.ColumnName = "dongia_NG";
+				colvarDongiaNg.DataType = DbType.Decimal;
+				colvarDongiaNg.MaxLength = 0;
+				colvarDongiaNg.AutoIncrement = false;
+				colvarDongiaNg.IsNullable = true;
+				colvarDongiaNg.IsPrimaryKey = false;
+				colvarDongiaNg.IsForeignKey = false;
+				colvarDongiaNg.IsReadOnly = false;
+				colvarDongiaNg.DefaultSetting = @"";
+				colvarDongiaNg.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarDongiaNg);
+				
+				TableSchema.TableColumn colvarDongiaNn = new TableSchema.TableColumn(schema);
+				colvarDongiaNn.ColumnName = "dongia_NN";
+				colvarDongiaNn.DataType = DbType.Decimal;
+				colvarDongiaNn.MaxLength = 0;
+				colvarDongiaNn.AutoIncrement = false;
+				colvarDongiaNn.IsNullable = true;
+				colvarDongiaNn.IsPrimaryKey = false;
+				colvarDongiaNn.IsForeignKey = false;
+				colvarDongiaNn.IsReadOnly = false;
+				colvarDongiaNn.DefaultSetting = @"";
+				colvarDongiaNn.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarDongiaNn);
+				
+				TableSchema.TableColumn colvarDongiaNnng = new TableSchema.TableColumn(schema);
+				colvarDongiaNnng.ColumnName = "dongia_NNNG";
+				colvarDongiaNnng.DataType = DbType.Decimal;
+				colvarDongiaNnng.MaxLength = 0;
+				colvarDongiaNnng.AutoIncrement = false;
+				colvarDongiaNnng.IsNullable = true;
+				colvarDongiaNnng.IsPrimaryKey = false;
+				colvarDongiaNnng.IsForeignKey = false;
+				colvarDongiaNnng.IsReadOnly = false;
+				colvarDongiaNnng.DefaultSetting = @"";
+				colvarDongiaNnng.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarDongiaNnng);
+				
+				TableSchema.TableColumn colvarDongiaTn = new TableSchema.TableColumn(schema);
+				colvarDongiaTn.ColumnName = "dongia_TN";
+				colvarDongiaTn.DataType = DbType.Decimal;
+				colvarDongiaTn.MaxLength = 0;
+				colvarDongiaTn.AutoIncrement = false;
+				colvarDongiaTn.IsNullable = true;
+				colvarDongiaTn.IsPrimaryKey = false;
+				colvarDongiaTn.IsForeignKey = false;
+				colvarDongiaTn.IsReadOnly = false;
+				colvarDongiaTn.DefaultSetting = @"";
+				colvarDongiaTn.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarDongiaTn);
+				
+				TableSchema.TableColumn colvarDongiaTnnn = new TableSchema.TableColumn(schema);
+				colvarDongiaTnnn.ColumnName = "dongia_TNNN";
+				colvarDongiaTnnn.DataType = DbType.Decimal;
+				colvarDongiaTnnn.MaxLength = 0;
+				colvarDongiaTnnn.AutoIncrement = false;
+				colvarDongiaTnnn.IsNullable = true;
+				colvarDongiaTnnn.IsPrimaryKey = false;
+				colvarDongiaTnnn.IsForeignKey = false;
+				colvarDongiaTnnn.IsReadOnly = false;
+				colvarDongiaTnnn.DefaultSetting = @"";
+				colvarDongiaTnnn.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarDongiaTnnn);
+				
+				TableSchema.TableColumn colvarTrongGoi = new TableSchema.TableColumn(schema);
+				colvarTrongGoi.ColumnName = "trong_goi";
+				colvarTrongGoi.DataType = DbType.Boolean;
+				colvarTrongGoi.MaxLength = 0;
+				colvarTrongGoi.AutoIncrement = false;
+				colvarTrongGoi.IsNullable = true;
+				colvarTrongGoi.IsPrimaryKey = false;
+				colvarTrongGoi.IsForeignKey = false;
+				colvarTrongGoi.IsReadOnly = false;
+				
+						colvarTrongGoi.DefaultSetting = @"((0))";
+				colvarTrongGoi.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarTrongGoi);
+				
 				BaseSchema = schema;
 				//add this schema to the provider
 				//so we can query it later
@@ -1801,6 +1906,70 @@ namespace VMS.HIS.DAL
 			get { return GetColumnValue<bool?>(Columns.Khongbatbuoccoketqua); }
 			set { SetColumnValue(Columns.Khongbatbuoccoketqua, value); }
 		}
+		  
+		[XmlAttribute("DongiaBh")]
+		[Bindable(true)]
+		public decimal? DongiaBh 
+		{
+			get { return GetColumnValue<decimal?>(Columns.DongiaBh); }
+			set { SetColumnValue(Columns.DongiaBh, value); }
+		}
+		  
+		[XmlAttribute("DongiaYc")]
+		[Bindable(true)]
+		public decimal? DongiaYc 
+		{
+			get { return GetColumnValue<decimal?>(Columns.DongiaYc); }
+			set { SetColumnValue(Columns.DongiaYc, value); }
+		}
+		  
+		[XmlAttribute("DongiaNg")]
+		[Bindable(true)]
+		public decimal? DongiaNg 
+		{
+			get { return GetColumnValue<decimal?>(Columns.DongiaNg); }
+			set { SetColumnValue(Columns.DongiaNg, value); }
+		}
+		  
+		[XmlAttribute("DongiaNn")]
+		[Bindable(true)]
+		public decimal? DongiaNn 
+		{
+			get { return GetColumnValue<decimal?>(Columns.DongiaNn); }
+			set { SetColumnValue(Columns.DongiaNn, value); }
+		}
+		  
+		[XmlAttribute("DongiaNnng")]
+		[Bindable(true)]
+		public decimal? DongiaNnng 
+		{
+			get { return GetColumnValue<decimal?>(Columns.DongiaNnng); }
+			set { SetColumnValue(Columns.DongiaNnng, value); }
+		}
+		  
+		[XmlAttribute("DongiaTn")]
+		[Bindable(true)]
+		public decimal? DongiaTn 
+		{
+			get { return GetColumnValue<decimal?>(Columns.DongiaTn); }
+			set { SetColumnValue(Columns.DongiaTn, value); }
+		}
+		  
+		[XmlAttribute("DongiaTnnn")]
+		[Bindable(true)]
+		public decimal? DongiaTnnn 
+		{
+			get { return GetColumnValue<decimal?>(Columns.DongiaTnnn); }
+			set { SetColumnValue(Columns.DongiaTnnn, value); }
+		}
+		  
+		[XmlAttribute("TrongGoi")]
+		[Bindable(true)]
+		public bool? TrongGoi 
+		{
+			get { return GetColumnValue<bool?>(Columns.TrongGoi); }
+			set { SetColumnValue(Columns.TrongGoi, value); }
+		}
 		
 		#endregion
 		
@@ -1821,7 +1990,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(string varMaChitietdichvu,string varMaChitietdichvuBhyt,string varMaQd,string varSttDmbhyt,string varTenChitietdichvu,string varTenChitietdichvuBhyt,short varIdDichvu,string varMaDonvitinh,string varBinhthuongNam,string varBinhthuongNu,byte? varTrangThai,byte? varHienThi,decimal? varDonGia,string varMotaThem,int? varSttHthi,short? varIdKhoaThuchien,short? varIdPhongThuchien,string varChiDan,string varNhomBaocao,DateTime? varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua,string varMaKhoathuchien,byte? varTuTuc,decimal? varGiaBhyt,decimal? varPhuthuDungtuyen,decimal? varPhuthuTraituyen,byte? varCoChitiet,int? varIdCha,string varBodypart,string varViewPosition,string varMauChuan,string varMauCanhan,byte? varLaChiphithem,int? varSoluongChitieu,string varMaPhuongphapthu,string varKihieuDinhtinhDat,string varIdCamchidinhchungphieu,byte? varSingleService,string varNhomInphoiBHYT,byte? varLaDvuKiemnghiem,string varLoaiPttt,string varPpVocam,DateTime? varNgayBatdau,DateTime? varNgayCongbo,DateTime? varNgayKetthuc,string varXmlMadichvu,string varXmlMachiso,string varXmlTenchiso,string varXmlMamay,string varDsachVungkhaosat,decimal? varGiaGoc,byte? varTinhChkhau,string varCachthucPttt,byte? varSongayChophepChidinhtiep,byte? varTnvChidinh,string varNhomInClsChitiet,byte? varLaDvuTieuhao,byte? varBhytNguonKhac,decimal? varTyleTtNguonkhac,decimal? varTyleHotro,string varNhomChiphi,string varMaQdinh,string varMaCongbo,string varLoaiBenhpham,string varQuyTrinh,string varCskcbCgkt,string varCskcbCls,int? varMaPttt,bool? varHiv,int? varViTriThDvkt,string varChuyenkhoa,string varMaKetnoi,string varCanhBao,decimal? varGiaCu,string varMaPhieuEmr,bool? varKhongbatbuoccoketqua)
+		public static void Insert(string varMaChitietdichvu,string varMaChitietdichvuBhyt,string varMaQd,string varSttDmbhyt,string varTenChitietdichvu,string varTenChitietdichvuBhyt,short varIdDichvu,string varMaDonvitinh,string varBinhthuongNam,string varBinhthuongNu,byte? varTrangThai,byte? varHienThi,decimal? varDonGia,string varMotaThem,int? varSttHthi,short? varIdKhoaThuchien,short? varIdPhongThuchien,string varChiDan,string varNhomBaocao,DateTime? varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua,string varMaKhoathuchien,byte? varTuTuc,decimal? varGiaBhyt,decimal? varPhuthuDungtuyen,decimal? varPhuthuTraituyen,byte? varCoChitiet,int? varIdCha,string varBodypart,string varViewPosition,string varMauChuan,string varMauCanhan,byte? varLaChiphithem,int? varSoluongChitieu,string varMaPhuongphapthu,string varKihieuDinhtinhDat,string varIdCamchidinhchungphieu,byte? varSingleService,string varNhomInphoiBHYT,byte? varLaDvuKiemnghiem,string varLoaiPttt,string varPpVocam,DateTime? varNgayBatdau,DateTime? varNgayCongbo,DateTime? varNgayKetthuc,string varXmlMadichvu,string varXmlMachiso,string varXmlTenchiso,string varXmlMamay,string varDsachVungkhaosat,decimal? varGiaGoc,byte? varTinhChkhau,string varCachthucPttt,byte? varSongayChophepChidinhtiep,byte? varTnvChidinh,string varNhomInClsChitiet,byte? varLaDvuTieuhao,byte? varBhytNguonKhac,decimal? varTyleTtNguonkhac,decimal? varTyleHotro,string varNhomChiphi,string varMaQdinh,string varMaCongbo,string varLoaiBenhpham,string varQuyTrinh,string varCskcbCgkt,string varCskcbCls,int? varMaPttt,bool? varHiv,int? varViTriThDvkt,string varChuyenkhoa,string varMaKetnoi,string varCanhBao,decimal? varGiaCu,string varMaPhieuEmr,bool? varKhongbatbuoccoketqua,decimal? varDongiaBh,decimal? varDongiaYc,decimal? varDongiaNg,decimal? varDongiaNn,decimal? varDongiaNnng,decimal? varDongiaTn,decimal? varDongiaTnnn,bool? varTrongGoi)
 		{
 			DmucDichvuclsChitiet item = new DmucDichvuclsChitiet();
 			
@@ -1981,6 +2150,22 @@ namespace VMS.HIS.DAL
 			
 			item.Khongbatbuoccoketqua = varKhongbatbuoccoketqua;
 			
+			item.DongiaBh = varDongiaBh;
+			
+			item.DongiaYc = varDongiaYc;
+			
+			item.DongiaNg = varDongiaNg;
+			
+			item.DongiaNn = varDongiaNn;
+			
+			item.DongiaNnng = varDongiaNnng;
+			
+			item.DongiaTn = varDongiaTn;
+			
+			item.DongiaTnnn = varDongiaTnnn;
+			
+			item.TrongGoi = varTrongGoi;
+			
 		
 			if (System.Web.HttpContext.Current != null)
 				item.Save(System.Web.HttpContext.Current.User.Identity.Name);
@@ -1991,7 +2176,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(int varIdChitietdichvu,string varMaChitietdichvu,string varMaChitietdichvuBhyt,string varMaQd,string varSttDmbhyt,string varTenChitietdichvu,string varTenChitietdichvuBhyt,short varIdDichvu,string varMaDonvitinh,string varBinhthuongNam,string varBinhthuongNu,byte? varTrangThai,byte? varHienThi,decimal? varDonGia,string varMotaThem,int? varSttHthi,short? varIdKhoaThuchien,short? varIdPhongThuchien,string varChiDan,string varNhomBaocao,DateTime? varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua,string varMaKhoathuchien,byte? varTuTuc,decimal? varGiaBhyt,decimal? varPhuthuDungtuyen,decimal? varPhuthuTraituyen,byte? varCoChitiet,int? varIdCha,string varBodypart,string varViewPosition,string varMauChuan,string varMauCanhan,byte? varLaChiphithem,int? varSoluongChitieu,string varMaPhuongphapthu,string varKihieuDinhtinhDat,string varIdCamchidinhchungphieu,byte? varSingleService,string varNhomInphoiBHYT,byte? varLaDvuKiemnghiem,string varLoaiPttt,string varPpVocam,DateTime? varNgayBatdau,DateTime? varNgayCongbo,DateTime? varNgayKetthuc,string varXmlMadichvu,string varXmlMachiso,string varXmlTenchiso,string varXmlMamay,string varDsachVungkhaosat,decimal? varGiaGoc,byte? varTinhChkhau,string varCachthucPttt,byte? varSongayChophepChidinhtiep,byte? varTnvChidinh,string varNhomInClsChitiet,byte? varLaDvuTieuhao,byte? varBhytNguonKhac,decimal? varTyleTtNguonkhac,decimal? varTyleHotro,string varNhomChiphi,string varMaQdinh,string varMaCongbo,string varLoaiBenhpham,string varQuyTrinh,string varCskcbCgkt,string varCskcbCls,int? varMaPttt,bool? varHiv,int? varViTriThDvkt,string varChuyenkhoa,string varMaKetnoi,string varCanhBao,decimal? varGiaCu,string varMaPhieuEmr,bool? varKhongbatbuoccoketqua)
+		public static void Update(int varIdChitietdichvu,string varMaChitietdichvu,string varMaChitietdichvuBhyt,string varMaQd,string varSttDmbhyt,string varTenChitietdichvu,string varTenChitietdichvuBhyt,short varIdDichvu,string varMaDonvitinh,string varBinhthuongNam,string varBinhthuongNu,byte? varTrangThai,byte? varHienThi,decimal? varDonGia,string varMotaThem,int? varSttHthi,short? varIdKhoaThuchien,short? varIdPhongThuchien,string varChiDan,string varNhomBaocao,DateTime? varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua,string varMaKhoathuchien,byte? varTuTuc,decimal? varGiaBhyt,decimal? varPhuthuDungtuyen,decimal? varPhuthuTraituyen,byte? varCoChitiet,int? varIdCha,string varBodypart,string varViewPosition,string varMauChuan,string varMauCanhan,byte? varLaChiphithem,int? varSoluongChitieu,string varMaPhuongphapthu,string varKihieuDinhtinhDat,string varIdCamchidinhchungphieu,byte? varSingleService,string varNhomInphoiBHYT,byte? varLaDvuKiemnghiem,string varLoaiPttt,string varPpVocam,DateTime? varNgayBatdau,DateTime? varNgayCongbo,DateTime? varNgayKetthuc,string varXmlMadichvu,string varXmlMachiso,string varXmlTenchiso,string varXmlMamay,string varDsachVungkhaosat,decimal? varGiaGoc,byte? varTinhChkhau,string varCachthucPttt,byte? varSongayChophepChidinhtiep,byte? varTnvChidinh,string varNhomInClsChitiet,byte? varLaDvuTieuhao,byte? varBhytNguonKhac,decimal? varTyleTtNguonkhac,decimal? varTyleHotro,string varNhomChiphi,string varMaQdinh,string varMaCongbo,string varLoaiBenhpham,string varQuyTrinh,string varCskcbCgkt,string varCskcbCls,int? varMaPttt,bool? varHiv,int? varViTriThDvkt,string varChuyenkhoa,string varMaKetnoi,string varCanhBao,decimal? varGiaCu,string varMaPhieuEmr,bool? varKhongbatbuoccoketqua,decimal? varDongiaBh,decimal? varDongiaYc,decimal? varDongiaNg,decimal? varDongiaNn,decimal? varDongiaNnng,decimal? varDongiaTn,decimal? varDongiaTnnn,bool? varTrongGoi)
 		{
 			DmucDichvuclsChitiet item = new DmucDichvuclsChitiet();
 			
@@ -2152,6 +2337,22 @@ namespace VMS.HIS.DAL
 				item.MaPhieuEmr = varMaPhieuEmr;
 			
 				item.Khongbatbuoccoketqua = varKhongbatbuoccoketqua;
+			
+				item.DongiaBh = varDongiaBh;
+			
+				item.DongiaYc = varDongiaYc;
+			
+				item.DongiaNg = varDongiaNg;
+			
+				item.DongiaNn = varDongiaNn;
+			
+				item.DongiaNnng = varDongiaNnng;
+			
+				item.DongiaTn = varDongiaTn;
+			
+				item.DongiaTnnn = varDongiaTnnn;
+			
+				item.TrongGoi = varTrongGoi;
 			
 			item.IsNew = false;
 			if (System.Web.HttpContext.Current != null)
@@ -2719,6 +2920,62 @@ namespace VMS.HIS.DAL
         
         
         
+        public static TableSchema.TableColumn DongiaBhColumn
+        {
+            get { return Schema.Columns[79]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn DongiaYcColumn
+        {
+            get { return Schema.Columns[80]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn DongiaNgColumn
+        {
+            get { return Schema.Columns[81]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn DongiaNnColumn
+        {
+            get { return Schema.Columns[82]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn DongiaNnngColumn
+        {
+            get { return Schema.Columns[83]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn DongiaTnColumn
+        {
+            get { return Schema.Columns[84]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn DongiaTnnnColumn
+        {
+            get { return Schema.Columns[85]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn TrongGoiColumn
+        {
+            get { return Schema.Columns[86]; }
+        }
+        
+        
+        
         #endregion
 		#region Columns Struct
 		public struct Columns
@@ -2802,6 +3059,14 @@ namespace VMS.HIS.DAL
 			 public static string GiaCu = @"gia_cu";
 			 public static string MaPhieuEmr = @"ma_phieu_emr";
 			 public static string Khongbatbuoccoketqua = @"khongbatbuoccoketqua";
+			 public static string DongiaBh = @"dongia_BH";
+			 public static string DongiaYc = @"dongia_YC";
+			 public static string DongiaNg = @"dongia_NG";
+			 public static string DongiaNn = @"dongia_NN";
+			 public static string DongiaNnng = @"dongia_NNNG";
+			 public static string DongiaTn = @"dongia_TN";
+			 public static string DongiaTnnn = @"dongia_TNNN";
+			 public static string TrongGoi = @"trong_goi";
 						
 		}
 		#endregion

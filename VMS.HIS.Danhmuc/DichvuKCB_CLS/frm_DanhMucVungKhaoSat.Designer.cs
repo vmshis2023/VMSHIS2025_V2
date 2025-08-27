@@ -46,13 +46,13 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.cmdImport = new System.Windows.Forms.ToolStripButton();
             this.cmdExport = new System.Windows.Forms.ToolStripButton();
+            this.cmdCapnhatMauKS = new System.Windows.Forms.ToolStripButton();
             this.cmdThoat = new System.Windows.Forms.ToolStripButton();
             this.uiStatusBar1 = new Janus.Windows.UI.StatusBar.UIStatusBar();
             this.grdList = new Janus.Windows.GridEX.GridEX();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.grdMauKQ = new Janus.Windows.GridEX.GridEX();
-            this.cmdCapnhatMauKS = new System.Windows.Forms.ToolStripButton();
             this.toolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdList)).BeginInit();
             this.panel1.SuspendLayout();
@@ -79,50 +79,47 @@
             this.cmdThoat});
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(1008, 39);
+            this.toolStrip.Size = new System.Drawing.Size(1426, 27);
             this.toolStrip.TabIndex = 4;
             this.toolStrip.Text = "toolStrip1";
             // 
             // cmdThemMoi
             // 
             this.cmdThemMoi.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdThemMoi.Image = ((System.Drawing.Image)(resources.GetObject("cmdThemMoi.Image")));
-            this.cmdThemMoi.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.cmdThemMoi.Image = global::VMS.HIS.Danhmuc.Properties.Resources.add_04_32;
             this.cmdThemMoi.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdThemMoi.Name = "cmdThemMoi";
-            this.cmdThemMoi.Size = new System.Drawing.Size(92, 36);
+            this.cmdThemMoi.Size = new System.Drawing.Size(88, 24);
             this.cmdThemMoi.Text = "Thêm mới";
             this.cmdThemMoi.Click += new System.EventHandler(this.cmdThemMoi_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // cmdSua
             // 
             this.cmdSua.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdSua.Image = ((System.Drawing.Image)(resources.GetObject("cmdSua.Image")));
-            this.cmdSua.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.cmdSua.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdSua.Name = "cmdSua";
-            this.cmdSua.Size = new System.Drawing.Size(111, 36);
+            this.cmdSua.Size = new System.Drawing.Size(107, 24);
             this.cmdSua.Text = "Sửa thông tin ";
             this.cmdSua.Click += new System.EventHandler(this.cmdSua_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 39);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
             // 
             // cmdXoa
             // 
             this.cmdXoa.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdXoa.Image = ((System.Drawing.Image)(resources.GetObject("cmdXoa.Image")));
-            this.cmdXoa.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.cmdXoa.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdXoa.Name = "cmdXoa";
-            this.cmdXoa.Size = new System.Drawing.Size(109, 36);
+            this.cmdXoa.Size = new System.Drawing.Size(105, 24);
             this.cmdXoa.Text = "Xóa thông tin ";
             this.cmdXoa.Click += new System.EventHandler(this.cmdXoa_Click);
             // 
@@ -130,24 +127,23 @@
             // 
             this.btnLayDuLieu.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLayDuLieu.Image = ((System.Drawing.Image)(resources.GetObject("btnLayDuLieu.Image")));
-            this.btnLayDuLieu.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnLayDuLieu.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnLayDuLieu.Name = "btnLayDuLieu";
-            this.btnLayDuLieu.Size = new System.Drawing.Size(103, 36);
+            this.btnLayDuLieu.Size = new System.Drawing.Size(91, 24);
             this.btnLayDuLieu.Text = "Lấy dữ liệu";
             this.btnLayDuLieu.Click += new System.EventHandler(this.btnLayDuLieu_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 39);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 27);
             // 
             // cmdImport
             // 
             this.cmdImport.Image = global::VMS.HIS.Danhmuc.Properties.Resources.Down1;
             this.cmdImport.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdImport.Name = "cmdImport";
-            this.cmdImport.Size = new System.Drawing.Size(66, 36);
+            this.cmdImport.Size = new System.Drawing.Size(66, 24);
             this.cmdImport.Text = "Import";
             this.cmdImport.Click += new System.EventHandler(this.cmdImport_Click);
             // 
@@ -156,25 +152,33 @@
             this.cmdExport.Image = global::VMS.HIS.Danhmuc.Properties.Resources.Up;
             this.cmdExport.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdExport.Name = "cmdExport";
-            this.cmdExport.Size = new System.Drawing.Size(65, 36);
+            this.cmdExport.Size = new System.Drawing.Size(65, 24);
             this.cmdExport.Text = "Export";
             this.cmdExport.Click += new System.EventHandler(this.cmdExport_Click);
+            // 
+            // cmdCapnhatMauKS
+            // 
+            this.cmdCapnhatMauKS.Image = ((System.Drawing.Image)(resources.GetObject("cmdCapnhatMauKS.Image")));
+            this.cmdCapnhatMauKS.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.cmdCapnhatMauKS.Name = "cmdCapnhatMauKS";
+            this.cmdCapnhatMauKS.Size = new System.Drawing.Size(159, 24);
+            this.cmdCapnhatMauKS.Text = "Cập nhật mẫu khảo sát";
+            this.cmdCapnhatMauKS.Click += new System.EventHandler(this.cmdCapnhatMauKS_Click);
             // 
             // cmdThoat
             // 
             this.cmdThoat.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdThoat.Image = ((System.Drawing.Image)(resources.GetObject("cmdThoat.Image")));
-            this.cmdThoat.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.cmdThoat.Image = global::VMS.HIS.Danhmuc.Properties.Resources.close_24;
             this.cmdThoat.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdThoat.Name = "cmdThoat";
-            this.cmdThoat.Size = new System.Drawing.Size(87, 36);
+            this.cmdThoat.Size = new System.Drawing.Size(91, 24);
             this.cmdThoat.Text = "Thoát(Esc)";
             this.cmdThoat.Click += new System.EventHandler(this.cmdThoat_Click);
             // 
             // uiStatusBar1
             // 
             this.uiStatusBar1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiStatusBar1.Location = new System.Drawing.Point(0, 707);
+            this.uiStatusBar1.Location = new System.Drawing.Point(0, 737);
             this.uiStatusBar1.Name = "uiStatusBar1";
             uiStatusBarPanel1.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
             uiStatusBarPanel1.BorderColor = System.Drawing.Color.Empty;
@@ -212,7 +216,7 @@
             uiStatusBarPanel3,
             uiStatusBarPanel4,
             uiStatusBarPanel5});
-            this.uiStatusBar1.Size = new System.Drawing.Size(1008, 23);
+            this.uiStatusBar1.Size = new System.Drawing.Size(1426, 23);
             this.uiStatusBar1.TabIndex = 5;
             this.uiStatusBar1.VisualStyle = Janus.Windows.UI.VisualStyle.OfficeXP;
             // 
@@ -237,7 +241,7 @@
             this.grdList.Name = "grdList";
             this.grdList.RecordNavigator = true;
             this.grdList.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
-            this.grdList.Size = new System.Drawing.Size(603, 668);
+            this.grdList.Size = new System.Drawing.Size(1021, 710);
             this.grdList.TabIndex = 6;
             this.grdList.UseGroupRowSelector = true;
             this.grdList.VisualStyle = Janus.Windows.GridEX.VisualStyle.VS2005;
@@ -248,18 +252,18 @@
             this.panel1.Controls.Add(this.grdList);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 39);
+            this.panel1.Location = new System.Drawing.Point(0, 27);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1008, 668);
+            this.panel1.Size = new System.Drawing.Size(1426, 710);
             this.panel1.TabIndex = 7;
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.grdMauKQ);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(603, 0);
+            this.panel2.Location = new System.Drawing.Point(1021, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(405, 668);
+            this.panel2.Size = new System.Drawing.Size(405, 710);
             this.panel2.TabIndex = 8;
             // 
             // grdMauKQ
@@ -283,26 +287,17 @@
             this.grdMauKQ.RecordNavigator = true;
             this.grdMauKQ.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
             this.grdMauKQ.SelectedFormatStyle.BackColor = System.Drawing.Color.SteelBlue;
-            this.grdMauKQ.Size = new System.Drawing.Size(405, 668);
+            this.grdMauKQ.Size = new System.Drawing.Size(405, 710);
             this.grdMauKQ.TabIndex = 6;
             this.grdMauKQ.TabStop = false;
             this.grdMauKQ.UseGroupRowSelector = true;
             this.grdMauKQ.VisualStyle = Janus.Windows.GridEX.VisualStyle.VS2005;
             // 
-            // cmdCapnhatMauKS
-            // 
-            this.cmdCapnhatMauKS.Image = ((System.Drawing.Image)(resources.GetObject("cmdCapnhatMauKS.Image")));
-            this.cmdCapnhatMauKS.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.cmdCapnhatMauKS.Name = "cmdCapnhatMauKS";
-            this.cmdCapnhatMauKS.Size = new System.Drawing.Size(159, 36);
-            this.cmdCapnhatMauKS.Text = "Cập nhật mẫu khảo sát";
-            this.cmdCapnhatMauKS.Click += new System.EventHandler(this.cmdCapnhatMauKS_Click);
-            // 
             // frm_DanhMucVungKhaoSat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1008, 730);
+            this.ClientSize = new System.Drawing.Size(1426, 760);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.uiStatusBar1);
             this.Controls.Add(this.toolStrip);

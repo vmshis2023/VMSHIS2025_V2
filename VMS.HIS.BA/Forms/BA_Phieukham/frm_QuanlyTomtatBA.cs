@@ -223,7 +223,7 @@ namespace VNS.HIS.UI.BA
             {
                 frm_TomtatBA _PhieuTTBA = new frm_TomtatBA();
                 _PhieuTTBA._OnCreated += _PhieuTTBA__OnCreated;
-                _PhieuTTBA.ttba = EmrTongketBenhan.FetchByID(Utility.Int64Dbnull(grdList.GetValue("Id")));
+                _PhieuTTBA.ttba = EmrTomtatBa.FetchByID(Utility.Int64Dbnull(grdList.GetValue("Id")));
                 _PhieuTTBA.ucThongtinnguoibenh_emr_basic1.txtMaluotkham.Text = Utility.sDbnull(grdList.GetValue("ma_luotkham"));
                 _PhieuTTBA.ucThongtinnguoibenh_emr_basic1.Refresh();
                 _PhieuTTBA.m_enAct = action.Update;
@@ -362,8 +362,8 @@ namespace VNS.HIS.UI.BA
                 if (Utility.AcceptQuestion("Bạn có muốn xóa thông tin phiếu Tóm tắt hồ sơ bệnh án đang chọn không ?", "Thông báo", true))
                 {
                     long id_tkba = Utility.Int64Dbnull(grdList.GetValue("Id"));
-                    int banghi = new Delete().From<EmrTongketBenhan>()
-                         .Where(EmrTongketBenhan.Columns.Id)
+                    int banghi = new Delete().From<EmrTomtatBa>()
+                         .Where(EmrTomtatBa.Columns.Id)
                          .IsEqualTo(id_tkba)
                          .Execute();
                     emrdoc.DeleteDocument(id_tkba, Loaiphieu_HIS.PHIEU_TKBA, "BA_TKBA");
@@ -398,7 +398,7 @@ namespace VNS.HIS.UI.BA
                     Utility.ShowMsg("Bạn cần chọn Tóm tắt hồ sơ bệnh án trên lưới danh sách để thực hiện in");
                     return;
                 }
-                EmrTongketBenhan ttba = EmrTongketBenhan.FetchByID(Utility.Int64Dbnull(grdList.GetValue("id")));
+                EmrTomtatBa ttba = EmrTomtatBa.FetchByID(Utility.Int64Dbnull(grdList.GetValue("id")));
                 if (ttba == null || ttba.Id <= 0)
                 {
                     Utility.ShowMsg("Bạn cần tạo Tóm tắt hồ sơ bệnh án trước khi thực hiện in");
@@ -406,7 +406,7 @@ namespace VNS.HIS.UI.BA
                 }
                 clsInBA.InTomTatBA(ttba);
                 //NoitruPhieuravien objRavien = new Select().From(NoitruPhieuravien.Schema).Where(NoitruPhieuravien.Columns.IdBenhnhan).IsEqualTo(ttba.IdBenhnhan).And(NoitruPhieuravien.Columns.MaLuotkham).IsEqualTo(ttba.MaLuotkham).ExecuteSingle<NoitruPhieuravien>();
-                //DataTable dtData = SPs.EmrTongketBenhanIn(ttba.Id, Utility.Int64Dbnull(grdList.GetValue("id_benhnhan")), Utility.sDbnull(grdList.GetValue("ma_luotkham"))).GetDataSet().Tables[0];
+                //DataTable dtData = SPs.EmrTomtatBaIn(ttba.Id, Utility.Int64Dbnull(grdList.GetValue("id_benhnhan")), Utility.sDbnull(grdList.GetValue("ma_luotkham"))).GetDataSet().Tables[0];
                 //dtData.TableName = "noitru_tomtatBA";
                 //List<string> lstAddedFields = new List<string>() {"gioitinh_nam","gioitinh_nu","noikhoa_khong", "noikhoa_co", "pttt_khong", "pttt_co",
                 //"tinhtrangravien_khoi", "tinhtrangravien_do", "tinhtrangravien_khongthaydoi",

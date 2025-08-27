@@ -80,9 +80,9 @@
             this.cmdImport = new Janus.Windows.EditControls.UIButton();
             this.chkHienthiCogia = new Janus.Windows.EditControls.UICheckBox();
             this.grdGiaCLS = new Janus.Windows.GridEX.GridEX();
+            this.grdExportFile = new Janus.Windows.GridEX.GridEX();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.gridEXExporter1 = new Janus.Windows.GridEX.Export.GridEXExporter(this.components);
-            this.grdExportFile = new Janus.Windows.GridEX.GridEX();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox5)).BeginInit();
             this.uiGroupBox5.SuspendLayout();
@@ -109,6 +109,7 @@
             // 
             this.toolStrip1.BackColor = System.Drawing.SystemColors.Control;
             this.toolStrip1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cmdThemBogia,
             this.cmdSuaBogia,
@@ -127,8 +128,7 @@
             // 
             this.cmdThemBogia.BackColor = System.Drawing.SystemColors.Control;
             this.cmdThemBogia.Font = new System.Drawing.Font("Arial", 9F);
-            this.cmdThemBogia.Image = global::VMS.HIS.Danhmuc.Properties.Resources.Add;
-            this.cmdThemBogia.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.cmdThemBogia.Image = global::VMS.HIS.Danhmuc.Properties.Resources.add_04_32;
             this.cmdThemBogia.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdThemBogia.Name = "cmdThemBogia";
             this.cmdThemBogia.Size = new System.Drawing.Size(92, 28);
@@ -139,7 +139,6 @@
             // 
             this.cmdSuaBogia.Font = new System.Drawing.Font("Arial", 9F);
             this.cmdSuaBogia.Image = ((System.Drawing.Image)(resources.GetObject("cmdSuaBogia.Image")));
-            this.cmdSuaBogia.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.cmdSuaBogia.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdSuaBogia.Name = "cmdSuaBogia";
             this.cmdSuaBogia.Size = new System.Drawing.Size(111, 28);
@@ -150,7 +149,6 @@
             // 
             this.cmdXoaBogia.Font = new System.Drawing.Font("Arial", 9F);
             this.cmdXoaBogia.Image = ((System.Drawing.Image)(resources.GetObject("cmdXoaBogia.Image")));
-            this.cmdXoaBogia.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.cmdXoaBogia.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdXoaBogia.Name = "cmdXoaBogia";
             this.cmdXoaBogia.Size = new System.Drawing.Size(56, 28);
@@ -167,7 +165,7 @@
             this.cmdHieuluc.Image = ((System.Drawing.Image)(resources.GetObject("cmdHieuluc.Image")));
             this.cmdHieuluc.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdHieuluc.Name = "cmdHieuluc";
-            this.cmdHieuluc.Size = new System.Drawing.Size(73, 28);
+            this.cmdHieuluc.Size = new System.Drawing.Size(77, 28);
             this.cmdHieuluc.Text = "Hiệu lực";
             this.cmdHieuluc.Click += new System.EventHandler(this.CmdHieuluc_Click);
             // 
@@ -175,10 +173,9 @@
             // 
             this.cmdExit.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdExit.Image = global::VMS.HIS.Danhmuc.Properties.Resources.close_24;
-            this.cmdExit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.cmdExit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdExit.Name = "cmdExit";
-            this.cmdExit.Size = new System.Drawing.Size(126, 28);
+            this.cmdExit.Size = new System.Drawing.Size(122, 28);
             this.cmdExit.Text = "Đóng chức năng";
             this.cmdExit.ToolTipText = "Nhấn nút này để thoát khỏi chức năng ";
             // 
@@ -652,11 +649,6 @@
             this.grdGiaCLS.TabIndex = 14;
             this.grdGiaCLS.UseGroupRowSelector = true;
             // 
-            // toolTip1
-            // 
-            this.toolTip1.IsBalloon = true;
-            this.toolTip1.ToolTipTitle = "Trợ giúp nhanh:";
-            // 
             // grdExportFile
             // 
             this.grdExportFile.AlternatingColors = true;
@@ -680,6 +672,11 @@
             this.grdExportFile.Size = new System.Drawing.Size(723, 541);
             this.grdExportFile.TabIndex = 573;
             this.grdExportFile.Visible = false;
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.IsBalloon = true;
+            this.toolTip1.ToolTipTitle = "Trợ giúp nhanh:";
             // 
             // frm_quanly_bogia_bhyt
             // 

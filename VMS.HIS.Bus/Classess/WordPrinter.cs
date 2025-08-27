@@ -17,8 +17,8 @@ using System.Windows.Forms;
 using VMS.HIS.Bus.Emr;
 using VMS.HIS.DAL;
 using VNS.Libs;
-
- namespace VMS.HIS.Bus
+using Aspose.Words.Tables;
+namespace VMS.HIS.Bus
 {
     public class WordPrinter
     {
@@ -34,15 +34,16 @@ using VNS.Libs;
                 dtData.TableName = Path.GetFileNameWithoutExtension(fileName);
                 Document doc;
                 DataRow drData = dtData.Rows[0];
-                drData["ten_benhvien"] = globalVariables.Branch_Name;
-                drData["ten_SYT"] = globalVariables.ParentBranch_Name;
-                drData["ten_benhvien"] = globalVariables.Branch_Name;
-                drData["diahchi_benhvien"] = globalVariables.Branch_Address;
-                drData["SDT_bv"] = globalVariables.Branch_Phone;
-                drData["Hotline_bv"] = globalVariables.Branch_Hotline;
-                drData["Fax_bv"] = globalVariables.Branch_Fax;
-                drData["website_bv"] = globalVariables.Branch_Website;
-                drData["email_bv"] = globalVariables.Branch_Email;
+                if (dtData.Columns.Contains("ten_benhvien")) drData["ten_benhvien"] = globalVariables.Branch_Name;
+                if (dtData.Columns.Contains("ten_SYT")) drData["ten_SYT"] = globalVariables.ParentBranch_Name;
+                if (dtData.Columns.Contains("ten_dvicaptren")) drData["ten_dvicaptren"] = globalVariables.ParentBranch_Name;
+                if (dtData.Columns.Contains("ten_benhvien")) drData["ten_benhvien"] = globalVariables.Branch_Name;
+                if (dtData.Columns.Contains("diahchi_benhvien")) drData["diahchi_benhvien"] = globalVariables.Branch_Address;
+                if (dtData.Columns.Contains("SDT_bv")) drData["SDT_bv"] = globalVariables.Branch_Phone;
+                if (dtData.Columns.Contains("Hotline_bv")) drData["Hotline_bv"] = globalVariables.Branch_Hotline;
+                if (dtData.Columns.Contains("Fax_bv")) drData["Fax_bv"] = globalVariables.Branch_Fax;
+                if (dtData.Columns.Contains("website_bv")) drData["website_bv"] = globalVariables.Branch_Website;
+                if (dtData.Columns.Contains("email_bv")) drData["email_bv"] = globalVariables.Branch_Email;
                 List<string> fieldNames = new List<string>();
 
                 string PathDoc =string.Format(@"{0}\Doc\{1}", AppDomain.CurrentDomain.BaseDirectory, fileName);
@@ -222,15 +223,16 @@ using VNS.Libs;
                 dtData.TableName = Path.GetFileNameWithoutExtension(fileName);
                 Document doc;
                 DataRow drData = dtData.Rows[0];
-                drData["ten_benhvien"] = globalVariables.Branch_Name;
-                drData["ten_SYT"] = globalVariables.ParentBranch_Name;
-                drData["ten_benhvien"] = globalVariables.Branch_Name;
-                drData["diahchi_benhvien"] = globalVariables.Branch_Address;
-                drData["SDT_bv"] = globalVariables.Branch_Phone;
-                drData["Hotline_bv"] = globalVariables.Branch_Hotline;
-                drData["Fax_bv"] = globalVariables.Branch_Fax;
-                drData["website_bv"] = globalVariables.Branch_Website;
-                drData["email_bv"] = globalVariables.Branch_Email;
+                if (dtData.Columns.Contains("ten_benhvien")) drData["ten_benhvien"] = globalVariables.Branch_Name;
+                if (dtData.Columns.Contains("ten_SYT")) drData["ten_SYT"] = globalVariables.ParentBranch_Name;
+                if (dtData.Columns.Contains("ten_dvicaptren")) drData["ten_dvicaptren"] = globalVariables.ParentBranch_Name;
+                if (dtData.Columns.Contains("ten_benhvien")) drData["ten_benhvien"] = globalVariables.Branch_Name;
+                if (dtData.Columns.Contains("diahchi_benhvien")) drData["diahchi_benhvien"] = globalVariables.Branch_Address;
+                if (dtData.Columns.Contains("SDT_bv")) drData["SDT_bv"] = globalVariables.Branch_Phone;
+                if (dtData.Columns.Contains("Hotline_bv")) drData["Hotline_bv"] = globalVariables.Branch_Hotline;
+                if (dtData.Columns.Contains("Fax_bv")) drData["Fax_bv"] = globalVariables.Branch_Fax;
+                if (dtData.Columns.Contains("website_bv")) drData["website_bv"] = globalVariables.Branch_Website;
+                if (dtData.Columns.Contains("email_bv")) drData["email_bv"] = globalVariables.Branch_Email;
                 List<string> fieldNames = new List<string>();
 
                 string PathDoc = string.Format(@"{0}\Doc\{1}", AppDomain.CurrentDomain.BaseDirectory, fileName);
@@ -347,7 +349,7 @@ using VNS.Libs;
                 return "";
             }
         }
-        public static string  InPhieu(DataTable dtData, string fileName, string report_code, bool returnFile = false)
+        public static string  InPhieu(DataTable dtData, string fileName, string report_code, bool returnFile = false,string CHECKED_FIELDS="")
         {
             try
             {
@@ -356,17 +358,18 @@ using VNS.Libs;
                 dtData.TableName = Path.GetFileNameWithoutExtension(fileName);
                 Document doc;
                 DataRow drData = dtData.Rows[0];
-                drData["ten_benhvien"] = globalVariables.Branch_Name;
-                drData["ten_SYT"] = globalVariables.ParentBranch_Name;
-                drData["ten_benhvien"] = globalVariables.Branch_Name;
-                drData["diahchi_benhvien"] = globalVariables.Branch_Address;
-                drData["SDT_bv"] = globalVariables.Branch_Phone;
-                drData["Hotline_bv"] = globalVariables.Branch_Hotline;
-                drData["Fax_bv"] = globalVariables.Branch_Fax;
-                drData["website_bv"] = globalVariables.Branch_Website;
-                drData["email_bv"] = globalVariables.Branch_Email;
+                if(dtData.Columns.Contains("ten_benhvien"))  drData["ten_benhvien"] = globalVariables.Branch_Name;
+                if (dtData.Columns.Contains("ten_SYT")) drData["ten_SYT"] = globalVariables.ParentBranch_Name;
+                if (dtData.Columns.Contains("ten_dvicaptren")) drData["ten_dvicaptren"] = globalVariables.ParentBranch_Name;
+                if (dtData.Columns.Contains("ten_benhvien")) drData["ten_benhvien"] = globalVariables.Branch_Name;
+                if (dtData.Columns.Contains("diahchi_benhvien")) drData["diahchi_benhvien"] = globalVariables.Branch_Address;
+                if (dtData.Columns.Contains("SDT_bv")) drData["SDT_bv"] = globalVariables.Branch_Phone;
+                if (dtData.Columns.Contains("Hotline_bv")) drData["Hotline_bv"] = globalVariables.Branch_Hotline;
+                if (dtData.Columns.Contains("Fax_bv")) drData["Fax_bv"] = globalVariables.Branch_Fax;
+                if (dtData.Columns.Contains("website_bv")) drData["website_bv"] = globalVariables.Branch_Website;
+                if (dtData.Columns.Contains("email_bv")) drData["email_bv"] = globalVariables.Branch_Email;
                 List<string> fieldNames = new List<string>();
-                string checkboxFieldsFile = AppDomain.CurrentDomain.BaseDirectory + "MAUBA\\BA_CHECKED_FIELDS.txt";
+                string checkboxFieldsFile = AppDomain.CurrentDomain.BaseDirectory + (CHECKED_FIELDS==""? "MAUBA\\BA_CHECKED_FIELDS.txt": CHECKED_FIELDS);
                 List<string> lstcheckboxfields = new List<string>();
                 lstcheckboxfields = Utility.GetFirstValueFromFile(checkboxFieldsFile).Split(',').ToList<string>();
                 string PathDoc = string.Format(@"{0}\Doc\{1}", AppDomain.CurrentDomain.BaseDirectory, fileName);
@@ -400,7 +403,8 @@ using VNS.Libs;
                     {
                         Utility.ShowMsg("Không nạp được file word.", "Thông báo"); return "";
                     }
-                    if (builder.MoveToMergeField("logo") && globalVariables.SysLogo != null)
+                    if (Utility.MoveToAny( builder,"logo") && globalVariables.SysLogo != null)
+                    {
                         if (sysLogosize != null)
                         {
                             w = Utility.Int32Dbnull(sysLogosize.SValue.Split('x')[0], 0);
@@ -411,8 +415,13 @@ using VNS.Libs;
                                 builder.InsertImage(globalVariables.SysLogo);
                         }
                         else
+                        {
                             if (globalVariables.SysLogo != null)
-                            builder.InsertImage(globalVariables.SysLogo);
+                            {
+                                builder.InsertImage(globalVariables.SysLogo);
+                            }
+                        }
+                    }
                     Utility.MergeFieldsCheckBox2Doc(builder, null, lstcheckboxfields, drData);
                     doc.MailMerge.Execute(drData);
                     sysLogosize = new Select().From(SysSystemParameter.Schema).Where(SysSystemParameter.Columns.SName).IsEqualTo("signsize").ExecuteSingle<SysSystemParameter>();
@@ -464,6 +473,447 @@ using VNS.Libs;
                 return "";
             }
         }
+        public static string InPhieuTruyenDich(DataTable dtData, string fileName, string report_code, bool returnFile = false, string CHECKED_FIELDS = "")
+        {
+            try
+            {
+                List<string> lstMoreColumns = new List<string>() { "ten_benhvien", "ten_SYT", "diahchi_benhvien", "SDT_bv", "Hotline_bv", "Fax_bv", "website_bv", "email_bv" };
+                Utility.AddColums2DataTable(ref dtData, lstMoreColumns, typeof(string));
+                dtData.TableName = Path.GetFileNameWithoutExtension(fileName);
+                Document doc;
+                DataRow drData = dtData.Rows[0];
+                if (dtData.Columns.Contains("ten_benhvien")) drData["ten_benhvien"] = globalVariables.Branch_Name;
+                if (dtData.Columns.Contains("ten_SYT")) drData["ten_SYT"] = globalVariables.ParentBranch_Name;
+                if (dtData.Columns.Contains("ten_dvicaptren")) drData["ten_dvicaptren"] = globalVariables.ParentBranch_Name;
+                if (dtData.Columns.Contains("ten_benhvien")) drData["ten_benhvien"] = globalVariables.Branch_Name;
+                if (dtData.Columns.Contains("diahchi_benhvien")) drData["diahchi_benhvien"] = globalVariables.Branch_Address;
+                if (dtData.Columns.Contains("SDT_bv")) drData["SDT_bv"] = globalVariables.Branch_Phone;
+                if (dtData.Columns.Contains("Hotline_bv")) drData["Hotline_bv"] = globalVariables.Branch_Hotline;
+                if (dtData.Columns.Contains("Fax_bv")) drData["Fax_bv"] = globalVariables.Branch_Fax;
+                if (dtData.Columns.Contains("website_bv")) drData["website_bv"] = globalVariables.Branch_Website;
+                if (dtData.Columns.Contains("email_bv")) drData["email_bv"] = globalVariables.Branch_Email;
+                List<string> fieldNames = new List<string>();
+                string checkboxFieldsFile = AppDomain.CurrentDomain.BaseDirectory + (CHECKED_FIELDS == "" ? "MAUBA\\BA_CHECKED_FIELDS.txt" : CHECKED_FIELDS);
+                List<string> lstcheckboxfields = new List<string>();
+                lstcheckboxfields = Utility.GetFirstValueFromFile(checkboxFieldsFile).Split(',').ToList<string>();
+                string PathDoc = string.Format(@"{0}\Doc\{1}", AppDomain.CurrentDomain.BaseDirectory, fileName);
+                string writePathdoc = AppDomain.CurrentDomain.BaseDirectory + "tempDoc\\";
+                if (!Directory.Exists(writePathdoc)) Directory.CreateDirectory(writePathdoc);
+                string mergeFields = AppDomain.CurrentDomain.BaseDirectory + "MergeFields\\";
+                if (!Directory.Exists(mergeFields)) Directory.CreateDirectory(mergeFields);
+                Utility.CreateMergeFields(dtData);
+
+                if (!File.Exists(PathDoc))
+                {
+                    Utility.ShowMsg("Không tìm thấy file mẫu:" + PathDoc);
+                    return "";
+                }
+                SysSystemParameter sysLogosize = new Select().From(SysSystemParameter.Schema).Where(SysSystemParameter.Columns.SName).IsEqualTo("logosize").ExecuteSingle<SysSystemParameter>();
+
+                string fileKetqua = string.Format("{0}{1}{2}_{3}_{4}",
+                               Path.GetDirectoryName(writePathdoc), Path.DirectorySeparatorChar,
+                               Path.GetFileNameWithoutExtension(PathDoc), Guid.NewGuid().ToString(), Path.GetExtension(PathDoc));
+                int w = 100;
+                int h = 100;
+                if ((drData != null) && File.Exists(PathDoc))
+                {
+                    doc = new Document(PathDoc);
+                    //doc.MailMerge.FieldMergingCallback = new HandleMergeBarcode();
+                    //Aspose.Words.Fonts.FontSettings fontSettings = new Aspose.Words.Fonts.FontSettings();
+                    //fontSettings.SetFontsFolder(@"C:\Windows\Fonts", true);  // hoặc thư mục riêng
+                    //doc.FontSettings = fontSettings;
+                    DocumentBuilder builder = new DocumentBuilder(doc);
+                    if (doc == null)
+                    {
+                        Utility.ShowMsg("Không nạp được file word.", "Thông báo"); return "";
+                    }
+                    if (Utility.MoveToAny(builder, "logo") && globalVariables.SysLogo != null)
+                    {
+                        if (sysLogosize != null)
+                        {
+                            w = Utility.Int32Dbnull(sysLogosize.SValue.Split('x')[0], 0);
+                            h = Utility.Int32Dbnull(sysLogosize.SValue.Split('x')[1], 0);
+                            if (w > 0 && h > 0)
+                                builder.InsertImage(globalVariables.SysLogo, w, h);
+                            else
+                                builder.InsertImage(globalVariables.SysLogo);
+                        }
+                        else
+                        {
+                            if (globalVariables.SysLogo != null)
+                            {
+                                builder.InsertImage(globalVariables.SysLogo);
+                            }
+                        }
+                    }
+                    Utility.MergeFieldsCheckBox2Doc(builder, null, lstcheckboxfields, drData);
+                    int rowIdx = 1;
+                    Aspose.Words.Tables.Table tab = doc.FirstSection.Body.Tables[1];
+                    int idx = 1;
+                    Aspose.Words.Tables.Row template = tab.LastRow;
+                    //Tạo thông tin y lệnh trong tờ điều trị
+                    foreach (DataRow row in dtData.Rows)
+                    {
+                        // nguoi_tao = Utility.sDbnull(row["nguoi_tao"]);
+
+
+                        Aspose.Words.Tables.Row newRow = (Aspose.Words.Tables.Row)template.Clone(true);
+                        ClearRow(newRow, 8);
+
+                        Run r = new Run(doc);
+                        SetCellValue(r, doc, newRow, 0, Utility.sDbnull(row["sngay_thuchien"], ""), "Times New Roman", false, 12);
+                        SetCellValue(r, doc, newRow, 1, Utility.sDbnull(row["ten_dichtruyen"], ""), "Times New Roman", false, 12);
+                        SetCellValue(r, doc, newRow, 2, Utility.sDbnull(row["so_luong"], ""), "Times New Roman", false, 12);
+                        SetCellValue(r, doc, newRow, 3, Utility.sDbnull(row["so_lo"], ""), "Times New Roman", false, 12);
+                        SetCellValue(r, doc, newRow, 4, Utility.sDbnull(row["toc_do"], ""), "Times New Roman", false, 12);
+                        SetCellValue(r, doc, newRow, 5, Utility.sDbnull(row["sthoigian_batdau"], ""), "Times New Roman", false, 12);
+                        SetCellValue(r, doc, newRow, 6, Utility.sDbnull(row["sthoigian_ketthuc"], ""), "Times New Roman", false, 12);
+                        SetCellValue(r, doc, newRow, 7, Utility.sDbnull(row["ten_bacsi_chidinh"], ""), "Times New Roman", false, 12);
+                        SetCellValue(r, doc, newRow, 8, Utility.sDbnull(row["ten_yta_thuchien"], ""), "Times New Roman", false, 12);
+                        tab.Rows.Insert(tab.Rows.Count - 1, newRow);
+                        idx += 1;
+                        rowIdx++;
+                    }
+                    // Xóa dòng mẫu trống cuối cùng
+                    tab.LastRow.Remove();
+                    doc.MailMerge.Execute(drData);
+                    sysLogosize = new Select().From(SysSystemParameter.Schema).Where(SysSystemParameter.Columns.SName).IsEqualTo("signsize").ExecuteSingle<SysSystemParameter>();
+                    Utility.SignDoc(doc, builder, sysLogosize != null ? sysLogosize.SValue : "");
+                    if (File.Exists(fileKetqua))
+                    {
+                        File.Delete(fileKetqua);
+                    }
+                    if (returnFile)
+                    {
+                        //var saveOptions = new PdfSaveOptions
+                        //{
+                        //    EmbedFullFonts = true,
+                        //    UseCoreFonts = false,
+                        //    FontEmbeddingMode = PdfFontEmbeddingMode.EmbedAll
+                        //};
+
+                        doc.Save(fileKetqua, SaveFormat.Doc);
+                        return fileKetqua;
+                    }
+                    else
+                        doc.Save(fileKetqua, SaveFormat.Doc);
+                    string path = fileKetqua;
+                    if (File.Exists(path))
+                    {
+                        Process process = new Process();
+                        try
+                        {
+                            process.StartInfo.FileName = path;
+                            process.Start();
+                            process.WaitForInputIdle();
+                        }
+                        catch
+                        {
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Không tìm thấy biểu mẫu", "TThông báo", MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation);
+                    return "";
+                }
+                return "";
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+                return "";
+            }
+        }
+        public void TaoPhieuCongKhai(DataTable dtData, Document doc)
+        {
+            List<int> lstLoai = (from p in dtData.AsEnumerable()
+                                 orderby Utility.Int32Dbnull(p["stt_in"], -1)
+                                 select Utility.Int32Dbnull(p["id_loaithanhtoan"], -1)
+
+                                  ).Distinct().ToList<int>();
+            Aspose.Words.Tables.Table tab = doc.FirstSection.Body.Tables[1];
+            int idx = 2;
+            Aspose.Words.Tables.Row template = tab.Rows[2];
+            Run r = new Run(doc);
+            foreach (int id_loaithanhtoan in lstLoai)
+            {
+                DataTable dtLoaiData = dtData.Select("id_loaithanhtoan=" + id_loaithanhtoan.ToString(), "stt_in,stt_hthi_loaidichvu ,stt_hthi_dichvu,stt_hthi_chitiet,ten").CopyToDataTable();
+                //Tạo các nhóm cấp 1 chứa ten_loaithanhtoan
+                Aspose.Words.Tables.Row newRow = (Aspose.Words.Tables.Row)template.Clone(true);
+                ClearRow(newRow, newRow.Cells.Count - 1);
+                r = new Run(doc);
+                SetCellValue(r, doc, newRow, 0, Utility.sDbnull(dtLoaiData.Rows[0]["ten_loaithanhtoan"], ""), "Times New Roman", false, 12, true);
+                tab.Rows.Insert(idx, newRow);
+                idx++;
+
+            }
+        }
+        static void ClearRow(Aspose.Words.Tables.Row newRow, int colNum)
+        {
+            for (int i = 0; i <= colNum; i++)
+            {
+                newRow.Cells[i].RemoveAllChildren();
+                newRow.Cells[i].EnsureMinimum();
+            }
+        }
+        static void SetCellValue(Run r, Document doc, Aspose.Words.Tables.Row newRow, int cellIndex, string fieldValue, string fontName = "Times New Roman", bool fontBold = false, int fontSize = 12, bool mergeCell = false)
+        {
+            if (mergeCell)
+            {
+                for (int i = 0; i < newRow.Cells.Count; i++)
+                {
+                    if (i == 0)
+                        newRow.Cells[i].CellFormat.HorizontalMerge = CellMerge.First;
+                    else
+                        newRow.Cells[i].CellFormat.HorizontalMerge = CellMerge.Previous;
+                }
+            }
+            r = new Run(doc);
+            r.Font.Name = fontName;
+            r.Font.Bold = fontBold;
+            r.Font.Size = fontSize;
+            //r.Font.Color = Color.FromArgb(102, 0, 102);
+            r.Text = Utility.sDbnull(fieldValue, "");
+            newRow.Cells[cellIndex].FirstParagraph.RemoveAllChildren();
+            newRow.Cells[cellIndex].FirstParagraph.AppendChild(r);
+            newRow.Cells[cellIndex].CellFormat.VerticalAlignment = Aspose.Words.Tables.CellVerticalAlignment.Top;
+            newRow.Cells[cellIndex].FirstParagraph.ParagraphFormat.Alignment = Aspose.Words.ParagraphAlignment.Left;
+        }
+        public static string InPhieuCongKhai(DataSet dsData, string fileName, string report_code, bool returnFile = false, string CHECKED_FIELDS = "")
+        {
+            try
+            {
+                DataTable dtData = dsData.Tables[0];
+                List<string> lstMoreColumns = new List<string>() { "ten_benhvien", "ten_SYT", "diahchi_benhvien", "SDT_bv", "Hotline_bv", "Fax_bv", "website_bv", "email_bv" };
+                Utility.AddColums2DataTable(ref dtData, lstMoreColumns, typeof(string));
+                dtData.TableName = Path.GetFileNameWithoutExtension(fileName);
+                Document doc;
+                DataRow drData = dsData.Tables[1].Rows[0];
+                if (dtData.Columns.Contains("ten_benhvien")) drData["ten_benhvien"] = globalVariables.Branch_Name;
+                if (dtData.Columns.Contains("ten_SYT")) drData["ten_SYT"] = globalVariables.ParentBranch_Name;
+                if (dtData.Columns.Contains("ten_dvicaptren")) drData["ten_dvicaptren"] = globalVariables.ParentBranch_Name;
+                if (dtData.Columns.Contains("ten_benhvien")) drData["ten_benhvien"] = globalVariables.Branch_Name;
+                if (dtData.Columns.Contains("diahchi_benhvien")) drData["diahchi_benhvien"] = globalVariables.Branch_Address;
+                if (dtData.Columns.Contains("SDT_bv")) drData["SDT_bv"] = globalVariables.Branch_Phone;
+                if (dtData.Columns.Contains("Hotline_bv")) drData["Hotline_bv"] = globalVariables.Branch_Hotline;
+                if (dtData.Columns.Contains("Fax_bv")) drData["Fax_bv"] = globalVariables.Branch_Fax;
+                if (dtData.Columns.Contains("website_bv")) drData["website_bv"] = globalVariables.Branch_Website;
+                if (dtData.Columns.Contains("email_bv")) drData["email_bv"] = globalVariables.Branch_Email;
+                List<string> fieldNames = new List<string>();
+                string checkboxFieldsFile = AppDomain.CurrentDomain.BaseDirectory + (CHECKED_FIELDS == "" ? "MAUBA\\BA_CHECKED_FIELDS.txt" : CHECKED_FIELDS);
+                List<string> lstcheckboxfields = new List<string>();
+                lstcheckboxfields = Utility.GetFirstValueFromFile(checkboxFieldsFile).Split(',').ToList<string>();
+                string PathDoc = string.Format(@"{0}\Doc\{1}", AppDomain.CurrentDomain.BaseDirectory, fileName);
+                string writePathdoc = AppDomain.CurrentDomain.BaseDirectory + "tempDoc\\";
+                if (!Directory.Exists(writePathdoc)) Directory.CreateDirectory(writePathdoc);
+                string mergeFields = AppDomain.CurrentDomain.BaseDirectory + "MergeFields\\";
+                if (!Directory.Exists(mergeFields)) Directory.CreateDirectory(mergeFields);
+                Utility.CreateMergeFields(dtData);
+
+                if (!File.Exists(PathDoc))
+                {
+                    Utility.ShowMsg("Không tìm thấy file mẫu:" + PathDoc);
+                    return "";
+                }
+                SysSystemParameter sysLogosize = new Select().From(SysSystemParameter.Schema).Where(SysSystemParameter.Columns.SName).IsEqualTo("logosize").ExecuteSingle<SysSystemParameter>();
+
+                string fileKetqua = string.Format("{0}{1}{2}_{3}_{4}",
+                               Path.GetDirectoryName(writePathdoc), Path.DirectorySeparatorChar,
+                               Path.GetFileNameWithoutExtension(PathDoc), Guid.NewGuid().ToString(), Path.GetExtension(PathDoc));
+                int w = 100;
+                int h = 100;
+                if ((drData != null) && File.Exists(PathDoc))
+                {
+                    doc = new Document(PathDoc);
+                    //doc.MailMerge.FieldMergingCallback = new HandleMergeBarcode();
+                    //Aspose.Words.Fonts.FontSettings fontSettings = new Aspose.Words.Fonts.FontSettings();
+                    //fontSettings.SetFontsFolder(@"C:\Windows\Fonts", true);  // hoặc thư mục riêng
+                    //doc.FontSettings = fontSettings;
+                    DocumentBuilder builder = new DocumentBuilder(doc);
+                    if (doc == null)
+                    {
+                        Utility.ShowMsg("Không nạp được file word.", "Thông báo"); return "";
+                    }
+                    if (Utility.MoveToAny(builder, "logo") && globalVariables.SysLogo != null)
+                    {
+                        if (sysLogosize != null)
+                        {
+                            w = Utility.Int32Dbnull(sysLogosize.SValue.Split('x')[0], 0);
+                            h = Utility.Int32Dbnull(sysLogosize.SValue.Split('x')[1], 0);
+                            if (w > 0 && h > 0)
+                                builder.InsertImage(globalVariables.SysLogo, w, h);
+                            else
+                                builder.InsertImage(globalVariables.SysLogo);
+                        }
+                        else
+                        {
+                            if (globalVariables.SysLogo != null)
+                            {
+                                builder.InsertImage(globalVariables.SysLogo);
+                            }
+                        }
+                    }
+                    Utility.MergeFieldsCheckBox2Doc(builder, null, lstcheckboxfields, drData);
+                    List<int> lstLoai = (from p in dtData.AsEnumerable()
+                                         orderby Utility.Int32Dbnull(p["stt_in"], -1)
+                                         select Utility.Int32Dbnull(p["id_loaithanhtoan"], -1)
+
+                                  ).Distinct().ToList<int>();
+                    Aspose.Words.Tables.Table tab = doc.FirstSection.Body.Tables[1];
+                    int idx = 1; // bắt đầu sau header
+                    Aspose.Words.Tables.Row rowNgay = tab.Rows[1];
+                    Run r = new Run(doc);
+                    //Điền dữ liệu row ngày
+                    int k = 0;
+                    DataTable dtNgay = dsData.Tables[2];
+                    foreach (DataRow dr in dtNgay.Rows)
+                    {
+                       
+                        SetCellValue(r, doc, rowNgay, k+3, Utility.sDbnull(dr["ngay"], ""), "Times New Roman", true, 10);
+                        k++;
+                    }    
+                    Aspose.Words.Tables.Row template = tab.Rows[2];
+                    int tong_so = 0;
+
+                    foreach (int id_loaithanhtoan in lstLoai)
+                    {
+                        DataTable dtLoaiData = dtData.Select("id_loaithanhtoan=" + id_loaithanhtoan.ToString(),
+                                                    "stt_in,stt_hthi_loaidichvu ,stt_hthi_dichvu,stt_hthi_chitiet,ten")
+                                                    .CopyToDataTable();
+
+                        // ===== Group cấp 1: ten_loaithanhtoan =====
+                        Aspose.Words.Tables.Row rowLoai = (Aspose.Words.Tables.Row)template.Clone(true);
+                        ClearRow(rowLoai, rowLoai.Cells.Count - 1);
+                        SetCellValue(r, doc, rowLoai, 0, Utility.sDbnull(dtLoaiData.Rows[0]["ten_loaithanhtoan"], ""), "Times New Roman", true, 12, true);
+                        tab.Rows.Insert(idx + 1, rowLoai);
+                        idx++;
+
+                        if (id_loaithanhtoan == 2) // nhóm dịch vụ cận lâm sàng có group cấp 2
+                        {
+                            DataTable dtCDHA = dtLoaiData.Clone();
+                            List<string> lstid_loaidvu = (from p in dtLoaiData.AsEnumerable()
+                                                          orderby Utility.Int32Dbnull(p["stt_in"], -1), Utility.Int32Dbnull(p["stt_hthi_loaidichvu"], -1)
+                                                          select Utility.sDbnull(p["id_loaidichvu"], "-1")
+                                        ).Distinct().ToList<string>();
+                            foreach (string id_loaidichvu in lstid_loaidvu)
+                            {
+                                dtCDHA = dtLoaiData.Select("id_loaidichvu='" + id_loaidichvu.ToString() + "'", "stt_in,stt_hthi_loaidichvu ,stt_hthi_dichvu,stt_hthi_chitiet,ten").CopyToDataTable();
+                                //Thêm group loại dịch vụ trong nhóm chỉ định CLS
+                                Aspose.Words.Tables.Row group2 = (Aspose.Words.Tables.Row)template.Clone(true);
+                                ClearRow(group2, group2.Cells.Count - 1);
+                                SetCellValue(r, doc, group2, 0, Utility.sDbnull(dtCDHA.Rows[0]["ten_loaidichvu"], ""), "Times New Roman", true, 12, true);
+                                tab.Rows.Insert(idx + 1, group2);
+                                idx++;
+                                for (int i = 0; i < dtCDHA.Rows.Count; i++)//duyệt qua các items và điền đúng thông tin
+                                {
+                                    tong_so = 0;
+                                    Aspose.Words.Tables.Row newItem = (Aspose.Words.Tables.Row)template.Clone(true);
+                                    ClearRow(newItem, newItem.Cells.Count - 1);
+                                    //Cột số thứ tự trên word
+                                    SetCellValue(r, doc, newItem, 0, Utility.sDbnull(i+1, ""), "Times New Roman", false, 10);
+                                    //Cột tên
+                                    SetCellValue(r, doc, newItem, 1, Utility.sDbnull(dtCDHA.Rows[i]["ten"], ""), "Times New Roman", false, 10);
+                                    //Cột ten_donvitinh
+                                    SetCellValue(r, doc, newItem, 2, Utility.sDbnull(dtCDHA.Rows[i]["ten_donvitinh"], ""), "Times New Roman", false, 10);
+                                    //Điền dữ liệu vào các cột ngày
+                                    k = 3;
+                                    for (int sl_ngay =12; sl_ngay<=21; sl_ngay++)//cột ngày bắt đầu từ vị trí số 12-21=10 ngày
+                                    {
+                                        tong_so += Utility.Int32Dbnull(dtCDHA.Rows[i][sl_ngay], 0);
+                                        SetCellValue(r, doc, newItem, k, Utility.sDbnull(dtCDHA.Rows[i][sl_ngay], ""), "Times New Roman", false, 10);
+                                        k++;//K sẽ chạy từ 3-12
+                                    }
+                                    //Cột tổng số vị trí số 13
+                                    SetCellValue(r, doc, newItem, 13, Utility.sDbnull(tong_so), "Times New Roman", true, 10);
+                                    tab.Rows.Insert(idx + 1, newItem);
+                                    idx++;
+                                }
+                            }
+                        }
+                        else // không có group cấp 2 → điền item luôn
+                        {
+                           
+                            for (int i = 0; i < dtLoaiData.Rows.Count; i++)//duyệt qua các items và điền đúng thông tin
+                            {
+                                tong_so = 0;
+                                Aspose.Words.Tables.Row newItem = (Aspose.Words.Tables.Row)template.Clone(true);
+                                ClearRow(newItem, newItem.Cells.Count - 1);
+                                //Cột số thứ tự trên word
+                                SetCellValue(r, doc, newItem, 0, Utility.sDbnull(i + 1, ""), "Times New Roman", false, 10);
+                                //Cột tên
+                                SetCellValue(r, doc, newItem, 1, Utility.sDbnull(dtLoaiData.Rows[i]["ten"], ""), "Times New Roman", false, 10);
+                                //Cột ten_donvitinh
+                                SetCellValue(r, doc, newItem, 2, Utility.sDbnull(dtLoaiData.Rows[i]["ten_donvitinh"], ""), "Times New Roman", false, 10);
+                                //Điền dữ liệu vào các cột ngày
+                                k = 3;
+                                for (int sl_ngay = 12; sl_ngay <= 21; sl_ngay++)//cột ngày bắt đầu từ vị trí số 12-21=10 ngày
+                                {
+                                    tong_so += Utility.Int32Dbnull(dtLoaiData.Rows[i][sl_ngay], 0);
+                                    SetCellValue(r, doc, newItem, k, Utility.sDbnull(dtLoaiData.Rows[i][sl_ngay], ""), "Times New Roman", false, 10);
+                                    k++;//K sẽ chạy từ 3-12
+                                }
+                                //Cột tổng số vị trí số 13
+                                SetCellValue(r, doc, newItem, 13, Utility.sDbnull(tong_so), "Times New Roman", true, 10);
+                                tab.Rows.Insert(idx + 1, newItem);
+                                idx++;
+                            }
+                        }
+                    }
+
+
+                    doc.MailMerge.Execute(drData);
+                    sysLogosize = new Select().From(SysSystemParameter.Schema).Where(SysSystemParameter.Columns.SName).IsEqualTo("signsize").ExecuteSingle<SysSystemParameter>();
+                    Utility.SignDoc(doc, builder, sysLogosize != null ? sysLogosize.SValue : "");
+                    if (File.Exists(fileKetqua))
+                    {
+                        File.Delete(fileKetqua);
+                    }
+                    if (returnFile)
+                    {
+                        //var saveOptions = new PdfSaveOptions
+                        //{
+                        //    EmbedFullFonts = true,
+                        //    UseCoreFonts = false,
+                        //    FontEmbeddingMode = PdfFontEmbeddingMode.EmbedAll
+                        //};
+
+                        doc.Save(fileKetqua, SaveFormat.Doc);
+                        return fileKetqua;
+                    }
+                    else
+                        doc.Save(fileKetqua, SaveFormat.Doc);
+                    string path = fileKetqua;
+                    if (File.Exists(path))
+                    {
+                        Process process = new Process();
+                        try
+                        {
+                            process.StartInfo.FileName = path;
+                            process.Start();
+                            process.WaitForInputIdle();
+                        }
+                        catch
+                        {
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Không tìm thấy biểu mẫu", "TThông báo", MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation);
+                    return "";
+                }
+                return "";
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+                return "";
+            }
+        }
+       
         class HandleMergeBarcode : IFieldMergingCallback
         {
             public void FieldMerging(FieldMergingArgs e)

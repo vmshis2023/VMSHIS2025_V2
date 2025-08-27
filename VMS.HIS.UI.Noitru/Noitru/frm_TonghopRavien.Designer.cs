@@ -153,7 +153,6 @@
             this.tabPageChiDinhCLS = new Janus.Windows.UI.Tab.UITabPage();
             this.pnlChidinh = new System.Windows.Forms.Panel();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.cmdViewPdf2 = new Janus.Windows.EditControls.UIButton();
             this.uiTabKqCls = new Janus.Windows.UI.Tab.UITab();
             this.tabPhieuDieuTri = new Janus.Windows.UI.Tab.UITabPage();
             this.pnlXQ = new System.Windows.Forms.Panel();
@@ -221,6 +220,7 @@
             this.uiTabThongtinBN = new Janus.Windows.UI.Tab.UITab();
             this.uiTabPage6 = new Janus.Windows.UI.Tab.UITabPage();
             this.pnlPatientInfor = new System.Windows.Forms.Panel();
+            this.cmdViewPdf2 = new Janus.Windows.EditControls.UIButton();
             this.cmdgetPatient = new Janus.Windows.EditControls.UIButton();
             this.cboKhoanoitru = new Janus.Windows.EditControls.UIComboBox();
             this.txtIdPhieudieutri = new Janus.Windows.GridEX.EditControls.EditBox();
@@ -1597,6 +1597,7 @@
             this.cmdRavien.Enabled = false;
             this.cmdRavien.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdRavien.Image = ((System.Drawing.Image)(resources.GetObject("cmdRavien.Image")));
+            this.cmdRavien.ImageSize = new System.Drawing.Size(24, 24);
             this.cmdRavien.Location = new System.Drawing.Point(293, 8);
             this.cmdRavien.Margin = new System.Windows.Forms.Padding(3, 8, 3, 3);
             this.cmdRavien.Name = "cmdRavien";
@@ -1686,19 +1687,6 @@
             this.splitContainer3.SplitterDistance = 277;
             this.splitContainer3.SplitterWidth = 3;
             this.splitContainer3.TabIndex = 563;
-            // 
-            // cmdViewPdf2
-            // 
-            this.cmdViewPdf2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.cmdViewPdf2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.cmdViewPdf2.Image = ((System.Drawing.Image)(resources.GetObject("cmdViewPdf2.Image")));
-            this.cmdViewPdf2.ImageSize = new System.Drawing.Size(30, 30);
-            this.cmdViewPdf2.Location = new System.Drawing.Point(911, 69);
-            this.cmdViewPdf2.Name = "cmdViewPdf2";
-            this.cmdViewPdf2.Size = new System.Drawing.Size(35, 35);
-            this.cmdViewPdf2.TabIndex = 562;
-            this.cmdViewPdf2.TabStop = false;
-            this.cmdViewPdf2.Visible = false;
             // 
             // uiTabKqCls
             // 
@@ -2651,6 +2639,19 @@
             this.pnlPatientInfor.Size = new System.Drawing.Size(1262, 108);
             this.pnlPatientInfor.TabIndex = 468;
             this.pnlPatientInfor.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlPatientInfor_Paint);
+            // 
+            // cmdViewPdf2
+            // 
+            this.cmdViewPdf2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.cmdViewPdf2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.cmdViewPdf2.Image = ((System.Drawing.Image)(resources.GetObject("cmdViewPdf2.Image")));
+            this.cmdViewPdf2.ImageSize = new System.Drawing.Size(30, 30);
+            this.cmdViewPdf2.Location = new System.Drawing.Point(911, 69);
+            this.cmdViewPdf2.Name = "cmdViewPdf2";
+            this.cmdViewPdf2.Size = new System.Drawing.Size(35, 35);
+            this.cmdViewPdf2.TabIndex = 562;
+            this.cmdViewPdf2.TabStop = false;
+            this.cmdViewPdf2.Visible = false;
             // 
             // cmdgetPatient
             // 
