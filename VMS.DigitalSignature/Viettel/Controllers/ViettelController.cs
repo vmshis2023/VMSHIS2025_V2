@@ -42,8 +42,11 @@ namespace VMS.ChuKySo.Api.Controllers
         private static int indexCurrent = 1;
         private int count;
         private String token = "";
+        string imageFile = "C:\\1.png";
+        public  String firstTimeSAD = "";
         private Dictionary<String, CertBO> certMap = new Dictionary<string, CertBO>();
         private List<string> credentialIDList = new List<string>();
+        private string PDFFolder="";
         /// <summary>
         /// 
         /// </summary>
@@ -54,13 +57,13 @@ namespace VMS.ChuKySo.Api.Controllers
             _appSettings = appIdentitySettingsAccessor.Value;
         }
         /// <summary>
-        /// POST: DigitalSignatureCheckAccount
+        /// POST: KiemtraTaikhoanKyso
         /// </summary>
         /// <returns></returns>
-        [HttpPost("DigitalSignatureCheckAccount")]
-        public async Task<IActionResult> DigitalSignatureCheckAccount([FromBody] VMSDigitalSignature objDigitalSignature)
+        [HttpPost("KiemtraTaikhoanKyso")]
+        public async Task<IActionResult> KiemtraTaikhoanKyso([FromBody] VMSDigitalSignature objDigitalSignature)
         {
-            Utility.Log = Utility.LogFactory.GetLogger(nameof(DigitalSignatureCheckAccount));
+            Utility.Log = Utility.LogFactory.GetLogger(nameof(KiemtraTaikhoanKyso));
             Utility.Log.Debug("----------------------------------------------------------------------");
             var apiUrl = _appSettings.DigitalSignatureSettings.ApiDomain1;
             Utility.Log.Debug("api: " + apiUrl);
@@ -77,7 +80,7 @@ namespace VMS.ChuKySo.Api.Controllers
             String info = "Get Cert List. ";
             
             certMap = MobileCA.getAllCertificates(userId, wsdlUrl, clientId, clientSecret, profileId, ref token);
-
+            firstTimeSAD = MobileCA.firstTimeSAD;
             if (certMap == null || certMap.Count == 0)
             {
                 errMsg="Không tìm thấy CTS";
@@ -113,7 +116,7 @@ namespace VMS.ChuKySo.Api.Controllers
             }
             return true;
         }
-        private byte[] signWithoutValidate( string pathFile, string signedFile, VMSDigitalSignatureRect rect, string errMsg)
+        private byte[] signWithoutValidate( string pathFile, string signedFile, VMSDigitalSignatureRect rect, string errMsg, float X = 10, float Y = 10, float W = 250, float H = 80, int SizeFont = 10, int SizeFontImage = 6)
         {
             String info = "Ký file ";
             string idString = "123";
@@ -137,19 +140,21 @@ namespace VMS.ChuKySo.Api.Controllers
             info += indexCurrent++ + ".";
             try
             {
-                if (certMap == null || certMap.Count == 0 || credentialIDList == null || credentialIDList.Count == 0 )
+                if (certMap == null || certMap.Count == 0 || credentialIDList == null || credentialIDList.Count == 0)
                 {
+                    getCertList(errMsg);
+                }
+                if (certMap == null || certMap.Count == 0 || credentialIDList == null || credentialIDList.Count == 0)
+                {
+
                     errMsg = info + "Chưa chọn CTS";
                     Utility.Log.Debug(errMsg);
-                  
                     return null;
                 }
-
                 string credentialID = credentialIDList[0];
                 CertBO certBO = null;
                 certMap.TryGetValue(credentialID, out certBO);
-
-                certMap = MobileCA.getAllCertificates(userId, wsdlUrl, clientId, clientSecret, profileId, ref token);
+                //certMap = MobileCA.getAllCertificates(userId, wsdlUrl, clientId, clientSecret, profileId, ref token);
 
                 Org.BouncyCastle.X509.X509Certificate[] certChain = null;
                 Org.BouncyCastle.X509.X509Certificate x509Cert = null;
@@ -185,7 +190,8 @@ namespace VMS.ChuKySo.Api.Controllers
 
                 SignPdfFile pdfSig = new SignPdfFile();
                 //Khai bao duong dan toi file pdf can ky tren web server
-                string base64Hash = HashFilePDF.GetHashTypeRectangleText(pdfSig, pathFile, certChain, HashFilePDF.HASH_ALGORITHM_SHA_256);
+                string base64Hash = HashFilePDF.GetHashTypeImgText(X, Y, W, H, pdfSig, pathFile, certChain, HashFilePDF.HASH_ALGORITHM_SHA_256, imageFile, SizeFont, SizeFontImage);
+                //string base64Hash = HashFilePDF.GetHashTypeRectangleText(pdfSig, pathFile, certChain, HashFilePDF.HASH_ALGORITHM_SHA_256);
                 //string base64Hash = HashFilePDF.GetHashTypeRectangleText2_ExistedSignatureField(fileFullPath, certChain, "Ký", "1");
                 byte[] hash = Convert.FromBase64String(base64Hash);
                 // Sign hash
@@ -236,7 +242,8 @@ namespace VMS.ChuKySo.Api.Controllers
             }
             return null;
         }
-        private byte[] signFile(string  pathFile, string signedFile, VMSDigitalSignatureRect rect, string errMsg)
+        //10, 10, 200, 80
+        private byte[] signFile(string  pathFile, string signedFile, VMSDigitalSignatureRect rect, string errMsg,float X=10,float Y=10,float W=250,float H=80, int SizeFont=10, int SizeFontImage=6)
         {
             String info = "Ký file";
            
@@ -266,17 +273,20 @@ namespace VMS.ChuKySo.Api.Controllers
 
                 if (certMap == null || certMap.Count == 0 || credentialIDList == null || credentialIDList.Count == 0 )
                 {
+                    getCertList(errMsg);
+                }
+                if (certMap == null || certMap.Count == 0 || credentialIDList == null || credentialIDList.Count == 0)
+                {
+
                     errMsg = info + "Chưa chọn CTS";
                     Utility.Log.Debug(errMsg);
-                  
                     return null;
                 }
-
                 string credentialID = credentialIDList[0];
                 CertBO certBO = null;
                 certMap.TryGetValue(credentialID, out certBO);
 
-                certMap = MobileCA.getAllCertificates(userId, wsdlUrl, clientId, clientSecret, profileId, ref token);
+                //certMap = MobileCA.getAllCertificates(userId, wsdlUrl, clientId, clientSecret, profileId, ref token);
 
                 Org.BouncyCastle.X509.X509Certificate[] certChain = null;
                 Org.BouncyCastle.X509.X509Certificate x509Cert = null;
@@ -311,8 +321,8 @@ namespace VMS.ChuKySo.Api.Controllers
 
                 SignPdfFile pdfSig = new SignPdfFile();
                 //Khai bao duong dan toi file pdf can ky tren web server
-                string imageFile = "C:\\1.png";
-                string base64Hash = HashFilePDF.GetHashTypeImgText(pdfSig, pathFile, certChain, HashFilePDF.HASH_ALGORITHM_SHA_256, imageFile);
+               
+                string base64Hash = HashFilePDF.GetHashTypeImgText(X,Y,W,H, pdfSig, pathFile, certChain, HashFilePDF.HASH_ALGORITHM_SHA_256, imageFile,SizeFont, SizeFontImage);
                 //string base64Hash = HashFilePDF.GetHashTypeRectangleText(pdfSig, pathFile, certChain, HashFilePDF.HASH_ALGORITHM_SHA_256);
                 //string base64Hash = HashFilePDF.GetHashTypeRectangleText2_ExistedSignatureField(fileFullPath, certChain, "Ký", "1");
                 byte[] hash = Convert.FromBase64String(base64Hash);
@@ -345,6 +355,11 @@ namespace VMS.ChuKySo.Api.Controllers
                 TimestampConfig timestampConfig = new TimestampConfig();
                 timestampConfig.UseTimestamp = false;
                 //string signatureBase64 = Convert.ToBase64String(signature);
+                var signedDir = Path.GetDirectoryName(signedFile);
+                if (!Directory.Exists(signedDir))
+                {
+                    Directory.CreateDirectory(signedDir);
+                }
                 if (!pdfSig.insertSignature(signature, signedFile, timestampConfig, HashFilePDF.HASH_ALGORITHM_SHA_256))
                 {
                     errMsg = info + "Insert signature into file fail.";
@@ -370,12 +385,12 @@ namespace VMS.ChuKySo.Api.Controllers
         /// POST: DigitalSignaturePdfFileSign
         /// </summary>
         /// <returns></returns>
-        [HttpPost("DigitalSignaturePdfFileSign")]
-        public async Task<IActionResult> DigitalSignaturePdfFileSign([FromBody] VMSDigitalSignature objDigitalSignature)
+        [HttpPost("KysoPDF")]
+        public async Task<IActionResult> KysoPDF([FromBody] VMSDigitalSignature objDigitalSignature)
         {
             string errMsg = "";
-            Utility.Log = Utility.LogFactory.GetLogger(nameof(DigitalSignaturePdfFileSign));
-            Utility.Log.Debug("----------------------------------------------------------------------");
+            Utility.Log = Utility.LogFactory.GetLogger(nameof(KysoPDF));
+            Utility.Log.Debug("---------Begin KysoPDF----------------------------------------------------");
 
             var response = new SingleResponse<string>();
             response.Success = false;
@@ -388,33 +403,28 @@ namespace VMS.ChuKySo.Api.Controllers
 
                 // Get signature image bytes
                 var base64Signature = objDigitalSignature.base64Signature;
-                if (!string.IsNullOrEmpty(_appSettings.DigitalSignatureSettings.SignatureImagePath))
-                {
-                    var signatureImagePath = _appSettings.DigitalSignatureSettings.SignatureImagePath;
-                    signatureImagePath =
-                        signatureImagePath.StartsWith(AppDomain.CurrentDomain.BaseDirectory) ?
-                        signatureImagePath :
-                        AppDomain.CurrentDomain.BaseDirectory + signatureImagePath;
-                    if (System.IO.File.Exists(signatureImagePath))
-                    {
-                        Utility.Log.Debug($"SignatureImagePath: {signatureImagePath}");
-                        base64Signature = Convert.ToBase64String(System.IO.File.ReadAllBytes(signatureImagePath));
-                    }
-                }
-                var fileSignatureBytes = Convert.FromBase64String(base64Signature);
-                Utility.Log.Debug("Begin iSignatureType '{5}' for pdf file '{0}' by user '{1}', userFullName '{2}' with appId: '{3}', secret: '{4}'",
-                objDigitalSignature.pdfFileName, objDigitalSignature.userName, objDigitalSignature.userFullName,
-                objDigitalSignature.appId, objDigitalSignature.secret, objDigitalSignature.signatureType);
+               
+                byte[] fileSignatureBytes = null;
+                if (!string.IsNullOrEmpty(base64Signature))
+                    fileSignatureBytes = Convert.FromBase64String(base64Signature);
+                Utility.Log.Debug("Thông tin user kí số: user '{0}', userFullName '{1}' with userId: '{2}', password: '{3}'",
+                objDigitalSignature.userName, objDigitalSignature.userFullName,
+                objDigitalSignature.userId, objDigitalSignature.userSecret);
                 Utility.Log.Debug($"File Length: {filePdfBytes.Length}");
-                Utility.Log.Debug($"Signature Length: {fileSignatureBytes.Length}");
-
-
+                // Utility.Log.Debug($"Signature Length: {fileSignatureBytes.Length}");
+                var baseDirectory = string.Format(@"{0}", AppContext.BaseDirectory);
+                imageFile = string.Format(@"{0}\{1}_.png", PDFFolder, Guid.NewGuid().ToString());
+                if (fileSignatureBytes != null)
+                    System.IO.File.WriteAllBytes(imageFile, fileSignatureBytes);
+                else
+                    imageFile = "";
                 //1: sign with text, 2: sign with image, 3: sign with text and image
                 var iSignatureType = 3;
                 switch (objDigitalSignature.signatureType.ToLower())
                 {
                     case "text":
                         iSignatureType = 2;
+                        imageFile = "";
                         break;
                     case "image":
                         iSignatureType = 1;
@@ -424,11 +434,11 @@ namespace VMS.ChuKySo.Api.Controllers
                         break;
                 }
 
-
-                var wsdlUrl = _appSettings.ViettelSettings.Url;
-                var clientId = _appSettings.ViettelSettings.ClientId;
-                var clientSecret = _appSettings.ViettelSettings.ClientSecret;
-                var profileId = _appSettings.ViettelSettings.ProfileId;
+                PDFFolder = _appSettings.ViettelSettings.PdfFolder;
+                 wsdlUrl = _appSettings.ViettelSettings.Url;
+                 clientId = _appSettings.ViettelSettings.ClientId;
+                 clientSecret = _appSettings.ViettelSettings.ClientSecret;
+                 profileId = _appSettings.ViettelSettings.ProfileId;
                 userId = objDigitalSignature.userId;
                 desc = "BVHP-Ký văn bản Cloud CA";
                 app = "vOffice";
@@ -437,26 +447,24 @@ namespace VMS.ChuKySo.Api.Controllers
                 credentialIDList.Clear();
                 var token = string.Empty;
                 var tokenExpiresIn = -1;
-                var certMap = MobileCA.getAllCertificates(userId, wsdlUrl, clientId, clientSecret, profileId, ref token);
-                if (certMap == null || certMap.Count == 0)
-                {
-                    errMsg="Không tìm thấy CTS";
-                    response.Success = false ;
-                    response.ErrorMessage = errMsg;
-                    return response.ToHttpResponse(); 
-                }
-                var baseDirectory = string.Format(@"{0}PDF", AppContext.BaseDirectory);
+                // certMap = MobileCA.getAllCertificates(userId, wsdlUrl, clientId, clientSecret, profileId, ref token);
+                //if (certMap == null || certMap.Count == 0)
+                //{
+                //    errMsg="Không tìm thấy CTS";
+                //    response.Success = false ;
+                //    response.ErrorMessage = errMsg;
+                //    return response.ToHttpResponse(); 
+                //}
+               
                 if (!Directory.Exists(baseDirectory))
                 {
                     Directory.CreateDirectory(baseDirectory);
                 }
                 //Lưu ra file PDF để truyền cho các hàm kí số của Viettel
-                var filePath = string.Format(@"{0}\{1}.pdf", baseDirectory, Guid.NewGuid().ToString());
-                var DesPath = string.Format(@"{0}\SignedPDF\{1}_signed.pdf", baseDirectory, Path.GetFileNameWithoutExtension(filePath));
+                var filePath = string.Format(@"{0}\{1}.pdf", PDFFolder, Guid.NewGuid().ToString());
+                var DesPath = string.Format(@"{0}\SignedPDF\{1}_signed.pdf", PDFFolder, Path.GetFileNameWithoutExtension(filePath));
                 System.IO.File.WriteAllBytes(filePath, Convert.FromBase64String(base64Pdf));
-                var fileImg = string.Format(@"{0}\{1}_.pdf", baseDirectory, Guid.NewGuid().ToString());
-                if (base64Signature != null)
-                    System.IO.File.WriteAllBytes(fileImg, Convert.FromBase64String(base64Signature));
+               
                 foreach (VMSDigitalSignatureLocation location in objDigitalSignature.locations)
                 {
                     foreach (VMSDigitalSignatureRect rect in location.lstRect)
@@ -479,11 +487,16 @@ namespace VMS.ChuKySo.Api.Controllers
                             byte[] byPdf = null;
                             if (Utility.sDbnull(objDigitalSignature.SAD) == "")//Kí lần đầu
                             {
-                                byPdf = signFile(filePath, DesPath, rect,  errMsg);
+                                Utility.Log.Debug("----------------------Bắt đầu ký xác thực----------------------");
+                                byPdf = signFile(filePath, DesPath, rect,  errMsg, llx, lly, urx-llx, ury-lly, objDigitalSignature.FontSize, objDigitalSignature.FontSizeWhenImage);
+                                objDigitalSignature.SAD = firstTimeSAD;
+                                Utility.Log.Debug("----------------------Kết thúc ký xác thực----------------------");
                             }
                             else//Thực hiện kí lại, có kiểm tra xem nếu qua 25 ngày SAD hết hiệu lực thì 
                             {
-                               byPdf = signWithoutValidate(filePath, DesPath, rect, errMsg);
+                                Utility.Log.Debug("----------------------Bắt đầu ký KHÔNG xác thực----------------------");
+                                byPdf = signWithoutValidate(filePath, DesPath, rect, errMsg, llx, lly, urx - llx, ury - lly, objDigitalSignature.FontSize, objDigitalSignature.FontSizeWhenImage);
+                                Utility.Log.Debug("----------------------Kết thúc ký KHÔNG xác thực----------------------");
                             }
                             var bytes = System.IO.File.ReadAllBytes(DesPath);
                             base64Pdf = Convert.ToBase64String(bytes);
@@ -497,13 +510,14 @@ namespace VMS.ChuKySo.Api.Controllers
                 {
                     response.Data = base64Pdf;
                     response.Success = true;
+                    response.SAD = firstTimeSAD;
                 }
 
             }
             catch (Exception ex)
             {
                 response.Message = ex.Message;
-                Utility.Log.Error("There was an error on '{0}' invocation: {1}", nameof(DigitalSignaturePdfFileSign), ex);
+                Utility.Log.Error("Lỗi khi thực hiện kí số {0}", nameof(KysoPDF), ex.ToString());
             }
             //}
             return response.ToHttpResponse();

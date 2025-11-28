@@ -112,7 +112,7 @@ namespace VNS.HIS.BusRule.Classes
                                     objkcbcdkl.DaymatMattrai, objkcbcdkl.VannhanMatphai, objkcbcdkl.VannhanMattrai, objkcbcdkl.ChandoanMatphai, objkcbcdkl.ChandoanMattrai, objkcbcdkl.Khammat
                                     , objkcbcdkl.IcdMatphai, objkcbcdkl.TenIcdMatphai, objkcbcdkl.IcdMattrai, objkcbcdkl.TenIcdMattrai
                                     , objkcbcdkl.VitriIcdChinh, objkcbcdkl.Sotxuathuyet, objkcbcdkl.Taychanmieng, objkcbcdkl.MantinhCapthuoc, objkcbcdkl.MantinhCls, objkcbcdkl.TiensuGiadinh
-                                    ).Execute();
+                                    , objkcbcdkl.TenbenhPhu).Execute();
                                 log.Trace("1.1 Thêm mới lưu chẩn đoán của bệnh nhân: " + objkcbcdkl.MaLuotkham);
                             }
                             else
@@ -137,7 +137,7 @@ namespace VNS.HIS.BusRule.Classes
                                     , objkcbcdkl.Para, objkcbcdkl.QuaiBi, objkcbcdkl.SPO2, objkcbcdkl.PhantruocMatphai, objkcbcdkl.PhantruocMattrai, objkcbcdkl.DaymatMatphai,
                                     objkcbcdkl.DaymatMattrai, objkcbcdkl.VannhanMatphai, objkcbcdkl.VannhanMattrai, objkcbcdkl.ChandoanMatphai, objkcbcdkl.ChandoanMattrai, objkcbcdkl.Khammat
                                     , objkcbcdkl.IcdMatphai, objkcbcdkl.TenIcdMatphai, objkcbcdkl.IcdMattrai, objkcbcdkl.TenIcdMattrai
-                                    , objkcbcdkl.VitriIcdChinh, objkcbcdkl.Sotxuathuyet, objkcbcdkl.Taychanmieng, objkcbcdkl.MantinhCapthuoc, objkcbcdkl.MantinhCls).Execute();
+                                    , objkcbcdkl.VitriIcdChinh, objkcbcdkl.Sotxuathuyet, objkcbcdkl.Taychanmieng, objkcbcdkl.MantinhCapthuoc, objkcbcdkl.MantinhCls, objkcbcdkl.TenbenhPhu).Execute();
                                 log.Trace("1.2 Cập nhật chẩn đoán của bệnh nhân: " + objkcbcdkl.MaLuotkham);
                                 // objkcbcdkl.MarkOld();
 
@@ -221,7 +221,7 @@ namespace VNS.HIS.BusRule.Classes
                                     objkcbcdkl.DaymatMattrai, objkcbcdkl.VannhanMatphai, objkcbcdkl.VannhanMattrai, objkcbcdkl.ChandoanMatphai, objkcbcdkl.ChandoanMattrai, objkcbcdkl.Khammat
                                     , objkcbcdkl.IcdMatphai, objkcbcdkl.TenIcdMatphai, objkcbcdkl.IcdMattrai, objkcbcdkl.TenIcdMattrai
                                     , objkcbcdkl.VitriIcdChinh, objkcbcdkl.Sotxuathuyet, objkcbcdkl.Taychanmieng, objkcbcdkl.MantinhCapthuoc, objkcbcdkl.MantinhCls, objkcbcdkl.TiensuGiadinh
-                                    ).Execute();
+                                    , objkcbcdkl.TenbenhPhu).Execute();
 
                             }
                             else
@@ -248,7 +248,7 @@ namespace VNS.HIS.BusRule.Classes
                                     , objkcbcdkl.Para, objkcbcdkl.QuaiBi, objkcbcdkl.SPO2, objkcbcdkl.PhantruocMatphai, objkcbcdkl.PhantruocMattrai, objkcbcdkl.DaymatMatphai,
                                     objkcbcdkl.DaymatMattrai, objkcbcdkl.VannhanMatphai, objkcbcdkl.VannhanMattrai, objkcbcdkl.ChandoanMatphai, objkcbcdkl.ChandoanMattrai, objkcbcdkl.Khammat
                                     , objkcbcdkl.IcdMatphai, objkcbcdkl.TenIcdMatphai, objkcbcdkl.IcdMattrai, objkcbcdkl.TenIcdMattrai
-                                    , objkcbcdkl.VitriIcdChinh, objkcbcdkl.Sotxuathuyet, objkcbcdkl.Taychanmieng, objkcbcdkl.MantinhCapthuoc, objkcbcdkl.MantinhCls).Execute();
+                                    , objkcbcdkl.VitriIcdChinh, objkcbcdkl.Sotxuathuyet, objkcbcdkl.Taychanmieng, objkcbcdkl.MantinhCapthuoc, objkcbcdkl.MantinhCls, objkcbcdkl.TenbenhPhu).Execute();
                             }
 
                         }

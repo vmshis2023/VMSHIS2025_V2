@@ -361,7 +361,7 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.cmdExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdExit.Image = ((System.Drawing.Image)(resources.GetObject("cmdExit.Image")));
-            this.cmdExit.Location = new System.Drawing.Point(316, 268);
+            this.cmdExit.Location = new System.Drawing.Point(424, 263);
             this.cmdExit.Name = "cmdExit";
             this.cmdExit.Size = new System.Drawing.Size(114, 32);
             this.cmdExit.TabIndex = 311;
@@ -374,7 +374,7 @@ namespace VNS.HISLink.UI.Duoc.Form_DanhMuc
             this.cmdSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdSave.Image = ((System.Drawing.Image)(resources.GetObject("cmdSave.Image")));
-            this.cmdSave.Location = new System.Drawing.Point(169, 268);
+            this.cmdSave.Location = new System.Drawing.Point(304, 263);
             this.cmdSave.Name = "cmdSave";
             this.cmdSave.Size = new System.Drawing.Size(114, 32);
             this.cmdSave.TabIndex = 310;

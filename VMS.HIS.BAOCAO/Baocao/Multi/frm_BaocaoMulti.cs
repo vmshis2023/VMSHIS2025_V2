@@ -1402,7 +1402,7 @@ namespace VNS.MultiReport
                     return;
                 }
                 if (dsData != null && dsData.Tables.Count > 0)
-                    Baocao.InPhieu(dsData.Tables[0], DateTime.Now, dieukientimkiem, true, report_code);
+                    Baocao.InBaoCao(dsData.Tables[0], report_code, DateTime.Now, dieukientimkiem );
             }
             catch (Exception ex)
             {

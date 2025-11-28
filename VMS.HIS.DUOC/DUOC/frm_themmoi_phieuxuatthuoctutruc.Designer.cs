@@ -202,6 +202,7 @@
             this.txtNguoigiao.RaiseEventEnter = false;
             this.txtNguoigiao.RaiseEventEnterWhenEmpty = false;
             this.txtNguoigiao.SelectedIndex = -1;
+            this.txtNguoigiao.SetDefaultWhenInit = true;
             this.txtNguoigiao.ShowCodeWithValue = false;
             this.txtNguoigiao.Size = new System.Drawing.Size(228, 21);
             this.txtNguoigiao.splitChar = '@';
@@ -352,7 +353,7 @@
             // label13
             // 
             this.label13.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(916, 14);
+            this.label13.Location = new System.Drawing.Point(1034, 14);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(10, 20);
             this.label13.TabIndex = 478;
@@ -363,7 +364,7 @@
             // cboNhanVien
             // 
             this.cboNhanVien.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboNhanVien.Location = new System.Drawing.Point(932, 17);
+            this.cboNhanVien.Location = new System.Drawing.Point(1050, 17);
             this.cboNhanVien.Name = "cboNhanVien";
             this.cboNhanVien.Size = new System.Drawing.Size(10, 21);
             this.cboNhanVien.TabIndex = 1;
@@ -457,6 +458,7 @@
             this.txtNguoinhan.RaiseEventEnter = false;
             this.txtNguoinhan.RaiseEventEnterWhenEmpty = false;
             this.txtNguoinhan.SelectedIndex = -1;
+            this.txtNguoinhan.SetDefaultWhenInit = true;
             this.txtNguoinhan.ShowCodeWithValue = false;
             this.txtNguoinhan.Size = new System.Drawing.Size(274, 21);
             this.txtNguoinhan.splitChar = '@';
@@ -509,13 +511,12 @@
             // 
             this.label4.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.label4.Location = new System.Drawing.Point(916, 15);
+            this.label4.Location = new System.Drawing.Point(694, 21);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(83, 20);
             this.label4.TabIndex = 61;
-            this.label4.Text = "Lý do xuất:";
+            this.label4.Text = "Ghi chú:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label4.Visible = false;
             // 
             // txtLyDoXuat
             // 
@@ -524,6 +525,8 @@
             this.txtLyDoXuat._TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtLyDoXuat.AddValues = true;
             this.txtLyDoXuat.AllowMultiline = false;
+            this.txtLyDoXuat.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtLyDoXuat.AutoCompleteList = ((System.Collections.Generic.List<string>)(resources.GetObject("txtLyDoXuat.AutoCompleteList")));
             this.txtLyDoXuat.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtLyDoXuat.buildShortcut = false;
@@ -537,7 +540,7 @@
             this.txtLyDoXuat.FillValueAfterSelect = false;
             this.txtLyDoXuat.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLyDoXuat.LOAI_DANHMUC = "LYDOXUAT";
-            this.txtLyDoXuat.Location = new System.Drawing.Point(1005, 15);
+            this.txtLyDoXuat.Location = new System.Drawing.Point(783, 21);
             this.txtLyDoXuat.MaxHeight = 300;
             this.txtLyDoXuat.MinTypedCharacters = 2;
             this.txtLyDoXuat.MyCode = "-1";
@@ -547,8 +550,9 @@
             this.txtLyDoXuat.RaiseEventEnter = false;
             this.txtLyDoXuat.RaiseEventEnterWhenEmpty = false;
             this.txtLyDoXuat.SelectedIndex = -1;
+            this.txtLyDoXuat.SetDefaultWhenInit = true;
             this.txtLyDoXuat.ShowCodeWithValue = false;
-            this.txtLyDoXuat.Size = new System.Drawing.Size(10, 21);
+            this.txtLyDoXuat.Size = new System.Drawing.Size(589, 21);
             this.txtLyDoXuat.splitChar = '@';
             this.txtLyDoXuat.splitCharIDAndCode = '#';
             this.txtLyDoXuat.TabIndex = 5;
@@ -561,7 +565,6 @@
             this.txtLyDoXuat.txtMyName_Edit = null;
             this.txtLyDoXuat.txtNext = null;
             this.txtLyDoXuat.txtNext1 = null;
-            this.txtLyDoXuat.Visible = false;
             // 
             // label6
             // 
@@ -935,7 +938,6 @@
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.grpControl);
             this.KeyPreview = true;
-            this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frm_themmoi_phieuxuatthuoctutruc";
             this.ShowIcon = false;

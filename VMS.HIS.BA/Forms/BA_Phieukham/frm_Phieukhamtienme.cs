@@ -21,6 +21,8 @@ using VNS.HIS.UI.DANHMUC;
 using VNS.HIS.UI.Classess;
 using System.Runtime.InteropServices;
 using System.Threading;
+using VMS.HIS.Bus.Emr;
+
 namespace VMS.HIS.UI.EMR
 {
     public partial class frm_Phieukhamtienme : Form
@@ -44,7 +46,7 @@ namespace VMS.HIS.UI.EMR
         public int _assignDetailid = -1;
         public int _nPatient_ID = -1;
         public KcbPhieukhamTienme objPkTm = new KcbPhieukhamTienme();
-        
+        public bool Force2Saved = false;
         #endregion
 
         #region Form events
@@ -579,7 +581,9 @@ namespace VMS.HIS.UI.EMR
                 objPkTm.ChuanbiChuyenbiet=Utility.DoTrim(lblCbcb.Text);
 
                 objPkTm.Save();
-
+                emrdoc.Force2Saved = Force2Saved;
+                emrdoc.InitDocument(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, Utility.Int64Dbnull(objPkTm.Id), objPkTm.NgayKham, Loaiphieu_HIS.PHIEUKHAM_TIENME, "PHIEUKHAM_TIENME", objPkTm.NguoiTao, -1, -1, Utility.Byte2Bool(0), "");
+                emrdoc.Save();
                 if (m_enAct == action.Insert)
                 {
                     Utility.Log(this.Name, globalVariables.UserName, string.Format("Thêm mới phiếu khám tiền mê cho bệnh nhân: {0}-{1} thành công", objPkTm.MaLuotkham, ucThongtinnguoibenh_doc_v11.txtTenBN.Text), objPkTm.IsNew ? newaction.Insert : newaction.Update, "UI");
@@ -610,7 +614,7 @@ namespace VMS.HIS.UI.EMR
                
             }
         }
-
+        EmrDocuments emrdoc = new EmrDocuments();
         private void cmdDelete_Click(object sender, EventArgs e)
         {
             try

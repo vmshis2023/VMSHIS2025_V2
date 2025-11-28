@@ -152,6 +152,19 @@ namespace VMS.HIS.DAL
 				colvarMaPhieu.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarMaPhieu);
 				
+				TableSchema.TableColumn colvarNgayPhieu = new TableSchema.TableColumn(schema);
+				colvarNgayPhieu.ColumnName = "ngay_phieu";
+				colvarNgayPhieu.DataType = DbType.DateTime;
+				colvarNgayPhieu.MaxLength = 0;
+				colvarNgayPhieu.AutoIncrement = false;
+				colvarNgayPhieu.IsNullable = true;
+				colvarNgayPhieu.IsPrimaryKey = false;
+				colvarNgayPhieu.IsForeignKey = false;
+				colvarNgayPhieu.IsReadOnly = false;
+				colvarNgayPhieu.DefaultSetting = @"";
+				colvarNgayPhieu.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarNgayPhieu);
+				
 				TableSchema.TableColumn colvarIdBenhnhan = new TableSchema.TableColumn(schema);
 				colvarIdBenhnhan.ColumnName = "id_benhnhan";
 				colvarIdBenhnhan.DataType = DbType.Int64;
@@ -191,44 +204,83 @@ namespace VMS.HIS.DAL
 				colvarIdKhoadieutri.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarIdKhoadieutri);
 				
-				TableSchema.TableColumn colvarKhoa = new TableSchema.TableColumn(schema);
-				colvarKhoa.ColumnName = "khoa";
-				colvarKhoa.DataType = DbType.String;
-				colvarKhoa.MaxLength = 255;
-				colvarKhoa.AutoIncrement = false;
-				colvarKhoa.IsNullable = true;
-				colvarKhoa.IsPrimaryKey = false;
-				colvarKhoa.IsForeignKey = false;
-				colvarKhoa.IsReadOnly = false;
-				colvarKhoa.DefaultSetting = @"";
-				colvarKhoa.ForeignKeyTableName = "";
-				schema.Columns.Add(colvarKhoa);
+				TableSchema.TableColumn colvarIdKhoa = new TableSchema.TableColumn(schema);
+				colvarIdKhoa.ColumnName = "id_khoa";
+				colvarIdKhoa.DataType = DbType.Int16;
+				colvarIdKhoa.MaxLength = 0;
+				colvarIdKhoa.AutoIncrement = false;
+				colvarIdKhoa.IsNullable = true;
+				colvarIdKhoa.IsPrimaryKey = false;
+				colvarIdKhoa.IsForeignKey = false;
+				colvarIdKhoa.IsReadOnly = false;
+				colvarIdKhoa.DefaultSetting = @"";
+				colvarIdKhoa.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarIdKhoa);
 				
-				TableSchema.TableColumn colvarBuong = new TableSchema.TableColumn(schema);
-				colvarBuong.ColumnName = "buong";
-				colvarBuong.DataType = DbType.String;
-				colvarBuong.MaxLength = 255;
-				colvarBuong.AutoIncrement = false;
-				colvarBuong.IsNullable = true;
-				colvarBuong.IsPrimaryKey = false;
-				colvarBuong.IsForeignKey = false;
-				colvarBuong.IsReadOnly = false;
-				colvarBuong.DefaultSetting = @"";
-				colvarBuong.ForeignKeyTableName = "";
-				schema.Columns.Add(colvarBuong);
+				TableSchema.TableColumn colvarIdBuong = new TableSchema.TableColumn(schema);
+				colvarIdBuong.ColumnName = "id_buong";
+				colvarIdBuong.DataType = DbType.Int16;
+				colvarIdBuong.MaxLength = 0;
+				colvarIdBuong.AutoIncrement = false;
+				colvarIdBuong.IsNullable = true;
+				colvarIdBuong.IsPrimaryKey = false;
+				colvarIdBuong.IsForeignKey = false;
+				colvarIdBuong.IsReadOnly = false;
+				colvarIdBuong.DefaultSetting = @"";
+				colvarIdBuong.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarIdBuong);
 				
-				TableSchema.TableColumn colvarGiuong = new TableSchema.TableColumn(schema);
-				colvarGiuong.ColumnName = "giuong";
-				colvarGiuong.DataType = DbType.String;
-				colvarGiuong.MaxLength = 255;
-				colvarGiuong.AutoIncrement = false;
-				colvarGiuong.IsNullable = true;
-				colvarGiuong.IsPrimaryKey = false;
-				colvarGiuong.IsForeignKey = false;
-				colvarGiuong.IsReadOnly = false;
-				colvarGiuong.DefaultSetting = @"";
-				colvarGiuong.ForeignKeyTableName = "";
-				schema.Columns.Add(colvarGiuong);
+				TableSchema.TableColumn colvarIdGiuong = new TableSchema.TableColumn(schema);
+				colvarIdGiuong.ColumnName = "id_giuong";
+				colvarIdGiuong.DataType = DbType.Int16;
+				colvarIdGiuong.MaxLength = 0;
+				colvarIdGiuong.AutoIncrement = false;
+				colvarIdGiuong.IsNullable = true;
+				colvarIdGiuong.IsPrimaryKey = false;
+				colvarIdGiuong.IsForeignKey = false;
+				colvarIdGiuong.IsReadOnly = false;
+				colvarIdGiuong.DefaultSetting = @"";
+				colvarIdGiuong.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarIdGiuong);
+				
+				TableSchema.TableColumn colvarTenKhoa = new TableSchema.TableColumn(schema);
+				colvarTenKhoa.ColumnName = "ten_khoa";
+				colvarTenKhoa.DataType = DbType.String;
+				colvarTenKhoa.MaxLength = 255;
+				colvarTenKhoa.AutoIncrement = false;
+				colvarTenKhoa.IsNullable = true;
+				colvarTenKhoa.IsPrimaryKey = false;
+				colvarTenKhoa.IsForeignKey = false;
+				colvarTenKhoa.IsReadOnly = false;
+				colvarTenKhoa.DefaultSetting = @"";
+				colvarTenKhoa.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarTenKhoa);
+				
+				TableSchema.TableColumn colvarTenBuong = new TableSchema.TableColumn(schema);
+				colvarTenBuong.ColumnName = "ten_buong";
+				colvarTenBuong.DataType = DbType.String;
+				colvarTenBuong.MaxLength = 255;
+				colvarTenBuong.AutoIncrement = false;
+				colvarTenBuong.IsNullable = true;
+				colvarTenBuong.IsPrimaryKey = false;
+				colvarTenBuong.IsForeignKey = false;
+				colvarTenBuong.IsReadOnly = false;
+				colvarTenBuong.DefaultSetting = @"";
+				colvarTenBuong.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarTenBuong);
+				
+				TableSchema.TableColumn colvarTenGiuong = new TableSchema.TableColumn(schema);
+				colvarTenGiuong.ColumnName = "ten_giuong";
+				colvarTenGiuong.DataType = DbType.String;
+				colvarTenGiuong.MaxLength = 255;
+				colvarTenGiuong.AutoIncrement = false;
+				colvarTenGiuong.IsNullable = true;
+				colvarTenGiuong.IsPrimaryKey = false;
+				colvarTenGiuong.IsForeignKey = false;
+				colvarTenGiuong.IsReadOnly = false;
+				colvarTenGiuong.DefaultSetting = @"";
+				colvarTenGiuong.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarTenGiuong);
 				
 				TableSchema.TableColumn colvarNoitru = new TableSchema.TableColumn(schema);
 				colvarNoitru.ColumnName = "noitru";
@@ -335,6 +387,14 @@ namespace VMS.HIS.DAL
 			set { SetColumnValue(Columns.MaPhieu, value); }
 		}
 		  
+		[XmlAttribute("NgayPhieu")]
+		[Bindable(true)]
+		public DateTime? NgayPhieu 
+		{
+			get { return GetColumnValue<DateTime?>(Columns.NgayPhieu); }
+			set { SetColumnValue(Columns.NgayPhieu, value); }
+		}
+		  
 		[XmlAttribute("IdBenhnhan")]
 		[Bindable(true)]
 		public long IdBenhnhan 
@@ -359,28 +419,52 @@ namespace VMS.HIS.DAL
 			set { SetColumnValue(Columns.IdKhoadieutri, value); }
 		}
 		  
-		[XmlAttribute("Khoa")]
+		[XmlAttribute("IdKhoa")]
 		[Bindable(true)]
-		public string Khoa 
+		public short? IdKhoa 
 		{
-			get { return GetColumnValue<string>(Columns.Khoa); }
-			set { SetColumnValue(Columns.Khoa, value); }
+			get { return GetColumnValue<short?>(Columns.IdKhoa); }
+			set { SetColumnValue(Columns.IdKhoa, value); }
 		}
 		  
-		[XmlAttribute("Buong")]
+		[XmlAttribute("IdBuong")]
 		[Bindable(true)]
-		public string Buong 
+		public short? IdBuong 
 		{
-			get { return GetColumnValue<string>(Columns.Buong); }
-			set { SetColumnValue(Columns.Buong, value); }
+			get { return GetColumnValue<short?>(Columns.IdBuong); }
+			set { SetColumnValue(Columns.IdBuong, value); }
 		}
 		  
-		[XmlAttribute("Giuong")]
+		[XmlAttribute("IdGiuong")]
 		[Bindable(true)]
-		public string Giuong 
+		public short? IdGiuong 
 		{
-			get { return GetColumnValue<string>(Columns.Giuong); }
-			set { SetColumnValue(Columns.Giuong, value); }
+			get { return GetColumnValue<short?>(Columns.IdGiuong); }
+			set { SetColumnValue(Columns.IdGiuong, value); }
+		}
+		  
+		[XmlAttribute("TenKhoa")]
+		[Bindable(true)]
+		public string TenKhoa 
+		{
+			get { return GetColumnValue<string>(Columns.TenKhoa); }
+			set { SetColumnValue(Columns.TenKhoa, value); }
+		}
+		  
+		[XmlAttribute("TenBuong")]
+		[Bindable(true)]
+		public string TenBuong 
+		{
+			get { return GetColumnValue<string>(Columns.TenBuong); }
+			set { SetColumnValue(Columns.TenBuong, value); }
+		}
+		  
+		[XmlAttribute("TenGiuong")]
+		[Bindable(true)]
+		public string TenGiuong 
+		{
+			get { return GetColumnValue<string>(Columns.TenGiuong); }
+			set { SetColumnValue(Columns.TenGiuong, value); }
 		}
 		  
 		[XmlAttribute("Noitru")]
@@ -450,11 +534,13 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(string varMaPhieu,long varIdBenhnhan,string varMaLuotkham,int varIdKhoadieutri,string varKhoa,string varBuong,string varGiuong,bool? varNoitru,string varChanDoan,DateTime varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua)
+		public static void Insert(string varMaPhieu,DateTime? varNgayPhieu,long varIdBenhnhan,string varMaLuotkham,int varIdKhoadieutri,short? varIdKhoa,short? varIdBuong,short? varIdGiuong,string varTenKhoa,string varTenBuong,string varTenGiuong,bool? varNoitru,string varChanDoan,DateTime varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua)
 		{
 			NoitruPhieudichtruyen item = new NoitruPhieudichtruyen();
 			
 			item.MaPhieu = varMaPhieu;
+			
+			item.NgayPhieu = varNgayPhieu;
 			
 			item.IdBenhnhan = varIdBenhnhan;
 			
@@ -462,11 +548,17 @@ namespace VMS.HIS.DAL
 			
 			item.IdKhoadieutri = varIdKhoadieutri;
 			
-			item.Khoa = varKhoa;
+			item.IdKhoa = varIdKhoa;
 			
-			item.Buong = varBuong;
+			item.IdBuong = varIdBuong;
 			
-			item.Giuong = varGiuong;
+			item.IdGiuong = varIdGiuong;
+			
+			item.TenKhoa = varTenKhoa;
+			
+			item.TenBuong = varTenBuong;
+			
+			item.TenGiuong = varTenGiuong;
 			
 			item.Noitru = varNoitru;
 			
@@ -490,7 +582,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(long varIdPhieu,string varMaPhieu,long varIdBenhnhan,string varMaLuotkham,int varIdKhoadieutri,string varKhoa,string varBuong,string varGiuong,bool? varNoitru,string varChanDoan,DateTime varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua)
+		public static void Update(long varIdPhieu,string varMaPhieu,DateTime? varNgayPhieu,long varIdBenhnhan,string varMaLuotkham,int varIdKhoadieutri,short? varIdKhoa,short? varIdBuong,short? varIdGiuong,string varTenKhoa,string varTenBuong,string varTenGiuong,bool? varNoitru,string varChanDoan,DateTime varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua)
 		{
 			NoitruPhieudichtruyen item = new NoitruPhieudichtruyen();
 			
@@ -498,17 +590,25 @@ namespace VMS.HIS.DAL
 			
 				item.MaPhieu = varMaPhieu;
 			
+				item.NgayPhieu = varNgayPhieu;
+			
 				item.IdBenhnhan = varIdBenhnhan;
 			
 				item.MaLuotkham = varMaLuotkham;
 			
 				item.IdKhoadieutri = varIdKhoadieutri;
 			
-				item.Khoa = varKhoa;
+				item.IdKhoa = varIdKhoa;
 			
-				item.Buong = varBuong;
+				item.IdBuong = varIdBuong;
 			
-				item.Giuong = varGiuong;
+				item.IdGiuong = varIdGiuong;
+			
+				item.TenKhoa = varTenKhoa;
+			
+				item.TenBuong = varTenBuong;
+			
+				item.TenGiuong = varTenGiuong;
 			
 				item.Noitru = varNoitru;
 			
@@ -549,86 +649,114 @@ namespace VMS.HIS.DAL
         
         
         
-        public static TableSchema.TableColumn IdBenhnhanColumn
+        public static TableSchema.TableColumn NgayPhieuColumn
         {
             get { return Schema.Columns[2]; }
         }
         
         
         
-        public static TableSchema.TableColumn MaLuotkhamColumn
+        public static TableSchema.TableColumn IdBenhnhanColumn
         {
             get { return Schema.Columns[3]; }
         }
         
         
         
-        public static TableSchema.TableColumn IdKhoadieutriColumn
+        public static TableSchema.TableColumn MaLuotkhamColumn
         {
             get { return Schema.Columns[4]; }
         }
         
         
         
-        public static TableSchema.TableColumn KhoaColumn
+        public static TableSchema.TableColumn IdKhoadieutriColumn
         {
             get { return Schema.Columns[5]; }
         }
         
         
         
-        public static TableSchema.TableColumn BuongColumn
+        public static TableSchema.TableColumn IdKhoaColumn
         {
             get { return Schema.Columns[6]; }
         }
         
         
         
-        public static TableSchema.TableColumn GiuongColumn
+        public static TableSchema.TableColumn IdBuongColumn
         {
             get { return Schema.Columns[7]; }
         }
         
         
         
-        public static TableSchema.TableColumn NoitruColumn
+        public static TableSchema.TableColumn IdGiuongColumn
         {
             get { return Schema.Columns[8]; }
         }
         
         
         
-        public static TableSchema.TableColumn ChanDoanColumn
+        public static TableSchema.TableColumn TenKhoaColumn
         {
             get { return Schema.Columns[9]; }
         }
         
         
         
-        public static TableSchema.TableColumn NgayTaoColumn
+        public static TableSchema.TableColumn TenBuongColumn
         {
             get { return Schema.Columns[10]; }
         }
         
         
         
-        public static TableSchema.TableColumn NguoiTaoColumn
+        public static TableSchema.TableColumn TenGiuongColumn
         {
             get { return Schema.Columns[11]; }
         }
         
         
         
-        public static TableSchema.TableColumn NgaySuaColumn
+        public static TableSchema.TableColumn NoitruColumn
         {
             get { return Schema.Columns[12]; }
         }
         
         
         
-        public static TableSchema.TableColumn NguoiSuaColumn
+        public static TableSchema.TableColumn ChanDoanColumn
         {
             get { return Schema.Columns[13]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn NgayTaoColumn
+        {
+            get { return Schema.Columns[14]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn NguoiTaoColumn
+        {
+            get { return Schema.Columns[15]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn NgaySuaColumn
+        {
+            get { return Schema.Columns[16]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn NguoiSuaColumn
+        {
+            get { return Schema.Columns[17]; }
         }
         
         
@@ -639,12 +767,16 @@ namespace VMS.HIS.DAL
 		{
 			 public static string IdPhieu = @"id_phieu";
 			 public static string MaPhieu = @"ma_phieu";
+			 public static string NgayPhieu = @"ngay_phieu";
 			 public static string IdBenhnhan = @"id_benhnhan";
 			 public static string MaLuotkham = @"ma_luotkham";
 			 public static string IdKhoadieutri = @"id_khoadieutri";
-			 public static string Khoa = @"khoa";
-			 public static string Buong = @"buong";
-			 public static string Giuong = @"giuong";
+			 public static string IdKhoa = @"id_khoa";
+			 public static string IdBuong = @"id_buong";
+			 public static string IdGiuong = @"id_giuong";
+			 public static string TenKhoa = @"ten_khoa";
+			 public static string TenBuong = @"ten_buong";
+			 public static string TenGiuong = @"ten_giuong";
 			 public static string Noitru = @"noitru";
 			 public static string ChanDoan = @"chan_doan";
 			 public static string NgayTao = @"ngay_tao";

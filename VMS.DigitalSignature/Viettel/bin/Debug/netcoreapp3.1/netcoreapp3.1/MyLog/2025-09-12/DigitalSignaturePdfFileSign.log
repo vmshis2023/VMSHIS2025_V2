@@ -1,0 +1,606 @@
+2025-09-12 09:55:40.4989||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2025-09-12 09:57:08.6639||ERROR|DigitalSignaturePdfFileSign|There was an error on 'DigitalSignaturePdfFileSign' invocation: System.ArgumentNullException: Value cannot be null. (Parameter 's')
+   at System.Convert.FromBase64String(String s)
+   at VMS.ChuKySo.Api.Controllers.ViettelController.DigitalSignaturePdfFileSign(VMSDigitalSignature objDigitalSignature) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\Controllers\ViettelController.cs:line 404 |url: |action: 
+2025-09-12 09:58:21.1337||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2025-09-12 09:58:26.1545||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType '0' for pdf file 'C:\HIS_BVSG\Running\pdf2sign\9e5a98ce-72d1-41b5-8471-dfbaaeda2261.pdf' by user '', userFullName '' with appId: '', secret: 'pwd' |url: |action: 
+2025-09-12 09:58:26.8596||DEBUG|DigitalSignaturePdfFileSign|File Length: 89051 |url: |action: 
+2025-09-12 10:01:31.9899||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2025-09-12 10:01:36.3425||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType '0' for pdf file 'C:\HIS_BVSG\Running\pdf2sign\b860668e-b215-4ae6-ac1a-525b173a3344.pdf' by user '', userFullName '' with appId: '', secret: 'pwd' |url: |action: 
+2025-09-12 10:01:37.2013||DEBUG|DigitalSignaturePdfFileSign|File Length: 89051 |url: |action: 
+2025-09-12 10:05:12.7172||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2025-09-12 10:09:07.5956||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2025-09-12 10:09:12.0680||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType '0' for pdf file 'C:\HIS_BVSG\Running\pdf2sign\b4068d52-d679-405f-920a-80cd7a380400.pdf' by user '', userFullName '' with appId: '', secret: 'pwd' |url: |action: 
+2025-09-12 10:09:13.2397||DEBUG|DigitalSignaturePdfFileSign|File Length: 89051 |url: |action: 
+2025-09-12 10:14:00.1189||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2025-09-12 10:14:04.7747||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType '0' for pdf file 'C:\HIS_BVSG\Running\pdf2sign\f4adeb4f-6893-4d53-8316-4aead701e935.pdf' by user '', userFullName '' with appId: '', secret: 'pwd' |url: |action: 
+2025-09-12 10:14:04.7825||DEBUG|DigitalSignaturePdfFileSign|File Length: 89051 |url: |action: 
+2025-09-12 10:16:13.6476||DEBUG|DigitalSignaturePdfFileSign|Ký file1.Chưa chọn CTS |url: |action: 
+2025-09-12 10:21:25.6264||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2025-09-12 10:21:29.8489||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType '0' for pdf file 'C:\HIS_BVSG\Running\pdf2sign\d29e167d-edee-4591-8267-6f7fe14b159e.pdf' by user '', userFullName '' with appId: '', secret: 'pwd' |url: |action: 
+2025-09-12 10:21:29.8489||DEBUG|DigitalSignaturePdfFileSign|File Length: 89051 |url: |action: 
+2025-09-12 10:21:37.6612||ERROR|DigitalSignaturePdfFileSign|System.TypeInitializationException: The type initializer for 'DEMO_CLOUD_CA_DOTNET.MobileCA' threw an exception.
+ ---> System.TypeInitializationException: The type initializer for 'log4net.Core.LoggerManager' threw an exception.
+ ---> System.TypeInitializationException: The type initializer for 'log4net.Util.SystemInfo' threw an exception.
+ ---> System.IO.FileNotFoundException: Could not load file or assembly 'System.Configuration.ConfigurationManager, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'. The system cannot find the file specified.
+File name: 'System.Configuration.ConfigurationManager, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'
+   at log4net.Util.SystemInfo.GetAppSetting(String key)
+   at log4net.Util.SystemInfo..cctor()
+
+
+   --- End of inner exception stack trace ---
+   at log4net.Util.SystemInfo.AssemblyLocationInfo(Assembly myAssembly)
+   at log4net.Core.LoggerManager.GetVersionInfo()
+   at log4net.Core.LoggerManager..cctor()
+   --- End of inner exception stack trace ---
+   at log4net.Core.LoggerManager.GetLogger(Assembly repositoryAssembly, String name)
+   at log4net.LogManager.GetLogger(Assembly repositoryAssembly, String name)
+   at log4net.LogManager.GetLogger(Type type)
+   at DEMO_CLOUD_CA_DOTNET.MobileCA..cctor() in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\MobileCA.cs:line 16
+   --- End of inner exception stack trace ---
+   at DEMO_CLOUD_CA_DOTNET.MobileCA.getAllCertificates(String userId, String BASE_URL, String CLIENT_ID, String CLIENT_SECRET, String PROFILE_ID, String& accessToken) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\MobileCA.cs:line 97
+   at VMS.ChuKySo.Api.Controllers.ViettelController.getCertList(String errMsg) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\Controllers\ViettelController.cs:line 79
+   at VMS.ChuKySo.Api.Controllers.ViettelController.signFile(String pathFile, String signedFile, VMSDigitalSignatureRect rect, String errMsg) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\Controllers\ViettelController.cs:line 269 System.TypeInitializationException: The type initializer for 'DEMO_CLOUD_CA_DOTNET.MobileCA' threw an exception.
+ ---> System.TypeInitializationException: The type initializer for 'log4net.Core.LoggerManager' threw an exception.
+ ---> System.TypeInitializationException: The type initializer for 'log4net.Util.SystemInfo' threw an exception.
+ ---> System.IO.FileNotFoundException: Could not load file or assembly 'System.Configuration.ConfigurationManager, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'. The system cannot find the file specified.
+File name: 'System.Configuration.ConfigurationManager, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'
+   at log4net.Util.SystemInfo.GetAppSetting(String key)
+   at log4net.Util.SystemInfo..cctor()
+
+
+   --- End of inner exception stack trace ---
+   at log4net.Util.SystemInfo.AssemblyLocationInfo(Assembly myAssembly)
+   at log4net.Core.LoggerManager.GetVersionInfo()
+   at log4net.Core.LoggerManager..cctor()
+   --- End of inner exception stack trace ---
+   at log4net.Core.LoggerManager.GetLogger(Assembly repositoryAssembly, String name)
+   at log4net.LogManager.GetLogger(Assembly repositoryAssembly, String name)
+   at log4net.LogManager.GetLogger(Type type)
+   at DEMO_CLOUD_CA_DOTNET.MobileCA..cctor() in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\MobileCA.cs:line 16
+   --- End of inner exception stack trace ---
+   at DEMO_CLOUD_CA_DOTNET.MobileCA.getAllCertificates(String userId, String BASE_URL, String CLIENT_ID, String CLIENT_SECRET, String PROFILE_ID, String& accessToken) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\MobileCA.cs:line 97
+   at VMS.ChuKySo.Api.Controllers.ViettelController.getCertList(String errMsg) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\Controllers\ViettelController.cs:line 79
+   at VMS.ChuKySo.Api.Controllers.ViettelController.signFile(String pathFile, String signedFile, VMSDigitalSignatureRect rect, String errMsg) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\Controllers\ViettelController.cs:line 269|url: |action: 
+2025-09-12 10:21:37.7315||DEBUG|DigitalSignaturePdfFileSign|System.TypeInitializationException: The type initializer for 'DEMO_CLOUD_CA_DOTNET.MobileCA' threw an exception.
+ ---> System.TypeInitializationException: The type initializer for 'log4net.Core.LoggerManager' threw an exception.
+ ---> System.TypeInitializationException: The type initializer for 'log4net.Util.SystemInfo' threw an exception.
+ ---> System.IO.FileNotFoundException: Could not load file or assembly 'System.Configuration.ConfigurationManager, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'. The system cannot find the file specified.
+File name: 'System.Configuration.ConfigurationManager, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'
+   at log4net.Util.SystemInfo.GetAppSetting(String key)
+   at log4net.Util.SystemInfo..cctor()
+
+
+   --- End of inner exception stack trace ---
+   at log4net.Util.SystemInfo.AssemblyLocationInfo(Assembly myAssembly)
+   at log4net.Core.LoggerManager.GetVersionInfo()
+   at log4net.Core.LoggerManager..cctor()
+   --- End of inner exception stack trace ---
+   at log4net.Core.LoggerManager.GetLogger(Assembly repositoryAssembly, String name)
+   at log4net.LogManager.GetLogger(Assembly repositoryAssembly, String name)
+   at log4net.LogManager.GetLogger(Type type)
+   at DEMO_CLOUD_CA_DOTNET.MobileCA..cctor() in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\MobileCA.cs:line 16
+   --- End of inner exception stack trace ---
+   at DEMO_CLOUD_CA_DOTNET.MobileCA.getAllCertificates(String userId, String BASE_URL, String CLIENT_ID, String CLIENT_SECRET, String PROFILE_ID, String& accessToken) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\MobileCA.cs:line 97
+   at VMS.ChuKySo.Api.Controllers.ViettelController.getCertList(String errMsg) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\Controllers\ViettelController.cs:line 79
+   at VMS.ChuKySo.Api.Controllers.ViettelController.signFile(String pathFile, String signedFile, VMSDigitalSignatureRect rect, String errMsg) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\Controllers\ViettelController.cs:line 269 |url: |action: 
+2025-09-12 10:21:37.7948||ERROR|DigitalSignaturePdfFileSign|There was an error on 'DigitalSignaturePdfFileSign' invocation: System.IO.DirectoryNotFoundException: Could not find a part of the path 'F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\PDF\SignedPDF\4002c14c-603e-4728-ba16-7c5dee1fa968_signed.pdf'.
+   at System.IO.FileStream.ValidateFileHandle(SafeFileHandle fileHandle)
+   at System.IO.FileStream.CreateFileOpenHandle(FileMode mode, FileShare share, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize)
+   at System.IO.File.ReadAllBytes(String path)
+   at VMS.ChuKySo.Api.Controllers.ViettelController.DigitalSignaturePdfFileSign(VMSDigitalSignature objDigitalSignature) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\Controllers\ViettelController.cs:line 489 |url: |action: 
+2025-09-12 10:22:16.3834||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2025-09-12 10:22:18.5983||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType '0' for pdf file 'C:\HIS_BVSG\Running\pdf2sign\7741117d-d21f-4588-bef2-35bc7ca272ee.pdf' by user '', userFullName '' with appId: '', secret: 'pwd' |url: |action: 
+2025-09-12 10:22:18.5983||DEBUG|DigitalSignaturePdfFileSign|File Length: 89051 |url: |action: 
+2025-09-12 10:24:25.5279||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2025-09-12 10:24:25.5279||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType '0' for pdf file 'C:\HIS_BVSG\Running\pdf2sign\2ced767c-895d-4c5b-b510-aae376f665ba.pdf' by user '', userFullName '' with appId: '', secret: 'pwd' |url: |action: 
+2025-09-12 10:24:25.5430||DEBUG|DigitalSignaturePdfFileSign|File Length: 89051 |url: |action: 
+2025-09-12 10:26:21.5584||ERROR|DigitalSignaturePdfFileSign|System.TypeInitializationException: The type initializer for 'DEMO_CLOUD_CA_DOTNET.MobileCA' threw an exception.
+ ---> System.TypeInitializationException: The type initializer for 'log4net.Core.LoggerManager' threw an exception.
+ ---> System.TypeInitializationException: The type initializer for 'log4net.Util.SystemInfo' threw an exception.
+ ---> System.IO.FileNotFoundException: Could not load file or assembly 'System.Configuration.ConfigurationManager, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'. The system cannot find the file specified.
+File name: 'System.Configuration.ConfigurationManager, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'
+   at log4net.Util.SystemInfo.GetAppSetting(String key)
+   at log4net.Util.SystemInfo..cctor()
+
+
+   --- End of inner exception stack trace ---
+   at log4net.Util.SystemInfo.AssemblyLocationInfo(Assembly myAssembly)
+   at log4net.Core.LoggerManager.GetVersionInfo()
+   at log4net.Core.LoggerManager..cctor()
+   --- End of inner exception stack trace ---
+   at log4net.Core.LoggerManager.GetLogger(Assembly repositoryAssembly, String name)
+   at log4net.LogManager.GetLogger(Assembly repositoryAssembly, String name)
+   at log4net.LogManager.GetLogger(Type type)
+   at DEMO_CLOUD_CA_DOTNET.MobileCA..cctor() in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\MobileCA.cs:line 16
+   --- End of inner exception stack trace ---
+   at DEMO_CLOUD_CA_DOTNET.MobileCA.signHash(String[] hashList, Int32 id, String dataDisplay, String credentialID, String BASE_URL, String accessToken) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\MobileCA.cs:line 172
+   at VMS.ChuKySo.Api.Controllers.ViettelController.signFile(String pathFile, String signedFile, VMSDigitalSignatureRect rect, String errMsg) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\Controllers\ViettelController.cs:line 324 System.TypeInitializationException: The type initializer for 'DEMO_CLOUD_CA_DOTNET.MobileCA' threw an exception.
+ ---> System.TypeInitializationException: The type initializer for 'log4net.Core.LoggerManager' threw an exception.
+ ---> System.TypeInitializationException: The type initializer for 'log4net.Util.SystemInfo' threw an exception.
+ ---> System.IO.FileNotFoundException: Could not load file or assembly 'System.Configuration.ConfigurationManager, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'. The system cannot find the file specified.
+File name: 'System.Configuration.ConfigurationManager, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'
+   at log4net.Util.SystemInfo.GetAppSetting(String key)
+   at log4net.Util.SystemInfo..cctor()
+
+
+   --- End of inner exception stack trace ---
+   at log4net.Util.SystemInfo.AssemblyLocationInfo(Assembly myAssembly)
+   at log4net.Core.LoggerManager.GetVersionInfo()
+   at log4net.Core.LoggerManager..cctor()
+   --- End of inner exception stack trace ---
+   at log4net.Core.LoggerManager.GetLogger(Assembly repositoryAssembly, String name)
+   at log4net.LogManager.GetLogger(Assembly repositoryAssembly, String name)
+   at log4net.LogManager.GetLogger(Type type)
+   at DEMO_CLOUD_CA_DOTNET.MobileCA..cctor() in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\MobileCA.cs:line 16
+   --- End of inner exception stack trace ---
+   at DEMO_CLOUD_CA_DOTNET.MobileCA.signHash(String[] hashList, Int32 id, String dataDisplay, String credentialID, String BASE_URL, String accessToken) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\MobileCA.cs:line 172
+   at VMS.ChuKySo.Api.Controllers.ViettelController.signFile(String pathFile, String signedFile, VMSDigitalSignatureRect rect, String errMsg) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\Controllers\ViettelController.cs:line 324|url: |action: 
+2025-09-12 10:26:21.6213||DEBUG|DigitalSignaturePdfFileSign|System.TypeInitializationException: The type initializer for 'DEMO_CLOUD_CA_DOTNET.MobileCA' threw an exception.
+ ---> System.TypeInitializationException: The type initializer for 'log4net.Core.LoggerManager' threw an exception.
+ ---> System.TypeInitializationException: The type initializer for 'log4net.Util.SystemInfo' threw an exception.
+ ---> System.IO.FileNotFoundException: Could not load file or assembly 'System.Configuration.ConfigurationManager, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'. The system cannot find the file specified.
+File name: 'System.Configuration.ConfigurationManager, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'
+   at log4net.Util.SystemInfo.GetAppSetting(String key)
+   at log4net.Util.SystemInfo..cctor()
+
+
+   --- End of inner exception stack trace ---
+   at log4net.Util.SystemInfo.AssemblyLocationInfo(Assembly myAssembly)
+   at log4net.Core.LoggerManager.GetVersionInfo()
+   at log4net.Core.LoggerManager..cctor()
+   --- End of inner exception stack trace ---
+   at log4net.Core.LoggerManager.GetLogger(Assembly repositoryAssembly, String name)
+   at log4net.LogManager.GetLogger(Assembly repositoryAssembly, String name)
+   at log4net.LogManager.GetLogger(Type type)
+   at DEMO_CLOUD_CA_DOTNET.MobileCA..cctor() in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\MobileCA.cs:line 16
+   --- End of inner exception stack trace ---
+   at DEMO_CLOUD_CA_DOTNET.MobileCA.signHash(String[] hashList, Int32 id, String dataDisplay, String credentialID, String BASE_URL, String accessToken) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\MobileCA.cs:line 172
+   at VMS.ChuKySo.Api.Controllers.ViettelController.signFile(String pathFile, String signedFile, VMSDigitalSignatureRect rect, String errMsg) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\Controllers\ViettelController.cs:line 324 |url: |action: 
+2025-09-12 10:26:21.6776||ERROR|DigitalSignaturePdfFileSign|There was an error on 'DigitalSignaturePdfFileSign' invocation: System.IO.DirectoryNotFoundException: Could not find a part of the path 'F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\PDF\SignedPDF\dab17665-ecb9-4ea9-ba33-731efda094d3_signed.pdf'.
+   at System.IO.FileStream.ValidateFileHandle(SafeFileHandle fileHandle)
+   at System.IO.FileStream.CreateFileOpenHandle(FileMode mode, FileShare share, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize)
+   at System.IO.File.ReadAllBytes(String path)
+   at VMS.ChuKySo.Api.Controllers.ViettelController.DigitalSignaturePdfFileSign(VMSDigitalSignature objDigitalSignature) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\Controllers\ViettelController.cs:line 489 |url: |action: 
+2025-09-12 10:26:33.5848||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2025-09-12 10:26:33.5848||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType '0' for pdf file 'C:\HIS_BVSG\Running\pdf2sign\5c40351c-773c-4b43-8900-d8806442183b.pdf' by user '', userFullName '' with appId: '', secret: 'pwd' |url: |action: 
+2025-09-12 10:26:33.5848||DEBUG|DigitalSignaturePdfFileSign|File Length: 89051 |url: |action: 
+2025-09-12 10:26:36.5759||ERROR|DigitalSignaturePdfFileSign|There was an error on 'DigitalSignaturePdfFileSign' invocation: System.TypeInitializationException: The type initializer for 'DEMO_CLOUD_CA_DOTNET.MobileCA' threw an exception.
+ ---> System.TypeInitializationException: The type initializer for 'log4net.Core.LoggerManager' threw an exception.
+ ---> System.TypeInitializationException: The type initializer for 'log4net.Util.SystemInfo' threw an exception.
+ ---> System.IO.FileNotFoundException: Could not load file or assembly 'System.Configuration.ConfigurationManager, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'. The system cannot find the file specified.
+File name: 'System.Configuration.ConfigurationManager, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'
+   at log4net.Util.SystemInfo.GetAppSetting(String key)
+   at log4net.Util.SystemInfo..cctor()
+
+
+   --- End of inner exception stack trace ---
+   at log4net.Util.SystemInfo.AssemblyLocationInfo(Assembly myAssembly)
+   at log4net.Core.LoggerManager.GetVersionInfo()
+   at log4net.Core.LoggerManager..cctor()
+   --- End of inner exception stack trace ---
+   at log4net.Core.LoggerManager.GetLogger(Assembly repositoryAssembly, String name)
+   at log4net.LogManager.GetLogger(Assembly repositoryAssembly, String name)
+   at log4net.LogManager.GetLogger(Type type)
+   at DEMO_CLOUD_CA_DOTNET.MobileCA..cctor() in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\MobileCA.cs:line 16
+   --- End of inner exception stack trace ---
+   at DEMO_CLOUD_CA_DOTNET.MobileCA.getAllCertificates(String userId, String BASE_URL, String CLIENT_ID, String CLIENT_SECRET, String PROFILE_ID, String& accessToken) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\MobileCA.cs:line 97
+   at VMS.ChuKySo.Api.Controllers.ViettelController.DigitalSignaturePdfFileSign(VMSDigitalSignature objDigitalSignature) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\Controllers\ViettelController.cs:line 441 |url: |action: 
+2025-09-12 10:29:42.5606||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2025-09-12 10:29:42.5606||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType '0' for pdf file 'C:\HIS_BVSG\Running\pdf2sign\d400372b-3e82-452a-9c96-87037e32ad78.pdf' by user '001081007147', userFullName '' with appId: '', secret: 'pwd' |url: |action: 
+2025-09-12 10:29:42.5834||DEBUG|DigitalSignaturePdfFileSign|File Length: 89051 |url: |action: 
+2025-09-12 10:31:42.9248||ERROR|DigitalSignaturePdfFileSign|System.TypeInitializationException: The type initializer for 'DEMO_CLOUD_CA_DOTNET.MobileCA' threw an exception.
+ ---> System.TypeInitializationException: The type initializer for 'log4net.Core.LoggerManager' threw an exception.
+ ---> System.TypeInitializationException: The type initializer for 'log4net.Util.SystemInfo' threw an exception.
+ ---> System.IO.FileNotFoundException: Could not load file or assembly 'System.Configuration.ConfigurationManager, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'. The system cannot find the file specified.
+File name: 'System.Configuration.ConfigurationManager, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'
+   at log4net.Util.SystemInfo.GetAppSetting(String key)
+   at log4net.Util.SystemInfo..cctor()
+
+
+   --- End of inner exception stack trace ---
+   at log4net.Util.SystemInfo.AssemblyLocationInfo(Assembly myAssembly)
+   at log4net.Core.LoggerManager.GetVersionInfo()
+   at log4net.Core.LoggerManager..cctor()
+   --- End of inner exception stack trace ---
+   at log4net.Core.LoggerManager.GetLogger(Assembly repositoryAssembly, String name)
+   at log4net.LogManager.GetLogger(Assembly repositoryAssembly, String name)
+   at log4net.LogManager.GetLogger(Type type)
+   at DEMO_CLOUD_CA_DOTNET.MobileCA..cctor() in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\MobileCA.cs:line 16
+   --- End of inner exception stack trace ---
+   at DEMO_CLOUD_CA_DOTNET.MobileCA.signHash(String[] hashList, Int32 id, String dataDisplay, String credentialID, String BASE_URL, String accessToken) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\MobileCA.cs:line 172
+   at VMS.ChuKySo.Api.Controllers.ViettelController.signFile(String pathFile, String signedFile, VMSDigitalSignatureRect rect, String errMsg) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\Controllers\ViettelController.cs:line 324 System.TypeInitializationException: The type initializer for 'DEMO_CLOUD_CA_DOTNET.MobileCA' threw an exception.
+ ---> System.TypeInitializationException: The type initializer for 'log4net.Core.LoggerManager' threw an exception.
+ ---> System.TypeInitializationException: The type initializer for 'log4net.Util.SystemInfo' threw an exception.
+ ---> System.IO.FileNotFoundException: Could not load file or assembly 'System.Configuration.ConfigurationManager, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'. The system cannot find the file specified.
+File name: 'System.Configuration.ConfigurationManager, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'
+   at log4net.Util.SystemInfo.GetAppSetting(String key)
+   at log4net.Util.SystemInfo..cctor()
+
+
+   --- End of inner exception stack trace ---
+   at log4net.Util.SystemInfo.AssemblyLocationInfo(Assembly myAssembly)
+   at log4net.Core.LoggerManager.GetVersionInfo()
+   at log4net.Core.LoggerManager..cctor()
+   --- End of inner exception stack trace ---
+   at log4net.Core.LoggerManager.GetLogger(Assembly repositoryAssembly, String name)
+   at log4net.LogManager.GetLogger(Assembly repositoryAssembly, String name)
+   at log4net.LogManager.GetLogger(Type type)
+   at DEMO_CLOUD_CA_DOTNET.MobileCA..cctor() in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\MobileCA.cs:line 16
+   --- End of inner exception stack trace ---
+   at DEMO_CLOUD_CA_DOTNET.MobileCA.signHash(String[] hashList, Int32 id, String dataDisplay, String credentialID, String BASE_URL, String accessToken) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\MobileCA.cs:line 172
+   at VMS.ChuKySo.Api.Controllers.ViettelController.signFile(String pathFile, String signedFile, VMSDigitalSignatureRect rect, String errMsg) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\Controllers\ViettelController.cs:line 324|url: |action: 
+2025-09-12 10:31:42.9248||DEBUG|DigitalSignaturePdfFileSign|System.TypeInitializationException: The type initializer for 'DEMO_CLOUD_CA_DOTNET.MobileCA' threw an exception.
+ ---> System.TypeInitializationException: The type initializer for 'log4net.Core.LoggerManager' threw an exception.
+ ---> System.TypeInitializationException: The type initializer for 'log4net.Util.SystemInfo' threw an exception.
+ ---> System.IO.FileNotFoundException: Could not load file or assembly 'System.Configuration.ConfigurationManager, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'. The system cannot find the file specified.
+File name: 'System.Configuration.ConfigurationManager, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'
+   at log4net.Util.SystemInfo.GetAppSetting(String key)
+   at log4net.Util.SystemInfo..cctor()
+
+
+   --- End of inner exception stack trace ---
+   at log4net.Util.SystemInfo.AssemblyLocationInfo(Assembly myAssembly)
+   at log4net.Core.LoggerManager.GetVersionInfo()
+   at log4net.Core.LoggerManager..cctor()
+   --- End of inner exception stack trace ---
+   at log4net.Core.LoggerManager.GetLogger(Assembly repositoryAssembly, String name)
+   at log4net.LogManager.GetLogger(Assembly repositoryAssembly, String name)
+   at log4net.LogManager.GetLogger(Type type)
+   at DEMO_CLOUD_CA_DOTNET.MobileCA..cctor() in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\MobileCA.cs:line 16
+   --- End of inner exception stack trace ---
+   at DEMO_CLOUD_CA_DOTNET.MobileCA.signHash(String[] hashList, Int32 id, String dataDisplay, String credentialID, String BASE_URL, String accessToken) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\MobileCA.cs:line 172
+   at VMS.ChuKySo.Api.Controllers.ViettelController.signFile(String pathFile, String signedFile, VMSDigitalSignatureRect rect, String errMsg) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\Controllers\ViettelController.cs:line 324 |url: |action: 
+2025-09-12 10:31:42.9882||ERROR|DigitalSignaturePdfFileSign|There was an error on 'DigitalSignaturePdfFileSign' invocation: System.IO.DirectoryNotFoundException: Could not find a part of the path 'F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\PDF\SignedPDF\ce648496-ec1f-4565-9bb2-6346df4ef8f8_signed.pdf'.
+   at System.IO.FileStream.ValidateFileHandle(SafeFileHandle fileHandle)
+   at System.IO.FileStream.CreateFileOpenHandle(FileMode mode, FileShare share, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize)
+   at System.IO.File.ReadAllBytes(String path)
+   at VMS.ChuKySo.Api.Controllers.ViettelController.DigitalSignaturePdfFileSign(VMSDigitalSignature objDigitalSignature) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\Controllers\ViettelController.cs:line 489 |url: |action: 
+2025-09-12 10:31:46.8727||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2025-09-12 10:31:46.8727||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType '0' for pdf file 'C:\HIS_BVSG\Running\pdf2sign\696fad06-8ac1-4a8a-8712-430e12290a5a.pdf' by user '001081007147', userFullName '' with appId: '', secret: 'pwd' |url: |action: 
+2025-09-12 10:31:46.8727||DEBUG|DigitalSignaturePdfFileSign|File Length: 89051 |url: |action: 
+2025-09-12 10:32:35.0844||ERROR|DigitalSignaturePdfFileSign|System.TypeInitializationException: The type initializer for 'DEMO_CLOUD_CA_DOTNET.MobileCA' threw an exception.
+ ---> System.TypeInitializationException: The type initializer for 'log4net.Core.LoggerManager' threw an exception.
+ ---> System.TypeInitializationException: The type initializer for 'log4net.Util.SystemInfo' threw an exception.
+ ---> System.IO.FileNotFoundException: Could not load file or assembly 'System.Configuration.ConfigurationManager, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'. The system cannot find the file specified.
+File name: 'System.Configuration.ConfigurationManager, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'
+   at log4net.Util.SystemInfo.GetAppSetting(String key)
+   at log4net.Util.SystemInfo..cctor()
+
+
+   --- End of inner exception stack trace ---
+   at log4net.Util.SystemInfo.AssemblyLocationInfo(Assembly myAssembly)
+   at log4net.Core.LoggerManager.GetVersionInfo()
+   at log4net.Core.LoggerManager..cctor()
+   --- End of inner exception stack trace ---
+   at log4net.Core.LoggerManager.GetLogger(Assembly repositoryAssembly, String name)
+   at log4net.LogManager.GetLogger(Assembly repositoryAssembly, String name)
+   at log4net.LogManager.GetLogger(Type type)
+   at DEMO_CLOUD_CA_DOTNET.MobileCA..cctor() in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\MobileCA.cs:line 16
+   --- End of inner exception stack trace ---
+   at DEMO_CLOUD_CA_DOTNET.MobileCA.signHash(String[] hashList, Int32 id, String dataDisplay, String credentialID, String BASE_URL, String accessToken) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\MobileCA.cs:line 172
+   at VMS.ChuKySo.Api.Controllers.ViettelController.signFile(String pathFile, String signedFile, VMSDigitalSignatureRect rect, String errMsg) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\Controllers\ViettelController.cs:line 324 System.TypeInitializationException: The type initializer for 'DEMO_CLOUD_CA_DOTNET.MobileCA' threw an exception.
+ ---> System.TypeInitializationException: The type initializer for 'log4net.Core.LoggerManager' threw an exception.
+ ---> System.TypeInitializationException: The type initializer for 'log4net.Util.SystemInfo' threw an exception.
+ ---> System.IO.FileNotFoundException: Could not load file or assembly 'System.Configuration.ConfigurationManager, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'. The system cannot find the file specified.
+File name: 'System.Configuration.ConfigurationManager, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'
+   at log4net.Util.SystemInfo.GetAppSetting(String key)
+   at log4net.Util.SystemInfo..cctor()
+
+
+   --- End of inner exception stack trace ---
+   at log4net.Util.SystemInfo.AssemblyLocationInfo(Assembly myAssembly)
+   at log4net.Core.LoggerManager.GetVersionInfo()
+   at log4net.Core.LoggerManager..cctor()
+   --- End of inner exception stack trace ---
+   at log4net.Core.LoggerManager.GetLogger(Assembly repositoryAssembly, String name)
+   at log4net.LogManager.GetLogger(Assembly repositoryAssembly, String name)
+   at log4net.LogManager.GetLogger(Type type)
+   at DEMO_CLOUD_CA_DOTNET.MobileCA..cctor() in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\MobileCA.cs:line 16
+   --- End of inner exception stack trace ---
+   at DEMO_CLOUD_CA_DOTNET.MobileCA.signHash(String[] hashList, Int32 id, String dataDisplay, String credentialID, String BASE_URL, String accessToken) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\MobileCA.cs:line 172
+   at VMS.ChuKySo.Api.Controllers.ViettelController.signFile(String pathFile, String signedFile, VMSDigitalSignatureRect rect, String errMsg) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\Controllers\ViettelController.cs:line 324|url: |action: 
+2025-09-12 10:32:35.0897||DEBUG|DigitalSignaturePdfFileSign|System.TypeInitializationException: The type initializer for 'DEMO_CLOUD_CA_DOTNET.MobileCA' threw an exception.
+ ---> System.TypeInitializationException: The type initializer for 'log4net.Core.LoggerManager' threw an exception.
+ ---> System.TypeInitializationException: The type initializer for 'log4net.Util.SystemInfo' threw an exception.
+ ---> System.IO.FileNotFoundException: Could not load file or assembly 'System.Configuration.ConfigurationManager, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'. The system cannot find the file specified.
+File name: 'System.Configuration.ConfigurationManager, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'
+   at log4net.Util.SystemInfo.GetAppSetting(String key)
+   at log4net.Util.SystemInfo..cctor()
+
+
+   --- End of inner exception stack trace ---
+   at log4net.Util.SystemInfo.AssemblyLocationInfo(Assembly myAssembly)
+   at log4net.Core.LoggerManager.GetVersionInfo()
+   at log4net.Core.LoggerManager..cctor()
+   --- End of inner exception stack trace ---
+   at log4net.Core.LoggerManager.GetLogger(Assembly repositoryAssembly, String name)
+   at log4net.LogManager.GetLogger(Assembly repositoryAssembly, String name)
+   at log4net.LogManager.GetLogger(Type type)
+   at DEMO_CLOUD_CA_DOTNET.MobileCA..cctor() in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\MobileCA.cs:line 16
+   --- End of inner exception stack trace ---
+   at DEMO_CLOUD_CA_DOTNET.MobileCA.signHash(String[] hashList, Int32 id, String dataDisplay, String credentialID, String BASE_URL, String accessToken) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\MobileCA.cs:line 172
+   at VMS.ChuKySo.Api.Controllers.ViettelController.signFile(String pathFile, String signedFile, VMSDigitalSignatureRect rect, String errMsg) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\Controllers\ViettelController.cs:line 324 |url: |action: 
+2025-09-12 10:32:35.1402||ERROR|DigitalSignaturePdfFileSign|There was an error on 'DigitalSignaturePdfFileSign' invocation: System.IO.DirectoryNotFoundException: Could not find a part of the path 'F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\PDF\SignedPDF\f8496536-69db-4756-afb4-8a4e54fd99b3_signed.pdf'.
+   at System.IO.FileStream.ValidateFileHandle(SafeFileHandle fileHandle)
+   at System.IO.FileStream.CreateFileOpenHandle(FileMode mode, FileShare share, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize)
+   at System.IO.File.ReadAllBytes(String path)
+   at VMS.ChuKySo.Api.Controllers.ViettelController.DigitalSignaturePdfFileSign(VMSDigitalSignature objDigitalSignature) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\Controllers\ViettelController.cs:line 489 |url: |action: 
+2025-09-12 10:32:45.1831||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2025-09-12 10:32:45.1845||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType '0' for pdf file 'C:\HIS_BVSG\Running\pdf2sign\f9ccd319-925e-4f01-8418-54226c132625.pdf' by user '001081007147', userFullName '' with appId: '', secret: 'pwd' |url: |action: 
+2025-09-12 10:32:45.1845||DEBUG|DigitalSignaturePdfFileSign|File Length: 89051 |url: |action: 
+2025-09-12 10:34:08.2795||ERROR|DigitalSignaturePdfFileSign|System.TypeInitializationException: The type initializer for 'DEMO_CLOUD_CA_DOTNET.MobileCA' threw an exception.
+ ---> System.TypeInitializationException: The type initializer for 'log4net.Core.LoggerManager' threw an exception.
+ ---> System.TypeInitializationException: The type initializer for 'log4net.Util.SystemInfo' threw an exception.
+ ---> System.IO.FileNotFoundException: Could not load file or assembly 'System.Configuration.ConfigurationManager, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'. The system cannot find the file specified.
+File name: 'System.Configuration.ConfigurationManager, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'
+   at log4net.Util.SystemInfo.GetAppSetting(String key)
+   at log4net.Util.SystemInfo..cctor()
+
+
+   --- End of inner exception stack trace ---
+   at log4net.Util.SystemInfo.AssemblyLocationInfo(Assembly myAssembly)
+   at log4net.Core.LoggerManager.GetVersionInfo()
+   at log4net.Core.LoggerManager..cctor()
+   --- End of inner exception stack trace ---
+   at log4net.Core.LoggerManager.GetLogger(Assembly repositoryAssembly, String name)
+   at log4net.LogManager.GetLogger(Assembly repositoryAssembly, String name)
+   at log4net.LogManager.GetLogger(Type type)
+   at DEMO_CLOUD_CA_DOTNET.MobileCA..cctor() in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\MobileCA.cs:line 16
+   --- End of inner exception stack trace ---
+   at DEMO_CLOUD_CA_DOTNET.MobileCA.signHash(String[] hashList, Int32 id, String dataDisplay, String credentialID, String BASE_URL, String accessToken) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\MobileCA.cs:line 172
+   at VMS.ChuKySo.Api.Controllers.ViettelController.signFile(String pathFile, String signedFile, VMSDigitalSignatureRect rect, String errMsg) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\Controllers\ViettelController.cs:line 324 System.TypeInitializationException: The type initializer for 'DEMO_CLOUD_CA_DOTNET.MobileCA' threw an exception.
+ ---> System.TypeInitializationException: The type initializer for 'log4net.Core.LoggerManager' threw an exception.
+ ---> System.TypeInitializationException: The type initializer for 'log4net.Util.SystemInfo' threw an exception.
+ ---> System.IO.FileNotFoundException: Could not load file or assembly 'System.Configuration.ConfigurationManager, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'. The system cannot find the file specified.
+File name: 'System.Configuration.ConfigurationManager, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'
+   at log4net.Util.SystemInfo.GetAppSetting(String key)
+   at log4net.Util.SystemInfo..cctor()
+
+
+   --- End of inner exception stack trace ---
+   at log4net.Util.SystemInfo.AssemblyLocationInfo(Assembly myAssembly)
+   at log4net.Core.LoggerManager.GetVersionInfo()
+   at log4net.Core.LoggerManager..cctor()
+   --- End of inner exception stack trace ---
+   at log4net.Core.LoggerManager.GetLogger(Assembly repositoryAssembly, String name)
+   at log4net.LogManager.GetLogger(Assembly repositoryAssembly, String name)
+   at log4net.LogManager.GetLogger(Type type)
+   at DEMO_CLOUD_CA_DOTNET.MobileCA..cctor() in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\MobileCA.cs:line 16
+   --- End of inner exception stack trace ---
+   at DEMO_CLOUD_CA_DOTNET.MobileCA.signHash(String[] hashList, Int32 id, String dataDisplay, String credentialID, String BASE_URL, String accessToken) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\MobileCA.cs:line 172
+   at VMS.ChuKySo.Api.Controllers.ViettelController.signFile(String pathFile, String signedFile, VMSDigitalSignatureRect rect, String errMsg) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\Controllers\ViettelController.cs:line 324|url: |action: 
+2025-09-12 10:34:08.2795||DEBUG|DigitalSignaturePdfFileSign|System.TypeInitializationException: The type initializer for 'DEMO_CLOUD_CA_DOTNET.MobileCA' threw an exception.
+ ---> System.TypeInitializationException: The type initializer for 'log4net.Core.LoggerManager' threw an exception.
+ ---> System.TypeInitializationException: The type initializer for 'log4net.Util.SystemInfo' threw an exception.
+ ---> System.IO.FileNotFoundException: Could not load file or assembly 'System.Configuration.ConfigurationManager, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'. The system cannot find the file specified.
+File name: 'System.Configuration.ConfigurationManager, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'
+   at log4net.Util.SystemInfo.GetAppSetting(String key)
+   at log4net.Util.SystemInfo..cctor()
+
+
+   --- End of inner exception stack trace ---
+   at log4net.Util.SystemInfo.AssemblyLocationInfo(Assembly myAssembly)
+   at log4net.Core.LoggerManager.GetVersionInfo()
+   at log4net.Core.LoggerManager..cctor()
+   --- End of inner exception stack trace ---
+   at log4net.Core.LoggerManager.GetLogger(Assembly repositoryAssembly, String name)
+   at log4net.LogManager.GetLogger(Assembly repositoryAssembly, String name)
+   at log4net.LogManager.GetLogger(Type type)
+   at DEMO_CLOUD_CA_DOTNET.MobileCA..cctor() in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\MobileCA.cs:line 16
+   --- End of inner exception stack trace ---
+   at DEMO_CLOUD_CA_DOTNET.MobileCA.signHash(String[] hashList, Int32 id, String dataDisplay, String credentialID, String BASE_URL, String accessToken) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\MobileCA.cs:line 172
+   at VMS.ChuKySo.Api.Controllers.ViettelController.signFile(String pathFile, String signedFile, VMSDigitalSignatureRect rect, String errMsg) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\Controllers\ViettelController.cs:line 324 |url: |action: 
+2025-09-12 10:34:08.3290||ERROR|DigitalSignaturePdfFileSign|There was an error on 'DigitalSignaturePdfFileSign' invocation: System.IO.DirectoryNotFoundException: Could not find a part of the path 'F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\PDF\SignedPDF\76328e1a-3d2e-4184-95ec-70a0106972c7_signed.pdf'.
+   at System.IO.FileStream.ValidateFileHandle(SafeFileHandle fileHandle)
+   at System.IO.FileStream.CreateFileOpenHandle(FileMode mode, FileShare share, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize)
+   at System.IO.File.ReadAllBytes(String path)
+   at VMS.ChuKySo.Api.Controllers.ViettelController.DigitalSignaturePdfFileSign(VMSDigitalSignature objDigitalSignature) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\Controllers\ViettelController.cs:line 489 |url: |action: 
+2025-09-12 10:34:13.8486||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2025-09-12 10:34:13.8486||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType '0' for pdf file 'C:\HIS_BVSG\Running\pdf2sign\2efaf4d0-5c5e-4cfe-9c23-cdc0fe92f352.pdf' by user '001081007147', userFullName '' with appId: '', secret: 'pwd' |url: |action: 
+2025-09-12 10:34:13.8486||DEBUG|DigitalSignaturePdfFileSign|File Length: 89051 |url: |action: 
+2025-09-12 10:34:49.7389||ERROR|DigitalSignaturePdfFileSign|System.TypeInitializationException: The type initializer for 'DEMO_CLOUD_CA_DOTNET.MobileCA' threw an exception.
+ ---> System.TypeInitializationException: The type initializer for 'log4net.Core.LoggerManager' threw an exception.
+ ---> System.TypeInitializationException: The type initializer for 'log4net.Util.SystemInfo' threw an exception.
+ ---> System.IO.FileNotFoundException: Could not load file or assembly 'System.Configuration.ConfigurationManager, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'. The system cannot find the file specified.
+File name: 'System.Configuration.ConfigurationManager, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'
+   at log4net.Util.SystemInfo.GetAppSetting(String key)
+   at log4net.Util.SystemInfo..cctor()
+
+
+   --- End of inner exception stack trace ---
+   at log4net.Util.SystemInfo.AssemblyLocationInfo(Assembly myAssembly)
+   at log4net.Core.LoggerManager.GetVersionInfo()
+   at log4net.Core.LoggerManager..cctor()
+   --- End of inner exception stack trace ---
+   at log4net.Core.LoggerManager.GetLogger(Assembly repositoryAssembly, String name)
+   at log4net.LogManager.GetLogger(Assembly repositoryAssembly, String name)
+   at log4net.LogManager.GetLogger(Type type)
+   at DEMO_CLOUD_CA_DOTNET.MobileCA..cctor() in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\MobileCA.cs:line 16
+   --- End of inner exception stack trace ---
+   at DEMO_CLOUD_CA_DOTNET.MobileCA.signHash(String[] hashList, Int32 id, String dataDisplay, String credentialID, String BASE_URL, String accessToken) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\MobileCA.cs:line 172
+   at VMS.ChuKySo.Api.Controllers.ViettelController.signFile(String pathFile, String signedFile, VMSDigitalSignatureRect rect, String errMsg) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\Controllers\ViettelController.cs:line 324 System.TypeInitializationException: The type initializer for 'DEMO_CLOUD_CA_DOTNET.MobileCA' threw an exception.
+ ---> System.TypeInitializationException: The type initializer for 'log4net.Core.LoggerManager' threw an exception.
+ ---> System.TypeInitializationException: The type initializer for 'log4net.Util.SystemInfo' threw an exception.
+ ---> System.IO.FileNotFoundException: Could not load file or assembly 'System.Configuration.ConfigurationManager, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'. The system cannot find the file specified.
+File name: 'System.Configuration.ConfigurationManager, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'
+   at log4net.Util.SystemInfo.GetAppSetting(String key)
+   at log4net.Util.SystemInfo..cctor()
+
+
+   --- End of inner exception stack trace ---
+   at log4net.Util.SystemInfo.AssemblyLocationInfo(Assembly myAssembly)
+   at log4net.Core.LoggerManager.GetVersionInfo()
+   at log4net.Core.LoggerManager..cctor()
+   --- End of inner exception stack trace ---
+   at log4net.Core.LoggerManager.GetLogger(Assembly repositoryAssembly, String name)
+   at log4net.LogManager.GetLogger(Assembly repositoryAssembly, String name)
+   at log4net.LogManager.GetLogger(Type type)
+   at DEMO_CLOUD_CA_DOTNET.MobileCA..cctor() in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\MobileCA.cs:line 16
+   --- End of inner exception stack trace ---
+   at DEMO_CLOUD_CA_DOTNET.MobileCA.signHash(String[] hashList, Int32 id, String dataDisplay, String credentialID, String BASE_URL, String accessToken) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\MobileCA.cs:line 172
+   at VMS.ChuKySo.Api.Controllers.ViettelController.signFile(String pathFile, String signedFile, VMSDigitalSignatureRect rect, String errMsg) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\Controllers\ViettelController.cs:line 324|url: |action: 
+2025-09-12 10:34:49.7389||DEBUG|DigitalSignaturePdfFileSign|System.TypeInitializationException: The type initializer for 'DEMO_CLOUD_CA_DOTNET.MobileCA' threw an exception.
+ ---> System.TypeInitializationException: The type initializer for 'log4net.Core.LoggerManager' threw an exception.
+ ---> System.TypeInitializationException: The type initializer for 'log4net.Util.SystemInfo' threw an exception.
+ ---> System.IO.FileNotFoundException: Could not load file or assembly 'System.Configuration.ConfigurationManager, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'. The system cannot find the file specified.
+File name: 'System.Configuration.ConfigurationManager, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'
+   at log4net.Util.SystemInfo.GetAppSetting(String key)
+   at log4net.Util.SystemInfo..cctor()
+
+
+   --- End of inner exception stack trace ---
+   at log4net.Util.SystemInfo.AssemblyLocationInfo(Assembly myAssembly)
+   at log4net.Core.LoggerManager.GetVersionInfo()
+   at log4net.Core.LoggerManager..cctor()
+   --- End of inner exception stack trace ---
+   at log4net.Core.LoggerManager.GetLogger(Assembly repositoryAssembly, String name)
+   at log4net.LogManager.GetLogger(Assembly repositoryAssembly, String name)
+   at log4net.LogManager.GetLogger(Type type)
+   at DEMO_CLOUD_CA_DOTNET.MobileCA..cctor() in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\MobileCA.cs:line 16
+   --- End of inner exception stack trace ---
+   at DEMO_CLOUD_CA_DOTNET.MobileCA.signHash(String[] hashList, Int32 id, String dataDisplay, String credentialID, String BASE_URL, String accessToken) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\MobileCA.cs:line 172
+   at VMS.ChuKySo.Api.Controllers.ViettelController.signFile(String pathFile, String signedFile, VMSDigitalSignatureRect rect, String errMsg) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\Controllers\ViettelController.cs:line 324 |url: |action: 
+2025-09-12 10:34:49.7966||ERROR|DigitalSignaturePdfFileSign|There was an error on 'DigitalSignaturePdfFileSign' invocation: System.IO.DirectoryNotFoundException: Could not find a part of the path 'F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\PDF\SignedPDF\282c7d2d-ad95-49be-a464-f299d9f7458a_signed.pdf'.
+   at System.IO.FileStream.ValidateFileHandle(SafeFileHandle fileHandle)
+   at System.IO.FileStream.CreateFileOpenHandle(FileMode mode, FileShare share, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize)
+   at System.IO.File.ReadAllBytes(String path)
+   at VMS.ChuKySo.Api.Controllers.ViettelController.DigitalSignaturePdfFileSign(VMSDigitalSignature objDigitalSignature) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\Controllers\ViettelController.cs:line 489 |url: |action: 
+2025-09-12 10:34:56.9806||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2025-09-12 10:34:56.9806||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType '0' for pdf file 'C:\HIS_BVSG\Running\pdf2sign\b19aa9a7-92d5-4aec-8eb3-def13ef0e724.pdf' by user '001081007147', userFullName '' with appId: '', secret: 'pwd' |url: |action: 
+2025-09-12 10:34:56.9806||DEBUG|DigitalSignaturePdfFileSign|File Length: 89051 |url: |action: 
+2025-09-12 10:35:38.4582||DEBUG|DigitalSignaturePdfFileSign|Ký file5.Ký hash thành công |url: |action: 
+2025-09-12 10:36:24.7743||DEBUG|DigitalSignaturePdfFileSign|Ký file5.Insert signature into file fail. |url: |action: 
+2025-09-12 10:36:48.8634||ERROR|DigitalSignaturePdfFileSign|System.IO.DirectoryNotFoundException: Could not find a part of the path 'F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\PDF\SignedPDF\1ccdb8ed-b419-4919-89d1-5526da340ba7_signed.pdf'.
+   at System.IO.FileStream.ValidateFileHandle(SafeFileHandle fileHandle)
+   at System.IO.FileStream.CreateFileOpenHandle(FileMode mode, FileShare share, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize)
+   at System.IO.File.ReadAllBytes(String path)
+   at VMS.ChuKySo.Api.Controllers.ViettelController.signFile(String pathFile, String signedFile, VMSDigitalSignatureRect rect, String errMsg) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\Controllers\ViettelController.cs:line 359 System.IO.DirectoryNotFoundException: Could not find a part of the path 'F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\PDF\SignedPDF\1ccdb8ed-b419-4919-89d1-5526da340ba7_signed.pdf'.
+   at System.IO.FileStream.ValidateFileHandle(SafeFileHandle fileHandle)
+   at System.IO.FileStream.CreateFileOpenHandle(FileMode mode, FileShare share, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize)
+   at System.IO.File.ReadAllBytes(String path)
+   at VMS.ChuKySo.Api.Controllers.ViettelController.signFile(String pathFile, String signedFile, VMSDigitalSignatureRect rect, String errMsg) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\Controllers\ViettelController.cs:line 359|url: |action: 
+2025-09-12 10:36:48.8634||DEBUG|DigitalSignaturePdfFileSign|System.IO.DirectoryNotFoundException: Could not find a part of the path 'F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\PDF\SignedPDF\1ccdb8ed-b419-4919-89d1-5526da340ba7_signed.pdf'.
+   at System.IO.FileStream.ValidateFileHandle(SafeFileHandle fileHandle)
+   at System.IO.FileStream.CreateFileOpenHandle(FileMode mode, FileShare share, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize)
+   at System.IO.File.ReadAllBytes(String path)
+   at VMS.ChuKySo.Api.Controllers.ViettelController.signFile(String pathFile, String signedFile, VMSDigitalSignatureRect rect, String errMsg) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\Controllers\ViettelController.cs:line 359 |url: |action: 
+2025-09-12 10:36:48.9229||ERROR|DigitalSignaturePdfFileSign|There was an error on 'DigitalSignaturePdfFileSign' invocation: System.IO.DirectoryNotFoundException: Could not find a part of the path 'F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\PDF\SignedPDF\1ccdb8ed-b419-4919-89d1-5526da340ba7_signed.pdf'.
+   at System.IO.FileStream.ValidateFileHandle(SafeFileHandle fileHandle)
+   at System.IO.FileStream.CreateFileOpenHandle(FileMode mode, FileShare share, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize)
+   at System.IO.File.ReadAllBytes(String path)
+   at VMS.ChuKySo.Api.Controllers.ViettelController.DigitalSignaturePdfFileSign(VMSDigitalSignature objDigitalSignature) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\Controllers\ViettelController.cs:line 489 |url: |action: 
+2025-09-12 10:38:16.1118||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2025-09-12 10:38:16.1118||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType '0' for pdf file 'C:\HIS_BVSG\Running\pdf2sign\f9179ac2-6bb2-4280-be9c-31e2416094ca.pdf' by user '001081007147', userFullName '' with appId: '', secret: 'pwd' |url: |action: 
+2025-09-12 10:38:16.1264||DEBUG|DigitalSignaturePdfFileSign|File Length: 89051 |url: |action: 
+2025-09-12 10:39:20.5117||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2025-09-12 10:39:20.5117||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType '0' for pdf file 'C:\HIS_BVSG\Running\pdf2sign\211cf32f-015a-4906-bb41-ff69d7e893d0.pdf' by user '001081007147', userFullName '' with appId: '', secret: 'pwd' |url: |action: 
+2025-09-12 10:39:20.5345||DEBUG|DigitalSignaturePdfFileSign|File Length: 89051 |url: |action: 
+2025-09-12 10:47:59.8720||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2025-09-12 10:47:59.8720||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType '0' for pdf file 'C:\HIS_BVSG\Running\pdf2sign\4424ccb1-b113-4146-bce1-96f253f93146.pdf' by user '001081007147', userFullName '' with appId: '', secret: 'pwd' |url: |action: 
+2025-09-12 10:47:59.8720||DEBUG|DigitalSignaturePdfFileSign|File Length: 89051 |url: |action: 
+2025-09-12 10:51:34.8547||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2025-09-12 10:51:34.8547||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType '0' for pdf file 'C:\HIS_BVSG\Running\pdf2sign\8888b69c-a8cf-44aa-b68f-bed9f0e6f6bd.pdf' by user '001081007147', userFullName '' with appId: '', secret: 'pwd' |url: |action: 
+2025-09-12 10:51:34.8547||DEBUG|DigitalSignaturePdfFileSign|File Length: 89051 |url: |action: 
+2025-09-12 10:51:50.0402||DEBUG|DigitalSignaturePdfFileSign|Ký file1.Ký hash thành công |url: |action: 
+2025-09-12 10:51:50.1162||DEBUG|DigitalSignaturePdfFileSign|Ký file1.Insert signature into file fail. |url: |action: 
+2025-09-12 10:51:50.2780||ERROR|DigitalSignaturePdfFileSign|There was an error on 'DigitalSignaturePdfFileSign' invocation: System.IO.DirectoryNotFoundException: Could not find a part of the path 'F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\PDF\SignedPDF\4a991088-0bad-40f3-aaf8-a59822437c0d_signed.pdf'.
+   at System.IO.FileStream.ValidateFileHandle(SafeFileHandle fileHandle)
+   at System.IO.FileStream.CreateFileOpenHandle(FileMode mode, FileShare share, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize)
+   at System.IO.File.ReadAllBytes(String path)
+   at VMS.ChuKySo.Api.Controllers.ViettelController.DigitalSignaturePdfFileSign(VMSDigitalSignature objDigitalSignature) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\Controllers\ViettelController.cs:line 489 |url: |action: 
+2025-09-12 10:52:26.3249||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2025-09-12 10:52:26.3249||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType '0' for pdf file 'C:\HIS_BVSG\Running\pdf2sign\10945e52-b37d-4013-b9a9-80b668bac574.pdf' by user '001081007147', userFullName '' with appId: '', secret: 'pwd' |url: |action: 
+2025-09-12 10:52:26.3249||DEBUG|DigitalSignaturePdfFileSign|File Length: 89051 |url: |action: 
+2025-09-12 10:52:43.9708||DEBUG|DigitalSignaturePdfFileSign|Ký file2.Ký hash thành công |url: |action: 
+2025-09-12 10:56:37.1456||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2025-09-12 10:56:37.1456||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType '0' for pdf file 'C:\HIS_BVSG\Running\pdf2sign\3c1f35e2-6a27-457a-b935-4a4e854adcd1.pdf' by user '001081007147', userFullName '' with appId: '', secret: 'pwd' |url: |action: 
+2025-09-12 10:56:37.1538||DEBUG|DigitalSignaturePdfFileSign|File Length: 89051 |url: |action: 
+2025-09-12 10:56:52.1516||DEBUG|DigitalSignaturePdfFileSign|Ký file1.Ký hash thành công |url: |action: 
+2025-09-12 10:56:57.2843||DEBUG|DigitalSignaturePdfFileSign|Ký file1.Ký thành công |url: |action: 
+2025-09-12 11:08:59.6155||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2025-09-12 11:08:59.6155||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType '0' for pdf file 'C:\HIS_BVSG\Running\pdf2sign\4e76b75c-63e1-4663-8968-145018db539b.pdf' by user '001081007147', userFullName '' with appId: '', secret: 'pwd' |url: |action: 
+2025-09-12 11:08:59.6286||DEBUG|DigitalSignaturePdfFileSign|File Length: 89051 |url: |action: 
+2025-09-12 11:09:17.6403||DEBUG|DigitalSignaturePdfFileSign|Ký file1.Ký hash thành công |url: |action: 
+2025-09-12 11:09:17.6672||DEBUG|DigitalSignaturePdfFileSign|Ký file1.Ký thành công |url: |action: 
+2025-09-12 11:10:13.5500||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2025-09-12 11:10:13.5500||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType '0' for pdf file 'C:\HIS_BVSG\Running\pdf2sign\13006b4d-bf39-4e7f-84a6-06a9b189b978.pdf' by user '001081007147', userFullName '' with appId: '', secret: 'pwd' |url: |action: 
+2025-09-12 11:10:13.5589||DEBUG|DigitalSignaturePdfFileSign|File Length: 89051 |url: |action: 
+2025-09-12 11:10:27.6445||DEBUG|DigitalSignaturePdfFileSign|Ký file1.Ký hash thành công |url: |action: 
+2025-09-12 11:10:27.6727||DEBUG|DigitalSignaturePdfFileSign|Ký file1.Ký thành công |url: |action: 
+2025-09-12 11:11:48.3108||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2025-09-12 11:11:48.3108||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType '0' for pdf file 'C:\HIS_BVSG\Running\pdf2sign\f58575fa-546f-482e-a32c-f55af0f4e867.pdf' by user '001081007147', userFullName '' with appId: '', secret: 'pwd' |url: |action: 
+2025-09-12 11:11:48.3108||DEBUG|DigitalSignaturePdfFileSign|File Length: 89051 |url: |action: 
+2025-09-12 11:12:20.3322||DEBUG|DigitalSignaturePdfFileSign|Ký file1.Ký hash thành công |url: |action: 
+2025-09-12 11:12:20.3599||DEBUG|DigitalSignaturePdfFileSign|Ký file1.Ký thành công |url: |action: 
+2025-09-12 11:13:12.6302||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2025-09-12 11:13:12.6302||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType '0' for pdf file 'C:\HIS_BVSG\Running\pdf2sign\2c017fa6-3261-4a08-a422-041f58cfbb68.pdf' by user '001081007147', userFullName '' with appId: '', secret: 'pwd' |url: |action: 
+2025-09-12 11:13:12.6375||DEBUG|DigitalSignaturePdfFileSign|File Length: 89051 |url: |action: 
+2025-09-12 11:13:19.4111||DEBUG|DigitalSignaturePdfFileSign|Ký file1.Ký hash thành công |url: |action: 
+2025-09-12 11:13:19.4330||DEBUG|DigitalSignaturePdfFileSign|Ký file1.Ký thành công |url: |action: 
+2025-09-12 11:40:29.9174||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2025-09-12 11:40:29.9242||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType '0' for pdf file 'C:\HIS_BVSG\Running\pdf2sign\f9807d78-e70c-4305-a0a0-fcb347fe4f92.pdf' by user '001081007147', userFullName '' with appId: '', secret: 'pwd' |url: |action: 
+2025-09-12 11:40:29.9242||DEBUG|DigitalSignaturePdfFileSign|File Length: 89051 |url: |action: 
+2025-09-12 11:40:39.3132||DEBUG|DigitalSignaturePdfFileSign|Ký file2.Ký hash thành công |url: |action: 
+2025-09-12 11:40:39.3479||DEBUG|DigitalSignaturePdfFileSign|Ký file2.Ký thành công |url: |action: 
+2025-09-12 11:41:45.8802||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2025-09-12 11:41:45.8802||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType '0' for pdf file 'C:\HIS_BVSG\Running\pdf2sign\aa378aca-0dd8-415e-bc17-cddfb65108d6.pdf' by user '001081007147', userFullName '' with appId: '', secret: 'pwd' |url: |action: 
+2025-09-12 11:41:45.8802||DEBUG|DigitalSignaturePdfFileSign|File Length: 89051 |url: |action: 
+2025-09-12 11:42:05.5495||ERROR|DigitalSignaturePdfFileSign|System.ArgumentNullException: Value cannot be null. (Parameter 's')
+   at System.Convert.FromBase64String(String s)
+   at VMS.ChuKySo.Api.Controllers.ViettelController.signFile(String pathFile, String signedFile, VMSDigitalSignatureRect rect, String errMsg, Single X, Single Y, Single W, Single H) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\Controllers\ViettelController.cs:line 320 System.ArgumentNullException: Value cannot be null. (Parameter 's')
+   at System.Convert.FromBase64String(String s)
+   at VMS.ChuKySo.Api.Controllers.ViettelController.signFile(String pathFile, String signedFile, VMSDigitalSignatureRect rect, String errMsg, Single X, Single Y, Single W, Single H) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\Controllers\ViettelController.cs:line 320|url: |action: 
+2025-09-12 11:42:05.6627||DEBUG|DigitalSignaturePdfFileSign|System.ArgumentNullException: Value cannot be null. (Parameter 's')
+   at System.Convert.FromBase64String(String s)
+   at VMS.ChuKySo.Api.Controllers.ViettelController.signFile(String pathFile, String signedFile, VMSDigitalSignatureRect rect, String errMsg, Single X, Single Y, Single W, Single H) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\Controllers\ViettelController.cs:line 320 |url: |action: 
+2025-09-12 11:42:05.7284||ERROR|DigitalSignaturePdfFileSign|There was an error on 'DigitalSignaturePdfFileSign' invocation: System.IO.FileNotFoundException: Could not find file 'F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\PDF\SignedPDF\94834bb3-8152-4512-953c-1be5b81159ac_signed.pdf'.
+File name: 'F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\PDF\SignedPDF\94834bb3-8152-4512-953c-1be5b81159ac_signed.pdf'
+   at System.IO.FileStream.ValidateFileHandle(SafeFileHandle fileHandle)
+   at System.IO.FileStream.CreateFileOpenHandle(FileMode mode, FileShare share, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize)
+   at System.IO.File.ReadAllBytes(String path)
+   at VMS.ChuKySo.Api.Controllers.ViettelController.DigitalSignaturePdfFileSign(VMSDigitalSignature objDigitalSignature) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\Controllers\ViettelController.cs:line 495 |url: |action: 
+2025-09-12 12:16:24.9588||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2025-09-12 12:16:24.9709||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType '1' for pdf file 'C:\HIS_BVSG\Running\pdf2sign\5785bcb2-f153-4a02-8f2c-02247ae32e3c.pdf' by user '001081007147', userFullName '' with appId: '', secret: 'pwd' |url: |action: 
+2025-09-12 12:16:24.9822||DEBUG|DigitalSignaturePdfFileSign|File Length: 109386 |url: |action: 
+2025-09-12 12:16:36.3944||DEBUG|DigitalSignaturePdfFileSign|Ký file1.Ký hash thành công |url: |action: 
+2025-09-12 12:16:36.4465||DEBUG|DigitalSignaturePdfFileSign|Ký file1.Ký thành công |url: |action: 
+2025-09-12 12:22:27.5057||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2025-09-12 12:22:27.5057||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType '1' for pdf file 'C:\HIS_BVSG\Running\pdf2sign\96a6458c-3076-4c61-b9e9-4209ac8b94d5.pdf' by user '001081007147', userFullName '' with appId: '', secret: 'pwd' |url: |action: 
+2025-09-12 12:22:27.5057||DEBUG|DigitalSignaturePdfFileSign|File Length: 107371 |url: |action: 
+2025-09-12 12:22:33.5082||DEBUG|DigitalSignaturePdfFileSign|Ký file2.Ký hash thành công |url: |action: 
+2025-09-12 12:22:33.5245||DEBUG|DigitalSignaturePdfFileSign|Ký file2.Ký thành công |url: |action: 
+2025-09-12 12:25:21.1663||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2025-09-12 12:25:21.1696||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType '1' for pdf file 'C:\HIS_BVSG\Running\pdf2sign\fe6931e3-9b1a-48c7-92c0-b22db306fc30.pdf' by user '001081007147', userFullName '' with appId: '', secret: 'pwd' |url: |action: 
+2025-09-12 12:25:21.1696||DEBUG|DigitalSignaturePdfFileSign|File Length: 107417 |url: |action: 
+2025-09-12 12:25:29.1787||DEBUG|DigitalSignaturePdfFileSign|Ký file3.Ký hash thành công |url: |action: 
+2025-09-12 12:25:29.1965||DEBUG|DigitalSignaturePdfFileSign|Ký file3.Ký thành công |url: |action: 
+2025-09-12 13:23:14.2150||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- |url: |action: 
+2025-09-12 13:23:14.2150||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType '1' for pdf file 'C:\HIS_BVSG\Running\pdf2sign\83318012-a59f-4cb1-8fcb-48f5aa067678.pdf' by user '001081007147', userFullName '' with appId: '', secret: 'pwd' |url: |action: 
+2025-09-12 13:23:14.2150||DEBUG|DigitalSignaturePdfFileSign|File Length: 107546 |url: |action: 
+2025-09-12 14:09:46.5640||DEBUG|DigitalSignaturePdfFileSign|Ký file1.Ký hash thành công |url: |action: 
+2025-09-12 14:09:46.5929||DEBUG|DigitalSignaturePdfFileSign|Ký file1.Ký thành công |url: |action: 

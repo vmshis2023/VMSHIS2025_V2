@@ -51,7 +51,6 @@
     <Compile Remove="Controllers\ViettelController.cs" />
     <Compile Remove="Controllers\VincaController.cs" />
     <Compile Remove="Controllers\VnptController - Copy_netfrx.cs" />
-    <Compile Remove="Controllers\VnptController.cs" />
   </ItemGroup>
 
   <ItemGroup>

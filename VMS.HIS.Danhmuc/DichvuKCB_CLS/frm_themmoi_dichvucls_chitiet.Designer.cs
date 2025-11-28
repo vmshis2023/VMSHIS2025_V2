@@ -32,6 +32,9 @@ namespace VNS.HIS.UI.DANHMUC
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_themmoi_dichvucls_chitiet));
             this.grpControl = new System.Windows.Forms.GroupBox();
+            this.chk_yeucau_cokq = new Janus.Windows.EditControls.UICheckBox();
+            this.label51 = new System.Windows.Forms.Label();
+            this.cboPhieuEMR = new VNS.HIS.UCs.EasyCompletionComboBox();
             this.label52 = new System.Windows.Forms.Label();
             this.txttenphieutrakqCDHA = new System.Windows.Forms.TextBox();
             this.txtVitrithuchien = new VNS.HIS.UCs.AutoCompleteTextbox_Danhmucchung();
@@ -159,8 +162,7 @@ namespace VNS.HIS.UI.DANHMUC
             this.chkThemmoilientuc = new Janus.Windows.EditControls.UICheckBox();
             this.cmdSave = new Janus.Windows.EditControls.UIButton();
             this.cmdExit = new Janus.Windows.EditControls.UIButton();
-            this.label51 = new System.Windows.Forms.Label();
-            this.cboPhieuEMR = new VNS.HIS.UCs.EasyCompletionComboBox();
+            this.chk_LaHuongDieuTri = new Janus.Windows.EditControls.UICheckBox();
             this.grpControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nmrThoigian)).BeginInit();
             this.pnlPTTT.SuspendLayout();
@@ -171,6 +173,8 @@ namespace VNS.HIS.UI.DANHMUC
             // 
             // grpControl
             // 
+            this.grpControl.Controls.Add(this.chk_LaHuongDieuTri);
+            this.grpControl.Controls.Add(this.chk_yeucau_cokq);
             this.grpControl.Controls.Add(this.label51);
             this.grpControl.Controls.Add(this.cboPhieuEMR);
             this.grpControl.Controls.Add(this.label52);
@@ -286,6 +290,40 @@ namespace VNS.HIS.UI.DANHMUC
             this.grpControl.TabIndex = 0;
             this.grpControl.TabStop = false;
             this.grpControl.Text = "Thông tin chi tiết";
+            // 
+            // chk_yeucau_cokq
+            // 
+            this.chk_yeucau_cokq.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chk_yeucau_cokq.Location = new System.Drawing.Point(830, 573);
+            this.chk_yeucau_cokq.Name = "chk_yeucau_cokq";
+            this.chk_yeucau_cokq.Size = new System.Drawing.Size(122, 23);
+            this.chk_yeucau_cokq.TabIndex = 1723;
+            this.chk_yeucau_cokq.TabStop = false;
+            this.chk_yeucau_cokq.Text = "Yêu cầu có KQ?";
+            this.toolTip1.SetToolTip(this.chk_yeucau_cokq, "Chọn mục này nếu muốn đánh dấu chi tiết CLS này luôn coi là tự túc đối với đối tư" +
+        "ợng BHYT cho dù có được áp quan hệ giá hay không!");
+            this.chk_yeucau_cokq.UseWaitCursor = true;
+            // 
+            // label51
+            // 
+            this.label51.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label51.ForeColor = System.Drawing.Color.Green;
+            this.label51.Location = new System.Drawing.Point(22, 490);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(87, 20);
+            this.label51.TabIndex = 1722;
+            this.label51.Text = "Mã phiếu EMR";
+            this.label51.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // cboPhieuEMR
+            // 
+            this.cboPhieuEMR.FormattingEnabled = true;
+            this.cboPhieuEMR.Location = new System.Drawing.Point(113, 489);
+            this.cboPhieuEMR.Name = "cboPhieuEMR";
+            this.cboPhieuEMR.Next_Control = null;
+            this.cboPhieuEMR.RaiseEnterEventWhenInvisible = true;
+            this.cboPhieuEMR.Size = new System.Drawing.Size(879, 23);
+            this.cboPhieuEMR.TabIndex = 1721;
             // 
             // label52
             // 
@@ -1911,7 +1949,6 @@ namespace VNS.HIS.UI.DANHMUC
             this.chkHienThi.Text = "Hiển thị";
             this.chkHienThi.UseVisualStyleBackColor = true;
             this.chkHienThi.UseWaitCursor = true;
-            this.chkHienThi.Visible = false;
             // 
             // label2
             // 
@@ -2018,7 +2055,6 @@ namespace VNS.HIS.UI.DANHMUC
             this.cmdSave.Size = new System.Drawing.Size(120, 35);
             this.cmdSave.TabIndex = 40;
             this.cmdSave.Text = "Ghi (Ctrl+S)";
-            this.cmdSave.Click += new System.EventHandler(this.btnNew_Click_1);
             // 
             // cmdExit
             // 
@@ -2032,26 +2068,18 @@ namespace VNS.HIS.UI.DANHMUC
             this.cmdExit.TabIndex = 41;
             this.cmdExit.Text = "Thoát(Esc)";
             // 
-            // label51
+            // chk_LaHuongDieuTri
             // 
-            this.label51.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label51.ForeColor = System.Drawing.Color.Green;
-            this.label51.Location = new System.Drawing.Point(22, 490);
-            this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(87, 20);
-            this.label51.TabIndex = 1722;
-            this.label51.Text = "Mã phiếu EMR";
-            this.label51.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // cboPhieuEMR
-            // 
-            this.cboPhieuEMR.FormattingEnabled = true;
-            this.cboPhieuEMR.Location = new System.Drawing.Point(113, 489);
-            this.cboPhieuEMR.Name = "cboPhieuEMR";
-            this.cboPhieuEMR.Next_Control = null;
-            this.cboPhieuEMR.RaiseEnterEventWhenInvisible = true;
-            this.cboPhieuEMR.Size = new System.Drawing.Size(879, 23);
-            this.cboPhieuEMR.TabIndex = 1721;
+            this.chk_LaHuongDieuTri.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chk_LaHuongDieuTri.Location = new System.Drawing.Point(830, 552);
+            this.chk_LaHuongDieuTri.Name = "chk_LaHuongDieuTri";
+            this.chk_LaHuongDieuTri.Size = new System.Drawing.Size(122, 23);
+            this.chk_LaHuongDieuTri.TabIndex = 1724;
+            this.chk_LaHuongDieuTri.TabStop = false;
+            this.chk_LaHuongDieuTri.Text = "Là hướng điều trị?";
+            this.toolTip1.SetToolTip(this.chk_LaHuongDieuTri, "Chọn mục này nếu muốn đánh dấu chi tiết CLS này luôn coi là tự túc đối với đối tư" +
+        "ợng BHYT cho dù có được áp quan hệ giá hay không!");
+            this.chk_LaHuongDieuTri.UseWaitCursor = true;
             // 
             // frm_themmoi_dichvucls_chitiet
             // 
@@ -2219,5 +2247,7 @@ namespace VNS.HIS.UI.DANHMUC
         private System.Windows.Forms.TextBox txttenphieutrakqCDHA;
         private System.Windows.Forms.Label label51;
         private UCs.EasyCompletionComboBox cboPhieuEMR;
+        private Janus.Windows.EditControls.UICheckBox chk_yeucau_cokq;
+        private Janus.Windows.EditControls.UICheckBox chk_LaHuongDieuTri;
     }
 }

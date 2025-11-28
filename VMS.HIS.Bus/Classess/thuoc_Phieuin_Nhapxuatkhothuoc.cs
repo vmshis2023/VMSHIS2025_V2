@@ -59,7 +59,60 @@ namespace VNS.HIS.UI.Baocao
                }
            }
        }
-       public static void InphieuThanhly(int IDPhieuNhap, string sTitleReport, DateTime NgayIn)
+        public static void InBienBanKiemNhap(int IDPhieuNhap, string sTitleReport, DateTime NgayIn)
+        {
+            DataSet m_dsData = new THUOC_NHAPKHO().LayThongTinInPhieuKiemNhapTheoPhieu(IDPhieuNhap);
+           
+            if (m_dsData==null || m_dsData.Tables[0].Rows.Count <= 0)
+            {
+                Utility.ShowMsg("Không tìm thấy thông tin ", "Thông báo", MessageBoxIcon.Warning);
+                return;
+            }
+            m_dsData.Tables[0].TableName = "thuoc_bienbankiemnhap_pnk";
+            m_dsData.Tables[1].TableName = "thuoc_bienbankiemnhap_ThongTinHoiDong";
+            DataTable m_dtReport = m_dsData.Tables[0];
+            THU_VIEN_CHUNG.CreateXML(m_dsData.Tables[0], "thuoc_bienbankiemnhap_pnk.xml");
+            THU_VIEN_CHUNG.CreateXML(m_dsData.Tables[1], "thuoc_bienbankiemnhap_ThongTinHoiDong.xml");
+            MoneyByLetter _moneyByLetter = new MoneyByLetter();
+            string tinhtong = TinhTong(m_dtReport, TPhieuNhapxuatthuocChitiet.ThanhTienColumn.ColumnName);
+            string tieude = "", reportname = "";
+            var crpt = Utility.GetReport("thuoc_bienbankiemnhap_pnk", ref tieude, ref reportname);
+
+            // VNS.HIS.UI.BaoCao.PhieuNhapKho.CRPT_PHIEU_NHAPKHO crpt =new CRPT_PHIEU_NHAPKHO();
+            var objForm = new frmPrintPreview(sTitleReport, crpt, true, m_dtReport.Rows.Count <= 0 ? false : true);
+
+            Utility.UpdateLogotoDatatable(ref m_dtReport);
+            try
+            {
+
+               // m_dtReport.AcceptChanges();
+                crpt.SetDataSource(m_dtReport);
+                crpt.Subreports[0].SetDataSource(m_dsData.Tables[1]);
+                ////crpt.DataDefinition.FormulaFields["Formula_1"].Text = Strings.Chr(34) + "  PHÒNG TIẾP ĐÓN   ".Replace("#$X$#", Strings.Chr(34) + "&Chr(13)&" + Strings.Chr(34)) + Strings.Chr(34);
+                objForm.mv_sReportFileName = Path.GetFileName(reportname);
+                objForm.mv_sReportCode = "thuoc_phieunhapkho";
+                Utility.SetParameterValue(crpt, "ParentBranchName", globalVariables.ParentBranch_Name);
+                Utility.SetParameterValue(crpt, "BranchName", globalVariables.Branch_Name);
+                Utility.SetParameterValue(crpt, "sMoneyLetter", _moneyByLetter.sMoneyToLetter(tinhtong));
+
+                Utility.SetParameterValue(crpt, "sCurrentDate", Utility.FormatDateTimeWithThanhPho(NgayIn));
+                Utility.SetParameterValue(crpt, "sTitleReport", tieude);
+                Utility.SetParameterValue(crpt, "BottomCondition", THU_VIEN_CHUNG.BottomCondition());
+                Utility.SetParameterValue(crpt, "txtTrinhky", Utility.getTrinhky(objForm.mv_sReportFileName, DateTime.Now));
+                Utility.SetDefaultValue4Parameters(crpt, tieude, NgayIn, "", THU_VIEN_CHUNG.BottomCondition());
+                objForm.crptViewer.ReportSource = crpt;
+                objForm.ShowDialog();
+                // Utility.DefaultNow(this);
+            }
+            catch (Exception ex)
+            {
+                if (globalVariables.IsAdmin)
+                {
+                    Utility.ShowMsg(ex.ToString());
+                }
+            }
+        }
+        public static void InphieuThanhly(int IDPhieuNhap, string sTitleReport, DateTime NgayIn)
        {
            DataTable m_dtReport = SPs.ThuocLaythongtininphieuXuatkhothuoc(IDPhieuNhap).GetDataSet().Tables[0];
            if (m_dtReport.Rows.Count <= 0)
@@ -187,7 +240,7 @@ namespace VNS.HIS.UI.Baocao
            }
        }
 
-       public static void InphieuXuatkho(int IDPhieuNhap, string sTitleReport, DateTime NgayIn)
+       public static void InphieuXuatkho(int IDPhieuNhap, string sTitleReport, DateTime NgayIn,string pv_sReportCode="")
        {
            DataTable m_dtReport = SPs.ThuocLaydulieuinphieuchuyenkho2lien(IDPhieuNhap).GetDataSet().Tables[0];
            if (m_dtReport.Rows.Count <= 0)
@@ -197,7 +250,7 @@ namespace VNS.HIS.UI.Baocao
            }
            THU_VIEN_CHUNG.CreateXML(m_dtReport, "thuoc_phieu_xuatkho_1lien");
            string tieude = "", reportname = "";
-           var crpt = Utility.GetReport("thuoc_phieu_xuatkho_1lien", ref tieude, ref reportname);
+           var crpt = Utility.GetReport(pv_sReportCode!=""? pv_sReportCode:"thuoc_phieu_xuatkho_1lien", ref tieude, ref reportname);
 
            string tinhtong = TinhTong(m_dtReport, "THANHTIEN_XUAT");
            Utility.UpdateLogotoDatatable(ref m_dtReport);
@@ -273,7 +326,7 @@ namespace VNS.HIS.UI.Baocao
                Utility.FreeMemory(crpt);
            }
        }
-       public static void InphieuXuatkho_2lien(int IDPhieuNhap, string sTitleReport, DateTime NgayIn)
+       public static void InphieuXuatkho_2lien(int IDPhieuNhap, string sTitleReport, DateTime NgayIn,string pv_sReportCode= "")
        {
            try
            {
@@ -288,9 +341,9 @@ namespace VNS.HIS.UI.Baocao
                string tinhtong = TinhTong(dataTable, "THANHTIEN_XUAT");
                THU_VIEN_CHUNG.CreateXML(dataTable, "thuoc_phieu_xuatkho_2lien.xml");
                string tieude = "", reportname = "", reportCode = "";
-               reportCode = THU_VIEN_CHUNG.Laygiatrithamsohethong("THUOC_INPHIEUXUATKHO_2LIEN", "0", false) == "1"
-                                ? "thuoc_phieu_xuatkho_2lien"
-                                : "thuoc_phieu_xuatkho_1lien";
+                reportCode = pv_sReportCode != "" ? pv_sReportCode : THU_VIEN_CHUNG.Laygiatrithamsohethong("THUOC_INPHIEUXUATKHO_2LIEN", "0", false) == "1"
+                                 ? "thuoc_phieu_xuatkho_2lien"
+                                 : "thuoc_phieu_xuatkho_1lien";
                var crpt = Utility.GetReport(reportCode, ref tieude, ref reportname);
                if (crpt != null)
                {

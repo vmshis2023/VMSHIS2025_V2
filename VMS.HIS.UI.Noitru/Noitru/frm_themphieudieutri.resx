@@ -121,6 +121,32 @@
   <data name="grpThongTinDieuTri.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="cbo_BacSyDieuTri.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Arial, 9pt</value>
+  </data>
+  <data name="cbo_BacSyDieuTri.Location" type="System.Drawing.Point, System.Drawing">
+    <value>635, 56</value>
+  </data>
+  <data name="cbo_BacSyDieuTri.Size" type="System.Drawing.Size, System.Drawing">
+    <value>355, 23</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="cbo_BacSyDieuTri.TabIndex" type="System.Int32, mscorlib">
+    <value>442</value>
+  </data>
+  <data name="&gt;&gt;cbo_BacSyDieuTri.Name" xml:space="preserve">
+    <value>cbo_BacSyDieuTri</value>
+  </data>
+  <data name="&gt;&gt;cbo_BacSyDieuTri.Type" xml:space="preserve">
+    <value>VNS.HIS.UCs.EasyCompletionComboBox, VMS.HIS.Danhmuc, Version=1.0.1.18585, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;cbo_BacSyDieuTri.Parent" xml:space="preserve">
+    <value>grpThongTinDieuTri</value>
+  </data>
+  <data name="&gt;&gt;cbo_BacSyDieuTri.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="dtpNgaynhapvien.CustomFormat" xml:space="preserve">
     <value>dd/MM/yyyy HH:mm:ss</value>
   </data>
@@ -128,11 +154,9 @@
   <data name="dtpNgaynhapvien.DateFormat" type="Janus.Windows.CalendarCombo.DateFormat, Janus.Windows.CalendarCombo.v3">
     <value>Custom</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="dtpNgaynhapvien.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="dtpNgaynhapvien.Location" type="System.Drawing.Point, System.Drawing">
     <value>352, 29</value>
   </data>
@@ -152,7 +176,7 @@
     <value>grpThongTinDieuTri</value>
   </data>
   <data name="&gt;&gt;dtpNgaynhapvien.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="label8.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -182,9 +206,9 @@
     <value>grpThongTinDieuTri</value>
   </data>
   <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
-  <data name="cboBacSy.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="cboKhoaNoiTru.Font" type="System.Drawing.Font, System.Drawing">
     <value>Arial, 9pt, style=Bold</value>
   </data>
   <data name="uiComboBoxItem1.Text" xml:space="preserve">
@@ -203,51 +227,6 @@
     <value>Khác</value>
   </data>
   <data name="uiComboBoxItem3.Value" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="cboBacSy.Location" type="System.Drawing.Point, System.Drawing">
-    <value>635, 60</value>
-  </data>
-  <data name="cboBacSy.Size" type="System.Drawing.Size, System.Drawing">
-    <value>355, 21</value>
-  </data>
-  <data name="cboBacSy.TabIndex" type="System.Int32, mscorlib">
-    <value>439</value>
-  </data>
-  <data name="cboBacSy.Text" xml:space="preserve">
-    <value>Bác sỹ chỉ định</value>
-  </data>
-  <data name="&gt;&gt;cboBacSy.Name" xml:space="preserve">
-    <value>cboBacSy</value>
-  </data>
-  <data name="&gt;&gt;cboBacSy.Type" xml:space="preserve">
-    <value>Janus.Windows.EditControls.UIComboBox, Janus.Windows.UI.v3, Version=3.5.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;cboBacSy.Parent" xml:space="preserve">
-    <value>grpThongTinDieuTri</value>
-  </data>
-  <data name="&gt;&gt;cboBacSy.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="cboKhoaNoiTru.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Arial, 9pt, style=Bold</value>
-  </data>
-  <data name="uiComboBoxItem4.Text" xml:space="preserve">
-    <value>Nữ</value>
-  </data>
-  <data name="uiComboBoxItem4.Value" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="uiComboBoxItem5.Text" xml:space="preserve">
-    <value>Nam</value>
-  </data>
-  <data name="uiComboBoxItem5.Value" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="uiComboBoxItem6.Text" xml:space="preserve">
-    <value>Khác</value>
-  </data>
-  <data name="uiComboBoxItem6.Value" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
   <data name="cboKhoaNoiTru.Location" type="System.Drawing.Point, System.Drawing">

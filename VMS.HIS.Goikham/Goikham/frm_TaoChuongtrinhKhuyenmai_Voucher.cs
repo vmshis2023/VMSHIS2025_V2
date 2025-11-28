@@ -520,9 +520,10 @@ namespace VNS.HIS.UI.GOIKHAM
                     var soLanThucHien = Utility.Int16Dbnull(row.Cells["SO_LUONG"].Value);
                     var idChiTiet = Utility.Int32Dbnull(row.Cells["ID_CHITIET"].Value);
                     decimal  donGia = Utility.DecimaltoDbnull(row.Cells["don_gia"].Value);
-                    if(idChiTiet <= 0)
+                    decimal dongia_ngoaigio = Utility.DecimaltoDbnull(row.Cells["dongia_ngoaigio"].Value);
+                    if (idChiTiet <= 0)
                     {
-                        idChiTiet = _goiKhamService.ThemChiTietGoiKham(idGoiDVu, serviceId, serviceDetailId, serviceDetailName, soLanThucHien, loaiDv, donGia,false,0);
+                        idChiTiet = _goiKhamService.ThemChiTietGoiKham(idGoiDVu, serviceId, serviceDetailId, serviceDetailName, soLanThucHien, loaiDv, donGia, dongia_ngoaigio,false, 0);
                     }
                     else
                     {

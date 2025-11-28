@@ -50,6 +50,8 @@ namespace VMS.HIS.UI.EMR
             this.cmdSave = new Janus.Windows.EditControls.UIButton();
             this.chkContine = new Janus.Windows.EditControls.UICheckBox();
             this.cbo_khoanoitru = new VNS.HIS.UCs.EasyCompletionComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.dtpNgayphieu = new Janus.Windows.CalendarCombo.CalendarCombo();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -156,7 +158,7 @@ namespace VMS.HIS.UI.EMR
             // lnkChandoan
             // 
             this.lnkChandoan.AutoSize = true;
-            this.lnkChandoan.Location = new System.Drawing.Point(78, 297);
+            this.lnkChandoan.Location = new System.Drawing.Point(78, 325);
             this.lnkChandoan.Name = "lnkChandoan";
             this.lnkChandoan.Size = new System.Drawing.Size(60, 13);
             this.lnkChandoan.TabIndex = 264337;
@@ -165,11 +167,11 @@ namespace VMS.HIS.UI.EMR
             // 
             // txt_chandoan
             // 
-            this.txt_chandoan.Location = new System.Drawing.Point(144, 295);
+            this.txt_chandoan.Location = new System.Drawing.Point(144, 325);
             this.txt_chandoan.Multiline = true;
             this.txt_chandoan.Name = "txt_chandoan";
             this.txt_chandoan.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txt_chandoan.Size = new System.Drawing.Size(769, 270);
+            this.txt_chandoan.Size = new System.Drawing.Size(769, 240);
             this.txt_chandoan.TabIndex = 4;
             // 
             // txtId
@@ -230,10 +232,40 @@ namespace VMS.HIS.UI.EMR
             this.cbo_khoanoitru.Size = new System.Drawing.Size(333, 21);
             this.cbo_khoanoitru.TabIndex = 264340;
             // 
+            // label3
+            // 
+            this.label3.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Red;
+            this.label3.Location = new System.Drawing.Point(30, 296);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(108, 21);
+            this.label3.TabIndex = 264342;
+            this.label3.Text = "Ngày phiếu:";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // dtpNgayphieu
+            // 
+            this.dtpNgayphieu.CustomFormat = "dd/MM/yyyy HH:mm";
+            this.dtpNgayphieu.DateFormat = Janus.Windows.CalendarCombo.DateFormat.Custom;
+            // 
+            // 
+            // 
+            this.dtpNgayphieu.DropDownCalendar.Name = "";
+            this.dtpNgayphieu.DropDownCalendar.VisualStyle = Janus.Windows.CalendarCombo.VisualStyle.Standard;
+            this.dtpNgayphieu.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpNgayphieu.IsNullDate = true;
+            this.dtpNgayphieu.Location = new System.Drawing.Point(144, 296);
+            this.dtpNgayphieu.Name = "dtpNgayphieu";
+            this.dtpNgayphieu.ShowUpDown = true;
+            this.dtpNgayphieu.Size = new System.Drawing.Size(186, 22);
+            this.dtpNgayphieu.TabIndex = 264341;
+            // 
             // frm_themphieutruyendich
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.ClientSize = new System.Drawing.Size(920, 642);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.dtpNgayphieu);
             this.Controls.Add(this.cbo_khoanoitru);
             this.Controls.Add(this.chkContine);
             this.Controls.Add(this.txtId);
@@ -281,5 +313,7 @@ namespace VMS.HIS.UI.EMR
         private Janus.Windows.EditControls.UICheckBox chkContine;
         public ucThongtinnguoibenh_emr_basic ucThongtinnguoibenh_emr_basic1;
         private EasyCompletionComboBox cbo_khoanoitru;
+        private System.Windows.Forms.Label label3;
+        public Janus.Windows.CalendarCombo.CalendarCombo dtpNgayphieu;
     }
 }

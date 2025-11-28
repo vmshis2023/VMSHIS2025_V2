@@ -19,6 +19,7 @@ namespace VMS.HIS.UI.EMR
         KcbLuotkham objLuotkham;
         public bool mv_blnCallFromMenu = true;
         public bool IsChanged = false;
+        public bool Force2Saved = false;
         public frm_giaychungnhan_tainanthuongtich()
         {
             InitializeComponent();
@@ -60,6 +61,7 @@ namespace VMS.HIS.UI.EMR
         private void frm_giaychungnhan_tainanthuongtich_Shown(object sender, EventArgs e)
         {
             uc_giaychungnhanthuongtich1.Init();
+            uc_giaychungnhanthuongtich1.Force2Saved = Force2Saved;
             if (mv_blnCallFromMenu)
             {
                 chkCloseAfterSave.Checked = false;

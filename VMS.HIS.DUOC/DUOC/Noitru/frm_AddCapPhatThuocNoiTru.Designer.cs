@@ -224,17 +224,17 @@
             // 
             // cboKhoxuat
             // 
-            this.cboKhoxuat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboKhoxuat.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cboKhoxuat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboKhoxuat.FormattingEnabled = true;
             this.cboKhoxuat.Location = new System.Drawing.Point(653, 77);
             this.cboKhoxuat.Name = "cboKhoxuat";
-            this.cboKhoxuat.Size = new System.Drawing.Size(361, 24);
+            this.cboKhoxuat.Size = new System.Drawing.Size(335, 24);
             this.cboKhoxuat.TabIndex = 52;
             // 
             // lblKhoxuat
             // 
-            this.lblKhoxuat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblKhoxuat.AutoSize = true;
             this.lblKhoxuat.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblKhoxuat.ForeColor = System.Drawing.Color.Red;
@@ -302,8 +302,6 @@
             // 
             // cboDepartment
             // 
-            this.cboDepartment.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.cboDepartment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboDepartment.FormattingEnabled = true;
             this.cboDepartment.Location = new System.Drawing.Point(137, 77);
@@ -323,6 +321,8 @@
             // 
             // dtDenNgay
             // 
+            this.dtDenNgay.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             // 
             // 
             // 
@@ -440,7 +440,7 @@
             this.uiGroupBox2.Controls.Add(this.cmdExit);
             this.uiGroupBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.uiGroupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiGroupBox2.Location = new System.Drawing.Point(0, 708);
+            this.uiGroupBox2.Location = new System.Drawing.Point(0, 626);
             this.uiGroupBox2.Name = "uiGroupBox2";
             this.uiGroupBox2.Size = new System.Drawing.Size(1184, 53);
             this.uiGroupBox2.TabIndex = 9;
@@ -509,7 +509,7 @@
             this.tabViewData.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabViewData.Location = new System.Drawing.Point(0, 107);
             this.tabViewData.Name = "tabViewData";
-            this.tabViewData.Size = new System.Drawing.Size(1184, 601);
+            this.tabViewData.Size = new System.Drawing.Size(1184, 519);
             this.tabViewData.TabIndex = 10;
             this.tabViewData.TabPages.AddRange(new Janus.Windows.UI.Tab.UITabPage[] {
             this.tabPresList});
@@ -523,7 +523,7 @@
             this.tabPresList.Controls.Add(this.uiGroupBox3);
             this.tabPresList.Location = new System.Drawing.Point(1, 24);
             this.tabPresList.Name = "tabPresList";
-            this.tabPresList.Size = new System.Drawing.Size(1182, 576);
+            this.tabPresList.Size = new System.Drawing.Size(1182, 494);
             this.tabPresList.TabStop = true;
             this.tabPresList.Text = "Danh sách và thông tin đơn thuốc (F1)";
             // 
@@ -531,9 +531,9 @@
             // 
             this.uiGroupBox5.Controls.Add(this.grdPresDetail);
             this.uiGroupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiGroupBox5.Location = new System.Drawing.Point(0, 338);
+            this.uiGroupBox5.Location = new System.Drawing.Point(0, 295);
             this.uiGroupBox5.Name = "uiGroupBox5";
-            this.uiGroupBox5.Size = new System.Drawing.Size(708, 238);
+            this.uiGroupBox5.Size = new System.Drawing.Size(708, 199);
             this.uiGroupBox5.TabIndex = 12;
             this.uiGroupBox5.Text = "Thông tin chi tiết đơn thuốc";
             this.uiGroupBox5.VisualStyle = Janus.Windows.UI.Dock.PanelVisualStyle.Office2003;
@@ -554,7 +554,7 @@
             this.grdPresDetail.Location = new System.Drawing.Point(3, 18);
             this.grdPresDetail.Name = "grdPresDetail";
             this.grdPresDetail.RecordNavigator = true;
-            this.grdPresDetail.Size = new System.Drawing.Size(702, 217);
+            this.grdPresDetail.Size = new System.Drawing.Size(702, 178);
             this.grdPresDetail.TabIndex = 459;
             this.grdPresDetail.TabStop = false;
             this.grdPresDetail.TotalRowFormatStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
@@ -571,7 +571,7 @@
             this.uiGroupBox4.Dock = System.Windows.Forms.DockStyle.Top;
             this.uiGroupBox4.Location = new System.Drawing.Point(0, 57);
             this.uiGroupBox4.Name = "uiGroupBox4";
-            this.uiGroupBox4.Size = new System.Drawing.Size(708, 281);
+            this.uiGroupBox4.Size = new System.Drawing.Size(708, 238);
             this.uiGroupBox4.TabIndex = 11;
             this.uiGroupBox4.Text = "Thông tin đơn thuốc";
             this.uiGroupBox4.VisualStyle = Janus.Windows.UI.Dock.PanelVisualStyle.Office2003;
@@ -595,7 +595,7 @@
             this.grdPres.Location = new System.Drawing.Point(3, 18);
             this.grdPres.Name = "grdPres";
             this.grdPres.RecordNavigator = true;
-            this.grdPres.Size = new System.Drawing.Size(702, 260);
+            this.grdPres.Size = new System.Drawing.Size(702, 217);
             this.grdPres.TabIndex = 1;
             this.grdPres.VisualStyle = Janus.Windows.GridEX.VisualStyle.VS2005;
             // 
@@ -653,7 +653,7 @@
             this.uiGroupBox3.Dock = System.Windows.Forms.DockStyle.Right;
             this.uiGroupBox3.Location = new System.Drawing.Point(708, 0);
             this.uiGroupBox3.Name = "uiGroupBox3";
-            this.uiGroupBox3.Size = new System.Drawing.Size(474, 576);
+            this.uiGroupBox3.Size = new System.Drawing.Size(474, 494);
             this.uiGroupBox3.TabIndex = 7;
             this.uiGroupBox3.Text = "Thông tin tổng hợp thuốc";
             this.uiGroupBox3.VisualStyle = Janus.Windows.UI.Dock.PanelVisualStyle.Office2003;
@@ -675,7 +675,7 @@
             this.grdTongHop.Location = new System.Drawing.Point(3, 18);
             this.grdTongHop.Name = "grdTongHop";
             this.grdTongHop.RecordNavigator = true;
-            this.grdTongHop.Size = new System.Drawing.Size(468, 555);
+            this.grdTongHop.Size = new System.Drawing.Size(468, 473);
             this.grdTongHop.TabIndex = 1;
             this.grdTongHop.VisualStyle = Janus.Windows.GridEX.VisualStyle.VS2005;
             // 
@@ -686,16 +686,13 @@
             // 
             // frm_AddCapPhatThuocNoiTru
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1184, 761);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(1184, 679);
             this.Controls.Add(this.tabViewData);
             this.Controls.Add(this.uiGroupBox2);
             this.Controls.Add(this.uiGroupBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "frm_AddCapPhatThuocNoiTru";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

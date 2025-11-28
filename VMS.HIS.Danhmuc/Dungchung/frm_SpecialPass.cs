@@ -74,5 +74,10 @@ namespace VNS.HIS.UI.Cauhinh
                 }
             //}
         }
+
+        private void txtShowHidePwd_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

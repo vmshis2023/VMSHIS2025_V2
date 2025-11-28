@@ -43,6 +43,7 @@ namespace VMS.HIS.UI.EMR
             txtCanNang.TextChanged += txtCanNang_TextChanged;
             txtChieuCao.TextChanged += txtChieuCao_TextChanged;
             SetProperties(this);
+            
         }
 
         void SetProperties(Control parent)

@@ -126,7 +126,7 @@ namespace VNS.HIS.UI.NOITRU
                 }
                
                 m_dtChiPhiThanhtoan =
-                   SPs.NoitruTonghopChiphiRavien(objLuotkham.MaLuotkham, (int)objLuotkham.IdBenhnhan, Utility.Bool2byte(!Khoanoitrutonghop), idkhoanoitru, getidphieudieutri()).GetDataSet().Tables[0];
+                   SPs.NoitruTonghopChiphiRavien(objLuotkham.MaLuotkham, (int)objLuotkham.IdBenhnhan, Utility.Bool2byte(!Khoanoitrutonghop), idkhoanoitru, getidphieudieutri(),0).GetDataSet().Tables[0];
                 // Utility.SetDataSourceForDataGridEx_Basic(grdThongTinChuaThanhToan, m_dtChiPhiThanhtoan,true, true, "trangthai_huy=0" + (PropertyLib._ThanhtoanProperties.Hienthidichvuchuathanhtoan ? " and trangthai_thanhtoan=0" : ""), "");
                 Utility.SetDataSourceForDataGridEx_Basic(grdThongTinChuaThanhToan, m_dtChiPhiThanhtoan, true, true, "trangthai_huy=0" + (PropertyLib._ThanhtoanProperties.Hienthidichvuchuathanhtoan ? " and trangthai_thanhtoan=0" : ""), "");
                 m_dtChiPhiThanhtoan.TableName = "tonghopchiphi_kcb";
@@ -469,7 +469,7 @@ namespace VNS.HIS.UI.NOITRU
             try
             {
                 Utility.WaitNow(this);
-                DataTable dtData = SPs.NoitruTonghopChiphiRavien(objLuotkham.MaLuotkham, (int)objLuotkham.IdBenhnhan, Utility.Bool2byte(!Khoanoitrutonghop), Utility.sDbnull(cboKhoadieutri.SelectedValue, "-1"), getidphieudieutri()).GetDataSet().Tables[0];
+                DataTable dtData = SPs.NoitruTonghopChiphiRavien(objLuotkham.MaLuotkham, (int)objLuotkham.IdBenhnhan, Utility.Bool2byte(!Khoanoitrutonghop), Utility.sDbnull(cboKhoadieutri.SelectedValue, "-1"), getidphieudieutri(),0).GetDataSet().Tables[0];
 
                 if (dtData.Rows.Count <= 0)
                 {
@@ -555,7 +555,7 @@ namespace VNS.HIS.UI.NOITRU
             try
             {
                 Utility.WaitNow(this);
-                DataTable dtData = SPs.NoitruTonghopChiphiRavien(objLuotkham.MaLuotkham, (int)objLuotkham.IdBenhnhan, Utility.Bool2byte(!Khoanoitrutonghop), Utility.sDbnull(cboKhoadieutri.SelectedValue, "-1"), getidphieudieutri()).GetDataSet().Tables[0];
+                DataTable dtData = SPs.NoitruTonghopChiphiRavien(objLuotkham.MaLuotkham, (int)objLuotkham.IdBenhnhan, Utility.Bool2byte(!Khoanoitrutonghop), Utility.sDbnull(cboKhoadieutri.SelectedValue, "-1"), getidphieudieutri(),0).GetDataSet().Tables[0];
                 THU_VIEN_CHUNG.Sapxepthutuin(ref dtData, false);
                 dtData.DefaultView.Sort = "stt_in,stt_hthi_loaidichvu ,stt_hthi_dichvu,stt_hthi_chitiet,ten_chitietdichvu";
 

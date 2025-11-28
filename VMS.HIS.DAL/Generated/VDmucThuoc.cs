@@ -156,7 +156,7 @@ namespace VMS.HIS.DAL{
                 TableSchema.TableColumn colvarTenBietduoc = new TableSchema.TableColumn(schema);
                 colvarTenBietduoc.ColumnName = "ten_bietduoc";
                 colvarTenBietduoc.DataType = DbType.String;
-                colvarTenBietduoc.MaxLength = 300;
+                colvarTenBietduoc.MaxLength = 400;
                 colvarTenBietduoc.AutoIncrement = false;
                 colvarTenBietduoc.IsNullable = true;
                 colvarTenBietduoc.IsPrimaryKey = false;
@@ -812,6 +812,42 @@ namespace VMS.HIS.DAL{
                 colvarVatInvoice.IsReadOnly = false;
                 
                 schema.Columns.Add(colvarVatInvoice);
+                
+                TableSchema.TableColumn colvarMathuocQuocgia = new TableSchema.TableColumn(schema);
+                colvarMathuocQuocgia.ColumnName = "mathuoc_quocgia";
+                colvarMathuocQuocgia.DataType = DbType.String;
+                colvarMathuocQuocgia.MaxLength = 50;
+                colvarMathuocQuocgia.AutoIncrement = false;
+                colvarMathuocQuocgia.IsNullable = true;
+                colvarMathuocQuocgia.IsPrimaryKey = false;
+                colvarMathuocQuocgia.IsForeignKey = false;
+                colvarMathuocQuocgia.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarMathuocQuocgia);
+                
+                TableSchema.TableColumn colvarTenthuocQuocgia = new TableSchema.TableColumn(schema);
+                colvarTenthuocQuocgia.ColumnName = "tenthuoc_quocgia";
+                colvarTenthuocQuocgia.DataType = DbType.String;
+                colvarTenthuocQuocgia.MaxLength = 255;
+                colvarTenthuocQuocgia.AutoIncrement = false;
+                colvarTenthuocQuocgia.IsNullable = true;
+                colvarTenthuocQuocgia.IsPrimaryKey = false;
+                colvarTenthuocQuocgia.IsForeignKey = false;
+                colvarTenthuocQuocgia.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarTenthuocQuocgia);
+                
+                TableSchema.TableColumn colvarGuiLienthong = new TableSchema.TableColumn(schema);
+                colvarGuiLienthong.ColumnName = "gui_lienthong";
+                colvarGuiLienthong.DataType = DbType.Boolean;
+                colvarGuiLienthong.MaxLength = 0;
+                colvarGuiLienthong.AutoIncrement = false;
+                colvarGuiLienthong.IsNullable = true;
+                colvarGuiLienthong.IsPrimaryKey = false;
+                colvarGuiLienthong.IsForeignKey = false;
+                colvarGuiLienthong.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarGuiLienthong);
                 
                 TableSchema.TableColumn colvarTenTinhchat = new TableSchema.TableColumn(schema);
                 colvarTenTinhchat.ColumnName = "ten_tinhchat";
@@ -1961,6 +1997,48 @@ namespace VMS.HIS.DAL{
             }
         }
 	      
+        [XmlAttribute("MathuocQuocgia")]
+        [Bindable(true)]
+        public string MathuocQuocgia 
+	    {
+		    get
+		    {
+			    return GetColumnValue<string>("mathuoc_quocgia");
+		    }
+            set 
+		    {
+			    SetColumnValue("mathuoc_quocgia", value);
+            }
+        }
+	      
+        [XmlAttribute("TenthuocQuocgia")]
+        [Bindable(true)]
+        public string TenthuocQuocgia 
+	    {
+		    get
+		    {
+			    return GetColumnValue<string>("tenthuoc_quocgia");
+		    }
+            set 
+		    {
+			    SetColumnValue("tenthuoc_quocgia", value);
+            }
+        }
+	      
+        [XmlAttribute("GuiLienthong")]
+        [Bindable(true)]
+        public bool? GuiLienthong 
+	    {
+		    get
+		    {
+			    return GetColumnValue<bool?>("gui_lienthong");
+		    }
+            set 
+		    {
+			    SetColumnValue("gui_lienthong", value);
+            }
+        }
+	      
         [XmlAttribute("TenTinhchat")]
         [Bindable(true)]
         public string TenTinhchat 
@@ -2345,6 +2423,12 @@ namespace VMS.HIS.DAL{
             public static string TyleTt = @"tyle_tt";
             
             public static string VatInvoice = @"VAT_invoice";
+            
+            public static string MathuocQuocgia = @"mathuoc_quocgia";
+            
+            public static string TenthuocQuocgia = @"tenthuoc_quocgia";
+            
+            public static string GuiLienthong = @"gui_lienthong";
             
             public static string TenTinhchat = @"ten_tinhchat";
             

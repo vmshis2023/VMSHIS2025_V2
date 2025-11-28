@@ -3295,7 +3295,7 @@ namespace CIS.CoreApp
             }
             catch (Exception ex)
             {
-                Utility.CatchException(ex);
+               // Utility.CatchException(ex);
             }
         }
 
@@ -3543,7 +3543,7 @@ namespace CIS.CoreApp
             }
            
         }
-
+        bool isTimeout = false;
         private void tmrtoquit_Tick(object sender, EventArgs e)
         {
             try
@@ -3581,8 +3581,9 @@ namespace CIS.CoreApp
                 }
                 else
                     statusStrip1.Panels["Time2Close"].Text = string.Format("Còn {0} giờ {1} phút {2} giây nữa sẽ hết phiên làm việc", hours, minutes, seconds);
-                if (totalSeconds > 1 && totalSeconds <= 20)
+                if (totalSeconds > 1 && totalSeconds <= 20 && !isTimeout)
                 {
+                    isTimeout = true;
                     timer1.Stop();
                     Utility.ShowMsg(string.Format("Đã hết phiên làm việc của bạn. Vui lòng bấm OK để tắt phần mềm.\nChú ý: Đề nghị cập nhật lại thông tin người thực hiện trong các phiên làm việc kế tiếp", DateTime.Now.ToString("HH:mm")));
                     Environment.Exit(0);
@@ -3597,6 +3598,12 @@ namespace CIS.CoreApp
                 Utility.CatchException(ex);
 
             }
+        }
+
+        private void cmd_capnhat_chungthuso_Click(object sender, EventArgs e)
+        {
+            VNS.HIS.UI.Forms.Cauhinh.frm_capnhat_chungthuso _capnhat_chungthuso = new VNS.HIS.UI.Forms.Cauhinh.frm_capnhat_chungthuso();
+            _capnhat_chungthuso.ShowDialog();
         }
     }
 

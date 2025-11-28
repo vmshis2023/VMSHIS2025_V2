@@ -38,33 +38,23 @@ namespace VNS.HIS.UI.Baocao
             this.cmdExit.Click += new EventHandler(cmdExit_Click);
             chkByDate.CheckedChanged += new EventHandler(chkByDate_CheckedChanged);
             this.Load += new EventHandler(frm_baocaodoanhthuphongkham_Hongphat_Load);
-            chkTachCDHA.CheckedChanged+=new EventHandler(chkChitiet_CheckedChanged);
-            ShowGrid();
+            
+            ShowGrid(0);
         }
-        void chkChitiet_CheckedChanged(object sender, EventArgs e)
+       
+        void ShowGrid(int idx)
         {
-            ShowGrid();
-        }
-        void ShowGrid()
-        {
-            cboReportType.SelectedIndex = 1;
-            if (cboReportType.SelectedIndex == 0)
+
+            if (idx == 0)
             {
-                grdListEBM.BringToFront();
-                baocaO_TIEUDE1.Init("baocao_doanhthuphongkham_tonghopEBM");
+                grdChitiet.BringToFront();
+                baocaO_TIEUDE1.Init("baocao_doanhthuphongkham_hongphat");
             }
             else
             {
-                if (chkTachCDHA.Checked)
-                {
-                    grdChitiet.BringToFront();
-                    baocaO_TIEUDE1.Init("baocao_doanhthuphongkham_chitiet");
-                }
-                else
-                {
-                    grdList.BringToFront();
-                    baocaO_TIEUDE1.Init("baocao_doanhthuphongkham_tonghop");
-                }
+                grd_tonghop.BringToFront();
+                baocaO_TIEUDE1.Init("baocao_doanhthuphongkham_tonghop_hongphat");
+
             }
         }
         DataTable m_dtKhoathucHien=new DataTable();
@@ -258,16 +248,16 @@ namespace VNS.HIS.UI.Baocao
         void BaocaoEBM()
         {
             _dtData =
-                  BAOCAO_NGOAITRU.BaocaoDoanhthuphongkhamTonghopEbm(
+                  BAOCAO_NGOAITRU.BaocaoDoanhthuphongkhamHongphat(
                       chkByDate.Checked ? dtFromDate.Value : Convert.ToDateTime("01/01/1900"),
                       chkByDate.Checked ? dtToDate.Value : globalVariables.SysDate,
                       Utility.sDbnull(cboDoituongKCB.SelectedValue, -1),
                       Utility.sDbnull(cbo_thunganvien.SelectedValue, -1),
-                      Utility.ByteDbnull(cboLoaidichvu.SelectedValue, 2), Utility.sDbnull(cboKhoa.SelectedValue, -1));
+                      );
 
-            Utility.SetDataSourceForDataGridEx(grdListEBM, _dtData, false, true, "1=1", "");
-            Janus.Windows.GridEX.GridEXColumn gridExColumnTientong = grdListEBM.RootTable.Columns["TONGCONG"];
-            tong_tien = Utility.DecimaltoDbnull(grdListEBM.GetTotal(gridExColumnTientong, Janus.Windows.GridEX.AggregateFunction.Sum));
+            Utility.SetDataSourceForDataGridEx(grd_tonghop, _dtData, false, true, "1=1", "");
+            Janus.Windows.GridEX.GridEXColumn gridExColumnTientong = grd_tonghop.RootTable.Columns["TONGCONG"];
+            tong_tien = Utility.DecimaltoDbnull(grd_tonghop.GetTotal(gridExColumnTientong, Janus.Windows.GridEX.AggregateFunction.Sum));
 
             THU_VIEN_CHUNG.CreateXML(_dtData, "baocao_doanhthuphongkham_tonghopEBM.xml");
             if (_dtData.Rows.Count <= 0)
@@ -324,9 +314,7 @@ namespace VNS.HIS.UI.Baocao
         /// <param name="e"></param>
         private void cmdInPhieuXN_Click(object sender, EventArgs e)
         {
-            if (cboReportType.SelectedIndex == 0)
-                BaocaoEBM();
-            else
+           
                 BaocaoChung();
               
         }
@@ -344,8 +332,8 @@ namespace VNS.HIS.UI.Baocao
 
         private void uiComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            chkTachCDHA.Visible = cboReportType.SelectedIndex >= 1;
-            ShowGrid();
+            
+            ShowGrid(cboReportType.SelectedIndex);
         }
     }
 }

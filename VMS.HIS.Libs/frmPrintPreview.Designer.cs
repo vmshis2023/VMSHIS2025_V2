@@ -228,7 +228,6 @@
             this.crptViewer.ShowGroupTreeButton = false;
             this.crptViewer.ShowLogo = false;
             this.crptViewer.ShowParameterPanelButton = false;
-            this.crptViewer.ShowPrintButton = false;
             this.crptViewer.ShowRefreshButton = false;
             this.crptViewer.Size = new System.Drawing.Size(1018, 682);
             this.crptViewer.TabIndex = 23;

@@ -44,6 +44,7 @@
             this.cmdClose1 = new Janus.Windows.EditControls.UIButton();
             this.chkIntonghop = new Janus.Windows.EditControls.UICheckBox();
             this.cmdInBangkeCPKCB = new Janus.Windows.EditControls.UIButton();
+            this.cmd_capnhatthongtinmiengiam = new Janus.Windows.EditControls.UIButton();
             this.pnlInfor = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.txtMGHD = new Janus.Windows.GridEX.EditControls.EditBox();
@@ -81,6 +82,10 @@
             this.txtTuTuc = new Janus.Windows.GridEX.EditControls.EditBox();
             this.uiGroupBox2 = new Janus.Windows.EditControls.UIGroupBox();
             this.grdPaymentDetail = new Janus.Windows.GridEX.GridEX();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.txtTilemiengiamAll = new MaskedTextBox.MaskedTextBox();
+            this.chkPercent = new System.Windows.Forms.CheckBox();
+            this.cmd_refresh = new Janus.Windows.EditControls.UIButton();
             this.pnlInfor.SuspendLayout();
             this.pnlActions.SuspendLayout();
             this.pnlInhoadon.SuspendLayout();
@@ -89,6 +94,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox2)).BeginInit();
             this.uiGroupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPaymentDetail)).BeginInit();
+            this.panel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // cmdHuythanhtoan
@@ -278,6 +284,20 @@
             this.toolTip1.SetToolTip(this.cmdInBangkeCPKCB, "Nhấn vào đây để in biên lai tổng hợp của tất cả các lần thanh toán");
             this.cmdInBangkeCPKCB.Click += new System.EventHandler(this.cmdInBangkeCPKCB_Click);
             // 
+            // cmd_capnhatthongtinmiengiam
+            // 
+            this.cmd_capnhatthongtinmiengiam.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cmd_capnhatthongtinmiengiam.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmd_capnhatthongtinmiengiam.Image = ((System.Drawing.Image)(resources.GetObject("cmd_capnhatthongtinmiengiam.Image")));
+            this.cmd_capnhatthongtinmiengiam.ImageSize = new System.Drawing.Size(24, 24);
+            this.cmd_capnhatthongtinmiengiam.Location = new System.Drawing.Point(291, 6);
+            this.cmd_capnhatthongtinmiengiam.Name = "cmd_capnhatthongtinmiengiam";
+            this.cmd_capnhatthongtinmiengiam.Size = new System.Drawing.Size(120, 35);
+            this.cmd_capnhatthongtinmiengiam.TabIndex = 380;
+            this.cmd_capnhatthongtinmiengiam.Text = "Cập nhật";
+            this.toolTip1.SetToolTip(this.cmd_capnhatthongtinmiengiam, "Nhấn vào đây để hủy bỏ việc hủy thanh toán và quay lại màn hình chính");
+            this.cmd_capnhatthongtinmiengiam.Click += new System.EventHandler(this.cmd_capnhatthongtinmiengiam_Click_1);
+            // 
             // pnlInfor
             // 
             this.pnlInfor.Controls.Add(this.label4);
@@ -411,6 +431,7 @@
             this.txtLydohuy.RaiseEventEnter = false;
             this.txtLydohuy.RaiseEventEnterWhenEmpty = false;
             this.txtLydohuy.SelectedIndex = -1;
+            this.txtLydohuy.SetDefaultWhenInit = true;
             this.txtLydohuy.ShowCodeWithValue = false;
             this.txtLydohuy.Size = new System.Drawing.Size(424, 25);
             this.txtLydohuy.splitChar = '@';
@@ -506,7 +527,7 @@
             this.txtSoTienCanNop.Location = new System.Drawing.Point(12, 10);
             this.txtSoTienCanNop.Name = "txtSoTienCanNop";
             this.txtSoTienCanNop.ReadOnly = true;
-            this.txtSoTienCanNop.Size = new System.Drawing.Size(167, 29);
+            this.txtSoTienCanNop.Size = new System.Drawing.Size(10, 29);
             this.txtSoTienCanNop.TabIndex = 381;
             this.txtSoTienCanNop.Tag = "NO";
             this.txtSoTienCanNop.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far;
@@ -755,9 +776,9 @@
             this.uiGroupBox2.Controls.Add(this.grdPaymentDetail);
             this.uiGroupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiGroupBox2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiGroupBox2.Location = new System.Drawing.Point(0, 0);
+            this.uiGroupBox2.Location = new System.Drawing.Point(0, 49);
             this.uiGroupBox2.Name = "uiGroupBox2";
-            this.uiGroupBox2.Size = new System.Drawing.Size(1008, 494);
+            this.uiGroupBox2.Size = new System.Drawing.Size(1008, 445);
             this.uiGroupBox2.TabIndex = 9;
             this.uiGroupBox2.Text = "Chi tiết các dịch vụ đã thanh toán cho lần thanh toán đang chọn";
             this.uiGroupBox2.VisualStyle = Janus.Windows.UI.Dock.PanelVisualStyle.Office2003;
@@ -787,7 +808,7 @@
             this.grdPaymentDetail.RecordNavigator = true;
             this.grdPaymentDetail.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
             this.grdPaymentDetail.SelectedFormatStyle.BackColor = System.Drawing.Color.SteelBlue;
-            this.grdPaymentDetail.Size = new System.Drawing.Size(1002, 474);
+            this.grdPaymentDetail.Size = new System.Drawing.Size(1002, 425);
             this.grdPaymentDetail.TabIndex = 116;
             this.grdPaymentDetail.TableHeaders = Janus.Windows.GridEX.InheritableBoolean.Default;
             this.grdPaymentDetail.TotalRow = Janus.Windows.GridEX.InheritableBoolean.True;
@@ -796,12 +817,67 @@
             this.grdPaymentDetail.TotalRowPosition = Janus.Windows.GridEX.TotalRowPosition.BottomFixed;
             this.grdPaymentDetail.VisualStyle = Janus.Windows.GridEX.VisualStyle.VS2005;
             // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.cmd_capnhatthongtinmiengiam);
+            this.panel6.Controls.Add(this.txtTilemiengiamAll);
+            this.panel6.Controls.Add(this.chkPercent);
+            this.panel6.Controls.Add(this.cmd_refresh);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel6.Location = new System.Drawing.Point(0, 0);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(1008, 49);
+            this.panel6.TabIndex = 120;
+            // 
+            // txtTilemiengiamAll
+            // 
+            this.txtTilemiengiamAll.BackColor = System.Drawing.Color.White;
+            this.txtTilemiengiamAll.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtTilemiengiamAll.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            this.txtTilemiengiamAll.ForeColor = System.Drawing.Color.Red;
+            this.txtTilemiengiamAll.Location = new System.Drawing.Point(206, 13);
+            this.txtTilemiengiamAll.Masked = MaskedTextBox.Mask.Decimal;
+            this.txtTilemiengiamAll.Name = "txtTilemiengiamAll";
+            this.txtTilemiengiamAll.Size = new System.Drawing.Size(79, 21);
+            this.txtTilemiengiamAll.TabIndex = 378;
+            this.txtTilemiengiamAll.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // chkPercent
+            // 
+            this.chkPercent.Checked = true;
+            this.chkPercent.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkPercent.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkPercent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.chkPercent.Location = new System.Drawing.Point(6, 14);
+            this.chkPercent.Name = "chkPercent";
+            this.chkPercent.Size = new System.Drawing.Size(194, 20);
+            this.chkPercent.TabIndex = 379;
+            this.chkPercent.Text = "Điều chỉnh % Miễn giảm:";
+            this.chkPercent.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkPercent.UseVisualStyleBackColor = true;
+            // 
+            // cmd_refresh
+            // 
+            this.cmd_refresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmd_refresh.ButtonStyle = Janus.Windows.EditControls.ButtonStyle.Button;
+            this.cmd_refresh.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmd_refresh.Image = ((System.Drawing.Image)(resources.GetObject("cmd_refresh.Image")));
+            this.cmd_refresh.ImageSize = new System.Drawing.Size(22, 22);
+            this.cmd_refresh.Location = new System.Drawing.Point(959, 9);
+            this.cmd_refresh.Name = "cmd_refresh";
+            this.cmd_refresh.Office2007ColorScheme = Janus.Windows.UI.Office2007ColorScheme.Custom;
+            this.cmd_refresh.Office2007CustomColor = System.Drawing.Color.Red;
+            this.cmd_refresh.Size = new System.Drawing.Size(37, 32);
+            this.cmd_refresh.TabIndex = 718;
+            this.cmd_refresh.Click += new System.EventHandler(this.cmd_refresh_Click);
+            // 
             // frm_HuyThanhtoan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 729);
             this.Controls.Add(this.uiGroupBox2);
+            this.Controls.Add(this.panel6);
             this.Controls.Add(this.pnlInfor);
             this.KeyPreview = true;
             this.MaximizeBox = false;
@@ -809,7 +885,7 @@
             this.Name = "frm_HuyThanhtoan";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Hủy thông tin thanh toán";
+            this.Text = "Thông tin thanh toán";
             this.Load += new System.EventHandler(this.frm_HuyThanhtoan_Load);
             this.pnlInfor.ResumeLayout(false);
             this.pnlInfor.PerformLayout();
@@ -821,6 +897,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox2)).EndInit();
             this.uiGroupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdPaymentDetail)).EndInit();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -877,5 +955,10 @@
         private Janus.Windows.EditControls.UIButton cmdInBangkeCPKCB;
         private System.Windows.Forms.Label label4;
         private Janus.Windows.GridEX.EditControls.EditBox txtMGHD;
+        private System.Windows.Forms.Panel panel6;
+        private Janus.Windows.EditControls.UIButton cmd_capnhatthongtinmiengiam;
+        private MaskedTextBox.MaskedTextBox txtTilemiengiamAll;
+        private System.Windows.Forms.CheckBox chkPercent;
+        private Janus.Windows.EditControls.UIButton cmd_refresh;
     }
 }

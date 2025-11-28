@@ -53,6 +53,11 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.uiGroupBox1 = new Janus.Windows.EditControls.UIGroupBox();
             this.grdThuocTrongthau = new Janus.Windows.GridEX.GridEX();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.cmdRefresh = new Janus.Windows.EditControls.UIButton();
+            this.cmdSendAll = new Janus.Windows.EditControls.UIButton();
+            this.cmdPrevius = new Janus.Windows.EditControls.UIButton();
+            this.cmdNext = new Janus.Windows.EditControls.UIButton();
             this.uiGroupBox4 = new Janus.Windows.EditControls.UIGroupBox();
             this.grdChitietdieutiet = new Janus.Windows.GridEX.GridEX();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
@@ -61,11 +66,6 @@
             this.cmdPrint = new Janus.Windows.EditControls.UIButton();
             this.cmdSave = new Janus.Windows.EditControls.UIButton();
             this.cmdXoa = new Janus.Windows.EditControls.UIButton();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.cmdSendAll = new Janus.Windows.EditControls.UIButton();
-            this.cmdPrevius = new Janus.Windows.EditControls.UIButton();
-            this.cmdNext = new Janus.Windows.EditControls.UIButton();
-            this.cmdRefresh = new Janus.Windows.EditControls.UIButton();
             ((System.ComponentModel.ISupportInitialize)(this.grpControl)).BeginInit();
             this.grpControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -75,11 +75,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox1)).BeginInit();
             this.uiGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdThuocTrongthau)).BeginInit();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox4)).BeginInit();
             this.uiGroupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdChitietdieutiet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // grpControl
@@ -314,6 +314,7 @@
             this.txtLyDoNhap.RaiseEventEnter = false;
             this.txtLyDoNhap.RaiseEventEnterWhenEmpty = false;
             this.txtLyDoNhap.SelectedIndex = -1;
+            this.txtLyDoNhap.SetDefaultWhenInit = true;
             this.txtLyDoNhap.ShowCodeWithValue = false;
             this.txtLyDoNhap.Size = new System.Drawing.Size(835, 21);
             this.txtLyDoNhap.splitChar = '@';
@@ -435,6 +436,75 @@
             this.grdThuocTrongthau.TotalRowPosition = Janus.Windows.GridEX.TotalRowPosition.BottomFixed;
             this.grdThuocTrongthau.VisualStyle = Janus.Windows.GridEX.VisualStyle.VS2005;
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.cmdRefresh);
+            this.panel2.Controls.Add(this.cmdSendAll);
+            this.panel2.Controls.Add(this.cmdPrevius);
+            this.panel2.Controls.Add(this.cmdNext);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel2.Location = new System.Drawing.Point(396, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(41, 597);
+            this.panel2.TabIndex = 2;
+            // 
+            // cmdRefresh
+            // 
+            this.cmdRefresh.Dock = System.Windows.Forms.DockStyle.Top;
+            this.cmdRefresh.Image = ((System.Drawing.Image)(resources.GetObject("cmdRefresh.Image")));
+            this.cmdRefresh.ImageSize = new System.Drawing.Size(24, 24);
+            this.cmdRefresh.Location = new System.Drawing.Point(0, 0);
+            this.cmdRefresh.Name = "cmdRefresh";
+            this.cmdRefresh.Size = new System.Drawing.Size(41, 34);
+            this.cmdRefresh.TabIndex = 27;
+            this.cmdRefresh.TabStop = false;
+            this.toolTip1.SetToolTip(this.cmdRefresh, "Refresh DS thuốc trong thầu");
+            this.cmdRefresh.Click += new System.EventHandler(this.cmdRefresh_Click);
+            // 
+            // cmdSendAll
+            // 
+            this.cmdSendAll.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmdSendAll.Image = ((System.Drawing.Image)(resources.GetObject("cmdSendAll.Image")));
+            this.cmdSendAll.ImageSize = new System.Drawing.Size(32, 32);
+            this.cmdSendAll.Location = new System.Drawing.Point(3, 165);
+            this.cmdSendAll.Name = "cmdSendAll";
+            this.cmdSendAll.Size = new System.Drawing.Size(35, 41);
+            this.cmdSendAll.TabIndex = 26;
+            this.cmdSendAll.TabStop = false;
+            this.toolTip1.SetToolTip(this.cmdSendAll, "Chuyển toàn bộ thuốc sang phiếu điều tiết");
+            this.cmdSendAll.Click += new System.EventHandler(this.cmdSendAll_Click);
+            // 
+            // cmdPrevius
+            // 
+            this.cmdPrevius.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmdPrevius.Image = ((System.Drawing.Image)(resources.GetObject("cmdPrevius.Image")));
+            this.cmdPrevius.ImageSize = new System.Drawing.Size(32, 32);
+            this.cmdPrevius.Location = new System.Drawing.Point(3, 259);
+            this.cmdPrevius.Name = "cmdPrevius";
+            this.cmdPrevius.Size = new System.Drawing.Size(35, 41);
+            this.cmdPrevius.TabIndex = 24;
+            this.cmdPrevius.TabStop = false;
+            this.toolTip1.SetToolTip(this.cmdPrevius, "Nhấn nút này khi cần hủy chuyển các thuốc được chọn trên lưới bên tay phải( phím " +
+        "tắt Ctrl+Delete)");
+            this.cmdPrevius.Visible = false;
+            this.cmdPrevius.Click += new System.EventHandler(this.cmdPrevius_Click);
+            // 
+            // cmdNext
+            // 
+            this.cmdNext.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmdNext.Image = ((System.Drawing.Image)(resources.GetObject("cmdNext.Image")));
+            this.cmdNext.ImageSize = new System.Drawing.Size(32, 32);
+            this.cmdNext.Location = new System.Drawing.Point(3, 212);
+            this.cmdNext.Name = "cmdNext";
+            this.cmdNext.Size = new System.Drawing.Size(35, 41);
+            this.cmdNext.TabIndex = 23;
+            this.cmdNext.TabStop = false;
+            this.toolTip1.SetToolTip(this.cmdNext, "Chuyển các thuốc có số lượng chuyển >0 sang phiếu điều tiết (Ctrl+Enter)");
+            this.cmdNext.Click += new System.EventHandler(this.cmdNext_Click);
+            // 
             // uiGroupBox4
             // 
             this.uiGroupBox4.Controls.Add(this.grdChitietdieutiet);
@@ -528,75 +598,6 @@
             this.cmdXoa.Visible = false;
             this.cmdXoa.Click += new System.EventHandler(this.cmdXoa_Click);
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.cmdRefresh);
-            this.panel2.Controls.Add(this.cmdSendAll);
-            this.panel2.Controls.Add(this.cmdPrevius);
-            this.panel2.Controls.Add(this.cmdNext);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(396, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(41, 597);
-            this.panel2.TabIndex = 2;
-            // 
-            // cmdSendAll
-            // 
-            this.cmdSendAll.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmdSendAll.Image = ((System.Drawing.Image)(resources.GetObject("cmdSendAll.Image")));
-            this.cmdSendAll.ImageSize = new System.Drawing.Size(32, 32);
-            this.cmdSendAll.Location = new System.Drawing.Point(3, 165);
-            this.cmdSendAll.Name = "cmdSendAll";
-            this.cmdSendAll.Size = new System.Drawing.Size(35, 41);
-            this.cmdSendAll.TabIndex = 26;
-            this.cmdSendAll.TabStop = false;
-            this.toolTip1.SetToolTip(this.cmdSendAll, "Chuyển toàn bộ thuốc sang phiếu điều tiết");
-            this.cmdSendAll.Click += new System.EventHandler(this.cmdSendAll_Click);
-            // 
-            // cmdPrevius
-            // 
-            this.cmdPrevius.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmdPrevius.Image = ((System.Drawing.Image)(resources.GetObject("cmdPrevius.Image")));
-            this.cmdPrevius.ImageSize = new System.Drawing.Size(32, 32);
-            this.cmdPrevius.Location = new System.Drawing.Point(3, 259);
-            this.cmdPrevius.Name = "cmdPrevius";
-            this.cmdPrevius.Size = new System.Drawing.Size(35, 41);
-            this.cmdPrevius.TabIndex = 24;
-            this.cmdPrevius.TabStop = false;
-            this.toolTip1.SetToolTip(this.cmdPrevius, "Nhấn nút này khi cần hủy chuyển các thuốc được chọn trên lưới bên tay phải( phím " +
-        "tắt Ctrl+Delete)");
-            this.cmdPrevius.Visible = false;
-            this.cmdPrevius.Click += new System.EventHandler(this.cmdPrevius_Click);
-            // 
-            // cmdNext
-            // 
-            this.cmdNext.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmdNext.Image = ((System.Drawing.Image)(resources.GetObject("cmdNext.Image")));
-            this.cmdNext.ImageSize = new System.Drawing.Size(32, 32);
-            this.cmdNext.Location = new System.Drawing.Point(3, 212);
-            this.cmdNext.Name = "cmdNext";
-            this.cmdNext.Size = new System.Drawing.Size(35, 41);
-            this.cmdNext.TabIndex = 23;
-            this.cmdNext.TabStop = false;
-            this.toolTip1.SetToolTip(this.cmdNext, "Chuyển các thuốc có số lượng chuyển >0 sang phiếu điều tiết (Ctrl+Enter)");
-            this.cmdNext.Click += new System.EventHandler(this.cmdNext_Click);
-            // 
-            // cmdRefresh
-            // 
-            this.cmdRefresh.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cmdRefresh.Image = ((System.Drawing.Image)(resources.GetObject("cmdRefresh.Image")));
-            this.cmdRefresh.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdRefresh.Location = new System.Drawing.Point(0, 0);
-            this.cmdRefresh.Name = "cmdRefresh";
-            this.cmdRefresh.Size = new System.Drawing.Size(41, 34);
-            this.cmdRefresh.TabIndex = 27;
-            this.cmdRefresh.TabStop = false;
-            this.toolTip1.SetToolTip(this.cmdRefresh, "Refresh DS thuốc trong thầu");
-            this.cmdRefresh.Click += new System.EventHandler(this.cmdRefresh_Click);
-            // 
             // frm_themmoi_dieutiet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -625,11 +626,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox1)).EndInit();
             this.uiGroupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdThuocTrongthau)).EndInit();
+            this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox4)).EndInit();
             this.uiGroupBox4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdChitietdieutiet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

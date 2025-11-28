@@ -11,6 +11,48 @@ namespace VNS.HIS.UI.Classess
 {
     public class Baocao
     {
+        /// <summary>
+        /// Hàm in chuẩn VIETMT
+        /// </summary>
+        /// <param name="m_dtReport"></param>
+        /// <param name="report_code"></param>
+        /// <param name="NgayIn"></param>
+        /// <param name="FromDateToDate"></param>
+        public static void InBaoCao(DataTable m_dtReport, string report_code, DateTime NgayIn, string FromDateToDate)
+        {
+            string tieude = "", reportname = "";
+            ReportDocument crpt = null;
+
+            crpt = Utility.GetReport(report_code, ref tieude, ref reportname);
+            if (crpt == null) return;
+            var objForm = new frmPrintPreview(tieude, crpt, true, m_dtReport.Rows.Count <= 0 ? false : true);
+            objForm.mv_sReportFileName = Path.GetFileName(reportname);
+            objForm.mv_sReportCode = report_code;
+            Utility.UpdateLogotoDatatable(ref m_dtReport);
+            try
+            {
+                m_dtReport.AcceptChanges();
+                crpt.SetDataSource(m_dtReport.DefaultView);
+                Utility.SetParameterValue(crpt, "ten_bv", globalVariables.Branch_Name);
+                Utility.SetParameterValue(crpt, "dia_chi_bv", globalVariables.Branch_Address);
+                Utility.SetParameterValue(crpt, "dien_thoai_bv", globalVariables.Branch_Phone);
+                Utility.SetParameterValue(crpt, "co_quan_chu_quan", globalVariables.ParentBranch_Name);
+                Utility.SetParameterValue(crpt, "thoi_gian_du_lieu", FromDateToDate);
+                Utility.SetParameterValue(crpt, "ngay_in", Utility.FormatDateTimeWithThanhPho(NgayIn));
+                Utility.SetParameterValue(crpt, "ten_bao_cao", tieude);
+                Utility.SetParameterValue(crpt, "thong_tin_cuoi_trang", THU_VIEN_CHUNG.BottomCondition());
+                objForm.crptViewer.ReportSource = crpt;
+                objForm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+            }
+            finally
+            {
+                Utility.FreeMemory(crpt);
+            }
+        }
         public static void InPhieu(DataTable m_dtReport, DateTime ngayin, string dieukientimkiem, bool isView, string report_code)
         {
 

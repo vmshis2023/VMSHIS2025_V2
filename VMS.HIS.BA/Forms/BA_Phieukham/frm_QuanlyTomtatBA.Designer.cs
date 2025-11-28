@@ -185,7 +185,7 @@
             this.txtmaBBHC.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtmaBBHC.Location = new System.Drawing.Point(622, 25);
             this.txtmaBBHC.Name = "txtmaBBHC";
-            this.txtmaBBHC.Size = new System.Drawing.Size(167, 21);
+            this.txtmaBBHC.Size = new System.Drawing.Size(114, 21);
             this.txtmaBBHC.TabIndex = 2;
             this.txtmaBBHC.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center;
             this.txtmaBBHC.Visible = false;
@@ -251,7 +251,7 @@
             this.txtTennguoibenh.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTennguoibenh.Location = new System.Drawing.Point(373, 57);
             this.txtTennguoibenh.Name = "txtTennguoibenh";
-            this.txtTennguoibenh.Size = new System.Drawing.Size(643, 21);
+            this.txtTennguoibenh.Size = new System.Drawing.Size(363, 21);
             this.txtTennguoibenh.TabIndex = 6;
             this.txtTennguoibenh.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
             // 

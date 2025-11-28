@@ -80,7 +80,7 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(string TenBenhnhan,string DiaChi,string MaTinhThanhpho,string MaQuanhuyen,DateTime? NgaySinh,short? NamSinh,byte? IdGioitinh,string GioiTinh,string NgheNghiep,string CoQuan,string Cmt,string MaQuocgia,string DienThoai,string Email,DateTime NgayTiepdon,string NguoiTiepdon,string DanToc,string TonGiao,DateTime? NgaySua,DateTime? NgayTao,string NguoiSua,string NguoiTao,string DiachiBhyt,string NguonGoc,byte? KieuBenhnhan,byte? MacDinh,string IpMaytao,string IpMaysua,string TenMaytao,string TenMaysua,string DiachiLienhe,string DienthoaiLienhe,string Fax,string NguoiLienhe,string SoTiemchungQg,string LastActionName,string ChucVu,string MaBenhnhan,string SoLo,string LastNoigioithieu,string FirstNoigioithieu,string CanhBao,string SonhaDuongpho,string MaXaphuong,string NhomMau,string MasoThue,string PassPost)
+	    public void Insert(string TenBenhnhan,string DiaChi,string MaTinhThanhpho,string MaQuanhuyen,DateTime? NgaySinh,short? NamSinh,byte? IdGioitinh,string GioiTinh,string NgheNghiep,string CoQuan,string Cmt,string MaQuocgia,string DienThoai,string Email,DateTime NgayTiepdon,string NguoiTiepdon,string DanToc,string TonGiao,DateTime? NgaySua,DateTime? NgayTao,string NguoiSua,string NguoiTao,string DiachiBhyt,string NguonGoc,byte? KieuBenhnhan,byte? MacDinh,string IpMaytao,string IpMaysua,string TenMaytao,string TenMaysua,string DiachiLienhe,string DienthoaiLienhe,string Fax,string NguoiLienhe,string SoTiemchungQg,string LastActionName,string ChucVu,string MaBenhnhan,string LastNoigioithieu,string FirstNoigioithieu,string CanhBao,string SonhaDuongpho,string MaXaphuong,string NhomMau,string MasoThue,string PassPost,string MaNhanvien,long? IdCongty,long? IdHopdong,long? IdSolo,string SoLo)
 	    {
 		    KcbDanhsachBenhnhan item = new KcbDanhsachBenhnhan();
 		    
@@ -160,8 +160,6 @@ namespace VMS.HIS.DAL
             
             item.MaBenhnhan = MaBenhnhan;
             
-            item.SoLo = SoLo;
-            
             item.LastNoigioithieu = LastNoigioithieu;
             
             item.FirstNoigioithieu = FirstNoigioithieu;
@@ -178,6 +176,16 @@ namespace VMS.HIS.DAL
             
             item.PassPost = PassPost;
             
+            item.MaNhanvien = MaNhanvien;
+            
+            item.IdCongty = IdCongty;
+            
+            item.IdHopdong = IdHopdong;
+            
+            item.IdSolo = IdSolo;
+            
+            item.SoLo = SoLo;
+            
 	    
 		    item.Save(UserName);
 	    }
@@ -186,7 +194,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(long IdBenhnhan,string TenBenhnhan,string DiaChi,string MaTinhThanhpho,string MaQuanhuyen,DateTime? NgaySinh,short? NamSinh,byte? IdGioitinh,string GioiTinh,string NgheNghiep,string CoQuan,string Cmt,string MaQuocgia,string DienThoai,string Email,DateTime NgayTiepdon,string NguoiTiepdon,string DanToc,string TonGiao,DateTime? NgaySua,DateTime? NgayTao,string NguoiSua,string NguoiTao,string DiachiBhyt,string NguonGoc,byte? KieuBenhnhan,byte? MacDinh,string IpMaytao,string IpMaysua,string TenMaytao,string TenMaysua,string DiachiLienhe,string DienthoaiLienhe,string Fax,string NguoiLienhe,string SoTiemchungQg,string LastActionName,string ChucVu,string MaBenhnhan,string SoLo,string LastNoigioithieu,string FirstNoigioithieu,string CanhBao,string SonhaDuongpho,string MaXaphuong,string NhomMau,string MasoThue,string PassPost)
+	    public void Update(long IdBenhnhan,string TenBenhnhan,string DiaChi,string MaTinhThanhpho,string MaQuanhuyen,DateTime? NgaySinh,short? NamSinh,byte? IdGioitinh,string GioiTinh,string NgheNghiep,string CoQuan,string Cmt,string MaQuocgia,string DienThoai,string Email,DateTime NgayTiepdon,string NguoiTiepdon,string DanToc,string TonGiao,DateTime? NgaySua,DateTime? NgayTao,string NguoiSua,string NguoiTao,string DiachiBhyt,string NguonGoc,byte? KieuBenhnhan,byte? MacDinh,string IpMaytao,string IpMaysua,string TenMaytao,string TenMaysua,string DiachiLienhe,string DienthoaiLienhe,string Fax,string NguoiLienhe,string SoTiemchungQg,string LastActionName,string ChucVu,string MaBenhnhan,string LastNoigioithieu,string FirstNoigioithieu,string CanhBao,string SonhaDuongpho,string MaXaphuong,string NhomMau,string MasoThue,string PassPost,string MaNhanvien,long? IdCongty,long? IdHopdong,long? IdSolo,string SoLo)
 	    {
 		    KcbDanhsachBenhnhan item = new KcbDanhsachBenhnhan();
 	        item.MarkOld();
@@ -270,8 +278,6 @@ namespace VMS.HIS.DAL
 				
 			item.MaBenhnhan = MaBenhnhan;
 				
-			item.SoLo = SoLo;
-				
 			item.LastNoigioithieu = LastNoigioithieu;
 				
 			item.FirstNoigioithieu = FirstNoigioithieu;
@@ -287,6 +293,16 @@ namespace VMS.HIS.DAL
 			item.MasoThue = MasoThue;
 				
 			item.PassPost = PassPost;
+				
+			item.MaNhanvien = MaNhanvien;
+				
+			item.IdCongty = IdCongty;
+				
+			item.IdHopdong = IdHopdong;
+				
+			item.IdSolo = IdSolo;
+				
+			item.SoLo = SoLo;
 				
 	        item.Save(UserName);
 	    }

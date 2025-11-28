@@ -1,0 +1,60 @@
+2025-09-16 11:18:33.6286||DEBUG|KysoPDF|---------Begin KysoPDF---------------------------------------------------- |url: |action: 
+2025-09-16 11:18:38.0715||DEBUG|KysoPDF|Thông tin user kí số: user 'ANHNTL', userFullName 'Nguyễn Thị Lan Anh' with userId: '001081007147', password: '1' |url: |action: 
+2025-09-16 11:18:38.0780||DEBUG|KysoPDF|File Length: 111328 |url: |action: 
+2025-09-16 11:18:49.2456||DEBUG|KysoPDF|----------------------Bắt đầu ký xác thực---------------------- |url: |action: 
+2025-09-16 11:18:57.2892||DEBUG|KysoPDF|Ký file1.Ký hash thành công |url: |action: 
+2025-09-16 11:18:57.3117||DEBUG|KysoPDF|Ký file1.Ký thành công |url: |action: 
+2025-09-16 11:18:57.3117||DEBUG|KysoPDF|----------------------Kết thúc ký xác thực---------------------- |url: |action: 
+2025-09-16 11:21:03.4910||DEBUG|KysoPDF|---------Begin KysoPDF---------------------------------------------------- |url: |action: 
+2025-09-16 11:21:03.4910||DEBUG|KysoPDF|Thông tin user kí số: user 'ANHNTL', userFullName 'Nguyễn Thị Lan Anh' with userId: '001081007147', password: '1' |url: |action: 
+2025-09-16 11:21:03.4910||DEBUG|KysoPDF|File Length: 111328 |url: |action: 
+2025-09-16 11:21:44.7625||DEBUG|KysoPDF|----------------------Bắt đầu ký xác thực---------------------- |url: |action: 
+2025-09-16 11:21:54.7939||DEBUG|KysoPDF|Ký file2.Ký hash thành công |url: |action: 
+2025-09-16 11:21:54.8075||DEBUG|KysoPDF|Ký file2.Ký thành công |url: |action: 
+2025-09-16 11:22:01.4619||DEBUG|KysoPDF|----------------------Kết thúc ký xác thực---------------------- |url: |action: 
+2025-09-16 11:23:07.8030||DEBUG|KysoPDF|---------Begin KysoPDF---------------------------------------------------- |url: |action: 
+2025-09-16 11:23:07.8030||DEBUG|KysoPDF|Thông tin user kí số: user 'ANHNTL', userFullName 'Nguyễn Thị Lan Anh' with userId: '001081007147', password: '1' |url: |action: 
+2025-09-16 11:23:07.8030||DEBUG|KysoPDF|File Length: 111328 |url: |action: 
+2025-09-16 11:23:14.0491||DEBUG|KysoPDF|----------------------Bắt đầu ký KHÔNG xác thực---------------------- |url: |action: 
+2025-09-16 11:23:38.6233||INFO|KysoPDF|Tài khoản đã hết hạn đăng ký không xác thực |url: |action: 
+2025-09-16 11:23:41.1924||DEBUG|KysoPDF|Ký file 3.Ký hash thành công |url: |action: 
+2025-09-16 11:23:54.9570||DEBUG|KysoPDF|Ký file 3.Ký thành công |url: |action: 
+2025-09-16 11:24:02.5239||DEBUG|KysoPDF|----------------------Kết thúc ký KHÔNG xác thực---------------------- |url: |action: 
+2025-09-16 11:25:30.5621||DEBUG|KysoPDF|---------Begin KysoPDF---------------------------------------------------- |url: |action: 
+2025-09-16 11:25:30.5621||DEBUG|KysoPDF|Thông tin user kí số: user 'ANHNTL', userFullName 'Nguyễn Thị Lan Anh' with userId: '001081007147', password: '1' |url: |action: 
+2025-09-16 11:25:30.5621||DEBUG|KysoPDF|File Length: 111328 |url: |action: 
+2025-09-16 11:25:33.9128||DEBUG|KysoPDF|----------------------Bắt đầu ký KHÔNG xác thực---------------------- |url: |action: 
+2025-09-16 11:25:34.6949||INFO|KysoPDF|Tài khoản đã được đăng ký để không xác thực từ trước |url: |action: 
+2025-09-16 11:25:35.3311||DEBUG|KysoPDF|Ký file 4.Ký hash thành công |url: |action: 
+2025-09-16 11:25:35.3461||DEBUG|KysoPDF|Ký file 4.Ký thành công |url: |action: 
+2025-09-16 11:25:35.3567||DEBUG|KysoPDF|----------------------Kết thúc ký KHÔNG xác thực---------------------- |url: |action: 
+2025-09-16 13:36:44.7633||DEBUG|KysoPDF|---------Begin KysoPDF---------------------------------------------------- |url: |action: 
+2025-09-16 13:36:44.7633||DEBUG|KysoPDF|Thông tin user kí số: user 'ANHNTL', userFullName 'Nguyễn Thị Lan Anh' with userId: '001081007147', password: '1' |url: |action: 
+2025-09-16 13:36:44.7633||DEBUG|KysoPDF|File Length: 111328 |url: |action: 
+2025-09-16 13:37:05.1870||DEBUG|KysoPDF|----------------------Bắt đầu ký xác thực---------------------- |url: |action: 
+2025-09-16 13:37:26.1145||DEBUG|KysoPDF|Ký file5.Ký hash thành công |url: |action: 
+2025-09-16 13:37:26.1455||DEBUG|KysoPDF|Ký file5.Ký thành công |url: |action: 
+2025-09-16 13:37:26.1653||DEBUG|KysoPDF|----------------------Kết thúc ký xác thực---------------------- |url: |action: 
+2025-09-16 13:38:39.7730||DEBUG|KysoPDF|---------Begin KysoPDF---------------------------------------------------- |url: |action: 
+2025-09-16 13:38:39.7730||DEBUG|KysoPDF|Thông tin user kí số: user 'ANHNTL', userFullName 'Nguyễn Thị Lan Anh' with userId: '001081007147', password: '1' |url: |action: 
+2025-09-16 13:38:39.7730||DEBUG|KysoPDF|File Length: 111328 |url: |action: 
+2025-09-16 13:38:39.7730||DEBUG|KysoPDF|----------------------Bắt đầu ký xác thực---------------------- |url: |action: 
+2025-09-16 13:38:48.1802||DEBUG|KysoPDF|Ký file6.Ký hash thành công |url: |action: 
+2025-09-16 13:38:48.2063||DEBUG|KysoPDF|Ký file6.Ký thành công |url: |action: 
+2025-09-16 13:38:48.2063||DEBUG|KysoPDF|----------------------Kết thúc ký xác thực---------------------- |url: |action: 
+2025-09-16 13:41:03.3934||DEBUG|KysoPDF|---------Begin KysoPDF---------------------------------------------------- |url: |action: 
+2025-09-16 13:41:03.3934||DEBUG|KysoPDF|Thông tin user kí số: user 'ANHNTL', userFullName 'Nguyễn Thị Lan Anh' with userId: '001081007147', password: '1' |url: |action: 
+2025-09-16 13:41:03.3934||DEBUG|KysoPDF|File Length: 111328 |url: |action: 
+2025-09-16 13:41:03.3934||DEBUG|KysoPDF|----------------------Bắt đầu ký KHÔNG xác thực---------------------- |url: |action: 
+2025-09-16 13:41:04.1837||INFO|KysoPDF|Tài khoản đã hết hạn đăng ký không xác thực |url: |action: 
+2025-09-16 13:41:05.1909||DEBUG|KysoPDF|Ký file 7.Ký hash thành công |url: |action: 
+2025-09-16 13:41:05.2138||DEBUG|KysoPDF|Ký file 7.Ký thành công |url: |action: 
+2025-09-16 13:41:05.2232||DEBUG|KysoPDF|----------------------Kết thúc ký KHÔNG xác thực---------------------- |url: |action: 
+2025-09-16 13:43:15.0904||DEBUG|KysoPDF|---------Begin KysoPDF---------------------------------------------------- |url: |action: 
+2025-09-16 13:43:15.0913||DEBUG|KysoPDF|Thông tin user kí số: user 'ANHNTL', userFullName 'Nguyễn Thị Lan Anh' with userId: '001081007147', password: '1' |url: |action: 
+2025-09-16 13:43:15.0913||DEBUG|KysoPDF|File Length: 111328 |url: |action: 
+2025-09-16 13:43:15.0913||DEBUG|KysoPDF|----------------------Bắt đầu ký KHÔNG xác thực---------------------- |url: |action: 
+2025-09-16 13:43:15.9222||INFO|KysoPDF|Tài khoản đã được đăng ký để không xác thực từ trước |url: |action: 
+2025-09-16 13:43:16.5248||DEBUG|KysoPDF|Ký file 8.Ký hash thành công |url: |action: 
+2025-09-16 13:43:16.5488||DEBUG|KysoPDF|Ký file 8.Ký thành công |url: |action: 
+2025-09-16 13:43:16.5684||DEBUG|KysoPDF|----------------------Kết thúc ký KHÔNG xác thực---------------------- |url: |action: 

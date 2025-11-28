@@ -80,7 +80,7 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(string MaLuotkham,long IdBenhnhan,DateTime NgayKham,string Mach,string NhietDo,string HuyetAp,string NhipTho,string ChieuCao,string CanNang,string NhomMau,string Bmi,string MotaThem,short? IdBacsi,string NguoiTao,DateTime? NgayTao,string NguoiSua,DateTime? NgaySua)
+	    public void Insert(string MaLuotkham,long IdBenhnhan,DateTime NgayKham,string Mach,string NhietDo,string HuyetAp,string NhipTho,string ChieuCao,string CanNang,string NhomMau,string Bmi,string SPO2,string MotaThem,short? IdBacsi,string NguoiTao,DateTime? NgayTao,string NguoiSua,DateTime? NgaySua,bool? DiungKhong,bool? DiungCo,string DiungMota,bool? DiungThuocKhong,bool? DiungThuocCo,string DiungThuocMota,bool? DiungHoachatMyphamKhong,bool? DiungHoachatMyphamCo,string DiungHoachatMyphamMota,bool? DiungThucphamKhong,bool? DiungThucphamCo,string DiungThucphamMota,bool? DiungKhac,string DiungKhacMota,bool? ThuocDangdungKhong,bool? ThuocDangdungCo,string ThuocDangdungMota,bool? TsbKhong,bool? TsbCo,string TsbMota,bool? BenhTimmachKhong,bool? BenhTimmachCo,string BenhTimmachMota,bool? BenhHohapKhong,bool? BenhHohapCo,string BenhHohapMota,bool? BenhTieuhoaKhong,bool? BenhTieuhoaCo,string BenhTieuhoaMota,bool? BenhNoitietKhong,bool? BenhNoitietCo,string BenhNoitietMota,bool? BenhThankinhKhong,bool? BenhThankinhCo,string BenhThankinhMota,bool? BenhThantietnieuKhong,bool? BenhThantietnieuCo,string BenhThantietnieuMota,bool? BenhCoxuongkhopKhong,bool? BenhCoxuongkhopCo,string BenhCoxuongkhopMota,bool? BenhUngthuKhong,bool? BenhUngthuCo,string BenhUngthuMota,bool? BenhKhac,string BenhKhacMota,bool? TiensuPhauthuatKhong,bool? TiensuPhauthuatCo,string TiensuPhauthuatMota,bool? YeutoNguycoKhong,bool? YeutoNguycoCo,string YeutoNguycoMota,bool? ThuoclaKhong,bool? ThuoclaCo,string ThuoclaMota,short? ThuoclaNam,short? ThuoclaGoi,bool? ThuoclaoKhong,bool? ThuoclaoCo,string ThuoclaoMota,short? ThuoclaoNam,bool? RuouBiaKhong,bool? RuouBiaCo,string RuouBiaMota,bool? RuouBiaThuongXuyen,bool? RuouBiaThinhthoang,bool? RuouBiaIt,bool? ChatGaynghienKhong,bool? ChatGaynghienCo,string ChatGaynghienMota,bool? ChatGaynghienLoai,string ChatGaynghienLoaiMota,int? ChatGaynghienNam,bool? TiepxucHoahchatTiaxaKhong,bool? TiepxucHoahchatTiaxaCo,string TiepxucHoahchatTiaxaMota,bool? TiepxucHoahchatTiaxaLoai,string TiepxucHoahchatTiaxaLoaiMota,int? TiepxucHoahchatTiaxaNam,bool? NguycoKhac,string NguycoKhacMota,bool? TiensuGiadinhKhong,bool? TiensuGiadinhCo,string TiensuGiadinhMota,string TiensuGiadinhNguoimac,string TiensuGiadinhTenbenh,bool? YeutoDichteKhong,bool? YeutoDichteCo,string YeutoDichteMota,string NoiBiBenh,string YeutoDichteThoigian,string BenhCaptinhNoisinhsong,string Moisinh,bool? ToanthanBinhthuong,bool? ToanthanBatthuong,string ToanthanMota,bool? TiepxucTotKhong,bool? TiepxucTotCo,bool? NguGaKhong,bool? NguGaCo,bool? LoMoKhong,bool? LoMoCo,bool? HonMeKhong,bool? HonMeCo,short? Glassgow,bool? DaHong,bool? DaVang,bool? DaXanh,bool? DaKhac,string DaKhacMota,bool? DaXuathuyetKhong,bool? DaXuathuyetCo,bool? DaXuathuyetChamNot,bool? DaXuathuyetMangbamda,bool? DaXuathuyetTumau,bool? DaXuathuyetKhac,string DaXuathuyetKhacMota,bool? KetmacBinhthuong,bool? KetmacDo,bool? KetmacVang,bool? KetmacKhac,string KetmacKhacMota,bool? LuoiBinhthuong,bool? LuoiBan,bool? LuoiGaimonMat,bool? LuoiKhac,string LuoiKhacMota,bool? XuathuyetNiemmacKhong,bool? XuathuyetNiemmacCo,bool? XuathuyetNiemmacMat,bool? XuathuyetNiemmacMui,bool? XuathuyetNiemmacMieng,bool? XuathuyetNiemmacTieumau,bool? XuathuyetNiemmacRoiloanKinhnguyet,bool? XuathuyetNiemmacKhac,string XuathuyetNiemmacKhacMota,bool? LongtocmongBinhthuong,bool? RungToc,bool? MongGionDegay,bool? LongtocmongKhac,string LongtocmongKhacMota,bool? TuyengiapBinhthuong,bool? TuyengiapTo,bool? TiengThoi,bool? PhuKhong,bool? PhuCo,bool? PhuChiduoi,bool? PhuChitren,bool? PhuMat,bool? PhuAokhoac,bool? PhuToanthan,bool? PhuKhac,string PhuKhacmota,bool? HachKhong,bool? HachCo,bool? VitriCo,bool? VitriNach,bool? VitriBen,bool? VitriKhac,string VitriKhacMota,bool? SoluongMothach,bool? SoluongNhieuhach,bool? TinhchatMem,bool? TinhchatCung,int? DuongkinhHachLonnhat,bool? DidongKhong,bool? DidongCo,bool? DauKhong,bool? DauCo,string DauKhac,bool? TuanhoanBinhthuong,bool? TuanhoanBatthuong,string TuanhoanMota,bool? DaungucKhong,bool? DaungucCo,bool? DaungucDienhinh,bool? DaungucKhongdienhinh,bool? HoihopKhong,bool? HoihopCo,bool? NhipnhanhKhong,bool? NhipnhanhCo,bool? NhipchamKhong,bool? NhipchamCo,bool? LoannhipKhong,bool? LoannhipCo,bool? DaplechKhong,bool? DaplechCo,bool? DiendapRongKhong,bool? DiendapRongCo,bool? TimmoKhong,bool? TimmoCo,bool? T1,bool? T2,bool? ThoiTamthuKhong,bool? ThoiTamthuCo,string ThoiTamthuVitri,string ThoiTamthuMucdo,bool? ThoiTamthuRungmiu,bool? ThoiTamtruongKhong,bool? ThoiTamtruongCo,string ThoiTamtruongVitri,string ThoiTamtruongMucdo,bool? ThoiTamtruongRungmiu,bool? RungTamtruongCo,bool? RungTamtruongKhong,string RungTamtruongVitri,string RungTamtruongMucdo,bool? ThoiLientucCo,bool? ThoiLientucKhong,string ThoiLientucVitri,bool? TiengthoiDongmachKhong,bool? TiengthoiDongmachCo,string TiengthoiDongmachVitri,string TuanhoanKhac,bool? HohapBinhthuong,bool? HohapBatthuong,string HohapMota,bool? KhothoKhong,bool? KhothoCo,bool? BiendangLongngucKhong,bool? BiendangLongngucCo,bool? GoBinhthuong,bool? GoDuc,bool? GoVang,string GoVitri,bool? RiraoPhenangBinthuong,bool? RiraoPhenangGiam,string RiraoPhenangVitri,bool? RungthanhBinhthuong,bool? RungthanhTang,bool? RungthanhGiam,string RungthanhVitri,bool? RaleKhong,bool? RaleCo,bool? RaleAm,bool? RaleNo,bool? RaleRit,bool? RaleNgay,bool? RaleKhac,string RaleKhacMota,bool? TieuhoaBinhthuong,bool? TieuhoaBatthuong,string TieuhoaMota,bool? DaubungKhong,bool? DaubungCo,string DaubungVitri,bool? BuonnonKhong,bool? BuonnonCo,bool? NonKhong,bool? NonCo,bool? NonMautuoi,bool? NonMautham,bool? PhancomauKhong,bool? PhancomauCo,bool? PhancomauMautuoi,bool? PhancomauMautham,bool? PhancomauPhanden,bool? TieuchayKhong,bool? TieuchayCo,int? TieuchaySolan,bool? ChuongbungKhong,bool? ChuongbungCo,bool? PhanungThanhbungKhong,bool? PhanungThanhbungCo,bool? LachBinhthuong,bool? LachBatthuong,int? LachDo,bool? GanBinhthuong,bool? GanTo,int? GanKichthuoc,bool? GanCotruong,bool? GanTuanhoangBanghe,bool? TieuhoaKhac,string TieuhoaKhacMota,bool? ThantietnieuBinhthuong,bool? ThantietnieuBatthuong,string ThantietnieuMota,bool? MausacnuoctieuBinhthuong,bool? MausacnuoctieuBatthuong,string MausacnuoctieuMausac,int? MausacnuoctieuThetich,bool? TieubuotKhong,bool? TieubuotCo,bool? TieuratKhong,bool? TieuratCo,bool? CaubangquangKhong,bool? CaubangquangCo,bool? DaudiemnieuquanKhong,bool? DaudiemnieuquanCo,string DaudiemnieuquanVitri,bool? RungthanKhong,bool? RungthanCo,string ThantietnieuKhac,bool? ThankinhBinhthuong,bool? ThankinhBatthuong,string ThankinhMota,bool? CocungKhong,bool? CocungCo,bool? DauhieuMangnaoKhong,bool? DauhieuMangnaoCo,bool? ColucBinhthuong,bool? ColucGiam,string ColucVitri,bool? TruongluccoBinhthuong,bool? TruongluccoTang,bool? TruongluccoGiam,string TruongluccoVitri,bool? PhanxaganxuongBinhthuong,bool? PhanxaganxuongTang,bool? PhanxaganxuongGiam,string PhanxaganxuongVitri,bool? LietPhaiKhong,bool? LietPhaiCo,bool? LietTraiKhong,bool? LietTraiCo,bool? Liet2ChiduoiCo,bool? Liet2ChiduoiKhong,bool? Liet4ChiCo,bool? Liet4ChiKhong,string ThankinhKhac,bool? CoxuongkhopBinhthuong,bool? CoxuongkhopBatthuong,string CoxuongkhopMota,bool? DaucoKhong,bool? DaucoCo,string DaucoVitri,bool? DaukhopKhong,bool? DaukhopCo,string DaukhopVitri,bool? SungdoKhopKhong,bool? SungdoKhopCo,string SungdoKhopVitri,bool? DaucotsongKhong,bool? DaucotsongCo,string DaucotsongVitri,bool? HanchevandongkhopKhong,bool? HanchevandongkhopCo,string HanchevandongkhopVitri,bool? TeocoKhong,bool? TeocoCo,string TeocoVitri,bool? HatTophiKhong,bool? HatTophiCo,string HatTophiVitri,bool? DaucungkhopbuoisangKhong,bool? DaucungkhopbuoissangCo,string DaucungkhopbuoissangMota,string CoxuongkhopKhac,bool? TaiBinhthuong,bool? TaiBatthuong,string TaiGhiro,bool? MuiBinhthuong,bool? MuiBatthuong,string MuiGhiro,bool? HongBinhthuong,bool? HongBatthuong,string HongGhiro,bool? ThanhquanBinhthuong,bool? ThanhquanBatthuong,string ThanhquanGhiro,string TaimuihongKhac,bool? RanghammatBinhthuong,bool? RanghammatBatthuong,string RanghammatGhiro,string RanghammatKhac,bool? MatBinhthuong,bool? MatBatthuong,string MatGhiro,string MatKhac,bool? NoitietBinhthuong,bool? NoitietBatthuong,string NoitietMota,bool? AnuongBinhthuong,bool? AnuongKem,bool? AnuongKhong,string NoitietDinhduongKhac,string BenhlyKhac)
 	    {
 		    EmrPhieukhamNoikhoa item = new EmrPhieukhamNoikhoa();
 		    
@@ -106,6 +106,8 @@ namespace VMS.HIS.DAL
             
             item.Bmi = Bmi;
             
+            item.SPO2 = SPO2;
+            
             item.MotaThem = MotaThem;
             
             item.IdBacsi = IdBacsi;
@@ -118,6 +120,760 @@ namespace VMS.HIS.DAL
             
             item.NgaySua = NgaySua;
             
+            item.DiungKhong = DiungKhong;
+            
+            item.DiungCo = DiungCo;
+            
+            item.DiungMota = DiungMota;
+            
+            item.DiungThuocKhong = DiungThuocKhong;
+            
+            item.DiungThuocCo = DiungThuocCo;
+            
+            item.DiungThuocMota = DiungThuocMota;
+            
+            item.DiungHoachatMyphamKhong = DiungHoachatMyphamKhong;
+            
+            item.DiungHoachatMyphamCo = DiungHoachatMyphamCo;
+            
+            item.DiungHoachatMyphamMota = DiungHoachatMyphamMota;
+            
+            item.DiungThucphamKhong = DiungThucphamKhong;
+            
+            item.DiungThucphamCo = DiungThucphamCo;
+            
+            item.DiungThucphamMota = DiungThucphamMota;
+            
+            item.DiungKhac = DiungKhac;
+            
+            item.DiungKhacMota = DiungKhacMota;
+            
+            item.ThuocDangdungKhong = ThuocDangdungKhong;
+            
+            item.ThuocDangdungCo = ThuocDangdungCo;
+            
+            item.ThuocDangdungMota = ThuocDangdungMota;
+            
+            item.TsbKhong = TsbKhong;
+            
+            item.TsbCo = TsbCo;
+            
+            item.TsbMota = TsbMota;
+            
+            item.BenhTimmachKhong = BenhTimmachKhong;
+            
+            item.BenhTimmachCo = BenhTimmachCo;
+            
+            item.BenhTimmachMota = BenhTimmachMota;
+            
+            item.BenhHohapKhong = BenhHohapKhong;
+            
+            item.BenhHohapCo = BenhHohapCo;
+            
+            item.BenhHohapMota = BenhHohapMota;
+            
+            item.BenhTieuhoaKhong = BenhTieuhoaKhong;
+            
+            item.BenhTieuhoaCo = BenhTieuhoaCo;
+            
+            item.BenhTieuhoaMota = BenhTieuhoaMota;
+            
+            item.BenhNoitietKhong = BenhNoitietKhong;
+            
+            item.BenhNoitietCo = BenhNoitietCo;
+            
+            item.BenhNoitietMota = BenhNoitietMota;
+            
+            item.BenhThankinhKhong = BenhThankinhKhong;
+            
+            item.BenhThankinhCo = BenhThankinhCo;
+            
+            item.BenhThankinhMota = BenhThankinhMota;
+            
+            item.BenhThantietnieuKhong = BenhThantietnieuKhong;
+            
+            item.BenhThantietnieuCo = BenhThantietnieuCo;
+            
+            item.BenhThantietnieuMota = BenhThantietnieuMota;
+            
+            item.BenhCoxuongkhopKhong = BenhCoxuongkhopKhong;
+            
+            item.BenhCoxuongkhopCo = BenhCoxuongkhopCo;
+            
+            item.BenhCoxuongkhopMota = BenhCoxuongkhopMota;
+            
+            item.BenhUngthuKhong = BenhUngthuKhong;
+            
+            item.BenhUngthuCo = BenhUngthuCo;
+            
+            item.BenhUngthuMota = BenhUngthuMota;
+            
+            item.BenhKhac = BenhKhac;
+            
+            item.BenhKhacMota = BenhKhacMota;
+            
+            item.TiensuPhauthuatKhong = TiensuPhauthuatKhong;
+            
+            item.TiensuPhauthuatCo = TiensuPhauthuatCo;
+            
+            item.TiensuPhauthuatMota = TiensuPhauthuatMota;
+            
+            item.YeutoNguycoKhong = YeutoNguycoKhong;
+            
+            item.YeutoNguycoCo = YeutoNguycoCo;
+            
+            item.YeutoNguycoMota = YeutoNguycoMota;
+            
+            item.ThuoclaKhong = ThuoclaKhong;
+            
+            item.ThuoclaCo = ThuoclaCo;
+            
+            item.ThuoclaMota = ThuoclaMota;
+            
+            item.ThuoclaNam = ThuoclaNam;
+            
+            item.ThuoclaGoi = ThuoclaGoi;
+            
+            item.ThuoclaoKhong = ThuoclaoKhong;
+            
+            item.ThuoclaoCo = ThuoclaoCo;
+            
+            item.ThuoclaoMota = ThuoclaoMota;
+            
+            item.ThuoclaoNam = ThuoclaoNam;
+            
+            item.RuouBiaKhong = RuouBiaKhong;
+            
+            item.RuouBiaCo = RuouBiaCo;
+            
+            item.RuouBiaMota = RuouBiaMota;
+            
+            item.RuouBiaThuongXuyen = RuouBiaThuongXuyen;
+            
+            item.RuouBiaThinhthoang = RuouBiaThinhthoang;
+            
+            item.RuouBiaIt = RuouBiaIt;
+            
+            item.ChatGaynghienKhong = ChatGaynghienKhong;
+            
+            item.ChatGaynghienCo = ChatGaynghienCo;
+            
+            item.ChatGaynghienMota = ChatGaynghienMota;
+            
+            item.ChatGaynghienLoai = ChatGaynghienLoai;
+            
+            item.ChatGaynghienLoaiMota = ChatGaynghienLoaiMota;
+            
+            item.ChatGaynghienNam = ChatGaynghienNam;
+            
+            item.TiepxucHoahchatTiaxaKhong = TiepxucHoahchatTiaxaKhong;
+            
+            item.TiepxucHoahchatTiaxaCo = TiepxucHoahchatTiaxaCo;
+            
+            item.TiepxucHoahchatTiaxaMota = TiepxucHoahchatTiaxaMota;
+            
+            item.TiepxucHoahchatTiaxaLoai = TiepxucHoahchatTiaxaLoai;
+            
+            item.TiepxucHoahchatTiaxaLoaiMota = TiepxucHoahchatTiaxaLoaiMota;
+            
+            item.TiepxucHoahchatTiaxaNam = TiepxucHoahchatTiaxaNam;
+            
+            item.NguycoKhac = NguycoKhac;
+            
+            item.NguycoKhacMota = NguycoKhacMota;
+            
+            item.TiensuGiadinhKhong = TiensuGiadinhKhong;
+            
+            item.TiensuGiadinhCo = TiensuGiadinhCo;
+            
+            item.TiensuGiadinhMota = TiensuGiadinhMota;
+            
+            item.TiensuGiadinhNguoimac = TiensuGiadinhNguoimac;
+            
+            item.TiensuGiadinhTenbenh = TiensuGiadinhTenbenh;
+            
+            item.YeutoDichteKhong = YeutoDichteKhong;
+            
+            item.YeutoDichteCo = YeutoDichteCo;
+            
+            item.YeutoDichteMota = YeutoDichteMota;
+            
+            item.NoiBiBenh = NoiBiBenh;
+            
+            item.YeutoDichteThoigian = YeutoDichteThoigian;
+            
+            item.BenhCaptinhNoisinhsong = BenhCaptinhNoisinhsong;
+            
+            item.Moisinh = Moisinh;
+            
+            item.ToanthanBinhthuong = ToanthanBinhthuong;
+            
+            item.ToanthanBatthuong = ToanthanBatthuong;
+            
+            item.ToanthanMota = ToanthanMota;
+            
+            item.TiepxucTotKhong = TiepxucTotKhong;
+            
+            item.TiepxucTotCo = TiepxucTotCo;
+            
+            item.NguGaKhong = NguGaKhong;
+            
+            item.NguGaCo = NguGaCo;
+            
+            item.LoMoKhong = LoMoKhong;
+            
+            item.LoMoCo = LoMoCo;
+            
+            item.HonMeKhong = HonMeKhong;
+            
+            item.HonMeCo = HonMeCo;
+            
+            item.Glassgow = Glassgow;
+            
+            item.DaHong = DaHong;
+            
+            item.DaVang = DaVang;
+            
+            item.DaXanh = DaXanh;
+            
+            item.DaKhac = DaKhac;
+            
+            item.DaKhacMota = DaKhacMota;
+            
+            item.DaXuathuyetKhong = DaXuathuyetKhong;
+            
+            item.DaXuathuyetCo = DaXuathuyetCo;
+            
+            item.DaXuathuyetChamNot = DaXuathuyetChamNot;
+            
+            item.DaXuathuyetMangbamda = DaXuathuyetMangbamda;
+            
+            item.DaXuathuyetTumau = DaXuathuyetTumau;
+            
+            item.DaXuathuyetKhac = DaXuathuyetKhac;
+            
+            item.DaXuathuyetKhacMota = DaXuathuyetKhacMota;
+            
+            item.KetmacBinhthuong = KetmacBinhthuong;
+            
+            item.KetmacDo = KetmacDo;
+            
+            item.KetmacVang = KetmacVang;
+            
+            item.KetmacKhac = KetmacKhac;
+            
+            item.KetmacKhacMota = KetmacKhacMota;
+            
+            item.LuoiBinhthuong = LuoiBinhthuong;
+            
+            item.LuoiBan = LuoiBan;
+            
+            item.LuoiGaimonMat = LuoiGaimonMat;
+            
+            item.LuoiKhac = LuoiKhac;
+            
+            item.LuoiKhacMota = LuoiKhacMota;
+            
+            item.XuathuyetNiemmacKhong = XuathuyetNiemmacKhong;
+            
+            item.XuathuyetNiemmacCo = XuathuyetNiemmacCo;
+            
+            item.XuathuyetNiemmacMat = XuathuyetNiemmacMat;
+            
+            item.XuathuyetNiemmacMui = XuathuyetNiemmacMui;
+            
+            item.XuathuyetNiemmacMieng = XuathuyetNiemmacMieng;
+            
+            item.XuathuyetNiemmacTieumau = XuathuyetNiemmacTieumau;
+            
+            item.XuathuyetNiemmacRoiloanKinhnguyet = XuathuyetNiemmacRoiloanKinhnguyet;
+            
+            item.XuathuyetNiemmacKhac = XuathuyetNiemmacKhac;
+            
+            item.XuathuyetNiemmacKhacMota = XuathuyetNiemmacKhacMota;
+            
+            item.LongtocmongBinhthuong = LongtocmongBinhthuong;
+            
+            item.RungToc = RungToc;
+            
+            item.MongGionDegay = MongGionDegay;
+            
+            item.LongtocmongKhac = LongtocmongKhac;
+            
+            item.LongtocmongKhacMota = LongtocmongKhacMota;
+            
+            item.TuyengiapBinhthuong = TuyengiapBinhthuong;
+            
+            item.TuyengiapTo = TuyengiapTo;
+            
+            item.TiengThoi = TiengThoi;
+            
+            item.PhuKhong = PhuKhong;
+            
+            item.PhuCo = PhuCo;
+            
+            item.PhuChiduoi = PhuChiduoi;
+            
+            item.PhuChitren = PhuChitren;
+            
+            item.PhuMat = PhuMat;
+            
+            item.PhuAokhoac = PhuAokhoac;
+            
+            item.PhuToanthan = PhuToanthan;
+            
+            item.PhuKhac = PhuKhac;
+            
+            item.PhuKhacmota = PhuKhacmota;
+            
+            item.HachKhong = HachKhong;
+            
+            item.HachCo = HachCo;
+            
+            item.VitriCo = VitriCo;
+            
+            item.VitriNach = VitriNach;
+            
+            item.VitriBen = VitriBen;
+            
+            item.VitriKhac = VitriKhac;
+            
+            item.VitriKhacMota = VitriKhacMota;
+            
+            item.SoluongMothach = SoluongMothach;
+            
+            item.SoluongNhieuhach = SoluongNhieuhach;
+            
+            item.TinhchatMem = TinhchatMem;
+            
+            item.TinhchatCung = TinhchatCung;
+            
+            item.DuongkinhHachLonnhat = DuongkinhHachLonnhat;
+            
+            item.DidongKhong = DidongKhong;
+            
+            item.DidongCo = DidongCo;
+            
+            item.DauKhong = DauKhong;
+            
+            item.DauCo = DauCo;
+            
+            item.DauKhac = DauKhac;
+            
+            item.TuanhoanBinhthuong = TuanhoanBinhthuong;
+            
+            item.TuanhoanBatthuong = TuanhoanBatthuong;
+            
+            item.TuanhoanMota = TuanhoanMota;
+            
+            item.DaungucKhong = DaungucKhong;
+            
+            item.DaungucCo = DaungucCo;
+            
+            item.DaungucDienhinh = DaungucDienhinh;
+            
+            item.DaungucKhongdienhinh = DaungucKhongdienhinh;
+            
+            item.HoihopKhong = HoihopKhong;
+            
+            item.HoihopCo = HoihopCo;
+            
+            item.NhipnhanhKhong = NhipnhanhKhong;
+            
+            item.NhipnhanhCo = NhipnhanhCo;
+            
+            item.NhipchamKhong = NhipchamKhong;
+            
+            item.NhipchamCo = NhipchamCo;
+            
+            item.LoannhipKhong = LoannhipKhong;
+            
+            item.LoannhipCo = LoannhipCo;
+            
+            item.DaplechKhong = DaplechKhong;
+            
+            item.DaplechCo = DaplechCo;
+            
+            item.DiendapRongKhong = DiendapRongKhong;
+            
+            item.DiendapRongCo = DiendapRongCo;
+            
+            item.TimmoKhong = TimmoKhong;
+            
+            item.TimmoCo = TimmoCo;
+            
+            item.T1 = T1;
+            
+            item.T2 = T2;
+            
+            item.ThoiTamthuKhong = ThoiTamthuKhong;
+            
+            item.ThoiTamthuCo = ThoiTamthuCo;
+            
+            item.ThoiTamthuVitri = ThoiTamthuVitri;
+            
+            item.ThoiTamthuMucdo = ThoiTamthuMucdo;
+            
+            item.ThoiTamthuRungmiu = ThoiTamthuRungmiu;
+            
+            item.ThoiTamtruongKhong = ThoiTamtruongKhong;
+            
+            item.ThoiTamtruongCo = ThoiTamtruongCo;
+            
+            item.ThoiTamtruongVitri = ThoiTamtruongVitri;
+            
+            item.ThoiTamtruongMucdo = ThoiTamtruongMucdo;
+            
+            item.ThoiTamtruongRungmiu = ThoiTamtruongRungmiu;
+            
+            item.RungTamtruongCo = RungTamtruongCo;
+            
+            item.RungTamtruongKhong = RungTamtruongKhong;
+            
+            item.RungTamtruongVitri = RungTamtruongVitri;
+            
+            item.RungTamtruongMucdo = RungTamtruongMucdo;
+            
+            item.ThoiLientucCo = ThoiLientucCo;
+            
+            item.ThoiLientucKhong = ThoiLientucKhong;
+            
+            item.ThoiLientucVitri = ThoiLientucVitri;
+            
+            item.TiengthoiDongmachKhong = TiengthoiDongmachKhong;
+            
+            item.TiengthoiDongmachCo = TiengthoiDongmachCo;
+            
+            item.TiengthoiDongmachVitri = TiengthoiDongmachVitri;
+            
+            item.TuanhoanKhac = TuanhoanKhac;
+            
+            item.HohapBinhthuong = HohapBinhthuong;
+            
+            item.HohapBatthuong = HohapBatthuong;
+            
+            item.HohapMota = HohapMota;
+            
+            item.KhothoKhong = KhothoKhong;
+            
+            item.KhothoCo = KhothoCo;
+            
+            item.BiendangLongngucKhong = BiendangLongngucKhong;
+            
+            item.BiendangLongngucCo = BiendangLongngucCo;
+            
+            item.GoBinhthuong = GoBinhthuong;
+            
+            item.GoDuc = GoDuc;
+            
+            item.GoVang = GoVang;
+            
+            item.GoVitri = GoVitri;
+            
+            item.RiraoPhenangBinthuong = RiraoPhenangBinthuong;
+            
+            item.RiraoPhenangGiam = RiraoPhenangGiam;
+            
+            item.RiraoPhenangVitri = RiraoPhenangVitri;
+            
+            item.RungthanhBinhthuong = RungthanhBinhthuong;
+            
+            item.RungthanhTang = RungthanhTang;
+            
+            item.RungthanhGiam = RungthanhGiam;
+            
+            item.RungthanhVitri = RungthanhVitri;
+            
+            item.RaleKhong = RaleKhong;
+            
+            item.RaleCo = RaleCo;
+            
+            item.RaleAm = RaleAm;
+            
+            item.RaleNo = RaleNo;
+            
+            item.RaleRit = RaleRit;
+            
+            item.RaleNgay = RaleNgay;
+            
+            item.RaleKhac = RaleKhac;
+            
+            item.RaleKhacMota = RaleKhacMota;
+            
+            item.TieuhoaBinhthuong = TieuhoaBinhthuong;
+            
+            item.TieuhoaBatthuong = TieuhoaBatthuong;
+            
+            item.TieuhoaMota = TieuhoaMota;
+            
+            item.DaubungKhong = DaubungKhong;
+            
+            item.DaubungCo = DaubungCo;
+            
+            item.DaubungVitri = DaubungVitri;
+            
+            item.BuonnonKhong = BuonnonKhong;
+            
+            item.BuonnonCo = BuonnonCo;
+            
+            item.NonKhong = NonKhong;
+            
+            item.NonCo = NonCo;
+            
+            item.NonMautuoi = NonMautuoi;
+            
+            item.NonMautham = NonMautham;
+            
+            item.PhancomauKhong = PhancomauKhong;
+            
+            item.PhancomauCo = PhancomauCo;
+            
+            item.PhancomauMautuoi = PhancomauMautuoi;
+            
+            item.PhancomauMautham = PhancomauMautham;
+            
+            item.PhancomauPhanden = PhancomauPhanden;
+            
+            item.TieuchayKhong = TieuchayKhong;
+            
+            item.TieuchayCo = TieuchayCo;
+            
+            item.TieuchaySolan = TieuchaySolan;
+            
+            item.ChuongbungKhong = ChuongbungKhong;
+            
+            item.ChuongbungCo = ChuongbungCo;
+            
+            item.PhanungThanhbungKhong = PhanungThanhbungKhong;
+            
+            item.PhanungThanhbungCo = PhanungThanhbungCo;
+            
+            item.LachBinhthuong = LachBinhthuong;
+            
+            item.LachBatthuong = LachBatthuong;
+            
+            item.LachDo = LachDo;
+            
+            item.GanBinhthuong = GanBinhthuong;
+            
+            item.GanTo = GanTo;
+            
+            item.GanKichthuoc = GanKichthuoc;
+            
+            item.GanCotruong = GanCotruong;
+            
+            item.GanTuanhoangBanghe = GanTuanhoangBanghe;
+            
+            item.TieuhoaKhac = TieuhoaKhac;
+            
+            item.TieuhoaKhacMota = TieuhoaKhacMota;
+            
+            item.ThantietnieuBinhthuong = ThantietnieuBinhthuong;
+            
+            item.ThantietnieuBatthuong = ThantietnieuBatthuong;
+            
+            item.ThantietnieuMota = ThantietnieuMota;
+            
+            item.MausacnuoctieuBinhthuong = MausacnuoctieuBinhthuong;
+            
+            item.MausacnuoctieuBatthuong = MausacnuoctieuBatthuong;
+            
+            item.MausacnuoctieuMausac = MausacnuoctieuMausac;
+            
+            item.MausacnuoctieuThetich = MausacnuoctieuThetich;
+            
+            item.TieubuotKhong = TieubuotKhong;
+            
+            item.TieubuotCo = TieubuotCo;
+            
+            item.TieuratKhong = TieuratKhong;
+            
+            item.TieuratCo = TieuratCo;
+            
+            item.CaubangquangKhong = CaubangquangKhong;
+            
+            item.CaubangquangCo = CaubangquangCo;
+            
+            item.DaudiemnieuquanKhong = DaudiemnieuquanKhong;
+            
+            item.DaudiemnieuquanCo = DaudiemnieuquanCo;
+            
+            item.DaudiemnieuquanVitri = DaudiemnieuquanVitri;
+            
+            item.RungthanKhong = RungthanKhong;
+            
+            item.RungthanCo = RungthanCo;
+            
+            item.ThantietnieuKhac = ThantietnieuKhac;
+            
+            item.ThankinhBinhthuong = ThankinhBinhthuong;
+            
+            item.ThankinhBatthuong = ThankinhBatthuong;
+            
+            item.ThankinhMota = ThankinhMota;
+            
+            item.CocungKhong = CocungKhong;
+            
+            item.CocungCo = CocungCo;
+            
+            item.DauhieuMangnaoKhong = DauhieuMangnaoKhong;
+            
+            item.DauhieuMangnaoCo = DauhieuMangnaoCo;
+            
+            item.ColucBinhthuong = ColucBinhthuong;
+            
+            item.ColucGiam = ColucGiam;
+            
+            item.ColucVitri = ColucVitri;
+            
+            item.TruongluccoBinhthuong = TruongluccoBinhthuong;
+            
+            item.TruongluccoTang = TruongluccoTang;
+            
+            item.TruongluccoGiam = TruongluccoGiam;
+            
+            item.TruongluccoVitri = TruongluccoVitri;
+            
+            item.PhanxaganxuongBinhthuong = PhanxaganxuongBinhthuong;
+            
+            item.PhanxaganxuongTang = PhanxaganxuongTang;
+            
+            item.PhanxaganxuongGiam = PhanxaganxuongGiam;
+            
+            item.PhanxaganxuongVitri = PhanxaganxuongVitri;
+            
+            item.LietPhaiKhong = LietPhaiKhong;
+            
+            item.LietPhaiCo = LietPhaiCo;
+            
+            item.LietTraiKhong = LietTraiKhong;
+            
+            item.LietTraiCo = LietTraiCo;
+            
+            item.Liet2ChiduoiCo = Liet2ChiduoiCo;
+            
+            item.Liet2ChiduoiKhong = Liet2ChiduoiKhong;
+            
+            item.Liet4ChiCo = Liet4ChiCo;
+            
+            item.Liet4ChiKhong = Liet4ChiKhong;
+            
+            item.ThankinhKhac = ThankinhKhac;
+            
+            item.CoxuongkhopBinhthuong = CoxuongkhopBinhthuong;
+            
+            item.CoxuongkhopBatthuong = CoxuongkhopBatthuong;
+            
+            item.CoxuongkhopMota = CoxuongkhopMota;
+            
+            item.DaucoKhong = DaucoKhong;
+            
+            item.DaucoCo = DaucoCo;
+            
+            item.DaucoVitri = DaucoVitri;
+            
+            item.DaukhopKhong = DaukhopKhong;
+            
+            item.DaukhopCo = DaukhopCo;
+            
+            item.DaukhopVitri = DaukhopVitri;
+            
+            item.SungdoKhopKhong = SungdoKhopKhong;
+            
+            item.SungdoKhopCo = SungdoKhopCo;
+            
+            item.SungdoKhopVitri = SungdoKhopVitri;
+            
+            item.DaucotsongKhong = DaucotsongKhong;
+            
+            item.DaucotsongCo = DaucotsongCo;
+            
+            item.DaucotsongVitri = DaucotsongVitri;
+            
+            item.HanchevandongkhopKhong = HanchevandongkhopKhong;
+            
+            item.HanchevandongkhopCo = HanchevandongkhopCo;
+            
+            item.HanchevandongkhopVitri = HanchevandongkhopVitri;
+            
+            item.TeocoKhong = TeocoKhong;
+            
+            item.TeocoCo = TeocoCo;
+            
+            item.TeocoVitri = TeocoVitri;
+            
+            item.HatTophiKhong = HatTophiKhong;
+            
+            item.HatTophiCo = HatTophiCo;
+            
+            item.HatTophiVitri = HatTophiVitri;
+            
+            item.DaucungkhopbuoisangKhong = DaucungkhopbuoisangKhong;
+            
+            item.DaucungkhopbuoissangCo = DaucungkhopbuoissangCo;
+            
+            item.DaucungkhopbuoissangMota = DaucungkhopbuoissangMota;
+            
+            item.CoxuongkhopKhac = CoxuongkhopKhac;
+            
+            item.TaiBinhthuong = TaiBinhthuong;
+            
+            item.TaiBatthuong = TaiBatthuong;
+            
+            item.TaiGhiro = TaiGhiro;
+            
+            item.MuiBinhthuong = MuiBinhthuong;
+            
+            item.MuiBatthuong = MuiBatthuong;
+            
+            item.MuiGhiro = MuiGhiro;
+            
+            item.HongBinhthuong = HongBinhthuong;
+            
+            item.HongBatthuong = HongBatthuong;
+            
+            item.HongGhiro = HongGhiro;
+            
+            item.ThanhquanBinhthuong = ThanhquanBinhthuong;
+            
+            item.ThanhquanBatthuong = ThanhquanBatthuong;
+            
+            item.ThanhquanGhiro = ThanhquanGhiro;
+            
+            item.TaimuihongKhac = TaimuihongKhac;
+            
+            item.RanghammatBinhthuong = RanghammatBinhthuong;
+            
+            item.RanghammatBatthuong = RanghammatBatthuong;
+            
+            item.RanghammatGhiro = RanghammatGhiro;
+            
+            item.RanghammatKhac = RanghammatKhac;
+            
+            item.MatBinhthuong = MatBinhthuong;
+            
+            item.MatBatthuong = MatBatthuong;
+            
+            item.MatGhiro = MatGhiro;
+            
+            item.MatKhac = MatKhac;
+            
+            item.NoitietBinhthuong = NoitietBinhthuong;
+            
+            item.NoitietBatthuong = NoitietBatthuong;
+            
+            item.NoitietMota = NoitietMota;
+            
+            item.AnuongBinhthuong = AnuongBinhthuong;
+            
+            item.AnuongKem = AnuongKem;
+            
+            item.AnuongKhong = AnuongKhong;
+            
+            item.NoitietDinhduongKhac = NoitietDinhduongKhac;
+            
+            item.BenhlyKhac = BenhlyKhac;
+            
 	    
 		    item.Save(UserName);
 	    }
@@ -126,7 +882,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(long Id,string MaLuotkham,long IdBenhnhan,DateTime NgayKham,string Mach,string NhietDo,string HuyetAp,string NhipTho,string ChieuCao,string CanNang,string NhomMau,string Bmi,string MotaThem,short? IdBacsi,string NguoiTao,DateTime? NgayTao,string NguoiSua,DateTime? NgaySua)
+	    public void Update(long Id,string MaLuotkham,long IdBenhnhan,DateTime NgayKham,string Mach,string NhietDo,string HuyetAp,string NhipTho,string ChieuCao,string CanNang,string NhomMau,string Bmi,string SPO2,string MotaThem,short? IdBacsi,string NguoiTao,DateTime? NgayTao,string NguoiSua,DateTime? NgaySua,bool? DiungKhong,bool? DiungCo,string DiungMota,bool? DiungThuocKhong,bool? DiungThuocCo,string DiungThuocMota,bool? DiungHoachatMyphamKhong,bool? DiungHoachatMyphamCo,string DiungHoachatMyphamMota,bool? DiungThucphamKhong,bool? DiungThucphamCo,string DiungThucphamMota,bool? DiungKhac,string DiungKhacMota,bool? ThuocDangdungKhong,bool? ThuocDangdungCo,string ThuocDangdungMota,bool? TsbKhong,bool? TsbCo,string TsbMota,bool? BenhTimmachKhong,bool? BenhTimmachCo,string BenhTimmachMota,bool? BenhHohapKhong,bool? BenhHohapCo,string BenhHohapMota,bool? BenhTieuhoaKhong,bool? BenhTieuhoaCo,string BenhTieuhoaMota,bool? BenhNoitietKhong,bool? BenhNoitietCo,string BenhNoitietMota,bool? BenhThankinhKhong,bool? BenhThankinhCo,string BenhThankinhMota,bool? BenhThantietnieuKhong,bool? BenhThantietnieuCo,string BenhThantietnieuMota,bool? BenhCoxuongkhopKhong,bool? BenhCoxuongkhopCo,string BenhCoxuongkhopMota,bool? BenhUngthuKhong,bool? BenhUngthuCo,string BenhUngthuMota,bool? BenhKhac,string BenhKhacMota,bool? TiensuPhauthuatKhong,bool? TiensuPhauthuatCo,string TiensuPhauthuatMota,bool? YeutoNguycoKhong,bool? YeutoNguycoCo,string YeutoNguycoMota,bool? ThuoclaKhong,bool? ThuoclaCo,string ThuoclaMota,short? ThuoclaNam,short? ThuoclaGoi,bool? ThuoclaoKhong,bool? ThuoclaoCo,string ThuoclaoMota,short? ThuoclaoNam,bool? RuouBiaKhong,bool? RuouBiaCo,string RuouBiaMota,bool? RuouBiaThuongXuyen,bool? RuouBiaThinhthoang,bool? RuouBiaIt,bool? ChatGaynghienKhong,bool? ChatGaynghienCo,string ChatGaynghienMota,bool? ChatGaynghienLoai,string ChatGaynghienLoaiMota,int? ChatGaynghienNam,bool? TiepxucHoahchatTiaxaKhong,bool? TiepxucHoahchatTiaxaCo,string TiepxucHoahchatTiaxaMota,bool? TiepxucHoahchatTiaxaLoai,string TiepxucHoahchatTiaxaLoaiMota,int? TiepxucHoahchatTiaxaNam,bool? NguycoKhac,string NguycoKhacMota,bool? TiensuGiadinhKhong,bool? TiensuGiadinhCo,string TiensuGiadinhMota,string TiensuGiadinhNguoimac,string TiensuGiadinhTenbenh,bool? YeutoDichteKhong,bool? YeutoDichteCo,string YeutoDichteMota,string NoiBiBenh,string YeutoDichteThoigian,string BenhCaptinhNoisinhsong,string Moisinh,bool? ToanthanBinhthuong,bool? ToanthanBatthuong,string ToanthanMota,bool? TiepxucTotKhong,bool? TiepxucTotCo,bool? NguGaKhong,bool? NguGaCo,bool? LoMoKhong,bool? LoMoCo,bool? HonMeKhong,bool? HonMeCo,short? Glassgow,bool? DaHong,bool? DaVang,bool? DaXanh,bool? DaKhac,string DaKhacMota,bool? DaXuathuyetKhong,bool? DaXuathuyetCo,bool? DaXuathuyetChamNot,bool? DaXuathuyetMangbamda,bool? DaXuathuyetTumau,bool? DaXuathuyetKhac,string DaXuathuyetKhacMota,bool? KetmacBinhthuong,bool? KetmacDo,bool? KetmacVang,bool? KetmacKhac,string KetmacKhacMota,bool? LuoiBinhthuong,bool? LuoiBan,bool? LuoiGaimonMat,bool? LuoiKhac,string LuoiKhacMota,bool? XuathuyetNiemmacKhong,bool? XuathuyetNiemmacCo,bool? XuathuyetNiemmacMat,bool? XuathuyetNiemmacMui,bool? XuathuyetNiemmacMieng,bool? XuathuyetNiemmacTieumau,bool? XuathuyetNiemmacRoiloanKinhnguyet,bool? XuathuyetNiemmacKhac,string XuathuyetNiemmacKhacMota,bool? LongtocmongBinhthuong,bool? RungToc,bool? MongGionDegay,bool? LongtocmongKhac,string LongtocmongKhacMota,bool? TuyengiapBinhthuong,bool? TuyengiapTo,bool? TiengThoi,bool? PhuKhong,bool? PhuCo,bool? PhuChiduoi,bool? PhuChitren,bool? PhuMat,bool? PhuAokhoac,bool? PhuToanthan,bool? PhuKhac,string PhuKhacmota,bool? HachKhong,bool? HachCo,bool? VitriCo,bool? VitriNach,bool? VitriBen,bool? VitriKhac,string VitriKhacMota,bool? SoluongMothach,bool? SoluongNhieuhach,bool? TinhchatMem,bool? TinhchatCung,int? DuongkinhHachLonnhat,bool? DidongKhong,bool? DidongCo,bool? DauKhong,bool? DauCo,string DauKhac,bool? TuanhoanBinhthuong,bool? TuanhoanBatthuong,string TuanhoanMota,bool? DaungucKhong,bool? DaungucCo,bool? DaungucDienhinh,bool? DaungucKhongdienhinh,bool? HoihopKhong,bool? HoihopCo,bool? NhipnhanhKhong,bool? NhipnhanhCo,bool? NhipchamKhong,bool? NhipchamCo,bool? LoannhipKhong,bool? LoannhipCo,bool? DaplechKhong,bool? DaplechCo,bool? DiendapRongKhong,bool? DiendapRongCo,bool? TimmoKhong,bool? TimmoCo,bool? T1,bool? T2,bool? ThoiTamthuKhong,bool? ThoiTamthuCo,string ThoiTamthuVitri,string ThoiTamthuMucdo,bool? ThoiTamthuRungmiu,bool? ThoiTamtruongKhong,bool? ThoiTamtruongCo,string ThoiTamtruongVitri,string ThoiTamtruongMucdo,bool? ThoiTamtruongRungmiu,bool? RungTamtruongCo,bool? RungTamtruongKhong,string RungTamtruongVitri,string RungTamtruongMucdo,bool? ThoiLientucCo,bool? ThoiLientucKhong,string ThoiLientucVitri,bool? TiengthoiDongmachKhong,bool? TiengthoiDongmachCo,string TiengthoiDongmachVitri,string TuanhoanKhac,bool? HohapBinhthuong,bool? HohapBatthuong,string HohapMota,bool? KhothoKhong,bool? KhothoCo,bool? BiendangLongngucKhong,bool? BiendangLongngucCo,bool? GoBinhthuong,bool? GoDuc,bool? GoVang,string GoVitri,bool? RiraoPhenangBinthuong,bool? RiraoPhenangGiam,string RiraoPhenangVitri,bool? RungthanhBinhthuong,bool? RungthanhTang,bool? RungthanhGiam,string RungthanhVitri,bool? RaleKhong,bool? RaleCo,bool? RaleAm,bool? RaleNo,bool? RaleRit,bool? RaleNgay,bool? RaleKhac,string RaleKhacMota,bool? TieuhoaBinhthuong,bool? TieuhoaBatthuong,string TieuhoaMota,bool? DaubungKhong,bool? DaubungCo,string DaubungVitri,bool? BuonnonKhong,bool? BuonnonCo,bool? NonKhong,bool? NonCo,bool? NonMautuoi,bool? NonMautham,bool? PhancomauKhong,bool? PhancomauCo,bool? PhancomauMautuoi,bool? PhancomauMautham,bool? PhancomauPhanden,bool? TieuchayKhong,bool? TieuchayCo,int? TieuchaySolan,bool? ChuongbungKhong,bool? ChuongbungCo,bool? PhanungThanhbungKhong,bool? PhanungThanhbungCo,bool? LachBinhthuong,bool? LachBatthuong,int? LachDo,bool? GanBinhthuong,bool? GanTo,int? GanKichthuoc,bool? GanCotruong,bool? GanTuanhoangBanghe,bool? TieuhoaKhac,string TieuhoaKhacMota,bool? ThantietnieuBinhthuong,bool? ThantietnieuBatthuong,string ThantietnieuMota,bool? MausacnuoctieuBinhthuong,bool? MausacnuoctieuBatthuong,string MausacnuoctieuMausac,int? MausacnuoctieuThetich,bool? TieubuotKhong,bool? TieubuotCo,bool? TieuratKhong,bool? TieuratCo,bool? CaubangquangKhong,bool? CaubangquangCo,bool? DaudiemnieuquanKhong,bool? DaudiemnieuquanCo,string DaudiemnieuquanVitri,bool? RungthanKhong,bool? RungthanCo,string ThantietnieuKhac,bool? ThankinhBinhthuong,bool? ThankinhBatthuong,string ThankinhMota,bool? CocungKhong,bool? CocungCo,bool? DauhieuMangnaoKhong,bool? DauhieuMangnaoCo,bool? ColucBinhthuong,bool? ColucGiam,string ColucVitri,bool? TruongluccoBinhthuong,bool? TruongluccoTang,bool? TruongluccoGiam,string TruongluccoVitri,bool? PhanxaganxuongBinhthuong,bool? PhanxaganxuongTang,bool? PhanxaganxuongGiam,string PhanxaganxuongVitri,bool? LietPhaiKhong,bool? LietPhaiCo,bool? LietTraiKhong,bool? LietTraiCo,bool? Liet2ChiduoiCo,bool? Liet2ChiduoiKhong,bool? Liet4ChiCo,bool? Liet4ChiKhong,string ThankinhKhac,bool? CoxuongkhopBinhthuong,bool? CoxuongkhopBatthuong,string CoxuongkhopMota,bool? DaucoKhong,bool? DaucoCo,string DaucoVitri,bool? DaukhopKhong,bool? DaukhopCo,string DaukhopVitri,bool? SungdoKhopKhong,bool? SungdoKhopCo,string SungdoKhopVitri,bool? DaucotsongKhong,bool? DaucotsongCo,string DaucotsongVitri,bool? HanchevandongkhopKhong,bool? HanchevandongkhopCo,string HanchevandongkhopVitri,bool? TeocoKhong,bool? TeocoCo,string TeocoVitri,bool? HatTophiKhong,bool? HatTophiCo,string HatTophiVitri,bool? DaucungkhopbuoisangKhong,bool? DaucungkhopbuoissangCo,string DaucungkhopbuoissangMota,string CoxuongkhopKhac,bool? TaiBinhthuong,bool? TaiBatthuong,string TaiGhiro,bool? MuiBinhthuong,bool? MuiBatthuong,string MuiGhiro,bool? HongBinhthuong,bool? HongBatthuong,string HongGhiro,bool? ThanhquanBinhthuong,bool? ThanhquanBatthuong,string ThanhquanGhiro,string TaimuihongKhac,bool? RanghammatBinhthuong,bool? RanghammatBatthuong,string RanghammatGhiro,string RanghammatKhac,bool? MatBinhthuong,bool? MatBatthuong,string MatGhiro,string MatKhac,bool? NoitietBinhthuong,bool? NoitietBatthuong,string NoitietMota,bool? AnuongBinhthuong,bool? AnuongKem,bool? AnuongKhong,string NoitietDinhduongKhac,string BenhlyKhac)
 	    {
 		    EmrPhieukhamNoikhoa item = new EmrPhieukhamNoikhoa();
 	        item.MarkOld();
@@ -156,6 +912,8 @@ namespace VMS.HIS.DAL
 				
 			item.Bmi = Bmi;
 				
+			item.SPO2 = SPO2;
+				
 			item.MotaThem = MotaThem;
 				
 			item.IdBacsi = IdBacsi;
@@ -167,6 +925,760 @@ namespace VMS.HIS.DAL
 			item.NguoiSua = NguoiSua;
 				
 			item.NgaySua = NgaySua;
+				
+			item.DiungKhong = DiungKhong;
+				
+			item.DiungCo = DiungCo;
+				
+			item.DiungMota = DiungMota;
+				
+			item.DiungThuocKhong = DiungThuocKhong;
+				
+			item.DiungThuocCo = DiungThuocCo;
+				
+			item.DiungThuocMota = DiungThuocMota;
+				
+			item.DiungHoachatMyphamKhong = DiungHoachatMyphamKhong;
+				
+			item.DiungHoachatMyphamCo = DiungHoachatMyphamCo;
+				
+			item.DiungHoachatMyphamMota = DiungHoachatMyphamMota;
+				
+			item.DiungThucphamKhong = DiungThucphamKhong;
+				
+			item.DiungThucphamCo = DiungThucphamCo;
+				
+			item.DiungThucphamMota = DiungThucphamMota;
+				
+			item.DiungKhac = DiungKhac;
+				
+			item.DiungKhacMota = DiungKhacMota;
+				
+			item.ThuocDangdungKhong = ThuocDangdungKhong;
+				
+			item.ThuocDangdungCo = ThuocDangdungCo;
+				
+			item.ThuocDangdungMota = ThuocDangdungMota;
+				
+			item.TsbKhong = TsbKhong;
+				
+			item.TsbCo = TsbCo;
+				
+			item.TsbMota = TsbMota;
+				
+			item.BenhTimmachKhong = BenhTimmachKhong;
+				
+			item.BenhTimmachCo = BenhTimmachCo;
+				
+			item.BenhTimmachMota = BenhTimmachMota;
+				
+			item.BenhHohapKhong = BenhHohapKhong;
+				
+			item.BenhHohapCo = BenhHohapCo;
+				
+			item.BenhHohapMota = BenhHohapMota;
+				
+			item.BenhTieuhoaKhong = BenhTieuhoaKhong;
+				
+			item.BenhTieuhoaCo = BenhTieuhoaCo;
+				
+			item.BenhTieuhoaMota = BenhTieuhoaMota;
+				
+			item.BenhNoitietKhong = BenhNoitietKhong;
+				
+			item.BenhNoitietCo = BenhNoitietCo;
+				
+			item.BenhNoitietMota = BenhNoitietMota;
+				
+			item.BenhThankinhKhong = BenhThankinhKhong;
+				
+			item.BenhThankinhCo = BenhThankinhCo;
+				
+			item.BenhThankinhMota = BenhThankinhMota;
+				
+			item.BenhThantietnieuKhong = BenhThantietnieuKhong;
+				
+			item.BenhThantietnieuCo = BenhThantietnieuCo;
+				
+			item.BenhThantietnieuMota = BenhThantietnieuMota;
+				
+			item.BenhCoxuongkhopKhong = BenhCoxuongkhopKhong;
+				
+			item.BenhCoxuongkhopCo = BenhCoxuongkhopCo;
+				
+			item.BenhCoxuongkhopMota = BenhCoxuongkhopMota;
+				
+			item.BenhUngthuKhong = BenhUngthuKhong;
+				
+			item.BenhUngthuCo = BenhUngthuCo;
+				
+			item.BenhUngthuMota = BenhUngthuMota;
+				
+			item.BenhKhac = BenhKhac;
+				
+			item.BenhKhacMota = BenhKhacMota;
+				
+			item.TiensuPhauthuatKhong = TiensuPhauthuatKhong;
+				
+			item.TiensuPhauthuatCo = TiensuPhauthuatCo;
+				
+			item.TiensuPhauthuatMota = TiensuPhauthuatMota;
+				
+			item.YeutoNguycoKhong = YeutoNguycoKhong;
+				
+			item.YeutoNguycoCo = YeutoNguycoCo;
+				
+			item.YeutoNguycoMota = YeutoNguycoMota;
+				
+			item.ThuoclaKhong = ThuoclaKhong;
+				
+			item.ThuoclaCo = ThuoclaCo;
+				
+			item.ThuoclaMota = ThuoclaMota;
+				
+			item.ThuoclaNam = ThuoclaNam;
+				
+			item.ThuoclaGoi = ThuoclaGoi;
+				
+			item.ThuoclaoKhong = ThuoclaoKhong;
+				
+			item.ThuoclaoCo = ThuoclaoCo;
+				
+			item.ThuoclaoMota = ThuoclaoMota;
+				
+			item.ThuoclaoNam = ThuoclaoNam;
+				
+			item.RuouBiaKhong = RuouBiaKhong;
+				
+			item.RuouBiaCo = RuouBiaCo;
+				
+			item.RuouBiaMota = RuouBiaMota;
+				
+			item.RuouBiaThuongXuyen = RuouBiaThuongXuyen;
+				
+			item.RuouBiaThinhthoang = RuouBiaThinhthoang;
+				
+			item.RuouBiaIt = RuouBiaIt;
+				
+			item.ChatGaynghienKhong = ChatGaynghienKhong;
+				
+			item.ChatGaynghienCo = ChatGaynghienCo;
+				
+			item.ChatGaynghienMota = ChatGaynghienMota;
+				
+			item.ChatGaynghienLoai = ChatGaynghienLoai;
+				
+			item.ChatGaynghienLoaiMota = ChatGaynghienLoaiMota;
+				
+			item.ChatGaynghienNam = ChatGaynghienNam;
+				
+			item.TiepxucHoahchatTiaxaKhong = TiepxucHoahchatTiaxaKhong;
+				
+			item.TiepxucHoahchatTiaxaCo = TiepxucHoahchatTiaxaCo;
+				
+			item.TiepxucHoahchatTiaxaMota = TiepxucHoahchatTiaxaMota;
+				
+			item.TiepxucHoahchatTiaxaLoai = TiepxucHoahchatTiaxaLoai;
+				
+			item.TiepxucHoahchatTiaxaLoaiMota = TiepxucHoahchatTiaxaLoaiMota;
+				
+			item.TiepxucHoahchatTiaxaNam = TiepxucHoahchatTiaxaNam;
+				
+			item.NguycoKhac = NguycoKhac;
+				
+			item.NguycoKhacMota = NguycoKhacMota;
+				
+			item.TiensuGiadinhKhong = TiensuGiadinhKhong;
+				
+			item.TiensuGiadinhCo = TiensuGiadinhCo;
+				
+			item.TiensuGiadinhMota = TiensuGiadinhMota;
+				
+			item.TiensuGiadinhNguoimac = TiensuGiadinhNguoimac;
+				
+			item.TiensuGiadinhTenbenh = TiensuGiadinhTenbenh;
+				
+			item.YeutoDichteKhong = YeutoDichteKhong;
+				
+			item.YeutoDichteCo = YeutoDichteCo;
+				
+			item.YeutoDichteMota = YeutoDichteMota;
+				
+			item.NoiBiBenh = NoiBiBenh;
+				
+			item.YeutoDichteThoigian = YeutoDichteThoigian;
+				
+			item.BenhCaptinhNoisinhsong = BenhCaptinhNoisinhsong;
+				
+			item.Moisinh = Moisinh;
+				
+			item.ToanthanBinhthuong = ToanthanBinhthuong;
+				
+			item.ToanthanBatthuong = ToanthanBatthuong;
+				
+			item.ToanthanMota = ToanthanMota;
+				
+			item.TiepxucTotKhong = TiepxucTotKhong;
+				
+			item.TiepxucTotCo = TiepxucTotCo;
+				
+			item.NguGaKhong = NguGaKhong;
+				
+			item.NguGaCo = NguGaCo;
+				
+			item.LoMoKhong = LoMoKhong;
+				
+			item.LoMoCo = LoMoCo;
+				
+			item.HonMeKhong = HonMeKhong;
+				
+			item.HonMeCo = HonMeCo;
+				
+			item.Glassgow = Glassgow;
+				
+			item.DaHong = DaHong;
+				
+			item.DaVang = DaVang;
+				
+			item.DaXanh = DaXanh;
+				
+			item.DaKhac = DaKhac;
+				
+			item.DaKhacMota = DaKhacMota;
+				
+			item.DaXuathuyetKhong = DaXuathuyetKhong;
+				
+			item.DaXuathuyetCo = DaXuathuyetCo;
+				
+			item.DaXuathuyetChamNot = DaXuathuyetChamNot;
+				
+			item.DaXuathuyetMangbamda = DaXuathuyetMangbamda;
+				
+			item.DaXuathuyetTumau = DaXuathuyetTumau;
+				
+			item.DaXuathuyetKhac = DaXuathuyetKhac;
+				
+			item.DaXuathuyetKhacMota = DaXuathuyetKhacMota;
+				
+			item.KetmacBinhthuong = KetmacBinhthuong;
+				
+			item.KetmacDo = KetmacDo;
+				
+			item.KetmacVang = KetmacVang;
+				
+			item.KetmacKhac = KetmacKhac;
+				
+			item.KetmacKhacMota = KetmacKhacMota;
+				
+			item.LuoiBinhthuong = LuoiBinhthuong;
+				
+			item.LuoiBan = LuoiBan;
+				
+			item.LuoiGaimonMat = LuoiGaimonMat;
+				
+			item.LuoiKhac = LuoiKhac;
+				
+			item.LuoiKhacMota = LuoiKhacMota;
+				
+			item.XuathuyetNiemmacKhong = XuathuyetNiemmacKhong;
+				
+			item.XuathuyetNiemmacCo = XuathuyetNiemmacCo;
+				
+			item.XuathuyetNiemmacMat = XuathuyetNiemmacMat;
+				
+			item.XuathuyetNiemmacMui = XuathuyetNiemmacMui;
+				
+			item.XuathuyetNiemmacMieng = XuathuyetNiemmacMieng;
+				
+			item.XuathuyetNiemmacTieumau = XuathuyetNiemmacTieumau;
+				
+			item.XuathuyetNiemmacRoiloanKinhnguyet = XuathuyetNiemmacRoiloanKinhnguyet;
+				
+			item.XuathuyetNiemmacKhac = XuathuyetNiemmacKhac;
+				
+			item.XuathuyetNiemmacKhacMota = XuathuyetNiemmacKhacMota;
+				
+			item.LongtocmongBinhthuong = LongtocmongBinhthuong;
+				
+			item.RungToc = RungToc;
+				
+			item.MongGionDegay = MongGionDegay;
+				
+			item.LongtocmongKhac = LongtocmongKhac;
+				
+			item.LongtocmongKhacMota = LongtocmongKhacMota;
+				
+			item.TuyengiapBinhthuong = TuyengiapBinhthuong;
+				
+			item.TuyengiapTo = TuyengiapTo;
+				
+			item.TiengThoi = TiengThoi;
+				
+			item.PhuKhong = PhuKhong;
+				
+			item.PhuCo = PhuCo;
+				
+			item.PhuChiduoi = PhuChiduoi;
+				
+			item.PhuChitren = PhuChitren;
+				
+			item.PhuMat = PhuMat;
+				
+			item.PhuAokhoac = PhuAokhoac;
+				
+			item.PhuToanthan = PhuToanthan;
+				
+			item.PhuKhac = PhuKhac;
+				
+			item.PhuKhacmota = PhuKhacmota;
+				
+			item.HachKhong = HachKhong;
+				
+			item.HachCo = HachCo;
+				
+			item.VitriCo = VitriCo;
+				
+			item.VitriNach = VitriNach;
+				
+			item.VitriBen = VitriBen;
+				
+			item.VitriKhac = VitriKhac;
+				
+			item.VitriKhacMota = VitriKhacMota;
+				
+			item.SoluongMothach = SoluongMothach;
+				
+			item.SoluongNhieuhach = SoluongNhieuhach;
+				
+			item.TinhchatMem = TinhchatMem;
+				
+			item.TinhchatCung = TinhchatCung;
+				
+			item.DuongkinhHachLonnhat = DuongkinhHachLonnhat;
+				
+			item.DidongKhong = DidongKhong;
+				
+			item.DidongCo = DidongCo;
+				
+			item.DauKhong = DauKhong;
+				
+			item.DauCo = DauCo;
+				
+			item.DauKhac = DauKhac;
+				
+			item.TuanhoanBinhthuong = TuanhoanBinhthuong;
+				
+			item.TuanhoanBatthuong = TuanhoanBatthuong;
+				
+			item.TuanhoanMota = TuanhoanMota;
+				
+			item.DaungucKhong = DaungucKhong;
+				
+			item.DaungucCo = DaungucCo;
+				
+			item.DaungucDienhinh = DaungucDienhinh;
+				
+			item.DaungucKhongdienhinh = DaungucKhongdienhinh;
+				
+			item.HoihopKhong = HoihopKhong;
+				
+			item.HoihopCo = HoihopCo;
+				
+			item.NhipnhanhKhong = NhipnhanhKhong;
+				
+			item.NhipnhanhCo = NhipnhanhCo;
+				
+			item.NhipchamKhong = NhipchamKhong;
+				
+			item.NhipchamCo = NhipchamCo;
+				
+			item.LoannhipKhong = LoannhipKhong;
+				
+			item.LoannhipCo = LoannhipCo;
+				
+			item.DaplechKhong = DaplechKhong;
+				
+			item.DaplechCo = DaplechCo;
+				
+			item.DiendapRongKhong = DiendapRongKhong;
+				
+			item.DiendapRongCo = DiendapRongCo;
+				
+			item.TimmoKhong = TimmoKhong;
+				
+			item.TimmoCo = TimmoCo;
+				
+			item.T1 = T1;
+				
+			item.T2 = T2;
+				
+			item.ThoiTamthuKhong = ThoiTamthuKhong;
+				
+			item.ThoiTamthuCo = ThoiTamthuCo;
+				
+			item.ThoiTamthuVitri = ThoiTamthuVitri;
+				
+			item.ThoiTamthuMucdo = ThoiTamthuMucdo;
+				
+			item.ThoiTamthuRungmiu = ThoiTamthuRungmiu;
+				
+			item.ThoiTamtruongKhong = ThoiTamtruongKhong;
+				
+			item.ThoiTamtruongCo = ThoiTamtruongCo;
+				
+			item.ThoiTamtruongVitri = ThoiTamtruongVitri;
+				
+			item.ThoiTamtruongMucdo = ThoiTamtruongMucdo;
+				
+			item.ThoiTamtruongRungmiu = ThoiTamtruongRungmiu;
+				
+			item.RungTamtruongCo = RungTamtruongCo;
+				
+			item.RungTamtruongKhong = RungTamtruongKhong;
+				
+			item.RungTamtruongVitri = RungTamtruongVitri;
+				
+			item.RungTamtruongMucdo = RungTamtruongMucdo;
+				
+			item.ThoiLientucCo = ThoiLientucCo;
+				
+			item.ThoiLientucKhong = ThoiLientucKhong;
+				
+			item.ThoiLientucVitri = ThoiLientucVitri;
+				
+			item.TiengthoiDongmachKhong = TiengthoiDongmachKhong;
+				
+			item.TiengthoiDongmachCo = TiengthoiDongmachCo;
+				
+			item.TiengthoiDongmachVitri = TiengthoiDongmachVitri;
+				
+			item.TuanhoanKhac = TuanhoanKhac;
+				
+			item.HohapBinhthuong = HohapBinhthuong;
+				
+			item.HohapBatthuong = HohapBatthuong;
+				
+			item.HohapMota = HohapMota;
+				
+			item.KhothoKhong = KhothoKhong;
+				
+			item.KhothoCo = KhothoCo;
+				
+			item.BiendangLongngucKhong = BiendangLongngucKhong;
+				
+			item.BiendangLongngucCo = BiendangLongngucCo;
+				
+			item.GoBinhthuong = GoBinhthuong;
+				
+			item.GoDuc = GoDuc;
+				
+			item.GoVang = GoVang;
+				
+			item.GoVitri = GoVitri;
+				
+			item.RiraoPhenangBinthuong = RiraoPhenangBinthuong;
+				
+			item.RiraoPhenangGiam = RiraoPhenangGiam;
+				
+			item.RiraoPhenangVitri = RiraoPhenangVitri;
+				
+			item.RungthanhBinhthuong = RungthanhBinhthuong;
+				
+			item.RungthanhTang = RungthanhTang;
+				
+			item.RungthanhGiam = RungthanhGiam;
+				
+			item.RungthanhVitri = RungthanhVitri;
+				
+			item.RaleKhong = RaleKhong;
+				
+			item.RaleCo = RaleCo;
+				
+			item.RaleAm = RaleAm;
+				
+			item.RaleNo = RaleNo;
+				
+			item.RaleRit = RaleRit;
+				
+			item.RaleNgay = RaleNgay;
+				
+			item.RaleKhac = RaleKhac;
+				
+			item.RaleKhacMota = RaleKhacMota;
+				
+			item.TieuhoaBinhthuong = TieuhoaBinhthuong;
+				
+			item.TieuhoaBatthuong = TieuhoaBatthuong;
+				
+			item.TieuhoaMota = TieuhoaMota;
+				
+			item.DaubungKhong = DaubungKhong;
+				
+			item.DaubungCo = DaubungCo;
+				
+			item.DaubungVitri = DaubungVitri;
+				
+			item.BuonnonKhong = BuonnonKhong;
+				
+			item.BuonnonCo = BuonnonCo;
+				
+			item.NonKhong = NonKhong;
+				
+			item.NonCo = NonCo;
+				
+			item.NonMautuoi = NonMautuoi;
+				
+			item.NonMautham = NonMautham;
+				
+			item.PhancomauKhong = PhancomauKhong;
+				
+			item.PhancomauCo = PhancomauCo;
+				
+			item.PhancomauMautuoi = PhancomauMautuoi;
+				
+			item.PhancomauMautham = PhancomauMautham;
+				
+			item.PhancomauPhanden = PhancomauPhanden;
+				
+			item.TieuchayKhong = TieuchayKhong;
+				
+			item.TieuchayCo = TieuchayCo;
+				
+			item.TieuchaySolan = TieuchaySolan;
+				
+			item.ChuongbungKhong = ChuongbungKhong;
+				
+			item.ChuongbungCo = ChuongbungCo;
+				
+			item.PhanungThanhbungKhong = PhanungThanhbungKhong;
+				
+			item.PhanungThanhbungCo = PhanungThanhbungCo;
+				
+			item.LachBinhthuong = LachBinhthuong;
+				
+			item.LachBatthuong = LachBatthuong;
+				
+			item.LachDo = LachDo;
+				
+			item.GanBinhthuong = GanBinhthuong;
+				
+			item.GanTo = GanTo;
+				
+			item.GanKichthuoc = GanKichthuoc;
+				
+			item.GanCotruong = GanCotruong;
+				
+			item.GanTuanhoangBanghe = GanTuanhoangBanghe;
+				
+			item.TieuhoaKhac = TieuhoaKhac;
+				
+			item.TieuhoaKhacMota = TieuhoaKhacMota;
+				
+			item.ThantietnieuBinhthuong = ThantietnieuBinhthuong;
+				
+			item.ThantietnieuBatthuong = ThantietnieuBatthuong;
+				
+			item.ThantietnieuMota = ThantietnieuMota;
+				
+			item.MausacnuoctieuBinhthuong = MausacnuoctieuBinhthuong;
+				
+			item.MausacnuoctieuBatthuong = MausacnuoctieuBatthuong;
+				
+			item.MausacnuoctieuMausac = MausacnuoctieuMausac;
+				
+			item.MausacnuoctieuThetich = MausacnuoctieuThetich;
+				
+			item.TieubuotKhong = TieubuotKhong;
+				
+			item.TieubuotCo = TieubuotCo;
+				
+			item.TieuratKhong = TieuratKhong;
+				
+			item.TieuratCo = TieuratCo;
+				
+			item.CaubangquangKhong = CaubangquangKhong;
+				
+			item.CaubangquangCo = CaubangquangCo;
+				
+			item.DaudiemnieuquanKhong = DaudiemnieuquanKhong;
+				
+			item.DaudiemnieuquanCo = DaudiemnieuquanCo;
+				
+			item.DaudiemnieuquanVitri = DaudiemnieuquanVitri;
+				
+			item.RungthanKhong = RungthanKhong;
+				
+			item.RungthanCo = RungthanCo;
+				
+			item.ThantietnieuKhac = ThantietnieuKhac;
+				
+			item.ThankinhBinhthuong = ThankinhBinhthuong;
+				
+			item.ThankinhBatthuong = ThankinhBatthuong;
+				
+			item.ThankinhMota = ThankinhMota;
+				
+			item.CocungKhong = CocungKhong;
+				
+			item.CocungCo = CocungCo;
+				
+			item.DauhieuMangnaoKhong = DauhieuMangnaoKhong;
+				
+			item.DauhieuMangnaoCo = DauhieuMangnaoCo;
+				
+			item.ColucBinhthuong = ColucBinhthuong;
+				
+			item.ColucGiam = ColucGiam;
+				
+			item.ColucVitri = ColucVitri;
+				
+			item.TruongluccoBinhthuong = TruongluccoBinhthuong;
+				
+			item.TruongluccoTang = TruongluccoTang;
+				
+			item.TruongluccoGiam = TruongluccoGiam;
+				
+			item.TruongluccoVitri = TruongluccoVitri;
+				
+			item.PhanxaganxuongBinhthuong = PhanxaganxuongBinhthuong;
+				
+			item.PhanxaganxuongTang = PhanxaganxuongTang;
+				
+			item.PhanxaganxuongGiam = PhanxaganxuongGiam;
+				
+			item.PhanxaganxuongVitri = PhanxaganxuongVitri;
+				
+			item.LietPhaiKhong = LietPhaiKhong;
+				
+			item.LietPhaiCo = LietPhaiCo;
+				
+			item.LietTraiKhong = LietTraiKhong;
+				
+			item.LietTraiCo = LietTraiCo;
+				
+			item.Liet2ChiduoiCo = Liet2ChiduoiCo;
+				
+			item.Liet2ChiduoiKhong = Liet2ChiduoiKhong;
+				
+			item.Liet4ChiCo = Liet4ChiCo;
+				
+			item.Liet4ChiKhong = Liet4ChiKhong;
+				
+			item.ThankinhKhac = ThankinhKhac;
+				
+			item.CoxuongkhopBinhthuong = CoxuongkhopBinhthuong;
+				
+			item.CoxuongkhopBatthuong = CoxuongkhopBatthuong;
+				
+			item.CoxuongkhopMota = CoxuongkhopMota;
+				
+			item.DaucoKhong = DaucoKhong;
+				
+			item.DaucoCo = DaucoCo;
+				
+			item.DaucoVitri = DaucoVitri;
+				
+			item.DaukhopKhong = DaukhopKhong;
+				
+			item.DaukhopCo = DaukhopCo;
+				
+			item.DaukhopVitri = DaukhopVitri;
+				
+			item.SungdoKhopKhong = SungdoKhopKhong;
+				
+			item.SungdoKhopCo = SungdoKhopCo;
+				
+			item.SungdoKhopVitri = SungdoKhopVitri;
+				
+			item.DaucotsongKhong = DaucotsongKhong;
+				
+			item.DaucotsongCo = DaucotsongCo;
+				
+			item.DaucotsongVitri = DaucotsongVitri;
+				
+			item.HanchevandongkhopKhong = HanchevandongkhopKhong;
+				
+			item.HanchevandongkhopCo = HanchevandongkhopCo;
+				
+			item.HanchevandongkhopVitri = HanchevandongkhopVitri;
+				
+			item.TeocoKhong = TeocoKhong;
+				
+			item.TeocoCo = TeocoCo;
+				
+			item.TeocoVitri = TeocoVitri;
+				
+			item.HatTophiKhong = HatTophiKhong;
+				
+			item.HatTophiCo = HatTophiCo;
+				
+			item.HatTophiVitri = HatTophiVitri;
+				
+			item.DaucungkhopbuoisangKhong = DaucungkhopbuoisangKhong;
+				
+			item.DaucungkhopbuoissangCo = DaucungkhopbuoissangCo;
+				
+			item.DaucungkhopbuoissangMota = DaucungkhopbuoissangMota;
+				
+			item.CoxuongkhopKhac = CoxuongkhopKhac;
+				
+			item.TaiBinhthuong = TaiBinhthuong;
+				
+			item.TaiBatthuong = TaiBatthuong;
+				
+			item.TaiGhiro = TaiGhiro;
+				
+			item.MuiBinhthuong = MuiBinhthuong;
+				
+			item.MuiBatthuong = MuiBatthuong;
+				
+			item.MuiGhiro = MuiGhiro;
+				
+			item.HongBinhthuong = HongBinhthuong;
+				
+			item.HongBatthuong = HongBatthuong;
+				
+			item.HongGhiro = HongGhiro;
+				
+			item.ThanhquanBinhthuong = ThanhquanBinhthuong;
+				
+			item.ThanhquanBatthuong = ThanhquanBatthuong;
+				
+			item.ThanhquanGhiro = ThanhquanGhiro;
+				
+			item.TaimuihongKhac = TaimuihongKhac;
+				
+			item.RanghammatBinhthuong = RanghammatBinhthuong;
+				
+			item.RanghammatBatthuong = RanghammatBatthuong;
+				
+			item.RanghammatGhiro = RanghammatGhiro;
+				
+			item.RanghammatKhac = RanghammatKhac;
+				
+			item.MatBinhthuong = MatBinhthuong;
+				
+			item.MatBatthuong = MatBatthuong;
+				
+			item.MatGhiro = MatGhiro;
+				
+			item.MatKhac = MatKhac;
+				
+			item.NoitietBinhthuong = NoitietBinhthuong;
+				
+			item.NoitietBatthuong = NoitietBatthuong;
+				
+			item.NoitietMota = NoitietMota;
+				
+			item.AnuongBinhthuong = AnuongBinhthuong;
+				
+			item.AnuongKem = AnuongKem;
+				
+			item.AnuongKhong = AnuongKhong;
+				
+			item.NoitietDinhduongKhac = NoitietDinhduongKhac;
+				
+			item.BenhlyKhac = BenhlyKhac;
 				
 	        item.Save(UserName);
 	    }

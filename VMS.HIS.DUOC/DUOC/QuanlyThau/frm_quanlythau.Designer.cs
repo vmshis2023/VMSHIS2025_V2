@@ -186,7 +186,7 @@
             // 
             // cmdThem
             // 
-            this.cmdThem.Image = global::VMS.HIS.Duoc.Properties.Resources.Add;
+            this.cmdThem.Image = global::VMS.HIS.Duoc.Properties.Resources.add_04_32;
             this.cmdThem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdThem.Name = "cmdThem";
             this.cmdThem.Size = new System.Drawing.Size(93, 28);
@@ -364,6 +364,7 @@
             this.txtNhacungcap.RaiseEventEnter = false;
             this.txtNhacungcap.RaiseEventEnterWhenEmpty = false;
             this.txtNhacungcap.SelectedIndex = -1;
+            this.txtNhacungcap.SetDefaultWhenInit = true;
             this.txtNhacungcap.ShowCodeWithValue = false;
             this.txtNhacungcap.Size = new System.Drawing.Size(245, 21);
             this.txtNhacungcap.splitChar = '@';
@@ -418,6 +419,7 @@
             this.txtLoaiThau.RaiseEventEnter = false;
             this.txtLoaiThau.RaiseEventEnterWhenEmpty = false;
             this.txtLoaiThau.SelectedIndex = -1;
+            this.txtLoaiThau.SetDefaultWhenInit = true;
             this.txtLoaiThau.ShowCodeWithValue = false;
             this.txtLoaiThau.Size = new System.Drawing.Size(136, 22);
             this.txtLoaiThau.splitChar = '@';
@@ -462,6 +464,7 @@
             this.txtGoiThau.RaiseEventEnter = false;
             this.txtGoiThau.RaiseEventEnterWhenEmpty = false;
             this.txtGoiThau.SelectedIndex = -1;
+            this.txtGoiThau.SetDefaultWhenInit = true;
             this.txtGoiThau.ShowCodeWithValue = false;
             this.txtGoiThau.Size = new System.Drawing.Size(136, 22);
             this.txtGoiThau.splitChar = '@';
@@ -879,7 +882,7 @@
             // 
             // cmdThemdieutiet
             // 
-            this.cmdThemdieutiet.Image = global::VMS.HIS.Duoc.Properties.Resources.Add;
+            this.cmdThemdieutiet.Image = global::VMS.HIS.Duoc.Properties.Resources.add_04_32;
             this.cmdThemdieutiet.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdThemdieutiet.Name = "cmdThemdieutiet";
             this.cmdThemdieutiet.Size = new System.Drawing.Size(64, 28);

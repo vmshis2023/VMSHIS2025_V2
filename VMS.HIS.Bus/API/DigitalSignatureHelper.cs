@@ -20,19 +20,23 @@ namespace VMS.API.Libs
     }
     public class VMSDigitalSignature
     {
+        public string userId { get; set; }
         public string userName { get; set; }
+        public string userSecret { get; set; }
+        public string userTOTP { get; set; }
         public string userFullName { get; set; }
         public string userDesc { get; set; }
-        public string appId { get; set; }
-        public string secret { get; set; }
-        public string serialNum { get; set; }
+        public string SAD { get; set; }
+        public int FontSize { get; set; }
+        public int FontSizeWhenImage { get; set; }
+      
+        public DateTime? ngay_ky { get; set; }
         public string signatureType { get; set; }
-        public string signatureName { get; set; }
+       
         public string pdfFileName { get; set; }
         public string base64Pdf { get; set; }
         public string base64Signature { get; set; }
-        public DateTime? dateSigned { get; set; }
-
+       
         public List<VMSDigitalSignatureLocation> locations { get; set; }
     }
    

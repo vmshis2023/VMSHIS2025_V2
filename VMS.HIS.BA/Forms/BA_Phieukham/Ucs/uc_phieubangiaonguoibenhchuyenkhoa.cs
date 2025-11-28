@@ -31,6 +31,7 @@ namespace VMS.HIS.UI.EMR.Ucs
         public int id_bacsikham = -1;
         DmucNhanvien objBacsiPttt = null;
         DmucNhanvien objNguoiDaidien = null;
+        public bool Force2Saved = false;
         public uc_phieubangiaonguoibenhchuyenkhoa()
         {
             InitializeComponent();
@@ -593,6 +594,7 @@ namespace VMS.HIS.UI.EMR.Ucs
                         if(objBacsiPttt==null)
                             objBacsiPttt = DmucNhanvien.FetchByID(Utility.Int32Dbnull(txt_bacsi_chidinhchuyen.MyID));
                         phieubangiao.Save();
+                        emrdoc.Force2Saved = Force2Saved;
                         emrdoc.InitDocument(phieubangiao.IdBenhnhan, phieubangiao.MaLuotkham, Utility.Int64Dbnull(phieubangiao.IdPhieu), phieubangiao.NgayBangiao, Loaiphieu_HIS.PHIEU_BANGIAO_NGUOIBENHCHUYENKHOA_BACSI, "PHIEU_BANGIAO_NGUOIBENHCHUYENKHOA_BACSI", phieubangiao.NguoiTao,Utility.Int16Dbnull( txtKhoa.MyID), Utility.Int16Dbnull(objBacsiPttt.IdPhong), Utility.Byte2Bool(0),"",false,false,"",Loaiphieu_HIS.PHIEU_BANGIAO_NGUOIBENHCHUYENKHOA);
                         emrdoc.Save();
                         emrdoc.InitDocument(phieubangiao.IdBenhnhan, phieubangiao.MaLuotkham, Utility.Int64Dbnull(phieubangiao.IdPhieu), phieubangiao.NgayBangiao, Loaiphieu_HIS.PHIEU_BANGIAO_NGUOIBENHCHUYENKHOA_DIEUDUONG, "PHIEU_BANGIAO_NGUOIBENHCHUYENKHOA_DIEUDUONG", phieubangiao.NguoiTao, Utility.Int16Dbnull(txtKhoa.MyID), Utility.Int16Dbnull(objBacsiPttt.IdPhong), Utility.Byte2Bool(0), "", false, false, "", Loaiphieu_HIS.PHIEU_BANGIAO_NGUOIBENHCHUYENKHOA);

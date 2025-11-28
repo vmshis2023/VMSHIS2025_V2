@@ -182,7 +182,14 @@ namespace VNS.HIS.UI.THUOC
                 Int16 StockID =  Utility.Int16Dbnull(cboKhoxuat.SelectedValue, -1);
                 if (dtList != null) dtList.Rows.Clear();
                 if (dtDrugList != null) dtDrugList.Rows.Clear();
-                dtList = SPs.ThuocNoitruTimkiemphieutonghopthuocnoitru(Utility.Int32Dbnull(txtID_CAPPHAT.Text, -1), (Int16)(optLinhThuong.Checked ? 0 : 1), chkByDate.Checked ? dtpFromDate.Value.ToString("dd/MM/yyyy") : "01/01/1900", chkByDate.Checked ? dtpToDate.Value.ToString("dd/MM/yyyy") : "01/01/1900",
+                Int16 kieu_linh = 100;
+                if (opt_Tatca.Checked)
+                    kieu_linh = 100; 
+                else if (optLinhThuong.Checked)
+                    kieu_linh = 0;
+                else if (optLinhBoSung.Checked)
+                    kieu_linh = 1;
+                dtList = SPs.ThuocNoitruTimkiemphieutonghopthuocnoitru(Utility.Int32Dbnull(txtID_CAPPHAT.Text, -1), kieu_linh, chkByDate.Checked ? dtpFromDate.Value.ToString("dd/MM/yyyy") : "01/01/1900", chkByDate.Checked ? dtpToDate.Value.ToString("dd/MM/yyyy") : "01/01/1900",
                                                      Utility.Int32Dbnull(cboStaff.SelectedValue, -1),
                                                      Utility.Int32Dbnull(cboDepartment.SelectedValue, -1), StockID,KIEU_THUOC_VT,
                                                      Utility.Int32Dbnull(cboStatus.SelectedValue, -1)).GetDataSet().Tables[0];

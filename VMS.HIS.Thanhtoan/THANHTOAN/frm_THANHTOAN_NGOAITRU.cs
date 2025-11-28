@@ -36,6 +36,8 @@ using VMS.HIS.Bus.BHYT;
 using VMS.HIS.Bus.QRPay;
 using VMS.Invoice;
 using VNS.Libs.AppUI;
+using VNS.HIS.UI.NOITRU;
+using VNS.HIS.UI.Baocao;
 
 namespace  VNS.HIS.UI.THANHTOAN
 {
@@ -90,8 +92,8 @@ namespace  VNS.HIS.UI.THANHTOAN
             dtFromDate.Value =
                 dtPaymentDate.Value = dtInput_Date.Value = dtToDate.Value = globalVariables.SysDate;
             //cmdHuyThanhToan.Visible = (globalVariables.IsAdmin || globalVariables.quyenh);
-            Utility.grdExVisiableColName(grdPayment, "TAIHOADON", globalVariables.IsAdmin || Utility.Coquyen("HOADONDIENTU_DOWNLOAD"));
-            Utility.grdExVisiableColName(grdPayment, "XUATHOADON", globalVariables.IsAdmin || Utility.Coquyen("HOADONDIENTU_UPLOAD"));
+            //Utility.grdExVisiableColName(grdPayment, "TAIHOADON", globalVariables.IsAdmin || Utility.Coquyen("HOADONDIENTU_DOWNLOAD"));
+            //Utility.grdExVisiableColName(grdPayment, "XUATHOADON", globalVariables.IsAdmin || Utility.Coquyen("HOADONDIENTU_UPLOAD"));
             Utility.grdExVisiableColName(grdPayment, "cmdHUY_PHIEUTHU", globalVariables.IsAdmin || Utility.Coquyen("thanhtoan_huythanhtoan"));
             Utility.grdExVisiableColName(grdPhieuChi, "cmdHuyPhieuChi", globalVariables.IsAdmin || Utility.Coquyen("thanhtoan_huyphieuchi"));
             Utility.grdExVisiableColName(grdPayment, "sluong_sua",v_bytNoitru==0 && (lst_IDLoaithanhtoan.Contains("3") ||lst_IDLoaithanhtoan.Contains("5"))  );
@@ -288,7 +290,7 @@ namespace  VNS.HIS.UI.THANHTOAN
             optLoaiChiphiAll.CheckedChanged += OptLoaiChiphiAll_CheckedChanged; 
             optLoaiChiphiBHYT.CheckedChanged += OptLoaiChiphiAll_CheckedChanged;
             optLoaiChiphiDvu.CheckedChanged += OptLoaiChiphiAll_CheckedChanged;
-            mnuTutuc.Click += mnuTutuc_Click;
+            //mnuTutuc.Click += mnuTutuc_Click;
             mnuHuychonTatca.Click += mnuHuychonTatca_Click;
             mnuTamung.Click += MnuTamung_Click;
 
@@ -491,9 +493,45 @@ namespace  VNS.HIS.UI.THANHTOAN
             {
                 Suaghichu();
             }
-           
-        }
+            else if (e.Column.Key == "mota_them")
+            {
+                SuaMoTaThem();
+            }
 
+        }
+        void SuaMoTaThem()
+        {
+            try
+            {
+                //if (!Utility.Coquyen("HOADONDIENTU_SUA_GHICHU"))
+                //{
+                //    Utility.thongbaokhongcoquyen("HOADONDIENTU_SUA_GHICHU", "sửa thông tin ghi chú chứng từ.\nVui lòng liên hệ IT để được cấp quyền");
+                //    return;
+                //}
+               
+                long id_thanhtoan = Utility.Int64Dbnull(grdPayment.GetValue(KcbThanhtoan.Columns.IdThanhtoan));
+                KcbThanhtoan _objthanhtoan = KcbThanhtoan.FetchByID(id_thanhtoan);
+                if (_objthanhtoan == null)
+                {
+                    Utility.ShowMsg("Không tìm được bản ghi thanh toán(Có thể vừa bị xóa khỏi hệ thống). Vui lòng chọn lại người bệnh để refresh lại");
+                    return;
+                }
+                string oldValue = Utility.sDbnull(_objthanhtoan.MotaThem, "");
+                string newValue = Utility.sDbnull(grdPayment.GetValue("mota_them"), "");
+                if (!Utility.AcceptQuestion(string.Format("Bạn có chắc chắn muốn sửa thông tin mô tả của chứng từ đang chọn từ:\n{0} \nthành:\n{1}", oldValue, newValue), "Xác nhận thay đổi", true)) return;
+                int numofA = new Update(KcbThanhtoan.Schema).Set(KcbThanhtoan.Columns.MotaThem).EqualTo(newValue).Where(KcbThanhtoan.Columns.IdThanhtoan).IsEqualTo(id_thanhtoan).Execute();
+                if (numofA > 0)
+                {
+                    Utility.Log(this.Name, globalVariables.UserName, string.Format("Cập nhật thông tin mô tả của bản tin thanh toán Id={0}, ghi chú cũ={1}, ghi chú mới ={2} thành công ", id_thanhtoan.ToString(), oldValue, newValue), newaction.Update, this.GetType().Assembly.ManifestModule.Name);
+                    //Utility.ShowMsg("Cập nhật mô tả thành công. Nhấn OK để kết thúc");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Utility.CatchException(ex);
+            }
+        }
         void updateQtyinDataTable(long IdChitietdonthuoc, decimal newQty, decimal TT)
         {
             try
@@ -654,7 +692,7 @@ namespace  VNS.HIS.UI.THANHTOAN
                                 long id_phieu = Utility.Int64Dbnull(dr["id_phieu"]);
                                 long id_phieuchitiet = Utility.Int64Dbnull(dr["id_phieu_chitiet"]);
                                 dr["thuc_thu"] = Utility.DecimaltoDbnull(dr["tt"], 0) - Utility.DecimaltoDbnull(dr["tien_chietkhau"], 0);
-                                CapnhatChietkhau_DonGia(Convert.ToByte(0), id_loaithanhtoan, kieu_chietkhau, tile_chietkhau, tien_chietkhau, id_phieu, id_phieuchitiet);
+                                if (THU_VIEN_CHUNG.Laygiatrithamsohethong("THANHTOAN_CHIETKHAU_TUDONGLUU", "1", true) == "1") CapnhatChietkhau_DonGia(Convert.ToByte(0), id_loaithanhtoan, kieu_chietkhau, tile_chietkhau, tien_chietkhau, id_phieu, id_phieuchitiet);
                             }
                         }
                     }
@@ -683,7 +721,7 @@ namespace  VNS.HIS.UI.THANHTOAN
                                 long id_phieu = Utility.Int64Dbnull(dr["id_phieu"]);
                                 long id_phieuchitiet = Utility.Int64Dbnull(dr["id_phieu_chitiet"]);
                                 dr["thuc_thu"] = Utility.DecimaltoDbnull(dr["tt"], 0) - Utility.DecimaltoDbnull(dr["tien_chietkhau"], 0);
-                                CapnhatChietkhau_DonGia(Convert.ToByte(0), id_loaithanhtoan, kieu_chietkhau, tile_chietkhau, tien_chietkhau, id_phieu, id_phieuchitiet);
+                                if (THU_VIEN_CHUNG.Laygiatrithamsohethong("THANHTOAN_CHIETKHAU_TUDONGLUU", "1", true) == "1") CapnhatChietkhau_DonGia(Convert.ToByte(0), id_loaithanhtoan, kieu_chietkhau, tile_chietkhau, tien_chietkhau, id_phieu, id_phieuchitiet);
                             }
                         }
                     }
@@ -783,9 +821,62 @@ namespace  VNS.HIS.UI.THANHTOAN
 
         void grdPayment_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            CallPhieuThu();
-        }
+            try
+            {
+                string kieu_thanhtoan = Utility.sDbnull(grdPayment.GetValue("kieu_thanhtoan"));
 
+                if (kieu_thanhtoan == "1")
+                    CallPhieuChi(grdPayment);
+                else if (kieu_thanhtoan == "10")//Ghi nợ
+                {
+                    //Tự điền các dịch vụ ghi nợ vào các dịch vụ chờ thanh toán
+                    TuChonGhiNo();
+                }
+                else if (kieu_thanhtoan == "20")//Tạm ứng
+                {
+                    
+                }
+                else
+                {
+                    CallPhieuThu();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+        void TuChonGhiNo()
+        {
+            try
+            {
+                long id_ghino = Utility.Int64Dbnull(grdPayment.GetValue(KcbThanhtoan.Columns.IdThanhtoan));
+                foreach (GridEXRow exRow in grdThongTinChuaThanhToan.GetDataRows())
+                {
+                    exRow.BeginEdit();
+                    exRow.IsChecked = false;
+
+                    if (Utility.Int32Dbnull(exRow.Cells["id_tamthu"].Value, 0) == id_ghino &&  Utility.Int32Dbnull(exRow.Cells["trangthai_huy"].Value, 0) == 0 && Utility.Int32Dbnull(exRow.Cells["trangthai_thanhtoan"].Value, 0) == 0)
+                    {
+                        exRow.IsChecked = true;
+                    }
+                    else
+                    {
+                        exRow.IsChecked = false;
+
+                    }
+                    exRow.Cells["colChon"].Value = Utility.Bool2byte(exRow.IsChecked);
+                    exRow.EndEdit();
+                }
+                //Thay hàm TinhToanSoTienPhaithu= hàm SetSumTotalProperties để tính lại tiền BHYT chi trả
+                SetSumTotalProperties();
+                //TinhToanSoTienPhaithu();
+                ModifyCommand();
+            }
+            catch
+            {
+            }
+        }
         void grdThongTinChuaThanhToan_SelectionChanged(object sender, EventArgs e)
         {
             if (grdThongTinChuaThanhToan.CurrentRow != null)
@@ -973,7 +1064,7 @@ namespace  VNS.HIS.UI.THANHTOAN
                     return;
                 }
                 string maphieu = THU_VIEN_CHUNG.SinhmaVienphi("HKQ");
-                SPs.NoitruHoanung(-1l,maphieu, objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan,DateTime.Now,
+                SPs.NoitruHoanung(-1,-1l,maphieu, objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan,DateTime.Now,
                     globalVariables.gv_intIDNhanvien, globalVariables.UserName,
                     Utility.Int32Dbnull(objLuotkham.IdKhoanoitru, -1), Utility.Int64Dbnull(objLuotkham.IdRavien, -1),
                     Utility.Int32Dbnull(objLuotkham.IdBuong, -1), Utility.Int32Dbnull(objLuotkham.IdGiuong, -1),
@@ -988,7 +1079,7 @@ namespace  VNS.HIS.UI.THANHTOAN
                     Utility.ShowMsg("Bệnh nhân đã thanh toán nội trú nên bạn không được phép hủy hoàn ứng");
                     return;
                 }
-                SPs.NoitruHuyhoanung(objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan, -1l, (byte)0).Execute();
+                SPs.NoitruHuyhoanung(objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan,-1, -1l, (byte)0).Execute();
                 cmdHoanung.Tag = "0";
                 cmdHoanung.Text = "Hoàn ứng";
             }
@@ -1697,6 +1788,16 @@ namespace  VNS.HIS.UI.THANHTOAN
                     else
                         new INPHIEU_THANHTOAN_NGOAITRU().InBienlai(false, _Payment_ID, -1, objLuotkham, 0);
                 }
+                else if (kieuthanhtoan == 10 )//Ghi nợ
+                {
+                    if (!Utility.isValidGrid(grdPayment)) return;
+                    long id_ghino = Utility.Int64Dbnull(grdPayment.GetValue(KcbThanhtoan.Columns.IdThanhtoan));
+                    InBienLaiGhiNo(id_ghino);
+                }
+                else if (kieuthanhtoan == 20)//Tạm ứng
+                {
+                    InPhieuTU();
+                }
                 else//Phiếu chi
                 {
                     KcbThanhtoan objKcbThanhtoan = KcbThanhtoan.FetchByID(_Payment_ID);
@@ -1718,7 +1819,100 @@ namespace  VNS.HIS.UI.THANHTOAN
             }
            
         }
+        void InPhieuTU()
+        {
+            try
+            {
+                if (objLuotkham == null)
+                {
+                    Utility.ShowMsg("Bạn cần chọn bệnh nhân in phiếu tạm ứng");
+                    return;
+                }
+                
+                long id_tamung = Utility.Int64Dbnull(grdPayment.GetValue(KcbThanhtoan.Columns.IdThanhtoan));
+                NoitruTamung objTU = NoitruTamung.FetchByID(id_tamung);
+                DataTable m_dtReport = noitru_TamungHoanung.NoitruInphieutamung(id_tamung, objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham);
+                THU_VIEN_CHUNG.CreateXML(m_dtReport, "noitru_phieutamung.xml");
+                if (m_dtReport.Rows.Count <= 0)
+                {
+                    Utility.ShowMsg("Không tìm thấy dữ liệu", "Thông báo", MessageBoxIcon.Warning);
+                    return;
+                }
+                string reportcode = "noitru_phieutamung";
+                bool hasCongkham = false;
+                var q1 = from p in m_dtReport.AsEnumerable() where Utility.DecimaltoDbnull(p["id_phieuchitiet"]) > 0 select p;
+                var q = from p in m_dtReport.AsEnumerable() where Utility.Int32Dbnull(p["loai_dvu"]) == 1 select p;
+                if (!q1.Any())//tạm ứng ko theo dịch vụ
+                {
+                    hasCongkham = false;
+                }
+                else//Tạm ứng chi tiết dịch vụ
+                {
+                    reportcode = "noitru_phieutamung_dvu";
+                    if (q.Any())
+                    {
+                        hasCongkham = true;
+                    }
 
+                }
+                string tieude = "", reportname = "";
+                var crpt = Utility.GetReport(reportcode, ref tieude, ref reportname);
+                if (crpt == null) return;
+
+                MoneyByLetter _moneyByLetter = new MoneyByLetter();
+                var objForm = new frmPrintPreview(tieude, crpt, true, m_dtReport.Rows.Count <= 0 ? false : true);
+                Utility.UpdateLogotoDatatable(ref m_dtReport);
+
+                crpt.SetDataSource(m_dtReport);
+
+                objForm.NGAY = objTU != null ? objTU.NgayTamung.Value : DateTime.Now;
+                objForm.mv_sReportFileName = Path.GetFileName(reportname);
+                objForm.mv_sReportCode = reportcode;
+                objForm.nguoi_thuchien = m_dtReport.Rows[0]["tnv"].ToString();
+                Utility.SetParameterValue(crpt, "ParentBranchName", globalVariables.ParentBranch_Name);
+                Utility.SetParameterValue(crpt, "BranchName", globalVariables.Branch_Name);
+                Utility.SetParameterValue(crpt, "Tamung_Congkham", Utility.Bool2byte(hasCongkham).ToString());
+                Utility.SetParameterValue(crpt, "Address", globalVariables.Branch_Address);
+                Utility.SetParameterValue(crpt, "TelePhone", globalVariables.Branch_Phone);
+                Utility.SetParameterValue(crpt, "sMoneyLetter", _moneyByLetter.sMoneyToLetter(reportcode == "noitru_phieutamung_dvu" ? Utility.Int32Dbnull(m_dtReport.Compute("SUM(thanh_tien)", "1=1"), 0).ToString() : Utility.Int32Dbnull(m_dtReport.Compute("SUM(so_tien)", "1=1"), 0).ToString()));
+                Utility.SetParameterValue(crpt, "DIADIEM", globalVariables.gv_strDiadiem);
+                Utility.SetParameterValue(crpt, "CurrentDate", Utility.FormatDateTime(objTU.NgayTamung.Value));
+                Utility.SetParameterValue(crpt, "sCurrentDate", Utility.FormatDateTimeWithThanhPho(DateTime.Now));
+                Utility.SetParameterValue(crpt, "sTitleReport", tieude);
+                Utility.SetParameterValue(crpt, "BottomCondition", THU_VIEN_CHUNG.BottomCondition());
+                objForm.crptViewer.ReportSource = crpt;
+
+                if (Utility.isPrintPreview(PropertyLib._MayInProperties.TenMayInBienlai, PropertyLib._MayInProperties.PreviewPhieuTamung))
+                {
+                    objForm.SetDefaultPrinter(PropertyLib._MayInProperties.TenMayInBienlai, 0);
+                    objForm.ShowDialog();
+                }
+                else
+                {
+                    objForm.addTrinhKy_OnFormLoad();
+                    crpt.PrintOptions.PrinterName = PropertyLib._MayInProperties.TenMayInBienlai;
+                    crpt.PrintToPrinter(objForm.getPrintNumber, false, 0, 0);
+                }
+
+
+            }
+            catch (Exception)
+            {
+            }
+        }
+        void InBienLaiGhiNo(long id_ghino)
+        {
+            try
+            {
+
+                new INPHIEU_THANHTOAN_NGOAITRU().Inbienlai_ghino(id_ghino, objLuotkham);
+            }
+            catch (Exception ex)
+            {
+
+                Utility.CatchException(ex);
+            }
+        }
         void chkHienthichuathanhtoan_CheckedChanged(object sender, EventArgs e)
         {
             if (m_blnHasloaded && m_dtChiPhiThanhtoan != null && m_dtChiPhiThanhtoan.Columns.Count > 0 && m_dtChiPhiThanhtoan.Rows.Count > 0)
@@ -2306,6 +2500,7 @@ namespace  VNS.HIS.UI.THANHTOAN
                     if (objLuotkham != null)
                     {
                         if (objLuotkham.TrangthaiNoitru > 0)
+                            
                         {
                             ucTamung1.pnlActTamung.Enabled = false;
                             ucThuchikhac1.pnlFunctions.Enabled = false;
@@ -2471,15 +2666,45 @@ namespace  VNS.HIS.UI.THANHTOAN
                 cmdDungChuyenCLS.Enabled = cmdChuyenCLS.Enabled = mnuHuychuyenCLS.Enabled = mnuChuyenCLS.Enabled = true;
             }
         }
+        public static void UpdateChietKhau(DataTable dtNguon, DataTable dtDich)
+        {
+            if (dtNguon == null || dtDich == null) return;
 
+            // Tạo dictionary để tra nhanh các dòng trong dtDich
+            var map = dtDich.AsEnumerable().ToDictionary(
+                r => $"{r["id_loaithanhtoan"]}_{r["id_phieu"]}_{r["id_phieu_chitiet"]}_{r["id_dichvu"]}_{r["id_chitietdichvu"]}",
+                r => r
+            );
+
+            // Duyệt từng dòng của bảng nguồn (dtNguon)
+            foreach (DataRow drNguon in dtNguon.Rows)
+            {
+                string key = $"{drNguon["id_loaithanhtoan"]}_{drNguon["id_phieu"]}_{drNguon["id_phieu_chitiet"]}_{drNguon["id_dichvu"]}_{drNguon["id_chitietdichvu"]}";
+
+                if (map.TryGetValue(key, out DataRow drDich))
+                {
+                    drDich["tien_chietkhau"] = drNguon["tien_chietkhau"];
+                    drDich["tile_chietkhau"] = drNguon["tile_chietkhau"];
+                }
+            }
+        }
         private void GetDataChiTiet()
         {
             try
             {
+                DataTable dtTemp = new DataTable();
+                if(IsSimpleRefresh)
+                {
+                    dtTemp = m_dtChiPhiThanhtoan.Copy();
+                }    
                 m_dtChiPhiThanhtoan =
                     _THANHTOAN.LayThongtinChuaThanhtoan(txtPatient_Code.Text, Utility.Int32Dbnull(txtPatient_ID.Text), v_bytNoitru,
                         globalVariables.MA_KHOA_THIEN, Utility.sDbnull(txtObjectType_Code.Text),lst_IDLoaithanhtoan);
-                LayDSChiPhiThanhToan();
+                if (IsSimpleRefresh)//Tự update lại các thông tin miễn giảm
+                {
+                    UpdateChietKhau(dtTemp, m_dtChiPhiThanhtoan);
+                }
+                    LayDSChiPhiThanhToan();
                 Utility.AddColumToDataTable(ref m_dtChiPhiThanhtoan, "colCHON", typeof(byte));
                 Utility.AddColumToDataTable(ref m_dtChiPhiThanhtoan, "ck_nguongt", typeof(byte));
                 m_dtChiPhiThanhtoan.AcceptChanges();
@@ -2689,8 +2914,7 @@ namespace  VNS.HIS.UI.THANHTOAN
                 {
                     txtTuTuc.BackColor = Color.Honeydew;
                 }
-                decimal tongtien_tralai = m_dtChiPhiDaThanhToan == null || m_dtChiPhiDaThanhToan.Columns.Count <= 0 ? 0m : Utility.DecimaltoDbnull(m_dtChiPhiDaThanhToan.Compute("SUM(THUC_THU)", "trangthai_huy=1"), 0);
-                txt_tongtien_tralai.Text="("+ String.Format(Utility.FormatCurrecy(), tongtien_tralai) +")";
+                
                 txtTuTuc.Text = Utility.sDbnull(tt_tutuc);
                 txtBHYT_CCT.Text = Utility.sDbnull(tt_bhyt_cct, "0");
                 txtBN_CCT.Text = Utility.sDbnull(tt_bn_cct,"0");
@@ -2706,15 +2930,21 @@ namespace  VNS.HIS.UI.THANHTOAN
             }
         }
         bool ketchuyen_tamthu = false;
+        decimal tongtien_thuathieu = 0;
         void ThongtinTamung()
         {
+            globalVariables.KhongHoanUng = false;
+            chk_Botamung.Checked = false;
+            //chk_Botamung.Font.Strikeout = false;
             SysSystemParameter _objLabel = new Select().From(SysSystemParameter.Schema).Where(SysSystemParameter.Columns.SName).IsEqualTo("THANHTOAN_THUATHIEU").ExecuteSingle<SysSystemParameter>();
             decimal tongTamung = 0;
+            decimal tongTamung_hienthi = 0;
             txtTongTU.Clear();
             if (uiTabPageTamung.TabVisible)
             {
                 if (ucTamung1.m_dtTamung != null)
                 {
+                    tongTamung_hienthi = Utility.DecimaltoDbnull(ucTamung1.m_dtTamung.Compute("SUM(so_tien)", "tthai_huy=0 or tthai_huy is null"), 0);
                     tongTamung = Utility.DecimaltoDbnull(ucTamung1.m_dtTamung.Compute("SUM(so_tien)", "trang_thai=0"), 0);
                     
                 }
@@ -2735,7 +2965,17 @@ namespace  VNS.HIS.UI.THANHTOAN
                 decimal tt_tamthu_chuaketchuyen = Utility.DecimaltoDbnull(dtTamthu.Compute("sum(so_tien)", "1=1"));
                 tongTamung += tt_tamthu_chuaketchuyen;
             }
-            txtTongTU.Text = tongTamung.ToString();
+            txtTongTU.Text = tongTamung_hienthi.ToString();
+            //Kiểm tra nếu chỉ thanh toán thuốc thì ko đưa tạm ứng vào tính toán
+            List<string> lstThuocVT = new List<string>() { "3","5"};
+            List<string> lstIdLoaiThanhtoan = grdThongTinChuaThanhToan.GetCheckedRows().Where(c => !lstThuocVT.Contains( Utility.sDbnull(c.Cells["id_loaithanhtoan"].Value))).Select(c => Utility.sDbnull(c.Cells["id_loaithanhtoan"].Value)).Distinct().ToList<string>();
+            if (lstIdLoaiThanhtoan.Count <= 0)
+            {
+                tongTamung = 0;
+                globalVariables.KhongHoanUng = true;
+                chk_Botamung.Checked = true;
+                //chk_Botamung.Font.Strikeout = true;
+            }
             if (Math.Abs(tongTamung) != 0)
             {
                 decimal chenhlech = _chuathanhtoan - tongTamung;
@@ -2751,13 +2991,17 @@ namespace  VNS.HIS.UI.THANHTOAN
                     lblThuathieu.Text = _objLabel == null ? @"Trả lại BN" : _objLabel.SValue.Split(';')[1];
                     txtThuathieu.Text = Math.Abs(chenhlech).ToString();
                 }
+                tongtien_thuathieu = chenhlech;
             }
+            
             if (tongTamung == 0)
             {
                 lblThuathieu.Text = _objLabel == null ? @"BN Nộp tiền" : _objLabel.SValue.Split(';')[0];
                 txtThuathieu.Text = txtSoTienCanNop.Text;
                 lblThuathieu.ForeColor = Color.DarkBlue;
+                tongtien_thuathieu = Utility.DecimaltoDbnull(txtThuathieu.Text);
             }
+            
         }
         private void TinhToanSoTienPhaithu()
         {
@@ -2819,7 +3063,7 @@ namespace  VNS.HIS.UI.THANHTOAN
         {
             LoadUserConfigs();
              cmdTamthu.Visible =  mnuTamthu.Visible = THU_VIEN_CHUNG.Laygiatrithamsohethong("THANHTOAN_CHOPHEP_TAMTHU", "0", true) == "1";
-            cmdKetchuyen.Visible = mnuKetChuyen.Visible = mnuTamthu.Visible;
+            //cmdKetchuyen.Visible = mnuKetChuyen.Visible = mnuTamthu.Visible;
             pnlTangGiamDonGia.Enabled = Utility.Coquyen("thanhtoan_tanggiam_tile_dongia");
             InitData();
             log.Trace("InitData finished");
@@ -3259,6 +3503,53 @@ namespace  VNS.HIS.UI.THANHTOAN
                 //        Utility.Int32Dbnull(txtPatient_ID.Text, -1), 0, 0, 1,
                 //        globalVariables.MA_KHOA_THIEN);
                 //uiTabLSuPhieuTT.TabVisible = m_dtPayment.Rows.Count > 0;
+                //Ghép phần tạm ưng, ghi nợ theo yc bệnh viện Hồng phát
+                if (THU_VIEN_CHUNG.Laygiatrithamsohethong("THANHTOAN_HIENTHI_TAMUNG_GHINO_THUCHI", "0", true) == "1")
+                {
+                    DataRow[] arrTU_Noitru = ucTamung1.m_dtTamung.Select(string.Format("noitru={0}", this.v_bytNoitru));
+                    foreach (DataRow dr in arrTU_Noitru)
+                    {
+                        DataRow drNew = dtData.NewRow();
+                        drNew["kieu_thanhtoan"] = 20;
+                        drNew["id_thanhtoan"] = dr["id"];
+                        drNew["ma_thanhtoan"] = dr["code"];
+                        drNew["ngay_thanhtoan"] = dr["ngay_tamung"];
+                        drNew["tt_bn"] = dr["so_tien"];
+                       
+                        drNew["THUC_THU"] = dr["so_tien"];
+                        drNew["TONGTIEN_GOC"] = dr["so_tien"];
+                        drNew["ma_pttt"] = dr["ma_pttt"];
+                        drNew["Ten_pttt"] = dr["Ten_pttt"];
+                        drNew["ma_nganhang"] = dr["ma_nganhang"];
+                        drNew["ten_nganhang"] = dr["ten_nganhang"];
+                        drNew["ghichu"] = dr["ghi_chu"];
+                        drNew["nguoi_tao"] = dr["nguoi_tao"];
+                        drNew["ngay_tao"] = dr["ngay_tao"];
+                        drNew["ten_trangthai"] = "Đã nộp tiền";
+                        dtData.Rows.Add(drNew);
+                    }
+                    //Ghi nợ
+                    DataTable dt_ghino = SPs.KcbThanhtoanGhinoLaydanhsach(new DateTime(1900, 1, 1), new DateTime(1900, 1, 1), objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham,this.v_bytNoitru).GetDataSet().Tables[0];
+                    foreach (DataRow dr in dt_ghino.Rows)
+                    {
+                        DataRow drNew = dtData.NewRow();
+                        drNew["kieu_thanhtoan"] = 10;
+                        drNew["id_thanhtoan"] = dr["id"];
+                        drNew["ma_thanhtoan"] = dr["ma_ghino"];
+                        drNew["ngay_thanhtoan"] = dr["ngay_ghino"];
+                        drNew["tt_bn"] = Utility.DecimaltoDbnull(dr["so_tien"]) + Utility.DecimaltoDbnull(dr["tongtien_chietkhau_hoadon"]) + Utility.DecimaltoDbnull(dr["tongtien_chietkhau_chitiet"]);// dr["so_tien"];
+                        drNew["tongtien_chietkhau"] = dr["tongtien_chietkhau"];
+                        drNew["tongtien_chietkhau_hoadon"] = dr["tongtien_chietkhau_hoadon"];
+                        drNew["tongtien_chietkhau_chitiet"] = dr["tongtien_chietkhau_chitiet"];
+                        drNew["THUC_THU"] = dr["so_tien"];
+                        drNew["TONGTIEN_GOC"] = drNew["tt_bn"];
+                        drNew["ghichu"] = dr["lydo_ghino"];
+                        drNew["nguoi_tao"] = dr["nguoi_tao"];
+                        drNew["ngay_tao"] = dr["ngay_tao"];
+                        drNew["ten_trangthai"] = "Ghi nợ";  
+                        dtData.Rows.Add(drNew);
+                    }
+                }
                 grdPayment.Visible = dtData.Rows.Count > 0;
                 Utility.SetDataSourceForDataGridEx(grdPayment, dtData, false, true, "trang_thai=0 or trang_thai is null", "");
                 //Utility.SetDataSourceForDataGridEx(grdPayment, m_dtPayment, false, true, "1=1", "");
@@ -3272,6 +3563,8 @@ namespace  VNS.HIS.UI.THANHTOAN
                 {
                     RefreshMienGiam();
                 }
+                decimal tongtien_tralai = m_dtPhieuChi == null || m_dtPhieuChi.Columns.Count <= 0 ? 0m : Utility.DecimaltoDbnull(m_dtPhieuChi.Compute("SUM(THUC_THU)", "noi_tru=0"), 0);
+                txt_tongtien_tralai.Text = "(" + String.Format(Utility.FormatCurrecy(), Math.Abs(tongtien_tralai)) + ")";
                 //RefreshMienGiam();
             }
             catch (Exception exception)
@@ -3428,6 +3721,7 @@ namespace  VNS.HIS.UI.THANHTOAN
                         Utility.ShowMsg(ErrMsg);
                         return;
                     }
+                   
                     if (lstItems == null)
                     {
                         Utility.ShowMsg("Lỗi khi tạo dữ liệu thanh toán chi tiết. Liên hệ đơn vị cung cấp phần mềm để được hỗ trợ\r\n" + ErrMsg);
@@ -3437,12 +3731,28 @@ namespace  VNS.HIS.UI.THANHTOAN
                     {
                         if (!Utility.AcceptQuestion("Trong các hạng mục bạn chọn thanh toán có hạng mục giá 0 đồng. Bạn có chắc chắn muốn tiếp tục thực hiện thanh toán?\nNhấn Yes để tiếp tục thanh toán.\nNhấn No để dừng thanh toán và kiểm tra lại", "Cảnh báo hạng mục thanh toán có giá <=0", true))
                             return;
-                    } 
-                        ActionResult actionResult = _THANHTOAN.ThanhtoanChiphiDvuKcb(v_objThanhtoan, objLuotkham,lstIdTamthu,
+                    }
+                    if (lstGhino.Count > 0 && lstKhongGhiNo.Count > 0)
+                    {
+                        Utility.ShowMsg("Hệ thống không cho phép thanh toán/hoặc tất toán lẫn các dịch vụ được ghi nợ và chưa ghi nợ\r\n" + ErrMsg);
+                        return;
+                    }
+                    v_objThanhtoan.ThanhtoanGhino = Utility.Bool2byte(lstGhino.Count > 0);
+                    bool TamUngHoanUng = true;
+                    List<string> lstThuocVT = new List<string>() { "3", "5" };
+                    List<string> lstIdLoaiThanhtoan = grdThongTinChuaThanhToan.GetCheckedRows().Where(c => !lstThuocVT.Contains(Utility.sDbnull(c.Cells["id_loaithanhtoan"].Value))).Select(c => Utility.sDbnull(c.Cells["id_loaithanhtoan"].Value)).Distinct().ToList<string>();
+                    if (lstIdLoaiThanhtoan.Count <= 0)//Nếu chỉ thanh toán VTTH+Thuốc thì không thực hiện tính tiền tạm ứng vào chi phí thanh toán và không thực hiện tự hoàn ứng theo các thông số khác
+                    {
+                        TamUngHoanUng = false;
+                        chk_Botamung.Checked = true;
+                        //chk_Botamung.Font.Strikeout = true;
+                    }
+
+                    ActionResult actionResult = _THANHTOAN.ThanhtoanChiphiDvuKcb(v_objThanhtoan, objLuotkham,lstIdTamthu,
                         lstItems,lstChietkhau, ref v_Payment_ID, IdHdonLog,
                         chkLayHoadon.Checked &&
                         THU_VIEN_CHUNG.Laygiatrithamsohethong("KCB_THANHTOAN_SUDUNGHOADONDO", "0", false) == "1",bo_ckchitiet,ma_uudai,
-                        ref ttbnChitrathucsu, ref ErrMsg);
+                        ref ttbnChitrathucsu, ref ErrMsg, TamUngHoanUng);
                     IN_HOADON = ttbnChitrathucsu > 0;
                     switch (actionResult)
                     {
@@ -3507,7 +3817,7 @@ namespace  VNS.HIS.UI.THANHTOAN
                                     }
                                 }
                             }
-                            if (globalVariables.MaphieuHoanung != "")
+                            if (globalVariables.MaphieuHoanung != "" && THU_VIEN_CHUNG.Laygiatrithamsohethong("KCB_THANHTOAN_INPHIEUHOANUNG_SAUKHITHANHTOAN", "1", false) == "1")
                                 Inphieuhoanung();
                             if (chkHienthiDichvusaukhinhannutthanhtoan.Checked)
                             {
@@ -3642,9 +3952,19 @@ namespace  VNS.HIS.UI.THANHTOAN
                 frm.TotalPayment = grdPayment.GetDataRows().Length;
                 frm.ShowCancel = false;
                 frm.ShowDialog();
+                if(frm.m_blnCancel)
+                {
+                    if (frm.m_blnCancel)
+                    {
+                        GetData();
+                    }
+                }
             }
         }
+        List<long> lstGhino = new List<long>();
+        List<long> lstKhongGhiNo = new List<long>();
         bool CoDichvu0dong = false;
+        
         /// <summary>
         ///     hàm thực hiện mảng của chi tiết thanh toán chi tiết
         ///     Kịch bản gây lỗi tiền chiết khấu
@@ -3659,6 +3979,8 @@ namespace  VNS.HIS.UI.THANHTOAN
         {
             try
             {
+                lstGhino.Clear();
+                lstKhongGhiNo.Clear();
                 DataTable dtDataCheck = new DataTable();
                 byte ErrType = 0;//0= xóa dịch vụ sau khi tnv chọn người bệnh-->có trong bảng tt chi tiết, ko có trong các bảng dịch vụ khám,thuốc/vtth,cls;1= đã bị người khác thanh toán;
                 List<KcbThanhtoanChitiet> lstItems = new List<KcbThanhtoanChitiet>();
@@ -3684,7 +4006,7 @@ namespace  VNS.HIS.UI.THANHTOAN
                     newItem.BhytNguonKhac = Utility.ByteDbnull(row.Cells[KcbThanhtoanChitiet.Columns.BhytNguonKhac].Value, 0);
                     newItem.TthaiKhuyenmai = Utility.ByteDbnull(row.Cells["tthai_khuyenmai"].Value, 0);
                     newItem.TienKhuyenmai = Math.Round(Utility.DecimaltoDbnull(row.Cells[KcbThanhtoanChitiet.Columns.TienChietkhau].Value, 0m), 3);//Tiền khuyến mãi thường bằng tiền chiết khấu
-
+                    newItem.NgoaiGio = Utility.Byte2Bool(row.Cells["ngoai_gio"].Value);
                     newItem.DonGia = Utility.DecimaltoDbnull(row.Cells["don_gia_thanhtien"].Value, 0);
                     newItem.GiaGoc = Utility.DecimaltoDbnull(row.Cells[KcbThanhtoanChitiet.Columns.DonGia].Value, 0);
                     newItem.TyleTt = Utility.DecimaltoDbnull(row.Cells[KcbThanhtoanChitiet.Columns.TyleTt].Value, 0);
@@ -3728,6 +4050,7 @@ namespace  VNS.HIS.UI.THANHTOAN
                     newItem.TrangthaiChuyen = 0;
                     newItem.NoiTru = v_bytNoitru;
                     newItem.NguonGoc =(byte) 0;
+                    newItem.HienThi= Utility.ByteDbnull(row.Cells["hien_thi"].Value, 0);
                     newItem.NgayTao = globalVariables.SysDate;
                     newItem.NguoiTao = globalVariables.UserName;
                     lstItems.Add(newItem);
@@ -3752,13 +4075,23 @@ namespace  VNS.HIS.UI.THANHTOAN
                         errMsg += newItem.TenChitietdichvu + "\r\n";
                         break;
                     }
-                    else//Kiểm tra trạng thái thanh toán tránh việc thanh toán 2 lần(2 user cùng chọn và sau đó từng người bấm nút thanh toán)
+                    else
+                    {//Kiểm tra trạng thái thanh toán tránh việc thanh toán 2 lần(2 user cùng chọn và sau đó từng người bấm nút thanh toán)
                         if (dtDataCheck.Rows[0]["trangthai_thanhtoan"].ToString() == "1")
                         {
                             ErrType = 1;
                             errMsg += newItem.TenChitietdichvu + "\r\n";
                             break;
                         }
+                        if (Utility.Int32Dbnull( dtDataCheck.Rows[0]["id_tamthu"])>0)
+                        {
+                            lstGhino.Add(newItem.IdPhieuChitiet);
+                        }
+                        else
+                        {
+                            lstKhongGhiNo.Add(newItem.IdPhieuChitiet);
+                        }    
+                    }
                 }
                 if (errMsg.Length > 0)
                     if (ErrType==0)
@@ -3822,6 +4155,7 @@ namespace  VNS.HIS.UI.THANHTOAN
             objThanhtoan.BhytChitra = -1;
             objThanhtoan.PtramBhyt =Utility.Int16Dbnull( objLuotkham.PtramBhyt);
             objThanhtoan.MucHuongBhyt = objLuotkham.MucHuongBhyt;
+           
             objThanhtoan.TileChietkhau = TileChietkhau;
             objThanhtoan.KieuChietkhau = "T";
             objThanhtoan.TongtienChietkhau = TongtienCk;
@@ -3844,6 +4178,7 @@ namespace  VNS.HIS.UI.THANHTOAN
             objThanhtoan.NguoiTao = globalVariables.UserName;
             objThanhtoan.IpMaytao = globalVariables.gv_strIPAddress;
             objThanhtoan.TenMaytao = globalVariables.gv_strComputerName;
+            objThanhtoan.ThuaThieu = tongtien_thuathieu;
             return objThanhtoan;
         }
 
@@ -4011,110 +4346,139 @@ namespace  VNS.HIS.UI.THANHTOAN
         /// <param name="e"></param>
         private void grdPayment_ColumnButtonClick(object sender, ColumnActionEventArgs e)
         {
-            if (grdPayment.GetValue("kieu_thanhtoan").ToString() == "1")
+            try
             {
+                string kieu_thanhtoan = Utility.sDbnull(grdPayment.GetValue("kieu_thanhtoan"));
                 if (e.Column.Key == "cmdPHIEU_THU")
                 {
-                    CallPhieuChi(grdPayment);
+                    if (kieu_thanhtoan == "1")
+                        CallPhieuChi(grdPayment);
+                    else if (kieu_thanhtoan == "10")//Ghi nợ
+                    {
+                        cmdInBienlai.PerformClick();
+                    }
+                    else if (kieu_thanhtoan == "20")//Tạm ứng
+                    {
+                        cmdInBienlai.PerformClick();
+                    }
+                    else
+                    {
+                        CallPhieuThu();
+                    }
+
                 }
                 else if (e.Column.Key == "cmdHUY_PHIEUTHU")
                 {
-                    HuyPhieuchi(grdPayment);
-                }
-                else if (e.Column.Key == "XUATHOADON")
-                {
-                   
-                }
-                else if (e.Column.Key == "TAIHOADON")
-                {
-                   
-                }
-            }
-            else
-            {
-
-                if (e.Column.Key == "cmdPHIEU_THU")
-                {
-                    CallPhieuThu();
-                }
-                if (e.Column.Key == "cmdHUY_PHIEUTHU")
-                {
-                    v_Payment_ID =
-                       Utility.Int32Dbnull(grdPayment.CurrentRow.Cells[KcbThanhtoan.Columns.IdThanhtoan].Value, -1);
-                    KcbThanhtoan objThanhtoan = KcbThanhtoan.FetchByID(v_Payment_ID);
-                    if (objThanhtoan.KieuThanhtoan == 0)
-                        HuyThanhtoan(objThanhtoan);
-                    else
-                        HuyTamthu(objThanhtoan);
-                }
-                else if (e.Column.Key == "XUATHOADON")
-                {
-                    if (!Utility.Coquyen("HOADONDIENTU_UPLOAD"))
+                    if (kieu_thanhtoan == "1")
+                        HuyPhieuchi(grdPayment);
+                    else if (kieu_thanhtoan == "10")//Ghi nợ
                     {
-                        Utility.thongbaokhongcoquyen("HOADONDIENTU_UPLOAD", " tải về hóa đơn điện tử");
-                        return;
+                        mnu_Lichsu_Congno.PerformClick();
                     }
-                    string paymentId = Utility.sDbnull(grdPayment.GetValue("id_thanhtoan"));
-                    string eMessage = "";
-                    bool kt = _MisaInvoices.phathanh_hoadon(paymentId, 0,"-1", ref eMessage);
-                    if (kt)
+                    else if (kieu_thanhtoan == "20")//Tạm ứng
                     {
-                        // LogText(eMessage, Color.DarkBlue);
+                        tabThongTinCanThanhToan.SelectedTab = uiTabPageTamung;
                     }
                     else
                     {
-                        // LogText(eMessage, Color.Red);
+                        v_Payment_ID =Utility.Int32Dbnull(grdPayment.CurrentRow.Cells[KcbThanhtoan.Columns.IdThanhtoan].Value, -1);
+                        KcbThanhtoan objThanhtoan = KcbThanhtoan.FetchByID(v_Payment_ID);
+                        if (objThanhtoan.KieuThanhtoan == 0)
+                            HuyThanhtoan(objThanhtoan);
+                        else
+                            HuyTamthu(objThanhtoan);
                     }
                 }
-                else if (e.Column.Key == "TAIHOADON")
+                else if (e.Column.Key == "XUATHOADON")
                 {
-                    try
+                    if (kieu_thanhtoan == "0")
                     {
-                        if (!Utility.Coquyen("HOADONDIENTU_DOWNLOAD"))
+                        if (!Utility.Coquyen("HOADONDIENTU_UPLOAD"))
                         {
-                            Utility.thongbaokhongcoquyen("HOADONDIENTU_DOWNLOAD", " tải về hóa đơn điện tử");
+                            Utility.thongbaokhongcoquyen("HOADONDIENTU_UPLOAD", " tải về hóa đơn điện tử");
                             return;
                         }
-                       // bool thongbaomofile = THU_VIEN_CHUNG.Laygiatrithamsohethong("MISA_THONGBAOMOFILE", true) == "1";
-                        KcbThanhtoan objThanhtoan = KcbThanhtoan.FetchByID(Utility.Int64Dbnull(grdPayment.GetValue("id_thanhtoan")));
-                        if (objThanhtoan != null)
+                        string paymentId = Utility.sDbnull(grdPayment.GetValue("id_thanhtoan"));
+                        string eMessage = "";
+                        bool kt = _MisaInvoices.phathanh_hoadon(paymentId, 0, "-1", ref eMessage);
+                        if (kt)
                         {
-                            string TransactionID = Utility.sDbnull(objThanhtoan.TransactionId, "");
-                            if (TransactionID.Length <= 0 || TransactionID == "")
-                            {
-                                Utility.ShowMsg("Phiếu thanh toán chưa được phát hành Hóa đơn điện tử nên không thể tải về.\nCần xuất Hóa đơn điện tử trước khi thực hiện tính năng tải hóa đơn");
-                                return;
-                            }
-                            string eMessge = "";
-                            if (Utility.Bool2Bool(objThanhtoan.TthaiXuatHddt) && TransactionID.Length > 0)
-                            {
-                                log.Trace("Tải File TransactionID: " + TransactionID);
-                                bool kt = _MisaInvoices.tai_hoadon(TransactionID, false, ref eMessge);
-                                if (kt)
-                                {
-                                    StoredProcedure sp =
-                                        SPs.EInvoiceCapnhapHoadonLog(TransactionID,
-                                            globalVariables.UserName.ToString(), globalVariables.SysDate, 1);
-                                    sp.Execute();
-                                    gridExRow.IsChecked = false;
-                                }
-                                Utility.Log(this.Name, globalVariables.UserName, string.Format("Tải thành công hóa đơn transaction_id: {0}, id_thanhtoan: {1}", TransactionID, objThanhtoan.IdThanhtoan), newaction.Download, "UI");
-                            }
-                            else
-                            {
-                                Utility.ShowMsg("Phiếu thu bạn chọn chưa phát hành hóa đơn hoặc đã bị hủy hóa đơn nên không thể tải về. Vui lòng kiểm tra lại");
-                                return;
-                            }
+                            // LogText(eMessage, Color.DarkBlue);
+                        }
+                        else
+                        {
+                            // LogText(eMessage, Color.Red);
                         }
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        Utility.ShowMsg(ex.Message);
-                        Utility.Log(this.Name, globalVariables.UserName, string.Format("Tải hóa đơn bị lỗi: {0},", ex.Message), newaction.Update, "UI");
+                        Utility.ShowMsg("Chỉ cho xuất HĐĐT với chứng từ thu. Vui lòng kiểm tra lại chứng từ đang chọn");
+                    }    
+                }
+                else if (e.Column.Key == "TAIHOADON")
+                {
+                    if (kieu_thanhtoan == "0")
+                    {
+                        try
+                        {
 
+                            if (!Utility.Coquyen("HOADONDIENTU_DOWNLOAD"))
+                            {
+                                Utility.thongbaokhongcoquyen("HOADONDIENTU_DOWNLOAD", " tải về hóa đơn điện tử");
+                                return;
+                            }
+                            // bool thongbaomofile = THU_VIEN_CHUNG.Laygiatrithamsohethong("MISA_THONGBAOMOFILE", true) == "1";
+                            KcbThanhtoan objThanhtoan = KcbThanhtoan.FetchByID(Utility.Int64Dbnull(grdPayment.GetValue("id_thanhtoan")));
+                            if (objThanhtoan != null)
+                            {
+                                string TransactionID = Utility.sDbnull(objThanhtoan.TransactionId, "");
+                                if (TransactionID.Length <= 0 || TransactionID == "")
+                                {
+                                    Utility.ShowMsg("Phiếu thanh toán chưa được phát hành Hóa đơn điện tử nên không thể tải về.\nCần xuất Hóa đơn điện tử trước khi thực hiện tính năng tải hóa đơn");
+                                    return;
+                                }
+                                string eMessge = "";
+                                if (Utility.Bool2Bool(objThanhtoan.TthaiXuatHddt) && TransactionID.Length > 0)
+                                {
+                                    log.Trace("Tải File TransactionID: " + TransactionID);
+                                    bool kt = _MisaInvoices.tai_hoadon(TransactionID, false, ref eMessge);
+                                    if (kt)
+                                    {
+                                        StoredProcedure sp =
+                                            SPs.EInvoiceCapnhapHoadonLog(TransactionID,
+                                                globalVariables.UserName.ToString(), globalVariables.SysDate, 1);
+                                        sp.Execute();
+                                        gridExRow.IsChecked = false;
+                                    }
+                                    Utility.Log(this.Name, globalVariables.UserName, string.Format("Tải thành công hóa đơn transaction_id: {0}, id_thanhtoan: {1}", TransactionID, objThanhtoan.IdThanhtoan), newaction.Download, "UI");
+                                }
+                                else
+                                {
+                                    Utility.ShowMsg("Phiếu thu bạn chọn chưa phát hành hóa đơn hoặc đã bị hủy hóa đơn nên không thể tải về. Vui lòng kiểm tra lại");
+                                    return;
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Utility.ShowMsg(ex.Message);
+                            Utility.Log(this.Name, globalVariables.UserName, string.Format("Tải hóa đơn bị lỗi: {0},", ex.Message), newaction.Update, "UI");
+
+                        }
+                    }
+                    else
+                    {
+                        Utility.ShowMsg("Chỉ cho Tải HĐĐT với chứng từ thu. Vui lòng kiểm tra lại chứng từ đang chọn");
                     }
                 }
+
+
             }
+            catch (Exception ex)
+            {
+
+            }
+            
         }
         //HoaDonDienTu _hoaDonDienTu = new HoaDonDienTu();
         //private void XUAT_HD()
@@ -4460,7 +4824,7 @@ namespace  VNS.HIS.UI.THANHTOAN
             if (grdPayment.CurrentRow != null)
             {
                 v_Payment_ID = Utility.Int32Dbnull(grdPayment.GetValue(KcbThanhtoan.Columns.IdThanhtoan), -1);
-               
+
 
                 KcbThanhtoan objThanhtoan = KcbThanhtoan.FetchByID(v_Payment_ID);
                 if (objLuotkham == null)
@@ -4479,9 +4843,14 @@ namespace  VNS.HIS.UI.THANHTOAN
                         frm.txtSoTienCanNop.Text = txtSoTienCanNop.Text;
                         frm.ShowCancel = false;
                         frm.ShowDialog();
+                        if (frm.m_blnCancel)
+                        {
+                            GetData();
+                        }
                     }
                 }
             }
+            
         }
        
         private void cmdInphoiBHYT_Click(object sender, EventArgs e)
@@ -4633,6 +5002,36 @@ namespace  VNS.HIS.UI.THANHTOAN
         private void grdPayment_CellUpdated(object sender, ColumnActionEventArgs e)
         {
            
+        }
+        private void CapNhatNgayThanhToan(KcbThanhtoan objThanhtoan,DateTime newDate)
+        {
+
+            
+            
+            if (objThanhtoan != null)
+            {
+                //if (!globalVariables.isSuperAdmin)
+                //{
+                //    if (objThanhtoan.MaxNgayTao.HasValue && newDate.Date < objThanhtoan.MaxNgayTao.Value.Date)
+                //    {
+                //        Utility.ShowMsg(string.Format("Bạn cần chọn ngày thanh toán cần >= {0}", objThanhtoan.MaxNgayTao.Value.ToString("dd/MM/yyyy")), "Thông báo");
+                //        return;
+                //    }
+                //}
+                string noi_dung = string.Format("Đổi ngày thanh toán của hóa đơn Id thanh toán ={0}, id bệnh nhân={1}, Mã lượt khám ={2} từ {3} thành {4} thành công", objThanhtoan.IdThanhtoan, objThanhtoan.IdBenhnhan, objThanhtoan.MaLuotkham, objThanhtoan.NgayThanhtoan, newDate);
+                objThanhtoan.NgayThanhtoan = newDate;
+                ActionResult actionResult = _THANHTOAN.UpdateNgayThanhtoan(objThanhtoan, noi_dung);
+                switch (actionResult)
+                {
+                    case ActionResult.Success:
+                        Utility.ShowMsg("Bạn chỉnh sửa ngày thanh toán thành công", "Thông báo");
+                        break;
+                    case ActionResult.Error:
+                        Utility.ShowMsg("Lỗi trong quá trình đổi ngày thanh toán", "Thông báo lỗi", MessageBoxIcon.Error);
+                        break;
+                }
+            }
+
         }
 
         private void UpdatePaymentDate()
@@ -5045,43 +5444,53 @@ namespace  VNS.HIS.UI.THANHTOAN
                     tile_chietkhau = Math.Ceiling(tile_chietkhau);
                     long id_phieu = Utility.Int64Dbnull(grdThongTinChuaThanhToan.CurrentRow.Cells["id_phieu"].Value);
                     long id_phieuchitiet = Utility.Int64Dbnull(grdThongTinChuaThanhToan.CurrentRow.Cells["id_phieu_chitiet"].Value);
-                    CapnhatChietkhau_DonGia(Convert.ToByte(0), id_loaithanhtoan, kieu_chietkhau, tile_chietkhau, tien_chietkhau, id_phieu, id_phieuchitiet);
+                   if(THU_VIEN_CHUNG.Laygiatrithamsohethong("THANHTOAN_CHIETKHAU_TUDONGLUU","1",true)=="1") CapnhatChietkhau_DonGia(Convert.ToByte(0), id_loaithanhtoan, kieu_chietkhau, tile_chietkhau, tien_chietkhau, id_phieu, id_phieuchitiet);
                 }
             }
             else if (e.Column.Key == KcbChidinhclsChitiet.Columns.DonGia)
             {
-                if (!Utility.IsNumeric(e.Value.ToString()))
+                long id_dangky = Utility.Int64Dbnull(grdThongTinChuaThanhToan.GetValue("id_dangky"));
+                if (id_dangky > 0)
                 {
-                    Utility.ShowMsg("Bạn phải nhập thông tin đơn giá. Vui lòng nhập lại", "Thông báo", MessageBoxIcon.Warning);
-                    e.Value = e.InitialValue;
-                    return;
-                }
-                decimal dongia_cu = Utility.DecimaltoDbnull(e.InitialValue, 1);
-                decimal dongia_moi = Utility.DecimaltoDbnull(e.Value);
-                if (dongia_moi == 0)
-                {
-                    if (!Utility.AcceptQuestion(string.Format("Bạn có chắc chắn muốn đổi giá dịch vụ cls {0} thành 0 đồng hay không?", grdThongTinChuaThanhToan.GetValue("ten_chitietdichvu")), "Xác nhận giá 0 đồng", true))
+                    if (!Utility.IsNumeric(e.Value.ToString()))
                     {
+                        Utility.ShowMsg("Bạn phải nhập thông tin đơn giá. Vui lòng nhập lại", "Thông báo", MessageBoxIcon.Warning);
                         e.Value = e.InitialValue;
                         return;
                     }
-                }
-                if (dongia_moi < 0)
-                {
-                    Utility.ShowMsg("Đơn giá phải >=0. Vui lòng nhập lại", "Thông báo", MessageBoxIcon.Warning);
-                    e.Value = e.InitialValue;
-                    return;
-                }
-                if (Utility.AcceptQuestion(string.Format("Bạn có chắc chắn muốn đổi giá dịch vụ cls {0} từ {1} thành {2} hay không?", grdThongTinChuaThanhToan.GetValue("ten_chitietdichvu"), Utility.FormatCurrencyHIS(Utility.DecimaltoDbnull(e.InitialValue, 0)), Utility.FormatCurrencyHIS(Utility.DecimaltoDbnull(e.Value, 0))), "Xác nhận đổi giá", true))
-                {
-                    if (CapnhatDongia(grdThongTinChuaThanhToan.CurrentRow, 0, dongia_moi, true))
-                        Utility.Log(this.Name, globalVariables.UserName, string.Format("Sửa đơn giá {0} từ {1} thành {2} thành công ", grdThongTinChuaThanhToan.GetValue("ten_chitietdichvu"), Utility.FormatCurrencyHIS(Utility.DecimaltoDbnull(e.InitialValue, 0)), Utility.FormatCurrencyHIS(Utility.DecimaltoDbnull(e.Value, 0))), newaction.Update, this.GetType().Assembly.ManifestModule.Name);
-                    else
+                    decimal dongia_cu = Utility.DecimaltoDbnull(e.InitialValue, 1);
+                    decimal dongia_moi = Utility.DecimaltoDbnull(e.Value);
+                    if (dongia_moi == 0)
                     {
+                        if (!Utility.AcceptQuestion(string.Format("Bạn có chắc chắn muốn đổi giá dịch vụ cls {0} thành 0 đồng hay không?", grdThongTinChuaThanhToan.GetValue("ten_chitietdichvu")), "Xác nhận giá 0 đồng", true))
+                        {
+                            e.Value = e.InitialValue;
+                            return;
+                        }
+                    }
+                    if (dongia_moi < 0)
+                    {
+                        Utility.ShowMsg("Đơn giá phải >=0. Vui lòng nhập lại", "Thông báo", MessageBoxIcon.Warning);
                         e.Value = e.InitialValue;
                         return;
                     }
+                    if (Utility.AcceptQuestion(string.Format("Bạn có chắc chắn muốn đổi giá dịch vụ cls {0} từ {1} thành {2} hay không?", grdThongTinChuaThanhToan.GetValue("ten_chitietdichvu"), Utility.FormatCurrencyHIS(Utility.DecimaltoDbnull(e.InitialValue, 0)), Utility.FormatCurrencyHIS(Utility.DecimaltoDbnull(e.Value, 0))), "Xác nhận đổi giá", true))
+                    {
+                        if (CapnhatDongia(grdThongTinChuaThanhToan.CurrentRow, 0, dongia_moi, true))
+                            Utility.Log(this.Name, globalVariables.UserName, string.Format("Form Thanh Toán --> Sửa đơn giá của dịch vụ {0} từ {1} thành {2} thành công ", grdThongTinChuaThanhToan.GetValue("ten_chitietdichvu"), Utility.FormatCurrencyHIS(Utility.DecimaltoDbnull(e.InitialValue, 0)), Utility.FormatCurrencyHIS(Utility.DecimaltoDbnull(e.Value, 0))), newaction.Update, this.GetType().Assembly.ManifestModule.Name);
+                        else
+                        {
+                            e.Value = e.InitialValue;
+                            return;
+                        }
+                    }
                 }
+                else
+                {
+                    Utility.ShowMsg("Hệ thống chỉ đang cho phép sửa Đơn giá của các dịch vụ trong Gói dịch vụ. Không cho phép sửa giá các dịch vụ ngoài gói");
+                    e.Value = e.InitialValue;
+                    return;
+                }    
             }
             else if (e.Column.Key == "sluong_sua")
             {
@@ -5728,7 +6137,7 @@ namespace  VNS.HIS.UI.THANHTOAN
             try
             {
                 Utility.WaitNow(this);
-                DataTable dtData = SPs.NgoaitruTonghopChiphiChuathanhtoan(objLuotkham.MaLuotkham, (int)objLuotkham.IdBenhnhan).GetDataSet().Tables[0];
+                DataTable dtData = SPs.NgoaitruTonghopChiphiChuathanhtoan(objLuotkham.MaLuotkham, (int)objLuotkham.IdBenhnhan,-1).GetDataSet().Tables[0];
                 THU_VIEN_CHUNG.Sapxepthutuin(ref dtData, false);
                 dtData.DefaultView.Sort = "stt_in,stt_hthi_loaidichvu ,stt_hthi_dichvu,stt_hthi_chitiet,ten_chitietdichvu";
 
@@ -6137,15 +6546,26 @@ namespace  VNS.HIS.UI.THANHTOAN
                 return;
             }
             byte kieuthanhtoan = Utility.ByteDbnull(grdPayment.CurrentRow.Cells[KcbThanhtoan.Columns.KieuThanhtoan].Value, 0);
-            if (kieuthanhtoan == 0 || kieuthanhtoan==5)
-                InHoadon();
-            else
-                new INPHIEU_THANHTOAN_NGOAITRU(this.log).InPhieuchi(Utility.Int32Dbnull(grdPayment.CurrentRow.Cells[KcbThanhtoan.Columns.IdThanhtoan].Value, -1));
-            string seria = Utility.sDbnull(grdPayment.GetValue(KcbThanhtoan.Columns.Serie), "");
-            if (seria != "")
+            if (kieuthanhtoan == 0 || kieuthanhtoan == 5)
             {
-                InHoaDon_BanHang();
+                InHoadon();
             }
+            else if (kieuthanhtoan == 10)//Ghi nợ
+            {
+                if (!Utility.isValidGrid(grdPayment)) return;
+                long id_ghino = Utility.Int64Dbnull(grdPayment.GetValue(KcbThanhtoan.Columns.IdThanhtoan));
+                InBienLaiGhiNo(id_ghino);
+            }
+            else if (kieuthanhtoan == 20)//Tạm ứng
+            {
+                InPhieuTU();
+            }
+            else//Phiếu chi
+            {
+                new INPHIEU_THANHTOAN_NGOAITRU(this.log).InPhieuchi(Utility.Int32Dbnull(grdPayment.CurrentRow.Cells[KcbThanhtoan.Columns.IdThanhtoan].Value, -1));
+            }
+
+            
 
         }
 
@@ -7103,7 +7523,7 @@ namespace  VNS.HIS.UI.THANHTOAN
                         KcbThanhtoan objTT = KcbThanhtoan.FetchByID(id_thanhtoan);
                         if (objTT != null)
                         {
-                            SPs.NoitruHoanung(id_thanhtoan, maphieu, objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan,id_thanhtoan>0? objTT.NgayThanhtoan:DateTime.Now,
+                            SPs.NoitruHoanung(-1,id_thanhtoan, maphieu, objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan,id_thanhtoan>0? objTT.NgayThanhtoan:DateTime.Now,
                         globalVariables.gv_intIDNhanvien, globalVariables.UserName,
                         Utility.Int32Dbnull(objLuotkham.IdKhoanoitru, -1), Utility.Int64Dbnull(objLuotkham.IdRavien, -1),
                         Utility.Int32Dbnull(objLuotkham.IdBuong, -1), Utility.Int32Dbnull(objLuotkham.IdGiuong, -1),
@@ -7130,7 +7550,7 @@ namespace  VNS.HIS.UI.THANHTOAN
         {
             try
             {
-                DataTable dtData = SPs.NgoaitruTonghopChiphiChuathanhtoan(objLuotkham.MaLuotkham, (int)objLuotkham.IdBenhnhan).GetDataSet().Tables[0];
+                DataTable dtData = SPs.NgoaitruTonghopChiphiChuathanhtoan(objLuotkham.MaLuotkham, (int)objLuotkham.IdBenhnhan,-1).GetDataSet().Tables[0];
                 new INPHIEU_THANHTOAN_NGOAITRU().Inbienlai_DichvuChuathanhtoan(dtData, true, 1);
             }
             catch (Exception ex)
@@ -7213,7 +7633,8 @@ namespace  VNS.HIS.UI.THANHTOAN
         {
             Tamthu(); 
         }
-        void Tamthu()
+        frm_Ghino _ghino = null;
+       void Tamthu()
         {
             try
             {
@@ -7226,12 +7647,21 @@ namespace  VNS.HIS.UI.THANHTOAN
                 }
                 else
                 dtData = arrDr.CopyToDataTable();
-                frm_Ghino _ghino = new frm_Ghino(m_dtChiPhiThanhtoan,dtData, this.log, this.v_bytNoitru, this.lst_IDLoaithanhtoan);
+                if (_ghino == null)
+                {
+                    _ghino = new frm_Ghino(m_dtChiPhiThanhtoan, dtData, this.log, this.v_bytNoitru, this.lst_IDLoaithanhtoan);
+                    _ghino._OnChanged += _ghino__OnChanged;
+                    _ghino._On_HuySuDungDvu += _ghino__On_HuySuDungDvu;
+                }
+                else
+                    _ghino.UpdateData(m_dtChiPhiThanhtoan, dtData);
                 _ghino.objLuotkham = this.objLuotkham;
+                _ghino.XemLichSu = false;
+                _ghino.ghi_no = true;
                 _ghino.ShowDialog();
                 if (!_ghino.isCancel )
                 {
-                    SimpleRefresh_Ghino();
+                    //SimpleRefresh_Ghino();
 
                 }
             }
@@ -7241,6 +7671,33 @@ namespace  VNS.HIS.UI.THANHTOAN
                 Utility.CatchException(ex);
             }
         }
+
+        private void _ghino__On_HuySuDungDvu(byte id_loaithanhtoan, long id_phieu_chitiet,long id_huydvu, byte trangthai_huy)
+        {
+            foreach(DataRow dr in m_dtChiPhiThanhtoan.Rows)
+            {
+                if(Utility.ByteDbnull(dr["id_loaithanhtoan"]) == id_loaithanhtoan && Utility.Int64Dbnull(dr["id_phieu_chitiet"] )== id_phieu_chitiet )
+                {
+                    dr["trangthai_huy"] = trangthai_huy;
+                        dr["id_huydvu"] = id_huydvu;
+                }    
+            }    
+        }
+
+        private void _ghino__OnChanged()
+        {
+            SimpleRefresh_Ghino();
+            DataRow[] arrDr = m_dtChiPhiThanhtoan.Select("trangthai_huy<>1 and tthai_tamthu<>1 and trangthai_thanhtoan<>1");
+            DataTable dtData = m_dtChiPhiThanhtoan.Clone();
+            if (arrDr.Length <= 0)
+            {
+            }
+            else
+                dtData = arrDr.CopyToDataTable();
+            _ghino.UpdateData(m_dtChiPhiThanhtoan, dtData);
+            LaydanhsachLichsuthanhtoan_phieuchi();
+        }
+
         /// <summary>
         /// Tự động check các mục để chuẩn bị bấm thanh toán. Không dùng vì thanh toán luôn tại form tạm thu
         /// </summary>
@@ -7282,10 +7739,13 @@ namespace  VNS.HIS.UI.THANHTOAN
             }
             SetSumTotalProperties();
         }
+        bool IsSimpleRefresh = false;
         void SimpleRefresh_Ghino()
         {
+            IsSimpleRefresh = true;
             GetDataChiTiet();
             SetSumTotalProperties();
+            IsSimpleRefresh = false;
         }
 
         private void cmdTamthu_Click(object sender, EventArgs e)
@@ -7469,8 +7929,183 @@ namespace  VNS.HIS.UI.THANHTOAN
             if (_ChonTungayDenngay.ShowDialog() == DialogResult.OK)
             {
                 DataTable dtData = SPs.CongnoBaocaoChitietcongnoPhaithu(Utility.GetBeginDate(_ChonTungayDenngay.dtp_tungay.Value), Utility.GetEndDate(_ChonTungayDenngay.dtp_denngay.Value), objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham).GetDataSet().Tables[0];
-                VNS.HIS.UI.Classess.Baocao.InPhieu(dtData, globalVariables.SysDate, "", true, "congno_baocao_chitietcongno_phaithu");
+                VNS.HIS.UI.Classess.Baocao.InPhieu(dtData, globalVariables.SysDate, "", true, "congno_baocao_chitietcongnophaithu");
+
+                //DataTable dtData = SPs.CongnoBaocaoChitietcongnoPhaithu(Utility.GetBeginDate(dtp_tungay.Value), Utility.GetEndDate(dtp_denngay.Value), objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham).GetDataSet().Tables[0];
+                //VNS.HIS.UI.Classess.Baocao.InPhieu(dtData, globalVariables.SysDate, "", true, "congno_baocao_chitietcongnophaithu");
             }
+        }
+
+        private void mnu_capnhatten_dichvu_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int id_chitietdichvu = Utility.Int32Dbnull(grdThongTinChuaThanhToan.GetValue("id_chitietdichvu"));
+                int id_dichvu = Utility.Int32Dbnull(grdThongTinChuaThanhToan.GetValue("id_dichvu"));
+                byte id_loaithanhtoan = Utility.ByteDbnull(grdThongTinChuaThanhToan.GetValue("id_loaithanhtoan"));
+                SPs.ThanhtoanCapnhatTendichvu(id_dichvu, id_chitietdichvu, id_loaithanhtoan).Execute();
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+
+            }
+        }
+
+        private void cmd_Pdf_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                VMS.HIS.Danhmuc.frm_PdfViewer _PdfViewer = new VMS.HIS.Danhmuc.frm_PdfViewer(100);
+                _PdfViewer.ma_luotkham = objLuotkham.MaLuotkham;
+                _PdfViewer.ma_chidinh = "";
+                _PdfViewer.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+            }
+        }
+
+        private void mnu_Lichsu_Congno_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataRow[] arrDr = m_dtChiPhiThanhtoan.Select("trangthai_huy<>1 and tthai_tamthu<>1 and trangthai_thanhtoan<>1");
+                DataTable dtData = m_dtChiPhiThanhtoan.Clone();
+                frm_Ghino _ghino = new frm_Ghino(m_dtChiPhiThanhtoan, dtData, this.log, this.v_bytNoitru, this.lst_IDLoaithanhtoan);
+                _ghino.ghi_no = false;
+                _ghino.XemLichSu = true;
+                _ghino.objLuotkham = this.objLuotkham;
+                _ghino.ShowDialog();
+               
+            }
+            catch (Exception ex)
+            {
+
+                Utility.CatchException(ex);
+            }
+        }
+
+        private void mnu_kekhai_vtth_theogoi_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (objLuotkham == null) return;
+                DataTable dtData = SPs.ThanhtoanBangkeCongkhaiVtth(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham,1).GetDataSet().Tables[0];
+
+                THU_VIEN_CHUNG.CreateXML(dtData, "thuoc_phieucongkhai_vtth.xml");
+                if (dtData.Rows.Count <= 0)
+                {
+                    Utility.ShowMsg("Không tìm thấy dữ liệu", "Thông báo", MessageBoxIcon.Warning);
+                    return;
+                }
+                thuoc_baocao.Thuoc_InBaoCao(dtData, "thuoc_phieucongkhai_vtth", DateTime.Now, "");
+            }
+            catch (Exception ex)
+            {
+                Utility.ShowMsg("Lỗi:" + ex.Message);
+            }
+            //frm_InBangKeVTTH_TheoGoiMo _InBangKeVTTH_TheoGoiMo = new frm_InBangKeVTTH_TheoGoiMo(this.objLuotkham);
+            //_InBangKeVTTH_TheoGoiMo.ShowDialog();
+        }
+
+        private void mnu_inbangkechiphi_kcb_new_Click(object sender, EventArgs e)
+        {
+            if (objLuotkham == null)
+            {
+                Utility.ShowMsg("Bạn cần phải chọn bệnh nhân trước khi xem tổng hợp chi phí nội trú");
+                return;
+            }
+            short idkhoanoitru = -1;
+
+            frm_InBangKeChiPhiKCB _Xemtonghopchiphi = new frm_InBangKeChiPhiKCB(false, idkhoanoitru.ToString());
+
+            _Xemtonghopchiphi.objLuotkham = objLuotkham;
+            _Xemtonghopchiphi.ShowDialog();
+        }
+
+        private void mnu_CapNhatNgayThanhToan_Click(object sender, EventArgs e)
+        {
+            if (Utility.Coquyen("thanhtoan_suangaythanhtoan"))
+            {
+                v_Payment_ID = Utility.Int32Dbnull(grdPayment.CurrentRow.Cells["Id_thanhtoan"].Value, -1);
+                KcbThanhtoan objThanhtoan = KcbThanhtoan.FetchByID(v_Payment_ID);
+                if (objThanhtoan != null)
+                {
+                    frm_ChonngayThanhtoan _ChonngayThanhtoan = new frm_ChonngayThanhtoan(objThanhtoan.NgayThanhtoan);
+                    if (_ChonngayThanhtoan.ShowDialog() == DialogResult.OK)
+                    {
+                        CapNhatNgayThanhToan(objThanhtoan, _ChonngayThanhtoan.pdt_InputDate);
+                    }
+                }
+                else
+                {
+
+                }    
+            }
+            else
+            {
+                Utility.ShowMsg("Bạn không có quyền cập nhật thông tin ngày thanh toán(quyen_suangay_thanhtoan). Vui lòng liên hệ quản trị hệ thống để được cấp quyền");
+            }
+               
+        }
+
+        private void mnu_ThanhToanCongNo_Click(object sender, EventArgs e)
+        {
+            if (Utility.Coquyen("thanhtoan_thaydoi_trangthaicongno"))
+            {
+                v_Payment_ID = Utility.Int32Dbnull(grdPayment.CurrentRow.Cells["Id_thanhtoan"].Value, -1);
+                KcbThanhtoan objThanhtoan = KcbThanhtoan.FetchByID(v_Payment_ID);
+                if (objThanhtoan != null)
+                {
+                    new Update(KcbThanhtoan.Schema)
+                        .Set(KcbThanhtoan.Columns.ThanhtoanGhino).EqualTo(1)
+                        .Where(KcbThanhtoan.Columns.IdThanhtoan).IsEqualTo(v_Payment_ID)
+                        .Execute();
+                    Utility.Log(this.Name, globalVariables.UserName, string.Format("Thay đổi trạng thái ghi nợ =1 cho thanh toán {0} của idbv {1}, mã khám {2} để lên báo cáo chi tiết công nợ thành công ", v_Payment_ID, objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham), newaction.Update, this.GetType().Assembly.ManifestModule.Name);
+                    Utility.ShowMsg("Chứng từ được chọn đã lên báo cáo chi tiết công nợ. Vui lòng kiểm tra");
+                }
+                else
+                {
+
+                }
+            }
+            else
+            {
+                Utility.thongbaokhongcoquyen("thanhtoan_thaydoi_trangthaicongno","thay đổi trạng thái báo cáo công nợ của phiếu thu");
+            }
+        }
+
+        private void mnu_HuyThanhToanCongNo_Click(object sender, EventArgs e)
+        {
+            if (Utility.Coquyen("thanhtoan_thaydoi_trangthaicongno"))
+            {
+                v_Payment_ID = Utility.Int32Dbnull(grdPayment.CurrentRow.Cells["Id_thanhtoan"].Value, -1);
+                KcbThanhtoan objThanhtoan = KcbThanhtoan.FetchByID(v_Payment_ID);
+                if (objThanhtoan != null)
+                {
+                    new Update(KcbThanhtoan.Schema)
+                        .Set(KcbThanhtoan.Columns.ThanhtoanGhino).EqualTo(0)
+                        .Where(KcbThanhtoan.Columns.IdThanhtoan).IsEqualTo(v_Payment_ID)
+                        .Execute();
+                    Utility.Log(this.Name, globalVariables.UserName, string.Format("Thay đổi trạng thái ghi nợ =0 cho thanh toán {0} của idbv {1}, mã khám {2} để Không lên báo cáo chi tiết công nợ thành công ", v_Payment_ID, objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham), newaction.Update, this.GetType().Assembly.ManifestModule.Name);
+                    Utility.ShowMsg("Chứng từ được chọn đã Hủy khỏi báo cáo chi tiết công nợ. Vui lòng kiểm tra");
+                }
+                else
+                {
+
+                }
+            }
+            else
+            {
+                Utility.thongbaokhongcoquyen("thanhtoan_thaydoi_trangthaicongno", "thay đổi trạng thái báo cáo công nợ của phiếu thu");
+            }
+        }
+
+        private void mnu_ChonThanhToan_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

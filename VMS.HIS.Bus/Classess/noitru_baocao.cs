@@ -17,18 +17,17 @@ namespace VNS.HIS.UI.Baocao
             SysReport objReport = null;
             string tieude = "", reportname = "";
             string reportCode = "noitru_phieunhapvien";
-            ReportDocument crpt = Utility.GetReport(reportCode, ref tieude, ref reportname,ref objReport);
+            ReportDocument crpt = Utility.GetReport(reportCode, ref tieude, ref reportname, ref objReport);
             THU_VIEN_CHUNG.CreateXML(mDtReport, "noitru_phieunhapvien.xml");
             if (crpt == null || objReport == null) return;
             EmrDocuments emrdoc = new EmrDocuments();
-            emrdoc.InitDocument(objPNV.IdBenhnhan, objPNV.MaLuotkham, Utility.Int64Dbnull(objPNV.IdPhieu), objPNV.NgayNhapvien.Value, Loaiphieu_HIS.PHIEUNHAPVIEN, reportCode, objPNV.NguoiTao,Utility.Int16Dbnull( objPNV.IdKhoanoitru), -1, Utility.Byte2Bool(0), "");
+            emrdoc.InitDocument(objPNV.IdBenhnhan, objPNV.MaLuotkham, Utility.Int64Dbnull(objPNV.IdPhieu), objPNV.NgayNhapvien.Value, Loaiphieu_HIS.PHIEUNHAPVIEN, reportCode, objPNV.NguoiTao, Utility.Int16Dbnull(objPNV.IdKhoanoitru), -1, Utility.Byte2Bool(0), "");
             emrdoc.Save();
             if (Utility.sDbnull(objReport.FileWord) != "")
             {
-                WordPrinter.InPhieu(null,mDtReport, Utility.sDbnull(objReport.FileWord));
+                WordPrinter.InPhieu(mDtReport, Utility.sDbnull(objReport.FileWord), "", false, @"MergeFields\PHIEUKHAMVAOVIEN_CHECKED_FIELDS.txt");
                 return;
             }
-            
             var moneyByLetter = new MoneyByLetter();
             var objForm = new frmPrintPreview(sTitleReport, crpt, true, mDtReport.Rows.Count > 0);
             // string tinhtong = TinhTong(m_dtReport);

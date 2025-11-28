@@ -80,11 +80,13 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(string MaPhieu,long IdBenhnhan,string MaLuotkham,int IdKhoadieutri,string Khoa,string Buong,string Giuong,bool? Noitru,string ChanDoan,DateTime NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua)
+	    public void Insert(string MaPhieu,DateTime? NgayPhieu,long IdBenhnhan,string MaLuotkham,int IdKhoadieutri,short? IdKhoa,short? IdBuong,short? IdGiuong,string TenKhoa,string TenBuong,string TenGiuong,bool? Noitru,string ChanDoan,DateTime NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua)
 	    {
 		    NoitruPhieudichtruyen item = new NoitruPhieudichtruyen();
 		    
             item.MaPhieu = MaPhieu;
+            
+            item.NgayPhieu = NgayPhieu;
             
             item.IdBenhnhan = IdBenhnhan;
             
@@ -92,11 +94,17 @@ namespace VMS.HIS.DAL
             
             item.IdKhoadieutri = IdKhoadieutri;
             
-            item.Khoa = Khoa;
+            item.IdKhoa = IdKhoa;
             
-            item.Buong = Buong;
+            item.IdBuong = IdBuong;
             
-            item.Giuong = Giuong;
+            item.IdGiuong = IdGiuong;
+            
+            item.TenKhoa = TenKhoa;
+            
+            item.TenBuong = TenBuong;
+            
+            item.TenGiuong = TenGiuong;
             
             item.Noitru = Noitru;
             
@@ -118,7 +126,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(long IdPhieu,string MaPhieu,long IdBenhnhan,string MaLuotkham,int IdKhoadieutri,string Khoa,string Buong,string Giuong,bool? Noitru,string ChanDoan,DateTime NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua)
+	    public void Update(long IdPhieu,string MaPhieu,DateTime? NgayPhieu,long IdBenhnhan,string MaLuotkham,int IdKhoadieutri,short? IdKhoa,short? IdBuong,short? IdGiuong,string TenKhoa,string TenBuong,string TenGiuong,bool? Noitru,string ChanDoan,DateTime NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua)
 	    {
 		    NoitruPhieudichtruyen item = new NoitruPhieudichtruyen();
 	        item.MarkOld();
@@ -128,17 +136,25 @@ namespace VMS.HIS.DAL
 				
 			item.MaPhieu = MaPhieu;
 				
+			item.NgayPhieu = NgayPhieu;
+				
 			item.IdBenhnhan = IdBenhnhan;
 				
 			item.MaLuotkham = MaLuotkham;
 				
 			item.IdKhoadieutri = IdKhoadieutri;
 				
-			item.Khoa = Khoa;
+			item.IdKhoa = IdKhoa;
 				
-			item.Buong = Buong;
+			item.IdBuong = IdBuong;
 				
-			item.Giuong = Giuong;
+			item.IdGiuong = IdGiuong;
+				
+			item.TenKhoa = TenKhoa;
+				
+			item.TenBuong = TenBuong;
+				
+			item.TenGiuong = TenGiuong;
 				
 			item.Noitru = Noitru;
 				

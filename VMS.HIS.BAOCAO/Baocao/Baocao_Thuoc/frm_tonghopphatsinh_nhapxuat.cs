@@ -102,13 +102,7 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
                 DataTable _dataThuoc =
                     SPs.ThuocLayDanhmucThuocTheokho(Utility.Int32Dbnull(txtKho.MyID, -1)).GetDataSet().Tables[0
                         ];
-                if (_dataThuoc == null)
-                {
-                    txtthuoc.dtData = null;
-                    return;
-                }
-                txtthuoc.dtData = _dataThuoc;
-                txtthuoc.ChangeDataSource();
+                DataBinding.BindDataCombobox(cbo_thuoc, _dataThuoc, DmucThuoc.Columns.IdThuoc, DmucThuoc.Columns.TenThuoc);
             }
             catch
             {
@@ -219,6 +213,7 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
         {
             try
             {
+                if (m_dtReport == null || m_dtReport.Columns.Count <= 0) cmd_TimKiem.PerformClick();
                 string nhomthuoc = "-1";
                 if (Utility.Int32Dbnull(txtKho.MyID,-1) < 0)
                 {
@@ -227,7 +222,7 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
                     return;
                 }
                 nhomthuoc = txtLoaithuoc.MyID.ToString();
-                DataTable m_dtReport = null;
+              
                 string fromdate = "01/01/1900";
                 string todate = "01/01/1900";
                 string _value = "1";
@@ -307,21 +302,17 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
                 if (cboKieubangke.SelectedIndex == 0)
                 {
                     xmlFile = "ThuocBaocaophatsinhChitiet.xml";
-                    m_dtReport = BAOCAO_THUOC.ThuocBaocaophatsinhChitiet(fromdate, todate,
-                   Utility.Int32Dbnull(txtKho.MyID), Utility.Int32Dbnull(txtthuoc.MyID, -1), kieubiendong, 
-                   nhomthuoc, 1,Utility.Int32Dbnull(txtKhoXuat.MyID,-1));
+                  
                 }
                 else
                 {
                     
                     xmlFile = "ThuocBaocaophatsinhTonghop.xml";
-                    m_dtReport = BAOCAO_THUOC.ThuocBaocaophatsinhTonghop(fromdate, todate,
-                    Utility.Int32Dbnull(txtKho.MyID), Utility.Int32Dbnull(txtthuoc.MyID, -1), kieubiendong,
-                    nhomthuoc, 1,Utility.Int32Dbnull(txtKhoXuat.MyID,-1));
+                   
                 }
                 THU_VIEN_CHUNG.CreateXML(m_dtReport, xmlFile);
 
-                Utility.SetDataSourceForDataGridEx(cboKieutonghop.SelectedIndex==0?grdTonghop: grdChitiet, m_dtReport, true, true, "1=1", "");
+               
                 if (m_dtReport == null || m_dtReport.Rows.Count <= 0)
                 {
                     Utility.ShowMsg("Không tìm thấy dữ liệu báo cáo", "Thông báo");
@@ -520,7 +511,122 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
 
         private void uiButton1_Click(object sender, EventArgs e)
         {
-            txtthuoc.ShowMe();
+            
+        }
+        DataTable m_dtReport = null;
+        private void cmd_TimKiem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string nhomthuoc = "-1";
+                if (Utility.Int32Dbnull(txtKho.MyID, -1) < 0)
+                {
+                    Utility.ShowMsg("Bạn phải chọn Kho thuốc");
+                    txtKho.Focus();
+                    return;
+                }
+                nhomthuoc = txtLoaithuoc.MyID.ToString();
+              
+                string fromdate = "01/01/1900";
+                string todate = "01/01/1900";
+                string _value = "1";
+                if (optThang.Checked)
+                {
+                    if (cboThang.SelectedIndex < 0)
+                    {
+                        Utility.ShowMsg("Bạn phải chọn Tháng báo cáo");
+                        cboThang.Focus();
+                        return;
+                    }
+                    _value = cboThang.SelectedValue.ToString();
+                    switch (_value)
+                    {
+                        case "2":
+                            fromdate = new DateTime(dtpNam.Value.Year, Utility.Int32Dbnull(_value, 2), 1).ToString("dd/MM/yyyy");
+                            todate = new DateTime(dtpNam.Value.Year, Utility.Int32Dbnull(_value, 2), 29).ToString("dd/MM/yyyy");
+                            break;
+                        case "4":
+                        case "6":
+                        case "9":
+                        case "11":
+                            fromdate = new DateTime(dtpNam.Value.Year, Utility.Int32Dbnull(_value, 2), 1).ToString("dd/MM/yyyy");
+                            todate = new DateTime(dtpNam.Value.Year, Utility.Int32Dbnull(_value, 2), 30).ToString("dd/MM/yyyy");
+                            break;
+                        default:
+                            fromdate = new DateTime(dtpNam.Value.Year, Utility.Int32Dbnull(_value, 2), 1).ToString("dd/MM/yyyy");
+                            todate = new DateTime(dtpNam.Value.Year, Utility.Int32Dbnull(_value, 2), 31).ToString("dd/MM/yyyy");
+                            break;
+                    }
+                }
+                else if (optQuy.Checked)
+                {
+                    if (cboQuy.SelectedIndex < 0)
+                    {
+                        Utility.ShowMsg("Bạn phải chọn Quý báo cáo");
+                        cboQuy.Focus();
+                        return;
+                    }
+                    _value = cboQuy.SelectedValue.ToString();
+                    switch (_value)
+                    {
+                        case "1":
+                            fromdate = new DateTime(dtpNam.Value.Year, 1, 1).ToString("dd/MM/yyyy");
+                            todate = new DateTime(dtpNam.Value.Year, 3, 31).ToString("dd/MM/yyyy");
+                            break;
+                        case "2":
+                            fromdate = new DateTime(dtpNam.Value.Year, 4, 1).ToString("dd/MM/yyyy");
+                            todate = new DateTime(dtpNam.Value.Year, 6, 30).ToString("dd/MM/yyyy");
+                            break;
+                        case "3":
+                            fromdate = new DateTime(dtpNam.Value.Year, 7, 1).ToString("dd/MM/yyyy");
+                            todate = new DateTime(dtpNam.Value.Year, 9, 30).ToString("dd/MM/yyyy");
+                            break;
+                        case "4":
+                            fromdate = new DateTime(dtpNam.Value.Year, 10, 1).ToString("dd/MM/yyyy");
+                            todate = new DateTime(dtpNam.Value.Year, 12, 31).ToString("dd/MM/yyyy");
+                            break;
+                        default:
+                            fromdate = new DateTime(dtpNam.Value.Year, 1, 1).ToString("dd/MM/yyyy");
+                            todate = new DateTime(dtpNam.Value.Year, 12, 31).ToString("dd/MM/yyyy");
+                            break;
+                    }
+                }
+                else if (optNam.Checked)
+                {
+                    fromdate = new DateTime(dtpNam.Value.Year, 1, 1).ToString("dd/MM/yyyy");
+                    todate = new DateTime(dtpNam.Value.Year, 12, 31).ToString("dd/MM/yyyy");
+                }
+                else
+                {
+                    fromdate = dtFromDate.Value.ToString("dd/MM/yyyy");
+                    todate = dtToDate.Value.ToString("dd/MM/yyyy");
+                }
+                byte kieubiendong = (byte)cboKieutonghop.SelectedIndex;
+                string xmlFile = "ThuocBaocaophatsinhTonghop.xml";
+                if (cboKieubangke.SelectedIndex == 0)
+                {
+                    xmlFile = "ThuocBaocaophatsinhChitiet.xml";
+                    m_dtReport = BAOCAO_THUOC.ThuocBaocaophatsinhChitiet(fromdate, todate,
+                   Utility.Int32Dbnull(txtKho.MyID), Utility.Int32Dbnull(cbo_thuoc.SelectedValue, -1), kieubiendong,
+                   nhomthuoc, 1, Utility.Int32Dbnull(txtKhoXuat.MyID, -1));
+                }
+                else
+                {
+
+                    xmlFile = "ThuocBaocaophatsinhTonghop.xml";
+                    m_dtReport = BAOCAO_THUOC.ThuocBaocaophatsinhTonghop(fromdate, todate,
+                    Utility.Int32Dbnull(txtKho.MyID), Utility.Int32Dbnull(cbo_thuoc.SelectedValue, -1), kieubiendong,
+                    nhomthuoc, 1, Utility.Int32Dbnull(txtKhoXuat.MyID, -1));
+                }
+              
+
+                Utility.SetDataSourceForDataGridEx(cboKieutonghop.SelectedIndex == 0 ? grdTonghop : grdChitiet, m_dtReport, true, true, "1=1", "");
+               
+            }
+            catch (Exception ex)
+            {
+                Utility.ShowMsg(ex.Message);
+            }
         }
     }
 }

@@ -784,7 +784,7 @@ namespace VNS.HIS.UCs
             if (TenTp != "" && TenTp.Trim() == "") TenTp = " ";
             dtData.DefaultView.RowFilter = "1=1";
             //Tạm khóa lại
-            
+
             if (Utility.DoTrim(TenTp) != "")
             {
                 //Tạm bỏ đoạn dưới để xử lý 3 kí tự thành phố 230805
@@ -802,25 +802,26 @@ namespace VNS.HIS.UCs
                 {
                     //if (LengthOfQuickType == 4)
                     //{
-                        if (TenTp.Length == 1)
-                        {
-                        _rowFilter = " ShortcutTP like '%" + TenTp + "%' ";
-                        }
-                        if (TenTp.Length == 2)
-                        {
-                        _rowFilter = " ShortcutTP = '" + TenTp + "' ";
-                        }
-                        if (TenTp.Length == 3)
-                        {
-                            _rowFilter = " ShortcutTP like '%" + TenTp.Substring(2, 1) +
-                                         "%' AND ShortcutXP = '" + TenTp.Substring(0, 2) + "'";
-                        }
-                        if (TenTp.Length == 4)
-                        {
-                            _rowFilter = " ShortcutTP = '" + TenTp.Substring(2, 2) + "' AND ShortcutXP = '" + TenTp.Substring(0, 2) + "'";
-                        }
-                       
-                   // }
+                    if (TenTp.Length == 1)
+                    {
+                        _rowFilter = " ShortcutTP like '%" + TenTp + "%' or ShortcutXP like '%" + TenTp + "%'";
+                    }
+                    if (TenTp.Length == 2)
+                    {
+                        _rowFilter = " ShortcutTP = '" + TenTp + "' or ShortcutXP='" + TenTp + "'";
+                    }
+                    if (TenTp.Length == 3)
+                    {
+                        _rowFilter = "( ShortcutTP like '%" + TenTp.Substring(2, 1) + "%' AND ShortcutXP = '" + TenTp.Substring(0, 2) + "')";
+                        _rowFilter += " or ( ShortcutXP like '%" + TenTp.Substring(2, 1) + "%' AND ShortcutTP = '" + TenTp.Substring(0, 2) + "')";
+                    }
+                    if (TenTp.Length == 4)
+                    {
+                        _rowFilter = " (ShortcutTP = '" + TenTp.Substring(2, 2) + "' AND ShortcutXP = '" + TenTp.Substring(0, 2) + "')";
+                        _rowFilter += "or (ShortcutXP = '" + TenTp.Substring(2, 2) + "' AND ShortcutTP = '" + TenTp.Substring(0, 2) + "')";
+                    }
+
+                    // }
 
                 }
                 //_rowFilter = " Shortcut like '%" + TenTp + "%'  OR Value like  '%" + TenTp + "'%";

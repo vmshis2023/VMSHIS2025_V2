@@ -70,6 +70,7 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
         /// <param name="e"></param>
         private void cmdInPhieuXN_Click(object sender, EventArgs e)
         {
+            if (m_dtReport == null || m_dtReport.Columns.Count <= 0) cmd_TimKiem.PerformClick();
             _mabschidinh = "-1";
             _idThuoc = -1;
             // Lấy Id Bác sỹ
@@ -84,13 +85,10 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
                 }
             }
 
-            //Truyền dữ liệu vào datatable
-            DataTable m_dtReport = BAOCAO_THUOC.ThuocBaocaoTinhhinhkedonthuocTheobacsy(Utility.Int32Dbnull(cboStock.SelectedValue, -1), Utility.Int32Dbnull(cboDoiTuong.SelectedValue, -1),
-                _mabschidinh, _idThuoc, chkByDate.Checked ? dtFromDate.Value : Convert.ToDateTime("01/01/1900"), chkByDate.Checked ? dtToDate.Value : globalVariables.SysDate,Utility.Int16Dbnull(cboTrangthai.SelectedValue, -1));
-            if (m_dtReport == null) return;
+            
             THU_VIEN_CHUNG.CreateXML(m_dtReport, "thuoc_baocaokedon_theobacsy.xml");
             //Kiểm tra dữ liệu
-            if (m_dtReport.Rows.Count <= 0)
+            if (m_dtReport == null ||  m_dtReport.Rows.Count <= 0)
             {
                 Utility.ShowMsg("Không tìm thấy dữ liệu cho báo cáo", "Thông báo", MessageBoxIcon.Warning);
                 return;
@@ -229,13 +227,7 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
             try
             {
                 DataTable _dataThuoc = new Select().From(DmucThuoc.Schema).ExecuteDataSet().Tables[0];
-                if (_dataThuoc == null)
-                {
-                    txtthuoc.dtData = null;
-                    return;
-                }
-                txtthuoc.dtData = _dataThuoc;
-                txtthuoc.ChangeDataSource();
+                DataBinding.BindDataCombobox(cbo_thuoc, _dataThuoc, DmucThuoc.Columns.IdThuoc, DmucThuoc.Columns.TenThuoc);
             }
             catch (Exception ex)
             {
@@ -267,7 +259,42 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
 
         private void cmdCboDownHTTT_Click(object sender, EventArgs e)
         {
-            txtthuoc.ShowMe();
+            
+        }
+
+        private void cmdInPhieuXN_Click_1(object sender, EventArgs e)
+        {
+
+        }
+        DataTable m_dtReport = null;
+        private void cmd_TimKiem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                _mabschidinh = "-1";
+                _idThuoc = -1;
+                // Lấy Id Bác sỹ
+                if (!string.IsNullOrEmpty(cboBacSyChiDinh.Text))
+                {
+                    var query = (from chk in cboBacSyChiDinh.CheckedValues.AsEnumerable()
+                                 let x = Utility.sDbnull(chk)
+                                 select x).ToArray();
+                    if (query.Count() > 0)
+                    {
+                        _mabschidinh = string.Join(",", query);
+                    }
+                }
+
+                //Truyền dữ liệu vào datatable
+                m_dtReport = BAOCAO_THUOC.ThuocBaocaoTinhhinhkedonthuocTheobacsy(Utility.Int32Dbnull(cboStock.SelectedValue, -1), Utility.Int32Dbnull(cboDoiTuong.SelectedValue, -1),
+                   _mabschidinh, _idThuoc, chkByDate.Checked ? dtFromDate.Value : Convert.ToDateTime("01/01/1900"), chkByDate.Checked ? dtToDate.Value : globalVariables.SysDate, Utility.Int16Dbnull(cboTrangthai.SelectedValue, -1));
+
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+            }
+            
         }
     }
 }

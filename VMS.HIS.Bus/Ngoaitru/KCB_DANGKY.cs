@@ -102,7 +102,7 @@ namespace VNS.HIS.BusRule.Classes
                         if (id_dangky > 0 && Id_Goi > 0)
                         {
                             GoiDangki objgoiDK = GoiDangki.FetchByID(id_dangky);
-                            if (objgoiDK != null)
+                            if (objgoiDK != null )
                                 new VNS.HIS.BusRule.Goikham.clsGoikham().ThanhToanGoi(objLuotkham, new System.Collections.Generic.List<int>() { (int)objCongkham.IdKham }, 1, id_dangky, Id_Goi, Utility.ByteDbnull(objCongkham.Noitru, 0), ref ErrMsg);
                         }
                     }
@@ -166,7 +166,9 @@ namespace VNS.HIS.BusRule.Classes
                     , objCongkham.NguoiTao, objCongkham.IdLichsuDoituongKcb, objCongkham.MatheBhyt,
                     objCongkham.IpMaytao, objCongkham.TenMaytao, objCongkham.DachidinhCls
                     , objCongkham.DakeDonthuoc, objCongkham.TinhChiphi
-                    , objCongkham.IdThe, objCongkham.MaCoso, objCongkham.IdDangky, objCongkham.SttTt37, objCongkham.BhytNguonKhac, objCongkham.BhytGiaTyle, objCongkham.BnTtt, objCongkham.BnCct, objCongkham.KhamThiluc, objCongkham.ThanhtoanCongkhamsau
+                    , objCongkham.IdThe, objCongkham.MaCoso, objCongkham.IdDangky, objCongkham.SttTt37, objCongkham.BhytNguonKhac, 
+                    objCongkham.BhytGiaTyle, objCongkham.BnTtt, objCongkham.BnCct, objCongkham.KhamThiluc, objCongkham.ThanhtoanCongkhamsau, objCongkham.IdKhoadieutri
+                    , objCongkham.CongkhamKemdichvu
                     );
                 sp.Execute();
                 objCongkham.IdKham = Utility.Int64Dbnull(sp.OutputValues[0]);
@@ -292,7 +294,9 @@ namespace VNS.HIS.BusRule.Classes
                     , objCongkham.NguoiTao, objCongkham.IdLichsuDoituongKcb, objCongkham.MatheBhyt,
                     objCongkham.IpMaytao, objCongkham.TenMaytao, objCongkham.DachidinhCls
                     , objCongkham.DakeDonthuoc, objCongkham.TinhChiphi
-                    , objCongkham.IdThe, objCongkham.MaCoso, objCongkham.IdDangky, objCongkham.SttTt37, objCongkham.BhytNguonKhac, objCongkham.BhytGiaTyle, objCongkham.BnTtt, objCongkham.BnCct, objCongkham.KhamThiluc, objCongkham.ThanhtoanCongkhamsau
+                    , objCongkham.IdThe, objCongkham.MaCoso, objCongkham.IdDangky, objCongkham.SttTt37, objCongkham.BhytNguonKhac, objCongkham.BhytGiaTyle,
+                    objCongkham.BnTtt, objCongkham.BnCct, objCongkham.KhamThiluc, objCongkham.ThanhtoanCongkhamsau, objCongkham.IdKhoadieutri
+                    , objCongkham.CongkhamKemdichvu
                     );
                 sp.Execute();
                 objCongkham.IdKham = Utility.Int64Dbnull(sp.OutputValues[0]);
@@ -463,8 +467,9 @@ namespace VNS.HIS.BusRule.Classes
                                 objCongkham.MatheBhyt, objCongkham.IpMaytao, objCongkham.TenMaytao,
                                 objCongkham.DachidinhCls
                                 , objCongkham.DakeDonthuoc, objCongkham.TinhChiphi
-                                , objCongkham.IdThe, objCongkham.MaCoso, objCongkham.IdDangky, objCongkham.SttTt37, objCongkham.BhytNguonKhac, objCongkham.BhytGiaTyle, objCongkham.BnTtt, objCongkham.BnCct, objCongkham.KhamThiluc
-                                , objCongkham.ThanhtoanCongkhamsau).Execute();
+                                , objCongkham.IdThe, objCongkham.MaCoso, objCongkham.IdDangky, objCongkham.SttTt37, objCongkham.BhytNguonKhac,
+                                objCongkham.BhytGiaTyle, objCongkham.BnTtt, objCongkham.BnCct, objCongkham.KhamThiluc
+                                , objCongkham.ThanhtoanCongkhamsau, objCongkham.IdKhoadieutri, objCongkham.CongkhamKemdichvu).Execute();
                         }
                     }
                 }
@@ -488,7 +493,7 @@ namespace VNS.HIS.BusRule.Classes
                             int Id_Goi = Utility.Int32Dbnull(objCongkham.IdGoi, 0);
                             if (id_dangky > 0 && Id_Goi > 0)
                             {
-                                new VNS.HIS.BusRule.Goikham.clsGoikham().GoikhamXoachitiet(new System.Collections.Generic.List<long>() { objCongkham.IdKham }, 1, id_dangky, Id_Goi);
+                                new VNS.HIS.BusRule.Goikham.clsGoikham().GoikhamXoachitiet(new System.Collections.Generic.List<long>() {(long) objCongkham.IdKham }, 1, id_dangky, Id_Goi);
                             }
                             else
                             {
@@ -838,187 +843,7 @@ namespace VNS.HIS.BusRule.Classes
             }
         }
 
-        public ActionResult UpdateBenhnhanCapcuu(SysTrace mytrace, KcbDanhsachBenhnhan objKcbDanhsachBenhnhan,
-            KcbLuotkham objLuotkham, KcbDangkySokham objSoKCB, NoitruPhanbuonggiuong objBuonggiuong,
-            DateTime ngaychuyenkhoa, decimal PtramBhytCu, decimal PtramBhytgoc, ref string Msg)
-        {
-            var _ActionResult = ActionResult.Success;
-            try
-            {
-                using (var scope = new TransactionScope())
-                {
-                    using (var dbscope = new SharedDbConnectionScope())
-                    {
-                        objKcbDanhsachBenhnhan.IsNew = false;
-                        objKcbDanhsachBenhnhan.IsLoaded = true;
-                        objKcbDanhsachBenhnhan.MarkOld();
-                        objKcbDanhsachBenhnhan.Save();
-
-                        long IdLichsuDoituongKcb = KcbLayIdDoituongKCBHientai(objLuotkham.IdBenhnhan,
-                            objLuotkham.MaLuotkham);
-                        KcbLichsuDoituongKcb objLichsuKcb = null;
-                        if (IdLichsuDoituongKcb > 0)
-                        {
-                            objLichsuKcb = KcbLichsuDoituongKcb.FetchByID(IdLichsuDoituongKcb);
-                            objLichsuKcb.MarkOld();
-                            objLichsuKcb.IsNew = false;
-                        }
-                        else
-                        {
-                            objLichsuKcb = new KcbLichsuDoituongKcb();
-                            objLichsuKcb.IsNew = true;
-                        }
-                        if (objLichsuKcb == null)
-                        {
-                            Msg = "NULL-->Không lấy được thông tin lịch sử đối tượng KCB của Bệnh nhân";
-                            return ActionResult.Error;
-                        }
-
-                        objLichsuKcb.IdBenhnhan = objLuotkham.IdBenhnhan;
-                        objLichsuKcb.MaLuotkham = objLuotkham.MaLuotkham;
-                        objLichsuKcb.NgayHieuluc = objLuotkham.NgayTiepdon;
-                        objLichsuKcb.IdDoituongKcb = objLuotkham.IdDoituongKcb;
-                        objLichsuKcb.MaDoituongKcb = objLuotkham.MaDoituongKcb;
-                        objLichsuKcb.IdLoaidoituongKcb = objLuotkham.IdLoaidoituongKcb;
-                        objLichsuKcb.MatheBhyt = objLuotkham.MatheBhyt;
-                        objLichsuKcb.PtramBhyt = objLuotkham.PtramBhyt;
-                        objLichsuKcb.PtramBhytGoc = objLuotkham.PtramBhytGoc;
-                        objLichsuKcb.NgaybatdauBhyt = objLuotkham.NgaybatdauBhyt;
-                        objLichsuKcb.NgayketthucBhyt = objLuotkham.NgayketthucBhyt;
-                        objLichsuKcb.NoicapBhyt = objLuotkham.NoicapBhyt;
-                        objLichsuKcb.MaNoicapBhyt = objLuotkham.MaNoicapBhyt;
-                        objLichsuKcb.MaDoituongBhyt = objLuotkham.MaDoituongBhyt;
-                        objLichsuKcb.MaQuyenloi = objLuotkham.MaQuyenloi;
-                        objLichsuKcb.NoiDongtrusoKcbbd = objLuotkham.NoiDongtrusoKcbbd;
-
-                        objLichsuKcb.MaKcbbd = objLuotkham.MaKcbbd;
-                        objLichsuKcb.TrangthaiNoitru = 0;
-                        objLichsuKcb.DungTuyen = objLuotkham.DungTuyen;
-                        objLichsuKcb.Cmt = objLuotkham.Cmt;
-                        objLichsuKcb.IdRavien = objBuonggiuong.Id;
-                        objLichsuKcb.IdBuong = objBuonggiuong.IdBuong;
-                        objLichsuKcb.IdGiuong = objBuonggiuong.IdGiuong;
-                        objLichsuKcb.IdKhoanoitru = objBuonggiuong.IdKhoanoitru;
-                        objLichsuKcb.NguoiTao = globalVariables.UserName;
-                        objLichsuKcb.NgayTao = DateTime.Now;
-
-                        objLichsuKcb.Save();
-
-                        objLuotkham.IdLichsuDoituongKcb = objLichsuKcb.IdLichsuDoituongKcb;
-                        objLuotkham.MarkOld();
-                        objLuotkham.IsNew = false;
-                        objLuotkham.Save();
-                        if (objSoKCB != null)
-                        {
-                            //Kiểm tra xem có sổ KCB hay chưa
-                            objSoKCB.MaLuotkham = Utility.sDbnull(objLuotkham.MaLuotkham);
-                            objSoKCB.IdBenhnhan = Utility.Int32Dbnull(objLuotkham.IdBenhnhan);
-                            var _temp =
-                                new Select().From(KcbDangkySokham.Schema)
-                                    .Where(KcbDangkySokham.Columns.IdBenhnhan)
-                                    .IsEqualTo(objLuotkham.IdBenhnhan)
-                                    .And(KcbDangkySokham.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
-                                    .ExecuteSingle<KcbDangkySokham>();
-                            if (_temp == null)
-                            {
-                                objSoKCB.NgayTao = DateTime.Now;
-                                objSoKCB.NguoiTao = globalVariables.UserName;
-                                objSoKCB.IsNew = true;
-                                objSoKCB.Save();
-                            }
-                            else
-                            {
-                                if (Utility.Int64Dbnull(_temp.IdThanhtoan, 0) > 0) //Ko làm gì cả
-                                {
-                                    Msg =
-                                        "Đã thu tiền sổ khám của Bệnh nhân nên không được phép xóa hoặc cập nhật lại thông tin sổ khám";
-                                }
-                                else //Update lại sổ KCB
-                                {
-                                    _temp.DonGia = objSoKCB.DonGia;
-                                    _temp.BnhanChitra = objSoKCB.BnhanChitra;
-                                    _temp.BhytChitra = objSoKCB.BhytChitra;
-                                    _temp.PtramBhyt = objSoKCB.PtramBhyt;
-                                    _temp.PtramBhytGoc = objSoKCB.PtramBhytGoc;
-                                    _temp.PhuThu = objSoKCB.PhuThu;
-                                    _temp.TuTuc = objSoKCB.TuTuc;
-                                    _temp.NguonThanhtoan = objSoKCB.NguonThanhtoan;
-                                    _temp.IdLoaidoituongkcb = objSoKCB.IdLoaidoituongkcb;
-                                    _temp.IdDoituongkcb = objSoKCB.IdDoituongkcb;
-                                    _temp.MaDoituongkcb = objSoKCB.MaDoituongkcb;
-                                    _temp.Noitru = objSoKCB.Noitru;
-                                    _temp.IdGoi = objSoKCB.IdGoi;
-                                    _temp.TrongGoi = objSoKCB.TrongGoi;
-                                    _temp.IdNhanvien = objSoKCB.IdNhanvien;
-                                    _temp.NgaySua = DateTime.Now;
-                                    _temp.NguoiSua = globalVariables.UserName;
-                                    _temp.IsNew = false;
-                                    _temp.MarkOld();
-                                    _temp.Save();
-                                }
-                            }
-                        }
-                        else
-                        {
-                            new Delete().From(KcbDangkySokham.Schema)
-                                .Where(KcbDangkySokham.Columns.IdBenhnhan)
-                                .IsEqualTo(objLuotkham.IdBenhnhan)
-                                .And(KcbDangkySokham.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
-                                .And(KcbDangkySokham.Columns.TrangthaiThanhtoan).IsEqualTo(0)
-                                .Execute();
-                        }
-                        //Kiểm tra nếu % bị thay đổi thì cập nhật lại tất cả các bảng
-                        if (PtramBhytCu != Utility.DecimaltoDbnull(objLuotkham.PtramBhyt, 0) ||
-                            PtramBhytgoc != Utility.DecimaltoDbnull(objLuotkham.PtramBhytGoc, 0))
-                            _ActionResult = THU_VIEN_CHUNG.UpdatePtramBhyt(objLuotkham, -1);
-                        if (_ActionResult == ActionResult.Cancel)
-                            //Báo không cho phép thay đổi phần trăm BHYT do đã có dịch vụ đã thanh toán
-                        {
-                            return _ActionResult;
-                        }
-
-                        //Nhập viện
-                        if (objBuonggiuong != null)
-                        {
-                            if (objBuonggiuong.Id <= 0)
-                            {
-                                objBuonggiuong.IdBenhnhan = objLuotkham.IdBenhnhan;
-                                objBuonggiuong.MaLuotkham = objLuotkham.MaLuotkham;
-                                noitru_nhapvien.NhapvienCapcuu(objBuonggiuong, objLuotkham);
-                            }
-                            //Chuyển vào buồng giường
-                            if (Utility.Int16Dbnull(objBuonggiuong.IdBuong) > -1 &&
-                                Utility.Int16Dbnull(objBuonggiuong.IdGiuong) > -1)
-                                noitru_nhapvien.PhanGiuongDieuTriCapcuu(objBuonggiuong, objLuotkham, ngaychuyenkhoa,
-                                    Utility.Int16Dbnull(objBuonggiuong.IdBuong),
-                                    Utility.Int16Dbnull(objBuonggiuong.IdGiuong));
-
-                            objLuotkham.IdKhoanoitru = objBuonggiuong.IdKhoanoitru;
-                            objLuotkham.IdBuong = objBuonggiuong.IdBuong;
-                            objLuotkham.IdGiuong = objBuonggiuong.IdGiuong;
-                            objLuotkham.IdRavien = objBuonggiuong.Id;
-                            objLuotkham.IdNhapvien = objBuonggiuong.Id;
-                        }
-                        //mytrace.Desc = string.Format("Cập nhật BN cấp cứu ID={0}, Code={1}, Name={2}",
-                        //    objKcbDanhsachBenhnhan.IdBenhnhan, objLuotkham.MaLuotkham,
-                        //    objKcbDanhsachBenhnhan.TenBenhnhan);
-                        //mytrace.Lot = 0;
-                        //mytrace.IsNew = true;
-                        //mytrace.Save();
-                        Utility.Log("TiepDonCapCuu", globalVariables.UserName, string.Format("Update bệnh nhân cấp cứu với mã lần khám {0} - ", objLuotkham.MaLuotkham), newaction.Insert, "UI");
-                       
-                    }
-                    scope.Complete();
-                   
-                }
-                return ActionResult.Success;
-            }
-            catch (Exception ex)
-            {
-                log.Error("Loi trong qua trinh update thong tin benh nhan {0}", ex);
-                return ActionResult.Error;
-            }
-        }
+       
         public ActionResult ThemmoiBenhnhan_CapCuu(SysTrace mytrace, KcbDanhsachBenhnhan objKcbDanhsachBenhnhan,
                    KcbLuotkham objLuotkham,ref NoitruPhieunhapvien objPhieuNv , NoitruPhanbuonggiuong objBuonggiuong, DateTime ngaychuyenkhoa,
                    ref long id_kham, ref string Msg)
@@ -1050,12 +875,20 @@ namespace VNS.HIS.BusRule.Classes
                             objKcbDanhsachBenhnhan.NgayTiepdon
                             , objKcbDanhsachBenhnhan.NguoiTiepdon, objKcbDanhsachBenhnhan.NgayTao,
                             objKcbDanhsachBenhnhan.NguoiTao, objKcbDanhsachBenhnhan.IpMaytao,
-                            objKcbDanhsachBenhnhan.TenMaytao, objKcbDanhsachBenhnhan.CanhBao);
+                            objKcbDanhsachBenhnhan.TenMaytao, objKcbDanhsachBenhnhan.CanhBao, objKcbDanhsachBenhnhan.PassPost);
                         sp.Execute();
                         log.Trace("1. Đã thêm mới bệnh nhân");
                         objKcbDanhsachBenhnhan.IdBenhnhan = Utility.Int64Dbnull(sp.OutputValues[0]);
-
-
+                        new Update(KcbDanhsachBenhnhan.Schema)
+                            .Set(KcbDanhsachBenhnhan.Columns.NhomMau).EqualTo(objKcbDanhsachBenhnhan.NhomMau)
+                            .Where(KcbDanhsachBenhnhan.Columns.IdBenhnhan).IsEqualTo(objKcbDanhsachBenhnhan.IdBenhnhan)
+                            .Execute();
+                 //       KcbChandoanKetluan objCDNV = new Select().From(KcbChandoanKetluan.Schema)
+                 //.Where(KcbChandoanKetluan.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
+                 //.And(KcbChandoanKetluan.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
+                 //.And(KcbChandoanKetluan.Columns.Noitru).IsEqualTo(0)
+                 // .And(KcbChandoanKetluan.Columns.Noitru).IsEqualTo(0)
+                 //.ExecuteSingle<KcbChandoanKetluan>();
                         var objLichsuKcb = new KcbLichsuDoituongKcb();
                         objLichsuKcb.IdBenhnhan = objKcbDanhsachBenhnhan.IdBenhnhan;
                         objLichsuKcb.MaLuotkham = objLuotkham.MaLuotkham;
@@ -1145,10 +978,13 @@ namespace VNS.HIS.BusRule.Classes
                             , objLuotkham.IdLichsuDoituongKcb, objLuotkham.CachTao, objLuotkham.KieuKham,
                             objLuotkham.MotaThem, objLuotkham.NgayTao, objLuotkham.NguoiTao, objLuotkham.LastActionName,
                             objLuotkham.SoBenhAn, objLuotkham.NguoiLienhe, objLuotkham.DienthoaiLienhe, objLuotkham.DiachiLienhe, objLuotkham.MaDoitac, objLuotkham.ThongtinMg, objLuotkham.GhichuDoitac, objLuotkham.ThanhtoanCongkhamsau
-                            , objLuotkham.MaTinhtp, objLuotkham.MaQuanhuyen, objLuotkham.MaXaphuong, objLuotkham.MaLydovaovien, objLuotkham.TuyentruocDtTungay, objLuotkham.TuyentruocDtDenngay, objLuotkham.MaDoituongGiamdinh, globalVariables.Ma_Coso, objLuotkham.ThoigianLaysoQMS, objLuotkham.MaKenh);
+                            , objLuotkham.MaTinhtp, objLuotkham.MaQuanhuyen, objLuotkham.MaXaphuong, objLuotkham.MaLydovaovien, objLuotkham.TuyentruocDtTungay, objLuotkham.TuyentruocDtDenngay, 
+                            objLuotkham.MaDoituongGiamdinh, globalVariables.Ma_Coso, objLuotkham.ThoigianLaysoQMS, objLuotkham.MaKenh, objLuotkham.PassPost, objLuotkham.NgaycapCmt, objLuotkham.NoicapCmt, objLuotkham.SogiayChuyentuyen);
                         //REM lại sử dụng đối tượng subsonic đỡ phải sửa thủ tục. Khi nào chậm sẽ chỉnh sau
                         objLuotkham.MaYte = string.Format("{0}{1}", globalVariables.Ma_Coso, objLuotkham.MaLuotkham);
                         objLuotkham.Shs = 1;
+                        objLuotkham.IdBuong = objBuonggiuong.IdBuong;
+                        objLuotkham.IdGiuong = objBuonggiuong.IdGiuong;
                         objLuotkham.Save();
                         //sp.Execute();
                         log.Trace("3. Đã thêm mới Lượt khám Bệnh nhân");
@@ -1196,6 +1032,160 @@ namespace VNS.HIS.BusRule.Classes
                 GC.Collect();
             }
         }
+        public ActionResult CapNhatBenhnhanCapcuu(SysTrace mytrace, KcbDanhsachBenhnhan objKcbDanhsachBenhnhan,
+                   KcbLuotkham objLuotkham, ref NoitruPhieunhapvien objPhieuNv, NoitruPhanbuonggiuong objBuonggiuong,
+                    decimal PtramBhytCu, decimal PtramBhytgoc, ref string Msg)
+        {
+            var _ActionResult = ActionResult.Success;
+            try
+            {
+                using (var scope = new TransactionScope())
+                {
+                    using (var dbscope = new SharedDbConnectionScope())
+                    {
+                        objKcbDanhsachBenhnhan.IsNew = false;
+                        objKcbDanhsachBenhnhan.IsLoaded = true;
+                        objKcbDanhsachBenhnhan.MarkOld();
+                        objKcbDanhsachBenhnhan.Save();
+
+                        long IdLichsuDoituongKcb = KcbLayIdDoituongKCBHientai(objLuotkham.IdBenhnhan,
+                            objLuotkham.MaLuotkham);
+                        KcbLichsuDoituongKcb objLichsuKcb = null;
+                        if (IdLichsuDoituongKcb > 0)
+                        {
+                            objLichsuKcb = KcbLichsuDoituongKcb.FetchByID(IdLichsuDoituongKcb);
+                            objLichsuKcb.MarkOld();
+                            objLichsuKcb.IsNew = false;
+                        }
+                        else
+                        {
+                            objLichsuKcb = new KcbLichsuDoituongKcb();
+                            objLichsuKcb.IsNew = true;
+                        }
+                        if (objLichsuKcb == null)
+                        {
+                            Msg = "NULL-->Không lấy được thông tin lịch sử đối tượng KCB của Bệnh nhân";
+                            return ActionResult.Error;
+                        }
+
+                        objLichsuKcb.IdBenhnhan = objLuotkham.IdBenhnhan;
+                        objLichsuKcb.MaLuotkham = objLuotkham.MaLuotkham;
+                        objLichsuKcb.NgayHieuluc = objLuotkham.NgayTiepdon;
+                        objLichsuKcb.IdDoituongKcb = objLuotkham.IdDoituongKcb;
+                        objLichsuKcb.MaDoituongKcb = objLuotkham.MaDoituongKcb;
+                        objLichsuKcb.IdLoaidoituongKcb = objLuotkham.IdLoaidoituongKcb;
+                        objLichsuKcb.MatheBhyt = objLuotkham.MatheBhyt;
+                        objLichsuKcb.PtramBhyt = objLuotkham.PtramBhyt;
+                        objLichsuKcb.PtramBhytGoc = objLuotkham.PtramBhytGoc;
+                        objLichsuKcb.NgaybatdauBhyt = objLuotkham.NgaybatdauBhyt;
+                        objLichsuKcb.NgayketthucBhyt = objLuotkham.NgayketthucBhyt;
+                        objLichsuKcb.NoicapBhyt = objLuotkham.NoicapBhyt;
+                        objLichsuKcb.MaNoicapBhyt = objLuotkham.MaNoicapBhyt;
+                        objLichsuKcb.MaDoituongBhyt = objLuotkham.MaDoituongBhyt;
+                        objLichsuKcb.MaQuyenloi = objLuotkham.MaQuyenloi;
+                        objLichsuKcb.NoiDongtrusoKcbbd = objLuotkham.NoiDongtrusoKcbbd;
+
+                        objLichsuKcb.MaKcbbd = objLuotkham.MaKcbbd;
+                        objLichsuKcb.TrangthaiNoitru = 0;
+                        objLichsuKcb.DungTuyen = objLuotkham.DungTuyen;
+                        objLichsuKcb.Cmt = objLuotkham.Cmt;
+                        objLichsuKcb.IdRavien = objBuonggiuong.Id;
+                        objLichsuKcb.IdBuong = objBuonggiuong.IdBuong;
+                        objLichsuKcb.IdGiuong = objBuonggiuong.IdGiuong;
+                        objLichsuKcb.IdKhoanoitru = objBuonggiuong.IdKhoanoitru;
+                        objLichsuKcb.NguoiTao = globalVariables.UserName;
+                        objLichsuKcb.NgayTao = DateTime.Now;
+
+                        objLichsuKcb.Save();
+
+                        objLuotkham.IdLichsuDoituongKcb = objLichsuKcb.IdLichsuDoituongKcb;
+                        objLuotkham.MarkOld();
+                        objLuotkham.IsNew = false;
+                        objLuotkham.IdBuong = objBuonggiuong.IdBuong;
+                        objLuotkham.IdGiuong = objBuonggiuong.IdGiuong;
+                        objLuotkham.Save();
+                        log.Trace("3. Đã thêm mới Lượt khám Bệnh nhân");
+                        DataTable dtCheck =
+                            SPs.SpKcbKiemtraTrungMaLuotkham(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham)
+                                .GetDataSet()
+                                .Tables[0];
+                        if (dtCheck != null && dtCheck.Rows.Count > 0)
+                        {
+                            log.Trace("3.1 Đã phát hiện trùng mã Bệnh nhân-->Lấy lại mã mới");
+                            string patientCode =
+                                THU_VIEN_CHUNG.KCB_SINH_MALANKHAM(
+                                    (byte)(objKcbDanhsachBenhnhan.KieuBenhnhan == 0 ? 0 : 1));
+                            SPs.SpKcbCapnhatLuotkhamMaluotkham(patientCode, objLuotkham.MaLuotkham,
+                                objLuotkham.IdBenhnhan).Execute();
+                            SPs.SpKcbCapnhatMaluotkhamLichsudoituongKcb(patientCode, objLichsuKcb.IdLichsuDoituongKcb)
+                                .Execute();
+                            log.Trace("3.2 Đã Cập nhật lại mã lượt khám mới");
+                            objLuotkham.MaLuotkham = patientCode;
+                        }
+                        SPs.SpKcbCapnhatDmucLuotkham(objLuotkham.MaLuotkham,
+                            (byte)(objKcbDanhsachBenhnhan.KieuBenhnhan == 0 ? 0 : 1), 1, 2, globalVariables.UserName)
+                            .Execute();
+                        //Kiểm tra nếu % bị thay đổi thì cập nhật lại tất cả các bảng
+                        if (PtramBhytCu != Utility.DecimaltoDbnull(objLuotkham.PtramBhyt, 0) ||
+                            PtramBhytgoc != Utility.DecimaltoDbnull(objLuotkham.PtramBhytGoc, 0))
+                            _ActionResult = THU_VIEN_CHUNG.UpdatePtramBhyt(objLuotkham, -1);
+                        if (_ActionResult == ActionResult.Cancel)
+                        //Báo không cho phép thay đổi phần trăm BHYT do đã có dịch vụ đã thanh toán
+                        {
+                            return _ActionResult;
+                        }
+                        log.Trace("4. Bắt đầu thêm thông tin phiếu nhập viện+ buồng giường");
+                        objPhieuNv.IdBenhnhan = (int)objLuotkham.IdBenhnhan;
+                        objPhieuNv.MaLuotkham = objLuotkham.MaLuotkham;
+                        objBuonggiuong.IdBenhnhan = (int)objLuotkham.IdBenhnhan;
+                        objBuonggiuong.MaLuotkham = objLuotkham.MaLuotkham;
+                        Nhapvien_CapCuu(objBuonggiuong, objLuotkham, objPhieuNv);
+
+                        
+
+                        ////Nhập viện
+                        //if (objBuonggiuong != null)
+                        //{
+                        //    if (objBuonggiuong.Id <= 0)
+                        //    {
+                        //        objBuonggiuong.IdBenhnhan = objLuotkham.IdBenhnhan;
+                        //        objBuonggiuong.MaLuotkham = objLuotkham.MaLuotkham;
+                        //        noitru_nhapvien.NhapvienCapcuu(objBuonggiuong, objLuotkham);
+                        //    }
+                        //    //Chuyển vào buồng giường
+                        //    if (Utility.Int16Dbnull(objBuonggiuong.IdBuong) > -1 &&
+                        //        Utility.Int16Dbnull(objBuonggiuong.IdGiuong) > -1)
+                        //        noitru_nhapvien.PhanGiuongDieuTriCapcuu(objBuonggiuong, objLuotkham, ngaychuyenkhoa,
+                        //            Utility.Int16Dbnull(objBuonggiuong.IdBuong),
+                        //            Utility.Int16Dbnull(objBuonggiuong.IdGiuong));
+
+                        //    objLuotkham.IdKhoanoitru = objBuonggiuong.IdKhoanoitru;
+                        //    objLuotkham.IdBuong = objBuonggiuong.IdBuong;
+                        //    objLuotkham.IdGiuong = objBuonggiuong.IdGiuong;
+                        //    objLuotkham.IdRavien = objBuonggiuong.Id;
+                        //    objLuotkham.IdNhapvien = objBuonggiuong.Id;
+                        //}
+                        //mytrace.Desc = string.Format("Cập nhật BN cấp cứu ID={0}, Code={1}, Name={2}",
+                        //    objKcbDanhsachBenhnhan.IdBenhnhan, objLuotkham.MaLuotkham,
+                        //    objKcbDanhsachBenhnhan.TenBenhnhan);
+                        //mytrace.Lot = 0;
+                        //mytrace.IsNew = true;
+                        //mytrace.Save();
+                        Utility.Log("TiepDonCapCuu", globalVariables.UserName, string.Format("Update bệnh nhân cấp cứu với mã lần khám {0} - ", objLuotkham.MaLuotkham), newaction.Insert, "UI");
+
+                    }
+                    scope.Complete();
+
+                }
+                return ActionResult.Success;
+            }
+            catch (Exception ex)
+            {
+                log.Error("Loi trong qua trinh update thong tin benh nhan {0}", ex);
+                return ActionResult.Error;
+            }
+        }
+       
         public ActionResult Nhapvien_CapCuu(NoitruPhanbuonggiuong objBuongGiuong, KcbLuotkham objLuotkham, NoitruPhieunhapvien objphieunhapvien)
         {
             int id_phieunv = objphieunhapvien.IdPhieu;
@@ -1215,7 +1205,7 @@ namespace VNS.HIS.BusRule.Classes
                         objphieunhapvien.SoVaovien = THU_VIEN_CHUNG.LaysoVaovien();
                     objLuotkham.SoVaovien = objphieunhapvien.SoVaovien;
                     objphieunhapvien.Save();
-
+                    long id_bg = 0;
                     //Tìm bản ghi nhập viện đầu tiên(ko có thông tin khoa chuyển)
                     NoitruPhanbuonggiuongCollection _NoitruPhanbuonggiuong = new Select().From(NoitruPhanbuonggiuong.Schema)
                                 .Where(NoitruPhanbuonggiuong.Columns.NoiTru).IsEqualTo(1)
@@ -1226,6 +1216,7 @@ namespace VNS.HIS.BusRule.Classes
                                 .ExecuteAsCollection<NoitruPhanbuonggiuongCollection>();
                     if (_NoitruPhanbuonggiuong != null && _NoitruPhanbuonggiuong.Count == 1)
                     {
+                        id_bg = Utility.Int64Dbnull(_NoitruPhanbuonggiuong[0].Id, -1);
                         if (Utility.Int32Dbnull(_NoitruPhanbuonggiuong[0].IdBuong, -1) == -1)
                         {
                             //Chỉ việc cập nhật lại thông tin khoa
@@ -1259,8 +1250,8 @@ namespace VNS.HIS.BusRule.Classes
                             .IsNull().CloseExpression().Execute();
 
                         objBuongGiuong.IdBacsiChidinh = globalVariables.gv_intIDNhanvien;
-                        objBuongGiuong.IdBuong = -1;
-                        objBuongGiuong.IdGiuong = -1;
+                        objBuongGiuong.IdBuong = objBuongGiuong.IdBuong;
+                        objBuongGiuong.IdGiuong = objBuongGiuong.IdGiuong;
                         objBuongGiuong.IdChuyen = -1;
                         objBuongGiuong.SoLuong = 1;
                         objBuongGiuong.TuTuc = 0;
@@ -1274,6 +1265,7 @@ namespace VNS.HIS.BusRule.Classes
                         objBuongGiuong.NoiTru = 1;
                         objBuongGiuong.IsNew = true;
                         objBuongGiuong.Save();
+                        id_bg = objBuongGiuong.Id;
                     }
                    
                     if (id_phieunv <= 0)
@@ -1281,7 +1273,6 @@ namespace VNS.HIS.BusRule.Classes
                             //.Set(KcbLuotkham.Columns.SoBenhAn).EqualTo(objLuotkham.SoBenhAn)
                             .Set(KcbLuotkham.Columns.IdKhoanoitru).EqualTo(objBuongGiuong.IdKhoanoitru)
                             .Set(KcbLuotkham.Columns.IdNhapvien).EqualTo(objBuongGiuong.Id)
-                            .Set(KcbLuotkham.Columns.IdRavien).EqualTo(objBuongGiuong.Id)
                             .Set(KcbLuotkham.Columns.SoVaovien).EqualTo(objLuotkham.SoVaovien)
                             .Set(KcbLuotkham.Columns.NguoiLienhe).EqualTo(objLuotkham.NguoiLienhe)
                             .Set(KcbLuotkham.Columns.DiachiLienhe).EqualTo(objLuotkham.DiachiLienhe)
@@ -1291,6 +1282,7 @@ namespace VNS.HIS.BusRule.Classes
                             //.Set(KcbLuotkham.Columns.TrieuChung).EqualTo(objLuotkham.TrieuChung)
                             .Set(KcbLuotkham.Columns.TrangthaiNoitru).EqualTo(1)
                             .Set(KcbLuotkham.Columns.Noitru).EqualTo(1)
+                             .Set(KcbLuotkham.Columns.IdRavien).EqualTo(id_bg)
                             .Set(KcbLuotkham.Columns.NgayNhapvien).EqualTo(objBuongGiuong.NgayVaokhoa)
                             .Set(KcbLuotkham.Columns.MotaNhapvien).EqualTo(objLuotkham.MotaNhapvien)
                             .Where(KcbLuotkham.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
@@ -1304,6 +1296,7 @@ namespace VNS.HIS.BusRule.Classes
                        .Set(KcbLuotkham.Columns.NgayNhapvien).EqualTo(objBuongGiuong.NgayVaokhoa)
                        .Set(KcbLuotkham.Columns.MotaNhapvien).EqualTo(objLuotkham.MotaNhapvien)
                        .Set(KcbLuotkham.Columns.IdCongkhamNhapvien).EqualTo(objLuotkham.IdCongkhamNhapvien)
+                       .Set(KcbLuotkham.Columns.IdRavien).EqualTo(id_bg)
                        .Where(KcbLuotkham.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
                        .And(KcbLuotkham.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan).Execute();
                 }
@@ -1487,7 +1480,142 @@ namespace VNS.HIS.BusRule.Classes
                 return ActionResult.Error;
             }
         }
+        public ActionResult XoaNguoiBenhNhapVienCapCuu(SysTrace mytrace, string vMaLuotkham, long vPatientId, ref string errMsg)
+        {
+            int record = -1;
+            try
+            {
+                using (var scope = new TransactionScope())
+                {
+                    using (var db = new SharedDbConnectionScope())
+                    {
+                        ////Bỏ kiểm tra do đã kiểm tra phía Client
+                        SqlQuery sqlQuery = new Select().From(NoitruPhieudieutri.Schema).Where(NoitruPhieudieutri.Columns.MaLuotkham).IsEqualTo(vMaLuotkham).And(NoitruPhieudieutri.Columns.IdBenhnhan).IsEqualTo(vPatientId);
+                        if (sqlQuery.GetRecordCount() > 0)
+                        {
+                            errMsg = "Bệnh nhân đã được tạo y lệnh điều trị hằng ngày nên bạn không thể xóa bệnh nhân. Vui lòng kiểm tra lại";
+                            return ActionResult.Exception;
+                        }
+                        sqlQuery = new Select().From(KcbChidinhcl.Schema).Where(KcbChidinhcl.Columns.MaLuotkham).IsEqualTo(vMaLuotkham).And(KcbChidinhcl.Columns.IdBenhnhan).IsEqualTo(vPatientId);
+                        if (sqlQuery.GetRecordCount() > 0)
+                        {
+                            errMsg = "Bệnh nhân đã được chỉ định dịch vụ CLS nên bạn không thể xóa bệnh nhân. Vui lòng kiểm tra lại";
+                            return ActionResult.Exception;
+                        }
+                        sqlQuery = sqlQuery = new Select().From(KcbDonthuoc.Schema).Where(KcbDonthuoc.Columns.MaLuotkham).IsEqualTo(vMaLuotkham).And(KcbDonthuoc.Columns.IdBenhnhan).IsEqualTo(vPatientId);
+                        if (sqlQuery.GetRecordCount() > 0)
+                        {
+                            errMsg = "Bệnh nhân đã được kê đơn Thuốc/VTTH nên bạn không thể xóa bệnh nhân. Vui lòng kiểm tra lại";
+                            return ActionResult.Exception;
+                        }
 
+                        NoitruTamungCollection lstNoitruTamung =
+                            new NoitruTamungController().FetchByQuery(
+                                NoitruTamung.CreateQuery().AddWhere(NoitruTamung.Columns.MaLuotkham,
+                                    Comparison.Equals, vMaLuotkham));
+                        if (lstNoitruTamung.Count > 0)
+                        {
+                            errMsg =
+                                "Bệnh nhân đã nộp tiền tạm ứng nên bạn không thể xóa thông tin. Đề nghị hủy thông tin tạm ứng trước khi xóa";
+                            return ActionResult.Exception;
+                        }
+                        DataTable dtChuyenKhoa = new Select().From(NoitruPhanbuonggiuong.Schema)
+                            .Where(NoitruPhanbuonggiuong.Columns.MaLuotkham).IsEqualTo(vMaLuotkham)
+                            .And(NoitruPhanbuonggiuong.Columns.IdBenhnhan).IsEqualTo(vPatientId)
+                            .And(NoitruPhanbuonggiuong.Columns.IdKhoachuyen).IsGreaterThan(0)
+                            .ExecuteDataSet().Tables[0];
+                        if (dtChuyenKhoa.Rows.Count > 0)
+                        {
+                            errMsg =
+                                "Người bệnh đã được thực hiện chuyển khoa/buồng/giường nên không thể xóa";
+                            return ActionResult.Exception;
+                        }
+                        //// XÓA chi định tự động
+                        //new Delete().From(KcbChidinhcl.Schema).Where(KcbChidinhcl.Columns.MaLuotkham).IsEqualTo(
+                        //    v_MaLuotkham)
+                        //    .And(KcbChidinhcl.Columns.IdBenhnhan).IsEqualTo(v_Patient_ID).Execute();
+
+
+                        ////XÓA THÔNG TIN ĐĂNG KÝ KHÁM
+                        //new Delete().From(KcbDangkyKcb.Schema).Where(KcbDangkyKcb.Columns.MaLuotkham).IsEqualTo(v_MaLuotkham)
+                        //    .And(KcbDangkyKcb.Columns.IdBenhnhan).IsEqualTo(v_Patient_ID)
+                        //    .Execute();
+
+                        ////XÓA THÔNG TIN ĐĂNG KÝ KHÁM
+                        //new Delete().From(KcbDangkySokham.Schema).Where(KcbDangkySokham.Columns.MaLuotkham).IsEqualTo(v_MaLuotkham)
+                        //    .And(KcbDangkySokham.Columns.IdBenhnhan).IsEqualTo(v_Patient_ID)
+                        //    .Execute();
+
+                        ////XÓA THÔNG TIN ĐĂNG KÝ KHÁM
+                        //new Delete().From(KcbLichsuDoituongKcb.Schema).Where(KcbLichsuDoituongKcb.Columns.MaLuotkham).IsEqualTo(v_MaLuotkham)
+                        //    .And(KcbLichsuDoituongKcb.Columns.IdBenhnhan).IsEqualTo(v_Patient_ID)
+                        //    .Execute();
+
+                        //new Delete().From(NoitruPhanbuonggiuong.Schema).Where(NoitruPhanbuonggiuong.Columns.MaLuotkham).IsEqualTo(v_MaLuotkham)
+                        //    .And(NoitruPhanbuonggiuong.Columns.IdBenhnhan).IsEqualTo(v_Patient_ID)
+                        //    //.And(NoitruPhanbuonggiuong.Columns.NoiTru).IsEqualTo(0)
+                        //   .Execute();
+
+                        //new Delete().From(NoitruPhieudieutri.Schema).Where(NoitruPhieudieutri.Columns.MaLuotkham).IsEqualTo(v_MaLuotkham)
+                        //   .And(NoitruPhieudieutri.Columns.IdBenhnhan).IsEqualTo(v_Patient_ID)
+                        //  .Execute();
+
+                        //new Delete().From(NoitruTamung.Schema).Where(NoitruTamung.Columns.MaLuotkham).IsEqualTo(v_MaLuotkham)
+                        //    .And(NoitruTamung.Columns.IdBenhnhan).IsEqualTo(v_Patient_ID)
+                        //   .Execute();
+                        //LẤY VỀ CÁC THÔNG TIN LẦN KHÁM CỦA BỆNH NHÂN
+                        KcbLuotkhamCollection tPatientExamCollection =
+                            new KcbLuotkhamController().FetchByQuery(
+                                KcbLuotkham.CreateQuery().AddWhere(KcbLuotkham.Columns.IdBenhnhan, Comparison.Equals,
+                                    vPatientId));
+                        SPs.SpKcbDeleteLuotkham(Utility.sDbnull(vMaLuotkham), Utility.Int64Dbnull(vPatientId))
+                            .Execute();
+                        //XÓA LẦN ĐĂNG KÝ KHÁM CỦA BỆNH NHÂN
+                        //new Delete().From(KcbLuotkham.Schema).Where(KcbLuotkham.Columns.MaLuotkham).IsEqualTo(
+                        //    v_MaLuotkham).Execute();
+                        if (THU_VIEN_CHUNG.Laygiatrithamsohethong("KCB_SUDUNGLAI_MALUOTKHAM_DAXOA", "0", false) == "1")
+                        {
+                            KcbDanhsachBenhnhan objBN = KcbDanhsachBenhnhan.FetchByID(vPatientId);
+                            //Cập nhật lại mã lượt khám để có thể dùng cho bệnh nhân khác
+                            new Update(KcbDmucLuotkham.Schema)
+                                .Set(KcbDmucLuotkham.Columns.TrangThai).EqualTo(0)
+                                .Set(KcbDmucLuotkham.Columns.UsedBy).EqualTo(DBNull.Value)
+                                .Set(KcbDmucLuotkham.Columns.StartTime).EqualTo(DBNull.Value)
+                                .Set(KcbDmucLuotkham.Columns.EndTime).EqualTo(null)
+                                .Where(KcbDmucLuotkham.Columns.MaLuotkham).IsEqualTo(vMaLuotkham)
+                                .And(KcbDmucLuotkham.Columns.Loai).IsEqualTo((byte)(objBN.KieuBenhnhan == 0 ? 0 : 1))
+                                .And(KcbDmucLuotkham.Columns.TrangThai).IsEqualTo(2)
+                                .Execute();
+                            ;
+                        }
+                        //KIỂM TRA NẾU BỆNH NHÂN CÓ >1 LẦN KHÁM THÌ CHỈ XÓA LẦN ĐĂNG KÝ ĐANG CHỌN. NẾU <= 1 LẦN KHÁM THÌ XÓA LUÔN THÔNG TIN BỆNH NHÂN
+                        if (tPatientExamCollection.Count < 2)
+                        {
+                            new Delete().From(KcbDanhsachBenhnhan.Schema)
+                                .Where(KcbDanhsachBenhnhan.Columns.IdBenhnhan)
+                                .IsEqualTo(
+                                    vPatientId).Execute();
+                            Utility.Log("PerformActionDeletePatientExam", globalVariables.UserName, string.Format("Xóa bệnh nhân ID={0}, PID={1} ", vPatientId.ToString(), vMaLuotkham), newaction.Delete, this.GetType().Assembly.ManifestModule.Name);
+                        }
+                        if (mytrace != null)
+                        {
+                            mytrace.Desc = string.Format("Xóa Bệnh nhân ID={0}, Code={1}, Name={2}", vPatientId,
+                                vMaLuotkham, vMaLuotkham);
+                            mytrace.Lot = 0;
+                            mytrace.IsNew = true;
+                            mytrace.Save();
+                        }
+                    }
+                    scope.Complete();
+
+                }
+                return ActionResult.Success;
+            }
+            catch (Exception ex)
+            {
+                return ActionResult.Error;
+            }
+        }
         public ActionResult PerformActionDeletePatientExam(SysTrace mytrace, string vMaLuotkham, long vPatientId,            ref string errMsg)
         {
             int record = -1;
@@ -2022,7 +2150,7 @@ namespace VNS.HIS.BusRule.Classes
         }
 
         public ActionResult ThemmoiLuotkham(SysTrace mytrace, KcbDanhsachBenhnhan objKcbDanhsachBenhnhan,
-            KcbLuotkham objLuotkham, KcbDangkyKcb objCongkham,  KcbDangkyKcb objKhamthiluc, KcbDangkySokham objSoKCB, int KieuKham,
+            KcbLuotkham objLuotkham, List<KcbDangkyKcb> lstCongKham, int id_goi, ref int id_dangky, KcbDangkyKcb objKhamthiluc, KcbDangkySokham objSoKCB, int KieuKham,
             ref long id_kham, ref string Msg)
         {
             try
@@ -2047,7 +2175,7 @@ namespace VNS.HIS.BusRule.Classes
                             , objKcbDanhsachBenhnhan.NgayTiepdon, objKcbDanhsachBenhnhan.NguoiTiepdon,
                             objKcbDanhsachBenhnhan.NgaySua, objKcbDanhsachBenhnhan.NguoiSua,
                             objKcbDanhsachBenhnhan.IpMaysua
-                            , objKcbDanhsachBenhnhan.TenMaysua, objKcbDanhsachBenhnhan.CanhBao);
+                            , objKcbDanhsachBenhnhan.TenMaysua, objKcbDanhsachBenhnhan.CanhBao, objKcbDanhsachBenhnhan.PassPost);
                         sp.Execute();
                         var objLichsuKcb = new KcbLichsuDoituongKcb();
                         objLichsuKcb.IdBenhnhan = objKcbDanhsachBenhnhan.IdBenhnhan;
@@ -2139,7 +2267,8 @@ namespace VNS.HIS.BusRule.Classes
                             , objLuotkham.IdLichsuDoituongKcb, objLuotkham.CachTao, objLuotkham.KieuKham,
                             objLuotkham.MotaThem, objLuotkham.NgayTao, objLuotkham.NguoiTao, objLuotkham.LastActionName,
                             objLuotkham.SoBenhAn, objLuotkham.NguoiLienhe, objLuotkham.DienthoaiLienhe, objLuotkham.DiachiLienhe, objLuotkham.MaDoitac, objLuotkham.ThongtinMg,objLuotkham.GhichuDoitac, objLuotkham.ThanhtoanCongkhamsau
-                            , objLuotkham.MaTinhtp, objLuotkham.MaQuanhuyen, objLuotkham.MaXaphuong, objLuotkham.MaLydovaovien, objLuotkham.TuyentruocDtTungay, objLuotkham.TuyentruocDtDenngay, objLuotkham.MaDoituongGiamdinh, globalVariables.Ma_Coso, objLuotkham.ThoigianLaysoQMS, objLuotkham.MaKenh);
+                            , objLuotkham.MaTinhtp, objLuotkham.MaQuanhuyen, objLuotkham.MaXaphuong, objLuotkham.MaLydovaovien, objLuotkham.TuyentruocDtTungay,
+                            objLuotkham.TuyentruocDtDenngay, objLuotkham.MaDoituongGiamdinh, globalVariables.Ma_Coso, objLuotkham.ThoigianLaysoQMS, objLuotkham.MaKenh, objLuotkham.PassPost, objLuotkham.NgaycapCmt, objLuotkham.NoicapCmt, objLuotkham.SogiayChuyentuyen);
                         objLuotkham.MaYte = string.Format("{0}{1}", globalVariables.Ma_Coso, objLuotkham.MaLuotkham);
                         //REM lại sử dụng đối tượng subsonic đỡ phải sửa thủ tục. Khi nào chậm sẽ chỉnh sau
                         objLuotkham.Save();
@@ -2223,21 +2352,34 @@ namespace VNS.HIS.BusRule.Classes
                             SPs.SpKcbXoaDangkySokham(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham).Execute();
                             log.Trace("4.1 Đã xóa đăng ký sổ khám của Bệnh nhân");
                         }
-                        if (objCongkham != null) //Đôi lúc người dùng không chọn phòng khám
+                        GoiDanhsach objGoi = GoiDanhsach.FetchByID(id_goi);
+                        //Nếu gói thai sản thì đăng ký
+                        if (objGoi != null && objGoi.KieuGoi == 1)//Gói thai sản
                         {
-                            objCongkham.MaLuotkham = Utility.sDbnull(objLuotkham.MaLuotkham);
-                            objCongkham.IdBenhnhan = Utility.Int32Dbnull(objLuotkham.IdBenhnhan);
-                            objCongkham.IdLichsuDoituongKcb = objLichsuKcb.IdLichsuDoituongKcb;
-                            objCongkham.IdThe = objCongkham.IdLichsuDoituongKcb;
-                            id_kham = AddRegExam(objCongkham, objLuotkham, false, KieuKham);
-                            log.Trace("5. Đã đăng ký dịch vụ KCB cho Bệnh nhân");
+                            new clsGoikham().DangKyGoiKhamThaiSan((int)objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, id_goi, DateTime.Now);
+                        }
+                        foreach (KcbDangkyKcb objCongkham in lstCongKham)
+                        {
+                            if (objCongkham != null) //Đôi lúc người dùng không chọn phòng khám
+                            {
+                                if (id_dangky == -1 && id_goi > 0 && objGoi != null && objGoi.KieuGoi !=1)//Phải là đăng ký gói ksk thì mới call hàm này
+                                    id_dangky = new clsGoikham().ThemGoiKham_BVM(objCongkham, (int)objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, id_goi, DateTime.Now);
+                                objCongkham.MaLuotkham = Utility.sDbnull(objLuotkham.MaLuotkham);
+                                objCongkham.IdBenhnhan = Utility.Int32Dbnull(objLuotkham.IdBenhnhan);
+                                objCongkham.IdLichsuDoituongKcb = objLichsuKcb.IdLichsuDoituongKcb;
+                                objCongkham.IdThe = objCongkham.IdLichsuDoituongKcb;
+                                objCongkham.IdDangky = id_dangky;
+                                id_kham = AddRegExam(objCongkham, objLuotkham, false, KieuKham);
+                                log.Trace("5. Đã đăng ký dịch vụ KCB cho Bệnh nhân");
+                            }
+
                         }
                         if (objKhamthiluc != null) //Đôi lúc người dùng không chọn phòng khám
                         {
                             objKhamthiluc.MaLuotkham = Utility.sDbnull(objLuotkham.MaLuotkham);
                             objKhamthiluc.IdBenhnhan = Utility.Int32Dbnull(objLuotkham.IdBenhnhan);
                             objKhamthiluc.IdLichsuDoituongKcb = objLichsuKcb.IdLichsuDoituongKcb;
-                            objKhamthiluc.IdThe = objCongkham.IdLichsuDoituongKcb;
+                            objKhamthiluc.IdThe = objLichsuKcb.IdLichsuDoituongKcb;
                             ThemCongkhamThiluc(objKhamthiluc, objLuotkham, false, KieuKham);
                             //log.Trace("5. Đã đăng ký dịch vụ KCB cho Bệnh nhân");
                         }
@@ -2253,6 +2395,248 @@ namespace VNS.HIS.BusRule.Classes
                     }
                     scope.Complete();
                     
+                }
+                return ActionResult.Success;
+            }
+            catch (Exception ex)
+            {
+                return ActionResult.Error;
+            }
+        }
+
+        public ActionResult ThemmoiLuotkham(SysTrace mytrace, KcbDanhsachBenhnhan objKcbDanhsachBenhnhan,
+           KcbLuotkham objLuotkham, KcbDangkyKcb objCongkham, KcbDangkyKcb objKhamthiluc, KcbDangkySokham objSoKCB, int KieuKham,
+           ref long id_kham, ref string Msg)
+        {
+            try
+            {
+                using (var scope = new TransactionScope())
+                {
+                    using (var dbscope = new SharedDbConnectionScope())
+                    {
+                        StoredProcedure sp = SPs.SpKcbCapnhatBenhnhan(objKcbDanhsachBenhnhan.IdBenhnhan,
+                            objKcbDanhsachBenhnhan.TenBenhnhan, objKcbDanhsachBenhnhan.NgaySinh,
+                            objKcbDanhsachBenhnhan.NamSinh
+                            , objKcbDanhsachBenhnhan.IdGioitinh, objKcbDanhsachBenhnhan.GioiTinh,
+                            objKcbDanhsachBenhnhan.DiaChi, objKcbDanhsachBenhnhan.DiachiBhyt,
+                            objKcbDanhsachBenhnhan.MaQuocgia
+                            , objKcbDanhsachBenhnhan.MaTinhThanhpho, objKcbDanhsachBenhnhan.MaQuanhuyen,
+                            objKcbDanhsachBenhnhan.NgheNghiep, objKcbDanhsachBenhnhan.CoQuan, objKcbDanhsachBenhnhan.Cmt
+                            , objKcbDanhsachBenhnhan.DanToc, objKcbDanhsachBenhnhan.TonGiao,
+                            objKcbDanhsachBenhnhan.Email, objKcbDanhsachBenhnhan.NguoiLienhe,
+                            objKcbDanhsachBenhnhan.DiachiLienhe
+                            , objKcbDanhsachBenhnhan.DienthoaiLienhe, objKcbDanhsachBenhnhan.DienThoai,
+                            objKcbDanhsachBenhnhan.Fax, objKcbDanhsachBenhnhan.SoTiemchungQg
+                            , objKcbDanhsachBenhnhan.NgayTiepdon, objKcbDanhsachBenhnhan.NguoiTiepdon,
+                            objKcbDanhsachBenhnhan.NgaySua, objKcbDanhsachBenhnhan.NguoiSua,
+                            objKcbDanhsachBenhnhan.IpMaysua
+                            , objKcbDanhsachBenhnhan.TenMaysua, objKcbDanhsachBenhnhan.CanhBao, objKcbDanhsachBenhnhan.PassPost);
+                        sp.Execute();
+                        var objLichsuKcb = new KcbLichsuDoituongKcb();
+                        objLichsuKcb.IdBenhnhan = objKcbDanhsachBenhnhan.IdBenhnhan;
+                        objLichsuKcb.MaLuotkham = objLuotkham.MaLuotkham;
+                        objLichsuKcb.NgayHieuluc = objLuotkham.NgayTiepdon;
+                        objLichsuKcb.IdDoituongKcb = objLuotkham.IdDoituongKcb;
+                        objLichsuKcb.MaDoituongKcb = objLuotkham.MaDoituongKcb;
+                        objLichsuKcb.IdLoaidoituongKcb = objLuotkham.IdLoaidoituongKcb;
+                        objLichsuKcb.MatheBhyt = objLuotkham.MatheBhyt;
+                        objLichsuKcb.PtramBhyt = objLuotkham.PtramBhyt;
+                        objLichsuKcb.PtramBhytGoc = objLuotkham.PtramBhytGoc;
+                        objLichsuKcb.NgaybatdauBhyt = objLuotkham.NgaybatdauBhyt;
+                        objLichsuKcb.NgayketthucBhyt = objLuotkham.NgayketthucBhyt;
+                        objLichsuKcb.NoicapBhyt = objLuotkham.NoicapBhyt;
+                        objLichsuKcb.MaNoicapBhyt = objLuotkham.MaNoicapBhyt;
+                        objLichsuKcb.MaDoituongBhyt = objLuotkham.MaDoituongBhyt;
+                        objLichsuKcb.MaDoituongKcbBhyt = objLuotkham.MaDoituongKcbBhyt;
+                        objLichsuKcb.MaQuyenloi = objLuotkham.MaQuyenloi;
+                        objLichsuKcb.NoiDongtrusoKcbbd = objLuotkham.NoiDongtrusoKcbbd;
+
+                        objLichsuKcb.MaKcbbd = objLuotkham.MaKcbbd;
+                        objLichsuKcb.TrangthaiNoitru = 0;
+                        objLichsuKcb.DungTuyen = objLuotkham.DungTuyen;
+                        objLichsuKcb.Cmt = objLuotkham.Cmt;
+                        objLichsuKcb.GiayBhyt = objLuotkham.GiayBhyt;
+                        objLichsuKcb.MadtuongSinhsong = objLuotkham.MadtuongSinhsong;
+                        objLichsuKcb.DiachiBhyt = objLuotkham.DiachiBhyt;
+                        objLichsuKcb.IdRavien = -1;
+                        objLichsuKcb.IdBuong = -1;
+                        objLichsuKcb.IdGiuong = -1;
+                        objLichsuKcb.IdKhoanoitru = -1;
+                        objLichsuKcb.NguoiTao = globalVariables.UserName;
+                        objLichsuKcb.NgayTao = DateTime.Now;
+                        objLichsuKcb.TrangThai = 1;
+                        objLichsuKcb.KhoaThe = 0;
+                        objLichsuKcb.MaLydovaovien = objLuotkham.MaLydovaovien;
+                        objLichsuKcb.NgayDu5nam = objLuotkham.NgayDu5nam;
+                        objLichsuKcb.NgayMienCctDen = objLuotkham.NgayMienCctDen;
+                        objLichsuKcb.NgayMienCctTu = objLuotkham.NgayMienCctTu;
+                        objLichsuKcb.ChandoanChuyenden = objLuotkham.ChandoanChuyenden;
+                        objLichsuKcb.TuyentruocDtDenngay = objLuotkham.TuyentruocDtDenngay;
+                        objLichsuKcb.TuyentruocDtTungay = objLuotkham.TuyentruocDtTungay;
+                        objLichsuKcb.IdBenhvienDen = objLuotkham.IdBenhvienDen;
+                        objLichsuKcb.SogiayChuyentuyen = objLuotkham.SogiayChuyentuyen;
+                        objLichsuKcb.TthaiChuyenden = objLuotkham.TthaiChuyenden;
+                        objLichsuKcb.Save();
+
+                        //sp = SPs.SpKCBThemmoiLichsuDoituongKCB(objLichsuKcb.IdLichsuDoituongKcb, objLichsuKcb.IdBenhnhan,
+                        //    objLichsuKcb.MaLuotkham, objLichsuKcb.NgayHieuluc
+                        //    , objLichsuKcb.NgayHethieuluc, objLichsuKcb.IdDoituongKcb, objLichsuKcb.MaDoituongKcb,
+                        //    objLichsuKcb.IdLoaidoituongKcb, objLichsuKcb.MatheBhyt
+                        //    , objLichsuKcb.PtramBhyt, objLichsuKcb.PtramBhytGoc, objLichsuKcb.NgaybatdauBhyt,
+                        //    objLichsuKcb.NgayketthucBhyt, objLichsuKcb.NoicapBhyt
+                        //    , objLichsuKcb.MaNoicapBhyt, objLichsuKcb.MaDoituongBhyt, objLichsuKcb.MaQuyenloi,
+                        //    objLichsuKcb.NoiDongtrusoKcbbd, objLichsuKcb.MaKcbbd
+                        //    , objLichsuKcb.TrangthaiNoitru, objLichsuKcb.DungTuyen, objLichsuKcb.Cmt,
+                        //    objLichsuKcb.IdRavien, objLichsuKcb.IdBuong, objLichsuKcb.IdGiuong
+                        //    , objLichsuKcb.IdKhoanoitru, objLichsuKcb.GiayBhyt, objLichsuKcb.MadtuongSinhsong,
+                        //    objLichsuKcb.DiachiBhyt, objLichsuKcb.TrangthaiCapcuu, objLichsuKcb.NguoiTao,
+                        //    objLichsuKcb.NgayTao);
+
+                        //sp.Execute();
+                        log.Trace("2. Đã thêm mới Lịch sử đối tượng KCB của Bệnh nhân");
+                        //objLichsuKcb.IdLichsuDoituongKcb = Utility.Int64Dbnull(sp.OutputValues[0]);
+                        objLuotkham.IdBenhnhan = objKcbDanhsachBenhnhan.IdBenhnhan;
+                        objLuotkham.IdLichsuDoituongKcb = objLichsuKcb.IdLichsuDoituongKcb;
+                        objLuotkham.SttKham = THU_VIEN_CHUNG.LaySTTKhamTheoDoituong(objLuotkham.IdDoituongKcb);
+                        objLuotkham.NgayTao = DateTime.Now;
+                        objLuotkham.NguoiTao = globalVariables.UserName;
+                        objLuotkham.Shs = 1;
+                        sp = SPs.SpKcbThemmoiLuotkham(objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan,
+                            objLuotkham.NgayTiepdon, objLuotkham.NguoiTiepdon, objLuotkham.Tuoi
+                            , objLuotkham.LoaiTuoi, objLuotkham.IdDoituongKcb, objLuotkham.MadoituongGia,
+                            objLuotkham.MaDoituongKcb, objLuotkham.IdLoaidoituongKcb
+                            , objLuotkham.PtramBhytGoc, objLuotkham.PtramBhyt, objLuotkham.MatheBhyt,
+                            objLuotkham.NgaybatdauBhyt, objLuotkham.NgayketthucBhyt
+                            , objLuotkham.NoicapBhyt, objLuotkham.MaNoicapBhyt, objLuotkham.MaDoituongBhyt,
+                            objLuotkham.MaQuyenloi, objLuotkham.NoiDongtrusoKcbbd
+                            , objLuotkham.MaKcbbd, objLuotkham.DungTuyen, objLuotkham.Cmt, objLuotkham.LuongCoban,
+                            objLuotkham.TrangthaiCapcuu
+                            , objLuotkham.TrieuChung, objLuotkham.HienthiBaocao, objLuotkham.IdKhoatiepnhan,
+                            objLuotkham.SolanKham, objLuotkham.SttKham
+                            , objLuotkham.Noitru, objLuotkham.MaKhoaThuchien, objLuotkham.DiaChi, objLuotkham.DiachiBhyt,
+                            objLuotkham.IdBenhvienDen, objLuotkham.TthaiChuyenden, objLuotkham.ChandoanChuyenden, objLuotkham.TrangthaiNgoaitru
+                            , objLuotkham.TrangthaiNoitru, objLuotkham.Locked, objLuotkham.TthaiThopNoitru,
+                            objLuotkham.TthaiThanhtoannoitru, objLuotkham.NoiGioithieu, objLuotkham.ChiphiGioithieu, objLuotkham.ThongtinNguongt
+                            , objLuotkham.Email, objLuotkham.NhomBenhnhan, objLuotkham.GiayBhyt, objLuotkham.NgayDu5nam,
+                            objLuotkham.MadtuongSinhsong, objLuotkham.IpMaytao, objLuotkham.TenMaytao
+                            , objLuotkham.IdLichsuDoituongKcb, objLuotkham.CachTao, objLuotkham.KieuKham,
+                            objLuotkham.MotaThem, objLuotkham.NgayTao, objLuotkham.NguoiTao, objLuotkham.LastActionName,
+                            objLuotkham.SoBenhAn, objLuotkham.NguoiLienhe, objLuotkham.DienthoaiLienhe, objLuotkham.DiachiLienhe, objLuotkham.MaDoitac, objLuotkham.ThongtinMg, objLuotkham.GhichuDoitac, objLuotkham.ThanhtoanCongkhamsau
+                            , objLuotkham.MaTinhtp, objLuotkham.MaQuanhuyen, objLuotkham.MaXaphuong, objLuotkham.MaLydovaovien, objLuotkham.TuyentruocDtTungay,
+                            objLuotkham.TuyentruocDtDenngay, objLuotkham.MaDoituongGiamdinh, globalVariables.Ma_Coso, objLuotkham.ThoigianLaysoQMS, objLuotkham.MaKenh, objLuotkham.PassPost, 
+                            objLuotkham.NgaycapCmt, objLuotkham.NoicapCmt, objLuotkham.SogiayChuyentuyen);
+                        objLuotkham.MaYte = string.Format("{0}{1}", globalVariables.Ma_Coso, objLuotkham.MaLuotkham);
+                        //REM lại sử dụng đối tượng subsonic đỡ phải sửa thủ tục. Khi nào chậm sẽ chỉnh sau
+                        objLuotkham.Save();
+                        //sp.Execute();
+                        log.Trace("3. Đã thêm mới Lượt khám Bệnh nhân");
+                        DataTable dtCheck =
+                            SPs.SpKcbKiemtraTrungMaLuotkham(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham)
+                                .GetDataSet()
+                                .Tables[0];
+                        if (dtCheck != null && dtCheck.Rows.Count > 0)
+                        {
+                            log.Trace("3.1 Đã phát hiện trùng mã Bệnh nhân-->Lấy lại mã mới");
+                            string patientCode =
+                                THU_VIEN_CHUNG.KCB_SINH_MALANKHAM(
+                                    (byte)(objKcbDanhsachBenhnhan.KieuBenhnhan == 0 ? 0 : 1));
+                            SPs.SpKcbCapnhatLuotkhamMaluotkham(patientCode, objLuotkham.MaLuotkham,
+                                objLuotkham.IdBenhnhan).Execute();
+                            SPs.SpKcbCapnhatMaluotkhamLichsudoituongKcb(patientCode, objLichsuKcb.IdLichsuDoituongKcb)
+                                .Execute();
+                            log.Trace("3.2 Đã Cập nhật lại mã lượt khám mới");
+                            objLuotkham.MaLuotkham = patientCode;
+                        }
+                        SPs.SpKcbCapnhatDmucLuotkham(objLuotkham.MaLuotkham,
+                            (byte)(objKcbDanhsachBenhnhan.KieuBenhnhan == 0 ? 0 : 1), 1, 2, globalVariables.UserName)
+                            .Execute();
+                        log.Trace("4. Đã đánh dấu mã lượt khám đã được sử dụng trong hệ thống");
+                        if (objSoKCB != null)
+                        {
+                            //Kiểm tra xem có sổ KCB hay chưa
+                            objSoKCB.MaLuotkham = Utility.sDbnull(objLuotkham.MaLuotkham);
+                            objSoKCB.IdBenhnhan = Utility.Int32Dbnull(objLuotkham.IdBenhnhan);
+
+                            dtCheck =
+                                SPs.SpKcbKiemtraDangkySoKCB(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham)
+                                    .GetDataSet()
+                                    .Tables[0];
+                            if (dtCheck == null || dtCheck.Rows.Count <= 0)
+                            {
+                                objSoKCB.IdLichsuDoituongKcb = objLichsuKcb.IdLichsuDoituongKcb;
+                                objSoKCB.NgayTao = DateTime.Now;
+                                objSoKCB.NguoiTao = globalVariables.UserName;
+                                sp = SPs.SpKcbThemmoiDangkySokham(objSoKCB.IdSokcb, objSoKCB.IdBenhnhan,
+                                    objSoKCB.MaLuotkham, objSoKCB.MaSokcb, objSoKCB.DonGia, objSoKCB.BhytChitra
+                                    , objSoKCB.BnhanChitra, objSoKCB.PtramBhytGoc, objSoKCB.PtramBhyt, objSoKCB.PhuThu,
+                                    objSoKCB.TrangthaiThanhtoan, objSoKCB.IdThanhtoan
+                                    , objSoKCB.NgayThanhtoan, objSoKCB.NguoiThanhtoan, objSoKCB.TuTuc,
+                                    objSoKCB.MaDoituongkcb, objSoKCB.IdDoituongkcb, objSoKCB.IdLoaidoituongkcb,
+                                    objSoKCB.IdKhoakcb
+                                    , objSoKCB.IdNhanvien, objSoKCB.IdGoi, objSoKCB.TrongGoi, objSoKCB.NguonThanhtoan,
+                                    objSoKCB.Noitru, objSoKCB.IdLichsuDoituongKcb
+                                    , objSoKCB.MatheBhyt, objSoKCB.NgayTao, objSoKCB.NguoiTao);
+                                sp.Execute();
+                                log.Trace("4.1 Đã thêm mới đăng ký sổ khám của Bệnh nhân");
+                                objSoKCB.IdSokcb = Utility.Int64Dbnull(sp.OutputValues[0]);
+                            }
+                            else
+                            {
+                                if (Utility.Int64Dbnull(dtCheck.Rows[0]["Id_Thanhtoan"], 0) > 0) //Ko làm gì cả
+                                {
+                                    log.Trace(
+                                        "Đã thu tiền sổ khám của Bệnh nhân nên không được phép xóa hoặc cập nhật lại");
+                                }
+                                else //Update lại sổ KCB
+                                {
+                                    SPs.SpKcbCapnhatDangkySokham(
+                                        Utility.Int64Dbnull(dtCheck.Rows[0]["trangthai_thanhtoan"], 0),
+                                        Utility.sDbnull(dtCheck.Rows[0]["ma_sokcb"], 0)
+                                        , objSoKCB.DonGia, objSoKCB.BhytChitra, objSoKCB.BnhanChitra,
+                                        objSoKCB.PtramBhytGoc, objSoKCB.PtramBhyt, objSoKCB.PhuThu, objSoKCB.TuTuc
+                                        , objSoKCB.MaDoituongkcb, objSoKCB.IdDoituongkcb, objSoKCB.IdLoaidoituongkcb,
+                                        objSoKCB.IdKhoakcb, objSoKCB.IdNhanvien, objSoKCB.IdGoi, objSoKCB.TrongGoi
+                                        , objSoKCB.NguonThanhtoan, objSoKCB.Noitru, objSoKCB.IdLichsuDoituongKcb,
+                                        objSoKCB.MatheBhyt, DateTime.Now, globalVariables.UserName)
+                                        .Execute();
+                                    log.Trace("4.1 Đã cập nhật đăng ký sổ khám của Bệnh nhân");
+                                }
+                            }
+                        }
+                        else
+                        {
+                            SPs.SpKcbXoaDangkySokham(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham).Execute();
+                            log.Trace("4.1 Đã xóa đăng ký sổ khám của Bệnh nhân");
+                        }
+                       
+                        
+                        objCongkham.MaLuotkham = Utility.sDbnull(objLuotkham.MaLuotkham);
+                        objCongkham.IdBenhnhan = Utility.Int32Dbnull(objLuotkham.IdBenhnhan);
+                        objCongkham.IdLichsuDoituongKcb = objLichsuKcb.IdLichsuDoituongKcb;
+                        objCongkham.IdThe = objCongkham.IdLichsuDoituongKcb;
+                        id_kham = AddRegExam(objCongkham, objLuotkham, false, KieuKham);
+                        log.Trace("5. Đã đăng ký dịch vụ KCB cho Bệnh nhân");
+                        if (objKhamthiluc != null) //Đôi lúc người dùng không chọn phòng khám
+                        {
+                            objKhamthiluc.MaLuotkham = Utility.sDbnull(objLuotkham.MaLuotkham);
+                            objKhamthiluc.IdBenhnhan = Utility.Int32Dbnull(objLuotkham.IdBenhnhan);
+                            objKhamthiluc.IdLichsuDoituongKcb = objLichsuKcb.IdLichsuDoituongKcb;
+                            objKhamthiluc.IdThe = objLichsuKcb.IdLichsuDoituongKcb;
+                            ThemCongkhamThiluc(objKhamthiluc, objLuotkham, false, KieuKham);
+                            //log.Trace("5. Đã đăng ký dịch vụ KCB cho Bệnh nhân");
+                        }
+                        objKcbDanhsachBenhnhan.LastNoigioithieu = objLuotkham.NoiGioithieu;
+                        objKcbDanhsachBenhnhan.IsNew = false;
+                        objKcbDanhsachBenhnhan.MarkOld();
+                        objKcbDanhsachBenhnhan.Save();
+                        //mytrace.Desc = string.Format("Thêm mới lượt khám ID={0}, Code={1}, Name={2}", objKcbDanhsachBenhnhan.IdBenhnhan.ToString(), objLuotkham.MaLuotkham, objKcbDanhsachBenhnhan.TenBenhnhan);
+                        //mytrace.Lot = 0;
+                        //mytrace.IsNew = true;
+                        //mytrace.Save();
+
+                    }
+                    scope.Complete();
+
                 }
                 return ActionResult.Success;
             }
@@ -2595,7 +2979,7 @@ namespace VNS.HIS.BusRule.Classes
                             objKcbDanhsachBenhnhan.NgayTiepdon
                             , objKcbDanhsachBenhnhan.NguoiTiepdon, objKcbDanhsachBenhnhan.NgayTao,
                             objKcbDanhsachBenhnhan.NguoiTao, objKcbDanhsachBenhnhan.IpMaytao,
-                            objKcbDanhsachBenhnhan.TenMaytao, objKcbDanhsachBenhnhan.CanhBao);
+                            objKcbDanhsachBenhnhan.TenMaytao, objKcbDanhsachBenhnhan.CanhBao, objKcbDanhsachBenhnhan.PassPost);
                         sp.Execute();
                         log.Trace("1. Đã thêm mới bệnh nhân");
                         objKcbDanhsachBenhnhan.IdBenhnhan = Utility.Int64Dbnull(sp.OutputValues[0]);
@@ -2690,7 +3074,9 @@ namespace VNS.HIS.BusRule.Classes
                             , objLuotkham.IdLichsuDoituongKcb, objLuotkham.CachTao, objLuotkham.KieuKham,
                             objLuotkham.MotaThem, objLuotkham.NgayTao, objLuotkham.NguoiTao, objLuotkham.LastActionName,
                             objLuotkham.SoBenhAn, objLuotkham.NguoiLienhe, objLuotkham.DienthoaiLienhe, objLuotkham.DiachiLienhe, objLuotkham.MaDoitac, objLuotkham.ThongtinMg,objLuotkham.GhichuDoitac, objLuotkham.ThanhtoanCongkhamsau
-                            , objLuotkham.MaTinhtp, objLuotkham.MaQuanhuyen, objLuotkham.MaXaphuong, objLuotkham.MaLydovaovien, objLuotkham.TuyentruocDtTungay, objLuotkham.TuyentruocDtDenngay, objLuotkham.MaDoituongGiamdinh, globalVariables.Ma_Coso, objLuotkham.ThoigianLaysoQMS, objLuotkham.MaKenh);
+                            , objLuotkham.MaTinhtp, objLuotkham.MaQuanhuyen, objLuotkham.MaXaphuong, objLuotkham.MaLydovaovien, objLuotkham.TuyentruocDtTungay, 
+                            objLuotkham.TuyentruocDtDenngay, objLuotkham.MaDoituongGiamdinh, globalVariables.Ma_Coso, objLuotkham.ThoigianLaysoQMS, objLuotkham.MaKenh, 
+                            objLuotkham.PassPost, objLuotkham.NgaycapCmt, objLuotkham.NoicapCmt, objLuotkham.SogiayChuyentuyen);
                         //REM lại sử dụng đối tượng subsonic đỡ phải sửa thủ tục. Khi nào chậm sẽ chỉnh sau
                         objLuotkham.MaYte = string.Format("{0}{1}",globalVariables.Ma_Coso,objLuotkham.MaLuotkham);
                         objLuotkham.Shs = 1;
@@ -2848,7 +3234,7 @@ namespace VNS.HIS.BusRule.Classes
                             objKcbDanhsachBenhnhan.NgayTiepdon
                             , objKcbDanhsachBenhnhan.NguoiTiepdon, objKcbDanhsachBenhnhan.NgayTao,
                             objKcbDanhsachBenhnhan.NguoiTao, objKcbDanhsachBenhnhan.IpMaytao,
-                            objKcbDanhsachBenhnhan.TenMaytao, objKcbDanhsachBenhnhan.CanhBao);
+                            objKcbDanhsachBenhnhan.TenMaytao, objKcbDanhsachBenhnhan.CanhBao, objKcbDanhsachBenhnhan.PassPost);
                         sp.Execute();
                         log.Trace("1. Đã thêm mới bệnh nhân");
                         objKcbDanhsachBenhnhan.IdBenhnhan = Utility.Int64Dbnull(sp.OutputValues[0]);
@@ -2943,7 +3329,9 @@ namespace VNS.HIS.BusRule.Classes
                             , objLuotkham.IdLichsuDoituongKcb, objLuotkham.CachTao, objLuotkham.KieuKham,
                             objLuotkham.MotaThem, objLuotkham.NgayTao, objLuotkham.NguoiTao, objLuotkham.LastActionName,
                             objLuotkham.SoBenhAn, objLuotkham.NguoiLienhe, objLuotkham.DienthoaiLienhe, objLuotkham.DiachiLienhe, objLuotkham.MaDoitac, objLuotkham.ThongtinMg, objLuotkham.GhichuDoitac, objLuotkham.ThanhtoanCongkhamsau
-                            , objLuotkham.MaTinhtp, objLuotkham.MaQuanhuyen, objLuotkham.MaXaphuong, objLuotkham.MaLydovaovien, objLuotkham.TuyentruocDtTungay, objLuotkham.TuyentruocDtDenngay, objLuotkham.MaDoituongGiamdinh, globalVariables.Ma_Coso, objLuotkham.ThoigianLaysoQMS, objLuotkham.MaKenh);
+                            , objLuotkham.MaTinhtp, objLuotkham.MaQuanhuyen, objLuotkham.MaXaphuong, objLuotkham.MaLydovaovien, objLuotkham.TuyentruocDtTungay,
+                            objLuotkham.TuyentruocDtDenngay, objLuotkham.MaDoituongGiamdinh, globalVariables.Ma_Coso, objLuotkham.ThoigianLaysoQMS, objLuotkham.MaKenh, 
+                            objLuotkham.PassPost, objLuotkham.NgaycapCmt, objLuotkham.NoicapCmt, objLuotkham.SogiayChuyentuyen);
                         //REM lại sử dụng đối tượng subsonic đỡ phải sửa thủ tục. Khi nào chậm sẽ chỉnh sau
                         objLuotkham.MaYte = string.Format("{0}{1}", globalVariables.Ma_Coso, objLuotkham.MaLuotkham);
                         objLuotkham.Shs = 1;
@@ -3030,17 +3418,26 @@ namespace VNS.HIS.BusRule.Classes
                         }
                         //Thêm thông tin đăng ký gói
                          id_dangky = -1;
+                        GoiDanhsach objGoi = GoiDanhsach.FetchByID(id_goi);
+                        //Nếu gói thai sản thì đăng ký
+                        if(objGoi!=null && objGoi.KieuGoi==1)//Gói thai sản
+                        {
+                            new clsGoikham().DangKyGoiKhamThaiSan((int)objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, id_goi, DateTime.Now);
+                        }    
                         foreach (KcbDangkyKcb objCongkham in lstCongKham)
                         {
                             if (objCongkham != null) //Đôi lúc người dùng không chọn phòng khám
-                            {
-                                if (id_dangky == -1 && id_goi > 0)//Phải là đăng ký gói ksk thì mới call hàm này
+                            {//Phải là đăng ký gói khám thường thì mới call hàm này. Gói KSK của BV hồng phát bản chất chỉ là thêm nhóm dịch vụ sau đó ra ghi nợ theo các dịch vụ chứ ko phải theo gói
+                                if (id_dangky == -1 && id_goi > 0 && objGoi!=null && objGoi.KieuGoi != 1)
                                     id_dangky = new clsGoikham().ThemGoiKham_BVM(objCongkham, (int)objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, id_goi, DateTime.Now);
                                 objCongkham.MaLuotkham = Utility.sDbnull(objLuotkham.MaLuotkham);
                                 objCongkham.IdBenhnhan = Utility.Int32Dbnull(objLuotkham.IdBenhnhan);
                                 objCongkham.IdLichsuDoituongKcb = objLichsuKcb.IdLichsuDoituongKcb;
                                 objCongkham.IdThe = objCongkham.IdLichsuDoituongKcb;
-                                objCongkham.IdDangky = id_dangky;
+                                if (objCongkham.IdGoi > 0)
+                                {
+                                    objCongkham.IdDangky = id_dangky;
+                                }
                                 id_kham = AddRegExam(objCongkham, objLuotkham, false, KieuKham);
                                 log.Trace("5. Đã đăng ký dịch vụ KCB cho Bệnh nhân");
                             }
@@ -3063,8 +3460,7 @@ namespace VNS.HIS.BusRule.Classes
 
                     }
                     scope.Complete();
-                    log.Trace(
-                        "END INSERTING.........................................................................................................");
+                    log.Trace("END INSERTING.........................................................................................................");
 
                 }
                 return ActionResult.Success;
@@ -3107,7 +3503,7 @@ namespace VNS.HIS.BusRule.Classes
                             objKcbDanhsachBenhnhan.NgayTiepdon
                             , objKcbDanhsachBenhnhan.NguoiTiepdon, objKcbDanhsachBenhnhan.NgayTao,
                             objKcbDanhsachBenhnhan.NguoiTao, objKcbDanhsachBenhnhan.IpMaytao,
-                            objKcbDanhsachBenhnhan.TenMaytao, objKcbDanhsachBenhnhan.CanhBao);
+                            objKcbDanhsachBenhnhan.TenMaytao, objKcbDanhsachBenhnhan.CanhBao,objKcbDanhsachBenhnhan.PassPost);
                         sp.Execute();
                         log.Trace("1. Đã thêm mới bệnh nhân");
                         objKcbDanhsachBenhnhan.IdBenhnhan = Utility.Int64Dbnull(sp.OutputValues[0]);
@@ -3141,7 +3537,9 @@ namespace VNS.HIS.BusRule.Classes
                             , objLuotkham.IdLichsuDoituongKcb, objLuotkham.CachTao, objLuotkham.KieuKham,
                             objLuotkham.MotaThem, objLuotkham.NgayTao, objLuotkham.NguoiTao, objLuotkham.LastActionName,
                             objLuotkham.SoBenhAn, objLuotkham.NguoiLienhe, objLuotkham.DienthoaiLienhe, objLuotkham.DiachiLienhe, objLuotkham.MaDoitac, objLuotkham.ThongtinMg,objLuotkham.GhichuDoitac, objLuotkham.ThanhtoanCongkhamsau
-                            , objLuotkham.MaTinhtp, objLuotkham.MaQuanhuyen, objLuotkham.MaXaphuong, objLuotkham.MaLydovaovien, objLuotkham.TuyentruocDtTungay, objLuotkham.TuyentruocDtDenngay, objLuotkham.MaDoituongGiamdinh, globalVariables.Ma_Coso, objLuotkham.ThoigianLaysoQMS, objLuotkham.MaKenh);
+                            , objLuotkham.MaTinhtp, objLuotkham.MaQuanhuyen, objLuotkham.MaXaphuong, objLuotkham.MaLydovaovien, objLuotkham.TuyentruocDtTungay, 
+                            objLuotkham.TuyentruocDtDenngay, objLuotkham.MaDoituongGiamdinh, globalVariables.Ma_Coso, objLuotkham.ThoigianLaysoQMS, objLuotkham.MaKenh, 
+                            objLuotkham.PassPost, objLuotkham.NgaycapCmt, objLuotkham.NoicapCmt, objLuotkham.SogiayChuyentuyen);
 
                         //REM lại sử dụng đối tượng subsonic đỡ phải sửa thủ tục. Khi nào chậm sẽ chỉnh sau
                         objLuotkham.Shs = 1;
@@ -3364,8 +3762,21 @@ namespace VNS.HIS.BusRule.Classes
                 return ActionResult.Error;
             }
         }
-
-        public ActionResult UpdateLanKham(SysTrace mytrace, KcbDanhsachBenhnhan objKcbDanhsachBenhnhan,
+        /// <summary>
+        /// Backup để thử phần thêm gói KSK khi cập nhật
+        /// </summary>
+        /// <param name="mytrace"></param>
+        /// <param name="objKcbDanhsachBenhnhan"></param>
+        /// <param name="objLuotkham"></param>
+        /// <param name="objCongkham"></param>
+        /// <param name="objKhamthiluc"></param>
+        /// <param name="objSoKCB"></param>
+        /// <param name="KieuKham"></param>
+        /// <param name="PtramBhytCu"></param>
+        /// <param name="PtramBhytgoc"></param>
+        /// <param name="Msg"></param>
+        /// <returns></returns>
+        public ActionResult UpdateLanKham_bak(SysTrace mytrace, KcbDanhsachBenhnhan objKcbDanhsachBenhnhan,
             KcbLuotkham objLuotkham, KcbDangkyKcb objCongkham, KcbDangkyKcb objKhamthiluc, KcbDangkySokham objSoKCB, int KieuKham,
             decimal PtramBhytCu, decimal PtramBhytgoc, ref string Msg)
         {
@@ -3396,7 +3807,7 @@ namespace VNS.HIS.BusRule.Classes
                                 , objKcbDanhsachBenhnhan.NgayTiepdon, objKcbDanhsachBenhnhan.NguoiTiepdon,
                                 objKcbDanhsachBenhnhan.NgaySua, objKcbDanhsachBenhnhan.NguoiSua,
                                 objKcbDanhsachBenhnhan.IpMaysua
-                                , objKcbDanhsachBenhnhan.TenMaysua, objKcbDanhsachBenhnhan.CanhBao);
+                                , objKcbDanhsachBenhnhan.TenMaysua, objKcbDanhsachBenhnhan.CanhBao, objKcbDanhsachBenhnhan.PassPost);
                             sp.Execute();
                         }
                         log.Trace("1. Đã cập nhật thông tin Bệnh nhân thành công");
@@ -3484,7 +3895,8 @@ namespace VNS.HIS.BusRule.Classes
                             , objLuotkham.IdLichsuDoituongKcb, objLuotkham.KieuKham
                          , objLuotkham.MotaThem, objLuotkham.NgaySua, objLuotkham.NguoiSua,
                             objLuotkham.SoBenhAn, objLuotkham.NguoiLienhe, objLuotkham.DienthoaiLienhe, objLuotkham.DiachiLienhe, objLuotkham.MaDoitac, objLuotkham.ThongtinMg, objLuotkham.GhichuDoitac, objLuotkham.ThanhtoanCongkhamsau
-                            , objLuotkham.MaTinhtp, objLuotkham.MaQuanhuyen, objLuotkham.MaXaphuong, objLuotkham.MaLydovaovien, objLuotkham.TuyentruocDtTungay, objLuotkham.TuyentruocDtDenngay, objLuotkham.MaDoituongGiamdinh, globalVariables.Ma_Coso, objLuotkham.ThoigianLaysoQMS, objLuotkham.MaKenh);
+                            , objLuotkham.MaTinhtp, objLuotkham.MaQuanhuyen, objLuotkham.MaXaphuong, objLuotkham.MaLydovaovien, objLuotkham.TuyentruocDtTungay, 
+                            objLuotkham.TuyentruocDtDenngay, objLuotkham.MaDoituongGiamdinh, globalVariables.Ma_Coso, objLuotkham.ThoigianLaysoQMS, objLuotkham.MaKenh, objLuotkham.PassPost, objLuotkham.NgaycapCmt, objLuotkham.NoicapCmt, objLuotkham.SogiayChuyentuyen);
                         //REM lại sử dụng đối tượng subsonic đỡ phải sửa thủ tục. Khi nào chậm sẽ chỉnh sau
                         objLuotkham.Save();
                         //sp.Execute();
@@ -3586,6 +3998,494 @@ namespace VNS.HIS.BusRule.Classes
                         log.Trace(
                             "END UPDATING..................................................................................................");
                        
+                    }
+                    scope.Complete();
+                }
+                return ActionResult.Success;
+            }
+            catch (Exception ex)
+            {
+                log.Error("Lỗi khi cập nhật thông tin Bệnh nhân {0}", ex.Message);
+                return ActionResult.Error;
+            }
+        }
+        public ActionResult UpdateLanKham(SysTrace mytrace, KcbDanhsachBenhnhan objKcbDanhsachBenhnhan,
+           KcbLuotkham objLuotkham, KcbDangkyKcb objCongkham,  KcbDangkyKcb objKhamthiluc, KcbDangkySokham objSoKCB, int KieuKham,
+           decimal PtramBhytCu, decimal PtramBhytgoc, ref string Msg)
+        {
+            var _ActionResult = ActionResult.Success;
+            try
+            {
+                using (var scope = new TransactionScope())
+                {
+                    using (var dbscope = new SharedDbConnectionScope())
+                    {
+                        StoredProcedure sp = null;
+                        log.Trace("BEGIN UPDATING..................................................................................................");
+                        if (objKcbDanhsachBenhnhan != null)
+                        {
+                            sp = SPs.SpKcbCapnhatBenhnhan(objKcbDanhsachBenhnhan.IdBenhnhan,
+                               objKcbDanhsachBenhnhan.TenBenhnhan, objKcbDanhsachBenhnhan.NgaySinh,
+                               objKcbDanhsachBenhnhan.NamSinh
+                               , objKcbDanhsachBenhnhan.IdGioitinh, objKcbDanhsachBenhnhan.GioiTinh,
+                               objKcbDanhsachBenhnhan.DiaChi, objKcbDanhsachBenhnhan.DiachiBhyt,
+                               objKcbDanhsachBenhnhan.MaQuocgia
+                               , objKcbDanhsachBenhnhan.MaTinhThanhpho, objKcbDanhsachBenhnhan.MaQuanhuyen,
+                               objKcbDanhsachBenhnhan.NgheNghiep, objKcbDanhsachBenhnhan.CoQuan, objKcbDanhsachBenhnhan.Cmt
+                               , objKcbDanhsachBenhnhan.DanToc, objKcbDanhsachBenhnhan.TonGiao,
+                               objKcbDanhsachBenhnhan.Email, objKcbDanhsachBenhnhan.NguoiLienhe,
+                               objKcbDanhsachBenhnhan.DiachiLienhe
+                               , objKcbDanhsachBenhnhan.DienthoaiLienhe, objKcbDanhsachBenhnhan.DienThoai,
+                               objKcbDanhsachBenhnhan.Fax, objKcbDanhsachBenhnhan.SoTiemchungQg
+                               , objKcbDanhsachBenhnhan.NgayTiepdon, objKcbDanhsachBenhnhan.NguoiTiepdon,
+                               objKcbDanhsachBenhnhan.NgaySua, objKcbDanhsachBenhnhan.NguoiSua,
+                               objKcbDanhsachBenhnhan.IpMaysua
+                               , objKcbDanhsachBenhnhan.TenMaysua, objKcbDanhsachBenhnhan.CanhBao, objKcbDanhsachBenhnhan.PassPost);
+                            sp.Execute();
+                        }
+                        log.Trace("1. Đã cập nhật thông tin Bệnh nhân thành công");
+                        long IdLichsuDoituongKcb = Utility.Int64Dbnull(objLuotkham.IdLichsuDoituongKcb);// KcbLayIdDoituongKCBHientai(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham);
+                        KcbLichsuDoituongKcb objLichsuKcb = null;
+                        if (IdLichsuDoituongKcb > 0)
+                        {
+                            objLichsuKcb = KcbLichsuDoituongKcb.FetchByID(IdLichsuDoituongKcb);
+                            objLichsuKcb.MarkOld();
+                            objLichsuKcb.IsNew = false;
+                        }
+                        else
+                        {
+                            objLichsuKcb = new KcbLichsuDoituongKcb();
+                            objLichsuKcb.IsNew = true;
+                        }
+                        if (objLichsuKcb == null)
+                        {
+                            Msg = "NULL-->Không lấy được thông tin lịch sử đối tượng KCB của Bệnh nhân";
+                            return ActionResult.Error;
+                        }
+
+                        objLichsuKcb.IdBenhnhan = objKcbDanhsachBenhnhan.IdBenhnhan;
+                        objLichsuKcb.MaLuotkham = objLuotkham.MaLuotkham;
+                        objLichsuKcb.NgayHieuluc = objLuotkham.NgayTiepdon;
+                        objLichsuKcb.IdDoituongKcb = objLuotkham.IdDoituongKcb;
+                        objLichsuKcb.MaDoituongKcb = objLuotkham.MaDoituongKcb;
+                        objLichsuKcb.IdLoaidoituongKcb = objLuotkham.IdLoaidoituongKcb;
+                        objLichsuKcb.MatheBhyt = objLuotkham.MatheBhyt;
+                        objLichsuKcb.PtramBhyt = objLuotkham.PtramBhyt;
+                        objLichsuKcb.PtramBhytGoc = objLuotkham.PtramBhytGoc;
+                        objLichsuKcb.NgaybatdauBhyt = objLuotkham.NgaybatdauBhyt;
+                        objLichsuKcb.NgayketthucBhyt = objLuotkham.NgayketthucBhyt;
+                        objLichsuKcb.NoicapBhyt = objLuotkham.NoicapBhyt;
+                        objLichsuKcb.MaNoicapBhyt = objLuotkham.MaNoicapBhyt;
+                        objLichsuKcb.MaDoituongBhyt = objLuotkham.MaDoituongBhyt;
+                        objLichsuKcb.MaDoituongKcbBhyt = objLuotkham.MaDoituongKcbBhyt;
+                        objLichsuKcb.MaQuyenloi = objLuotkham.MaQuyenloi;
+                        objLichsuKcb.NoiDongtrusoKcbbd = objLuotkham.NoiDongtrusoKcbbd;
+
+                        objLichsuKcb.MaKcbbd = objLuotkham.MaKcbbd;
+                        objLichsuKcb.TrangthaiNoitru = 0;
+                        objLichsuKcb.DungTuyen = objLuotkham.DungTuyen;
+                        objLichsuKcb.Cmt = objLuotkham.Cmt;
+                        objLichsuKcb.GiayBhyt = objLuotkham.GiayBhyt;
+                        objLichsuKcb.MadtuongSinhsong = objLuotkham.MadtuongSinhsong;
+                        objLichsuKcb.DiachiBhyt = objLuotkham.DiachiBhyt;
+                        objLichsuKcb.IdRavien = -1;
+                        objLichsuKcb.IdBuong = -1;
+                        objLichsuKcb.IdGiuong = -1;
+                        objLichsuKcb.IdKhoanoitru = -1;
+                        objLichsuKcb.NguoiSua = globalVariables.UserName;
+                        objLichsuKcb.NgaySua = DateTime.Now;
+                        objLichsuKcb.TrangThai = 1;
+                        objLichsuKcb.KhoaThe = 0;
+                        objLichsuKcb.MaLydovaovien = objLuotkham.MaLydovaovien;
+                        objLichsuKcb.NgayDu5nam = objLuotkham.NgayDu5nam;
+                        objLichsuKcb.NgayMienCctDen = objLuotkham.NgayMienCctDen;
+                        objLichsuKcb.NgayMienCctTu = objLuotkham.NgayMienCctTu;
+                        objLichsuKcb.ChandoanChuyenden = objLuotkham.ChandoanChuyenden;
+                        objLichsuKcb.TuyentruocDtDenngay = objLuotkham.TuyentruocDtDenngay;
+                        objLichsuKcb.TuyentruocDtTungay = objLuotkham.TuyentruocDtTungay;
+                        objLichsuKcb.IdBenhvienDen = objLuotkham.IdBenhvienDen;
+                        objLichsuKcb.SogiayChuyentuyen = objLuotkham.SogiayChuyentuyen;
+                        objLichsuKcb.TthaiChuyenden = objLuotkham.TthaiChuyenden;
+
+                        objLichsuKcb.Save();
+                        log.Trace("2. Đã cập nhật thông tin lịch sử đối tượng KCB của Bệnh nhân");
+                        objLuotkham.IdLichsuDoituongKcb = objLichsuKcb.IdLichsuDoituongKcb;
+
+                        sp = SPs.SpKcbCapnhatLuotkham(objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan, objLuotkham.NgayTiepdon,
+                            objLuotkham.NguoiTiepdon, objLuotkham.Tuoi, objLuotkham.LoaiTuoi
+                            , objLuotkham.IdDoituongKcb, objLuotkham.MadoituongGia, objLuotkham.MaDoituongKcb,
+                            objLuotkham.IdLoaidoituongKcb, objLuotkham.PtramBhytGoc
+                            , objLuotkham.PtramBhyt, objLuotkham.MatheBhyt, objLuotkham.NgaybatdauBhyt,
+                            objLuotkham.NgayketthucBhyt, objLuotkham.NoicapBhyt, objLuotkham.MaNoicapBhyt
+                            , objLuotkham.MaDoituongBhyt, objLuotkham.MaQuyenloi, objLuotkham.NoiDongtrusoKcbbd,
+                            objLuotkham.MaKcbbd, objLuotkham.DungTuyen
+                            , objLuotkham.Cmt, objLuotkham.LuongCoban, objLuotkham.TrangthaiCapcuu,
+                            objLuotkham.TrieuChung, objLuotkham.SolanKham, objLuotkham.MaKhoaThuchien
+                            , objLuotkham.DiaChi, objLuotkham.DiachiBhyt, objLuotkham.IdBenhvienDen,
+                            objLuotkham.TthaiChuyenden, objLuotkham.ChandoanChuyenden, objLuotkham.NoiGioithieu, objLuotkham.ChiphiGioithieu, objLuotkham.ThongtinNguongt
+                            , objLuotkham.Email, objLuotkham.NhomBenhnhan, objLuotkham.GiayBhyt, objLuotkham.NgayDu5nam,
+                            objLuotkham.MadtuongSinhsong, objLuotkham.IpMaysua, objLuotkham.TenMaysua
+                            , objLuotkham.IdLichsuDoituongKcb, objLuotkham.KieuKham
+                         , objLuotkham.MotaThem, objLuotkham.NgaySua, objLuotkham.NguoiSua,
+                            objLuotkham.SoBenhAn, objLuotkham.NguoiLienhe, objLuotkham.DienthoaiLienhe, objLuotkham.DiachiLienhe, objLuotkham.MaDoitac, objLuotkham.ThongtinMg, objLuotkham.GhichuDoitac, objLuotkham.ThanhtoanCongkhamsau
+                            , objLuotkham.MaTinhtp, objLuotkham.MaQuanhuyen, objLuotkham.MaXaphuong, objLuotkham.MaLydovaovien, objLuotkham.TuyentruocDtTungay, 
+                            objLuotkham.TuyentruocDtDenngay, objLuotkham.MaDoituongGiamdinh, globalVariables.Ma_Coso, objLuotkham.ThoigianLaysoQMS, objLuotkham.MaKenh, objLuotkham.PassPost, objLuotkham.NgaycapCmt, objLuotkham.NoicapCmt, objLuotkham.SogiayChuyentuyen);
+                        //REM lại sử dụng đối tượng subsonic đỡ phải sửa thủ tục. Khi nào chậm sẽ chỉnh sau
+                        objLuotkham.Save();
+                        //sp.Execute();
+                        log.Trace("3. Đã cập nhật thông tin Lượt khám của Bệnh nhân");
+                        var dtCheck = new DataTable();
+                        if (objSoKCB != null)
+                        {
+                            //Kiểm tra xem có sổ KCB hay chưa
+                            objSoKCB.MaLuotkham = Utility.sDbnull(objLuotkham.MaLuotkham);
+                            objSoKCB.IdBenhnhan = Utility.Int32Dbnull(objLuotkham.IdBenhnhan);
+                            dtCheck =
+                                SPs.SpKcbKiemtraDangkySoKCB(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham)
+                                    .GetDataSet()
+                                    .Tables[0];
+                            if (dtCheck == null || dtCheck.Rows.Count <= 0)
+                            {
+                                objSoKCB.IdLichsuDoituongKcb = objLichsuKcb.IdLichsuDoituongKcb;
+                                objSoKCB.NgayTao = DateTime.Now;
+                                objSoKCB.NguoiTao = globalVariables.UserName;
+                                sp = SPs.SpKcbThemmoiDangkySokham(objSoKCB.IdSokcb, objSoKCB.IdBenhnhan,
+                                    objSoKCB.MaLuotkham, objSoKCB.MaSokcb, objSoKCB.DonGia, objSoKCB.BhytChitra
+                                    , objSoKCB.BnhanChitra, objSoKCB.PtramBhytGoc, objSoKCB.PtramBhyt, objSoKCB.PhuThu,
+                                    objSoKCB.TrangthaiThanhtoan, objSoKCB.IdThanhtoan
+                                    , objSoKCB.NgayThanhtoan, objSoKCB.NguoiThanhtoan, objSoKCB.TuTuc,
+                                    objSoKCB.MaDoituongkcb, objSoKCB.IdDoituongkcb, objSoKCB.IdLoaidoituongkcb,
+                                    objSoKCB.IdKhoakcb
+                                    , objSoKCB.IdNhanvien, objSoKCB.IdGoi, objSoKCB.TrongGoi, objSoKCB.NguonThanhtoan,
+                                    objSoKCB.Noitru, objSoKCB.IdLichsuDoituongKcb
+                                    , objSoKCB.MatheBhyt, objSoKCB.NgayTao, objSoKCB.NguoiTao);
+                                sp.Execute();
+                                log.Trace("4. Đã đăng ký sổ khám của Bệnh nhân");
+                                objSoKCB.IdSokcb = Utility.Int64Dbnull(sp.OutputValues[0]);
+                            }
+                            else
+                            {
+                                if (Utility.Int64Dbnull(dtCheck.Rows[0]["Id_Thanhtoan"], 0) > 0) //Ko làm gì cả
+                                {
+                                    log.Trace(
+                                        "Đã thu tiền sổ khám của Bệnh nhân nên không được phép xóa hoặc cập nhật lại");
+                                }
+                                else //Update lại sổ KCB
+                                {
+                                    SPs.SpKcbCapnhatDangkySokham(
+                                        Utility.Int64Dbnull(dtCheck.Rows[0]["trangthai_thanhtoan"], 0),
+                                        Utility.sDbnull(dtCheck.Rows[0]["ma_sokcb"], 0)
+                                        , objSoKCB.DonGia, objSoKCB.BhytChitra, objSoKCB.BnhanChitra,
+                                        objSoKCB.PtramBhytGoc, objSoKCB.PtramBhyt, objSoKCB.PhuThu, objSoKCB.TuTuc
+                                        , objSoKCB.MaDoituongkcb, objSoKCB.IdDoituongkcb, objSoKCB.IdLoaidoituongkcb,
+                                        objSoKCB.IdKhoakcb, objSoKCB.IdNhanvien, objSoKCB.IdGoi, objSoKCB.TrongGoi
+                                        , objSoKCB.NguonThanhtoan, objSoKCB.Noitru, objSoKCB.IdLichsuDoituongKcb,
+                                        objSoKCB.MatheBhyt, DateTime.Now, globalVariables.UserName).Execute();
+                                    log.Trace("4. Đã cập nhật sổ khám của Bệnh nhân");
+                                }
+                            }
+                        }
+                        else
+                        {
+                            SPs.SpKcbXoaDangkySokham(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham).Execute();
+                            log.Trace("4. Đã xóa sổ khám của Bệnh nhân");
+                        }
+                        //Kiểm tra nếu % bị thay đổi thì cập nhật lại tất cả các bảng
+                        if (PtramBhytCu != Utility.DecimaltoDbnull(objLuotkham.PtramBhyt, 0) ||
+                            PtramBhytgoc != Utility.DecimaltoDbnull(objLuotkham.PtramBhytGoc, 0))
+                            _ActionResult = THU_VIEN_CHUNG.UpdatePtramBhyt(objLuotkham, -1);
+                        if (_ActionResult == ActionResult.Cancel)
+                        //Báo không cho phép thay đổi phần trăm BHYT do đã có dịch vụ đã thanh toán
+                        {
+                            return _ActionResult;
+                        }
+                       
+                        if (objCongkham != null)
+                        {
+                            objCongkham.IdLichsuDoituongKcb = objLichsuKcb.IdLichsuDoituongKcb;
+                            objCongkham.MaLuotkham = Utility.sDbnull(objLuotkham.MaLuotkham);
+                            objCongkham.IdBenhnhan = Utility.Int32Dbnull(objLuotkham.IdBenhnhan);
+                            objCongkham.IdThe = objCongkham.IdLichsuDoituongKcb;
+                            AddRegExam(objCongkham, objLuotkham, false, KieuKham);
+                            log.Trace("4. Đã thêm đăng ký dịch vụ KCB của Bệnh nhân");
+                        }
+                        if (objKhamthiluc != null) //Đôi lúc người dùng không chọn phòng khám
+                        {
+                            objKhamthiluc.MaLuotkham = Utility.sDbnull(objLuotkham.MaLuotkham);
+                            objKhamthiluc.IdBenhnhan = Utility.Int32Dbnull(objLuotkham.IdBenhnhan);
+                            objKhamthiluc.IdLichsuDoituongKcb = objLichsuKcb.IdLichsuDoituongKcb;
+                            objKhamthiluc.IdThe = objLichsuKcb.IdLichsuDoituongKcb;
+                            ThemCongkhamThiluc(objKhamthiluc, objLuotkham, false, KieuKham);
+                            //log.Trace("5. Đã đăng ký dịch vụ KCB cho Bệnh nhân");
+                        }
+                        objKcbDanhsachBenhnhan.LastNoigioithieu = objLuotkham.NoiGioithieu;
+                        objKcbDanhsachBenhnhan.IsNew = false;
+                        objKcbDanhsachBenhnhan.MarkOld();
+                        objKcbDanhsachBenhnhan.Save();
+
+                        //mytrace.Desc = string.Format("Cập nhật  Bệnh nhân ID={0}, Code={1}, Name={2}", objKcbDanhsachBenhnhan.IdBenhnhan.ToString(), objLuotkham.MaLuotkham, objKcbDanhsachBenhnhan.TenBenhnhan);
+                        //mytrace.Lot = 0;
+                        //mytrace.IsNew = true;
+                        //mytrace.Save();
+
+                        log.Trace(
+                            "END UPDATING..................................................................................................");
+
+                    }
+                    scope.Complete();
+                }
+                return ActionResult.Success;
+            }
+            catch (Exception ex)
+            {
+                log.Error("Lỗi khi cập nhật thông tin Bệnh nhân {0}", ex.Message);
+                return ActionResult.Error;
+            }
+        }
+
+        public ActionResult UpdateLanKham(SysTrace mytrace, KcbDanhsachBenhnhan objKcbDanhsachBenhnhan,
+          KcbLuotkham objLuotkham, List<KcbDangkyKcb> lstCongKham, int id_goi, ref int id_dangky, KcbDangkyKcb objKhamthiluc, KcbDangkySokham objSoKCB, int KieuKham,
+          decimal PtramBhytCu, decimal PtramBhytgoc, ref long id_kham, ref string Msg)
+        {
+            var _ActionResult = ActionResult.Success;
+            try
+            {
+                using (var scope = new TransactionScope())
+                {
+                    using (var dbscope = new SharedDbConnectionScope())
+                    {
+                        StoredProcedure sp = null;
+                        log.Trace("BEGIN UPDATING..................................................................................................");
+                        if (objKcbDanhsachBenhnhan != null)
+                        {
+                            sp = SPs.SpKcbCapnhatBenhnhan(objKcbDanhsachBenhnhan.IdBenhnhan,
+                               objKcbDanhsachBenhnhan.TenBenhnhan, objKcbDanhsachBenhnhan.NgaySinh,
+                               objKcbDanhsachBenhnhan.NamSinh
+                               , objKcbDanhsachBenhnhan.IdGioitinh, objKcbDanhsachBenhnhan.GioiTinh,
+                               objKcbDanhsachBenhnhan.DiaChi, objKcbDanhsachBenhnhan.DiachiBhyt,
+                               objKcbDanhsachBenhnhan.MaQuocgia
+                               , objKcbDanhsachBenhnhan.MaTinhThanhpho, objKcbDanhsachBenhnhan.MaQuanhuyen,
+                               objKcbDanhsachBenhnhan.NgheNghiep, objKcbDanhsachBenhnhan.CoQuan, objKcbDanhsachBenhnhan.Cmt
+                               , objKcbDanhsachBenhnhan.DanToc, objKcbDanhsachBenhnhan.TonGiao,
+                               objKcbDanhsachBenhnhan.Email, objKcbDanhsachBenhnhan.NguoiLienhe,
+                               objKcbDanhsachBenhnhan.DiachiLienhe
+                               , objKcbDanhsachBenhnhan.DienthoaiLienhe, objKcbDanhsachBenhnhan.DienThoai,
+                               objKcbDanhsachBenhnhan.Fax, objKcbDanhsachBenhnhan.SoTiemchungQg
+                               , objKcbDanhsachBenhnhan.NgayTiepdon, objKcbDanhsachBenhnhan.NguoiTiepdon,
+                               objKcbDanhsachBenhnhan.NgaySua, objKcbDanhsachBenhnhan.NguoiSua,
+                               objKcbDanhsachBenhnhan.IpMaysua
+                               , objKcbDanhsachBenhnhan.TenMaysua, objKcbDanhsachBenhnhan.CanhBao, objKcbDanhsachBenhnhan.PassPost);
+                            sp.Execute();
+                        }
+                        log.Trace("1. Đã cập nhật thông tin Bệnh nhân thành công");
+                        long IdLichsuDoituongKcb = Utility.Int64Dbnull(objLuotkham.IdLichsuDoituongKcb);// KcbLayIdDoituongKCBHientai(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham);
+                        KcbLichsuDoituongKcb objLichsuKcb = null;
+                        if (IdLichsuDoituongKcb > 0)
+                        {
+                            objLichsuKcb = KcbLichsuDoituongKcb.FetchByID(IdLichsuDoituongKcb);
+                            objLichsuKcb.MarkOld();
+                            objLichsuKcb.IsNew = false;
+                        }
+                        else
+                        {
+                            objLichsuKcb = new KcbLichsuDoituongKcb();
+                            objLichsuKcb.IsNew = true;
+                        }
+                        if (objLichsuKcb == null)
+                        {
+                            Msg = "NULL-->Không lấy được thông tin lịch sử đối tượng KCB của Bệnh nhân";
+                            return ActionResult.Error;
+                        }
+
+                        objLichsuKcb.IdBenhnhan = objKcbDanhsachBenhnhan.IdBenhnhan;
+                        objLichsuKcb.MaLuotkham = objLuotkham.MaLuotkham;
+                        objLichsuKcb.NgayHieuluc = objLuotkham.NgayTiepdon;
+                        objLichsuKcb.IdDoituongKcb = objLuotkham.IdDoituongKcb;
+                        objLichsuKcb.MaDoituongKcb = objLuotkham.MaDoituongKcb;
+                        objLichsuKcb.IdLoaidoituongKcb = objLuotkham.IdLoaidoituongKcb;
+                        objLichsuKcb.MatheBhyt = objLuotkham.MatheBhyt;
+                        objLichsuKcb.PtramBhyt = objLuotkham.PtramBhyt;
+                        objLichsuKcb.PtramBhytGoc = objLuotkham.PtramBhytGoc;
+                        objLichsuKcb.NgaybatdauBhyt = objLuotkham.NgaybatdauBhyt;
+                        objLichsuKcb.NgayketthucBhyt = objLuotkham.NgayketthucBhyt;
+                        objLichsuKcb.NoicapBhyt = objLuotkham.NoicapBhyt;
+                        objLichsuKcb.MaNoicapBhyt = objLuotkham.MaNoicapBhyt;
+                        objLichsuKcb.MaDoituongBhyt = objLuotkham.MaDoituongBhyt;
+                        objLichsuKcb.MaDoituongKcbBhyt = objLuotkham.MaDoituongKcbBhyt;
+                        objLichsuKcb.MaQuyenloi = objLuotkham.MaQuyenloi;
+                        objLichsuKcb.NoiDongtrusoKcbbd = objLuotkham.NoiDongtrusoKcbbd;
+
+                        objLichsuKcb.MaKcbbd = objLuotkham.MaKcbbd;
+                        objLichsuKcb.TrangthaiNoitru = 0;
+                        objLichsuKcb.DungTuyen = objLuotkham.DungTuyen;
+                        objLichsuKcb.Cmt = objLuotkham.Cmt;
+                        objLichsuKcb.GiayBhyt = objLuotkham.GiayBhyt;
+                        objLichsuKcb.MadtuongSinhsong = objLuotkham.MadtuongSinhsong;
+                        objLichsuKcb.DiachiBhyt = objLuotkham.DiachiBhyt;
+                        objLichsuKcb.IdRavien = -1;
+                        objLichsuKcb.IdBuong = -1;
+                        objLichsuKcb.IdGiuong = -1;
+                        objLichsuKcb.IdKhoanoitru = -1;
+                        objLichsuKcb.NguoiSua = globalVariables.UserName;
+                        objLichsuKcb.NgaySua = DateTime.Now;
+                        objLichsuKcb.TrangThai = 1;
+                        objLichsuKcb.KhoaThe = 0;
+                        objLichsuKcb.MaLydovaovien = objLuotkham.MaLydovaovien;
+                        objLichsuKcb.NgayDu5nam = objLuotkham.NgayDu5nam;
+                        objLichsuKcb.NgayMienCctDen = objLuotkham.NgayMienCctDen;
+                        objLichsuKcb.NgayMienCctTu = objLuotkham.NgayMienCctTu;
+                        objLichsuKcb.ChandoanChuyenden = objLuotkham.ChandoanChuyenden;
+                        objLichsuKcb.TuyentruocDtDenngay = objLuotkham.TuyentruocDtDenngay;
+                        objLichsuKcb.TuyentruocDtTungay = objLuotkham.TuyentruocDtTungay;
+                        objLichsuKcb.IdBenhvienDen = objLuotkham.IdBenhvienDen;
+                        objLichsuKcb.SogiayChuyentuyen = objLuotkham.SogiayChuyentuyen;
+                        objLichsuKcb.TthaiChuyenden = objLuotkham.TthaiChuyenden;
+
+                        objLichsuKcb.Save();
+                        log.Trace("2. Đã cập nhật thông tin lịch sử đối tượng KCB của Bệnh nhân");
+                        objLuotkham.IdLichsuDoituongKcb = objLichsuKcb.IdLichsuDoituongKcb;
+
+                        sp = SPs.SpKcbCapnhatLuotkham(objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan, objLuotkham.NgayTiepdon,
+                            objLuotkham.NguoiTiepdon, objLuotkham.Tuoi, objLuotkham.LoaiTuoi
+                            , objLuotkham.IdDoituongKcb, objLuotkham.MadoituongGia, objLuotkham.MaDoituongKcb,
+                            objLuotkham.IdLoaidoituongKcb, objLuotkham.PtramBhytGoc
+                            , objLuotkham.PtramBhyt, objLuotkham.MatheBhyt, objLuotkham.NgaybatdauBhyt,
+                            objLuotkham.NgayketthucBhyt, objLuotkham.NoicapBhyt, objLuotkham.MaNoicapBhyt
+                            , objLuotkham.MaDoituongBhyt, objLuotkham.MaQuyenloi, objLuotkham.NoiDongtrusoKcbbd,
+                            objLuotkham.MaKcbbd, objLuotkham.DungTuyen
+                            , objLuotkham.Cmt, objLuotkham.LuongCoban, objLuotkham.TrangthaiCapcuu,
+                            objLuotkham.TrieuChung, objLuotkham.SolanKham, objLuotkham.MaKhoaThuchien
+                            , objLuotkham.DiaChi, objLuotkham.DiachiBhyt, objLuotkham.IdBenhvienDen,
+                            objLuotkham.TthaiChuyenden, objLuotkham.ChandoanChuyenden, objLuotkham.NoiGioithieu, objLuotkham.ChiphiGioithieu, objLuotkham.ThongtinNguongt
+                            , objLuotkham.Email, objLuotkham.NhomBenhnhan, objLuotkham.GiayBhyt, objLuotkham.NgayDu5nam,
+                            objLuotkham.MadtuongSinhsong, objLuotkham.IpMaysua, objLuotkham.TenMaysua
+                            , objLuotkham.IdLichsuDoituongKcb, objLuotkham.KieuKham
+                         , objLuotkham.MotaThem, objLuotkham.NgaySua, objLuotkham.NguoiSua,
+                            objLuotkham.SoBenhAn, objLuotkham.NguoiLienhe, objLuotkham.DienthoaiLienhe, objLuotkham.DiachiLienhe, objLuotkham.MaDoitac, objLuotkham.ThongtinMg, objLuotkham.GhichuDoitac, objLuotkham.ThanhtoanCongkhamsau
+                            , objLuotkham.MaTinhtp, objLuotkham.MaQuanhuyen, objLuotkham.MaXaphuong, objLuotkham.MaLydovaovien, objLuotkham.TuyentruocDtTungay,
+                            objLuotkham.TuyentruocDtDenngay, objLuotkham.MaDoituongGiamdinh, globalVariables.Ma_Coso, objLuotkham.ThoigianLaysoQMS, objLuotkham.MaKenh, objLuotkham.PassPost, objLuotkham.NgaycapCmt, objLuotkham.NoicapCmt, objLuotkham.SogiayChuyentuyen);
+                        //REM lại sử dụng đối tượng subsonic đỡ phải sửa thủ tục. Khi nào chậm sẽ chỉnh sau
+                        objLuotkham.Save();
+                        //sp.Execute();
+                        log.Trace("3. Đã cập nhật thông tin Lượt khám của Bệnh nhân");
+                        var dtCheck = new DataTable();
+                        if (objSoKCB != null)
+                        {
+                            //Kiểm tra xem có sổ KCB hay chưa
+                            objSoKCB.MaLuotkham = Utility.sDbnull(objLuotkham.MaLuotkham);
+                            objSoKCB.IdBenhnhan = Utility.Int32Dbnull(objLuotkham.IdBenhnhan);
+                            dtCheck =
+                                SPs.SpKcbKiemtraDangkySoKCB(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham)
+                                    .GetDataSet()
+                                    .Tables[0];
+                            if (dtCheck == null || dtCheck.Rows.Count <= 0)
+                            {
+                                objSoKCB.IdLichsuDoituongKcb = objLichsuKcb.IdLichsuDoituongKcb;
+                                objSoKCB.NgayTao = DateTime.Now;
+                                objSoKCB.NguoiTao = globalVariables.UserName;
+                                sp = SPs.SpKcbThemmoiDangkySokham(objSoKCB.IdSokcb, objSoKCB.IdBenhnhan,
+                                    objSoKCB.MaLuotkham, objSoKCB.MaSokcb, objSoKCB.DonGia, objSoKCB.BhytChitra
+                                    , objSoKCB.BnhanChitra, objSoKCB.PtramBhytGoc, objSoKCB.PtramBhyt, objSoKCB.PhuThu,
+                                    objSoKCB.TrangthaiThanhtoan, objSoKCB.IdThanhtoan
+                                    , objSoKCB.NgayThanhtoan, objSoKCB.NguoiThanhtoan, objSoKCB.TuTuc,
+                                    objSoKCB.MaDoituongkcb, objSoKCB.IdDoituongkcb, objSoKCB.IdLoaidoituongkcb,
+                                    objSoKCB.IdKhoakcb
+                                    , objSoKCB.IdNhanvien, objSoKCB.IdGoi, objSoKCB.TrongGoi, objSoKCB.NguonThanhtoan,
+                                    objSoKCB.Noitru, objSoKCB.IdLichsuDoituongKcb
+                                    , objSoKCB.MatheBhyt, objSoKCB.NgayTao, objSoKCB.NguoiTao);
+                                sp.Execute();
+                                log.Trace("4. Đã đăng ký sổ khám của Bệnh nhân");
+                                objSoKCB.IdSokcb = Utility.Int64Dbnull(sp.OutputValues[0]);
+                            }
+                            else
+                            {
+                                if (Utility.Int64Dbnull(dtCheck.Rows[0]["Id_Thanhtoan"], 0) > 0) //Ko làm gì cả
+                                {
+                                    log.Trace(
+                                        "Đã thu tiền sổ khám của Bệnh nhân nên không được phép xóa hoặc cập nhật lại");
+                                }
+                                else //Update lại sổ KCB
+                                {
+                                    SPs.SpKcbCapnhatDangkySokham(
+                                        Utility.Int64Dbnull(dtCheck.Rows[0]["trangthai_thanhtoan"], 0),
+                                        Utility.sDbnull(dtCheck.Rows[0]["ma_sokcb"], 0)
+                                        , objSoKCB.DonGia, objSoKCB.BhytChitra, objSoKCB.BnhanChitra,
+                                        objSoKCB.PtramBhytGoc, objSoKCB.PtramBhyt, objSoKCB.PhuThu, objSoKCB.TuTuc
+                                        , objSoKCB.MaDoituongkcb, objSoKCB.IdDoituongkcb, objSoKCB.IdLoaidoituongkcb,
+                                        objSoKCB.IdKhoakcb, objSoKCB.IdNhanvien, objSoKCB.IdGoi, objSoKCB.TrongGoi
+                                        , objSoKCB.NguonThanhtoan, objSoKCB.Noitru, objSoKCB.IdLichsuDoituongKcb,
+                                        objSoKCB.MatheBhyt, DateTime.Now, globalVariables.UserName).Execute();
+                                    log.Trace("4. Đã cập nhật sổ khám của Bệnh nhân");
+                                }
+                            }
+                        }
+                        else
+                        {
+                            SPs.SpKcbXoaDangkySokham(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham).Execute();
+                            log.Trace("4. Đã xóa sổ khám của Bệnh nhân");
+                        }
+                        //Kiểm tra nếu % bị thay đổi thì cập nhật lại tất cả các bảng
+                        if (PtramBhytCu != Utility.DecimaltoDbnull(objLuotkham.PtramBhyt, 0) ||
+                            PtramBhytgoc != Utility.DecimaltoDbnull(objLuotkham.PtramBhytGoc, 0))
+                            _ActionResult = THU_VIEN_CHUNG.UpdatePtramBhyt(objLuotkham, -1);
+                        if (_ActionResult == ActionResult.Cancel)
+                        //Báo không cho phép thay đổi phần trăm BHYT do đã có dịch vụ đã thanh toán
+                        {
+                            return _ActionResult;
+                        }
+                        GoiDanhsach objGoi = GoiDanhsach.FetchByID(id_goi);
+                        //Nếu gói thai sản thì đăng ký
+                        if (objGoi != null && objGoi.KieuGoi == 1)//Gói thai sản
+                        {
+                            new clsGoikham().DangKyGoiKhamThaiSan((int)objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, id_goi, DateTime.Now);
+                        }
+                        foreach (KcbDangkyKcb objCongkham in lstCongKham)
+                        {
+                            if (objCongkham != null) //Đôi lúc người dùng không chọn phòng khám
+                            {
+                                if (id_dangky == -1 && id_goi > 0 && objGoi != null && objGoi.KieuGoi != 1)//Phải là đăng ký gói ksk thì mới call hàm này
+                                    id_dangky = new clsGoikham().ThemGoiKham_BVM(objCongkham, (int)objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, id_goi, DateTime.Now);
+                                objCongkham.MaLuotkham = Utility.sDbnull(objLuotkham.MaLuotkham);
+                                objCongkham.IdBenhnhan = Utility.Int32Dbnull(objLuotkham.IdBenhnhan);
+                                objCongkham.IdLichsuDoituongKcb = objLichsuKcb.IdLichsuDoituongKcb;
+                                objCongkham.IdThe = objCongkham.IdLichsuDoituongKcb;
+                                objCongkham.IdDangky = id_dangky;
+                                id_kham = AddRegExam(objCongkham, objLuotkham, false, KieuKham);
+                                log.Trace("5. Đã đăng ký dịch vụ KCB cho Bệnh nhân");
+                            }
+
+                        }
+                        //if (objCongkham != null)
+                        //{
+                        //    objCongkham.IdLichsuDoituongKcb = objLichsuKcb.IdLichsuDoituongKcb;
+                        //    objCongkham.MaLuotkham = Utility.sDbnull(objLuotkham.MaLuotkham);
+                        //    objCongkham.IdBenhnhan = Utility.Int32Dbnull(objLuotkham.IdBenhnhan);
+                        //    objCongkham.IdThe = objCongkham.IdLichsuDoituongKcb;
+                        //    AddRegExam(objCongkham, objLuotkham, false, KieuKham);
+                        //    log.Trace("4. Đã thêm đăng ký dịch vụ KCB của Bệnh nhân");
+                        //}
+                        if (objKhamthiluc != null) //Đôi lúc người dùng không chọn phòng khám
+                        {
+                            objKhamthiluc.MaLuotkham = Utility.sDbnull(objLuotkham.MaLuotkham);
+                            objKhamthiluc.IdBenhnhan = Utility.Int32Dbnull(objLuotkham.IdBenhnhan);
+                            objKhamthiluc.IdLichsuDoituongKcb = objLichsuKcb.IdLichsuDoituongKcb;
+                            objKhamthiluc.IdThe = objLichsuKcb.IdLichsuDoituongKcb;
+                            ThemCongkhamThiluc(objKhamthiluc, objLuotkham, false, KieuKham);
+                            //log.Trace("5. Đã đăng ký dịch vụ KCB cho Bệnh nhân");
+                        }
+                        objKcbDanhsachBenhnhan.LastNoigioithieu = objLuotkham.NoiGioithieu;
+                        objKcbDanhsachBenhnhan.IsNew = false;
+                        objKcbDanhsachBenhnhan.MarkOld();
+                        objKcbDanhsachBenhnhan.Save();
+
+                        //mytrace.Desc = string.Format("Cập nhật  Bệnh nhân ID={0}, Code={1}, Name={2}", objKcbDanhsachBenhnhan.IdBenhnhan.ToString(), objLuotkham.MaLuotkham, objKcbDanhsachBenhnhan.TenBenhnhan);
+                        //mytrace.Lot = 0;
+                        //mytrace.IsNew = true;
+                        //mytrace.Save();
+
+                        log.Trace(
+                            "END UPDATING..................................................................................................");
+
                     }
                     scope.Complete();
                 }

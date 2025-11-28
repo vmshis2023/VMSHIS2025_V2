@@ -14,13 +14,16 @@ namespace VNS.Libs
 {
     public class LoaiBA
     {
+        public const string BA_NOIKHOA_BA = "BA-01";
         public const string BA_NOIKHOA = "01/BV1";
         public const string BA_NHIKHOA = "02/BV1";
         public const string BA_PHUKHOA = "04/BV1";
         public const string BA_SANKHOA = "05/BV1";
         public const string BA_SOSINH = "06/BV1";
         public const string BA_NGOAIKHOA = "10/BV1";
+        public const string BA_NGOAIKHOA_BA = "BA-02";
         public const string BA_NGOAITRU = "15/BV1";
+        public const string BA_NGOAITRU_BA = "BA-16";
         public const string BA_NAMKHOA = "BA_NAMKHOA";
         public const string BA_IVF_VO = "BA_IVF_VO";
         public const string BA_IVF_CHONG = "BA_IVF_CHONG";
@@ -40,11 +43,20 @@ namespace VNS.Libs
     }
     public class globalVariables
     {
-       
+        public static bool KhongHoanUng = false;
+        public static bool InPhieuKhamChuyenKhoa = false;
+        public static bool isActiveFTP=false;
+        public static FTPclient FtpClientRIS;
+        public static FTPclient FtpClientLIS;
+        public static string FtpClientCurrentDirectoryRIS = "";
+        public static string _baseDirectoryRIS = string.Format("{0}{1}", AppDomain.CurrentDomain.BaseDirectory, "pdfRIS\\");
 
+        public static string FtpClientCurrentDirectoryLIS = "";
+        public static string _baseDirectoryLIS = string.Format("{0}{1}", AppDomain.CurrentDomain.BaseDirectory, "pdfLIS\\");
         // Ma danh muc dùng chung 
         public static string DC_DM_BENHAN = "DM_BA";
         public static string DC_NHOMIN_CLS = "NHOM_INPHIEU_CLS";
+        public static string API_DONTHUOCQUOCGIA = "";
         // 
       //  public static Pdf2HisManager _Pdf2HisManager = new Pdf2HisManager();
         /// <summary>
@@ -269,6 +281,8 @@ namespace VNS.Libs
         public static string gv_strNoicapBHYT = "01";
         public static DataTable dtSignInfor = new DataTable();
         public static Dictionary<string, string> lstVitriky = new Dictionary<string, string>();
+        public static byte[] bytHinhChuKy = null;
+        public static long emr_id_file = -1;
         public static string GvStrTendoituongNoiTinhKcbbd = "A. BỆNH NHÂN NỘI TỈNH KCB BAN ĐẦU";
         public static string GvStrTendoituongNoitinhKhongKcbbd = "B. BỆNH NHÂN NỘI TỈNH ĐẾN";
         public static string GvStrTendoituongNgoaitinh = "C. BỆNH NHÂN NGOẠI TỈNH ĐẾN";

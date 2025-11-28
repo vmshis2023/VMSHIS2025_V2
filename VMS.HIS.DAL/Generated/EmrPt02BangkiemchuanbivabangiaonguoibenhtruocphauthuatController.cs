@@ -80,10 +80,12 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(long? IdBenhnhan,string MaLuotkham,DateTime? NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua,string Chandoan,DateTime? Ngayphauthuat,string Ngaygiobangiao,bool? TiensudiungKhong,bool? TiensudiungCo,string TiensudiungCoGhiro,bool? CobenhtruyennhiemKhong,bool? CobenhtruyennhiemCo,string CobenhtruyennhiemCoGhiro,bool? NguoibenhdatamruatruockhimoCo,bool? NguoibenhdatamruatruockhimoKhong,string Nhietdo,string Mach,string Huyetap,string Nhiptho,string Spo2,string Nhommau,bool? DaxacnhandacdiemnhandangnguoibenhLan1,bool? DaxacnhandacdiemnhandangnguoibenhLan2,bool? HosobenhanLan1,bool? HosobenhanLan2,bool? TailieuphauthuatLan1,bool? TailieuphauthuatLan2,bool? PhimchupxqLan1,bool? PhimchupxqLan2,byte? PhimchupxqSoluong,byte? PhimchupxqKhongapdung,bool? PhimchupmsctLan1,bool? PhimchupmsctLan2,bool? PhimchupmsctKhongapdung,byte? PhimchupmsctSoluong,bool? PhimchupMriLan1,bool? PhimchupMriLan2,byte? PhimchupMriSoluong,byte? PhimchupMriKhongapdung,bool? KhangsinhduphongLan1,bool? KhangsinhduphongLan2,bool? KhangsinhduphongKhongapdung,string KhangsinhduphongGiophut,bool? NhinantugioLan2,bool? NhinantugioKhongapdung,string NhinantugioGiophut,bool? ChuanbivesinhvungdatruocmoLan1,bool? ChuanbivesinhvungdatruocmoLan2,bool? ChuanbivesinhvungdatruocmoKhongapdung,string ChuanbivesinhvungdatruocmoGiophut,bool? DaduocdanhdauvitriphauthuatLan1,bool? DaduocdanhdauvitriphauthuatLan2,bool? DaduocdanhdauvitriphauthuatKhongapdung,bool? DungthuoctruocmochongnonLan1,bool? DungthuoctruocmochongnonLan2,bool? DungthuoctruocmochongnonKhongapdung,string DungthuoctruocmochongnonGiophut,bool? DungthuoctruocmothuocdieutrikhacLan1,bool? DungthuoctruocmothuocdieutrikhacLan2,bool? DungthuoctruocmothuocdieutrikhacKhongapdung,string DungthuoctruocmothuocdieutrikhacGiophut,bool? DathaoranggiaLan1,bool? DathaoranggiaLan2,bool? DathaoranggiaKhongapdung,bool? DathaocathietbiphutroLan1,bool? DathaocathietbiphutroLan2,bool? DathaocathietbiphutroKhongapdung,bool? DathaonutrangdokeptocLan1,bool? DathaonutrangdokeptocLan2,bool? DathaonutrangdokeptocKhongapdung,bool? DamacaochoangmoLan1,bool? DamacaochoangmoLan2,bool? DamacaochoangmoKhongapdung,bool? DalamtrongbangquantuinuoctieuLan1,bool? DalamtrongbangquantuinuoctieuLan2,bool? DalamtrongbangquantuinuoctieuKhongapdung,bool? DachuanbidaitrangLan1,bool? DachuanbidaitrangLan2,bool? DachuanbidaitrangKhongapdung,string Khac,string Bengiao,string Bennhan,DateTime? Ngaygiao,DateTime? Ngaynhan,string Khoagiao,string Khoanhan,string Thongtinchuky,byte? Soluongchuky)
+	    public void Insert(string MaPhieu,long? IdBenhnhan,string MaLuotkham,DateTime? NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua,string Chandoan,DateTime? Ngayphauthuat,string Ngaygiobangiao,bool? TiensudiungKhong,bool? TiensudiungCo,string TiensudiungCoGhiro,bool? CobenhtruyennhiemKhong,bool? CobenhtruyennhiemCo,string CobenhtruyennhiemCoGhiro,bool? NguoibenhdatamruatruockhimoCo,bool? NguoibenhdatamruatruockhimoKhong,string Nhietdo,string Mach,string Huyetap,string Nhiptho,string Spo2,string Nhommau,bool? DaxacnhandacdiemnhandangnguoibenhLan1,bool? DaxacnhandacdiemnhandangnguoibenhLan2,bool? HosobenhanLan1,bool? HosobenhanLan2,bool? TailieuphauthuatLan1,bool? TailieuphauthuatLan2,bool? PhimchupxqLan1,bool? PhimchupxqLan2,byte? PhimchupxqSoluong,bool? PhimchupxqKhongapdung,bool? PhimchupmsctLan1,bool? PhimchupmsctLan2,bool? PhimchupmsctKhongapdung,byte? PhimchupmsctSoluong,bool? PhimchupMriLan1,bool? PhimchupMriLan2,byte? PhimchupMriSoluong,bool? PhimchupMriKhongapdung,bool? KhangsinhduphongLan1,bool? KhangsinhduphongLan2,bool? KhangsinhduphongKhongapdung,string KhangsinhduphongGiophut,bool? NhinantugioLan1,bool? NhinantugioLan2,bool? NhinantugioKhongapdung,string NhinantugioGiophut,bool? ChuanbivesinhvungdatruocmoLan1,bool? ChuanbivesinhvungdatruocmoLan2,bool? ChuanbivesinhvungdatruocmoKhongapdung,string ChuanbivesinhvungdatruocmoGiophut,bool? DaduocdanhdauvitriphauthuatLan1,bool? DaduocdanhdauvitriphauthuatLan2,bool? DaduocdanhdauvitriphauthuatKhongapdung,bool? DungthuoctruocmochongnonLan1,bool? DungthuoctruocmochongnonLan2,bool? DungthuoctruocmochongnonKhongapdung,string DungthuoctruocmochongnonGiophut,bool? DungthuoctruocmothuocdieutrikhacLan1,bool? DungthuoctruocmothuocdieutrikhacLan2,bool? DungthuoctruocmothuocdieutrikhacKhongapdung,string DungthuoctruocmothuocdieutrikhacGiophut,bool? DathaoranggiaLan1,bool? DathaoranggiaLan2,bool? DathaoranggiaKhongapdung,bool? DathaocacthietbiphutroLan1,bool? DathaocacthietbiphutroLan2,bool? DathaocacthietbiphutroKhongapdung,bool? DathaonutrangdokeptocLan1,bool? DathaonutrangdokeptocLan2,bool? DathaonutrangdokeptocKhongapdung,bool? DamacaochoangmoLan1,bool? DamacaochoangmoLan2,bool? DamacaochoangmoKhongapdung,bool? DalamtrongbangquantuinuoctieuLan1,bool? DalamtrongbangquantuinuoctieuLan2,bool? DalamtrongbangquantuinuoctieuKhongapdung,bool? DachuanbidaitrangLan1,bool? DachuanbidaitrangLan2,bool? DachuanbidaitrangKhongapdung,string Khac,int? IdNguoiGiao,int? IdNguoiNhan,DateTime? NgayGiao,DateTime? NgayNhan,int? IdKhoaGiao,int? IdKhoaNhan,string Thongtinchuky,byte? Soluongchuky)
 	    {
 		    EmrPt02Bangkiemchuanbivabangiaonguoibenhtruocphauthuat item = new EmrPt02Bangkiemchuanbivabangiaonguoibenhtruocphauthuat();
 		    
+            item.MaPhieu = MaPhieu;
+            
             item.IdBenhnhan = IdBenhnhan;
             
             item.MaLuotkham = MaLuotkham;
@@ -174,6 +176,8 @@ namespace VMS.HIS.DAL
             
             item.KhangsinhduphongGiophut = KhangsinhduphongGiophut;
             
+            item.NhinantugioLan1 = NhinantugioLan1;
+            
             item.NhinantugioLan2 = NhinantugioLan2;
             
             item.NhinantugioKhongapdung = NhinantugioKhongapdung;
@@ -216,11 +220,11 @@ namespace VMS.HIS.DAL
             
             item.DathaoranggiaKhongapdung = DathaoranggiaKhongapdung;
             
-            item.DathaocathietbiphutroLan1 = DathaocathietbiphutroLan1;
+            item.DathaocacthietbiphutroLan1 = DathaocacthietbiphutroLan1;
             
-            item.DathaocathietbiphutroLan2 = DathaocathietbiphutroLan2;
+            item.DathaocacthietbiphutroLan2 = DathaocacthietbiphutroLan2;
             
-            item.DathaocathietbiphutroKhongapdung = DathaocathietbiphutroKhongapdung;
+            item.DathaocacthietbiphutroKhongapdung = DathaocacthietbiphutroKhongapdung;
             
             item.DathaonutrangdokeptocLan1 = DathaonutrangdokeptocLan1;
             
@@ -248,17 +252,17 @@ namespace VMS.HIS.DAL
             
             item.Khac = Khac;
             
-            item.Bengiao = Bengiao;
+            item.IdNguoiGiao = IdNguoiGiao;
             
-            item.Bennhan = Bennhan;
+            item.IdNguoiNhan = IdNguoiNhan;
             
-            item.Ngaygiao = Ngaygiao;
+            item.NgayGiao = NgayGiao;
             
-            item.Ngaynhan = Ngaynhan;
+            item.NgayNhan = NgayNhan;
             
-            item.Khoagiao = Khoagiao;
+            item.IdKhoaGiao = IdKhoaGiao;
             
-            item.Khoanhan = Khoanhan;
+            item.IdKhoaNhan = IdKhoaNhan;
             
             item.Thongtinchuky = Thongtinchuky;
             
@@ -272,13 +276,15 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(long IdPhieu,long? IdBenhnhan,string MaLuotkham,DateTime? NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua,string Chandoan,DateTime? Ngayphauthuat,string Ngaygiobangiao,bool? TiensudiungKhong,bool? TiensudiungCo,string TiensudiungCoGhiro,bool? CobenhtruyennhiemKhong,bool? CobenhtruyennhiemCo,string CobenhtruyennhiemCoGhiro,bool? NguoibenhdatamruatruockhimoCo,bool? NguoibenhdatamruatruockhimoKhong,string Nhietdo,string Mach,string Huyetap,string Nhiptho,string Spo2,string Nhommau,bool? DaxacnhandacdiemnhandangnguoibenhLan1,bool? DaxacnhandacdiemnhandangnguoibenhLan2,bool? HosobenhanLan1,bool? HosobenhanLan2,bool? TailieuphauthuatLan1,bool? TailieuphauthuatLan2,bool? PhimchupxqLan1,bool? PhimchupxqLan2,byte? PhimchupxqSoluong,byte? PhimchupxqKhongapdung,bool? PhimchupmsctLan1,bool? PhimchupmsctLan2,bool? PhimchupmsctKhongapdung,byte? PhimchupmsctSoluong,bool? PhimchupMriLan1,bool? PhimchupMriLan2,byte? PhimchupMriSoluong,byte? PhimchupMriKhongapdung,bool? KhangsinhduphongLan1,bool? KhangsinhduphongLan2,bool? KhangsinhduphongKhongapdung,string KhangsinhduphongGiophut,bool? NhinantugioLan2,bool? NhinantugioKhongapdung,string NhinantugioGiophut,bool? ChuanbivesinhvungdatruocmoLan1,bool? ChuanbivesinhvungdatruocmoLan2,bool? ChuanbivesinhvungdatruocmoKhongapdung,string ChuanbivesinhvungdatruocmoGiophut,bool? DaduocdanhdauvitriphauthuatLan1,bool? DaduocdanhdauvitriphauthuatLan2,bool? DaduocdanhdauvitriphauthuatKhongapdung,bool? DungthuoctruocmochongnonLan1,bool? DungthuoctruocmochongnonLan2,bool? DungthuoctruocmochongnonKhongapdung,string DungthuoctruocmochongnonGiophut,bool? DungthuoctruocmothuocdieutrikhacLan1,bool? DungthuoctruocmothuocdieutrikhacLan2,bool? DungthuoctruocmothuocdieutrikhacKhongapdung,string DungthuoctruocmothuocdieutrikhacGiophut,bool? DathaoranggiaLan1,bool? DathaoranggiaLan2,bool? DathaoranggiaKhongapdung,bool? DathaocathietbiphutroLan1,bool? DathaocathietbiphutroLan2,bool? DathaocathietbiphutroKhongapdung,bool? DathaonutrangdokeptocLan1,bool? DathaonutrangdokeptocLan2,bool? DathaonutrangdokeptocKhongapdung,bool? DamacaochoangmoLan1,bool? DamacaochoangmoLan2,bool? DamacaochoangmoKhongapdung,bool? DalamtrongbangquantuinuoctieuLan1,bool? DalamtrongbangquantuinuoctieuLan2,bool? DalamtrongbangquantuinuoctieuKhongapdung,bool? DachuanbidaitrangLan1,bool? DachuanbidaitrangLan2,bool? DachuanbidaitrangKhongapdung,string Khac,string Bengiao,string Bennhan,DateTime? Ngaygiao,DateTime? Ngaynhan,string Khoagiao,string Khoanhan,string Thongtinchuky,byte? Soluongchuky)
+	    public void Update(long IdPhieu,string MaPhieu,long? IdBenhnhan,string MaLuotkham,DateTime? NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua,string Chandoan,DateTime? Ngayphauthuat,string Ngaygiobangiao,bool? TiensudiungKhong,bool? TiensudiungCo,string TiensudiungCoGhiro,bool? CobenhtruyennhiemKhong,bool? CobenhtruyennhiemCo,string CobenhtruyennhiemCoGhiro,bool? NguoibenhdatamruatruockhimoCo,bool? NguoibenhdatamruatruockhimoKhong,string Nhietdo,string Mach,string Huyetap,string Nhiptho,string Spo2,string Nhommau,bool? DaxacnhandacdiemnhandangnguoibenhLan1,bool? DaxacnhandacdiemnhandangnguoibenhLan2,bool? HosobenhanLan1,bool? HosobenhanLan2,bool? TailieuphauthuatLan1,bool? TailieuphauthuatLan2,bool? PhimchupxqLan1,bool? PhimchupxqLan2,byte? PhimchupxqSoluong,bool? PhimchupxqKhongapdung,bool? PhimchupmsctLan1,bool? PhimchupmsctLan2,bool? PhimchupmsctKhongapdung,byte? PhimchupmsctSoluong,bool? PhimchupMriLan1,bool? PhimchupMriLan2,byte? PhimchupMriSoluong,bool? PhimchupMriKhongapdung,bool? KhangsinhduphongLan1,bool? KhangsinhduphongLan2,bool? KhangsinhduphongKhongapdung,string KhangsinhduphongGiophut,bool? NhinantugioLan1,bool? NhinantugioLan2,bool? NhinantugioKhongapdung,string NhinantugioGiophut,bool? ChuanbivesinhvungdatruocmoLan1,bool? ChuanbivesinhvungdatruocmoLan2,bool? ChuanbivesinhvungdatruocmoKhongapdung,string ChuanbivesinhvungdatruocmoGiophut,bool? DaduocdanhdauvitriphauthuatLan1,bool? DaduocdanhdauvitriphauthuatLan2,bool? DaduocdanhdauvitriphauthuatKhongapdung,bool? DungthuoctruocmochongnonLan1,bool? DungthuoctruocmochongnonLan2,bool? DungthuoctruocmochongnonKhongapdung,string DungthuoctruocmochongnonGiophut,bool? DungthuoctruocmothuocdieutrikhacLan1,bool? DungthuoctruocmothuocdieutrikhacLan2,bool? DungthuoctruocmothuocdieutrikhacKhongapdung,string DungthuoctruocmothuocdieutrikhacGiophut,bool? DathaoranggiaLan1,bool? DathaoranggiaLan2,bool? DathaoranggiaKhongapdung,bool? DathaocacthietbiphutroLan1,bool? DathaocacthietbiphutroLan2,bool? DathaocacthietbiphutroKhongapdung,bool? DathaonutrangdokeptocLan1,bool? DathaonutrangdokeptocLan2,bool? DathaonutrangdokeptocKhongapdung,bool? DamacaochoangmoLan1,bool? DamacaochoangmoLan2,bool? DamacaochoangmoKhongapdung,bool? DalamtrongbangquantuinuoctieuLan1,bool? DalamtrongbangquantuinuoctieuLan2,bool? DalamtrongbangquantuinuoctieuKhongapdung,bool? DachuanbidaitrangLan1,bool? DachuanbidaitrangLan2,bool? DachuanbidaitrangKhongapdung,string Khac,int? IdNguoiGiao,int? IdNguoiNhan,DateTime? NgayGiao,DateTime? NgayNhan,int? IdKhoaGiao,int? IdKhoaNhan,string Thongtinchuky,byte? Soluongchuky)
 	    {
 		    EmrPt02Bangkiemchuanbivabangiaonguoibenhtruocphauthuat item = new EmrPt02Bangkiemchuanbivabangiaonguoibenhtruocphauthuat();
 	        item.MarkOld();
 	        item.IsLoaded = true;
 		    
 			item.IdPhieu = IdPhieu;
+				
+			item.MaPhieu = MaPhieu;
 				
 			item.IdBenhnhan = IdBenhnhan;
 				
@@ -370,6 +376,8 @@ namespace VMS.HIS.DAL
 				
 			item.KhangsinhduphongGiophut = KhangsinhduphongGiophut;
 				
+			item.NhinantugioLan1 = NhinantugioLan1;
+				
 			item.NhinantugioLan2 = NhinantugioLan2;
 				
 			item.NhinantugioKhongapdung = NhinantugioKhongapdung;
@@ -412,11 +420,11 @@ namespace VMS.HIS.DAL
 				
 			item.DathaoranggiaKhongapdung = DathaoranggiaKhongapdung;
 				
-			item.DathaocathietbiphutroLan1 = DathaocathietbiphutroLan1;
+			item.DathaocacthietbiphutroLan1 = DathaocacthietbiphutroLan1;
 				
-			item.DathaocathietbiphutroLan2 = DathaocathietbiphutroLan2;
+			item.DathaocacthietbiphutroLan2 = DathaocacthietbiphutroLan2;
 				
-			item.DathaocathietbiphutroKhongapdung = DathaocathietbiphutroKhongapdung;
+			item.DathaocacthietbiphutroKhongapdung = DathaocacthietbiphutroKhongapdung;
 				
 			item.DathaonutrangdokeptocLan1 = DathaonutrangdokeptocLan1;
 				
@@ -444,17 +452,17 @@ namespace VMS.HIS.DAL
 				
 			item.Khac = Khac;
 				
-			item.Bengiao = Bengiao;
+			item.IdNguoiGiao = IdNguoiGiao;
 				
-			item.Bennhan = Bennhan;
+			item.IdNguoiNhan = IdNguoiNhan;
 				
-			item.Ngaygiao = Ngaygiao;
+			item.NgayGiao = NgayGiao;
 				
-			item.Ngaynhan = Ngaynhan;
+			item.NgayNhan = NgayNhan;
 				
-			item.Khoagiao = Khoagiao;
+			item.IdKhoaGiao = IdKhoaGiao;
 				
-			item.Khoanhan = Khoanhan;
+			item.IdKhoaNhan = IdKhoaNhan;
 				
 			item.Thongtinchuky = Thongtinchuky;
 				

@@ -422,6 +422,7 @@ namespace VMS.Invoice
                 cmdHoadonThaythe.Visible = Utility.Int32Dbnull(grdPayment.GetValue("co_tralai")) == 1;
                 chkHienthiChitietThucthubang0_CheckedChanged(chkHienthiChitietThucthubang0, e);
                 Utility.focusCellofCurrentRow(grdChitietThanhtoan, "transaction_id");
+                Utility.focusCellofCurrentRow(grdPayment, "transaction_id");
             }
             catch (Exception)
             {

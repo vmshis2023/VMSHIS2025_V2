@@ -57,6 +57,8 @@ namespace VNS.HIS.UI.GOIKHAM
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cmdkhongsudung = new System.Windows.Forms.ToolStripMenuItem();
             this.uiGroupBox7 = new Janus.Windows.EditControls.UIGroupBox();
+            this.txt_TongTienHuySuDung = new MaskedTextBox.MaskedTextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.txtConlai = new MaskedTextBox.MaskedTextBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
@@ -107,13 +109,12 @@ namespace VNS.HIS.UI.GOIKHAM
             this.label70 = new System.Windows.Forms.Label();
             this.label71 = new System.Windows.Forms.Label();
             this.uiGroupBox4 = new Janus.Windows.EditControls.UIGroupBox();
+            this.cbo_GoiKham = new VNS.HIS.UCs.EasyCompletionComboBox();
             this.cmdUpdate = new Janus.Windows.EditControls.UIButton();
             this.label4 = new System.Windows.Forms.Label();
             this.dtpNgaydangky = new Janus.Windows.CalendarCombo.CalendarCombo();
-            this.uiButton2 = new Janus.Windows.EditControls.UIButton();
             this.txtLyDoHuy = new VNS.HIS.UCs.AutoCompleteTextbox_Danhmucchung();
             this.cmdChuyengoi = new Janus.Windows.EditControls.UIButton();
-            this.autoGoikham = new VNS.HIS.UCs.AutoCompleteTextbox();
             this.label29 = new System.Windows.Forms.Label();
             this.cmdInGoi = new Janus.Windows.EditControls.UIButton();
             this.dtpHieuLucTuCaNhan = new Janus.Windows.CalendarCombo.CalendarCombo();
@@ -166,6 +167,7 @@ namespace VNS.HIS.UI.GOIKHAM
             this.mnuRollback = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuPrint = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuPrintAll = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.tabControl)).BeginInit();
             this.tabControl.SuspendLayout();
             this.tabCaNhan.SuspendLayout();
@@ -411,6 +413,8 @@ namespace VNS.HIS.UI.GOIKHAM
             // 
             // uiGroupBox7
             // 
+            this.uiGroupBox7.Controls.Add(this.txt_TongTienHuySuDung);
+            this.uiGroupBox7.Controls.Add(this.label7);
             this.uiGroupBox7.Controls.Add(this.txtConlai);
             this.uiGroupBox7.Controls.Add(this.lblTitle);
             this.uiGroupBox7.Controls.Add(this.label30);
@@ -420,6 +424,26 @@ namespace VNS.HIS.UI.GOIKHAM
             this.uiGroupBox7.Name = "uiGroupBox7";
             this.uiGroupBox7.Size = new System.Drawing.Size(597, 45);
             this.uiGroupBox7.TabIndex = 5;
+            // 
+            // txt_TongTienHuySuDung
+            // 
+            this.txt_TongTienHuySuDung.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txt_TongTienHuySuDung.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_TongTienHuySuDung.Location = new System.Drawing.Point(452, 11);
+            this.txt_TongTienHuySuDung.Masked = MaskedTextBox.Mask.Decimal;
+            this.txt_TongTienHuySuDung.Name = "txt_TongTienHuySuDung";
+            this.txt_TongTienHuySuDung.Size = new System.Drawing.Size(132, 22);
+            this.txt_TongTienHuySuDung.TabIndex = 563;
+            this.txt_TongTienHuySuDung.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label7
+            // 
+            this.label7.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(326, 16);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(120, 17);
+            this.label7.TabIndex = 564;
+            this.label7.Text = "TT hủy sử dụng:";
             // 
             // txtConlai
             // 
@@ -800,7 +824,6 @@ namespace VNS.HIS.UI.GOIKHAM
             // 
             this.cmdKichhoatgoi.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cmdKichhoatgoi.ButtonStyle = Janus.Windows.EditControls.ButtonStyle.DropDownButton;
-            this.cmdKichhoatgoi.Enabled = false;
             this.cmdKichhoatgoi.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdKichhoatgoi.Image = ((System.Drawing.Image)(resources.GetObject("cmdKichhoatgoi.Image")));
             this.cmdKichhoatgoi.ImageSize = new System.Drawing.Size(24, 24);
@@ -1059,13 +1082,12 @@ namespace VNS.HIS.UI.GOIKHAM
             // 
             // uiGroupBox4
             // 
+            this.uiGroupBox4.Controls.Add(this.cbo_GoiKham);
             this.uiGroupBox4.Controls.Add(this.cmdUpdate);
             this.uiGroupBox4.Controls.Add(this.label4);
             this.uiGroupBox4.Controls.Add(this.dtpNgaydangky);
-            this.uiGroupBox4.Controls.Add(this.uiButton2);
             this.uiGroupBox4.Controls.Add(this.txtLyDoHuy);
             this.uiGroupBox4.Controls.Add(this.cmdChuyengoi);
-            this.uiGroupBox4.Controls.Add(this.autoGoikham);
             this.uiGroupBox4.Controls.Add(this.label29);
             this.uiGroupBox4.Controls.Add(this.cmdInGoi);
             this.uiGroupBox4.Controls.Add(this.dtpHieuLucTuCaNhan);
@@ -1081,6 +1103,18 @@ namespace VNS.HIS.UI.GOIKHAM
             this.uiGroupBox4.Size = new System.Drawing.Size(597, 146);
             this.uiGroupBox4.TabIndex = 3;
             this.uiGroupBox4.Text = "Đăng kí gói và kích hoạt";
+            // 
+            // cbo_GoiKham
+            // 
+            this.cbo_GoiKham.FormattingEnabled = true;
+            this.cbo_GoiKham.Location = new System.Drawing.Point(92, 21);
+            this.cbo_GoiKham.Name = "cbo_GoiKham";
+            this.cbo_GoiKham.Next_Control = null;
+            this.cbo_GoiKham.RaiseEnterEventWhenInvisible = true;
+            this.cbo_GoiKham.Size = new System.Drawing.Size(496, 23);
+            this.cbo_GoiKham.TabIndex = 598;
+            this.cbo_GoiKham.TabStop = false;
+            this.cbo_GoiKham.SelectedIndexChanged += new System.EventHandler(this.cbo_GoiKham_SelectedIndexChanged);
             // 
             // cmdUpdate
             // 
@@ -1124,17 +1158,6 @@ namespace VNS.HIS.UI.GOIKHAM
             this.dtpNgaydangky.Size = new System.Drawing.Size(187, 21);
             this.dtpNgaydangky.TabIndex = 595;
             this.dtpNgaydangky.Value = new System.DateTime(2018, 1, 19, 0, 0, 0, 0);
-            // 
-            // uiButton2
-            // 
-            this.uiButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiButton2.Image = ((System.Drawing.Image)(resources.GetObject("uiButton2.Image")));
-            this.uiButton2.ImageSize = new System.Drawing.Size(12, 12);
-            this.uiButton2.Location = new System.Drawing.Point(565, 18);
-            this.uiButton2.Name = "uiButton2";
-            this.uiButton2.Size = new System.Drawing.Size(23, 23);
-            this.uiButton2.TabIndex = 594;
-            this.uiButton2.Click += new System.EventHandler(this.uiButton2_Click);
             // 
             // txtLyDoHuy
             // 
@@ -1197,49 +1220,6 @@ namespace VNS.HIS.UI.GOIKHAM
             this.cmdChuyengoi.Text = "Chuyển gói";
             this.cmdChuyengoi.Visible = false;
             // 
-            // autoGoikham
-            // 
-            this.autoGoikham._backcolor = System.Drawing.SystemColors.Control;
-            this.autoGoikham._Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.autoGoikham._TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.autoGoikham.AutoCompleteList = ((System.Collections.Generic.List<string>)(resources.GetObject("autoGoikham.AutoCompleteList")));
-            this.autoGoikham.buildShortcut = false;
-            this.autoGoikham.CaseSensitive = false;
-            this.autoGoikham.CompareNoID = true;
-            this.autoGoikham.DefaultCode = "-1";
-            this.autoGoikham.DefaultID = "-1";
-            this.autoGoikham.DisplayType = 0;
-            this.autoGoikham.Drug_ID = null;
-            this.autoGoikham.ExtraWidth = 0;
-            this.autoGoikham.FillValueAfterSelect = false;
-            this.autoGoikham.Location = new System.Drawing.Point(92, 19);
-            this.autoGoikham.MaxHeight = 500;
-            this.autoGoikham.MinTypedCharacters = 2;
-            this.autoGoikham.MyCode = "-1";
-            this.autoGoikham.MyID = "-1";
-            this.autoGoikham.MyText = "";
-            this.autoGoikham.MyTextOnly = "";
-            this.autoGoikham.Name = "autoGoikham";
-            this.autoGoikham.RaiseEvent = true;
-            this.autoGoikham.RaiseEventEnter = true;
-            this.autoGoikham.RaiseEventEnterWhenEmpty = false;
-            this.autoGoikham.SelectedIndex = -1;
-            this.autoGoikham.Size = new System.Drawing.Size(470, 21);
-            this.autoGoikham.splitChar = '@';
-            this.autoGoikham.splitCharIDAndCode = '#';
-            this.autoGoikham.TabIndex = 20;
-            this.autoGoikham.TakeCode = false;
-            this.autoGoikham.txtMyCode = null;
-            this.autoGoikham.txtMyCode_Edit = null;
-            this.autoGoikham.txtMyID = null;
-            this.autoGoikham.txtMyID_Edit = null;
-            this.autoGoikham.txtMyName = null;
-            this.autoGoikham.txtMyName_Edit = null;
-            this.autoGoikham.txtNext = null;
-            this.autoGoikham._OnSelectionChanged += new VNS.HIS.UCs.AutoCompleteTextbox.OnSelectionChanged(this.txtdanhmucgoicanhan__OnSelectionChanged);
-            this.autoGoikham._OnEnterMe += new VNS.HIS.UCs.AutoCompleteTextbox.OnEnterMe(this.txtdanhmucgoicanhan__OnEnterMe);
-            this.autoGoikham.TextChanged += new System.EventHandler(this.txtdanhmucgoicanhan_TextChanged);
-            // 
             // label29
             // 
             this.label29.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1258,11 +1238,12 @@ namespace VNS.HIS.UI.GOIKHAM
             this.cmdInGoi.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdInGoi.Image = ((System.Drawing.Image)(resources.GetObject("cmdInGoi.Image")));
             this.cmdInGoi.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdInGoi.Location = new System.Drawing.Point(471, 99);
+            this.cmdInGoi.Location = new System.Drawing.Point(369, 105);
             this.cmdInGoi.Name = "cmdInGoi";
-            this.cmdInGoi.Size = new System.Drawing.Size(120, 35);
+            this.cmdInGoi.Size = new System.Drawing.Size(10, 35);
             this.cmdInGoi.TabIndex = 25;
             this.cmdInGoi.Text = "In (Ctrl+P)";
+            this.cmdInGoi.Visible = false;
             this.cmdInGoi.Click += new System.EventHandler(this.btnInChiTietGoi_Click);
             // 
             // dtpHieuLucTuCaNhan
@@ -1333,7 +1314,7 @@ namespace VNS.HIS.UI.GOIKHAM
             this.cmdThemgoi.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdThemgoi.Image = ((System.Drawing.Image)(resources.GetObject("cmdThemgoi.Image")));
             this.cmdThemgoi.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdThemgoi.Location = new System.Drawing.Point(345, 99);
+            this.cmdThemgoi.Location = new System.Drawing.Point(468, 105);
             this.cmdThemgoi.Name = "cmdThemgoi";
             this.cmdThemgoi.Size = new System.Drawing.Size(120, 35);
             this.cmdThemgoi.TabIndex = 24;
@@ -1839,54 +1820,61 @@ namespace VNS.HIS.UI.GOIKHAM
             this.mnuFinish,
             this.mnuRollback,
             this.toolStripMenuItem2,
-            this.mnuPrint});
+            this.mnuPrint,
+            this.mnuPrintAll});
             this.ctxKichhoat.Name = "contextMenuStrip1";
-            this.ctxKichhoat.Size = new System.Drawing.Size(202, 126);
+            this.ctxKichhoat.Size = new System.Drawing.Size(457, 170);
             // 
             // mnuKichhoat
             // 
             this.mnuKichhoat.Name = "mnuKichhoat";
-            this.mnuKichhoat.Size = new System.Drawing.Size(201, 22);
+            this.mnuKichhoat.Size = new System.Drawing.Size(456, 22);
             this.mnuKichhoat.Text = "Kích hoạt gói";
             this.mnuKichhoat.Click += new System.EventHandler(this.mnuKichhoat_Click);
             // 
             // mnuHuykichhoat
             // 
             this.mnuHuykichhoat.Name = "mnuHuykichhoat";
-            this.mnuHuykichhoat.Size = new System.Drawing.Size(201, 22);
+            this.mnuHuykichhoat.Size = new System.Drawing.Size(456, 22);
             this.mnuHuykichhoat.Text = "Hủy kích hoạt gói";
             this.mnuHuykichhoat.Click += new System.EventHandler(this.mnuHuykichhoat_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(198, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(453, 6);
             // 
             // mnuFinish
             // 
             this.mnuFinish.Name = "mnuFinish";
-            this.mnuFinish.Size = new System.Drawing.Size(201, 22);
+            this.mnuFinish.Size = new System.Drawing.Size(456, 22);
             this.mnuFinish.Text = "Kết thúc gói";
             this.mnuFinish.Click += new System.EventHandler(this.mnuFinish_Click);
             // 
             // mnuRollback
             // 
             this.mnuRollback.Name = "mnuRollback";
-            this.mnuRollback.Size = new System.Drawing.Size(201, 22);
+            this.mnuRollback.Size = new System.Drawing.Size(456, 22);
             this.mnuRollback.Text = "Hủy kết thúc gói";
             this.mnuRollback.Click += new System.EventHandler(this.mnuRollback_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(198, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(453, 6);
             // 
             // mnuPrint
             // 
             this.mnuPrint.Name = "mnuPrint";
-            this.mnuPrint.Size = new System.Drawing.Size(201, 22);
-            this.mnuPrint.Text = "In tình hình sử dụng gói";
+            this.mnuPrint.Size = new System.Drawing.Size(456, 22);
+            this.mnuPrint.Text = "In tình hình sử dụng gói cho lượt khám này";
             this.mnuPrint.Click += new System.EventHandler(this.mnuPrint_Click);
+            // 
+            // mnuPrintAll
+            // 
+            this.mnuPrintAll.Name = "mnuPrintAll";
+            this.mnuPrintAll.Size = new System.Drawing.Size(456, 22);
+            this.mnuPrintAll.Text = "In tình hình sử dụng gói theo người bệnh(Tổng hợp tất cả các lần khám)";
             // 
             // frm_QuanLyGoiKham
             // 
@@ -2021,7 +2009,6 @@ namespace VNS.HIS.UI.GOIKHAM
         internal System.Windows.Forms.Label label29;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem tsmChuyenHTTT;
-        private AutoCompleteTextbox autoGoikham;
         private Janus.Windows.UI.Tab.UITab uiTab1;
         private Janus.Windows.UI.Tab.UITabPage uiTabPage1;
         private System.Windows.Forms.Panel pnlAct;
@@ -2064,7 +2051,6 @@ namespace VNS.HIS.UI.GOIKHAM
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private MaskedTextBox.MaskedTextBox txtConlai;
         private AutoCompleteTextbox_Danhmucchung txtLyDoHuy;
-        private Janus.Windows.EditControls.UIButton uiButton2;
         private Janus.Windows.GridEX.GridEX grdPayment;
         private Janus.Windows.GridEX.EditControls.EditBox txtsothethamchieu;
         private System.Windows.Forms.Label label40;
@@ -2093,5 +2079,9 @@ namespace VNS.HIS.UI.GOIKHAM
         private System.Windows.Forms.ToolStripMenuItem mnuRollback;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem mnuPrint;
+        private EasyCompletionComboBox cbo_GoiKham;
+        private MaskedTextBox.MaskedTextBox txt_TongTienHuySuDung;
+        internal System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ToolStripMenuItem mnuPrintAll;
     }
 }

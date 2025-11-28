@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 using NLog.Web;
 using VMS.Invoice;
+using VMS.Helpers;
 
 namespace VMS.HIS.API
 {

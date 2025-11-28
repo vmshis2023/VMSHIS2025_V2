@@ -80,7 +80,7 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(int IdGoi,int IdDichvu,int IdChitietdichvu,string TenChitietdichvu,short LoaiDvu,short SoLuong,decimal DonGia,bool? ChophepDenghiMg,byte? TyleMg)
+	    public void Insert(int IdGoi,int IdDichvu,int IdChitietdichvu,string TenChitietdichvu,short LoaiDvu,short SoLuong,decimal DonGia,decimal? DongiaNgoaigio,bool? ChophepDenghiMg,byte? TyleMg)
 	    {
 		    GoiChitiet item = new GoiChitiet();
 		    
@@ -98,6 +98,8 @@ namespace VMS.HIS.DAL
             
             item.DonGia = DonGia;
             
+            item.DongiaNgoaigio = DongiaNgoaigio;
+            
             item.ChophepDenghiMg = ChophepDenghiMg;
             
             item.TyleMg = TyleMg;
@@ -110,7 +112,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(int IdChitiet,int IdGoi,int IdDichvu,int IdChitietdichvu,string TenChitietdichvu,short LoaiDvu,short SoLuong,decimal DonGia,bool? ChophepDenghiMg,byte? TyleMg)
+	    public void Update(int IdChitiet,int IdGoi,int IdDichvu,int IdChitietdichvu,string TenChitietdichvu,short LoaiDvu,short SoLuong,decimal DonGia,decimal? DongiaNgoaigio,bool? ChophepDenghiMg,byte? TyleMg)
 	    {
 		    GoiChitiet item = new GoiChitiet();
 	        item.MarkOld();
@@ -131,6 +133,8 @@ namespace VMS.HIS.DAL
 			item.SoLuong = SoLuong;
 				
 			item.DonGia = DonGia;
+				
+			item.DongiaNgoaigio = DongiaNgoaigio;
 				
 			item.ChophepDenghiMg = ChophepDenghiMg;
 				

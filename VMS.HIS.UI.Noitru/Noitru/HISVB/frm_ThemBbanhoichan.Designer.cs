@@ -1340,6 +1340,7 @@
             this.autohinhthuchc.RaiseEventEnter = false;
             this.autohinhthuchc.RaiseEventEnterWhenEmpty = false;
             this.autohinhthuchc.SelectedIndex = -1;
+            this.autohinhthuchc.SetDefaultWhenInit = true;
             this.autohinhthuchc.ShowCodeWithValue = false;
             this.autohinhthuchc.Size = new System.Drawing.Size(396, 21);
             this.autohinhthuchc.splitChar = '@';
@@ -1385,6 +1386,7 @@
             this.autoLydohc.RaiseEventEnter = false;
             this.autoLydohc.RaiseEventEnterWhenEmpty = false;
             this.autoLydohc.SelectedIndex = -1;
+            this.autoLydohc.SetDefaultWhenInit = true;
             this.autoLydohc.ShowCodeWithValue = false;
             this.autoLydohc.Size = new System.Drawing.Size(456, 21);
             this.autoLydohc.splitChar = '@';
@@ -1870,7 +1872,7 @@
             // 
             // label1
             // 
-            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.ForeColor = System.Drawing.Color.Red;
             this.label1.Location = new System.Drawing.Point(6, 26);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(299, 15);
@@ -2080,7 +2082,7 @@
             // lblBSgayme
             // 
             this.lblBSgayme.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBSgayme.ForeColor = System.Drawing.Color.Black;
+            this.lblBSgayme.ForeColor = System.Drawing.Color.Red;
             this.lblBSgayme.Location = new System.Drawing.Point(365, 538);
             this.lblBSgayme.Name = "lblBSgayme";
             this.lblBSgayme.Size = new System.Drawing.Size(87, 15);
@@ -2091,7 +2093,7 @@
             // label83
             // 
             this.label83.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label83.ForeColor = System.Drawing.Color.Black;
+            this.label83.ForeColor = System.Drawing.Color.Red;
             this.label83.Location = new System.Drawing.Point(25, 535);
             this.label83.Name = "label83";
             this.label83.Size = new System.Drawing.Size(108, 18);
@@ -2563,6 +2565,7 @@
             this.txtPhuongPhapPT.RaiseEventEnter = false;
             this.txtPhuongPhapPT.RaiseEventEnterWhenEmpty = false;
             this.txtPhuongPhapPT.SelectedIndex = -1;
+            this.txtPhuongPhapPT.SetDefaultWhenInit = true;
             this.txtPhuongPhapPT.ShowCodeWithValue = false;
             this.txtPhuongPhapPT.Size = new System.Drawing.Size(498, 22);
             this.txtPhuongPhapPT.splitChar = '@';
@@ -2610,6 +2613,7 @@
             this.txtPhuongPhapVoCam.RaiseEventEnter = false;
             this.txtPhuongPhapVoCam.RaiseEventEnterWhenEmpty = false;
             this.txtPhuongPhapVoCam.SelectedIndex = -1;
+            this.txtPhuongPhapVoCam.SetDefaultWhenInit = true;
             this.txtPhuongPhapVoCam.ShowCodeWithValue = false;
             this.txtPhuongPhapVoCam.Size = new System.Drawing.Size(410, 22);
             this.txtPhuongPhapVoCam.splitChar = '@';

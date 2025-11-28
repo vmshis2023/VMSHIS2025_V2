@@ -152,18 +152,31 @@ namespace VMS.HIS.DAL
 				colvarIdBienban.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarIdBienban);
 				
-				TableSchema.TableColumn colvarHoTen = new TableSchema.TableColumn(schema);
-				colvarHoTen.ColumnName = "ho_ten";
-				colvarHoTen.DataType = DbType.String;
-				colvarHoTen.MaxLength = 100;
-				colvarHoTen.AutoIncrement = false;
-				colvarHoTen.IsNullable = false;
-				colvarHoTen.IsPrimaryKey = false;
-				colvarHoTen.IsForeignKey = false;
-				colvarHoTen.IsReadOnly = false;
-				colvarHoTen.DefaultSetting = @"";
-				colvarHoTen.ForeignKeyTableName = "";
-				schema.Columns.Add(colvarHoTen);
+				TableSchema.TableColumn colvarIdNhanvien = new TableSchema.TableColumn(schema);
+				colvarIdNhanvien.ColumnName = "id_nhanvien";
+				colvarIdNhanvien.DataType = DbType.Int16;
+				colvarIdNhanvien.MaxLength = 0;
+				colvarIdNhanvien.AutoIncrement = false;
+				colvarIdNhanvien.IsNullable = true;
+				colvarIdNhanvien.IsPrimaryKey = false;
+				colvarIdNhanvien.IsForeignKey = false;
+				colvarIdNhanvien.IsReadOnly = false;
+				colvarIdNhanvien.DefaultSetting = @"";
+				colvarIdNhanvien.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarIdNhanvien);
+				
+				TableSchema.TableColumn colvarTenNhanvien = new TableSchema.TableColumn(schema);
+				colvarTenNhanvien.ColumnName = "ten_nhanvien";
+				colvarTenNhanvien.DataType = DbType.String;
+				colvarTenNhanvien.MaxLength = 100;
+				colvarTenNhanvien.AutoIncrement = false;
+				colvarTenNhanvien.IsNullable = false;
+				colvarTenNhanvien.IsPrimaryKey = false;
+				colvarTenNhanvien.IsForeignKey = false;
+				colvarTenNhanvien.IsReadOnly = false;
+				colvarTenNhanvien.DefaultSetting = @"";
+				colvarTenNhanvien.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarTenNhanvien);
 				
 				TableSchema.TableColumn colvarChucVu = new TableSchema.TableColumn(schema);
 				colvarChucVu.ColumnName = "chuc_vu";
@@ -231,12 +244,20 @@ namespace VMS.HIS.DAL
 			set { SetColumnValue(Columns.IdBienban, value); }
 		}
 		  
-		[XmlAttribute("HoTen")]
+		[XmlAttribute("IdNhanvien")]
 		[Bindable(true)]
-		public string HoTen 
+		public short? IdNhanvien 
 		{
-			get { return GetColumnValue<string>(Columns.HoTen); }
-			set { SetColumnValue(Columns.HoTen, value); }
+			get { return GetColumnValue<short?>(Columns.IdNhanvien); }
+			set { SetColumnValue(Columns.IdNhanvien, value); }
+		}
+		  
+		[XmlAttribute("TenNhanvien")]
+		[Bindable(true)]
+		public string TenNhanvien 
+		{
+			get { return GetColumnValue<string>(Columns.TenNhanvien); }
+			set { SetColumnValue(Columns.TenNhanvien, value); }
 		}
 		  
 		[XmlAttribute("ChucVu")]
@@ -282,13 +303,15 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(long varIdBienban,string varHoTen,string varChucVu,string varChucDanh,byte varStt)
+		public static void Insert(long varIdBienban,short? varIdNhanvien,string varTenNhanvien,string varChucVu,string varChucDanh,byte varStt)
 		{
 			TBienbanKiemnhapChitiet item = new TBienbanKiemnhapChitiet();
 			
 			item.IdBienban = varIdBienban;
 			
-			item.HoTen = varHoTen;
+			item.IdNhanvien = varIdNhanvien;
+			
+			item.TenNhanvien = varTenNhanvien;
 			
 			item.ChucVu = varChucVu;
 			
@@ -306,7 +329,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(long varIdHoidong,long varIdBienban,string varHoTen,string varChucVu,string varChucDanh,byte varStt)
+		public static void Update(long varIdHoidong,long varIdBienban,short? varIdNhanvien,string varTenNhanvien,string varChucVu,string varChucDanh,byte varStt)
 		{
 			TBienbanKiemnhapChitiet item = new TBienbanKiemnhapChitiet();
 			
@@ -314,7 +337,9 @@ namespace VMS.HIS.DAL
 			
 				item.IdBienban = varIdBienban;
 			
-				item.HoTen = varHoTen;
+				item.IdNhanvien = varIdNhanvien;
+			
+				item.TenNhanvien = varTenNhanvien;
 			
 				item.ChucVu = varChucVu;
 			
@@ -349,30 +374,37 @@ namespace VMS.HIS.DAL
         
         
         
-        public static TableSchema.TableColumn HoTenColumn
+        public static TableSchema.TableColumn IdNhanvienColumn
         {
             get { return Schema.Columns[2]; }
         }
         
         
         
-        public static TableSchema.TableColumn ChucVuColumn
+        public static TableSchema.TableColumn TenNhanvienColumn
         {
             get { return Schema.Columns[3]; }
         }
         
         
         
-        public static TableSchema.TableColumn ChucDanhColumn
+        public static TableSchema.TableColumn ChucVuColumn
         {
             get { return Schema.Columns[4]; }
         }
         
         
         
-        public static TableSchema.TableColumn SttColumn
+        public static TableSchema.TableColumn ChucDanhColumn
         {
             get { return Schema.Columns[5]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn SttColumn
+        {
+            get { return Schema.Columns[6]; }
         }
         
         
@@ -383,7 +415,8 @@ namespace VMS.HIS.DAL
 		{
 			 public static string IdHoidong = @"id_hoidong";
 			 public static string IdBienban = @"id_bienban";
-			 public static string HoTen = @"ho_ten";
+			 public static string IdNhanvien = @"id_nhanvien";
+			 public static string TenNhanvien = @"ten_nhanvien";
 			 public static string ChucVu = @"chuc_vu";
 			 public static string ChucDanh = @"chuc_danh";
 			 public static string Stt = @"stt";

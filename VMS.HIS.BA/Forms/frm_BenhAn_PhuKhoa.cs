@@ -23,6 +23,7 @@ using System.Transactions;
 using VMS.HIS.EMR;
 using VMS.HIS.Bus.Emr;
 using System.Globalization;
+using VNS.HIS.UI.DANHMUC;
 
 namespace VMS.HIS.UI.EMR
 {
@@ -82,12 +83,55 @@ namespace VMS.HIS.UI.EMR
             //txt_chandoan_sauphauthuat._OnGridSelectionChanged += txt_chandoan_sauphauthuat_OnGridSelectionChanged;
             //txt_chandoan_sauphauthuat._OnSelectionChanged += txt_chandoan_sauphauthuat_OnSelectionChanged;
             txt_chandoan_sauphauthuat._OnEnterMe += txt_chandoan_sauphauthuat_OnEnterMe;
-            
+           
 
             PhanquyenTinhnang();
             txtChieuCao.Leave += txtChieucao_Leave;
             txtCanNang.Leave += txtCannang_Leave;
+            InitEvents();
+            SetLeaveEvents(txtBenhAnQuaTrinhBenhLy);
         }
+        void SetLeaveEvents(params VNS.HIS.UCs.AutoCompleteTextbox_Danhmucchung[] autoTextboxes)
+        {
+            foreach (var autoTxt in autoTextboxes)
+            {
+                autoTxt.Leave += AutoTxt_Leave;
+            }
+        }
+        public static void RemoveTrailingEmptyLine( TextBox tb)
+        {
+            var lines = tb.Lines;
+            int last = lines.Length - 1;
+
+            if (last >= 0 && string.IsNullOrWhiteSpace(lines[last]))
+            {
+                tb.Lines = lines.Take(last).ToArray();
+            }
+        }
+        private void AutoTxt_Leave(object sender, EventArgs e)
+        {
+            RemoveTrailingEmptyLine(sender as VNS.HIS.UCs.AutoCompleteTextbox_Danhmucchung);
+        }
+
+        void InitEvents()
+        {
+            txtBenhAnQuaTrinhBenhLy._OnShowDataV1 += _OnShowDataV1;
+        }
+
+        private void _OnShowDataV1(VNS.HIS.UCs.AutoCompleteTextbox_Danhmucchung obj)
+        {
+            DMUC_DCHUNG dmucDchung = new DMUC_DCHUNG(obj.LOAI_DANHMUC);
+            dmucDchung.ShowDialog();
+            if (!dmucDchung.m_blnCancel)
+            {
+                string oldCode = obj.myCode;
+                obj.Init();
+                obj.SetCode(oldCode);
+                obj.Focus();
+            }
+        }
+
+
         private void txtChieucao_Leave(object sender, EventArgs e)
         {
             Utility.CalculateIBM(Utility.DecimaltoDbnull(Utility.chuanhoaDecimal(txtChieuCao.Text), 0), Utility.DecimaltoDbnull(Utility.chuanhoaDecimal(txtCanNang.Text), 0), txtBMI);
@@ -251,12 +295,37 @@ namespace VMS.HIS.UI.EMR
                     return;
                 }    
                 ClearControl();
+                if(!KiemTraBenhAn())
+                {
+                    ModifyCommand();
+                    return;
+                }    
                 FillData4Update();
                 dtQLNBVaoVien.Focus();
                 ModifyCommand();
             }
         }
-
+        bool KiemTraBenhAn()
+        {
+            objEmrBa = new Select().From<EmrBa>()
+                    .Where(EmrBa.Columns.MaLuotkham)
+                    .IsEqualTo(objLuotkham.MaLuotkham)
+                    .And(EmrBa.Columns.IdBenhnhan)
+                    .IsEqualTo(Utility.Int32Dbnull(objLuotkham.IdBenhnhan))
+                    .ExecuteSingle<EmrBa>();
+            if(objEmrBa==null ||(objEmrBa!=null && this.lstLoaiBA.Contains(objEmrBa.LoaiBa)))
+            {
+                return true;
+            }
+            else if (objEmrBa != null && !this.lstLoaiBA.Contains( objEmrBa.LoaiBa ))
+            {
+                Utility.ShowMsg(string.Format("Người bệnh {0} đã có {1} nên không thể tạo Bệnh án Phụ khoa. Vui lòng kiểm tra lại",ucThongtinnguoibenh_emr_basic1.txtTenBN.Text, Utility.GetTenLoaiBenhAn(objEmrBa.LoaiBa)));
+                objLuotkham = null;
+                objBenhnhan = null; 
+                return false;
+            }
+            return false;
+        }
         #region checkbox
         private void chkttrvTrong24GioVaoVien_CheckedChanged(object sender, EventArgs e)
         {
@@ -589,23 +658,23 @@ namespace VMS.HIS.UI.EMR
                 string ICD_Code = "";
                 string ICD_Phu_Name = "";
                 string ICD_Phu_Code = "";
-               Utility.GetChanDoanChinhPhu(Utility.sDbnull(objPhieuRavien.MabenhChinh, ""),
-                           Utility.sDbnull(objPhieuRavien.MabenhPhu, ""), ref ICD_Name, ref ICD_Code, ref ICD_Phu_Name, ref ICD_Phu_Code);
+               Utility.GetChanDoanChinhPhu(Utility.sDbnull_BoAm1(objPhieuRavien.MabenhChinh, ""),
+                           Utility.sDbnull_BoAm1(objPhieuRavien.MabenhPhu, ""), ref ICD_Name, ref ICD_Code, ref ICD_Phu_Name, ref ICD_Phu_Code);
                 chandoan += string.IsNullOrEmpty(objPhieuRavien.ChanDoan)
                     ? ICD_Name
-                    : Utility.sDbnull(objPhieuRavien.ChanDoan);
+                    : Utility.sDbnull_BoAm1(objPhieuRavien.ChanDoan);
                 mabenh += ICD_Code;
                 chandoanphu += ICD_Phu_Name;
                 mabenhphu += ICD_Phu_Code;
                 //Điền 1 số thông tin ra viện
                 dtpRavien_ngay.Value = objPhieuRavien.NgayRavien;//.ToString("dd/MM/yyyy");
                 foreach (CheckBox cb in pnlKetquadieutriravien.Controls)
-                    if (Utility.sDbnull(cb.Tag, "-1") == objPhieuRavien.MaKquaDieutri)
+                    if (Utility.sDbnull_BoAm1(cb.Tag, "-1") == objPhieuRavien.MaKquaDieutri)
                         cb.Checked = true;
                     else
                         cb.Checked = false;
                 foreach (CheckBox cb in pnlTinhtrangravien.Controls)
-                    if (Utility.sDbnull(cb.Tag, "-1") == objPhieuRavien.MaTinhtrangravien)
+                    if (Utility.sDbnull_BoAm1(cb.Tag, "-1") == objPhieuRavien.MaTinhtrangravien)
                         cb.Checked = true;
                     else
                         cb.Checked = false;
@@ -625,14 +694,14 @@ namespace VMS.HIS.UI.EMR
                 chkttrvTrong24GioVaoVien.Checked = Utility.Bool2Bool(objPhieuRavien.TuvongTrong24gio);
                 chkttrvTrong48GioVaoVien.Checked = Utility.Bool2Bool(objPhieuRavien.TuvongSau24h);
 
-                txtTTRVNguyenNhanChinhTuVong.Text = Utility.sDbnull(objPhieuRavien.TuvongNguyennhanchinh);
+                txtTTRVNguyenNhanChinhTuVong.Text = Utility.sDbnull_BoAm1(objPhieuRavien.TuvongNguyennhanchinh);
                 chkTTRVChandoanGiaiphauTuthi.Checked = Utility.Bool2Bool(objPhieuRavien.TuvongChandoangiaiphaututhi);
-                txtTTRVChandoanGiaiphauTuthi.Text = Utility.sDbnull(objPhieuRavien.TuvongChandoangiaiphaututhiMota);
+                txtTTRVChandoanGiaiphauTuthi.Text = Utility.sDbnull_BoAm1(objPhieuRavien.TuvongChandoangiaiphaututhiMota);
                 chkCDTaiBien.Checked = Utility.Bool2Bool(objPhieuRavien.Taibien);
                 chkCDBienChung.Checked = Utility.Bool2Bool(objPhieuRavien.Bienchung);
             }
             txtCDRavienTenBenhChinh.Text = chandoan;
-            txtCDRavienMaBenhChinh.Text = Utility.sDbnull(mabenh);
+            txtCDRavienMaBenhChinh.Text = Utility.sDbnull_BoAm1(mabenh);
             txtCDRavienTenBenhKemTheo.Text = chandoanphu;
             txtCDRavienMaBenhKemTheo.Text = mabenhphu;
 
@@ -661,16 +730,16 @@ namespace VMS.HIS.UI.EMR
         //        string ICD_Code = "";
         //        string ICD_Phu_Name = "";
         //        string ICD_Phu_Code = "";
-        //        GetChanDoanChinhPhu(Utility.sDbnull(objDiagInfo.MainDiseaseId, ""),
-        //                   Utility.sDbnull(objDiagInfo.AuxiDiseaseId, ""), ref ICD_Name, ref ICD_Code, ref ICD_Phu_Name, ref ICD_Phu_Code);
-        //        chandoan += string.IsNullOrEmpty(objDiagInfo.DiagInfo) ? "" : Utility.sDbnull(objDiagInfo.DiagInfo);
+        //        GetChanDoanChinhPhu(Utility.sDbnull_BoAm1(objDiagInfo.MainDiseaseId, ""),
+        //                   Utility.sDbnull_BoAm1(objDiagInfo.AuxiDiseaseId, ""), ref ICD_Name, ref ICD_Code, ref ICD_Phu_Name, ref ICD_Phu_Code);
+        //        chandoan += string.IsNullOrEmpty(objDiagInfo.DiagInfo) ? "" : Utility.sDbnull_BoAm1(objDiagInfo.DiagInfo);
         //        tenbenhchinh += ICD_Name;
         //        mabenh += ICD_Code;
         //        tenbenhphu += ICD_Phu_Name;
         //        mabenhphu += ICD_Phu_Code;
         //    }
         //    txtCDKKBCapCuu.Text = tenbenhchinh + tenbenhphu + chandoan;
-        //    txtCDMaKKBCapCuu.Text = Utility.sDbnull(mabenh + "" + mabenhphu);
+        //    txtCDMaKKBCapCuu.Text = Utility.sDbnull_BoAm1(mabenh + "" + mabenhphu);
 
         //}
         private void ClearControl()
@@ -787,9 +856,10 @@ namespace VMS.HIS.UI.EMR
             {
                 Utility.SetMsg(lblMsg, "Cần chọn người bệnh trước khi làm Bệnh án. Vui lòng kiểm tra lại", true);
                 ucThongtinnguoibenh_emr_basic1.txtMaluotkham.Focus();
+                ucThongtinnguoibenh_emr_basic1.txtMaluotkham.SelectAll();
                 return false;
             }
-            if (Utility.sDbnull(cboLoaiBA.SelectedValue, "-1") == "-1")
+            if (Utility.sDbnull_BoAm1(cboLoaiBA.SelectedValue, "-1") == "-1")
             {
                 uiTabBA.SelectedTab = tabpageTo1;
                 Utility.SetMsg(lblMsg, "Cần chọn loại bệnh án", true);
@@ -819,13 +889,13 @@ namespace VMS.HIS.UI.EMR
                     txtNguoiGiaoHoSo.Focus();
                     return false;
                 }
-                if (Utility.Int32Dbnull(txtNguoiNhanHoSo.MyID, -1) <= 0)
-                {
-                    uiTabBA.SelectedTab = tabpageTo4;
-                    Utility.SetMsg(lblMsg, "Bạn cần chọn Người nhận hồ sơ trong danh mục hệ thống", true);
-                    txtNguoiNhanHoSo.Focus();
-                    return false;
-                }
+                //if (Utility.Int32Dbnull(txtNguoiNhanHoSo.MyID, -1) <= 0)
+                //{
+                //    uiTabBA.SelectedTab = tabpageTo4;
+                //    Utility.SetMsg(lblMsg, "Bạn cần chọn Người nhận hồ sơ trong danh mục hệ thống", true);
+                //    txtNguoiNhanHoSo.Focus();
+                //    return false;
+                //}
                 if (Utility.Int32Dbnull(txtBSDieuTri.MyID, -1) <= 0)
                 {
                     uiTabBA.SelectedTab = tabpageTo4;
@@ -1041,7 +1111,7 @@ namespace VMS.HIS.UI.EMR
             {
                 objPhieukhamPhukhoa = new EmrPhieukhamPhukhoa();
                 objPhieukhamPhukhoa.IsNew = true;
-                objPhieukhamPhukhoa.MaLuotkham = Utility.sDbnull(objLuotkham.MaLuotkham);
+                objPhieukhamPhukhoa.MaLuotkham = Utility.sDbnull_BoAm1(objLuotkham.MaLuotkham);
                 objPhieukhamPhukhoa.IdBenhnhan = Utility.Int32Dbnull(objLuotkham.IdBenhnhan);
                 objPhieukhamPhukhoa.NgayKham = dtpNgayKham.Value.Date;
                 objPhieukhamPhukhoa.NguoiTao = globalVariables.UserName;
@@ -1049,16 +1119,16 @@ namespace VMS.HIS.UI.EMR
             }
             //Hỏi bệnh
             objPhieukhamPhukhoa.IdBacsi = Utility.Int16Dbnull(txtBacsiKham.MyID, -1);
-            objPhieukhamPhukhoa.PhukhoaDaniemmac = Utility.sDbnull(txtDaniemmac.Text);
-            objPhieukhamPhukhoa.PhukhoaHach = Utility.sDbnull(txtHach.Text);
-            objPhieukhamPhukhoa.PhukhoaVu = Utility.sDbnull(txtVu.Text);
+            objPhieukhamPhukhoa.PhukhoaDaniemmac = Utility.sDbnull_BoAm1(txtDaniemmac.Text);
+            objPhieukhamPhukhoa.PhukhoaHach = Utility.sDbnull_BoAm1(txtHach.Text);
+            objPhieukhamPhukhoa.PhukhoaVu = Utility.sDbnull_BoAm1(txtVu.Text);
             //Tiền sử sản phụ khoa
             objPhieukhamPhukhoa.BaTsspkBatdauthaykinhNam = Utility.Int16Dbnull(dtpThaykinhnam.Text, 0);
             objPhieukhamPhukhoa.BaTsspkBatdauthaykinhTuoi = Utility.Int16Dbnull(nmrBatdauthaykinhTuoi.Text, 0);
-            objPhieukhamPhukhoa.BaTsspkTinhchatkinhnguyet = Utility.sDbnull(txt_tinhchatkinhnguyet.Text);
+            objPhieukhamPhukhoa.BaTsspkTinhchatkinhnguyet = Utility.sDbnull_BoAm1(txt_tinhchatkinhnguyet.Text);
             objPhieukhamPhukhoa.BaTsspkChuky = Utility.Int16Dbnull(txt_chuky.Text, 0);
             objPhieukhamPhukhoa.BaTsspkSongaythaykinh = Utility.Int16Dbnull(txt_songaythaykinh.Text, 0);
-            objPhieukhamPhukhoa.BaTsspkLuongkinh = Utility.sDbnull(txt_luongkinh.Text);
+            objPhieukhamPhukhoa.BaTsspkLuongkinh = Utility.sDbnull_BoAm1(txt_luongkinh.Text);
             objPhieukhamPhukhoa.BaTsspkKinhlancuoingay = dtpKinhlancuoingay.Value;
             objPhieukhamPhukhoa.BaTsspkCodaubung = chkCodaubung.Checked;
             objPhieukhamPhukhoa.BaTsspkThoigianTruoc = chk_thoigiantruoc.Checked;
@@ -1069,30 +1139,30 @@ namespace VMS.HIS.UI.EMR
             objPhieukhamPhukhoa.BaTsspkLaychongTuoi = Utility.Int16Dbnull(nmrLaychongTuoi.Text, 0);
             objPhieukhamPhukhoa.BaTsspkHetkinhnam = Utility.Int16Dbnull(dtpHetKinhNam.Text, 0);
             objPhieukhamPhukhoa.BaTsspkHetkinhtuoi = Utility.Int16Dbnull(nmrHetkinhTuoi.Text, 0);
-            objPhieukhamPhukhoa.BaTsspkBenhphukhoadadieutri = Utility.sDbnull(txt_benhphukhoadadieutri.Text);
-            objPhieukhamPhukhoa.BaTsspkPara = Utility.sDbnull(txt_para.Text);
+            objPhieukhamPhukhoa.BaTsspkBenhphukhoadadieutri = Utility.sDbnull_BoAm1(txt_benhphukhoadadieutri.Text);
+            objPhieukhamPhukhoa.BaTsspkPara = Utility.sDbnull_BoAm1(txt_para.Text);
             //Khám ngoài
-            objPhieukhamPhukhoa.BaKckCacdauhieusinhducthuphat = Utility.sDbnull(txtCacdauhieusinhducthuphat.Text);
-            objPhieukhamPhukhoa.BaKckMoilon = Utility.sDbnull(txtMoilon.Text);
-            objPhieukhamPhukhoa.BaKckMoibe = Utility.sDbnull(txtMoibe.Text);
-            objPhieukhamPhukhoa.BaKckAmvat = Utility.sDbnull(txtAmvat.Text);
-            objPhieukhamPhukhoa.BaKckAmho = Utility.sDbnull(txtAmho.Text);
-            objPhieukhamPhukhoa.BaKckMangtrinh = Utility.sDbnull(txtMangtrinh.Text);
-            objPhieukhamPhukhoa.BaKckTangsinhmon = Utility.sDbnull(txtTangsinhmon.Text);
+            objPhieukhamPhukhoa.BaKckCacdauhieusinhducthuphat = Utility.sDbnull_BoAm1(txtCacdauhieusinhducthuphat.Text);
+            objPhieukhamPhukhoa.BaKckMoilon = Utility.sDbnull_BoAm1(txtMoilon.Text);
+            objPhieukhamPhukhoa.BaKckMoibe = Utility.sDbnull_BoAm1(txtMoibe.Text);
+            objPhieukhamPhukhoa.BaKckAmvat = Utility.sDbnull_BoAm1(txtAmvat.Text);
+            objPhieukhamPhukhoa.BaKckAmho = Utility.sDbnull_BoAm1(txtAmho.Text);
+            objPhieukhamPhukhoa.BaKckMangtrinh = Utility.sDbnull_BoAm1(txtMangtrinh.Text);
+            objPhieukhamPhukhoa.BaKckTangsinhmon = Utility.sDbnull_BoAm1(txtTangsinhmon.Text);
             //Khám trong
-            objPhieukhamPhukhoa.BaKckAmdao = Utility.sDbnull(txtAmdao.Text);
-            objPhieukhamPhukhoa.BaKckCotucung = Utility.sDbnull(txtCotucung.Text);
-            objPhieukhamPhukhoa.BaKckThantucung = Utility.sDbnull(txtThantucung.Text);
-            objPhieukhamPhukhoa.BaKckPhanphu = Utility.sDbnull(txtPhanphu.Text);
-            objPhieukhamPhukhoa.BaKckCactuicung = Utility.sDbnull(txtCactuicung.Text);
+            objPhieukhamPhukhoa.BaKckAmdao = Utility.sDbnull_BoAm1(txtAmdao.Text);
+            objPhieukhamPhukhoa.BaKckCotucung = Utility.sDbnull_BoAm1(txtCotucung.Text);
+            objPhieukhamPhukhoa.BaKckThantucung = Utility.sDbnull_BoAm1(txtThantucung.Text);
+            objPhieukhamPhukhoa.BaKckPhanphu = Utility.sDbnull_BoAm1(txtPhanphu.Text);
+            objPhieukhamPhukhoa.BaKckCactuicung = Utility.sDbnull_BoAm1(txtCactuicung.Text);
             //Chức năng sống
             objPhieukhamPhukhoa.HuyetAp = txtha.Text;
             objPhieukhamPhukhoa.NhietDo = txtNhietDo.Text;
-            objPhieukhamPhukhoa.Mach = Utility.sDbnull(txtMach.Text);
-            objPhieukhamPhukhoa.NhịpTho = Utility.sDbnull(txtNhipTho.Text);
-            objPhieukhamPhukhoa.ChieuCao = Utility.sDbnull(txtChieuCao.Text);
-            objPhieukhamPhukhoa.CanNang = Utility.sDbnull(txtCanNang.Text);
-            objPhieukhamPhukhoa.Bmi = Utility.sDbnull(txtBMI.Text);
+            objPhieukhamPhukhoa.Mach = Utility.sDbnull_BoAm1(txtMach.Text);
+            objPhieukhamPhukhoa.NhịpTho = Utility.sDbnull_BoAm1(txtNhipTho.Text);
+            objPhieukhamPhukhoa.ChieuCao = Utility.sDbnull_BoAm1(txtChieuCao.Text);
+            objPhieukhamPhukhoa.CanNang = Utility.sDbnull_BoAm1(txtCanNang.Text);
+            objPhieukhamPhukhoa.Bmi = Utility.sDbnull_BoAm1(txtBMI.Text);
             objPhieukhamPhukhoa.MotaThem = "";
         }
         void TaoPhieuTKBA()
@@ -1129,8 +1199,8 @@ namespace VMS.HIS.UI.EMR
             objTKBA.PtttMota = "";
             objTKBA.IdNguoigiaoHoso = Utility.Int16Dbnull(txtNguoiGiaoHoSo.MyID);
             objTKBA.MaNguoigiaohoso = txtNguoiGiaoHoSo.MyCode;
-            objTKBA.IdNguoinhanHoso = Utility.Int16Dbnull(txtNguoiNhanHoSo.MyID);
-            objTKBA.MaNguoinhanhoso = txtNguoiNhanHoSo.MyCode;
+            //objTKBA.IdNguoinhanHoso = Utility.Int16Dbnull(txtNguoiNhanHoSo.MyID);
+            //objTKBA.MaNguoinhanhoso = txtNguoiNhanHoSo.MyCode;
             objTKBA.IdGiamdoc = Utility.Int16Dbnull(txtGDBV.MyID);
             objTKBA.MaGiamdoc = txtGDBV.MyCode;
             objTKBA.IdBacsiDieutri = Utility.Int16Dbnull(txtBSDieuTri.MyID);
@@ -1157,7 +1227,7 @@ namespace VMS.HIS.UI.EMR
                 objPKB = new EmrPhieukhambenh();
                 objPKB.IsNew = true;
                 objPKB.Noitru = 1;
-                objPKB.MaLuotkham = Utility.sDbnull(objLuotkham.MaLuotkham);
+                objPKB.MaLuotkham = Utility.sDbnull_BoAm1(objLuotkham.MaLuotkham);
                 objPKB.IdBenhnhan = Utility.Int32Dbnull(objLuotkham.IdBenhnhan);
                 objPKB.NgayKham = dtpNgayKham.Value.Date;
                 objPKB.NguoiTao = globalVariables.UserName;
@@ -1166,29 +1236,29 @@ namespace VMS.HIS.UI.EMR
             objPKB.IdBacsi = Utility.Int16Dbnull(txtBacsiKham.MyID, -1);
             objPKB.HuyetAp = txtha.Text;
             objPKB.NhietDo = txtNhietDo.Text;
-            objPKB.Mach = Utility.sDbnull(txtMach.Text);
-            objPKB.NhipTho = Utility.sDbnull(txtNhipTho.Text);
-            objPKB.ChieuCao = Utility.sDbnull(txtChieuCao.Text);
-            objPKB.CanNang = Utility.sDbnull(txtCanNang.Text);
-            objPKB.Bmi = Utility.sDbnull(txtBMI.Text);
+            objPKB.Mach = Utility.sDbnull_BoAm1(txtMach.Text);
+            objPKB.NhipTho = Utility.sDbnull_BoAm1(txtNhipTho.Text);
+            objPKB.ChieuCao = Utility.sDbnull_BoAm1(txtChieuCao.Text);
+            objPKB.CanNang = Utility.sDbnull_BoAm1(txtCanNang.Text);
+            objPKB.Bmi = Utility.sDbnull_BoAm1(txtBMI.Text);
             objPKB.MotaThem = "";
-            objPKB.ToanThan = Utility.sDbnull(txtBenhAnToanThan.Text);
-            objPKB.Tuanhoan = Utility.sDbnull(txtBenhAnTuanHoan.Text);
-            objPKB.Hohap = Utility.sDbnull(txtBenhAnHoHap.Text);
-            objPKB.Tieuhoa = Utility.sDbnull(txtBenhAnTieuHoa.Text);
-            objPKB.Thantietnieusinhduc = Utility.sDbnull(txtBenhAnThanTietNieuSinhDuc.Text);
-            objPKB.Thankinh = Utility.sDbnull(txtBenhAnThanKinh.Text);
-            objPKB.Coxuongkhop = Utility.sDbnull(txtBenhAnCoXuongKhop.Text);
-            objPKB.Taimuihong = Utility.sDbnull(txtBenhAnTaiMuiHong.Text);
-            objPKB.Ranghammat = Utility.sDbnull(txtBenhAnRangHamMat.Text);
-            objPKB.Mat = Utility.sDbnull(txtBenhAnMat.Text);
-            objPKB.Noitietdinhduongbenhlykhac = Utility.sDbnull(txtBenhAnNoiTiet.Text);
+            objPKB.ToanThan = Utility.sDbnull_BoAm1(txtBenhAnToanThan.Text);
+            objPKB.Tuanhoan = Utility.sDbnull_BoAm1(txtBenhAnTuanHoan.Text);
+            objPKB.Hohap = Utility.sDbnull_BoAm1(txtBenhAnHoHap.Text);
+            objPKB.Tieuhoa = Utility.sDbnull_BoAm1(txtBenhAnTieuHoa.Text);
+            objPKB.Thantietnieusinhduc = Utility.sDbnull_BoAm1(txtBenhAnThanTietNieuSinhDuc.Text);
+            objPKB.Thankinh = Utility.sDbnull_BoAm1(txtBenhAnThanKinh.Text);
+            objPKB.Coxuongkhop = Utility.sDbnull_BoAm1(txtBenhAnCoXuongKhop.Text);
+            objPKB.Taimuihong = Utility.sDbnull_BoAm1(txtBenhAnTaiMuiHong.Text);
+            objPKB.Ranghammat = Utility.sDbnull_BoAm1(txtBenhAnRangHamMat.Text);
+            objPKB.Mat = Utility.sDbnull_BoAm1(txtBenhAnMat.Text);
+            objPKB.Noitietdinhduongbenhlykhac = Utility.sDbnull_BoAm1(txtBenhAnNoiTiet.Text);
 
         }
         void EnableBA()
         {
             cboLoaiBA.Enabled = txtIDBenhAn.Enabled=cmdKhoitaoBA.Enabled= m_enAct == action.Insert;
-            if (objEmrBa != null && objEmrBa.LoaiBa != Utility.sDbnull(cboLoaiBA.SelectedValue))
+            if (objEmrBa != null && objEmrBa.LoaiBa != Utility.sDbnull_BoAm1(cboLoaiBA.SelectedValue))
             {
                 ThongbaoSaiBenhAn(objEmrBa);
                 cmdPrint.Enabled = cmdKetthucBA.Enabled = cmdXoaBenhAn.Enabled = false;
@@ -1242,7 +1312,7 @@ namespace VMS.HIS.UI.EMR
                 else
                 {
                     SinhMaBenhAn();
-                    objEmrBa.MaBa = Utility.sDbnull(txtMaBenhAn.Text);
+                    objEmrBa.MaBa = Utility.sDbnull_BoAm1(txtMaBenhAn.Text);
                     objEmrBa.NguoiTao = globalVariables.UserName;
                     objEmrBa.NgayTao = THU_VIEN_CHUNG.GetSysDateTime();
                 }
@@ -1251,60 +1321,60 @@ namespace VMS.HIS.UI.EMR
                 objEmrBa.LoaiBa = cboLoaiBA.SelectedValue.ToString();
                 if (dtkhoanhapvienCoGiuong.Rows.Count > 0 && THU_VIEN_CHUNG.Laygiatrithamsohethong("BA_LAYKHOANOITRU_COGIUONG", "0", false) == "1")
                 {
-                    objEmrBa.Khoa = Utility.sDbnull(dtkhoanhapvienCoGiuong.Rows[0]["ten_khoanoitru"], "");
-                    objEmrBa.Giuong = Utility.sDbnull(dtkhoanhapvienCoGiuong.Rows[0]["ten_giuong"], "");
-                    objEmrBa.Buong = Utility.sDbnull(dtkhoanhapvienCoGiuong.Rows[0]["ten_buong"], "");
+                    objEmrBa.Khoa = Utility.sDbnull_BoAm1(dtkhoanhapvienCoGiuong.Rows[0]["ten_khoanoitru"], "");
+                    objEmrBa.Giuong = Utility.sDbnull_BoAm1(dtkhoanhapvienCoGiuong.Rows[0]["ten_giuong"], "");
+                    objEmrBa.Buong = Utility.sDbnull_BoAm1(dtkhoanhapvienCoGiuong.Rows[0]["ten_buong"], "");
                 }
                 else if (dtkhoanhapvien.Rows.Count > 0)
                 {
-                    objEmrBa.Khoa = Utility.sDbnull(dtkhoanhapvien.Rows[0]["ten_khoanoitru"], "");
-                    objEmrBa.Giuong = Utility.sDbnull(dtkhoanhapvien.Rows[0]["ten_giuong"], "");
-                    objEmrBa.Buong = Utility.sDbnull(dtkhoanhapvien.Rows[0]["ten_buong"], "");
+                    objEmrBa.Khoa = Utility.sDbnull_BoAm1(dtkhoanhapvien.Rows[0]["ten_khoanoitru"], "");
+                    objEmrBa.Giuong = Utility.sDbnull_BoAm1(dtkhoanhapvien.Rows[0]["ten_giuong"], "");
+                    objEmrBa.Buong = Utility.sDbnull_BoAm1(dtkhoanhapvien.Rows[0]["ten_buong"], "");
                 }
                 else
                 {
                     //REM lại vì đây là khoa nhập viện hoặc khoa nhập viện có nằm giường
 
                 }
-                //objEmrBa.BenhNgoaiKhoa = Utility.sDbnull(txtBenhNgoai_Khoa.Text);
+                //objEmrBa.BenhNgoaiKhoa = Utility.sDbnull_BoAm1(txtBenhNgoai_Khoa.Text);
                 objEmrBa.MaCoso = objLuotkham.MaCoso;
                 objEmrBa.IdBenhnhan = objLuotkham.IdBenhnhan;
-                objEmrBa.TenBenhnhan = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0][KcbDanhsachBenhnhan.Columns.TenBenhnhan], "");
+                objEmrBa.TenBenhnhan = Utility.sDbnull_BoAm1(dt_ThongtinNguoibenh.Rows[0][KcbDanhsachBenhnhan.Columns.TenBenhnhan], "");
                 objEmrBa.MaLuotkham = objLuotkham.MaLuotkham;
                 objEmrBa.MaYte = objLuotkham.MaYte;
-                objEmrBa.NgaySinh = DateTime.ParseExact(Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["ngay_sinh"], DateTime.Now.ToString("yyyyMMdd")), "yyyyMMdd", CultureInfo.InvariantCulture);
-                objEmrBa.MaGioitinh = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["id_gioitinh"], "0") == "0" ? "M" : "F";
-                objEmrBa.GioiTinh = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["gioi_tinh"], "");
+                objEmrBa.NgaySinh = DateTime.ParseExact(Utility.sDbnull_BoAm1(dt_ThongtinNguoibenh.Rows[0]["ngay_sinh"], DateTime.Now.ToString("yyyyMMdd")), "yyyyMMdd", CultureInfo.InvariantCulture);
+                objEmrBa.MaGioitinh = Utility.sDbnull_BoAm1(dt_ThongtinNguoibenh.Rows[0]["id_gioitinh"], "0") == "0" ? "M" : "F";
+                objEmrBa.GioiTinh = Utility.sDbnull_BoAm1(dt_ThongtinNguoibenh.Rows[0]["gioi_tinh"], "");
                 objEmrBa.Tuoi = Utility.ByteDbnull(dt_ThongtinNguoibenh.Rows[0]["Tuoi"], "0");
                 objEmrBa.LoaiTuoi = (byte)objLuotkham.LoaiTuoi;
 
 
-                objEmrBa.MaNghenghiep = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["nghe_nghiep"], "");
-                objEmrBa.TenNghenghiep = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["ten_nghenghiep"], "");
-                objEmrBa.MaDantoc = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["dan_toc"], "");
-                objEmrBa.TenDantoc = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["ten_dantoc"], "");
-                objEmrBa.MaTongiao = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["ton_giao"], "");
-                objEmrBa.TenTongiao = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["ten_tongiao"], "");
-                objEmrBa.MaQuocgia = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["ma_quocgia"], "VN");
-                objEmrBa.TenQuocgia = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["ten_quocgia"], "");
-                objEmrBa.NgoaiKieu = (Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["ma_quocgia"], "VN") == "VN" ? 0 : 1) == 1;
+                objEmrBa.MaNghenghiep = Utility.sDbnull_BoAm1(dt_ThongtinNguoibenh.Rows[0]["nghe_nghiep"], "");
+                objEmrBa.TenNghenghiep = Utility.sDbnull_BoAm1(dt_ThongtinNguoibenh.Rows[0]["ten_nghenghiep"], "");
+                objEmrBa.MaDantoc = Utility.sDbnull_BoAm1(dt_ThongtinNguoibenh.Rows[0]["dan_toc"], "");
+                objEmrBa.TenDantoc = Utility.sDbnull_BoAm1(dt_ThongtinNguoibenh.Rows[0]["ten_dantoc"], "");
+                objEmrBa.MaTongiao = Utility.sDbnull_BoAm1(dt_ThongtinNguoibenh.Rows[0]["ton_giao"], "");
+                objEmrBa.TenTongiao = Utility.sDbnull_BoAm1(dt_ThongtinNguoibenh.Rows[0]["ten_tongiao"], "");
+                objEmrBa.MaQuocgia = Utility.sDbnull_BoAm1(dt_ThongtinNguoibenh.Rows[0]["ma_quocgia"], "VN");
+                objEmrBa.TenQuocgia = Utility.sDbnull_BoAm1(dt_ThongtinNguoibenh.Rows[0]["ten_quocgia"], "");
+                objEmrBa.NgoaiKieu = (Utility.sDbnull_BoAm1(dt_ThongtinNguoibenh.Rows[0]["ma_quocgia"], "VN") == "VN" ? 0 : 1) == 1;
 
-                objEmrBa.DiachiLienhe = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["diachi_lienhe"], "");
-                objEmrBa.DienthoaiLienhe = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["dienthoai_lienhe"], "");
-                objEmrBa.NguoiLienhe = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["nguoi_lienhe"], "");
-                objEmrBa.CmtNguoilienhe = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["CMT_nguoilienhe"], "");
+                objEmrBa.DiachiLienhe = Utility.sDbnull_BoAm1(dt_ThongtinNguoibenh.Rows[0]["diachi_lienhe"], "");
+                objEmrBa.DienthoaiLienhe = Utility.sDbnull_BoAm1(dt_ThongtinNguoibenh.Rows[0]["dienthoai_lienhe"], "");
+                objEmrBa.NguoiLienhe = Utility.sDbnull_BoAm1(dt_ThongtinNguoibenh.Rows[0]["nguoi_lienhe"], "");
+                objEmrBa.CmtNguoilienhe = Utility.sDbnull_BoAm1(dt_ThongtinNguoibenh.Rows[0]["CMT_nguoilienhe"], "");
                 objEmrBa.DiaChi = objLuotkham.DiaChi;
                 objEmrBa.MaTinhtp = objLuotkham.MaTinhtp;
-                objEmrBa.TenTinhtp = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["ten_tinhtp"], "");
+                objEmrBa.TenTinhtp = Utility.sDbnull_BoAm1(dt_ThongtinNguoibenh.Rows[0]["ten_tinhtp"], "");
                 objEmrBa.MaQuanhuyen = objLuotkham.MaQuanhuyen;
-                objEmrBa.TenQuanhuyen = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["ten_quanhuyen"], "");
+                objEmrBa.TenQuanhuyen = Utility.sDbnull_BoAm1(dt_ThongtinNguoibenh.Rows[0]["ten_quanhuyen"], "");
                 objEmrBa.MaXaphuong = objLuotkham.MaXaphuong;
-                objEmrBa.TenXaphuong = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["ten_xaphuong"], "");
-                objEmrBa.MaCoquan = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["co_quan"], "");
-                objEmrBa.TenCoquan = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["ten_coquan"], "");
-                objEmrBa.MatheBhyt = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["mathe_bhyt"], "");
+                objEmrBa.TenXaphuong = Utility.sDbnull_BoAm1(dt_ThongtinNguoibenh.Rows[0]["ten_xaphuong"], "");
+                objEmrBa.MaCoquan = Utility.sDbnull_BoAm1(dt_ThongtinNguoibenh.Rows[0]["co_quan"], "");
+                objEmrBa.TenCoquan = Utility.sDbnull_BoAm1(dt_ThongtinNguoibenh.Rows[0]["ten_coquan"], "");
+                objEmrBa.MatheBhyt = Utility.sDbnull_BoAm1(dt_ThongtinNguoibenh.Rows[0]["mathe_bhyt"], "");
                 objEmrBa.MaDoituong = Utility.ByteDbnull(objLuotkham.IdDoituongKcb);
-                objEmrBa.TenDoituong = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["ten_doituong_kcb"], "");
+                objEmrBa.TenDoituong = Utility.sDbnull_BoAm1(dt_ThongtinNguoibenh.Rows[0]["ten_doituong_kcb"], "");
 
                 objEmrBa.MatheBhyt = objLuotkham.MatheBhyt;
                 objEmrBa.BhytTungay = objLuotkham.NgaybatdauBhyt;
@@ -1318,7 +1388,7 @@ namespace VMS.HIS.UI.EMR
 
                 objEmrBa.CmtCccd = objLuotkham.Cmt;
                 objEmrBa.SoHochieu = objLuotkham.Cmt;
-                objEmrBa.DienThoai = Utility.sDbnull(dt_ThongtinNguoibenh.Rows[0]["dien_thoai"], "");
+                objEmrBa.DienThoai = Utility.sDbnull_BoAm1(dt_ThongtinNguoibenh.Rows[0]["dien_thoai"], "");
                 objEmrBa.Email = objLuotkham.Email;
 
                 //objEmrBa.MaKhoaravien = "";
@@ -1347,19 +1417,20 @@ namespace VMS.HIS.UI.EMR
                     objEmrBa.ChuyenvienTuyentren = chkQLNBTuyenTren.Checked;
                     objEmrBa.ChuyenvienTuyenduoi = chkQLNBTuyenDuoi.Checked;
                     objEmrBa.ChuyenvienKhac = chkQLNBChuyenVienCK.Checked;
-                    objEmrBa.ChuyenvienNoichuyenden = Utility.sDbnull(txtQLNBChuyenVienNoiChuyenDen.Text);
+                    objEmrBa.ChuyenvienNoichuyenden = Utility.sDbnull_BoAm1(txtQLNBChuyenVienNoiChuyenDen.Text);
                 }
-                if (objPhieuRavien != null)
-                {
+                //if (objPhieuRavien != null)
+                //{
                     objEmrBa.RavienRavien = chkQLNBRaVienRavien.Checked;
                     objEmrBa.RavienXinve = chkQLNBRavienXinVe.Checked;
                     objEmrBa.RavienBove = chkQLNBRavienBoVe.Checked;
                     objEmrBa.RavienDuave = chkQLNBRavienDuaVe.Checked;
-                    objEmrBa.ChuyenvienNoichuyenden = Utility.sDbnull(txtQLNBChuyenVienNoiChuyenDen.Text);
-                    objEmrBa.RavienMaBenhchinh = txtCDRavienMaBenhChinh.Text;
-                    objEmrBa.RavienMaBenhphu = txtCDRavienMaBenhKemTheo.Text;
-                    objEmrBa.RavienTenBenhchinh = txtCDRavienTenBenhKemTheo.Text;
-                    objEmrBa.RavienTenBenhphu = txtCDRavienMaBenhKemTheo.Text;
+                    objEmrBa.ChuyenvienNoichuyenden = Utility.sDbnull_BoAm1(txtQLNBChuyenVienNoiChuyenDen.Text);
+                    objEmrBa.ChuyenvienNoichuyenden = Utility.sDbnull_BoAm1(txtQLNBChuyenVienNoiChuyenDen.Text);
+                    objEmrBa.RavienMaBenhchinh = Utility.sDbnull_BoAm1(txtCDRavienMaBenhChinh.Text);
+                    objEmrBa.RavienMaBenhphu = Utility.sDbnull_BoAm1(txtCDRavienMaBenhKemTheo.Text);
+                    objEmrBa.RavienTenBenhchinh = Utility.sDbnull_BoAm1(txtCDRavienTenBenhKemTheo.Text);
+                    objEmrBa.RavienTenBenhphu = Utility.sDbnull_BoAm1(txtCDRavienMaBenhKemTheo.Text);
                     //Tình trạng ra viện
                     //Kết quả điều trị
                     objEmrBa.TinhtrangravienKetquadieutriKhoi = chkTTRVKhoi.Checked;
@@ -1372,18 +1443,18 @@ namespace VMS.HIS.UI.EMR
                     objEmrBa.TinhtrangravienGpbNghingo = chkTTRVNghiNgo.Checked;
                     objEmrBa.TinhtrangravienGpbActinh = chkTTRVAcTinh.Checked;
                     //Tình hình tử vong
-                    objEmrBa.TinhtrangravienThoigianTuvong = objPhieuRavien.TuvongNgay;
+                    objEmrBa.TinhtrangravienThoigianTuvong = dtpNgaytuvong.Value;
                     objEmrBa.TinhtrangravienLydotuvongDobenh = chkttrvDoBenh.Checked;
                     objEmrBa.TinhtrangravienLydotuvongDotaibiendieutri = chkttrvDoTaiBien.Checked;
                     objEmrBa.TinhtrangravienLydotuvongKhac = chkttrvTrong72hVaovien.Checked;
                     objEmrBa.TinhtrangravienThoigiantuvongTrong24h = chkttrvTrong24GioVaoVien.Checked;
                     objEmrBa.TinhtrangravienThoigiantuvongSau24h = chkttrvTrong48GioVaoVien.Checked;
-                    objEmrBa.TinhtrangravienNguyennhantuvong = Utility.sDbnull(txtTTRVNguyenNhanChinhTuVong.Text);
-                    //objEmrBa.TinhtrangravienMaNguyennhantuvong = Utility.sDbnull(txtTTRVNguyenNhanChinhTuVong.Text);
+                    objEmrBa.TinhtrangravienNguyennhantuvong = Utility.sDbnull_BoAm1(txtTTRVNguyenNhanChinhTuVong.Text);
+                    //objEmrBa.TinhtrangravienMaNguyennhantuvong = Utility.sDbnull_BoAm1(txtTTRVNguyenNhanChinhTuVong.Text);
                     objEmrBa.TinhtrangravienKhamnghiemtuthi = chkTTRVKhamNgiemTuThi.Checked;
-                    objEmrBa.TinhtrangravienChandoangiauphaututhi = Utility.sDbnull(txtTTRVChandoanGiaiphauTuthi.Text);
+                    objEmrBa.TinhtrangravienChandoangiauphaututhi = Utility.sDbnull_BoAm1(txtTTRVChandoanGiaiphauTuthi.Text);
                     //objEmrBa.TinhtrangravienChandoangiauphaututhi
-                }
+                //}
 
 
                 //Chẩn đoán
@@ -1402,11 +1473,11 @@ namespace VMS.HIS.UI.EMR
                 objEmrBa.CdTaibienBienchungKhac = chk_cd_dokhac.Checked;
                 objEmrBa.CdTongsongaydieutriSauphauthuat = Utility.ByteDbnull(nmr_cd_tongsongaydieutri_sauphauthuat.Value);
                 objEmrBa.CdTongsolanphauthuat = Utility.ByteDbnull(nmr_cd_tongsolanphauthuat.Value);
-                objEmrBa.ChandoanTruocphauthuat = Utility.sDbnull(txt_chandoan_truocphauthuat.Text);
-                objEmrBa.MaChandoanTruocphauthuat = Utility.sDbnull(txt_chandoan_truocphauthuat.MyCode);
+                objEmrBa.ChandoanTruocphauthuat = Utility.sDbnull_BoAm1(txt_chandoan_truocphauthuat.Text);
+                objEmrBa.MaChandoanTruocphauthuat = Utility.sDbnull_BoAm1(txt_chandoan_truocphauthuat.MyCode);
 
-                objEmrBa.ChandoanSauphauthuat = Utility.sDbnull(txt_chandoan_sauphauthuat.Text);
-                objEmrBa.MaChandoanSauphauthuat = Utility.sDbnull(txt_chandoan_sauphauthuat.MyCode);
+                objEmrBa.ChandoanSauphauthuat = Utility.sDbnull_BoAm1(txt_chandoan_sauphauthuat.Text);
+                objEmrBa.MaChandoanSauphauthuat = Utility.sDbnull_BoAm1(txt_chandoan_sauphauthuat.MyCode);
 
                 objEmrBa.CdTaibien = chkCDTaiBien.Checked;
                 objEmrBa.CdBienchung = chkCDBienChung.Checked;
@@ -1414,19 +1485,19 @@ namespace VMS.HIS.UI.EMR
 
                 objEmrBa.VaovienLydovaovien = txtBenhAnLyDoNhapVien.Text;
                 objEmrBa.VaovienVaongaythucuabenh = Utility.ByteDbnull(txtBenhAnVaoNgayThu.Text);
-                objEmrBa.HoibenhQuatrinhbenhly = Utility.sDbnull(txtBenhAnQuaTrinhBenhLy.Text);
-                objEmrBa.HoibenhTiensubanthan = Utility.sDbnull(txtBenhAnTiensuBanthan.Text);
+                objEmrBa.HoibenhQuatrinhbenhly = Utility.sDbnull_BoAm1(txtBenhAnQuaTrinhBenhLy.Text);
+                objEmrBa.HoibenhTiensubanthan = Utility.sDbnull_BoAm1(txtBenhAnTiensuBanthan.Text);
                 //if (objPhieukhamPhukhoa != null)//Thông tin khám phụ khoa
                 //{
                 //    //Hỏi bệnh
                 //    objEmrBa.IdBacsiKham = Utility.Int16Dbnull(txtBacsiKham.MyID, -1);
-                //    objEmrBa.KhambenhDaniemmac = Utility.sDbnull(txtDaniemmac.Text);
-                //    objEmrBa.KhambenhHach = Utility.sDbnull(txtHach.Text);
-                //    objEmrBa.KhambenhVu = Utility.sDbnull(txtVu.Text);
+                //    objEmrBa.KhambenhDaniemmac = Utility.sDbnull_BoAm1(txtDaniemmac.Text);
+                //    objEmrBa.KhambenhHach = Utility.sDbnull_BoAm1(txtHach.Text);
+                //    objEmrBa.KhambenhVu = Utility.sDbnull_BoAm1(txtVu.Text);
                 //    //Tiền sử sản phụ khoa
                 //    objEmrBa.HoibenhBatdauthaykinhNam = Utility.Int16Dbnull(dtpThaykinhnam.Text, 0);
                 //    objEmrBa.HoibenhBatdauthaykinhTuoi = Utility.ByteDbnull(nmrBatdauthaykinhTuoi.Text, 0);
-                //    objEmrBa.HoibenhTinhchatkinhnguyet = Utility.sDbnull(txt_tinhchatkinhnguyet.Text);
+                //    objEmrBa.HoibenhTinhchatkinhnguyet = Utility.sDbnull_BoAm1(txt_tinhchatkinhnguyet.Text);
                 //    objEmrBa.HoibenhChukykinh = Utility.ByteDbnull(txt_chuky.Text, 0);
                 //    objEmrBa.Songaythaykinh = Utility.Int16Dbnull(txt_songaythaykinh.Text, 0);
                 //    objEmrBa.HoibenhLuongkinh = Utility.ByteDbnull(txt_luongkinh.Text);
@@ -1440,22 +1511,22 @@ namespace VMS.HIS.UI.EMR
                 //    objEmrBa.HoibenhLaychongTuoi = Utility.ByteDbnull(nmrLaychongTuoi.Text, 0);
                 //    objEmrBa.Hetkinhnam = Utility.Int16Dbnull(dtpHetKinhNam.Text, 0);
                 //    objEmrBa.Hetkinhtuoi = Utility.ByteDbnull(nmrLaychongTuoi.Text, 0);
-                //    objEmrBa.HoibenhNhungbenhphukhoadadieutri = Utility.sDbnull(txt_benhphukhoadadieutri.Text);
-                //    objEmrBa.HoibenhPara = Utility.sDbnull(txt_para.Text);
+                //    objEmrBa.HoibenhNhungbenhphukhoadadieutri = Utility.sDbnull_BoAm1(txt_benhphukhoadadieutri.Text);
+                //    objEmrBa.HoibenhPara = Utility.sDbnull_BoAm1(txt_para.Text);
                 //    //Khám ngoài
-                //    objEmrBa.KhamngoaiCacdauhieusinhducthuphat = Utility.sDbnull(txtCacdauhieusinhducthuphat.Text);
-                //    objEmrBa.KhamngoaiMoilon = Utility.sDbnull(txtMoilon.Text);
-                //    objEmrBa.KhamngoaiMoibe = Utility.sDbnull(txtMoibe.Text);
-                //    objEmrBa.KhamngoaiAmvat = Utility.sDbnull(txtAmvat.Text);
-                //    objEmrBa.KhamngoaiAmho = Utility.sDbnull(txtAmho.Text);
-                //    objEmrBa.KhamngoaiMangtrinh = Utility.sDbnull(txtMangtrinh.Text);
-                //    objEmrBa.KhamngoaiTangsinhmon = Utility.sDbnull(txtTangsinhmon.Text);
+                //    objEmrBa.KhamngoaiCacdauhieusinhducthuphat = Utility.sDbnull_BoAm1(txtCacdauhieusinhducthuphat.Text);
+                //    objEmrBa.KhamngoaiMoilon = Utility.sDbnull_BoAm1(txtMoilon.Text);
+                //    objEmrBa.KhamngoaiMoibe = Utility.sDbnull_BoAm1(txtMoibe.Text);
+                //    objEmrBa.KhamngoaiAmvat = Utility.sDbnull_BoAm1(txtAmvat.Text);
+                //    objEmrBa.KhamngoaiAmho = Utility.sDbnull_BoAm1(txtAmho.Text);
+                //    objEmrBa.KhamngoaiMangtrinh = Utility.sDbnull_BoAm1(txtMangtrinh.Text);
+                //    objEmrBa.KhamngoaiTangsinhmon = Utility.sDbnull_BoAm1(txtTangsinhmon.Text);
                 //    //Khám trong
-                //    objEmrBa.KhamtrongAmdao = Utility.sDbnull(txtAmdao.Text);
-                //    objEmrBa.KhamtrongCotucung = Utility.sDbnull(txtCotucung.Text);
-                //    objEmrBa.KhamtrongThantucung = Utility.sDbnull(txtThantucung.Text);
-                //    objEmrBa.KhamtrongPhanphu = Utility.sDbnull(txtPhanphu.Text);
-                //    objEmrBa.KhamtrongCactuicung = Utility.sDbnull(txtCactuicung.Text);
+                //    objEmrBa.KhamtrongAmdao = Utility.sDbnull_BoAm1(txtAmdao.Text);
+                //    objEmrBa.KhamtrongCotucung = Utility.sDbnull_BoAm1(txtCotucung.Text);
+                //    objEmrBa.KhamtrongThantucung = Utility.sDbnull_BoAm1(txtThantucung.Text);
+                //    objEmrBa.KhamtrongPhanphu = Utility.sDbnull_BoAm1(txtPhanphu.Text);
+                //    objEmrBa.KhamtrongCactuicung = Utility.sDbnull_BoAm1(txtCactuicung.Text);
 
                 //}
 
@@ -1469,39 +1540,39 @@ namespace VMS.HIS.UI.EMR
                 objEmrBa.KbChieucao = txtChieuCao.Text;
                 tinhBMI();
                 //Thông tin khám bệnh
-                objEmrBa.KbBmi = Utility.sDbnull(txtBMI.Text, 0);
-                objEmrBa.KhambenhToanthan = Utility.sDbnull(txtBenhAnToanThan.Text);
-                objEmrBa.KhambenhTuanhoan = Utility.sDbnull(txtBenhAnTuanHoan.Text);
-                objEmrBa.KhambenhHohap = Utility.sDbnull(txtBenhAnHoHap.Text);
-                objEmrBa.KhambenhTieuhoa = Utility.sDbnull(txtBenhAnTieuHoa.Text);
-                objEmrBa.KhambenhThantietnieusinhduc = Utility.sDbnull(txtBenhAnThanTietNieuSinhDuc.Text);
-                objEmrBa.KhambenhThankinh = Utility.sDbnull(txtBenhAnThanKinh.Text);
-                objEmrBa.KhambenhCoxuongkhop = Utility.sDbnull(txtBenhAnCoXuongKhop.Text);
-                objEmrBa.KhambenhTaimuihong = Utility.sDbnull(txtBenhAnTaiMuiHong.Text);
-                objEmrBa.KhambenhRanghammat = Utility.sDbnull(txtBenhAnRangHamMat.Text);
-                objEmrBa.KhambenhMat = Utility.sDbnull(txtBenhAnMat.Text);
-                objEmrBa.KhambenhNoitietDinhduongBenhlykhac = Utility.sDbnull(txtBenhAnNoiTiet.Text);
+                objEmrBa.KbBmi = Utility.sDbnull_BoAm1(txtBMI.Text);
+                objEmrBa.KhambenhToanthan = Utility.sDbnull_BoAm1(txtBenhAnToanThan.Text);
+                objEmrBa.KhambenhTuanhoan = Utility.sDbnull_BoAm1(txtBenhAnTuanHoan.Text);
+                objEmrBa.KhambenhHohap = Utility.sDbnull_BoAm1(txtBenhAnHoHap.Text);
+                objEmrBa.KhambenhTieuhoa = Utility.sDbnull_BoAm1(txtBenhAnTieuHoa.Text);
+                objEmrBa.KhambenhThantietnieusinhduc = Utility.sDbnull_BoAm1(txtBenhAnThanTietNieuSinhDuc.Text);
+                objEmrBa.KhambenhThankinh = Utility.sDbnull_BoAm1(txtBenhAnThanKinh.Text);
+                objEmrBa.KhambenhCoxuongkhop = Utility.sDbnull_BoAm1(txtBenhAnCoXuongKhop.Text);
+                objEmrBa.KhambenhTaimuihong = Utility.sDbnull_BoAm1(txtBenhAnTaiMuiHong.Text);
+                objEmrBa.KhambenhRanghammat = Utility.sDbnull_BoAm1(txtBenhAnRangHamMat.Text);
+                objEmrBa.KhambenhMat = Utility.sDbnull_BoAm1(txtBenhAnMat.Text);
+                objEmrBa.KhambenhNoitietDinhduongBenhlykhac = Utility.sDbnull_BoAm1(txtBenhAnNoiTiet.Text);
 
                 //
-                objEmrBa.KhambenhXetnghiemClsCanlam = Utility.sDbnull(txtBenhAnCacXetNghiem.Text);
-                objEmrBa.KhambenhTomtatbenhan = Utility.sDbnull(txtBenhAnTomTatBenhAn.Text);
-                objEmrBa.CdKhivaokhoadieutriBenhchinh = Utility.sDbnull(txtBenhAnBenhChinh.Text);
-                objEmrBa.CdKhivaokhoadieutriBenhphu = Utility.sDbnull(txtBenhAnBenhKemTheo.Text);
-                objEmrBa.CdKhivaokhoadieutriPhanbiet = Utility.sDbnull(txtBenhAnPhanBiet.Text);
+                objEmrBa.KhambenhXetnghiemClsCanlam = Utility.sDbnull_BoAm1(txtBenhAnCacXetNghiem.Text);
+                objEmrBa.KhambenhTomtatbenhan = Utility.sDbnull_BoAm1(txtBenhAnTomTatBenhAn.Text);
+                objEmrBa.CdKhivaokhoadieutriBenhchinh = Utility.sDbnull_BoAm1(txtBenhAnBenhChinh.Text);
+                objEmrBa.CdKhivaokhoadieutriBenhphu = Utility.sDbnull_BoAm1(txtBenhAnBenhKemTheo.Text);
+                objEmrBa.CdKhivaokhoadieutriPhanbiet = Utility.sDbnull_BoAm1(txtBenhAnPhanBiet.Text);
 
-                objEmrBa.KhambenhTienluong = Utility.sDbnull(txtBenhAnTienLuong.Text);
-                objEmrBa.KhambenhHuongdieutri = Utility.sDbnull(txtBenhAnHuongDieuTri.Text);
+                objEmrBa.KhambenhTienluong = Utility.sDbnull_BoAm1(txtBenhAnTienLuong.Text);
+                objEmrBa.KhambenhHuongdieutri = Utility.sDbnull_BoAm1(txtBenhAnHuongDieuTri.Text);
 
-                objEmrBa.TongketbaQuatrinhbenhlyDienbienlamsang = Utility.sDbnull(txtTKBAQuaTrinhBenhLy.Text);
-                objEmrBa.TongketbaTomtatKqcls = Utility.sDbnull(txtTKBATTomTatKetQua.Text);
-                objEmrBa.TongketbaPhuongphapdieutri = Utility.sDbnull(txtTKBAPhuongPhapDieuTri.Text);
-                objEmrBa.TongketbaTinhtrangNguoiravien = Utility.sDbnull(txtTKBATinhTrangRaVien.Text);
-                objEmrBa.TongketbaHuongdieutritieptheo = Utility.sDbnull(txtTKBAHuongDieuTri.Text);
+                objEmrBa.TongketbaQuatrinhbenhlyDienbienlamsang = Utility.sDbnull_BoAm1(txtTKBAQuaTrinhBenhLy.Text);
+                objEmrBa.TongketbaTomtatKqcls = Utility.sDbnull_BoAm1(txtTKBATTomTatKetQua.Text);
+                objEmrBa.TongketbaPhuongphapdieutri = Utility.sDbnull_BoAm1(txtTKBAPhuongPhapDieuTri.Text);
+                objEmrBa.TongketbaTinhtrangNguoiravien = Utility.sDbnull_BoAm1(txtTKBATinhTrangRaVien.Text);
+                objEmrBa.TongketbaHuongdieutritieptheo = Utility.sDbnull_BoAm1(txtTKBAHuongDieuTri.Text);
 
                 objEmrBa.IdNguoigiaoHoso = Utility.Int16Dbnull(txtNguoiGiaoHoSo.MyID);
                 objEmrBa.TongketbaMaNguoigiaohoso = txtNguoiGiaoHoSo.Text;
-                objEmrBa.IdNguoinhanHoso = Utility.Int16Dbnull(txtNguoiNhanHoSo.MyID);
-                objEmrBa.TongketbaMaNguoiNhanhoso = txtNguoiNhanHoSo.Text;
+                //objEmrBa.IdNguoinhanHoso = Utility.Int16Dbnull(txtNguoiNhanHoSo.MyID);
+                //objEmrBa.TongketbaMaNguoiNhanhoso = txtNguoiNhanHoSo.Text;
                 objEmrBa.MabacsiLamBA = txtBSlamBA.MyCode;
                 objEmrBa.IdBacsiLamBA = Utility.Int16Dbnull(txtBSlamBA.MyID);
                 objEmrBa.TenbacsiLamBA = txtBSlamBA.Text;
@@ -1539,150 +1610,45 @@ namespace VMS.HIS.UI.EMR
             if (e.KeyCode == Keys.Enter)
             {
                 #region "Xử lý multiline"
-                if (tabpageTo1.ActiveControl != null)
+                if (e.KeyCode == Keys.Enter)
                 {
-                    Control ctr = tabpageTo1.ActiveControl;
-                    if (ctr.GetType().Equals(typeof(EditBox)))
-                    {
-                        EditBox box = ctr as EditBox;
-                        if (box.Multiline)
-                        {
-                            return;
-                        }
-                        else
-                            SendKeys.Send("{TAB}");
-                    }
-                    else if (ctr.GetType().Equals(typeof(TextBox)))
-                    {
-                        TextBox box = ctr as TextBox;
-                        if (box.Multiline)
-                        {
-                            return;
-                        }
-                        else
-                            SendKeys.Send("{TAB}");
-                    }
-                    else if (ctr.GetType().Equals(typeof(RichTextBox)))
-                    {
-                        RichTextBox box = ctr as RichTextBox;
-                        if (box.Multiline)
-                        {
-                            return;
-                        }
-                        else
-                            SendKeys.Send("{TAB}");
-                    }
+                    Control activeCtrl = Utility.getActiveControl(this);
+                    if ((activeCtrl != null && activeCtrl.GetType().Equals(txtBenhAnQuaTrinhBenhLy.GetType())))
+                        return;
                     else
-                        SendKeys.Send("{TAB}");
+                    {
+                        if (activeCtrl.GetType().Equals(typeof(EditBox)))
+                        {
+                            EditBox box = activeCtrl as EditBox;
+                            if (box.Multiline)
+                            {
+                                return;
+                            }
+                            else
+                                SendKeys.Send("{TAB}");
+                        }
+                        else if (activeCtrl.GetType().Equals(typeof(TextBox)))
+                        {
+                            TextBox box = activeCtrl as TextBox;
+                            if (box.Multiline)
+                            {
+                                return;
+                            }
+                            else
+                                SendKeys.Send("{TAB}");
+                        }
+                        //else if (activeCtrl.Name == txtNhommau.Name)
+                        //{
+                        //    //uiTabInfor.SelectedIndex = 1;
+                        //    //txtCT.Focus();
+                        //}
+                        else
+                            SendKeys.Send("{TAB}");
+                    }
+                    
+
                 }
-                if (tabpageTo2.ActiveControl != null)
-                {
-                    Control ctr = tabpageTo2.ActiveControl;
-                    if (ctr.GetType().Equals(typeof(EditBox)))
-                    {
-                        EditBox box = ctr as EditBox;
-                        if (box.Multiline)
-                        {
-                            return;
-                        }
-                        else
-                            SendKeys.Send("{TAB}");
-                    }
-                    else if (ctr.GetType().Equals(typeof(TextBox)))
-                    {
-                        TextBox box = ctr as TextBox;
-                        if (box.Multiline)
-                        {
-                            return;
-                        }
-                        else
-                            SendKeys.Send("{TAB}");
-                    }
-                    else if (ctr.GetType().Equals(typeof(RichTextBox)))
-                    {
-                        RichTextBox box = ctr as RichTextBox;
-                        if (box.Multiline)
-                        {
-                            return;
-                        }
-                        else
-                            SendKeys.Send("{TAB}");
-                    }
-                    else
-                        SendKeys.Send("{TAB}");
-                }
-                if (tabpageTo3.ActiveControl != null)
-                {
-                    Control ctr = tabpageTo3.ActiveControl;
-                    if (ctr.GetType().Equals(typeof(EditBox)))
-                    {
-                        EditBox box = ctr as EditBox;
-                        if (box.Multiline)
-                        {
-                            return;
-                        }
-                        else
-                            SendKeys.Send("{TAB}");
-                    }
-                    else if (ctr.GetType().Equals(typeof(TextBox)))
-                    {
-                        TextBox box = ctr as TextBox;
-                        if (box.Multiline)
-                        {
-                            return;
-                        }
-                        else
-                            SendKeys.Send("{TAB}");
-                    }
-                    else if (ctr.GetType().Equals(typeof(RichTextBox)))
-                    {
-                        RichTextBox box = ctr as RichTextBox;
-                        if (box.Multiline)
-                        {
-                            return;
-                        }
-                        else
-                            SendKeys.Send("{TAB}");
-                    }
-                    else
-                        SendKeys.Send("{TAB}");
-                }
-                if (tabpageTo4.ActiveControl != null)
-                {
-                    Control ctr = tabpageTo4.ActiveControl;
-                    if (ctr.GetType().Equals(typeof(EditBox)))
-                    {
-                        EditBox box = ctr as EditBox;
-                        if (box.Multiline)
-                        {
-                            return;
-                        }
-                        else
-                            SendKeys.Send("{TAB}");
-                    }
-                    else if (ctr.GetType().Equals(typeof(TextBox)))
-                    {
-                        TextBox box = ctr as TextBox;
-                        if (box.Multiline)
-                        {
-                            return;
-                        }
-                        else
-                            SendKeys.Send("{TAB}");
-                    }
-                    else if (ctr.GetType().Equals(typeof(RichTextBox)))
-                    {
-                        RichTextBox box = ctr as RichTextBox;
-                        if (box.Multiline)
-                        {
-                            return;
-                        }
-                        else
-                            SendKeys.Send("{TAB}");
-                    }
-                    else
-                        SendKeys.Send("{TAB}");
-                }
+
                 #endregion
                 
             }
@@ -1717,11 +1683,16 @@ namespace VMS.HIS.UI.EMR
                 PhanquyenTinhnang();
             }    
         }
+        void InitDanhmucChung()
+        {
+            txtBenhAnQuaTrinhBenhLy.Init();
+        }
         public action m_enAct = action.Insert;
         private void frm_BenhAn_PhuKhoa_Load(object sender, EventArgs e)
         {
             try
             {
+                InitDanhmucChung();
                 EnableTextBox();//Cho nhanh 
                 ucThongtinnguoibenh_emr_basic1.noitrungoaitru = 1;
                 ucThongtinnguoibenh_emr_basic1.AutoLoad = true;
@@ -1838,13 +1809,7 @@ namespace VMS.HIS.UI.EMR
                    .And(KcbPhieuchuyenvien.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
                    .ExecuteSingle<KcbPhieuchuyenvien>();
 
-                SqlQuery sqlQuery = new Select().From<EmrBa>()
-                    .Where(EmrBa.Columns.MaLuotkham)
-                    .IsEqualTo(objLuotkham.MaLuotkham)
-                    .And(EmrBa.Columns.IdBenhnhan)
-                    .IsEqualTo(Utility.Int32Dbnull(objLuotkham.IdBenhnhan));
-                if (objEmrBa == null || (objEmrBa.IdBenhnhan != objLuotkham.IdBenhnhan && objEmrBa.MaLuotkham != objLuotkham.MaLuotkham))
-                    objEmrBa = sqlQuery.ExecuteSingle<EmrBa>();
+                
                 //Autofill Data
 
                 dtCacKhoa = new KCB_THAMKHAM().NoitruTimkiemlichsuBuonggiuong(objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan, "-1", -1);
@@ -1858,8 +1823,8 @@ namespace VMS.HIS.UI.EMR
                 if (arrKhoanhapvien.Length > 0)
                 {
                     dtkhoanhapvien = arrKhoanhapvien.CopyToDataTable();
-                    lblMakhoavao.Text = Utility.sDbnull(arrKhoanhapvien[0]["ma_khoanoitru"], "");
-                    lblqlbnKhoa.Text = Utility.sDbnull(arrKhoanhapvien[0]["ten_khoanoitru"], "");
+                    lblMakhoavao.Text = Utility.sDbnull_BoAm1(arrKhoanhapvien[0]["ma_khoanoitru"], "");
+                    lblqlbnKhoa.Text = Utility.sDbnull_BoAm1(arrKhoanhapvien[0]["ten_khoanoitru"], "");
                 }
                 var q = from p in dtCacKhoa.AsEnumerable()
                         where Utility.Int32Dbnull(p["id_giuong"], 0) > 0
@@ -1875,7 +1840,7 @@ namespace VMS.HIS.UI.EMR
                     dtpRavien_ngay.Value = objLuotkham.NgayRavien.Value;//.Value.ToString("dd/MM/yyyy HH:mm:ss");
                 else
                     dtpRavien_ngay.ResetText();
-                txtQLNBTongSoNgayDieuTri.Text = Utility.sDbnull(objLuotkham.SongayDieutri);
+                txtQLNBTongSoNgayDieuTri.Text = Utility.sDbnull_BoAm1(objLuotkham.SongayDieutri);
               
                 FillThongtinRavien();
                 FillThongtinChuyenVien();
@@ -1899,9 +1864,9 @@ namespace VMS.HIS.UI.EMR
                     DataRow dr = dtDataBA.Rows[0];
                     try
                     {
-                        txtIDBenhAn.Text = Utility.sDbnull(objEmrBa.IdBa);
-                        txtMaBenhAn.Text = Utility.sDbnull(objEmrBa.MaBa);
-                        //txtBenhNgoai_Khoa.Text = Utility.sDbnull(objEmrBa.BenhNgoaiKhoa);
+                        txtIDBenhAn.Text = Utility.sDbnull_BoAm1(objEmrBa.IdBa);
+                        txtMaBenhAn.Text = Utility.sDbnull_BoAm1(objEmrBa.MaBa);
+                        //txtBenhNgoai_Khoa.Text = Utility.sDbnull_BoAm1(objEmrBa.BenhNgoaiKhoa);
                         if (objEmrBa.VaovienNgay.HasValue)
                             dtQLNBVaoVien.Value = objEmrBa.VaovienNgay.Value;
                         else
@@ -1912,7 +1877,7 @@ namespace VMS.HIS.UI.EMR
                         chkQLNBCoQuanYTe.Checked = Utility.Bool2Bool(objEmrBa.NoigioithieuCoquanyte);
                         chkQLNBCoQuanYTe.Checked = Utility.Bool2Bool(objEmrBa.NoigioithieuTuden);
                         chkQLNBCoQuanYTe.Checked = Utility.Bool2Bool(objEmrBa.NoigioithieuKhac);
-                        txtQLNBLanVaoVien.Text = Utility.sDbnull(objEmrBa.VaovienLanthu);
+                        txtQLNBLanVaoVien.Text = Utility.sDbnull_BoAm1(objEmrBa.VaovienLanthu);
 
                         //string ICD_chinh_Name = "";
                         //string ICD_chinh_Code = "";
@@ -1925,12 +1890,12 @@ namespace VMS.HIS.UI.EMR
                         //                    ref ICD_chinh_Code, ref ICD_Phu_Name,
                         //                    ref ICD_Phu_Code);
 
-                        txtCDNoiChuyenDen.Text = Utility.sDbnull(objEmrBa.CdNoichuyenden);
-                        txtCDMaNoiChuyenDen.Text = Utility.sDbnull(objEmrBa.CdNoichuyendenMa);
-                        txtCDKKBCapCuu.Text = Utility.sDbnull(objEmrBa.CdKkbCapcuu);
-                        txtCDMaKKBCapCuu.Text = Utility.sDbnull(objEmrBa.CdKkbCapcuuMa);
-                        txtCDKhiVaoDieuTri.Text = Utility.sDbnull(objEmrBa.CdKhoadieutri);
-                        txtCDMaKhiVaoDieuTri.Text = Utility.sDbnull(objEmrBa.CdKhoadieutriMa);
+                        txtCDNoiChuyenDen.Text = Utility.sDbnull_BoAm1(objEmrBa.CdNoichuyenden);
+                        txtCDMaNoiChuyenDen.Text = Utility.sDbnull_BoAm1(objEmrBa.CdNoichuyendenMa);
+                        txtCDKKBCapCuu.Text = Utility.sDbnull_BoAm1(objEmrBa.CdKkbCapcuu);
+                        txtCDMaKKBCapCuu.Text = Utility.sDbnull_BoAm1(objEmrBa.CdKkbCapcuuMa);
+                        txtCDKhiVaoDieuTri.Text = Utility.sDbnull_BoAm1(objEmrBa.CdKhoadieutri);
+                        txtCDMaKhiVaoDieuTri.Text = Utility.sDbnull_BoAm1(objEmrBa.CdKhoadieutriMa);
                       
 
 
@@ -1940,7 +1905,7 @@ namespace VMS.HIS.UI.EMR
                         chkQLNBTuyenTren.Checked = Utility.Bool2Bool(objEmrBa.ChuyenvienTuyentren);
                         chkQLNBTuyenDuoi.Checked = Utility.Bool2Bool(objEmrBa.ChuyenvienTuyenduoi);
                         chkQLNBChuyenVienCK.Checked = Utility.Bool2Bool(objEmrBa.ChuyenvienKhac);
-                        txtQLNBChuyenVienNoiChuyenDen.Text = Utility.sDbnull(objEmrBa.ChuyenvienNoichuyenden);
+                        txtQLNBChuyenVienNoiChuyenDen.Text = Utility.sDbnull_BoAm1(objEmrBa.ChuyenvienNoichuyenden);
                         if (objEmrBa.TrangThai >=1 )
                         {
                             if (objEmrBa.RavienNgay.HasValue)
@@ -1951,11 +1916,11 @@ namespace VMS.HIS.UI.EMR
                             chkQLNBRavienXinVe.Checked = Utility.Bool2Bool(objEmrBa.RavienXinve);
                             chkQLNBRavienBoVe.Checked = Utility.Bool2Bool(objEmrBa.RavienBove);
                             chkQLNBRavienDuaVe.Checked = Utility.Bool2Bool(objEmrBa.RavienDuave);
-                            txtQLNBTongSoNgayDieuTri.Text = Utility.sDbnull(objEmrBa.RavienTongsongayDieutri);
-                            txtCDRavienTenBenhChinh.Text = Utility.sDbnull(objEmrBa.RavienTenBenhchinh);
-                            txtCDRavienMaBenhChinh.Text = Utility.sDbnull(objEmrBa.RavienMaBenhchinh);
-                            txtCDRavienTenBenhKemTheo.Text = Utility.sDbnull(objEmrBa.RavienTenBenhphu);
-                            txtCDRavienMaBenhKemTheo.Text = Utility.sDbnull(objEmrBa.RavienMaBenhphu);
+                            txtQLNBTongSoNgayDieuTri.Text = Utility.sDbnull_BoAm1(objEmrBa.RavienTongsongayDieutri);
+                            txtCDRavienTenBenhChinh.Text = Utility.sDbnull_BoAm1(objEmrBa.RavienTenBenhchinh);
+                            txtCDRavienMaBenhChinh.Text = Utility.sDbnull_BoAm1(objEmrBa.RavienMaBenhchinh);
+                            txtCDRavienTenBenhKemTheo.Text = Utility.sDbnull_BoAm1(objEmrBa.RavienTenBenhphu);
+                            txtCDRavienMaBenhKemTheo.Text = Utility.sDbnull_BoAm1(objEmrBa.RavienMaBenhphu);
                         }
                         chk_cd_dogayme.Checked = Utility.Bool2Bool(objEmrBa.CdDogayme);
                         chk_cd_dophauthuat.Checked = Utility.Bool2Bool(objEmrBa.CdPhauthuat);
@@ -1966,10 +1931,10 @@ namespace VMS.HIS.UI.EMR
                         nmr_cd_tongsolanphauthuat.Value = Utility.Int32Dbnull(objEmrBa.CdTongsolanphauthuat);
                         nmr_cd_tongsongaydieutri_sauphauthuat.Value = Utility.Int32Dbnull(objEmrBa.CdTongsongaydieutriSauphauthuat);
                        
-                        lbl_ma_chandoan_truocphauthuat.Text = Utility.sDbnull(objEmrBa.MaChandoanTruocphauthuat);
-                        txt_chandoan_truocphauthuat.SetCode( Utility.sDbnull(objEmrBa.MaChandoanTruocphauthuat));
-                        lbl_ma_chandoan_sauphauthuat.Text = Utility.sDbnull(objEmrBa.MaChandoanSauphauthuat);
-                        txt_chandoan_sauphauthuat.SetCode(Utility.sDbnull(objEmrBa.MaChandoanSauphauthuat));
+                        lbl_ma_chandoan_truocphauthuat.Text = Utility.sDbnull_BoAm1(objEmrBa.MaChandoanTruocphauthuat);
+                        txt_chandoan_truocphauthuat.SetCode( Utility.sDbnull_BoAm1(objEmrBa.MaChandoanTruocphauthuat));
+                        lbl_ma_chandoan_sauphauthuat.Text = Utility.sDbnull_BoAm1(objEmrBa.MaChandoanSauphauthuat);
+                        txt_chandoan_sauphauthuat.SetCode(Utility.sDbnull_BoAm1(objEmrBa.MaChandoanSauphauthuat));
                         if (objEmrBa.TrangThai >= 1)
                         {
                             //Tình trạng ra viện
@@ -1993,14 +1958,14 @@ namespace VMS.HIS.UI.EMR
                             chkttrvTrong48GioVaoVien.Checked = Utility.Bool2Bool(objEmrBa.TinhtrangravienThoigiantuvongTrong48h);
                             chkttrvTrong72hVaovien.Checked = Utility.Bool2Bool(objEmrBa.TinhtrangravienThoigiantuvongTrong72h);
 
-                            txtTTRVNguyenNhanChinhTuVong.Text = Utility.sDbnull(objEmrBa.TinhtrangravienNguyennhantuvong);
+                            txtTTRVNguyenNhanChinhTuVong.Text = Utility.sDbnull_BoAm1(objEmrBa.TinhtrangravienNguyennhantuvong);
                             chkTTRVChandoanGiaiphauTuthi.Checked = Utility.Bool2Bool(objEmrBa.TinhtrangravienKhamnghiemtuthi);
-                            txtTTRVChandoanGiaiphauTuthi.Text = Utility.sDbnull(objEmrBa.TinhtrangravienChandoangiauphaututhi);
+                            txtTTRVChandoanGiaiphauTuthi.Text = Utility.sDbnull_BoAm1(objEmrBa.TinhtrangravienChandoangiauphaututhi);
                             //Tờ 2
-                            txtBenhAnLyDoNhapVien._Text = Utility.sDbnull(objEmrBa.VaovienLydovaovien);// Utility.sDbnull(dr["BaLdvv"].ToString());
-                            txtBenhAnVaoNgayThu.Text = Utility.sDbnull(objEmrBa.VaovienVaongaythucuabenh);
-                            txtBenhAnQuaTrinhBenhLy.Text = Utility.sDbnull(objEmrBa.TongketbaQuatrinhbenhlyDienbienlamsang);// Utility.sDbnull(dr["BaQtbl"].ToString());
-                            txtBenhAnTiensuBanthan.Text = Utility.sDbnull(objEmrBa.HoibenhTiensubanthan);
+                            txtBenhAnLyDoNhapVien._Text = Utility.sDbnull_BoAm1(objEmrBa.VaovienLydovaovien);// Utility.sDbnull_BoAm1(dr["BaLdvv"].ToString());
+                            txtBenhAnVaoNgayThu.Text = Utility.sDbnull_BoAm1(objEmrBa.VaovienVaongaythucuabenh);
+                            txtBenhAnQuaTrinhBenhLy._Text = Utility.sDbnull_BoAm1(objEmrBa.HoibenhQuatrinhbenhly);// Utility.sDbnull_BoAm1(dr["BaQtbl"].ToString());
+                            txtBenhAnTiensuBanthan.Text = Utility.sDbnull_BoAm1(objEmrBa.HoibenhTiensubanthan);
                         }
                         ////Thông tin khám phụ khoa
                        
@@ -2008,12 +1973,12 @@ namespace VMS.HIS.UI.EMR
                         //txtHach.Text = objEmrBa.KhambenhHach;
                         //txtVu.Text = objEmrBa.KhambenhVu;
                         ////Tiền sử sản phụ khoa
-                        //dtpThaykinhnam.Text = Utility.sDbnull(objEmrBa.HoibenhBatdauthaykinhNam);
-                        //nmrBatdauthaykinhTuoi.Text = Utility.sDbnull(objEmrBa.HoibenhBatdauthaykinhTuoi);
-                        //txt_tinhchatkinhnguyet.Text = Utility.sDbnull(objEmrBa.HoibenhTinhchatkinhnguyet);
-                        //txt_chuky.Text = Utility.sDbnull(objEmrBa.HoibenhChukykinh);
-                        //txt_songaythaykinh.Text = Utility.sDbnull(objEmrBa.Songaythaykinh);
-                        //txt_luongkinh.Text = Utility.sDbnull(objEmrBa.HoibenhLuongkinh);
+                        //dtpThaykinhnam.Text = Utility.sDbnull_BoAm1(objEmrBa.HoibenhBatdauthaykinhNam);
+                        //nmrBatdauthaykinhTuoi.Text = Utility.sDbnull_BoAm1(objEmrBa.HoibenhBatdauthaykinhTuoi);
+                        //txt_tinhchatkinhnguyet.Text = Utility.sDbnull_BoAm1(objEmrBa.HoibenhTinhchatkinhnguyet);
+                        //txt_chuky.Text = Utility.sDbnull_BoAm1(objEmrBa.HoibenhChukykinh);
+                        //txt_songaythaykinh.Text = Utility.sDbnull_BoAm1(objEmrBa.Songaythaykinh);
+                        //txt_luongkinh.Text = Utility.sDbnull_BoAm1(objEmrBa.HoibenhLuongkinh);
                         //if (objEmrBa.Kinhlancuoingay.HasValue)
                         //    dtpKinhlancuoingay.Value = objEmrBa.Kinhlancuoingay.Value;
                         //else
@@ -2022,12 +1987,12 @@ namespace VMS.HIS.UI.EMR
                         //chk_thoigiantruoc.Checked = Utility.Bool2Bool(objEmrBa.ThoigianTruoc);
                         //chk_thoigiantrong.Checked = Utility.Bool2Bool(objEmrBa.ThoigianTrong);
                         //chk_thoigiansau.Checked = Utility.Bool2Bool(objEmrBa.ThoigianSau);
-                        //dtpLaychongNam.Text = Utility.sDbnull(objEmrBa.HoibenhLaychongNam);
-                        //nmrLaychongTuoi.Text = Utility.sDbnull(objEmrBa.HoibenhLaychongTuoi);
-                        //dtpHetKinhNam.Text = Utility.sDbnull(objEmrBa.Hetkinhnam);
-                        //nmrHetkinhTuoi.Text = Utility.sDbnull(objEmrBa.Hetkinhtuoi);
-                        //txt_benhphukhoadadieutri.Text = Utility.sDbnull(objEmrBa.HoibenhNhungbenhphukhoadadieutri);
-                        ////txt_para.Text = Utility.sDbnull(objEmrBa.pa);
+                        //dtpLaychongNam.Text = Utility.sDbnull_BoAm1(objEmrBa.HoibenhLaychongNam);
+                        //nmrLaychongTuoi.Text = Utility.sDbnull_BoAm1(objEmrBa.HoibenhLaychongTuoi);
+                        //dtpHetKinhNam.Text = Utility.sDbnull_BoAm1(objEmrBa.Hetkinhnam);
+                        //nmrHetkinhTuoi.Text = Utility.sDbnull_BoAm1(objEmrBa.Hetkinhtuoi);
+                        //txt_benhphukhoadadieutri.Text = Utility.sDbnull_BoAm1(objEmrBa.HoibenhNhungbenhphukhoadadieutri);
+                        ////txt_para.Text = Utility.sDbnull_BoAm1(objEmrBa.pa);
                         ////khám ngoài
                         //txtCacdauhieusinhducthuphat.Text = objEmrBa.KhamngoaiCacdauhieusinhducthuphat;
                         //txtMoilon.Text = objEmrBa.KhamngoaiMoilon;
@@ -2046,38 +2011,38 @@ namespace VMS.HIS.UI.EMR
                         //dtNgayKham.Value = Convert.ToDateTime(string.IsNullOrEmpty(objEmrBa.NgayKham) ? dtNgayKham.Value : objEmrBa.NgayKham);
                         dtpNgayKham.Value = string.IsNullOrEmpty(objEmrBa.NgayKham.ToString()) ? dtpNgayKham.Value : Convert.ToDateTime(objEmrBa.NgayKham);
 
-                        txtBenhAnGiaDinh.Text = Utility.sDbnull(objEmrBa.HoibenhTiensugiadinh);// Utility.sDbnull(dr["BaGiaDinh"].ToString());
+                        txtBenhAnGiaDinh.Text = Utility.sDbnull_BoAm1(objEmrBa.HoibenhTiensugiadinh);// Utility.sDbnull_BoAm1(dr["BaGiaDinh"].ToString());
                         
-                        txtMach.Text = Utility.sDbnull(objEmrBa.KbMach);
-                        txtNhietDo.Text = Utility.sDbnull(objEmrBa.KbNhietdo);
-                        txtha.Text = Utility.sDbnull(objEmrBa.KbHuyetap);
-                        txtNhipTho.Text = Utility.sDbnull(objEmrBa.KbNhiptho);
-                        txtCanNang.Text = Utility.sDbnull(objEmrBa.KbCannang);
-                        txtChieuCao.Text = Utility.sDbnull(objEmrBa.KbChieucao);
+                        txtMach.Text = Utility.sDbnull_BoAm1(objEmrBa.KbMach);
+                        txtNhietDo.Text = Utility.sDbnull_BoAm1(objEmrBa.KbNhietdo);
+                        txtha.Text = Utility.sDbnull_BoAm1(objEmrBa.KbHuyetap);
+                        txtNhipTho.Text = Utility.sDbnull_BoAm1(objEmrBa.KbNhiptho);
+                        txtCanNang.Text = Utility.sDbnull_BoAm1(objEmrBa.KbCannang);
+                        txtChieuCao.Text = Utility.sDbnull_BoAm1(objEmrBa.KbChieucao);
                         tinhBMI();
-                        txtBenhAnToanThan.Text = Utility.sDbnull(objEmrBa.KhambenhToanthan);// Utility.sDbnull(dr["KbToanThan"].ToString());
-                        txtBenhAnTuanHoan.Text = Utility.sDbnull(objEmrBa.KhambenhTuanhoan);
-                        txtBenhAnHoHap.Text = Utility.sDbnull(objEmrBa.KhambenhHohap);
-                        txtBenhAnTieuHoa.Text = Utility.sDbnull(objEmrBa.KhambenhTieuhoa);
-                        txtBenhAnThanTietNieuSinhDuc.Text = Utility.sDbnull(objEmrBa.KhambenhThantietnieusinhduc);
-                        txtBenhAnThanKinh.Text = Utility.sDbnull(objEmrBa.KhambenhThankinh);
-                        txtBenhAnCoXuongKhop.Text = Utility.sDbnull(objEmrBa.KhambenhCoxuongkhop);
-                        txtBenhAnTaiMuiHong.Text = Utility.sDbnull(objEmrBa.KhambenhTaimuihong);
-                        txtBenhAnRangHamMat.Text = Utility.sDbnull(objEmrBa.KhambenhRanghammat);
-                        txtBenhAnMat.Text = Utility.sDbnull(objEmrBa.KhambenhMat);
-                        txtBenhAnNoiTiet.Text = Utility.sDbnull(objEmrBa.KhambenhNoitietDinhduongBenhlykhac);
-                        txtBenhAnCacXetNghiem.Text = Utility.sDbnull(objEmrBa.KhambenhXetnghiemClsCanlam);
-                        txtBenhAnTomTatBenhAn.Text = Utility.sDbnull(objEmrBa.KhambenhTomtatbenhan);
-                        txtBenhAnBenhChinh.Text = Utility.sDbnull(objEmrBa.CdKhivaokhoadieutriBenhchinh);
-                        txtBenhAnBenhKemTheo.Text = Utility.sDbnull(objEmrBa.CdKhivaokhoadieutriBenhphu);
-                        txtBenhAnPhanBiet.Text = Utility.sDbnull(objEmrBa.CdKhivaokhoadieutriPhanbiet);
-                        txtBenhAnTienLuong.Text = Utility.sDbnull(objEmrBa.KhambenhTienluong);
-                        txtBenhAnHuongDieuTri.Text = Utility.sDbnull(objEmrBa.KhambenhHuongdieutri);
-                        txtTKBAQuaTrinhBenhLy.Text = Utility.sDbnull(objEmrBa.TongketbaQuatrinhbenhlyDienbienlamsang);
-                        txtTKBATTomTatKetQua.Text = Utility.sDbnull(objEmrBa.TongketbaTomtatKqcls);
-                        txtTKBAPhuongPhapDieuTri.Text = Utility.sDbnull(objEmrBa.TongketbaPhuongphapdieutri);
-                        txtTKBATinhTrangRaVien.Text = Utility.sDbnull(objEmrBa.TongketbaTinhtrangNguoiravien);// Utility.sDbnull(dr["TkbaTtrv"].ToString());
-                        txtTKBAHuongDieuTri.Text = Utility.sDbnull(objEmrBa.TongketbaHuongdieutritieptheo);// Utility.sDbnull(dr["TkbaHdt"].ToString());
+                        txtBenhAnToanThan.Text = Utility.sDbnull_BoAm1(objEmrBa.KhambenhToanthan);// Utility.sDbnull_BoAm1(dr["KbToanThan"].ToString());
+                        txtBenhAnTuanHoan.Text = Utility.sDbnull_BoAm1(objEmrBa.KhambenhTuanhoan);
+                        txtBenhAnHoHap.Text = Utility.sDbnull_BoAm1(objEmrBa.KhambenhHohap);
+                        txtBenhAnTieuHoa.Text = Utility.sDbnull_BoAm1(objEmrBa.KhambenhTieuhoa);
+                        txtBenhAnThanTietNieuSinhDuc.Text = Utility.sDbnull_BoAm1(objEmrBa.KhambenhThantietnieusinhduc);
+                        txtBenhAnThanKinh.Text = Utility.sDbnull_BoAm1(objEmrBa.KhambenhThankinh);
+                        txtBenhAnCoXuongKhop.Text = Utility.sDbnull_BoAm1(objEmrBa.KhambenhCoxuongkhop);
+                        txtBenhAnTaiMuiHong.Text = Utility.sDbnull_BoAm1(objEmrBa.KhambenhTaimuihong);
+                        txtBenhAnRangHamMat.Text = Utility.sDbnull_BoAm1(objEmrBa.KhambenhRanghammat);
+                        txtBenhAnMat.Text = Utility.sDbnull_BoAm1(objEmrBa.KhambenhMat);
+                        txtBenhAnNoiTiet.Text = Utility.sDbnull_BoAm1(objEmrBa.KhambenhNoitietDinhduongBenhlykhac);
+                        txtBenhAnCacXetNghiem.Text = Utility.sDbnull_BoAm1(objEmrBa.KhambenhXetnghiemClsCanlam);
+                        txtBenhAnTomTatBenhAn.Text = Utility.sDbnull_BoAm1(objEmrBa.KhambenhTomtatbenhan);
+                        txtBenhAnBenhChinh.Text = Utility.sDbnull_BoAm1(objEmrBa.CdKhivaokhoadieutriBenhchinh);
+                        txtBenhAnBenhKemTheo.Text = Utility.sDbnull_BoAm1(objEmrBa.CdKhivaokhoadieutriBenhphu);
+                        txtBenhAnPhanBiet.Text = Utility.sDbnull_BoAm1(objEmrBa.CdKhivaokhoadieutriPhanbiet);
+                        txtBenhAnTienLuong.Text = Utility.sDbnull_BoAm1(objEmrBa.KhambenhTienluong);
+                        txtBenhAnHuongDieuTri.Text = Utility.sDbnull_BoAm1(objEmrBa.KhambenhHuongdieutri);
+                        txtTKBAQuaTrinhBenhLy.Text = Utility.sDbnull_BoAm1(objEmrBa.TongketbaQuatrinhbenhlyDienbienlamsang);
+                        txtTKBATTomTatKetQua.Text = Utility.sDbnull_BoAm1(objEmrBa.TongketbaTomtatKqcls);
+                        txtTKBAPhuongPhapDieuTri.Text = Utility.sDbnull_BoAm1(objEmrBa.TongketbaPhuongphapdieutri);
+                        txtTKBATinhTrangRaVien.Text = Utility.sDbnull_BoAm1(objEmrBa.TongketbaTinhtrangNguoiravien);// Utility.sDbnull_BoAm1(dr["TkbaTtrv"].ToString());
+                        txtTKBAHuongDieuTri.Text = Utility.sDbnull_BoAm1(objEmrBa.TongketbaHuongdieutritieptheo);// Utility.sDbnull_BoAm1(dr["TkbaHdt"].ToString());
 
                         txtNguoiGiaoHoSo.SetId(objEmrBa.IdNguoigiaoHoso);
                         txtNguoiNhanHoSo.SetId(objEmrBa.IdNguoinhanHoso);
@@ -2088,11 +2053,11 @@ namespace VMS.HIS.UI.EMR
                         txtBacsiKham.SetId(objEmrBa.IdBacsiKham);
                         txtBSlamBA.SetId(objEmrBa.IdBacsiLamBA);
 
-                        txtB_CTScanner.Text = Utility.sDbnull(objEmrBa.TongketbaSotoCt);
-                        txtB_Xquang.Text = Utility.sDbnull(objEmrBa.TongketbaSotoXquang);
-                        txtB_SieuAm.Text = Utility.sDbnull(objEmrBa.TongketbaSotoSieuam);
-                        txtB_XetNghiem.Text = Utility.sDbnull(objEmrBa.TongketbaSotoXetnghiem);
-                        txtB_Khac.Text = Utility.sDbnull(objEmrBa.TongketbaSotoKhac);
+                        txtB_CTScanner.Text = Utility.sDbnull_BoAm1(objEmrBa.TongketbaSotoCt);
+                        txtB_Xquang.Text = Utility.sDbnull_BoAm1(objEmrBa.TongketbaSotoXquang);
+                        txtB_SieuAm.Text = Utility.sDbnull_BoAm1(objEmrBa.TongketbaSotoSieuam);
+                        txtB_XetNghiem.Text = Utility.sDbnull_BoAm1(objEmrBa.TongketbaSotoXetnghiem);
+                        txtB_Khac.Text = Utility.sDbnull_BoAm1(objEmrBa.TongketbaSotoKhac);
                         if (objEmrBa.TongketbaNgay.HasValue)
                             dtpNgayTKBA.Value = objEmrBa.TongketbaNgay.Value;
                         else
@@ -2116,18 +2081,18 @@ namespace VMS.HIS.UI.EMR
                     //Trang 4
                     //GetChanDoanKKB();
                     txtCDKKBCapCuu.Text =Utility.Get_ChanDoan_KKB_CapCuu(objLuotkham);
-                    txtCDMaKKBCapCuu.Text = Utility.sDbnull(objLuotkham.MabenhChinh, string.Empty);
+                    txtCDMaKKBCapCuu.Text = Utility.sDbnull_BoAm1(objLuotkham.MabenhChinh, string.Empty);
                     KcbThongtinchung tef = new Select().From(KcbThongtinchung.Schema)
                         .Where(KcbThongtinchung.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
                         .And(KcbThongtinchung.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham).ExecuteSingle<KcbThongtinchung>();
                     if (tef != null)
                     {
-                        txtMach.Text = Utility.sDbnull(tef.Mach);
-                        txtNhietDo.Text = Utility.sDbnull(tef.Nhietdo);
-                        txtha.Text = Utility.sDbnull(tef.Huyetap);
-                        txtNhipTho.Text = Utility.sDbnull(tef.Nhiptho);
-                        txtCanNang.Text = Utility.sDbnull(tef.Cannang);
-                        txtChieuCao.Text = Utility.sDbnull(tef.Chieucao);
+                        txtMach.Text = Utility.sDbnull_BoAm1(tef.Mach);
+                        txtNhietDo.Text = Utility.sDbnull_BoAm1(tef.Nhietdo);
+                        txtha.Text = Utility.sDbnull_BoAm1(tef.Huyetap);
+                        txtNhipTho.Text = Utility.sDbnull_BoAm1(tef.Nhiptho);
+                        txtCanNang.Text = Utility.sDbnull_BoAm1(tef.Cannang);
+                        txtChieuCao.Text = Utility.sDbnull_BoAm1(tef.Chieucao);
                         tinhBMI();
                     }
 
@@ -2160,16 +2125,16 @@ namespace VMS.HIS.UI.EMR
             {
                 dtpNgayKham.Value = objPKB.NgayKham;
                 txtBacsiKham.SetId(objPKB.IdBacsi);
-                txtBenhAnToanThan.Text = Utility.sDbnull(objPKB.ToanThan);// Utility.sDbnull(dr["KbToanThan"].ToString());
-                txtBenhAnTuanHoan.Text = Utility.sDbnull(objPKB.Tuanhoan);
-                txtBenhAnHoHap.Text = Utility.sDbnull(objPKB.Hohap);
-                txtBenhAnTieuHoa.Text = Utility.sDbnull(objPKB.Tieuhoa);
-                txtBenhAnThanTietNieuSinhDuc.Text = Utility.sDbnull(objPKB.Thantietnieusinhduc);
-                txtBenhAnThanKinh.Text = Utility.sDbnull(objPKB.Thankinh);
-                txtBenhAnCoXuongKhop.Text = Utility.sDbnull(objPKB.Coxuongkhop);
-                txtBenhAnTaiMuiHong.Text = Utility.sDbnull(objPKB.Taimuihong);
-                txtBenhAnRangHamMat.Text = Utility.sDbnull(objPKB.Ranghammat);
-                txtBenhAnMat.Text = Utility.sDbnull(objPKB.Mat);
+                txtBenhAnToanThan.Text = Utility.sDbnull_BoAm1(objPKB.ToanThan);// Utility.sDbnull_BoAm1(dr["KbToanThan"].ToString());
+                txtBenhAnTuanHoan.Text = Utility.sDbnull_BoAm1(objPKB.Tuanhoan);
+                txtBenhAnHoHap.Text = Utility.sDbnull_BoAm1(objPKB.Hohap);
+                txtBenhAnTieuHoa.Text = Utility.sDbnull_BoAm1(objPKB.Tieuhoa);
+                txtBenhAnThanTietNieuSinhDuc.Text = Utility.sDbnull_BoAm1(objPKB.Thantietnieusinhduc);
+                txtBenhAnThanKinh.Text = Utility.sDbnull_BoAm1(objPKB.Thankinh);
+                txtBenhAnCoXuongKhop.Text = Utility.sDbnull_BoAm1(objPKB.Coxuongkhop);
+                txtBenhAnTaiMuiHong.Text = Utility.sDbnull_BoAm1(objPKB.Taimuihong);
+                txtBenhAnRangHamMat.Text = Utility.sDbnull_BoAm1(objPKB.Ranghammat);
+                txtBenhAnMat.Text = Utility.sDbnull_BoAm1(objPKB.Mat);
             }
         }
         void FillPhieuKhamPhuKhoa()
@@ -2194,12 +2159,12 @@ namespace VMS.HIS.UI.EMR
                 txtBMI.Text = objPhieukhamPhukhoa.Bmi;
 
                 //Tiền sử sản phụ khoa
-                dtpThaykinhnam.Text = Utility.Int32Dbnull(objPhieukhamPhukhoa.BaTsspkBatdauthaykinhNam) == 0 ? DateTime.Now.Year.ToString() : Utility.sDbnull(objPhieukhamPhukhoa.BaTsspkBatdauthaykinhNam);
-                nmrBatdauthaykinhTuoi.Text = Utility.sDbnull(objPhieukhamPhukhoa.BaTsspkBatdauthaykinhTuoi);
-                txt_tinhchatkinhnguyet.Text = Utility.sDbnull(objPhieukhamPhukhoa.BaTsspkTinhchatkinhnguyet);
-                txt_chuky.Text = Utility.sDbnull(objPhieukhamPhukhoa.BaTsspkChuky);
-                txt_songaythaykinh.Text = Utility.sDbnull(objPhieukhamPhukhoa.BaTsspkSongaythaykinh);
-                txt_luongkinh.Text = Utility.sDbnull(objPhieukhamPhukhoa.BaTsspkLuongkinh);
+                dtpThaykinhnam.Text = Utility.Int32Dbnull(objPhieukhamPhukhoa.BaTsspkBatdauthaykinhNam) == 0 ? DateTime.Now.Year.ToString() : Utility.sDbnull_BoAm1(objPhieukhamPhukhoa.BaTsspkBatdauthaykinhNam);
+                nmrBatdauthaykinhTuoi.Text = Utility.sDbnull_BoAm1(objPhieukhamPhukhoa.BaTsspkBatdauthaykinhTuoi);
+                txt_tinhchatkinhnguyet.Text = Utility.sDbnull_BoAm1(objPhieukhamPhukhoa.BaTsspkTinhchatkinhnguyet);
+                txt_chuky.Text = Utility.sDbnull_BoAm1(objPhieukhamPhukhoa.BaTsspkChuky);
+                txt_songaythaykinh.Text = Utility.sDbnull_BoAm1(objPhieukhamPhukhoa.BaTsspkSongaythaykinh);
+                txt_luongkinh.Text = Utility.sDbnull_BoAm1(objPhieukhamPhukhoa.BaTsspkLuongkinh);
                 if (objPhieukhamPhukhoa.BaTsspkKinhlancuoingay.HasValue)
                     dtpKinhlancuoingay.Value = objPhieukhamPhukhoa.BaTsspkKinhlancuoingay.Value;
                 else
@@ -2208,12 +2173,12 @@ namespace VMS.HIS.UI.EMR
                 chk_thoigiantruoc.Checked = Utility.Bool2Bool(objPhieukhamPhukhoa.BaTsspkThoigianTruoc);
                 chk_thoigiantrong.Checked = Utility.Bool2Bool(objPhieukhamPhukhoa.BaTsspkThoigianTrong);
                 chk_thoigiansau.Checked = Utility.Bool2Bool(objPhieukhamPhukhoa.BaTsspkThoigianSau);
-                dtpLaychongNam.Text = Utility.sDbnull(objPhieukhamPhukhoa.BaTsspkLaychongNam);
-                nmrLaychongTuoi.Text = Utility.sDbnull(objPhieukhamPhukhoa.BaTsspkLaychongTuoi);
-                dtpHetKinhNam.Text = Utility.sDbnull(objPhieukhamPhukhoa.BaTsspkHetkinhnam);
-                nmrHetkinhTuoi.Text = Utility.sDbnull(objPhieukhamPhukhoa.BaTsspkHetkinhtuoi);
-                txt_benhphukhoadadieutri.Text = Utility.sDbnull(objPhieukhamPhukhoa.BaTsspkBenhphukhoadadieutri);
-                txt_para.Text = Utility.sDbnull(objPhieukhamPhukhoa.BaTsspkPara);
+                dtpLaychongNam.Text = Utility.sDbnull_BoAm1(objPhieukhamPhukhoa.BaTsspkLaychongNam);
+                nmrLaychongTuoi.Text = Utility.sDbnull_BoAm1(objPhieukhamPhukhoa.BaTsspkLaychongTuoi);
+                dtpHetKinhNam.Text = Utility.sDbnull_BoAm1(objPhieukhamPhukhoa.BaTsspkHetkinhnam);
+                nmrHetkinhTuoi.Text = Utility.sDbnull_BoAm1(objPhieukhamPhukhoa.BaTsspkHetkinhtuoi);
+                txt_benhphukhoadadieutri.Text = Utility.sDbnull_BoAm1(objPhieukhamPhukhoa.BaTsspkBenhphukhoadadieutri);
+                txt_para.Text = Utility.sDbnull_BoAm1(objPhieukhamPhukhoa.BaTsspkPara);
                 //khám ngoài
                 txtCacdauhieusinhducthuphat.Text = objPhieukhamPhukhoa.BaKckCacdauhieusinhducthuphat;
                 txtMoilon.Text = objPhieukhamPhukhoa.BaKckMoilon;
@@ -2240,11 +2205,11 @@ namespace VMS.HIS.UI.EMR
                    .And(NoitruPhieunhapvien.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham).ExecuteSingle<NoitruPhieunhapvien>();
             if (objNhapvien != null)
             {
-                txtBenhAnLyDoNhapVien._Text = Utility.sDbnull(objNhapvien.LydoNhapvien);
-                txtBenhAnTiensuBanthan.Text = Utility.sDbnull(objNhapvien.TsuBanthan);
-                txtBenhAnGiaDinh.Text = Utility.sDbnull(objNhapvien.TsuGiadinh);
-                txtBenhAnQuaTrinhBenhLy.Text = Utility.sDbnull(objNhapvien.QuatrinhBenhly);
-                txtBenhAnToanThan.Text = Utility.sDbnull(objNhapvien.KhamToanthan);
+                txtBenhAnLyDoNhapVien._Text = Utility.sDbnull_BoAm1(objNhapvien.LydoNhapvien);
+                txtBenhAnTiensuBanthan.Text = Utility.sDbnull_BoAm1(objNhapvien.TsuBanthan);
+                txtBenhAnGiaDinh.Text = Utility.sDbnull_BoAm1(objNhapvien.TsuGiadinh);
+                txtBenhAnQuaTrinhBenhLy._Text = Utility.sDbnull_BoAm1(objNhapvien.QuatrinhBenhly);
+                txtBenhAnToanThan.Text = Utility.sDbnull_BoAm1(objNhapvien.KhamToanthan);
             }
         }
        // VKcbLuotkham objBenhnhan = null;
@@ -2384,7 +2349,7 @@ namespace VMS.HIS.UI.EMR
             //frm.ShowDialog();
             //if (frm.b_Cancel)
             //{
-            //    objLuotkham.MaLuotkham = Utility.sDbnull(frm.SoHSBA);
+            //    objLuotkham.MaLuotkham = Utility.sDbnull_BoAm1(frm.SoHSBA);
             //    FillBenhAnByPatientCode();
             //}
         }
@@ -2587,7 +2552,7 @@ namespace VMS.HIS.UI.EMR
                     if (Utility.DecimaltoDbnull(txtCanNang.Text, 0) > 0 && Utility.DecimaltoDbnull(txtChieuCao.Text, 0) > 0) //2 giá trị > 0
                     {
                         decimal bmi = Utility.DecimaltoDbnull(txtCanNang.Text, 0) / (Utility.DecimaltoDbnull(txtChieuCao.Text, 0) / 100 * Utility.DecimaltoDbnull(txtChieuCao.Text, 0) / 100);
-                        txtBMI.Text = Utility.sDbnull(Math.Round(bmi, 2));
+                        txtBMI.Text = Utility.sDbnull_BoAm1(Math.Round(bmi, 2));
                     }
                 }
             }
@@ -2690,11 +2655,11 @@ namespace VMS.HIS.UI.EMR
                     txtNguoiGiaoHoSo.SetId(objTKBA.IdNguoigiaoHoso);
                     txtNguoiNhanHoSo.SetId(objTKBA.IdNguoinhanHoso);
 
-                    txtB_CTScanner.Text = Utility.sDbnull(objTKBA.SotoCt);
-                    txtB_Xquang.Text = Utility.sDbnull(objTKBA.SotoXquang);
-                    txtB_SieuAm.Text = Utility.sDbnull(objTKBA.SotoSieuam);
-                    txtB_XetNghiem.Text = Utility.sDbnull(objTKBA.SotoXetnghiem);
-                    txtB_Khac.Text = Utility.sDbnull(objTKBA.SotoKhac);
+                    txtB_CTScanner.Text = Utility.sDbnull_BoAm1(objTKBA.SotoCt);
+                    txtB_Xquang.Text = Utility.sDbnull_BoAm1(objTKBA.SotoXquang);
+                    txtB_SieuAm.Text = Utility.sDbnull_BoAm1(objTKBA.SotoSieuam);
+                    txtB_XetNghiem.Text = Utility.sDbnull_BoAm1(objTKBA.SotoXetnghiem);
+                    txtB_Khac.Text = Utility.sDbnull_BoAm1(objTKBA.SotoKhac);
                 }
             }
             catch (Exception ex)
@@ -2847,7 +2812,7 @@ namespace VMS.HIS.UI.EMR
         private void lnk21_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             txtCDKKBCapCuu.Text = Utility.Get_ChanDoan_KKB_CapCuu(objLuotkham);
-            txtCDMaKKBCapCuu.Text = Utility.sDbnull(objLuotkham.MabenhChinh, string.Empty);
+            txtCDMaKKBCapCuu.Text = Utility.sDbnull_BoAm1(objLuotkham.MabenhChinh, string.Empty);
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

@@ -10,13 +10,13 @@
             </summary>
             <param name="appIdentitySettingsAccessor"></param>
         </member>
-        <member name="M:VMS.ChuKySo.Api.Controllers.ViettelController.DigitalSignatureCheckAccount(VMS.ChuKySo.Api.VMSDigitalSignature)">
+        <member name="M:VMS.ChuKySo.Api.Controllers.ViettelController.KiemtraTaikhoanKyso(VMS.ChuKySo.Api.VMSDigitalSignature)">
             <summary>
-            POST: DigitalSignatureCheckAccount
+            POST: KiemtraTaikhoanKyso
             </summary>
             <returns></returns>
         </member>
-        <member name="M:VMS.ChuKySo.Api.Controllers.ViettelController.DigitalSignaturePdfFileSign(VMS.ChuKySo.Api.VMSDigitalSignature)">
+        <member name="M:VMS.ChuKySo.Api.Controllers.ViettelController.KysoPDF(VMS.ChuKySo.Api.VMSDigitalSignature)">
             <summary>
             POST: DigitalSignaturePdfFileSign
             </summary>

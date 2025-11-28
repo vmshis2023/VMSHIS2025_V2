@@ -381,7 +381,11 @@ namespace VNS.HIS.UI.THUOC
         {
             try
             {
-                byte noitru =Utility.ByteDbnull( optNoitru.Checked ? 0 : 1);
+                byte noitru = 100;
+                if (optNoitru.Checked)
+                    noitru = 1;
+                else if (optNgoaitru.Checked)
+                    noitru = 0;
                 int id_kho =Utility.Int32Dbnull( cboKhoxuat.SelectedValue,-1);
                 int id_khoa = Utility.Int32Dbnull(cboDepartment.SelectedValue, -1);
                 if (m_Action == action.Insert) Status = 0;//Nếu thêm mới ko cho phép load các đơn đã cấp phát cho dù chọn tất cả

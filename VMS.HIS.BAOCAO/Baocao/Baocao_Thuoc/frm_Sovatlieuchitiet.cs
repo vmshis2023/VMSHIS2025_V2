@@ -206,6 +206,185 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
         {
             try
             {
+                if (m_dtReport == null || m_dtReport.Columns.Count <= 0) cmd_TimKiem.PerformClick();
+                string nhomthuoc = "-1";
+                if (cboKho.SelectedIndex < 0)
+                {
+                    Utility.ShowMsg("Bạn phải chọn Kho thuốc");
+                    cboKho.Focus();
+                    return;
+                }
+                nhomthuoc = txtLoaithuoc.MyID.ToString();
+               
+                string fromdate = "01/01/1900";
+                string todate = "01/01/1900";
+                string _value = "1";
+                if (optThang.Checked)
+                {
+                    if (cboThang.SelectedIndex < 0)
+                    {
+                        Utility.ShowMsg("Bạn phải chọn Tháng báo cáo");
+                        cboThang.Focus();
+                        return;
+                    }
+                    _value = cboThang.SelectedValue.ToString();
+                    switch (_value)
+                    {
+                        case "2":
+                            fromdate = new DateTime(dtpNam.Value.Year, Utility.Int32Dbnull(_value, 2), 1).ToString("dd/MM/yyyy");
+                            todate = new DateTime(dtpNam.Value.Year, Utility.Int32Dbnull(_value, 2), 29).ToString("dd/MM/yyyy");
+                            break;
+                        case "4":
+                        case "6":
+                        case "9":
+                        case "11":
+                            fromdate = new DateTime(dtpNam.Value.Year, Utility.Int32Dbnull(_value, 2), 1).ToString("dd/MM/yyyy");
+                            todate = new DateTime(dtpNam.Value.Year, Utility.Int32Dbnull(_value, 2), 30).ToString("dd/MM/yyyy");
+                            break;
+                        default:
+                            fromdate = new DateTime(dtpNam.Value.Year, Utility.Int32Dbnull(_value, 2), 1).ToString("dd/MM/yyyy");
+                            todate = new DateTime(dtpNam.Value.Year, Utility.Int32Dbnull(_value, 2), 31).ToString("dd/MM/yyyy");
+                            break;
+                    }
+                }
+                else if (optQuy.Checked)
+                {
+                    if (cboQuy.SelectedIndex < 0)
+                    {
+                        Utility.ShowMsg("Bạn phải chọn Quý báo cáo");
+                        cboQuy.Focus();
+                        return;
+                    }
+                    _value = cboQuy.SelectedValue.ToString();
+                    switch (_value)
+                    {
+                        case "1":
+                            fromdate = new DateTime(dtpNam.Value.Year, 1, 1).ToString("dd/MM/yyyy");
+                            todate = new DateTime(dtpNam.Value.Year, 3, 31).ToString("dd/MM/yyyy");
+                            break;
+                        case "2":
+                            fromdate = new DateTime(dtpNam.Value.Year, 4, 1).ToString("dd/MM/yyyy");
+                            todate = new DateTime(dtpNam.Value.Year, 6, 30).ToString("dd/MM/yyyy");
+                            break;
+                        case "3":
+                            fromdate = new DateTime(dtpNam.Value.Year, 7, 1).ToString("dd/MM/yyyy");
+                            todate = new DateTime(dtpNam.Value.Year, 9, 30).ToString("dd/MM/yyyy");
+                            break;
+                        case "4":
+                            fromdate = new DateTime(dtpNam.Value.Year, 10, 1).ToString("dd/MM/yyyy");
+                            todate = new DateTime(dtpNam.Value.Year, 12, 31).ToString("dd/MM/yyyy");
+                            break;
+                        default:
+                            fromdate = new DateTime(dtpNam.Value.Year, 1, 1).ToString("dd/MM/yyyy");
+                            todate = new DateTime(dtpNam.Value.Year, 12, 31).ToString("dd/MM/yyyy");
+                            break;
+                    }
+                }
+                else if (optNam.Checked)
+                {
+                    fromdate = new DateTime(dtpNam.Value.Year, 1, 1).ToString("dd/MM/yyyy");
+                    todate = new DateTime(dtpNam.Value.Year, 12, 31).ToString("dd/MM/yyyy");
+                }
+                else
+                {
+                    fromdate = dtFromDate.Value.ToString("dd/MM/yyyy");
+                    todate = dtToDate.Value.ToString("dd/MM/yyyy");
+                }
+              
+                THU_VIEN_CHUNG.CreateXML(m_dtReport, "thuoc_sovatlieu_chitiet.xml");
+               
+                if (m_dtReport == null || m_dtReport.Rows.Count <= 0)
+                {
+                    Utility.ShowMsg("Không tìm thấy dữ liệu báo cáo", "Thông báo", MessageBoxIcon.Warning);
+                    return;
+                }
+                string FromDateToDate = Utility.FromToDateTime(dtFromDate.Text, dtToDate.Text);
+                thuoc_baocao.ThuocSovatlieuchitiet(m_dtReport, KIEU_THUOC_VT, baocaO_TIEUDE1.TIEUDE,
+                                             dtNgayIn.Value, FromDateToDate,
+                                             Utility.sDbnull(cboKho.Text));
+
+
+
+            }
+            catch (Exception ex)
+            {
+                Utility.ShowMsg(ex.Message);
+            }
+        }
+
+       
+       
+        /// <summary>
+        /// hàm thực hiện việc phím tắt thông tin 
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frm_Sovatlieuchitiet_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape) cmdExit.PerformClick();
+            if (e.KeyCode == Keys.F4) cmdBaoCao.PerformClick();
+            if (e.KeyCode == Keys.F5) cmdExportToExcel.PerformClick();
+        }
+
+
+        private void cmdBaoCao_Click_1(object sender, EventArgs e)
+        {
+        }
+
+        private void cmdExportToExcel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                if (grdListChitiet.RowCount <= 0)
+                {
+                    Utility.ShowMsg("Không có dữ liệu chi tiết để xuất file excel", "Thông báo");
+                    return;
+                }
+                gridEXExporter1.GridEX = grdListChitiet;
+                saveFileDialog1.Filter = "Excel File(*.xls)|*.xls";
+                saveFileDialog1.FileName = string.Format("{0}.xls", baocaO_TIEUDE1.TIEUDE);
+                //saveFileDialog1.ShowDialog();
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    string sPath = saveFileDialog1.FileName;
+                    var fs = new FileStream(sPath, FileMode.Create);
+                    fs.CanWrite.CompareTo(true);
+                    fs.CanRead.CompareTo(true);
+                    gridEXExporter1.Export(fs);
+                    fs.Dispose();
+                }
+                saveFileDialog1.Dispose();
+                saveFileDialog1.Reset();
+            }
+            catch (Exception exception)
+            {
+            }
+        }
+
+        private void frm_Sovatlieuchitiet_KeyDown_1(object sender, KeyEventArgs e)
+        {
+        }
+
+        /// <summary>
+        /// hàm thực hiện việc 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmdGetDataDrug_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void cmdCboDownHTTT_Click(object sender, EventArgs e)
+        {
+            txtthuoc.ShowMe();
+        }
+        DataTable m_dtReport = null;
+        private void cmd_TimKiem_Click(object sender, EventArgs e)
+        {
+            try
+            {
                 string nhomthuoc = "-1";
                 if (cboKho.SelectedIndex < 0)
                 {
@@ -296,15 +475,7 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
 
                 THU_VIEN_CHUNG.CreateXML(m_dtReport, "thuoc_sovatlieu_chitiet.xml");
                 Utility.SetDataSourceForDataGridEx(grdListChitiet, m_dtReport, true, true, "1=1", "");
-                if (m_dtReport == null || m_dtReport.Rows.Count <= 0)
-                {
-                    Utility.ShowMsg("Không tìm thấy dữ liệu báo cáo", "Thông báo", MessageBoxIcon.Warning);
-                    return;
-                }
-                string FromDateToDate = Utility.FromToDateTime(dtFromDate.Text, dtToDate.Text);
-                thuoc_baocao.ThuocSovatlieuchitiet(m_dtReport, KIEU_THUOC_VT, baocaO_TIEUDE1.TIEUDE,
-                                             dtNgayIn.Value, FromDateToDate,
-                                             Utility.sDbnull(cboKho.Text));
+               
 
 
 
@@ -313,75 +484,6 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
             {
                 Utility.ShowMsg(ex.Message);
             }
-        }
-
-       
-       
-        /// <summary>
-        /// hàm thực hiện việc phím tắt thông tin 
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void frm_Sovatlieuchitiet_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Escape) cmdExit.PerformClick();
-            if (e.KeyCode == Keys.F4) cmdBaoCao.PerformClick();
-            if (e.KeyCode == Keys.F5) cmdExportToExcel.PerformClick();
-        }
-
-
-        private void cmdBaoCao_Click_1(object sender, EventArgs e)
-        {
-        }
-
-        private void cmdExportToExcel_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-                if (grdListChitiet.RowCount <= 0)
-                {
-                    Utility.ShowMsg("Không có dữ liệu chi tiết để xuất file excel", "Thông báo");
-                    return;
-                }
-                gridEXExporter1.GridEX = grdListChitiet;
-                saveFileDialog1.Filter = "Excel File(*.xls)|*.xls";
-                saveFileDialog1.FileName = string.Format("{0}.xls", baocaO_TIEUDE1.TIEUDE);
-                //saveFileDialog1.ShowDialog();
-                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-                {
-                    string sPath = saveFileDialog1.FileName;
-                    var fs = new FileStream(sPath, FileMode.Create);
-                    fs.CanWrite.CompareTo(true);
-                    fs.CanRead.CompareTo(true);
-                    gridEXExporter1.Export(fs);
-                    fs.Dispose();
-                }
-                saveFileDialog1.Dispose();
-                saveFileDialog1.Reset();
-            }
-            catch (Exception exception)
-            {
-            }
-        }
-
-        private void frm_Sovatlieuchitiet_KeyDown_1(object sender, KeyEventArgs e)
-        {
-        }
-
-        /// <summary>
-        /// hàm thực hiện việc 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void cmdGetDataDrug_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void cmdCboDownHTTT_Click(object sender, EventArgs e)
-        {
-            txtthuoc.ShowMe();
         }
     }
 }

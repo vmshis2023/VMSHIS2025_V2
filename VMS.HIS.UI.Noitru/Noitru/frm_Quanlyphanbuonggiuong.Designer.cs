@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_Quanlyphanbuonggiuong));
-            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel4 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
-            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel5 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
-            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel6 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
+            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel1 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
+            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel2 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
+            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel3 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
             Janus.Windows.GridEX.GridEXLayout grdList_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.GridEX.GridEXLayout grdBuongGiuong_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -69,13 +69,13 @@
             this.cmdsuabuonggiuong = new System.Windows.Forms.ToolStripButton();
             this.cmdExit = new System.Windows.Forms.ToolStripButton();
             this.uiGroupBox1 = new Janus.Windows.EditControls.UIGroupBox();
+            this.cboKhoanoitru = new VNS.HIS.UCs.EasyCompletionComboBox();
             this.radAll = new Janus.Windows.EditControls.UIRadioButton();
             this.radRaVien = new Janus.Windows.EditControls.UIRadioButton();
             this.radChuyenKhoa = new Janus.Windows.EditControls.UIRadioButton();
             this.radDangDtri = new Janus.Windows.EditControls.UIRadioButton();
             this.chkCapcuu = new Janus.Windows.EditControls.UICheckBox();
             this.cmdTimKiem = new Janus.Windows.EditControls.UIButton();
-            this.cboKhoanoitru = new Janus.Windows.EditControls.UIComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtPatientName = new Janus.Windows.GridEX.EditControls.EditBox();
             this.txtPatientCode = new Janus.Windows.GridEX.EditControls.EditBox();
@@ -180,41 +180,41 @@
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(165, 28);
-            this.toolStripDropDownButton1.Text = "Bệnh nhân cấp cứu";
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(141, 28);
+            this.toolStripDropDownButton1.Text = "Tiếp đón Nội trú";
             // 
             // mnuAdd
             // 
             this.mnuAdd.Image = global::VMS.HIS.Noitru.Properties.Resources.add_04_32;
             this.mnuAdd.Name = "mnuAdd";
-            this.mnuAdd.Size = new System.Drawing.Size(248, 26);
-            this.mnuAdd.Text = "Thêm người bệnh cấp cứu";
+            this.mnuAdd.Size = new System.Drawing.Size(215, 26);
+            this.mnuAdd.Text = "Thêm người bệnh";
             this.mnuAdd.Click += new System.EventHandler(this.mnuAdd_Click_1);
             // 
             // mnuEdit
             // 
             this.mnuEdit.Image = ((System.Drawing.Image)(resources.GetObject("mnuEdit.Image")));
             this.mnuEdit.Name = "mnuEdit";
-            this.mnuEdit.Size = new System.Drawing.Size(248, 26);
-            this.mnuEdit.Text = "Sửa người bệnh cấp cứu";
+            this.mnuEdit.Size = new System.Drawing.Size(215, 26);
+            this.mnuEdit.Text = "Cập nhật người bệnh";
+            this.mnuEdit.Click += new System.EventHandler(this.mnuEdit_Click_1);
             // 
             // mnuDelete
             // 
             this.mnuDelete.Image = ((System.Drawing.Image)(resources.GetObject("mnuDelete.Image")));
             this.mnuDelete.Name = "mnuDelete";
-            this.mnuDelete.Size = new System.Drawing.Size(248, 26);
-            this.mnuDelete.Text = "Xóa người bệnh cấp cứu";
+            this.mnuDelete.Size = new System.Drawing.Size(215, 26);
+            this.mnuDelete.Text = "Xóa người bệnh";
             this.mnuDelete.Click += new System.EventHandler(this.mnuDelete_Click_1);
             // 
             // cmdThemMoiBN
             // 
             this.cmdThemMoiBN.BackColor = System.Drawing.Color.Transparent;
             this.cmdThemMoiBN.Font = new System.Drawing.Font("Arial", 10F);
-            this.cmdThemMoiBN.Image = ((System.Drawing.Image)(resources.GetObject("cmdThemMoiBN.Image")));
-            this.cmdThemMoiBN.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.cmdThemMoiBN.Image = global::VMS.HIS.Noitru.Properties.Resources.add_04_32;
             this.cmdThemMoiBN.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdThemMoiBN.Name = "cmdThemMoiBN";
-            this.cmdThemMoiBN.Size = new System.Drawing.Size(94, 28);
+            this.cmdThemMoiBN.Size = new System.Drawing.Size(90, 28);
             this.cmdThemMoiBN.Text = "Thêm BN";
             this.cmdThemMoiBN.ToolTipText = "Thêm mới Bệnh nhân cấp cứu";
             this.cmdThemMoiBN.Visible = false;
@@ -292,6 +292,7 @@
             this.mnuPhangiuong.Name = "mnuPhangiuong";
             this.mnuPhangiuong.Size = new System.Drawing.Size(246, 26);
             this.mnuPhangiuong.Text = "Phân giường -Sửa giường";
+            this.mnuPhangiuong.Click += new System.EventHandler(this.mnuPhangiuong_Click_1);
             // 
             // mnuChuyengiuong
             // 
@@ -364,7 +365,7 @@
             this.mnuChuyendieutringoaitru.Image = global::VMS.HIS.Noitru.Properties.Resources.arrow_left_11_1;
             this.mnuChuyendieutringoaitru.Name = "mnuChuyendieutringoaitru";
             this.mnuChuyendieutringoaitru.Size = new System.Drawing.Size(396, 26);
-            this.mnuChuyendieutringoaitru.Text = "Chuyển điều trị ngoại trú";
+            this.mnuChuyendieutringoaitru.Text = "Chuyển điều trị Ban ngày";
             this.mnuChuyendieutringoaitru.Click += new System.EventHandler(this.mnuChuyendieutringoaitru_Click);
             // 
             // cmdPhanGiuong
@@ -413,7 +414,7 @@
             this.cmdChuyenKhoa.Image = ((System.Drawing.Image)(resources.GetObject("cmdChuyenKhoa.Image")));
             this.cmdChuyenKhoa.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdChuyenKhoa.Name = "cmdChuyenKhoa";
-            this.cmdChuyenKhoa.Size = new System.Drawing.Size(116, 24);
+            this.cmdChuyenKhoa.Size = new System.Drawing.Size(116, 28);
             this.cmdChuyenKhoa.Text = "Chuyển khoa";
             this.cmdChuyenKhoa.ToolTipText = "Chuyển khoa cho các Bệnh nhân đang nằm ở khoa khác";
             this.cmdChuyenKhoa.Visible = false;
@@ -423,7 +424,7 @@
             this.cmdHuychuyenkhoa.Image = ((System.Drawing.Image)(resources.GetObject("cmdHuychuyenkhoa.Image")));
             this.cmdHuychuyenkhoa.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdHuychuyenkhoa.Name = "cmdHuychuyenkhoa";
-            this.cmdHuychuyenkhoa.Size = new System.Drawing.Size(141, 24);
+            this.cmdHuychuyenkhoa.Size = new System.Drawing.Size(141, 28);
             this.cmdHuychuyenkhoa.Text = "Hủy chuyển khoa";
             this.cmdHuychuyenkhoa.ToolTipText = "Hủy chuyển khoa nội trú để quay về khoa cũ";
             this.cmdHuychuyenkhoa.Visible = false;
@@ -433,7 +434,7 @@
             this.cmdChuyenkhoasua.Image = ((System.Drawing.Image)(resources.GetObject("cmdChuyenkhoasua.Image")));
             this.cmdChuyenkhoasua.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdChuyenkhoasua.Name = "cmdChuyenkhoasua";
-            this.cmdChuyenkhoasua.Size = new System.Drawing.Size(144, 24);
+            this.cmdChuyenkhoasua.Size = new System.Drawing.Size(144, 28);
             this.cmdChuyenkhoasua.Tag = "1";
             this.cmdChuyenkhoasua.Text = "Chuyển khoa sửa";
             this.cmdChuyenkhoasua.Visible = false;
@@ -444,7 +445,7 @@
             this.cmdConfig.Image = ((System.Drawing.Image)(resources.GetObject("cmdConfig.Image")));
             this.cmdConfig.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdConfig.Name = "cmdConfig";
-            this.cmdConfig.Size = new System.Drawing.Size(90, 24);
+            this.cmdConfig.Size = new System.Drawing.Size(90, 28);
             this.cmdConfig.Text = "Cấu hình";
             // 
             // cmdsuabuonggiuong
@@ -452,7 +453,7 @@
             this.cmdsuabuonggiuong.Image = ((System.Drawing.Image)(resources.GetObject("cmdsuabuonggiuong.Image")));
             this.cmdsuabuonggiuong.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdsuabuonggiuong.Name = "cmdsuabuonggiuong";
-            this.cmdsuabuonggiuong.Size = new System.Drawing.Size(151, 24);
+            this.cmdsuabuonggiuong.Size = new System.Drawing.Size(151, 28);
             this.cmdsuabuonggiuong.Text = "Sửa buồng giường";
             this.cmdsuabuonggiuong.Visible = false;
             this.cmdsuabuonggiuong.Click += new System.EventHandler(this.cmdsuabuonggiuong_Click);
@@ -469,13 +470,13 @@
             // 
             // uiGroupBox1
             // 
+            this.uiGroupBox1.Controls.Add(this.cboKhoanoitru);
             this.uiGroupBox1.Controls.Add(this.radAll);
             this.uiGroupBox1.Controls.Add(this.radRaVien);
             this.uiGroupBox1.Controls.Add(this.radChuyenKhoa);
             this.uiGroupBox1.Controls.Add(this.radDangDtri);
             this.uiGroupBox1.Controls.Add(this.chkCapcuu);
             this.uiGroupBox1.Controls.Add(this.cmdTimKiem);
-            this.uiGroupBox1.Controls.Add(this.cboKhoanoitru);
             this.uiGroupBox1.Controls.Add(this.label2);
             this.uiGroupBox1.Controls.Add(this.txtPatientName);
             this.uiGroupBox1.Controls.Add(this.txtPatientCode);
@@ -491,6 +492,17 @@
             this.uiGroupBox1.TabIndex = 5;
             this.uiGroupBox1.Text = "&Thông tin tìm kiếm";
             this.uiGroupBox1.VisualStyle = Janus.Windows.UI.Dock.PanelVisualStyle.Office2003;
+            // 
+            // cboKhoanoitru
+            // 
+            this.cboKhoanoitru.FormattingEnabled = true;
+            this.cboKhoanoitru.Location = new System.Drawing.Point(603, 26);
+            this.cboKhoanoitru.Name = "cboKhoanoitru";
+            this.cboKhoanoitru.Next_Control = null;
+            this.cboKhoanoitru.RaiseEnterEventWhenInvisible = true;
+            this.cboKhoanoitru.Size = new System.Drawing.Size(239, 23);
+            this.cboKhoanoitru.TabIndex = 45;
+            this.cboKhoanoitru.SelectedIndexChanged += new System.EventHandler(this.cboKhoanoitru_SelectedIndexChanged);
             // 
             // radAll
             // 
@@ -552,17 +564,6 @@
             this.cmdTimKiem.Size = new System.Drawing.Size(153, 59);
             this.cmdTimKiem.TabIndex = 18;
             this.cmdTimKiem.Text = "Tìm kiếm(F3)";
-            // 
-            // cboKhoanoitru
-            // 
-            this.cboKhoanoitru.ComboStyle = Janus.Windows.EditControls.ComboStyle.DropDownList;
-            this.cboKhoanoitru.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboKhoanoitru.Location = new System.Drawing.Point(596, 25);
-            this.cboKhoanoitru.Name = "cboKhoanoitru";
-            this.cboKhoanoitru.Size = new System.Drawing.Size(239, 23);
-            this.cboKhoanoitru.TabIndex = 16;
-            this.cboKhoanoitru.Text = "Khoa nội trú";
-            this.cboKhoanoitru.VisualStyle = Janus.Windows.UI.VisualStyle.Office2003;
             // 
             // label2
             // 
@@ -728,25 +729,25 @@
             this.uiStatusBar1.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uiStatusBar1.Location = new System.Drawing.Point(0, 898);
             this.uiStatusBar1.Name = "uiStatusBar1";
-            uiStatusBarPanel4.BorderColor = System.Drawing.Color.Empty;
-            uiStatusBarPanel4.Key = "";
-            uiStatusBarPanel4.ProgressBarValue = 0;
-            uiStatusBarPanel4.Text = "F3: Tìm kiếm ";
-            uiStatusBarPanel5.BorderColor = System.Drawing.Color.Empty;
-            uiStatusBarPanel5.Key = "";
-            uiStatusBarPanel5.ProgressBarValue = 0;
-            uiStatusBarPanel5.Text = "Esc: Thoát";
-            uiStatusBarPanel6.Alignment = System.Windows.Forms.HorizontalAlignment.Right;
-            uiStatusBarPanel6.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Spring;
-            uiStatusBarPanel6.BorderColor = System.Drawing.Color.Empty;
-            uiStatusBarPanel6.Key = "";
-            uiStatusBarPanel6.ProgressBarValue = 0;
-            uiStatusBarPanel6.Text = "Ngày in:                                        ";
-            uiStatusBarPanel6.Width = 1190;
+            uiStatusBarPanel1.BorderColor = System.Drawing.Color.Empty;
+            uiStatusBarPanel1.Key = "";
+            uiStatusBarPanel1.ProgressBarValue = 0;
+            uiStatusBarPanel1.Text = "F3: Tìm kiếm ";
+            uiStatusBarPanel2.BorderColor = System.Drawing.Color.Empty;
+            uiStatusBarPanel2.Key = "";
+            uiStatusBarPanel2.ProgressBarValue = 0;
+            uiStatusBarPanel2.Text = "Esc: Thoát";
+            uiStatusBarPanel3.Alignment = System.Windows.Forms.HorizontalAlignment.Right;
+            uiStatusBarPanel3.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Spring;
+            uiStatusBarPanel3.BorderColor = System.Drawing.Color.Empty;
+            uiStatusBarPanel3.Key = "";
+            uiStatusBarPanel3.ProgressBarValue = 0;
+            uiStatusBarPanel3.Text = "Ngày in:                                        ";
+            uiStatusBarPanel3.Width = 1190;
             this.uiStatusBar1.Panels.AddRange(new Janus.Windows.UI.StatusBar.UIStatusBarPanel[] {
-            uiStatusBarPanel4,
-            uiStatusBarPanel5,
-            uiStatusBarPanel6});
+            uiStatusBarPanel1,
+            uiStatusBarPanel2,
+            uiStatusBarPanel3});
             this.uiStatusBar1.Size = new System.Drawing.Size(1400, 23);
             this.uiStatusBar1.TabIndex = 359;
             // 
@@ -840,7 +841,7 @@
             this.toolStripMenuItem9,
             this.mnuBarcode});
             this.ctxFuntions.Name = "contextMenuStrip1";
-            this.ctxFuntions.Size = new System.Drawing.Size(248, 552);
+            this.ctxFuntions.Size = new System.Drawing.Size(248, 574);
             this.ctxFuntions.Opening += new System.ComponentModel.CancelEventHandler(this.ctxFuntions_Opening);
             // 
             // toolStripMenuItem4
@@ -854,7 +855,7 @@
             this.cmdPhieuChamSoc.Name = "cmdPhieuChamSoc";
             this.cmdPhieuChamSoc.Size = new System.Drawing.Size(247, 26);
             this.cmdPhieuChamSoc.Text = "Phiếu chăm sóc";
-            this.cmdPhieuChamSoc.Click += new System.EventHandler(this.cmdPhieuKhamVaoVien_Click);
+            this.cmdPhieuChamSoc.Click += new System.EventHandler(this.cmdPhieuChamSoc_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -1110,7 +1111,6 @@
         private System.Windows.Forms.Label label1;
         private Janus.Windows.GridEX.EditControls.EditBox txtPatientCode;
         private System.Windows.Forms.Label label11;
-        private Janus.Windows.EditControls.UIComboBox cboKhoanoitru;
         private Janus.Windows.EditControls.UIButton cmdTimKiem;
         private System.Windows.Forms.ToolStripButton cmdChuyenKhoa;
         private System.Windows.Forms.ToolStripButton cmdChuyenGiuong;
@@ -1185,6 +1185,6 @@
         private System.Windows.Forms.ToolStripMenuItem mnuChuyendieutringoaitru;
         private System.Windows.Forms.ToolStripMenuItem mnuBarcode;
         private System.Windows.Forms.ToolStripMenuItem mnuSuaPhieuNhapvien;
-        
+        private UCs.EasyCompletionComboBox cboKhoanoitru;
     }
 }

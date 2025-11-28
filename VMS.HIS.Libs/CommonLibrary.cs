@@ -49,10 +49,24 @@ using System.Diagnostics;
 using QRCoder;
 using NLog;
 
-
 namespace VNS.Libs
 {
-    public class Tralaithuoctaiquay
+    public class VITRI_VAITRO_PHAUTHUAT
+    {
+        public const string PTV_CHINH = "PTV_CHINH";
+        public const string PTV_PHU1 = "PTV_PHU1";
+        public const string PTV_PHU2 = "PTV_PHU2";
+        public const string PTV_PHU3 = "PTV_PHU3";
+        public const string TTV_CHINH = "TTV_CHINH";
+
+        public const string GAYME_CHINH = "GAYME_CHINH";
+        public const string PHUME1 = "PHUME1";
+        public const string PHUME2 = "PHUME2";
+        public const string PHUME3 = "PHUME3";
+        public const string DIEUDUONG_VONGNGOAI = "DIEUDUONG_VONGNGOAI";
+        public const string DIEUDUONG_VONGTRONG = "DIEUDUONG_VONGTRONG";
+    }
+        public class Tralaithuoctaiquay
     {
         public long id_chitiet_thanhtoan { get; set; }
         public long id_donthuoc { get; set; }
@@ -1185,11 +1199,11 @@ namespace VNS.Libs
     ///</summary>
     public class Utility
     {
-        public static void SignDoc_File(Aspose.Words.Document doc, Aspose.Words.DocumentBuilder builder, string Signsize,bool SearchbyNguoiKy=false)
+        public static void SignDoc_File(Aspose.Words.Document doc, Aspose.Words.DocumentBuilder builder, string Signsize, bool SearchbyNguoiKy = false)
         {
             try
             {
-              
+
                 if (globalVariables.dtSignInfor.Rows.Count > 0 && globalVariables.dtSignInfor.Columns.Count > 0)//Tìm các vùng chữ kí để đưa ảnh vào
                 {
                     string[] remaining = doc.MailMerge.GetFieldNames();
@@ -1300,7 +1314,7 @@ namespace VNS.Libs
 
         }
 
-      
+
         public static List<PdfSignaturePosition> GetSignaturePositions_bak(Aspose.Words.Document doc, List<string> bookmarkNames)
         {
             var results = new List<PdfSignaturePosition>();
@@ -1394,7 +1408,7 @@ namespace VNS.Libs
         public static bool MoveToAny(Aspose.Words.DocumentBuilder builder, string fieldName)
         {
             builder.MoveToDocumentStart();
-            return builder.MoveToMergeField(fieldName,true, false);
+            return builder.MoveToMergeField(fieldName, true, false);
         }
         public static List<PdfSignaturePosition> SignDoc_Digital(Aspose.Words.Document doc, Aspose.Words.DocumentBuilder builder)
         {
@@ -1472,12 +1486,13 @@ namespace VNS.Libs
             {
                 List<BookmarkLocation> lst_bookmarkLocations = new List<BookmarkLocation>();
                 List<string> lst_bookmarkNames = new List<string>();
+                globalVariables.bytHinhChuKy = null;
                 DmucNhanvien objNhanvien;
                 if (globalVariables.dtSignInfor.Rows.Count > 0 && globalVariables.dtSignInfor.Columns.Count > 0)//Tìm các vùng chữ kí để đưa ảnh vào
                 {
                     string _defaultSign = string.Format(@"{0}\{1}\default.png", Application.StartupPath, "sign");
-                    string sign_here = string.Format(@"{0}\{1}\signhere", Application.StartupPath, "sign");
-                    if(!File.Exists(sign_here))
+                    string sign_here = string.Format(@"{0}\{1}\signhere.png", Application.StartupPath, "sign");
+                    if (!File.Exists(sign_here))
                         sign_here = string.Format(@"{0}\{1}\signhere.png", Application.StartupPath, "sign");
                     string[] remaining = doc.MailMerge.GetFieldNames();
                     globalVariables.lstVitriky = GetDictionaryFromDataTable();
@@ -1491,11 +1506,12 @@ namespace VNS.Libs
                             {
                                 string user_name = name.Split('_')[1];
                                 objNhanvien = new Select().From(DmucNhanvien.Schema).Where(DmucNhanvien.Columns.UserName).IsEqualTo(user_name).ExecuteSingle<DmucNhanvien>();
-                               
+
                                 byte[] _sign = null;
                                 if (objNhanvien != null)
                                 {
                                     _sign = objNhanvien.ChuKy;
+                                    globalVariables.bytHinhChuKy = _sign;
                                 }
                                 else
                                 {
@@ -1506,10 +1522,10 @@ namespace VNS.Libs
                                 //B1: Lấy id_phieu từ mergefield=idphieu_nguoiky
                                 long v_intID_phieu = Utility.Int64Dbnull(name.Split('_')[0]);
                                 //B2: Lấy thông tin ký của phiếu điều trị này
-                                DataRow[] arrDr = globalVariables.dtSignInfor.Select(string.Format( "id_phieu={0}", v_intID_phieu));
+                                DataRow[] arrDr = globalVariables.dtSignInfor.Select(string.Format("id_phieu={0}", v_intID_phieu));
                                 //Bước 3: Kiểm tra tờ này đã ký hay chưa ký
                                 //var p = globalVariables.dtSignInfor.AsEnumerable().Where(c => Utility.ByteDbnull(c["tthai_ky"]) == 0 && Utility.sDbnull(c["nguoi_ky"]) == user_name).FirstOrDefault();
-                                if (arrDr.Length<=0 || Utility.ByteDbnull(arrDr[0]["tthai_kydientu"])==0)//Chưa ký trên tài liệu này
+                                if (arrDr.Length <= 0 || Utility.ByteDbnull(arrDr[0]["tthai_kydientu"]) == 0)//Chưa ký trên tài liệu này
                                 {
                                     //_sign = null;
                                     _sign = Utility.fromimagepath2byte(sign_here);
@@ -1528,7 +1544,7 @@ namespace VNS.Libs
                                 if (builder.MoveToMergeField(name))
                                 {
                                     //Chèn 2 cái này mục đích đánh dấu vị trí chữ ký phục vụ công tác di chuyển con trỏ đến sau khi ký (nếu muốn)
-                                   Aspose.Words.Run runChuKy = new Aspose.Words.Run(doc);
+                                    Aspose.Words.Run runChuKy = new Aspose.Words.Run(doc);
                                     runChuKy.Text = "Ký và ghi rõ họ tên";
                                     runChuKy.Font.Name = "Times New Roman";
                                     runChuKy.Font.Size = 12;
@@ -1538,7 +1554,7 @@ namespace VNS.Libs
                                     builder.Writeln(); // xuống dòng
                                     builder.StartBookmark(user_name);
                                     builder.EndBookmark(user_name);
-                                    Aspose.Words.Drawing.Shape chuKyImage=null;
+                                    Aspose.Words.Drawing.Shape chuKyImage = null;
                                     if (_sign != null)
                                     {
                                         if (Signsize != "")
@@ -1546,13 +1562,13 @@ namespace VNS.Libs
                                             int w = Utility.Int32Dbnull(Signsize.Split('x')[0], 0);
                                             int h = Utility.Int32Dbnull(Signsize.Split('x')[1], 0);
                                             if (w > 0 && h > 0)
-                                                chuKyImage= builder.InsertImage(_sign, w, h);
+                                                chuKyImage = builder.InsertImage(_sign, w, h);
                                             else
-                                                chuKyImage= builder.InsertImage(_sign);
+                                                chuKyImage = builder.InsertImage(_sign);
                                         }
                                         else
                                             if (_sign != null)
-                                            chuKyImage= builder.InsertImage(_sign);
+                                            chuKyImage = builder.InsertImage(_sign);
                                     }
                                     chuKyImage.HorizontalAlignment = Aspose.Words.Drawing.HorizontalAlignment.Center;
                                     builder.Writeln();
@@ -1561,7 +1577,7 @@ namespace VNS.Libs
                                     runChuKy.Font.Name = "Times New Roman";
                                     runChuKy.Font.Size = 12;
                                     runChuKy.Font.Bold = true;
-                                    builder.ParagraphFormat.Alignment =Aspose.Words.ParagraphAlignment.Center;
+                                    builder.ParagraphFormat.Alignment = Aspose.Words.ParagraphAlignment.Center;
                                     builder.CurrentParagraph.AppendChild(runChuKy);
                                     //else//Không cần vì mergefield này ẩn
                                     //    builder.InsertImage(NoImage, 10, 10);
@@ -1576,12 +1592,13 @@ namespace VNS.Libs
                                 if (globalVariables.lstVitriky.ContainsKey(name))
                                 {
                                     string nguoi_ky = globalVariables.lstVitriky[name];
-                                   
+
                                     objNhanvien = new Select().From(DmucNhanvien.Schema).Where(DmucNhanvien.Columns.UserName).IsEqualTo(nguoi_ky).ExecuteSingle<DmucNhanvien>();
                                     byte[] _sign = null;
                                     if (objNhanvien != null)
                                     {
                                         _sign = objNhanvien.ChuKy;
+                                        globalVariables.bytHinhChuKy = _sign;
                                     }
                                     else
                                     {
@@ -1633,7 +1650,7 @@ namespace VNS.Libs
                                         builder.StartBookmark(name);
                                         builder.EndBookmark(name);
                                         lst_bookmarkNames.Add(name);
-                                        
+
                                         Aspose.Words.Drawing.Shape insertedImage = null;
                                         if (!isKiso)//Chỉ kí điện tử mới kiểm tra
                                         {
@@ -1644,25 +1661,69 @@ namespace VNS.Libs
                                                     int w = Utility.Int32Dbnull(Signsize.Split('x')[0], 0);
                                                     int h = Utility.Int32Dbnull(Signsize.Split('x')[1], 0);
                                                     if (w > 0 && h > 0)
-                                                        insertedImage= builder.InsertImage(_sign, w, h);
+                                                        insertedImage = builder.InsertImage(_sign, w, h);
                                                     else
-                                                        insertedImage= builder.InsertImage(_sign);
+                                                        insertedImage = builder.InsertImage(_sign);
                                                 }
                                                 else
                                                     if (_sign != null)
-                                                    insertedImage= builder.InsertImage(_sign);
-                                                if(insertedImage!=null)
+                                                    insertedImage = builder.InsertImage(_sign);
+                                                if (insertedImage != null)
                                                 {
                                                     insertedImage.AlternativeText = $"sign-image-{name}";
                                                     insertedImage.Name = $"{name}";
-                                                }    
+                                                }
                                             }
                                         }
                                         else//Kí số-->Chèn khung ảnh ký trống vào đây
                                         {
 
-                                        }    
-                                       
+                                        }
+
+                                    }
+                                }
+                                else//Chưa có vị trí ký do chưa nhập dữ liệu trên phiếu. Cần xử lý để mergefield thân thiện hơn
+                                {
+                                    byte[] _sign = null;
+
+                                    if (File.Exists(sign_here))
+                                        _sign = Utility.fromimagepath2byte(sign_here);
+                                    if (builder.MoveToMergeField(name))
+                                    {
+                                        //Chèn 2 cái này mục đích đánh dấu vị trí chữ ký phục vụ công tác di chuyển con trỏ đến sau khi ký (nếu muốn)
+                                        builder.StartBookmark(name);
+                                        builder.EndBookmark(name);
+                                        lst_bookmarkNames.Add(name);
+
+                                        Aspose.Words.Drawing.Shape insertedImage = null;
+                                        if (!isKiso)//Chỉ kí điện tử mới kiểm tra
+                                        {
+                                            if (_sign != null)
+                                            {
+                                                if (Signsize != "")
+                                                {
+                                                    int w = Utility.Int32Dbnull(Signsize.Split('x')[0], 0);
+                                                    int h = Utility.Int32Dbnull(Signsize.Split('x')[1], 0);
+                                                    if (w > 0 && h > 0)
+                                                        insertedImage = builder.InsertImage(_sign, w, h);
+                                                    else
+                                                        insertedImage = builder.InsertImage(_sign);
+                                                }
+                                                else
+                                                    if (_sign != null)
+                                                    insertedImage = builder.InsertImage(_sign);
+                                                if (insertedImage != null)
+                                                {
+                                                    insertedImage.AlternativeText = $"sign-image-{name}";
+                                                    insertedImage.Name = $"{name}";
+                                                }
+                                            }
+                                        }
+                                        else//Kí số-->Chèn khung ảnh ký trống vào đây
+                                        {
+
+                                        }
+
                                     }
                                 }
                             }
@@ -1698,7 +1759,7 @@ namespace VNS.Libs
                             //Chèn 2 cái này mục đích đánh dấu vị trí chữ ký phục vụ công tác di chuyển con trỏ đến sau khi ký (nếu muốn)
                             builder.StartBookmark(name);
                             builder.EndBookmark(name);
-                            int numoflines= Utility.Int32Dbnull( Laygiatrithamsohethong("CKS_SODONGTRANG", "2", false));
+                            int numoflines = Utility.Int32Dbnull(Laygiatrithamsohethong("CKS_SODONGTRANG", "2", false));
                             for (int i = 1; i <= numoflines; i++)
                             {
                                 builder.Writeln();
@@ -1706,13 +1767,220 @@ namespace VNS.Libs
                         }
                     }
                 }
+                //Lưu tọa độ các vùng ký trong file
+                if (globalVariables.emr_id_file > 0)
+                    UpdateSignatureLocation(doc);
             }
             catch (Exception ex)
             {
                 Utility.CatchException(ex);
 
             }
+            finally
+            {
+                globalVariables.emr_id_file = -1;//Để tránh mở các form khác ngoài form emr sẽ vô tình update nhầm tọa độ vì các chức năng in đó cũng gọi hàm signDoc này
+            }
 
+        }
+        public static void UpdateSignatureLocation(Aspose.Words.Document doc)
+        {
+            List<SignatureLocation> lstSignLoc = new List<SignatureLocation>();
+            var collector = new Aspose.Words.Layout.LayoutCollector(doc);
+            var enumerator = new Aspose.Words.Layout.LayoutEnumerator(doc);
+            Aspose.Words.NodeCollection lstNode = doc.GetChildNodes(Aspose.Words.NodeType.Shape, true);
+            foreach (Aspose.Words.Drawing.Shape shape in lstNode)
+            {
+                if (globalVariables.lstVitriky.ContainsKey(shape.Name))
+                {
+                    string nguoi_ky = globalVariables.lstVitriky[shape.Name];
+                    var entity = collector.GetEntity(shape);
+                    if (entity == null)
+                        continue;
+
+                    enumerator.Current = entity;
+                    var rect = enumerator.Rectangle;
+
+                    int pageIndex = collector.GetStartPageIndex(shape);
+                    //int pageIndex = collector.GetStartPageIndex(shape);
+                    var section = (Aspose.Words.Section)shape.GetAncestor(Aspose.Words.NodeType.Section);
+                    if (section == null)
+                        continue;
+                    //var section = (Aspose.Words.Section)doc.GetChild(NodeType.Section, pageIndex - 1, true);
+                    double pageHeight = section.PageSetup.PageHeight;
+
+                    // Chuyển sang toạ độ PDF (gốc dưới)
+                    float pdfY = (float)(pageHeight - rect.Y - rect.Height);
+                    var pdfRect = new RectangleF(rect.X, pdfY, rect.Width, rect.Height);
+                    new Update(EmrFileSignInfor.Schema)
+                        .Set(EmrFileSignInfor.Columns.X).EqualTo(pdfRect.X)
+                        .Set(EmrFileSignInfor.Columns.Y).EqualTo(pdfRect.Y)
+                        .Set(EmrFileSignInfor.Columns.W).EqualTo(pdfRect.Width)
+                        .Set(EmrFileSignInfor.Columns.H).EqualTo(pdfRect.Height)
+                        .Set(EmrFileSignInfor.Columns.Page).EqualTo(pageIndex)
+                        .Where(EmrFileSignInfor.Columns.FileId).IsEqualTo(globalVariables.emr_id_file)
+                        .And(EmrFileSignInfor.Columns.TenVitriKy).IsEqualTo(shape.Name)
+                        //.And(EmrFileSignInfor.Columns.NguoiKy).IsEqualTo(nguoi_ky)//Không cần tránh tình huống tài liệu thay đổi người ký sẽ ko update đc
+                        .Execute();
+                }
+            }
+        }
+        /// <summary>
+        /// Tìm mergefield để thay bằng BookMark nhằm lấy tọa độ kí số
+        /// </summary>
+        /// <param name="doc"></param>
+        /// <param name="builder"></param>
+        /// <param name="Signsize"></param>
+        /// <param name="isKiso"></param>
+        public static void SignDoc_HIS(Aspose.Words.Document doc, Aspose.Words.DocumentBuilder builder, byte[] anh_chuky, string Signsize = "150x50", string ANH_CHUKY_SIZE = "80x50", string ANH_VALID_SIZE = "100X50", bool isKiso = false)
+        {
+            try
+            {
+                List<BookmarkLocation> lst_bookmarkLocations = new List<BookmarkLocation>();
+                List<string> lst_bookmarkNames = new List<string>();
+                globalVariables.bytHinhChuKy = null;
+                if (globalVariables.dtSignInfor.Rows.Count > 0 && globalVariables.dtSignInfor.Columns.Count > 0)//Tìm các vùng chữ kí để đưa ảnh vào
+                {
+                    string _defaultSign = string.Format(@"{0}\{1}\default.png", Application.StartupPath, "sign");
+                    string sign_here = string.Format(@"{0}\{1}\signhere.png", Application.StartupPath, "sign");
+                    if (!File.Exists(sign_here))
+                        sign_here = string.Format(@"{0}\{1}\signhere.png", Application.StartupPath, "sign");
+                    string[] remaining = doc.MailMerge.GetFieldNames();
+                    globalVariables.lstVitriky = GetDictionaryFromDataTable();
+                    byte[] _sign = Utility.fromimagepath2byte(sign_here);
+                    if (!isKiso)
+                    {
+                        Signsize = "5x5";
+                        ANH_VALID_SIZE = "5x5";
+                        ANH_CHUKY_SIZE = "5x5";
+                    }
+                    if (remaining.Length > 0)
+                    {
+                        doc.UpdatePageLayout();
+                        foreach (var name in remaining)
+                        {
+                            if (globalVariables.lstVitriky.ContainsKey(name))
+                            {
+                                if (builder.MoveToMergeField(name))
+                                {
+                                    //Chèn 2 cái này mục đích đánh dấu vị trí chữ ký phục vụ công tác di chuyển con trỏ đến sau khi ký (nếu muốn)
+                                    builder.StartBookmark(name);
+                                    builder.EndBookmark(name);
+                                    lst_bookmarkNames.Add(name);
+                                    Aspose.Words.Drawing.Shape insertedImage = null;
+
+                                    if (_sign != null)
+                                    {
+                                        if (Signsize != "")
+                                        {
+                                            int w = Utility.Int32Dbnull(Signsize.Split('x')[0], 0);
+                                            int h = Utility.Int32Dbnull(Signsize.Split('x')[1], 0);
+                                            if (w > 0 && h > 0)
+                                                insertedImage = builder.InsertImage(_sign, w, h);
+                                            else
+                                                insertedImage = builder.InsertImage(_sign);
+                                        }
+                                        else
+                                            if (_sign != null)
+                                            insertedImage = builder.InsertImage(_sign);
+                                        if (insertedImage != null)
+                                        {
+                                            insertedImage.AlternativeText = $"sign-image-{name}";
+                                            insertedImage.Name = $"{name}";
+                                        }
+                                    }
+
+                                }
+                            }
+                            else//Có thể là mergefile ảnh chữ ký
+                            {
+                                if (name == "ANH_CHUKY")
+                                {
+                                    if (anh_chuky == null)//Không có hình chữ kí trong DB-->Tìm theo file
+                                    {
+                                        ANH_CHUKY_SIZE = "5x5";
+                                    }
+                                    if (builder.MoveToMergeField(name))
+                                    {
+                                        if (anh_chuky != null)
+                                        {
+                                            if (ANH_CHUKY_SIZE != null)
+                                            {
+                                                int w = Utility.Int32Dbnull(ANH_CHUKY_SIZE.Split('x')[0], 0);
+                                                int h = Utility.Int32Dbnull(ANH_CHUKY_SIZE.Split('x')[1], 0);
+                                                if (w > 0 && h > 0)
+                                                    builder.InsertImage(anh_chuky, w, h);
+                                                else
+                                                    builder.InsertImage(anh_chuky);
+                                            }
+                                            else
+                                                builder.Write("");
+                                        }
+                                        else
+                                            builder.Write("");
+                                    }
+                                }
+                                if (name == "ANH_VALID")
+                                {
+                                    string _validSignFile = string.Format(@"{0}\{1}\ANH_VALID.png", Application.StartupPath, "sign");
+                                    byte[] _ValidSignData = Utility.fromimagepath2byte(_validSignFile);
+                                    if (_ValidSignData == null)//Không có hình chữ kí trong DB-->Tìm theo file
+                                    {
+                                        ANH_VALID_SIZE = "5x5";
+                                    }
+                                    if (builder.MoveToMergeField(name))
+                                    {
+                                        if (_ValidSignData != null)
+                                        {
+                                            if (ANH_VALID_SIZE != null)
+                                            {
+                                                int w = Utility.Int32Dbnull(ANH_VALID_SIZE.Split('x')[0], 0);
+                                                int h = Utility.Int32Dbnull(ANH_VALID_SIZE.Split('x')[1], 0);
+                                                if (w > 0 && h > 0)
+                                                    builder.InsertImage(_ValidSignData, w, h);
+                                                else
+                                                    builder.InsertImage(_ValidSignData);
+                                            }
+                                            else
+                                                builder.Write("");
+                                        }
+                                        else
+                                            builder.Write("");
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                    else
+                    {
+
+                    }
+                }
+                else//Bấm in phiếu
+                {
+                    string[] remaining = doc.MailMerge.GetFieldNames();
+                    foreach (var name in remaining)
+                    {
+                        if (builder.MoveToMergeField(name))
+                        {
+                            //Chèn 2 cái này mục đích đánh dấu vị trí chữ ký phục vụ công tác di chuyển con trỏ đến sau khi ký (nếu muốn)
+                            builder.StartBookmark(name);
+                            builder.EndBookmark(name);
+                            int numoflines = Utility.Int32Dbnull(Laygiatrithamsohethong("CKS_SODONGTRANG", "2", false));
+                            for (int i = 1; i <= numoflines; i++)
+                            {
+                                builder.Writeln();
+                            }
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+
+            }
         }
         //public static void SignDoc_Digital(Aspose.Words.Document doc, Aspose.Words.DocumentBuilder builder, string Signsize, bool SearchbyNguoiKy = false)
         //{
@@ -1766,7 +2034,7 @@ namespace VNS.Libs
         //                        }
         //                        if (builder.MoveToMergeField(name))//Chèn book mark để lấy tọa độ
         //                        {
-                                    
+
         //                            builder.StartBookmark(user_name);
         //                            builder.EndBookmark(user_name);
         //                        }
@@ -1807,7 +2075,7 @@ namespace VNS.Libs
         //                                    Utility.ShowMsg(msg);
         //                                }
         //                            }
-                                    
+
         //                            if (builder.MoveToMergeField(name))
         //                            {
         //                                //Chèn 2 cái này mục đích đánh dấu vị trí chữ ký phục vụ công tác di chuyển con trỏ đến sau khi ký (nếu muốn)
@@ -1928,19 +2196,37 @@ namespace VNS.Libs
             catch (Exception ex)
             {
                 Utility.CatchException(ex);
-              
+
             }
-           
+
+        }
+        public static void OpenFile(string file2Open)
+        {
+
+            if (File.Exists(file2Open))
+            {
+                Process process = new Process();
+                try
+                {
+                    process.StartInfo.FileName = file2Open;
+                    process.Start();
+                    process.WaitForInputIdle();
+                }
+                catch (Exception ex)
+                {
+                    Utility.CatchException(ex);
+                }
+            }
         }
         public static void OpenHelpFile(string helpfile)
         {
             try
             {
-                 System.Diagnostics.Process.Start(helpfile);
+                System.Diagnostics.Process.Start(helpfile);
             }
             catch (Exception ex)
             {
-                
+
             }
         }
         public static decimal getSUM(DataTable dt, string fieldName)
@@ -1973,7 +2259,7 @@ namespace VNS.Libs
                 return "";
             }
         }
-        
+
         public static string translateYYYYMMDD2DDMMYYYY(string YYYYMMDD)
         {
             try
@@ -2009,7 +2295,7 @@ namespace VNS.Libs
             }
             return "XFILM WORKSTATION";
         }
-       public static void setEnterEvent(Control parent)
+        public static void setEnterEvent(Control parent)
         {
             foreach (Control ctrl in parent.Controls)
             {
@@ -2038,118 +2324,186 @@ namespace VNS.Libs
             }
         }
 
-       static void box_LostFocus(object sender, EventArgs e)
-       {
-           if (sender.GetType().Equals(typeof(EditBox)))
-           {
-               EditBox box = sender as EditBox;
-               box.Text = Utility.DoTrim(box.Text);
-           }
-           if (sender.GetType().Equals(typeof(TextBox)))
-           {
-               TextBox box = sender as TextBox;
-               box.Text = Utility.DoTrim(box.Text);
-           }
-       }
+        public static void setLeaveEvent(Control parent)
+        {
+            foreach (Control ctrl in parent.Controls)
+            {
+                if (ctrl.GetType().Equals(typeof(EditBox)))
+                {
+                    EditBox box = ctrl as EditBox;
+                    if (box.Multiline)
+                    {
+                        box.Enter += _Enter;
+                        box.Leave += Box_Leave;
+                        //box.KeyDown += box_KeyDown;
+                    }
+                }
+                else if (ctrl.GetType().Equals(typeof(TextBox)))
+                {
+                    TextBox box = ctrl as TextBox;
+                    if (box.Multiline)
+                    {
+                        box.Enter += _Enter;
+                        box.Leave += Box_Leave;
+                        //box.KeyDown+=box_KeyDown;
+                    }
+                }
 
-       static void box_KeyDown(object sender, KeyEventArgs e)
-       {
-           //if (e.KeyCode == Keys.Enter) e.Handled = false;
-       }
-       static void _Enter(object sender, EventArgs e)
-       {
-           if (sender.GetType().Equals(typeof(EditBox)))
-           {
-               EditBox box = sender as EditBox;
-               int position = box.Text.Length;
-               box.Select(position, 0);
-           }
-           if (sender.GetType().Equals(typeof(TextBox)))
-           {
-               TextBox box = sender as TextBox;
-               int position = box.Text.Length;
-               box.Select(position, 0);
-           }
-       }
-       public static void SaveValue2Lines(List<string> values, string file)
-       {
-           try
-           {
+                else
+                    setEnterEvent(ctrl);
+            }
+        }
 
+        private static void Box_Leave(object sender, EventArgs e)
+        {
+            RemoveTrailingEmptyLine(sender as TextBox);
+        }
 
-               using (StreamWriter _Writer = new StreamWriter(file, false))
-               {
-                   string value = "";
-                   foreach (string s in values)
-                   {
-                       _Writer.WriteLine(s);
-                   }
-                   _Writer.Flush();
-                   _Writer.Close();
-               }
-           }
-           catch
-           {
-           }
-       }
-       public static void SetVisualStyle(Control _parent, bool checkShowHide)
-       {
-           try
-           {
-               foreach (Control ctr in _parent.Controls)
-               {
-                   if (ctr is GridEX)
-                   {
-                       ((GridEX)ctr).VisualStyle = (Janus.Windows.GridEX.VisualStyle)PropertyLib._AppProperties.NormalVisualStyle;
-                       //((GridEX)ctr).SelectedFormatStyle.BackColor = System.Drawing.SystemColors.Highlight;
-                       ((GridEX)ctr).SelectedFormatStyle.BackColor = Color.SteelBlue;
-                       ((GridEX)ctr).AlternatingColors = false;
-                        ((GridEX)ctr).FilterRowFormatStyle.BackColor = Color.FromArgb(192, 255, 192);
-                        ((GridEX)ctr).BackColor = Color.WhiteSmoke;
-                       ((GridEX)ctr).CellSelectionMode = CellSelectionMode.EntireRow;
-                       ((GridEX)ctr).FocusCellFormatStyle.BackColor = Color.Snow;
-                       ((GridEX)ctr).FocusCellFormatStyle.ForeColor = Color.Black;
-                       ((GridEX)ctr).FocusCellFormatStyle.FontBold = Janus.Windows.GridEX.TriState.True;
-                       ((GridEX)ctr).KeyDown += Utility_KeyDown;
-                       ShowHideColumns((GridEX)ctr);
-                       if (checkShowHide) ShowHideMoneyColumns((GridEX)ctr);
-                       AutoAddContextMenu((GridEX)ctr);
-                       //((GridEX)ctr).FocusCellFormatStyle.ForeColor = Color.White;
-                   }
-                   else if (ctr is CalendarCombo)
-                       ((CalendarCombo)ctr).VisualStyle = (Janus.Windows.CalendarCombo.VisualStyle)PropertyLib._AppProperties.NormalVisualStyle;
-                   else if (ctr is UIButton)
-                       ((UIButton)ctr).VisualStyle = (Janus.Windows.UI.VisualStyle)PropertyLib._AppProperties.Sta_Cbo_CmdVisualStyle;
-                   else if (ctr is UIComboBox)
-                       ((UIComboBox)ctr).VisualStyle = (Janus.Windows.UI.VisualStyle)PropertyLib._AppProperties.Sta_Cbo_CmdVisualStyle;
-                   else if (ctr is UIStatusBar)
-                       ((UIStatusBar)ctr).VisualStyle = (Janus.Windows.UI.VisualStyle)PropertyLib._AppProperties.Sta_Cbo_CmdVisualStyle;
-                   else if (ctr is UITab)
-                       ((UITab)ctr).VisualStyle = TabVisualStyle.VS2005;// (TabVisualStyle)PropertyLib._AppProperties.TabVisualStyle;
-                    else if (ctr is MultiColumnCombo)
-                       ((MultiColumnCombo)ctr).VisualStyle = (Janus.Windows.GridEX.VisualStyle)PropertyLib._AppProperties.NormalVisualStyle;
-                   else if (ctr is EditBox)
-                       ((EditBox)ctr).VisualStyle = (Janus.Windows.GridEX.VisualStyle)PropertyLib._AppProperties.NormalVisualStyle;
-                   else if (ctr is MaskedEditBox)
-                       ((MaskedEditBox)ctr).VisualStyle = (Janus.Windows.GridEX.VisualStyle)PropertyLib._AppProperties.NormalVisualStyle;
-                   else if (ctr is UIGroupBox)
-                       ((UIGroupBox)ctr).VisualStyle = (Janus.Windows.UI.Dock.PanelVisualStyle)PropertyLib._AppProperties.NormalVisualStyle;
-                   else if (ctr is CalendarCombo)
-                       ((CalendarCombo)ctr).VisualStyle = (Janus.Windows.CalendarCombo.VisualStyle)PropertyLib._AppProperties.NormalVisualStyle;
-                   else if (ctr is UIRadioButton)
-                       ((UIRadioButton)ctr).VisualStyle = (Janus.Windows.UI.VisualStyle)PropertyLib._AppProperties.Sta_Cbo_CmdVisualStyle;
-                   if (ctr.Controls.Count > 0)
-                       SetVisualStyle(ctr);
-               }
-           }
-           catch (Exception ex)
-           {
-           }
-       }
-       public static void SetVisualStyle(Control _parent)
+        static void box_LostFocus(object sender, EventArgs e)
+        {
+            if (sender.GetType().Equals(typeof(EditBox)))
+            {
+                EditBox box = sender as EditBox;
+                box.Text = Utility.DoTrim(box.Text);
+            }
+            if (sender.GetType().Equals(typeof(TextBox)))
+            {
+                TextBox box = sender as TextBox;
+                box.Text = Utility.DoTrim(box.Text);
+            }
+        }
+        public static void RemoveTrailingEmptyLine(TextBox tb)
+        {
+            var lines = tb.Lines;
+            int last = lines.Length - 1;
+
+            if (last >= 0 && string.IsNullOrWhiteSpace(lines[last]))
+            {
+                tb.Lines = lines.Take(last).ToArray();
+            }
+        }
+        static void box_KeyDown(object sender, KeyEventArgs e)
+        {
+            //if (e.KeyCode == Keys.Enter) e.Handled = false;
+        }
+        static void _Enter(object sender, EventArgs e)
+        {
+            if (sender.GetType().Equals(typeof(EditBox)))
+            {
+                EditBox box = sender as EditBox;
+                int position = box.Text.Length;
+                box.Select(position, 0);
+            }
+            if (sender.GetType().Equals(typeof(TextBox)))
+            {
+                TextBox box = sender as TextBox;
+                int position = box.Text.Length;
+                box.Select(position, 0);
+            }
+        }
+        public static void SaveValue2Lines(List<string> values, string file)
         {
             try
             {
+
+
+                using (StreamWriter _Writer = new StreamWriter(file, false))
+                {
+                    string value = "";
+                    foreach (string s in values)
+                    {
+                        _Writer.WriteLine(s);
+                    }
+                    _Writer.Flush();
+                    _Writer.Close();
+                }
+            }
+            catch
+            {
+            }
+        }
+        public static void SetVisualStyle(Control _parent, bool checkShowHide)
+        {
+            try
+            {
+                foreach (Control ctr in _parent.Controls)
+                {
+                    if (ctr is GridEX)
+                    {
+                        ((GridEX)ctr).VisualStyle = (Janus.Windows.GridEX.VisualStyle)PropertyLib._AppProperties.NormalVisualStyle;
+                        //((GridEX)ctr).SelectedFormatStyle.BackColor = System.Drawing.SystemColors.Highlight;
+                        ((GridEX)ctr).SelectedFormatStyle.BackColor = Color.SteelBlue;
+                        ((GridEX)ctr).AlternatingColors = false;
+                        ((GridEX)ctr).FilterRowFormatStyle.BackColor = Color.FromArgb(192, 255, 192);
+                        ((GridEX)ctr).BackColor = Color.WhiteSmoke;
+                        ((GridEX)ctr).CellSelectionMode = CellSelectionMode.EntireRow;
+                        ((GridEX)ctr).FocusCellFormatStyle.BackColor = Color.Snow;
+                        ((GridEX)ctr).FocusCellFormatStyle.ForeColor = Color.Black;
+                        ((GridEX)ctr).FocusCellFormatStyle.FontBold = Janus.Windows.GridEX.TriState.True;
+                        ((GridEX)ctr).KeyDown += Utility_KeyDown;
+                        ShowHideColumns((GridEX)ctr);
+                        if (checkShowHide) ShowHideMoneyColumns((GridEX)ctr);
+                        AutoAddContextMenu((GridEX)ctr);
+                        //((GridEX)ctr).FocusCellFormatStyle.ForeColor = Color.White;
+                    }
+                    else if (ctr is CalendarCombo)
+                        ((CalendarCombo)ctr).VisualStyle = (Janus.Windows.CalendarCombo.VisualStyle)PropertyLib._AppProperties.NormalVisualStyle;
+                    else if (ctr is UIButton)
+                        ((UIButton)ctr).VisualStyle = (Janus.Windows.UI.VisualStyle)PropertyLib._AppProperties.Sta_Cbo_CmdVisualStyle;
+                    else if (ctr is UIComboBox)
+                        ((UIComboBox)ctr).VisualStyle = (Janus.Windows.UI.VisualStyle)PropertyLib._AppProperties.Sta_Cbo_CmdVisualStyle;
+                    else if (ctr is UIStatusBar)
+                        ((UIStatusBar)ctr).VisualStyle = (Janus.Windows.UI.VisualStyle)PropertyLib._AppProperties.Sta_Cbo_CmdVisualStyle;
+                    else if (ctr is UITab)
+                        ((UITab)ctr).VisualStyle = TabVisualStyle.VS2005;// (TabVisualStyle)PropertyLib._AppProperties.TabVisualStyle;
+                    else if (ctr is MultiColumnCombo)
+                        ((MultiColumnCombo)ctr).VisualStyle = (Janus.Windows.GridEX.VisualStyle)PropertyLib._AppProperties.NormalVisualStyle;
+                    else if (ctr is EditBox)
+                        ((EditBox)ctr).VisualStyle = (Janus.Windows.GridEX.VisualStyle)PropertyLib._AppProperties.NormalVisualStyle;
+                    else if (ctr is MaskedEditBox)
+                        ((MaskedEditBox)ctr).VisualStyle = (Janus.Windows.GridEX.VisualStyle)PropertyLib._AppProperties.NormalVisualStyle;
+                    else if (ctr is UIGroupBox)
+                        ((UIGroupBox)ctr).VisualStyle = (Janus.Windows.UI.Dock.PanelVisualStyle)PropertyLib._AppProperties.NormalVisualStyle;
+                    else if (ctr is CalendarCombo)
+                        ((CalendarCombo)ctr).VisualStyle = (Janus.Windows.CalendarCombo.VisualStyle)PropertyLib._AppProperties.NormalVisualStyle;
+                    else if (ctr is UIRadioButton)
+                        ((UIRadioButton)ctr).VisualStyle = (Janus.Windows.UI.VisualStyle)PropertyLib._AppProperties.Sta_Cbo_CmdVisualStyle;
+                    if (ctr.Controls.Count > 0)
+                        SetVisualStyle(ctr);
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+        static void AutoMaximize(Form f)
+        {
+            try
+            {
+                // Lấy kích thước màn hình chính
+                int screenWidth = Screen.PrimaryScreen.Bounds.Width;
+                int screenHeight = Screen.PrimaryScreen.Bounds.Height;
+                List<string> ScreenSize = Laygiatrithamsohethong("DISPLAY_SETTING", "1366x768", true).Split('x').ToList<string>();
+                // Kiểm tra nếu đúng 1366x768 thì maximize
+                if (screenWidth == Utility.Int32Dbnull(ScreenSize[0]) && screenHeight == Utility.Int32Dbnull(ScreenSize[1]))
+                {
+                    f.MaximizeBox = true;
+                    f.MinimizeBox = true;
+                    f.WindowState = FormWindowState.Maximized;
+                }
+            }
+            catch (Exception ex)
+            {
+
+
+            }
+
+        }
+        public static void SetVisualStyle(Control _parent)
+        {
+            try
+            {
+                AutoMaximize(_parent as Form);
                 foreach (Control ctr in _parent.Controls)
                 {
                     if (ctr is GridEX)
@@ -2218,7 +2572,7 @@ namespace VNS.Libs
                         ((GridEX)ctr).FocusCellFormatStyle.ForeColor = Color.Black;
                         ((GridEX)ctr).FocusCellFormatStyle.FontBold = Janus.Windows.GridEX.TriState.True;
                         ((GridEX)ctr).KeyDown += Utility_KeyDown;
-                       
+
                     }
                     else if (ctr is CalendarCombo)
                         ((CalendarCombo)ctr).VisualStyle = (Janus.Windows.CalendarCombo.VisualStyle)PropertyLib._AppProperties.NormalVisualStyle;
@@ -2251,14 +2605,14 @@ namespace VNS.Libs
             }
         }
         static void AutoAddContextMenu(GridEX grd)
-       {
-           try
-           {
-               if (grd.Name == "grdNhanvien")
-               {
-                   string _name = grd.Name;
-               }
-               ContextMenuStrip ctx = grd.ContextMenuStrip;
+        {
+            try
+            {
+                if (grd.Name == "grdNhanvien")
+                {
+                    string _name = grd.Name;
+                }
+                ContextMenuStrip ctx = grd.ContextMenuStrip;
                 bool isExist = false;
                 if (ctx != null)
                 {
@@ -2273,7 +2627,7 @@ namespace VNS.Libs
                 }
                 if (!isExist)
                 {
-                   // Utility.ShowMsg("Add");
+                    // Utility.ShowMsg("Add");
                     ToolStripMenuItem newItem = null;
                     if (ctx == null)
                     {
@@ -2298,28 +2652,28 @@ namespace VNS.Libs
                     newItem.Click += newItem_Click;
                     ctx.Items.Add(newItem);
                 }
-               grd.ContextMenuStrip = ctx;
-           }
-           catch (Exception ex)
-           {
+                grd.ContextMenuStrip = ctx;
+            }
+            catch (Exception ex)
+            {
                 Utility.CatchException(ex);
             }
-           
 
-       }
 
-       static void newItem_Click(object sender, EventArgs e)
-       {
-           ToolStripMenuItem selectedItem = sender as ToolStripMenuItem;
-           string tabVal = selectedItem.Tag.ToString();
-           GridEX grd = ((ContextMenuStrip)((ToolStripItem)sender).Owner).SourceControl as GridEX;
+        }
+
+        static void newItem_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem selectedItem = sender as ToolStripMenuItem;
+            string tabVal = selectedItem.Tag.ToString();
+            GridEX grd = ((ContextMenuStrip)((ToolStripItem)sender).Owner).SourceControl as GridEX;
             if (tabVal == "EXCEL")
             {
-                if(!Coquyen("QUYEN_XUATDULIEUTRENLUOI"))
+                if (!Coquyen("QUYEN_XUATDULIEUTRENLUOI"))
                 {
                     Utility.thongbaokhongcoquyen("QUYEN_XUATDULIEUTRENLUOI", "xuất dữ liệu trên lưới");
                     return;
-                }    
+                }
                 Utility.ExportExcel(grd);
             }
             else if (tabVal == "SHOWHIDE")
@@ -2372,7 +2726,7 @@ namespace VNS.Libs
                         .ExecuteDataSet().Tables[0];
 
                     }
-                    
+
                     //Code tự động filter
 
 
@@ -2393,8 +2747,8 @@ namespace VNS.Libs
                             }
                             else//Những cột mới nhà SX thêm vào sau khi người dùng đã cấu hình
                             {
-                                col.Visible = false;
-                            }    
+                                col.Visible = col.Visible;
+                            }
                         }
                     }
                     List<string> lstDone = new List<string>();
@@ -2452,54 +2806,54 @@ namespace VNS.Libs
 
             }
         }
-       static void ShowHideMoneyColumns(GridEX grd)
-       {
-           List<string> lstKey = new List<string>();
-           lstKey = Laygiatrithamsohethong("MONEY_COLUMNS", "XYZ", false).ToUpper().Split(',').ToList<string>();
-           foreach (GridEXColumn col in grd.RootTable.Columns)
-           {
-               if (QuyenKhongxemgia("KHONGDUOC_XEM_GIA") && (lstKey.Contains(col.Key.ToUpper()) || lstKey.Contains(col.DataMember.ToUpper())))
-               {
-                   col.Visible = false;
-               }
-             
-           }
-       }
-       static void Utility_KeyDown(object sender, KeyEventArgs e)
-       {
-           if (e.Control && e.KeyCode == Keys.E)
-               CollapseGrid((GridEX)sender);
-           if (e.Control && e.KeyCode == Keys.C)
-               SaochepThongtin((GridEX)sender, true);
-           if (e.Alt && e.KeyCode == Keys.C)
-               SaochepThongtin((GridEX)sender, false);
+        static void ShowHideMoneyColumns(GridEX grd)
+        {
+            List<string> lstKey = new List<string>();
+            lstKey = Laygiatrithamsohethong("MONEY_COLUMNS", "XYZ", false).ToUpper().Split(',').ToList<string>();
+            foreach (GridEXColumn col in grd.RootTable.Columns)
+            {
+                if (QuyenKhongxemgia("KHONGDUOC_XEM_GIA") && (lstKey.Contains(col.Key.ToUpper()) || lstKey.Contains(col.DataMember.ToUpper())))
+                {
+                    col.Visible = false;
+                }
 
-       }
-       static void SaochepThongtin(GridEX grd, bool copyCurrentCellOrRow)
-       {
-           try
-           {
-               if (!Utility.isValidGrid(grd)) return;
-               string _value = "";
-               if (copyCurrentCellOrRow)
-               {
-                   _value = Utility.sDbnull(grd.GetValue(grd.CurrentColumn), "");
-               }
-               else
-               {
-                   foreach (GridEXColumn col in grd.RootTable.Columns)
-                       if (col.Visible)
-                           _value += Utility.sDbnull(grd.GetValue(col), "") + ";";
-               }
+            }
+        }
+        static void Utility_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.E)
+                CollapseGrid((GridEX)sender);
+            if (e.Control && e.KeyCode == Keys.C)
+                SaochepThongtin((GridEX)sender, true);
+            if (e.Alt && e.KeyCode == Keys.C)
+                SaochepThongtin((GridEX)sender, false);
+
+        }
+        static void SaochepThongtin(GridEX grd, bool copyCurrentCellOrRow)
+        {
+            try
+            {
+                if (!Utility.isValidGrid(grd)) return;
+                string _value = "";
+                if (copyCurrentCellOrRow)
+                {
+                    _value = Utility.sDbnull(grd.GetValue(grd.CurrentColumn), "");
+                }
+                else
+                {
+                    foreach (GridEXColumn col in grd.RootTable.Columns)
+                        if (col.Visible)
+                            _value += Utility.sDbnull(grd.GetValue(col), "") + ";";
+                }
                 if (_value == "") _value = "NONE";
-               System.Windows.Forms.Clipboard.SetText(string.Format("{0}", _value));
-           }
-           catch (Exception ex)
-           {
+                System.Windows.Forms.Clipboard.SetText(string.Format("{0}", _value));
+            }
+            catch (Exception ex)
+            {
 
-               Utility.CatchException(ex);
-           }
-       }
+                Utility.CatchException(ex);
+            }
+        }
         private static readonly string[] VietnameseSigns =
         {
             "aAeEoOuUiIdDyY",
@@ -2549,7 +2903,7 @@ namespace VNS.Libs
                 CleanTemporaryFolders();
             }
         }
-        public static NetworkCredential CreateCredentials(string UID,string PWD)
+        public static NetworkCredential CreateCredentials(string UID, string PWD)
         {
             NetworkCredential credentials = new NetworkCredential(UID, PWD);
             return credentials;
@@ -2568,7 +2922,7 @@ namespace VNS.Libs
                 return -1;
             }
         }
-        public static string getTrinhky(string reportName,DateTime NgayinphoiBHYT)
+        public static string getTrinhky(string reportName, DateTime NgayinphoiBHYT)
         {
             DataTable dtbNguoiKy = new DataTable();
             string NoidungTK = "";
@@ -2580,11 +2934,11 @@ namespace VNS.Libs
 
                 if (dtbNguoiKy.Rows.Count > 0)
                 {
-                    NoidungTK= sDbnull(dtbNguoiKy.Rows[0][SysTrinhky.Columns.Trinhky], "");
+                    NoidungTK = sDbnull(dtbNguoiKy.Rows[0][SysTrinhky.Columns.Trinhky], "");
                 }
                 else
                 {
-                    NoidungTK= "";
+                    NoidungTK = "";
                 }
                 NoidungTK = NoidungTK.Replace("&DIADIEM", GetRtfUnicodeEscapedString(Laygiatrithamsohethong("DIA_DIEM", "Địa điểm", false)));
                 NoidungTK = NoidungTK.Replace("&NHANVIEN", globalVariables.gv_strTenNhanvien);
@@ -2600,10 +2954,10 @@ namespace VNS.Libs
         }
         public static Dotuoi Laydotuoi(int Tuoi)
         {
-            string treSosinh = Laygiatrithamsohethong("DOTUOI_TRESOSINH","0-1",false);
+            string treSosinh = Laygiatrithamsohethong("DOTUOI_TRESOSINH", "0-1", false);
             string treEm = Laygiatrithamsohethong("DOTUOI_TREEM", "2-17", false);
             string Nguoilon = Laygiatrithamsohethong("DOTUOI_NGUOILON", "18-500", false);
-            int min =Utility.Int32Dbnull( treSosinh.Split('-')[0]);
+            int min = Utility.Int32Dbnull(treSosinh.Split('-')[0]);
             int max = Utility.Int32Dbnull(treSosinh.Split('-')[1]);
             if (Tuoi >= min && Tuoi <= max) return Dotuoi.TreSosinh;
             min = Utility.Int32Dbnull(treEm.Split('-')[0]);
@@ -2639,16 +2993,16 @@ namespace VNS.Libs
         }
         /// <summary>
         ///  CASE WHEN @LoaiPhieu=1 THEN N'PNK'--loại phiếu nhập kho thuốc
-                             //WHEN @LoaiPhieu=2 THEN N'PXK'--loại phiếu xuất kho thuốc
-                             //WHEN @LoaiPhieu=3 THEN N'PXKBN'--loại phiếu xuất kho bệnh nhân
-                             //WHEN @LoaiPhieu=4 THEN N'PNTKLC'--loại phiếu trả lại cho kho lẻ về kho chẵn
-                             //WHEN @LoaiPhieu=5 THEN N'PNTKL'--loại phiếu trả lại kho lẻ
-                             //WHEN @LoaiPhieu=6 THEN N'PXKHOA'--loại phiếu xuất khoa						   
-                             //WHEN @LoaiPhieu=7 THEN N'PHUY'--Phiếu hủy thuốc
-                             //WHEN @LoaiPhieu=8 THEN N'PTNCC'--Phiếu trả nhà cung cấp
-                             //WHEN @LoaiPhieu=9 THEN N'PXKTL'--Phiếu xuất kho lẻ trả kho chẵn
-                             //WHEN @LoaiPhieu=10 THEN N'PTL'--Phiếu thanh lý
-                             // WHEN @LoaiPhieu=15 THEN N'PCN'--Phiếu xuất hao phí
+        //WHEN @LoaiPhieu=2 THEN N'PXK'--loại phiếu xuất kho thuốc
+        //WHEN @LoaiPhieu=3 THEN N'PXKBN'--loại phiếu xuất kho bệnh nhân
+        //WHEN @LoaiPhieu=4 THEN N'PNTKLC'--loại phiếu trả lại cho kho lẻ về kho chẵn
+        //WHEN @LoaiPhieu=5 THEN N'PNTKL'--loại phiếu trả lại kho lẻ
+        //WHEN @LoaiPhieu=6 THEN N'PXKHOA'--loại phiếu xuất khoa						   
+        //WHEN @LoaiPhieu=7 THEN N'PHUY'--Phiếu hủy thuốc
+        //WHEN @LoaiPhieu=8 THEN N'PTNCC'--Phiếu trả nhà cung cấp
+        //WHEN @LoaiPhieu=9 THEN N'PXKTL'--Phiếu xuất kho lẻ trả kho chẵn
+        //WHEN @LoaiPhieu=10 THEN N'PTL'--Phiếu thanh lý
+        // WHEN @LoaiPhieu=15 THEN N'PCN'--Phiếu xuất hao phí
         /// </summary>
         /// <param name="loaiphieu"></param>
         /// <param name="khoxuat"></param>
@@ -2656,7 +3010,7 @@ namespace VNS.Libs
         /// <param name="khoalinh"></param>
         /// <param name="ma_luotkham"></param>
         /// <returns></returns>
-        public static string Laythongtinbiendongthuoc(byte loaiphieu,string khoxuat,string khonhap,string khoalinh,string ma_luotkham,string ten_nhacungcap)
+        public static string Laythongtinbiendongthuoc(byte loaiphieu, string khoxuat, string khonhap, string khoalinh, string ma_luotkham, string ten_nhacungcap)
         {
             string status = "Không xác định";
             switch (loaiphieu)
@@ -2665,7 +3019,7 @@ namespace VNS.Libs
                     status = string.Format("Nhập thuốc từ nhà cung cấp: {0}", ten_nhacungcap);
                     break;
                 case 2:
-                    status = string.Format("Xuất thuốc từ kho: {0} về kho {1}",khoxuat, khonhap);
+                    status = string.Format("Xuất thuốc từ kho: {0} về kho {1}", khoxuat, khonhap);
                     break;
                 case 3:
                     status = string.Format("Xuất thuốc bệnh nhân: {0}", ma_luotkham);
@@ -2677,7 +3031,7 @@ namespace VNS.Libs
                     status = string.Format("Trả lại về kho: {0}", khonhap);
                     break;
                 case 6:
-                    status = string.Format("xuất khoa: {0} - {1}",khoalinh, khonhap );
+                    status = string.Format("xuất khoa: {0} - {1}", khoalinh, khonhap);
                     break;
                 case 7:
                     status = string.Format("Hủy thuốc");
@@ -2704,7 +3058,7 @@ namespace VNS.Libs
                     status = string.Format("Xuất thuốc/vt xã huyện");
                     break;
                 case 15:
-                    status = string.Format("Xuất thuốc cho khoa: {0}", khoalinh); 
+                    status = string.Format("Xuất thuốc cho khoa: {0}", khoalinh);
                     break;
                 case 19:
                     status = string.Format("Xuất hao phí nội trú từ kho: {0}", khoxuat);
@@ -2720,7 +3074,9 @@ namespace VNS.Libs
         {
             try
             {
-               // DataTable dtBG = SPs.NoitruTimkiemlichsuBuonggiuong(objluotkham.MaLuotkham, objluotkham.IdBenhnhan, "-1", -1).GetDataSet().Tables[0];
+                DmucKhoaphong objKP = null;
+                if (objluotkham != null) objKP = DmucKhoaphong.FetchByID(objluotkham.IdKhoanoitru);
+                // DataTable dtBG = SPs.NoitruTimkiemlichsuBuonggiuong(objluotkham.MaLuotkham, objluotkham.IdBenhnhan, "-1", -1).GetDataSet().Tables[0];
                 string status = "Không xác định";
                 if (objluotkham != null)
                 {
@@ -2730,10 +3086,10 @@ namespace VNS.Libs
                             status = "Người bệnh đang ngoại trú";
                             break;
                         case 1:
-                            status = string.Format("{0} {1}", "Người bệnh đã làm thủ tục nhập viện điều trị", (objluotkham.HuongDieutri == "4" ? "ngoại trú" : "nội trú")); ;
+                            status = string.Format("{0} {1} tại khoa {2}", "Người bệnh đã làm thủ tục nhập viện điều trị", (objluotkham != null && objluotkham.HuongDieutri == "4" ? "ngoại trú" : "nội trú"), objKP == null ? "" : objKP.TenKhoaphong); ;
                             break;
                         case 2:
-                            status = "Người bệnh đã lập phiếu điều trị (y lệnh)";
+                            status = string.Format("{0}, đang nằm tại khoa {1}", "Người bệnh đã lập phiếu điều trị (y lệnh)", objKP == null ? "" : objKP.TenKhoaphong);
                             break;
                         case 3:
                             status = "Người bệnh đã làm phiếu ra viện";
@@ -2745,7 +3101,7 @@ namespace VNS.Libs
                             status = "Người bệnh đã được tài chính xác nhận và chuyển thanh toán";
                             break;
                         case 6:
-                            status = string.Format("{0} {1}", "Người bệnh đã thanh toán và hoàn tất", objluotkham.HuongDieutri == "4" ? "điều trị ngoại trú" : "việc ra viện");
+                            status = string.Format("{0} {1}", "Người bệnh đã thanh toán và hoàn tất", objluotkham != null && objluotkham.HuongDieutri == "4" ? "điều trị ngoại trú" : "việc ra viện");
                             break;
                         default:
                             status = "Không xác định";
@@ -2759,7 +3115,7 @@ namespace VNS.Libs
                 Utility.CatchException(ex);
                 return "Không xác định";
             }
-            
+
         }
         public static bool CoquyenSuperAdmin(string maquyen)
         {
@@ -2767,22 +3123,22 @@ namespace VNS.Libs
         }
         public static bool Coquyen(string maquyen)
         {
-            return globalVariables.isSuperAdmin ||  globalVariables.IsAdmin || (globalVariablesPrivate.objNhanvien != null && globalVariables.gv_dtQuyenNhanvien.Select(QheNhanvienQuyensudung.Columns.Ma + "='" + maquyen + "'").Length > 0);
+            return globalVariables.isSuperAdmin || globalVariables.IsAdmin || (globalVariablesPrivate.objNhanvien != null && globalVariables.gv_dtQuyenNhanvien.Select(QheNhanvienQuyensudung.Columns.Ma + "='" + maquyen + "'").Length > 0);
         }
         public static bool QuyenKhongxemgia(string maquyen)
         {
             return globalVariablesPrivate.objNhanvien != null && globalVariables.gv_dtQuyenNhanvien.Select(QheNhanvienQuyensudung.Columns.Ma + "='" + maquyen + "'").Length > 0;
         }
-        public static void thongbaokhongcoquyen(string maquyen,string noidung)
+        public static void thongbaokhongcoquyen(string maquyen, string noidung)
         {
             Utility.ShowMsg(string.Format("Bạn không có quyền {0}({1}). Vui lòng liên hệ quản trị hệ thống để được phân quyền", noidung, maquyen));
         }
         public static bool CoquyenThemnhanhDmucChung(string LOAI)
         {
 
-            return globalVariables.IsAdmin || (globalVariablesPrivate.objNhanvien != null && globalVariables.gv_dtQuyenNhanvienCapnhatnhanhDmucChung!=null && globalVariables.gv_dtQuyenNhanvienCapnhatnhanhDmucChung.Columns.Count>0 && globalVariables.gv_dtQuyenNhanvienCapnhatnhanhDmucChung.Select(QheNhanvienDmucchung.Columns.Loai + "='" + LOAI + "'").Length > 0);
+            return globalVariables.IsAdmin || (globalVariablesPrivate.objNhanvien != null && globalVariables.gv_dtQuyenNhanvienCapnhatnhanhDmucChung != null && globalVariables.gv_dtQuyenNhanvienCapnhatnhanhDmucChung.Columns.Count > 0 && globalVariables.gv_dtQuyenNhanvienCapnhatnhanhDmucChung.Select(QheNhanvienDmucchung.Columns.Loai + "='" + LOAI + "'").Length > 0);
         }
-        public static bool CoquyenTruycapDanhmuc(string id_danhmuc,string loai)
+        public static bool CoquyenTruycapDanhmuc(string id_danhmuc, string loai)
         {
             return globalVariables.IsAdmin ||
                    (globalVariablesPrivate.objNhanvien != null &&
@@ -2917,7 +3273,7 @@ namespace VNS.Libs
             {
             }
         }
-       
+
         public static string Try2DelFile(string file)
         {
             try
@@ -2949,7 +3305,7 @@ namespace VNS.Libs
                                               new DataColumn("ComparedValue", typeof (string))
                                           });
                 }
-                if (globalVariables.dtAutocompleteAddress == null || globalVariables.dtAutocompleteAddress.Rows.Count>0) return;//Đã được nạp lần login đầu tiên
+                if (globalVariables.dtAutocompleteAddress == null || globalVariables.dtAutocompleteAddress.Rows.Count > 0) return;//Đã được nạp lần login đầu tiên
                 if (!globalVariables.dtAutocompleteAddress.Columns.Contains("ShortCut")) globalVariables.dtAutocompleteAddress.Columns.Add(new DataColumn("ShortCut", typeof(string)));
                 foreach (DataRow dr in dtData.Select("loai_diachinh=0 and isnew=false"))
                 {
@@ -2957,21 +3313,21 @@ namespace VNS.Libs
                     string _Value = "";
                     string _ComparedValue = "";
                     string realName = "";
-                    
+
                     DataRow[] arrQuanHuyen =
                         dtData.Select("ma_cha='" + Utility.sDbnull(dr[DmucDiachinh.Columns.MaDiachinh], "") + "'");
                     foreach (DataRow drQH in arrQuanHuyen)
                     {
-                       
+
                         DataRow[] arrXaPhuong =
                             dtData.Select("ma_cha='" + Utility.sDbnull(drQH[DmucDiachinh.Columns.MaDiachinh], "") + "'");
                         foreach (DataRow drXP in arrXaPhuong)
                         {
-                           DataRow   drShortcut = globalVariables.dtAutocompleteAddress.NewRow();
+                            DataRow drShortcut = globalVariables.dtAutocompleteAddress.NewRow();
                             drShortcut["MaXaPhuong"] = drXP["ma_diachinh"];
                             drShortcut["MaTinhTP"] = dr["ma_diachinh"];
                             drShortcut["MaQH"] = drQH["ma_diachinh"];
-                            
+
                             realName = "";
                             _Value = drXP[DmucDiachinh.Columns.TenDiachinh] + ", ";
                             _ComparedValue = drXP[DmucDiachinh.Columns.TenDiachinh] + ", ";
@@ -2992,7 +3348,7 @@ namespace VNS.Libs
                             drShortcut["ShortCutTP"] = dr["mota_them"].ToString().Trim();
                             //Ghép chuỗi
 
-                            drShortcut["ComparedValue"] = _ComparedValue.Replace("Không Xác định,","");
+                            drShortcut["ComparedValue"] = _ComparedValue.Replace("Không Xác định,", "");
                             drShortcut["Value"] = _Value.Replace("Không Xác định,", "");
                             globalVariables.dtAutocompleteAddress.Rows.Add(drShortcut);
 
@@ -3033,7 +3389,7 @@ namespace VNS.Libs
                         drShortcut["MaXaPhuong"] = "";
                         drShortcut["MaTinhTP"] = dr["ma_diachinh"];
                         drShortcut["MaQH"] = "";
-                        
+
                         realName = "";
                         drShortcut["ShortCutXP"] = "kx";
                         drShortcut["ShortCutQH"] = "kx";
@@ -3090,57 +3446,57 @@ namespace VNS.Libs
                     string _ComparedValue = "";
                     string realName = "";
 
-                   
-                        DataRow[] arrXaPhuong =
-                            dtData.Select("ma_cha='" + Utility.sDbnull(dr[DmucDiachinh.Columns.MaDiachinh], "") + "'");
-                        foreach (DataRow drXP in arrXaPhuong)
-                        {
-                            DataRow drShortcut = globalVariables.dtAutocompleteAddress_New.NewRow();
-                            drShortcut["MaXaPhuong"] = drXP["ma_diachinh"];
-                            drShortcut["MaTinhTP"] = dr["ma_diachinh"];
-                           
 
-                            realName = "";
-                            _Value = drXP[DmucDiachinh.Columns.TenDiachinh] + ", ";
-                            _ComparedValue = drXP[DmucDiachinh.Columns.TenDiachinh] + ", ";
-                            _ComparedValue += Utility.Bodau(Utility.sDbnull(drXP[DmucDiachinh.Columns.TenDiachinh], "")) + ", ";
-                            drShortcut["ShortCutXP"] = drXP["mota_them"].ToString().Trim();
+                    DataRow[] arrXaPhuong =
+                        dtData.Select("ma_cha='" + Utility.sDbnull(dr[DmucDiachinh.Columns.MaDiachinh], "") + "'");
+                    foreach (DataRow drXP in arrXaPhuong)
+                    {
+                        DataRow drShortcut = globalVariables.dtAutocompleteAddress_New.NewRow();
+                        drShortcut["MaXaPhuong"] = drXP["ma_diachinh"];
+                        drShortcut["MaTinhTP"] = dr["ma_diachinh"];
 
-                            #region addShortcut
-                            _Value += dr[DmucDiachinh.Columns.TenDiachinh].ToString();
-                            _ComparedValue = dr[DmucDiachinh.Columns.TenDiachinh] + ", ";
-                            _ComparedValue += Utility.Bodau(Utility.sDbnull(dr[DmucDiachinh.Columns.TenDiachinh], "")) + ", ";
-                            drShortcut["ShortCutTP"] = dr["mota_them"].ToString().Trim();
-                            //Ghép chuỗi
 
-                            drShortcut["ComparedValue"] = _ComparedValue.Replace("Không Xác định,", "");
-                            drShortcut["Value"] = _Value.Replace("Không Xác định,", "");
-                            globalVariables.dtAutocompleteAddress_New.Rows.Add(drShortcut);
+                        realName = "";
+                        _Value = drXP[DmucDiachinh.Columns.TenDiachinh] + ", ";
+                        _ComparedValue = drXP[DmucDiachinh.Columns.TenDiachinh] + ", ";
+                        _ComparedValue += Utility.Bodau(Utility.sDbnull(drXP[DmucDiachinh.Columns.TenDiachinh], "")) + ", ";
+                        drShortcut["ShortCutXP"] = drXP["mota_them"].ToString().Trim();
 
-                            #endregion
-                        }
+                        #region addShortcut
+                        _Value += dr[DmucDiachinh.Columns.TenDiachinh].ToString();
+                        _ComparedValue = dr[DmucDiachinh.Columns.TenDiachinh] + ", ";
+                        _ComparedValue += Utility.Bodau(Utility.sDbnull(dr[DmucDiachinh.Columns.TenDiachinh], "")) + ", ";
+                        drShortcut["ShortCutTP"] = dr["mota_them"].ToString().Trim();
+                        //Ghép chuỗi
 
-                        if (arrXaPhuong.Length <= 0)//For phía trên ko xảy ra
-                        {
-                            #region addShortcut
+                        drShortcut["ComparedValue"] = _ComparedValue.Replace("Không Xác định,", "");
+                        drShortcut["Value"] = _Value.Replace("Không Xác định,", "");
+                        globalVariables.dtAutocompleteAddress_New.Rows.Add(drShortcut);
 
-                            DataRow drShortcut = globalVariables.dtAutocompleteAddress_New.NewRow();
-                            drShortcut["MaXaPhuong"] = "";
-                            drShortcut["MaTinhTP"] = dr["ma_diachinh"];
-                           
-                            realName = "";
-                            drShortcut["ShortCutXP"] = "kx";
-                                                      _Value += dr[DmucDiachinh.Columns.TenDiachinh].ToString();
-                            _ComparedValue = dr[DmucDiachinh.Columns.TenDiachinh] + ", ";
-                            _ComparedValue += Utility.Bodau(Utility.sDbnull(dr[DmucDiachinh.Columns.TenDiachinh], "")) + ", ";
-                            drShortcut["ShortCutTP"] = dr["mota_them"].ToString().Trim();
+                        #endregion
+                    }
 
-                            drShortcut["ComparedValue"] = _ComparedValue.Replace("Không Xác định,", "");
-                            drShortcut["Value"] = _Value.Replace("Không Xác định,", "");
-                            globalVariables.dtAutocompleteAddress_New.Rows.Add(drShortcut);
+                    if (arrXaPhuong.Length <= 0)//For phía trên ko xảy ra
+                    {
+                        #region addShortcut
 
-                            #endregion
-                        }
+                        DataRow drShortcut = globalVariables.dtAutocompleteAddress_New.NewRow();
+                        drShortcut["MaXaPhuong"] = "";
+                        drShortcut["MaTinhTP"] = dr["ma_diachinh"];
+
+                        realName = "";
+                        drShortcut["ShortCutXP"] = "kx";
+                        _Value += dr[DmucDiachinh.Columns.TenDiachinh].ToString();
+                        _ComparedValue = dr[DmucDiachinh.Columns.TenDiachinh] + ", ";
+                        _ComparedValue += Utility.Bodau(Utility.sDbnull(dr[DmucDiachinh.Columns.TenDiachinh], "")) + ", ";
+                        drShortcut["ShortCutTP"] = dr["mota_them"].ToString().Trim();
+
+                        drShortcut["ComparedValue"] = _ComparedValue.Replace("Không Xác định,", "");
+                        drShortcut["Value"] = _Value.Replace("Không Xác định,", "");
+                        globalVariables.dtAutocompleteAddress_New.Rows.Add(drShortcut);
+
+                        #endregion
+                    }
                 }
             }
             catch
@@ -3170,7 +3526,7 @@ namespace VNS.Libs
                 return "EX." + defaultVal;
             }
         }
-        
+
         public static string GetStrValuefromDataRow(DataRow dr, string fieldName)
         {
             string defaultVal = "NULL";
@@ -3192,7 +3548,7 @@ namespace VNS.Libs
                 KillProcess(appName);
                 System.Diagnostics.Process.Start(appName);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Utility.CatchException(ex);
             }
@@ -3223,7 +3579,7 @@ namespace VNS.Libs
                 return false;
             }
         }
-        public static DataSet ExecuteSql(string sql,CommandType cmdtype)
+        public static DataSet ExecuteSql(string sql, CommandType cmdtype)
         {
             try
             {
@@ -3249,7 +3605,7 @@ namespace VNS.Libs
                 return -1;
             }
         }
-        public static void MergeFieldsCheckBox2Doc(Aspose.Words.DocumentBuilder builder, Dictionary<string, string> dicMF , List<string> lstcheckboxfields, DataRow drData)
+        public static void MergeFieldsCheckBox2Doc(Aspose.Words.DocumentBuilder builder, Dictionary<string, string> dicMF, List<string> lstcheckboxfields, DataRow drData)
         {
             try
             {
@@ -3279,13 +3635,13 @@ namespace VNS.Libs
                 {
                     foreach (string field in lstcheckboxfields)
                     {
-                        if(lstTest.Contains( field))
+                        if (lstTest.Contains(field))
                         {
                             string s = "";
-                        }    
+                        }
                         if (builder.MoveToMergeField(field.Trim()))
                         {
-                            if (drData.Table.Columns.Contains(field) &&  Byte2Bool(drData[field]))
+                            if (drData.Table.Columns.Contains(field) && Byte2Bool(drData[field]))
                             {
                                 builder.Font.Name = "Wingdings 2";
                                 builder.Write(char.ConvertFromUtf32(82));
@@ -3308,7 +3664,7 @@ namespace VNS.Libs
                 Utility.CatchException(ex);
             }
         }
-        public static byte[]  GetQRCode(string sInput)
+        public static byte[] GetQRCode(string sInput)
         {
             try
             {
@@ -3324,7 +3680,7 @@ namespace VNS.Libs
                 return null;
                 Utility.CatchException(ex);
             }
-          
+
         }
         static byte[] fromimagetobyte(Bitmap img)
         {
@@ -3402,14 +3758,14 @@ namespace VNS.Libs
             {
 
             }
-            
+
         }
 
         public static void CatchException(Exception ex)
         {
             //if (globalVariables.IsAdmin)
             //{
-                Utility.ShowMsg(ex.ToString());
+            Utility.ShowMsg(ex.ToString());
             //}
             //else
             //{
@@ -3417,7 +3773,7 @@ namespace VNS.Libs
             //        Utility.ShowMsg(ex.ToString());
             //}
         }
-        public static void CatchException(string AssName,string FormName, Exception ex)
+        public static void CatchException(string AssName, string FormName, Exception ex)
         {
             if (globalVariables.IsAdmin)
             {
@@ -3456,7 +3812,7 @@ namespace VNS.Libs
         {
             // return Utility.sDbnull(dataTable.Compute(string.Format("SUM({0})",FieldName), "1=1"));
             var TinhTong = (from x in dataTable.AsEnumerable()
-                            // let y = x.Field<>()
+                                // let y = x.Field<>()
                             select x.Field<decimal>(FieldName)).Sum();
             return Utility.sDbnull(TinhTong);
 
@@ -3501,7 +3857,7 @@ namespace VNS.Libs
         {
             try
             {
-               return _row.Cells[FieldName].Value;
+                return _row.Cells[FieldName].Value;
             }
             catch
             {
@@ -3575,8 +3931,8 @@ namespace VNS.Libs
             try
             {
                 //230517 Tạm Rem bỏ mục grd.SelectedItems != null 
-               // if (grd != null && grd.RowCount > 0 && grd.SelectedItems != null && grd.CurrentRow != null && grd.CurrentRow.RowType == RowType.Record) return true;
-                if (grd != null && grd.RowCount > 0  && grd.CurrentRow != null && grd.CurrentRow.RowType == RowType.Record) return true;
+                // if (grd != null && grd.RowCount > 0 && grd.SelectedItems != null && grd.CurrentRow != null && grd.CurrentRow.RowType == RowType.Record) return true;
+                if (grd != null && grd.RowCount > 0 && grd.CurrentRow != null && grd.CurrentRow.RowType == RowType.Record) return true;
                 return false;
             }
             catch
@@ -3588,7 +3944,7 @@ namespace VNS.Libs
         {
             try
             {
-                if (grd != null && grd.RowCount > 0 && grd.GetCheckedRows().Length>0) return true;
+                if (grd != null && grd.RowCount > 0 && grd.GetCheckedRows().Length > 0) return true;
                 return false;
             }
             catch
@@ -3759,10 +4115,10 @@ namespace VNS.Libs
             if (control.InvokeRequired)
             {
                 control.Invoke(new SetControlPropertyDelegate(SetControlProperty), new object[] {
-				control,
-				propertyName,
-				propertyValue
-			});
+                control,
+                propertyName,
+                propertyValue
+            });
             }
             else
             {
@@ -3962,9 +4318,9 @@ namespace VNS.Libs
         public static void GonewRowJanus(Janus.Windows.GridEX.GridEX grdList, string ColumnName, string sValue)
         {
             var _row = (from row in grdList.GetDataRows()
-                       let loz2 = row.Cells[ColumnName].Value
-                       where (loz2 != null) && (loz2.ToString().Equals(sValue))
-                       select row).FirstOrDefault();
+                        let loz2 = row.Cells[ColumnName].Value
+                        where (loz2 != null) && (loz2.ToString().Equals(sValue))
+                        select row).FirstOrDefault();
             if (_row != null)
                 grdList.MoveTo(_row);
         }
@@ -4615,7 +4971,7 @@ namespace VNS.Libs
                 case "Sunday":
                     DayVN = "Chủ nhật";
                     break;
-                //case "Wednesday": DayVN = "Thứ 4"; break;
+                    //case "Wednesday": DayVN = "Thứ 4"; break;
             }
             return DayVN;
         }
@@ -4816,7 +5172,7 @@ namespace VNS.Libs
         public static bool isValidSignStatus4UpdateDelete(KcbLuotkham objLuotkham, long id_phieu, string loaiphieucha, string tenloaiphieu)
         {
             DataTable dtCheckSignStatus = SPs.EmrLaythongtinTrangthaikyTrenphieu(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, id_phieu, loaiphieucha, 100).GetDataSet().Tables[0];
-            if (dtCheckSignStatus.Select("tthai_ky=1 or tthai_ky=true").Length>0)
+            if (dtCheckSignStatus.Select("tthai_ky=1 or tthai_ky=true").Length > 0)
             {
                 Utility.ShowMsg(string.Format("{0} đã được ký nên không cho phép cập nhật-xóa.", tenloaiphieu));
                 //Xem chi tiết trạng thái ký các tờ trong bệnh án 
@@ -4844,30 +5200,30 @@ namespace VNS.Libs
             lblMsg.Text = Message;
             Application.DoEvents();
         }
-        public static void GetChandoanNoitru(KcbLuotkham objKcbLuotkham,DateTime ngay_dieutri, ref string ma_icd, ref string ten_icd, ref string chandoan_phu)
+        public static void GetChandoanNoitru(KcbLuotkham objKcbLuotkham, DateTime ngay_dieutri, ref string ma_icd, ref string ten_icd, ref string chandoan_phu)
         {
             try
             {
-                DataTable dtChandoan= SPs.NoitruLaythongtinchandoan(objKcbLuotkham.MaLuotkham,objKcbLuotkham.IdBenhnhan,-1,100,ngay_dieutri).GetDataSet().Tables[0];
+                DataTable dtChandoan = SPs.NoitruLaythongtinchandoan(objKcbLuotkham.MaLuotkham, objKcbLuotkham.IdBenhnhan, -1, 100, ngay_dieutri).GetDataSet().Tables[0];
                 DataTable dtTemp = dtChandoan.Clone();
                 DataRow[] arrDr = dtChandoan.Select("noitru=1 and kieu_chandoan=2");
                 if (arrDr.Length > 0) dtTemp = arrDr.CopyToDataTable();
                 List<string> lstIcd = (from p in dtTemp.AsEnumerable()
-                                           select Utility.sDbnull(p["mabenh_chinh"], "")).ToList<string>();
+                                       select Utility.sDbnull(p["mabenh_chinh"], "")).ToList<string>();
                 ma_icd = string.Join(",", lstIcd.ToArray<string>());
                 chandoan_phu = string.Join(",", (from p in dtTemp.AsEnumerable()
-                                           select Utility.sDbnull(p["chan_doan"], "")).ToArray<string>());
-                ten_icd= string.Join(",", (from p in globalVariables.gv_dtDmucBenh.AsEnumerable()
-                                           where lstIcd.Contains(Utility.sDbnull(p["ma_benh"]))
-                                           select Utility.sDbnull(p["ten_benh"], "")).ToArray<string>());
+                                                 select Utility.sDbnull(p["chan_doan"], "")).ToArray<string>());
+                ten_icd = string.Join(",", (from p in globalVariables.gv_dtDmucBenh.AsEnumerable()
+                                            where lstIcd.Contains(Utility.sDbnull(p["ma_benh"]))
+                                            select Utility.sDbnull(p["ten_benh"], "")).ToArray<string>());
             }
-            catch (Exception  ex)
+            catch (Exception ex)
             {
 
                 Utility.CatchException(ex);
             }
         }
-        public static void GetChandoanNoitru(long id_benhnhan, string ma_luotkham, DateTime ngay_dieutri, ref string ma_icd, ref string ten_icd, ref string chandoan_phu,bool ChilayNoitru=true)
+        public static void GetChandoanNoitru(long id_benhnhan, string ma_luotkham, DateTime ngay_dieutri, ref string ma_icd, ref string ten_icd, ref string chandoan_phu, bool ChilayNoitru = true)
         {
             try
             {
@@ -4899,7 +5255,7 @@ namespace VNS.Libs
                 DataRow[] arrDr = ChilayNoitru ? dtChandoan.Select("noitru=1 and kieu_chandoan=2") : dtChandoan.Select("1=1");
                 if (arrDr.Length > 0) dtTemp = arrDr.CopyToDataTable();
                 chandoan = string.Join("\r\n", (from p in dtTemp.AsEnumerable()
-                                            select string.Format("Ngày {0}: {1}({2});{3};{4}", Utility.sDbnull(p["sngay_chandoan"], ""), Utility.sDbnull(p["ten_benhchinh"], ""), Utility.sDbnull(p["ma_benh"]), Utility.sDbnull(p["ten_benhphu"], ""), Utility.sDbnull(p["chan_doan"], ""))
+                                                select string.Format("Ngày {0}: {1}({2});{3};{4}", Utility.sDbnull(p["sngay_chandoan"], ""), Utility.sDbnull(p["ten_benhchinh"], ""), Utility.sDbnull(p["ma_benh"]), Utility.sDbnull(p["ten_benhphu"], ""), Utility.sDbnull(p["chan_doan"], ""))
                                                  ).ToArray<string>());
             }
             catch (Exception ex)
@@ -4908,13 +5264,132 @@ namespace VNS.Libs
                 Utility.CatchException(ex);
             }
         }
+        public static string GetChandoanInPhieuDieuTri(long id_benhnhan, string ma_luotkham, string lstIdPhieuDieuTri, bool ChilayNoitru = true)
+        {
+            try
+            {
+                string chandoan = "";
+                DataTable dtChandoan = SPs.NoitruLaythongtinchandoanTheoPhieuDieuTri(ma_luotkham, id_benhnhan, -1, 100, lstIdPhieuDieuTri).GetDataSet().Tables[0];
+                DataTable dtTemp = dtChandoan.Clone();
+                DataRow[] arrDr = ChilayNoitru ? dtChandoan.Select("noitru=1 and kieu_chandoan=2") : dtChandoan.Select("1=1");
+                if (arrDr.Length > 0) dtTemp = arrDr.CopyToDataTable();
+                string ma_benhchinh = "";
+                string ten_benhchinh = "";
+                string ma_benhphu = "";
+                string ten_benhphu = "";
+                List<string> lstChanDoan = new List<string>();
+                foreach (DataRow dr in dtTemp.Rows)
+                {
+                    ma_benhchinh = Utility.sDbnull(dr["ma_benh"]);
+                    ten_benhchinh = Utility.sDbnull(dr["ten_benhchinh"]);
+                    ma_benhphu = Utility.sDbnull(dr["mabenh_phu"]);
+                    ten_benhphu = Utility.sDbnull(dr["tenbenh_phu"]);
+                    lstChanDoan.Add(LayThongtinChanDoan_BenhChinh_BenhPhu(ma_benhchinh, ten_benhchinh, ma_benhphu, ten_benhphu));
+                }
+                chandoan = string.Join(";", lstChanDoan.ToArray<string>());
+                return chandoan;
+            }
+            catch (Exception ex)
+            {
+
+                Utility.CatchException(ex);
+                return "";
+            }
+        }
+        public static string NoitruLaythongtinchandoanTheoDonThuoc(long id_benhnhan, string ma_luotkham, long id_donthuoc, bool ChilayNoitru = true)
+        {
+            try
+            {
+                string chandoan = "";
+                DataTable dtChandoan = SPs.NoitruLaythongtinchandoanTheoDonThuoc(ma_luotkham, id_benhnhan, -1, 100, id_donthuoc).GetDataSet().Tables[0];
+                DataTable dtTemp = dtChandoan.Clone();
+                DataRow[] arrDr = ChilayNoitru ? dtChandoan.Select("noitru=1 and kieu_chandoan=2") : dtChandoan.Select("1=1");
+                if (arrDr.Length > 0) dtTemp = arrDr.CopyToDataTable();
+                string ma_benhchinh = "";
+                string ten_benhchinh = "";
+                string ma_benhphu = "";
+                string ten_benhphu = "";
+                List<string> lstChanDoan = new List<string>();
+                foreach (DataRow dr in dtTemp.Rows)
+                {
+                    ma_benhchinh = Utility.sDbnull(dr["ma_benh"]);
+                    ten_benhchinh = Utility.sDbnull(dr["ten_benhchinh"]);
+                    ma_benhphu = Utility.sDbnull(dr["mabenh_phu"]);
+                    ten_benhphu = Utility.sDbnull(dr["tenbenh_phu"]);
+                    lstChanDoan.Add(LayThongtinChanDoan_BenhChinh_BenhPhu(ma_benhchinh, ten_benhchinh, ma_benhphu, ten_benhphu));
+                }
+                chandoan = string.Join(";", lstChanDoan.ToArray<string>());
+                return chandoan;
+            }
+            catch (Exception ex)
+            {
+
+                Utility.CatchException(ex);
+                return "";
+            }
+        }
+        static string GetTenBenh(string maBenh)
+        {
+            string TenBenh = "";
+            DataRow[] arrMaBenh =
+                globalVariables.gv_dtDmucBenh.Select(string.Format(DmucBenh.Columns.MaBenh + "='{0}'", maBenh));
+            if (arrMaBenh.GetLength(0) > 0) TenBenh = Utility.sDbnull(arrMaBenh[0][DmucBenh.Columns.TenBenh], "");
+            return TenBenh;
+        }
+        public static string LayThongtinChanDoan_BenhChinh_BenhPhu(string ma_benh_chinh, string ten_benh_chinh, string ma_benh_phu, string ten_benh_phu)
+        {
+            string sValue = "";
+
+            List<string> lstBenhPhu = new List<string>();
+            if (!string.IsNullOrEmpty(ma_benh_chinh))
+            {
+                string[] arrMa = ma_benh_chinh.Split(',');
+                string[] arrTen = ten_benh_chinh.Split(',');
+                int idx = 0;
+                foreach (string ma in arrMa)
+                {
+                    string ten = "";
+                    if (!string.IsNullOrEmpty(ma))
+                    {
+
+                        if (arrTen.Length >= idx)
+                            ten = arrTen[idx];
+                        if (ten.Length <= 0) ten = GetTenBenh(ma);
+                    }
+                    lstBenhPhu.Add(string.Format("{0}:{1}", ma, ten));
+                    idx++;
+                }
+
+            }
+            if (!string.IsNullOrEmpty(ma_benh_phu))
+            {
+                string[] arrMa = ma_benh_phu.Split(',');
+                string[] arrTen = ten_benh_phu.Split(',');
+                int idx = 0;
+                foreach (string ma in arrMa)
+                {
+                    string ten = "";
+                    if (!string.IsNullOrEmpty(ma))
+                    {
+
+                        if (arrTen.Length >= idx)
+                            ten = arrTen[idx];
+                        if (ten.Length <= 0) ten = GetTenBenh(ma);
+                    }
+                    lstBenhPhu.Add(string.Format("{0}:{1}", ma, ten));
+                    idx++;
+                }
+
+            }
+            return string.Join(";", lstBenhPhu.ToArray<string>());
+        }
         public static KcbLuotkham getKcbLuotkhamFromGrid(GridEX grdlist)
         {
             try
             {
-               return new Select().From(KcbLuotkham.Schema)
-                    .Where(KcbLuotkham.Columns.IdBenhnhan).IsEqualTo(Utility.GetValueFromGridColumn(grdlist, KcbLuotkham.Columns.IdBenhnhan))
-                    .And(KcbLuotkham.Columns.MaLuotkham).IsEqualTo(Utility.GetValueFromGridColumn(grdlist, KcbLuotkham.Columns.MaLuotkham)).ExecuteSingle<KcbLuotkham>();
+                return new Select().From(KcbLuotkham.Schema)
+                     .Where(KcbLuotkham.Columns.IdBenhnhan).IsEqualTo(Utility.GetValueFromGridColumn(grdlist, KcbLuotkham.Columns.IdBenhnhan))
+                     .And(KcbLuotkham.Columns.MaLuotkham).IsEqualTo(Utility.GetValueFromGridColumn(grdlist, KcbLuotkham.Columns.MaLuotkham)).ExecuteSingle<KcbLuotkham>();
             }
             catch (Exception ex)
             {
@@ -4982,7 +5457,7 @@ namespace VNS.Libs
                 return null;
             }
         }
-        public static KcbLuotkham getKcbLuotkham(long idbenhnhan,string maluotkham)
+        public static KcbLuotkham getKcbLuotkham(long idbenhnhan, string maluotkham)
         {
             try
             {
@@ -5033,11 +5508,11 @@ namespace VNS.Libs
                 return null;
             }
         }
-        public static void SetColor(Label lblMsg,Color _color)
+        public static void SetColor(Label lblMsg, Color _color)
         {
-           
-                lblMsg.ForeColor = _color;
-           
+
+            lblMsg.ForeColor = _color;
+
             Application.DoEvents();
         }
         public static void SetMsg(ToolStripStatusLabel lblMsg, string Message, bool isErr)
@@ -5081,7 +5556,7 @@ namespace VNS.Libs
         }
         public static byte Bool2byte(bool obj)
         {
-            return obj?Convert.ToByte(1):Convert.ToByte(0);
+            return obj ? Convert.ToByte(1) : Convert.ToByte(0);
         }
         public static byte Bool2byte(bool? obj)
         {
@@ -5090,11 +5565,11 @@ namespace VNS.Libs
         }
         public static bool Byte2Bool(byte obj)
         {
-            return obj != null &&  obj == 1;
+            return obj != null && obj == 1;
         }
         public static bool Obj2Bool(object obj)
         {
-            return obj != null && Convert.ToBoolean( obj);
+            return obj != null && Convert.ToBoolean(obj);
         }
         public static bool Byte2Bool(byte? obj)
         {
@@ -5102,13 +5577,13 @@ namespace VNS.Libs
         }
         public static bool Bool2Bool(bool? obj)
         {
-            return obj != null && obj.Value ;
+            return obj != null && obj.Value;
         }
         public static bool Byte2Bool(object obj)
         {
-            return obj != null && Utility.Int32Dbnull( obj,0) == 1;
+            return obj != null && Utility.Int32Dbnull(obj, 0) == 1;
         }
-       
+
         public static byte ByteDbnull(object obj)
         {
             if (!(((obj != null) && (obj != DBNull.Value)) && IsNumeric(obj)))
@@ -5119,7 +5594,7 @@ namespace VNS.Libs
         }
         public static byte GetVitriHinhAnhByName(string fileName)
         {
-          return  Utility.ByteDbnull(fileName.Contains("_OS_") || fileName.Contains("_TRAI_") ? 1 : 0);
+            return Utility.ByteDbnull(fileName.Contains("_OS_") || fileName.Contains("_TRAI_") ? 1 : 0);
         }
         /// <summary>
         /// hàm thưucj hiện kiểm tra xem thông tin nếu bytenull
@@ -5290,6 +5765,21 @@ namespace VNS.Libs
             if (_loaibenhan == LoaiBenhAn.BA_TaiMuiHong) return "TMH";
             if (_loaibenhan == LoaiBenhAn.BA_RangHamMat) return "RHM";
 
+
+            return "";
+        }
+        public static string GetTenLoaiBenhAn(string _loaibenhan)
+        {
+            if (_loaibenhan == LoaiBA.BA_IVF_CHONG) return "Bệnh án IVF Chồng";
+            if (_loaibenhan == LoaiBA.BA_IVF_VO) return "Bệnh án IVF Vợ";
+            if (_loaibenhan == LoaiBA.BA_NAMKHOA) return "Bệnh án Nam khoa";
+            if (_loaibenhan == LoaiBA.BA_NGOAIKHOA) return "Bệnh án Ngoại khoa";
+            if (_loaibenhan == LoaiBA.BA_NGOAITRU) return "Bệnh án Ngoại trú";
+            if (_loaibenhan == LoaiBA.BA_NHIKHOA) return "Bệnh án Nhi Khoa";
+            if (_loaibenhan == LoaiBA.BA_NOIKHOA) return "Bệnh án Nội khoa";
+            if (_loaibenhan == LoaiBA.BA_PHUKHOA) return "Bệnh án Phụ khoa";
+            if (_loaibenhan == LoaiBA.BA_SANKHOA) return "Bệnh án Sản khoa";
+            if (_loaibenhan == LoaiBA.BA_SOSINH) return "Bệnh án Sơ sinh";
 
             return "";
         }
@@ -5545,9 +6035,9 @@ namespace VNS.Libs
                         if (props.Name.ToUpper() == Col.ColumnName.ToUpper())
                         {
                             if (Entity[Col.ColumnName] == DBNull.Value || Entity[Col.ColumnName] == null)
-                                props.SetValue(ObjectInfo, null,null);
+                                props.SetValue(ObjectInfo, null, null);
                             else
-                                props.SetValue(ObjectInfo, Entity[Col.ColumnName],null);
+                                props.SetValue(ObjectInfo, Entity[Col.ColumnName], null);
                             //thoát khỏi vòng lặp sau khi tìm thấy
                             break;
                         }
@@ -6168,14 +6658,27 @@ namespace VNS.Libs
         }
         public static void AutoCheckGrid(GridEX grd)
         {
-            if(grd.GetCheckedRows().Count()<=0 && isValidGrid(grd))
+            if (grd.GetCheckedRows().Count() <= 0 && isValidGrid(grd))
             {
                 grd.CurrentRow.BeginEdit();
                 grd.CurrentRow.IsChecked = true;
                 grd.CurrentRow.EndEdit();
-            }    
+            }
         }
 
+        public static bool AcceptQuestion(string msg, string title, bool YesNoOrOKCancel, MessageBoxDefaultButton defaultbutton)
+        {
+            if (
+                System.Windows.Forms.MessageBox.Show(msg, title,
+                                                     YesNoOrOKCancel == true
+                                                         ? System.Windows.Forms.MessageBoxButtons.YesNo
+                                                         : System.Windows.Forms.MessageBoxButtons.OKCancel,
+                                                     System.Windows.Forms.MessageBoxIcon.Question, defaultbutton) ==
+                (YesNoOrOKCancel == true ? System.Windows.Forms.DialogResult.Yes : System.Windows.Forms.DialogResult.OK))
+                return true;
+            else
+                return false;
+        }
         /// <summary>
         /// Hiển thị hộp thoại OKCancel để hỏi người dùng khi cần câu trả lời là có hay không?
         /// </summary>
@@ -6195,7 +6698,7 @@ namespace VNS.Libs
             else
                 return false;
         }
-       public static DataTable fromGridRow2DataTable(GridEX grd, bool getCheckedData)
+        public static DataTable fromGridRow2DataTable(GridEX grd, bool getCheckedData)
         {
             DataTable dtData = new DataTable();
             //Set structure
@@ -6236,6 +6739,45 @@ namespace VNS.Libs
             }
             return dtData;
         }
+        public static void ParseKhungGio(string text, out TimeSpan from, out TimeSpan to)
+        {
+            var parts = text.Split('-');
+            if (parts.Length != 2) throw new Exception("Sai format khung giờ");
+
+            from = TimeSpan.Parse(parts[0].Trim());
+            to = TimeSpan.Parse(parts[1].Trim());
+        }
+        public static string XacDinhKhungThoiGian(TimeSpan gioBatDau, string SANG = "00:01-11:59", string TRUA = "12:00-13:30", string CHIEU = "13:30-17:00", string TOI = "17:00-23:59")
+        {
+            // Khung ca
+            TimeSpan sang_From = new TimeSpan(0, 1, 0);      // 00:01
+            TimeSpan sang_To = new TimeSpan(11, 59, 0);    // 11:59
+
+            TimeSpan trua_From = new TimeSpan(12, 0, 0);     // 12:00
+            TimeSpan trua_To = new TimeSpan(13, 30, 0);    // 13:30
+
+            TimeSpan chieu_From = new TimeSpan(13, 30, 0);   // c:30
+            TimeSpan chieu_To = new TimeSpan(17, 0, 0);    // 17:00
+
+            TimeSpan toi_From = new TimeSpan(17, 0, 0);     // 17:00
+            TimeSpan toi_To = new TimeSpan(23, 59, 0);    // 23:59
+
+            // Kiểm tra từng ca
+            if (gioBatDau >= sang_From && gioBatDau <= sang_To)
+                return "SANG";
+
+            if (gioBatDau >= trua_From && gioBatDau < trua_To)   // < tránh trùng 13:30
+                return "TRUA";
+
+            if (gioBatDau >= chieu_From && gioBatDau < chieu_To)
+                return "CHIEU";
+
+            if (gioBatDau >= toi_From && gioBatDau <= toi_To)
+                return "TOI";
+
+            return "UKN";
+        }
+
         ///<summary>
         ///<para>Hiển thị hộp thoại thông báo</para>
         ///</summary>   
@@ -6279,7 +6821,7 @@ namespace VNS.Libs
         {
             try
             {
-                if (parent == null ) return null;
+                if (parent == null) return null;
                 if (parent.GridEX != null && parent.GridEX.GetDataRows().Count() <= 0) return null;
                 if (parent.RowType == RowType.Record) return parent;
                 foreach (GridEXRow item in parent.GetChildRows())
@@ -6295,7 +6837,7 @@ namespace VNS.Libs
                 CatchException(ex);
                 return null;
             }
-           
+
         }
         ///<summary>
         ///<para>Hiển thị hộp thoại thông báo</para>
@@ -6324,9 +6866,9 @@ namespace VNS.Libs
             {
                 Utility.CatchException(ex);
             }
-            
+
         }
-        public static void Log(string FunctionName, string UserName, string LogInfo, newaction action, string SourceName ,string giatri_moi,string giatri_cu)
+        public static void Log(string FunctionName, string UserName, string LogInfo, newaction action, string SourceName, string giatri_moi, string giatri_cu)
         {
             try
             {
@@ -6354,9 +6896,9 @@ namespace VNS.Libs
             }
 
         }
-        public static bool IsValidCreatedUser(string created_user,string thuoc_quyenxoaphieulinhthuocnoitru)
+        public static bool IsValidCreatedUser(string created_user, string thuoc_quyenxoaphieulinhthuocnoitru)
         {
-            if ( globalVariables.UserName== created_user || Utility.Coquyen(thuoc_quyenxoaphieulinhthuocnoitru)) return true;
+            if (globalVariables.UserName == created_user || Utility.Coquyen(thuoc_quyenxoaphieulinhthuocnoitru)) return true;
             return false;
         }
         public static void CheckClientLic(string key)
@@ -6373,7 +6915,32 @@ namespace VNS.Libs
             {
             }
         }
-
+        public static void SetHospitalInfor(DataTable dtData)
+        {
+            if (!dtData.Columns.Contains("ten_benhvien")) dtData.Columns.Add(new DataColumn("ten_benhvien", typeof(string)));
+            if (!dtData.Columns.Contains("ten_SYT")) dtData.Columns.Add(new DataColumn("ten_SYT", typeof(string)));
+            if (!dtData.Columns.Contains("ten_dvicaptren")) dtData.Columns.Add(new DataColumn("ten_dvicaptren", typeof(string)));
+            if (!dtData.Columns.Contains("ten_benhvien")) dtData.Columns.Add(new DataColumn("ten_benhvien", typeof(string)));
+            if (!dtData.Columns.Contains("diahchi_benhvien")) dtData.Columns.Add(new DataColumn("diahchi_benhvien", typeof(string)));
+            if (!dtData.Columns.Contains("SDT_bv")) dtData.Columns.Add(new DataColumn("SDT_bv", typeof(string)));
+            if (!dtData.Columns.Contains("Hotline_bv")) dtData.Columns.Add(new DataColumn("Hotline_bv", typeof(string)));
+            if (!dtData.Columns.Contains("Fax_bv")) dtData.Columns.Add(new DataColumn("Fax_bv", typeof(string)));
+            if (!dtData.Columns.Contains("website_bv")) dtData.Columns.Add(new DataColumn("website_bv", typeof(string)));
+            if (!dtData.Columns.Contains("email_bv")) dtData.Columns.Add(new DataColumn("email_bv", typeof(string)));
+            if (!dtData.Columns.Contains("dia_diem")) dtData.Columns.Add(new DataColumn("dia_diem", typeof(string)));
+            DataRow drData = dtData.Rows[0];
+            drData["ten_benhvien"] = globalVariables.Branch_Name;
+            drData["ten_SYT"] = globalVariables.ParentBranch_Name;
+            drData["ten_dvicaptren"] = globalVariables.ParentBranch_Name;
+            drData["ten_benhvien"] = globalVariables.Branch_Name;
+            drData["diahchi_benhvien"] = globalVariables.Branch_Address;
+            drData["SDT_bv"] = globalVariables.Branch_Phone;
+            drData["Hotline_bv"] = globalVariables.Branch_Hotline;
+            drData["Fax_bv"] = globalVariables.Branch_Fax;
+            drData["website_bv"] = globalVariables.Branch_Website;
+            drData["email_bv"] = globalVariables.Branch_Email;
+            drData["dia_diem"] = globalVariables.gv_strDiadiem;
+        }
         /// <summary>
         /// hàm thực hiện message alert thông báo ra
         /// </summary>
@@ -6389,7 +6956,7 @@ namespace VNS.Libs
             if (globalVariablesPrivate.objNhanvien != null) return globalVariablesPrivate.objNhanvien.TenNhanvien;
             return globalVariables.UserName;
         }
-      
+
         /// <summary>
         /// 
         /// </summary>
@@ -6641,6 +7208,47 @@ namespace VNS.Libs
             }
             return tenToBA;
         }
+
+        public static string Get_ChanDoan_InPhieuTomTatDieuTriNgoaiTru(KcbLuotkham objLuotkham)
+        {
+            string _result = string.Empty;
+            try
+            {
+                SqlQuery sqlQuery = new Select(KcbChandoanKetluan.Columns.Chandoan, KcbChandoanKetluan.Columns.ChandoanKemtheo, KcbChandoanKetluan.Columns.MabenhChinh, KcbChandoanKetluan.Columns.MabenhPhu, KcbChandoanKetluan.Columns.MotaBenhchinh, KcbChandoanKetluan.Columns.TenbenhPhu)
+                                            .From(KcbChandoanKetluan.Schema)
+                                              .Where(KcbChandoanKetluan.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
+                                                      .And(KcbChandoanKetluan.Columns.KieuChandoan).IsEqualTo(0)//0= chan doan tham kham, 1=chan doan vao vien,2=chandoan_noitru,3=chandoan_chuyenvien,4=chan doan ra vien
+                                                      .And(KcbChandoanKetluan.Columns.Noitru).IsEqualTo(0)
+                                                      .And(KcbChandoanKetluan.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
+                                                      .OrderAsc(KcbChandoanKetluan.Columns.NgayChandoan);
+                var objInfoCollection = sqlQuery.ExecuteAsCollection<KcbChandoanKetluanCollection>();
+                string chandoan = "";
+                string mabenh = "";
+                string tenbenhphu = "";
+                string tenbenhchinh = "";
+                string mabenhphu = "";
+                foreach (KcbChandoanKetluan objDiagInfo in objInfoCollection)
+                {
+                    string ICD_Name = "";
+                    string ICD_Code = "";
+                    string ICD_Phu_Name = "";
+                    string ICD_Phu_Code = "";
+                    GetChanDoanChinhPhu(Utility.sDbnull(objDiagInfo.MabenhChinh, ""), Utility.sDbnull(objDiagInfo.MabenhPhu, ""), ref ICD_Name, ref ICD_Code, ref ICD_Phu_Name, ref ICD_Phu_Code);
+                    chandoan += string.IsNullOrEmpty(objDiagInfo.Chandoan) ? "" : Utility.sDbnull(objDiagInfo.Chandoan);
+                    tenbenhchinh += ICD_Name;
+                    mabenh += ICD_Code;
+                    tenbenhphu += ICD_Phu_Name;
+                    mabenhphu += ICD_Phu_Code;
+                }
+                _result = Laygiatrithamsohethong("BA_SUDUNG_ICD_LAM_CHANDOANSOBO", "0", true) == "1" ? tenbenhchinh + tenbenhphu + chandoan : chandoan; //nếu dùng icd làm cdsb thì trên cdsb đã có tên bệnh rồi, ko cần cộng vào nữa
+            }
+            catch (Exception)
+            {
+                _result = string.Empty;
+            }
+            return _result;
+        }
+
         public static string Get_ChanDoan_KKB_CapCuu(KcbLuotkham objLuotkham)
         {
             string _result = string.Empty;
@@ -6680,8 +7288,8 @@ namespace VNS.Libs
             }
             return _result;
         }
-       public  static void GetChanDoanChinhPhu(string ICD_chinh, string IDC_Phu, ref string ICD_chinh_Name,
-         ref string ICD_chinh_Code, ref string ICD_Phu_Name, ref string ICD_Phu_Code)
+        public static void GetChanDoanChinhPhu(string ICD_chinh, string IDC_Phu, ref string ICD_chinh_Name,
+          ref string ICD_chinh_Code, ref string ICD_Phu_Name, ref string ICD_Phu_Code)
         {
             try
             {
@@ -6708,7 +7316,7 @@ namespace VNS.Libs
                 Utility.ShowMsg(ex.ToString());
             }
         }
-        public static void GetChanDoanNoitru(KcbLuotkham objLuotkham,ref string ICD_Khoa_NoITru,ref string Name_Khoa_NoITru)
+        public static void GetChanDoanNoitru(KcbLuotkham objLuotkham, ref string ICD_Khoa_NoITru, ref string Name_Khoa_NoITru)
         {
             var dtPatient = new DataTable();
             dtPatient =
@@ -6719,7 +7327,7 @@ namespace VNS.Libs
                     .And(KcbChandoanKetluan.Columns.Noitru).IsEqualTo(1)
                     .ExecuteDataSet()
                     .Tables[0];
-            ICD_Khoa_NoITru = string.Join(",", dtPatient.AsEnumerable().Where(c => Utility.AutoCorrectMa_Am1(c["mabenh_chinh"])!="").Select(c=> Utility.AutoCorrectMa_Am1(c["mabenh_chinh"])).Distinct());
+            ICD_Khoa_NoITru = string.Join(",", dtPatient.AsEnumerable().Where(c => Utility.AutoCorrectMa_Am1(c["mabenh_chinh"]) != "").Select(c => Utility.AutoCorrectMa_Am1(c["mabenh_chinh"])).Distinct());
             Name_Khoa_NoITru = string.Join(",", dtPatient.AsEnumerable().Where(c => Utility.AutoCorrectMa_Am1(c["chandoan"]) != "").Select(c => Utility.AutoCorrectMa_Am1(c["chandoan"])).Distinct());
             //foreach (DataRow row in dtPatient.Rows)
             //{
@@ -6749,9 +7357,51 @@ namespace VNS.Libs
         /// <param name="obj"><para>Object truyền vào <see cref="object"/></para></param>     
         /// <param name="DefaultVal"><para>Giá trị mặc định sẽ trả về nếu obj=null <see cref="object"/></para></param>     
         ///<returns>Đối tượng chuỗi trả về từ Object. Nếu obj=null thì trả về DefaultVal</returns>
-        public static string sDbnull(object obj, object DefaultVal,bool TudongChinhGiatriAm1=false)
+        public static string sDbnull(object obj, object DefaultVal, bool TudongChinhGiatriAm1 = false)
         {
             if (obj == null || obj == DBNull.Value)
+            {
+                return DefaultVal.ToString();
+            }
+            else
+            {
+                return TudongChinhGiatriAm1 ? DoTrim(AutoCorrectMa_Am1(obj.ToString())) : DoTrim(obj.ToString());
+            }
+        }
+        // Cách 1: Split + LINQ
+        public static List<int> ToListInt_Linq(string input, char separator = ',')
+        {
+            return input.Split(new[] { separator }, StringSplitOptions.RemoveEmptyEntries)
+                        .Select(x => int.Parse(x.Trim()))
+                        .ToList();
+        }
+
+        // Cách 2: Span<char> tối ưu
+        //public static List<int> ToIntList_Span(string input, char separator = ',')
+        //{
+        //    var result = new List<int>();
+        //    if (string.IsNullOrWhiteSpace(input))
+        //        return result;
+
+        //    ReadOnlySpan<char> span = input.AsSpan();
+        //    int start = 0;
+
+        //    for (int i = 0; i <= span.Length; i++)
+        //    {
+        //        if (i == span.Length || span[i] == separator)
+        //        {
+        //            var slice = span.Slice(start, i - start).Trim();
+        //            if (slice.Length > 0 && int.TryParse(slice, out int val))
+        //                result.Add(val);
+
+        //            start = i + 1;
+        //        }
+        //    }
+        //    return result;
+        //}
+        public static string sDbnull_BoAm1(object obj, string DefaultVal = "", bool TudongChinhGiatriAm1 = true)
+        {
+            if (obj == null || obj == DBNull.Value || obj.ToString() == "-1")
             {
                 return DefaultVal.ToString();
             }
@@ -6768,7 +7418,7 @@ namespace VNS.Libs
             }
             else
             {
-                return  DoTrim(obj.ToString());
+                return DoTrim(obj.ToString());
             }
         }
         public static byte[] image2Dbnull(object obj, byte[] DefaultVal)
@@ -6812,7 +7462,34 @@ namespace VNS.Libs
         {
             return "{0:#,#}";
         }
-       
+        public static void EnableAndFocus(TextBox txt, CheckBox _obj)
+        {
+            txt.Enabled = _obj.Checked;
+            if (_obj.Checked) txt.Focus();
+        }
+        public static void EnableAndFocus(TextBox txt, RadioButton _obj)
+        {
+            txt.Enabled = _obj.Checked;
+            if (_obj.Checked) txt.Focus();
+        }
+        public static void EnableAndFocus(EditBox txt, RadioButton _obj)
+        {
+            txt.Enabled = _obj.Checked;
+            if (_obj.Checked) txt.Focus();
+        }
+        public static void EnableAndFocus(EditBox txt, CheckBox _obj)
+        {
+            txt.Enabled = _obj.Checked;
+            if (_obj.Checked) txt.Focus();
+        }
+        public static string GetValue_MotaVitri(TextBox txt, bool isChecked)
+        {
+            return isChecked ? Utility.sDbnull(txt.Text) : "";
+        }
+        public static bool GetValue_Checked(bool isChecked, bool myChecked)
+        {
+            return isChecked ? myChecked : false;
+        }
         ///<summary>
         ///<para>Xử lý một Object nếu là null thì trả về giá trị truyền vào</para>
         ///</summary>   
@@ -6831,7 +7508,45 @@ namespace VNS.Libs
             }
             // Utility.Int32Dbnull()
         }
+        public static DateTime? ParseDateAuto(string input)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(input))
+                    return null;
 
+                string[] formats = {
+            "MM/dd/yyyy h:mm:ss tt",
+            "dd/MM/yyyy h:mm:ss tt",
+            "MM/dd/yyyy HH:mm:ss",
+            "dd/MM/yyyy HH:mm:ss",
+            "MM/dd/yyyy",
+            "dd/MM/yyyy"
+        };
+
+                DateTime dt;
+                if (DateTime.TryParseExact(
+                        input.Trim(),
+                        formats,
+                        CultureInfo.InvariantCulture,
+                        DateTimeStyles.None,
+                        out dt))
+                {
+                    return dt;
+                }
+
+                // fallback: thử Parse thường (để bắt thêm nhiều kiểu khác)
+                if (DateTime.TryParse(input, out dt))
+                    return dt;
+
+                return null; // không parse được
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+        }
         public static double fDbnull(object obj)
         {
             if (obj == null || obj == DBNull.Value)
@@ -7149,7 +7864,7 @@ namespace VNS.Libs
         }
         public static string FormatCurrecy_zero()
         {
-            return  "{0:#,##0.###}";//"{0:0,0.0}";
+            return "{0:#,##0.###}";//"{0:0,0.0}";
         }
 
         /// <summary>
@@ -7191,7 +7906,7 @@ namespace VNS.Libs
         /// <param name="txtBox"></param>
         public static void FormatCurrencyHIS(Janus.Windows.GridEX.EditControls.EditBox txtBox)
         {
-            if (!Utility.IsNumeric(txtBox.Text) || txtBox.Text=="(0)") return;
+            if (!Utility.IsNumeric(txtBox.Text) || txtBox.Text == "(0)") return;
             if ((txtBox.Text != null) && txtBox.Text.Trim() != "")
                 if (Utility.DecimaltoDbnull(txtBox.Text, 0) > 0)
                     txtBox.Text = String.Format(FormatCurrecy(), Convert.ToDouble(txtBox.Text));
@@ -7319,7 +8034,7 @@ namespace VNS.Libs
             }
             catch (Exception ex)
             {
-               CatchException("Could not start MSDTC\n",ex);
+                CatchException("Could not start MSDTC\n", ex);
             }
         }
 
@@ -7452,7 +8167,7 @@ namespace VNS.Libs
 
             return disCountType_Name;
         }
-         public static void RemoveRowfromDataTable(string Filter,DataTable dtData)
+        public static void RemoveRowfromDataTable(string Filter, DataTable dtData)
         {
             try
             {
@@ -7544,7 +8259,7 @@ namespace VNS.Libs
                 return Convert.ToInt16(obj);
             }
         }
-        
+
         /// <summary>
         /// Chuyển đổi một đối tượng sang kiểu Int32. Xử lý nếu trường hợp là null thì trả về giá trị DefaultVal
         /// </summary>
@@ -7562,7 +8277,7 @@ namespace VNS.Libs
                 return Convert.ToInt32(obj);
             }
         }
-        public static  string ConvertHexStrToUnicode(string hexString)
+        public static string ConvertHexStrToUnicode(string hexString)
         {
             int length = hexString.Length;
             byte[] bytes = new byte[length / 2];
@@ -7601,9 +8316,9 @@ namespace VNS.Libs
                 }
                 return string.Empty;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                Utility.CatchException("Bạn cần kiểm tra services PrintSpooler.ex và đặt service ở chế độ tự động(Automatic)\nNội dung lỗi:\n",ex);
+                Utility.CatchException("Bạn cần kiểm tra services PrintSpooler.ex và đặt service ở chế độ tự động(Automatic)\nNội dung lỗi:\n", ex);
                 return string.Empty;
             }
         }
@@ -7632,11 +8347,11 @@ namespace VNS.Libs
             {
             }
         }
-       public static void CanhbaoBMI(DataTable dtSource,string BMI,Label lbl)
+        public static void CanhbaoBMI(DataTable dtSource, string BMI, Label lbl)
         {
             try
             {
-                if (DoTrim( BMI )== "")
+                if (DoTrim(BMI) == "")
                 {
                     lbl.Text = "";
                     return;
@@ -7659,99 +8374,99 @@ namespace VNS.Libs
                 Utility.CatchException(ex);
             }
         }
-       public static string CanhbaoBMI_getData(DataTable dtSource, string BMI,ref bool isNormal)
-       {
-           try
-           {
-               if (DoTrim(BMI) == "")
-               {
-                   isNormal = true;
-                   return "";
-               }
-               foreach (DataRow dr in dtSource.Rows)
-               {
-                   List<string> lst_rangeData = Utility.sDbnull(dr[DmucChung.Columns.MotaThem], "0-100").Split('-').ToList<string>();
-                   if (Utility.DecimaltoDbnull(Utility.chuanhoaDecimal(BMI)) >= Utility.DecimaltoDbnull(Utility.chuanhoaDecimal(lst_rangeData[0])) && Utility.DecimaltoDbnull(Utility.chuanhoaDecimal(BMI)) <= Utility.DecimaltoDbnull(Utility.chuanhoaDecimal(lst_rangeData[1])))
-                   {
-                       if (Utility.sDbnull(dr[DmucChung.Columns.VietTat], "") == "BT")
-                       {
-                           isNormal = true;
-                           return Utility.sDbnull(dr[DmucChung.Columns.Ten]);
-                       }
-                       else
-                       {
-                           isNormal = false;
-                          return Utility.sDbnull(dr[DmucChung.Columns.Ten]);
-                       }
-                   }
-               }
-               return "";
-           }
-           catch (Exception ex)
-           {
-               return ex.Message;
-           }
-       }
-       public static void CanhbaoSPO2(DataTable dtSource, string SPO2, Label lbl)
-       {
-           try
-           {
-               if (DoTrim(SPO2) == "")
-               {
-                   lbl.Text = "";
-                   return;
-               }
-               foreach (DataRow dr in dtSource.Rows)
-               {
-                   List<string> lst_rangeData = Utility.sDbnull(dr[DmucChung.Columns.MotaThem], "0-100").Split('-').ToList<string>();
-                   if (Utility.DecimaltoDbnull(Utility.chuanhoaDecimal(SPO2)) >= Utility.DecimaltoDbnull(Utility.chuanhoaDecimal(lst_rangeData[0])) && Utility.DecimaltoDbnull(Utility.chuanhoaDecimal(SPO2)) <= Utility.DecimaltoDbnull(Utility.chuanhoaDecimal(lst_rangeData[1])))
-                   {
-                       if (Utility.sDbnull(dr[DmucChung.Columns.VietTat], "") == "BT")
-                           Utility.SetMsg(lbl, Utility.sDbnull(dr[DmucChung.Columns.Ten]), false);
-                       else
-                           Utility.SetMsg(lbl, Utility.sDbnull(dr[DmucChung.Columns.Ten]), true);
-                   }
-               }
-           }
-           catch (Exception ex)
-           {
+        public static string CanhbaoBMI_getData(DataTable dtSource, string BMI, ref bool isNormal)
+        {
+            try
+            {
+                if (DoTrim(BMI) == "")
+                {
+                    isNormal = true;
+                    return "";
+                }
+                foreach (DataRow dr in dtSource.Rows)
+                {
+                    List<string> lst_rangeData = Utility.sDbnull(dr[DmucChung.Columns.MotaThem], "0-100").Split('-').ToList<string>();
+                    if (Utility.DecimaltoDbnull(Utility.chuanhoaDecimal(BMI)) >= Utility.DecimaltoDbnull(Utility.chuanhoaDecimal(lst_rangeData[0])) && Utility.DecimaltoDbnull(Utility.chuanhoaDecimal(BMI)) <= Utility.DecimaltoDbnull(Utility.chuanhoaDecimal(lst_rangeData[1])))
+                    {
+                        if (Utility.sDbnull(dr[DmucChung.Columns.VietTat], "") == "BT")
+                        {
+                            isNormal = true;
+                            return Utility.sDbnull(dr[DmucChung.Columns.Ten]);
+                        }
+                        else
+                        {
+                            isNormal = false;
+                            return Utility.sDbnull(dr[DmucChung.Columns.Ten]);
+                        }
+                    }
+                }
+                return "";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+        public static void CanhbaoSPO2(DataTable dtSource, string SPO2, Label lbl)
+        {
+            try
+            {
+                if (DoTrim(SPO2) == "")
+                {
+                    lbl.Text = "";
+                    return;
+                }
+                foreach (DataRow dr in dtSource.Rows)
+                {
+                    List<string> lst_rangeData = Utility.sDbnull(dr[DmucChung.Columns.MotaThem], "0-100").Split('-').ToList<string>();
+                    if (Utility.DecimaltoDbnull(Utility.chuanhoaDecimal(SPO2)) >= Utility.DecimaltoDbnull(Utility.chuanhoaDecimal(lst_rangeData[0])) && Utility.DecimaltoDbnull(Utility.chuanhoaDecimal(SPO2)) <= Utility.DecimaltoDbnull(Utility.chuanhoaDecimal(lst_rangeData[1])))
+                    {
+                        if (Utility.sDbnull(dr[DmucChung.Columns.VietTat], "") == "BT")
+                            Utility.SetMsg(lbl, Utility.sDbnull(dr[DmucChung.Columns.Ten]), false);
+                        else
+                            Utility.SetMsg(lbl, Utility.sDbnull(dr[DmucChung.Columns.Ten]), true);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
 
-               Utility.CatchException(ex);
-           }
-       }
-       public static string CanhbaoSPO2_getData(DataTable dtSource, string SPO2, ref bool isNormal)
-       {
-           try
-           {
-               if (DoTrim(SPO2) == "")
-               {
-                   isNormal = true;
-                   return "";
-               }
-               foreach (DataRow dr in dtSource.Rows)
-               {
-                   List<string> lst_rangeData = Utility.sDbnull(dr[DmucChung.Columns.MotaThem], "0-100").Split('-').ToList<string>();
-                   if (Utility.DecimaltoDbnull(Utility.chuanhoaDecimal(SPO2)) >= Utility.DecimaltoDbnull(Utility.chuanhoaDecimal(lst_rangeData[0])) && Utility.DecimaltoDbnull(Utility.chuanhoaDecimal(SPO2)) <= Utility.DecimaltoDbnull(Utility.chuanhoaDecimal(lst_rangeData[1])))
-                   {
-                       if (Utility.sDbnull(dr[DmucChung.Columns.VietTat], "") == "BT")
-                       {
-                           isNormal = true;
-                           return Utility.sDbnull(dr[DmucChung.Columns.Ten]);
-                       }
-                       else
-                       {
-                           isNormal = false;
-                           return Utility.sDbnull(dr[DmucChung.Columns.Ten]);
-                       }
-                   }
-               }
-               return "";
-           }
-           catch (Exception ex)
-           {
-               return ex.Message;
-           }
-       }
+                Utility.CatchException(ex);
+            }
+        }
+        public static string CanhbaoSPO2_getData(DataTable dtSource, string SPO2, ref bool isNormal)
+        {
+            try
+            {
+                if (DoTrim(SPO2) == "")
+                {
+                    isNormal = true;
+                    return "";
+                }
+                foreach (DataRow dr in dtSource.Rows)
+                {
+                    List<string> lst_rangeData = Utility.sDbnull(dr[DmucChung.Columns.MotaThem], "0-100").Split('-').ToList<string>();
+                    if (Utility.DecimaltoDbnull(Utility.chuanhoaDecimal(SPO2)) >= Utility.DecimaltoDbnull(Utility.chuanhoaDecimal(lst_rangeData[0])) && Utility.DecimaltoDbnull(Utility.chuanhoaDecimal(SPO2)) <= Utility.DecimaltoDbnull(Utility.chuanhoaDecimal(lst_rangeData[1])))
+                    {
+                        if (Utility.sDbnull(dr[DmucChung.Columns.VietTat], "") == "BT")
+                        {
+                            isNormal = true;
+                            return Utility.sDbnull(dr[DmucChung.Columns.Ten]);
+                        }
+                        else
+                        {
+                            isNormal = false;
+                            return Utility.sDbnull(dr[DmucChung.Columns.Ten]);
+                        }
+                    }
+                }
+                return "";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
         /// <summary>
         /// Chuyển đổi một đối tượng sang kiểu Int32. Xử lý nếu trường hợp là null thì trả về giá trị 0
         /// </summary>
@@ -7782,11 +8497,11 @@ namespace VNS.Libs
             }
             else
             {
-                return Convert.ToDecimal( obj);
+                return Convert.ToDecimal(obj);
             }
 
         }
-       
+
         /// <summary>
         /// HÀM THỰC HIỆN CONVERT DOUBLE NẾU ĐỐI TƯỢNG LÀ NULL
         /// </summary>
@@ -7821,9 +8536,9 @@ namespace VNS.Libs
                 return Convert.ToDouble(obj);
             }
         }
-        public static void CalculateIBM(decimal chieucao,decimal cannang, Janus.Windows.GridEX.EditControls.MaskedEditBox txtbox)
+        public static void CalculateIBM(decimal chieucao, decimal cannang, Janus.Windows.GridEX.EditControls.MaskedEditBox txtbox)
         {
-            if (chieucao>0 && cannang>0)
+            if (chieucao > 0 && cannang > 0)
             {
                 Decimal IBM = cannang / ((chieucao / 100) * (chieucao / 100));
                 txtbox.Text = String.Format("{0:0.##}", IBM);
@@ -7831,7 +8546,7 @@ namespace VNS.Libs
             else
             {
                 txtbox.Text = "";
-            }    
+            }
         }
         public static void CalculateIBM(decimal chieucao, decimal cannang, Janus.Windows.GridEX.EditControls.EditBox txtbox)
         {
@@ -7845,7 +8560,7 @@ namespace VNS.Libs
                 txtbox.Text = "";
             }
         }
-       
+
 
         /// <summary>
         /// Hàm thực hiện convert đối tượng thành Decimal
@@ -7930,13 +8645,13 @@ namespace VNS.Libs
 
                 return "";
             }
-            
+
         }
         public static string GetValueFromGridColumn(Janus.Windows.GridEX.GridEX grdList, string ColumnName, string defaultVal)
         {
             try
             {
-                if (grdList.CurrentRow!=null && grdList.RootTable.Columns.Contains(ColumnName))
+                if (grdList.CurrentRow != null && grdList.RootTable.Columns.Contains(ColumnName))
                     return Utility.sDbnull(grdList.CurrentRow.Cells[ColumnName].Value, defaultVal);
                 else
                     return "-1";
@@ -7948,7 +8663,7 @@ namespace VNS.Libs
             }
 
         }
-        public static string GetValueFromGridColumn(Janus.Windows.GridEX.GridEXRow row, string ColumnName,string defaultVal)
+        public static string GetValueFromGridColumn(Janus.Windows.GridEX.GridEXRow row, string ColumnName, string defaultVal)
         {
             try
             {
@@ -7968,7 +8683,7 @@ namespace VNS.Libs
         {
             try
             {
-                if (row!=null && row.GridEX.RootTable.Columns.Contains(ColumnName))
+                if (row != null && row.GridEX.RootTable.Columns.Contains(ColumnName))
                     return Utility.sDbnull(row.Cells[ColumnName].Value);
                 else
                     return "-1";
@@ -7980,7 +8695,7 @@ namespace VNS.Libs
             }
 
         }
-        public static  List<string> GetVisibleColumns(Janus.Windows.GridEX.GridEX grdList)
+        public static List<string> GetVisibleColumns(Janus.Windows.GridEX.GridEX grdList)
         {
             try
             {
@@ -7999,18 +8714,18 @@ namespace VNS.Libs
         }
         public static byte getUserConfigValue(string config_name, byte defaultVal)
         {
-             DataRow[] arrdr=globalVariables.gv_dtSysUserConfig.Select(string.Format("{0}='{1}' and {2}='{3}'",SysUserConfig.Columns.Username,globalVariables.UserName,SysUserConfig.Columns.ConfigName,config_name));
-             if (arrdr.Length > 0)
-             {
-                 return Utility.ByteDbnull(arrdr[0][SysUserConfig.Columns.ConfigValue], 0);
-             }
-             return defaultVal;
+            DataRow[] arrdr = globalVariables.gv_dtSysUserConfig.Select(string.Format("{0}='{1}' and {2}='{3}'", SysUserConfig.Columns.Username, globalVariables.UserName, SysUserConfig.Columns.ConfigName, config_name));
+            if (arrdr.Length > 0)
+            {
+                return Utility.ByteDbnull(arrdr[0][SysUserConfig.Columns.ConfigValue], 0);
+            }
+            return defaultVal;
         }
         public static void SaveUserConfig(string config_name, byte config_value)
         {
             try
             {
-                DataRow[] arrdr=globalVariables.gv_dtSysUserConfig.Select(string.Format("{0}='{1}' and {2}='{3}'",SysUserConfig.Columns.Username,globalVariables.UserName,SysUserConfig.Columns.ConfigName,config_name));
+                DataRow[] arrdr = globalVariables.gv_dtSysUserConfig.Select(string.Format("{0}='{1}' and {2}='{3}'", SysUserConfig.Columns.Username, globalVariables.UserName, SysUserConfig.Columns.ConfigName, config_name));
                 if (arrdr.Length > 0)
                 {
                     SysUserConfig uc = SysUserConfig.FetchByID(Utility.Int64Dbnull(arrdr[0][SysUserConfig.Columns.Id]));
@@ -8018,7 +8733,7 @@ namespace VNS.Libs
                     uc.MarkOld();
                     uc.Save();
                     arrdr[0][SysUserConfig.Columns.ConfigValue] = config_value;
-                    
+
                 }
                 else
                 {
@@ -8046,7 +8761,7 @@ namespace VNS.Libs
         {
             try
             {
-                if (LstColumns == null || LstColumns.Count<=0) return;
+                if (LstColumns == null || LstColumns.Count <= 0) return;
                 grdList.SuspendLayout();
                 foreach (GridEXColumn col in grdList.RootTable.Columns)
                 {
@@ -8076,7 +8791,7 @@ namespace VNS.Libs
         }
         public static int GetSelectedIndex(MultiColumnCombo cbo, string _Value)
         {
-            if (cbo.DataSource==null || ((DataTable)cbo.DataSource).Rows.Count <= 0) return -1;
+            if (cbo.DataSource == null || ((DataTable)cbo.DataSource).Rows.Count <= 0) return -1;
             for (int i = 0; i <= cbo.DropDownList.RecordCount - 1; i++)
             {
                 cbo.SelectedIndex = i;
@@ -8092,7 +8807,7 @@ namespace VNS.Libs
                 date = date.AddDays(1);
 
             return (short)(Math.Truncate((double)date.Subtract(beginningOfMonth).TotalDays / 7f) + 1);
-        } 
+        }
         /// <summary>
         /// Trả về giá trị SelectedIndex của một ComboBox nếu SelectedValue=giá trị truyền vào
         /// </summary>
@@ -8206,7 +8921,7 @@ namespace VNS.Libs
                 }
             }
         }
-        
+
         /// <summary>
         /// hàm thực hiện việc nhây thông tin của tới row cần trỏ
         /// </summary>
@@ -8374,14 +9089,14 @@ namespace VNS.Libs
         {
             return tDate.Year.ToString() + Strings.Right("0" + tDate.Month.ToString(), 2);
         }
-        public static string GetYYYYMMDD(System.DateTime? tDate,DateTime defaultVal)
+        public static string GetYYYYMMDD(System.DateTime? tDate, DateTime defaultVal)
         {
-            if(tDate.Equals(null) || tDate.Equals(DBNull.Value))
+            if (tDate.Equals(null) || tDate.Equals(DBNull.Value))
                 return defaultVal.Year.ToString() + Strings.Right("0" + defaultVal.Month.ToString(), 2) +
                    Strings.Right("0" + defaultVal.Day.ToString(), 2);
             else
-            return tDate.Value.Year.ToString() + Strings.Right("0" + tDate.Value.Month.ToString(), 2) +
-                   Strings.Right("0" + tDate.Value.Day.ToString(), 2);
+                return tDate.Value.Year.ToString() + Strings.Right("0" + tDate.Value.Month.ToString(), 2) +
+                       Strings.Right("0" + tDate.Value.Day.ToString(), 2);
         }
         public static string GetYYYYMMDD(string sDate)
         {
@@ -8401,7 +9116,7 @@ namespace VNS.Libs
         {
             return Strings.Right(Format + iNumber.ToString(), Format.Length);
         }
-        public static void focusCell(GridEX grdList,string ColName)
+        public static void focusCell(GridEX grdList, string ColName)
         {
             try
             {
@@ -8433,13 +9148,13 @@ namespace VNS.Libs
                     .And(SysFunction.Columns.SFormName).IsEqualTo(sformName).ExecuteSingle<SysFunction>();
                 if (_objSysFunction != null)
                 {
-                    OpenHelpFile(string.Format(@"{0}\{1}\{2}",Application.StartupPath,"Help", _objSysFunction.SDesc));
+                    OpenHelpFile(string.Format(@"{0}\{1}\{2}", Application.StartupPath, "Help", _objSysFunction.SDesc));
                 }
             }
             catch (Exception ex)
             {
-                
-                
+
+
             }
         }
         public static string AutoFillMaBA(string _value)
@@ -8493,7 +9208,7 @@ namespace VNS.Libs
         }
         public static string CapitalizeWords(string value)
         {
-            if (globalVariables.CHARACTERCASING == 1) return value;
+            if (globalVariables.CHARACTERCASING == 2) return value;
             if (value == null)
                 return "";
             if (value.Length == 0)
@@ -9962,7 +10677,7 @@ namespace VNS.Libs
                             case "Branch_Address":
                                 SetField(t, "Branch_Address", globalVariables.Branch_Address);
                                 break;
-                           
+
                             case "gv_sStaffName":
                                 SetField(t, "gv_sStaffName", globalVariables.gv_strTenNhanvien);
                                 break;
@@ -10075,6 +10790,80 @@ namespace VNS.Libs
             {
             }
         }
+        public static void InitFtp()
+        {
+            try
+            {
+                List<string> FTPInfor = Laygiatrithamsohethong("FTP_PDFRIS", string.Format("{0}-{1}-{2}", "127.0.0.1", "pdf2his", "pdf2his"), true).Split('-').ToList<string>();
+
+                globalVariables.FtpClientRIS = new FTPclient(FTPInfor[0], FTPInfor[1], FTPInfor[2]);
+                globalVariables.FtpClientRIS.UsePassive = true;
+                globalVariables.FtpClientCurrentDirectoryRIS = globalVariables.FtpClientRIS.CurrentDirectory;
+                if (!Directory.Exists(globalVariables._baseDirectoryRIS))
+                {
+                    Directory.CreateDirectory(globalVariables._baseDirectoryRIS);
+                }
+                FTPInfor = Laygiatrithamsohethong("FTP_PDFLIS", string.Format("{0}-{1}-{2}", "127.0.0.1", "pdf2his", "pdf2his"), true).Split('-').ToList<string>();
+                globalVariables.FtpClientLIS = new FTPclient(FTPInfor[0], FTPInfor[1], FTPInfor[2]);
+                globalVariables.FtpClientLIS.UsePassive = true;
+                globalVariables.FtpClientCurrentDirectoryLIS = globalVariables.FtpClientLIS.CurrentDirectory;
+                if (!Directory.Exists(globalVariables._baseDirectoryLIS))
+                {
+                    Directory.CreateDirectory(globalVariables._baseDirectoryLIS);
+                }
+                globalVariables.isActiveFTP = true;
+            }
+            catch (Exception ex)
+            {
+                globalVariables.isActiveFTP = false;
+            }
+        }
+        public static string getPDFFile(string fileName, string ma_nhom, bool Force2Download)
+        {
+            try
+            {
+
+
+                string localFile = "";
+                string ftpFile = "";
+                if (ma_nhom == "XN")
+                {
+                    localFile = string.Format(@"{0}{1}", globalVariables._baseDirectoryLIS, fileName.Replace(@"/", @"\"));
+                    ftpFile = string.Format(@"{0}{1}", globalVariables.FtpClientCurrentDirectoryLIS, fileName);
+                }
+                else
+                {
+                    localFile = string.Format(@"{0}{1}", globalVariables._baseDirectoryRIS, fileName.Replace(@"/", @"\"));
+                    ftpFile = string.Format(@"{0}{1}", globalVariables.FtpClientCurrentDirectoryRIS, fileName);
+                }
+                string parentFolder = Path.GetDirectoryName(localFile);
+                Utility.Try2CreateFolder(Directory.GetParent(parentFolder).FullName);
+                Utility.Try2CreateFolder(parentFolder);
+                if (File.Exists(localFile))
+                {
+                    if (Force2Download)
+                    {
+                        if (ma_nhom == "XN")
+                            globalVariables.FtpClientLIS.Download(ftpFile, localFile, true);
+                        else
+                            globalVariables.FtpClientRIS.Download(ftpFile, localFile, true);
+                    }
+                }
+                else//Download and open
+                {
+                    if (ma_nhom == "XN")
+                        globalVariables.FtpClientLIS.Download(ftpFile, localFile, true);
+                    else
+                        globalVariables.FtpClientRIS.Download(ftpFile, localFile, true);
+                }
+                return localFile;
+            }
+            catch (Exception ex)
+            {
+                Utility.ShowMsg(ex.Message);
+                return "";
+            }
+        }
         //public static void Try2CreateFolder(string file)
         //{
         //    try
@@ -10173,7 +10962,7 @@ namespace VNS.Libs
             }
             dataTable.AcceptChanges();
         }
-        public static void AddColums2DataTable( DataTable dataTable, List<string> lstFieldNames, List<Type> lstTypes)
+        public static void AddColums2DataTable(DataTable dataTable, List<string> lstFieldNames, List<Type> lstTypes)
         {
             int idx = 0;
             foreach (string FieldName in lstFieldNames)
@@ -10184,11 +10973,11 @@ namespace VNS.Libs
             }
             dataTable.AcceptChanges();
         }
-        public static void AddColums2DataTable(ref DataTable dataTable, List<string> lstFieldNames,Type FieldType)
+        public static void AddColums2DataTable(ref DataTable dataTable, List<string> lstFieldNames, Type FieldType)
         {
             foreach (string FieldName in lstFieldNames)
             {
-                if (dataTable!=null && !dataTable.Columns.Contains(FieldName))
+                if (dataTable != null && !dataTable.Columns.Contains(FieldName))
                     dataTable.Columns.Add(FieldName, FieldType);
             }
             dataTable.AcceptChanges();
@@ -10294,7 +11083,7 @@ namespace VNS.Libs
             Size OldSize = vForm.Size;
             try
             {
-                
+
                 string[] arrList = ReadFileName(sFathName);
                 if (arrList.GetLength(0) > 0)
                 {
@@ -10386,6 +11175,17 @@ namespace VNS.Libs
             globalVariables.SysLogo = byteArray;
 
         }
+        public static void SetDefaultValue4Parameters(ReportDocument crpt,string ten_bao_cao, DateTime ngay_in,string thoi_gian_du_lieu,string thong_tin_cuoi_trang)
+        {
+            Utility.SetParameterValue(crpt, "ten_bv", globalVariables.Branch_Name);
+            Utility.SetParameterValue(crpt, "dia_chi_bv", globalVariables.Branch_Address);
+            Utility.SetParameterValue(crpt, "dien_thoai_bv", globalVariables.Branch_Phone);
+            Utility.SetParameterValue(crpt, "co_quan_chu_quan", globalVariables.ParentBranch_Name);
+            Utility.SetParameterValue(crpt, "thoi_gian_du_lieu", thoi_gian_du_lieu);
+            Utility.SetParameterValue(crpt, "ngay_in", Utility.FormatDateTimeWithThanhPho(ngay_in));
+            Utility.SetParameterValue(crpt, "ten_bao_cao", ten_bao_cao);
+            Utility.SetParameterValue(crpt, "thong_tin_cuoi_trang", thong_tin_cuoi_trang);
+        }
         public static void SetParameterValue(ReportDocument crpt, string pName, object pVal)
         {
             try
@@ -10444,6 +11244,45 @@ namespace VNS.Libs
                 if (icdName.Trim() != "") icdName = icdName.Substring(0, icdName.Length - 1);
                 if (icdCode.Trim() != "") icdCode = icdCode.Substring(0, icdCode.Length - 1);
                
+            }
+            catch (Exception ex)
+            {
+                if (globalVariables.IsAdmin) Utility.ShowMsg("Lỗi:" + ex.Message);
+            }
+        }
+        public static void GetChanDoan_V1(string icdChinh, string idcPhu, string chandoan, ref string icdName, ref string icdCode)
+        {
+            try
+            {
+                List<string> lstIcd = icdChinh.Split(',').ToList();
+                //DmucBenhCollection list =
+                //    new DmucBenhController().FetchByQuery(
+                //        DmucBenh.CreateQuery().AddWhere(DmucBenh.MaBenhColumn.ColumnName, Comparison.In, lstIcd));
+                DataRow[] arrBenh = globalVariables.gv_dtDmucBenh.Select(string.Format("{0} in ('{1}')", DmucBenh.MaBenhColumn.ColumnName, string.Join("','", icdChinh.Split(',').ToArray<string>())));
+                foreach (DataRow item in arrBenh)
+                {
+                    icdName +=string.Format("{0}({1})",Utility.sDbnull( item[DmucBenh.TenBenhColumn.ColumnName]), Utility.sDbnull(item[DmucBenh.MaBenhColumn.ColumnName])) + ";";
+                    icdCode += item[DmucBenh.MaBenhColumn.ColumnName] + "; ";
+                }
+                arrBenh = globalVariables.gv_dtDmucBenh.Select(string.Format("{0} in ('{1}')", DmucBenh.MaBenhColumn.ColumnName, string.Join("','", idcPhu.Split(',').ToArray<string>())));
+                foreach (DataRow item in arrBenh)
+                {
+                    icdName += string.Format("{0}({1})", Utility.sDbnull(item[DmucBenh.TenBenhColumn.ColumnName]), Utility.sDbnull(item[DmucBenh.MaBenhColumn.ColumnName])) + ";";// item[DmucBenh.TenBenhColumn.ColumnName] + "; ";
+                    icdCode += item[DmucBenh.MaBenhColumn.ColumnName] + "; ";
+                }
+                if (icdName.Trim() != "") icdName = icdName.Substring(0, icdName.Length - 1);
+                if (icdCode.Trim() != "") icdCode = icdCode.Substring(0, icdCode.Length - 1);
+                if (Utility.sDbnull(chandoan).Length > 0)
+                {
+                    DmucChung _dmucchung = new Select().From(DmucChung.Schema).Where(DmucChung.Columns.Loai).IsEqualTo("CHANDOAN")
+                        .And(DmucChung.Columns.Ma).IsEqualTo(chandoan).ExecuteSingle<DmucChung>();
+                    if (_dmucchung != null)
+                        icdName += _dmucchung.Ten;
+                    else
+                        icdName = string.Format("{0}; {1}", icdName, Utility.sDbnull(chandoan));
+                }
+               
+
             }
             catch (Exception ex)
             {
@@ -10658,6 +11497,100 @@ namespace VNS.Libs
             //{
             //}
         }
+        public static string FromNumber2ToRoman(int number)
+        {
+            try
+            {
+                if (number <= 0 || number >= 4000)
+                    throw new ArgumentOutOfRangeException("number", "Giá trị phải nằm trong khoảng 1 đến 3999.");
+
+                var map = new Dictionary<int, string>
+    {
+        {1000, "M"},
+        {900,  "CM"},
+        {500,  "D"},
+        {400,  "CD"},
+        {100,  "C"},
+        {90,   "XC"},
+        {50,   "L"},
+        {40,   "XL"},
+        {10,   "X"},
+        {9,    "IX"},
+        {5,    "V"},
+        {4,    "IV"},
+        {1,    "I"}
+    };
+
+                var result = new StringBuilder();
+
+                foreach (var kvp in map)
+                {
+                    while (number >= kvp.Key)
+                    {
+                        result.Append(kvp.Value);
+                        number -= kvp.Key;
+                    }
+                }
+
+                return result.ToString();
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+                return "";
+            }
+
+        }
+        public static int FromRoman2Number(string roman)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(roman))
+                    throw new ArgumentException("Giá trị rỗng hoặc null không hợp lệ.", nameof(roman));
+
+                roman = roman.ToUpper();
+
+                var map = new Dictionary<char, int>
+    {
+        {'I', 1},
+        {'V', 5},
+        {'X', 10},
+        {'L', 50},
+        {'C', 100},
+        {'D', 500},
+        {'M', 1000}
+    };
+
+                int total = 0;
+                int prevValue = 0;
+
+                // Duyệt ngược để dễ trừ khi gặp ký tự nhỏ trước ký tự lớn
+                for (int i = roman.Length - 1; i >= 0; i--)
+                {
+                    char c = roman[i];
+                    if (!map.ContainsKey(c))
+                        throw new ArgumentException($"Ký tự '{c}' không hợp lệ trong số La Mã.", nameof(roman));
+
+                    int value = map[c];
+
+                    if (value < prevValue)
+                        total -= value;
+                    else
+                        total += value;
+
+                    prevValue = value;
+                }
+
+                return total;
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+                return 1;
+            }
+            
+        }
+
         public static string ConvertDataTableToXML(DataTable dtData)
         {
             DataSet dsData = new DataSet();
@@ -10927,6 +11860,12 @@ namespace VNS.Libs
             str += " phút ";
             return str;
            
+        }
+        public static string GioPhut(string sValue)
+        {
+            List<string> lstGioPhut = sValue.Split(':').ToList<string>();
+
+            return lstGioPhut.Count == 2 ? string.Format("{0} giờ {1} phút", lstGioPhut[0], lstGioPhut[1]) : "..........giờ..........phút";
         }
         public static string FormatDateTime_Gio(DateTime dt)
         {
@@ -12782,6 +13721,29 @@ namespace VNS.Libs
         }
 
         #endregion
+    }
+    public static class TextHelper
+    {
+        public static string ChuanHoaTen(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input)) return input;
+
+            var words = input.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+            for (int i = 0; i < words.Length; i++)
+            {
+                var word = words[i];
+
+                // Nếu ký tự đầu là chữ cái thường → viết hoa
+                if (char.IsLetter(word[0]) && char.IsLower(word[0]))
+                {
+                    words[i] = char.ToUpper(word[0], new CultureInfo("vi-VN")) + word.Substring(1);
+                }
+                // Nếu đã viết hoa hoặc ký tự đầu không phải chữ → giữ nguyên
+            }
+
+            return string.Join(" ", words);
+        }
     }
     public class NetworkConnection : IDisposable
     {
@@ -16114,10 +17076,13 @@ namespace VNS.Libs
                 }
                 else if (dt.Rows.Count > 1)
                 {
-                    DataRow dr = dt.NewRow();
-                    dr[dataTextField] = defaultItem;
-                    dr[dataValueField] = -1;
-                    dt.Rows.InsertAt(dr, 0);
+                    if (dt.Select(string.Format("{0}='{1}'", dataTextField, defaultItem)).Length<=0)
+                    {
+                        DataRow dr = dt.NewRow();
+                        dr[dataTextField] = defaultItem;
+                        dr[dataValueField] = -1;
+                        dt.Rows.InsertAt(dr, 0);
+                    }
                 }
                 objCombobox.BindingContext = new BindingContext();
                 objCombobox.DataSource = dt;
@@ -17265,6 +18230,30 @@ namespace VNS.Libs
                     if (Prg.InvokeRequired)
                     {
                         Prg.Invoke(new SetPrgValue(SetValue4Prg), new object[] { Prg, _Value });
+                    }
+                    else
+                    {
+                        Prg.Value += _Value;
+                        Prg.Refresh();
+                    }
+                }
+                catch
+                {
+                }
+                finally
+                {
+                    Application.DoEvents();
+                }
+            }
+            delegate void SetPrgValueJanus(Janus.Windows.EditControls.UIProgressBar Prg , int _Value);
+            public static void SetValue4PrgJanus(Janus.Windows.EditControls.UIProgressBar  Prg, int _Value)
+            {
+                try
+                {
+
+                    if (Prg.InvokeRequired)
+                    {
+                        Prg.Invoke(new SetPrgValueJanus(SetValue4PrgJanus), new object[] { Prg, _Value });
                     }
                     else
                     {

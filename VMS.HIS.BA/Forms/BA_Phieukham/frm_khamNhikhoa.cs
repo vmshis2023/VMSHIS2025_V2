@@ -22,6 +22,7 @@ namespace VMS.HIS.UI.EMR
     {
         public KcbLuotkham objLuotkham;
         KcbDanhsachBenhnhan objBenhnhan;
+        
         bool AllowedChanged = false;
         action m_enAct = action.FirstOrFinished;
         public frm_khamNhikhoa(KcbLuotkham objLuotkham, KcbDanhsachBenhnhan objBenhnhan)

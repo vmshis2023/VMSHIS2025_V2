@@ -1,0 +1,14 @@
+2025-10-27 14:28:30.6222||DEBUG|KysoPDF|---------Begin KysoPDF---------------------------------------------------- |url: https://localhost/api/Viettel/KysoPDF|action: KysoPDF
+2025-10-27 14:28:33.9583||DEBUG|KysoPDF|Thông tin user kí số: user 'CUONGDV', userFullName 'Đào Văn Cường' with userId: '001081007147', password: '' |url: https://localhost/api/Viettel/KysoPDF|action: KysoPDF
+2025-10-27 14:28:34.2204||DEBUG|KysoPDF|File Length: 131902 |url: https://localhost/api/Viettel/KysoPDF|action: KysoPDF
+2025-10-27 14:28:46.6798||DEBUG|KysoPDF|----------------------Bắt đầu ký xác thực---------------------- |url: https://localhost/api/Viettel/KysoPDF|action: KysoPDF
+2025-10-27 14:28:57.7319||DEBUG|KysoPDF|Ký file1.Ký hash thành công |url: https://localhost/api/Viettel/KysoPDF|action: KysoPDF
+2025-10-27 14:28:57.7565||DEBUG|KysoPDF|Ký file1.Ký thành công |url: https://localhost/api/Viettel/KysoPDF|action: KysoPDF
+2025-10-27 14:28:57.7678||DEBUG|KysoPDF|----------------------Kết thúc ký xác thực---------------------- |url: https://localhost/api/Viettel/KysoPDF|action: KysoPDF
+2025-10-27 14:38:53.2228||DEBUG|KysoPDF|---------Begin KysoPDF---------------------------------------------------- |url: https://localhost/api/Viettel/KysoPDF|action: KysoPDF
+2025-10-27 14:38:53.2228||DEBUG|KysoPDF|Thông tin user kí số: user 'CUONGDV', userFullName 'Đào Văn Cường' with userId: '001081007147', password: '' |url: https://localhost/api/Viettel/KysoPDF|action: KysoPDF
+2025-10-27 14:38:53.2291||DEBUG|KysoPDF|File Length: 117174 |url: https://localhost/api/Viettel/KysoPDF|action: KysoPDF
+2025-10-27 14:38:53.2291||DEBUG|KysoPDF|----------------------Bắt đầu ký xác thực---------------------- |url: https://localhost/api/Viettel/KysoPDF|action: KysoPDF
+2025-10-27 14:39:00.9368||DEBUG|KysoPDF|Ký file1.Ký hash thành công |url: https://localhost/api/Viettel/KysoPDF|action: KysoPDF
+2025-10-27 14:39:00.9586||DEBUG|KysoPDF|Ký file1.Ký thành công |url: https://localhost/api/Viettel/KysoPDF|action: KysoPDF
+2025-10-27 14:39:00.9694||DEBUG|KysoPDF|----------------------Kết thúc ký xác thực---------------------- |url: https://localhost/api/Viettel/KysoPDF|action: KysoPDF

@@ -92,7 +92,7 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(string Ma,string Loai,string Ten,int SttHthi,int TrangThai,byte? TrangthaiMacdinh,string VietTat,string MotaThem,string NguoiTao,DateTime? NgayTao,string NguoiSua,DateTime? NgaySua,string Phanloai)
+	    public void Insert(string Ma,string Loai,string Ten,int SttHthi,int TrangThai,byte? TrangthaiMacdinh,string VietTat,string MotaThem,string NguoiTao,DateTime? NgayTao,string NguoiSua,DateTime? NgaySua,string Phanloai,string DienThoai,string DiaChi,string SoTaikhoan,string Mst,string Quocgia)
 	    {
 		    DmucChung item = new DmucChung();
 		    
@@ -122,6 +122,16 @@ namespace VMS.HIS.DAL
             
             item.Phanloai = Phanloai;
             
+            item.DienThoai = DienThoai;
+            
+            item.DiaChi = DiaChi;
+            
+            item.SoTaikhoan = SoTaikhoan;
+            
+            item.Mst = Mst;
+            
+            item.Quocgia = Quocgia;
+            
 	    
 		    item.Save(UserName);
 	    }
@@ -130,7 +140,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(string Ma,string Loai,string Ten,int SttHthi,int TrangThai,byte? TrangthaiMacdinh,string VietTat,string MotaThem,string NguoiTao,DateTime? NgayTao,string NguoiSua,DateTime? NgaySua,string Phanloai)
+	    public void Update(string Ma,string Loai,string Ten,int SttHthi,int TrangThai,byte? TrangthaiMacdinh,string VietTat,string MotaThem,string NguoiTao,DateTime? NgayTao,string NguoiSua,DateTime? NgaySua,string Phanloai,string DienThoai,string DiaChi,string SoTaikhoan,string Mst,string Quocgia)
 	    {
 		    DmucChung item = new DmucChung();
 	        item.MarkOld();
@@ -161,6 +171,16 @@ namespace VMS.HIS.DAL
 			item.NgaySua = NgaySua;
 				
 			item.Phanloai = Phanloai;
+				
+			item.DienThoai = DienThoai;
+				
+			item.DiaChi = DiaChi;
+				
+			item.SoTaikhoan = SoTaikhoan;
+				
+			item.Mst = Mst;
+				
+			item.Quocgia = Quocgia;
 				
 	        item.Save(UserName);
 	    }

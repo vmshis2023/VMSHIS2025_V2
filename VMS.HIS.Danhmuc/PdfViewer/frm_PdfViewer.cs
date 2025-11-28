@@ -17,20 +17,20 @@ namespace VMS.HIS.Danhmuc
         public string ma_luotkham = "";
         public string ma_chidinh = "";
         private Logger _log;
-        public FTPclient FtpClientRIS;
-        public FTPclient FtpClientLIS;
-        private string FtpClientCurrentDirectoryRIS = "";
-        private readonly string _baseDirectoryRIS = string.Format("{0}{1}", AppDomain.CurrentDomain.BaseDirectory, "pdfRIS\\");
+        //public FTPclient FtpClientRIS;
+        //public FTPclient FtpClientLIS;
+        //private string FtpClientCurrentDirectoryRIS = "";
+        //private readonly string _baseDirectoryRIS = string.Format("{0}{1}", AppDomain.CurrentDomain.BaseDirectory, "pdfRIS\\");
 
-        private string FtpClientCurrentDirectoryLIS = "";
-        private string _baseDirectoryLIS = string.Format("{0}{1}", AppDomain.CurrentDomain.BaseDirectory, "pdfLIS\\");
+        //private string FtpClientCurrentDirectoryLIS = "";
+        //private string _baseDirectoryLIS = string.Format("{0}{1}", AppDomain.CurrentDomain.BaseDirectory, "pdfLIS\\");
         byte noitru = 0;
         public frm_PdfViewer(byte noitru)
         {
             InitializeComponent();
             pdfViewer1.CreateBars(DevExpress.XtraPdfViewer.PdfViewerToolbarKind.Main);
-            
-            this.noitru = noitru;
+            optMaluotkham.Checked = true;
+            this.noitru = 100;// noitru;
             Utility.SetVisualStyle(this);
             //globalVariables.File_WebPath = BusinessHelper.WeServicebPath("FILE_API", "KKB", "BV01");
             txtMaluotkham.Visible = btnSearch.Visible = globalVariables.IsAdmin;
@@ -39,7 +39,7 @@ namespace VMS.HIS.Danhmuc
             optMachidinh.CheckedChanged += _CheckedChanged;
             optMaluotkham.CheckedChanged += _CheckedChanged;
             _log = LogManager.GetCurrentClassLogger();
-            InitFtp();
+           if(!globalVariables.isActiveFTP) Utility.InitFtp();
         }
 
         void _CheckedChanged(object sender, EventArgs e)
@@ -116,32 +116,7 @@ namespace VMS.HIS.Danhmuc
 
             }
         }
-        private void InitFtp()
-        {
-            try
-            {
-                List<string> FTPInfor = THU_VIEN_CHUNG.Laygiatrithamsohethong("FTP_PDFRIS", string.Format("{0}-{1}-{2}", "127.0.0.1", "pdf2his", "pdf2his"), true).Split('-').ToList<string>();
-
-                FtpClientRIS = new FTPclient(FTPInfor[0], FTPInfor[1], FTPInfor[2]);
-                FtpClientRIS.UsePassive = true;
-                FtpClientCurrentDirectoryRIS = FtpClientRIS.CurrentDirectory;
-                if (!Directory.Exists(_baseDirectoryRIS))
-                {
-                    Directory.CreateDirectory(_baseDirectoryRIS);
-                }
-                FTPInfor = THU_VIEN_CHUNG.Laygiatrithamsohethong("FTP_PDFLIS", string.Format("{0}-{1}-{2}", "127.0.0.1", "pdf2his", "pdf2his"), true).Split('-').ToList<string>();
-                FtpClientLIS = new FTPclient(FTPInfor[0], FTPInfor[1], FTPInfor[2]);
-                FtpClientLIS.UsePassive = true;
-                FtpClientCurrentDirectoryLIS = FtpClientLIS.CurrentDirectory;
-                if (!Directory.Exists(_baseDirectoryLIS))
-                {
-                    Directory.CreateDirectory(_baseDirectoryLIS);
-                }
-            }
-            catch
-            {
-            }
-        }
+       
         void SearchData()
         {
             try
@@ -270,7 +245,8 @@ namespace VMS.HIS.Danhmuc
             try
             {
                 LoadUserConfigs();
-                SearchData();
+                _CheckedChanged(optMaluotkham, e);
+                //SearchData();
             }
             catch (Exception ex)
             {
@@ -330,38 +306,42 @@ namespace VMS.HIS.Danhmuc
                 if (!Utility.isValidGrid(grdKQ)) return;
                 string fileName = grdKQ.GetValue("duongdan_file").ToString();
                 string ma_nhom= grdKQ.GetValue("ma_nhom").ToString();
+               
+
                 string localFile="";
                 string ftpFile = "";
-                if (ma_nhom == "XN")
-                {
-                    localFile = string.Format(@"{0}{1}", _baseDirectoryLIS, fileName.Replace(@"/", @"\"));
-                    ftpFile = string.Format(@"{0}{1}", FtpClientCurrentDirectoryLIS, fileName);
-                }
-                else
-                {
-                    localFile = string.Format(@"{0}{1}", _baseDirectoryRIS, fileName.Replace(@"/",@"\"));
-                    ftpFile = string.Format(@"{0}{1}", FtpClientCurrentDirectoryRIS, fileName);
-                }
-                string parentFolder = Path.GetDirectoryName(localFile);
-                Utility.Try2CreateFolder(Directory.GetParent(parentFolder).FullName);
-                Utility.Try2CreateFolder(parentFolder);
-                if (File.Exists(localFile))
-                {
-                    if (chkForced2Download.Checked)
-                    {
-                        if (ma_nhom == "XN")
-                            FtpClientLIS.Download(ftpFile, localFile, true);
-                        else
-                            FtpClientRIS.Download(ftpFile, localFile, true);
-                    }
-                }
-                else//Download and open
-                {
-                    if (ma_nhom == "XN")
-                        FtpClientLIS.Download(ftpFile, localFile, true);
-                    else
-                        FtpClientRIS.Download(ftpFile, localFile, true);
-                }
+                if (!globalVariables.isActiveFTP) Utility.InitFtp();
+                localFile = Utility.getPDFFile(fileName, ma_nhom, chkForced2Download.Checked);
+                //if (ma_nhom == "XN")
+                //{
+                //    localFile = string.Format(@"{0}{1}", _baseDirectoryLIS, fileName.Replace(@"/", @"\"));
+                //    ftpFile = string.Format(@"{0}{1}", FtpClientCurrentDirectoryLIS, fileName);
+                //}
+                //else
+                //{
+                //    localFile = string.Format(@"{0}{1}", _baseDirectoryRIS, fileName.Replace(@"/",@"\"));
+                //    ftpFile = string.Format(@"{0}{1}", FtpClientCurrentDirectoryRIS, fileName);
+                //}
+                //string parentFolder = Path.GetDirectoryName(localFile);
+                //Utility.Try2CreateFolder(Directory.GetParent(parentFolder).FullName);
+                //Utility.Try2CreateFolder(parentFolder);
+                //if (File.Exists(localFile))
+                //{
+                //    if (chkForced2Download.Checked)
+                //    {
+                //        if (ma_nhom == "XN")
+                //            FtpClientLIS.Download(ftpFile, localFile, true);
+                //        else
+                //            FtpClientRIS.Download(ftpFile, localFile, true);
+                //    }
+                //}
+                //else//Download and open
+                //{
+                //    if (ma_nhom == "XN")
+                //        FtpClientLIS.Download(ftpFile, localFile, true);
+                //    else
+                //        FtpClientRIS.Download(ftpFile, localFile, true);
+                //}
                 string Url = string.Format("{0}?zoom=100%#navpanes=1&toolbar=1", localFile);
                 this.Text = string.Format("Xem kết quả PDF từ file: {0}", Url);
                 if (File.Exists(localFile))

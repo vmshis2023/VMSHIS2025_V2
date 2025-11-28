@@ -22,6 +22,7 @@ namespace VNS.HIS.BusRule.Classes
         }
         public static DataTable BaocaoTiepdonbenhnhanTonghop(DateTime? FromDate, DateTime? ToDate, int? iddoituongkcb, string nguoitao, string DeparmentCODE,string loaiBN)
         {
+            
             return SPs.BaocaoTiepdonbenhnhanTonghop(FromDate, ToDate, iddoituongkcb, nguoitao, DeparmentCODE, loaiBN).GetDataSet().Tables[0];
         }
         public static DataTable BaoCaoThongKeBNTheoDotuoiCT(int? iddoituongkcb, DateTime? FromDate, DateTime? ToDate, int gioitinh , string DeparmentCODE)
@@ -99,10 +100,7 @@ namespace VNS.HIS.BusRule.Classes
         {
             return SPs.BaocaoDoanhthuphongkhamTonghop(FromDate, ToDate, maDoituongKCB, maTNV, noitru, MAKHOATHIEN).GetDataSet().Tables[0];
         }
-        public static DataTable BaocaoDoanhthuphongkhamHongphat(DateTime? FromDate, DateTime? ToDate, string maDoituongKCB, string maTNV, byte noitru, string MAKHOATHIEN, string mahttt, string manganhang, int idLoaidvu, int idDvu, byte loaibaocao)
-        {
-            return SPs.BaocaoDoanhthuphongkhamHongphat(FromDate, ToDate, maDoituongKCB, maTNV, noitru, MAKHOATHIEN, mahttt, manganhang, idLoaidvu, idDvu, loaibaocao).GetDataSet().Tables[0];
-        }
+       
         public static DataTable BaocaoDoanhthuphongkhamBvsg(DateTime? FromDate, DateTime? ToDate, string maDoituongKCB, string maTNV, byte noitru, string MAKHOATHIEN, string mahttt, string manganhang, int idLoaidvu, int idDvu, byte loaibaocao)
         {
             return SPs.BaocaoDoanhthuphongkhamBvsg(FromDate, ToDate, maDoituongKCB, maTNV, noitru, MAKHOATHIEN, mahttt, manganhang, idLoaidvu, idDvu, loaibaocao).GetDataSet().Tables[0];
@@ -127,6 +125,10 @@ namespace VNS.HIS.BusRule.Classes
         public static DataTable BaocaoSochitietbanhang_bvsg(DateTime? FromDate, DateTime? ToDate, string maDoituongKCB, string ma_luotkham, long id_benhnhan, string ten_benhnhan, string maTNV, byte noitru, string MAKHOATHIEN, string mahttt, string manganhang, int id_loaithanhtoan, string lstdichvu, byte loaibaocao)
         {
             return SPs.BaocaoSochitietbanhang(FromDate, ToDate, maDoituongKCB, ma_luotkham, id_benhnhan, ten_benhnhan, maTNV, noitru, MAKHOATHIEN, mahttt, manganhang, id_loaithanhtoan, lstdichvu, loaibaocao).GetDataSet().Tables[0];
+        }
+        public static DataTable BaocaoDoanhthuphongkhamHongphat(DateTime? FromDate, DateTime? ToDate, string maDoituongKCB, string maTNV, byte noitru, string MAKHOATHIEN, string mahttt, string manganhang, string lstdichvu, byte loaibaocao,string @nguon_gioithieu)
+        {
+            return SPs.BaocaoDoanhthuphongkhamHongphat(FromDate, ToDate, maDoituongKCB, maTNV, noitru, MAKHOATHIEN, mahttt, manganhang,lstdichvu, loaibaocao, @nguon_gioithieu).GetDataSet().Tables[0];
         }
         public static DataTable BaocaoDoanhthuphongkhamTonghopEbm(DateTime? FromDate, DateTime? ToDate, string maDoituongKCB, string maTNV, byte noitru, string MAKHOATHIEN)
         {

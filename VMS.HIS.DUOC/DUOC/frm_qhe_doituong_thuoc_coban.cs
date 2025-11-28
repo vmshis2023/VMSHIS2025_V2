@@ -14,14 +14,14 @@ using VNS.HIS.UI.THUOC;
 using VNS.HIS.UI.DANHMUC;
 using VNS.Properties;
 using VNS.HIS.UI.Forms.DUOC;
-
+using System.Collections.Generic;
 
 namespace VNS.HIS.UI.THUOC
 {
     public partial class frm_qhe_doituong_thuoc_coban : Form
     {
-        private DataTable m_dtQheDoituongThuoc=new DataTable();
-        private DataTable m_dataThuoc=new DataTable();
+        private DataTable m_dtQheDoituongThuoc = new DataTable();
+        private DataTable m_dataThuoc = new DataTable();
         action m_enAction = action.Insert;
         string arg = "QHEGIATHUOC-THUOC";
         string Kieuthuoc_vt = "THUOC";
@@ -70,10 +70,10 @@ namespace VNS.HIS.UI.THUOC
         {
             cboloaithuoc.SelectedIndexChanged += new EventHandler(cboloaithuoc_SelectedIndexChanged);
             cboloaithuoc.KeyDown += cboloaithuoc_KeyDown;
-            cmdAdd.Click+=new EventHandler(cmdAdd_Click);
-            cmdDelete.Click+=new EventHandler(cmdDelete_Click);
-            cmdSaveObjectAll.Click+=new EventHandler(cmdSaveObjectAll_Click);
-            cmdDetailDeleteAll.Click+=new EventHandler(cmdDetailDeleteAll_Click);
+            cmdAdd.Click += new EventHandler(cmdAdd_Click);
+            cmdDelete.Click += new EventHandler(cmdDelete_Click);
+            cmdSaveObjectAll.Click += new EventHandler(cmdSaveObjectAll_Click);
+            cmdDetailDeleteAll.Click += new EventHandler(cmdDetailDeleteAll_Click);
             this.cmdThemMoi.Click += new System.EventHandler(this.cmdThemMoi_Click);
             this.cmdInGiathuoc.Click += new System.EventHandler(this.cmdInGiathuoc_Click);
             cmdIndanhsachthuoc.Click += new EventHandler(cmdIndanhsachthuoc_Click);
@@ -84,8 +84,8 @@ namespace VNS.HIS.UI.THUOC
             this.chkExpand.CheckedChanged += new System.EventHandler(this.chkExpand_CheckedChanged);
             this.Load += new System.EventHandler(this.frm_qhe_doituong_thuoc_coban_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frm_qhe_doituong_thuoc_coban_KeyDown);
-            grdList.ApplyingFilter+=new System.ComponentModel.CancelEventHandler(grdList_ApplyingFilter);
-            grdList.SelectionChanged+=new EventHandler(grdList_SelectionChanged);
+            grdList.ApplyingFilter += new System.ComponentModel.CancelEventHandler(grdList_ApplyingFilter);
+            grdList.SelectionChanged += new EventHandler(grdList_SelectionChanged);
             grdList.UpdatingCell += grdList_UpdatingCell;
             optTatca.CheckedChanged += new EventHandler(_CheckedChanged);
             optHethieuluc.CheckedChanged += new EventHandler(_CheckedChanged);
@@ -115,7 +115,7 @@ namespace VNS.HIS.UI.THUOC
         {
             try
             {
-                decimal gia_cu = Utility.DecimaltoDbnull(e.InitialValue,0);
+                decimal gia_cu = Utility.DecimaltoDbnull(e.InitialValue, 0);
                 if (e.Column.Key == "don_gia")
                 {
                     int num = new Update(QheDoituongThuoc.Schema)
@@ -151,7 +151,7 @@ namespace VNS.HIS.UI.THUOC
         {
             if (e.Column.Key == "don_gia")
             {
-                DmucThuoc objthuoc = DmucThuoc.FetchByID(Utility.Int64Dbnull( grdList.CurrentRow.Cells["id_thuoc"].Value,0));
+                DmucThuoc objthuoc = DmucThuoc.FetchByID(Utility.Int64Dbnull(grdList.CurrentRow.Cells["id_thuoc"].Value, 0));
                 if (objthuoc != null)
                 {
                     objthuoc.MarkOld();
@@ -187,7 +187,7 @@ namespace VNS.HIS.UI.THUOC
 
         }
 
-       
+
 
         void frm_qhe_doituong_thuoc_coban_Shown(object sender, EventArgs e)
         {
@@ -206,11 +206,11 @@ namespace VNS.HIS.UI.THUOC
             }
             catch (Exception)
             {
-                
+
             }
         }
 
-       
+
 
 
         void grdQhe_EditingCell(object sender, EditingCellEventArgs e)
@@ -247,7 +247,7 @@ namespace VNS.HIS.UI.THUOC
             _Properties.ShowDialog();
         }
 
-        
+
 
         void cmdXoathuoc_Click(object sender, EventArgs e)
         {
@@ -317,9 +317,9 @@ namespace VNS.HIS.UI.THUOC
             {
                 if (!Utility.isValidGrid(grdList)) return;
                 int _drugId = Utility.Int32Dbnull(grdList.CurrentRow.Cells[DmucThuoc.Columns.IdThuoc].Value, -1);
-                 int _Trangthai = Utility.Int32Dbnull(grdList.CurrentRow.Cells[DmucThuoc.Columns.TrangThai].Value, -1);
-                 if (_Trangthai == 0) _Trangthai = 1;
-                 else _Trangthai = 0;
+                int _Trangthai = Utility.Int32Dbnull(grdList.CurrentRow.Cells[DmucThuoc.Columns.TrangThai].Value, -1);
+                if (_Trangthai == 0) _Trangthai = 1;
+                else _Trangthai = 0;
                 new Update(DmucThuoc.Schema).Set(DmucThuoc.Columns.TrangThai).EqualTo(_Trangthai)
                     .Where(DmucThuoc.Columns.IdThuoc).IsEqualTo(_drugId).Execute();
                 grdList.CurrentRow.BeginEdit();
@@ -328,10 +328,10 @@ namespace VNS.HIS.UI.THUOC
             }
             catch
             {
-            } 
+            }
         }
 
-       
+
 
         void _CheckedChanged(object sender, EventArgs e)
         {
@@ -351,15 +351,15 @@ namespace VNS.HIS.UI.THUOC
             try
             {
                 if (!m_blnLoaded) return;
-               
-               m_dataThuoc = SPs.DmucLaydanhsachThuocTheoquyennhanvien(globalVariables.gv_intIDNhanvien, Utility.Int32Dbnull(cboloaithuoc.SelectedValue, -1), Kieuthuoc_vt, 
-                   (byte)(optTatca.Checked ? 2 : (optHieuluc.Checked ? 1 : 0)),
-                   (byte)(optQhe_tatca.Checked ? 2 : (optCoQhe.Checked ? 1 : 0))).GetDataSet().Tables[0];
-               Utility.SetDataSourceForDataGridEx(grdList, m_dataThuoc, true, true, "1=1", VDmucThuoc.Columns.SttHthiLoaithuoc +","+ DmucThuoc.Columns.TenThuoc);
-               grdList.MoveFirst();
-               grdList_SelectionChanged(grdList, e);
-               if (!Utility.isValidGrid(grdList))
-                   grdQhe.DataSource = null;
+
+                m_dataThuoc = SPs.DmucLaydanhsachThuocTheoquyennhanvien(globalVariables.gv_intIDNhanvien, Utility.Int32Dbnull(cboloaithuoc.SelectedValue, -1), Kieuthuoc_vt,
+                    (byte)(optTatca.Checked ? 2 : (optHieuluc.Checked ? 1 : 0)),
+                    (byte)(optQhe_tatca.Checked ? 2 : (optCoQhe.Checked ? 1 : 0))).GetDataSet().Tables[0];
+                Utility.SetDataSourceForDataGridEx(grdList, m_dataThuoc, true, true, "1=1", VDmucThuoc.Columns.SttHthiLoaithuoc + "," + DmucThuoc.Columns.TenThuoc);
+                grdList.MoveFirst();
+                grdList_SelectionChanged(grdList, e);
+                if (!Utility.isValidGrid(grdList))
+                    grdQhe.DataSource = null;
             }
             catch
             {
@@ -370,19 +370,19 @@ namespace VNS.HIS.UI.THUOC
         {
             this.Close();
         }
-        private  DataTable m_dtObjectRelationService=new DataTable();
-        private DataTable m_dtReportObjectType=new DataTable();
+        private DataTable m_dtObjectRelationService = new DataTable();
+        private DataTable m_dtReportObjectType = new DataTable();
         private DataSet ds = new DataSet();
         bool m_blnLoaded = false;
-        private DataTable m_dtObjectType=new DataTable();
+        private DataTable m_dtObjectType = new DataTable();
         private void ModifyCommand_Quanhe()
         {
             cmdDetailDeleteAll.Enabled = grdQhe.RowCount > 0;
             cmdDelete.Enabled = grdQhe.RowCount > 0;
             cmdSaveObjectAll.Enabled = grdQhe.RowCount > 0;
-          
+
         }
-       
+
 
         private string _rowFilter = "1=1";
         private int id_thuoc = -1;
@@ -396,12 +396,12 @@ namespace VNS.HIS.UI.THUOC
                 if (grdList.CurrentRow != null && grdList.CurrentRow.RowType == RowType.Record)
                 {
                     int _Trangthai = Utility.Int32Dbnull(grdList.CurrentRow.Cells[DmucThuoc.Columns.TrangThai].Value, -1);
-                    if (_Trangthai == 0) mnuHethieuluc.Text="Kích hoạt sử dụng thuốc";
+                    if (_Trangthai == 0) mnuHethieuluc.Text = "Kích hoạt sử dụng thuốc";
                     else mnuHethieuluc.Text = "Khóa thuốc";
 
                     id_loaithuoc = Utility.Int32Dbnull(grdList.CurrentRow.Cells[DmucThuoc.Columns.IdLoaithuoc].Value,
                                                            -1);
-                    id_thuoc = Utility.Int32Dbnull(grdList.CurrentRow.Cells[DmucThuoc.Columns.IdThuoc].Value,-1);
+                    id_thuoc = Utility.Int32Dbnull(grdList.CurrentRow.Cells[DmucThuoc.Columns.IdThuoc].Value, -1);
                     _rowFilter = DmucThuoc.Columns.IdThuoc + "=" + id_thuoc;
                     m_dtQheDoituongThuoc = new Select().From(VQheDoituongThuoc.Schema)
                         .Where(DmucThuoc.Columns.IdThuoc).IsEqualTo(id_thuoc).OrderAsc(VQheDoituongThuoc.Columns.SttHthi).ExecuteDataSet().Tables[0];
@@ -462,7 +462,7 @@ namespace VNS.HIS.UI.THUOC
         {
             try
             {
-                
+
                 if (grdQhe.CurrentRow != null)
                 {
                     if (Utility.AcceptQuestion("Bạn có muốn xoá thông tin bản ghi đang chọn không", "Thông báo", true))
@@ -478,7 +478,7 @@ namespace VNS.HIS.UI.THUOC
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Utility.CatchException(ex);
             }
@@ -492,7 +492,7 @@ namespace VNS.HIS.UI.THUOC
         {
             try
             {
-                if (!Utility.isValidGrid(grdList) ) return;
+                if (!Utility.isValidGrid(grdList)) return;
                 frm_ChonDoituongKCB frm = new frm_ChonDoituongKCB();
                 string KTH = Utility.sDbnull(cboKhoaTH.SelectedValue, "-1") == "-1" ? "ALL" : Utility.sDbnull(cboKhoaTH.SelectedValue, "-1");
                 frm._enObjectType = enObjectType.Thuoc;
@@ -511,7 +511,7 @@ namespace VNS.HIS.UI.THUOC
                 Utility.CatchException(ex);
             }
         }
-           
+
         private int ServiceObject_Type_ID = -1;
         private int ObjectType_ID = -1;
         private Query m_Query = QheDoituongThuoc.CreateQuery();
@@ -522,18 +522,18 @@ namespace VNS.HIS.UI.THUOC
         private QheDoituongThuoc CreateDmucDoituongkcbDetailService()
         {
             var objectTypeService = new QheDoituongThuoc();
-           
+
             return objectTypeService;
         }
         private int id_loaithuoc = -1;
         private ActionResult actionResult = ActionResult.Error;
-       
+
         private void ModifyCommand()
         {
             try
             {
                 bool isvalidGrid = Utility.isValidGrid(grdList);
-                cmdXoathuoc.Enabled =isvalidGrid && grdList.RowCount > 0;
+                cmdXoathuoc.Enabled = isvalidGrid && grdList.RowCount > 0;
                 cmdCapNhap.Enabled = isvalidGrid && grdList.RowCount > 0;
 
                 cmdIndanhsachthuoc.Enabled = grdList.RowCount > 0;
@@ -545,7 +545,7 @@ namespace VNS.HIS.UI.THUOC
                 Utility.CatchException(ex);
             }
         }
-        
+
         /// <summary>
         /// HAM THUC HIEN DICH VU, QUAN HE DOI TUONG -DICH VU
         /// </summary>
@@ -565,20 +565,20 @@ namespace VNS.HIS.UI.THUOC
                     m_dtLoaithuoc = new Select().From(DmucLoaithuoc.Schema)
                    .Where(DmucLoaithuoc.Columns.KieuThuocvattu).IsEqualTo(Kieuthuoc_vt)
                    .ExecuteDataSet().Tables[0];
-                DataTable m_dtLoaithuoc_new = m_dtLoaithuoc.Clone();
-                if (globalVariables.gv_dtQuyenNhanvien_Dmuc.Select(QheNhanvienDanhmuc.Columns.Loai + "= 1").Length <= 0)
-                    m_dtLoaithuoc_new = m_dtLoaithuoc.Copy();
-                else
-                {
-                    foreach (DataRow dr in m_dtLoaithuoc.Rows)
-                    {
-                        if (Utility.CoquyenTruycapDanhmuc(Utility.sDbnull(dr[DmucLoaithuoc.Columns.IdLoaithuoc]), "1"))
-                        {
-                            m_dtLoaithuoc_new.ImportRow(dr);
-                        }
-                    }
-                }
-                DataBinding.BindDataCombobox(cboloaithuoc, m_dtLoaithuoc_new, DmucLoaithuoc.Columns.IdLoaithuoc, DmucLoaithuoc.Columns.TenLoaithuoc, "Chọn", false);
+                //DataTable m_dtLoaithuoc_new = m_dtLoaithuoc.Clone();
+                //if (globalVariables.gv_dtQuyenNhanvien_Dmuc.Select(QheNhanvienDanhmuc.Columns.Loai + "= 1").Length <= 0)
+                //    m_dtLoaithuoc_new = m_dtLoaithuoc.Copy();
+                //else
+                //{
+                //    foreach (DataRow dr in m_dtLoaithuoc.Rows)
+                //    {
+                //        if (Utility.CoquyenTruycapDanhmuc(Utility.sDbnull(dr[DmucLoaithuoc.Columns.IdLoaithuoc]), "1"))
+                //        {
+                //            m_dtLoaithuoc_new.ImportRow(dr);
+                //        }
+                //    }
+                //}
+                DataBinding.BindDataCombobox(cboloaithuoc, m_dtLoaithuoc, DmucLoaithuoc.Columns.IdLoaithuoc, DmucLoaithuoc.Columns.TenLoaithuoc, "Chọn", false);
                 dt_KhoaThucHien = THU_VIEN_CHUNG.Laydanhmuckhoa("NGOAI", 0);
                 DataBinding.BindDataCombobox_Basic(cboKhoaTH, dt_KhoaThucHien, DmucKhoaphong.Columns.MaKhoaphong, DmucKhoaphong.Columns.TenKhoaphong);
                 Laydanhmucthuoc();
@@ -590,11 +590,11 @@ namespace VNS.HIS.UI.THUOC
         }
         void Laydanhmucthuoc()
         {
-            if(Kieuthuoc_vt=="ALL")
+            if (Kieuthuoc_vt == "ALL")
                 m_dataThuoc = SPs.DmucLaydanhsachThuocTheoquyennhanvien(globalVariables.gv_intIDNhanvien, Utility.Int32Dbnull(cboloaithuoc.SelectedValue, -1), Kieuthuoc_vt,
                        (byte)(optTatca.Checked ? 2 : (optHieuluc.Checked ? 1 : 0)),
                        (byte)(optQhe_tatca.Checked ? 2 : (optCoQhe.Checked ? 1 : 0))).GetDataSet().Tables[0];
-                
+
             //    new Select().From(VDmucThuoc.Schema)
             //     .Where(VDmucThuoc.Columns.IdLoaithuoc).IsEqualTo(Utility.Int32Dbnull(cboloaithuoc.SelectedValue, -1))
             //     .OrderAsc(VDmucThuoc.Columns.SttHthiLoaithuoc, VDmucThuoc.Columns.TenThuoc)
@@ -620,12 +620,12 @@ namespace VNS.HIS.UI.THUOC
             m_blnLoaded = true;
             cboloaithuoc_SelectedIndexChanged(cboloaithuoc, e);
             if (grdList.GetDataRows().Length > 0) grdList.MoveFirst();
-          
+
         }
-        private DataTable m_dtServiceList=new DataTable();
+        private DataTable m_dtServiceList = new DataTable();
         private DataTable m_dtServiceTypeList = new DataTable();
-       
- 
+
+
 
         private void cmdSearchOnGrid_Click(object sender, EventArgs e)
         {
@@ -637,7 +637,7 @@ namespace VNS.HIS.UI.THUOC
             SaveAll();
         }
 
-       
+
         private void SaveAll()
         {
             try
@@ -648,17 +648,17 @@ namespace VNS.HIS.UI.THUOC
                 decimal GiaPhuThu = 0;
                 decimal GiaBHYT = LayGiaBHYT();
                 string KTH = "ALL";
-               
+
                 foreach (Janus.Windows.GridEX.GridEXRow gridExRow in grdQhe.GetRows())
                 {
                     idThuoc = Utility.Int32Dbnull(gridExRow.Cells[QheDoituongThuoc.Columns.IdThuoc].Value, -1);
-                     KTH = Utility.sDbnull(cboKhoaTH.SelectedValue, "-1") == "-1" ? "ALL" : Utility.sDbnull(cboKhoaTH.SelectedValue, "-1");
+                    KTH = Utility.sDbnull(cboKhoaTH.SelectedValue, "-1") == "-1" ? "ALL" : Utility.sDbnull(cboKhoaTH.SelectedValue, "-1");
                     SqlQuery q =
                         new Select().From(QheDoituongThuoc.Schema).Where(QheDoituongThuoc.Columns.IdThuoc).
                             IsEqualTo(Utility.DecimaltoDbnull(gridExRow.Cells[QheDoituongThuoc.Columns.IdThuoc].Value, -1)).And(
                                 QheDoituongThuoc.Columns.MaDoituongKcb).IsEqualTo(Utility.sDbnull(gridExRow.Cells[QheDoituongThuoc.Columns.MaDoituongKcb].Value, "-1"));
-                                //.And(QheDoituongThuoc.Columns.MaKhoaThuchien).IsEqualTo(KTH);
-                                //.Or(QheDoituongThuoc.Columns.MaDoituongKcb).IsEqualTo("BHYT");
+                    //.And(QheDoituongThuoc.Columns.MaKhoaThuchien).IsEqualTo(KTH);
+                    //.Or(QheDoituongThuoc.Columns.MaDoituongKcb).IsEqualTo("BHYT");
                     GiaPhuThu = Utility.DecimaltoDbnull(gridExRow.Cells[QheDoituongThuoc.Columns.PhuthuTraituyen].Value, 0);
                     Decimal don_gia = Utility.DecimaltoDbnull(gridExRow.Cells[QheDoituongThuoc.Columns.DonGia].Value, 0);
                     int v_IdLoaidoituongKcb = Utility.Int32Dbnull(gridExRow.Cells[QheDoituongThuoc.Columns.IdLoaidoituongKcb].Value, 0);
@@ -783,30 +783,30 @@ namespace VNS.HIS.UI.THUOC
                 //        }
                 //    }
                 //}
-                Utility.SetMsg(lblMsg, "Bạn thực hiện cập nhập giá thành công",false);
+                Utility.SetMsg(lblMsg, "Bạn thực hiện cập nhập giá thành công", false);
             }
             catch (Exception exception)
             {
                 Utility.SetMsg(lblMsg, "Lỗi trong quá trình cập nhập thông tin", false);
             }
-           
+
         }
-       
-        private decimal GetLastPrice(decimal Price,int v_DiscountType,decimal v_DiscountRate)
+
+        private decimal GetLastPrice(decimal Price, int v_DiscountType, decimal v_DiscountRate)
         {
             decimal v_LastPrice = 0;
-            if(v_DiscountType==1)
+            if (v_DiscountType == 1)
             {
                 v_LastPrice = Price - v_DiscountRate;
             }
-            if(v_DiscountType==0)
+            if (v_DiscountType == 0)
             {
-                v_LastPrice = Price*(100 - v_DiscountRate)/100;
+                v_LastPrice = Price * (100 - v_DiscountRate) / 100;
             }
             return v_LastPrice;
         }
 
-       
+
 
         private void frm_qhe_doituong_thuoc_coban_KeyDown(object sender, KeyEventArgs e)
         {
@@ -829,14 +829,14 @@ namespace VNS.HIS.UI.THUOC
             ModifyCommand();
         }
 
-       
-        private void txtDetailLastPrice_LostFocus(object  sender,EventArgs e)
-        {
-           
-        }
-     
 
-       
+        private void txtDetailLastPrice_LostFocus(object sender, EventArgs e)
+        {
+
+        }
+
+
+
         private void cmdExportExcel_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -865,11 +865,11 @@ namespace VNS.HIS.UI.THUOC
             //gridEXExporter.Export(fs);
         }
         private int v_ObjectType_Id = -1;
-      
-       
+
+
         private QheDoituongThuoc CreateObjectTypeService(GridEXRow gridExRow)
         {
-            QheDoituongThuoc objectTypeService=new QheDoituongThuoc();
+            QheDoituongThuoc objectTypeService = new QheDoituongThuoc();
             objectTypeService.DonGia = Utility.DecimaltoDbnull(
                 gridExRow.Cells[QheDoituongThuoc.Columns.DonGia].Value, 0);
             objectTypeService.PhuthuDungtuyen = Utility.DecimaltoDbnull(
@@ -889,13 +889,13 @@ namespace VNS.HIS.UI.THUOC
         {
             if (gridExRow.Cells[QheDoituongThuoc.Columns.KieuGiamgia].Value.ToString() == "0")
             {
-                return Utility.DecimaltoDbnull(gridExRow.Cells[QheDoituongThuoc.Columns.DonGia].Value,0) *
-                       (100 - Utility.DecimaltoDbnull(gridExRow.Cells[QheDoituongThuoc.Columns.TyleGiamgia].Value))/100;
+                return Utility.DecimaltoDbnull(gridExRow.Cells[QheDoituongThuoc.Columns.DonGia].Value, 0) *
+                       (100 - Utility.DecimaltoDbnull(gridExRow.Cells[QheDoituongThuoc.Columns.TyleGiamgia].Value)) / 100;
 
             }
             else
             {
-                return Utility.DecimaltoDbnull(gridExRow.Cells[QheDoituongThuoc.Columns.DonGia].Value, 0) -Utility.DecimaltoDbnull(gridExRow.Cells[QheDoituongThuoc.Columns.TyleGiamgia].Value,0);
+                return Utility.DecimaltoDbnull(gridExRow.Cells[QheDoituongThuoc.Columns.DonGia].Value, 0) - Utility.DecimaltoDbnull(gridExRow.Cells[QheDoituongThuoc.Columns.TyleGiamgia].Value, 0);
             }
         }
 
@@ -904,26 +904,26 @@ namespace VNS.HIS.UI.THUOC
 
         }
 
-        
-       
+
+
 
         private void txtDetailLastPrice_KeyPress(object sender, KeyPressEventArgs e)
         {
-           Utility.OnlyDigit(e);
+            Utility.OnlyDigit(e);
         }
 
-        
+
 
         private void cmdSaveObjectAll_Click(object sender, EventArgs e)
         {
             SaveAll();
-           
+
         }
         decimal LayGiaDV()
         {
             foreach (Janus.Windows.GridEX.GridEXRow gridExRow in grdQhe.GetRows())
             {
-                if (gridExRow.Cells[ DmucDoituongkcb.Columns.IdLoaidoituongKcb].Value.ToString() == "1")
+                if (gridExRow.Cells[DmucDoituongkcb.Columns.IdLoaidoituongKcb].Value.ToString() == "1")
                     return Utility.DecimaltoDbnull(gridExRow.Cells[QheDoituongThuoc.Columns.DonGia].Value, 0);
             }
             return -1;
@@ -937,7 +937,7 @@ namespace VNS.HIS.UI.THUOC
             }
             return -1;
         }
-       
+
         private void SaveQheDoituongDichvuCSL()
         {
             try
@@ -980,7 +980,7 @@ namespace VNS.HIS.UI.THUOC
                                                                       gridExRow.Cells[QheDoituongThuoc.Columns.IdLoaithuoc].Value, -1),
                                                                   Utility.Int32Dbnull(
                                                                       gridExRow.Cells[QheDoituongThuoc.Columns.IdThuoc].Value, -1),
-                                                                  0,"%",100,"",
+                                                                  0, "%", 100, "",
                                                                   Utility.DecimaltoDbnull(
                                                                       gridExRow.Cells[QheDoituongThuoc.Columns.DonGia].Value, 0),
                                                                   Utility.DecimaltoDbnull(
@@ -1014,10 +1014,10 @@ namespace VNS.HIS.UI.THUOC
                 Utility.ShowMsg("Lỗi trong quá trình cập nhập thông tin", "Thông báo lỗi", MessageBoxIcon.Error);
             }
         }
-      
-      
 
-       
+
+
+
 
         private void chkExpand_CheckedChanged(object sender, EventArgs e)
         {
@@ -1029,14 +1029,14 @@ namespace VNS.HIS.UI.THUOC
         {
 
         }
-        private DataTable m_dtGiathuoc=new DataTable();
+        private DataTable m_dtGiathuoc = new DataTable();
         private void cmdInGiathuoc_Click(object sender, EventArgs e)
         {
             try
             {
                 m_dtGiathuoc = SPs.ThuocLaydulieuQhedoituongThuocIngia(Kieuthuoc_vt, cboKhoaTH.SelectedValue.ToString()).GetDataSet().Tables[0];
                 THU_VIEN_CHUNG.CreateXML(m_dtGiathuoc, "thuoc_giathuoc_doituong");
-                PrintReport( m_dtGiathuoc);
+                PrintReport(m_dtGiathuoc);
             }
             catch
             {
@@ -1048,24 +1048,24 @@ namespace VNS.HIS.UI.THUOC
             try
             {
                 DataTable dtDmucThuoc = SPs.ThuocLaydanhmucthuocIn(Kieuthuoc_vt, (Int16)cboloaithuoc.SelectedValue).GetDataSet().Tables[0];
-                string tieude="", reportname = "";
-               var crpt = Utility.GetReport("thuoc_danhmucthuoc",ref tieude,ref reportname);
-               if (crpt == null) return;
-               var objFromPre =
-                   new frmPrintPreview(PropertyLib._ThuocProperties.TieudeInDanhmucThuoc, crpt, false, true);
-               Utility.WaitNow(this);
-               if (!PropertyLib._ThuocProperties.NhomthuocIndanhmuc)
-                   dtDmucThuoc.DefaultView.Sort = "ten_thuoc asc";
-               else
-                   dtDmucThuoc.DefaultView.Sort = "stt_hthi_loaithuoc asc,ten_thuoc asc";
-               crpt.SetDataSource(dtDmucThuoc.DefaultView);
-               Utility.SetParameterValue(crpt,"ParentBranchName", globalVariables.ParentBranch_Name);
-               Utility.SetParameterValue(crpt,"BranchName", globalVariables.Branch_Name);
-               Utility.SetParameterValue(crpt,"Nhomthuoc", PropertyLib._ThuocProperties.NhomthuocIndanhmuc?1:0);
-               Utility.SetParameterValue(crpt,"sTitleReport", PropertyLib._ThuocProperties.TieudeInDanhmucThuoc);
-               objFromPre.crptViewer.ReportSource = crpt;
-               objFromPre.ShowDialog();
-               Utility.DefaultNow(this);
+                string tieude = "", reportname = "";
+                var crpt = Utility.GetReport("thuoc_danhmucthuoc", ref tieude, ref reportname);
+                if (crpt == null) return;
+                var objFromPre =
+                    new frmPrintPreview(PropertyLib._ThuocProperties.TieudeInDanhmucThuoc, crpt, false, true);
+                Utility.WaitNow(this);
+                if (!PropertyLib._ThuocProperties.NhomthuocIndanhmuc)
+                    dtDmucThuoc.DefaultView.Sort = "ten_thuoc asc";
+                else
+                    dtDmucThuoc.DefaultView.Sort = "stt_hthi_loaithuoc asc,ten_thuoc asc";
+                crpt.SetDataSource(dtDmucThuoc.DefaultView);
+                Utility.SetParameterValue(crpt, "ParentBranchName", globalVariables.ParentBranch_Name);
+                Utility.SetParameterValue(crpt, "BranchName", globalVariables.Branch_Name);
+                Utility.SetParameterValue(crpt, "Nhomthuoc", PropertyLib._ThuocProperties.NhomthuocIndanhmuc ? 1 : 0);
+                Utility.SetParameterValue(crpt, "sTitleReport", PropertyLib._ThuocProperties.TieudeInDanhmucThuoc);
+                objFromPre.crptViewer.ReportSource = crpt;
+                objFromPre.ShowDialog();
+                Utility.DefaultNow(this);
             }
             catch
             {
@@ -1077,8 +1077,8 @@ namespace VNS.HIS.UI.THUOC
         /// <param name="sTitleReport"></param>
         private void PrintReport(DataTable dtData)
         {
-             string tieude="", reportname = "";
-             var crpt = Utility.GetReport("thuoc_giathuoc_doituong", ref tieude, ref reportname);
+            string tieude = "", reportname = "";
+            var crpt = Utility.GetReport("thuoc_giathuoc_doituong", ref tieude, ref reportname);
             if (crpt == null) return;
             var objFromPre = new frmPrintPreview(tieude, crpt, true, dtData.Rows.Count > 0);
             //var objFromPre =
@@ -1089,10 +1089,10 @@ namespace VNS.HIS.UI.THUOC
             else
                 dtData.DefaultView.Sort = "stt_hthi_loaithuoc asc,ten_thuoc asc";
             crpt.SetDataSource(dtData.DefaultView);
-            Utility.SetParameterValue(crpt,"ParentBranchName", globalVariables.ParentBranch_Name);
-            Utility.SetParameterValue(crpt,"BranchName", globalVariables.Branch_Name);
-            Utility.SetParameterValue(crpt,"Nhomthuoc", PropertyLib._ThuocProperties.NhomthuocIngia ? 1 : 0);
-            Utility.SetParameterValue(crpt,"sTitleReport", PropertyLib._ThuocProperties.TieudeBaocaoGiathuoc);
+            Utility.SetParameterValue(crpt, "ParentBranchName", globalVariables.ParentBranch_Name);
+            Utility.SetParameterValue(crpt, "BranchName", globalVariables.Branch_Name);
+            Utility.SetParameterValue(crpt, "Nhomthuoc", PropertyLib._ThuocProperties.NhomthuocIngia ? 1 : 0);
+            Utility.SetParameterValue(crpt, "sTitleReport", PropertyLib._ThuocProperties.TieudeBaocaoGiathuoc);
             Utility.SetParameterValue(crpt, "txtTrinhky",
                                       Utility.getTrinhky(objFromPre.mv_sReportFileName, globalVariables.SysDate));
             objFromPre.crptViewer.ReportSource = crpt;
@@ -1105,9 +1105,9 @@ namespace VNS.HIS.UI.THUOC
             {
                 if (!Utility.AcceptQuestion("Bạn có chắc chắn tạo dữ liệu test giá thuốc quan hệ cho toàn bộ thuốc trong kho", "cảnh báo", true)) return;
                 DmucThuocCollection lstThuoc = new DmucThuocController().FetchAll();
-                DmucDoituongkcbCollection lstdoituong = new  DmucDoituongkcbController().FetchAll();
+                DmucDoituongkcbCollection lstdoituong = new DmucDoituongkcbController().FetchAll();
                 Random rnd = new Random();
-                foreach(DmucThuoc _thuoc in lstThuoc)
+                foreach (DmucThuoc _thuoc in lstThuoc)
                 {
                     foreach (DmucDoituongkcb _doituong in lstdoituong)
                     {
@@ -1140,17 +1140,17 @@ namespace VNS.HIS.UI.THUOC
         private DataTable GetDataCheck()
         {
             DataTable dataTable = m_dataThuoc.Copy();
-            foreach(Janus.Windows.GridEX.GridEXRow gridExRow in grdList.GetCheckedRows())
+            foreach (Janus.Windows.GridEX.GridEXRow gridExRow in grdList.GetCheckedRows())
             {
                 DataRow[] arrDr =
-                    dataTable.Select(DmucThuoc.Columns.IdThuoc+ "=" +
+                    dataTable.Select(DmucThuoc.Columns.IdThuoc + "=" +
                                                  Utility.Int32Dbnull(gridExRow.Cells[QheDoituongThuoc.Columns.IdThuoc].Value, -1));
-                if(arrDr.GetLength(0)<=0)
+                if (arrDr.GetLength(0) <= 0)
                 {
-                  arrDr[0].Delete();
+                    arrDr[0].Delete();
                 }
             }
-           
+
             dataTable.AcceptChanges();
             return dataTable;
         }
@@ -1176,18 +1176,19 @@ namespace VNS.HIS.UI.THUOC
             DmucThuoc objDrug = new DmucThuoc();
             try
             {
-               int id_thuoc= Utility.Int32Dbnull(grdList.GetValue(DmucThuoc.Columns.IdThuoc), -1);
+                int id_thuoc = Utility.Int32Dbnull(grdList.GetValue(DmucThuoc.Columns.IdThuoc), -1);
                 if (!Utility.isValidGrid(grdList)) return null;
                 else
                     objDrug = DmucThuoc.FetchByID(id_thuoc);
             }
-            catch
+            catch(Exception ex)
             {
+                Utility.CatchException(ex);
                 return null;
             }
             return objDrug;
         }
-        
+
         private void ShowInsertNewDrug()
         {
             m_enAction = action.Update;
@@ -1297,7 +1298,7 @@ namespace VNS.HIS.UI.THUOC
                     SPs.QheThuocvtthDoituongkcbAutoCreateDv(objDoituong.IdLoaidoituongKcb, objDoituong.IdDoituongKcb, objDoituong.IdDoituongKcb, globalVariables.UserName, DateTime.Now, Kieuthuoc_vt).Execute();
                 }
                 Utility.ShowMsg("Đã tạo dữ liệu thành công. Nhấn OK để kết thúc");
-                grdList_SelectionChanged(grdList,e);
+                grdList_SelectionChanged(grdList, e);
             }
             catch (Exception ex)
             {
@@ -1306,6 +1307,109 @@ namespace VNS.HIS.UI.THUOC
             }
         }
 
-        
+        private void mnuHethieuluc_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void mnuHuyHieuLuc_Click(object sender, EventArgs e)
+        {
+            HieuLucThuoc_VT(false);
+        }
+
+        private void mnuHieuLuc_Click(object sender, EventArgs e)
+        {
+            HieuLucThuoc_VT(true);
+        }
+        void HieuLucThuoc_VT(bool isHieuLuc)
+
+        {
+            try
+            {
+                bool onlyOne = grdList.GetCheckedRows().Count() <= 0;
+                if (!Utility.isValidGrid(grdList)) return;
+                if (!Utility.AcceptQuestion(string.Format("Bạn có chắc chắn muốn {0} cho các Thuốc-VTTH đang chọn hay không?", isHieuLuc ? " kích hoạt sử dụng(Làm có hiệu lực)" : " hủy sử dụng(làm hết hiệu lực)"), "", true))
+                    return;
+                Utility.AutoCheckGrid(grdList);
+                foreach (GridEXRow r in grdList.GetCheckedRows())
+                {
+                    int _drugId = Utility.Int32Dbnull(r.Cells[DmucThuoc.Columns.IdThuoc].Value, -1);
+                    int _Trangthai = isHieuLuc ? 1 : 0;
+
+                    new Update(DmucThuoc.Schema).Set(DmucThuoc.Columns.TrangThai).EqualTo(_Trangthai)
+                        .Where(DmucThuoc.Columns.IdThuoc).IsEqualTo(_drugId).Execute();
+                    r.BeginEdit();
+                    r.Cells[DmucThuoc.Columns.TrangThai].Value = _Trangthai;
+                    r.EndEdit();
+                }
+                if (onlyOne)
+                    grdList.UnCheckAllRecords();
+            }
+            catch
+            {
+            }
+        }
+
+        private void mnu_capnhat_thongtin_thuoc_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frm_capnhat_thuoctinh_thuoc _capnhat = new frm_capnhat_thuoctinh_thuoc();
+                if (_capnhat.ShowDialog() == DialogResult.OK)
+                {
+                    int num = 0;
+                   
+                    string ma_tinhchat = Utility.sDbnull(_capnhat.cbo_tinhchat.SelectedValue);
+                    string ten_tinhchat = _capnhat.cbo_tinhchat.Text;
+                    string ma_phanloaithuoc = Utility.sDbnull(_capnhat.cbo_phanloaithuoc.SelectedValue);
+                    string ten_nhomthuoc = _capnhat.cbo_phanloaithuoc.Text;
+                    int IdLoaithuoc = Utility.Int32Dbnull(_capnhat.cbo_nhomduocly.SelectedValue);
+                    string ten_loaithuoc = _capnhat.cbo_nhomduocly.Text;
+                    string ma_hoatchat = Utility.sDbnull(_capnhat.cbo_hoatchat.SelectedValue);
+                    string ten_hoatchat = _capnhat.cbo_hoatchat.Text;
+                    string ma_duongdung = Utility.sDbnull(_capnhat.cbo_duongdung.SelectedValue);
+                    string ten_duongdung = _capnhat.cbo_duongdung.Text;
+
+                    bool onlyOne = grdList.GetCheckedRows().Count() <= 0;
+                    Utility.AutoCheckGrid(grdList);
+                    foreach (GridEXRow row in grdList.GetCheckedRows())
+                    {
+                        string IdThuoc = Utility.sDbnull(row.Cells[DmucThuoc.Columns.IdThuoc].Value);
+
+                        string sql = "UPDATE dmuc_thuoc SET ";
+                        List<string> sets = new List<string>();
+
+                        if (_capnhat.chk_phanloaithuoc.Checked)
+                            sets.Add(string.Format("ma_phanloaithuoc = '{0}'", ma_phanloaithuoc));
+                        if (_capnhat.chk_duongdung.Checked)
+                            sets.Add(string.Format("ma_duongdung = '{0}'", ma_duongdung));
+                        if (_capnhat.chk_tinhchat.Checked)
+                            sets.Add(string.Format("ma_tinhchat = '{0}'", ma_tinhchat));
+                        if (_capnhat.chk_hoatchat.Checked)
+                            sets.Add(string.Format("ma_hoatchat = '{0}'", ma_hoatchat));
+                        if (_capnhat.chk_nhomduocly.Checked)
+                            sets.Add(string.Format("id_loaithuoc = {0}", IdLoaithuoc));
+
+                        sql += string.Join(",", sets) + " WHERE id_thuoc ="+ IdThuoc;
+                        Utility.ExecuteNonQuery(sql, CommandType.Text);
+                       
+                        //if (num > 0)
+                        //{
+                        //    row.BeginEdit();
+                        //    row.Cells[DmucThuoc.Columns.IdDichvu].Value = id_dichvu;
+                        //    row.Cells["ten_dichvu"].Value = ten_dichvu;
+                        //    row.EndEdit();
+                        //}
+                    }
+                    if (onlyOne)
+                        grdList.UnCheckAllRecords();
+                    Utility.ShowMsg("Đã cập nhật thông tin cho các Thuốc/VT đang chọn thành công. Nhấn OK để kết thúc");
+                }
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+            }
+        }
     }
 }

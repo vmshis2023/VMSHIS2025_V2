@@ -336,13 +336,13 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\symbologies.tif" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\VMS.HIS.DAL\1.VMS.HIS.Dal.csproj">
       <Project>{cd0be8e8-b7d8-41ca-95f7-ea03675cfe0d}</Project>
       <Name>1.VMS.HIS.Dal</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\symbologies.tif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

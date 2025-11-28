@@ -1,0 +1,7 @@
+2025-09-29 22:26:43.7436||DEBUG|KysoPDF|---------Begin KysoPDF---------------------------------------------------- |url: https://localhost/api/Viettel/KysoPDF|action: KysoPDF
+2025-09-29 22:26:46.1240||DEBUG|KysoPDF|Thông tin user kí số: user 'GSDU', userFullName 'Nguyễn Thị Dụ' with userId: '001081007147', password: '' |url: https://localhost/api/Viettel/KysoPDF|action: KysoPDF
+2025-09-29 22:26:46.3632||DEBUG|KysoPDF|File Length: 135514 |url: https://localhost/api/Viettel/KysoPDF|action: KysoPDF
+2025-09-29 22:27:15.8836||DEBUG|KysoPDF|----------------------Bắt đầu ký xác thực---------------------- |url: https://localhost/api/Viettel/KysoPDF|action: KysoPDF
+2025-09-29 22:27:43.6879||DEBUG|KysoPDF|Ký file1.Ký hash thành công |url: https://localhost/api/Viettel/KysoPDF|action: KysoPDF
+2025-09-29 22:27:43.7120||DEBUG|KysoPDF|Ký file1.Ký thành công |url: https://localhost/api/Viettel/KysoPDF|action: KysoPDF
+2025-09-29 22:27:43.7227||DEBUG|KysoPDF|----------------------Kết thúc ký xác thực---------------------- |url: https://localhost/api/Viettel/KysoPDF|action: KysoPDF

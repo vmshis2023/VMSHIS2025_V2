@@ -4,31 +4,31 @@
         <name>VMS.Chukyso.Vnpt</name>
     </assembly>
     <members>
-        <member name="M:VMS.ChuKySo.Api.Controllers.BvlkController.DigitalSignatureCheckAccount(VMS.ChuKySo.Api.DigitalSignature.VMS.VMSDigitalSignature)">
-            <summary>
-            POST: DigitalSignatureCheckAccount
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:VMS.ChuKySo.Api.Controllers.BvlkController.DigitalSignaturePdfFileSign(VMS.ChuKySo.Api.DigitalSignature.VMS.VMSDigitalSignature)">
-            <summary>
-            POST: DigitalSignaturePdfFileSign
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:VMS.ChuKySo.Api.Controllers.IDController.#ctor(Microsoft.Extensions.Options.IOptions{VMS.ChuKySo.Api.AppSettings})">
             <summary>
             
             </summary>
             <param name="appIdentitySettingsAccessor"></param>
         </member>
-        <member name="M:VMS.ChuKySo.Api.Controllers.IDController.DigitalSignatureCheckAccount(VMS.ChuKySo.Api.DigitalSignature.VMS.VMSDigitalSignature)">
+        <member name="M:VMS.ChuKySo.Api.Controllers.IDController.DigitalSignatureCheckAccount(VMS.ChuKySo.Api.VMSDigitalSignature)">
             <summary>
             POST: DigitalSignatureCheckAccount
             </summary>
             <returns></returns>
         </member>
-        <member name="M:VMS.ChuKySo.Api.Controllers.IDController.DigitalSignaturePdfFileSign(VMS.ChuKySo.Api.DigitalSignature.VMS.VMSDigitalSignature)">
+        <member name="M:VMS.ChuKySo.Api.Controllers.IDController.DigitalSignaturePdfFileSign(VMS.ChuKySo.Api.VMSDigitalSignature)">
+            <summary>
+            POST: DigitalSignaturePdfFileSign
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:VMS.ChuKySo.Api.Controllers.VnptController.KiemtraTaikhoanKyso(VMS.ChuKySo.Api.VMSDigitalSignature)">
+            <summary>
+            POST: KiemtraTaikhoanKyso
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:VMS.ChuKySo.Api.Controllers.VnptController.KysoPDF(VMS.ChuKySo.Api.VMSDigitalSignature)">
             <summary>
             POST: DigitalSignaturePdfFileSign
             </summary>

@@ -120,7 +120,7 @@ namespace VNS.HIS.UI.THUOC
         {
             try
             {
-                return string.Format("id_kho={0}, ten_kho={1}, noitru_ngoaitru={2}, chan_le={3}, thuoc_vt={4}, songay_nhaton={5}", objKho.IdKho, objKho.TenKho, objKho.LoaiBnhan, objKho.KieuKho, objKho.KhoThuocVt, objKho.SongayNhaton);
+                return string.Format("id_kho={0}, ten_kho={1}, noitru_ngoaitru={2}, chan_le={3}, thuoc_vt={4}, songay_nhaton={5}, TrangThai ={6}", objKho.IdKho, objKho.TenKho, objKho.LoaiBnhan, objKho.KieuKho, objKho.KhoThuocVt, objKho.SongayNhaton, objKho.TrangThai);
             }
             catch (Exception)
             {
@@ -162,8 +162,8 @@ namespace VNS.HIS.UI.THUOC
                 new Delete().From(QheDoituongKho.Schema)
                     .Where(QheDoituongKho.Columns.IdKho).IsEqualTo(Utility.Int32Dbnull(txtIDKHO.Text, -1))
                     .Execute();
-
-                foreach (QheDoituongKho objdoituongkho in CreateDoiTuongKhoThem())
+                List<QheDoituongKho> lstQhedoituongKho = CreateDoiTuongKhoThem();
+                foreach (QheDoituongKho objdoituongkho in lstQhedoituongKho)
                 {
                     QuanHeDoiTuongKho.THEM_DOITUONG_KHO(objdoituongkho);
                 }
@@ -176,20 +176,20 @@ namespace VNS.HIS.UI.THUOC
             }
         }
 
-        private QheDoituongKho[] CreateDoiTuongKhoThem()
+        private List<QheDoituongKho> CreateDoiTuongKhoThem()
         {
-            var arrDoituongKho = new QheDoituongKho[grdDoiTuong.RowCount];
+            List<QheDoituongKho> lstbj = new List<QheDoituongKho>();
             int idx = 0;
             foreach (GridEXRow rowSelect in grdDoiTuong.GetCheckedRows())
             {
-                arrDoituongKho[idx] = new QheDoituongKho();
-                arrDoituongKho[idx].IdKho = Utility.Int32Dbnull(txtIDKHO.Text);
-                arrDoituongKho[idx].MaDoituongKcb =
+                QheDoituongKho newitem = new QheDoituongKho();
+                newitem.IdKho = Utility.Int32Dbnull(txtIDKHO.Text);
+                newitem.MaDoituongKcb =
                     Utility.sDbnull(rowSelect.Cells[QheDoituongKho.Columns.MaDoituongKcb].Value);
-                arrDoituongKho[idx].SttHthi = Utility.Int32Dbnull(rowSelect.Cells[QheDoituongKho.Columns.SttHthi].Value);
-                idx++;
+                newitem.SttHthi = Utility.Int32Dbnull(rowSelect.Cells[QheDoituongKho.Columns.SttHthi].Value);
+                lstbj.Add(newitem);
             }
-            return arrDoituongKho;
+            return lstbj;
         }
 
         private TDmucKho CreateKhoThuoc()

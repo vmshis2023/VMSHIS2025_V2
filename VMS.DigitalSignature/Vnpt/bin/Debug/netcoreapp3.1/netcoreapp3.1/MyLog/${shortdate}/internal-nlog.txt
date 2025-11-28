@@ -1,0 +1,35 @@
+2025-09-12 09:43:18.6805 Info Message Template Auto Format enabled
+2025-09-12 09:43:18.7141 Info Loading assembly: NLog.Web.AspNetCore
+2025-09-12 09:43:19.0742 Info Adding target FileTarget(Name=allfile)
+2025-09-12 09:43:19.0742 Info Adding target FileTarget(Name=ownFile-web)
+2025-09-12 09:43:19.1237 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Vnpt\bin\Debug\netcoreapp3.1\netcoreapp3.1\nlog.config
+2025-09-26 13:33:46.7513 Info Message Template Auto Format enabled
+2025-09-26 13:33:46.7920 Info Loading assembly: NLog.Web.AspNetCore
+2025-09-26 13:33:47.1146 Info Adding target FileTarget(Name=allfile)
+2025-09-26 13:33:47.1636 Info Adding target FileTarget(Name=ownFile-web)
+2025-09-26 13:33:47.2197 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Vnpt\bin\Debug\netcoreapp3.1\netcoreapp3.1\nlog.config
+2025-09-26 21:42:49.4754 Info Message Template Auto Format enabled
+2025-09-26 21:42:49.5153 Info Loading assembly: NLog.Web.AspNetCore
+2025-09-26 21:42:49.7819 Info Adding target FileTarget(Name=allfile)
+2025-09-26 21:42:49.8097 Info Adding target FileTarget(Name=ownFile-web)
+2025-09-26 21:42:49.9461 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Vnpt\bin\Debug\netcoreapp3.1\netcoreapp3.1\nlog.config
+2025-09-26 22:29:11.8608 Info Message Template Auto Format enabled
+2025-09-26 22:29:11.8834 Info Loading assembly: NLog.Web.AspNetCore
+2025-09-26 22:29:12.0836 Info Adding target FileTarget(Name=allfile)
+2025-09-26 22:29:12.1041 Info Adding target FileTarget(Name=ownFile-web)
+2025-09-26 22:29:12.1799 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Vnpt\bin\Debug\netcoreapp3.1\netcoreapp3.1\nlog.config
+2025-09-26 22:31:40.0120 Info Message Template Auto Format enabled
+2025-09-26 22:31:40.0277 Info Loading assembly: NLog.Web.AspNetCore
+2025-09-26 22:31:40.1116 Info Adding target FileTarget(Name=allfile)
+2025-09-26 22:31:40.1298 Info Adding target FileTarget(Name=ownFile-web)
+2025-09-26 22:31:40.1669 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Vnpt\bin\Debug\netcoreapp3.1\netcoreapp3.1\nlog.config
+2025-09-26 23:07:02.8675 Info Message Template Auto Format enabled
+2025-09-26 23:07:02.8960 Info Loading assembly: NLog.Web.AspNetCore
+2025-09-26 23:07:03.0435 Info Adding target FileTarget(Name=allfile)
+2025-09-26 23:07:03.0572 Info Adding target FileTarget(Name=ownFile-web)
+2025-09-26 23:07:03.1193 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Vnpt\bin\Debug\netcoreapp3.1\netcoreapp3.1\nlog.config
+2025-09-29 22:12:11.0178 Info Message Template Auto Format enabled
+2025-09-29 22:12:11.0356 Info Loading assembly: NLog.Web.AspNetCore
+2025-09-29 22:12:11.1153 Info Adding target FileTarget(Name=allfile)
+2025-09-29 22:12:11.1274 Info Adding target FileTarget(Name=ownFile-web)
+2025-09-29 22:12:11.1626 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Vnpt\bin\Debug\netcoreapp3.1\netcoreapp3.1\nlog.config

@@ -1,0 +1,17 @@
+2025-09-29 22:12:26.6543||DEBUG|VMS.ChuKySo.Api.Program|Init API 
+2025-09-29 22:12:28.6679||INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down. 
+2025-09-29 22:12:28.6679||INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development 
+2025-09-29 22:12:28.6679||INFO|Microsoft.Hosting.Lifetime|Content root path: F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel 
+2025-09-29 22:12:28.6924||INFO|Startup|BaseDirectory: F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\ 
+2025-09-29 22:26:43.7436||DEBUG|KysoPDF|---------Begin KysoPDF---------------------------------------------------- 
+2025-09-29 22:26:46.1240||DEBUG|KysoPDF|Thông tin user kí số: user 'GSDU', userFullName 'Nguyễn Thị Dụ' with userId: '001081007147', password: '' 
+2025-09-29 22:26:46.3632||DEBUG|KysoPDF|File Length: 135514 
+2025-09-29 22:27:15.8836||DEBUG|KysoPDF|----------------------Bắt đầu ký xác thực---------------------- 
+2025-09-29 22:27:43.6879||DEBUG|KysoPDF|Ký file1.Ký hash thành công 
+2025-09-29 22:27:43.7120||DEBUG|KysoPDF|Ký file1.Ký thành công 
+2025-09-29 22:27:43.7227||DEBUG|KysoPDF|----------------------Kết thúc ký xác thực---------------------- 
+2025-09-29 23:29:09.4419||DEBUG|VMS.ChuKySo.Api.Program|Init API 
+2025-09-29 23:29:11.0243||INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down. 
+2025-09-29 23:29:11.0243||INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development 
+2025-09-29 23:29:11.0243||INFO|Microsoft.Hosting.Lifetime|Content root path: F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel 
+2025-09-29 23:29:11.0505||INFO|Startup|BaseDirectory: F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\ 

@@ -80,7 +80,7 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(long IdChidinh,string MaChidinh,int IdGoi,decimal SoTien,DateTime NgayTao,string NguoiTao)
+	    public void Insert(long IdChidinh,string MaChidinh,int IdGoi,int? IdDangky,decimal SoTien,DateTime NgayTao,string NguoiTao)
 	    {
 		    QheChidinhclsGoi item = new QheChidinhclsGoi();
 		    
@@ -89,6 +89,8 @@ namespace VMS.HIS.DAL
             item.MaChidinh = MaChidinh;
             
             item.IdGoi = IdGoi;
+            
+            item.IdDangky = IdDangky;
             
             item.SoTien = SoTien;
             
@@ -104,7 +106,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(long Id,long IdChidinh,string MaChidinh,int IdGoi,decimal SoTien,DateTime NgayTao,string NguoiTao)
+	    public void Update(long Id,long IdChidinh,string MaChidinh,int IdGoi,int? IdDangky,decimal SoTien,DateTime NgayTao,string NguoiTao)
 	    {
 		    QheChidinhclsGoi item = new QheChidinhclsGoi();
 	        item.MarkOld();
@@ -117,6 +119,8 @@ namespace VMS.HIS.DAL
 			item.MaChidinh = MaChidinh;
 				
 			item.IdGoi = IdGoi;
+				
+			item.IdDangky = IdDangky;
 				
 			item.SoTien = SoTien;
 				

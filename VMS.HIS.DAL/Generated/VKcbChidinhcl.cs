@@ -717,6 +717,18 @@ namespace VMS.HIS.DAL{
                 
                 schema.Columns.Add(colvarNgayKydientu);
                 
+                TableSchema.TableColumn colvarChidinhTudongTheoCongkham = new TableSchema.TableColumn(schema);
+                colvarChidinhTudongTheoCongkham.ColumnName = "chidinh_tudong_theo_congkham";
+                colvarChidinhTudongTheoCongkham.DataType = DbType.Boolean;
+                colvarChidinhTudongTheoCongkham.MaxLength = 0;
+                colvarChidinhTudongTheoCongkham.AutoIncrement = false;
+                colvarChidinhTudongTheoCongkham.IsNullable = true;
+                colvarChidinhTudongTheoCongkham.IsPrimaryKey = false;
+                colvarChidinhTudongTheoCongkham.IsForeignKey = false;
+                colvarChidinhTudongTheoCongkham.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarChidinhTudongTheoCongkham);
+                
                 TableSchema.TableColumn colvarChon = new TableSchema.TableColumn(schema);
                 colvarChon.ColumnName = "CHON";
                 colvarChon.DataType = DbType.Int32;
@@ -1652,6 +1664,18 @@ namespace VMS.HIS.DAL{
                 colvarMotaThemChitiet.IsReadOnly = false;
                 
                 schema.Columns.Add(colvarMotaThemChitiet);
+                
+                TableSchema.TableColumn colvarLaHuongDieuTri = new TableSchema.TableColumn(schema);
+                colvarLaHuongDieuTri.ColumnName = "la_huong_dieu_tri";
+                colvarLaHuongDieuTri.DataType = DbType.Boolean;
+                colvarLaHuongDieuTri.MaxLength = 0;
+                colvarLaHuongDieuTri.AutoIncrement = false;
+                colvarLaHuongDieuTri.IsNullable = true;
+                colvarLaHuongDieuTri.IsPrimaryKey = false;
+                colvarLaHuongDieuTri.IsForeignKey = false;
+                colvarLaHuongDieuTri.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarLaHuongDieuTri);
                 
                 TableSchema.TableColumn colvarIdBacsiThuchien = new TableSchema.TableColumn(schema);
                 colvarIdBacsiThuchien.ColumnName = "id_bacsi_thuchien";
@@ -2674,6 +2698,20 @@ namespace VMS.HIS.DAL{
             set 
 		    {
 			    SetColumnValue("ngay_kydientu", value);
+            }
+        }
+	      
+        [XmlAttribute("ChidinhTudongTheoCongkham")]
+        [Bindable(true)]
+        public bool? ChidinhTudongTheoCongkham 
+	    {
+		    get
+		    {
+			    return GetColumnValue<bool?>("chidinh_tudong_theo_congkham");
+		    }
+            set 
+		    {
+			    SetColumnValue("chidinh_tudong_theo_congkham", value);
             }
         }
 	      
@@ -3769,6 +3807,20 @@ namespace VMS.HIS.DAL{
             }
         }
 	      
+        [XmlAttribute("LaHuongDieuTri")]
+        [Bindable(true)]
+        public bool? LaHuongDieuTri 
+	    {
+		    get
+		    {
+			    return GetColumnValue<bool?>("la_huong_dieu_tri");
+		    }
+            set 
+		    {
+			    SetColumnValue("la_huong_dieu_tri", value);
+            }
+        }
+	      
         [XmlAttribute("IdBacsiThuchien")]
         [Bindable(true)]
         public short? IdBacsiThuchien 
@@ -4124,6 +4176,8 @@ namespace VMS.HIS.DAL{
             
             public static string NgayKydientu = @"ngay_kydientu";
             
+            public static string ChidinhTudongTheoCongkham = @"chidinh_tudong_theo_congkham";
+            
             public static string Chon = @"CHON";
             
             public static string PtramBhytNoitru = @"ptram_bhyt_noitru";
@@ -4279,6 +4333,8 @@ namespace VMS.HIS.DAL{
             public static string LoaiPttt = @"loai_pttt";
             
             public static string MotaThemChitiet = @"mota_them_chitiet";
+            
+            public static string LaHuongDieuTri = @"la_huong_dieu_tri";
             
             public static string IdBacsiThuchien = @"id_bacsi_thuchien";
             

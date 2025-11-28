@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem4 = new Janus.Windows.EditControls.UIComboBoxItem();
-            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem5 = new Janus.Windows.EditControls.UIComboBoxItem();
-            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem6 = new Janus.Windows.EditControls.UIComboBoxItem();
+            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem1 = new Janus.Windows.EditControls.UIComboBoxItem();
+            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem2 = new Janus.Windows.EditControls.UIComboBoxItem();
+            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem3 = new Janus.Windows.EditControls.UIComboBoxItem();
             Janus.Windows.GridEX.GridEXLayout grdChitiet_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_baocaotinhhinhnoitru));
             this.gridEXExporter1 = new Janus.Windows.GridEX.Export.GridEXExporter(this.components);
@@ -141,22 +141,22 @@
             // cboKhoaNoiTru
             // 
             this.cboKhoaNoiTru.ComboStyle = Janus.Windows.EditControls.ComboStyle.DropDownList;
-            uiComboBoxItem4.FormatStyle.Alpha = 0;
-            uiComboBoxItem4.IsSeparator = false;
-            uiComboBoxItem4.Text = "Tất cả";
-            uiComboBoxItem4.Value = -1;
-            uiComboBoxItem5.FormatStyle.Alpha = 0;
-            uiComboBoxItem5.IsSeparator = false;
-            uiComboBoxItem5.Text = "Ngoại trú";
-            uiComboBoxItem5.Value = 0;
-            uiComboBoxItem6.FormatStyle.Alpha = 0;
-            uiComboBoxItem6.IsSeparator = false;
-            uiComboBoxItem6.Text = "Nội trú";
-            uiComboBoxItem6.Value = 1;
+            uiComboBoxItem1.FormatStyle.Alpha = 0;
+            uiComboBoxItem1.IsSeparator = false;
+            uiComboBoxItem1.Text = "Tất cả";
+            uiComboBoxItem1.Value = -1;
+            uiComboBoxItem2.FormatStyle.Alpha = 0;
+            uiComboBoxItem2.IsSeparator = false;
+            uiComboBoxItem2.Text = "Ngoại trú";
+            uiComboBoxItem2.Value = 0;
+            uiComboBoxItem3.FormatStyle.Alpha = 0;
+            uiComboBoxItem3.IsSeparator = false;
+            uiComboBoxItem3.Text = "Nội trú";
+            uiComboBoxItem3.Value = 1;
             this.cboKhoaNoiTru.Items.AddRange(new Janus.Windows.EditControls.UIComboBoxItem[] {
-            uiComboBoxItem4,
-            uiComboBoxItem5,
-            uiComboBoxItem6});
+            uiComboBoxItem1,
+            uiComboBoxItem2,
+            uiComboBoxItem3});
             this.cboKhoaNoiTru.Location = new System.Drawing.Point(138, 25);
             this.cboKhoaNoiTru.Name = "cboKhoaNoiTru";
             this.cboKhoaNoiTru.Size = new System.Drawing.Size(279, 21);
@@ -399,6 +399,7 @@
             this.cmdPrint.TabIndex = 9;
             this.cmdPrint.Text = "In báo cáo";
             this.cmdPrint.ToolTipText = "Bạn nhấn nút in phiếu để thực hiện in phiếu xét nghiệm cho bệnh nhân";
+            this.cmdPrint.Click += new System.EventHandler(this.cmdPrint_Click_1);
             // 
             // baocaO_TIEUDE1
             // 

@@ -94,6 +94,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cboDepartment = new Janus.Windows.EditControls.UIComboBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.opt_Tatca = new System.Windows.Forms.RadioButton();
             this.sysColor.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiTab1)).BeginInit();
@@ -615,17 +616,18 @@
             // panel4
             // 
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.opt_Tatca);
             this.panel4.Controls.Add(this.optLinhBoSung);
             this.panel4.Controls.Add(this.optLinhThuong);
             this.panel4.Location = new System.Drawing.Point(579, 44);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(242, 30);
+            this.panel4.Size = new System.Drawing.Size(339, 30);
             this.panel4.TabIndex = 30;
             // 
             // optLinhBoSung
             // 
             this.optLinhBoSung.AutoSize = true;
-            this.optLinhBoSung.Location = new System.Drawing.Point(116, 5);
+            this.optLinhBoSung.Location = new System.Drawing.Point(227, 6);
             this.optLinhBoSung.Name = "optLinhBoSung";
             this.optLinhBoSung.Size = new System.Drawing.Size(97, 19);
             this.optLinhBoSung.TabIndex = 30;
@@ -635,12 +637,10 @@
             // optLinhThuong
             // 
             this.optLinhThuong.AutoSize = true;
-            this.optLinhThuong.Checked = true;
-            this.optLinhThuong.Location = new System.Drawing.Point(6, 5);
+            this.optLinhThuong.Location = new System.Drawing.Point(117, 6);
             this.optLinhThuong.Name = "optLinhThuong";
             this.optLinhThuong.Size = new System.Drawing.Size(92, 19);
             this.optLinhThuong.TabIndex = 29;
-            this.optLinhThuong.TabStop = true;
             this.optLinhThuong.Text = "Lĩnh thường";
             this.optLinhThuong.UseVisualStyleBackColor = true;
             // 
@@ -781,6 +781,17 @@
             // 
             this.toolTip1.IsBalloon = true;
             // 
+            // opt_Tatca
+            // 
+            this.opt_Tatca.AutoSize = true;
+            this.opt_Tatca.Checked = true;
+            this.opt_Tatca.Location = new System.Drawing.Point(7, 4);
+            this.opt_Tatca.Name = "opt_Tatca";
+            this.opt_Tatca.Size = new System.Drawing.Size(58, 19);
+            this.opt_Tatca.TabIndex = 31;
+            this.opt_Tatca.Text = "Tất cả";
+            this.opt_Tatca.UseVisualStyleBackColor = true;
+            // 
             // frm_PhieucapphatNoitru
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -888,5 +899,6 @@
         private System.Windows.Forms.ToolStripMenuItem mnuUpdateIDThuockho;
         private Janus.Windows.EditControls.UICheckBox chkCheckAll;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.RadioButton opt_Tatca;
     }
 }

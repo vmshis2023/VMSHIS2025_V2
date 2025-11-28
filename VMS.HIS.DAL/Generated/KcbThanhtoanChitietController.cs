@@ -80,7 +80,7 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(long IdThanhtoan,string MadoituongGia,decimal? PtramBhytGoc,decimal PtramBhyt,decimal? SoLuong,decimal DonGia,decimal BnhanChitra,decimal BhytChitra,decimal PhuThu,byte TuTuc,long IdPhieu,long IdPhieuChitiet,int IdDichvu,int IdChitietdichvu,string TenChitietdichvu,string TenBhyt,string DonviTinh,int? SttIn,int? IdKhoakcb,short? IdPhongkham,short? IdBacsiChidinh,byte IdLoaithanhtoan,string TenLoaithanhtoan,string MaDoituongKcb,string KieuChietkhau,decimal? TileChietkhau,decimal? TienChietkhau,byte? TrangthaiHuy,byte? TrangthaiBhyt,byte? TrangthaiChuyen,byte? TinhChiphi,byte NoiTru,int? IdGoi,byte? TrongGoi,long? IdKham,byte? NguonGoc,long? IdThanhtoanhuy,long? IdLichsuDoituongKcb,string MatheBhyt,DateTime NgayTao,string NguoiTao,decimal? TyleTt,decimal? GiaGoc,byte? TinhChkhau,byte? CkNguongt,string UserTao,int? TongTralai,byte? MultiCancel,long? IdThe,int? IdDangky,byte? BhytNguonKhac,decimal? BhytGiaTyle,decimal? BnTtt,decimal? BnCct,decimal? TienKhuyenmai,byte? TthaiKhuyenmai,bool? TthaiXuatHddt,string TransactionId,string RefId,bool? TthaiThaythe)
+	    public void Insert(long IdThanhtoan,string MadoituongGia,decimal? PtramBhytGoc,decimal PtramBhyt,decimal? SoLuong,decimal DonGia,decimal BnhanChitra,decimal BhytChitra,decimal PhuThu,byte TuTuc,long IdPhieu,long IdPhieuChitiet,int IdDichvu,int IdChitietdichvu,string TenChitietdichvu,string TenBhyt,string DonviTinh,int? SttIn,int? IdKhoakcb,short? IdPhongkham,short? IdBacsiChidinh,byte IdLoaithanhtoan,string TenLoaithanhtoan,string MaDoituongKcb,string KieuChietkhau,decimal? TileChietkhau,decimal? TienChietkhau,byte? TrangthaiHuy,byte? TrangthaiBhyt,byte? TrangthaiChuyen,byte? TinhChiphi,byte NoiTru,int? IdGoi,byte? TrongGoi,long? IdKham,byte? NguonGoc,long? IdThanhtoanhuy,long? IdLichsuDoituongKcb,string MatheBhyt,DateTime NgayTao,string NguoiTao,decimal? TyleTt,decimal? GiaGoc,byte? TinhChkhau,byte? CkNguongt,string UserTao,int? TongTralai,byte? MultiCancel,long? IdThe,int? IdDangky,byte? BhytNguonKhac,decimal? BhytGiaTyle,decimal? BnTtt,decimal? BnCct,decimal? TienKhuyenmai,byte? TthaiKhuyenmai,bool? TthaiXuatHddt,string TransactionId,string RefId,bool? TthaiThaythe,bool? NgoaiGio,byte? HienThi)
 	    {
 		    KcbThanhtoanChitiet item = new KcbThanhtoanChitiet();
 		    
@@ -204,6 +204,10 @@ namespace VMS.HIS.DAL
             
             item.TthaiThaythe = TthaiThaythe;
             
+            item.NgoaiGio = NgoaiGio;
+            
+            item.HienThi = HienThi;
+            
 	    
 		    item.Save(UserName);
 	    }
@@ -212,7 +216,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(long IdChitiet,long IdThanhtoan,string MadoituongGia,decimal? PtramBhytGoc,decimal PtramBhyt,decimal? SoLuong,decimal DonGia,decimal BnhanChitra,decimal BhytChitra,decimal PhuThu,byte TuTuc,long IdPhieu,long IdPhieuChitiet,int IdDichvu,int IdChitietdichvu,string TenChitietdichvu,string TenBhyt,string DonviTinh,int? SttIn,int? IdKhoakcb,short? IdPhongkham,short? IdBacsiChidinh,byte IdLoaithanhtoan,string TenLoaithanhtoan,string MaDoituongKcb,string KieuChietkhau,decimal? TileChietkhau,decimal? TienChietkhau,byte? TrangthaiHuy,byte? TrangthaiBhyt,byte? TrangthaiChuyen,byte? TinhChiphi,byte NoiTru,int? IdGoi,byte? TrongGoi,long? IdKham,byte? NguonGoc,long? IdThanhtoanhuy,long? IdLichsuDoituongKcb,string MatheBhyt,DateTime NgayTao,string NguoiTao,decimal? TyleTt,decimal? GiaGoc,byte? TinhChkhau,byte? CkNguongt,string UserTao,int? TongTralai,byte? MultiCancel,long? IdThe,int? IdDangky,byte? BhytNguonKhac,decimal? BhytGiaTyle,decimal? BnTtt,decimal? BnCct,decimal? TienKhuyenmai,byte? TthaiKhuyenmai,bool? TthaiXuatHddt,string TransactionId,string RefId,bool? TthaiThaythe)
+	    public void Update(long IdChitiet,long IdThanhtoan,string MadoituongGia,decimal? PtramBhytGoc,decimal PtramBhyt,decimal? SoLuong,decimal DonGia,decimal BnhanChitra,decimal BhytChitra,decimal PhuThu,byte TuTuc,long IdPhieu,long IdPhieuChitiet,int IdDichvu,int IdChitietdichvu,string TenChitietdichvu,string TenBhyt,string DonviTinh,int? SttIn,int? IdKhoakcb,short? IdPhongkham,short? IdBacsiChidinh,byte IdLoaithanhtoan,string TenLoaithanhtoan,string MaDoituongKcb,string KieuChietkhau,decimal? TileChietkhau,decimal? TienChietkhau,byte? TrangthaiHuy,byte? TrangthaiBhyt,byte? TrangthaiChuyen,byte? TinhChiphi,byte NoiTru,int? IdGoi,byte? TrongGoi,long? IdKham,byte? NguonGoc,long? IdThanhtoanhuy,long? IdLichsuDoituongKcb,string MatheBhyt,DateTime NgayTao,string NguoiTao,decimal? TyleTt,decimal? GiaGoc,byte? TinhChkhau,byte? CkNguongt,string UserTao,int? TongTralai,byte? MultiCancel,long? IdThe,int? IdDangky,byte? BhytNguonKhac,decimal? BhytGiaTyle,decimal? BnTtt,decimal? BnCct,decimal? TienKhuyenmai,byte? TthaiKhuyenmai,bool? TthaiXuatHddt,string TransactionId,string RefId,bool? TthaiThaythe,bool? NgoaiGio,byte? HienThi)
 	    {
 		    KcbThanhtoanChitiet item = new KcbThanhtoanChitiet();
 	        item.MarkOld();
@@ -339,6 +343,10 @@ namespace VMS.HIS.DAL
 			item.RefId = RefId;
 				
 			item.TthaiThaythe = TthaiThaythe;
+				
+			item.NgoaiGio = NgoaiGio;
+				
+			item.HienThi = HienThi;
 				
 	        item.Save(UserName);
 	    }

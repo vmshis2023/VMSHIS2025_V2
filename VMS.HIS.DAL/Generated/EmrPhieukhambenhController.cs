@@ -80,7 +80,7 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(string MaLuotkham,long IdBenhnhan,DateTime NgayKham,string NhomMau,string NhietDo,string HuyetAp,string Mach,string NhipTho,string ChieuCao,string CanNang,string MotaThem,string Bmi,string DangDi,string TinhThan,string HinhdangChung,string MausacDa,string TinhtrangDa,string HethongLongtoc,string NghiCobenh,string BophanDau,string BophanCo,string BophanNguc,string BophanBung,string BophanCotsong,string BophanChatthai,string Tuanhoan,string Hohap,string Tieuhoa,string Thantietnieusinhduc,string Thankinh,string Coxuongkhop,string Taimuihong,string Ranghammat,string Mat,string Noitietdinhduongbenhlykhac,short? IdBacsi,string ToanThan,string NgoaiKhoa,string BoPhan,string Vu,string Hach,byte? Noitru,string NguoiTao,DateTime? NgayTao,string NguoiSua,DateTime? NgaySua)
+	    public void Insert(string MaLuotkham,long IdBenhnhan,DateTime NgayKham,string NhomMau,string NhietDo,string HuyetAp,string Mach,string NhipTho,string ChieuCao,string CanNang,string MotaThem,string Bmi,string DangDi,string TinhThan,string HinhdangChung,string MausacDa,string TinhtrangDa,string HethongLongtoc,string NghiCobenh,string BophanDau,string BophanCo,string BophanNguc,string BophanBung,string BophanCotsong,string BophanChatthai,bool? TuanhoanBinhthuong,bool? TuanhoanBatthuong,string Tuanhoan,bool? HohapBinhthuong,bool? HohapBatthuong,string Hohap,bool? TieuhoaBinhthuong,bool? TieuhoaBatthuong,string Tieuhoa,bool? ThantietnieusinhducBinhthuong,bool? ThantietnieusinhducBatthuong,string Thantietnieusinhduc,bool? ThankinhBinhthuong,bool? ThankinhBatthuong,string Thankinh,bool? CoxuongkhopBinhthuong,bool? CoxuongkhopBatthuong,string Coxuongkhop,bool? TaimuihongBinhthuong,bool? TaimuihongBatthuong,string Taimuihong,bool? RanghammatBinhthuong,bool? RanghammatBatthuong,string Ranghammat,bool? MatBinhthuong,bool? MatBatthuong,string Mat,string Noitietdinhduongbenhlykhac,short? IdBacsi,bool? ToanthanBinhthuong,bool? ToanthanBatthuong,string ToanThan,string CacBenhlyKhac,string NgoaiKhoa,string BoPhan,string Vu,string Hach,byte? Noitru,string NguoiTao,DateTime? NgayTao,string NguoiSua,DateTime? NgaySua)
 	    {
 		    EmrPhieukhambenh item = new EmrPhieukhambenh();
 		    
@@ -134,21 +134,57 @@ namespace VMS.HIS.DAL
             
             item.BophanChatthai = BophanChatthai;
             
+            item.TuanhoanBinhthuong = TuanhoanBinhthuong;
+            
+            item.TuanhoanBatthuong = TuanhoanBatthuong;
+            
             item.Tuanhoan = Tuanhoan;
+            
+            item.HohapBinhthuong = HohapBinhthuong;
+            
+            item.HohapBatthuong = HohapBatthuong;
             
             item.Hohap = Hohap;
             
+            item.TieuhoaBinhthuong = TieuhoaBinhthuong;
+            
+            item.TieuhoaBatthuong = TieuhoaBatthuong;
+            
             item.Tieuhoa = Tieuhoa;
+            
+            item.ThantietnieusinhducBinhthuong = ThantietnieusinhducBinhthuong;
+            
+            item.ThantietnieusinhducBatthuong = ThantietnieusinhducBatthuong;
             
             item.Thantietnieusinhduc = Thantietnieusinhduc;
             
+            item.ThankinhBinhthuong = ThankinhBinhthuong;
+            
+            item.ThankinhBatthuong = ThankinhBatthuong;
+            
             item.Thankinh = Thankinh;
+            
+            item.CoxuongkhopBinhthuong = CoxuongkhopBinhthuong;
+            
+            item.CoxuongkhopBatthuong = CoxuongkhopBatthuong;
             
             item.Coxuongkhop = Coxuongkhop;
             
+            item.TaimuihongBinhthuong = TaimuihongBinhthuong;
+            
+            item.TaimuihongBatthuong = TaimuihongBatthuong;
+            
             item.Taimuihong = Taimuihong;
             
+            item.RanghammatBinhthuong = RanghammatBinhthuong;
+            
+            item.RanghammatBatthuong = RanghammatBatthuong;
+            
             item.Ranghammat = Ranghammat;
+            
+            item.MatBinhthuong = MatBinhthuong;
+            
+            item.MatBatthuong = MatBatthuong;
             
             item.Mat = Mat;
             
@@ -156,7 +192,13 @@ namespace VMS.HIS.DAL
             
             item.IdBacsi = IdBacsi;
             
+            item.ToanthanBinhthuong = ToanthanBinhthuong;
+            
+            item.ToanthanBatthuong = ToanthanBatthuong;
+            
             item.ToanThan = ToanThan;
+            
+            item.CacBenhlyKhac = CacBenhlyKhac;
             
             item.NgoaiKhoa = NgoaiKhoa;
             
@@ -184,7 +226,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(long Id,string MaLuotkham,long IdBenhnhan,DateTime NgayKham,string NhomMau,string NhietDo,string HuyetAp,string Mach,string NhipTho,string ChieuCao,string CanNang,string MotaThem,string Bmi,string DangDi,string TinhThan,string HinhdangChung,string MausacDa,string TinhtrangDa,string HethongLongtoc,string NghiCobenh,string BophanDau,string BophanCo,string BophanNguc,string BophanBung,string BophanCotsong,string BophanChatthai,string Tuanhoan,string Hohap,string Tieuhoa,string Thantietnieusinhduc,string Thankinh,string Coxuongkhop,string Taimuihong,string Ranghammat,string Mat,string Noitietdinhduongbenhlykhac,short? IdBacsi,string ToanThan,string NgoaiKhoa,string BoPhan,string Vu,string Hach,byte? Noitru,string NguoiTao,DateTime? NgayTao,string NguoiSua,DateTime? NgaySua)
+	    public void Update(long Id,string MaLuotkham,long IdBenhnhan,DateTime NgayKham,string NhomMau,string NhietDo,string HuyetAp,string Mach,string NhipTho,string ChieuCao,string CanNang,string MotaThem,string Bmi,string DangDi,string TinhThan,string HinhdangChung,string MausacDa,string TinhtrangDa,string HethongLongtoc,string NghiCobenh,string BophanDau,string BophanCo,string BophanNguc,string BophanBung,string BophanCotsong,string BophanChatthai,bool? TuanhoanBinhthuong,bool? TuanhoanBatthuong,string Tuanhoan,bool? HohapBinhthuong,bool? HohapBatthuong,string Hohap,bool? TieuhoaBinhthuong,bool? TieuhoaBatthuong,string Tieuhoa,bool? ThantietnieusinhducBinhthuong,bool? ThantietnieusinhducBatthuong,string Thantietnieusinhduc,bool? ThankinhBinhthuong,bool? ThankinhBatthuong,string Thankinh,bool? CoxuongkhopBinhthuong,bool? CoxuongkhopBatthuong,string Coxuongkhop,bool? TaimuihongBinhthuong,bool? TaimuihongBatthuong,string Taimuihong,bool? RanghammatBinhthuong,bool? RanghammatBatthuong,string Ranghammat,bool? MatBinhthuong,bool? MatBatthuong,string Mat,string Noitietdinhduongbenhlykhac,short? IdBacsi,bool? ToanthanBinhthuong,bool? ToanthanBatthuong,string ToanThan,string CacBenhlyKhac,string NgoaiKhoa,string BoPhan,string Vu,string Hach,byte? Noitru,string NguoiTao,DateTime? NgayTao,string NguoiSua,DateTime? NgaySua)
 	    {
 		    EmrPhieukhambenh item = new EmrPhieukhambenh();
 	        item.MarkOld();
@@ -242,21 +284,57 @@ namespace VMS.HIS.DAL
 				
 			item.BophanChatthai = BophanChatthai;
 				
+			item.TuanhoanBinhthuong = TuanhoanBinhthuong;
+				
+			item.TuanhoanBatthuong = TuanhoanBatthuong;
+				
 			item.Tuanhoan = Tuanhoan;
+				
+			item.HohapBinhthuong = HohapBinhthuong;
+				
+			item.HohapBatthuong = HohapBatthuong;
 				
 			item.Hohap = Hohap;
 				
+			item.TieuhoaBinhthuong = TieuhoaBinhthuong;
+				
+			item.TieuhoaBatthuong = TieuhoaBatthuong;
+				
 			item.Tieuhoa = Tieuhoa;
+				
+			item.ThantietnieusinhducBinhthuong = ThantietnieusinhducBinhthuong;
+				
+			item.ThantietnieusinhducBatthuong = ThantietnieusinhducBatthuong;
 				
 			item.Thantietnieusinhduc = Thantietnieusinhduc;
 				
+			item.ThankinhBinhthuong = ThankinhBinhthuong;
+				
+			item.ThankinhBatthuong = ThankinhBatthuong;
+				
 			item.Thankinh = Thankinh;
+				
+			item.CoxuongkhopBinhthuong = CoxuongkhopBinhthuong;
+				
+			item.CoxuongkhopBatthuong = CoxuongkhopBatthuong;
 				
 			item.Coxuongkhop = Coxuongkhop;
 				
+			item.TaimuihongBinhthuong = TaimuihongBinhthuong;
+				
+			item.TaimuihongBatthuong = TaimuihongBatthuong;
+				
 			item.Taimuihong = Taimuihong;
 				
+			item.RanghammatBinhthuong = RanghammatBinhthuong;
+				
+			item.RanghammatBatthuong = RanghammatBatthuong;
+				
 			item.Ranghammat = Ranghammat;
+				
+			item.MatBinhthuong = MatBinhthuong;
+				
+			item.MatBatthuong = MatBatthuong;
 				
 			item.Mat = Mat;
 				
@@ -264,7 +342,13 @@ namespace VMS.HIS.DAL
 				
 			item.IdBacsi = IdBacsi;
 				
+			item.ToanthanBinhthuong = ToanthanBinhthuong;
+				
+			item.ToanthanBatthuong = ToanthanBatthuong;
+				
 			item.ToanThan = ToanThan;
+				
+			item.CacBenhlyKhac = CacBenhlyKhac;
 				
 			item.NgoaiKhoa = NgoaiKhoa;
 				

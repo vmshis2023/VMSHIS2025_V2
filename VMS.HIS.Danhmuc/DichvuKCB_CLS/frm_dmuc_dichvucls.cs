@@ -172,7 +172,7 @@ namespace VNS.HIS.UI.DANHMUC
                     }
                 }
                 DataBinding.BindDataCombox(cboServiceType, m_dtLoaiDichvuCLS_new, DmucChung.Columns.Ma, DmucChung.Columns.Ten,"---Chọn---", false);
-                DataBinding.BindDataCombox(cbonhombaocao, dtNhomchiphi, DmucChung.Columns.Ma, DmucChung.Columns.Ten);
+                DataBinding.BindDataCombox(cbonhombaocao, dtNhomchiphi, DmucChung.Columns.Ma, DmucChung.Columns.Ten,"---Chọn---",false);
                 DataTable m_dtKhoaChucNang = THU_VIEN_CHUNG.Laydanhmuckhoa("ALL",1);
                 DataBinding.BindDataCombobox(cboDepartment, m_dtKhoaChucNang, DmucKhoaphong.Columns.IdKhoaphong, DmucKhoaphong.Columns.TenKhoaphong, "---Chọn---", true);
             }

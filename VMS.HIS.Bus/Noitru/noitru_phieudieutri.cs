@@ -13,6 +13,7 @@ using NLog;
 using VNS.Properties;
 using System.Collections.Generic;
 using VNS.HIS.NGHIEPVU.THUOC;
+using VMS.HIS.Bus.Emr;
 
 namespace VNS.HIS.BusRule.Classes
 {
@@ -25,7 +26,7 @@ namespace VNS.HIS.BusRule.Classes
         }
        
 
-        public ActionResult SaoChepDonThuocTheoPhieuDieuTriFullTransaction(KcbDonthuoc objDonthuoc, NoitruPhieudieutri objTreatment,KcbDonthuocChitiet[] arrChitietdonthuoc)
+        public ActionResult SaoChepDonThuocTheoPhieuDieuTriFullTransaction(KcbDonthuoc objDonthuoc, NoitruPhieudieutri objPhieudieutri,KcbDonthuocChitiet[] arrChitietdonthuoc)
         {
             try
             {
@@ -34,15 +35,15 @@ namespace VNS.HIS.BusRule.Classes
                     using (var dbscope = new SharedDbConnectionScope())
                     {
 
-                        objDonthuoc.IdPhieudieutri = objTreatment.IdPhieudieutri;
+                        objDonthuoc.IdPhieudieutri = objPhieudieutri.IdPhieudieutri;
                         objDonthuoc.IdDonthuocthaythe = -1;
-                        objDonthuoc.IdKham = objTreatment.IdPhieudieutri;
-                        objDonthuoc.IdBacsiChidinh = objTreatment.IdBacsi;
+                        objDonthuoc.IdKham = objPhieudieutri.IdPhieudieutri;
+                        objDonthuoc.IdBacsiChidinh = objPhieudieutri.IdBacsi;
                         objDonthuoc.NgaySua = null;
                         objDonthuoc.NguoiSua = null;
-                        objDonthuoc.NgayKedon = Convert.ToDateTime(objTreatment.NgayDieutri);
+                        objDonthuoc.NgayKedon = Convert.ToDateTime(objPhieudieutri.NgayDieutri);
                         objDonthuoc.Noitru = 1;
-                        NoitruPhanbuonggiuong objPatientDept = NoitruPhanbuonggiuong.FetchByID(objTreatment.IdBuongGiuong);
+                        NoitruPhanbuonggiuong objPatientDept = NoitruPhanbuonggiuong.FetchByID(objPhieudieutri.IdBuongGiuong);
                         if (objPatientDept != null)
                         {
                             objDonthuoc.IdKhoadieutri = Utility.Int16Dbnull(objPatientDept.IdKhoanoitru);
@@ -66,7 +67,7 @@ namespace VNS.HIS.BusRule.Classes
                         foreach (var objChitietdonthuoc in arrChitietdonthuoc)
                         {
                             KcbDonthuocChitiet newItem = KcbDonthuocChitiet.FetchByID(objChitietdonthuoc.IdChitietdonthuoc);
-                            newItem.IdKham = objTreatment.IdPhieudieutri;
+                            newItem.IdKham = objPhieudieutri.IdPhieudieutri;
 
                             newItem.SoluongHuy = 0;
                             newItem.NgayHuy = null;
@@ -112,7 +113,7 @@ namespace VNS.HIS.BusRule.Classes
                 return ActionResult.Error;
             }
         }
-        public ActionResult SaoChepDonThuocTheoPhieuDieuTri(string GUID, KcbLuotkham objLuotkham, KcbDonthuoc objDonthuoc, NoitruPhieudieutri objTreatment, KcbDonthuocChitiet[] arrChitietdonthuoc, List<string> lstError)
+        public ActionResult SaoChepDonThuocTheoPhieuDieuTri(string GUID, KcbLuotkham objLuotkham, KcbDonthuoc objDonthuoc, NoitruPhieudieutri objPhieudieutri, KcbDonthuocChitiet[] arrChitietdonthuoc, List<string> lstError)
         {
             try
             {
@@ -120,24 +121,24 @@ namespace VNS.HIS.BusRule.Classes
                 using (var scope = new TransactionScope())
                 {
 
-                    objDonthuoc.IdPhieudieutri = objTreatment.IdPhieudieutri;
+                    objDonthuoc.IdPhieudieutri = objPhieudieutri.IdPhieudieutri;
                     objDonthuoc.IdDonthuocthaythe = -1;
                     objDonthuoc.IdKham = -1;
-                    objDonthuoc.IdBacsiChidinh = objTreatment.IdBacsi;
+                    objDonthuoc.IdBacsiChidinh = objPhieudieutri.IdBacsi;
                     objDonthuoc.NgaySua = null;
                     objDonthuoc.NguoiSua = null;
-                    objDonthuoc.NgayKedon = objTreatment.NgayDieutri.Value.AddHours(Utility.Int32Dbnull(objTreatment.GioDieutri.Split(':')[0], 0)).AddMinutes(Utility.Int32Dbnull(objTreatment.GioDieutri.Split(':')[1], 0));
+                    objDonthuoc.NgayKedon = objPhieudieutri.NgayDieutri.Value.AddHours(Utility.Int32Dbnull(objPhieudieutri.GioDieutri.Split(':')[0], 0)).AddMinutes(Utility.Int32Dbnull(objPhieudieutri.GioDieutri.Split(':')[1], 0));
                     objDonthuoc.Noitru = 1;
-                    NoitruPhanbuonggiuong objPatientDept = NoitruPhanbuonggiuong.FetchByID(objTreatment.IdBuongGiuong);
+                    NoitruPhanbuonggiuong objPatientDept = NoitruPhanbuonggiuong.FetchByID(objPhieudieutri.IdBuongGiuong);
                     if (objPatientDept != null)
                     {
                         objDonthuoc.IdKhoadieutri = Utility.Int16Dbnull(objPatientDept.IdKhoanoitru);
                         objDonthuoc.IdBuongNoitru = Utility.Int16Dbnull(objPatientDept.IdBuong);
                         objDonthuoc.IdGiuongNoitru = Utility.Int16Dbnull(objPatientDept.IdGiuong);
                     }
-                    objDonthuoc.TenDonthuoc = THU_VIEN_CHUNG.TaoTenDonthuoc(objTreatment.MaLuotkham,
+                    objDonthuoc.TenDonthuoc = THU_VIEN_CHUNG.TaoTenDonthuoc(objPhieudieutri.MaLuotkham,
                                                                                         Utility.Int32Dbnull(
-                                                                                            objTreatment.IdBenhnhan,
+                                                                                            objPhieudieutri.IdBenhnhan,
                                                                                             -1));
                     objDonthuoc.NgayXacnhan = null;
                     objDonthuoc.NgayCapphat = null;
@@ -148,7 +149,7 @@ namespace VNS.HIS.BusRule.Classes
                     //objDonthuoc.IdBacsiChidinh = globalVariables.gv_intIDNhanvien;
                     objDonthuoc.MotaThem = "Sao chép";
                     objDonthuoc.NguoiTao = globalVariables.UserName;
-                    objDonthuoc.NgayTao = DateTime.Now;
+                    objDonthuoc.NgayTao = objPhieudieutri.NgayTao.Value;
                     objDonthuoc.IpMaytao = globalVariables.gv_strIPAddress;
                     objDonthuoc.TenMaytao = globalVariables.gv_strComputerName;
                     objDonthuoc.IsNew = true;
@@ -169,7 +170,7 @@ namespace VNS.HIS.BusRule.Classes
                     foreach (var objChitietdonthuoc in arrChitietdonthuoc)
                     {
                         KcbDonthuocChitiet newItem = KcbDonthuocChitiet.FetchByID(objChitietdonthuoc.IdChitietdonthuoc);
-                        newItem.IdKham = objTreatment.IdPhieudieutri;
+                        newItem.IdKham = objPhieudieutri.IdPhieudieutri;
 
                         newItem.IdDonthuoc = Utility.Int32Dbnull(objDonthuoc.IdDonthuoc);
                         newItem.IdKham = -1;
@@ -198,7 +199,7 @@ namespace VNS.HIS.BusRule.Classes
                         newItem.NguoiSua = null;
                         
                         newItem.NguoiTao = globalVariables.UserName;
-                        newItem.NgayTao = DateTime.Now;
+                        newItem.NgayTao = objDonthuoc.NgayTao;
                         newItem.IpMaytao = globalVariables.gv_strIPAddress;
                         newItem.TenMaytao = globalVariables.gv_strComputerName;
 
@@ -279,7 +280,7 @@ namespace VNS.HIS.BusRule.Classes
                 return ActionResult.Error;
             }
         }
-        public ActionResult ThemPhieudieutri(NoitruPhieudieutri objTreatment)
+        public ActionResult ThemPhieudieutri(NoitruPhieudieutri objPhieudieutri)
         {
             try
             {
@@ -288,32 +289,37 @@ namespace VNS.HIS.BusRule.Classes
                     using (var dbscope = new SharedDbConnectionScope())
                     {
 
-                        if (objTreatment.IdPhieudieutri<=0)
+                        if (objPhieudieutri.IdPhieudieutri<=0)
                         {
-                            objTreatment.NgaySua = null;
-                            objTreatment.NguoiSua = string.Empty;
-                            objTreatment.IsNew = true;
-                            objTreatment.Save();
+                            objPhieudieutri.NgaySua = null;
+                            objPhieudieutri.NguoiSua = string.Empty;
+                            objPhieudieutri.IsNew = true;
+                            objPhieudieutri.Save();
                         }
                         else
                         {
                             
-                            objTreatment.MarkOld();
-                            objTreatment.IsNew = false;
-                            objTreatment.IsLoaded = true;
-                            objTreatment.Save();
+                            objPhieudieutri.MarkOld();
+                            objPhieudieutri.IsNew = false;
+                            objPhieudieutri.IsLoaded = true;
+                            objPhieudieutri.Save();
                             new Update(KcbChidinhcl.Schema)
-                                .Set(KcbChidinhcl.Columns.NgayChidinh).EqualTo(objTreatment.NgayDieutri)
-                                .Where(KcbChidinhcl.Columns.IdDieutri).IsEqualTo(objTreatment.IdPhieudieutri).Execute();
+                                .Set(KcbChidinhcl.Columns.NgayChidinh).EqualTo(objPhieudieutri.NgayDieutri)
+                                .Where(KcbChidinhcl.Columns.IdDieutri).IsEqualTo(objPhieudieutri.IdPhieudieutri).Execute();
                             new Update(KcbDonthuoc.Schema)
-                                .Set(KcbDonthuoc.Columns.NgayKedon).EqualTo(objTreatment.NgayDieutri)
-                                .Where(KcbDonthuoc.Columns.IdPhieudieutri).IsEqualTo(objTreatment.IdPhieudieutri).Execute();
+                                .Set(KcbDonthuoc.Columns.NgayKedon).EqualTo(objPhieudieutri.NgayDieutri)
+                                .Where(KcbDonthuoc.Columns.IdPhieudieutri).IsEqualTo(objPhieudieutri.IdPhieudieutri).Execute();
                         }
                         new Update(KcbLuotkham.Schema)
                                .Set(KcbLuotkham.Columns.TrangthaiNoitru).EqualTo(2)
-                               .Where(KcbLuotkham.Columns.IdBenhnhan).IsEqualTo(objTreatment.IdBenhnhan)
-                               .And(KcbLuotkham.Columns.MaLuotkham).IsEqualTo(objTreatment.MaLuotkham).Execute();
-
+                               .Where(KcbLuotkham.Columns.IdBenhnhan).IsEqualTo(objPhieudieutri.IdBenhnhan)
+                               .And(KcbLuotkham.Columns.MaLuotkham).IsEqualTo(objPhieudieutri.MaLuotkham).Execute();
+                        string ErrMsg = "";
+                        if (!new EmrDocuments().CapnhatThongtinNguoiKyTrenPhieu(objPhieudieutri.IdPhieudieutri, Utility.Int64Dbnull(objPhieudieutri.IdBenhnhan), objPhieudieutri.MaLuotkham, Loaiphieu_HIS.PHIEUDIEUTRI, Loaiphieu_HIS.PHIEUDIEUTRI, ref ErrMsg))
+                        {
+                            Utility.ShowMsg(ErrMsg);
+                            return ActionResult.Error;
+                        }
                     }
                     scope.Complete();
                     return ActionResult.Success;
@@ -632,46 +638,49 @@ namespace VNS.HIS.BusRule.Classes
         {
             try
             {
+                List<string> lstHMS = new List<string>();
                 using (var scope = new TransactionScope())
                 {
                     using (var dbscope = new SharedDbConnectionScope())
                     {
 
-                        foreach (NoitruPhieudieutri objTreatment in lstPhieudieutri)
+                        foreach (NoitruPhieudieutri objPhieudieutri in lstPhieudieutri)
                         {
-                            objTreatment.NguoiTao = globalVariables.UserName;
-                            objTreatment.NgayTao = DateTime.Now;
-                            objTreatment.TthaiBosung = 0;
-                            objTreatment.IdBacsi = globalVariables.gv_intIDNhanvien;
-                            objTreatment.IdKhoanoitru = objLuotkham.IdKhoanoitru;
-                            objTreatment.MaLuotkham = objLuotkham.MaLuotkham;
-                            objTreatment.IdBenhnhan = objTreatment.IdBenhnhan;
-                            objTreatment.IdBuongGiuong = objLuotkham.IdRavien;
-                            objTreatment.TrangThai = 0;
-                            objTreatment.TthaiIn = 0;
-                            objTreatment.IpMaytao = globalVariables.gv_strIPAddress;
-                            objTreatment.TenMaytao = globalVariables.gv_strComputerName;
-                            objTreatment.IsNew = true;
-                            objTreatment.Save();
+                          
+                            lstHMS = objPhieudieutri.GioDieutri.Split(':').ToList<string>();
+                            objPhieudieutri.NgayTao = objPhieudieutri.NgayDieutri.Value.Date.AddHours(Convert.ToInt32(lstHMS[0])).AddMinutes(Convert.ToInt32(lstHMS[1])).AddSeconds(Convert.ToInt32(lstHMS[2]));
+                            objPhieudieutri.NguoiTao = globalVariables.UserName;
+                            objPhieudieutri.TthaiBosung = 0;
+                            objPhieudieutri.IdBacsi = globalVariables.gv_intIDNhanvien;
+                            objPhieudieutri.IdKhoanoitru = objLuotkham.IdKhoanoitru;
+                            objPhieudieutri.MaLuotkham = objLuotkham.MaLuotkham;
+                            objPhieudieutri.IdBenhnhan = objPhieudieutri.IdBenhnhan;
+                            objPhieudieutri.IdBuongGiuong = objLuotkham.IdRavien;
+                            objPhieudieutri.TrangThai = 0;
+                            objPhieudieutri.TthaiIn = 0;
+                            objPhieudieutri.IpMaytao = globalVariables.gv_strIPAddress;
+                            objPhieudieutri.TenMaytao = globalVariables.gv_strComputerName;
+                            objPhieudieutri.IsNew = true;
+                            objPhieudieutri.Save();
                             if (arrChidinhCLSChitiet.Length > 0)
                             {
                                 KcbChidinhcl objAssignInfo = new KcbChidinhcl();
-                                objAssignInfo.IdDieutri = objTreatment.IdPhieudieutri;
-                                objAssignInfo.IdBuongGiuong = objTreatment.IdBuongGiuong;
-                                objAssignInfo.MaLuotkham = objTreatment.MaLuotkham;
-                                objAssignInfo.IdBenhnhan = Utility.Int32Dbnull(objTreatment.IdBenhnhan);
+                                objAssignInfo.IdDieutri = objPhieudieutri.IdPhieudieutri;
+                                objAssignInfo.IdBuongGiuong = objPhieudieutri.IdBuongGiuong;
+                                objAssignInfo.MaLuotkham = objPhieudieutri.MaLuotkham;
+                                objAssignInfo.IdBenhnhan = Utility.Int32Dbnull(objPhieudieutri.IdBenhnhan);
                                 objAssignInfo.IdBacsiChidinh = globalVariables.gv_intIDNhanvien;
                                 objAssignInfo.Noitru = 1;
-                                objAssignInfo.IdKhoadieutri = objTreatment.IdKhoanoitru;
-                                objAssignInfo.IdKhoaChidinh = objTreatment.IdKhoanoitru;
+                                objAssignInfo.IdKhoadieutri = objPhieudieutri.IdKhoanoitru;
+                                objAssignInfo.IdKhoaChidinh = objPhieudieutri.IdKhoanoitru;
                                 objAssignInfo.IdKham=-1;
                                 objAssignInfo.IdDoituongKcb = objLuotkham.IdDoituongKcb;
-                                objAssignInfo.IdPhongChidinh = objTreatment.IdKhoanoitru;
+                                objAssignInfo.IdPhongChidinh = objPhieudieutri.IdKhoanoitru;
                                 objAssignInfo.Barcode = string.Empty;
                                 
-                                objAssignInfo.NgayChidinh = objTreatment.NgayDieutri.Value.AddHours(Utility.Int32Dbnull( objTreatment.GioDieutri.Split(':')[0],0)).AddMinutes(Utility.Int32Dbnull(objTreatment.GioDieutri.Split(':')[1], 0));
+                                objAssignInfo.NgayChidinh = objPhieudieutri.NgayDieutri.Value.AddHours(Utility.Int32Dbnull( objPhieudieutri.GioDieutri.Split(':')[0],0)).AddMinutes(Utility.Int32Dbnull(objPhieudieutri.GioDieutri.Split(':')[1], 0));
                                 objAssignInfo.NguoiTao = globalVariables.UserName;
-                                objAssignInfo.NgayTao = DateTime.Now;
+                                objAssignInfo.NgayTao = objPhieudieutri.NgayTao;
                                 objAssignInfo.IpMaytao = globalVariables.gv_strIPAddress;
                                 objAssignInfo.TenMaytao = globalVariables.gv_strComputerName;
 
@@ -709,7 +718,7 @@ namespace VNS.HIS.BusRule.Classes
                                         //objDetail.DeNghi = null;
                                         //objDetail.MaVungkhaosat = null;
                                         objDetail.NguoiTao = globalVariables.UserName;
-                                        objDetail.NgayTao = DateTime.Now;
+                                        objDetail.NgayTao = objPhieudieutri.NgayTao;
                                         objDetail.IpMaytao = globalVariables.gv_strIPAddress;
                                         objDetail.TenMaytao = globalVariables.gv_strComputerName;
                                         objDetail.IsNew=true;
@@ -735,7 +744,7 @@ namespace VNS.HIS.BusRule.Classes
                                         List<KcbDonthuocChitiet> lstDonthuocchitiet = (from donthuoc in arrDonthuocChitiet.AsEnumerable()
                                                                                        where donthuoc.IdDonthuoc == pres_id
                                                                                        select donthuoc).ToList<KcbDonthuocChitiet>();
-                                        SaoChepDonThuocTheoPhieuDieuTri(GUID, objLuotkham, objPresInfo, objTreatment, lstDonthuocchitiet.ToArray<KcbDonthuocChitiet>(), lstErr);
+                                        SaoChepDonThuocTheoPhieuDieuTri(GUID, objLuotkham, objPresInfo, objPhieudieutri, lstDonthuocchitiet.ToArray<KcbDonthuocChitiet>(), lstErr);
                                     }
 
                                 }
@@ -756,7 +765,7 @@ namespace VNS.HIS.BusRule.Classes
                                         List<KcbDonthuocChitiet> lstDonthuocchitiet = (from chitiet in lstVTTH.AsEnumerable()
                                                                                        where chitiet.IdDonthuoc == pres_id
                                                                                        select chitiet).ToList<KcbDonthuocChitiet>();
-                                        SaoChepDonThuocTheoPhieuDieuTri(GUID, objLuotkham, objPresInfo, objTreatment, lstDonthuocchitiet.ToArray<KcbDonthuocChitiet>(), lstErr);
+                                        SaoChepDonThuocTheoPhieuDieuTri(GUID, objLuotkham, objPresInfo, objPhieudieutri, lstDonthuocchitiet.ToArray<KcbDonthuocChitiet>(), lstErr);
                                     }
 
                                 }
@@ -787,8 +796,8 @@ namespace VNS.HIS.BusRule.Classes
                             phieusaochep.ThongtinTheodoi = phieudulieu.ThongtinTheodoi;
                             phieusaochep.IpMaysua = globalVariables.gv_strIPAddress;
                             phieusaochep.TenMaysua = globalVariables.gv_strComputerName;
-                            phieusaochep.NguoiTao = globalVariables.UserName;
-                            phieusaochep.NgayTao = DateTime.Now;
+                            phieusaochep.NguoiSua = globalVariables.UserName;
+                            phieusaochep.NgaySua = DateTime.Now;
                             phieusaochep.IsNew = false;
                             phieusaochep.Save();
                         }
@@ -810,7 +819,7 @@ namespace VNS.HIS.BusRule.Classes
 
                                 objAssignInfo.NgayChidinh = phieusaochep.NgayDieutri.Value;
                                 objAssignInfo.NguoiTao = globalVariables.UserName;
-                                objAssignInfo.NgayTao = DateTime.Now;
+                            objAssignInfo.NgayTao = phieusaochep.NgayTao;
                                 objAssignInfo.IpMaytao = globalVariables.gv_strIPAddress;
                                 objAssignInfo.TenMaytao = globalVariables.gv_strComputerName;
 
@@ -848,8 +857,8 @@ namespace VNS.HIS.BusRule.Classes
                                         //objDetail.DeNghi = null;
                                         //objDetail.MaVungkhaosat = null;
                                         objDetail.NguoiTao = globalVariables.UserName;
-                                        objDetail.NgayTao = DateTime.Now;
-                                        objDetail.IpMaytao = globalVariables.gv_strIPAddress;
+                                        objDetail.NgayTao = phieusaochep.NgayTao;
+                                    objDetail.IpMaytao = globalVariables.gv_strIPAddress;
                                         objDetail.TenMaytao = globalVariables.gv_strComputerName;
                                         objDetail.IsNew = true;
                                         lstChidinhCLSChitiet.Add(objDetail);

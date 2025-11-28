@@ -33,7 +33,8 @@ namespace VNS.HIS.UI.GOIKHAM
 
         private void frm_DanhSachGoiKham_Load(object sender, EventArgs e)
         {
-            lblLoaigoi.Visible = cboLoai.Visible = loai_goi > 0;
+            cboKieugoi.SelectedIndex = 0;
+            lblLoaigoi.Visible = cboLoai.Visible = cmdGenerateVoucher.Visible= uiTabPageVoucher.TabVisible= loai_goi > 0;
             cboTrangThai.SelectedIndex = 0;
             cboLoai.SelectedIndex = 0;
             TimkiemGoi();
@@ -183,6 +184,16 @@ namespace VNS.HIS.UI.GOIKHAM
         {
             try
             {
+                if(!Utility.isValidGrid(grdGoiKham))
+                {
+                    Utility.ShowMsg("Bạn cần chọn gói trước khi thực hiện thao tác xóa gói");
+                    return;
+                }
+                //if (!Utility.AcceptQuestion(string.Format("Bạn có chắc chắn muốn xóa gói {0} khỏi hệ thống.\nĐiều kiện xóa là Gói chưa được đăng ký cho người bệnh nào",Utility.sDbnull(grdGoiKham.GetValue("ten_goi"))),"Xác nhận xóa gói",true))
+                //{
+                   
+                //    return;
+                //}
                 int idGoiKham = Utility.Int32Dbnull(grdGoiKham.CurrentRow.Cells[GoiDanhsach.Columns.IdGoi].Value, -1);
                 if (idGoiKham > 0)
                 {
@@ -363,6 +374,88 @@ namespace VNS.HIS.UI.GOIKHAM
             catch (Exception ex)
             {
                 Utility.CatchException(ex);
+            }
+        }
+
+        private void mnu_GoiThaiSan_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int num = 0;
+                Utility.AutoCheckGrid(grdGoiKham);
+                if(Utility.AcceptQuestion("Bạn có chắc chắn muốn đổi các gói đang chọn sang kiểu Gói trừ dần(Gói thai sản) hay không?","Xác nhận",true))
+                {
+                    foreach(GridEXRow row in grdGoiKham.GetCheckedRows())
+                    {
+                        int id_goi = Utility.Int32Dbnull(row.Cells["id_goi"]);
+                        num = new Update(GoiDanhsach.Schema)
+                            .Set(GoiDanhsach.Columns.KieuGoi).EqualTo(1)
+                            .Where(GoiDanhsach.Columns.IdGoi).IsEqualTo(id_goi)
+                            .Execute();
+                        if (num > 0)
+                        {
+                            Utility.Log(this.Name, globalVariables.UserName, string.Format("Đổi gói: {0} từ kiểu gói ={1} sang kiểu gói =1(Gói trừ đuổi)", Utility.sDbnull(row.Cells["ten_goi"].Value), Utility.sDbnull(row.Cells["kieu_goi"].Value)), newaction.Update, this.GetType().Assembly.ManifestModule.Name);
+                            row.BeginEdit();
+                            row.Cells["kieu_goi"].Value = 1;
+                            row.Cells["ten_kieu_goi"].Value = "Gói trừ dần";
+                            row.EndEdit();
+                        }
+                    }    
+                }    
+            }
+            catch (Exception ex)
+            {
+
+             
+            }
+        }
+
+        private void mnu_Goi1Lan_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int num = 0;
+                Utility.AutoCheckGrid(grdGoiKham);
+                if (Utility.AcceptQuestion("Bạn có chắc chắn muốn đổi các gói đang chọn sang kiểu Gói dùng 1 lần hay không?", "Xác nhận", true))
+                {
+                    foreach (GridEXRow row in grdGoiKham.GetCheckedRows())
+                    {
+                        int id_goi = Utility.Int32Dbnull(row.Cells["id_goi"]);
+                        num = new Update(GoiDanhsach.Schema)
+                            .Set(GoiDanhsach.Columns.KieuGoi).EqualTo(0)
+                            .Where(GoiDanhsach.Columns.IdGoi).IsEqualTo(id_goi)
+                            .Execute();
+                        if (num > 0)
+                        {
+                            Utility.Log(this.Name, globalVariables.UserName, string.Format("Đổi gói: {0} từ kiểu gói ={1} sang kiểu gói =0(Gói dùng 1 lần)",  Utility.sDbnull(row.Cells["ten_goi"].Value), Utility.sDbnull(row.Cells["kieu_goi"].Value)), newaction.Update, this.GetType().Assembly.ManifestModule.Name);
+                            row.BeginEdit();
+                            row.Cells["kieu_goi"].Value = 0;
+                            row.Cells["ten_kieu_goi"].Value = "Gói dùng 1 lần";
+                            row.EndEdit();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+
+            }
+        }
+
+        private void cmd_saochepgoi_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if(Utility.AcceptQuestion(string.Format("Bạn có muốn sao chép gói {0} thành gói khác. Sau khi sao chép bạn cần đổi lại mã gói và tên gói",Utility.sDbnull(grdGoiKham.GetValue("ten_goi"))),"Xác nhận sao chép",true))
+                {
+                    SPs.GoiSaochep(Utility.Int32Dbnull(grdGoiKham.GetValue("id_goi"))).Execute();
+                }    
+            }
+            catch (Exception ex)
+            {
+
+                cmdTimKiem.PerformClick();
             }
         }
     }

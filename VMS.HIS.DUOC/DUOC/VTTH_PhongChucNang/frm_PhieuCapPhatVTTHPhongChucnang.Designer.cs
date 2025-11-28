@@ -140,8 +140,7 @@
             // 
             // cmdInsert
             // 
-            this.cmdInsert.Image = global::VMS.HIS.Duoc.Properties.Resources.Add;
-            this.cmdInsert.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.cmdInsert.Image = global::VMS.HIS.Duoc.Properties.Resources.add_04_32;
             this.cmdInsert.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdInsert.Name = "cmdInsert";
             this.cmdInsert.Size = new System.Drawing.Size(102, 28);
@@ -152,7 +151,6 @@
             // cmdUpdate
             // 
             this.cmdUpdate.Image = ((System.Drawing.Image)(resources.GetObject("cmdUpdate.Image")));
-            this.cmdUpdate.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.cmdUpdate.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdUpdate.Name = "cmdUpdate";
             this.cmdUpdate.Size = new System.Drawing.Size(92, 28);
@@ -163,7 +161,6 @@
             // cmdDelete
             // 
             this.cmdDelete.Image = ((System.Drawing.Image)(resources.GetObject("cmdDelete.Image")));
-            this.cmdDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.cmdDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdDelete.Name = "cmdDelete";
             this.cmdDelete.Size = new System.Drawing.Size(92, 28);
@@ -183,7 +180,6 @@
             // cmdConfirm
             // 
             this.cmdConfirm.Image = ((System.Drawing.Image)(resources.GetObject("cmdConfirm.Image")));
-            this.cmdConfirm.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.cmdConfirm.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdConfirm.Name = "cmdConfirm";
             this.cmdConfirm.Size = new System.Drawing.Size(88, 28);
@@ -405,7 +401,7 @@
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(107, 16);
             this.label9.TabIndex = 456;
-            this.label9.Text = "Ngày phát thuốc:";
+            this.label9.Text = "Ngày phát:";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // dtNgayPhatThuoc
@@ -469,7 +465,7 @@
             this.uiTabPage3.Name = "uiTabPage3";
             this.uiTabPage3.Size = new System.Drawing.Size(709, 604);
             this.uiTabPage3.TabStop = true;
-            this.uiTabPage3.Text = "Chi tiết đơn thuốc";
+            this.uiTabPage3.Text = "Chi tiết theo đơn";
             // 
             // grdChitiedonthuoc
             // 
@@ -556,7 +552,7 @@
             this.uiGroupBox2.Name = "uiGroupBox2";
             this.uiGroupBox2.Size = new System.Drawing.Size(573, 628);
             this.uiGroupBox2.TabIndex = 9;
-            this.uiGroupBox2.Text = "Danh sách phiếu tổng hợp thuốc nội trú";
+            this.uiGroupBox2.Text = "Danh sách phiếu tổng hợp VTTH khoa phòng chức năng";
             // 
             // uiGroupBox1
             // 

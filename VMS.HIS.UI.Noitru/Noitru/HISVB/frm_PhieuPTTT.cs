@@ -898,7 +898,7 @@ namespace VNS.HIS.UI.NOITRU
         List<string> lstKhongbatnhap = new List<string>();
         private void frm_PhieuPTTT_Load(object sender, EventArgs e)
         {
-
+            GHINO_FLOW = THU_VIEN_CHUNG.Laygiatrithamsohethong("GHINO_FLOW", "0", true) == "1";
             lstKhongbatnhap = THU_VIEN_CHUNG.Laygiatrithamsohethong("PTTT_KHONGYC_NHAPBACSI_DIEUDUONG_GAYME", "IUI", true).Split(',').ToList<string>();
             DataTable mDtKhoaNoitru;
             if(noitru=="0")
@@ -1031,13 +1031,14 @@ namespace VNS.HIS.UI.NOITRU
             this.Close();
         }
         bool isDoing = false;
+        bool GHINO_FLOW = false;
         private void cmdThemMoiBN_Click(object sender, EventArgs e)
         {
-          //if(Utility.isValidGrid(grdChiDinh) && Utility.sDbnull(grdChiDinh.GetValue("noi_tru") )=="0" && Utility.sDbnull(grdChiDinh.GetValue("trangthai_thanhtoan")) == "0")
-          //  {
-          //      Utility.ShowMsg(string.Format("Dịch vụ {0} chưa được thanh toán nên bạn không thể làm phiếu PTTT được. Vui lòng kiểm tra lại", Utility.sDbnull(grdChiDinh.GetValue("ten_chitietdichvu"))));
-          //      return;
-          //  }    
+            //if(Utility.isValidGrid(grdChiDinh) && Utility.sDbnull(grdChiDinh.GetValue("noi_tru") )=="0" && Utility.sDbnull(grdChiDinh.GetValue("trangthai_thanhtoan")) == "0")
+            //  {
+            //      Utility.ShowMsg(string.Format("Dịch vụ {0} chưa được thanh toán nên bạn không thể làm phiếu PTTT được. Vui lòng kiểm tra lại", Utility.sDbnull(grdChiDinh.GetValue("ten_chitietdichvu"))));
+            //      return;
+            //  }    
             cmdAddNew.Enabled = false;
             isDoing = true;
             AllowSeletionChanged = false;
@@ -1051,8 +1052,46 @@ namespace VNS.HIS.UI.NOITRU
             autoGiuong.SetId(objLuotkham.IdGiuong);
 
             dtNgayPhauThuat.Focus();
+            KcbChidinhclsChitiet objChidinhCLSChitiet = KcbChidinhclsChitiet.FetchByID(IdChitietchidinh);
+            if (objChidinhCLSChitiet == null)
+            {
+                Utility.ShowMsg(string.Format("Chỉ định {0} đã bị xóa trong lúc bạn đang thực hiện lập phiếu PTTT. Vui lòng kiểm tra lại", Utility.sDbnull(grdChiDinh.GetValue("ten_chitietdichvu"))));
+                return;
+            }
+            if (GHINO_FLOW)//Chỉ thanh toán hoặc ghi nợ mới được thực hiện dịch vụ
+            {
+                if (objLuotkham != null &&  objChidinhCLSChitiet != null)
+                {
+                    if (objChidinhCLSChitiet.IdTamthu <= 0)
+                    {
+                        if (objChidinhCLSChitiet.TrangthaiThanhtoan <= 0)
+                        {
+                            Utility.ShowMsg("Dịch vụ bạn chọn chưa được thanh toán hoặc ghi nợ nên không thể thực hiện nhập trả kết quả");
+                            return;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                //if (Utility.isValidGrid(grdChiDinh) && Utility.sDbnull(grdChiDinh.GetValue("noi_tru")) == "0" && Utility.sDbnull(grdChiDinh.GetValue("trangthai_thanhtoan")) == "0")
+                //{
+                //    Utility.ShowMsg(string.Format("Dịch vụ {0} chưa được thanh toán nên bạn không thể làm phiếu PTTT được. Vui lòng kiểm tra lại", Utility.sDbnull(grdChiDinh.GetValue("ten_chitietdichvu"))));
+                //    return;
+                //}
+                //if (objLuotkham != null && objChidinhCLSChitiet != null)
+                //{
+                //    if (objChidinhCLSChitiet.IdTamthu <= 0)
+                //    {
+                //        if (objChidinhCLSChitiet.TrangthaiThanhtoan <= 0)
+                //        {
+                //            Utility.ShowMsg("Dịch vụ bạn chọn chưa được thanh toán hoặc ghi nợ nên không thể thực hiện nhập trả kết quả");
+                //            return;
+                //        }
+                //    }
+                //}
+            }
             ModifyCommands();
-            
         }
 
         private void cmdCancel_Click(object sender, EventArgs e)
@@ -1063,8 +1102,11 @@ namespace VNS.HIS.UI.NOITRU
             grdPhieuPTTT_SelectionChanged(grdPhieuPTTT, e);
             ModifyCommands();
         }
-        bool isValiData()
+        bool isValidData()
         {
+            string ma_loaidvu = Utility.sDbnull(grdChiDinh.GetValue("ma_dichvu"), "PTTT");
+            bool isDichvuPhauThuat = isPhauThuat(ma_loaidvu);
+            bool PTTT_KIEMTRA_INPUT = THU_VIEN_CHUNG.Laygiatrithamsohethong("PTTT_KIEMTRA_INPUT", "0", true) == "1";
             if (objpttt != null && objpttt.IdPhieu>0)
             {
                 if (globalVariables.IsAdmin || globalVariables.isSuperAdmin || Utility.Coquyen("kcb_phieupttt_sua") || globalVariables.UserName == objpttt.NguoiTao)
@@ -1086,7 +1128,21 @@ namespace VNS.HIS.UI.NOITRU
             {
                 Utility.ShowMsg(string.Format( "Chỉ định {0} đã bị xóa trong lúc bạn đang thực hiện lập phiếu PTTT. Vui lòng kiểm tra lại",Utility.sDbnull( grdChiDinh.GetValue("ten_chitietdichvu"))));
                 return false;
-            }    
+            }
+            if (GHINO_FLOW)//Chỉ thanh toán hoặc ghi nợ mới được thực hiện dịch vụ
+            {
+                if (objLuotkham != null && objChidinhCLSChitiet != null)
+                {
+                    if (objChidinhCLSChitiet.IdTamthu <= 0)
+                    {
+                        if (objChidinhCLSChitiet.TrangthaiThanhtoan <= 0)
+                        {
+                            Utility.ShowMsg("Dịch vụ bạn chọn chưa được thanh toán hoặc ghi nợ nên không thể thực hiện nhập trả kết quả");
+                            return false;
+                        }
+                    }
+                }
+            }
             //if (Utility.isValidGrid(grdChiDinh) && Utility.sDbnull(grdChiDinh.GetValue("noi_tru")) == "0" && Utility.sDbnull(grdChiDinh.GetValue("trangthai_thanhtoan")) == "0")
             //{
             //    Utility.ShowMsg(string.Format("Dịch vụ {0} chưa được thanh toán nên bạn không thể làm phiếu PTTT được. Vui lòng kiểm tra lại", Utility.sDbnull(grdChiDinh.GetValue("ten_chitietdichvu"))));
@@ -1123,7 +1179,7 @@ namespace VNS.HIS.UI.NOITRU
             }
             if (dtNgayPhauThuat.Value <objLuotkham.NgayTiepdon)
             {
-                Utility.ShowMsg(string.Format( "Thời gian bắt đầu phẫu thuật phải >thời gian tiếp đón {0}", objLuotkham.NgayTiepdon.ToString("dd/MM/yyyy HH:mm")));
+                Utility.ShowMsg(string.Format( "Thời gian bắt đầu phẫu thuật/thủ thuật phải >thời gian tiếp đón {0}", objLuotkham.NgayTiepdon.ToString("dd/MM/yyyy HH:mm")));
                 dtNgayPhauThuat.Focus();
                 return false;
             }
@@ -1131,14 +1187,14 @@ namespace VNS.HIS.UI.NOITRU
             {
                 if (dtpNgayGioKetThucPTTT.Value < dtNgayPhauThuat.Value)
                 {
-                    Utility.ShowMsg("Thời gian kết thúc phẫu thuật phải >= thời gian bắt đầu phẫu thuật");
+                    Utility.ShowMsg("Thời gian kết thúc phẫu thuật/thủ thuật phải >= thời gian bắt đầu phẫu thuật");
                     dtpNgayGioKetThucPTTT.Focus();
                     return false;
                 }
             }
             if (autoLoaiPTTT.myCode == "-1")
             {
-                Utility.ShowMsg("Bạn cần chọn loại phẫu thuật thủ thuật");
+                Utility.ShowMsg("Bạn cần chọn loại phẫu thuật/thủ thuật");
                 autoLoaiPTTT.Focus();
                 return false;
             }
@@ -1148,11 +1204,14 @@ namespace VNS.HIS.UI.NOITRU
                 txtPhuongPhapPT.Focus();
                 return false;
             }
-            if (Utility.sDbnull(txtPhuongPhapVoCam.Text).Length <= 0 )
+            if (PTTT_KIEMTRA_INPUT)
             {
-                Utility.ShowMsg("Bạn cần chọn phương pháp vô cảm");
-                txtPhuongPhapVoCam.Focus();
-                return false;
+                if (Utility.sDbnull(txtPhuongPhapVoCam.Text).Length <= 0)
+                {
+                    Utility.ShowMsg("Bạn cần chọn phương pháp vô cảm");
+                    txtPhuongPhapVoCam.Focus();
+                    return false;
+                }
             }
 
             //if (Utility.DoTrim( txtLuocDoPhauThuat.Text).Length<=0)
@@ -1167,41 +1226,56 @@ namespace VNS.HIS.UI.NOITRU
                 autoBSPhauthuat.Focus();
                 return false;
             }
-           
+
             if (!lstKhongbatnhap.Contains(ma_dichvu))
             {
-                if (dtbsgayme.Rows.Count <= 0)
+                if (PTTT_KIEMTRA_INPUT)
                 {
-                    Utility.ShowMsg("Bạn cần chọn ít nhất một bác sĩ gây mê");
-                    autoBSGayme.Focus();
-                    return false;
+                    if (dtbsgayme.Rows.Count <= 0)
+                    {
+                        Utility.ShowMsg("Bạn cần chọn ít nhất một bác sĩ gây mê");
+                        autoBSGayme.Focus();
+                        return false;
+                    }
+                    //if (dtbsphauthuatphu.Rows.Count <= 0)
+                    //{
+                    //    Utility.ShowMsg("Bạn cần chọn ít nhất một bác sĩ PTTT phụ");
+                    //    autoBSphu.Focus();
+                    //    return false;
+                    //}
+
+                    {
+                        if (dtdieuduonggayme.Rows.Count <= 0)
+                        {
+                            Utility.ShowMsg("Bạn cần chọn ít nhất một điều dưỡng gây mê");
+                            autoDieuduonggayme.Focus();
+                            return false;
+                        }
+                        if (dtDieuduongvongngoai.Rows.Count <= 0)
+                        {
+                            Utility.ShowMsg("Bạn cần chọn ít nhất một điều dưỡng vòng ngoài");
+                            autoDieuduongvongngoai.Focus();
+                            return false;
+                        }
+                        if (dtDieuduongvongtrong.Rows.Count <= 0)
+                        {
+                            Utility.ShowMsg("Bạn cần chọn ít nhất một điều dưỡng vòng trong");
+                            autoDieuduongvongtrong.Focus();
+                            return false;
+                        }
+                    }
                 }
-                //if (dtbsphauthuatphu.Rows.Count <= 0)
-                //{
-                //    Utility.ShowMsg("Bạn cần chọn ít nhất một bác sĩ PTTT phụ");
-                //    autoBSphu.Focus();
-                //    return false;
-                //}
-                if (dtdieuduonggayme.Rows.Count <= 0)
+                if (PTTT_KIEMTRA_INPUT)
                 {
-                    Utility.ShowMsg("Bạn cần chọn ít nhất một điều dưỡng gây mê");
-                    autoDieuduonggayme.Focus();
-                    return false;
-                }
-                if (dtDieuduongvongngoai.Rows.Count <= 0)
-                {
-                    Utility.ShowMsg("Bạn cần chọn ít nhất một điều dưỡng vòng ngoài");
-                    autoDieuduongvongngoai.Focus();
-                    return false;
-                }
-                if (dtDieuduongvongtrong.Rows.Count <= 0)
-                {
-                    Utility.ShowMsg("Bạn cần chọn ít nhất một điều dưỡng vòng trong");
-                    autoDieuduongvongtrong.Focus();
-                    return false;
+                    if (Utility.sDbnull(autoCC.MyID) == "-1")
+                    {
+                        Utility.ShowMsg("Bạn cần chọn CC");
+                        autoCC.SelectAll();
+                        autoCC.Focus();
+                        return false;
+                    }
                 }
             }
-
             //if(objLuotkham.TrangthaiNoitru>0 && radNgoaiTru.Checked)
             //    if (!Utility.AcceptQuestion(string.Format("Trạng thái người bệnh đang: {0} trong khi bạn chọn: {1}. Bạn có chắc chắn?", objLuotkham.TrangthaiNoitru>0?"Nội trú":"Ngoại trú","Ngoại trú"), "Cảnh báo", true))
             //    {
@@ -1223,7 +1297,7 @@ namespace VNS.HIS.UI.NOITRU
             try
             {
                 UIAction.SetTextStatus(lblStatus, "", false);
-                if (isValiData() == false) return;
+                if (isValidData() == false) return;
                 //if (MessageBox.Show("Bạn chắc chắn muốn lưu phiếu phẫu thuật thủ thuật?", this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) return;
                 if (objpttt == null) objpttt = new KcbPhieupttt();
                 if (objpttt.IdPhieu <= 0)
@@ -1444,14 +1518,34 @@ namespace VNS.HIS.UI.NOITRU
         {
             autoLydotuvong.Enabled = dtNgayGioTuVong.Enabled = chkTuvong.Checked;
         }
+        string getFileIn(string ma_loaidvu,string loai_phieu,string ten_file_macdinh)
+        {
+            List<string> lst_file_in = THU_VIEN_CHUNG.Laygiatrithamsohethong(loai_phieu, ten_file_macdinh, true).Split('@').ToList<string>();
+            if (ma_loaidvu == "PTTT" || ma_loaidvu == "PHAUTHUAT" || ma_loaidvu == "PT")
+                return lst_file_in[0];
+            return lst_file_in[1];//Thủ thuật
 
+        }
+        bool isPhauThuat(string ma_loaidvu)
+        {
+            return ma_loaidvu == "PTTT" || ma_loaidvu == "PHAUTHUAT" || ma_loaidvu == "PT";
+        }
         private void mnuInphieuthuthuat_Click(object sender, EventArgs e)
         {
             try
             {
+                DataTable dtKiemtra = Utility.ExecuteSql(string.Format("select 1 from noitru_phieuravien where id_benhnhan={0} and ma_luotkham='{1}'", objLuotkham.IdBenhnhan,objLuotkham.MaLuotkham), CommandType.Text).Tables[0];
+                if(dtKiemtra!=null && dtKiemtra.Rows.Count<=0)
+                {
+                    Utility.ShowMsg("Người bệnh chưa làm giấy ra viện nên thông tin tình trạng ra viện trên phiếu chứng nhận chưa có. Vui lòng kiểm tra lại");
+                }    
                 DataTable dtData = SPs.KcbPtttInphieu(Utility.Int64Dbnull(grdPhieuPTTT.GetValue("id_phieu"))).GetDataSet().Tables[0];
+                NoitruPhieuravien objRV = new Select().From(NoitruPhieuravien.Schema)
+               .Where(NoitruPhieuravien.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
+               .And(NoitruPhieuravien.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham).ExecuteSingle<NoitruPhieuravien>();
                 dtData.TableName = "kcb_phieu_pttt";
                 List<string> lst_ten_phieu = THU_VIEN_CHUNG.Laygiatrithamsohethong("PTTT_TENPHIEU", "GIẤY CHỨNG NHẬN PHẪU THUẬT-THỦ THUẬT", true).Split('@').ToList<string>();
+               
                 string ma_loaidvu = Utility.sDbnull(grdChiDinh.GetValue("ma_dichvu"), "PTTT");
                 Document doc;
                 DataRow drData = dtData.Rows[0];
@@ -1465,9 +1559,10 @@ namespace VNS.HIS.UI.NOITRU
                 drData["website_bv"] = globalVariables.Branch_Website;
                 drData["email_bv"] = globalVariables.Branch_Email;
                 drData["ten_phieu"] = ma_loaidvu == "PTTT" ? lst_ten_phieu[0] : (ma_loaidvu == "PHAUTHUAT" ? lst_ten_phieu[1] : lst_ten_phieu[2]);
+                drData["sngay_ravien"] = objRV != null ? Utility.FormatDateTime_gio_ngay_thang_nam(objRV.NgayRavien, "") : "Ngày........tháng.........năm..........";
                 List<string> fieldNames = new List<string>();
-
-                string PathDoc = AppDomain.CurrentDomain.BaseDirectory + "Doc\\PHIEU_CHUNGNHAN_PTTT.doc";
+                string file_in = getFileIn(ma_loaidvu, "PHIEU_CHUNGNHAN_PTTT", "PHIEU_CHUNGNHAN_PTTT.doc");
+                string PathDoc = AppDomain.CurrentDomain.BaseDirectory +string.Format( "Doc\\{0}", file_in);
                 string writePathdoc = AppDomain.CurrentDomain.BaseDirectory + "tempDoc\\";
                 if (!Directory.Exists(writePathdoc)) Directory.CreateDirectory(writePathdoc);
                 string mergeFields = AppDomain.CurrentDomain.BaseDirectory + "MergeFields\\";
@@ -1476,7 +1571,7 @@ namespace VNS.HIS.UI.NOITRU
                 if (!File.Exists(PathDoc))
                 {
                     string tieude = "";
-                    Utility.GetReport("PHIEU_CHUNGNHAN_PTTT", ref tieude, ref PathDoc);
+                    Utility.GetReport(file_in, ref tieude, ref PathDoc);
                 }
                 if (!File.Exists(PathDoc))
                 {
@@ -1495,7 +1590,7 @@ namespace VNS.HIS.UI.NOITRU
 
                 string fileKetqua = string.Format("{0}{1}{2}{3}{4}_{5}_{6}_{7}",
                                Path.GetDirectoryName(writePathdoc), Path.DirectorySeparatorChar,
-                               Path.GetFileNameWithoutExtension(PathDoc), "PHIEU_CHUNGNHAN_PTTT", objLuotkham.MaLuotkham, Utility.sDbnull(ID_PHIEUPTTT), Guid.NewGuid().ToString(), Path.GetExtension(PathDoc));
+                               Path.GetFileNameWithoutExtension(PathDoc), file_in, objLuotkham.MaLuotkham, Utility.sDbnull(ID_PHIEUPTTT), Guid.NewGuid().ToString(), Path.GetExtension(PathDoc));
 
                
                 if ((drData != null) && File.Exists(PathDoc))
@@ -1554,7 +1649,10 @@ namespace VNS.HIS.UI.NOITRU
                         if (builder.MoveToMergeField("anh1"))
                             builder.InsertImage(NoImage, 10, 10);
                     }
-
+                    string checkboxFieldsFile = AppDomain.CurrentDomain.BaseDirectory + "MergeFields\\PHIEU_PTTT_CHECKED_FIELDS.txt";
+                    List<string> lstcheckboxfields = new List<string>();
+                    lstcheckboxfields = Utility.GetFirstValueFromFile(checkboxFieldsFile).Split(',').ToList<string>();
+                    Utility.MergeFieldsCheckBox2Doc(builder, null, lstcheckboxfields, drData);
                     doc.MailMerge.Execute(drData);
                     Utility.SignDoc(doc, builder, sysLogosize != null ? sysLogosize.SValue : "");
                     if (File.Exists(fileKetqua))
@@ -1668,6 +1766,7 @@ namespace VNS.HIS.UI.NOITRU
                 dtData.TableName = "kcb_phieu_pttt";
                 Document doc;
                 DataRow drData = dtData.Rows[0];
+                string ma_loaidvu = Utility.sDbnull(grdChiDinh.GetValue("ma_dichvu"), "PTTT");
                 drData["ten_benhvien"] = globalVariables.Branch_Name;
                 drData["ten_SYT"] = globalVariables.ParentBranch_Name;
                 drData["ten_benhvien"] = globalVariables.Branch_Name;
@@ -1679,7 +1778,8 @@ namespace VNS.HIS.UI.NOITRU
                 drData["email_bv"] = globalVariables.Branch_Email;
                 List<string> fieldNames = new List<string>();
                 drData["sngay_pttt"] = Utility.FormatDateTime(Utility.sDbnull(drData["sngay_pttt"], ""), "ngày......tháng......năm.........");//BHYT giá trị đến
-                string PathDoc = AppDomain.CurrentDomain.BaseDirectory + "Doc\\PHIEU_PTTT_NOITRU.doc";
+                string file_in = getFileIn(ma_loaidvu, "PHIEU_PTTT_NOITRU", "PHIEU_PTTT_NOITRU.doc");
+                string PathDoc = AppDomain.CurrentDomain.BaseDirectory +string.Format( "Doc\\{0}", file_in);
                 string writePathdoc = AppDomain.CurrentDomain.BaseDirectory + "tempDoc\\";
                 if (!Directory.Exists(writePathdoc)) Directory.CreateDirectory(writePathdoc);
                 string mergeFields = AppDomain.CurrentDomain.BaseDirectory + "MergeFields\\";
@@ -1688,7 +1788,7 @@ namespace VNS.HIS.UI.NOITRU
                 if (!File.Exists(PathDoc))
                 {
                     string tieude = "";
-                    Utility.GetReport("PHIEU_PTTT_NOITRU", ref tieude, ref PathDoc);
+                    Utility.GetReport(file_in, ref tieude, ref PathDoc);
                 }
                 if (!File.Exists(PathDoc))
                 {
@@ -1707,7 +1807,7 @@ namespace VNS.HIS.UI.NOITRU
 
                 string fileKetqua = string.Format("{0}{1}{2}{3}{4}_{5}_{6}_{7}",
                                Path.GetDirectoryName(writePathdoc), Path.DirectorySeparatorChar,
-                               Path.GetFileNameWithoutExtension(PathDoc), "PHIEU_PTTT_NOITRU", objLuotkham.MaLuotkham, Utility.sDbnull(ID_PHIEUPTTT), Guid.NewGuid().ToString(), Path.GetExtension(PathDoc));
+                               Path.GetFileNameWithoutExtension(PathDoc), file_in, objLuotkham.MaLuotkham, Utility.sDbnull(ID_PHIEUPTTT), Guid.NewGuid().ToString(), Path.GetExtension(PathDoc));
 
 
                 if ((drData != null) && File.Exists(PathDoc))
@@ -1824,8 +1924,8 @@ namespace VNS.HIS.UI.NOITRU
                 drData["ten_phieu"] = ma_loaidvu == "PTTT" ? lst_ten_phieu[0] : (ma_loaidvu == "PHAUTHUAT" ? lst_ten_phieu[1] : lst_ten_phieu[2]);
                 drData["sngay_pttt"] = Utility.FormatDateTime(Utility.sDbnull(drData["sngay_pttt"], ""), "ngày......tháng......năm.........");//BHYT giá trị đến
                 List<string> fieldNames = new List<string>();
-
-                string PathDoc = AppDomain.CurrentDomain.BaseDirectory + "Doc\\PHIEU_CAMKET_PTTT.doc";
+                string file_in = getFileIn(ma_loaidvu, "PHIEU_CAMKET_PTTT", "PHIEU_CAMKET_PTTT.doc");
+                string PathDoc = AppDomain.CurrentDomain.BaseDirectory +string.Format( "Doc\\{0}", file_in);
                 string writePathdoc = AppDomain.CurrentDomain.BaseDirectory + "tempDoc\\";
                 if (!Directory.Exists(writePathdoc)) Directory.CreateDirectory(writePathdoc);
                 string mergeFields = AppDomain.CurrentDomain.BaseDirectory + "MergeFields\\";
@@ -1834,7 +1934,7 @@ namespace VNS.HIS.UI.NOITRU
                 if (!File.Exists(PathDoc))
                 {
                     string tieude = "";
-                    Utility.GetReport("PHIEU_CAMKET_PTTT", ref tieude, ref PathDoc);
+                    Utility.GetReport(file_in, ref tieude, ref PathDoc);
                 }
                 if (!File.Exists(PathDoc))
                 {
@@ -1853,7 +1953,7 @@ namespace VNS.HIS.UI.NOITRU
 
                 string fileKetqua = string.Format("{0}{1}{2}{3}{4}_{5}_{6}_{7}",
                                Path.GetDirectoryName(writePathdoc), Path.DirectorySeparatorChar,
-                               Path.GetFileNameWithoutExtension(PathDoc), "PHIEU_CAMKET_PTTT", objLuotkham.MaLuotkham, Utility.sDbnull(ID_PHIEUPTTT), Guid.NewGuid().ToString(), Path.GetExtension(PathDoc));
+                               Path.GetFileNameWithoutExtension(PathDoc), file_in, objLuotkham.MaLuotkham, Utility.sDbnull(ID_PHIEUPTTT), Guid.NewGuid().ToString(), Path.GetExtension(PathDoc));
 
 
                 if ((drData != null) && File.Exists(PathDoc))
@@ -2018,9 +2118,8 @@ namespace VNS.HIS.UI.NOITRU
                 drData["thoigian_ketthuc_phauthuat"] = Utility.FormatDateTime_giophut_ngay_thang_nam(objpttt.NgayKetthuc, "Đến");
                 drData["sngay_pttt"] = Utility.FormatDateTime(Utility.sDbnull(drData["sngay_pttt"], ""), "ngày......tháng......năm.........");//BHYT giá trị đến
                 List<string> fieldNames = new List<string>();
-               
-
-                string PathDoc = AppDomain.CurrentDomain.BaseDirectory + "Doc\\PHIEU_TUONGTRINH_PTTT.doc";
+                string file_in = getFileIn(ma_loaidvu, "PHIEU_TUONGTRINH_PTTT", "PHIEU_TUONGTRINH_PTTT.doc");
+                string PathDoc = AppDomain.CurrentDomain.BaseDirectory +string.Format( "Doc\\{0}", file_in);
                 string writePathdoc = AppDomain.CurrentDomain.BaseDirectory + "tempDoc\\";
                 if (!Directory.Exists(writePathdoc)) Directory.CreateDirectory(writePathdoc);
                 string mergeFields = AppDomain.CurrentDomain.BaseDirectory + "MergeFields\\";
@@ -2029,7 +2128,7 @@ namespace VNS.HIS.UI.NOITRU
                 if (!File.Exists(PathDoc))
                 {
                     string tieude = "";
-                    Utility.GetReport("PHIEU_TUONGTRINH_PTTT", ref tieude, ref PathDoc);
+                    Utility.GetReport(file_in, ref tieude, ref PathDoc);
                 }
                 if (!File.Exists(PathDoc))
                 {
@@ -2048,7 +2147,7 @@ namespace VNS.HIS.UI.NOITRU
 
                 string fileKetqua = string.Format("{0}{1}{2}{3}{4}_{5}_{6}_{7}",
                                Path.GetDirectoryName(writePathdoc), Path.DirectorySeparatorChar,
-                               Path.GetFileNameWithoutExtension(PathDoc), "PHIEU_TUONGTRINH_PTTT", objLuotkham.MaLuotkham, Utility.sDbnull(ID_PHIEUPTTT), Guid.NewGuid().ToString(), Path.GetExtension(PathDoc));
+                               Path.GetFileNameWithoutExtension(PathDoc), file_in, objLuotkham.MaLuotkham, Utility.sDbnull(ID_PHIEUPTTT), Guid.NewGuid().ToString(), Path.GetExtension(PathDoc));
 
                 int w = 100;
                 int h = 100;
@@ -2150,6 +2249,163 @@ namespace VNS.HIS.UI.NOITRU
         {
 
         }
-     
+
+        private void mnuInchungnhanPTTT_CoBacSy_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataTable dtKiemtra = Utility.ExecuteSql(string.Format("select 1 from noitru_phieuravien where id_benhnhan={0} and ma_luotkham='{1}'", objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham), CommandType.Text).Tables[0];
+                if (dtKiemtra != null && dtKiemtra.Rows.Count <= 0)
+                {
+                    Utility.ShowMsg("Người bệnh chưa làm giấy ra viện nên thông tin tình trạng ra viện trên phiếu chứng nhận chưa có. Vui lòng kiểm tra lại");
+                }
+                DataTable dtData = SPs.KcbPtttInphieu(Utility.Int64Dbnull(grdPhieuPTTT.GetValue("id_phieu"))).GetDataSet().Tables[0];
+                NoitruPhieuravien objRV = new Select().From(NoitruPhieuravien.Schema)
+               .Where(NoitruPhieuravien.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
+               .And(NoitruPhieuravien.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham).ExecuteSingle<NoitruPhieuravien>();
+                dtData.TableName = "kcb_phieu_pttt";
+                List<string> lst_ten_phieu = THU_VIEN_CHUNG.Laygiatrithamsohethong("PTTT_TENPHIEU", "GIẤY CHỨNG NHẬN PHẪU THUẬT-THỦ THUẬT", true).Split('@').ToList<string>();
+
+                string ma_loaidvu = Utility.sDbnull(grdChiDinh.GetValue("ma_dichvu"), "PTTT");
+                Document doc;
+                DataRow drData = dtData.Rows[0];
+                drData["ten_benhvien"] = globalVariables.Branch_Name;
+                drData["ten_SYT"] = globalVariables.ParentBranch_Name;
+                drData["ten_benhvien"] = globalVariables.Branch_Name;
+                drData["diahchi_benhvien"] = globalVariables.Branch_Address;
+                drData["SDT_bv"] = globalVariables.Branch_Phone;
+                drData["Hotline_bv"] = globalVariables.Branch_Hotline;
+                drData["Fax_bv"] = globalVariables.Branch_Fax;
+                drData["website_bv"] = globalVariables.Branch_Website;
+                drData["email_bv"] = globalVariables.Branch_Email;
+                drData["ten_phieu"] = ma_loaidvu == "PTTT" ? lst_ten_phieu[0] : (ma_loaidvu == "PHAUTHUAT" ? lst_ten_phieu[1] : lst_ten_phieu[2]);
+                drData["sngay_ravien"] = objRV != null ? Utility.FormatDateTime_gio_ngay_thang_nam(objRV.NgayRavien, "") : "Ngày........tháng.........năm..........";
+                List<string> fieldNames = new List<string>();
+                string file_in = getFileIn(ma_loaidvu, "PHIEU_CHUNGNHAN_PTTT_BS", "PHIEU_CHUNGNHAN_PTTT_BS.doc");
+                string PathDoc = AppDomain.CurrentDomain.BaseDirectory + string.Format("Doc\\{0}", file_in);
+                string writePathdoc = AppDomain.CurrentDomain.BaseDirectory + "tempDoc\\";
+                if (!Directory.Exists(writePathdoc)) Directory.CreateDirectory(writePathdoc);
+                string mergeFields = AppDomain.CurrentDomain.BaseDirectory + "MergeFields\\";
+                if (!Directory.Exists(mergeFields)) Directory.CreateDirectory(mergeFields);
+                CreateMergeFields(dtData);
+                if (!File.Exists(PathDoc))
+                {
+                    string tieude = "";
+                    Utility.GetReport(file_in, ref tieude, ref PathDoc);
+                }
+                if (!File.Exists(PathDoc))
+                {
+                    Utility.ShowMsg("Không tìm thấy file mẫu in phiếu PTTT tại thư mục sau :" + PathDoc);
+                    return;
+                }
+
+
+                if (!File.Exists(PathDoc))
+                {
+                    Utility.ShowMsg(string.Format("Không tìm thấy File {0}", PathDoc), "Thông báo không tìm thấy File",
+                      MessageBoxIcon.Warning);
+                    return;
+                }
+                SysSystemParameter sysLogosize = new Select().From(SysSystemParameter.Schema).Where(SysSystemParameter.Columns.SName).IsEqualTo("logosize").ExecuteSingle<SysSystemParameter>();
+
+                string fileKetqua = string.Format("{0}{1}{2}{3}{4}_{5}_{6}_{7}",
+                               Path.GetDirectoryName(writePathdoc), Path.DirectorySeparatorChar,
+                               Path.GetFileNameWithoutExtension(PathDoc), file_in, objLuotkham.MaLuotkham, Utility.sDbnull(ID_PHIEUPTTT), Guid.NewGuid().ToString(), Path.GetExtension(PathDoc));
+
+
+                if ((drData != null) && File.Exists(PathDoc))
+                {
+                    doc = new Document(PathDoc);
+                    DocumentBuilder builder = new DocumentBuilder(doc);
+                    if (doc == null)
+                    {
+                        Utility.ShowMsg("Không nạp được file word.", "Thông báo"); return;
+                    }
+                    if (builder.MoveToMergeField("logo") && globalVariables.SysLogo != null)
+                        if (sysLogosize != null)
+                        {
+                            int w = Utility.Int32Dbnull(sysLogosize.SValue.Split('x')[0], 0);
+                            int h = Utility.Int32Dbnull(sysLogosize.SValue.Split('x')[1], 0);
+                            if (w > 0 && h > 0)
+                                builder.InsertImage(globalVariables.SysLogo, w, h);
+                            else
+                                builder.InsertImage(globalVariables.SysLogo);
+                        }
+                        else
+                            if (globalVariables.SysLogo != null)
+                            builder.InsertImage(globalVariables.SysLogo);
+                    byte[] NoImage = Utility.fromimagepath2byte(AppDomain.CurrentDomain.BaseDirectory + "Noimage\\Noimage.png");
+                    if (builder.MoveToMergeField("anh1"))
+                    {
+                        byte[] myimage = null;
+
+                        if (objpttt != null && objpttt.MaHinhanh != null)
+                        {
+                            if (objpttt.MaHinhanh == "0" || objpttt.MaHinhanh == null)
+                            {
+                                myimage = null;
+                            }
+                            else //if (objpttt.MaHinhanh == "1")
+                            {
+                                myimage = Utility.fromimagepath2byte(Application.StartupPath + string.Format(@"\Hinhanh_PTTT\pttt0{0}.png", objpttt.MaHinhanh));
+                            }
+                            //else if (objpttt.MaHinhanh == "2")
+                            //{
+                            //    myimage = Utility.fromimagepath2byte(Application.StartupPath + @"\Hinhanh_PTTT\pttt02.png");
+                            //}
+                            //else if (objpttt.MaHinhanh == "3")
+                            //{
+                            //    myimage = Utility.fromimagepath2byte(Application.StartupPath + @"\Hinhanh_PTTT\pttt03.png");
+                            //}
+
+                        }
+                        if (myimage != null)
+                            builder.InsertImage(myimage);
+                        else
+                            builder.InsertImage(new List<byte>().ToArray(), 10, 10);
+                    }
+                    else
+                    {
+                        if (builder.MoveToMergeField("anh1"))
+                            builder.InsertImage(NoImage, 10, 10);
+                    }
+                    string checkboxFieldsFile = AppDomain.CurrentDomain.BaseDirectory + "MergeFields\\PHIEU_PTTT_CHECKED_FIELDS.txt";
+                    List<string> lstcheckboxfields = new List<string>();
+                    lstcheckboxfields = Utility.GetFirstValueFromFile(checkboxFieldsFile).Split(',').ToList<string>();
+                    Utility.MergeFieldsCheckBox2Doc(builder, null, lstcheckboxfields, drData);
+                    doc.MailMerge.Execute(drData);
+                    Utility.SignDoc(doc, builder, sysLogosize != null ? sysLogosize.SValue : "");
+                    if (File.Exists(fileKetqua))
+                    {
+                        File.Delete(fileKetqua);
+                    }
+                    doc.Save(fileKetqua, SaveFormat.Doc);
+                    string path = fileKetqua;
+
+                    if (File.Exists(path))
+                    {
+                        Process process = new Process();
+                        try
+                        {
+                            process.StartInfo.FileName = path;
+                            process.Start();
+                            process.WaitForInputIdle();
+                        }
+                        catch
+                        {
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Không tìm thấy biểu mẫu", "TThông báo", MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation);
+                }
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+            }
+        }
     }
 }

@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_InPhieudieutri));
             Janus.Windows.GridEX.GridEXLayout grdList_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_InPhieudieutri));
             this.cmdExit = new Janus.Windows.EditControls.UIButton();
             this.cmdInDieuTri = new Janus.Windows.EditControls.UIButton();
             this.uiGroupBox3 = new Janus.Windows.EditControls.UIGroupBox();
@@ -54,9 +54,9 @@
             // 
             this.cmdExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdExit.Image = ((System.Drawing.Image)(resources.GetObject("cmdExit.Image")));
+            this.cmdExit.Image = global::VMS.HIS.Noitru.Properties.Resources.close_24;
             this.cmdExit.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdExit.Location = new System.Drawing.Point(640, 13);
+            this.cmdExit.Location = new System.Drawing.Point(845, 13);
             this.cmdExit.Name = "cmdExit";
             this.cmdExit.Size = new System.Drawing.Size(134, 35);
             this.cmdExit.TabIndex = 1;
@@ -69,7 +69,7 @@
             this.cmdInDieuTri.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdInDieuTri.Image = global::VMS.HIS.Noitru.Properties.Resources.printer_32;
             this.cmdInDieuTri.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdInDieuTri.Location = new System.Drawing.Point(497, 13);
+            this.cmdInDieuTri.Location = new System.Drawing.Point(702, 13);
             this.cmdInDieuTri.Name = "cmdInDieuTri";
             this.cmdInDieuTri.Size = new System.Drawing.Size(134, 35);
             this.cmdInDieuTri.TabIndex = 2;
@@ -80,19 +80,19 @@
             // 
             this.uiGroupBox3.Controls.Add(this.cmdInDieuTri);
             this.uiGroupBox3.Controls.Add(this.cmdExit);
+            this.uiGroupBox3.Controls.Add(this.chkHienthiCaDaIn);
             this.uiGroupBox3.Controls.Add(this.dtNgayInPhieu);
             this.uiGroupBox3.Controls.Add(this.label3);
             this.uiGroupBox3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.uiGroupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiGroupBox3.Location = new System.Drawing.Point(0, 507);
+            this.uiGroupBox3.Location = new System.Drawing.Point(0, 604);
             this.uiGroupBox3.Name = "uiGroupBox3";
-            this.uiGroupBox3.Size = new System.Drawing.Size(784, 54);
+            this.uiGroupBox3.Size = new System.Drawing.Size(989, 54);
             this.uiGroupBox3.TabIndex = 4;
             this.uiGroupBox3.Text = "Tùy chọn in phiếu điều trị";
             // 
             // dtNgayInPhieu
             // 
-            this.dtNgayInPhieu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.dtNgayInPhieu.CustomFormat = "dd/MM/yyyy";
             this.dtNgayInPhieu.DateFormat = Janus.Windows.CalendarCombo.DateFormat.Custom;
             // 
@@ -117,19 +117,20 @@
             // 
             // chkHienthiCaDaIn
             // 
-            this.chkHienthiCaDaIn.Location = new System.Drawing.Point(388, 7);
+            this.chkHienthiCaDaIn.Location = new System.Drawing.Point(241, 21);
             this.chkHienthiCaDaIn.Name = "chkHienthiCaDaIn";
-            this.chkHienthiCaDaIn.Size = new System.Drawing.Size(178, 23);
+            this.chkHienthiCaDaIn.Size = new System.Drawing.Size(311, 23);
             this.chkHienthiCaDaIn.TabIndex = 1;
             this.chkHienthiCaDaIn.Text = "Hiển thị cả những ngày  đã in ?";
             this.chkHienthiCaDaIn.CheckedChanged += new System.EventHandler(this.chkHienthiCaDaIn_CheckedChanged);
             // 
             // chkInYLenhThuocCLS
             // 
+            this.chkInYLenhThuocCLS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chkInYLenhThuocCLS.Checked = true;
             this.chkInYLenhThuocCLS.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkInYLenhThuocCLS.ForeColor = System.Drawing.Color.Navy;
-            this.chkInYLenhThuocCLS.Location = new System.Drawing.Point(599, 7);
+            this.chkInYLenhThuocCLS.Location = new System.Drawing.Point(781, 10);
             this.chkInYLenhThuocCLS.Name = "chkInYLenhThuocCLS";
             this.chkInYLenhThuocCLS.Size = new System.Drawing.Size(198, 23);
             this.chkInYLenhThuocCLS.TabIndex = 0;
@@ -139,12 +140,11 @@
             // 
             this.panel1.Controls.Add(this.cboKhoanoitru);
             this.panel1.Controls.Add(this.label22);
-            this.panel1.Controls.Add(this.chkHienthiCaDaIn);
             this.panel1.Controls.Add(this.chkInYLenhThuocCLS);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(784, 39);
+            this.panel1.Size = new System.Drawing.Size(989, 39);
             this.panel1.TabIndex = 6;
             // 
             // cboKhoanoitru
@@ -155,7 +155,7 @@
             this.cboKhoanoitru.FormattingEnabled = true;
             this.cboKhoanoitru.Location = new System.Drawing.Point(95, 9);
             this.cboKhoanoitru.Name = "cboKhoanoitru";
-            this.cboKhoanoitru.Size = new System.Drawing.Size(270, 21);
+            this.cboKhoanoitru.Size = new System.Drawing.Size(666, 21);
             this.cboKhoanoitru.TabIndex = 79;
             // 
             // label22
@@ -176,7 +176,7 @@
             this.uiGroupBox1.FrameStyle = Janus.Windows.EditControls.FrameStyle.Top;
             this.uiGroupBox1.Location = new System.Drawing.Point(0, 39);
             this.uiGroupBox1.Name = "uiGroupBox1";
-            this.uiGroupBox1.Size = new System.Drawing.Size(784, 468);
+            this.uiGroupBox1.Size = new System.Drawing.Size(989, 565);
             this.uiGroupBox1.TabIndex = 7;
             this.uiGroupBox1.Text = "Chọn những phiếu điều trị cần in ";
             // 
@@ -213,7 +213,7 @@
             this.grdList.SelectedFormatStyle.FontBold = Janus.Windows.GridEX.TriState.True;
             this.grdList.SelectedFormatStyle.ForeColor = System.Drawing.Color.White;
             this.grdList.SelectedInactiveFormatStyle.ForeColor = System.Drawing.Color.Black;
-            this.grdList.Size = new System.Drawing.Size(784, 448);
+            this.grdList.Size = new System.Drawing.Size(989, 545);
             this.grdList.TabIndex = 10;
             this.grdList.TabStop = false;
             this.grdList.VisualStyle = Janus.Windows.GridEX.VisualStyle.VS2005;
@@ -222,7 +222,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 561);
+            this.ClientSize = new System.Drawing.Size(989, 658);
             this.Controls.Add(this.uiGroupBox1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.uiGroupBox3);

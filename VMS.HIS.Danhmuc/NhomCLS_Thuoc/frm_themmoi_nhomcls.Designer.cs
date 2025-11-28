@@ -52,7 +52,6 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.grbInfor = new Janus.Windows.EditControls.UIGroupBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtLoainhom = new VNS.HIS.UCs.AutoCompleteTextbox_Danhmucchung();
             this.txtMotathem = new Janus.Windows.GridEX.EditControls.EditBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtTennhom = new Janus.Windows.GridEX.EditControls.EditBox();
@@ -79,6 +78,7 @@
             this.grdAssignDetail = new Janus.Windows.GridEX.GridEX();
             this.pnlLeft = new Janus.Windows.EditControls.UIGroupBox();
             this.grdServiceDetail = new Janus.Windows.GridEX.GridEX();
+            this.txtLoainhom = new VNS.HIS.UCs.AutoCompleteTextbox_Danhmucchung();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox1)).BeginInit();
             this.uiGroupBox1.SuspendLayout();
@@ -229,6 +229,7 @@
             this.cmdSave.TabIndex = 10;
             this.cmdSave.Text = "Ghi(Ctrl+S)";
             this.cmdSave.ToolTipText = "Lưu lại thông tin trên lưới thông tin dịch vụ";
+            this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click_1);
             // 
             // cmdExit
             // 
@@ -296,51 +297,6 @@
             this.label1.TabIndex = 513;
             this.label1.Text = "Loại nhóm";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtLoainhom
-            // 
-            this.txtLoainhom._backcolor = System.Drawing.Color.WhiteSmoke;
-            this.txtLoainhom._Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLoainhom._TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.txtLoainhom.AddValues = true;
-            this.txtLoainhom.AllowMultiline = false;
-            this.txtLoainhom.AutoCompleteList = ((System.Collections.Generic.List<string>)(resources.GetObject("txtLoainhom.AutoCompleteList")));
-            this.txtLoainhom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtLoainhom.buildShortcut = false;
-            this.txtLoainhom.CaseSensitive = false;
-            this.txtLoainhom.cmdDropDown = null;
-            this.txtLoainhom.CompareNoID = true;
-            this.txtLoainhom.DefaultCode = "-1";
-            this.txtLoainhom.DefaultID = "-1";
-            this.txtLoainhom.Drug_ID = null;
-            this.txtLoainhom.ExtraWidth = 0;
-            this.txtLoainhom.FillValueAfterSelect = false;
-            this.txtLoainhom.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLoainhom.LOAI_DANHMUC = "LOAINHOMCHIDINHCLS";
-            this.txtLoainhom.Location = new System.Drawing.Point(99, 51);
-            this.txtLoainhom.MaxHeight = 150;
-            this.txtLoainhom.MinTypedCharacters = 2;
-            this.txtLoainhom.MyCode = "-1";
-            this.txtLoainhom.MyID = "-1";
-            this.txtLoainhom.Name = "txtLoainhom";
-            this.txtLoainhom.RaiseEvent = false;
-            this.txtLoainhom.RaiseEventEnter = false;
-            this.txtLoainhom.RaiseEventEnterWhenEmpty = false;
-            this.txtLoainhom.SelectedIndex = -1;
-            this.txtLoainhom.ShowCodeWithValue = false;
-            this.txtLoainhom.Size = new System.Drawing.Size(299, 21);
-            this.txtLoainhom.splitChar = '@';
-            this.txtLoainhom.splitCharIDAndCode = '#';
-            this.txtLoainhom.TabIndex = 3;
-            this.txtLoainhom.TakeCode = false;
-            this.txtLoainhom.txtMyCode = null;
-            this.txtLoainhom.txtMyCode_Edit = null;
-            this.txtLoainhom.txtMyID = null;
-            this.txtLoainhom.txtMyID_Edit = null;
-            this.txtLoainhom.txtMyName = null;
-            this.txtLoainhom.txtMyName_Edit = null;
-            this.txtLoainhom.txtNext = null;
-            this.txtLoainhom.txtNext1 = null;
             // 
             // txtMotathem
             // 
@@ -475,6 +431,7 @@
             this.txtManhom.BorderStyle = Janus.Windows.GridEX.BorderStyle.Flat;
             this.txtManhom.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtManhom.Location = new System.Drawing.Point(248, 24);
+            this.txtManhom.MaxLength = 10;
             this.txtManhom.Name = "txtManhom";
             this.txtManhom.Size = new System.Drawing.Size(150, 21);
             this.txtManhom.TabIndex = 1;
@@ -652,6 +609,52 @@
             this.grdServiceDetail.TotalRowPosition = Janus.Windows.GridEX.TotalRowPosition.BottomFixed;
             this.grdServiceDetail.UseGroupRowSelector = true;
             this.grdServiceDetail.VisualStyle = Janus.Windows.GridEX.VisualStyle.VS2005;
+            // 
+            // txtLoainhom
+            // 
+            this.txtLoainhom._backcolor = System.Drawing.Color.WhiteSmoke;
+            this.txtLoainhom._Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLoainhom._TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtLoainhom.AddValues = true;
+            this.txtLoainhom.AllowMultiline = false;
+            this.txtLoainhom.AutoCompleteList = ((System.Collections.Generic.List<string>)(resources.GetObject("txtLoainhom.AutoCompleteList")));
+            this.txtLoainhom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtLoainhom.buildShortcut = false;
+            this.txtLoainhom.CaseSensitive = false;
+            this.txtLoainhom.cmdDropDown = null;
+            this.txtLoainhom.CompareNoID = true;
+            this.txtLoainhom.DefaultCode = "-1";
+            this.txtLoainhom.DefaultID = "-1";
+            this.txtLoainhom.Drug_ID = null;
+            this.txtLoainhom.ExtraWidth = 0;
+            this.txtLoainhom.FillValueAfterSelect = false;
+            this.txtLoainhom.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLoainhom.LOAI_DANHMUC = "LOAINHOMCHIDINHCLS";
+            this.txtLoainhom.Location = new System.Drawing.Point(99, 51);
+            this.txtLoainhom.MaxHeight = 150;
+            this.txtLoainhom.MinTypedCharacters = 2;
+            this.txtLoainhom.MyCode = "-1";
+            this.txtLoainhom.MyID = "-1";
+            this.txtLoainhom.Name = "txtLoainhom";
+            this.txtLoainhom.RaiseEvent = false;
+            this.txtLoainhom.RaiseEventEnter = false;
+            this.txtLoainhom.RaiseEventEnterWhenEmpty = false;
+            this.txtLoainhom.SelectedIndex = -1;
+            this.txtLoainhom.SetDefaultWhenInit = true;
+            this.txtLoainhom.ShowCodeWithValue = false;
+            this.txtLoainhom.Size = new System.Drawing.Size(299, 21);
+            this.txtLoainhom.splitChar = '@';
+            this.txtLoainhom.splitCharIDAndCode = '#';
+            this.txtLoainhom.TabIndex = 3;
+            this.txtLoainhom.TakeCode = false;
+            this.txtLoainhom.txtMyCode = null;
+            this.txtLoainhom.txtMyCode_Edit = null;
+            this.txtLoainhom.txtMyID = null;
+            this.txtLoainhom.txtMyID_Edit = null;
+            this.txtLoainhom.txtMyName = null;
+            this.txtLoainhom.txtMyName_Edit = null;
+            this.txtLoainhom.txtNext = null;
+            this.txtLoainhom.txtNext1 = null;
             // 
             // frm_themmoi_nhomcls
             // 

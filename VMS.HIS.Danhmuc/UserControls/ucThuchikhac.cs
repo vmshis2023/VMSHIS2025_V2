@@ -287,6 +287,7 @@ namespace VNS.HIS.UCs.Noitru
                     objPhieuthuchi.LoaiPhieuthu = (byte)(optPhieuThu.Checked ? 0 : 1);
                     objPhieuthuchi.MaPhieuthu = THU_VIEN_CHUNG.GetMaPhieuThu(globalVariables.SysDate,Convert.ToInt32( objPhieuthuchi.LoaiPhieuthu));
                     objPhieuthuchi.LydoNop = txtLydo.Text;
+                    objPhieuthuchi.ChiHoankiqui =Utility.Bool2byte( chk_HoanKiQui.Checked);
                     objPhieuthuchi.NguoiNop = Utility.DoTrim(txtNguoithu.MyCode);
                     objPhieuthuchi.SoTien = Utility.DecimaltoDbnull(txtSotien.Text);
                     objPhieuthuchi.SotienGoc = objPhieuthuchi.SoTien;
@@ -351,6 +352,7 @@ namespace VNS.HIS.UCs.Noitru
                     objPhieuthuchi.NguoiNop = Utility.DoTrim(txtNguoithu.MyCode);
                     objPhieuthuchi.IdNhanvien = Utility.Int16Dbnull(txtNguoithu.MyID);
                     objPhieuthuchi.MaPttt = Utility.sDbnull(cboPttt.SelectedValue, "-1");
+                    objPhieuthuchi.ChiHoankiqui = Utility.Bool2byte(chk_HoanKiQui.Checked);
                     objPhieuthuchi.MaNganhang = cboNganhang.Enabled ? Utility.sDbnull(cboNganhang.SelectedValue, "-1"): "-1";
                     objPhieuthuchi.MaNguonTt = autoNguonkiqui.myCode;
                     objPhieuthuchi.NoiDung = txtMotathem.Text;
@@ -677,6 +679,7 @@ namespace VNS.HIS.UCs.Noitru
                         objPhieuthuchi = null;
                         dtpNgaythu.Value = globalVariables.SysDate;
                         txtSotien.Text = "0";
+                        chk_HoanKiQui.Checked = false;
                         txtLydo.SetCode("-1");
                         txtNguoithu.SetCode("-1");
                         txtMotathem.Clear();
@@ -801,6 +804,7 @@ namespace VNS.HIS.UCs.Noitru
                     cboPttt.SelectedIndex = -1;
                     txtMotathem.Clear();
                     autoNguonkiqui.SetCode("-1");
+                    chk_HoanKiQui.Checked = false;
                 }
                 else
                 {
@@ -827,6 +831,7 @@ namespace VNS.HIS.UCs.Noitru
                         //optPhieuChi.Checked = Utility.Byte2Bool(objPhieuthuchi.LoaiPhieuthu);
                         dtpNgaythu.Value = objPhieuthuchi.NgayThuchien;
                         txtSotien.Text = objPhieuthuchi.SoTien.ToString();
+                        chk_HoanKiQui.Checked = Utility.Byte2Bool(objPhieuthuchi.ChiHoankiqui);
                         txtLydo._Text = objPhieuthuchi.LydoNop;
                         txtNguoithu.SetId(objPhieuthuchi.IdNhanvien);
                         txtNhomthuchi.SetCode(objPhieuthuchi.MaNhom);

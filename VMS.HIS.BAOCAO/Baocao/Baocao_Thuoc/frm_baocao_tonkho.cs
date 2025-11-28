@@ -160,13 +160,7 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
             try
             {
                 DataTable _dataThuoc = SPs.ThuocLayDanhmucThuocTheokho(Utility.Int32Dbnull(cboKho.SelectedValue, -1)).GetDataSet().Tables[0];
-                if (_dataThuoc == null)
-                {
-                    txtthuoc.dtData = null;
-                    return;
-                }
-                txtthuoc.dtData = _dataThuoc;
-                txtthuoc.ChangeDataSource();
+                DataBinding.BindDataCombobox(cbo_thuoc, _dataThuoc, DmucThuoc.Columns.IdThuoc, DmucThuoc.Columns.TenThuoc);
             }
             catch
             {
@@ -245,6 +239,7 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
         {
             dtFromDate.Enabled = dtToDate.Enabled = chkByDate.Checked;
         }
+        DataTable m_dtReport = null;
         /// <summary>
         /// hàm thực hiện in phiếu báo cáo 
         /// thông tin 
@@ -255,22 +250,9 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
         {
             try
             {
+                if (m_dtReport == null || m_dtReport.Columns.Count <= 0) cmd_TimKiem.PerformClick();
                 string nhomthuoc = "-1";
-
                 nhomthuoc = txtLoaithuoc.MyID.ToString();
-
-
-                DataTable m_dtReport = null;
-                if (_item.KieuKho == "CHAN" || (chkChanle.Enabled && chkChanle.Checked))
-               m_dtReport= BAOCAO_THUOC.ThuocBaocaoBiendongthuocTrongkhotong(chkByDate.Checked ? dtFromDate.Text : Utility.sDbnull("01/01/1900"),
-                                           chkByDate.Checked ? dtToDate.Text : globalVariables.SysDate.ToString(),
-                                           Utility.Int32Dbnull(cboKho.SelectedValue), nhomthuoc, Utility.Int32Dbnull(txtthuoc.MyID, -1), chkBiendong.Checked ? 1 : 0);
-                else
-                  m_dtReport=  BAOCAO_THUOC.ThuocBaocaoBiendongthuocTrongkhole(chkByDate.Checked ? dtFromDate.Text : Utility.sDbnull("01/01/1900"),
-                                         chkByDate.Checked ? dtToDate.Text : globalVariables.SysDate.ToString(),
-                                         Utility.Int32Dbnull(cboKho.SelectedValue), Utility.Int32Dbnull(txtthuoc.MyID, -1), nhomthuoc, chkBiendong.Checked ? 1 : 0);
-               
-                Utility.SetDataSourceForDataGridEx( _item.KieuKho == "CHAN" || (chkChanle.Enabled && chkChanle.Checked) ? grdListKhoChan : grdListKhole, m_dtReport, true, true, "1=1", "");
                 if (m_dtReport.Rows.Count <= 0)
                 {
                     Utility.ShowMsg("Không tìm thấy dữ liệu", "Thông báo", MessageBoxIcon.Warning);
@@ -291,12 +273,7 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
                                                                                              dtNgayIn.Value, FromDateToDate,
                                                                                              Utility.sDbnull(cboKho.Text), chkTheoNhomThuoc.Checked);
                 }
-                //else
-                //{
-                //    thuoc_baocao.BaocaoNhapxuattonKhochanTheonhom(m_dtReport, baocaO_TIEUDE1.TIEUDE,
-                //                                                                         dtNgayIn.Value, FromDateToDate,
-                //                                                                         Utility.sDbnull(cboKho.Text));
-                //}
+               
             }
             catch (Exception)
             {
@@ -385,7 +362,33 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
 
         private void uiButton2_Click(object sender, EventArgs e)
         {
-            txtthuoc.ShowMe();
+           
+        }
+
+        private void cmd_TimKiem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string nhomthuoc = "-1";
+
+                nhomthuoc = txtLoaithuoc.MyID.ToString();
+                if (_item.KieuKho == "CHAN" || (chkChanle.Enabled && chkChanle.Checked))
+                    m_dtReport = BAOCAO_THUOC.ThuocBaocaoBiendongthuocTrongkhotong(chkByDate.Checked ? dtFromDate.Text : Utility.sDbnull("01/01/1900"),
+                                                chkByDate.Checked ? dtToDate.Text : globalVariables.SysDate.ToString(),
+                                                Utility.Int32Dbnull(cboKho.SelectedValue), nhomthuoc, Utility.Int32Dbnull(cbo_thuoc.SelectedValue, -1), chkBiendong.Checked ? 1 : 0);
+                else
+                    m_dtReport = BAOCAO_THUOC.ThuocBaocaoBiendongthuocTrongkhole(chkByDate.Checked ? dtFromDate.Text : Utility.sDbnull("01/01/1900"),
+                                           chkByDate.Checked ? dtToDate.Text : globalVariables.SysDate.ToString(),
+                                           Utility.Int32Dbnull(cboKho.SelectedValue), Utility.Int32Dbnull(cbo_thuoc.SelectedValue, -1), nhomthuoc, chkBiendong.Checked ? 1 : 0);
+
+                Utility.SetDataSourceForDataGridEx(_item.KieuKho == "CHAN" || (chkChanle.Enabled && chkChanle.Checked) ? grdListKhoChan : grdListKhole, m_dtReport, true, true, "1=1", "");
+               
+            }
+            catch (Exception)
+            {
+
+
+            }
         }
     }
 }

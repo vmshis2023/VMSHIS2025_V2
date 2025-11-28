@@ -372,7 +372,7 @@ namespace VMS.HIS.DAL{
                 TableSchema.TableColumn colvarTenNhacungcap = new TableSchema.TableColumn(schema);
                 colvarTenNhacungcap.ColumnName = "Ten_nhacungcap";
                 colvarTenNhacungcap.DataType = DbType.String;
-                colvarTenNhacungcap.MaxLength = 255;
+                colvarTenNhacungcap.MaxLength = 1000;
                 colvarTenNhacungcap.AutoIncrement = false;
                 colvarTenNhacungcap.IsNullable = false;
                 colvarTenNhacungcap.IsPrimaryKey = false;
@@ -405,6 +405,18 @@ namespace VMS.HIS.DAL{
                 
                 schema.Columns.Add(colvarTenNhanvien);
                 
+                TableSchema.TableColumn colvarMaKhonhap = new TableSchema.TableColumn(schema);
+                colvarMaKhonhap.ColumnName = "Ma_khonhap";
+                colvarMaKhonhap.DataType = DbType.String;
+                colvarMaKhonhap.MaxLength = 50;
+                colvarMaKhonhap.AutoIncrement = false;
+                colvarMaKhonhap.IsNullable = true;
+                colvarMaKhonhap.IsPrimaryKey = false;
+                colvarMaKhonhap.IsForeignKey = false;
+                colvarMaKhonhap.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarMaKhonhap);
+                
                 TableSchema.TableColumn colvarTenKhonhap = new TableSchema.TableColumn(schema);
                 colvarTenKhonhap.ColumnName = "ten_khonhap";
                 colvarTenKhonhap.DataType = DbType.String;
@@ -416,6 +428,18 @@ namespace VMS.HIS.DAL{
                 colvarTenKhonhap.IsReadOnly = false;
                 
                 schema.Columns.Add(colvarTenKhonhap);
+                
+                TableSchema.TableColumn colvarMaKhoxuat = new TableSchema.TableColumn(schema);
+                colvarMaKhoxuat.ColumnName = "ma_khoxuat";
+                colvarMaKhoxuat.DataType = DbType.String;
+                colvarMaKhoxuat.MaxLength = 50;
+                colvarMaKhoxuat.AutoIncrement = false;
+                colvarMaKhoxuat.IsNullable = true;
+                colvarMaKhoxuat.IsPrimaryKey = false;
+                colvarMaKhoxuat.IsForeignKey = false;
+                colvarMaKhoxuat.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarMaKhoxuat);
                 
                 TableSchema.TableColumn colvarTenKhoxuat = new TableSchema.TableColumn(schema);
                 colvarTenKhoxuat.ColumnName = "ten_khoxuat";
@@ -432,7 +456,7 @@ namespace VMS.HIS.DAL{
                 TableSchema.TableColumn colvarTenNguoigiao = new TableSchema.TableColumn(schema);
                 colvarTenNguoigiao.ColumnName = "ten_nguoigiao";
                 colvarTenNguoigiao.DataType = DbType.String;
-                colvarTenNguoigiao.MaxLength = 255;
+                colvarTenNguoigiao.MaxLength = 1000;
                 colvarTenNguoigiao.AutoIncrement = false;
                 colvarTenNguoigiao.IsNullable = true;
                 colvarTenNguoigiao.IsPrimaryKey = false;
@@ -897,6 +921,20 @@ namespace VMS.HIS.DAL{
             }
         }
 	      
+        [XmlAttribute("MaKhonhap")]
+        [Bindable(true)]
+        public string MaKhonhap 
+	    {
+		    get
+		    {
+			    return GetColumnValue<string>("Ma_khonhap");
+		    }
+            set 
+		    {
+			    SetColumnValue("Ma_khonhap", value);
+            }
+        }
+	      
         [XmlAttribute("TenKhonhap")]
         [Bindable(true)]
         public string TenKhonhap 
@@ -908,6 +946,20 @@ namespace VMS.HIS.DAL{
             set 
 		    {
 			    SetColumnValue("ten_khonhap", value);
+            }
+        }
+	      
+        [XmlAttribute("MaKhoxuat")]
+        [Bindable(true)]
+        public string MaKhoxuat 
+	    {
+		    get
+		    {
+			    return GetColumnValue<string>("ma_khoxuat");
+		    }
+            set 
+		    {
+			    SetColumnValue("ma_khoxuat", value);
             }
         }
 	      
@@ -1004,7 +1056,11 @@ namespace VMS.HIS.DAL{
             
             public static string TenNhanvien = @"ten_nhanvien";
             
+            public static string MaKhonhap = @"Ma_khonhap";
+            
             public static string TenKhonhap = @"ten_khonhap";
+            
+            public static string MaKhoxuat = @"ma_khoxuat";
             
             public static string TenKhoxuat = @"ten_khoxuat";
             

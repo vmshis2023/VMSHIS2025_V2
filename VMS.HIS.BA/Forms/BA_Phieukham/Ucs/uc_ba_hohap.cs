@@ -1,0 +1,146 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using VMS.HIS.DAL;
+using VNS.Libs;
+
+namespace VMS.HIS.EMR.Forms.BA_Phieukham.Ucs
+{
+    public partial class uc_ba_hohap : UserControl
+    {
+        public uc_ba_hohap()
+        {
+            InitializeComponent();
+        }
+        public void ShowData(EmrPhieukhamNoikhoa objPK)
+        {
+            try
+            {
+                opt_hohap_batthuong.Checked = Utility.Bool2Bool(objPK.HohapBatthuong);
+                opt_hohap_binhthuong.Checked = Utility.Bool2Bool(objPK.HohapBinhthuong);
+                txt_hohap_mota.Text = Utility.sDbnull(objPK.HohapMota);
+
+                opt_khotho_co.Checked = Utility.Bool2Bool(objPK.KhothoCo);
+                opt_khotho_khong.Checked = Utility.Bool2Bool(objPK.KhothoKhong);
+
+                opt_biendang_longnguc_co.Checked = Utility.Bool2Bool(objPK.BiendangLongngucCo);
+                opt_biendang_longnguc_khong.Checked = Utility.Bool2Bool(objPK.BiendangLongngucKhong);
+
+                opt_go_binhthuong.Checked = Utility.Bool2Bool(objPK.GoBinhthuong);
+                opt_go_duc.Checked = Utility.Bool2Bool(objPK.GoDuc);
+                opt_go_vang.Checked = Utility.Bool2Bool(objPK.GoVang);
+                txt_go_vitri.Text = Utility.sDbnull(objPK.GoVitri);
+
+                opt_rirao_phenang_binthuong.Checked = Utility.Bool2Bool(objPK.RiraoPhenangBinthuong);
+                opt_rirao_phenang_giam.Checked = Utility.Bool2Bool(objPK.RiraoPhenangGiam);
+                txt_rirao_phenang_vitri.Text = Utility.sDbnull(objPK.RiraoPhenangVitri);
+
+                opt_rungthanh_binhthuong.Checked = Utility.Bool2Bool(objPK.RungthanhBinhthuong);
+                opt_rungthanh_tang.Checked = Utility.Bool2Bool(objPK.RungthanhTang);
+                opt_rungthanh_giam.Checked = Utility.Bool2Bool(objPK.RungthanhGiam);
+                txt_rungthanh_vitri.Text = Utility.sDbnull(objPK.RungthanhVitri);
+
+                opt_rale_khong.Checked = Utility.Bool2Bool(objPK.RaleKhong);
+                chk_rale_am.Checked = Utility.Bool2Bool(objPK.RaleAm);
+                chk_rale_ngay.Checked = Utility.Bool2Bool(objPK.RaleNgay);
+                chk_rale_no.Checked = Utility.Bool2Bool(objPK.RaleNo);
+                chk_rale_rit.Checked = Utility.Bool2Bool(objPK.RaleRit);
+                opt_rale_co.Checked = Utility.Bool2Bool(objPK.RaleCo);
+                chk_rale_khac.Checked = Utility.Bool2Bool(objPK.RaleKhac);
+                txt_rale_khac_mota.Text = Utility.sDbnull(objPK.RaleKhacMota);
+
+
+
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+            }
+        }
+        public void SetData(EmrPhieukhamNoikhoa objPK)
+        {
+            try
+            {
+                objPK.HohapBatthuong = opt_hohap_batthuong.Checked;
+                objPK.HohapBinhthuong = opt_hohap_binhthuong.Checked;
+                objPK.HohapMota = opt_hohap_batthuong.Checked? Utility.sDbnull(txt_hohap_mota.Text):"";
+
+                objPK.KhothoCo = opt_khotho_co.Checked;
+                objPK.KhothoKhong = opt_khotho_khong.Checked;
+
+                objPK.BiendangLongngucCo = opt_biendang_longnguc_co.Checked;
+                objPK.BiendangLongngucKhong = opt_biendang_longnguc_khong.Checked;
+
+                objPK.GoBinhthuong = opt_go_binhthuong.Checked;
+                objPK.GoDuc = opt_go_duc.Checked;
+                objPK.GoVang = opt_go_vang.Checked;
+                objPK.GoVitri = opt_go_vang.Checked?Utility.sDbnull(txt_go_vitri.Text):"";
+
+                objPK.RiraoPhenangBinthuong = opt_rirao_phenang_binthuong.Checked;
+                objPK.RiraoPhenangGiam = opt_rirao_phenang_giam.Checked;
+                objPK.RiraoPhenangVitri = opt_rirao_phenang_giam.Checked? Utility.sDbnull(txt_rirao_phenang_vitri.Text):"";
+
+                objPK.RungthanhBinhthuong = opt_rungthanh_binhthuong.Checked;
+                objPK.RungthanhTang = opt_rungthanh_tang.Checked;
+                objPK.RungthanhGiam = opt_rungthanh_giam.Checked;
+                objPK.RungthanhVitri = opt_rungthanh_giam.Checked? Utility.sDbnull(txt_rungthanh_vitri.Text):"";
+
+                objPK.RaleKhong = opt_rale_khong.Checked;
+                objPK.RaleAm = chk_rale_am.Checked;
+                objPK.RaleNgay = chk_rale_ngay.Checked;
+                objPK.RaleNo = chk_rale_no.Checked;
+                objPK.RaleRit = chk_rale_rit.Checked;
+                objPK.RaleCo = opt_rale_co.Checked;
+                objPK.RaleKhac = chk_rale_khac.Checked;
+                objPK.RaleKhacMota = chk_rale_khac.Checked? Utility.sDbnull(txt_rale_khac_mota.Text):"";
+
+
+
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+            }
+        }
+
+        private void opt_hohap_batthuong_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton _obj = sender as RadioButton;
+            txt_hohap_mota.Enabled = _obj.Checked;
+            if (_obj.Checked) txt_hohap_mota.Focus();
+        }
+
+        private void opt_go_vang_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton _obj = sender as RadioButton;
+            txt_go_vitri.Enabled = _obj.Checked;
+            if (_obj.Checked) txt_go_vitri.Focus();
+        }
+
+        private void opt_rungthanh_giam_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton _obj = sender as RadioButton;
+            txt_rungthanh_vitri.Enabled = _obj.Checked;
+            if (_obj.Checked) txt_rungthanh_vitri.Focus();
+        }
+
+        private void opt_rirao_phenang_giam_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton _obj = sender as RadioButton;
+            txt_rirao_phenang_vitri.Enabled = _obj.Checked;
+            if (_obj.Checked) txt_rirao_phenang_vitri.Focus();
+        }
+
+        private void chk_rale_khac_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox _obj = sender as CheckBox;
+            txt_rale_khac_mota.Enabled = _obj.Checked;
+            if (_obj.Checked) txt_rale_khac_mota.Focus();
+        }
+    }
+}

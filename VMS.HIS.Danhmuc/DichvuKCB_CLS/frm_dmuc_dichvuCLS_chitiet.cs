@@ -619,9 +619,13 @@ namespace VNS.HIS.UI.DANHMUC
         private void frm_dmuc_dichvuCLS_chitiet_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape) toolStripButton1.PerformClick();
-            if (e.KeyCode == Keys.F5) Search();
+            if (e.KeyCode == Keys.F5)
+            {
+                GetVungKS();
+                Search();
+            }
             if (e.Control && e.KeyCode == Keys.N) cmdNew.PerformClick();
-            if (e.Control && e.KeyCode == Keys.E) cmdEdit.PerformClick();
+            if (e.Control && e.KeyCode == Keys.U) cmdEdit.PerformClick();
             if (e.Control && e.KeyCode == Keys.D) cmdDelete.PerformClick();
         }
         /// <summary>
@@ -1360,7 +1364,137 @@ namespace VNS.HIS.UI.DANHMUC
             catch (Exception)
             {
 
-                throw;
+               
+            }
+        }
+        int num = 0;
+        private void mnu_update_loai_dichvu_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frm_capnhat_thuoctinh_dichvu_cls _capnhat = new frm_capnhat_thuoctinh_dichvu_cls();
+                if (_capnhat.ShowDialog() == DialogResult.OK)
+                {
+                    int id_dichvu = Utility.Int32Dbnull(_capnhat.cbo_loai_dichvu.SelectedValue);
+                    string loai_pttt = Utility.sDbnull(_capnhat.cbo_LoaiPttt.SelectedValue);
+                    string ten_dichvu = _capnhat.cbo_loai_dichvu.Text;
+                    bool onlyOne = grdList.GetCheckedRows().Count() <= 0;
+                    Utility.AutoCheckGrid(grdList);
+                    foreach (GridEXRow row in grdList.GetCheckedRows())
+                    {
+                        int IdChitietdichvu = Utility.Int32Dbnull(row.Cells[DmucDichvuclsChitiet.Columns.IdChitietdichvu].Value);
+                        
+
+                        string sql = "UPDATE dmuc_dichvucls_chitiet SET ";
+                        List<string> sets = new List<string>();
+
+                        if (_capnhat.chk_Loaidvu.Checked)
+                            sets.Add(string.Format("id_dichvu = {0}", id_dichvu));
+                        if (_capnhat.chk_LoaiPttt.Checked)
+                            sets.Add(string.Format("loai_pttt = '{0}'", loai_pttt));
+                        sql += string.Join(",", sets) + " WHERE id_chitietdichvu =" + IdChitietdichvu;
+                        num = Utility.ExecuteNonQuery(sql, CommandType.Text);
+
+
+                        //num = new Update(DmucDichvuclsChitiet.Schema)
+                        //    .Set(DmucDichvuclsChitiet.Columns.IdDichvu).EqualTo(id_dichvu)
+                        //    .Where(DmucDichvuclsChitiet.Columns.IdChitietdichvu).IsEqualTo(IdChitietdichvu)
+                        //    .Execute();
+                        //if (num > 0)
+                        //{
+                        //    row.BeginEdit();
+                        //    row.Cells[DmucDichvuclsChitiet.Columns.IdDichvu].Value = id_dichvu;
+                        //    row.Cells["ten_dichvu"].Value = ten_dichvu;
+                        //    row.EndEdit();
+                        //}
+                    }
+                    if (onlyOne)
+                        grdList.UnCheckAllRecords();
+                    Utility.ShowMsg("Đã cập nhật Loại dịch vụ cho các dịch vụ CLS đang chọn thành công. Nhấn OK để kết thúc");
+                }
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+            }
+
+        }
+
+        private void mnu_HieuLuc_Click(object sender, EventArgs e)
+        {
+            HieuLucCLS(true);
+        }
+
+        private void mnu_HetHieuLuc_Click(object sender, EventArgs e)
+        {
+            HieuLucCLS(false);
+        }
+        void HieuLucCLS(bool isHieuLuc)
+
+        {
+            try
+            {
+                bool onlyOne = grdList.GetCheckedRows().Count() <= 0;
+                if (!Utility.isValidGrid(grdList)) return;
+                if (!Utility.AcceptQuestion(string.Format("Bạn có chắc chắn muốn {0} cho các Dịch vụ CLS đang chọn hay không?", isHieuLuc ? " kích hoạt sử dụng(Làm có hiệu lực)" : " hủy sử dụng(làm hết hiệu lực)"), "", true))
+                    return;
+                Utility.AutoCheckGrid(grdList);
+                foreach (GridEXRow r in grdList.GetCheckedRows())
+                {
+                    int id_chitietdichvu = Utility.Int32Dbnull(r.Cells[DmucDichvuclsChitiet.Columns.IdChitietdichvu].Value, -1);
+                    int _Trangthai = isHieuLuc ? 1 : 0;
+
+                    new Update(DmucDichvuclsChitiet.Schema).Set(DmucDichvuclsChitiet.Columns.TrangThai).EqualTo(_Trangthai)
+                        .Where(DmucDichvuclsChitiet.Columns.IdChitietdichvu).IsEqualTo(id_chitietdichvu).Execute();
+                    r.BeginEdit();
+                    r.Cells[DmucDichvuclsChitiet.Columns.TrangThai].Value = _Trangthai;
+                    r.EndEdit();
+                }
+                if (onlyOne)
+                    grdList.UnCheckAllRecords();
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+            }
+        }
+
+        private void mnu_LaHuongDieuTri_Click(object sender, EventArgs e)
+        {
+            LaHuongDieuTri(true);
+        }
+
+        private void mnu_HuyLaHuongDieuTri_Click(object sender, EventArgs e)
+        {
+            LaHuongDieuTri(false);
+        }
+        void LaHuongDieuTri(bool isHuongDieuTri)
+
+        {
+            try
+            {
+                bool onlyOne = grdList.GetCheckedRows().Count() <= 0;
+                if (!Utility.isValidGrid(grdList)) return;
+                if (!Utility.AcceptQuestion(string.Format("Bạn có chắc chắn muốn {0} cho các Dịch vụ CLS đang chọn hay không?", isHuongDieuTri ? " đặt tính chất Hướng điều trị" : " hủy tính chất Hướng điều trị"), "", true))
+                    return;
+                Utility.AutoCheckGrid(grdList);
+                foreach (GridEXRow r in grdList.GetCheckedRows())
+                {
+                    int id_chitietdichvu = Utility.Int32Dbnull(r.Cells[DmucDichvuclsChitiet.Columns.IdChitietdichvu].Value, -1);
+                    int _Trangthai = isHuongDieuTri ? 1 : 0;
+
+                    new Update(DmucDichvuclsChitiet.Schema).Set(DmucDichvuclsChitiet.Columns.LaHuongDieuTri).EqualTo(_Trangthai)
+                        .Where(DmucDichvuclsChitiet.Columns.IdChitietdichvu).IsEqualTo(id_chitietdichvu).Execute();
+                    r.BeginEdit();
+                    r.Cells[DmucDichvuclsChitiet.Columns.LaHuongDieuTri].Value = _Trangthai;
+                    r.EndEdit();
+                }
+                if (onlyOne)
+                    grdList.UnCheckAllRecords();
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
             }
         }
     }

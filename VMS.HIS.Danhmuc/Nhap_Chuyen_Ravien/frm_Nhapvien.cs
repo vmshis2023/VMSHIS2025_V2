@@ -261,6 +261,7 @@ namespace VNS.HIS.UI.NOITRU
                     {
                         txtQuanlybenhly.Text = objCDKL.QuatrinhBenhly;
                         autoBanthan._Text = objCDKL.TiensuBenh;
+                        autoGiadinh._Text = objCDKL.TiensuGiadinh;
                         txtTTKQLamSang.Text = objCDKL.TomtatCls;
                         txtMach.Text = objCDKL.Mach;
                         txtha.Text = objCDKL.Huyetap;
@@ -290,7 +291,7 @@ namespace VNS.HIS.UI.NOITRU
                     {
                         if (id_kham <= 0) id_kham = Utility.Int64Dbnull(objPhieuNv.IdKham, -1);
                         txtSovaovien.Text = objPhieuNv.SoVaovien;
-                        txtKhoanoitru.Enabled = false;
+                        //txtKhoanoitru.Enabled = false;
                         txtChandoanbandau.Text = Utility.sDbnull(objPhieuNv.ChandoanVaovien);
                         //autoLydovv.SetCode(objPhieuNv.MaLydoNhapvien);
                         autoLydovv._Text = objPhieuNv.LydoNhapvien;

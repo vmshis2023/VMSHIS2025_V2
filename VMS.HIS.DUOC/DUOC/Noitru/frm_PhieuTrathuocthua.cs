@@ -536,5 +536,10 @@ namespace VNS.HIS.UI.THUOC
             chkTheongaytra.Checked = PropertyLib._TrathuocthuaProperties.Timtheongaytra;
 
         }
+
+        private void cmdInphieu_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

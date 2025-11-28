@@ -10,6 +10,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using VMS.Helpers;
 using VMS.Invoice;
 
 namespace VMS.HIS.API

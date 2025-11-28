@@ -35,6 +35,42 @@ namespace VNS.HIS.UI.DANHMUC
             this.KeyDown += new KeyEventHandler(frm_ListDisease_KeyDown);
             grdList.SelectionChanged+=new EventHandler(grd_Insurance_Objects_SelectionChanged);
             cboPhongBan.SelectedIndexChanged += new EventHandler(cboPhongBan_SelectedIndexChanged);
+            grd_DvuKemTheoCongKham.ColumnButtonClick += Grd_DvuKemTheoCongKham_ColumnButtonClick;
+        }
+        int num = 0;
+        private void Grd_DvuKemTheoCongKham_ColumnButtonClick(object sender, ColumnActionEventArgs e)
+        {
+            try
+            {
+                if(e.Column.Key=="XOA")
+                {
+                    if (!Utility.Coquyen("congkham_quyenxoadichvu_trongcongkham"))
+                    {
+                        Utility.thongbaokhongcoquyen("congkham_quyenxoadichvu_trongcongkham", "xóa dịch vụ cận lâm sàng trong công khám");
+                        return;
+                    }
+                    string ten_dichvu = Utility.sDbnull(grd_DvuKemTheoCongKham.GetValue("ten_chitietdichvu"));
+                    string ten_congkham = Utility.sDbnull(grdList.GetValue("ten_dichvukcb"));
+                    if (!Utility.AcceptQuestion(string.Format("Bạn có chắc chắn muốn xóa dịch vụ {0} khỏi công khám {1}?", ten_dichvu, ten_congkham),"Xác nhận xóa",true))
+                    {
+                        return;
+                    }    
+                    int id_dichvu_kcb = Utility.Int32Dbnull(grd_DvuKemTheoCongKham.GetValue("id_dichvukcb"));
+                    int id_chitietdichvu = Utility.Int32Dbnull(grd_DvuKemTheoCongKham.GetValue("id_chitietdichvu"));
+                    num = Utility.ExecuteNonQuery(string.Format("delete from dmuc_dichvu_trong_congkham where id_chitietdichvu={0} and id_dichvukcb={1}", id_chitietdichvu, id_dichvu_kcb), CommandType.Text);
+                    if (num > 0)
+                    {
+                        grd_DvuKemTheoCongKham.CurrentRow.Delete();
+                        dtDvukemtheo.AcceptChanges();
+                        grd_DvuKemTheoCongKham.Refetch();
+                    }
+                   
+                }    
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+            }
         }
 
         void cboPhongBan_SelectedIndexChanged(object sender, EventArgs e)
@@ -50,7 +86,7 @@ namespace VNS.HIS.UI.DANHMUC
        /// <summary>
        /// hà thực hiện khởi tạo thông tin của Form
        /// </summary>
-        private void InitalData()
+        private void InitData()
         {
 
             try
@@ -73,6 +109,14 @@ namespace VNS.HIS.UI.DANHMUC
                 cboDoituong.DisplayMember = DmucDoituongkcb.Columns.TenDoituongKcb;
                 //Phòng ban
                 BindDepartment();
+                string sql = "select id_chitietdichvu,ma_chitietdichvu, concat(ma_chitietdichvu,'-',ten_chitietdichvu) as ten_chitietdichvu from dmuc_dichvucls_chitiet where trang_thai=1";
+                txtDichvu.Init(Utility.ExecuteSql(sql, CommandType.Text).Tables[0],
+               new List<string>
+               {
+                    DmucDichvuclsChitiet.Columns.IdChitietdichvu,
+                    DmucDichvuclsChitiet.Columns.MaChitietdichvu,
+                    DmucDichvuclsChitiet.Columns.TenChitietdichvu
+               });
 
             }
             catch
@@ -245,7 +289,7 @@ namespace VNS.HIS.UI.DANHMUC
         /// <param name="e"></param>
         private void frm_dmucdichvu_kcb_Load(object sender, EventArgs e)
         {
-            InitalData();
+            InitData();
             Search();
             ModifyCommand();
             m_blnLoaded = true;
@@ -379,10 +423,28 @@ namespace VNS.HIS.UI.DANHMUC
             }
            
         }
-
+        DataTable dtDvukemtheo = null;
         private void grd_Insurance_Objects_SelectionChanged(object sender, EventArgs e)
         {
-            ModifyCommand();
+            try
+            {
+                if(!Utility.isValidGrid(grdList))
+                {
+                    grd_DvuKemTheoCongKham.DataSource = null;
+                }    
+                Int16 id_dichvu_kcb = Utility.Int16Dbnull(grdList.GetValue("id_dichvukcb"));
+                 dtDvukemtheo = SPs.CongkhamLaydanhmucdichvuKemtheo(id_dichvu_kcb).GetDataSet().Tables[0];
+                grd_DvuKemTheoCongKham.DataSource = dtDvukemtheo;
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                ModifyCommand();
+            }
+           
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
@@ -487,6 +549,64 @@ namespace VNS.HIS.UI.DANHMUC
             frm_saochepcongkham _saochepcongkham = new frm_saochepcongkham();
             _saochepcongkham.ShowDialog();
             
+        }
+
+        private void cmdAccept_Click(object sender, EventArgs e)
+        {
+            try
+            {
+              
+                if(!Utility.Coquyen("congkham_quyenthemdichvu_trongcongkham"))
+                {
+                    Utility.thongbaokhongcoquyen("congkham_quyenthemdichvu_trongcongkham", "thêm dịch vụ cận lâm sàng kèm theo công khám");
+                    return;
+                }    
+                int id_dichvu_kcb = Utility.Int32Dbnull(grdList.GetValue("id_dichvukcb"));
+                int id_dichvu = Utility.Int32Dbnull(txtDichvu.MyID);
+                if(id_dichvu_kcb<=0)
+                {
+                    Utility.ShowMsg("Bạn cần chọn công khám trước khi thêm các dịch vụ kèm theo");
+                    return;
+                }
+                if (id_dichvu <= 0)
+                {
+                    Utility.ShowMsg("Bạn cần chọn Dịch vụ kèm theo công khám trước khi thêm");
+                    txtDichvu.Focus();
+                    txtDichvu.SelectAll();
+                    return;
+                }
+                DmucDichvuTrongCongkham item = new Select().From(DmucDichvuTrongCongkham.Schema)
+                    .Where(DmucDichvuTrongCongkham.Columns.IdDichvukcb).IsEqualTo(id_dichvu_kcb)
+                    .And(DmucDichvuTrongCongkham.Columns.IdChitietdichvu).IsEqualTo(id_dichvu)
+                    .ExecuteSingle<DmucDichvuTrongCongkham>();
+                if(item==null)
+                {
+                    item = new DmucDichvuTrongCongkham();
+                    item.IsNew = true;
+                    item.IdDichvukcb = id_dichvu_kcb;
+                    item.IdChitietdichvu = id_dichvu;
+                    item.NguoiTao = globalVariables.UserName;
+                    item.NgayTao = globalVariables.SysDate;
+                    item.Save();
+                    if(dtDvukemtheo!=null && dtDvukemtheo.Columns.Count>0)
+                    {
+                        DataRow newDr = dtDvukemtheo.NewRow();
+                        Utility.FromObjectToDatarow(item, ref newDr);
+                        newDr["ten_chitietdichvu"] = txtDichvu.Text;
+                        dtDvukemtheo.Rows.Add(newDr);
+                    }
+                    txtDichvu.SetId(-1);
+                    txtDichvu.Focus();
+
+
+                }    
+
+            }
+            catch (Exception ex)
+            {
+
+                Utility.CatchException(ex);
+            }
         }
     }
 }

@@ -264,7 +264,7 @@ namespace VNS.HIS.UI.NOITRU
                 EmrPhieucamketchapnhanPttt objGiayXacnhan = EmrPhieucamketchapnhanPttt.FetchByID(Utility.Int32Dbnull(grdList.GetValue(EmrPhieucamketchapnhanPttt.Columns.IdPhieu), -1));
                 if (objGiayXacnhan == null)
                 {
-                    Utility.ShowMsg(string.Format("Phiếu chấp nhận cam kết PTTT và Gây mê hồi sức của người bệnh {0} có thể đã bị người khác xóa ở chức năng khác. Vui lòng kiểm tra lại bằng cách nhấn nút tìm kiếm", grdList.GetValue("ten_benhnhan").ToString()));
+                    Utility.ShowMsg(string.Format("Giấy cam kết chấp nhận PTTT của người bệnh {0} có thể đã bị người khác xóa ở chức năng khác. Vui lòng kiểm tra lại bằng cách nhấn nút tìm kiếm", grdList.GetValue("ten_benhnhan").ToString()));
                     return;
                 }
                 
@@ -272,7 +272,7 @@ namespace VNS.HIS.UI.NOITRU
                 {
                     if (DeleteMe())
                     {
-                        Utility.ShowMsg(string.Format("Xóa phiếu giấy xác nhận tai nạn thương tích cho người bệnh {0} thành công", grdList.GetValue("ten_benhnhan").ToString()));
+                        Utility.ShowMsg(string.Format("Xóa Giấy cam kết chấp nhận PTTT cho người bệnh {0} thành công", grdList.GetValue("ten_benhnhan").ToString()));
                         DataRow[] arrDr = m_dtData.Select(string.Format("{0}={1}", EmrPhieucamketchapnhanPttt.Columns.IdPhieu, grdList.GetValue(EmrPhieucamketchapnhanPttt.Columns.IdPhieu)));
                         if (arrDr.Length > 0)
                             m_dtData.Rows.Remove(arrDr[0]);
@@ -298,7 +298,7 @@ namespace VNS.HIS.UI.NOITRU
                            .ExecuteSingle<EmrPhieucamketchapnhanPttt>();
                     if (phieucamket.IdPhieu <= 0)
                     {
-                        Utility.ShowMsg("Bạn cần lưu thông tin phiếu chấp thuận PTTT và Gây mê hồi sức trước khi thực hiện in phiếu");
+                        Utility.ShowMsg("Bạn cần lưu thông tin Giấy cam kết chấp nhận PTTT trước khi thực hiện in phiếu");
                         return;
                     }
                     DataTable dtData = SPs.EmrPhieucamketchapnhanPtttLaythongtinIn(phieucamket.IdPhieu).GetDataSet().Tables[0];

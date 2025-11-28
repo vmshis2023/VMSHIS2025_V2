@@ -37,7 +37,8 @@ namespace VNS.HIS.UI.Forms.Dungchung.UCs
         }
         public void SetReadonly()
         {
-            txtMaluotkham.ReadOnly = cmdSearch.Enabled = false;
+            txtMaluotkham.ReadOnly = true;
+            cmdSearch.Enabled = false;
         }
         public void Refresh(KcbLuotkham objLuotkham)
         {

@@ -32,6 +32,7 @@ namespace VMS.HIS.UI.EMR.Ucs
         DmucNhanvien objNguoiXacnhan = null;
         DmucNhanvien objNguoiDaidien = null;
         bool isAllowDateChanged = false;
+        public bool Force2Saved = false;
         public uc_tt25_giayxacnhan_nghiduongthai()
         {
             InitializeComponent();
@@ -288,6 +289,7 @@ namespace VMS.HIS.UI.EMR.Ucs
                             giayxacnhan.UserNguoidaidien = objNguoiDaidien.UserName;
                         }
                         giayxacnhan.Save();
+                        emrdoc.Force2Saved = Force2Saved;
                         emrdoc.InitDocument(giayxacnhan.IdBenhnhan, giayxacnhan.MaLuotkham, Utility.Int64Dbnull(giayxacnhan.Id), giayxacnhan.Ngayxacnhan.Value, Loaiphieu_HIS.TT25_GIAYXACNHAN_NGHIDUONGTHAI, "TT25_GIAYXACNHAN_NGHIDUONGTHAI", giayxacnhan.NguoiTao,Utility.Int16Dbnull( objNguoiXacnhan.IdKhoa), Utility.Int16Dbnull(objNguoiXacnhan.IdPhong), Utility.Byte2Bool(0),"");
                         emrdoc.Save();
                     }

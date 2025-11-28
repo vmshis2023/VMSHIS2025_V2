@@ -1,4 +1,5 @@
 ﻿using Aspose.Words;
+using Aspose.Words.Tables;
 using SubSonic;
 using System;
 using System.Collections.Generic;
@@ -37,8 +38,7 @@ using VNS.Libs;
                 List<string> lstAddedFields = new List<string>() {"gioitinh_nam","gioitinh_nu","noikhoa_khong", "noikhoa_co", "pttt_khong", "pttt_co",
                 "tinhtrangravien_khoi", "tinhtrangravien_do", "tinhtrangravien_khongthaydoi",
                 "tinhtrangravien_nanghon", "tinhtrangravien_tuvong", "tinhtrangravien_xinve","tinhtrangravien_khongxacdinh"};
-                DataTable dtMergeField = dtData.Clone();
-                Utility.AddColums2DataTable(ref dtMergeField, lstAddedFields, typeof(string));
+               
                 string checkboxFieldsFile = AppDomain.CurrentDomain.BaseDirectory + "MAUBA\\BA_CHECKED_FIELDS.txt";
                 List<string>  lstcheckboxfields = Utility.GetFirstValueFromFile(checkboxFieldsFile).Split(',').ToList<string>();
 
@@ -48,20 +48,14 @@ using VNS.Libs;
                     Utility.ShowMsg("Không tìm thấy dữ liệu", "Thông báo", MessageBoxIcon.Warning);
                     return "";
                 }
+               
                 dtData.TableName = "noitru_tomtatBA";
                 Document doc;
+                Utility.SetHospitalInfor(dtData);
+                DataTable dtMergeField = dtData.Clone();
+                Utility.AddColums2DataTable(ref dtMergeField, lstAddedFields, typeof(string));
                 DataRow drData = dtData.Rows[0];
-                if (dtData.Columns.Contains("ten_benhvien")) drData["ten_benhvien"] = globalVariables.Branch_Name;
-                if (dtData.Columns.Contains("ten_SYT")) drData["ten_SYT"] = globalVariables.ParentBranch_Name;
-                if (dtData.Columns.Contains("ten_dvicaptren")) drData["ten_dvicaptren"] = globalVariables.ParentBranch_Name;
-                if (dtData.Columns.Contains("ten_benhvien")) drData["ten_benhvien"] = globalVariables.Branch_Name;
-                if (dtData.Columns.Contains("diahchi_benhvien")) drData["diahchi_benhvien"] = globalVariables.Branch_Address;
-                if (dtData.Columns.Contains("SDT_bv")) drData["SDT_bv"] = globalVariables.Branch_Phone;
-                if (dtData.Columns.Contains("Hotline_bv")) drData["Hotline_bv"] = globalVariables.Branch_Hotline;
-                if (dtData.Columns.Contains("Fax_bv")) drData["Fax_bv"] = globalVariables.Branch_Fax;
-                if (dtData.Columns.Contains("website_bv")) drData["website_bv"] = globalVariables.Branch_Website;
-                if (dtData.Columns.Contains("email_bv")) drData["email_bv"] = globalVariables.Branch_Email;
-                drData["dia_diem"] = globalVariables.gv_strDiadiem;
+
                 drData["ngay_thang_nam"] = Utility.FormatDateTime(ttba.NgayTtba.Value);
                 //Dictionary<string, string> dicMF = new Dictionary<string, string>();
                 //dicMF.Add("gioitinh_nam", objBN.IdGioitinh.ToString() == "0" ? "1" : "0");
@@ -148,7 +142,7 @@ using VNS.Libs;
                    // Utility.MergeFieldsCheckBox2Doc(builder, dicMF, null, drData);
                     //Các hàm MoveToMergeField cần thực hiện trước dòng MailMerge.Execute bên dưới
                     doc.MailMerge.Execute(drData);
-
+                    Utility.SignDoc(doc, builder, sysLogosize != null ? sysLogosize.SValue : "");
                     if (File.Exists(fileKetqua))
                     {
                         File.Delete(fileKetqua);
@@ -188,6 +182,41 @@ using VNS.Libs;
                 return "";
             }
         }
+       
+        static string LayFileCheckedFields(string loai_ba)
+        {
+            string checkboxFieldsFile = AppDomain.CurrentDomain.BaseDirectory + "MAUBA\\BA_CHECKED_FIELDS.txt";
+            switch (loai_ba)
+            {
+                case LoaiBA.BA_NOIKHOA:
+                case LoaiBA.BA_NOIKHOA_BA:
+                     checkboxFieldsFile = AppDomain.CurrentDomain.BaseDirectory + "MAUBA\\BA01_MAUCU_CHECKED_FIELDS.txt";
+                    break;
+                case LoaiBA.BA_NGOAIKHOA:
+                case LoaiBA.BA_NGOAIKHOA_BA:
+                    checkboxFieldsFile = AppDomain.CurrentDomain.BaseDirectory + "MAUBA\\BA02_MAUCU_CHECKED_FIELDS.txt";
+                    break;
+                case LoaiBA.BA_NGOAITRU_BA:
+                    checkboxFieldsFile = AppDomain.CurrentDomain.BaseDirectory + "MAUBA\\BA16_CHECKED_FIELDS.txt";
+                    break;
+                case LoaiBA.BA_SANKHOA:
+                    checkboxFieldsFile = AppDomain.CurrentDomain.BaseDirectory + "MAUBA\\BV05_CHECKED_FIELDS.txt";
+                    break;
+                case LoaiBA.BA_PHUKHOA:
+                case LoaiBA.BA_NAMKHOA:
+               
+                case LoaiBA.BA_NGOAITRU:
+                case LoaiBA.BA_SOSINH:
+                case LoaiBA.BA_NHIKHOA:
+                case LoaiBA.BA_IVF_VO:
+                case LoaiBA.BA_IVF_CHONG:
+                    break;
+                default:
+                    break;
+
+            }
+            return checkboxFieldsFile;
+        }
         static string LayMaBA( string loai_ba)
         {
             string tenToBA = "BENH_AN";
@@ -205,8 +234,14 @@ using VNS.Libs;
                 case LoaiBA.BA_NOIKHOA:
                     tenToBA = "BA_NOIKHOA";
                     break;
+                case LoaiBA.BA_NOIKHOA_BA:
+                    tenToBA = "BA_NOIKHOA_BA";
+                    break;
                 case LoaiBA.BA_NGOAIKHOA:
                     tenToBA = "BA_NGOAIKHOA";
+                    break;
+                case LoaiBA.BA_NGOAIKHOA_BA:
+                    tenToBA = "BA_NGOAIKHOA_BA";
                     break;
                 case LoaiBA.BA_NGOAITRU:
                     tenToBA = "BA_NGOAITRU";
@@ -259,45 +294,76 @@ using VNS.Libs;
                     else if (toBA == 4) tenToBA = "BANK_BANAMKHOA_TO4.doc";
                     else tenToBA = "BANK_BANAMKHOA.doc";
                     break;
-                case LoaiBA.BA_NOIKHOA:
+                case LoaiBA.BA_NOIKHOA_BA:
                     if (toBA == 1) tenToBA = "BA01_BANOIKHOA_TO1.doc";
                     else if (toBA == 0) tenToBA = "BA01_BANOIKHOA_BIA.doc";
                     else if (toBA == 2) tenToBA = "BA01_BANOIKHOA_TO2.doc";
                     else if (toBA == 3) tenToBA = "BA01_BANOIKHOA_TO3.doc";
                     else if (toBA == 4) tenToBA = "BA01_BANOIKHOA_TO4.doc";
+                    else if (toBA == 5) tenToBA = "BA01_BANOIKHOA_TO5.doc";
+                    else if (toBA == 6) tenToBA = "BA01_BANOIKHOA_TO6.doc";
+                    else if (toBA == 10) tenToBA = "BA01_BANOIKHOA_CACTODAU.doc";
                     else tenToBA = "BA01_BANOIKHOA.doc";
                     break;
+                case LoaiBA.BA_NOIKHOA:
+               
+                    if (toBA == 1) tenToBA = "BV01_BANOIKHOA_TO1.doc";
+                    else if (toBA == 0) tenToBA = "BV01_BANOIKHOA_BIA.doc";
+                    else if (toBA == 2) tenToBA = "BV01_BANOIKHOA_TO2.doc";
+                    else if (toBA == 3) tenToBA = "BV01_BANOIKHOA_TO3.doc";
+                    else if (toBA == 4) tenToBA = "BV01_BANOIKHOA_TO4.doc";
+                    else tenToBA = "BV01_BANOIKHOA.doc";
+                    break;
+                case LoaiBA.BA_NGOAIKHOA_BA:
+                    if (toBA == 1) tenToBA = "BA02_BANGOAIKHOA_TO1.doc";
+                    else if (toBA == 0) tenToBA = "BA02_BANGOAIKHOA_BIA.doc";
+                    else if (toBA == 2) tenToBA = "BA02_BANGOAIKHOA_TO2.doc";
+                    else if (toBA == 3) tenToBA = "BA02_BANGOAIKHOA_TO3.doc";
+                    else if (toBA == 4) tenToBA = "BA02_BANGOAIKHOA_TO4.doc";
+                    else if (toBA == 5) tenToBA = "BA02_BANGOAIKHOA_TO5.doc";
+                    else if (toBA == 6) tenToBA = "BA02_BANGOAIKHOA_TO6.doc";
+                    else if (toBA == 7) tenToBA = "BA02_BANGOAIKHOA_TO7.doc";
+                    else if (toBA == 10) tenToBA = "BA02_BANGOAIKHOA_CACTODAU.doc";
+                    else tenToBA = "BA02_BANGOAIKHOA.doc";
+                    break;
                 case LoaiBA.BA_NGOAIKHOA:
-                    if (toBA == 1) tenToBA = "BA10_BANGOAIKHOA_TO1.doc";
-                    else if (toBA == 0) tenToBA = "BA10_BANGOAIKHOA_BIA.doc";
-                    else if (toBA == 2) tenToBA = "BA10_BANGOAIKHOA_TO2.doc";
-                    else if (toBA == 3) tenToBA = "BA10_BANGOAIKHOA_TO3.doc";
-                    else if (toBA == 4) tenToBA = "BA10_BANGOAIKHOA_TO4.doc";
-                    else tenToBA = "BA10_BANGOAIKHOA.doc";
+                    if (toBA == 1) tenToBA = "BV10_BANGOAIKHOA_TO1.doc";
+                    else if (toBA == 0) tenToBA = "BV10_BANGOAIKHOA_BIA.doc";
+                    else if (toBA == 2) tenToBA = "BV10_BANGOAIKHOA_TO2.doc";
+                    else if (toBA == 3) tenToBA = "BV10_BANGOAIKHOA_TO3.doc";
+                    else if (toBA == 4) tenToBA = "BV10_BANGOAIKHOA_TO4.doc";
+                    else tenToBA = "BV10_BANGOAIKHOA.doc";
+                    break;
+                case LoaiBA.BA_NGOAITRU_BA:
+                    if (toBA == 1) tenToBA = "BA16_BANGOAITRU_TO1.doc";
+                    else if (toBA == 0) tenToBA = "BA16_BANGOAITRU_BIA.doc";
+                    else if (toBA == 2) tenToBA = "BA16_BANGOAITRU_TO2.doc";
+                    else if (toBA == 3) tenToBA = "BA16_BANGOAITRU_TO3.doc";
+                    else tenToBA = "BA16_BANGOAITRU.doc";
                     break;
                 case LoaiBA.BA_NGOAITRU:
-                    if (toBA == 1) tenToBA = "BA15_BANGOAITRU_TO1.doc";
-                    else if (toBA == 0) tenToBA = "BA15_BANGOAITRU_BIA.doc";
-                    else if (toBA == 2) tenToBA = "BA15_BANGOAITRU_TO2.doc";
-                    else if (toBA == 3) tenToBA = "BA15_BANGOAITRU_TO3.doc";
-                    else if (toBA == 4) tenToBA = "BA15_BANGOAITRU_TO4.doc";
-                    else tenToBA = "BA15_BANGOAITRU.doc";
+                    if (toBA == 1) tenToBA = "BV15_BANGOAITRU_TO1.doc";
+                    else if (toBA == 0) tenToBA = "BV15_BANGOAITRU_BIA.doc";
+                    else if (toBA == 2) tenToBA = "BV15_BANGOAITRU_TO2.doc";
+                    else if (toBA == 3) tenToBA = "BV15_BANGOAITRU_TO3.doc";
+                    else if (toBA == 4) tenToBA = "BV15_BANGOAITRU_TO4.doc";
+                    else tenToBA = "BV15_BANGOAITRU.doc";
                     break;
                 case LoaiBA.BA_SOSINH:
-                    if (toBA == 1) tenToBA = "BA06_BANSOSINH_TO1.doc";
-                    else if (toBA == 0) tenToBA = "BA06_BANSOSINH_BIA.doc";
-                    else if (toBA == 2) tenToBA = "BA06_BANSOSINH_TO2.doc";
-                    else if (toBA == 3) tenToBA = "BA06_BANSOSINH_TO3.doc";
-                    else if (toBA == 4) tenToBA = "BA06_BANSOSINH_TO4.doc";
-                    else tenToBA = "BA06_BANSOSINH.doc";
+                    if (toBA == 1) tenToBA = "BA06_BASOSINH_TO1.doc";
+                    else if (toBA == 0) tenToBA = "BA06_BASOSINH_BIA.doc";
+                    else if (toBA == 2) tenToBA = "BA06_BASOSINH_TO2.doc";
+                    else if (toBA == 3) tenToBA = "BA06_BASOSINH_TO3.doc";
+                    else if (toBA == 4) tenToBA = "BA06_BASOSINH_TO4.doc";
+                    else tenToBA = "BA06_BASOSINH.doc";
                     break;
                 case LoaiBA.BA_NHIKHOA:
-                    if (toBA == 1) tenToBA = "BA02_BANNHIKHOA_TO1.doc";
-                    else if (toBA == 0) tenToBA = "BA02_BANNHIKHOA_BIA.doc";
-                    else if (toBA == 2) tenToBA = "BA02_BANNHIKHOA_TO2.doc";
-                    else if (toBA == 3) tenToBA = "BA02_BANNHIKHOA_TO3.doc";
-                    else if (toBA == 4) tenToBA = "BA02_BANNHIKHOA_TO4.doc";
-                    else tenToBA = "BA02_BANNHIKHOA.doc";
+                    if (toBA == 1) tenToBA = "BA02_BANHIKHOA_TO1.doc";
+                    else if (toBA == 0) tenToBA = "BA02_BANHIKHOA_BIA.doc";
+                    else if (toBA == 2) tenToBA = "BA02_BANHIKHOA_TO2.doc";
+                    else if (toBA == 3) tenToBA = "BA02_BANHIKHOA_TO3.doc";
+                    else if (toBA == 4) tenToBA = "BA02_BANHIKHOA_TO4.doc";
+                    else tenToBA = "BA02_BANHIKHOA.doc";
                     break;
                 case LoaiBA.BA_IVF_CHONG:
                     if (toBA == 1) tenToBA = "BA_IVF_CHONG_TO1.doc";
@@ -460,6 +526,7 @@ using VNS.Libs;
         {
             try
             {
+                globalVariables.dtSignInfor = SPs.EmrLaythongtinChukyTrenphieu(IdBa.ToString(), "", 1).GetDataSet().Tables[0];
                 if (objLuotkham == null)
                 {
                     Utility.ShowMsg("Chưa có thông tin người bệnh để thực hiện thao tác in tóm tắt bệnh án");
@@ -479,7 +546,7 @@ using VNS.Libs;
                 {
                     dicMF.Add(chkField, Utility.Byte2Bool(drData[chkField]) ? "0" : "1");
                 }
-                string checkboxFieldsFile = AppDomain.CurrentDomain.BaseDirectory + "MAUBA\\BA_CHECKED_FIELDS.txt";
+                string checkboxFieldsFile = LayFileCheckedFields(LoaiBa);// AppDomain.CurrentDomain.BaseDirectory + "MAUBA\\BA_CHECKED_FIELDS.txt";
                 lstcheckboxfields = Utility.GetFirstValueFromFile(checkboxFieldsFile).Split(',').ToList<string>();
                 NoitruPhieuravien objPhieuRavien = new Select().From(NoitruPhieuravien.Schema)
                .Where(NoitruPhieuravien.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
@@ -489,6 +556,7 @@ using VNS.Libs;
                .And(NoitruPhieunhapvien.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham).ExecuteSingle<NoitruPhieunhapvien>();
                 dtData.TableName = LayMaBA(LoaiBa); ;
                 Document doc;
+                
                 if (dtData.Columns.Contains("ten_benhvien")) drData["ten_benhvien"] = globalVariables.Branch_Name;
                 if (dtData.Columns.Contains("ten_SYT")) drData["ten_SYT"] = globalVariables.ParentBranch_Name;
                 if (dtData.Columns.Contains("ten_dvicaptren")) drData["ten_dvicaptren"] = globalVariables.ParentBranch_Name;
@@ -507,6 +575,8 @@ using VNS.Libs;
                 {
                     if (dtData.Columns.Contains("p141")) drData["p141"] = Utility.FormatDateTime_giophut_ngay_thang_nam(Convert.ToDateTime(dtkhoanhapvien.Rows[0]["ngay_vaokhoa"]), "");//vào khoa
                     if (dtData.Columns.Contains("p141_1")) drData["p141_1"] = Utility.sDbnull(dtkhoanhapvien.Rows[0]["so_luong"], "0");
+                    if (dtData.Columns.Contains("sNgay_vaokhoa")) drData["sNgay_vaokhoa"] = Utility.FormatDateTime_giophut_ngay_thang_nam(Convert.ToDateTime(dtkhoanhapvien.Rows[0]["ngay_vaokhoa"]), "");//vào khoa
+                    if (dtData.Columns.Contains("songay_dieutri")) drData["songay_dieutri"] = Utility.sDbnull(dtkhoanhapvien.Rows[0]["so_luong"], "0");
                 }
                 //REM lại do đã xử lý ở bước fillData trước khi ghi
                 //drData["p103"] = drData["p140"];
@@ -518,7 +588,15 @@ using VNS.Libs;
                 if (dtData.Columns.Contains("p128")) drData["p128"] = Utility.FormatDateTime(Utility.sDbnull(drData["p128"], ""), "ngày......tháng......năm.........");//BHYT giá trị đến
                 if (dtData.Columns.Contains("p145_1")) drData["p145_1"] = objPhieuRavien != null ? Utility.FormatDateTime_giophut_ngay_thang_nam(objPhieuRavien.NgayRavien, "") : ".......... giờ ....... ngày ........./........./.............";//ra viện
                 if (dtData.Columns.Contains("p155_2")) drData["p155_2"] = Utility.FormatDateTime(Utility.sDbnull(drData["p155_2"], ""), globalVariables.NgayThangNam);//ra viện
-                                                                                                                                                // drData["p155_1"] = objPhieuRavien != null ? Utility.FormatDateTime_giophut_ngay_thang_nam(objPhieuRavien.NgayRavien, "") : ".......... giờ ....... ngày ........./........./.............";
+                                                                                                                                                                      // drData["p155_1"] = objPhieuRavien != null ? Utility.FormatDateTime_giophut_ngay_thang_nam(objPhieuRavien.NgayRavien, "") : ".......... giờ ....... ngày ........./........./.............";
+                if (dtData.Columns.Contains("sbhyt_denngay")) drData["sbhyt_denngay"] = Utility.FormatDateTime(Utility.sDbnull(drData["sbhyt_denngay"], ""), "ngày......tháng......năm.........");//BHYT giá trị đến
+                if (dtData.Columns.Contains("sNgay_ravien")) drData["sNgay_ravien"] = objPhieuRavien != null ? Utility.FormatDateTime_giophut_ngay_thang_nam(objPhieuRavien.NgayRavien, "") : ".......... giờ ....... ngày ........./........./.............";//ra viện
+
+
+                if (dtData.Columns.Contains("sNgay_vaovien")) drData["sNgay_vaovien"] = Utility.FormatDateTime(Utility.sDbnull(drData["sNgay_vaovien"], ""), "ngày......tháng......năm.........");//BHYT giá trị đến
+                if (dtData.Columns.Contains("sNgay_ravien")) drData["sNgay_ravien"] = Utility.FormatDateTime(Utility.sDbnull(drData["sNgay_ravien"], ""), "ngày......tháng......năm.........");//BHYT giá trị đến
+                if (dtData.Columns.Contains("sNgaylam_ba")) drData["sNgaylam_ba"] = Utility.FormatDateTime(Utility.sDbnull(drData["sNgaylam_ba"], ""), "ngày......tháng......năm.........");//BHYT giá trị đến
+                if (dtData.Columns.Contains("sNgay_Tongket_BA")) drData["sNgay_Tongket_BA"] = Utility.FormatDateTime(Utility.sDbnull(drData["sNgay_Tongket_BA"], ""), "ngày......tháng......năm.........");//BHYT giá trị đến
 
                 //drData["diahchi_benhvien"] = globalVariables.Branch_Address;
                 //drData["SDT_bv"] = globalVariables.Branch_Phone;
@@ -553,7 +631,10 @@ using VNS.Libs;
                                Path.GetDirectoryName(writePathdoc), Path.DirectorySeparatorChar,
                                Path.GetFileNameWithoutExtension(PathDoc), "EmrBa", objLuotkham.MaLuotkham, Utility.sDbnull(IdBa), Guid.NewGuid().ToString(), Path.GetExtension(PathDoc));
 
-
+                DataTable dt_tiensu_pttt_ngoaikhoa = new Select().From(EmrTiensuPhauthuatNgoaikhoa.Schema)
+                    .Where(EmrTiensuPhauthuatNgoaikhoa.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
+                    .And(EmrTiensuPhauthuatNgoaikhoa.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
+                    .ExecuteDataSet().Tables[0];
                 if ((drData != null) && File.Exists(PathDoc))
                 {
                     doc = new Document(PathDoc);
@@ -589,20 +670,23 @@ using VNS.Libs;
                     {
                         int table_idx = 0;
                         int row_idx = 0;
+                        int Child_idx = 0;
                         string tbl_idx = "";
                         string vitribangcha = "0";//Vị trí bảng cha chứa bảng(chỉ có ý nghĩa với các tờ phía sau, chứ tờ 1 chắc nằm trong bảng 1 ứng với idx=0)
+                        string vitri_child = "6";//Mỗi hàng hoặc table trong bảng là 1 phần tử. Áp dụng cho các mẫu nhiều bảng trong các bảng Tờ 1,2,3,4,5,6
                         string vitrihang = "14";//Vị trí hàng trong bảng cha chứa bảng
-                        if (dtkhoachuyen != null && dtkhoachuyen.Columns.Count > 0 && (toBA == 1 || toBA == 100))//Thông tin chuyển khoa chỉ có ở tờ 1 hoặc in full
+                        if (dtkhoachuyen != null && dtkhoachuyen.Columns.Count > 0 && (toBA == 1 || toBA == 100 || toBA == 0))//Thông tin chuyển khoa chỉ có ở tờ 1 hoặc in full
                         {
                             Aspose.Words.Tables.Table topTable = doc.FirstSection.Body.Tables[0];//Table có 4 rows, mỗi row chứa 1 tờ
                             vitribangcha = string.Format("{0}_CHUYENKHOA_VITRIBANGCHA", loai_ba);
                             table_idx = Utility.Int32Dbnull(THU_VIEN_CHUNG.Laygiatrithamsohethong(vitribangcha, "-1", true));
                             vitrihang = string.Format("{0}_CHUYENKHOA_VITRIHANG", loai_ba);
+                            vitri_child = string.Format("{0}_CHUYENKHOA_CHILD_IDX", loai_ba);
                             row_idx = Utility.Int32Dbnull(THU_VIEN_CHUNG.Laygiatrithamsohethong(vitrihang, "-1", true));
+                            Child_idx= Utility.Int32Dbnull(THU_VIEN_CHUNG.Laygiatrithamsohethong(vitri_child, "0", true));
                             if (table_idx >= 0 && row_idx >= 0)
                             {
-
-                                Aspose.Words.Tables.Table tab = topTable.Rows[0].Cells[0].ChildNodes[1] as Aspose.Words.Tables.Table;//dòng index=0 là chữ font nhỏ để hiển thị viền trên của bảng phía trong
+                                Aspose.Words.Tables.Table tab = topTable.Rows[0].Cells[0].ChildNodes[Child_idx] as Aspose.Words.Tables.Table;//dòng index=0 là chữ font nhỏ để hiển thị viền trên của bảng phía trong
                                 tab = tab.Rows[row_idx].Cells[1].FirstChild as Aspose.Words.Tables.Table;//(Aspose.Words.Tables.Table)doc.GetChild(NodeType.Table, 0, true);//
                                 int idx = 1;//Đè lên header trong design
                                 foreach (DataRow dr in dtkhoachuyen.Rows)
@@ -650,196 +734,277 @@ using VNS.Libs;
                                 }
                             }
                         }
-                        if (dt_tssk != null && dt_tssk.Columns.Count > 0 && dt_tssk.Rows.Count>0 && (toBA == 2 || toBA == 100))//In thông tin tiền sử sản khoa in tờ 2, BA nào không có thì không cần khai báo tham số hệ thống
+                        if ( (toBA == 2 || toBA == 100 || toBA == 0))//In thông tin tiền sử sản khoa in tờ 2, BA nào không có thì không cần khai báo tham số hệ thống
                         {
-                            Aspose.Words.Tables.Table topTable = doc.FirstSection.Body.Tables[0];//Table có 4 rows, mỗi row chứa 1 tờ
-                            vitribangcha = toBA == 2 ? string.Format("{0}_TIENSUSANKHOA_VITRIBANGCHA", loai_ba) : string.Format("{0}_TIENSUSANKHOA_VITRIBANGCHA_FULL", loai_ba);
-                            table_idx = Utility.Int32Dbnull(THU_VIEN_CHUNG.Laygiatrithamsohethong(vitribangcha, "-1", true));
-                            vitrihang = string.Format("{0}_TIENSUSANKHOA_VITRIHANG", loai_ba);
-                            row_idx = Utility.Int32Dbnull(THU_VIEN_CHUNG.Laygiatrithamsohethong(vitrihang, "-1", true));
-                            byte isCheck = 0;
-                            if (table_idx >= 0 && row_idx >= 0)
+                            if (dt_tssk != null && dt_tssk.Columns.Count > 0 && dt_tssk.Rows.Count > 0)
                             {
-                                Aspose.Words.Tables.Table tab = topTable.Rows[table_idx].Cells[0].ChildNodes[1] as Aspose.Words.Tables.Table;//doc.FirstSection.Body.Tables[table_idx];
-                                //Bảng nằm ở vị trí dòng thứ 11 của bảng lớn. Có 14 cột luôn
-                                tab = tab.Rows[row_idx].Cells[0].FirstChild as Aspose.Words.Tables.Table;//(Aspose.Words.Tables.Table)doc.GetChild(NodeType.Table, 0, true);//
-                                int idx = 2;//Giữ lại tiêu đề header của bảng
-                                int solan_cothai = 1;
-                                foreach (DataRow dr in dt_tssk.Rows)
+                                Aspose.Words.Tables.Table topTable = doc.FirstSection.Body.Tables[0];//Table có 4 rows, mỗi row chứa 1 tờ
+                                vitribangcha = toBA == 2 ? string.Format("{0}_TIENSUSANKHOA_VITRIBANGCHA", loai_ba) : string.Format("{0}_TIENSUSANKHOA_VITRIBANGCHA_FULL", loai_ba);
+                                table_idx = Utility.Int32Dbnull(THU_VIEN_CHUNG.Laygiatrithamsohethong(vitribangcha, "-1", true));
+                                vitrihang = string.Format("{0}_TIENSUSANKHOA_VITRIHANG", loai_ba);
+                                row_idx = Utility.Int32Dbnull(THU_VIEN_CHUNG.Laygiatrithamsohethong(vitrihang, "-1", true));
+                                byte isCheck = 0;
+                                if (table_idx >= 0 && row_idx >= 0)
                                 {
-                                    Aspose.Words.Tables.Row newRow = idx == 1 ? (Aspose.Words.Tables.Row)tab.LastRow : (Aspose.Words.Tables.Row)tab.LastRow.Clone(true);//.Clone(true);
-                                    newRow.RowFormat.Borders.Shadow = false;
-                                    newRow.Cells[0].CellFormat.Shading.BackgroundPatternColor = Color.White;
-                                    newRow.Cells[1].CellFormat.Shading.BackgroundPatternColor = Color.White;
-                                    newRow.Cells[2].CellFormat.Shading.BackgroundPatternColor = Color.White;
-                                    newRow.Cells[3].CellFormat.Shading.BackgroundPatternColor = Color.White;
-                                    newRow.Cells[4].CellFormat.Shading.BackgroundPatternColor = Color.White;
-                                    newRow.Cells[5].CellFormat.Shading.BackgroundPatternColor = Color.White;
-                                    newRow.Cells[6].CellFormat.Shading.BackgroundPatternColor = Color.White;
-                                    newRow.Cells[7].CellFormat.Shading.BackgroundPatternColor = Color.White;
-                                    newRow.Cells[8].CellFormat.Shading.BackgroundPatternColor = Color.White;
-                                    newRow.Cells[9].CellFormat.Shading.BackgroundPatternColor = Color.White;
-                                    newRow.Cells[10].CellFormat.Shading.BackgroundPatternColor = Color.White;
-                                    newRow.Cells[11].CellFormat.Shading.BackgroundPatternColor = Color.White;
-                                    newRow.Cells[12].CellFormat.Shading.BackgroundPatternColor = Color.White;
-                                    newRow.Cells[13].CellFormat.Shading.BackgroundPatternColor = Color.White;
+                                    Aspose.Words.Tables.Table tab = topTable.Rows[table_idx].Cells[0].ChildNodes[0] as Aspose.Words.Tables.Table;//doc.FirstSection.Body.Tables[table_idx];
+                                                                                                                                                 //Bảng nằm ở vị trí dòng thứ 11 của bảng lớn. Có 14 cột luôn
+                                    tab = tab.Rows[row_idx].Cells[0].FirstChild as Aspose.Words.Tables.Table;//(Aspose.Words.Tables.Table)doc.GetChild(NodeType.Table, 0, true);//
+                                    int idx = 2;//Giữ lại tiêu đề header của bảng
+                                    int solan_cothai = 1;
+                                    foreach (DataRow dr in dt_tssk.Rows)
+                                    {
+                                        Aspose.Words.Tables.Row newRow = idx == 1 ? (Aspose.Words.Tables.Row)tab.LastRow : (Aspose.Words.Tables.Row)tab.LastRow.Clone(true);//.Clone(true);
+                                        newRow.RowFormat.Borders.Shadow = false;
+                                        newRow.Cells[0].CellFormat.Shading.BackgroundPatternColor = Color.White;
+                                        newRow.Cells[1].CellFormat.Shading.BackgroundPatternColor = Color.White;
+                                        newRow.Cells[2].CellFormat.Shading.BackgroundPatternColor = Color.White;
+                                        newRow.Cells[3].CellFormat.Shading.BackgroundPatternColor = Color.White;
+                                        newRow.Cells[4].CellFormat.Shading.BackgroundPatternColor = Color.White;
+                                        newRow.Cells[5].CellFormat.Shading.BackgroundPatternColor = Color.White;
+                                        newRow.Cells[6].CellFormat.Shading.BackgroundPatternColor = Color.White;
+                                        newRow.Cells[7].CellFormat.Shading.BackgroundPatternColor = Color.White;
+                                        newRow.Cells[8].CellFormat.Shading.BackgroundPatternColor = Color.White;
+                                        newRow.Cells[9].CellFormat.Shading.BackgroundPatternColor = Color.White;
+                                        newRow.Cells[10].CellFormat.Shading.BackgroundPatternColor = Color.White;
+                                        newRow.Cells[11].CellFormat.Shading.BackgroundPatternColor = Color.White;
+                                        newRow.Cells[12].CellFormat.Shading.BackgroundPatternColor = Color.White;
+                                        newRow.Cells[13].CellFormat.Shading.BackgroundPatternColor = Color.White;
+                                        newRow.Cells[14].CellFormat.Shading.BackgroundPatternColor = Color.White;
 
 
+                                        newRow.Cells[0].FirstParagraph.Runs.Clear();
+                                        newRow.Cells[1].FirstParagraph.Runs.Clear();
+                                        newRow.Cells[2].FirstParagraph.Runs.Clear();
+                                        newRow.Cells[3].FirstParagraph.Runs.Clear();
+                                        newRow.Cells[4].FirstParagraph.Runs.Clear();
+                                        newRow.Cells[5].FirstParagraph.Runs.Clear();
+                                        newRow.Cells[6].FirstParagraph.Runs.Clear();
+                                        newRow.Cells[7].FirstParagraph.Runs.Clear();
+                                        newRow.Cells[8].FirstParagraph.Runs.Clear();
+                                        newRow.Cells[9].FirstParagraph.Runs.Clear();
+                                        newRow.Cells[10].FirstParagraph.Runs.Clear();
+                                        newRow.Cells[11].FirstParagraph.Runs.Clear();
+                                        newRow.Cells[12].FirstParagraph.Runs.Clear();
+                                        newRow.Cells[13].FirstParagraph.Runs.Clear();
+                                        newRow.Cells[14].FirstParagraph.Runs.Clear();
 
-                                    newRow.Cells[0].FirstParagraph.Runs.Clear();
-                                    newRow.Cells[1].FirstParagraph.Runs.Clear();
-                                    newRow.Cells[2].FirstParagraph.Runs.Clear();
-                                    newRow.Cells[3].FirstParagraph.Runs.Clear();
-                                    newRow.Cells[4].FirstParagraph.Runs.Clear();
-                                    newRow.Cells[5].FirstParagraph.Runs.Clear();
-                                    newRow.Cells[6].FirstParagraph.Runs.Clear();
-                                    newRow.Cells[7].FirstParagraph.Runs.Clear();
-                                    newRow.Cells[8].FirstParagraph.Runs.Clear();
-                                    newRow.Cells[9].FirstParagraph.Runs.Clear();
-                                    newRow.Cells[10].FirstParagraph.Runs.Clear();
-                                    newRow.Cells[11].FirstParagraph.Runs.Clear();
-                                    newRow.Cells[12].FirstParagraph.Runs.Clear();
-                                    newRow.Cells[13].FirstParagraph.Runs.Clear();
+                                        Run r = new Run(doc);
+                                        r.Font.Name = "Times New Roman";
+                                        r.Font.Size = 10d;
+                                        r.Font.Bold = false;
+                                        //r.Font.Color = Color.FromArgb(102, 0, 102);
+                                        r.Text = Utility.sDbnull(solan_cothai);
+                                        newRow.Cells[0].FirstParagraph.AppendChild(r);
+                                        newRow.Cells[0].FirstParagraph.ParagraphFormat.Alignment = ParagraphAlignment.Center;
+                                        solan_cothai += 1;
+                                        r = new Run(doc);
+                                        r.Font.Name = "Times New Roman";
+                                        r.Font.Bold = false;
+                                        r.Font.Size = 10d;
+                                        //r.Font.Color = Color.FromArgb(102, 0, 102);
+                                        r.Text = Utility.sDbnull(dr["nam"], "");
+                                        newRow.Cells[1].FirstParagraph.AppendChild(r);
+                                        newRow.Cells[1].FirstParagraph.ParagraphFormat.Alignment = ParagraphAlignment.Center;
 
+                                        isCheck = Utility.ByteDbnull(dr["deduthang"], 0);
+                                        //if (dicMF[field] == "1")
+                                        //{
+                                        //    builder.Font.Name = "Wingdings 2";
+                                        //    builder.Write(char.ConvertFromUtf32(82));
+                                        //    builder.Font.ClearFormatting();
+                                        //}
+                                        //else
+                                        //{
+                                        //    builder.Font.Name = "Wingdings 2";
+                                        //    builder.Write(char.ConvertFromUtf32(163));
+                                        //    builder.Font.ClearFormatting();
+                                        //}
 
-                                    Run r = new Run(doc);
-                                    r.Font.Name = "Times New Roman";
-                                    r.Font.Size = 10d;
-                                    r.Font.Bold = false;
-                                    //r.Font.Color = Color.FromArgb(102, 0, 102);
-                                    r.Text = Utility.sDbnull(solan_cothai);
-                                    newRow.Cells[0].FirstParagraph.AppendChild(r);
-                                    newRow.Cells[0].FirstParagraph.ParagraphFormat.Alignment = ParagraphAlignment.Center;
-                                    solan_cothai += 1;
-                                    r = new Run(doc);
-                                    r.Font.Name = "Times New Roman";
-                                    r.Font.Bold = false;
-                                    r.Font.Size = 10d;
-                                    //r.Font.Color = Color.FromArgb(102, 0, 102);
-                                    r.Text = Utility.sDbnull(dr["nam"], "");
-                                    newRow.Cells[1].FirstParagraph.AppendChild(r);
-                                    newRow.Cells[1].FirstParagraph.ParagraphFormat.Alignment = ParagraphAlignment.Center;
+                                        r = new Run(doc);
 
-                                    isCheck = Utility.ByteDbnull(dr["deduthang"], 0);
-                                    //if (dicMF[field] == "1")
-                                    //{
-                                    //    builder.Font.Name = "Wingdings 2";
-                                    //    builder.Write(char.ConvertFromUtf32(82));
-                                    //    builder.Font.ClearFormatting();
-                                    //}
-                                    //else
-                                    //{
-                                    //    builder.Font.Name = "Wingdings 2";
-                                    //    builder.Write(char.ConvertFromUtf32(163));
-                                    //    builder.Font.ClearFormatting();
-                                    //}
-
-                                    r = new Run(doc);
-
-                                    r.Font.Name = "Wingdings 2";
-                                    r.Text = isCheck == 1 ? char.ConvertFromUtf32(82) : char.ConvertFromUtf32(163);
-                                    //r.Font.Color = Color.FromArgb(102, 0, 102);
-                                    //r.Text = Utility.sDbnull(dr["deduthang"], "");
-                                    newRow.Cells[2].FirstParagraph.AppendChild(r);
-                                    newRow.Cells[2].FirstParagraph.ParagraphFormat.Alignment = ParagraphAlignment.Center;
-
-
-                                    r = new Run(doc);
-                                    isCheck = Utility.ByteDbnull(dr["dethieuthang"], 0);
-                                    r.Font.Name = "Wingdings 2";
-                                    r.Text = isCheck == 1 ? char.ConvertFromUtf32(82) : char.ConvertFromUtf32(163);
-                                    newRow.Cells[3].FirstParagraph.AppendChild(r);
-                                    newRow.Cells[3].FirstParagraph.ParagraphFormat.Alignment = ParagraphAlignment.Center;
-
-                                    r = new Run(doc);
-                                    isCheck = Utility.ByteDbnull(dr["say"], 0);
-                                    r.Font.Name = "Wingdings 2";
-                                    r.Text = isCheck == 1 ? char.ConvertFromUtf32(82) : char.ConvertFromUtf32(163);
-
-                                    newRow.Cells[4].FirstParagraph.AppendChild(r);
-                                    newRow.Cells[4].FirstParagraph.ParagraphFormat.Alignment = ParagraphAlignment.Center;
-
-                                    r = new Run(doc);
-                                    isCheck = Utility.ByteDbnull(dr["hut"], 0);
-                                    r.Font.Name = "Wingdings 2";
-                                    r.Text = isCheck == 1 ? char.ConvertFromUtf32(82) : char.ConvertFromUtf32(163);
-
-                                    newRow.Cells[5].FirstParagraph.AppendChild(r);
-                                    newRow.Cells[5].FirstParagraph.ParagraphFormat.Alignment = ParagraphAlignment.Center;
-
-                                    r = new Run(doc);
-                                    isCheck = Utility.ByteDbnull(dr["nao"], 0);
-                                    r.Font.Name = "Wingdings 2";
-                                    r.Text = isCheck == 1 ? char.ConvertFromUtf32(82) : char.ConvertFromUtf32(163);
-
-                                    newRow.Cells[6].FirstParagraph.AppendChild(r);
-                                    newRow.Cells[6].FirstParagraph.ParagraphFormat.Alignment = ParagraphAlignment.Center;
-
-                                    r = new Run(doc);
-                                    isCheck = Utility.ByteDbnull(dr["covac"], 0);
-                                    r.Font.Name = "Wingdings 2";
-                                    r.Text = isCheck == 1 ? char.ConvertFromUtf32(82) : char.ConvertFromUtf32(163);
+                                        r.Font.Name = "Wingdings 2";
+                                        r.Text = isCheck == 1 ? char.ConvertFromUtf32(82) : char.ConvertFromUtf32(163);
+                                        //r.Font.Color = Color.FromArgb(102, 0, 102);
+                                        //r.Text = Utility.sDbnull(dr["deduthang"], "");
+                                        newRow.Cells[2].FirstParagraph.AppendChild(r);
+                                        newRow.Cells[2].FirstParagraph.ParagraphFormat.Alignment = ParagraphAlignment.Center;
 
 
-                                    newRow.Cells[7].FirstParagraph.AppendChild(r);
-                                    newRow.Cells[7].FirstParagraph.ParagraphFormat.Alignment = ParagraphAlignment.Center;
+                                        r = new Run(doc);
+                                        isCheck = Utility.ByteDbnull(dr["dethieuthang"], 0);
+                                        r.Font.Name = "Wingdings 2";
+                                        r.Text = isCheck == 1 ? char.ConvertFromUtf32(82) : char.ConvertFromUtf32(163);
+                                        newRow.Cells[3].FirstParagraph.AppendChild(r);
+                                        newRow.Cells[3].FirstParagraph.ParagraphFormat.Alignment = ParagraphAlignment.Center;
 
-                                    r = new Run(doc);
-                                    isCheck = Utility.ByteDbnull(dr["chuangoaitucung"], 0);
-                                    r.Font.Name = "Wingdings 2";
-                                    r.Text = isCheck == 1 ? char.ConvertFromUtf32(82) : char.ConvertFromUtf32(163);
-                                    newRow.Cells[8].FirstParagraph.AppendChild(r);
-                                    newRow.Cells[8].FirstParagraph.ParagraphFormat.Alignment = ParagraphAlignment.Center;
+                                        r = new Run(doc);
+                                        isCheck = Utility.ByteDbnull(dr["say"], 0);
+                                        r.Font.Name = "Wingdings 2";
+                                        r.Text = isCheck == 1 ? char.ConvertFromUtf32(82) : char.ConvertFromUtf32(163);
 
-                                    r = new Run(doc);
-                                    isCheck = Utility.ByteDbnull(dr["thaichetluu"], 0);
-                                    r.Font.Name = "Wingdings 2";
-                                    r.Text = isCheck == 1 ? char.ConvertFromUtf32(82) : char.ConvertFromUtf32(163);
+                                        newRow.Cells[4].FirstParagraph.AppendChild(r);
+                                        newRow.Cells[4].FirstParagraph.ParagraphFormat.Alignment = ParagraphAlignment.Center;
 
-                                    newRow.Cells[9].FirstParagraph.AppendChild(r);
-                                    newRow.Cells[9].FirstParagraph.ParagraphFormat.Alignment = ParagraphAlignment.Center;
+                                        r = new Run(doc);
+                                        isCheck = Utility.ByteDbnull(dr["hut"], 0);
+                                        r.Font.Name = "Wingdings 2";
+                                        r.Text = isCheck == 1 ? char.ConvertFromUtf32(82) : char.ConvertFromUtf32(163);
 
-                                    r = new Run(doc);
-                                    isCheck = Utility.ByteDbnull(dr["conhiensong"], 0);
-                                    r.Font.Name = "Wingdings 2";
-                                    r.Text = isCheck == 1 ? char.ConvertFromUtf32(82) : char.ConvertFromUtf32(163);
+                                        newRow.Cells[5].FirstParagraph.AppendChild(r);
+                                        newRow.Cells[5].FirstParagraph.ParagraphFormat.Alignment = ParagraphAlignment.Center;
 
-                                    newRow.Cells[10].FirstParagraph.AppendChild(r);
-                                    newRow.Cells[10].FirstParagraph.ParagraphFormat.Alignment = ParagraphAlignment.Center;
+                                        r = new Run(doc);
+                                        isCheck = Utility.ByteDbnull(dr["nao"], 0);
+                                        r.Font.Name = "Wingdings 2";
+                                        r.Text = isCheck == 1 ? char.ConvertFromUtf32(82) : char.ConvertFromUtf32(163);
 
-                                    r = new Run(doc);
-                                    r.Font.Name = "Times New Roman";
-                                    r.Font.Bold = false;
-                                    r.Font.Size = 10d;
-                                    //r.Font.Color = Color.FromArgb(102, 0, 102);
-                                    r.Text = Utility.sDbnull(dr["thongtintre_cannang_benhtat"], "");
-                                    newRow.Cells[11].FirstParagraph.AppendChild(r);
-                                    newRow.Cells[11].FirstParagraph.ParagraphFormat.Alignment = ParagraphAlignment.Left;
+                                        newRow.Cells[6].FirstParagraph.AppendChild(r);
+                                        newRow.Cells[6].FirstParagraph.ParagraphFormat.Alignment = ParagraphAlignment.Center;
 
-                                    r = new Run(doc);
-                                    r.Font.Name = "Times New Roman";
-                                    r.Font.Bold = false;
-                                    r.Font.Size = 10d;
-                                    //r.Font.Color = Color.FromArgb(102, 0, 102);
-                                    r.Text = Utility.sDbnull(dr["phuongphapde"], "");//Chửa trứng
-                                    newRow.Cells[12].FirstParagraph.AppendChild(r);
-                                    newRow.Cells[12].FirstParagraph.ParagraphFormat.Alignment = ParagraphAlignment.Left;
+                                        r = new Run(doc);
+                                        isCheck = Utility.ByteDbnull(dr["covac"], 0);
+                                        r.Font.Name = "Wingdings 2";
+                                        r.Text = isCheck == 1 ? char.ConvertFromUtf32(82) : char.ConvertFromUtf32(163);
 
-                                    r = new Run(doc);
-                                    isCheck = Utility.ByteDbnull(dr["taibien_hausan"], 0);
-                                    r.Font.Name = "Wingdings 2";
-                                    r.Text = isCheck == 1 ? char.ConvertFromUtf32(82) : char.ConvertFromUtf32(163);
 
-                                    newRow.Cells[13].FirstParagraph.AppendChild(r);
-                                    newRow.Cells[13].FirstParagraph.ParagraphFormat.Alignment = ParagraphAlignment.Center;
-                                    if (idx > 1)
-                                        tab.AppendChild(newRow);
-                                    idx += 1;
+                                        newRow.Cells[7].FirstParagraph.AppendChild(r);
+                                        newRow.Cells[7].FirstParagraph.ParagraphFormat.Alignment = ParagraphAlignment.Center;
+
+                                        r = new Run(doc);
+                                        isCheck = Utility.ByteDbnull(dr["chuangoaitucung"], 0);
+                                        r.Font.Name = "Wingdings 2";
+                                        r.Text = isCheck == 1 ? char.ConvertFromUtf32(82) : char.ConvertFromUtf32(163);
+                                        newRow.Cells[8].FirstParagraph.AppendChild(r);
+                                        newRow.Cells[8].FirstParagraph.ParagraphFormat.Alignment = ParagraphAlignment.Center;
+
+                                        r = new Run(doc);
+                                        isCheck = Utility.ByteDbnull(dr["chua_trung"], 0);
+                                        r.Font.Name = "Wingdings 2";
+                                        r.Text = isCheck == 1 ? char.ConvertFromUtf32(82) : char.ConvertFromUtf32(163);
+                                        newRow.Cells[9].FirstParagraph.AppendChild(r);
+                                        newRow.Cells[9].FirstParagraph.ParagraphFormat.Alignment = ParagraphAlignment.Center;
+
+
+                                        r = new Run(doc);
+                                        isCheck = Utility.ByteDbnull(dr["thaichetluu"], 0);
+                                        r.Font.Name = "Wingdings 2";
+                                        r.Text = isCheck == 1 ? char.ConvertFromUtf32(82) : char.ConvertFromUtf32(163);
+
+                                        newRow.Cells[10].FirstParagraph.AppendChild(r);
+                                        newRow.Cells[10].FirstParagraph.ParagraphFormat.Alignment = ParagraphAlignment.Center;
+
+                                        r = new Run(doc);
+                                        isCheck = Utility.ByteDbnull(dr["conhiensong"], 0);
+                                        r.Font.Name = "Wingdings 2";
+                                        r.Text = isCheck == 1 ? char.ConvertFromUtf32(82) : char.ConvertFromUtf32(163);
+
+                                        newRow.Cells[11].FirstParagraph.AppendChild(r);
+                                        newRow.Cells[11].FirstParagraph.ParagraphFormat.Alignment = ParagraphAlignment.Center;
+
+                                        r = new Run(doc);
+                                        r.Font.Name = "Times New Roman";
+                                        r.Font.Bold = false;
+                                        r.Font.Size = 10d;
+                                        //r.Font.Color = Color.FromArgb(102, 0, 102);
+                                        r.Text = Utility.sDbnull(dr["thongtintre_cannang_benhtat"], "");
+                                        newRow.Cells[12].FirstParagraph.AppendChild(r);
+                                        newRow.Cells[12].FirstParagraph.ParagraphFormat.Alignment = ParagraphAlignment.Left;
+
+                                        r = new Run(doc);
+                                        r.Font.Name = "Times New Roman";
+                                        r.Font.Bold = false;
+                                        r.Font.Size = 10d;
+                                        //r.Font.Color = Color.FromArgb(102, 0, 102);
+                                        r.Text = Utility.sDbnull(dr["phuongphapde"], "");//Chửa trứng
+                                        newRow.Cells[13].FirstParagraph.AppendChild(r);
+                                        newRow.Cells[13].FirstParagraph.ParagraphFormat.Alignment = ParagraphAlignment.Left;
+
+                                        r = new Run(doc);
+                                        isCheck = Utility.ByteDbnull(dr["taibien_hausan"], 0);
+                                        r.Font.Name = "Wingdings 2";
+                                        r.Text = isCheck == 1 ? char.ConvertFromUtf32(82) : char.ConvertFromUtf32(163);
+
+                                        newRow.Cells[14].FirstParagraph.AppendChild(r);
+                                        newRow.Cells[14].FirstParagraph.ParagraphFormat.Alignment = ParagraphAlignment.Center;
+                                        if (idx > 1)
+                                            tab.AppendChild(newRow);
+                                        idx += 1;
+                                    }
+                                }
+                            }
+                            if (dt_tiensu_pttt_ngoaikhoa != null && dt_tiensu_pttt_ngoaikhoa.Columns.Count > 0 && dt_tiensu_pttt_ngoaikhoa.Rows.Count > 0)
+                            {
+                                Aspose.Words.Tables.Table topTable = doc.FirstSection.Body.Tables[0];//Table có n rows, mỗi row chứa 1 tờ
+                                vitribangcha = toBA == 2 ? string.Format("{0}_TIENSUPTTT_NGOAIKHOA_VITRIBANGCHA", loai_ba) : string.Format("{0}_TIENSUPTTT_NGOAIKHOA_VITRIBANGCHA_FULL", loai_ba);
+                                table_idx = Utility.Int32Dbnull(THU_VIEN_CHUNG.Laygiatrithamsohethong(vitribangcha, "-1", true));
+                                vitrihang = string.Format("{0}_TIENSUPTTT_NGOAIKHOA_VITRIHANG", loai_ba);
+                                row_idx = Utility.Int32Dbnull(THU_VIEN_CHUNG.Laygiatrithamsohethong(vitrihang, "-1", true));
+                                byte isCheck = 0;
+                                if (table_idx >= 0 && row_idx >= 0)
+                                {
+                                    Aspose.Words.Tables.Table tab = topTable.Rows[table_idx].Cells[0].ChildNodes[0] as Aspose.Words.Tables.Table;// doc.FirstSection.Body.Tables[table_idx];
+
+                                    tab = tab.Rows[row_idx].Cells[0].FirstChild as Aspose.Words.Tables.Table;//(Aspose.Words.Tables.Table)doc.GetChild(NodeType.Table, 0, true);//
+                                    int idx = 2;//Giữ lại tiêu đề header của bảng
+                                    foreach (DataRow dr in dt_tiensu_pttt_ngoaikhoa.Rows)
+                                    {
+                                        Aspose.Words.Tables.Row newRow = idx == 1 ? (Aspose.Words.Tables.Row)tab.LastRow : (Aspose.Words.Tables.Row)tab.LastRow.Clone(true);//.Clone(true);
+                                        newRow.RowFormat.Borders.Shadow = false;
+                                        newRow.Cells[0].CellFormat.Shading.BackgroundPatternColor = Color.White;
+                                        newRow.Cells[1].CellFormat.Shading.BackgroundPatternColor = Color.White;
+                                        newRow.Cells[2].CellFormat.Shading.BackgroundPatternColor = Color.White;
+                                        newRow.Cells[3].CellFormat.Shading.BackgroundPatternColor = Color.White;
+
+                                        newRow.Cells[0].FirstParagraph.Runs.Clear();
+                                        newRow.Cells[1].FirstParagraph.Runs.Clear();
+                                        newRow.Cells[2].FirstParagraph.Runs.Clear();
+                                        newRow.Cells[3].FirstParagraph.Runs.Clear();
+
+                                        Run r = new Run(doc);
+                                        r.Font.Name = "Times New Roman";
+                                        r.Font.Size = 10d;
+                                        r.Font.Bold = false;
+                                        //r.Font.Color = Color.FromArgb(102, 0, 102);
+                                        r.Text = Utility.sDbnull(dr["so_luong"], "");
+                                        newRow.Cells[0].FirstParagraph.AppendChild(r);
+                                        newRow.Cells[0].FirstParagraph.ParagraphFormat.Alignment = ParagraphAlignment.Left;
+
+                                        r = new Run(doc);
+                                        r.Font.Name = "Times New Roman";
+                                        r.Font.Bold = false;
+                                        r.Font.Size = 10d;
+                                        //r.Font.Color = Color.FromArgb(102, 0, 102);
+                                        r.Text = Utility.sDbnull(dr["vi_tri"], "");
+                                        newRow.Cells[1].FirstParagraph.AppendChild(r);
+                                        newRow.Cells[1].FirstParagraph.ParagraphFormat.Alignment = ParagraphAlignment.Left;
+
+                                        r = new Run(doc);
+                                        r.Font.Name = "Times New Roman";
+                                        r.Font.Bold = false;
+                                        r.Font.Size = 10d;
+                                        //r.Font.Color = Color.FromArgb(102, 0, 102);
+                                        r.Text = Utility.sDbnull(dr["thoi_gian"], "");
+                                        newRow.Cells[2].FirstParagraph.AppendChild(r);
+                                        newRow.Cells[2].FirstParagraph.ParagraphFormat.Alignment = ParagraphAlignment.Left;
+
+
+                                        r = new Run(doc);
+                                        r.Font.Name = "Times New Roman";
+                                        r.Font.Bold = false;
+                                        r.Font.Size = 10d;
+                                        //r.Font.Color = Color.FromArgb(102, 0, 102);
+                                        r.Text = Utility.sDbnull(dr["noi_thuchien"], "");
+                                        newRow.Cells[3].FirstParagraph.AppendChild(r);
+                                        newRow.Cells[3].FirstParagraph.ParagraphFormat.Alignment = ParagraphAlignment.Left;
+                                        if (idx > 1)
+                                            tab.AppendChild(newRow);
+                                        idx += 1;
+                                    }
                                 }
                             }
                         }
 
-                        if (dtPhieuPttt != null && dtPhieuPttt.Columns.Count > 0  && dtPhieuPttt.Rows.Count>0 && (toBA == 4 || toBA == 100))//In thông tin phiếu PTTT Bệnh án phụ khoa,sản khoa, ngoại khoa tại tờ 4
+                        if (dtPhieuPttt != null && dtPhieuPttt.Columns.Count > 0  && dtPhieuPttt.Rows.Count>0 && (toBA == 4 || toBA == 100 || toBA == 0))//In thông tin phiếu PTTT Bệnh án phụ khoa,sản khoa, ngoại khoa tại tờ 4
                         {
                             Aspose.Words.Tables.Table topTable = doc.FirstSection.Body.Tables[0];//Table có 4 rows, mỗi row chứa 1 tờ
                             vitribangcha = toBA == 4 ? string.Format("{0}_PTTT_VITRIBANGCHA", loai_ba) : string.Format("{0}_PTTT_VITRIBANGCHA_FULL", loai_ba);
@@ -960,6 +1125,37 @@ using VNS.Libs;
                 return "";
             }
         }
+        static void ClearRow(Aspose.Words.Tables.Row newRow, int colNum)
+        {
+            for (int i = 0; i <= colNum; i++)
+            {
+                newRow.Cells[i].RemoveAllChildren();
+                newRow.Cells[i].EnsureMinimum();
+            }
+        }
+        static void SetCellValue(Run r, Document doc, Aspose.Words.Tables.Row newRow, int cellIndex, string fieldValue, string fontName = "Times New Roman", bool fontBold = false, int fontSize = 12, bool mergeCell = false)
+        {
+            if (mergeCell)
+            {
+                for (int i = 0; i < newRow.Cells.Count; i++)
+                {
+                    if (i == 0)
+                        newRow.Cells[i].CellFormat.HorizontalMerge = CellMerge.First;
+                    else
+                        newRow.Cells[i].CellFormat.HorizontalMerge = CellMerge.Previous;
+                }
+            }
+            r = new Run(doc);
+            r.Font.Name = fontName;
+            r.Font.Bold = fontBold;
+            r.Font.Size = fontSize;
+            //r.Font.Color = Color.FromArgb(102, 0, 102);
+            r.Text = Utility.sDbnull(fieldValue, "");
+            newRow.Cells[cellIndex].FirstParagraph.RemoveAllChildren();
+            newRow.Cells[cellIndex].FirstParagraph.AppendChild(r);
+            newRow.Cells[cellIndex].CellFormat.VerticalAlignment = Aspose.Words.Tables.CellVerticalAlignment.Top;
+            newRow.Cells[cellIndex].FirstParagraph.ParagraphFormat.Alignment = Aspose.Words.ParagraphAlignment.Left;
+        }
         //static Dictionary<string, string> GetDictionaryFromDataTable()
         //{
         //    var dict = new Dictionary<string, string>();
@@ -1034,6 +1230,6 @@ using VNS.Libs;
 
         //    }
         //}
-      
+
     }
 }

@@ -230,6 +230,19 @@ namespace VMS.HIS.DAL
 				colvarDonGia.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarDonGia);
 				
+				TableSchema.TableColumn colvarDongiaNgoaigio = new TableSchema.TableColumn(schema);
+				colvarDongiaNgoaigio.ColumnName = "dongia_ngoaigio";
+				colvarDongiaNgoaigio.DataType = DbType.Decimal;
+				colvarDongiaNgoaigio.MaxLength = 0;
+				colvarDongiaNgoaigio.AutoIncrement = false;
+				colvarDongiaNgoaigio.IsNullable = true;
+				colvarDongiaNgoaigio.IsPrimaryKey = false;
+				colvarDongiaNgoaigio.IsForeignKey = false;
+				colvarDongiaNgoaigio.IsReadOnly = false;
+				colvarDongiaNgoaigio.DefaultSetting = @"";
+				colvarDongiaNgoaigio.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarDongiaNgoaigio);
+				
 				TableSchema.TableColumn colvarChophepDenghiMg = new TableSchema.TableColumn(schema);
 				colvarChophepDenghiMg.ColumnName = "chophep_denghi_mg";
 				colvarChophepDenghiMg.DataType = DbType.Boolean;
@@ -331,6 +344,14 @@ namespace VMS.HIS.DAL
 			set { SetColumnValue(Columns.DonGia, value); }
 		}
 		  
+		[XmlAttribute("DongiaNgoaigio")]
+		[Bindable(true)]
+		public decimal? DongiaNgoaigio 
+		{
+			get { return GetColumnValue<decimal?>(Columns.DongiaNgoaigio); }
+			set { SetColumnValue(Columns.DongiaNgoaigio, value); }
+		}
+		  
 		[XmlAttribute("ChophepDenghiMg")]
 		[Bindable(true)]
 		public bool? ChophepDenghiMg 
@@ -366,7 +387,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(int varIdGoi,int varIdDichvu,int varIdChitietdichvu,string varTenChitietdichvu,short varLoaiDvu,short varSoLuong,decimal varDonGia,bool? varChophepDenghiMg,byte? varTyleMg)
+		public static void Insert(int varIdGoi,int varIdDichvu,int varIdChitietdichvu,string varTenChitietdichvu,short varLoaiDvu,short varSoLuong,decimal varDonGia,decimal? varDongiaNgoaigio,bool? varChophepDenghiMg,byte? varTyleMg)
 		{
 			GoiChitiet item = new GoiChitiet();
 			
@@ -384,6 +405,8 @@ namespace VMS.HIS.DAL
 			
 			item.DonGia = varDonGia;
 			
+			item.DongiaNgoaigio = varDongiaNgoaigio;
+			
 			item.ChophepDenghiMg = varChophepDenghiMg;
 			
 			item.TyleMg = varTyleMg;
@@ -398,7 +421,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(int varIdChitiet,int varIdGoi,int varIdDichvu,int varIdChitietdichvu,string varTenChitietdichvu,short varLoaiDvu,short varSoLuong,decimal varDonGia,bool? varChophepDenghiMg,byte? varTyleMg)
+		public static void Update(int varIdChitiet,int varIdGoi,int varIdDichvu,int varIdChitietdichvu,string varTenChitietdichvu,short varLoaiDvu,short varSoLuong,decimal varDonGia,decimal? varDongiaNgoaigio,bool? varChophepDenghiMg,byte? varTyleMg)
 		{
 			GoiChitiet item = new GoiChitiet();
 			
@@ -417,6 +440,8 @@ namespace VMS.HIS.DAL
 				item.SoLuong = varSoLuong;
 			
 				item.DonGia = varDonGia;
+			
+				item.DongiaNgoaigio = varDongiaNgoaigio;
 			
 				item.ChophepDenghiMg = varChophepDenghiMg;
 			
@@ -491,16 +516,23 @@ namespace VMS.HIS.DAL
         
         
         
-        public static TableSchema.TableColumn ChophepDenghiMgColumn
+        public static TableSchema.TableColumn DongiaNgoaigioColumn
         {
             get { return Schema.Columns[8]; }
         }
         
         
         
-        public static TableSchema.TableColumn TyleMgColumn
+        public static TableSchema.TableColumn ChophepDenghiMgColumn
         {
             get { return Schema.Columns[9]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn TyleMgColumn
+        {
+            get { return Schema.Columns[10]; }
         }
         
         
@@ -517,6 +549,7 @@ namespace VMS.HIS.DAL
 			 public static string LoaiDvu = @"loai_dvu";
 			 public static string SoLuong = @"so_luong";
 			 public static string DonGia = @"don_gia";
+			 public static string DongiaNgoaigio = @"dongia_ngoaigio";
 			 public static string ChophepDenghiMg = @"chophep_denghi_mg";
 			 public static string TyleMg = @"tyle_mg";
 						

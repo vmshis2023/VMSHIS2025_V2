@@ -911,11 +911,11 @@ namespace VNS.Libs
                 DataTable dt_ResultData = new DataTable();
                 if (fromDB)
                 {
-                    m_NN =
-                        new Select(DmucChung.Schema.Name + ".*", "concat(ma,':',ten) as ma_ten").From(DmucChung.Schema)
-                            .Where(DmucChung.Columns.Loai).IsEqualTo(Loaidmuc)
-                            .OrderAsc(DmucChung.Columns.SttHthi)
-                            .ExecuteDataSet().Tables[0];
+                    m_NN = SPs.DmucChungLaydulieu(Loaidmuc).GetDataSet().Tables[0];
+                        //new Select(DmucChung.Schema.Name + ".*", "concat(ma,':',ten) as ma_ten").From(DmucChung.Schema)
+                        //    .Where(DmucChung.Columns.Loai).IsEqualTo(Loaidmuc)
+                        //    .OrderAsc(DmucChung.Columns.SttHthi)
+                        //    .ExecuteDataSet().Tables[0];
                 }
                 else
                 {
@@ -2523,7 +2523,7 @@ namespace VNS.Libs
                 bhyt_cct = 0;
                 bn_cct = 0;
                 bn_ttt = 0;
-                bnhan_chitra = 0;
+                //bnhan_chitra = 0;
                 PtramBhyt = 0;
             }
             //Thiết lập lại giá trị các thành phần giá
@@ -2588,7 +2588,7 @@ namespace VNS.Libs
                 bhyt_cct = 0;
                 bn_cct = 0;
                 bn_ttt = 0;
-                bnhan_chitra = 0;
+                //bnhan_chitra = 0;
                 PtramBhyt = 0;
             }
             //Thiết lập lại giá trị các thành phần giá
@@ -2653,7 +2653,7 @@ namespace VNS.Libs
                 bhyt_cct = 0;
                 bn_cct = 0;
                 bn_ttt = 0;
-                bnhan_chitra = 0;
+                //bnhan_chitra = 0;
                 PtramBhyt = 0;
             }
             //Thiết lập lại giá trị các thành phần giá
@@ -2718,7 +2718,7 @@ namespace VNS.Libs
                 bhyt_cct = 0;
                 bn_cct = 0;
                 bn_ttt = 0;
-                bnhan_chitra = 0;
+                ///bnhan_chitra = 0;
                 PtramBhyt = 0;
             }
 
@@ -2786,7 +2786,7 @@ namespace VNS.Libs
                 bhyt_cct = 0;
                 bn_cct = 0;
                 bn_ttt = 0;
-                bnhan_chitra = 0;
+                //bnhan_chitra = 0;
                 PtramBhyt = 0;
             }
             _row["tyle_tt"] = tyle_tt;
@@ -2868,7 +2868,7 @@ namespace VNS.Libs
                 bhyt_cct = 0;
                 bn_cct = 0;
                 bn_ttt = 0;
-                bnhan_chitra = 0;
+                //bnhan_chitra = 0;
                 PtramBhyt = 0;
             }
             _row["tyle_tt"] = tyle_tt;
@@ -2950,7 +2950,7 @@ namespace VNS.Libs
                 bhyt_cct = 0;
                 bn_cct = 0;
                 bn_ttt = 0;
-                bnhan_chitra = 0;
+               // bnhan_chitra = 0;
                 PtramBhyt = 0;
             }
             //Thiết lập lại giá trị các thành phần giá
@@ -3034,7 +3034,7 @@ namespace VNS.Libs
                 bhyt_cct = 0;
                 bn_cct = 0;
                 bn_ttt = 0;
-                bnhan_chitra = 0;
+                //bnhan_chitra = 0;
                 PtramBhyt = 0;
             }
             //Thiết lập lại giá trị các thành phần giá
@@ -3135,7 +3135,7 @@ namespace VNS.Libs
                                     bhyt_cct = 0;
                                     bn_cct = 0;
                                     bn_ttt = 0;
-                                    bnhan_chitra = 0;
+                                    //bnhan_chitra = 0;
                                     PtramBhyt = 0;
                                 }
                                 new Update(KcbDangkyKcb.Schema)
@@ -3200,7 +3200,7 @@ namespace VNS.Libs
                                     bhyt_cct = 0;
                                     bn_cct = 0;
                                     bn_ttt = 0;
-                                    bnhan_chitra = 0;
+                                    //bnhan_chitra = 0;
                                     PtramBhyt = 0;
                                 }
                                 new Update(KcbChidinhclsChitiet.Schema)
@@ -3267,7 +3267,7 @@ namespace VNS.Libs
                                     bhyt_cct = 0;
                                     bn_cct = 0;
                                     bn_ttt = 0;
-                                    bnhan_chitra = 0;
+                                    //bnhan_chitra = 0;
                                     PtramBhyt = 0;
                                 }
                                 new Update(KcbDonthuocChitiet.Schema)
@@ -3333,7 +3333,7 @@ namespace VNS.Libs
                                     bhyt_cct = 0;
                                     bn_cct = 0;
                                     bn_ttt = 0;
-                                    bnhan_chitra = 0;
+                                    //bnhan_chitra = 0;
                                     PtramBhyt = 0;
                                 }
                                 new Update(NoitruPhanbuonggiuong.Schema)

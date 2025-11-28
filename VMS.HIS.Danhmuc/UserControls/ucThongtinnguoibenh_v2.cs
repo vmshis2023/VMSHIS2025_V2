@@ -26,7 +26,7 @@ namespace VNS.HIS.UI.Forms.Dungchung.UCs
         public DmucKhoaphong _khoaphong = null;
         public byte noitrungoaitru = 100;
         public byte trangthai_noitru = 100;
-        public VKcbLuotkham objBenhnhan = null;
+        public KcbDanhsachBenhnhan objBenhnhan = null;
         public bool isReadonly = false;
         public string huongdieutri = "ALL"; //ALL,DTRI_NOITRU,DTRI_NGOAITRU
         string lastCode = "";
@@ -84,12 +84,9 @@ namespace VNS.HIS.UI.Forms.Dungchung.UCs
                 if (dt_Patient != null && dt_Patient.Rows.Count > 0)
                 {
                     lastCode = txtMaluotkham.Text;
-                    var q = new Select().From(VKcbLuotkham.Schema)
-                         .Where(VKcbLuotkham.Columns.IdBenhnhan).IsEqualTo(Utility.Int64Dbnull(dt_Patient.Rows[0][KcbDanhsachBenhnhan.Columns.IdBenhnhan]))
-                         .And(VKcbLuotkham.Columns.MaLuotkham).IsEqualTo(Utility.sDbnull(dt_Patient.Rows[0][KcbLuotkham.Columns.MaLuotkham]))
-                         .ExecuteAsCollection<VKcbLuotkhamCollection>();
-                    if (q.Any())
-                        objBenhnhan = q.FirstOrDefault();
+                    objBenhnhan = new Select().From(KcbDanhsachBenhnhan.Schema)
+                          .Where(KcbDanhsachBenhnhan.Columns.IdBenhnhan).IsEqualTo(Utility.Int64Dbnull(dt_Patient.Rows[0][KcbDanhsachBenhnhan.Columns.IdBenhnhan]))
+                          .ExecuteSingle<KcbDanhsachBenhnhan>();
                     txtIdBn.Text = Utility.sDbnull(dt_Patient.Rows[0][KcbDanhsachBenhnhan.Columns.IdBenhnhan], "");
                     objLuotkham =
                         new Select().From(KcbLuotkham.Schema)
@@ -178,13 +175,10 @@ namespace VNS.HIS.UI.Forms.Dungchung.UCs
                     if (dt_Patient != null && dt_Patient.Rows.Count > 0)
                     {
                         lastCode = txtMaluotkham.Text;
-                        var q = new Select().From(VKcbLuotkham.Schema)
-                           .Where(VKcbLuotkham.Columns.IdBenhnhan).IsEqualTo(Utility.Int64Dbnull(dt_Patient.Rows[0][KcbDanhsachBenhnhan.Columns.IdBenhnhan]))
-                           .And(VKcbLuotkham.Columns.MaLuotkham).IsEqualTo(Utility.sDbnull(dt_Patient.Rows[0][KcbLuotkham.Columns.MaLuotkham]))
-                           .ExecuteAsCollection<VKcbLuotkhamCollection>();
-                        if (q.Any())
-                            objBenhnhan = q.FirstOrDefault();
-                        txtIdBn.Text = Utility.sDbnull(dt_Patient.Rows[0][KcbDanhsachBenhnhan.Columns.IdBenhnhan], "");
+                    objBenhnhan = new Select().From(KcbDanhsachBenhnhan.Schema)
+                      .Where(KcbDanhsachBenhnhan.Columns.IdBenhnhan).IsEqualTo(Utility.Int64Dbnull(dt_Patient.Rows[0][KcbDanhsachBenhnhan.Columns.IdBenhnhan]))
+                      .ExecuteSingle<KcbDanhsachBenhnhan>();
+                    txtIdBn.Text = Utility.sDbnull(dt_Patient.Rows[0][KcbDanhsachBenhnhan.Columns.IdBenhnhan], "");
                         objLuotkham =
                             new Select().From(KcbLuotkham.Schema)
                                 .Where(KcbLuotkham.Columns.IdBenhnhan)
@@ -287,12 +281,9 @@ namespace VNS.HIS.UI.Forms.Dungchung.UCs
                 if (dt_Patient != null && dt_Patient.Rows.Count > 0)
                 {
                     lastCode = txtMaluotkham.Text;
-                    var q = new Select().From(VKcbLuotkham.Schema)
-                       .Where(VKcbLuotkham.Columns.IdBenhnhan).IsEqualTo(Utility.Int64Dbnull(dt_Patient.Rows[0][KcbDanhsachBenhnhan.Columns.IdBenhnhan]))
-                       .And(VKcbLuotkham.Columns.MaLuotkham).IsEqualTo(Utility.sDbnull(dt_Patient.Rows[0][KcbLuotkham.Columns.MaLuotkham]))
-                       .ExecuteAsCollection<VKcbLuotkhamCollection>();
-                    if (q.Any())
-                        objBenhnhan = q.FirstOrDefault();
+                    objBenhnhan = new Select().From(KcbDanhsachBenhnhan.Schema)
+                          .Where(KcbDanhsachBenhnhan.Columns.IdBenhnhan).IsEqualTo(Utility.Int64Dbnull(dt_Patient.Rows[0][KcbDanhsachBenhnhan.Columns.IdBenhnhan]))
+                          .ExecuteSingle<KcbDanhsachBenhnhan>();
                     txtIdBn.Text = Utility.sDbnull(dt_Patient.Rows[0][KcbDanhsachBenhnhan.Columns.IdBenhnhan], "");
                     objLuotkham =
                         new Select().From(KcbLuotkham.Schema)

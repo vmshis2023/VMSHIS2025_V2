@@ -301,7 +301,7 @@ namespace VMS.HIS.DAL
 				TableSchema.TableColumn colvarLoaiphieuCha = new TableSchema.TableColumn(schema);
 				colvarLoaiphieuCha.ColumnName = "loaiphieu_cha";
 				colvarLoaiphieuCha.DataType = DbType.String;
-				colvarLoaiphieuCha.MaxLength = 50;
+				colvarLoaiphieuCha.MaxLength = 100;
 				colvarLoaiphieuCha.AutoIncrement = false;
 				colvarLoaiphieuCha.IsNullable = true;
 				colvarLoaiphieuCha.IsPrimaryKey = false;
@@ -314,7 +314,7 @@ namespace VMS.HIS.DAL
 				TableSchema.TableColumn colvarLoaiPhieuHis = new TableSchema.TableColumn(schema);
 				colvarLoaiPhieuHis.ColumnName = "loai_phieu_his";
 				colvarLoaiPhieuHis.DataType = DbType.String;
-				colvarLoaiPhieuHis.MaxLength = 50;
+				colvarLoaiPhieuHis.MaxLength = 100;
 				colvarLoaiPhieuHis.AutoIncrement = false;
 				colvarLoaiPhieuHis.IsNullable = false;
 				colvarLoaiPhieuHis.IsPrimaryKey = false;

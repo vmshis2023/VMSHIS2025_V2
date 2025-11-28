@@ -79,6 +79,7 @@
             this.uiGroupBox3 = new Janus.Windows.EditControls.UIGroupBox();
             this.grdTongHop = new Janus.Windows.GridEX.GridEX();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.opt_tatca = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox1)).BeginInit();
             this.uiGroupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -129,7 +130,7 @@
             this.uiGroupBox1.Name = "uiGroupBox1";
             this.uiGroupBox1.Size = new System.Drawing.Size(1184, 107);
             this.uiGroupBox1.TabIndex = 1;
-            this.uiGroupBox1.Text = "Tìm kiếm đơn thuốc/VTTH tạo phiếu tổng hợp lĩnh khoa phòng chức năng";
+            this.uiGroupBox1.Text = "Tìm kiếm đơn VTTH tạo phiếu tổng hợp lĩnh khoa phòng chức năng";
             this.uiGroupBox1.VisualStyle = Janus.Windows.UI.Dock.PanelVisualStyle.Office2003;
             // 
             // label5
@@ -137,26 +138,26 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(664, 52);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(60, 16);
+            this.label5.Size = new System.Drawing.Size(68, 16);
             this.label5.TabIndex = 56;
-            this.label5.Text = "Loại đơn";
+            this.label5.Text = "Trạng thái";
             // 
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.opt_tatca);
             this.panel2.Controls.Add(this.optNgoaitru);
             this.panel2.Controls.Add(this.optNoitru);
-            this.panel2.Location = new System.Drawing.Point(748, 48);
+            this.panel2.Location = new System.Drawing.Point(745, 48);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(240, 25);
+            this.panel2.Size = new System.Drawing.Size(258, 25);
             this.panel2.TabIndex = 55;
             // 
             // optNgoaitru
             // 
-            this.optNgoaitru.Dock = System.Windows.Forms.DockStyle.Right;
-            this.optNgoaitru.Location = new System.Drawing.Point(121, 0);
+            this.optNgoaitru.Location = new System.Drawing.Point(162, 0);
             this.optNgoaitru.Name = "optNgoaitru";
-            this.optNgoaitru.Size = new System.Drawing.Size(117, 23);
+            this.optNgoaitru.Size = new System.Drawing.Size(86, 23);
             this.optNgoaitru.TabIndex = 30;
             this.optNgoaitru.Text = "Ngoại trú";
             this.optNgoaitru.UseVisualStyleBackColor = true;
@@ -164,13 +165,10 @@
             // optNoitru
             // 
             this.optNoitru.AutoSize = true;
-            this.optNoitru.Checked = true;
-            this.optNoitru.Dock = System.Windows.Forms.DockStyle.Left;
-            this.optNoitru.Location = new System.Drawing.Point(0, 0);
+            this.optNoitru.Location = new System.Drawing.Point(81, 1);
             this.optNoitru.Name = "optNoitru";
-            this.optNoitru.Size = new System.Drawing.Size(64, 23);
+            this.optNoitru.Size = new System.Drawing.Size(64, 20);
             this.optNoitru.TabIndex = 29;
-            this.optNoitru.TabStop = true;
             this.optNoitru.Text = "Nội trú";
             this.optNoitru.UseVisualStyleBackColor = true;
             // 
@@ -684,6 +682,17 @@
             this.toolTip1.IsBalloon = true;
             this.toolTip1.ToolTipTitle = "Trợ giúp";
             // 
+            // opt_tatca
+            // 
+            this.opt_tatca.AutoSize = true;
+            this.opt_tatca.Checked = true;
+            this.opt_tatca.Location = new System.Drawing.Point(3, 1);
+            this.opt_tatca.Name = "opt_tatca";
+            this.opt_tatca.Size = new System.Drawing.Size(64, 20);
+            this.opt_tatca.TabIndex = 31;
+            this.opt_tatca.Text = "Tất cả";
+            this.opt_tatca.UseVisualStyleBackColor = true;
+            // 
             // frm_AddCapPhatVTTHPhongChucnang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -699,7 +708,7 @@
             this.Name = "frm_AddCapPhatVTTHPhongChucnang";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "TẠO PHIẾU ĐỂ NGHỊ CẤP PHÁT THUỐC KHOA PHÒNG CHỨC NĂNG";
+            this.Text = "TẠO PHIẾU ĐỂ NGHỊ CẤP PHÁT VTTH KHOA PHÒNG CHỨC NĂNG";
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox1)).EndInit();
             this.uiGroupBox1.ResumeLayout(false);
             this.uiGroupBox1.PerformLayout();
@@ -778,5 +787,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.RadioButton optNgoaitru;
         private System.Windows.Forms.RadioButton optNoitru;
+        private System.Windows.Forms.RadioButton opt_tatca;
     }
 }

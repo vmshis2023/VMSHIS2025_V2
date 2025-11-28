@@ -37,6 +37,9 @@ using VMS.HIS.Danhmuc;
 using Word = Microsoft.Office.Interop.Word;
 using VMS.HIS.Bus.Emr;
 using Microsoft.Win32;
+using VMS.API.Libs;
+using VNS.HIS.UI.THUOC;
+
 namespace VNS.HIS.UI.Forms.HinhAnh
 {
     //0=Mới chỉ định;1=Đã chuyển CLS;2=Đang thực hiện;3= Đã có kết quả CLS;4=Đã xác nhận kết quả
@@ -176,7 +179,7 @@ namespace VNS.HIS.UI.Forms.HinhAnh
             cmdSend2PACS.Click += cmdSend2PACS_Click;
             grdVTTH.SelectionChanged += grdVTTH_SelectionChanged;
             Shown += frm_NhaptraKQ_Shown;
-            cmdUpdatePres.Click += cmdUpdatePres_Click;
+            cboBacsi.SelectedIndexChanged += cboBacsi_SelectedIndexChanged;
         }
        
         void grdVTTH_SelectionChanged(object sender, EventArgs e)
@@ -217,6 +220,7 @@ namespace VNS.HIS.UI.Forms.HinhAnh
         }
         void frm_NhaptraKQ_Shown(object sender, EventArgs e)
         {
+            LoadAttachedFiles();
             Try2Splitter();
         }
 
@@ -227,6 +231,12 @@ namespace VNS.HIS.UI.Forms.HinhAnh
 
         void cmdSaveAndAccept_Click(object sender, EventArgs e)
         {
+            if (objNhanvien == null)
+            {
+                Utility.ShowMsg("Cần chọn Bác sỹ thực hiện trước khi thực hiện lưu và in kết quả trả người bệnh");
+                cboBacsi.Focus();
+                return;
+            }
             SaveKQ(false, true);
         }
         void cmdChonfile_Click(object sender, EventArgs e)
@@ -1213,13 +1223,24 @@ namespace VNS.HIS.UI.Forms.HinhAnh
             }
             return maubaocao;
         }
+        bool KiemTraFileKiSo()
+        {
+            return true;
+        }
         Document doc;
-
-        private void InKetQua(string dstFileName)
+        bool DuyetKiSo = false;
+        private void InKetQua()
         {
             try
             {
-
+                string fileKetqua = "";
+                string FileKyso = Utility.sDbnull(objKcbChidinhclsChitiet.FileKyso);
+               if (FileKyso.Length>0 && !chk_KiLai.Checked)
+                {
+                    if (!globalVariables.isActiveFTP) Utility.InitFtp();
+                    fileKetqua = Utility.getPDFFile(FileKyso, "HA", true);
+                    goto _XemvaIn;
+                }    
                 this.Cursor = Cursors.WaitCursor;
                 if (cboLaserPrinters.SelectedIndex < 0 || cboLaserPrinters.Text.TrimEnd().TrimStart() == "")
                 {
@@ -1227,8 +1248,18 @@ namespace VNS.HIS.UI.Forms.HinhAnh
                     cboLaserPrinters.Focus();
                     return;
                 }
-                SysSystemParameter sysLogosize = new Select().From(SysSystemParameter.Schema).Where(SysSystemParameter.Columns.SName).IsEqualTo("logosize").ExecuteSingle<SysSystemParameter>();
-                SysSystemParameter sysSignsize = new Select().From(SysSystemParameter.Schema).Where(SysSystemParameter.Columns.SName).IsEqualTo("signsize").ExecuteSingle<SysSystemParameter>();
+                string sysLogosize = "";
+                string sysSignsize = "";
+                string ANH_CHUKY_SIZE = "";
+                string ANH_VALID_SIZE = "";
+                SysSystemParameter sysParam = new Select().From(SysSystemParameter.Schema).Where(SysSystemParameter.Columns.SName).IsEqualTo("logosize").ExecuteSingle<SysSystemParameter>();
+                sysLogosize = sysParam != null ? sysParam.SValue : "5x5";
+                 sysParam = new Select().From(SysSystemParameter.Schema).Where(SysSystemParameter.Columns.SName).IsEqualTo("signsize").ExecuteSingle<SysSystemParameter>();
+                sysSignsize = sysParam != null ? sysParam.SValue : "5x5";
+                sysParam = new Select().From(SysSystemParameter.Schema).Where(SysSystemParameter.Columns.SName).IsEqualTo("ANH_CHUKY_SIZE").ExecuteSingle<SysSystemParameter>();
+                ANH_CHUKY_SIZE = sysParam != null ? sysParam.SValue : "5x5";
+                sysParam = new Select().From(SysSystemParameter.Schema).Where(SysSystemParameter.Columns.SName).IsEqualTo("ANH_VALID_SIZE").ExecuteSingle<SysSystemParameter>();
+                ANH_VALID_SIZE = sysParam != null ? sysParam.SValue : "5x5";
                 DataTable dtData = SPs.HinhanhLaydulieuinKQChandoan(id_Study_Detail).GetDataSet().Tables[0];
                 try
                 {
@@ -1381,7 +1412,7 @@ namespace VNS.HIS.UI.Forms.HinhAnh
                 string tenfile = Guid.NewGuid().ToString();
                 string fileExt = Path.GetExtension(maubaocao);
                 fileExt = fileExt == "" ? ".doc" : fileExt;
-                string fileKetqua = string.Format("{0}{1}{2}{3}{4}{5}_{6}", Path.GetDirectoryName(tempmau), Path.DirectorySeparatorChar, Path.GetFileNameWithoutExtension(maubaocao), "_ketqua_", objBenhnhan.TenBenhnhan, tenfile, fileExt);
+                 fileKetqua = string.Format("{0}{1}{2}{3}{4}{5}_{6}", Path.GetDirectoryName(tempmau), Path.DirectorySeparatorChar, Path.GetFileNameWithoutExtension(maubaocao), "_ketqua_", objBenhnhan.TenBenhnhan, tenfile, fileExt);
                 CreateFtp(maubaocao, "DOC_TEMPLATES");
                 if ((drData != null) && File.Exists(maubaocao))
                 {
@@ -1432,34 +1463,14 @@ namespace VNS.HIS.UI.Forms.HinhAnh
                             if (File.Exists(Application.StartupPath + @"\imgsize.txt"))
                                 lstImgSize = File.ReadAllText(Application.StartupPath + @"\imgsize.txt").ToLower().Split(';').ToList<string>();
                     }
-                    string _signFile = string.Format(@"{0}\{1}\{2}", Application.StartupPath, "sign", objNhanvien != null ? objNhanvien.UserName : globalVariables.UserName);
-                    if (PropertyLib._HinhAnhProperties.SignType || !File.Exists(_signFile))
-                        _signFile = string.Format(@"{0}\{1}\{2}", Application.StartupPath, "sign", "sign");
-                    byte[] _sign = Utility.fromimagepath2byte(_signFile);
-                    if (builder.MoveToMergeField("sign"))
-                        if (_sign != null)
-                        {
-                            if (sysSignsize != null)
-                            {
-                                int w = Utility.Int32Dbnull(sysSignsize.SValue.Split('x')[0], 0);
-                                int h = Utility.Int32Dbnull(sysSignsize.SValue.Split('x')[1], 0);
-                                if (w > 0 && h > 0)
-                                    builder.InsertImage(_sign, w, h);
-                                else
-                                    builder.InsertImage(_sign);
-                            }
-                            else
-                                if (_sign != null)
-                                    builder.InsertImage(_sign);
-                        }
-                        else
-                            builder.InsertImage(NoImage, 10, 10);
+                       
+                       
 
                     if (builder.MoveToMergeField("logo") && globalVariables.SysLogo != null)
                         if (sysLogosize != null)
                         {
-                            int w = Utility.Int32Dbnull(sysLogosize.SValue.Split('x')[0], 0);
-                            int h = Utility.Int32Dbnull(sysLogosize.SValue.Split('x')[1], 0);
+                            int w = Utility.Int32Dbnull(sysLogosize.Split('x')[0], 0);
+                            int h = Utility.Int32Dbnull(sysLogosize.Split('x')[1], 0);
                             if (w > 0 && h > 0)
                                 builder.InsertImage(globalVariables.SysLogo, w, h);
                             else
@@ -1472,8 +1483,8 @@ namespace VNS.HIS.UI.Forms.HinhAnh
                     if (builder.MoveToBookmark("logo") && globalVariables.SysLogo != null)
                         if (sysLogosize != null)
                         {
-                            int w = Utility.Int32Dbnull(sysLogosize.SValue.Split('x')[0], 0);
-                            int h = Utility.Int32Dbnull(sysLogosize.SValue.Split('x')[1], 0);
+                            int w = Utility.Int32Dbnull(sysLogosize.Split('x')[0], 0);
+                            int h = Utility.Int32Dbnull(sysLogosize.Split('x')[1], 0);
                             if (w > 0 && h > 0)
                                 builder.InsertImage(globalVariables.SysLogo, w, h);
                             else
@@ -1535,14 +1546,25 @@ namespace VNS.HIS.UI.Forms.HinhAnh
                     //    }
                     //}
                     doc.MailMerge.Execute(fieldNames.ToArray(), Values.ToArray());
-                    string[] remaining = doc.MailMerge.GetFieldNames();
-                    //doc.MailMerge.CleanupOptions = Aspose.Words.Reporting.MailMergeCleanupOptions.RemoveUnusedFields;
-                    //doc.MailMerge.Execute(new string[] { }, new object[] { });
-                    foreach (string mf in remaining)
+                    globalVariables.dtSignInfor = SPs.EmrLaythongtinChukyTrenphieu("-1", "ABCXYZ", 1).GetDataSet().Tables[0];
+                    DataRow newDr = globalVariables.dtSignInfor.NewRow();
+                    newDr["ten_vitri_ky"] = "CKS_BACSI";
+                    newDr["nguoi_ky"] =Utility.sDbnull( cboBacsi.SelectedValue);
+                    globalVariables.dtSignInfor.Rows.Add(newDr);
+                   //Chèn bookmark vào các vị trí chữ kí
+                   Utility.SignDoc_HIS(doc, builder,objNhanvien.ChuKy, sysSignsize ,ANH_CHUKY_SIZE, ANH_VALID_SIZE,chk_kyso.Checked);
+
+                    if (KhongDuDieukienKiso())//Tìm hiểu đoạn này sau tại sao lại có khi chưa tích hợp kí số
                     {
-                       if( builder.MoveToMergeField(mf))
+                        string[] remaining = doc.MailMerge.GetFieldNames();
+                        //doc.MailMerge.CleanupOptions = Aspose.Words.Reporting.MailMergeCleanupOptions.RemoveUnusedFields;
+                        //doc.MailMerge.Execute(new string[] { }, new object[] { });
+                        foreach (string mf in remaining)
                         {
-                            builder.Write("");
+                            if (builder.MoveToMergeField(mf))
+                            {
+                                builder.Write("");
+                            }
                         }
                     }
                     if (File.Exists(fileKetqua))
@@ -1550,47 +1572,86 @@ namespace VNS.HIS.UI.Forms.HinhAnh
                         File.Delete(fileKetqua);
                     }
                     doc.Save(fileKetqua, SaveFormat.Doc);
-                    emrdoc.InitDocument(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, Utility.Int64Dbnull(objKcbChidinhclsChitiet.IdChitietchidinh), objKcbChidinhclsChitiet.NgayThuchien.Value, Loaiphieu_HIS.PHIEU_KQCDHA,Path.GetFileNameWithoutExtension( maubaocao), objKcbChidinhclsChitiet.NguoiThuchien, Utility.Int16Dbnull(objChidinh.IdKhoaChidinh, -1), Utility.Int16Dbnull(objChidinh.IdPhongChidinh, -1), Utility.Byte2Bool(objChidinh.Noitru), "");
-                    emrdoc.SetFilePath(string.Format(@"{0}/{1}/{2}", objChidinh.NgayChidinh.ToString("yyyy_MM_dd"), objChidinh.MaChidinh, objKcbChidinhclsChitiet.IdChitietchidinh));
-                    emrdoc.Save();
-                    //Save to Pdf
-                    //Save to Pdf
-                    string newDocfile = string.Format("{0}{1}{2}.doc", Path.GetDirectoryName(fileKetqua), Path.DirectorySeparatorChar, THU_VIEN_CHUNG.GetGUID());
-                    File.Copy(fileKetqua, newDocfile);
-                    Pdf2HisItem newItem = new Pdf2HisItem(objChidinh.NgayChidinh.ToString("yyyy_MM_dd"), objKcbChidinhclsChitiet.IdChitietchidinh.ToString(), FtpClientPDF, _baseDirectoryPdf, doc, objChidinh.MaChidinh, newDocfile, FtpClientCurrentDirectoryPdf);
-                    _Pdf2HisManager.AddItems(newItem);
-                    string path = fileKetqua;
-                    if (chkPreview.Checked)
+                    //string path = fileKetqua;
+                    //Lấy tọa độ chữ kí
+                    if (!KhongDuDieukienKiso())//Kí số
                     {
-                        if (File.Exists(path))
+                        List<SignatureLocation> lstSignLoc = GetSignatureLineLocation(fileKetqua, new List<string>() { "CKS_BACSI" });
+                        //Lưu ra pdf
+                        string pdf2sign = Application.StartupPath + @"\pdf2sign";
+                        Utility.Try2CreateFolder(pdf2sign);
+                       
+                      //Mở dòng dưới nếu muốn lưu file kí số riêng với file in thường
+                       // string pdfFile = string.Format(@"{0}\{1}\{2}\{3}_signed.pdf", pdf2sign,objChidinh.NgayChidinh.ToString("yyyy_MM_dd"), objChidinh.MaChidinh, objKcbChidinhclsChitiet.IdChitietchidinh);
+                        string pdfFile = string.Format(@"{0}\{1}\{2}\{3}.pdf", pdf2sign, objChidinh.NgayChidinh.ToString("yyyy_MM_dd"), objChidinh.MaChidinh, objKcbChidinhclsChitiet.IdChitietchidinh);
+                        string pdfOutPath_signed = KisoBookmarks(lstSignLoc, fileKetqua, pdfFile, "", "");
+                        if (pdfOutPath_signed != "")
                         {
-                            Process process = new Process();
-                            try
-                            {
-                                process.StartInfo.FileName = path;
-                                process.Start();
-                                process.WaitForInputIdle();
-                            }
-                            catch
-                            {
-                            }
+                            string fileName = pdfFile.Replace(pdf2sign,"");
+                            SPs.ClsCdhaUpdatekyso(objKcbChidinhclsChitiet.IdChitietchidinh, Utility.sDbnull(cboBacsi.SelectedValue), fileName,0).Execute();
+                            objKcbChidinhclsChitiet.FileKyso = fileName;
+                            objKcbChidinhclsChitiet.NgayKyso = globalVariables.SysDate;
+                            objKcbChidinhclsChitiet.NguoiKyso = globalVariables.UserName;
+                            objKcbChidinhclsChitiet.TrangThai = 4;
+                            objKcbChidinhclsChitiet.NgayDuyet = objKcbChidinhclsChitiet.NgayKyso;
+                            chk_KiLai.Enabled = Utility.sDbnull(objKcbChidinhclsChitiet.FileKyso) != "";
+                            Pdf2HisItem newPdfItem = new Pdf2HisItem(objChidinh.NgayChidinh.ToString("yyyy_MM_dd"), objChidinh.MaChidinh, FtpClientPDF, _baseDirectoryPdf,  FtpClientCurrentDirectoryPdf, pdfOutPath_signed, true);
+                            _Pdf2HisManager.AddItems(newPdfItem);
+                            fileKetqua = pdfOutPath_signed;
                         }
+                        else
+                        {
+                            objKcbChidinhclsChitiet.FileKyso = "";
+                            objKcbChidinhclsChitiet.NguoiKyso = "";
+                            objKcbChidinhclsChitiet.NgayKyso = null;
+                            Utility.ShowMsg("Kí số không thành công. (pdfOutPath_signed=Empty)");
+                        }    
                     }
-                    else
+                    else//Thường Qui
                     {
-                        PrinterSettings printerSettings = new PrinterSettings();
-                        printerSettings.DefaultPageSettings.Margins.Top = 0;
-                        printerSettings.Copies = 1;
-                        printerSettings.PrinterName = PropertyLib._HinhAnhProperties.TenmayInPhieutraKQ;
-                        doc.Print(printerSettings, fileKetqua);
-                        //doc.Print()
+                        //emrdoc.isKiso = chk_kiso.Checked;
+                        //emrdoc.InitDocument(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, Utility.Int64Dbnull(objKcbChidinhclsChitiet.IdChitietchidinh), objKcbChidinhclsChitiet.NgayThuchien.Value, Loaiphieu_HIS.PHIEU_KQCDHA, Path.GetFileNameWithoutExtension(maubaocao), objKcbChidinhclsChitiet.NguoiThuchien, Utility.Int16Dbnull(objChidinh.IdKhoaChidinh, -1), Utility.Int16Dbnull(objChidinh.IdPhongChidinh, -1), Utility.Byte2Bool(objChidinh.Noitru), "");
+                        //emrdoc.SetFilePath(string.Format(@"{0}/{1}/{2}", objChidinh.NgayChidinh.ToString("yyyy_MM_dd"), objChidinh.MaChidinh, objKcbChidinhclsChitiet.IdChitietchidinh));
+                        //emrdoc.Save();
+                        //Save to Pdf
+                        string newDocfile = string.Format("{0}{1}{2}.doc", Path.GetDirectoryName(fileKetqua), Path.DirectorySeparatorChar, THU_VIEN_CHUNG.GetGUID());
+                        File.Copy(fileKetqua, newDocfile);
+                        Pdf2HisItem newItem = new Pdf2HisItem(objChidinh.NgayChidinh.ToString("yyyy_MM_dd"), objKcbChidinhclsChitiet.IdChitietchidinh.ToString(), FtpClientPDF, _baseDirectoryPdf, doc, objChidinh.MaChidinh, newDocfile, FtpClientCurrentDirectoryPdf);
+                        _Pdf2HisManager.AddItems(newItem);
                     }
-                    Utility.Log(this.Name, globalVariables.UserName, string.Format("In kết quả CĐHA cho bệnh nhân ID={0}, PID={1}, Tên={2} ", objLuotkham.IdBenhnhan.ToString(), objLuotkham.MaLuotkham, objBenhnhan.TenBenhnhan), newaction.Print, this.GetType().Assembly.ManifestModule.Name);
+                   
                 }
                 else
                 {
                     MessageBox.Show(string.Format("Không tìm thấy biểu mẫu {0}", maubaocao), "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
+                _XemvaIn:
+                if (chkPreview.Checked)
+                {
+                    if (File.Exists(fileKetqua))
+                    {
+                        Process process = new Process();
+                        try
+                        {
+                            process.StartInfo.FileName = fileKetqua;
+                            process.Start();
+                            process.WaitForInputIdle();
+                        }
+                        catch
+                        {
+                        }
+                    }
+                }
+                else
+                {
+                    PrinterSettings printerSettings = new PrinterSettings();
+                    printerSettings.DefaultPageSettings.Margins.Top = 0;
+                    printerSettings.Copies = 1;
+                    printerSettings.PrinterName = PropertyLib._HinhAnhProperties.TenmayInPhieutraKQ;
+                    doc.Print(printerSettings, fileKetqua);
+                    //doc.Print()
+                }
+                Utility.Log(this.Name, globalVariables.UserName, string.Format("In kết quả CĐHA cho bệnh nhân ID={0}, PID={1}, Tên={2} ", objLuotkham.IdBenhnhan.ToString(), objLuotkham.MaLuotkham, objBenhnhan.TenBenhnhan), newaction.Print, this.GetType().Assembly.ManifestModule.Name);
             }
             catch (Exception ex)
             {
@@ -1599,8 +1660,143 @@ namespace VNS.HIS.UI.Forms.HinhAnh
             }
             finally
             {
+                ModifyCommandButtons();
                 this.Cursor = Cursors.Default;
             }
+        }
+        bool KhongDuDieukienKiso()
+        {
+            return !chk_kyso.Checked || !chk_kyso.Enabled || Utility.sDbnull(objNhanvien.UserId).Length <=0;
+        }
+        string KisoBookmarks(List<SignatureLocation> lstSignLoc, string wordPath, string pdfOutPath, string certPath, string certPassword)
+        {
+            try
+            {
+                if(objNhanvien==null)
+                {
+                    Utility.ShowMsg("Cần chọn Bác sỹ thực hiện trước khi thực hiện kí số file Trả kết quả cho người bệnh");
+                    cboBacsi.Focus();
+                    return "";
+                }    
+                // Step 1: Load Word document
+                var doc = new Aspose.Words.Document(wordPath);
+
+                // Step 2: Prepare layout tools
+                var collector = new Aspose.Words.Layout.LayoutCollector(doc);
+                var enumerator = new Aspose.Words.Layout.LayoutEnumerator(doc);
+
+                List<VMSDigitalSignatureLocation> bookmarkLocations = new List<VMSDigitalSignatureLocation>();
+                foreach (SignatureLocation signloc in lstSignLoc)
+                {
+                    var pdfRect = new VMSDigitalSignatureRect() { StartX = Convert.ToInt32(signloc.PdfRect.X), StartY = Convert.ToInt32(signloc.PdfRect.Y), EndX = Convert.ToInt32(signloc.PdfRect.X + signloc.PdfRect.Width), EndY = Convert.ToInt32(signloc.PdfRect.Y + signloc.PdfRect.Height) };
+                    bookmarkLocations.Add(new VMSDigitalSignatureLocation
+                    {
+                        SignName = signloc.SignerName,
+                        pageSign = signloc.Page,
+                        lstRect = new List<VMSDigitalSignatureRect>() { pdfRect }
+                    });
+                }
+                
+                // Step 3: Save Word to PDF
+                doc.Save(pdfOutPath, SaveFormat.Pdf);
+                string pdfOutPath_signed = string.Format(@"{0}\{1}.pdf", Path.GetDirectoryName(pdfOutPath), Path.GetFileNameWithoutExtension(pdfOutPath));
+                byte[] fileContent = File.ReadAllBytes(pdfOutPath);
+                string dataTobeSign = Convert.ToBase64String(fileContent);
+
+                //Gọi hàm kí số
+                string webApiLink = THU_VIEN_CHUNG.Laygiatrithamsohethong("CHUKISO_API", "http://localhost:44378/api/Viettel", true);
+                string errMsg = "";
+                var objDigitalSignature = new VMSDigitalSignature();
+                objDigitalSignature.base64Pdf = dataTobeSign;
+                objDigitalSignature.base64Signature = globalVariables.bytHinhChuKy == null ? "" : Convert.ToBase64String(globalVariables.bytHinhChuKy);
+                objDigitalSignature.signatureType = globalVariables.bytHinhChuKy == null ? "2" : "1"; //1: sign with image, 2: sign with text,  3: sign with text and image
+                objDigitalSignature.pdfFileName = pdfOutPath;
+                objDigitalSignature.userId = objNhanvien.UserId;
+                objDigitalSignature.userName = objNhanvien.UserName;
+                objDigitalSignature.userSecret = objNhanvien.UserSecret;
+                objDigitalSignature.userTOTP = objNhanvien.UserTotp;
+                objDigitalSignature.SAD = objNhanvien.Sad;
+                objDigitalSignature.FontSize =Utility.Int32Dbnull( THU_VIEN_CHUNG.Laygiatrithamsohethong("CKS_FontSize", "10",true));
+                objDigitalSignature.FontSizeWhenImage = Utility.Int32Dbnull(THU_VIEN_CHUNG.Laygiatrithamsohethong("CKS_FontSizeWhenImage", "6", true));
+                objDigitalSignature.userFullName = objNhanvien.TenNhanvien;
+                objDigitalSignature.userDesc = objNhanvien.MotaThem;
+                objDigitalSignature.locations = bookmarkLocations;
+                objDigitalSignature.ngay_ky = globalVariables.SysDate;
+                if (chk_Kixacthuc.Checked) objDigitalSignature.SAD = "";
+               ApiRequestResponse ret = HisLisWebApi.INST.KysoPDF(webApiLink, objDigitalSignature, ref errMsg);
+                //Update SAD
+                if (ret != null &&  ret.Data!=null)
+                {
+                    if (chk_Kixacthuc.Checked)//Nếu kí xác thực lại thì lưu SAD mới cho người dùng
+                    {
+                        objNhanvien.Sad = ret.SAD;
+                        Utility.ExecuteSql(string.Format("update dmuc_nhanvien set SAD='{0}' where id_nhanvien={1} ", ret.SAD, objNhanvien.IdNhanvien), CommandType.Text);
+                    }
+                    var pdfBytes = Convert.FromBase64String(ret.Data.ToString());
+                    File.WriteAllBytes(pdfOutPath_signed, pdfBytes);
+                }
+                else
+                {
+                    pdfOutPath_signed = "";//Để báo hiệu kí số không thành công
+                }    
+                return pdfOutPath_signed;
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+                return "";
+
+            }
+
+        }
+        public static List<SignatureLocation> GetSignatureLineLocation(string wordPath, List<string> lstVitriKy)
+        {
+            List<SignatureLocation> lstSignLoc = new List<SignatureLocation>();
+            var doc = new Aspose.Words.Document(wordPath);
+            var collector = new Aspose.Words.Layout.LayoutCollector(doc);
+            var enumerator = new Aspose.Words.Layout.LayoutEnumerator(doc);
+            NodeCollection lstNode = doc.GetChildNodes(NodeType.Shape, true);
+            foreach (Aspose.Words.Drawing.Shape shape in lstNode)
+            {
+                if (lstVitriKy.Contains(shape.Name))// == signerName)
+                {
+                    var entity = collector.GetEntity(shape);
+                    if (entity == null)
+                        continue;
+
+                    enumerator.Current = entity;
+                    var rect = enumerator.Rectangle;
+
+                    int pageIndex = collector.GetStartPageIndex(shape);
+                    //int pageIndex = collector.GetStartPageIndex(shape);
+                    var section = (Aspose.Words.Section)shape.GetAncestor(NodeType.Section);
+                    if (section == null)
+                        continue;
+                    //var section = (Aspose.Words.Section)doc.GetChild(NodeType.Section, pageIndex - 1, true);
+                    double pageHeight = section.PageSetup.PageHeight;
+
+                    // Chuyển sang toạ độ PDF (gốc dưới)
+                    float pdfY = (float)(pageHeight - rect.Y - rect.Height);
+                    var pdfRect = new RectangleF(rect.X, pdfY, rect.Width, rect.Height);
+
+                    lstSignLoc.Add(new SignatureLocation
+                    {
+                        SignerName = shape.Name,
+                        Page = pageIndex,
+                        PdfRect = pdfRect
+                    });
+                }
+            }
+            //Xóa hình Ký ở đây
+
+            foreach (Aspose.Words.Drawing.Shape shape in lstNode)
+            {
+                if (lstVitriKy.Contains(shape.Name))// == signerName)
+                {
+                    shape.Remove();
+                }
+            }
+            return lstSignLoc;
         }
         #endregion
         #endregion
@@ -1634,6 +1830,8 @@ namespace VNS.HIS.UI.Forms.HinhAnh
                 chkXemdonthuocTatca.Checked = Utility.getUserConfigValue(chkXemdonthuocTatca.Tag.ToString(), Utility.Bool2byte(chkXemdonthuocTatca.Checked)) == 1;
                 chkXemKQXNTatca.Checked = Utility.getUserConfigValue(chkXemKQXNTatca.Tag.ToString(), Utility.Bool2byte(chkXemKQXNTatca.Checked)) == 1;
                 chkXemlichsuKQXN.Checked = Utility.getUserConfigValue(chkXemlichsuKQXN.Tag.ToString(), Utility.Bool2byte(chkXemlichsuKQXN.Checked)) == 1;
+                chk_kyso.Checked = Utility.getUserConfigValue(chk_kyso.Tag.ToString(), Utility.Bool2byte(chk_kyso.Checked)) == 1;
+                //chk_Kixacthuc.Checked = Utility.getUserConfigValue(chk_Kixacthuc.Tag.ToString(), Utility.Bool2byte(chk_Kixacthuc.Checked)) == 1;
             }
             catch (Exception ex)
             {
@@ -1651,6 +1849,8 @@ namespace VNS.HIS.UI.Forms.HinhAnh
                 Utility.SaveUserConfig(chkXemdonthuocTatca.Tag.ToString(), Utility.Bool2byte(chkXemdonthuocTatca.Checked));
                 Utility.SaveUserConfig(chkXemKQXNTatca.Tag.ToString(), Utility.Bool2byte(chkXemKQXNTatca.Checked));
                 Utility.SaveUserConfig(chkXemlichsuKQXN.Tag.ToString(), Utility.Bool2byte(chkXemlichsuKQXN.Checked));
+                Utility.SaveUserConfig(chk_kyso.Tag.ToString(), Utility.Bool2byte(chk_kyso.Checked));
+                //Utility.SaveUserConfig(chk_Kixacthuc.Tag.ToString(), Utility.Bool2byte(chk_Kixacthuc.Checked));
             }
 
             catch (Exception ex)
@@ -1671,9 +1871,12 @@ namespace VNS.HIS.UI.Forms.HinhAnh
         {
             try
             {
+                DuyetKiSo = false;
                 LoadUserConfigs();
                 AnhienKetluanDenghi();
                 PhaiTrai = THU_VIEN_CHUNG.Laygiatrithamsohethong("HINHANH_TACH_PHAITRAI", "1", true) == "1";
+                chk_Kixacthuc.Visible= THU_VIEN_CHUNG.Laygiatrithamsohethong("CKS_DONVI_CUNGCAP", "VNPT", true) == "VIETTEL";
+                if (!chk_Kixacthuc.Visible) chk_Kixacthuc.Checked = false;
                 flowLayoutPanel_Trai.Width = PhaiTrai ? 508 : 0;
                 ModifyRegionHinhAnh();
                 if (!File.Exists(docfilepath)) File.Create(docfilepath);
@@ -1723,9 +1926,10 @@ namespace VNS.HIS.UI.Forms.HinhAnh
                 GetDataBN();
 
                 DataTable _dtDoctor = GetAllDoctors();
-                cboBacsi.DataSource = _dtDoctor;
-                cboBacsi.DisplayMember = DmucNhanvien.Columns.TenNhanvien;
-                cboBacsi.ValueMember = DmucNhanvien.Columns.UserName;
+                DataBinding.BindDataCombobox(cboBacsi, _dtDoctor, DmucNhanvien.Columns.UserName, DmucNhanvien.Columns.TenNhanvien);
+                //cboBacsi.DataSource = _dtDoctor;
+                //cboBacsi.DisplayMember = DmucNhanvien.Columns.TenNhanvien;
+                //cboBacsi.ValueMember = DmucNhanvien.Columns.UserName;
                 cboBacsi.Enabled = globalVariables.IsAdmin || Utility.Coquyen("cdha_quyen_chonbacsithuchien");
                 DataTable dtHistory = SPs.HinhanhTimkiemLichsuCdha(objLuotkham.IdBenhnhan, StrServiceCode).GetDataSet().Tables[0];
                 DataRow[] arrDr = dtHistory.Select("id <>" + ID_Study_Detail);
@@ -1793,11 +1997,12 @@ namespace VNS.HIS.UI.Forms.HinhAnh
             }
             finally
             {
-                ModifyCommandButtons();
+              
                 if (cboDoc.Items.Count > 0 && cboDoc.SelectedIndex < 0) cboDoc.SelectedIndex = 0;
                 AllowSelectionChanged = true;
                 txtTenFileKQ.Text = cboDoc.Text;
                 setReadOnly();
+                ModifyCommandButtons();
                 timer1.Start();
                 LoadHTML();
                 loadHinhAnh(false);
@@ -1808,12 +2013,14 @@ namespace VNS.HIS.UI.Forms.HinhAnh
         {
             if (objKcbChidinhclsChitiet != null)
             {
+                chk_KiLai.Enabled = Utility.sDbnull(objKcbChidinhclsChitiet.FileKyso) != "";
                 cmdPrint.Enabled = objKcbChidinhclsChitiet.TrangThai >= 3;
-                cmdSave.Enabled = cmdSaveAndAccept.Enabled = cmdSaveAndPrint.Enabled = objKcbChidinhclsChitiet.TrangThai >= 1 && objKcbChidinhclsChitiet.TrangThai <=3;//Chưa duyệt
-                cmdDuyet.Enabled =mnuDuyet.Enabled= objKcbChidinhclsChitiet.TrangThai == 3;
-                cmdHuyduyet.Enabled = cmdHuyduyet.Visible =mnuHuyduyet.Enabled= objKcbChidinhclsChitiet.TrangThai == 4;
+                mnuLuu_In.Enabled = cmdSave.Enabled = cmdSaveAndAccept.Enabled = cmdSaveAndPrint.Enabled = objKcbChidinhclsChitiet.TrangThai >= 1 && objKcbChidinhclsChitiet.TrangThai <= 3 && Utility.sDbnull(objKcbChidinhclsChitiet.FileKyso) == "";//Chưa duyệt && chưa kí số
+                cmdDuyet.Enabled =mnuDuyet.Enabled= objKcbChidinhclsChitiet.FileKyso =="";
+                cmdHuyduyet.Enabled = cmdHuyduyet.Visible =mnuHuyduyet.Enabled= Utility.sDbnull(objKcbChidinhclsChitiet.FileKyso) != "";
                 cmdDuyet.Visible = !cmdHuyduyet.Visible;
                 cmdChupAnh.Visible = THU_VIEN_CHUNG.Laygiatrithamsohethong("CDHA_NHAPTRAKQ_CHOPHEPCHUPANH", "0", true) == "1";
+                lbl_file_kiso.Text = Utility.sDbnull(objKcbChidinhclsChitiet.FileKyso);
             }
         }
         void ModifyRegionHinhAnh()
@@ -1830,7 +2037,8 @@ namespace VNS.HIS.UI.Forms.HinhAnh
                 }
             if (!hasHinhanh)
             {
-                splitContainer1.Panel2Collapsed=true;
+                //splitContainer1.Panel2Collapsed=true;
+                uiTabPageChupHinh.TabVisible = false;
                 uiTabPageHinhanh.TabVisible = false;
             }
         }
@@ -2018,6 +2226,7 @@ namespace VNS.HIS.UI.Forms.HinhAnh
         {
             try
             {
+                //return;//Luôn hiển thị để bắt nhập kết luận(có thể guide nhập dấu .)
                 bool HienThiKetLuan = THU_VIEN_CHUNG.Laygiatrithamsohethong("CLS_HIENTHI_KETLUAN_DENGHI", "0", true) == "1";
                 lblKetluan.Visible = txtKet_Luan.Visible = lblDenghi.Visible = txtDenghi.Visible = HienThiKetLuan;
                 //Thay đổi chiều cao
@@ -2030,7 +2239,7 @@ namespace VNS.HIS.UI.Forms.HinhAnh
             }
         }
         EmrDocuments emrdoc = new EmrDocuments();
-        void SaveKQ(bool Msg, bool Confirm)
+        bool SaveKQ(bool Msg, bool Confirm)
         {
             try
             {
@@ -2047,7 +2256,7 @@ namespace VNS.HIS.UI.Forms.HinhAnh
                             Utility.ShowMsg(
                                 string.Format("Kết quả chẩn đoán đã được nhập bởi {0}. Bạn không được phép chỉnh sửa. Vui lòng liên hệ với Bác sĩ thực hiện nếu muốn chỉnh sửa (Hoặc bạn phải là Admin) ", Utility.sDbnull(drWorklist["ten_nguoi_thuchien"], "")),
                                 "Thông báo");
-                            return;
+                            return false;
                         }
                     }
                 }
@@ -2082,7 +2291,7 @@ namespace VNS.HIS.UI.Forms.HinhAnh
                 if (!CKEditorInput)
                 {
                     if (!HasValue(flowDynamics))
-                        return;
+                        return false;
                     mo_ta_dyn = SaveNow(flowDynamics, false);
                     ket_qua = getKetluan(flowDynamics);
                 }
@@ -2094,21 +2303,37 @@ namespace VNS.HIS.UI.Forms.HinhAnh
                 objKcbChidinhclsChitiet.KetLuanCdha = ket_qua;
                 mota_html = webBrowser1.Document.InvokeScript("getValue").ToString();// webBrowser1.Document.InvokeScript("getValue").ToString();// Utility.sDbnull(webBrowser1.Text);
                 string s = HtmlToPlainText(mota_html);
-
-                string ketluanfromMota = "";
-                try
+                if(Utility.sDbnull(mo_ta)=="")
                 {
-                    int idx = mo_ta.ToUpper().LastIndexOf("KẾT LUẬN:");
-                    ketluanfromMota = mo_ta.Substring(idx + "KẾT LUẬN:".Length).TrimStart().TrimEnd();
-                    if (ketluanfromMota.Length == 0) ketluanfromMota = ket_qua;
+                    Utility.ShowMsg(string.Format("Bạn phải nhập kết quả cho dịch vụ {0} (Có thể nhập dấu chấm . nếu không có mô tả)", txtTendichvu.Text));
+                    return false;
                 }
-                catch (Exception ex)
+                string ketluanfromMota = "";
+                if (THU_VIEN_CHUNG.Laygiatrithamsohethong("CDHA_TACHKETLUAN_TU_MOTA", "0", true) == "1")
                 {
+                    try
+                    {
+                        int idx = mo_ta.ToUpper().LastIndexOf("KẾT LUẬN:");
+                        if (idx > 0)
+                        {
+                            ketluanfromMota = mo_ta.Substring(idx + "KẾT LUẬN:".Length).TrimStart().TrimEnd();
+                            if (ketluanfromMota.Length == 0) ketluanfromMota = ket_qua;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
 
 
+                    }
                 }
 
                 ket_luan = txtKet_Luan.Visible && Utility.sDbnull(txtKet_Luan.Text).Length>0 ? Utility.sDbnull(txtKet_Luan.Text) : ketluanfromMota;
+                if (Utility.sDbnull(ket_luan) == "" && txtKet_Luan.Visible)
+                {
+                    Utility.ShowMsg(string.Format("Bạn phải nhập Kết luận cho dịch vụ {0} (Có thể nhập dấu chấm . nếu không có mô tả)", txtTendichvu.Text));
+                    txtKet_Luan.Focus();
+                    return false;
+                }
                 if (Utility.Int32Dbnull(objKcbChidinhclsChitiet.TrangThai, 0) <= 3)
                     objKcbChidinhclsChitiet.TrangThai = 3;
                 de_nghi = Utility.sDbnull(txtDenghi.Text);
@@ -2134,9 +2359,10 @@ namespace VNS.HIS.UI.Forms.HinhAnh
                 objKcbChidinhclsChitiet.KieuFilm = cboLoaiFilm.Text;
                 objKcbChidinhclsChitiet.SolanChup = Utility.ByteDbnull(nmrSLchup.Value, 1);
                 objKcbChidinhclsChitiet.SoFilm = Utility.ByteDbnull(nmrSoFilm.Value, 1);
+                objKcbChidinhclsChitiet.IdBacsiThuchien = Utility.Int16Dbnull(objNhanvien != null ? objNhanvien.IdNhanvien : -1, -1);
                 StoredProcedure sp = SPs.ClsKetquaHa(objKcbChidinhclsChitiet.IdChitietchidinh, mo_ta, ket_luan,
                     de_nghi, mota_html, Utility.sDbnull(cboDevice.SelectedValue, "-1"), objKcbChidinhclsChitiet.NgayThuchien, Utility.Int16Dbnull(objNhanvien != null ? objNhanvien.IdNhanvien : -1, -1),
-                  objKcbChidinhclsChitiet.NguoiThuchien, globalVariables.UserName, objKcbChidinhclsChitiet.IdChidinh, objChidinh.MaChidinh, objChidinh.IdBenhnhan, objChidinh.MaLuotkham, txtTendichvu.Text, globalVariables.SysDate, globalVariables.UserName, objKcbChidinhclsChitiet.NgaySua, objKcbChidinhclsChitiet.NguoiSua);
+                  objKcbChidinhclsChitiet.NguoiThuchien, objNhanvien != null ? objNhanvien.UserName: globalVariables.UserName, objKcbChidinhclsChitiet.IdChidinh, objChidinh.MaChidinh, objChidinh.IdBenhnhan, objChidinh.MaLuotkham, txtTendichvu.Text, globalVariables.SysDate, globalVariables.UserName, objKcbChidinhclsChitiet.NgaySua, objKcbChidinhclsChitiet.NguoiSua);
                 using (var scope = new TransactionScope())
                 {
                     using (var sh = new SharedDbConnectionScope())
@@ -2164,11 +2390,12 @@ namespace VNS.HIS.UI.Forms.HinhAnh
                 if (Msg)
                     Utility.ShowMsg("Cập nhật kết quả thành công!");
                 Utility.SetMsg(lblMsg, "Cập nhật kết quả thành công!", false);
-
+                return true;
             }
             catch (Exception ex)
             {
                 Utility.ShowMsg(ex.Message);
+                return false;
             }
             finally
             {
@@ -2201,9 +2428,15 @@ namespace VNS.HIS.UI.Forms.HinhAnh
         {
             try
             {
+                if (objNhanvien == null)
+            {
+                Utility.ShowMsg("Cần chọn Bác sỹ thực hiện trước khi thực hiện lưu và in kết quả trả người bệnh");
+                cboBacsi.Focus();
+                return ;
+            }
                 cmdSave.Enabled = false;
-                SaveKQ(false, PropertyLib._HinhAnhProperties.SaveAndConfirm);
-                if (chkInsauluu.Checked) InKetQua(null);
+             bool isSaved=   SaveKQ(false, PropertyLib._HinhAnhProperties.SaveAndConfirm);
+                if (chkInsauluu.Checked && isSaved) InKetQua();
                 ModifyCommandButtons();
             }
             catch (Exception)
@@ -2283,7 +2516,7 @@ namespace VNS.HIS.UI.Forms.HinhAnh
                 //    uc.RearrangeControls();
                 //    break;
                 //}
-                InKetQua(null);
+                InKetQua();
             }
             catch (Exception ex)
             {
@@ -2577,7 +2810,10 @@ namespace VNS.HIS.UI.Forms.HinhAnh
         {
             try
             {
-                objNhanvien = new Select().From(DmucNhanvien.Schema).Where(DmucNhanvien.Columns.UserName).IsEqualTo(cboBacsi.SelectedValue.ToString()).ExecuteSingle<DmucNhanvien>();
+                if (Utility.sDbnull(cboBacsi.SelectedValue) == "")
+                    objNhanvien = null;
+                else
+                    objNhanvien = new Select().From(DmucNhanvien.Schema).Where(DmucNhanvien.Columns.UserName).IsEqualTo(cboBacsi.SelectedValue.ToString()).ExecuteSingle<DmucNhanvien>();
                 //objNhanvien = DmucNhanvien.FetchByID(cboBacsi.SelectedValue.ToString());
             }
             catch (Exception)
@@ -2588,7 +2824,7 @@ namespace VNS.HIS.UI.Forms.HinhAnh
 
         private void cmdWord_Click(object sender, EventArgs e)
         {
-            InKetQua(null);
+            InKetQua();
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
@@ -3076,8 +3312,10 @@ namespace VNS.HIS.UI.Forms.HinhAnh
         }
         void DuyetKQ()
         {
+           
             try
             {
+               
                 if (!Utility.Coquyen("cdha_duyet_ketqua"))
                 {
                     Utility.ShowMsg("Bạn không có quyền duyệt kết quả CĐHA(cdha_duyet_ketqua). Vui lòng liên hệ quản trị hệ thống để được cấp quyền");
@@ -3087,14 +3325,16 @@ namespace VNS.HIS.UI.Forms.HinhAnh
                 {
                     if (Utility.AcceptQuestion("Bạn có chắc chắn muốn duyệt kết quả này?\nSau khi duyệt, kết quả sẽ được gửi về các khoa phòng khác và các bác sĩ có thể xem kết quả.", "", true))
                     {
+                        chk_kyso.Checked = true;
                         int RA = new Update(KcbChidinhclsChitiet.Schema).Set(KcbChidinhclsChitiet.Columns.TrangThai).EqualTo(4).Where(KcbChidinhclsChitiet.Columns.IdChitietchidinh).IsEqualTo(objKcbChidinhclsChitiet.IdChitietchidinh).Execute();
                         if (RA > 0)
                         {
                             objKcbChidinhclsChitiet.TrangThai = 4;
                             objKcbChidinhclsChitiet.NgayDuyet = DateTime.Now;
                             UpdateWorklist_Duyet();
+                           
                             Utility.Log(this.Name, globalVariables.UserName, string.Format("Duyệt kết quả cho bệnh nhân ID={0}, PID={1}, Tên={2}, Dịch vụ duyệt ={3} ", objLuotkham.IdBenhnhan.ToString(), objLuotkham.MaLuotkham, objBenhnhan.TenBenhnhan, txtTendichvu.Text), newaction.ConfirmData, this.GetType().Assembly.ManifestModule.Name);
-                            Utility.ShowMsg("Đã duyệt kết quả thành công. Nhấn OK để kết thúc");
+                            //Utility.ShowMsg("Đã duyệt kết quả thành công. Nhấn OK để kết thúc");
                         }
                     }
                 }
@@ -3106,6 +3346,7 @@ namespace VNS.HIS.UI.Forms.HinhAnh
             }
             finally
             {
+               
                 ModifyCommandButtons();
             }
 
@@ -3152,28 +3393,75 @@ namespace VNS.HIS.UI.Forms.HinhAnh
         }
         private void mnuLuu_In_Click(object sender, EventArgs e)
         {
+            if (objNhanvien == null)
+            {
+                Utility.ShowMsg("Cần chọn Bác sỹ thực hiện trước khi thực hiện lưu và in kết quả trả người bệnh");
+                cboBacsi.Focus();
+                return ;
+            }
             SaveKQ(false, PropertyLib._HinhAnhProperties.SaveAndConfirm);
-            InKetQua(null);
+            InKetQua();
             ModifyCommandButtons();
         }
 
         private void cmdSaveAndPrint_Click(object sender, EventArgs e)
         {
+            if (objNhanvien == null)
+            {
+                Utility.ShowMsg("Cần chọn Bác sỹ thực hiện trước khi thực hiện lưu và in kết quả trả người bệnh");
+                cboBacsi.Focus();
+                return;
+            }
             SaveKQ(false,false);// PropertyLib._HinhAnhProperties.SaveAndConfirm);
-            InKetQua(null);
+            InKetQua();
             ModifyCommandButtons();
         }
-
+        /// <summary>
+        /// Kí số=Check Ký số+ In+Duyệt
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdDuyet_Click(object sender, EventArgs e)
         {
-            DuyetKQ();
+            bool tthai_kyso = chk_kyso.Checked;
+            try
+            {
+                chk_kyso.Checked = true;
+                InKetQua();
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+            }
+            finally
+            {
+                chk_kyso.Checked = tthai_kyso;
+            }
+           
+           // DuyetKQ();
         }
 
         private void cmdHuyduyet_Click(object sender, EventArgs e)
         {
-            HuyduyetKQ();
+            HuyKySo();
+           // HuyduyetKQ();
         }
+        void HuyKySo()
+        {
+            frm_NhaplydoHuy _NhaplydoHuy = new frm_NhaplydoHuy("LYDOHUY_KISO", "NHẬP LÝ DO HỦY KÝ SỐ", "Vui lòng nhập lý do hủy ký số hợp lệ", "Lý do hủy ký số", "Ngày hủy ký số");
+            if (_NhaplydoHuy.ShowDialog() == DialogResult.OK)
+            {
+                SPs.ClsCdhaUpdatekyso(objKcbChidinhclsChitiet.IdChitietchidinh, "", "", 1).Execute();
+                objKcbChidinhclsChitiet.FileKyso = "";
+                objKcbChidinhclsChitiet.TrangThai = 3;
+                objKcbChidinhclsChitiet.NgayDuyet = null;
 
+                
+
+                Utility.Log(this.Name, globalVariables.UserName, string.Format("Hủy duyệt/Kí số kết quả CĐHA cho bệnh nhân ID={0}, PID={1}, Tên={2}, dịch vụ={3} ", objLuotkham.IdBenhnhan.ToString(), objLuotkham.MaLuotkham, objBenhnhan.TenBenhnhan, txtTendichvu.Text), newaction.CancelData, this.GetType().Assembly.ManifestModule.Name);
+                ModifyCommandButtons();
+            }
+        }
         private void mnuHuyKQ_Click(object sender, EventArgs e)
         {
             HuyKQ();
@@ -3378,7 +3666,7 @@ namespace VNS.HIS.UI.Forms.HinhAnh
                         KcbDonthuoc objPrescription = KcbDonthuoc.FetchByID(Pres_ID);
                         if (objPrescription != null)
                         {
-                            var frm = new frm_KCB_KE_DONTHUOC("VT");
+                            var frm = new frm_KCB_KE_DONTHUOC(objPrescription.KieuThuocvattu);
                             frm.em_Action = action.Update;
                             frm._KcbCDKL = null;
                             frm._MabenhChinh = "";
@@ -3430,7 +3718,7 @@ namespace VNS.HIS.UI.Forms.HinhAnh
             try
             {
                 dtVTTH =
-                     new KCB_THAMKHAM().KcbThamkhamLayDanhsachDonThuocTheolankham(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, -1l, -1l, 4, "VT", objKcbChidinhclsChitiet.IdChitietchidinh, 0).Tables[0];
+                     new KCB_THAMKHAM().KcbThamkhamLayDanhsachDonThuocTheolankham(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, -1l, -1l, 4, "ALL", objKcbChidinhclsChitiet.IdChitietchidinh, 0).Tables[0];
                 Utility.SetDataSourceForDataGridEx(grdVTTH, dtVTTH, false, true, "",
                                                KcbDonthuocChitiet.Columns.SttIn);
             }
@@ -3748,6 +4036,203 @@ namespace VNS.HIS.UI.Forms.HinhAnh
             catch (Exception ex)
             {
                 Utility.CatchException(ex);
+            }
+        }
+
+        private void cmdPrint_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void mnu_Kiso_Click(object sender, EventArgs e)
+        {
+            bool tthai_kyso = chk_kyso.Checked;
+            try
+            {
+                chk_kyso.Checked = true;
+                InKetQua();
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+            }
+            finally
+            {
+                chk_kyso.Checked = tthai_kyso;
+            }
+        }
+
+        private void mnu_huykiso_Click(object sender, EventArgs e)
+        {
+            //Kiểm tra người hủy có quyền super admin hoặc chính là người kí số thì mới cho phép hủy kí số
+            if(objKcbChidinhclsChitiet.NguoiKyso==globalVariables.UserName || Utility.Coquyen("cdha_huykyso"))
+            {
+                Utility.ShowMsg(string.Format("Bạn không có quyền hủy ký số kết quả CĐHA của {0}. Vui lòng liên hệ quản trị hệ thống để được cấp quyền (cdha_huykyso)", objKcbChidinhclsChitiet.NguoiKyso));
+                return;
+            }
+            frm_NhaplydoHuy _NhaplydoHuy = new frm_NhaplydoHuy("LYDOHUY_KISO", "NHẬP LÝ DO HỦY KÝ SỐ", "Vui lòng nhập lý do hủy ký số hợp lệ", "Lý do hủy ký số", "Ngày hủy ký số");
+            if(_NhaplydoHuy.ShowDialog()==DialogResult.OK)
+            {
+                SPs.ClsCdhaUpdatekyso(objKcbChidinhclsChitiet.IdChitietchidinh, "", "", 1).Execute();
+                objKcbChidinhclsChitiet.FileKyso = "";
+                objKcbChidinhclsChitiet.NguoiKyso = "";
+                objKcbChidinhclsChitiet.NgayKyso = null;
+                Utility.Log(this.Name, globalVariables.UserName, string.Format("Hủy duyệt/Kí số kết quả CĐHA cho bệnh nhân ID={0}, PID={1}, Tên={2}, dịch vụ={3} ", objLuotkham.IdBenhnhan.ToString(), objLuotkham.MaLuotkham, objBenhnhan.TenBenhnhan, txtTendichvu.Text), newaction.CancelData, this.GetType().Assembly.ManifestModule.Name);
+                ModifyCommandButtons();
+            }    
+        }
+
+        private void chk_KiLai_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chk_KiLai.Checked)
+                mnuLuu_In.Enabled = cmdSave.Enabled = cmdSaveAndAccept.Enabled = cmdSaveAndPrint.Enabled = objKcbChidinhclsChitiet.TrangThai >= 1 && objKcbChidinhclsChitiet.TrangThai <= 3 ;//Chưa duyệt && chưa kí số
+            else
+                mnuLuu_In.Enabled = cmdSave.Enabled = cmdSaveAndAccept.Enabled = cmdSaveAndPrint.Enabled = objKcbChidinhclsChitiet.TrangThai >= 1 && objKcbChidinhclsChitiet.TrangThai <= 3 && Utility.sDbnull(objKcbChidinhclsChitiet.FileKyso) == "";//Chưa duyệt && chưa kí số
+        }
+
+        private void cmdPrintPres_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmdFileAttach_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (objKcbChidinhclsChitiet == null || objLuotkham == null) return;
+
+                System.Windows.Forms.OpenFileDialog _openfile = new System.Windows.Forms.OpenFileDialog();
+                _openfile.Multiselect = true;
+                _openfile.Title = "Chọn file";
+                _openfile.Filter = "PDF files (*.pdf)|*.pdf|All files (*.*)|*.*";
+
+                // 0 = mục đầu tiên, 1 = mục thứ hai
+                _openfile.FilterIndex = 1;   // Mặc định chọn PDF trước
+
+                _openfile.RestoreDirectory = true;
+                if (_openfile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    KcbChidinhcl objChidinh = KcbChidinhcl.FetchByID(objKcbChidinhclsChitiet.IdChidinh);
+                    if (objChidinh != null)
+                    {
+                        if (_openfile.FileNames.Count() >= 2)
+                        {
+                            if (!Utility.AcceptQuestion(string.Format("Bạn đang chọn nhiều ({0}) file kết quả cho phiếu chỉ định này. Bạn có chắc chắn?", _openfile.FileNames.Count().ToString()), "Cảnh báo", true))
+                            {
+                                return;
+                            }
+                        }
+                        foreach (string sfile in _openfile.FileNames)
+                        {
+                            if (sfile.Length > 255)
+                            {
+                                Utility.ShowMsg(string.Format("File {0} không hợp lệ vì tên file dài quá 255 kí tự. Đề nghị đổi lại tên file và thực hiện đính kèm lại", sfile));
+                                continue;
+                            }
+                            byte[] file;
+                            using (var stream = new FileStream(sfile, FileMode.Open, FileAccess.Read))
+                            {
+                                using (var reader = new BinaryReader(stream))
+                                {
+                                    file = reader.ReadBytes((int)stream.Length);
+                                }
+                            }
+                            SPs.ClsFileDinhkemInsert(objKcbChidinhclsChitiet.IdChidinh, objKcbChidinhclsChitiet.IdChitietchidinh, file, Path.GetFileName(sfile), globalVariables.UserName, globalVariables.SysDate, objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, objChidinh.IdKham, objChidinh.IdDieutri).Execute();
+
+                        }
+
+                    }
+                    LoadAttachedFiles();
+                }
+            }
+            catch (Exception ex)
+            {
+
+
+            }
+        }
+        void LoadAttachedFiles()
+        {
+            try
+            {
+                VNS.HIS.UI.Forms.HinhAnh.Util.ReleaseControlMemory(pnlAttachedFiles, "3");
+                pnlAttachedFiles.Controls.Clear();
+                if (objKcbChidinhclsChitiet == null || objLuotkham == null) return;
+                DataTable dtAttachedFiles = SPs.ClsFileDinhkemSelect(objKcbChidinhclsChitiet.IdChitietchidinh, objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham).GetDataSet().Tables[0];
+                foreach (DataRow dr in dtAttachedFiles.Rows)
+                {
+                    LinkLabel _file = new LinkLabel();
+                    _file.ContextMenuStrip = ctxDelFile;
+                    _file.AutoSize = true;
+                    _file.Font = cmdFileAttach.Font;
+                    _file.ForeColor = cmdFileAttach.ForeColor;
+                    _file.Text = dr["id"].ToString() + "-" + dr["file_name"].ToString();
+                    _file.Tag = dr[TblFiledinhkem.Columns.FileData];
+                    _file.Click += _file_Click;
+                    pnlAttachedFiles.Controls.Add(_file);
+                }
+                if (dtAttachedFiles.Rows.Count > 0) uiTabPageFileDinhKem.Text = string.Format("File đính kèm({0})", dtAttachedFiles.Rows.Count.ToString());
+                else uiTabPageFileDinhKem.Text = string.Format("File đính kèm");
+
+            }
+            catch (Exception ex)
+            {
+                Utility.ShowMsg(ex.ToString());
+
+            }
+            finally
+            {
+
+            }
+
+        }
+
+        void _file_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LinkLabel obj = sender as LinkLabel;
+                byte[] fileData = obj.Tag as byte[];
+                //Save to temp folder
+                string fileName = Application.StartupPath + @"\temppdf\" + obj.Text;
+                Utility.CreateFolder(fileName);
+                if (!File.Exists(fileName))
+                    File.WriteAllBytes(fileName, fileData);
+                System.Diagnostics.Process.Start(fileName);
+            }
+            catch (Exception ex)
+            {
+
+                Utility.CatchException(ex);
+            }
+
+        }
+
+        private void mnuDelFile_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ToolStripMenuItem menuItem = sender as ToolStripMenuItem;
+                if (menuItem != null)
+                {
+                    ContextMenuStrip owner = menuItem.Owner as ContextMenuStrip;
+                    if (owner != null)
+                    {
+                        LinkLabel sourceControl = owner.SourceControl as LinkLabel;
+                        Int64 id = Utility.Int64Dbnull(sourceControl.Text.Split('-')[0], 0);
+                        string sfile_name = Utility.sDbnull(sourceControl.Text.Split('-')[1]);
+                        if (Utility.AcceptQuestion(string.Format("Bạn có chắc chắn muốn xóa file đính kèm {0}?", sfile_name), "Xác nhận xóa", true))
+                        {
+                            SPs.ClsFileDinhkemDelete(id).Execute();
+                            LoadAttachedFiles();
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+
             }
         }
     }

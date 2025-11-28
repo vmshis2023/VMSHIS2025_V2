@@ -45,6 +45,7 @@ namespace VMS.ChuKySo.Api.Helpers
     public class SingleResponse<TModel> : ISingleResponse<TModel>
     {
         public string Message { get; set; }
+        public string SAD { get; set; }
 
         public bool Success { get; set; }
 

@@ -1,0 +1,14 @@
+2025-09-26 15:52:40.4497||TRACE|ThemBacSy|_________Begin________ 
+2025-09-26 15:52:42.5940||TRACE|ThemBacSy|url=https://api.donthuocquocgia.vn/api/v1/them-bac-si 
+2025-09-26 15:52:50.6206||TRACE|ThemBacSy|Request data ={"ma_lien_thong_bac_si":"002519HNO-CCHN"} 
+2025-09-26 15:52:51.1709||TRACE|ThemBacSy|https://api.donthuocquocgia.vn/api/v1/them-bac-si 
+2025-09-26 15:52:52.1750||TRACE|ThemBacSy|WebRequest The remote server returned an error: (404) Not Found. 
+2025-09-26 15:53:04.6721||TRACE|ThemBacSy|Response data=The remote server returned an error: (404) Not Found. 
+2025-09-26 16:28:27.2839||TRACE|ThemBacSy|_________End________ 
+2025-09-26 16:28:32.3752||TRACE|ThemBacSy|_________Begin________ 
+2025-09-26 16:28:33.5022||TRACE|ThemBacSy|url=https://api.donthuocquocgia.vn/api/v1/them-bac-si 
+2025-09-26 16:28:33.9011||TRACE|ThemBacSy|Request data ={"ma_lien_thong_bac_si":"01002519HNO-CCHN"} 
+2025-09-26 16:28:35.1801||TRACE|ThemBacSy|https://api.donthuocquocgia.vn/api/v1/them-bac-si 
+2025-09-26 16:28:35.6076||TRACE|ThemBacSy|{"message":"B\u00e1c s\u0129 \u0111\u00e3 thu\u1ed9c trong trung t\u00e2m c\u1ee7a b\u1ea1n"} 
+2025-09-26 16:28:38.8358||TRACE|ThemBacSy|Response data={"message":"B\u00e1c s\u0129 \u0111\u00e3 thu\u1ed9c trong trung t\u00e2m c\u1ee7a b\u1ea1n"} 
+2025-09-26 16:28:41.6964||TRACE|ThemBacSy|_________End________ 

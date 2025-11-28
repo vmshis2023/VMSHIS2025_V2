@@ -4,6 +4,39 @@
         <name>VMS.HIS.API</name>
     </assembly>
     <members>
+        <member name="M:VMS.HIS.API.Controllers.DTQGController.dangnhapBacSy(VMS.HIS.API.DangNhapBacSy)">
+            <summary>
+             Hàm thực hiện đăng nhập bác sỹ 
+            </summary>
+            <param name="objbacsidangnhap"></param>
+            <returns></returns>
+        </member>
+        <member name="M:VMS.HIS.API.Controllers.DTQGController.DangnhapCSKCB">
+            <summary>
+            Hàm thực hiện đăng nhập cơ sở khám chữa bệnh
+            </summary>
+            <param name="objbacsidangnhap"></param>
+            <returns></returns>
+        </member>
+        <member name="M:VMS.HIS.API.Controllers.DTQGController.ThemBacSy(VMS.HIS.API.Bacsy)">
+            <summary>
+            Hàm thực hiện thêm bác sỹ
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:VMS.HIS.API.Controllers.DTQGController.XoaBacSy(VMS.HIS.API.Bacsy)">
+            <summary>
+            Hàm thực hiện thêm bác sỹ
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:VMS.HIS.API.Controllers.DTQGController.GuiDonThuoc(VMS.Helpers.DonThuocQuocGiaModel.Guidonthuoc)">
+            <summary>
+            Hàm thực hiện gửi đơn thuốc lên cổng đơn thuốc quốc gia 
+            </summary>
+            <param name="objguidonthuoc"></param>
+            <returns></returns>
+        </member>
         <member name="M:VMS.HIS.API.Controllers.MisaInvoiceController.DangNhap">
             <summary>
             Hàm thực hiện get token từ misa 
@@ -46,21 +79,21 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:VMS.Invoice.Utility.Int16Dbnull(System.Object)">
+        <member name="M:VMS.Helpers.Utility.Int16Dbnull(System.Object)">
             <summary>
             Chuyển đổi một đối tượng sang kiểu Int16. Xử lý nếu trường hợp là null thì trả về giá trị 0
             </summary>
             <param name="obj">convert đối tượng 16</param>
             <returns></returns>
         </member>
-        <member name="M:VMS.Invoice.Utility.Int64Dbnull(System.Object)">
+        <member name="M:VMS.Helpers.Utility.Int64Dbnull(System.Object)">
             <summary>
             Hàm thực hiện set cho đối tượng kiểu Int64 
             </summary>
             <param name="obj">Đối tượng convert thành 64  </param>
             <returns></returns>
         </member>
-        <member name="M:VMS.Invoice.Utility.Int64Dbnull(System.Object,System.Object)">
+        <member name="M:VMS.Helpers.Utility.Int64Dbnull(System.Object,System.Object)">
             <summary>
             hàm thực hiện convert đối tượng thành 64
             </summary>
@@ -68,7 +101,7 @@
             <param name="DefaultVal">Để giá trị mặc đi khi là null</param>
             <returns></returns>
         </member>
-        <member name="M:VMS.Invoice.Utility.Int16Dbnull(System.Object,System.Object)">
+        <member name="M:VMS.Helpers.Utility.Int16Dbnull(System.Object,System.Object)">
             <summary>
             Chuyển đổi một đối tượng sang kiểu Int16. Xử lý nếu trường hợp là null thì trả về giá trị DefaultVal
             </summary>
@@ -76,7 +109,7 @@
             <param name="DefaultVal"></param>
             <returns></returns>
         </member>
-        <member name="M:VMS.Invoice.Utility.Int32Dbnull(System.Object,System.Object)">
+        <member name="M:VMS.Helpers.Utility.Int32Dbnull(System.Object,System.Object)">
             <summary>
             Chuyển đổi một đối tượng sang kiểu Int32. Xử lý nếu trường hợp là null thì trả về giá trị DefaultVal
             </summary>
@@ -84,7 +117,7 @@
             <param name="DefaultVal"></param>
             <returns></returns>
         </member>
-        <member name="M:VMS.Invoice.Utility.NumbersOnly(System.Char,System.String)">
+        <member name="M:VMS.Helpers.Utility.NumbersOnly(System.Char,System.String)">
             <summary>
             Thủ tục thường dùng cho sự kiện Keypress của TextBox để ngăn không cho nhập ký tự
             </summary>
@@ -92,7 +125,7 @@
             <param name="CurrentString">Thường là TextObject.Text. Trong đó TextObject là tên của TextObject bạn muốn ràng buộc</param>
             <returns></returns>
         </member>
-        <member name="M:VMS.Invoice.Utility.sDbnull(System.Object)">
+        <member name="M:VMS.Helpers.Utility.sDbnull(System.Object)">
             <summary>
             <para>Xử lý một Object nếu là null thì trả về giá trị truyền vào</para>
             </summary>   
@@ -100,14 +133,14 @@
              <param name="DefaultVal"><para>Giá trị mặc định sẽ trả về nếu obj=null <see cref="T:System.Object"/></para></param>     
             <returns>Đối tượng chuỗi trả về từ Object. Nếu obj=null thì trả về DefaultVal</returns>
         </member>
-        <member name="M:VMS.Invoice.Utility.DoubletoDbnull(System.Object)">
+        <member name="M:VMS.Helpers.Utility.DoubletoDbnull(System.Object)">
             <summary>
             HÀM THỰC HIỆN CONVERT DOUBLE NẾU ĐỐI TƯỢNG LÀ NULL
             </summary>
             <param name="obj"></param>
             <returns></returns>
         </member>
-        <member name="M:VMS.Invoice.Utility.DoubletoDbnull(System.Object,System.Object)">
+        <member name="M:VMS.Helpers.Utility.DoubletoDbnull(System.Object,System.Object)">
             <summary>
             HÀM THỰC HIỆN LẤY CONVERT ĐỐI TƯỢNG NẾU LÀ NULL THÌ 
             </summary>
@@ -115,7 +148,7 @@
             <param name="DefaultVal">GIÁ TRỊ MẶC ĐỊNH</param>
             <returns></returns>
         </member>
-        <member name="M:VMS.Invoice.Utility.DecimaltoDbnull(System.Object,System.Object)">
+        <member name="M:VMS.Helpers.Utility.DecimaltoDbnull(System.Object,System.Object)">
             <summary>
             Hàm thực hiện convert đối tượng thành Decimal
             </summary>

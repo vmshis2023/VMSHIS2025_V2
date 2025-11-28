@@ -32,6 +32,7 @@ using VMS.HIS.EMR.Forms.BA_Phieukham.Ucs;
 using VMS.HIS.EMR.Classes;
 using VNS.HIS.UI.Forms.NGOAITRU;
 using VMS.API.Libs;
+using VNS.HIS.UI.NGOAITRU;
 
 namespace VMS.HIS.UI.EMR
 {
@@ -624,8 +625,9 @@ namespace VMS.HIS.UI.EMR
                 List<string> lstNguoiKy = new List<string>();
                 foreach (DataRow dr in globalVariables.dtSignInfor.Rows)
                 {
+                    string ttin_ky =string.Format("{0}@{1}", Utility.sDbnull(dr["nguoi_ky"]), Utility.sDbnull(dr["ten_vitri_ky"]));
                     string nguoiky = Utility.sDbnull(dr["nguoi_ky"]);
-                    if (!lstNguoiKy.Contains(nguoiky))
+                    if (!lstNguoiKy.Contains(ttin_ky))
                     {
                         lstNguoiKy.Add(nguoiky);
                         ucNguoiKy _nguoiky = new ucNguoiKy(dr);
@@ -734,9 +736,39 @@ namespace VMS.HIS.UI.EMR
             sql = string.Format(sql, objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham);
             dtPhieuPttt = Utility.ExecuteSql(sql, CommandType.Text).Tables[0];
         }
+        void InPhieuBanGiaoNguoiBenhChuyenKhoa(string Loaiphieu_HIS)
+        {
+            try
+            {
+                EmrPhieubangiaonguoibenhchuyenkhoa phieubangiao = new Select().From(EmrPhieubangiaonguoibenhchuyenkhoa.Schema)
+                       .Where(EmrPhieubangiaonguoibenhchuyenkhoa.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
+                       .And(EmrPhieubangiaonguoibenhchuyenkhoa.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
+                       .ExecuteSingle<EmrPhieubangiaonguoibenhchuyenkhoa>();
+                if (phieubangiao.IdPhieu <= 0)
+                {
+                    Utility.ShowMsg("Bạn cần lưu thông tin Phiếu bàn giao người bệnh chuyển khoa trước khi thực hiện in phiếu");
+                    return;
+                }
+                DataTable dtData = SPs.EmrPhieubangiaonguoibenhchuyenkhoaLaythongtinIn(phieubangiao.IdPhieu).GetDataSet().Tables[0];
+                dtData.TableName = "PHIEU_BANGIAO_NGUOIBENHCHUYENKHOA";
+                dtData.Rows[0]["sngay_bangiao"] = phieubangiao != null ? Utility.FormatDateTime_gio_ngay_thang_nam(phieubangiao.NgayBangiao, "") : "Ngày ......./......./..........";
+                if (Loaiphieu_HIS== "PHIEU_BANGIAO_NGUOIBENHCHUYENKHOA_BACSI")
+                    WordPrinter.InPhieu(dtData, "PHIEU_BANGIAO_NGUOIBENHCHUYENKHOA_BACSI.doc", "", false, @"doc\PHIEU_BANGIAO_NGUOIBENHCHUYENKHOA_CHECKED_FIELDS.txt");
+                else
+                    WordPrinter.InPhieu(dtData, "PHIEU_BANGIAO_NGUOIBENHCHUYENKHOA_DIEUDUONG.doc", "", false, @"doc\PHIEU_BANGIAO_NGUOIBENHCHUYENKHOA_CHECKED_FIELDS.txt");
+
+
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+            }
+        }
         string File2View = "";
         string FileKiso= "";
         string FileIn = "";
+        long IdPhieu = -1;
+        List<string> lstPhieuKQXN_CDHA = new List<string>() { "PHIEU_KQCDHA", "PHIEU_KQXN" };
         private void grdEmrDocuments_SelectionChanged(object sender, EventArgs e)
         {
 
@@ -764,7 +796,7 @@ namespace VMS.HIS.UI.EMR
                 pdfViewer1.CloseDocument();
                 return;
             }
-           
+            globalVariables.emr_id_file = -1;
             try
             {
                 Utility.WaitNow(this);
@@ -772,25 +804,27 @@ namespace VMS.HIS.UI.EMR
                 string loaiphieuhis = "";
                 string loaiphieu_cha = "";
                 string reportcode = "";
-                long IdPhieu = -1;
+                
                 long IdFile = Utility.Int64Dbnull(currRow.Cells[EmrDocument.Columns.IdFile].Value);
                 bool tthai_kiso = false;
                 //Bắt đầu xử lý sinh lại file dựa vào loại phiếu HIS và report_code
-                EmrDocument objDoc = EmrDocument.FetchByID(Utility.Int64Dbnull(currRow.Cells[EmrDocument.Columns.IdFile].Value));
-                if (objDoc != null)
+                loaiphieuhis = Utility.sDbnull(currRow.Cells[EmrDocument.Columns.LoaiPhieuHis].Value);
+                loaiphieu_cha = Utility.sDbnull(currRow.Cells[EmrDocument.Columns.LoaiphieuCha].Value);
+                reportcode = Utility.sDbnull(currRow.Cells[EmrDocument.Columns.ReportCode].Value);
+                EmrDocument objDoc = null;
+                if (!lstPhieuKQXN_CDHA.Contains(loaiphieuhis))
                 {
-                    IdPhieu = Utility.Int64Dbnull(objDoc.IdPhieu);// Utility.Int64Dbnull(currRow.Cells[EmrDocument.Columns.IdPhieu].Value);
-                    loaiphieuhis = objDoc.LoaiPhieuHis;
-                    loaiphieu_cha = objDoc.LoaiphieuCha;
-                    reportcode = objDoc.ReportCode;
-                    FileKiso =Utility.sDbnull( objDoc.FileKiso,"");
-                    FileIn = objDoc.FileIn;
-                }
-                else
-                {
-                    loaiphieuhis = Utility.sDbnull(currRow.Cells[EmrDocument.Columns.LoaiPhieuHis].Value);
-                    loaiphieuhis = Utility.sDbnull(currRow.Cells[EmrDocument.Columns.LoaiphieuCha].Value);
-                    reportcode = Utility.sDbnull(currRow.Cells[EmrDocument.Columns.ReportCode].Value);
+                    objDoc = EmrDocument.FetchByID(Utility.Int64Dbnull(currRow.Cells[EmrDocument.Columns.IdFile].Value));
+                    if (objDoc != null)
+                    {
+                        globalVariables.emr_id_file = objDoc.IdFile;
+                        IdPhieu = Utility.Int64Dbnull(objDoc.IdPhieu);// Utility.Int64Dbnull(currRow.Cells[EmrDocument.Columns.IdPhieu].Value);
+                        loaiphieuhis = objDoc.LoaiPhieuHis;
+                        loaiphieu_cha = objDoc.LoaiphieuCha;
+                        reportcode = objDoc.ReportCode;
+                        FileKiso = Utility.sDbnull(objDoc.FileKiso, "");
+                        FileIn = objDoc.FileIn;
+                    }
                 }
                 AddSignInfor(objDoc);
                 nguoi_tao = Utility.sDbnull(currRow.Cells[EmrDocument.Columns.NguoiTao].Value);
@@ -799,7 +833,10 @@ namespace VMS.HIS.UI.EMR
                 
                 DataTable v_dtEmrData;
                 SysReport objReport;
+                if(FileKiso!=null)//File này dạng PDF
+                {
 
+                }    
                 if (loaiphieuhis == Loaiphieu_HIS.FILE_DINHKEM)
                 {
                 }
@@ -832,6 +869,10 @@ namespace VMS.HIS.UI.EMR
                     dtData.TableName = "phieucamketchapnhan_pttt";
                     dtData.Rows[0]["sngay_camket"] = phieucamket != null ? Utility.FormatDateTime_gio_ngay_thang_nam(phieucamket.NgayCamket, "") : "Ngày ......./......./..........";
                     File2View = WordPrinter.InPhieu(null,dtData, "phieucamketchapnhan_pttt.doc", true);
+                }
+                else if (loaiphieuhis == Loaiphieu_HIS.PHIEUKHAM_TIENME)
+                {
+                    File2View = WordPrinter.InPhieuKhamTienMe(IdPhieu,  true);
                 }
                 else if (loaiphieuhis == Loaiphieu_HIS.PHIEUPTTT || loaiphieu_cha == Loaiphieu_HIS.PHIEUPTTT)
                 {
@@ -917,6 +958,7 @@ namespace VMS.HIS.UI.EMR
                     }
                     File2View = VMS.HIS.Bus.WordPrinter.InPhieu(null, v_dtEmrData, "PHIEU_RAVIEN.doc", true);
                 }
+                
                 else if (loaiphieuhis == Loaiphieu_HIS.PHIEUNHAPVIEN)
                 {
                     File2View = IN_PHIEU_KHAM_VAO_VIEN(reportcode);
@@ -924,6 +966,14 @@ namespace VMS.HIS.UI.EMR
                 else if (loaiphieuhis == Loaiphieu_HIS.PHIEUCHUYENVIEN)
                 {
 
+                }
+                else if (loaiphieuhis == Loaiphieu_HIS.PHIEU_BANGIAO_NGUOIBENHCHUYENKHOA_BACSI || loaiphieuhis == Loaiphieu_HIS.PHIEU_BANGIAO_NGUOIBENHCHUYENKHOA_DIEUDUONG )
+                {
+                    InPhieuBanGiaoNguoiBenhChuyenKhoa(loaiphieuhis);
+                }
+                else if (loaiphieuhis == Loaiphieu_HIS.BIENBANHOICHAN)
+                {
+                    File2View = InBienBanHoiChan(IdPhieu);
                 }
                 else if (loaiphieuhis == Loaiphieu_HIS.TT25_GIAYCHUNGNHAN_TAINANTHUONGTICH)
                 {
@@ -1141,7 +1191,7 @@ namespace VMS.HIS.UI.EMR
                         //dtData.Rows[0]["sngaygio_nhapvien"] = PDT != null ? Utility.FormatDateTime_giophut_ngay_thang_nam(PDT.NgayVaovien, "") : ".......... giờ ....... ngày ........./........./.............";
                         //dtData.Rows[0]["sngaygio_ravien"] = PDT != null ? Utility.FormatDateTime_giophut_ngay_thang_nam(PDT.NgayRavien, "") : ".......... giờ ....... ngày ........./........./.............";
                         //dtData.Rows[0]["sngayxacnhan"] = Utility.FormatDateTime(Utility.sDbnull(dtData.Rows[0]["sngayxacnhan"], ""), "ngày......tháng......năm.........");
-                        WordPrinter.InPhieuTruyenDich(dtData, "PHIEUTHEODOI_TRUYENDICH.doc", "");
+                        File2View = WordPrinter.InPhieuTruyenDich(dtData, "PHIEUTHEODOI_TRUYENDICH.doc", "",true);
 
 
                     }
@@ -1158,18 +1208,48 @@ namespace VMS.HIS.UI.EMR
                     THU_VIEN_CHUNG.SapxepthutuinPhieucongkhai(dsData.Tables[0], false);
                     dsData.Tables[0].DefaultView.Sort = "stt_in,stt_hthi_loaidichvu ,stt_hthi_dichvu,stt_hthi_chitiet,ten";
 
-                    THU_VIEN_CHUNG.CreateXML_NOLOGO(dsData.Tables[0], Application.StartupPath + @"\Xml4Reports\noitru_phieucongkhai_Excel.XML");
+                    THU_VIEN_CHUNG.CreateXML_NOLOGO(dsData.Tables[1], Application.StartupPath + @"\Xml4Reports\noitru_phieucongkhai_Excel.XML");
 
                     if (dsData == null || dsData.Tables.Count <= 0 || dsData.Tables[0].Rows.Count <= 0)
                     {
                         Utility.ShowMsg("Không tìm thấy dữ liệu in phiếu công khai.", "Thông báo", MessageBoxIcon.Warning);
                         return;
                     }
-                    dsData.Tables[0].TableName = "PHIEU_CONGKHAI";
-                    dsData.Tables[1].Rows[0]["sngaygio_nhapvien"] =  Utility.FormatDateTime_giophut_ngay_thang_nam(PDT.NgayVaovien, "") : ".......... giờ ....... ngày ........./........./.............";
-                    dsData.Tables[1].Rows[0]["sngaygio_ravien"] = PDT != null ? Utility.FormatDateTime_giophut_ngay_thang_nam(PDT.NgayRavien, "") : ".......... giờ ....... ngày ........./........./.............";
+                    //dsData.Tables[0].TableName = "PHIEU_CONGKHAI_DICHVU";
+                    //dsData.Tables[1].TableName = "PHIEU_CONGKHAI_HANHCHINH";
+                    DateTime? ngay_nhapvien = Utility.ParseDateAuto((Utility.sDbnull(dsData.Tables[1].Rows[0]["sngaygio_nhapvien"])));
+                    DateTime? ngay_ravien = Utility.ParseDateAuto((Utility.sDbnull(dsData.Tables[1].Rows[0]["sngaygio_ravien"])));
+                    dsData.Tables[1].Rows[0]["sngaygio_nhapvien"] = ngay_nhapvien .HasValue ? Utility.FormatDateTime_giophut_ngay_thang_nam(ngay_nhapvien, "") : ".......... giờ ....... ngày ........./........./.............";
+                    dsData.Tables[1].Rows[0]["sngaygio_ravien"] = ngay_ravien.HasValue ? Utility.FormatDateTime_giophut_ngay_thang_nam(ngay_ravien, "") : ".......... giờ ....... ngày ........./........./.............";
                     //dtData.Rows[0]["sngayxacnhan"] = Utility.FormatDateTime(Utility.sDbnull(dtData.Rows[0]["sngayxacnhan"], ""), "ngày......tháng......năm.........");
-                    WordPrinter.InPhieuCongKhai(dsData, "PHIEU_CONGKHAI.doc", "");
+                    bool AutoFillEmpty = true;
+                    List<string> lstDays = (from p in dsData.Tables[2].AsEnumerable()
+                                            select Utility.sDbnull(p["ngay_1"])
+                                                ).ToList<string>();
+                    DateTime mindate = Convert.ToDateTime(dsData.Tables[1].Rows[0]["minDate"]);
+                    DateTime maxdate = Convert.ToDateTime(dsData.Tables[1].Rows[0]["maxDate"]);
+                    int days = lstDays.Count;
+                    if (AutoFillEmpty)
+                        days = (int)Microsoft.VisualBasic.DateAndTime.DateDiff(Microsoft.VisualBasic.DateInterval.Day, mindate, maxdate) + 1;
+                    
+                    //fill các ngày trống giữa min và max date. 
+
+                    if (AutoFillEmpty)
+                    {
+                        for (int i = 0; i <= days - 1; i++)
+                        {
+                            DateTime newDate = mindate.AddDays(i);
+                            string colName = newDate.ToString("dd.MM");
+                            if (!dsData.Tables[0].Columns.Contains(colName))
+                            {
+                                dsData.Tables[0].Columns.Add(colName, typeof(int));
+                                //Update giá trị=0 cho các ngày giả đó
+                                (from p in dsData.Tables[0].AsEnumerable() select p).ToList().ForEach(x => x[colName] = 0);
+                            }
+                        }
+                    }
+
+                    File2View = WordPrinter.InPhieuCongKhai(dsData, "PHIEU_CONGKHAI.doc","",true,true);
                 }
                 else if (loaiphieuhis == Loaiphieu_HIS.PHIEUCHIDINH)
                 {
@@ -1205,6 +1285,135 @@ namespace VMS.HIS.UI.EMR
                     cmdKidientu.Enabled = cmdHuyKyDientu.Enabled = false;
                 }
                 Utility.DefaultNow(this);
+            }
+        }
+       
+        private string InBienBanHoiChan(long id_phieu)
+        {
+
+            try
+            {
+                KcbBienbanhoichan bbhc = KcbBienbanhoichan.FetchByID(id_phieu);
+                if (bbhc == null || bbhc.Id <= 0)
+                {
+                    Utility.ShowMsg("Bạn cần tạo biên bản hội chẩn trước khi thực hiện in");
+                    return "";
+                }
+                DataTable dtData = SPs.KcbLaythongtinBienbanhoichanIn(bbhc.Id).GetDataSet().Tables[0];
+
+                List<string> lstAddedFields = new List<string>() { "khamtimmach_binhthuong", "khamtimmach_batthuong", "khamtimmach_khac",
+                "khamhohap_binhthuong", "khamhohap_copd", "khamhohap_khac",
+                "phanloaivetmo_sach","phanloaivetmo_sachnhiem",
+                "phanloaivetmo_nhiem", "phanloaivetmo_ban"};
+
+                dtData.TableName = "kcb_bienbanhoichan";
+                DataTable dtMergeField = dtData.Clone();
+                Utility.AddColums2DataTable(ref dtMergeField, lstAddedFields, typeof(string));
+                Document doc;
+                DataRow drData = dtData.Rows[0];
+                drData["ten_benhvien"] = globalVariables.Branch_Name;
+                drData["ten_SYT"] = globalVariables.ParentBranch_Name;
+                drData["ten_benhvien"] = globalVariables.Branch_Name;
+                drData["diahchi_benhvien"] = globalVariables.Branch_Address;
+                drData["SDT_bv"] = globalVariables.Branch_Phone;
+                drData["Hotline_bv"] = globalVariables.Branch_Hotline;
+                drData["Fax_bv"] = globalVariables.Branch_Fax;
+                drData["website_bv"] = globalVariables.Branch_Website;
+                drData["email_bv"] = globalVariables.Branch_Email;
+                drData["ten_phieu"] = "BIÊN BẢN HỘI CHẨN";
+                drData["sngay_hoichan_full"] = Utility.FormatDateTime_giophut_ngay_thang_nam(bbhc.NgayHoichan, "");
+                drData["sngay_hoichan"] = Utility.FormatDateTime(bbhc.NgayHoichan);
+                drData["ngay_in"] = Utility.FormatDateTime(DateTime.Now);
+                drData["sngay_nhapvien"] = Utility.FormatDateTime_giophut_ngay_thang_nam(objLuotkham.NgayNhapvien, "");
+                drData["sngay_dukienpttt"] = Utility.FormatDateTime_giophut_ngay_thang_nam(bbhc.DukienthoigianPttt.Value, "");
+                Dictionary<string, string> dicMF = new Dictionary<string, string>();
+                dicMF.Add("khamtimmach_binhthuong", bbhc.Timach.Value == 0 ? "1" : "0");
+                dicMF.Add("khamtimmach_batthuong", bbhc.Timach.Value == 1 ? "1" : "0");
+                dicMF.Add("khamtimmach_khac", bbhc.Timach.Value == 2 ? "1" : "0");
+                dicMF.Add("khamhohap_binhthuong", bbhc.Hohap.Value == 0 ? "1" : "0");
+                dicMF.Add("khamhohap_copd", bbhc.Hohap.Value == 1 ? "1" : "0");
+                dicMF.Add("khamhohap_khac", bbhc.Hohap.Value == 2 ? "1" : "0");
+                dicMF.Add("phanloaivetmo_sach", bbhc.PhanloaiVetmo.Value == 0 ? "1" : "0");
+                dicMF.Add("phanloaivetmo_sachnhiem", bbhc.PhanloaiVetmo.Value == 1 ? "1" : "0");
+                dicMF.Add("phanloaivetmo_nhiem", bbhc.PhanloaiVetmo.Value == 2 ? "1" : "0");
+                dicMF.Add("phanloaivetmo_ban", bbhc.PhanloaiVetmo.Value == 3 ? "1" : "0");
+                List<string> fieldNames = new List<string>();
+
+                string PathDoc = AppDomain.CurrentDomain.BaseDirectory + "Doc\\BIENBAN_HOICHAN.doc";
+                string writePathdoc = AppDomain.CurrentDomain.BaseDirectory + "tempDoc\\";
+                if (!Directory.Exists(writePathdoc)) Directory.CreateDirectory(writePathdoc);
+                string mergeFields = AppDomain.CurrentDomain.BaseDirectory + "MergeFields\\";
+                if (!Directory.Exists(mergeFields)) Directory.CreateDirectory(mergeFields);
+                Utility.CreateMergeFields(dtMergeField);
+                if (!File.Exists(PathDoc))
+                {
+                    string tieude = "";
+                    Utility.GetReport("BIENBAN_HOICHAN", ref tieude, ref PathDoc);
+                }
+                if (!File.Exists(PathDoc))
+                {
+                    Utility.ShowMsg("Không tìm thấy file mẫu in phiếu Biên bản hội chẩn tại thư mục sau :" + PathDoc);
+                    return "";
+                }
+
+
+                if (!File.Exists(PathDoc))
+                {
+                    Utility.ShowMsg(string.Format("Không tìm thấy File {0}", PathDoc), "Thông báo không tìm thấy File",
+                      MessageBoxIcon.Warning);
+                    return "";
+                }
+                SysSystemParameter sysLogosize = new Select().From(SysSystemParameter.Schema).Where(SysSystemParameter.Columns.SName).IsEqualTo("logosize").ExecuteSingle<SysSystemParameter>();
+
+                string fileKetqua = string.Format("{0}{1}{2}{3}{4}_{5}_{6}_{7}",
+                               Path.GetDirectoryName(writePathdoc), Path.DirectorySeparatorChar,
+                               Path.GetFileNameWithoutExtension(PathDoc), "BIENBAN_HOICHAN", objLuotkham.MaLuotkham, Utility.sDbnull(bbhc.Id), Guid.NewGuid().ToString(), Path.GetExtension(PathDoc));
+
+
+                if ((drData != null) && File.Exists(PathDoc))
+                {
+                    doc = new Document(PathDoc);
+                    DocumentBuilder builder = new DocumentBuilder(doc);
+                    if (doc == null)
+                    {
+                        Utility.ShowMsg("Không nạp được file word.", "Thông báo"); 
+                        return "";
+                    }
+                    if (builder.MoveToMergeField("logo") && globalVariables.SysLogo != null)
+                        if (sysLogosize != null)
+                        {
+                            int w = Utility.Int32Dbnull(sysLogosize.SValue.Split('x')[0], 0);
+                            int h = Utility.Int32Dbnull(sysLogosize.SValue.Split('x')[1], 0);
+                            if (w > 0 && h > 0)
+                                builder.InsertImage(globalVariables.SysLogo, w, h);
+                            else
+                                builder.InsertImage(globalVariables.SysLogo);
+                        }
+                        else
+                            if (globalVariables.SysLogo != null)
+                            builder.InsertImage(globalVariables.SysLogo);
+                    Utility.MergeFieldsCheckBox2Doc(builder, dicMF, null, drData);
+                    //Các hàm MoveToMergeField cần thực hiện trước dòng MailMerge.Execute bên dưới
+                    doc.MailMerge.Execute(drData);
+                    Utility.SignDoc(doc, builder, sysLogosize != null ? sysLogosize.SValue : "");
+                    if (File.Exists(fileKetqua))
+                    {
+                        File.Delete(fileKetqua);
+                    }
+                    doc.Save(fileKetqua, SaveFormat.Doc);
+                    return fileKetqua;
+                }
+                else
+                {
+                    MessageBox.Show("Không tìm thấy biểu mẫu", "TThông báo", MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation);
+                    return "";
+                }
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+                return "";
             }
         }
         bool isLinkClicked = false;
@@ -1437,57 +1646,7 @@ namespace VMS.HIS.UI.EMR
                     doc.MailMerge.Execute(drData);
                     SysSystemParameter sysLogosize = new Select().From(SysSystemParameter.Schema).Where(SysSystemParameter.Columns.SName).IsEqualTo("signsize").ExecuteSingle<SysSystemParameter>();
                    Utility.SignDoc(doc, builder, sysLogosize != null ? sysLogosize.SValue : "",true);
-                    //if (KyDientu)//Tìm các vùng chữ kí để đưa ảnh vào
-                    //{
-                    //    string[] remaining = doc.MailMerge.GetFieldNames();
-                    //    lstSign = m_dtPhieuDieutri.AsEnumerable().Select(c => Utility.sDbnull(c.Field<string>("nguoi_tao"))).Distinct().ToList<string>();
-                    //    if (remaining.Length > 0)
-                    //    {
-
-                    //        foreach (var name in remaining)
-                    //        {
-                    //            if (lstSign.Contains(name))
-                    //            {
-                    //                string _defaultSign = string.Format(@"{0}\{1}\default", Application.StartupPath, "sign");
-                    //                string _signFile = string.Format(@"{0}\{1}\{2}", Application.StartupPath, "sign", name);
-                    //                byte[] _sign = null;
-                    //                if (File.Exists(_signFile))
-                    //                {
-                    //                    _sign = Utility.fromimagepath2byte(_signFile);
-                    //                }
-                    //                else
-                    //                {
-                    //                    if (File.Exists(_defaultSign))
-                    //                        _sign = Utility.fromimagepath2byte(_defaultSign);
-                    //                }
-
-                    //                if (builder.MoveToMergeField(name))
-                    //                    if (_sign != null)
-                    //                    {
-                    //                        if (sysSignsize != null)
-                    //                        {
-                    //                            int w = Utility.Int32Dbnull(sysSignsize.SValue.Split('x')[0], 0);
-                    //                            int h = Utility.Int32Dbnull(sysSignsize.SValue.Split('x')[1], 0);
-                    //                            if (w > 0 && h > 0)
-                    //                                builder.InsertImage(_sign, w, h);
-                    //                            else
-                    //                                builder.InsertImage(_sign);
-                    //                        }
-                    //                        else
-                    //                            if (_sign != null)
-                    //                            builder.InsertImage(_sign);
-                    //                    }
-                    //                //else//Không cần vì mergefield này ẩn
-                    //                //    builder.InsertImage(NoImage, 10, 10);
-                    //            }
-                    //        }
-                    //    }
-                    //    else
-                    //    {
-
-                    //    }
-
-                    //}
+                   
 
                     if (File.Exists(pdfFileName))
                     {
@@ -1899,7 +2058,7 @@ namespace VMS.HIS.UI.EMR
                 return "";
             }
         }
-        void KisoBookmarks(SignatureLocation signloc,string wordPath, string pdfOutPath, string certPath, string certPassword)
+        void KisoBookmarks(List<SignatureLocation> lstSignLoc, string wordPath, string pdfOutPath, string certPath, string certPassword)
         {
             try
             {
@@ -1910,15 +2069,17 @@ namespace VMS.HIS.UI.EMR
                 var collector = new Aspose.Words.Layout.LayoutCollector(doc);
                 var enumerator = new Aspose.Words.Layout.LayoutEnumerator(doc);
 
-                var bookmarkLocations = new List<VMSDigitalSignatureLocation>();
-                var pdfRect = new VMSDigitalSignatureRect() {StartX = Convert.ToInt32(signloc.PdfRect.X), StartY = Convert.ToInt32(signloc.PdfRect.Y), EndX = Convert.ToInt32(signloc.PdfRect.X + signloc.PdfRect.Width), EndY = Convert.ToInt32(signloc.PdfRect.Y + signloc.PdfRect.Height)};
-                bookmarkLocations.Add(new VMSDigitalSignatureLocation
+                List<VMSDigitalSignatureLocation> bookmarkLocations = new List<VMSDigitalSignatureLocation>();
+                foreach (SignatureLocation signloc in lstSignLoc)
                 {
-                    SignName = signloc.SignerName,
-                    pageSign = signloc.Page,
-                    lstRect = new List<VMSDigitalSignatureRect>() { pdfRect }
-                });
-
+                    var pdfRect = new VMSDigitalSignatureRect() { StartX = Convert.ToInt32(signloc.PdfRect.X), StartY = Convert.ToInt32(signloc.PdfRect.Y), EndX = Convert.ToInt32(signloc.PdfRect.X + signloc.PdfRect.Width), EndY = Convert.ToInt32(signloc.PdfRect.Y + signloc.PdfRect.Height) };
+                    bookmarkLocations.Add(new VMSDigitalSignatureLocation
+                    {
+                        SignName = signloc.SignerName,
+                        pageSign = signloc.Page,
+                        lstRect = new List<VMSDigitalSignatureRect>() { pdfRect }
+                    });
+                }
                 //foreach (Aspose.Words.Bookmark bookmark in doc.Range.Bookmarks)
                 //{
                 //    var startNode = bookmark.BookmarkStart;
@@ -1949,61 +2110,29 @@ namespace VMS.HIS.UI.EMR
                 string dataTobeSign = Convert.ToBase64String(fileContent);
 
                 //Gọi hàm kí số
-                string webApiLink = "https://localhost:44378/api/ID";
+                string webApiLink = THU_VIEN_CHUNG.Laygiatrithamsohethong("CHUKISO_API", "https://localhost:44378/api/Viettel", true);
                 string errMsg = "";
                 var objDigitalSignature = new VMSDigitalSignature();
                 objDigitalSignature.base64Pdf = dataTobeSign;
-                objDigitalSignature.base64Signature = null;
-                objDigitalSignature.signatureType = "0";
-                objDigitalSignature.signatureName = "CKS_BACSI";
+                objDigitalSignature.base64Signature = globalVariables.bytHinhChuKy == null ? "" : Convert.ToBase64String(globalVariables.bytHinhChuKy);
+                objDigitalSignature.signatureType = globalVariables.bytHinhChuKy == null ? "2":"1"; //1: sign with image, 2: sign with text,  3: sign with text and image
+                //objDigitalSignature.signatureName = "CKS_BACSI";
                 objDigitalSignature.pdfFileName = pdfOutPath;
-                objDigitalSignature.userName = "";
+                objDigitalSignature.userName = "001081007147";
+
+
                 objDigitalSignature.userFullName = "";
                 objDigitalSignature.userDesc = "";
-                objDigitalSignature.appId = "";
-                objDigitalSignature.secret ="pwd";
+                //objDigitalSignature.appId = "";
+               // objDigitalSignature.secret ="pwd";
                 objDigitalSignature.locations = bookmarkLocations;
-                objDigitalSignature.dateSigned = DateTime.Now;
-                var base64Pdf = HisLisWebApi.INST.DigitalSignaturePdfFileSign(webApiLink, objDigitalSignature, ref errMsg);
-                //var pdf = new Aspose.Pdf.Document(pdfOutPath);
-                //foreach (var field in pdf.Form.Fields)
-                //{
-                //    if (field is Aspose.Pdf.Forms.SignatureField sig)
-                //    {
-                //        Console.WriteLine($"Field Name: {sig.PartialName}, Page: {sig.PageIndex}, Rect: {sig.Rect}");
-                //        // Ví dụ: sig.PartialName == "cc#signature1" hoặc tương tự
-                //    }
-                //}
-
-                //// Step 4: Apply digital signatures to PDF
-                //var pdfDoc = new Aspose.Pdf.Document(pdfOutPath);
-                //var cert = new Aspose.Pdf.Forms.PKCS7(certPath, certPassword);
-
-                //foreach (var bm in bookmarkLocations)
-                //{
-                //    var page = pdfDoc.Pages[bm.Page];
-                //    var rect = new Aspose.Pdf.Rectangle(
-                //        bm.Rect.Left,
-                //        bm.Rect.Bottom,
-                //        bm.Rect.Right,
-                //        bm.Rect.Top
-                //    );
-
-                //    var sigField = new  Aspose.Pdf.Forms.SignatureField(page, rect)
-                //    {
-                //        PartialName = $"Signature_{bm.Name}"
-                //    };
-
-                //    pdfDoc.Form.Add(sigField);
-                //   // sigField.Signature = new Signature(cert)
-                //   //sigField.Signature = cert;
-                //   // sigField.Reason = "Ký tại vị trí bookmark";
-                //   // sigField.ContactInfo = "cuong@example.com";
-                //   // sigField.Location = "Hanoi";
-                //}
-
-                var pdfBytes = Convert.FromBase64String(base64Pdf);
-                File.WriteAllBytes(pdfOutPath_signed, pdfBytes);
+                // objDigitalSignature.dateSigned = DateTime.Now;
+                ApiRequestResponse ret = HisLisWebApi.INST.KysoPDF(webApiLink, objDigitalSignature, ref errMsg);
+                if (ret != null && ret.Data != null)
+                {
+                    var pdfBytes = Convert.FromBase64String(ret.Data.ToString());
+                    File.WriteAllBytes(pdfOutPath_signed, pdfBytes);
+                }
             }
             catch (Exception ex)
             {
@@ -2127,13 +2256,13 @@ namespace VMS.HIS.UI.EMR
                         File.Delete(fileKetqua);
                     }
                     doc.Save(fileKetqua, SaveFormat.Doc);
-                    //Lấy tọa độ
-                    SignatureLocation signloc = GetSignatureLineLocation(fileKetqua, "CKS_BACSI");
-                    //Lưu ra pdf
-                    string pdf2sign = Application.StartupPath + @"\pdf2sign";
-                    Utility.Try2CreateFolder(pdf2sign);
-                    string pdfFile = pdf2sign + @"\" + Guid.NewGuid().ToString() + ".pdf";
-                    KisoBookmarks( signloc,fileKetqua, pdfFile, "", "");
+                    ////Lấy tọa độ
+                    //List<SignatureLocation> lstSignLoc = GetSignatureLineLocation(fileKetqua,new List<string>() { "CKS_BACSI" });
+                    ////Lưu ra pdf
+                    //string pdf2sign = Application.StartupPath + @"\pdf2sign";
+                    //Utility.Try2CreateFolder(pdf2sign);
+                    //string pdfFile = pdf2sign + @"\" + Guid.NewGuid().ToString() + ".pdf";
+                    //KisoBookmarks(lstSignLoc, fileKetqua, pdfFile, "", "");
                     return fileKetqua;
 
                     //if (File.Exists(path))
@@ -2163,16 +2292,20 @@ namespace VMS.HIS.UI.EMR
                 return "";
             }
         }
-       
-        public static SignatureLocation GetSignatureLineLocation(string wordPath, string signerName)
+       static void RemoveShape()
         {
+
+        }
+        public static List<SignatureLocation> GetSignatureLineLocation(string wordPath,List<string> lstVitriKy  )
+        {
+            List<SignatureLocation> lstSignLoc = new List<SignatureLocation>();
             var doc = new Aspose.Words.Document(wordPath);
             var collector = new Aspose.Words.Layout.LayoutCollector(doc);
             var enumerator = new Aspose.Words.Layout.LayoutEnumerator(doc);
-
-            foreach (Aspose.Words.Drawing.Shape shape in doc.GetChildNodes(NodeType.Shape, true))
+            NodeCollection lstNode = doc.GetChildNodes(NodeType.Shape, true);
+            foreach (Aspose.Words.Drawing.Shape shape in lstNode)
             {
-                if (shape.Name == signerName)
+                if (lstVitriKy.Contains( shape.Name))// == signerName)
                 {
                     var entity = collector.GetEntity(shape);
                     if (entity == null)
@@ -2193,16 +2326,24 @@ namespace VMS.HIS.UI.EMR
                     float pdfY = (float)(pageHeight - rect.Y - rect.Height);
                     var pdfRect = new RectangleF(rect.X, pdfY, rect.Width, rect.Height);
 
-                    return new SignatureLocation
+                    lstSignLoc.Add(new SignatureLocation
                     {
-                        SignerName = signerName,
+                        SignerName = shape.Name,
                         Page = pageIndex,
                         PdfRect = pdfRect
-                    };
+                    });
                 }
             }
-
-            return null;
+            //Xóa hình Ký ở đây
+          
+            foreach (Aspose.Words.Drawing.Shape shape in lstNode)
+            {
+                if (lstVitriKy.Contains(shape.Name))// == signerName)
+                {
+                    shape.Remove();
+                }
+            }
+            return lstSignLoc;
         }
         private string InPhieuCamKetPTTT(DataTable dtEmrDocuments, KcbPhieupttt objpttt, string ma_loaidvu)
         {
@@ -2533,7 +2674,7 @@ namespace VMS.HIS.UI.EMR
                 dtEmrDocuments = SPs.EmrLaydanhsachDocuments(objLuotkham.MaLuotkham, -1, globalVariables.UserName, Utility.ByteDbnull(globalVariables.IsAdmin || globalVariables.isSuperAdmin || Utility.Coquyen("EMR_FULL") ? 1 : 0),"").GetDataSet().Tables[0];
                 foreach (DataRow dr in dtEmrDocuments.Rows)
                     dr["guid"] = Guid.NewGuid().ToString();
-                Utility.SetDataSourceForDataGridEx_Basic(grdEmrDocuments, dtEmrDocuments, true, true, "1=1", "");
+                Utility.SetDataSourceForDataGridEx_Basic(grdEmrDocuments, dtEmrDocuments, true, true, "1=1", "stt_gay,ten_gay,stt_phieu_emr,stt_report");
                 //Nạp các thông tin để in các tờ bệnh án
                 LoadEmrData();
                 LoadDocsAndSigns();
@@ -2556,7 +2697,8 @@ namespace VMS.HIS.UI.EMR
                 mnu15BV_BANgoaitru.Enabled = false;
                 mnuBAPhukhoa.Enabled = false;
                 mnuBASanKhoa.Enabled = false;
-               
+
+                Utility.SetMsg(uiStatusBar1.Panels[0], "Người bệnh chưa tạo Hồ sơ bệnh án");
             }  
             else
             {
@@ -2565,6 +2707,7 @@ namespace VMS.HIS.UI.EMR
                 mnu15BV_BANgoaitru.Enabled = objLuotkham.LoaiBenhAn == LoaiBA.BA_NGOAITRU;
                 mnuBAPhukhoa.Enabled = objLuotkham.LoaiBenhAn == LoaiBA.BA_PHUKHOA;
                 mnuBASanKhoa.Enabled = objLuotkham.LoaiBenhAn == LoaiBA.BA_SANKHOA;
+                Utility.SetMsg(uiStatusBar1.Panels[0], string.Format("Người bệnh đã có {0}",Utility.GetTenLoaiBenhAn(objLuotkham.LoaiBenhAn)));
             }    
         }
         void LoadDocsAndSigns()
@@ -3091,6 +3234,46 @@ namespace VMS.HIS.UI.EMR
                 //Mở file Word
                 if (System.IO.File.Exists(filePath))
                 {
+                    // Tải tài liệu
+                    if (Path.GetExtension(filePath).Equals(".docx", StringComparison.OrdinalIgnoreCase))
+                    {
+                        richEdit.LoadDocument(filePath, DocumentFormat.OpenXml);
+                    }
+                    else
+                    {
+                        richEdit.LoadDocument(filePath, DocumentFormat.Doc);
+                    }
+
+                    // Đặt chế độ Read only cấm sửa. Chỉ bật chế độ sửa khi insert chữ kí
+                    richEdit.ReadOnly = isReadOnly;
+                    if (isReadOnly)
+                    {
+                        richEdit.ActiveViewType = RichEditViewType.Simple;
+                        richEdit.Options.Behavior.ShowPopupMenu = DevExpress.XtraRichEdit.DocumentCapability.Disabled;
+                    }
+
+                    richEdit.ActiveViewType = DevExpress.XtraRichEdit.RichEditViewType.PrintLayout;
+                    richEdit.ActiveView.ZoomFactor = trackBarZoom.Value / 100f;
+                }
+                else
+                {
+                    MessageBox.Show("Không tìm thấy tệp Word.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Utility.CatchException(ex);
+            }
+
+        }
+        private void LoadWordFile_bak_250827(string filePath, bool isReadOnly)
+        {
+            try
+            {
+                //Mở file Word
+                if (System.IO.File.Exists(filePath))
+                {
                     var doc = new Aspose.Words.Document(filePath);
                     if (doc.ProtectionType != ProtectionType.NoProtection)
                     {
@@ -3235,7 +3418,16 @@ namespace VMS.HIS.UI.EMR
         {
             try
             {
-                
+                if (!File2View.ToLower().Contains(".pdf"))
+                {
+                    //Lấy tọa độ
+                    List<SignatureLocation> lstSignLoc = GetSignatureLineLocation(File2View, new List<string>() { "CKS_BACSI" });
+                    //Lưu ra pdf
+                    string pdf2sign = Application.StartupPath + @"\pdf2sign";
+                    Utility.Try2CreateFolder(pdf2sign);
+                    string pdfFile = pdf2sign + @"\" + Guid.NewGuid().ToString() + ".pdf";
+                    KisoBookmarks(lstSignLoc, File2View, pdfFile, "", "");
+                }
             }
             catch (Exception ex)
             {
@@ -4033,6 +4225,22 @@ namespace VMS.HIS.UI.EMR
                             fsi.FileId = objDoc.IdFile;
                             fsi.Save();
                         }
+                        objBacsi = DmucNhanvien.FetchByID(Utility.Int16Dbnull(dr["id_dieuduong"]));
+                        if (objBacsi != null)
+                        {
+                            lstNguoiKy.Add(new KeyValuePair<string, string>(objBacsi.UserName, "CKS_DIEUDUONG"));
+                            EmrFileSignInfor fsi = new EmrFileSignInfor();
+                            fsi.NguoiKy = objBacsi.UserName;
+                            fsi.IdBenhnhan = objLuotkham.IdBenhnhan;
+                            fsi.MaLuotkham = objLuotkham.MaLuotkham;
+                            fsi.LoaiphieuHis = objDoc.LoaiPhieuHis;
+                            fsi.LoaiphieuCha = objDoc.LoaiphieuCha;
+                            fsi.IdPhieu = Utility.Int64Dbnull(dr["id_phieudieutri"]);
+                            fsi.TenVitriKy = "CKS_DIEUDUONG";
+                            fsi.TthaiKy = false;
+                            fsi.FileId = objDoc.IdFile;
+                            fsi.Save();
+                        }
                     }
                 }
                 else
@@ -4244,7 +4452,7 @@ namespace VMS.HIS.UI.EMR
                 }
                 if (Filter == "")
                     Filter = "1=1";
-                uiStatusBar1.Panels["Filter"].Text = Filter;
+                //uiStatusBar1.Panels["Filter"].Text = Filter;
               if(dtEmrDocuments!=null && dtEmrDocuments.Columns.Count>0 && dtEmrDocuments.Rows.Count>0)  dtEmrDocuments.DefaultView.RowFilter = Filter;
             }
             catch (Exception ex)
@@ -4353,6 +4561,7 @@ namespace VMS.HIS.UI.EMR
         private void mnuGiaychungnhanTainanThuongtich_Click(object sender, EventArgs e)
         {
             frm_giaychungnhan_tainanthuongtich _giayxacnhan = new frm_giaychungnhan_tainanthuongtich();
+            _giayxacnhan.Force2Saved = true;
             _giayxacnhan.InitData(objLuotkham);
             _giayxacnhan.ShowDialog();
         }
@@ -4360,6 +4569,7 @@ namespace VMS.HIS.UI.EMR
         private void mnuGiayxacnhanquatrinhdieutrinoitru_Click(object sender, EventArgs e)
         {
             frm_giayxacnhan_quatrinhdieutrinoitru _giayxacnhan = new frm_giayxacnhan_quatrinhdieutrinoitru();
+            _giayxacnhan.Force2Saved = true;
             _giayxacnhan.InitData(objLuotkham);
             _giayxacnhan.ShowDialog();
         }
@@ -4367,6 +4577,7 @@ namespace VMS.HIS.UI.EMR
         private void mnuGiayxacnhanquatrinhvosinhlaodongnu_Click(object sender, EventArgs e)
         {
             frm_giayxacnhanquatrinhdieutrivosinh _giayxacnhan = new frm_giayxacnhanquatrinhdieutrivosinh();
+            _giayxacnhan.Force2Saved = true;
             _giayxacnhan.InitData(objLuotkham);
             _giayxacnhan.ShowDialog();
         }
@@ -4374,6 +4585,7 @@ namespace VMS.HIS.UI.EMR
         private void mnuGiayxacnhannguoimekhongdusuckhoechamsoccon_Click(object sender, EventArgs e)
         {
             frm_giayxacnhan_nguoimekhongdusuckhoe_chamsoccon _giayxacnhan = new frm_giayxacnhan_nguoimekhongdusuckhoe_chamsoccon();
+            _giayxacnhan.Force2Saved = true;
             _giayxacnhan.InitData(objLuotkham);
             _giayxacnhan.ShowDialog();
         }
@@ -4381,6 +4593,7 @@ namespace VMS.HIS.UI.EMR
         private void mnuGiaychungnhanNghiduongthai_Click(object sender, EventArgs e)
         {
             frm_giayxacnhan_nghiduongthai _giayxacnhan = new frm_giayxacnhan_nghiduongthai();
+            _giayxacnhan.Force2Saved = true;
             _giayxacnhan.InitData(objLuotkham);
             _giayxacnhan.ShowDialog();
         }
@@ -4663,6 +4876,65 @@ namespace VMS.HIS.UI.EMR
                 // BenhAn_NoiKhoa._OnCreated += _OnCreated;
                 frm_Ba.ShowDialog();
             }
+        }
+
+        private void cmd_history_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void mnu_history_Click(object sender, EventArgs e)
+        {
+            if (objLuotkham != null)
+            {
+                frm_lichsukcb _lichsukcb = new frm_lichsukcb();
+                _lichsukcb.txtMaluotkham.Text =objLuotkham.MaLuotkham;
+                _lichsukcb.AutoLoad = true;
+                _lichsukcb.Anluoidanhsachbenhnhan = true;
+                _lichsukcb.ShowDialog();
+            }
+            else
+            {
+                Utility.ShowMsg("Bạn cần chọn người bệnh");
+                ucThongtinnguoibenh_emr_basic1.txtMaluotkham.Focus();
+                ucThongtinnguoibenh_emr_basic1.txtMaluotkham.SelectAll();
+            }
+        }
+
+        private void mnu_phieubangiao_nguoibenh_chuyenkhoa_Click(object sender, EventArgs e)
+        {
+            frm_phieubangiaonguoibenhchuyenkhoa _phieu = new frm_phieubangiaonguoibenhchuyenkhoa();
+            _phieu.Force2Saved = true;
+            _phieu.InitData(objLuotkham);
+            _phieu.ShowDialog();
+        }
+
+        private void mnu_phieu_chapnhan_camket_pttt_Click(object sender, EventArgs e)
+        {
+            frm_phieucamketchapnhan_pttt _phieu = new frm_phieucamketchapnhan_pttt();
+            _phieu.Force2Saved = true;
+            _phieu.InitData(objLuotkham);
+            _phieu.ShowDialog();
+        }
+
+        private void mnu_phieukhamthai_Click(object sender, EventArgs e)
+        {
+            frm_ThemPhieukhamthai _phieu = new frm_ThemPhieukhamthai();
+            _phieu.m_enAct = action.Insert;
+            _phieu.Force2Saved = true;
+            _phieu.ucThongtinnguoibenh_doc_v61.txtMaluotkham.Text = objLuotkham.MaLuotkham;
+            _phieu.ucThongtinnguoibenh_doc_v61.Refresh();
+            _phieu.ShowDialog();
+        }
+
+        private void mnu_phieukhamtienme_Click(object sender, EventArgs e)
+        {
+            frm_Phieukhamtienme _phieu = new frm_Phieukhamtienme();
+            _phieu.m_enAct = action.Insert;
+            _phieu.Force2Saved = true;
+            _phieu.ucThongtinnguoibenh_doc_v11.txtMaluotkham.Text = objLuotkham.MaLuotkham;
+            _phieu.ucThongtinnguoibenh_doc_v11.Refresh();
+            _phieu.ShowDialog();
         }
     }
     class HandleMergeBarcode : IFieldMergingCallback

@@ -80,13 +80,15 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(long IdBienban,string HoTen,string ChucVu,string ChucDanh,byte Stt)
+	    public void Insert(long IdBienban,short? IdNhanvien,string TenNhanvien,string ChucVu,string ChucDanh,byte Stt)
 	    {
 		    TBienbanKiemnhapChitiet item = new TBienbanKiemnhapChitiet();
 		    
             item.IdBienban = IdBienban;
             
-            item.HoTen = HoTen;
+            item.IdNhanvien = IdNhanvien;
+            
+            item.TenNhanvien = TenNhanvien;
             
             item.ChucVu = ChucVu;
             
@@ -102,7 +104,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(long IdHoidong,long IdBienban,string HoTen,string ChucVu,string ChucDanh,byte Stt)
+	    public void Update(long IdHoidong,long IdBienban,short? IdNhanvien,string TenNhanvien,string ChucVu,string ChucDanh,byte Stt)
 	    {
 		    TBienbanKiemnhapChitiet item = new TBienbanKiemnhapChitiet();
 	        item.MarkOld();
@@ -112,7 +114,9 @@ namespace VMS.HIS.DAL
 				
 			item.IdBienban = IdBienban;
 				
-			item.HoTen = HoTen;
+			item.IdNhanvien = IdNhanvien;
+				
+			item.TenNhanvien = TenNhanvien;
 				
 			item.ChucVu = ChucVu;
 				

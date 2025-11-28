@@ -885,6 +885,30 @@ namespace VMS.HIS.DAL{
                 
                 schema.Columns.Add(colvarPassPost);
                 
+                TableSchema.TableColumn colvarNgaycapCmt = new TableSchema.TableColumn(schema);
+                colvarNgaycapCmt.ColumnName = "ngaycap_CMT";
+                colvarNgaycapCmt.DataType = DbType.DateTime;
+                colvarNgaycapCmt.MaxLength = 0;
+                colvarNgaycapCmt.AutoIncrement = false;
+                colvarNgaycapCmt.IsNullable = true;
+                colvarNgaycapCmt.IsPrimaryKey = false;
+                colvarNgaycapCmt.IsForeignKey = false;
+                colvarNgaycapCmt.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarNgaycapCmt);
+                
+                TableSchema.TableColumn colvarNoicapCmt = new TableSchema.TableColumn(schema);
+                colvarNoicapCmt.ColumnName = "noicap_CMT";
+                colvarNoicapCmt.DataType = DbType.String;
+                colvarNoicapCmt.MaxLength = 255;
+                colvarNoicapCmt.AutoIncrement = false;
+                colvarNoicapCmt.IsNullable = true;
+                colvarNoicapCmt.IsPrimaryKey = false;
+                colvarNoicapCmt.IsForeignKey = false;
+                colvarNoicapCmt.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarNoicapCmt);
+                
                 TableSchema.TableColumn colvarSttKham = new TableSchema.TableColumn(schema);
                 colvarSttKham.ColumnName = "stt_kham";
                 colvarSttKham.DataType = DbType.Int32;
@@ -947,10 +971,10 @@ namespace VMS.HIS.DAL{
                 
                 TableSchema.TableColumn colvarChanDoan = new TableSchema.TableColumn(schema);
                 colvarChanDoan.ColumnName = "chan_doan";
-                colvarChanDoan.DataType = DbType.String;
-                colvarChanDoan.MaxLength = -1;
+                colvarChanDoan.DataType = DbType.AnsiString;
+                colvarChanDoan.MaxLength = 1;
                 colvarChanDoan.AutoIncrement = false;
-                colvarChanDoan.IsNullable = true;
+                colvarChanDoan.IsNullable = false;
                 colvarChanDoan.IsPrimaryKey = false;
                 colvarChanDoan.IsForeignKey = false;
                 colvarChanDoan.IsReadOnly = false;
@@ -2921,6 +2945,34 @@ namespace VMS.HIS.DAL{
             }
         }
 	      
+        [XmlAttribute("NgaycapCmt")]
+        [Bindable(true)]
+        public DateTime? NgaycapCmt 
+	    {
+		    get
+		    {
+			    return GetColumnValue<DateTime?>("ngaycap_CMT");
+		    }
+            set 
+		    {
+			    SetColumnValue("ngaycap_CMT", value);
+            }
+        }
+	      
+        [XmlAttribute("NoicapCmt")]
+        [Bindable(true)]
+        public string NoicapCmt 
+	    {
+		    get
+		    {
+			    return GetColumnValue<string>("noicap_CMT");
+		    }
+            set 
+		    {
+			    SetColumnValue("noicap_CMT", value);
+            }
+        }
+	      
         [XmlAttribute("SttKham")]
         [Bindable(true)]
         public int? SttKham 
@@ -4255,6 +4307,10 @@ namespace VMS.HIS.DAL{
             public static string Cmt = @"CMT";
             
             public static string PassPost = @"pass_post";
+            
+            public static string NgaycapCmt = @"ngaycap_CMT";
+            
+            public static string NoicapCmt = @"noicap_CMT";
             
             public static string SttKham = @"stt_kham";
             

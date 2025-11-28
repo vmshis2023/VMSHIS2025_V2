@@ -52,16 +52,16 @@ namespace VNS.HIS.BusRule.Classes
         /// <param name="id_donthuoc">phục vụ mục đích in tách phiếu xuất thuốc của biên lai thanh toán cho >=2 đơn thuốc nhưng yêu cầu in biên lai tại quầy thuốc phải tách theo từng đơn, từng kho</param>
         /// <param name="noitru"></param>
         /// <returns></returns>
-        public DataTable LaythongtininbienlaiDichvu(KcbThanhtoan objThanhtoan,long id_donthuoc, byte noitru,byte boqua_cacdichvu_tralai)
+        public DataTable LaythongtininbienlaiDichvu(KcbThanhtoan objThanhtoan, long id_donthuoc, byte noitru, byte boqua_cacdichvu_tralai)
         {
             return
-                SPs.KcbThanhtoanLaythongtinInbienlaiDv2023(objThanhtoan.IdThanhtoan, id_donthuoc,objThanhtoan.MaLuotkham,
+                SPs.KcbThanhtoanLaythongtinInbienlaiDv2023(objThanhtoan.IdThanhtoan, id_donthuoc, objThanhtoan.MaLuotkham,
                     objThanhtoan.IdBenhnhan, noitru, boqua_cacdichvu_tralai).GetDataSet().Tables[0];
         }
         public DataTable LaythongtininbienlaiDichvu_PhieuChi_Quaythuoc(KcbThanhtoan objThanhtoan, byte noitru)
         {
             return
-                SPs.KcbThanhtoanLaythongtinInbienlaiPhieuChiDv2023(objThanhtoan.IdThanhtoan,-1, objThanhtoan.MaLuotkham,
+                SPs.KcbThanhtoanLaythongtinInbienlaiPhieuChiDv2023(objThanhtoan.IdThanhtoan, -1, objThanhtoan.MaLuotkham,
                     objThanhtoan.IdBenhnhan, noitru).GetDataSet().Tables[0];
         }
         public DataTable ThuocLaydulieuinphieutrathuoctaiquay(ThuocLichsuTralaithuoctaiquayPhieu objPhieu)
@@ -289,21 +289,21 @@ namespace VNS.HIS.BusRule.Classes
         }
 
         public DataTable LayThongtinChuaThanhtoan(string MaLuotkham, int PatientID, int HosStatus,
-            string MAKHOATHIEN, string MADOITUONG,string lstIdloaiThanhtoan)
+            string MAKHOATHIEN, string MADOITUONG, string lstIdloaiThanhtoan)
         {
             return SPs.KcbThanhtoanLaythongtindvuChuathanhtoan(MaLuotkham, PatientID, HosStatus,
                 MAKHOATHIEN, MADOITUONG, lstIdloaiThanhtoan).
                 GetDataSet().Tables[0];
         }
         public DataTable LayThongtinChuaThanhtoaGoikhamn(string MaLuotkham, int PatientID, int HosStatus,
-           string MAKHOATHIEN, string MADOITUONG, string lstIdloaiThanhtoan,long id_dangky,int id_goi)
+           string MAKHOATHIEN, string MADOITUONG, string lstIdloaiThanhtoan, long id_dangky, int id_goi)
         {
             return SPs.KcbThanhtoanLaythongtindvuChuathanhtoanGoikham(MaLuotkham, PatientID, HosStatus,
                 MAKHOATHIEN, MADOITUONG, lstIdloaiThanhtoan, id_dangky, id_goi).
                 GetDataSet().Tables[0];
         }
         public DataTable LayThongtinChuaThanhtoan_CheckError(string MaLuotkham, int PatientID, int HosStatus,
-          string MAKHOATHIEN, string MADOITUONG, string lstIdloaiThanhtoan,long id_thanhtoan)
+          string MAKHOATHIEN, string MADOITUONG, string lstIdloaiThanhtoan, long id_thanhtoan)
         {
             return SPs.KcbThanhtoanLaythongtindvuChuathanhtoanAdmin(MaLuotkham, PatientID, HosStatus,
                 MAKHOATHIEN, MADOITUONG, lstIdloaiThanhtoan, id_thanhtoan).
@@ -318,7 +318,7 @@ namespace VNS.HIS.BusRule.Classes
                 GetDataSet().Tables[0];
         }
 
-        public DataTable LayThongtinDaThanhtoan(string MaLuotkham, long PatientID, int HosStatus,string lstIdloaiThanhtoan)
+        public DataTable LayThongtinDaThanhtoan(string MaLuotkham, long PatientID, int HosStatus, string lstIdloaiThanhtoan)
         {
             return SPs.KcbThanhtoanLaythongtindvuDathanhtoan(MaLuotkham, PatientID, HosStatus, lstIdloaiThanhtoan).
                 GetDataSet().Tables[0];
@@ -330,7 +330,7 @@ namespace VNS.HIS.BusRule.Classes
         }
 
         public DataTable LaythongtinCacLanthanhtoan(string maLuotkham, Int64 IdBenhnhan, int? kieuThanhToan,
-            byte? noi_tru, byte Loaithanhtoan, string MA_KHOA_THIEN, string lstIdloaiThanhtoan,Int16 id_goi)
+            byte? noi_tru, byte Loaithanhtoan, string MA_KHOA_THIEN, string lstIdloaiThanhtoan, Int16 id_goi)
         {
             return SPs.KcbThanhtoanLaydanhsachCaclanthanhtoanTheobenhnhan(maLuotkham,
                 IdBenhnhan, kieuThanhToan, noi_tru, Loaithanhtoan,
@@ -439,7 +439,7 @@ namespace VNS.HIS.BusRule.Classes
             foreach (KcbThanhtoanChitiet paymentDetail in lstPaymentDetail)
             {
                 if (paymentDetail.TuTuc == 0 && Utility.Byte2Bool(paymentDetail.TinhChiphi))
-                    sumOfPaymentDetail += (Utility.Int32Dbnull(paymentDetail.SoLuong)* Utility.DecimaltoDbnull(paymentDetail.DonGia) * Utility.DecimaltoDbnull(paymentDetail.TyleTt,0)/100);
+                    sumOfPaymentDetail += (Utility.Int32Dbnull(paymentDetail.SoLuong) * Utility.DecimaltoDbnull(paymentDetail.DonGia) * Utility.DecimaltoDbnull(paymentDetail.TyleTt, 0) / 100);
             }
             return sumOfPaymentDetail;
         }
@@ -461,7 +461,7 @@ namespace VNS.HIS.BusRule.Classes
                 {
                     //Các đối tượng đặc biệt hưởng 100% BHYT
                     if (Utility.Byte2Bool(objLuotkham.GiayBhyt) || globalVariables.gv_strMaQuyenLoiHuongBHYT100Phantram.Contains(objLuotkham.MaQuyenloi.ToString()))
-                        // objLuotkham.MaQuyenloi.ToString() == "1" || objLuotkham.MaQuyenloi.ToString() == "2")
+                    // objLuotkham.MaQuyenloi.ToString() == "1" || objLuotkham.MaQuyenloi.ToString() == "2")
                     {
                         tienBn = 0;
                         PtramBHYT = 100;
@@ -471,19 +471,19 @@ namespace VNS.HIS.BusRule.Classes
                     {
                         if (bhytPtramLuongcoban > 0)
                         {
-                            if (vDecTotalMoney >= objLuotkham.LuongCoban*bhytPtramLuongcoban/100)
+                            if (vDecTotalMoney >= objLuotkham.LuongCoban * bhytPtramLuongcoban / 100)
                             {
                                 PtramBHYT = objLuotkham.TrangthaiNoitru <= 0
                                     ? Utility.DecimaltoDbnull(objLuotkham.PtramBhyt, 0)
                                     : Utility.DecimaltoDbnull(objLuotkham.PtramBhytGoc, 0);
-                                tienBn = vDecTotalMoney*(100 - Utility.DecimaltoDbnull(PtramBHYT, 0))/100;
+                                tienBn = vDecTotalMoney * (100 - Utility.DecimaltoDbnull(PtramBHYT, 0)) / 100;
                                 log.Info("Tổng tiền lớn hơn lương cơ bản*% quy định -->Bệnh nhân =" +
                                          objLuotkham.MaLuotkham + " phải trả " + tienBn);
                             }
                             else //Tổng tiền < lương cơ bản*% quy định-->BHYT chi trả 100%
                             {
                                 PtramBHYT = 100;
-                                tienBn = vDecTotalMoney*(100 - Utility.DecimaltoDbnull(PtramBHYT, 0))/100; //=0
+                                tienBn = vDecTotalMoney * (100 - Utility.DecimaltoDbnull(PtramBHYT, 0)) / 100; //=0
                                 log.Info(
                                     "BHYT chi trả 100% tiền dịch vụ do tổng tiền nhỏ hơn lương cơ bản*% quy định. Mã khám=" +
                                     objLuotkham.MaLuotkham);
@@ -495,7 +495,7 @@ namespace VNS.HIS.BusRule.Classes
                                 PtramBHYT = Utility.DecimaltoDbnull(objLuotkham.PtramBhyt, 0);
                             else
                                 PtramBHYT = Utility.DecimaltoDbnull(objLuotkham.PtramBhytGoc, 0);
-                            tienBn = vDecTotalMoney*(100 - Utility.DecimaltoDbnull(PtramBHYT, 0))/100;
+                            tienBn = vDecTotalMoney * (100 - Utility.DecimaltoDbnull(PtramBHYT, 0)) / 100;
                         }
                     }
                 }
@@ -504,9 +504,9 @@ namespace VNS.HIS.BusRule.Classes
                     if (objLuotkham.TrangthaiNoitru <= 0)
                         PtramBHYT = Utility.DecimaltoDbnull(objLuotkham.PtramBhyt, 0);
                     else
-                        PtramBHYT = (Utility.DecimaltoDbnull(objLuotkham.PtramBhytGoc, 0)*bhytPtramTraituyennoitru)/
+                        PtramBHYT = (Utility.DecimaltoDbnull(objLuotkham.PtramBhytGoc, 0) * bhytPtramTraituyennoitru) /
                                     100;
-                    tienBn = vDecTotalMoney*(100 - Utility.DecimaltoDbnull(PtramBHYT))/100;
+                    tienBn = vDecTotalMoney * (100 - Utility.DecimaltoDbnull(PtramBHYT)) / 100;
                 }
             }
             else //Đối tượng dịch vụ--> PtramBhyt=0
@@ -515,7 +515,7 @@ namespace VNS.HIS.BusRule.Classes
                 PtramBHYT = objLuotkham.TrangthaiNoitru <= 0
                     ? Utility.DecimaltoDbnull(objLuotkham.PtramBhyt, 0)
                     : Utility.DecimaltoDbnull(objLuotkham.PtramBhytGoc, 0);
-                tienBn = vDecTotalMoney*(100 - Utility.Int32Dbnull(PtramBHYT, 0))/100;
+                tienBn = vDecTotalMoney * (100 - Utility.Int32Dbnull(PtramBHYT, 0)) / 100;
                 ;
             }
             return tienBn;
@@ -560,7 +560,7 @@ namespace VNS.HIS.BusRule.Classes
                             {
                                 if (id_donthuoc == -1) id_donthuoc = paymentDetail.IdPhieu;
                                 if (paymentDetail.TuTuc == 0)
-                                    v_TotalPaymentDetail += Utility.Int32Dbnull(paymentDetail.SoLuong)*
+                                    v_TotalPaymentDetail += Utility.Int32Dbnull(paymentDetail.SoLuong) *
                                                             Utility.DecimaltoDbnull(paymentDetail.DonGia);
                             }
                         }
@@ -570,7 +570,7 @@ namespace VNS.HIS.BusRule.Classes
                             THU_VIEN_CHUNG.TaoMathanhtoan(Convert.ToDateTime(objThanhtoan.NgayThanhtoan));
                         objThanhtoan.IsNew = true;
                         objThanhtoan.Save();
-                        
+
                         if (id_donthuoc == -1) id_donthuoc = objArrPaymentDetail[0].IdPhieu;
                         KcbDonthuoc objDonthuoc = KcbDonthuoc.FetchByID(id_donthuoc);
                         var lstChitiet =
@@ -583,7 +583,7 @@ namespace VNS.HIS.BusRule.Classes
                         {
                             if (!XuatThuoc.InValiKiemTraDonThuoc(lstChitiet, 0))
                                 return ActionResult.NotEnoughDrugInStock;
-                            actionResult = new XuatThuoc().LinhThuocBenhNhanTaiQuay(id_donthuoc,null,
+                            actionResult = new XuatThuoc().LinhThuocBenhNhanTaiQuay(id_donthuoc, null,
                                 Utility.Int16Dbnull(lstChitiet[0].IdKho, 0), DateTime.Now);
                             switch (actionResult)
                             {
@@ -605,13 +605,13 @@ namespace VNS.HIS.BusRule.Classes
                         foreach (KcbThanhtoanChitiet objChitietThanhtoan in objArrPaymentDetail)
                         {
                             if (!Utility.Byte2Bool(objChitietThanhtoan.TuTuc))
-                                TT_BHYT += objChitietThanhtoan.BhytChitra*Utility.DecimaltoDbnull(objChitietThanhtoan.SoLuong);
+                                TT_BHYT += objChitietThanhtoan.BhytChitra * Utility.DecimaltoDbnull(objChitietThanhtoan.SoLuong);
                             TT_Chietkhau_Chitiet += Utility.DecimaltoDbnull(objChitietThanhtoan.TienChietkhau, 0);
-                            TT_PT += objChitietThanhtoan.PhuThu*Utility.DecimaltoDbnull(objChitietThanhtoan.SoLuong);
+                            TT_PT += objChitietThanhtoan.PhuThu * Utility.DecimaltoDbnull(objChitietThanhtoan.SoLuong);
                             if (Utility.Byte2Bool(objChitietThanhtoan.TuTuc))
-                                TT_TT += objChitietThanhtoan.BnhanChitra*Utility.DecimaltoDbnull(objChitietThanhtoan.SoLuong);
+                                TT_TT += objChitietThanhtoan.BnhanChitra * Utility.DecimaltoDbnull(objChitietThanhtoan.SoLuong);
                             else
-                                TT_BNCT += objChitietThanhtoan.BnhanChitra*Utility.DecimaltoDbnull(objChitietThanhtoan.SoLuong);
+                                TT_BNCT += objChitietThanhtoan.BnhanChitra * Utility.DecimaltoDbnull(objChitietThanhtoan.SoLuong);
                             TT_BN += TT_PT + TT_BNCT + TT_TT;
 
                             objChitietThanhtoan.IdThanhtoan = Utility.Int32Dbnull(objThanhtoan.IdThanhtoan, -1);
@@ -749,13 +749,13 @@ namespace VNS.HIS.BusRule.Classes
                             lstKcbThanhtoanChitiet.Add(paymentDetail);
                             paymentDetail.IsNew = false;
                             paymentDetail.MarkOld();
-                            vTotalPaymentDetail += Utility.Int32Dbnull(paymentDetail.SoLuong)*
-                                                   Utility.DecimaltoDbnull(paymentDetail.DonGia) * Utility.DecimaltoDbnull(paymentDetail.TyleTt)/100;
+                            vTotalPaymentDetail += Utility.Int32Dbnull(paymentDetail.SoLuong) *
+                                                   Utility.DecimaltoDbnull(paymentDetail.DonGia) * Utility.DecimaltoDbnull(paymentDetail.TyleTt) / 100;
                         }
                     }
                 }
                 List<long> lstIdThanhtoan = (from q in lstKcbThanhtoanChitiet
-                    select q.IdThanhtoan).ToList<long>();
+                                             select q.IdThanhtoan).ToList<long>();
                 //Tính toán lại phần trăm BHYT chủ yếu liên quan đến phần lương cơ bản. 
                 //Phần trăm này có thể bị biến đổi và khác với % trong các bảng dịch vụ
                 LayThongtinPtramBhyt(vDblTongtienDCT + vTotalPaymentDetail, objLuotkham, ref PtramBHYT);
@@ -795,7 +795,7 @@ namespace VNS.HIS.BusRule.Classes
                                 objChitietThanhtoan.IdThanhtoanhuy, objChitietThanhtoan.IdLichsuDoituongKcb,
                                 objChitietThanhtoan.MatheBhyt, objChitietThanhtoan.NgayTao, objChitietThanhtoan.NguoiTao, objChitietThanhtoan.TinhChkhau, objChitietThanhtoan.CkNguongt, objChitietThanhtoan.UserTao
                                 , objChitietThanhtoan.MultiCancel, objChitietThanhtoan.IdThe, objChitietThanhtoan.IdDangky, objChitietThanhtoan.BhytNguonKhac, objChitietThanhtoan.BhytGiaTyle, objChitietThanhtoan.BnTtt, objChitietThanhtoan.BnCct
-                                , objChitietThanhtoan.TienKhuyenmai, objChitietThanhtoan.TthaiKhuyenmai);
+                                , objChitietThanhtoan.TienKhuyenmai, objChitietThanhtoan.TthaiKhuyenmai, objChitietThanhtoan.NgoaiGio, objChitietThanhtoan.HienThi);
                             spchitiet.Execute();
                             objChitietThanhtoan.IdChitiet = Utility.Int64Dbnull(spchitiet.OutputValues[0], -1);
 
@@ -828,7 +828,7 @@ namespace VNS.HIS.BusRule.Classes
         {
             ErrMsg = "";
             decimal ptramBhyt = 0;
-           
+
             //tổng tiền đã thanh toán
             decimal v_TotalPaymentDetail = 0;
             try
@@ -842,6 +842,7 @@ namespace VNS.HIS.BusRule.Classes
                         objThanhtoan.PtramBhyt = 0;//Phiếu tạm thu nên không quan tâm
                         objThanhtoan.IdLoaidoituongKcb = objLuotkham.IdLoaidoituongKcb;
                         objThanhtoan.MaCoso = objLuotkham.MaCoso;
+                        objThanhtoan.ThanhtoanGhino = 1;//Fix cứng
                         StoredProcedure sp = SPs.SpKcbThanhtoanInsert(objThanhtoan.IdThanhtoan, objThanhtoan.MaLuotkham, objThanhtoan.IdBenhnhan,
                               objThanhtoan.MaDoituongKcb, objThanhtoan.IdDoituongKcb, objThanhtoan.IdLoaidoituongKcb,
                               objThanhtoan.NgayThanhtoan, objThanhtoan.IdNhanvienThanhtoan, objThanhtoan.MaThanhtoan
@@ -859,14 +860,14 @@ namespace VNS.HIS.BusRule.Classes
                               , objThanhtoan.MaPttt, objThanhtoan.MaNganhang, objThanhtoan.IpMaytao, objThanhtoan.IpMaysua, objThanhtoan.TenMaytao,
                               objThanhtoan.TenMaysua, objThanhtoan.NgayRavien, objThanhtoan.PhuThu, objThanhtoan.TuTuc,
                               objThanhtoan.MaLydoHuy, objThanhtoan.TtoanThuoc, objThanhtoan.IdGoi, objThanhtoan.IdDangky, objThanhtoan.MaxNgayTao, objThanhtoan.Ghichu, objThanhtoan.LydoChietkhau, objThanhtoan.MaCoso
-                              ,objThanhtoan.IdCtrinhKhuyenmai,objThanhtoan.MaVoucher,objThanhtoan.TienChietkhauVoucher);
+                              , objThanhtoan.IdCtrinhKhuyenmai, objThanhtoan.MaVoucher, objThanhtoan.TienChietkhauVoucher, objThanhtoan.TienHoanung, objThanhtoan.ThuaThieu, objThanhtoan.ThanhtoanGhino);
                         sp.Execute();
                         objThanhtoan.IdThanhtoan = Utility.Int64Dbnull(sp.OutputValues[0], -1);
-                       
+
                         int reval = -1;
                         foreach (KcbThanhtoanChitiet objChitietThanhtoan in objArrPaymentDetail)
                         {
-                           
+
                             objChitietThanhtoan.IdThanhtoan = Utility.Int32Dbnull(objThanhtoan.IdThanhtoan, -1);
                             StoredProcedure spchitiet = SPs.SpKcbThanhtoanChitietInsert(objChitietThanhtoan.IdChitiet,
                                 objChitietThanhtoan.IdThanhtoan, objChitietThanhtoan.MadoituongGia,
@@ -889,7 +890,7 @@ namespace VNS.HIS.BusRule.Classes
                                 objChitietThanhtoan.IdThanhtoanhuy, objChitietThanhtoan.IdLichsuDoituongKcb,
                                 objChitietThanhtoan.MatheBhyt, objChitietThanhtoan.NgayTao, objChitietThanhtoan.NguoiTao, objChitietThanhtoan.TinhChkhau, objChitietThanhtoan.CkNguongt, objChitietThanhtoan.UserTao
                                 , objChitietThanhtoan.MultiCancel, objChitietThanhtoan.IdThe, objChitietThanhtoan.IdDangky, objChitietThanhtoan.BhytNguonKhac, objChitietThanhtoan.BhytGiaTyle, objChitietThanhtoan.BnTtt, objChitietThanhtoan.BnCct
-                                 , objChitietThanhtoan.TienKhuyenmai, objChitietThanhtoan.TthaiKhuyenmai);
+                                 , objChitietThanhtoan.TienKhuyenmai, objChitietThanhtoan.TthaiKhuyenmai, objChitietThanhtoan.NgoaiGio, objChitietThanhtoan.HienThi);
                             spchitiet.Execute();
                             objChitietThanhtoan.IdChitiet = Utility.Int64Dbnull(spchitiet.OutputValues[0], -1);
 
@@ -897,7 +898,7 @@ namespace VNS.HIS.BusRule.Classes
                    objThanhtoan.IdThanhtoan, objThanhtoan.NgayThanhtoan, objThanhtoan.NoiTru,
                    objChitietThanhtoan.KieuChietkhau, objChitietThanhtoan.TileChietkhau,
                    objChitietThanhtoan.TienChietkhau, objChitietThanhtoan.IdPhieu, objChitietThanhtoan.IdPhieuChitiet,
-                   objChitietThanhtoan.NgayTao, objChitietThanhtoan.NguoiTao,0);
+                   objChitietThanhtoan.NgayTao, objChitietThanhtoan.NguoiTao, 0);
                             reval = spupdate.Execute();
                             if (reval <= 0)
                             {
@@ -912,17 +913,17 @@ namespace VNS.HIS.BusRule.Classes
                             , objThanhtoan.TongtienChietkhau, 0, 1,
                             "", "", Convert.ToByte(5), globalVariables.gv_intIDNhanvien, globalVariables.idKhoatheoMay
                             , objThanhtoan.NoiTru, "", globalVariables.UserName, DateTime.Now, "", DateTime.Now
-                            , objThanhtoan.MaPttt, "NB", objThanhtoan.MaNganhang, objLuotkham.IdKhoanoitru, objLuotkham.IdRavien, objLuotkham.IdBuong, objLuotkham.IdGiuong, objThanhtoan.IdGoi, objThanhtoan.IdDangky, objThanhtoan.TienChietkhauVoucher).Execute();
-                       
-                       
+                            , objThanhtoan.MaPttt, "NB", objThanhtoan.MaNganhang, objLuotkham.IdKhoanoitru, objLuotkham.IdRavien, objLuotkham.IdBuong, objLuotkham.IdGiuong, objThanhtoan.IdGoi, objThanhtoan.IdDangky, objThanhtoan.TienChietkhauVoucher, objThanhtoan.TienHoanung, objThanhtoan.ThuaThieu).Execute();
+
+
                         decimal HU = 0m;
-                        
+
                         //Tạo bản ghi trong bảng phân bổ tiền theo phương thức thanh toán
                         SPs.SpKcbThanhtoanPhanbotheoPTTTInsert(objThanhtoan.IdThanhtoan, -1l, -1l, objThanhtoan.MaPttt, objThanhtoan.MaNganhang,
                             objThanhtoan.IdBenhnhan, objThanhtoan.MaLuotkham,
-                            objThanhtoan.NoiTru, objThanhtoan.TongTien,objThanhtoan.TongTien,
+                            objThanhtoan.NoiTru, objThanhtoan.TongTien, objThanhtoan.TongTien,
                             objThanhtoan.NguoiTao, objThanhtoan.NgayTao, "", objThanhtoan.NgayTao, -1l, 0, (byte)1).Execute();
-                       ////Bỏ các dòng dưới do đây là thanh toán tạm thu
+                        ////Bỏ các dòng dưới do đây là thanh toán tạm thu
                         //int _reval =
                         //    SPs.SpKcbLuotkhamTrangthaithanhtoan(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham,
                         //        Utility.Int16Dbnull(objLuotkham.TrangthaiNoitru, 0), Utility.Int16Dbnull(objThanhtoan.NoiTru, 0), objThanhtoan.NgayThanhtoan,
@@ -986,9 +987,9 @@ namespace VNS.HIS.BusRule.Classes
                         foreach (KcbThanhtoanChitiet objChitietThanhtoan in objArrPaymentDetail)
                         {
                             StoredProcedure spupdate = SPs.SpUpdateTrangthaiGhino(objChitietThanhtoan.IdLoaithanhtoan,
-                   objGhino.Id, objGhino.NgayGhino, objLuotkham.Noitru,
-                   objChitietThanhtoan.IdPhieu, objChitietThanhtoan.IdPhieuChitiet,
-                   objChitietThanhtoan.NgayTao, objChitietThanhtoan.NguoiTao, 0);
+                             objGhino.Id, objGhino.NgayGhino, objLuotkham.Noitru,
+                             objChitietThanhtoan.IdPhieu, objChitietThanhtoan.IdPhieuChitiet, "T", objChitietThanhtoan.TileChietkhau, objChitietThanhtoan.TienChietkhau,
+                             objChitietThanhtoan.NgayTao, objChitietThanhtoan.NguoiTao, 0);
                             reval = spupdate.Execute();
                             if (reval <= 0)
                             {
@@ -1020,7 +1021,7 @@ namespace VNS.HIS.BusRule.Classes
         /// <param name="tongtienBNchitra"></param>
         /// <returns></returns>
         public ActionResult ThanhtoanChiphiDvuKcb_bak_20240904(KcbThanhtoan objThanhtoan, KcbLuotkham objLuotkham, List<long> lstIdTamthu,
-            List<KcbThanhtoanChitiet> objArrPaymentDetail, List<KcbChietkhau> lstChietkhau,ref long idThanhtoan, long idHdonLog, bool layhoadondo,bool bo_ckchitiet,string ma_uudai,
+            List<KcbThanhtoanChitiet> objArrPaymentDetail, List<KcbChietkhau> lstChietkhau, ref long idThanhtoan, long idHdonLog, bool layhoadondo, bool bo_ckchitiet, string ma_uudai,
             ref decimal tongtienBNchitra, ref string ErrMsg)
         {
             ErrMsg = "";
@@ -1035,7 +1036,7 @@ namespace VNS.HIS.BusRule.Classes
                 {
                     using (var dbscope = new SharedDbConnectionScope())
                     {
-                       
+
                         //Tính tổng tiền đồng chi trả
                         v_dblTongtienDCT = TongtienKhongTutuc(objArrPaymentDetail);
                         KcbThanhtoanCollection lstKcbThanhtoanCollection =
@@ -1048,7 +1049,7 @@ namespace VNS.HIS.BusRule.Classes
                                         .AND(KcbThanhtoan.Columns.KieuThanhtoan, Comparison.Equals, 0)
                                 );
                         List<long> lstIdThanhtoan = (from q in lstKcbThanhtoanCollection
-                            select q.IdThanhtoan).Distinct().ToList();
+                                                     select q.IdThanhtoan).Distinct().ToList();
                         //Biến chứa danh sách tất cả các chi tiết dùng để tính lại tổng tiền thanh toán cho thanh toán có bản ghi bị hủy
                         var lstKcbThanhtoanChitiet = new List<KcbThanhtoanChitiet>();
                         if (lstIdThanhtoan.Count > 0)
@@ -1058,8 +1059,8 @@ namespace VNS.HIS.BusRule.Classes
                                     .ExecuteAsCollection<KcbThanhtoanChitietCollection>().ToList<KcbThanhtoanChitiet>();
 
                         v_TotalPaymentDetail = (from p in lstKcbThanhtoanChitiet
-                            where p.TuTuc == 0
-                            select p).Sum(c => Utility.DecimaltoDbnull(c.SoLuong)*c.DonGia*Utility.DecimaltoDbnull(c.TyleTt,0)/100);
+                                                where p.TuTuc == 0
+                                                select p).Sum(c => Utility.DecimaltoDbnull(c.SoLuong) * c.DonGia * Utility.DecimaltoDbnull(c.TyleTt, 0) / 100);
 
                         //Tính toán lại phần trăm BHYT chủ yếu liên quan đến phần lương cơ bản. 
                         //Phần trăm này có thể bị biến đổi và khác với % trong các bảng dịch vụ
@@ -1069,24 +1070,24 @@ namespace VNS.HIS.BusRule.Classes
                         objThanhtoan.PtramBhyt = Utility.Int16Dbnull(ptramBhyt, 0);
                         objThanhtoan.IdLoaidoituongKcb = objLuotkham.IdLoaidoituongKcb;
                         objThanhtoan.MaCoso = objLuotkham.MaCoso;
-                      StoredProcedure sp =   SPs.SpKcbThanhtoanInsert(objThanhtoan.IdThanhtoan,objThanhtoan.MaLuotkham, objThanhtoan.IdBenhnhan,
-                            objThanhtoan.MaDoituongKcb, objThanhtoan.IdDoituongKcb, objThanhtoan.IdLoaidoituongKcb,
-                            objThanhtoan.NgayThanhtoan, objThanhtoan.IdNhanvienThanhtoan, objThanhtoan.MaThanhtoan
-                            , objThanhtoan.KieuThanhtoan, objThanhtoan.TrangthaiIn, objThanhtoan.NgayIn,
-                            objThanhtoan.NguoiIn, objThanhtoan.NgayTonghop, objThanhtoan.NguoiTonghop,
-                            objThanhtoan.MaKhoaThuchien, objThanhtoan.NgayChot, objThanhtoan.TrangthaiChot
-                            , objThanhtoan.TongTien, objThanhtoan.BhytChitra, objThanhtoan.BnhanChitra,
-                            objThanhtoan.PtramBhyt
-                            , objThanhtoan.TileChietkhau, objThanhtoan.KieuChietkhau, objThanhtoan.TongtienChietkhau,
-                            objThanhtoan.TongtienChietkhauHoadon, objThanhtoan.TongtienChietkhauChitiet,
-                            objThanhtoan.MaLydoChietkhau, objThanhtoan.NguoiTao, objThanhtoan.NgayTao
-                            , objThanhtoan.NguoiSua, objThanhtoan.NgaySua, objThanhtoan.IdCapphat,
-                            objThanhtoan.MauHoadon, objThanhtoan.KiHieu, objThanhtoan.MaQuyen, objThanhtoan.Serie,
-                            objThanhtoan.TrangthaiSeri, objThanhtoan.IdHdonLog, objThanhtoan.NoiTru
-                            , objThanhtoan.MaPttt, objThanhtoan.MaNganhang, objThanhtoan.IpMaytao, objThanhtoan.IpMaysua, objThanhtoan.TenMaytao,
-                            objThanhtoan.TenMaysua, objThanhtoan.NgayRavien, objThanhtoan.PhuThu, objThanhtoan.TuTuc,
-                            objThanhtoan.MaLydoHuy, objThanhtoan.TtoanThuoc, objThanhtoan.IdGoi, objThanhtoan.IdDangky, objThanhtoan.MaxNgayTao, objThanhtoan.Ghichu, objThanhtoan.LydoChietkhau, objThanhtoan.MaCoso
-                            , objThanhtoan.IdCtrinhKhuyenmai, objThanhtoan.MaVoucher, objThanhtoan.TienChietkhauVoucher);
+                        StoredProcedure sp = SPs.SpKcbThanhtoanInsert(objThanhtoan.IdThanhtoan, objThanhtoan.MaLuotkham, objThanhtoan.IdBenhnhan,
+                              objThanhtoan.MaDoituongKcb, objThanhtoan.IdDoituongKcb, objThanhtoan.IdLoaidoituongKcb,
+                              objThanhtoan.NgayThanhtoan, objThanhtoan.IdNhanvienThanhtoan, objThanhtoan.MaThanhtoan
+                              , objThanhtoan.KieuThanhtoan, objThanhtoan.TrangthaiIn, objThanhtoan.NgayIn,
+                              objThanhtoan.NguoiIn, objThanhtoan.NgayTonghop, objThanhtoan.NguoiTonghop,
+                              objThanhtoan.MaKhoaThuchien, objThanhtoan.NgayChot, objThanhtoan.TrangthaiChot
+                              , objThanhtoan.TongTien, objThanhtoan.BhytChitra, objThanhtoan.BnhanChitra,
+                              objThanhtoan.PtramBhyt
+                              , objThanhtoan.TileChietkhau, objThanhtoan.KieuChietkhau, objThanhtoan.TongtienChietkhau,
+                              objThanhtoan.TongtienChietkhauHoadon, objThanhtoan.TongtienChietkhauChitiet,
+                              objThanhtoan.MaLydoChietkhau, objThanhtoan.NguoiTao, objThanhtoan.NgayTao
+                              , objThanhtoan.NguoiSua, objThanhtoan.NgaySua, objThanhtoan.IdCapphat,
+                              objThanhtoan.MauHoadon, objThanhtoan.KiHieu, objThanhtoan.MaQuyen, objThanhtoan.Serie,
+                              objThanhtoan.TrangthaiSeri, objThanhtoan.IdHdonLog, objThanhtoan.NoiTru
+                              , objThanhtoan.MaPttt, objThanhtoan.MaNganhang, objThanhtoan.IpMaytao, objThanhtoan.IpMaysua, objThanhtoan.TenMaytao,
+                              objThanhtoan.TenMaysua, objThanhtoan.NgayRavien, objThanhtoan.PhuThu, objThanhtoan.TuTuc,
+                              objThanhtoan.MaLydoHuy, objThanhtoan.TtoanThuoc, objThanhtoan.IdGoi, objThanhtoan.IdDangky, objThanhtoan.MaxNgayTao, objThanhtoan.Ghichu, objThanhtoan.LydoChietkhau, objThanhtoan.MaCoso
+                              , objThanhtoan.IdCtrinhKhuyenmai, objThanhtoan.MaVoucher, objThanhtoan.TienChietkhauVoucher, objThanhtoan.TienHoanung, objThanhtoan.ThuaThieu, objThanhtoan.ThanhtoanGhino);
                         sp.Execute();
                         objThanhtoan.IdThanhtoan = Utility.Int64Dbnull(sp.OutputValues[0], -1);
 
@@ -1101,7 +1102,7 @@ namespace VNS.HIS.BusRule.Classes
                                 {
                                     string maphieu = THU_VIEN_CHUNG.SinhmaVienphi("HKQ");
                                     globalVariables.MaphieuHoanung = maphieu;
-                                    int arc = SPs.NoitruHoanung(objThanhtoan.IdThanhtoan, maphieu, objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan,
+                                    int arc = SPs.NoitruHoanung(-1,objThanhtoan.IdThanhtoan, maphieu, objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan,
                                         objThanhtoan.NgayThanhtoan, globalVariables.gv_intIDNhanvien,
                                         globalVariables.UserName, Utility.Int16Dbnull(objLuotkham.IdKhoanoitru, 0), Utility.Int64Dbnull(objLuotkham.IdRavien, -1),
                                              Utility.Int16Dbnull(objLuotkham.IdBuong, 0), Utility.Int16Dbnull(objLuotkham.IdGiuong, 0), 1, objThanhtoan.MaPttt, objThanhtoan.MaNganhang).Execute();
@@ -1119,7 +1120,7 @@ namespace VNS.HIS.BusRule.Classes
                                     {
                                         string maphieu = THU_VIEN_CHUNG.SinhmaVienphi("HKQ");
                                         globalVariables.MaphieuHoanung = maphieu;
-                                        int arc = SPs.NoitruHoanung(objThanhtoan.IdThanhtoan, maphieu, objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan,
+                                        int arc = SPs.NoitruHoanung(-1,objThanhtoan.IdThanhtoan, maphieu, objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan,
                                               objThanhtoan.NgayThanhtoan, globalVariables.gv_intIDNhanvien,
                                               globalVariables.UserName, Utility.Int16Dbnull(objLuotkham.IdKhoanoitru, 0), Utility.Int64Dbnull(objLuotkham.IdRavien, -1),
                                                Utility.Int16Dbnull(objLuotkham.IdBuong, 0), Utility.Int16Dbnull(objLuotkham.IdGiuong, 0), 0, objThanhtoan.MaPttt, objThanhtoan.MaNganhang).Execute();
@@ -1151,22 +1152,22 @@ namespace VNS.HIS.BusRule.Classes
                                 ttBnct = 0m;
                                 ttChietkhauChitiet = 0m;
                                 List<KcbThanhtoanChitiet> _LstChitiet = (from q in lstKcbThanhtoanChitiet
-                                    where q.IdThanhtoan == IdThanhtoan
-                                    select q).ToList<KcbThanhtoanChitiet>();
+                                                                         where q.IdThanhtoan == IdThanhtoan
+                                                                         select q).ToList<KcbThanhtoanChitiet>();
 
                                 if (_LstChitiet.Count > 0)
                                 {
                                     foreach (KcbThanhtoanChitiet objChitietThanhtoan in _LstChitiet)
                                     {
                                         if (!Utility.Byte2Bool(objChitietThanhtoan.TuTuc))
-                                            ttBhyt += objChitietThanhtoan.BhytChitra*Utility.DecimaltoDbnull(objChitietThanhtoan.SoLuong);
+                                            ttBhyt += objChitietThanhtoan.BhytChitra * Utility.DecimaltoDbnull(objChitietThanhtoan.SoLuong);
                                         ttChietkhauChitiet +=
                                             Utility.DecimaltoDbnull(objChitietThanhtoan.TienChietkhau, 0);
-                                        ttPt += objChitietThanhtoan.PhuThu*Utility.DecimaltoDbnull(objChitietThanhtoan.SoLuong);
+                                        ttPt += objChitietThanhtoan.PhuThu * Utility.DecimaltoDbnull(objChitietThanhtoan.SoLuong);
                                         if (Utility.Byte2Bool(objChitietThanhtoan.TuTuc))
-                                            ttTt += objChitietThanhtoan.BnhanChitra*Utility.DecimaltoDbnull(objChitietThanhtoan.SoLuong);
+                                            ttTt += objChitietThanhtoan.BnhanChitra * Utility.DecimaltoDbnull(objChitietThanhtoan.SoLuong);
                                         else
-                                            ttBnct += objChitietThanhtoan.BnhanChitra*Utility.DecimaltoDbnull(objChitietThanhtoan.SoLuong);
+                                            ttBnct += objChitietThanhtoan.BnhanChitra * Utility.DecimaltoDbnull(objChitietThanhtoan.SoLuong);
 
                                         objChitietThanhtoan.IsNew = false;
                                         objChitietThanhtoan.MarkOld();
@@ -1204,19 +1205,19 @@ namespace VNS.HIS.BusRule.Classes
                         foreach (KcbThanhtoanChitiet objChitietThanhtoan in objArrPaymentDetail)
                         {
                             if (!Utility.Byte2Bool(objChitietThanhtoan.TuTuc))
-                                ttBhyt += objChitietThanhtoan.BhytChitra*Utility.DecimaltoDbnull(objChitietThanhtoan.SoLuong);
-                            decimal tienck_chitiet=Utility.DecimaltoDbnull(objChitietThanhtoan.TienChietkhau, 0);
+                                ttBhyt += objChitietThanhtoan.BhytChitra * Utility.DecimaltoDbnull(objChitietThanhtoan.SoLuong);
+                            decimal tienck_chitiet = Utility.DecimaltoDbnull(objChitietThanhtoan.TienChietkhau, 0);
                             ttChietkhauChitiet += tienck_chitiet;
-                            ttPt += objChitietThanhtoan.PhuThu*Utility.DecimaltoDbnull(objChitietThanhtoan.SoLuong);
+                            ttPt += objChitietThanhtoan.PhuThu * Utility.DecimaltoDbnull(objChitietThanhtoan.SoLuong);
                             if (Utility.Byte2Bool(objChitietThanhtoan.TuTuc))
-                                ttTt += objChitietThanhtoan.BnhanChitra*Utility.DecimaltoDbnull(objChitietThanhtoan.SoLuong);
+                                ttTt += objChitietThanhtoan.BnhanChitra * Utility.DecimaltoDbnull(objChitietThanhtoan.SoLuong);
                             else
-                                ttBnct += objChitietThanhtoan.BnhanChitra*Utility.DecimaltoDbnull(objChitietThanhtoan.SoLuong);
+                                ttBnct += objChitietThanhtoan.BnhanChitra * Utility.DecimaltoDbnull(objChitietThanhtoan.SoLuong);
                             objChitietThanhtoan.IdThanhtoan = Utility.Int32Dbnull(objThanhtoan.IdThanhtoan, -1);
                             StoredProcedure spchitiet = SPs.SpKcbThanhtoanChitietInsert(objChitietThanhtoan.IdChitiet,
                                 objChitietThanhtoan.IdThanhtoan, objChitietThanhtoan.MadoituongGia,
                                 objChitietThanhtoan.PtramBhytGoc, objChitietThanhtoan.PtramBhyt,
-                                objChitietThanhtoan.SoLuong,objChitietThanhtoan.GiaGoc, objChitietThanhtoan.DonGia, objChitietThanhtoan.TyleTt, objChitietThanhtoan.BnhanChitra,
+                                objChitietThanhtoan.SoLuong, objChitietThanhtoan.GiaGoc, objChitietThanhtoan.DonGia, objChitietThanhtoan.TyleTt, objChitietThanhtoan.BnhanChitra,
                                 objChitietThanhtoan.BhytChitra, objChitietThanhtoan.PhuThu
                                 , objChitietThanhtoan.TuTuc, objChitietThanhtoan.IdPhieu,
                                 objChitietThanhtoan.IdPhieuChitiet, objChitietThanhtoan.IdDichvu,
@@ -1234,7 +1235,7 @@ namespace VNS.HIS.BusRule.Classes
                                 objChitietThanhtoan.IdThanhtoanhuy, objChitietThanhtoan.IdLichsuDoituongKcb,
                                 objChitietThanhtoan.MatheBhyt, objChitietThanhtoan.NgayTao, objChitietThanhtoan.NguoiTao, objChitietThanhtoan.TinhChkhau, objChitietThanhtoan.CkNguongt, objChitietThanhtoan.UserTao
                                 , objChitietThanhtoan.MultiCancel, objChitietThanhtoan.IdThe, objChitietThanhtoan.IdDangky, objChitietThanhtoan.BhytNguonKhac, objChitietThanhtoan.BhytGiaTyle, objChitietThanhtoan.BnTtt, objChitietThanhtoan.BnCct
-                                 , objChitietThanhtoan.TienKhuyenmai, objChitietThanhtoan.TthaiKhuyenmai);
+                                 , objChitietThanhtoan.TienKhuyenmai, objChitietThanhtoan.TthaiKhuyenmai, objChitietThanhtoan.NgoaiGio, objChitietThanhtoan.HienThi);
                             spchitiet.Execute();
                             objChitietThanhtoan.IdChitiet = Utility.Int64Dbnull(spchitiet.OutputValues[0], -1);
                             //Bổ sung các bản tin miễn giảm chi tiết
@@ -1243,7 +1244,7 @@ namespace VNS.HIS.BusRule.Classes
                                 KcbChietkhau newck = new KcbChietkhau();
                                 newck.IdBenhnhan = objThanhtoan.IdBenhnhan;
                                 newck.MaLuotkham = objThanhtoan.MaLuotkham;
-                                newck.IdThanhtoan = objThanhtoan.IdThanhtoan ;
+                                newck.IdThanhtoan = objThanhtoan.IdThanhtoan;
                                 newck.SoTien = tienck_chitiet;
                                 newck.NoiTru = objThanhtoan.NoiTru;
                                 newck.TrangThai = true;
@@ -1253,7 +1254,7 @@ namespace VNS.HIS.BusRule.Classes
                                 newck.MaLydoChietkhau = objThanhtoan.MaLydoChietkhau;
                                 newck.LydoChietkhau = objThanhtoan.LydoChietkhau;
                                 newck.KieuChietkhau = objChitietThanhtoan.KieuChietkhau;
-                                newck.TileChietkhau =Utility.DecimaltoDbnull( objChitietThanhtoan.TileChietkhau,0);
+                                newck.TileChietkhau = Utility.DecimaltoDbnull(objChitietThanhtoan.TileChietkhau, 0);
                                 newck.MaUudai = ma_uudai;
                                 newck.BoChitiet = bo_ckchitiet;
                                 newck.NguoiTao = objThanhtoan.NguoiTao;
@@ -1286,8 +1287,8 @@ namespace VNS.HIS.BusRule.Classes
                             //}
                         }
                         //Tạo dữ liệu miễn giảm tổng trên toàn hóa đơn
-                        
-                        if (Utility.DecimaltoDbnull( objThanhtoan.TongtienChietkhauHoadon,0) > 0)
+
+                        if (Utility.DecimaltoDbnull(objThanhtoan.TongtienChietkhauHoadon, 0) > 0)
                         {
                             KcbChietkhau newck = new KcbChietkhau();
                             newck.IdBenhnhan = objThanhtoan.IdBenhnhan;
@@ -1400,7 +1401,8 @@ namespace VNS.HIS.BusRule.Classes
                             , objThanhtoan.TongtienChietkhau, objThanhtoan.TongtienChietkhau - ttChietkhauChitiet, 1,
                             "", "", Convert.ToByte(0), globalVariables.gv_intIDNhanvien, globalVariables.idKhoatheoMay
                             , objThanhtoan.NoiTru, "", globalVariables.UserName, DateTime.Now, "", DateTime.Now
-                            , objThanhtoan.MaPttt, "NB", objThanhtoan.MaNganhang, objLuotkham.IdKhoanoitru, objLuotkham.IdRavien, objLuotkham.IdBuong, objLuotkham.IdGiuong, objThanhtoan.IdGoi, objThanhtoan.IdDangky,objThanhtoan.TienChietkhauVoucher).Execute();
+                            , objThanhtoan.MaPttt, "NB", objThanhtoan.MaNganhang, objLuotkham.IdKhoanoitru, objLuotkham.IdRavien, objLuotkham.IdBuong,
+                            objLuotkham.IdGiuong, objThanhtoan.IdGoi, objThanhtoan.IdDangky, objThanhtoan.TienChietkhauVoucher, objThanhtoan.TienHoanung, objThanhtoan.ThuaThieu).Execute();
                         #region PhieuThuOld
                         //KcbPhieuthu objPhieuthu = new KcbPhieuthu();
                         //objPhieuthu.IdBenhnhan = objThanhtoan.IdBenhnhan;
@@ -1448,10 +1450,10 @@ namespace VNS.HIS.BusRule.Classes
                                 HU = Utility.DecimaltoDbnull(dtData.Rows[0]["so_tien"], 0);
                         }
                         //Tạo bản ghi trong bảng phân bổ tiền theo phương thức thanh toán
-                        SPs.SpKcbThanhtoanPhanbotheoPTTTInsert(objThanhtoan.IdThanhtoan,-1l,-1l, objThanhtoan.MaPttt,objThanhtoan.MaNganhang,
+                        SPs.SpKcbThanhtoanPhanbotheoPTTTInsert(objThanhtoan.IdThanhtoan, -1l, -1l, objThanhtoan.MaPttt, objThanhtoan.MaNganhang,
                             objThanhtoan.IdBenhnhan, objThanhtoan.MaLuotkham,
-                            objThanhtoan.NoiTru, ttBn - objThanhtoan.TongtienChietkhau-HU, ttBn - objThanhtoan.TongtienChietkhau-HU,
-                            objThanhtoan.NguoiTao, objThanhtoan.NgayTao, "", objThanhtoan.NgayTao,-1l,0,(byte)1).Execute();
+                            objThanhtoan.NoiTru, ttBn - objThanhtoan.TongtienChietkhau - HU, ttBn - objThanhtoan.TongtienChietkhau - HU,
+                            objThanhtoan.NguoiTao, objThanhtoan.NgayTao, "", objThanhtoan.NgayTao, -1l, 0, (byte)1).Execute();
                         //new Delete().From(KcbThanhtoanPhanbotheoPTTT.Schema)
                         //    .Where(KcbThanhtoanPhanbotheoPTTT.Columns.IdThanhtoan)
                         //    .IsEqualTo(objThanhtoan.IdThanhtoan).Execute();
@@ -1469,7 +1471,7 @@ namespace VNS.HIS.BusRule.Classes
                         //objPhanbotienTT.Save();
                         int _reval =
                             SPs.SpKcbLuotkhamTrangthaithanhtoan(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham,
-                                Utility.Int16Dbnull(objLuotkham.TrangthaiNoitru,0), Utility.Int16Dbnull(objThanhtoan.NoiTru,0), objThanhtoan.NgayThanhtoan, objLuotkham.MucHuongBhyt,
+                                Utility.Int16Dbnull(objLuotkham.TrangthaiNoitru, 0), Utility.Int16Dbnull(objThanhtoan.NoiTru, 0), objThanhtoan.NgayThanhtoan, objLuotkham.MucHuongBhyt,
                                 objLuotkham.MaDoituongKcb).Execute();
                         if (_reval <= 0)
                         {
@@ -1500,7 +1502,7 @@ namespace VNS.HIS.BusRule.Classes
                         //        .And(KcbLuotkham.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
                         //        .Execute();
 
-                        
+
                     }
                     scope.Complete();
                     idThanhtoan = Utility.Int64Dbnull(objThanhtoan.IdThanhtoan, -1);
@@ -1513,10 +1515,151 @@ namespace VNS.HIS.BusRule.Classes
                 return ActionResult.Error;
             }
         }
+        public bool CapNhatThongTinChietKhau(KcbThanhtoan objThanhtoan, KcbThanhtoanChitiet objChitietThanhtoan)
+        {
+            try
+            {
 
+                new Delete().From(KcbChietkhau.Schema).Where(KcbChietkhau.Columns.IdThanhtoan).IsEqualTo(objThanhtoan.IdThanhtoan)
+                    .And(KcbChietkhau.Columns.IdBenhnhan).IsEqualTo(objThanhtoan.IdBenhnhan)
+                    .And(KcbChietkhau.Columns.MaLuotkham).IsEqualTo(objThanhtoan.MaLuotkham)
+                    .And(KcbChietkhau.Columns.IdChitietThanhtoan).IsEqualTo(objChitietThanhtoan.IdChitiet)
+                    .Execute();
+
+                decimal tienck_chitiet = Utility.DecimaltoDbnull(objChitietThanhtoan.TienChietkhau, 0);
+                //Bổ sung các bản tin miễn giảm chi tiết
+                if (tienck_chitiet > 0)
+                {
+                    KcbChietkhau newck = new KcbChietkhau();
+                    newck.IdBenhnhan = objThanhtoan.IdBenhnhan;
+                    newck.MaLuotkham = objThanhtoan.MaLuotkham;
+                    newck.IdThanhtoan = objThanhtoan.IdThanhtoan;
+                    newck.SoTien = tienck_chitiet;
+                    newck.NoiTru = objThanhtoan.NoiTru;
+                    newck.TrangThai = true;
+                    newck.NgayMiengiam = objThanhtoan.NgayThanhtoan;
+                    newck.IdChitietThanhtoan = objChitietThanhtoan.IdChitiet;
+                    newck.TienChuack = objChitietThanhtoan.BnhanChitra;
+                    newck.MaLydoChietkhau = objThanhtoan.MaLydoChietkhau;
+                    newck.LydoChietkhau = objThanhtoan.LydoChietkhau;
+                    newck.KieuChietkhau = objChitietThanhtoan.KieuChietkhau;
+                    newck.TileChietkhau = Utility.DecimaltoDbnull(objChitietThanhtoan.TileChietkhau, 0);
+                    newck.MaUudai = "1";
+                    newck.BoChitiet = false;
+                    newck.NguoiTao = objThanhtoan.NguoiTao;
+                    newck.NgayTao = objThanhtoan.NgayTao;
+                    newck.IsNew = true;
+                    newck.Save();
+                }
+
+
+                //Tạo dữ liệu miễn giảm tổng trên toàn hóa đơn
+
+                if (Utility.DecimaltoDbnull(objThanhtoan.TongtienChietkhauHoadon, 0) > 0)
+                {
+                    KcbChietkhau newck = new KcbChietkhau();
+                    newck.IdBenhnhan = objThanhtoan.IdBenhnhan;
+                    newck.MaLuotkham = objThanhtoan.MaLuotkham;
+                    newck.IdThanhtoan = objThanhtoan.IdThanhtoan;
+                    newck.SoTien = Utility.DecimaltoDbnull(objThanhtoan.TongtienChietkhauHoadon, 0);
+                    newck.NoiTru = objThanhtoan.NoiTru;
+                    newck.TrangThai = true;
+                    newck.IdChitietThanhtoan = -1;
+                    newck.TienChuack = objThanhtoan.TongTien;
+                    newck.MaLydoChietkhau = objThanhtoan.MaLydoChietkhau;
+                    newck.LydoChietkhau = objThanhtoan.LydoChietkhau;
+                    newck.KieuChietkhau = objThanhtoan.KieuChietkhau;
+                    newck.TileChietkhau = objThanhtoan.TileChietkhau;
+                    newck.MaUudai = "1";
+                    newck.BoChitiet = false;
+                    newck.NgayMiengiam = objThanhtoan.NgayThanhtoan;
+                    newck.NguoiTao = objThanhtoan.NguoiTao;
+                    newck.NgayTao = objThanhtoan.NgayTao;
+                    newck.IsNew = true;
+                    newck.Save();
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                log.Error("Loi thuc hien thanh toan:" + ex);
+                return false;
+            }
+        }
+        public bool CapNhatThongTinChietKhau(KcbThanhtoan objThanhtoan, List<KcbThanhtoanChitiet> lstChitiet)
+        {
+            try {
+
+                new Delete().From(KcbChietkhau.Schema).Where(KcbChietkhau.Columns.IdThanhtoan).IsEqualTo(objThanhtoan.IdThanhtoan)
+                    .And(KcbChietkhau.Columns.IdBenhnhan).IsEqualTo(objThanhtoan.IdBenhnhan)
+                    .And(KcbChietkhau.Columns.MaLuotkham).IsEqualTo(objThanhtoan.MaLuotkham)
+                    .Execute();
+                foreach (KcbThanhtoanChitiet objChitietThanhtoan in lstChitiet)
+                {
+                    decimal tienck_chitiet = Utility.DecimaltoDbnull(objChitietThanhtoan.TienChietkhau, 0);
+                    //Bổ sung các bản tin miễn giảm chi tiết
+                    if (tienck_chitiet > 0)
+                    {
+                        KcbChietkhau newck = new KcbChietkhau();
+                        newck.IdBenhnhan = objThanhtoan.IdBenhnhan;
+                        newck.MaLuotkham = objThanhtoan.MaLuotkham;
+                        newck.IdThanhtoan = objThanhtoan.IdThanhtoan;
+                        newck.SoTien = tienck_chitiet;
+                        newck.NoiTru = objThanhtoan.NoiTru;
+                        newck.TrangThai = true;
+                        newck.NgayMiengiam = objThanhtoan.NgayThanhtoan;
+                        newck.IdChitietThanhtoan = objChitietThanhtoan.IdChitiet;
+                        newck.TienChuack = objChitietThanhtoan.BnhanChitra;
+                        newck.MaLydoChietkhau = objThanhtoan.MaLydoChietkhau;
+                        newck.LydoChietkhau = objThanhtoan.LydoChietkhau;
+                        newck.KieuChietkhau = objChitietThanhtoan.KieuChietkhau;
+                        newck.TileChietkhau = Utility.DecimaltoDbnull(objChitietThanhtoan.TileChietkhau, 0);
+                        newck.MaUudai = "1";
+                        newck.BoChitiet = false;
+                        newck.NguoiTao = objThanhtoan.NguoiTao;
+                        newck.NgayTao = objThanhtoan.NgayTao;
+                        newck.IsNew = true;
+                        newck.Save();
+                    }
+
+                }
+                //Tạo dữ liệu miễn giảm tổng trên toàn hóa đơn
+
+                if (Utility.DecimaltoDbnull(objThanhtoan.TongtienChietkhauHoadon, 0) > 0)
+                {
+                    KcbChietkhau newck = new KcbChietkhau();
+                    newck.IdBenhnhan = objThanhtoan.IdBenhnhan;
+                    newck.MaLuotkham = objThanhtoan.MaLuotkham;
+                    newck.IdThanhtoan = objThanhtoan.IdThanhtoan;
+                    newck.SoTien = Utility.DecimaltoDbnull(objThanhtoan.TongtienChietkhauHoadon, 0);
+                    newck.NoiTru = objThanhtoan.NoiTru;
+                    newck.TrangThai = true;
+                    newck.IdChitietThanhtoan = -1;
+                    newck.TienChuack = objThanhtoan.TongTien;
+                    newck.MaLydoChietkhau = objThanhtoan.MaLydoChietkhau;
+                    newck.LydoChietkhau = objThanhtoan.LydoChietkhau;
+                    newck.KieuChietkhau = objThanhtoan.KieuChietkhau;
+                    newck.TileChietkhau = objThanhtoan.TileChietkhau;
+                    newck.MaUudai = "1";
+                    newck.BoChitiet = false;
+                    newck.NgayMiengiam = objThanhtoan.NgayThanhtoan;
+                    newck.NguoiTao = objThanhtoan.NguoiTao;
+                    newck.NgayTao = objThanhtoan.NgayTao;
+                    newck.IsNew = true;
+                    newck.Save();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                log.Error("Loi thuc hien thanh toan:" + ex);
+                return false;
+            }
+        }
         public ActionResult ThanhtoanChiphiDvuKcb(KcbThanhtoan objThanhtoan, KcbLuotkham objLuotkham, List<long> lstIdTamthu,
           List<KcbThanhtoanChitiet> objArrPaymentDetail, List<KcbChietkhau> lstChietkhau, ref long idThanhtoan, long idHdonLog, bool layhoadondo, bool bo_ckchitiet, string ma_uudai,
-          ref decimal tongtienBNchitra, ref string ErrMsg)
+          ref decimal tongtienBNchitra, ref string ErrMsg,bool HoanUng=true)
         {
             ErrMsg = "";
             try
@@ -1546,46 +1689,49 @@ namespace VNS.HIS.BusRule.Classes
                               , objThanhtoan.MaPttt, objThanhtoan.MaNganhang, objThanhtoan.IpMaytao, objThanhtoan.IpMaysua, objThanhtoan.TenMaytao,
                               objThanhtoan.TenMaysua, objThanhtoan.NgayRavien, objThanhtoan.PhuThu, objThanhtoan.TuTuc,
                               objThanhtoan.MaLydoHuy, objThanhtoan.TtoanThuoc, objThanhtoan.IdGoi, objThanhtoan.IdDangky, objThanhtoan.MaxNgayTao, objThanhtoan.Ghichu, objThanhtoan.LydoChietkhau, objThanhtoan.MaCoso
-                              , objThanhtoan.IdCtrinhKhuyenmai, objThanhtoan.MaVoucher, objThanhtoan.TienChietkhauVoucher);
+                              , objThanhtoan.IdCtrinhKhuyenmai, objThanhtoan.MaVoucher, objThanhtoan.TienChietkhauVoucher, objThanhtoan.TienHoanung, objThanhtoan.ThuaThieu, objThanhtoan.ThanhtoanGhino);
                         sp.Execute();
                         objThanhtoan.IdThanhtoan = Utility.Int64Dbnull(sp.OutputValues[0], -1);
 
                         #region Hoàn ứng
                         if (Utility.Int32Dbnull(objThanhtoan.IdGoi, 0) <= 0)//Thanh toán cho gói ko gọi các hàm liên quan đến hoàn ứng
                         {
-                            if (Utility.Byte2Bool(objThanhtoan.NoiTru))
+                            if (HoanUng)
                             {
-                                if (
-                                    THU_VIEN_CHUNG.Laygiatrithamsohethong("NOITRU_TUDONGHOANUNG_KHITHANHTOANNOITRU", "0",
-                                        false) == "1")
+                                if (Utility.Byte2Bool(objThanhtoan.NoiTru))
                                 {
-                                    string maphieu = THU_VIEN_CHUNG.SinhmaVienphi("HKQ");
-                                    globalVariables.MaphieuHoanung = maphieu;
-                                    int arc = SPs.NoitruHoanung(objThanhtoan.IdThanhtoan, maphieu, objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan,
-                                        objThanhtoan.NgayThanhtoan, globalVariables.gv_intIDNhanvien,
-                                        globalVariables.UserName, Utility.Int16Dbnull(objLuotkham.IdKhoanoitru, 0), Utility.Int64Dbnull(objLuotkham.IdRavien, -1),
-                                             Utility.Int16Dbnull(objLuotkham.IdBuong, 0), Utility.Int16Dbnull(objLuotkham.IdGiuong, 0), 1, objThanhtoan.MaPttt, objThanhtoan.MaNganhang).Execute();
-                                    if (arc <= 0) globalVariables.MaphieuHoanung = "";
-                                }
-                            }
-                            else
-                            {
-                                if (
-                                    THU_VIEN_CHUNG.Laygiatrithamsohethong("KCB_THANHTOAN_KICHHOAT_TAMUNG_NGOAITRU", "0",
-                                        false) == "1")
                                     if (
-                                        THU_VIEN_CHUNG.Laygiatrithamsohethong(
-                                            "NGOAITRU_TUDONGHOANUNG_KHITHANHTOANNGOAITRU", "0", false) == "1")
+                                        THU_VIEN_CHUNG.Laygiatrithamsohethong("NOITRU_TUDONGHOANUNG_KHITHANHTOANNOITRU", "0",
+                                            false) == "1")
                                     {
                                         string maphieu = THU_VIEN_CHUNG.SinhmaVienphi("HKQ");
                                         globalVariables.MaphieuHoanung = maphieu;
-                                        int arc = SPs.NoitruHoanung(objThanhtoan.IdThanhtoan, maphieu, objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan,
-                                              objThanhtoan.NgayThanhtoan, globalVariables.gv_intIDNhanvien,
-                                              globalVariables.UserName, Utility.Int16Dbnull(objLuotkham.IdKhoanoitru, 0), Utility.Int64Dbnull(objLuotkham.IdRavien, -1),
-                                               Utility.Int16Dbnull(objLuotkham.IdBuong, 0), Utility.Int16Dbnull(objLuotkham.IdGiuong, 0), 0, objThanhtoan.MaPttt, objThanhtoan.MaNganhang).Execute();
+                                        int arc = SPs.NoitruHoanung(-1,objThanhtoan.IdThanhtoan, maphieu, objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan,
+                                            objThanhtoan.NgayThanhtoan, globalVariables.gv_intIDNhanvien,
+                                            globalVariables.UserName, Utility.Int16Dbnull(objLuotkham.IdKhoanoitru, 0), Utility.Int64Dbnull(objLuotkham.IdRavien, -1),
+                                                 Utility.Int16Dbnull(objLuotkham.IdBuong, 0), Utility.Int16Dbnull(objLuotkham.IdGiuong, 0), 1, objThanhtoan.MaPttt, objThanhtoan.MaNganhang).Execute();
                                         if (arc <= 0) globalVariables.MaphieuHoanung = "";
                                     }
-                            }
+                                }
+                                else
+                                {
+                                    if (
+                                        THU_VIEN_CHUNG.Laygiatrithamsohethong("KCB_THANHTOAN_KICHHOAT_TAMUNG_NGOAITRU", "0",
+                                            false) == "1")
+                                        if (
+                                            THU_VIEN_CHUNG.Laygiatrithamsohethong(
+                                                "NGOAITRU_TUDONGHOANUNG_KHITHANHTOANNGOAITRU", "0", false) == "1")
+                                        {
+                                            string maphieu = THU_VIEN_CHUNG.SinhmaVienphi("HKQ");
+                                            globalVariables.MaphieuHoanung = maphieu;
+                                            int arc = SPs.NoitruHoanung(-1,objThanhtoan.IdThanhtoan, maphieu, objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan,
+                                                  objThanhtoan.NgayThanhtoan, globalVariables.gv_intIDNhanvien,
+                                                  globalVariables.UserName, Utility.Int16Dbnull(objLuotkham.IdKhoanoitru, 0), Utility.Int64Dbnull(objLuotkham.IdRavien, -1),
+                                                   Utility.Int16Dbnull(objLuotkham.IdBuong, 0), Utility.Int16Dbnull(objLuotkham.IdGiuong, 0), 0, objThanhtoan.MaPttt, objThanhtoan.MaNganhang).Execute();
+                                            if (arc <= 0) globalVariables.MaphieuHoanung = "";
+                                        }
+                                }
+                           }
                         }
                         #endregion
                         //objThanhtoan.IsNew = true;
@@ -1638,7 +1784,7 @@ namespace VNS.HIS.BusRule.Classes
                                 objChitietThanhtoan.IdThanhtoanhuy, objChitietThanhtoan.IdLichsuDoituongKcb,
                                 objChitietThanhtoan.MatheBhyt, objChitietThanhtoan.NgayTao, objChitietThanhtoan.NguoiTao, objChitietThanhtoan.TinhChkhau, objChitietThanhtoan.CkNguongt, objChitietThanhtoan.UserTao
                                 , objChitietThanhtoan.MultiCancel, objChitietThanhtoan.IdThe, objChitietThanhtoan.IdDangky, objChitietThanhtoan.BhytNguonKhac, objChitietThanhtoan.BhytGiaTyle, objChitietThanhtoan.BnTtt, objChitietThanhtoan.BnCct
-                                 , objChitietThanhtoan.TienKhuyenmai, objChitietThanhtoan.TthaiKhuyenmai);
+                                 , objChitietThanhtoan.TienKhuyenmai, objChitietThanhtoan.TthaiKhuyenmai, objChitietThanhtoan.NgoaiGio, objChitietThanhtoan.HienThi);
                             spchitiet.Execute();
                             objChitietThanhtoan.IdChitiet = Utility.Int64Dbnull(spchitiet.OutputValues[0], -1);
                             //Bổ sung các bản tin miễn giảm chi tiết
@@ -1798,7 +1944,8 @@ namespace VNS.HIS.BusRule.Classes
                             , objThanhtoan.TongtienChietkhau, objThanhtoan.TongtienChietkhau - ttChietkhauChitiet, 1,
                             "", "", Convert.ToByte(0), globalVariables.gv_intIDNhanvien, globalVariables.idKhoatheoMay
                             , objThanhtoan.NoiTru, "", globalVariables.UserName, DateTime.Now, "", DateTime.Now
-                            , objThanhtoan.MaPttt, "NB", objThanhtoan.MaNganhang, objLuotkham.IdKhoanoitru, objLuotkham.IdRavien, objLuotkham.IdBuong, objLuotkham.IdGiuong, objThanhtoan.IdGoi, objThanhtoan.IdDangky, objThanhtoan.TienChietkhauVoucher).Execute();
+                            , objThanhtoan.MaPttt, "NB", objThanhtoan.MaNganhang, objLuotkham.IdKhoanoitru, objLuotkham.IdRavien, objLuotkham.IdBuong, 
+                            objLuotkham.IdGiuong, objThanhtoan.IdGoi, objThanhtoan.IdDangky, objThanhtoan.TienChietkhauVoucher, objThanhtoan.TienHoanung, objThanhtoan.ThuaThieu).Execute();
                         
                         new Update(KcbThanhtoan.Schema)
                             .Set(KcbThanhtoan.Columns.TongTien).EqualTo(ttBhyt + ttBn)
@@ -1820,7 +1967,7 @@ namespace VNS.HIS.BusRule.Classes
                                 .And(NoitruTamung.Columns.KieuTamung).IsEqualTo(1).ExecuteDataSet().Tables[0];
 
                             if (dtData.Rows.Count > 0)
-                                HU = Utility.DecimaltoDbnull(dtData.Rows[0]["so_tien"], 0);
+                                HU = Utility.DecimaltoDbnull(dtData.Compute("SUM(so_tien)",""), 0);
                         }
                         //Tạo bản ghi trong bảng phân bổ tiền theo phương thức thanh toán
                         SPs.SpKcbThanhtoanPhanbotheoPTTTInsert(objThanhtoan.IdThanhtoan, -1l, -1l, objThanhtoan.MaPttt, objThanhtoan.MaNganhang,
@@ -1897,6 +2044,7 @@ namespace VNS.HIS.BusRule.Classes
                         objThanhtoan.PtramBhyt = Utility.Int16Dbnull(ptramBhyt, 0);
                         objThanhtoan.IdLoaidoituongKcb = objLuotkham.IdLoaidoituongKcb;
                         objThanhtoan.MaCoso = objLuotkham.MaCoso;
+                       
                         StoredProcedure sp = SPs.SpKcbThanhtoanInsert(objThanhtoan.IdThanhtoan, objThanhtoan.MaLuotkham, objThanhtoan.IdBenhnhan,
                               objThanhtoan.MaDoituongKcb, objThanhtoan.IdDoituongKcb, objThanhtoan.IdLoaidoituongKcb,
                               objThanhtoan.NgayThanhtoan, objThanhtoan.IdNhanvienThanhtoan, objThanhtoan.MaThanhtoan
@@ -1914,7 +2062,7 @@ namespace VNS.HIS.BusRule.Classes
                               , objThanhtoan.MaPttt, objThanhtoan.MaNganhang, objThanhtoan.IpMaytao, objThanhtoan.IpMaysua, objThanhtoan.TenMaytao,
                               objThanhtoan.TenMaysua, objThanhtoan.NgayRavien, objThanhtoan.PhuThu, objThanhtoan.TuTuc,
                               objThanhtoan.MaLydoHuy, objThanhtoan.TtoanThuoc, objThanhtoan.IdGoi, objThanhtoan.IdDangky, objThanhtoan.MaxNgayTao, objThanhtoan.Ghichu, objThanhtoan.LydoChietkhau, objThanhtoan.MaCoso
-                              , objThanhtoan.IdCtrinhKhuyenmai, objThanhtoan.MaVoucher, objThanhtoan.TienChietkhauVoucher);
+                              , objThanhtoan.IdCtrinhKhuyenmai, objThanhtoan.MaVoucher, objThanhtoan.TienChietkhauVoucher, objThanhtoan.TienHoanung, objThanhtoan.ThuaThieu, objThanhtoan.ThanhtoanGhino);
                         if (objThanhtoan.IdThanhtoan <= 0)
                         {
                             //sp.Execute();
@@ -1978,7 +2126,7 @@ namespace VNS.HIS.BusRule.Classes
                                 objChitietThanhtoan.IdThanhtoanhuy, objChitietThanhtoan.IdLichsuDoituongKcb,
                                 objChitietThanhtoan.MatheBhyt, objChitietThanhtoan.NgayTao, objChitietThanhtoan.NguoiTao, objChitietThanhtoan.TinhChkhau, objChitietThanhtoan.CkNguongt, objChitietThanhtoan.UserTao
                                 , objChitietThanhtoan.MultiCancel, objChitietThanhtoan.IdThe, objChitietThanhtoan.IdDangky, objChitietThanhtoan.BhytNguonKhac, objChitietThanhtoan.BhytGiaTyle, objChitietThanhtoan.BnTtt, objChitietThanhtoan.BnCct
-                                 , objChitietThanhtoan.TienKhuyenmai, objChitietThanhtoan.TthaiKhuyenmai);
+                                 , objChitietThanhtoan.TienKhuyenmai, objChitietThanhtoan.TthaiKhuyenmai, objChitietThanhtoan.NgoaiGio, objChitietThanhtoan.HienThi);
                             spchitiet.Execute();
                             objChitietThanhtoan.IdChitiet = Utility.Int64Dbnull(spchitiet.OutputValues[0], -1);
                             //objChitietThanhtoan.IsNew = true;
@@ -2009,7 +2157,8 @@ namespace VNS.HIS.BusRule.Classes
                             , objThanhtoan.TongtienChietkhau, objThanhtoan.TongtienChietkhau - ttChietkhauChitiet, 1,
                             "", "", Convert.ToByte(0), globalVariables.gv_intIDNhanvien, globalVariables.idKhoatheoMay
                             , objThanhtoan.NoiTru, "", globalVariables.UserName, DateTime.Now, "", DateTime.Now
-                            , objThanhtoan.MaPttt, "NB", objThanhtoan.MaNganhang, objLuotkham.IdKhoanoitru, objLuotkham.IdRavien, objLuotkham.IdBuong, objLuotkham.IdGiuong, objThanhtoan.IdGoi, objThanhtoan.IdDangky,objThanhtoan.TienChietkhauVoucher).Execute();
+                            , objThanhtoan.MaPttt, "NB", objThanhtoan.MaNganhang, objLuotkham.IdKhoanoitru, objLuotkham.IdRavien, objLuotkham.IdBuong,
+                            objLuotkham.IdGiuong, objThanhtoan.IdGoi, objThanhtoan.IdDangky,objThanhtoan.TienChietkhauVoucher, objThanhtoan.TienHoanung, objThanhtoan.ThuaThieu).Execute();
                        
                         new Update(KcbThanhtoan.Schema)
                             .Set(KcbThanhtoan.Columns.TongTien).EqualTo(ttBhyt + ttBn)
@@ -2106,7 +2255,7 @@ namespace VNS.HIS.BusRule.Classes
                               , objThanhtoan.MaPttt,objThanhtoan.MaNganhang, objThanhtoan.IpMaytao, objThanhtoan.IpMaysua, objThanhtoan.TenMaytao,
                               objThanhtoan.TenMaysua, objThanhtoan.NgayRavien, objThanhtoan.PhuThu, objThanhtoan.TuTuc,
                               objThanhtoan.MaLydoHuy, objThanhtoan.TtoanThuoc, objThanhtoan.IdGoi, objThanhtoan.IdDangky, objThanhtoan.MaxNgayTao, objThanhtoan.Ghichu, objThanhtoan.LydoChietkhau, objThanhtoan.MaCoso
-                              , objThanhtoan.IdCtrinhKhuyenmai, objThanhtoan.MaVoucher, objThanhtoan.TienChietkhauVoucher);
+                              , objThanhtoan.IdCtrinhKhuyenmai, objThanhtoan.MaVoucher, objThanhtoan.TienChietkhauVoucher, objThanhtoan.TienHoanung, objThanhtoan.ThuaThieu, objThanhtoan.ThanhtoanGhino);
                         sp.Execute();
                         objThanhtoan.IdThanhtoan = Utility.Int64Dbnull(sp.OutputValues[0], -1);
                         //Thực hiện cấp phát thuốc
@@ -2180,7 +2329,7 @@ namespace VNS.HIS.BusRule.Classes
                                 objChitietThanhtoan.IdThanhtoanhuy, objChitietThanhtoan.IdLichsuDoituongKcb,
                                 objChitietThanhtoan.MatheBhyt, objChitietThanhtoan.NgayTao, objChitietThanhtoan.NguoiTao, objChitietThanhtoan.TinhChkhau, objChitietThanhtoan.CkNguongt, objChitietThanhtoan.UserTao
                                 , objChitietThanhtoan.MultiCancel, objChitietThanhtoan.IdThe, objChitietThanhtoan.IdDangky, objChitietThanhtoan.BhytNguonKhac, objChitietThanhtoan.BhytGiaTyle, objChitietThanhtoan.BnTtt, objChitietThanhtoan.BnCct
-                                 , objChitietThanhtoan.TienKhuyenmai, objChitietThanhtoan.TthaiKhuyenmai);
+                                 , objChitietThanhtoan.TienKhuyenmai, objChitietThanhtoan.TthaiKhuyenmai, objChitietThanhtoan.NgoaiGio, objChitietThanhtoan.HienThi);
                             spchitiet.Execute();
                             objChitietThanhtoan.IdChitiet = Utility.Int64Dbnull(spchitiet.OutputValues[0], -1);
                             //Bổ sung các bản tin miễn giảm chi tiết
@@ -2258,7 +2407,8 @@ namespace VNS.HIS.BusRule.Classes
                             , objThanhtoan.TongtienChietkhau, objThanhtoan.TongtienChietkhau - ttChietkhauChitiet, 1,
                             "", "", Convert.ToByte(0), globalVariables.gv_intIDNhanvien, globalVariables.idKhoatheoMay
                             , objThanhtoan.NoiTru, "", globalVariables.UserName, DateTime.Now, "", DateTime.Now
-                            , objThanhtoan.MaPttt, "NB", objThanhtoan.MaNganhang, objLuotkham.IdKhoanoitru, objLuotkham.IdRavien, objLuotkham.IdBuong, objLuotkham.IdGiuong, objThanhtoan.IdGoi, objThanhtoan.IdDangky, objThanhtoan.TienChietkhauVoucher).Execute();
+                            , objThanhtoan.MaPttt, "NB", objThanhtoan.MaNganhang, objLuotkham.IdKhoanoitru, objLuotkham.IdRavien,
+                            objLuotkham.IdBuong, objLuotkham.IdGiuong, objThanhtoan.IdGoi, objThanhtoan.IdDangky, objThanhtoan.TienChietkhauVoucher, objThanhtoan.TienHoanung, objThanhtoan.ThuaThieu).Execute();
                         #region PhieuThuOld
                         //KcbPhieuthu objPhieuthu = new KcbPhieuthu();
                         //objPhieuthu.IdBenhnhan = objThanhtoan.IdBenhnhan;
@@ -2976,7 +3126,7 @@ namespace VNS.HIS.BusRule.Classes
                             if (
                                 THU_VIEN_CHUNG.Laygiatrithamsohethong("NOITRU_TUDONGHOANUNG_KHITHANHTOANNOITRU", "0",
                                     false) == "1")
-                                SPs.NoitruHuyhoanung(objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan,objThanhtoan.IdThanhtoan, 1).Execute();
+                                SPs.NoitruHuyhoanung(objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan,-1,objThanhtoan.IdThanhtoan, 1).Execute();
                         }
                         else
                         {
@@ -2986,7 +3136,7 @@ namespace VNS.HIS.BusRule.Classes
                                 if (
                                     THU_VIEN_CHUNG.Laygiatrithamsohethong(
                                         "NGOAITRU_TUDONGHOANUNG_KHITHANHTOANNGOAITRU", "0", false) == "1")
-                                    SPs.NoitruHuyhoanung(objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan, objThanhtoan.IdThanhtoan, 0).Execute();
+                                    SPs.NoitruHuyhoanung(objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan,-1, objThanhtoan.IdThanhtoan, 0).Execute();
                         }
                         if (idHdonLog > 0)
                             if (!huyBienlai)
@@ -3976,7 +4126,7 @@ namespace VNS.HIS.BusRule.Classes
             try
             {
                 ThuocLichsuTralaithuoctaiquayPhieu newPhieu = ThuocLichsuTralaithuoctaiquayPhieu.FetchByID(idphieutralaithuoc);
-                if (newPhieu.TrangThai == 0)//Chưa được lập phiếu chi
+                if (Utility.Int64Dbnull( newPhieu.IdPhieuchi) <=0)//Chưa được lập phiếu chi
                 {
                     ThuocLichsuTralaithuoctaiquayChitietCollection lstChitiet =
                         new Select().
@@ -4384,7 +4534,7 @@ namespace VNS.HIS.BusRule.Classes
                         if (THUOC_CONGVAOKHO_NGAYSAUKHI_NHANTHUOCTRALAI)
                         {
                             newPhieu.IdPhieuchi = -1;
-                            newPhieu.TrangThai = 1;
+                            newPhieu.TrangThai = 0;
                         }
                         newPhieu.Save();
                         //Cập nhật các dòng chi tiết được chọn hủy về trạng thái hủy và các dịch vụ trong các bảng tương ứng theo id_loaithanhtoan

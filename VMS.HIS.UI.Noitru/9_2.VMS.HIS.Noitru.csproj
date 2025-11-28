@@ -109,12 +109,6 @@
     <Compile Include="Noitru\frm_KCB_DANGKY_BENHNHAN_CAPCUU.Designer.cs">
       <DependentUpon>frm_KCB_DANGKY_BENHNHAN_CAPCUU.cs</DependentUpon>
     </Compile>
-    <Compile Include="Noitru\frm_PhieuChamSoc.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Noitru\frm_PhieuChamSoc.Designer.cs">
-      <DependentUpon>frm_PhieuChamSoc.cs</DependentUpon>
-    </Compile>
     <Compile Include="Noitru\frm_Quanly_phieutuvanPTTT.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -259,12 +253,6 @@
     <Compile Include="Noitru\frm_Saochep_phieudieutri.Designer.cs">
       <DependentUpon>frm_Saochep_phieudieutri.cs</DependentUpon>
     </Compile>
-    <Compile Include="Noitru\frm_Taobenhnhancapcuu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Noitru\frm_Taobenhnhancapcuu.Designer.cs">
-      <DependentUpon>frm_Taobenhnhancapcuu.cs</DependentUpon>
-    </Compile>
     <Compile Include="Noitru\frm_themphieudieutri.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -288,6 +276,12 @@
     </Compile>
     <Compile Include="Noitru\frm_Xemtonghopchiphi.Designer.cs">
       <DependentUpon>frm_Xemtonghopchiphi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Noitru\HISVB\frm_PhieuPTTT_V2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Noitru\HISVB\frm_PhieuPTTT_V2.Designer.cs">
+      <DependentUpon>frm_PhieuPTTT_V2.cs</DependentUpon>
     </Compile>
     <Compile Include="Noitru\HISVB\frm_phieutuvanPTTT.cs">
       <SubType>Form</SubType>
@@ -345,9 +339,6 @@
     <EmbeddedResource Include="Noitru\frm_KCB_DANGKY_BENHNHAN_CAPCUU.resx">
       <DependentUpon>frm_KCB_DANGKY_BENHNHAN_CAPCUU.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Noitru\frm_PhieuChamSoc.resx">
-      <DependentUpon>frm_PhieuChamSoc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Noitru\frm_Quanly_phieutuvanPTTT.resx">
       <DependentUpon>frm_Quanly_phieutuvanPTTT.cs</DependentUpon>
@@ -421,10 +412,6 @@
     <EmbeddedResource Include="Noitru\frm_Saochep_phieudieutri.resx">
       <DependentUpon>frm_Saochep_phieudieutri.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Noitru\frm_Taobenhnhancapcuu.resx">
-      <DependentUpon>frm_Taobenhnhancapcuu.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Noitru\frm_themphieudieutri.resx">
       <DependentUpon>frm_themphieudieutri.cs</DependentUpon>
     </EmbeddedResource>
@@ -436,6 +423,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Noitru\frm_Xemtonghopchiphi.resx">
       <DependentUpon>frm_Xemtonghopchiphi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Noitru\HISVB\frm_PhieuPTTT_V2.resx">
+      <DependentUpon>frm_PhieuPTTT_V2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Noitru\HISVB\frm_phieutuvanPTTT.resx">
       <DependentUpon>frm_phieutuvanPTTT.cs</DependentUpon>
@@ -483,9 +473,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\VMS.Emr\VMS.Emr\VMS.HIS.Bus.Emr.csproj">
+    <ProjectReference Include="..\VMS.Emr\VMS.Emr\9_0.VMS.HIS.Bus.Emr.csproj">
       <Project>{323d0245-5cd3-488a-8b83-edade85b3da4}</Project>
-      <Name>VMS.HIS.Bus.Emr</Name>
+      <Name>9_0.VMS.HIS.Bus.Emr</Name>
     </ProjectReference>
     <ProjectReference Include="..\VMS.HIS.BA\9_1.VMS.HIS.EMR.csproj">
       <Project>{0fb2fda1-6238-415d-afa9-acca3094c1d1}</Project>

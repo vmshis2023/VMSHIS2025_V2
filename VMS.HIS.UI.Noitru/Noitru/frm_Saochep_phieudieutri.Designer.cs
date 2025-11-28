@@ -69,6 +69,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.grdPhieudieutrigoc = new Janus.Windows.GridEX.GridEX();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.chkThoatsaukhiluu = new Janus.Windows.EditControls.UICheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -203,6 +204,7 @@
             this.cmdAddNgay.Size = new System.Drawing.Size(110, 32);
             this.cmdAddNgay.TabIndex = 1;
             this.cmdAddNgay.Text = "Chấp nhận";
+            this.cmdAddNgay.Click += new System.EventHandler(this.cmdAddNgay_Click_1);
             // 
             // label1
             // 
@@ -520,6 +522,7 @@
             // 
             // uiGroupBox1
             // 
+            this.uiGroupBox1.Controls.Add(this.chkThoatsaukhiluu);
             this.uiGroupBox1.Controls.Add(this.cmdExit);
             this.uiGroupBox1.Controls.Add(this.cmdSaoChepPhieu);
             this.uiGroupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -593,6 +596,21 @@
             // 
             this.toolTip1.IsBalloon = true;
             this.toolTip1.ToolTipTitle = "Trợ giúp";
+            // 
+            // chkThoatsaukhiluu
+            // 
+            this.chkThoatsaukhiluu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.chkThoatsaukhiluu.Checked = true;
+            this.chkThoatsaukhiluu.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkThoatsaukhiluu.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkThoatsaukhiluu.Location = new System.Drawing.Point(9, 19);
+            this.chkThoatsaukhiluu.Name = "chkThoatsaukhiluu";
+            this.chkThoatsaukhiluu.Size = new System.Drawing.Size(226, 20);
+            this.chkThoatsaukhiluu.TabIndex = 61;
+            this.chkThoatsaukhiluu.TabStop = false;
+            this.chkThoatsaukhiluu.Tag = "SAOCHEP_PDT_THOATSAUKHILUU";
+            this.chkThoatsaukhiluu.Text = "Thoát sau sao chép?";
+            this.chkThoatsaukhiluu.VisualStyle = Janus.Windows.UI.VisualStyle.VS2005;
             // 
             // frm_Saochep_phieudieutri
             // 
@@ -670,5 +688,6 @@
         private Janus.Windows.EditControls.UIButton cmdUpdategiodieutri;
         private Janus.Windows.CalendarCombo.CalendarCombo dtpNgaynhapvien;
         private System.Windows.Forms.Label label4;
+        private Janus.Windows.EditControls.UICheckBox chkThoatsaukhiluu;
     }
 }

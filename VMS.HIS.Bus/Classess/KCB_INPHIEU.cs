@@ -166,11 +166,11 @@ namespace VNS.HIS.UI.Classess
             switch (khoGiay)
             {
                 case "A4":
-                    reportcode = "tiepdon_PhieuKCB_Dvu_A4";
+                    reportcode = globalVariables.InPhieuKhamChuyenKhoa?"NOITRU_PHIEUKHAM_CHUYENKHOA": "tiepdon_PhieuKCB_Dvu_A4";
                     reportDocument = Utility.GetReport(reportcode, ref tieude, ref reportname,ref objReport);
                     break;
                 case "A5":
-                    reportcode = "tiepdon_PhieuKCB_Dvu_A5";
+                    reportcode = globalVariables.InPhieuKhamChuyenKhoa ? "NOITRU_PHIEUKHAM_CHUYENKHOA" : "tiepdon_PhieuKCB_Dvu_A5";
                     reportDocument = Utility.GetReport(reportcode, ref tieude, ref reportname, ref objReport);
                     break;
             }
@@ -203,6 +203,14 @@ namespace VNS.HIS.UI.Classess
                 Utility.SetParameterValue(crpt, "txtTrinhky",
                                                              Utility.getTrinhky(objForm.mv_sReportFileName,
                                                                                 DateTime.Now));
+                Utility.SetParameterValue(crpt, "ten_bv", globalVariables.Branch_Name);
+                Utility.SetParameterValue(crpt, "dia_chi_bv", globalVariables.Branch_Address);
+                Utility.SetParameterValue(crpt, "dien_thoai_bv", globalVariables.Branch_Phone);
+                Utility.SetParameterValue(crpt, "co_quan_chu_quan", globalVariables.ParentBranch_Name);
+                Utility.SetParameterValue(crpt, "thoi_gian_du_lieu", "");
+                Utility.SetParameterValue(crpt, "ngay_in", Utility.FormatDateTimeWithThanhPho(DateTime.Now));
+                Utility.SetParameterValue(crpt, "ten_bao_cao", tieude);
+                Utility.SetParameterValue(crpt, "thong_tin_cuoi_trang", THU_VIEN_CHUNG.BottomCondition());
                 objForm.crptViewer.ReportSource = crpt;
                 
                 if (Utility.isPrintPreview(PropertyLib._MayInProperties.TenMayInPhieuKCB,

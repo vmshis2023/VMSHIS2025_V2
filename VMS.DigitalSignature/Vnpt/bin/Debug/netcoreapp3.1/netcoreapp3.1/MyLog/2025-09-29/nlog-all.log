@@ -1,0 +1,5 @@
+2025-09-29 22:12:11.1938||DEBUG|VMS.ChuKySo.Api.Program|Init API 
+2025-09-29 22:12:12.8141||INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down. 
+2025-09-29 22:12:12.8171||INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development 
+2025-09-29 22:12:12.8377||INFO|Microsoft.Hosting.Lifetime|Content root path: F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Vnpt 
+2025-09-29 22:12:12.8706||INFO|Startup|BaseDirectory: F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Vnpt\bin\Debug\netcoreapp3.1\netcoreapp3.1\ 

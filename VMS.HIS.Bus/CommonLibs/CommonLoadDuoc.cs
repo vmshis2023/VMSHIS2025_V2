@@ -37,10 +37,33 @@ namespace VNS.Libs
 
            sqlQuery.OrderAsc(TDmucKho.Columns.SttHthi);
            m_dtKhoThuoc=sqlQuery.ExecuteDataSet().Tables[0];
+            RebuildTenKho(m_dtKhoThuoc);
           return m_dtKhoThuoc;
       }
+        public static void RebuildTenKho(DataTable m_dtKhoThuoc)
+        {
+            if (m_dtKhoThuoc == null || !m_dtKhoThuoc.Columns.Contains("ma_kho") || !m_dtKhoThuoc.Columns.Contains("ten_kho"))
+                return;
 
-      public static DataTable LAYTHONGTIN_KHOTHUOC_DOITUONG(string doiTuong)
+            // Sao lưu dữ liệu cũ
+            DataTable dtTemp = m_dtKhoThuoc.Copy();
+
+            // Xóa cột ten_kho cũ
+            m_dtKhoThuoc.Columns.Remove("ten_kho");
+
+            // Tạo lại cột ten_kho
+            m_dtKhoThuoc.Columns.Add("ten_kho", typeof(string));
+
+            // Gán lại giá trị ma_kho + ten_kho cũ
+            for (int i = 0; i < m_dtKhoThuoc.Rows.Count; i++)
+            {
+                string maKho = dtTemp.Rows[i]["ma_kho"]?.ToString() ?? string.Empty;
+                string tenKhoCu = dtTemp.Rows[i]["ten_kho"]?.ToString() ?? string.Empty;
+                m_dtKhoThuoc.Rows[i]["ten_kho"] = $"{maKho} - {tenKhoCu}";
+            }
+        }
+
+        public static DataTable LAYTHONGTIN_KHOTHUOC_DOITUONG(string doiTuong)
       {
           DataTable m_dtKhoThuoc = new DataTable();
           SqlQuery sqlQuery = new Select().From(TDmucKho.Schema);
@@ -58,7 +81,8 @@ namespace VNS.Libs
           sqlQuery.And(TDmucKho.Columns.LoaiKho).IsEqualTo(0);
           sqlQuery.OrderAsc(TDmucKho.Columns.SttHthi);
           m_dtKhoThuoc = sqlQuery.ExecuteDataSet().Tables[0];
-          return m_dtKhoThuoc;
+            RebuildTenKho(m_dtKhoThuoc);
+            return m_dtKhoThuoc;
       }
 
       public static DataTable LAYTHONGTIN_KHOTHUOC_NOITRU()
@@ -80,7 +104,8 @@ namespace VNS.Libs
           sqlQuery.And(TDmucKho.Columns.LoaiKho).IsEqualTo(0);
           sqlQuery.OrderAsc(TDmucKho.Columns.SttHthi);
           m_dtKhoThuoc = sqlQuery.ExecuteDataSet().Tables[0];
-          return m_dtKhoThuoc;
+            RebuildTenKho(m_dtKhoThuoc);
+            return m_dtKhoThuoc;
 
       }
       public static DataTable LAYTHONGTIN_KHOVATTU_NOITRU()
@@ -102,7 +127,8 @@ namespace VNS.Libs
           sqlQuery.And(TDmucKho.Columns.LoaiKho).IsEqualTo(0);
           sqlQuery.OrderAsc(TDmucKho.Columns.SttHthi);
           m_dtKhoThuoc = sqlQuery.ExecuteDataSet().Tables[0];
-          return m_dtKhoThuoc;
+            RebuildTenKho(m_dtKhoThuoc);
+            return m_dtKhoThuoc;
 
       }
       public static DataTable LAYTHONGTIN_KHOTHUOC_NGOAITRU()
@@ -124,7 +150,8 @@ namespace VNS.Libs
           sqlQuery.And(TDmucKho.Columns.LoaiKho).IsEqualTo(0);
           sqlQuery.OrderAsc(TDmucKho.Columns.SttHthi);
           m_dtKhoThuoc = sqlQuery.ExecuteDataSet().Tables[0];
-          return m_dtKhoThuoc;
+            RebuildTenKho(m_dtKhoThuoc);
+            return m_dtKhoThuoc;
 
       }
      /// <summary>
@@ -287,7 +314,8 @@ namespace VNS.Libs
           sqlQuery.And(TDmucKho.Columns.LoaiKho).IsEqualTo(0);
           sqlQuery.OrderAsc(TDmucKho.Columns.SttHthi);
           m_dtKhoThuoc = sqlQuery.ExecuteDataSet().Tables[0];
-          return m_dtKhoThuoc;
+            RebuildTenKho(m_dtKhoThuoc);
+            return m_dtKhoThuoc;
          // return new Select().From(TDmucKho.Schema).Where(TDmucKho.Columns.KhoThuocVt).IsEqualTo(loaikho).OrderAsc(TDmucKho.Columns.SttHthi).ExecuteDataSet().Tables[0];
       }
       /// <summary>
@@ -316,7 +344,8 @@ namespace VNS.Libs
           sqlQuery.And(TDmucKho.Columns.TrangThai).IsEqualTo(1);
           sqlQuery.OrderAsc(TDmucKho.Columns.SttHthi);
           m_dtKhoThuoc = sqlQuery.ExecuteDataSet().Tables[0];
-          return m_dtKhoThuoc;
+            RebuildTenKho(m_dtKhoThuoc);
+            return m_dtKhoThuoc;
       }
       /// <summary>
       /// Hàm thực hiện danh sách kho thuốc ảo
@@ -339,7 +368,8 @@ namespace VNS.Libs
               sqlQuery.And(TDmucKho.Columns.LoaiKho).IsEqualTo(1);
               sqlQuery.OrderAsc(TDmucKho.Columns.SttHthi);
               m_dtKhoThuoc = sqlQuery.ExecuteDataSet().Tables[0];
-              return m_dtKhoThuoc;
+                RebuildTenKho(m_dtKhoThuoc);
+                return m_dtKhoThuoc;
           }
           catch (Exception ex)
           {
@@ -368,7 +398,8 @@ namespace VNS.Libs
               sqlQuery.And(TDmucKho.Columns.LoaiKho).IsEqualTo(1);
               sqlQuery.OrderAsc(TDmucKho.Columns.SttHthi);
               m_dtKhoVt = sqlQuery.ExecuteDataSet().Tables[0];
-              return m_dtKhoVt;
+                RebuildTenKho(m_dtKhoVt);
+                return m_dtKhoVt;
           }
           catch (Exception ex)
           {
@@ -406,7 +437,8 @@ namespace VNS.Libs
           sqlQuery.And(TDmucKho.Columns.LoaiKho).IsEqualTo(0);
           sqlQuery.OrderAsc(TDmucKho.Columns.SttHthi);
           m_dtKhoThuoc = sqlQuery.ExecuteDataSet().Tables[0];
-          return m_dtKhoThuoc;
+            RebuildTenKho(m_dtKhoThuoc);
+            return m_dtKhoThuoc;
       }
       /// <summary>
       /// HÀM THỰC HIỆN LẤY THÔNG TIN KHO LẺ
@@ -435,7 +467,8 @@ namespace VNS.Libs
           sqlQuery.And(TDmucKho.Columns.TrangThai).IsEqualTo(1);
           sqlQuery.OrderAsc(TDmucKho.Columns.SttHthi);
           m_dtKhoThuoc = sqlQuery.ExecuteDataSet().Tables[0];
-          return m_dtKhoThuoc;
+            RebuildTenKho(m_dtKhoThuoc);
+            return m_dtKhoThuoc;
       }
       public static DataTable LAYTHONGTIN_KHOTHUOC_VATTU_LE()
       {
@@ -460,7 +493,8 @@ namespace VNS.Libs
           sqlQuery.And(TDmucKho.Columns.TrangThai).IsEqualTo(1);
           sqlQuery.OrderAsc(TDmucKho.Columns.SttHthi);
           m_dtKhoThuoc = sqlQuery.ExecuteDataSet().Tables[0];
-          return m_dtKhoThuoc;
+            RebuildTenKho(m_dtKhoThuoc);
+            return m_dtKhoThuoc;
       }
       public static DataTable LAYTHONGTIN_KHOTHUOC_AO()
       {
@@ -484,7 +518,8 @@ namespace VNS.Libs
           sqlQuery.And(TDmucKho.Columns.LoaiBnhan).In(lstKhoNgoaitru);
           sqlQuery.OrderAsc(TDmucKho.Columns.SttHthi);
           m_dtKhoThuoc = sqlQuery.ExecuteDataSet().Tables[0];
-          return m_dtKhoThuoc;
+            RebuildTenKho(m_dtKhoThuoc);
+            return m_dtKhoThuoc;
       }
       public static DataTable LAYTHONGTIN_TUTRUC_AO()
       {
@@ -508,7 +543,8 @@ namespace VNS.Libs
           sqlQuery.And(TDmucKho.Columns.LoaiBnhan).In(lstKhoNoitru);
           sqlQuery.OrderAsc(TDmucKho.Columns.SttHthi);
           m_dtKhoThuoc = sqlQuery.ExecuteDataSet().Tables[0];
-          return m_dtKhoThuoc;
+            RebuildTenKho(m_dtKhoThuoc);
+            return m_dtKhoThuoc;
       }
       /// <summary>
       /// 
@@ -536,7 +572,8 @@ namespace VNS.Libs
           sqlQuery.And(TDmucKho.Columns.LoaiKho).IsEqualTo(0);
           sqlQuery.OrderAsc(TDmucKho.Columns.SttHthi);
           m_dtKhoThuoc = sqlQuery.ExecuteDataSet().Tables[0];
-          return m_dtKhoThuoc;
+            RebuildTenKho(m_dtKhoThuoc);
+            return m_dtKhoThuoc;
       }
       public static DataTable LAYTHONGTIN_KHOVATTU_TATCA()
       {
@@ -558,7 +595,8 @@ namespace VNS.Libs
           sqlQuery.And(TDmucKho.Columns.LoaiKho).IsEqualTo(0);
           sqlQuery.OrderAsc(TDmucKho.Columns.SttHthi);
           m_dtKhoThuoc = sqlQuery.ExecuteDataSet().Tables[0];
-          return m_dtKhoThuoc;
+            RebuildTenKho(m_dtKhoThuoc);
+            return m_dtKhoThuoc;
       }
       /// <summary>
       /// 
@@ -586,7 +624,8 @@ namespace VNS.Libs
           sqlQuery.And(TDmucKho.Columns.LoaiKho).IsEqualTo(0);
           sqlQuery.OrderAsc(TDmucKho.Columns.SttHthi);
           m_dtKhoThuoc = sqlQuery.ExecuteDataSet().Tables[0];
-          return m_dtKhoThuoc;
+            RebuildTenKho(m_dtKhoThuoc);
+            return m_dtKhoThuoc;
       }
       /// <summary>
       /// 
@@ -617,7 +656,8 @@ namespace VNS.Libs
           sqlQuery.And(TDmucKho.Columns.TrangThai).IsEqualTo(1);
           sqlQuery.OrderAsc(TDmucKho.Columns.SttHthi);
           m_dtKhoThuoc = sqlQuery.ExecuteDataSet().Tables[0];
-          return m_dtKhoThuoc;
+            RebuildTenKho(m_dtKhoThuoc);
+            return m_dtKhoThuoc;
       }
     
       public static DataTable LAYTHONGTIN_KHOVATTU_LE_TUTRUC()
@@ -640,7 +680,8 @@ namespace VNS.Libs
           sqlQuery.And(TDmucKho.Columns.KieuKho).In(lstKhole);
           sqlQuery.OrderAsc(TDmucKho.Columns.SttHthi);
           m_dtKhoThuoc = sqlQuery.ExecuteDataSet().Tables[0];
-          return m_dtKhoThuoc;
+            RebuildTenKho(m_dtKhoThuoc);
+            return m_dtKhoThuoc;
       }
 
       public static DataTable LAYTHONGTIN_KHOTHUOC_TOANBO_LE()
@@ -653,7 +694,8 @@ namespace VNS.Libs
           sqlQuery.And(TDmucKho.Columns.KhoThuocVt).In(lstKhoThuoc);
           sqlQuery.OrderAsc(TDmucKho.Columns.SttHthi);
           m_dtKhoThuoc = sqlQuery.ExecuteDataSet().Tables[0];
-          return m_dtKhoThuoc;
+            RebuildTenKho(m_dtKhoThuoc);
+            return m_dtKhoThuoc;
       }
       /// <summary>
       /// HÀM THỰC HIỆN LẤY THÔNG TIN KHO LẺ
@@ -687,7 +729,8 @@ namespace VNS.Libs
           sqlQuery.And(TDmucKho.Columns.TrangThai).IsEqualTo(1);
           sqlQuery.OrderAsc(TDmucKho.Columns.SttHthi);
           m_dtKhoThuoc = sqlQuery.ExecuteDataSet().Tables[0];
-          return m_dtKhoThuoc;
+            RebuildTenKho(m_dtKhoThuoc);
+            return m_dtKhoThuoc;
       }
       public static DataTable LAYTHONGTIN_TUTHUOC()
       {
@@ -711,7 +754,8 @@ namespace VNS.Libs
           sqlQuery.And(TDmucKho.Columns.LoaiKho).IsEqualTo(0);
           sqlQuery.OrderAsc(TDmucKho.Columns.SttHthi);
           m_dtKhoThuoc = sqlQuery.ExecuteDataSet().Tables[0];
-          return m_dtKhoThuoc;
+            RebuildTenKho(m_dtKhoThuoc);
+            return m_dtKhoThuoc;
       }
       public static DataTable LAYTHONGTIN_TUVTTH()
       {
@@ -735,7 +779,8 @@ namespace VNS.Libs
           sqlQuery.And(TDmucKho.Columns.LoaiKho).IsEqualTo(0);
           sqlQuery.OrderAsc(TDmucKho.Columns.SttHthi);
           m_dtKhoThuoc = sqlQuery.ExecuteDataSet().Tables[0];
-          return m_dtKhoThuoc;
+            RebuildTenKho(m_dtKhoThuoc);
+            return m_dtKhoThuoc;
       }
       public static DataTable LAYTHONGTIN_TUTHUOC_KHOA(int ID_KHOA)
       {
@@ -760,7 +805,8 @@ namespace VNS.Libs
           sqlQuery.And(TDmucKho.Columns.IdKhoaphong).IsEqualTo(ID_KHOA);
           sqlQuery.OrderAsc(TDmucKho.Columns.SttHthi);
           m_dtKhoThuoc = sqlQuery.ExecuteDataSet().Tables[0];
-          return m_dtKhoThuoc;
+            RebuildTenKho(m_dtKhoThuoc);
+            return m_dtKhoThuoc;
       }
      
       /// <summary>
@@ -790,7 +836,8 @@ namespace VNS.Libs
            sqlQuery.And(TDmucKho.Columns.KhoThuocVt).In(lstKhoThuoc);
           sqlQuery.OrderAsc(TDmucKho.Columns.SttHthi);
           m_dtKhoThuoc = sqlQuery.ExecuteDataSet().Tables[0];
-          return m_dtKhoThuoc;
+            RebuildTenKho(m_dtKhoThuoc);
+            return m_dtKhoThuoc;
       }
       /// <summary>
       /// HÀM THỰC HIỆN LẤY THÔNG TIN KHO LẺ
@@ -819,7 +866,8 @@ namespace VNS.Libs
           sqlQuery.And(TDmucKho.Columns.KhoThuocVt).In(lstKhoVT);
           sqlQuery.OrderAsc(TDmucKho.Columns.SttHthi);
           m_dtKhoThuoc = sqlQuery.ExecuteDataSet().Tables[0];
-          return m_dtKhoThuoc;
+            RebuildTenKho(m_dtKhoThuoc);
+            return m_dtKhoThuoc;
       }
       /// <summary>
       /// HÀM THỰC HIỆN LẤY THÔNG TIN KHO LẺ
@@ -850,7 +898,8 @@ namespace VNS.Libs
           sqlQuery.And(TDmucKho.Columns.LoaiKho).IsEqualTo(0);
           sqlQuery.OrderAsc(TDmucKho.Columns.SttHthi);
           m_dtKhoThuoc = sqlQuery.ExecuteDataSet().Tables[0];
-          return m_dtKhoThuoc;
+            RebuildTenKho(m_dtKhoThuoc);
+            return m_dtKhoThuoc;
       }
     
       public static DataTable LAYTHONGTIN_KHOTHUOC_TUTHUOC_NOITRU_THEOKHOA(int ID_KHOA)
@@ -877,13 +926,15 @@ namespace VNS.Libs
 
           sqlQuery.OrderAsc(TDmucKho.Columns.SttHthi);
           m_dtKhoThuoc = sqlQuery.ExecuteDataSet().Tables[0];
-          DataTable dt_tuthuoc = LAYTHONGTIN_TUTHUOC_KHOA(ID_KHOA);
+           
+            DataTable dt_tuthuoc = LAYTHONGTIN_TUTHUOC_KHOA(ID_KHOA);
           if (dt_tuthuoc != null)
           {
               foreach (DataRow dr in dt_tuthuoc.Rows)
                   m_dtKhoThuoc.ImportRow(dr);
           }
-          return m_dtKhoThuoc;
+            RebuildTenKho(m_dtKhoThuoc);
+            return m_dtKhoThuoc;
       }
    
       /// <summary>
@@ -920,7 +971,8 @@ namespace VNS.Libs
           foreach(DataRow dr in dt_khovattu.Rows)
               m_dtKhoThuoc.ImportRow(dr);
           }
-          return m_dtKhoThuoc;
+            RebuildTenKho(m_dtKhoThuoc);
+            return m_dtKhoThuoc;
       }
       public static DataTable LAYTHONGTIN_VATTU_KHOA(int ID_KHOA)
       {
@@ -944,7 +996,8 @@ namespace VNS.Libs
           sqlQuery.And(TDmucKho.Columns.IdKhoaphong).IsEqualTo(ID_KHOA);
           sqlQuery.OrderAsc(TDmucKho.Columns.SttHthi);
           m_dtKhoThuoc = sqlQuery.ExecuteDataSet().Tables[0];
-          return m_dtKhoThuoc;
+            RebuildTenKho(m_dtKhoThuoc);
+            return m_dtKhoThuoc;
 
 
       }
@@ -972,8 +1025,9 @@ namespace VNS.Libs
 
           sqlQuery.OrderAsc(TDmucKho.Columns.SttHthi);
           m_dtKhoThuoc = sqlQuery.ExecuteDataSet().Tables[0];
-          
-          return m_dtKhoThuoc;
+            RebuildTenKho(m_dtKhoThuoc);
+
+            return m_dtKhoThuoc;
       }
       
       /// <summary>
@@ -1004,7 +1058,8 @@ namespace VNS.Libs
           sqlQuery.And(TDmucKho.Columns.TrangThai).IsEqualTo(1);
           sqlQuery.OrderAsc(TDmucKho.Columns.SttHthi);
           m_dtKhoThuoc = sqlQuery.ExecuteDataSet().Tables[0];
-          return m_dtKhoThuoc;
+            RebuildTenKho(m_dtKhoThuoc);
+            return m_dtKhoThuoc;
       }
       public static DataTable LAYTHONGTIN_KHOLE_NGOAITRU()
       {
@@ -1029,7 +1084,8 @@ namespace VNS.Libs
           sqlQuery.And(TDmucKho.Columns.TrangThai).IsEqualTo(1);
           sqlQuery.OrderAsc(TDmucKho.Columns.SttHthi);
           m_dtKhoThuoc = sqlQuery.ExecuteDataSet().Tables[0];
-          return m_dtKhoThuoc;
+            RebuildTenKho(m_dtKhoThuoc);
+            return m_dtKhoThuoc;
       }
       /// <summary>
       /// HÀM THỰC HIỆN LẤY THÔNG TIN KHO LẺ
@@ -1058,7 +1114,8 @@ namespace VNS.Libs
           sqlQuery.And(TDmucKho.Columns.LoaiKho).IsEqualTo(0);
           sqlQuery.OrderAsc(TDmucKho.Columns.SttHthi);
           m_dtKhoThuoc = sqlQuery.ExecuteDataSet().Tables[0];
-          return m_dtKhoThuoc;
+            RebuildTenKho(m_dtKhoThuoc);
+            return m_dtKhoThuoc;
       }
       public static DataTable LAYTHONGTIN_KHOXUATTHUOC_XAHUYEN()
       {
@@ -1081,7 +1138,8 @@ namespace VNS.Libs
           sqlQuery.And(TDmucKho.Columns.LoaiKho).IsEqualTo(0);
           sqlQuery.OrderAsc(TDmucKho.Columns.SttHthi);
           m_dtKhoThuoc = sqlQuery.ExecuteDataSet().Tables[0];
-          return m_dtKhoThuoc;
+            RebuildTenKho(m_dtKhoThuoc);
+            return m_dtKhoThuoc;
       }
       public static DataTable LAYTHONGTIN_KHOXUATVT_XAHUYEN()
       {
@@ -1104,7 +1162,8 @@ namespace VNS.Libs
           sqlQuery.And(TDmucKho.Columns.LoaiKho).IsEqualTo(0);
           sqlQuery.OrderAsc(TDmucKho.Columns.SttHthi);
           m_dtKhoThuoc = sqlQuery.ExecuteDataSet().Tables[0];
-          return m_dtKhoThuoc;
+            RebuildTenKho(m_dtKhoThuoc);
+            return m_dtKhoThuoc;
       }
       public static DataTable LAYTHONGTIN_KHOTHUOC_XAHUYEN()
       {
@@ -1127,7 +1186,8 @@ namespace VNS.Libs
           sqlQuery.And(TDmucKho.Columns.LoaiKho).IsEqualTo(1);
           sqlQuery.OrderAsc(TDmucKho.Columns.SttHthi);
           m_dtKhoThuoc = sqlQuery.ExecuteDataSet().Tables[0];
-          return m_dtKhoThuoc;
+            RebuildTenKho(m_dtKhoThuoc);
+            return m_dtKhoThuoc;
       }
       public static DataTable LAYTHONGTIN_KHOVT_XAHUYEN()
       {
@@ -1150,7 +1210,8 @@ namespace VNS.Libs
           sqlQuery.And(TDmucKho.Columns.LoaiKho).IsEqualTo(1);
           sqlQuery.OrderAsc(TDmucKho.Columns.SttHthi);
           m_dtKhoThuoc = sqlQuery.ExecuteDataSet().Tables[0];
-          return m_dtKhoThuoc;
+            RebuildTenKho(m_dtKhoThuoc);
+            return m_dtKhoThuoc;
       }
      
       /// <summary>

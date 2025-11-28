@@ -233,10 +233,36 @@ namespace VMS.HIS.UI.EMR
                 objBenhnhan = Utility.getKcbDanhsachBenhnhan(objLuotkham);
 
                 ClearControl();
+                if (!KiemTraBenhAn())
+                {
+                    ModifyCommand();
+                    return;
+                }
                 FillData4Update();
                 dtQLNBVaoVien.Focus();
                 ModifyCommand();
             }
+        }
+        bool KiemTraBenhAn()
+        {
+            objEmrBa = new Select().From<EmrBa>()
+                    .Where(EmrBa.Columns.MaLuotkham)
+                    .IsEqualTo(objLuotkham.MaLuotkham)
+                    .And(EmrBa.Columns.IdBenhnhan)
+                    .IsEqualTo(Utility.Int32Dbnull(objLuotkham.IdBenhnhan))
+                    .ExecuteSingle<EmrBa>();
+            if (objEmrBa == null || (objEmrBa != null && this.lstLoaiBA.Contains(objEmrBa.LoaiBa)))
+            {
+                return true;
+            }
+            else if (objEmrBa != null && !this.lstLoaiBA.Contains(objEmrBa.LoaiBa))
+            {
+                Utility.ShowMsg(string.Format("Người bệnh {0} đã có {1} nên không thể tạo Bệnh án Nội khoa. Vui lòng kiểm tra lại", ucThongtinnguoibenh_emr_basic1.txtTenBN.Text, Utility.GetTenLoaiBenhAn(objEmrBa.LoaiBa)));
+                objLuotkham = null;
+                objBenhnhan = null;
+                return false;
+            }
+            return false;
         }
 
         #region checkbox
@@ -793,6 +819,7 @@ namespace VMS.HIS.UI.EMR
             {
                 Utility.SetMsg(lblMsg, "Cần chọn người bệnh trước khi làm Bệnh án. Vui lòng kiểm tra lại", true);
                 ucThongtinnguoibenh_emr_basic1.txtMaluotkham.Focus();
+                ucThongtinnguoibenh_emr_basic1.txtMaluotkham.SelectAll();
                 return false;
             }
             if (Utility.sDbnull(cboLoaiBA.SelectedValue, "-1") == "-1")
@@ -825,13 +852,13 @@ namespace VMS.HIS.UI.EMR
                     txtNguoiGiaoHoSo.Focus();
                     return false;
                 }
-                if (Utility.Int32Dbnull(txtNguoiNhanHoSo.MyID, -1) <= 0)
-                {
-                    uiTabBA.SelectedTab = tabpageTo4;
-                    Utility.SetMsg(lblMsg, "Bạn cần chọn Người nhận hồ sơ trong danh mục hệ thống", true);
-                    txtNguoiNhanHoSo.Focus();
-                    return false;
-                }
+                //if (Utility.Int32Dbnull(txtNguoiNhanHoSo.MyID, -1) <= 0)
+                //{
+                //    uiTabBA.SelectedTab = tabpageTo4;
+                //    Utility.SetMsg(lblMsg, "Bạn cần chọn Người nhận hồ sơ trong danh mục hệ thống", true);
+                //    txtNguoiNhanHoSo.Focus();
+                //    return false;
+                //}
                 if (Utility.Int32Dbnull(txtBSDieuTri.MyID, -1) <= 0)
                 {
                     uiTabBA.SelectedTab = tabpageTo4;
@@ -1079,8 +1106,8 @@ namespace VMS.HIS.UI.EMR
             objTKBA.PtttMota = "";
             objTKBA.IdNguoigiaoHoso = Utility.Int16Dbnull(txtNguoiGiaoHoSo.MyID);
             objTKBA.MaNguoigiaohoso = txtNguoiGiaoHoSo.MyCode;
-            objTKBA.IdNguoinhanHoso = Utility.Int16Dbnull(txtNguoiNhanHoSo.MyID);
-            objTKBA.MaNguoinhanhoso = txtNguoiNhanHoSo.MyCode;
+            //objTKBA.IdNguoinhanHoso = Utility.Int16Dbnull(txtNguoiNhanHoSo.MyID);
+            //objTKBA.MaNguoinhanhoso = txtNguoiNhanHoSo.MyCode;
             objTKBA.IdGiamdoc = Utility.Int16Dbnull(txtGDBV.MyID);
             objTKBA.MaGiamdoc = txtGDBV.MyCode;
             objTKBA.IdBacsiDieutri = Utility.Int16Dbnull(txtBSDieuTri.MyID);
@@ -1299,17 +1326,18 @@ namespace VMS.HIS.UI.EMR
                     objEmrBa.ChuyenvienKhac = chkQLNBChuyenVienCK.Checked;
                     objEmrBa.ChuyenvienNoichuyenden= Utility.sDbnull(txtQLNBChuyenVienNoiChuyenDen.Text);
                 }
-                if (objPhieuRavien != null)
-                {
+                //if (objPhieuRavien != null)
+                //{
                     objEmrBa.RavienRavien = chkQLNBRaVienRavien.Checked;
                     objEmrBa.RavienXinve = chkQLNBRavienXinVe.Checked;
                     objEmrBa.RavienBove = chkQLNBRavienBoVe.Checked;
                     objEmrBa.RavienDuave = chkQLNBRavienDuaVe.Checked;
                     objEmrBa.ChuyenvienNoichuyenden = Utility.sDbnull(txtQLNBChuyenVienNoiChuyenDen.Text);
-                    objEmrBa.RavienMaBenhchinh = txtCDRavienMaBenhChinh.Text;
-                    objEmrBa.RavienMaBenhphu = txtCDRavienMaBenhKemTheo.Text;
-                    objEmrBa.RavienTenBenhchinh = txtCDRavienTenBenhKemTheo.Text;
-                    objEmrBa.RavienTenBenhphu = txtCDRavienMaBenhKemTheo.Text;
+                    objEmrBa.ChuyenvienNoichuyenden = Utility.sDbnull(txtQLNBChuyenVienNoiChuyenDen.Text);
+                    objEmrBa.RavienMaBenhchinh = Utility.sDbnull(txtCDRavienMaBenhChinh.Text);
+                    objEmrBa.RavienMaBenhphu = Utility.sDbnull(txtCDRavienMaBenhKemTheo.Text);
+                    objEmrBa.RavienTenBenhchinh = Utility.sDbnull(txtCDRavienTenBenhKemTheo.Text);
+                    objEmrBa.RavienTenBenhphu = Utility.sDbnull(txtCDRavienMaBenhKemTheo.Text);
                     //Tình trạng ra viện
                     //Kết quả điều trị
                     objEmrBa.TinhtrangravienKetquadieutriKhoi = chkTTRVKhoi.Checked;
@@ -1322,8 +1350,8 @@ namespace VMS.HIS.UI.EMR
                     objEmrBa.TinhtrangravienGpbNghingo = chkTTRVNghiNgo.Checked;
                     objEmrBa.TinhtrangravienGpbActinh = chkTTRVAcTinh.Checked;
                     //Tình hình tử vong
-                    objEmrBa.TinhtrangravienThoigianTuvong = objPhieuRavien.TuvongNgay;
-                    objEmrBa.TinhtrangravienLydotuvongDobenh = chkttrvDoBenh.Checked;
+                    objEmrBa.TinhtrangravienThoigianTuvong = dtpNgaytuvong.Value;
+                objEmrBa.TinhtrangravienLydotuvongDobenh = chkttrvDoBenh.Checked;
                     objEmrBa.TinhtrangravienLydotuvongDotaibiendieutri = chkttrvDoTaiBien.Checked;
                     objEmrBa.TinhtrangravienLydotuvongKhac = chkttrvKhac.Checked;
                     objEmrBa.TinhtrangravienThoigiantuvongTrong24h = chkttrvTrong24GioVaoVien.Checked;
@@ -1333,7 +1361,7 @@ namespace VMS.HIS.UI.EMR
                     objEmrBa.TinhtrangravienKhamnghiemtuthi = chkTTRVKhamNgiemTuThi.Checked;
                     objEmrBa.TinhtrangravienChandoangiauphaututhi = Utility.sDbnull(txtTTRVChandoanGiaiphauTuthi.Text);
                     //objEmrBa.TinhtrangravienChandoangiauphaututhi
-                }
+                //}
                 
                 
               //Chẩn đoán
@@ -1412,8 +1440,8 @@ namespace VMS.HIS.UI.EMR
 
                 objEmrBa.IdNguoigiaoHoso = Utility.Int16Dbnull(txtNguoiGiaoHoSo.MyID);
                 objEmrBa.TongketbaMaNguoigiaohoso = txtNguoiGiaoHoSo.Text;
-                objEmrBa.IdNguoinhanHoso = Utility.Int16Dbnull(txtNguoiNhanHoSo.MyID);
-                objEmrBa.TongketbaMaNguoiNhanhoso = txtNguoiNhanHoSo.Text;
+                //objEmrBa.IdNguoinhanHoso = Utility.Int16Dbnull(txtNguoiNhanHoSo.MyID);
+                //objEmrBa.TongketbaMaNguoiNhanhoso = txtNguoiNhanHoSo.Text;
                 objEmrBa.MabacsiLamBA = txtBSlamBA.MyCode;
                 objEmrBa.IdBacsiLamBA = Utility.Int16Dbnull(txtBSlamBA.MyID);
                 objEmrBa.TenbacsiLamBA = txtBSlamBA.Text;
@@ -1880,7 +1908,7 @@ namespace VMS.HIS.UI.EMR
                         //Tờ 2
                         txtBenhAnLyDoNhapVien._Text = Utility.sDbnull(objEmrBa.VaovienLydovaovien);// Utility.sDbnull(dr["BaLdvv"].ToString());
                         txtBenhAnVaoNgayThu.Text = Utility.sDbnull(objEmrBa.VaovienVaongaythucuabenh);
-                        txtBenhAnQuaTrinhBenhLy.Text = Utility.sDbnull(objEmrBa.TongketbaQuatrinhbenhlyDienbienlamsang);// Utility.sDbnull(dr["BaQtbl"].ToString());
+                        txtBenhAnQuaTrinhBenhLy.Text = Utility.sDbnull(objEmrBa.HoibenhQuatrinhbenhly);// Utility.sDbnull(dr["BaQtbl"].ToString());
                         txtBenhAnTiensuBanthan.Text = Utility.sDbnull(objEmrBa.HoibenhTiensubanthan);
                         
                         chkDiUng.Checked = Utility.Bool2Bool(objEmrBa.TsbDiung);
@@ -1889,12 +1917,12 @@ namespace VMS.HIS.UI.EMR
                         chkThuocLa.Checked = Utility.Bool2Bool(objEmrBa.TsbThuocla);
                         chkThuocLao.Checked = Utility.Bool2Bool(objEmrBa.TsbThuoclao);
                         chkKhac.Checked = Utility.Bool2Bool(objEmrBa.TsbKhac);
-                        txtDiUng.Text = Utility.sDbnull(objEmrBa.TsbThoigianDiung);
-                        txtMaTuy.Text = Utility.sDbnull(objEmrBa.TsbThoigianMatuy);
-                        txtRuouBia.Text = Utility.sDbnull(objEmrBa.TsbThoigianRuoubia);
-                        txtThuocLa.Text = Utility.sDbnull(objEmrBa.TsbThoigianThuocla);
-                        txtThuocLao.Text = Utility.sDbnull(objEmrBa.TsbThoigianThuoclao);
-                        txtThoigianKhac.Text = Utility.sDbnull(objEmrBa.TsbThoigianKhac);
+                        txtDiUng.Text = !chkDiUng.Checked?"": Utility.sDbnull(objEmrBa.TsbThoigianDiung);
+                        txtMaTuy.Text = !chkMaTuy.Checked ? "" : Utility.sDbnull(objEmrBa.TsbThoigianMatuy);
+                        txtRuouBia.Text = !chkRuouBia.Checked ? "" : Utility.sDbnull(objEmrBa.TsbThoigianRuoubia);
+                        txtThuocLa.Text = !chkThuocLa.Checked ? "" : Utility.sDbnull(objEmrBa.TsbThoigianThuocla);
+                        txtThuocLao.Text = !chkThuocLao.Checked ? "" : Utility.sDbnull(objEmrBa.TsbThoigianThuoclao);
+                        txtThoigianKhac.Text = !chkKhac.Checked ? "" : Utility.sDbnull(objEmrBa.TsbThoigianKhac);
                         txtBenhAnGiaDinh.Text = Utility.sDbnull(objEmrBa.HoibenhTiensugiadinh);// Utility.sDbnull(dr["BaGiaDinh"].ToString());
                         
                         txtMach.Text = Utility.sDbnull(objEmrBa.KbMach);
@@ -2069,6 +2097,7 @@ namespace VMS.HIS.UI.EMR
             btnInto2.Enabled = btnInto3.Enabled = Into1.Enabled = btnInto4.Enabled = button1.Enabled = btnInVoBA.Enabled = objLuotkham != null && objEmrBa!=null;
             cmdXoaBenhAn.Enabled = objLuotkham != null && objEmrBa != null;
             cmdKhoitaoBA.Enabled = objEmrBa == null;
+          
             cmdSave.Enabled = objEmrBa != null && objEmrBa.TrangThai <= 1;
             //cmdSave.Tag = objEmrBa!=null &&  objEmrBa.TrangThai == 1 ? "HUY" : "LUU";
             //cmdSave.Text = objEmrBa != null && objEmrBa.TrangThai == 1 ? "2. Hủy Lưu" : "2. Lưu BA (Ctrl+S)";

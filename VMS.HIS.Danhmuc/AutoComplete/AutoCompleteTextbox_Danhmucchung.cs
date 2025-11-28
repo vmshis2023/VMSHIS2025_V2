@@ -471,7 +471,7 @@ namespace VNS.HIS.UCs
                 if (!visible) visible = globalVariablesPrivate.objNhanvien != null && Utility.Coquyen("quyen_themdanhmucdungchung");
                 if (!AddValues) visible = false;
                 AllowEdit = visible;
-                dtData = LayDulieuDanhmucChung(new List<string>() { LOAI_DANHMUC });
+                dtData = LayDulieuDanhmucChung();
                 if (dtData == null || dtData.Columns.Count <= 0) return;
                 if (!dtData.Columns.Contains("ShortCut")) dtData.Columns.Add(new DataColumn("ShortCut", typeof(string)));
                 dtData.DefaultView.Sort = DmucChung.Columns.SttHthi + "," + DmucChung.Columns.Ten;
@@ -931,8 +931,8 @@ namespace VNS.HIS.UCs
             DataTable m_NN = new DataTable();
             //if(globalVariables.IsAdmin)
             //{
-                m_NN =
-                new Select().From(DmucChung.Schema)
+
+            m_NN = new Select().From(DmucChung.Schema)
                     .Where(DmucChung.Columns.Loai).In(lstLoai)
                     .And(DmucChung.Columns.TrangThai).IsEqualTo(1)
                     .OrderAsc(DmucChung.Columns.SttHthi)
@@ -949,6 +949,14 @@ namespace VNS.HIS.UCs
             //       .OrderAsc(DmucChung.Columns.SttHthi)
             //       .ExecuteDataSet().Tables[0];
             //}
+            return m_NN;
+        }
+        public  DataTable LayDulieuDanhmucChung()
+        {
+            DataTable m_NN = new DataTable();
+           
+            m_NN = SPs.DmucChungLaydulieu(LOAI_DANHMUC).GetDataSet().Tables[0];
+          
             return m_NN;
         }
         public bool isShow = false;
@@ -1043,7 +1051,7 @@ namespace VNS.HIS.UCs
                 if (txtNext != null && txtNext.Enabled) txtNext.Focus();
                 else if (txtNext1 != null && txtNext1.Enabled) txtNext1.Focus();
                 //if (!Multiline) 
-                    args.Handled = true;
+                //    args.Handled = true;
             }
             else
             {
@@ -1234,7 +1242,8 @@ namespace VNS.HIS.UCs
                     else
                         this._Text = this.listBox.SelectedItem.ToString();
                 }
-                this.Select(this.Text.Length, 0);
+                    MoveCaretToEnd();
+                //this.Select(this.Text.Length, 0);
                 SelectedIndex = 0;
                
                 // and hide the ListBox
@@ -1252,7 +1261,12 @@ namespace VNS.HIS.UCs
                 CurrentAutoCompleteList_IDAndCode.Clear();
             }
         }
-
+        private void MoveCaretToEnd()
+        {
+            this.SelectionStart = this.Text.Length;
+            this.SelectionLength = 0;
+            this.Focus(); // Nếu muốn đưa focus vào textbox
+        }
         // shows the suggestions in ListBox beneath the TextBox
         // and fitting it into the TopLevelControl
         private void ShowSuggests()
@@ -1344,7 +1358,8 @@ namespace VNS.HIS.UCs
             // the list of suggestions has to be refreshed so clear it
             CurrentAutoCompleteList.Clear();
             CurrentAutoCompleteList_IDAndCode.Clear();
-            string myText = Utility.DoTrim(this.Text);
+            string myText = this.Text;
+           if (!Multiline) myText= Utility.DoTrim(this.Text);
             if (AutoCompleteList == null) return;
             //if (myText == "") myText = " ";
             // an find appropreate candidates for the new CurrentAutoCompleteList in AutoCompleteList

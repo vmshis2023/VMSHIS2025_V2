@@ -337,6 +337,15 @@
   <data name="grdQLNBKhoa_DesignTimeLayout.LayoutString" xml:space="preserve">
     <value>&lt;GridEXLayoutData&gt;&lt;RootTable&gt;&lt;Columns Collection="true" ElementName="Column"&gt;&lt;Column0 ID="ten_khoanoitru"&gt;&lt;Caption&gt;Khoa điều trị&lt;/Caption&gt;&lt;DataMember&gt;ten_khoanoitru&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;ten_khoanoitru&lt;/Key&gt;&lt;Position&gt;0&lt;/Position&gt;&lt;Width&gt;206&lt;/Width&gt;&lt;CellStyle&gt;&lt;FontBold&gt;True&lt;/FontBold&gt;&lt;/CellStyle&gt;&lt;HeaderStyle&gt;&lt;FontBold&gt;True&lt;/FontBold&gt;&lt;/HeaderStyle&gt;&lt;/Column0&gt;&lt;Column1 ID="ngay_vaokhoa"&gt;&lt;Caption&gt;Ngày vào&lt;/Caption&gt;&lt;DataMember&gt;ngay_vaokhoa&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;ngay_vaokhoa&lt;/Key&gt;&lt;Position&gt;1&lt;/Position&gt;&lt;/Column1&gt;&lt;Column2 ID="so_luong"&gt;&lt;Caption&gt;Tổng số ngày&lt;/Caption&gt;&lt;DataMember&gt;so_luong&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;so_luong&lt;/Key&gt;&lt;Position&gt;2&lt;/Position&gt;&lt;Width&gt;85&lt;/Width&gt;&lt;/Column2&gt;&lt;/Columns&gt;&lt;GroupCondition /&gt;&lt;/RootTable&gt;&lt;/GridEXLayoutData&gt;</value>
   </data>
+  <data name="autoTxt.AutoCompleteList" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAJoBbXNjb3JsaWIsIFZlcnNpb249NC4wLjAuMCwgQ3VsdHVyZT1u
+        ZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5XV0sIG1zY29ybGliLCBWZXJzaW9u
+        PTQuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OQUB
+        AAAAMFN5c3RlbS5Db2xsZWN0aW9ucy5HZW5lcmljLkxpc3RgMVtbU3lzdGVtLlN0cmluZwMAAAAGX2l0
+        ZW1zBV9zaXplCF92ZXJzaW9uBgAACAgCAAAACQMAAAAAAAAAAAAAABEDAAAAAAAAAAs=
+</value>
+  </data>
   <data name="txtBSlamBA.AutoCompleteList" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAJoBbXNjb3JsaWIsIFZlcnNpb249NC4wLjAuMCwgQ3VsdHVyZT1u
@@ -3051,6 +3060,15 @@
         ccrcvCSfCljkNdUWckSoWcngw4UPGD5kO+07IU51BIL7OAYqObvTHupIaN57go9e67mupmnOPZ90+AkE
         dnqOFaqj8Fa9CZ5rXLnttQVH2gQJBBlk8JmoH87fIqolpkGDFaMNdvoZE0QXA9GKkuDLLNZusGJ9EXbx
         kdpeBVZagc/mE0y+CB/OzZ7H347oxkq0YifIgjiG6Gyd0Ir/DhH5DWLFOrforD2gAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="txtBenhAnQuaTrinhBenhLy.AutoCompleteList" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAJoBbXNjb3JsaWIsIFZlcnNpb249NC4wLjAuMCwgQ3VsdHVyZT1u
+        ZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5XV0sIG1zY29ybGliLCBWZXJzaW9u
+        PTQuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OQUB
+        AAAAMFN5c3RlbS5Db2xsZWN0aW9ucy5HZW5lcmljLkxpc3RgMVtbU3lzdGVtLlN0cmluZwMAAAAGX2l0
+        ZW1zBV9zaXplCF92ZXJzaW9uBgAACAgCAAAACQMAAAAAAAAAAAAAABEDAAAAAAAAAAs=
 </value>
   </data>
   <data name="txtBacsiKham.AutoCompleteList" mimetype="application/x-microsoft.net.object.binary.base64">

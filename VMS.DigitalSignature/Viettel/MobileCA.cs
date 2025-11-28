@@ -7,18 +7,18 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
-
+using VMS.ChuKySo.Api.Helpers;
 
 namespace DEMO_CLOUD_CA_DOTNET
 {
     public class MobileCA
     {
-        private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+     
 
         private const String OID_NIST_SHA1 = "1.3.14.3.2.26";
         private const String OID_NIST_SHA256 = "2.16.840.1.101.3.4.2.1";
         private const String OID_RSA_RSA = "1.2.840.113549.1.1.1";
-        public static String firstTimeSAD = null;
+        public static String firstTimeSAD = "";
         private static DateTime expiredDateValidation = DateTime.Now;
         public MobileCA()
         {
@@ -36,7 +36,7 @@ namespace DEMO_CLOUD_CA_DOTNET
                 if (responce == null || ((responce.access_token == null || responce.expires_in <= 0)
                         && (responce.error != null || responce.error_description != null)))
                 {
-                    logger.Error("ERROR: Login to Cloud CA");
+                    Utility.Log.Error("ERROR: Login to Cloud CA");
                     return null;
                 }
                 accessToken = responce.access_token;
@@ -44,12 +44,12 @@ namespace DEMO_CLOUD_CA_DOTNET
                 CredentialsListResponseBO credentialsListResponceBO = getCredentialsList(userId, accessToken, BASE_URL);
                 if (credentialsListResponceBO == null)
                 {
-                    logger.Error("ERROR: Get Credentials list");
+                    Utility.Log.Error("ERROR: Get Credentials list");
                     return null;
                 }
                 else if (credentialsListResponceBO.error != null || credentialsListResponceBO.error_description != null)
                 {
-                    logger.Error("ERROR: Get Credentials list: " + "\n"
+                    Utility.Log.Error("ERROR: Get Credentials list: " + "\n"
                             + "Error: " + credentialsListResponceBO.error + "\n"
                             + "Error: " + credentialsListResponceBO.error_description
                     );
@@ -57,7 +57,7 @@ namespace DEMO_CLOUD_CA_DOTNET
                 }
                 if (credentialsListResponceBO.credentialIDs == null || credentialsListResponceBO.credentialIDs.Length == 0)
                 {
-                    logger.Error("ERROR: Not found Certificate of User");
+                    Utility.Log.Error("ERROR: Not found Certificate of User");
                     return null;
                 }
 
@@ -69,12 +69,12 @@ namespace DEMO_CLOUD_CA_DOTNET
 
                     if (credentialsInfoResponceBO == null)
                     {
-                        logger.Error("ERROR: Get Credentials info");
+                        Utility.Log.Error("ERROR: Get Credentials info");
                         continue;
                     }
                     else if (credentialsInfoResponceBO.error != null || credentialsInfoResponceBO.error_description != null)
                     {
-                        logger.Error("ERROR: Get Credentials info: " + "\n"
+                        Utility.Log.Error("ERROR: Get Credentials info: " + "\n"
                                 + "Error: " + credentialsInfoResponceBO.error + "\n"
                                 + "Error: " + credentialsInfoResponceBO.error_description
                         );
@@ -83,7 +83,7 @@ namespace DEMO_CLOUD_CA_DOTNET
                     //if (credentialsInfoResponceBO.cert == null || !"valid".Equals(credentialsInfoResponceBO.cert.status)
                     //        || credentialsInfoResponceBO.cert.certificates == null || credentialsInfoResponceBO.cert.certificates.Length == 0)
                     //{
-                    //    logger.Info("Status of Certificate of " + credentialID + " is INVALID: " + credentialsInfoResponceBO.cert.status);
+                    //    Utility.Log.Info("Status of Certificate of " + credentialID + " is INVALID: " + credentialsInfoResponceBO.cert.status);
                     //    continue;
                     //}
                     //                List<String> certChain = credentialsInfoResponceBO.getCert().getCertificates();
@@ -94,7 +94,7 @@ namespace DEMO_CLOUD_CA_DOTNET
             }
             catch (Exception e)
             {
-                logger.Error(e);
+                Utility.Log.Error(e);
             }
             return null;
         }
@@ -115,11 +115,11 @@ namespace DEMO_CLOUD_CA_DOTNET
                 CredentialsAuthorizeResponseBO credentialsAuthorizeResponceBO = getSAD(credentialID, accessToken, numSignatures, documents, hashList, BASE_URL);
                 if (credentialsAuthorizeResponceBO == null)
                 {
-                    logger.Error("ERROR: Get SAD");
+                    Utility.Log.Error("ERROR: Get SAD");
                     return null;
                 } else if (credentialsAuthorizeResponceBO.error != null || credentialsAuthorizeResponceBO.error_description != null)
                 {
-                    logger.Error("ERROR: Get SAD: " + "\n"
+                    Utility.Log.Error("ERROR: Get SAD: " + "\n"
                             + "Error: " + credentialsAuthorizeResponceBO.error + "\n"
                             + "Error: " + credentialsAuthorizeResponceBO.error_description
                     );
@@ -127,7 +127,7 @@ namespace DEMO_CLOUD_CA_DOTNET
                 }
                 if (credentialsAuthorizeResponceBO.SAD == null)
                 {
-                    logger.Error("ERROR: Get SAD");
+                    Utility.Log.Error("ERROR: Get SAD");
                     return null;
                 }
 
@@ -147,12 +147,12 @@ namespace DEMO_CLOUD_CA_DOTNET
                 
                 if (signHashResponceBO == null)
                 {
-                    logger.Error("ERROR: Sign Hash");
+                    Utility.Log.Error("ERROR: Sign Hash");
                     return null;
                 }
                 else if (signHashResponceBO.error != null || signHashResponceBO.error_description != null)
                 {
-                    logger.Error("ERROR: Sign Hash: " + "\n"
+                    Utility.Log.Error("ERROR: Sign Hash: " + "\n"
                             + "Error: " + signHashResponceBO.error + "\n"
                             + "Error: " + signHashResponceBO.error_description
                     );
@@ -160,7 +160,7 @@ namespace DEMO_CLOUD_CA_DOTNET
                 }
                 if (signHashResponceBO.signatures == null || signHashResponceBO.signatures.Length == 0)
                 {
-                    logger.Error("ERROR: Sign Hash");
+                    Utility.Log.Error("ERROR: Sign Hash");
                     return null;
                 }
 
@@ -169,7 +169,7 @@ namespace DEMO_CLOUD_CA_DOTNET
             }
             catch (Exception e)
             {
-                logger.Error(e);
+                Utility.Log.Error(e);
             }
             return null;
         }
@@ -181,7 +181,7 @@ namespace DEMO_CLOUD_CA_DOTNET
                 //Step 4: Register for new SAD without validation
                 if (firstTimeSAD == null)
                 {
-                    logger.Error("ERROR: User chưa thực hiện ký có xác thực. Cần phải ký yêu cầu có xác thực trước khi thực hiện ký không xác thực.");
+                    Utility.Log.Error("ERROR: User chưa thực hiện ký có xác thực. Cần phải ký yêu cầu có xác thực trước khi thực hiện ký không xác thực.");
                     return null;
                 }
                 RegisterExtensionResponseBO registerExtensionResponse = new RegisterExtensionResponseBO();
@@ -191,18 +191,18 @@ namespace DEMO_CLOUD_CA_DOTNET
                 //Compare Now() with expiredDateValidation: registerExtension would be called if the registration expired
                 if (DateTime.Now >= expiredDateValidation)
                 {
-                    logger.Info("Tài khoản đã hết hạn đăng ký không xác thực");
+                    Utility.Log.Info("Tài khoản đã hết hạn đăng ký không xác thực");
 
                     registerExtensionResponse = registerExtension(credentialID, accessToken, firstTimeSAD, duration, BASE_URL);
 
                     if (registerExtensionResponse == null)
                     {
-                        logger.Error("ERROR: Get SAD");
+                        Utility.Log.Error("ERROR: Get SAD");
                         return null;
                     }
                     else if (registerExtensionResponse.error != null && !"60110".Equals(registerExtensionResponse.error))
                     {
-                        logger.Error("ERROR: Get SAD: " + "\n"
+                        Utility.Log.Error("ERROR: Get SAD: " + "\n"
                                 + "Error: " + registerExtensionResponse.error + "\n"
                                 + "Error: " + registerExtensionResponse.error_description
                         );
@@ -211,7 +211,7 @@ namespace DEMO_CLOUD_CA_DOTNET
                 }
                 else
                 {
-                    logger.Info("Tài khoản đã được đăng ký để không xác thực từ trước");
+                    Utility.Log.Info("Tài khoản đã được đăng ký để không xác thực từ trước");
                 }
 
                 if (registerExtensionResponse.expire_date != null && !"".Equals(registerExtensionResponse))
@@ -234,13 +234,13 @@ namespace DEMO_CLOUD_CA_DOTNET
                 ExtendTransactionResponseBO newSADResponse = extendTransaction(credentialID, accessToken, firstTimeSAD, documents, hashList, hashAlgo, signAlgo, BASE_URL);
                 if (newSADResponse == null)
                 {
-                    logger.Error("ERROR: Get SAD");
+                    Utility.Log.Error("ERROR: Get SAD");
                     firstTimeSAD = null;
                     return null;
                 }
                 else if (newSADResponse.error != null || newSADResponse.error_description != null)
                 {
-                    logger.Error("ERROR: Get SAD: " + "\n"
+                    Utility.Log.Error("ERROR: Get SAD: " + "\n"
                             + "Error: " + newSADResponse.error + "\n"
                             + "Error: " + newSADResponse.error_description
                     );
@@ -250,7 +250,7 @@ namespace DEMO_CLOUD_CA_DOTNET
 
                 if (newSADResponse.SAD == null)
                 {
-                    logger.Error("ERROR: Get SAD");
+                    Utility.Log.Error("ERROR: Get SAD");
                     firstTimeSAD = null;
                     return null;
                 }
@@ -264,12 +264,12 @@ namespace DEMO_CLOUD_CA_DOTNET
 
                 if (signHashResponceBO == null)
                 {
-                    logger.Error("ERROR: Sign Hash");
+                    Utility.Log.Error("ERROR: Sign Hash");
                     return null;
                 }
                 else if (signHashResponceBO.error != null || signHashResponceBO.error_description != null)
                 {
-                    logger.Error("ERROR: Sign Hash: " + "\n"
+                    Utility.Log.Error("ERROR: Sign Hash: " + "\n"
                             + "Error: " + signHashResponceBO.error + "\n"
                             + "Error: " + signHashResponceBO.error_description
                     );
@@ -277,7 +277,7 @@ namespace DEMO_CLOUD_CA_DOTNET
                 }
                 if (signHashResponceBO.signatures == null || signHashResponceBO.signatures.Length == 0)
                 {
-                    logger.Error("ERROR: Sign Hash");
+                    Utility.Log.Error("ERROR: Sign Hash");
                     return null;
                 }
 
@@ -286,7 +286,7 @@ namespace DEMO_CLOUD_CA_DOTNET
             }
             catch (Exception e)
             {
-                logger.Error(e);
+                Utility.Log.Error(e);
             }
             return null;
         }
@@ -306,7 +306,7 @@ namespace DEMO_CLOUD_CA_DOTNET
             }
             catch (Exception e)
             {
-                logger.Error("Error: " + e.Message);
+                Utility.Log.Error("Error: " + e.Message);
                 return null;
             }
         }
@@ -322,7 +322,7 @@ namespace DEMO_CLOUD_CA_DOTNET
             }
             catch (Exception e)
             {
-                logger.Error("Error: " + e.Message);
+                Utility.Log.Error("Error: " + e.Message);
                 return null;
             }
         }
@@ -341,7 +341,7 @@ namespace DEMO_CLOUD_CA_DOTNET
             }
             catch (Exception e)
             {
-                logger.Error("Error: " + e.Message);
+                Utility.Log.Error("Error: " + e.Message);
                 return null;
             }
         }
@@ -363,7 +363,7 @@ namespace DEMO_CLOUD_CA_DOTNET
             }
             catch (Exception e)
             {
-                logger.Error("Error: " + e.Message);
+                Utility.Log.Error("Error: " + e.Message);
                 return null;
             }
         }
@@ -386,7 +386,7 @@ namespace DEMO_CLOUD_CA_DOTNET
             }
             catch (Exception e)
             {
-                logger.Error("Error: " + e.Message);
+                Utility.Log.Error("Error: " + e.Message);
                 return null;
             }
         }
@@ -414,7 +414,7 @@ namespace DEMO_CLOUD_CA_DOTNET
                 RegisterExtensionResponseBO errResp = new RegisterExtensionResponseBO();
                 errResp.error = obj.GetValue("error").ToString();
                 errResp.error_description = obj.GetValue("error_description").ToString();
-                logger.Error("Error: " + resp);
+                Utility.Log.Error("Error: " + resp);
                 return errResp;
             }
         }
@@ -446,7 +446,7 @@ namespace DEMO_CLOUD_CA_DOTNET
                 ExtendTransactionResponseBO errResp = new ExtendTransactionResponseBO();
                 errResp.error = obj.GetValue("error").ToString();
                 errResp.error_description = obj.GetValue("error_description").ToString();
-                logger.Error("Error: " + resp);
+                Utility.Log.Error("Error: " + resp);
                 return errResp;
             }
         }

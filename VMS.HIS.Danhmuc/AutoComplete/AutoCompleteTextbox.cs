@@ -63,7 +63,7 @@ namespace VNS.HIS.UCs
             RaiseEvent = false;
             RaiseEventEnter = false;
             RaiseEventEnterWhenEmpty = false;
-            DefaultCode = "-1";
+            DefaultCode = "";
             DefaultID = "-1";
             DisplayType = 0;
             splitChar = '@';
@@ -1234,8 +1234,8 @@ namespace VNS.HIS.UCs
         }
         private int GetMyHeigh()
         {
-            if ((CurrentAutoCompleteList.Count + 1) * 15 >= MaxHeight || MaxHeight > this.TopLevelControl.ClientSize.Height - this.Height - panel.Location.Y)
-                return this.TopLevelControl.ClientSize.Height - this.Height - panel.Location.Y;
+            //if ((CurrentAutoCompleteList.Count + 1) * 15 >= MaxHeight || MaxHeight > this.TopLevelControl.ClientSize.Height - this.Height - panel.Location.Y)
+            //    return this.TopLevelControl.ClientSize.Height - this.Height - panel.Location.Y;
             if (MaxHeight != -1)
             {
                 if ((CurrentAutoCompleteList.Count + 1) * 15 >= MaxHeight) return MaxHeight;

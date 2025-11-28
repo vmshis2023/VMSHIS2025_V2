@@ -31,6 +31,7 @@ namespace VMS.HIS.UI.EMR.Ucs
         public int id_bacsikham = -1;
         DmucNhanvien objNguoiXacnhan = null;
         DmucNhanvien objNguoiDaidien = null;
+        public bool Force2Saved = false;
         public uc_tt25_giayxacnhan_quatrinhdieutrinoitru()
         {
             InitializeComponent();
@@ -312,6 +313,7 @@ namespace VMS.HIS.UI.EMR.Ucs
                             giayxacnhan.UserNguoidaidien = objNguoiDaidien.UserName;
                         }
                         giayxacnhan.Save();
+                        emrdoc.Force2Saved = Force2Saved;
                         emrdoc.InitDocument(giayxacnhan.IdBenhnhan, giayxacnhan.MaLuotkham, Utility.Int64Dbnull(giayxacnhan.Id), giayxacnhan.Ngayxacnhan, Loaiphieu_HIS.TT25_GIAYXACNHAN_QUATRINHDIEUTRINOITRU, "TT25_GIAYXACNHAN_QUATRINHDIEUTRINOITRU", giayxacnhan.NguoiTao,Utility.Int16Dbnull( objNguoiXacnhan.IdKhoa), Utility.Int16Dbnull(objNguoiXacnhan.IdPhong), Utility.Byte2Bool(0),"");
                         emrdoc.Save();
                     }
@@ -359,6 +361,7 @@ namespace VMS.HIS.UI.EMR.Ucs
                 dtData.Rows[0]["sngaygio_nhapvien"] = giayxacnhan != null ? Utility.FormatDateTime_giophut_ngay_thang_nam(giayxacnhan.NgayVaovien, "") : ".......... giờ ....... ngày ........./........./.............";
                 dtData.Rows[0]["sngaygio_ravien"] = giayxacnhan != null ? Utility.FormatDateTime_giophut_ngay_thang_nam(giayxacnhan.NgayRavien, "") : ".......... giờ ....... ngày ........./........./.............";
                 dtData.Rows[0]["sngayxacnhan"] = Utility.FormatDateTime(Utility.sDbnull(dtData.Rows[0]["sngayxacnhan"], ""), "ngày......tháng......năm.........");
+                
                 WordPrinter.InPhieu(dtData, "TT25_GIAYXACNHAN_QUATRINHDIEUTRINOITRU.doc", "");
 
 

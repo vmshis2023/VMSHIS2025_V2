@@ -80,7 +80,7 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(string MaDichvukcb,string MaBhyt,string TenDichvukcb,short IdKieukham,short IdKhoaphong,short IdBacsy,short IdDoituongKcb,short IdPhongkham,decimal DonGia,decimal? PhuthuDungtuyen,decimal? PhuthuTraituyen,decimal? DongiaNgoaigio,decimal? PhuthuNgoaigio,string MaDoituongKcb,int? IdPhikemtheo,int? IdPhikemtheongoaigio,string NhomBaocao,byte? TuTuc,short? SttHthi,string MotaThem,string MaGia,bool? HoatDong,short? IdLoaidoituongKcb,byte? KhamThiluc,bool? CapKinh)
+	    public void Insert(string MaDichvukcb,string MaBhyt,string TenDichvukcb,short IdKieukham,short IdKhoaphong,short IdBacsy,short IdDoituongKcb,short IdPhongkham,decimal DonGia,decimal? PhuthuDungtuyen,decimal? PhuthuTraituyen,decimal? DongiaNgoaigio,decimal? PhuthuNgoaigio,string MaDoituongKcb,int? IdPhikemtheo,int? IdPhikemtheongoaigio,string NhomBaocao,byte? TuTuc,short? SttHthi,string MotaThem,string MaGia,bool? HoatDong,short? IdLoaidoituongKcb,byte? KhamThiluc,bool? CapKinh,string NguoiTao,DateTime? NgayTao,DateTime? NgaySua,string NguoiSua)
 	    {
 		    DmucDichvukcb item = new DmucDichvukcb();
 		    
@@ -134,6 +134,14 @@ namespace VMS.HIS.DAL
             
             item.CapKinh = CapKinh;
             
+            item.NguoiTao = NguoiTao;
+            
+            item.NgayTao = NgayTao;
+            
+            item.NgaySua = NgaySua;
+            
+            item.NguoiSua = NguoiSua;
+            
 	    
 		    item.Save(UserName);
 	    }
@@ -142,7 +150,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(int IdDichvukcb,string MaDichvukcb,string MaBhyt,string TenDichvukcb,short IdKieukham,short IdKhoaphong,short IdBacsy,short IdDoituongKcb,short IdPhongkham,decimal DonGia,decimal? PhuthuDungtuyen,decimal? PhuthuTraituyen,decimal? DongiaNgoaigio,decimal? PhuthuNgoaigio,string MaDoituongKcb,int? IdPhikemtheo,int? IdPhikemtheongoaigio,string NhomBaocao,byte? TuTuc,short? SttHthi,string MotaThem,string MaGia,bool? HoatDong,short? IdLoaidoituongKcb,byte? KhamThiluc,bool? CapKinh)
+	    public void Update(int IdDichvukcb,string MaDichvukcb,string MaBhyt,string TenDichvukcb,short IdKieukham,short IdKhoaphong,short IdBacsy,short IdDoituongKcb,short IdPhongkham,decimal DonGia,decimal? PhuthuDungtuyen,decimal? PhuthuTraituyen,decimal? DongiaNgoaigio,decimal? PhuthuNgoaigio,string MaDoituongKcb,int? IdPhikemtheo,int? IdPhikemtheongoaigio,string NhomBaocao,byte? TuTuc,short? SttHthi,string MotaThem,string MaGia,bool? HoatDong,short? IdLoaidoituongKcb,byte? KhamThiluc,bool? CapKinh,string NguoiTao,DateTime? NgayTao,DateTime? NgaySua,string NguoiSua)
 	    {
 		    DmucDichvukcb item = new DmucDichvukcb();
 	        item.MarkOld();
@@ -199,6 +207,14 @@ namespace VMS.HIS.DAL
 			item.KhamThiluc = KhamThiluc;
 				
 			item.CapKinh = CapKinh;
+				
+			item.NguoiTao = NguoiTao;
+				
+			item.NgayTao = NgayTao;
+				
+			item.NgaySua = NgaySua;
+				
+			item.NguoiSua = NguoiSua;
 				
 	        item.Save(UserName);
 	    }

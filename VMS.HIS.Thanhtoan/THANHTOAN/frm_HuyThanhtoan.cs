@@ -18,6 +18,7 @@ using Janus.Windows.GridEX.EditControls;
 using VNS.HIS.Classes;
 using VNS.HIS.UI.Forms.Cauhinh;
 using VMS.HIS.Bus.BHYT;
+using System.Transactions;
 
 namespace VNS.HIS.UI.THANHTOAN
 {
@@ -47,8 +48,183 @@ namespace VNS.HIS.UI.THANHTOAN
             cmdInphieuDCT.Click += new EventHandler(cmdInphieuDCT_Click);
             cmdInphoiBHYT.Click += new EventHandler(cmdInphoiBHYT_Click);
             cmdClose1.Click += new EventHandler(cmdClose1_Click);
+            txtTilemiengiamAll.KeyDown += txtTilemiengiamAll_KeyDown;
+            cmd_capnhatthongtinmiengiam.Click += Cmd_capnhatthongtinmiengiam_Click;
+            grdPaymentDetail.UpdatingCell += GrdPaymentDetail_UpdatingCell;
         }
 
+        private void GrdPaymentDetail_UpdatingCell(object sender, UpdatingCellEventArgs e)
+        {
+            try
+            {
+                if (e.Column.Key == "tile_chietkhau" || e.Column.Key == "tien_chietkhau")
+                {
+                    decimal tile_chietkhau = 0;
+                    decimal tien_chietkhau = 0;
+                    string kieu_chietkhau = "%";
+                    if (e.Column.Key == "tile_chietkhau")
+                    {
+                        tile_chietkhau = Utility.DecimaltoDbnull(e.Value, 0);
+                        //Tính lại tiền chiết khấu theo tỉ lệ %
+                        if (tile_chietkhau > 100)
+                        {
+                            Utility.ShowMsg("Tỉ lệ chiết khấu không được phép vượt quá 100 %. Mời bạn kiểm tra lại");
+                            e.Cancel = true;
+                            return;
+                        }
+                        grdPaymentDetail.CurrentRow.Cells["tien_chietkhau"].Value = Utility.DecimaltoDbnull(grdPaymentDetail.CurrentRow.Cells["tt"].Value, 0) * Utility.DecimaltoDbnull(e.Value, 0) / 100;
+                        tien_chietkhau = Utility.DecimaltoDbnull(grdPaymentDetail.CurrentRow.Cells["tien_chietkhau"].Value);
+                    }
+                    else
+                    {
+                        kieu_chietkhau = "T";
+                        tien_chietkhau = Utility.DecimaltoDbnull(e.Value, 0);
+                        if (tien_chietkhau > Utility.DecimaltoDbnull(grdPaymentDetail.CurrentRow.Cells["tt"].Value, 0))
+                        {
+                            Utility.ShowMsg("Tiền chiết khấu không được lớn hơn(>) tiền Bệnh nhân chi trả(" + Utility.DecimaltoDbnull(grdPaymentDetail.CurrentRow.Cells["tt"].Value, 0).ToString() + "). Mời bạn kiểm tra lại");
+                            e.Cancel = true;
+                            return;
+                        }
+                        grdPaymentDetail.CurrentRow.Cells["tile_chietkhau"].Value = Math.Round((Utility.DecimaltoDbnull(e.Value, 0) / Utility.DecimaltoDbnull(grdPaymentDetail.CurrentRow.Cells["tt"].Value, 0)) * 100, 2);
+                        tile_chietkhau = Utility.DecimaltoDbnull(grdPaymentDetail.CurrentRow.Cells["tile_chietkhau"].Value);
+                    }
+
+
+                    DataRow dr = Utility.getCurrentDataRow(grdPaymentDetail.CurrentRow);
+                    long id_chitiet = Utility.Int64Dbnull(dr["id_chitiet"]);
+
+                    //Cập nhật luôn vào bảng trong CSDL để in bảng kê chi phí cho người bệnh xem trước khi thanh toán
+                    byte id_loaithanhtoan = Utility.ByteDbnull(dr["id_loaithanhtoan"]);
+
+                    long id_phieu = Utility.Int64Dbnull(dr["id_phieu"]);
+                    long id_phieuchitiet = Utility.Int64Dbnull(dr["id_phieu_chitiet"]);
+                    dr["thuc_thu"] = Utility.DecimaltoDbnull(dr["tt"], 0) - Utility.DecimaltoDbnull(dr["tien_chietkhau"], 0);
+                    using (var scope = new TransactionScope())
+                    {
+                        using (var dbscope = new SharedDbConnectionScope())
+                        {
+                            CapnhatChietkhau_DonGia(Convert.ToByte(0), id_loaithanhtoan, kieu_chietkhau, tile_chietkhau, tien_chietkhau, id_phieu, id_phieuchitiet, id_chitiet);
+                            //Cập nhật bảng thanh toán chi tiết
+                            new Update(KcbThanhtoanChitiet.Schema)
+                            .Set(KcbThanhtoanChitiet.Columns.TileChietkhau).EqualTo(tile_chietkhau)
+                            .Set(KcbThanhtoanChitiet.Columns.TienChietkhau).EqualTo(tien_chietkhau)
+                            .Where(KcbThanhtoanChitiet.Columns.IdChitiet).IsEqualTo(id_chitiet)
+                            .Execute();
+                            SPs.ThanhtoanCapnhatthongtinchietkhau(v_Payment_Id, objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham).Execute();
+                            KcbThanhtoanChitiet objChitiet = KcbThanhtoanChitiet.FetchByID(id_chitiet);
+                            KcbThanhtoan objThanhtoan = KcbThanhtoan.FetchByID(objChitiet.IdThanhtoan);
+                            new KCB_THANHTOAN().CapNhatThongTinChietKhau(objThanhtoan, objChitiet);
+                        }
+                        scope.Complete();
+                        m_blnCancel = false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Utility.CatchException(ex);
+            }
+            finally
+            {
+                SetSumTotalProperties();
+            }
+        }
+
+        private void Cmd_capnhatthongtinmiengiam_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                SPs.ThanhtoanCapnhatthongtinchietkhau(v_Payment_Id, objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham).Execute();
+
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+
+            }
+        }
+
+        void txtTilemiengiamAll_KeyDown(object sender, KeyEventArgs e)
+        {
+
+           
+            if (e.KeyCode == Keys.Enter && m_dtPaymentDetail != null && m_dtPaymentDetail.Rows.Count > 0)
+            {
+                decimal tile = Utility.DecimaltoDbnull(txtTilemiengiamAll.Text, 0);
+                try
+                {
+                    string ask = string.Format("Bạn có chắc chắn muốn miễn giảm {0} % cho các dịch vụ đang được chọn?", Convert.ToInt16(tile).ToString());
+                    if (!Utility.AcceptQuestion(ask, "Xác nhận miễn giảm cho các dịch vụ đang chọn", true, MessageBoxDefaultButton.Button1)) return;
+
+                    if (tile > 100m)
+                    {
+                        Utility.ShowMsg("Tỉ lệ miễn giảm không được vượt quá 100%");
+                        return;
+                    }
+                    using (var scope = new TransactionScope())
+                    {
+                        using (var dbscope = new SharedDbConnectionScope())
+                        {
+                            foreach (GridEXRow _row in grdPaymentDetail.GetCheckedRows())
+                            {
+                                DataRow dr = Utility.getCurrentDataRow(_row);
+                                long id_chitiet = Utility.Int64Dbnull(dr["id_chitiet"]);
+                                dr["tien_chietkhau"] = Utility.DecimaltoDbnull(dr["tt"], 0) * tile / 100;
+                                dr["tile_chietkhau"] = tile;
+                                //Cập nhật luôn vào bảng trong CSDL để in bảng kê chi phí cho người bệnh xem trước khi thanh toán
+                                byte id_loaithanhtoan = Utility.ByteDbnull(dr["id_loaithanhtoan"]);
+                                string kieu_chietkhau = "%";
+                                decimal tile_chietkhau = Utility.DecimaltoDbnull(dr["tile_chietkhau"], 0);
+                                decimal tien_chietkhau = Utility.DecimaltoDbnull(dr["tien_chietkhau"], 0);
+                                long id_phieu = Utility.Int64Dbnull(dr["id_phieu"]);
+                                long id_phieuchitiet = Utility.Int64Dbnull(dr["id_phieu_chitiet"]);
+                                dr["thuc_thu"] = Utility.DecimaltoDbnull(dr["tt"], 0) - Utility.DecimaltoDbnull(dr["tien_chietkhau"], 0);
+                                CapnhatChietkhau_DonGia(Convert.ToByte(0), id_loaithanhtoan, kieu_chietkhau, tile_chietkhau, tien_chietkhau, id_phieu, id_phieuchitiet, id_chitiet);
+                                //Cập nhật bảng thanh toán chi tiết
+                                new Update(KcbThanhtoanChitiet.Schema)
+                                .Set(KcbThanhtoanChitiet.Columns.TileChietkhau).EqualTo(tile_chietkhau)
+                                .Set(KcbThanhtoanChitiet.Columns.TienChietkhau).EqualTo(tien_chietkhau)
+                                .Where(KcbThanhtoanChitiet.Columns.IdChitiet).IsEqualTo(id_chitiet)
+                                .Execute();
+
+                            }
+                            SPs.ThanhtoanCapnhatthongtinchietkhau(v_Payment_Id, objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham).Execute();
+                            KcbThanhtoan objThanhtoan = KcbThanhtoan.FetchByID(v_Payment_Id);
+                            List<KcbThanhtoanChitiet> lstChitiet = new Select().From(KcbThanhtoanChitiet.Schema)
+                                .Where(KcbThanhtoanChitiet.Columns.IdThanhtoan).IsEqualTo(v_Payment_Id)
+                                .ExecuteTypedList<KcbThanhtoanChitiet>();
+                            new KCB_THANHTOAN().CapNhatThongTinChietKhau(objThanhtoan, lstChitiet);
+                        }
+                        scope.Complete();
+                        m_blnCancel = false;
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                    Utility.CatchException(ex);
+                }
+                finally
+                {
+                    SetSumTotalProperties();
+                }
+
+            }
+        }
+        void CapnhatChietkhau_DonGia(byte loai_capnhat, byte id_loaithanhtoan, string kieu_chietkhau, decimal tile_chietkhau, decimal tien_chietkhau, long id_phieu, long id_phieuchitiet, long id_chitiet_thanhtoan)
+        {
+            try
+            {
+                StoredProcedure sp = SPs.SpUpdateThongtinchietkhauDathanhtoan(loai_capnhat, id_loaithanhtoan, kieu_chietkhau, tile_chietkhau, tien_chietkhau, id_phieu, id_phieuchitiet, id_chitiet_thanhtoan);
+                sp.Execute();
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+            }
+        }
         void cmdClose1_Click(object sender, EventArgs e)
         {
             cmdExit_Click(cmdExit, e);
@@ -603,6 +779,15 @@ namespace VNS.HIS.UI.THANHTOAN
         {
 
         }
-       
+
+        private void cmd_capnhatthongtinmiengiam_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmd_refresh_Click(object sender, EventArgs e)
+        {
+            GetData();
+        }
     }
 }

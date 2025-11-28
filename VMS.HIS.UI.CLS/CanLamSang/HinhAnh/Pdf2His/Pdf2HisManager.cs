@@ -112,11 +112,14 @@ namespace VNS.HIS.UI.Forms.HinhAnh
                     if (queue.Count > 0)
                     {
                         Pdf2HisItem item = queue.Dequeue() as Pdf2HisItem;
-                        item.DoPdf(log);
-                        while (item.isSending)
+                        if (item != null)
                         {
-                            Thread.Sleep(10);
-                            Application.DoEvents();
+                            item.DoPdf(log);
+                            while (item.isSending)
+                            {
+                                Thread.Sleep(10);
+                                Application.DoEvents();
+                            }
                         }
                     }
                 }

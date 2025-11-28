@@ -104,6 +104,8 @@
     <Compile Include="Generated\DmucDichvuclsChitietController.cs" />
     <Compile Include="Generated\DmucDichvukcb.cs" />
     <Compile Include="Generated\DmucDichvukcbController.cs" />
+    <Compile Include="Generated\DmucDichvuTrongCongkham.cs" />
+    <Compile Include="Generated\DmucDichvuTrongCongkhamController.cs" />
     <Compile Include="Generated\DmucDoitac.cs" />
     <Compile Include="Generated\DmucDoitacController.cs" />
     <Compile Include="Generated\DmucDoituongbhyt.cs" />
@@ -172,14 +174,24 @@
     <Compile Include="Generated\EmrFileSignInforController.cs" />
     <Compile Include="Generated\EmrGayPhieu.cs" />
     <Compile Include="Generated\EmrGayPhieuController.cs" />
+    <Compile Include="Generated\EmrGiayChungsinh.cs" />
+    <Compile Include="Generated\EmrGiayChungsinhController.cs" />
     <Compile Include="Generated\EmrHosoluutru.cs" />
     <Compile Include="Generated\EmrHosoluutruController.cs" />
+    <Compile Include="Generated\EmrHosoTheodoiSosinh.cs" />
+    <Compile Include="Generated\EmrHosoTheodoiSosinhController.cs" />
+    <Compile Include="Generated\EmrLogTuchoiHosoBA.cs" />
+    <Compile Include="Generated\EmrLogTuchoiHosoBAController.cs" />
     <Compile Include="Generated\EmrNhikhoaQuatrinhsinhtruong.cs" />
     <Compile Include="Generated\EmrNhikhoaQuatrinhsinhtruongController.cs" />
     <Compile Include="Generated\EmrPhieubangiaonguoibenhchuyenkhoa.cs" />
     <Compile Include="Generated\EmrPhieubangiaonguoibenhchuyenkhoaController.cs" />
     <Compile Include="Generated\EmrPhieucamketchapnhanPttt.cs" />
     <Compile Include="Generated\EmrPhieucamketchapnhanPtttController.cs" />
+    <Compile Include="Generated\EmrPhieuChamSoc.cs" />
+    <Compile Include="Generated\EmrPhieuchamsocChandoan.cs" />
+    <Compile Include="Generated\EmrPhieuchamsocChandoanController.cs" />
+    <Compile Include="Generated\EmrPhieuChamSocController.cs" />
     <Compile Include="Generated\EmrPhieuchuyenvien.cs" />
     <Compile Include="Generated\EmrPhieuchuyenvienController.cs" />
     <Compile Include="Generated\EmrPhieukhambenh.cs" />
@@ -190,6 +202,10 @@
     <Compile Include="Generated\EmrPhieukhamIvfVoController.cs" />
     <Compile Include="Generated\EmrPhieukhamNamkhoa.cs" />
     <Compile Include="Generated\EmrPhieukhamNamkhoaController.cs" />
+    <Compile Include="Generated\EmrPhieukhamNgoaikhoa.cs" />
+    <Compile Include="Generated\EmrPhieukhamNgoaikhoaController.cs" />
+    <Compile Include="Generated\EmrPhieukhamNgoaitru.cs" />
+    <Compile Include="Generated\EmrPhieukhamNgoaitruController.cs" />
     <Compile Include="Generated\EmrPhieukhamNhikhoa.cs" />
     <Compile Include="Generated\EmrPhieukhamNhikhoaController.cs" />
     <Compile Include="Generated\EmrPhieukhamNoikhoa.cs" />
@@ -198,6 +214,8 @@
     <Compile Include="Generated\EmrPhieukhamPhukhoaController.cs" />
     <Compile Include="Generated\EmrPhieukhamSankhoa.cs" />
     <Compile Include="Generated\EmrPhieukhamSankhoaController.cs" />
+    <Compile Include="Generated\EmrPhieukhamSosinh.cs" />
+    <Compile Include="Generated\EmrPhieukhamSosinhController.cs" />
     <Compile Include="Generated\EmrPhieuravien.cs" />
     <Compile Include="Generated\EmrPhieuravienController.cs" />
     <Compile Include="Generated\EmrPhieutheodoiTaibuongde.cs" />
@@ -208,6 +226,8 @@
     <Compile Include="Generated\EmrPt01BienbanhoichanthongquamoController.cs" />
     <Compile Include="Generated\EmrPt02Bangkiemchuanbivabangiaonguoibenhtruocphauthuat.cs" />
     <Compile Include="Generated\EmrPt02BangkiemchuanbivabangiaonguoibenhtruocphauthuatController.cs" />
+    <Compile Include="Generated\EmrPt03PhieukhamTienme.cs" />
+    <Compile Include="Generated\EmrPt03PhieukhamTienmeController.cs" />
     <Compile Include="Generated\EmrPt04BangkiemantoanPhauthuat.cs" />
     <Compile Include="Generated\EmrPt04BangkiemantoanPhauthuatController.cs" />
     <Compile Include="Generated\EmrPt06BangkiemdemgacDungcusacnhonDungcu.cs" />
@@ -228,6 +248,8 @@
     <Compile Include="Generated\EmrTiensubenhDiungController.cs" />
     <Compile Include="Generated\EmrTiensugiaohop.cs" />
     <Compile Include="Generated\EmrTiensugiaohopController.cs" />
+    <Compile Include="Generated\EmrTiensuPhauthuatNgoaikhoa.cs" />
+    <Compile Include="Generated\EmrTiensuPhauthuatNgoaikhoaController.cs" />
     <Compile Include="Generated\EmrTiensuSankhoa.cs" />
     <Compile Include="Generated\EmrTiensuSankhoaController.cs" />
     <Compile Include="Generated\EmrTiensusanphukhoa.cs" />
@@ -237,6 +259,8 @@
     <Compile Include="Generated\EmrTomtatBa.cs" />
     <Compile Include="Generated\EmrTomtatBaController.cs" />
     <Compile Include="Generated\Enums.cs" />
+    <Compile Include="Generated\GhinoHuydichvu.cs" />
+    <Compile Include="Generated\GhinoHuydichvuController.cs" />
     <Compile Include="Generated\GoiChitiet.cs" />
     <Compile Include="Generated\GoiChitietController.cs" />
     <Compile Include="Generated\GoiDangki.cs" />
@@ -294,11 +318,15 @@
     <Compile Include="Generated\KcbDonthuocChitietController.cs" />
     <Compile Include="Generated\KcbDonthuocController.cs" />
     <Compile Include="Generated\KcbDonthuocMuangoai.cs" />
+    <Compile Include="Generated\KcbDonthuocMuangoaiChitiet.cs" />
+    <Compile Include="Generated\KcbDonthuocMuangoaiChitietController.cs" />
     <Compile Include="Generated\KcbDonthuocMuangoaiController.cs" />
     <Compile Include="Generated\KcbKetquaCl.cs" />
     <Compile Include="Generated\KcbKetquaClController.cs" />
     <Compile Include="Generated\KcbKetquaHa.cs" />
     <Compile Include="Generated\KcbKetquaHaController.cs" />
+    <Compile Include="Generated\KcbKipPttt.cs" />
+    <Compile Include="Generated\KcbKipPtttController.cs" />
     <Compile Include="Generated\KcbLichsuDoituongKcb.cs" />
     <Compile Include="Generated\KcbLichsuDoituongKcbController.cs" />
     <Compile Include="Generated\KcbLichsugoihenKCB.cs" />
@@ -409,6 +437,10 @@
     <Compile Include="Generated\KskChidinhClController.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Generated\KskCongty.cs" />
+    <Compile Include="Generated\KskCongtyController.cs" />
+    <Compile Include="Generated\KskDanhmucSolo.cs" />
+    <Compile Include="Generated\KskDanhmucSoloController.cs" />
     <Compile Include="Generated\KskDanhsachNhanvien.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -421,10 +453,14 @@
     <Compile Include="Generated\KskDmucKhachhangController.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Generated\KskHopdong.cs" />
+    <Compile Include="Generated\KskHopdongController.cs" />
     <Compile Include="Generated\KskKhachhangDangky.cs" />
     <Compile Include="Generated\KskKhachhangDangkyController.cs" />
     <Compile Include="Generated\KskLuotkham.cs" />
     <Compile Include="Generated\KskLuotkhamController.cs" />
+    <Compile Include="Generated\KskSoloDichvu.cs" />
+    <Compile Include="Generated\KskSoloDichvuController.cs" />
     <Compile Include="Generated\LDulieuDk.cs" />
     <Compile Include="Generated\LDulieuDkController.cs" />
     <Compile Include="Generated\MethaDanhsachBenhnhan.cs">
@@ -636,6 +672,8 @@
     <Compile Include="Generated\TDinhmucVtthController.cs" />
     <Compile Include="Generated\TDmucKho.cs" />
     <Compile Include="Generated\TDmucKhoController.cs" />
+    <Compile Include="Generated\TDsachHoidong.cs" />
+    <Compile Include="Generated\TDsachHoidongController.cs" />
     <Compile Include="Generated\TDutruThuoc.cs" />
     <Compile Include="Generated\TDutruThuocController.cs" />
     <Compile Include="Generated\TemBenhvien.cs" />
@@ -662,6 +700,8 @@
     <Compile Include="Generated\TempQheGiumController.cs" />
     <Compile Include="Generated\TempThuoc.cs" />
     <Compile Include="Generated\TempThuocController.cs" />
+    <Compile Include="Generated\THoidongThanhvien.cs" />
+    <Compile Include="Generated\THoidongThanhvienController.cs" />
     <Compile Include="Generated\ThuocLichsuTralaithuoctaiquayChitiet.cs" />
     <Compile Include="Generated\ThuocLichsuTralaithuoctaiquayChitietController.cs" />
     <Compile Include="Generated\ThuocLichsuTralaithuoctaiquayPhieu.cs" />
@@ -720,6 +760,8 @@
     <Compile Include="Generated\TThauQdinhController.cs" />
     <Compile Include="Generated\TThethuoc.cs" />
     <Compile Include="Generated\TThethuocController.cs" />
+    <Compile Include="Generated\TThongtuDonthuoc.cs" />
+    <Compile Include="Generated\TThongtuDonthuocController.cs" />
     <Compile Include="Generated\TThuocCapphatChitiet.cs" />
     <Compile Include="Generated\TThuocCapphatChitietController.cs" />
     <Compile Include="Generated\TThuockho.cs" />

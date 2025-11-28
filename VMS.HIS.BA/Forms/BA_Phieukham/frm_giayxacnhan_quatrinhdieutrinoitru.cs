@@ -19,6 +19,7 @@ namespace VMS.HIS.UI.EMR
         KcbLuotkham objLuotkham;
         public bool mv_blnCallFromMenu = true;
         public bool IsChanged = false;
+        public bool Force2Saved = false;
         public frm_giayxacnhan_quatrinhdieutrinoitru()
         {
             InitializeComponent();
@@ -61,6 +62,7 @@ namespace VMS.HIS.UI.EMR
         private void frm_giayxacnhan_quatrinhdieutrinoitru_Shown(object sender, EventArgs e)
         {
             uc_tt25_giayxacnhan_quatrinhdieutrinoitru1.Init();
+            uc_tt25_giayxacnhan_quatrinhdieutrinoitru1.Force2Saved = Force2Saved;
             if (mv_blnCallFromMenu)
             {
                 chkCloseAfterSave.Checked = false;

@@ -31,6 +31,8 @@ namespace VNS.HIS.UI.Forms.HinhAnh
      string fileKetqua;
      private string FtpClientCurrentDirectoryScan;
      string ngay_chidinh = DateTime.Now.ToString("yyyy_MM_dd");
+        string PdfFile = "";
+        bool isPDF = false;
      public Pdf2HisItem(string ngay_chidinh,string IdChitietchidinh, FTPclient FtpClientPDF, string _baseDirectoryPdf, Document doc, string so_phieu, string fileKetqua, string FtpClientCurrentDirectoryScan)
         {
             this.ngay_chidinh = ngay_chidinh;
@@ -42,7 +44,16 @@ namespace VNS.HIS.UI.Forms.HinhAnh
             this.fileKetqua = fileKetqua;
             this.FtpClientCurrentDirectoryScan = FtpClientCurrentDirectoryScan;
         }
-       
+        public Pdf2HisItem(string ngay_chidinh, string so_phieu, FTPclient FtpClientPDF, string _baseDirectoryPdf,  string FtpClientCurrentDirectoryScan,string PdfFile, bool isPDF)
+        {
+            this.FtpClientPDF = FtpClientPDF;
+            this._baseDirectoryPdf = _baseDirectoryPdf;
+            this.FtpClientCurrentDirectoryScan = FtpClientCurrentDirectoryScan;
+            this.fileKetqua = PdfFile;
+            this.isPDF = isPDF;
+            this.so_phieu = so_phieu;
+            this.ngay_chidinh = ngay_chidinh;
+        }
         public void Reset()
         {
             try
@@ -57,7 +68,7 @@ namespace VNS.HIS.UI.Forms.HinhAnh
         public Pdf2HisItem()
         {
         }
-        
+
         private string CreateFtpPdf(string sourcePath, string folder)
         {
             try
@@ -68,7 +79,8 @@ namespace VNS.HIS.UI.Forms.HinhAnh
                 //    return sourcePath;
                 //}
                 string fileName = Path.GetFileName(sourcePath);
-                string FtpClientCurrentDirectoryPdf = FtpClientCurrentDirectoryScan + "//" +ngay_chidinh +"//"+folder;//Thư mục+ngày+mã phiếu+ file
+                string FtpClientCurrentDirectoryPdf = "";
+                FtpClientCurrentDirectoryPdf = FtpClientCurrentDirectoryScan + "//" + ngay_chidinh + "//" + folder;//Thư mục+ngày+mã phiếu+ file
                 if (!FtpClientPDF.FtpDirectoryExists(FtpClientCurrentDirectoryPdf))
                     FtpClientPDF.FtpCreateDirectory(FtpClientCurrentDirectoryPdf);
 
@@ -158,26 +170,32 @@ namespace VNS.HIS.UI.Forms.HinhAnh
 
         void Send2Pdf()
         {
-            string pdf2hisfile = string.Format(@"{0}\{1}.pdf", Path.GetDirectoryName(fileKetqua), IdChitietchidinh);
-            try
+            if (fileKetqua.ToUpper().EndsWith("PDF") && isPDF)//Chỉ việc copy lên FTP
             {
-                
-                Microsoft.Office.Interop.Word.Application word = new Microsoft.Office.Interop.Word.Application();
-                Microsoft.Office.Interop.Word.Document doc = word.Documents.Open(fileKetqua);
-                doc.Activate();
-                doc.SaveAs2(pdf2hisfile, Microsoft.Office.Interop.Word.WdSaveFormat.wdFormatPDF);
-                doc.Close();
-                CreateFtpPdf(pdf2hisfile, so_phieu);
+                CreateFtpPdf(fileKetqua, so_phieu);
             }
-            catch (Exception ex)
+            else
             {
-                PdfSaveOptions saveOptions = new PdfSaveOptions { Compliance = PdfCompliance.Pdf15 };
-                doc.Save(pdf2hisfile,SaveFormat.Pdf);
-                log.Error(ex.ToString());
-            }
-            finally
-            {
-                File.Delete(fileKetqua);
+                string pdf2hisfile = string.Format(@"{0}\{1}.pdf", Path.GetDirectoryName(fileKetqua), IdChitietchidinh);
+                try
+                {
+                    Microsoft.Office.Interop.Word.Application word = new Microsoft.Office.Interop.Word.Application();
+                    Microsoft.Office.Interop.Word.Document doc = word.Documents.Open(fileKetqua);
+                    doc.Activate();
+                    doc.SaveAs2(pdf2hisfile, Microsoft.Office.Interop.Word.WdSaveFormat.wdFormatPDF);
+                    doc.Close();
+                    CreateFtpPdf(pdf2hisfile, so_phieu);
+                }
+                catch (Exception ex)
+                {
+                    PdfSaveOptions saveOptions = new PdfSaveOptions { Compliance = PdfCompliance.Pdf15 };
+                    doc.Save(pdf2hisfile, SaveFormat.Pdf);
+                    log.Error(ex.ToString());
+                }
+                finally
+                {
+                    File.Delete(fileKetqua);
+                }
             }
         }
         

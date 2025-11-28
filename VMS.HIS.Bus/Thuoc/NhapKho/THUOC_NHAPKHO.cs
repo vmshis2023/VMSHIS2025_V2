@@ -56,6 +56,10 @@ namespace VNS.HIS.NGHIEPVU.THUOC
         {
             return SPs.ThuocLaydulieuinphieunhapxuat(ITPhieuNhapxuatthuoc).GetDataSet().Tables[0];
         }
+        public DataSet LayThongTinInPhieuKiemNhapTheoPhieu(int? ITPhieuNhapxuatthuoc)
+        {
+            return SPs.ThuocLaydulieuinphieunhapxuat(ITPhieuNhapxuatthuoc).GetDataSet();
+        }
         /// <summary>
         /// hàm thực hiện việc xóa thông itn phiếu nhập
         /// </summary>

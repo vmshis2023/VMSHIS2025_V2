@@ -1315,6 +1315,99 @@ namespace VMS.HIS.DAL
 				colvarGiaGoc.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarGiaGoc);
 				
+				TableSchema.TableColumn colvarNgoaiGio = new TableSchema.TableColumn(schema);
+				colvarNgoaiGio.ColumnName = "ngoai_gio";
+				colvarNgoaiGio.DataType = DbType.Boolean;
+				colvarNgoaiGio.MaxLength = 0;
+				colvarNgoaiGio.AutoIncrement = false;
+				colvarNgoaiGio.IsNullable = true;
+				colvarNgoaiGio.IsPrimaryKey = false;
+				colvarNgoaiGio.IsForeignKey = false;
+				colvarNgoaiGio.IsReadOnly = false;
+				
+						colvarNgoaiGio.DefaultSetting = @"((0))";
+				colvarNgoaiGio.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarNgoaiGio);
+				
+				TableSchema.TableColumn colvarFileKyso = new TableSchema.TableColumn(schema);
+				colvarFileKyso.ColumnName = "file_kyso";
+				colvarFileKyso.DataType = DbType.String;
+				colvarFileKyso.MaxLength = 255;
+				colvarFileKyso.AutoIncrement = false;
+				colvarFileKyso.IsNullable = true;
+				colvarFileKyso.IsPrimaryKey = false;
+				colvarFileKyso.IsForeignKey = false;
+				colvarFileKyso.IsReadOnly = false;
+				
+						colvarFileKyso.DefaultSetting = @"('')";
+				colvarFileKyso.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarFileKyso);
+				
+				TableSchema.TableColumn colvarNgayKyso = new TableSchema.TableColumn(schema);
+				colvarNgayKyso.ColumnName = "ngay_kyso";
+				colvarNgayKyso.DataType = DbType.DateTime;
+				colvarNgayKyso.MaxLength = 0;
+				colvarNgayKyso.AutoIncrement = false;
+				colvarNgayKyso.IsNullable = true;
+				colvarNgayKyso.IsPrimaryKey = false;
+				colvarNgayKyso.IsForeignKey = false;
+				colvarNgayKyso.IsReadOnly = false;
+				colvarNgayKyso.DefaultSetting = @"";
+				colvarNgayKyso.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarNgayKyso);
+				
+				TableSchema.TableColumn colvarNguoiKyso = new TableSchema.TableColumn(schema);
+				colvarNguoiKyso.ColumnName = "nguoi_kyso";
+				colvarNguoiKyso.DataType = DbType.String;
+				colvarNguoiKyso.MaxLength = 50;
+				colvarNguoiKyso.AutoIncrement = false;
+				colvarNguoiKyso.IsNullable = true;
+				colvarNguoiKyso.IsPrimaryKey = false;
+				colvarNguoiKyso.IsForeignKey = false;
+				colvarNguoiKyso.IsReadOnly = false;
+				colvarNguoiKyso.DefaultSetting = @"";
+				colvarNguoiKyso.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarNguoiKyso);
+				
+				TableSchema.TableColumn colvarNguoiHuy = new TableSchema.TableColumn(schema);
+				colvarNguoiHuy.ColumnName = "nguoi_huy";
+				colvarNguoiHuy.DataType = DbType.String;
+				colvarNguoiHuy.MaxLength = 30;
+				colvarNguoiHuy.AutoIncrement = false;
+				colvarNguoiHuy.IsNullable = true;
+				colvarNguoiHuy.IsPrimaryKey = false;
+				colvarNguoiHuy.IsForeignKey = false;
+				colvarNguoiHuy.IsReadOnly = false;
+				colvarNguoiHuy.DefaultSetting = @"";
+				colvarNguoiHuy.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarNguoiHuy);
+				
+				TableSchema.TableColumn colvarNgayHuy = new TableSchema.TableColumn(schema);
+				colvarNgayHuy.ColumnName = "ngay_huy";
+				colvarNgayHuy.DataType = DbType.DateTime;
+				colvarNgayHuy.MaxLength = 0;
+				colvarNgayHuy.AutoIncrement = false;
+				colvarNgayHuy.IsNullable = true;
+				colvarNgayHuy.IsPrimaryKey = false;
+				colvarNgayHuy.IsForeignKey = false;
+				colvarNgayHuy.IsReadOnly = false;
+				colvarNgayHuy.DefaultSetting = @"";
+				colvarNgayHuy.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarNgayHuy);
+				
+				TableSchema.TableColumn colvarIdHuydvu = new TableSchema.TableColumn(schema);
+				colvarIdHuydvu.ColumnName = "id_huydvu";
+				colvarIdHuydvu.DataType = DbType.Int64;
+				colvarIdHuydvu.MaxLength = 0;
+				colvarIdHuydvu.AutoIncrement = false;
+				colvarIdHuydvu.IsNullable = true;
+				colvarIdHuydvu.IsPrimaryKey = false;
+				colvarIdHuydvu.IsForeignKey = false;
+				colvarIdHuydvu.IsReadOnly = false;
+				colvarIdHuydvu.DefaultSetting = @"";
+				colvarIdHuydvu.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarIdHuydvu);
+				
 				BaseSchema = schema;
 				//add this schema to the provider
 				//so we can query it later
@@ -2036,6 +2129,62 @@ namespace VMS.HIS.DAL
 			get { return GetColumnValue<decimal?>(Columns.GiaGoc); }
 			set { SetColumnValue(Columns.GiaGoc, value); }
 		}
+		  
+		[XmlAttribute("NgoaiGio")]
+		[Bindable(true)]
+		public bool? NgoaiGio 
+		{
+			get { return GetColumnValue<bool?>(Columns.NgoaiGio); }
+			set { SetColumnValue(Columns.NgoaiGio, value); }
+		}
+		  
+		[XmlAttribute("FileKyso")]
+		[Bindable(true)]
+		public string FileKyso 
+		{
+			get { return GetColumnValue<string>(Columns.FileKyso); }
+			set { SetColumnValue(Columns.FileKyso, value); }
+		}
+		  
+		[XmlAttribute("NgayKyso")]
+		[Bindable(true)]
+		public DateTime? NgayKyso 
+		{
+			get { return GetColumnValue<DateTime?>(Columns.NgayKyso); }
+			set { SetColumnValue(Columns.NgayKyso, value); }
+		}
+		  
+		[XmlAttribute("NguoiKyso")]
+		[Bindable(true)]
+		public string NguoiKyso 
+		{
+			get { return GetColumnValue<string>(Columns.NguoiKyso); }
+			set { SetColumnValue(Columns.NguoiKyso, value); }
+		}
+		  
+		[XmlAttribute("NguoiHuy")]
+		[Bindable(true)]
+		public string NguoiHuy 
+		{
+			get { return GetColumnValue<string>(Columns.NguoiHuy); }
+			set { SetColumnValue(Columns.NguoiHuy, value); }
+		}
+		  
+		[XmlAttribute("NgayHuy")]
+		[Bindable(true)]
+		public DateTime? NgayHuy 
+		{
+			get { return GetColumnValue<DateTime?>(Columns.NgayHuy); }
+			set { SetColumnValue(Columns.NgayHuy, value); }
+		}
+		  
+		[XmlAttribute("IdHuydvu")]
+		[Bindable(true)]
+		public long? IdHuydvu 
+		{
+			get { return GetColumnValue<long?>(Columns.IdHuydvu); }
+			set { SetColumnValue(Columns.IdHuydvu, value); }
+		}
 		
 		#endregion
 		
@@ -2056,7 +2205,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(long? varIdKham,long varIdChidinh,long? varIdChidinhChuyengoi,short? varIdDichvu,int varIdChitietdichvu,decimal? varPtramBhytGoc,decimal? varPtramBhyt,decimal varGiaDanhmuc,string varMadoituongGia,decimal? varDonGia,decimal? varPhuThu,string varNguoiTao,byte? varIdLoaichidinh,DateTime? varNgayTao,DateTime? varNgaySua,string varNguoiSua,byte? varTrangthaiThanhtoan,DateTime? varNgayThanhtoan,byte? varTrangthaiHuy,byte? varTuTuc,byte? varLoaiChietkhau,short? varIdDoituongKcb,long? varIdBenhnhan,string varMaLuotkham,decimal? varSoLuong,byte? varTrangThai,byte? varTrangthaiBhyt,byte varHienthiBaocao,decimal? varBhytChitra,decimal? varBnhanChitra,long? varIdThanhtoan,short? varIdKhoaThuchien,short? varIdPhongThuchien,decimal? varTileChietkhau,decimal? varTienChietkhau,string varKieuChietkhau,int? varIdGoi,byte? varTrongGoi,short? varIdBacsiThuchien,string varNguoiThuchien,DateTime? varNgayThuchien,string varImgPath1,string varImgPath2,string varImgPath3,string varImgPath4,byte? varFTPImage,string varKetQua,byte? varChidinhGoidichvu,byte? varNguonThanhtoan,string varIpMaytao,string varIpMaysua,string varTenMaytao,string varTenMaysua,short? varChitieuPhantich,string varMahoaMau,byte? varMauUutien,DateTime? varNgayhenTrakq,short? varThetichkhoiluongMau,string varTinhtrangMau,decimal? varTyleTt,string varIdVungks,byte? varResultType,byte? varTinhChkhau,string varKetLuanCdha,byte? varPtramCkhau,byte? varSoFilm,string varKieuFilm,byte? varSolanChup,string varGhiChu,DateTime? varNgayDuyet,long? varIdThe,byte? varChanGuiCls,int? varIdDangky,byte? varTthaiTamthu,long? varIdTamthu,DateTime? varNgayTamthu,byte? varBhytNguonKhac,decimal? varBhytGiaTyle,decimal? varBnTtt,decimal? varBnCct,decimal? varTyleTtNguonkhac,decimal? varTyleHotro,bool? varTthaiChuyencls,DateTime? varThoigianBatdau,byte? varTinhChiphi,bool? varChophepDenghiMg,byte? varTyleMg,decimal? varGiaGoc)
+		public static void Insert(long? varIdKham,long varIdChidinh,long? varIdChidinhChuyengoi,short? varIdDichvu,int varIdChitietdichvu,decimal? varPtramBhytGoc,decimal? varPtramBhyt,decimal varGiaDanhmuc,string varMadoituongGia,decimal? varDonGia,decimal? varPhuThu,string varNguoiTao,byte? varIdLoaichidinh,DateTime? varNgayTao,DateTime? varNgaySua,string varNguoiSua,byte? varTrangthaiThanhtoan,DateTime? varNgayThanhtoan,byte? varTrangthaiHuy,byte? varTuTuc,byte? varLoaiChietkhau,short? varIdDoituongKcb,long? varIdBenhnhan,string varMaLuotkham,decimal? varSoLuong,byte? varTrangThai,byte? varTrangthaiBhyt,byte varHienthiBaocao,decimal? varBhytChitra,decimal? varBnhanChitra,long? varIdThanhtoan,short? varIdKhoaThuchien,short? varIdPhongThuchien,decimal? varTileChietkhau,decimal? varTienChietkhau,string varKieuChietkhau,int? varIdGoi,byte? varTrongGoi,short? varIdBacsiThuchien,string varNguoiThuchien,DateTime? varNgayThuchien,string varImgPath1,string varImgPath2,string varImgPath3,string varImgPath4,byte? varFTPImage,string varKetQua,byte? varChidinhGoidichvu,byte? varNguonThanhtoan,string varIpMaytao,string varIpMaysua,string varTenMaytao,string varTenMaysua,short? varChitieuPhantich,string varMahoaMau,byte? varMauUutien,DateTime? varNgayhenTrakq,short? varThetichkhoiluongMau,string varTinhtrangMau,decimal? varTyleTt,string varIdVungks,byte? varResultType,byte? varTinhChkhau,string varKetLuanCdha,byte? varPtramCkhau,byte? varSoFilm,string varKieuFilm,byte? varSolanChup,string varGhiChu,DateTime? varNgayDuyet,long? varIdThe,byte? varChanGuiCls,int? varIdDangky,byte? varTthaiTamthu,long? varIdTamthu,DateTime? varNgayTamthu,byte? varBhytNguonKhac,decimal? varBhytGiaTyle,decimal? varBnTtt,decimal? varBnCct,decimal? varTyleTtNguonkhac,decimal? varTyleHotro,bool? varTthaiChuyencls,DateTime? varThoigianBatdau,byte? varTinhChiphi,bool? varChophepDenghiMg,byte? varTyleMg,decimal? varGiaGoc,bool? varNgoaiGio,string varFileKyso,DateTime? varNgayKyso,string varNguoiKyso,string varNguoiHuy,DateTime? varNgayHuy,long? varIdHuydvu)
 		{
 			KcbChidinhclsChitiet item = new KcbChidinhclsChitiet();
 			
@@ -2236,6 +2385,20 @@ namespace VMS.HIS.DAL
 			
 			item.GiaGoc = varGiaGoc;
 			
+			item.NgoaiGio = varNgoaiGio;
+			
+			item.FileKyso = varFileKyso;
+			
+			item.NgayKyso = varNgayKyso;
+			
+			item.NguoiKyso = varNguoiKyso;
+			
+			item.NguoiHuy = varNguoiHuy;
+			
+			item.NgayHuy = varNgayHuy;
+			
+			item.IdHuydvu = varIdHuydvu;
+			
 		
 			if (System.Web.HttpContext.Current != null)
 				item.Save(System.Web.HttpContext.Current.User.Identity.Name);
@@ -2246,7 +2409,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(long varIdChitietchidinh,long? varIdKham,long varIdChidinh,long? varIdChidinhChuyengoi,short? varIdDichvu,int varIdChitietdichvu,decimal? varPtramBhytGoc,decimal? varPtramBhyt,decimal varGiaDanhmuc,string varMadoituongGia,decimal? varDonGia,decimal? varPhuThu,string varNguoiTao,byte? varIdLoaichidinh,DateTime? varNgayTao,DateTime? varNgaySua,string varNguoiSua,byte? varTrangthaiThanhtoan,DateTime? varNgayThanhtoan,byte? varTrangthaiHuy,byte? varTuTuc,byte? varLoaiChietkhau,short? varIdDoituongKcb,long? varIdBenhnhan,string varMaLuotkham,decimal? varSoLuong,byte? varTrangThai,byte? varTrangthaiBhyt,byte varHienthiBaocao,decimal? varBhytChitra,decimal? varBnhanChitra,long? varIdThanhtoan,short? varIdKhoaThuchien,short? varIdPhongThuchien,decimal? varTileChietkhau,decimal? varTienChietkhau,string varKieuChietkhau,int? varIdGoi,byte? varTrongGoi,short? varIdBacsiThuchien,string varNguoiThuchien,DateTime? varNgayThuchien,string varImgPath1,string varImgPath2,string varImgPath3,string varImgPath4,byte? varFTPImage,string varKetQua,byte? varChidinhGoidichvu,byte? varNguonThanhtoan,string varIpMaytao,string varIpMaysua,string varTenMaytao,string varTenMaysua,short? varChitieuPhantich,string varMahoaMau,byte? varMauUutien,DateTime? varNgayhenTrakq,short? varThetichkhoiluongMau,string varTinhtrangMau,decimal? varTyleTt,string varIdVungks,byte? varResultType,byte? varTinhChkhau,string varKetLuanCdha,byte? varPtramCkhau,byte? varSoFilm,string varKieuFilm,byte? varSolanChup,string varGhiChu,DateTime? varNgayDuyet,long? varIdThe,byte? varChanGuiCls,int? varIdDangky,byte? varTthaiTamthu,long? varIdTamthu,DateTime? varNgayTamthu,byte? varBhytNguonKhac,decimal? varBhytGiaTyle,decimal? varBnTtt,decimal? varBnCct,decimal? varTyleTtNguonkhac,decimal? varTyleHotro,bool? varTthaiChuyencls,DateTime? varThoigianBatdau,byte? varTinhChiphi,bool? varChophepDenghiMg,byte? varTyleMg,decimal? varGiaGoc)
+		public static void Update(long varIdChitietchidinh,long? varIdKham,long varIdChidinh,long? varIdChidinhChuyengoi,short? varIdDichvu,int varIdChitietdichvu,decimal? varPtramBhytGoc,decimal? varPtramBhyt,decimal varGiaDanhmuc,string varMadoituongGia,decimal? varDonGia,decimal? varPhuThu,string varNguoiTao,byte? varIdLoaichidinh,DateTime? varNgayTao,DateTime? varNgaySua,string varNguoiSua,byte? varTrangthaiThanhtoan,DateTime? varNgayThanhtoan,byte? varTrangthaiHuy,byte? varTuTuc,byte? varLoaiChietkhau,short? varIdDoituongKcb,long? varIdBenhnhan,string varMaLuotkham,decimal? varSoLuong,byte? varTrangThai,byte? varTrangthaiBhyt,byte varHienthiBaocao,decimal? varBhytChitra,decimal? varBnhanChitra,long? varIdThanhtoan,short? varIdKhoaThuchien,short? varIdPhongThuchien,decimal? varTileChietkhau,decimal? varTienChietkhau,string varKieuChietkhau,int? varIdGoi,byte? varTrongGoi,short? varIdBacsiThuchien,string varNguoiThuchien,DateTime? varNgayThuchien,string varImgPath1,string varImgPath2,string varImgPath3,string varImgPath4,byte? varFTPImage,string varKetQua,byte? varChidinhGoidichvu,byte? varNguonThanhtoan,string varIpMaytao,string varIpMaysua,string varTenMaytao,string varTenMaysua,short? varChitieuPhantich,string varMahoaMau,byte? varMauUutien,DateTime? varNgayhenTrakq,short? varThetichkhoiluongMau,string varTinhtrangMau,decimal? varTyleTt,string varIdVungks,byte? varResultType,byte? varTinhChkhau,string varKetLuanCdha,byte? varPtramCkhau,byte? varSoFilm,string varKieuFilm,byte? varSolanChup,string varGhiChu,DateTime? varNgayDuyet,long? varIdThe,byte? varChanGuiCls,int? varIdDangky,byte? varTthaiTamthu,long? varIdTamthu,DateTime? varNgayTamthu,byte? varBhytNguonKhac,decimal? varBhytGiaTyle,decimal? varBnTtt,decimal? varBnCct,decimal? varTyleTtNguonkhac,decimal? varTyleHotro,bool? varTthaiChuyencls,DateTime? varThoigianBatdau,byte? varTinhChiphi,bool? varChophepDenghiMg,byte? varTyleMg,decimal? varGiaGoc,bool? varNgoaiGio,string varFileKyso,DateTime? varNgayKyso,string varNguoiKyso,string varNguoiHuy,DateTime? varNgayHuy,long? varIdHuydvu)
 		{
 			KcbChidinhclsChitiet item = new KcbChidinhclsChitiet();
 			
@@ -2427,6 +2590,20 @@ namespace VMS.HIS.DAL
 				item.TyleMg = varTyleMg;
 			
 				item.GiaGoc = varGiaGoc;
+			
+				item.NgoaiGio = varNgoaiGio;
+			
+				item.FileKyso = varFileKyso;
+			
+				item.NgayKyso = varNgayKyso;
+			
+				item.NguoiKyso = varNguoiKyso;
+			
+				item.NguoiHuy = varNguoiHuy;
+			
+				item.NgayHuy = varNgayHuy;
+			
+				item.IdHuydvu = varIdHuydvu;
 			
 			item.IsNew = false;
 			if (System.Web.HttpContext.Current != null)
@@ -3064,6 +3241,55 @@ namespace VMS.HIS.DAL
         
         
         
+        public static TableSchema.TableColumn NgoaiGioColumn
+        {
+            get { return Schema.Columns[89]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn FileKysoColumn
+        {
+            get { return Schema.Columns[90]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn NgayKysoColumn
+        {
+            get { return Schema.Columns[91]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn NguoiKysoColumn
+        {
+            get { return Schema.Columns[92]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn NguoiHuyColumn
+        {
+            get { return Schema.Columns[93]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn NgayHuyColumn
+        {
+            get { return Schema.Columns[94]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn IdHuydvuColumn
+        {
+            get { return Schema.Columns[95]; }
+        }
+        
+        
+        
         #endregion
 		#region Columns Struct
 		public struct Columns
@@ -3157,6 +3383,13 @@ namespace VMS.HIS.DAL
 			 public static string ChophepDenghiMg = @"chophep_denghi_mg";
 			 public static string TyleMg = @"tyle_mg";
 			 public static string GiaGoc = @"gia_goc";
+			 public static string NgoaiGio = @"ngoai_gio";
+			 public static string FileKyso = @"file_kyso";
+			 public static string NgayKyso = @"ngay_kyso";
+			 public static string NguoiKyso = @"nguoi_kyso";
+			 public static string NguoiHuy = @"nguoi_huy";
+			 public static string NgayHuy = @"ngay_huy";
+			 public static string IdHuydvu = @"id_huydvu";
 						
 		}
 		#endregion

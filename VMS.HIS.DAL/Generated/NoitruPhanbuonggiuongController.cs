@@ -80,7 +80,7 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(long IdBenhnhan,int? IdKhoachuyen,short? TrangthaiChuyen,short IdKhoanoitru,string MaLuotkham,short? IdBuong,short? IdGiuong,byte? KieuGiuong,byte TrangThai,DateTime NgayVaokhoa,DateTime? NgayKetthuc,short? IdBacsiChidinh,byte? NguonThanhtoan,string NguoiTao,DateTime NgayTao,string NguoiSua,DateTime? NgaySua,int? TrangthaiHuy,DateTime? NgayThanhtoan,int? TrangthaiThanhtoan,int? DuyetBhyt,int? NoiTru,decimal? SoLuong,int? IdGia,decimal? DonGia,int? TuTuc,int? IdThanhtoan,int? IdKhoaRavien,int? TrangthaiRavien,decimal? BhytChitra,decimal? BnhanChitra,int? IdGoi,int? TrongGoi,int? IdNhanvienPhangiuong,DateTime? NgayPhangiuong,string NguoiPhangiuong,decimal? PhuThu,int? TrangthaiXacnhan,string TenHienthi,decimal? GiaGoc,long? IdKham,int? IdBenhLy,int? IdLoaiBg,string KieuThue,decimal? PhuThuNgoaigoi,int? IdChuyen,int? Stt,byte? CachtinhSoluong,byte? CachtinhGia,int? SoluongGio,byte? TrangthaiChotkhoa,byte? KhoatonghopChot,long? IdLichsuDoituongKcb,string MatheBhyt,byte? IsGhepGiuong,decimal? SoLuongGhep,byte? TinhChiphi,string HuongDieutri,decimal? TileChietkhau,decimal? TienChietkhau,string KieuChietkhau,decimal? TyleTt,long? IdThe,int? IdDangky,byte? TthaiTamthu,long? IdTamthu,DateTime? NgayTamthu,byte? BhytNguonKhac,decimal? BhytGiaTyle,decimal? BnTtt,decimal? PtramBhytGoc,decimal? PtramBhyt,decimal? BnCct)
+	    public void Insert(long IdBenhnhan,int? IdKhoachuyen,short? TrangthaiChuyen,short IdKhoanoitru,string MaLuotkham,short? IdBuong,short? IdGiuong,byte? KieuGiuong,byte TrangThai,DateTime NgayVaokhoa,DateTime? NgayKetthuc,short? IdBacsiChidinh,byte? NguonThanhtoan,string NguoiTao,DateTime NgayTao,string NguoiSua,DateTime? NgaySua,int? TrangthaiHuy,DateTime? NgayThanhtoan,int? TrangthaiThanhtoan,int? DuyetBhyt,int? NoiTru,decimal? SoLuong,int? IdGia,decimal? DonGia,int? TuTuc,int? IdThanhtoan,int? IdKhoaRavien,int? TrangthaiRavien,decimal? BhytChitra,decimal? BnhanChitra,int? IdGoi,int? TrongGoi,int? IdNhanvienPhangiuong,DateTime? NgayPhangiuong,string NguoiPhangiuong,decimal? PhuThu,int? TrangthaiXacnhan,string TenHienthi,decimal? GiaGoc,long? IdKham,int? IdBenhLy,int? IdLoaiBg,string KieuThue,decimal? PhuThuNgoaigoi,int? IdChuyen,int? Stt,byte? CachtinhSoluong,byte? CachtinhGia,int? SoluongGio,byte? TrangthaiChotkhoa,byte? KhoatonghopChot,long? IdLichsuDoituongKcb,string MatheBhyt,byte? IsGhepGiuong,decimal? SoLuongGhep,byte? TinhChiphi,string HuongDieutri,decimal? TileChietkhau,decimal? TienChietkhau,string KieuChietkhau,decimal? TyleTt,long? IdThe,int? IdDangky,byte? TthaiTamthu,long? IdTamthu,DateTime? NgayTamthu,byte? BhytNguonKhac,decimal? BhytGiaTyle,decimal? BnTtt,decimal? PtramBhytGoc,decimal? PtramBhyt,decimal? BnCct,long? IdHuydvu)
 	    {
 		    NoitruPhanbuonggiuong item = new NoitruPhanbuonggiuong();
 		    
@@ -230,6 +230,8 @@ namespace VMS.HIS.DAL
             
             item.BnCct = BnCct;
             
+            item.IdHuydvu = IdHuydvu;
+            
 	    
 		    item.Save(UserName);
 	    }
@@ -238,7 +240,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(long Id,long IdBenhnhan,int? IdKhoachuyen,short? TrangthaiChuyen,short IdKhoanoitru,string MaLuotkham,short? IdBuong,short? IdGiuong,byte? KieuGiuong,byte TrangThai,DateTime NgayVaokhoa,DateTime? NgayKetthuc,short? IdBacsiChidinh,byte? NguonThanhtoan,string NguoiTao,DateTime NgayTao,string NguoiSua,DateTime? NgaySua,int? TrangthaiHuy,DateTime? NgayThanhtoan,int? TrangthaiThanhtoan,int? DuyetBhyt,int? NoiTru,decimal? SoLuong,int? IdGia,decimal? DonGia,int? TuTuc,int? IdThanhtoan,int? IdKhoaRavien,int? TrangthaiRavien,decimal? BhytChitra,decimal? BnhanChitra,int? IdGoi,int? TrongGoi,int? IdNhanvienPhangiuong,DateTime? NgayPhangiuong,string NguoiPhangiuong,decimal? PhuThu,int? TrangthaiXacnhan,string TenHienthi,decimal? GiaGoc,long? IdKham,int? IdBenhLy,int? IdLoaiBg,string KieuThue,decimal? PhuThuNgoaigoi,int? IdChuyen,int? Stt,byte? CachtinhSoluong,byte? CachtinhGia,int? SoluongGio,byte? TrangthaiChotkhoa,byte? KhoatonghopChot,long? IdLichsuDoituongKcb,string MatheBhyt,byte? IsGhepGiuong,decimal? SoLuongGhep,byte? TinhChiphi,string HuongDieutri,decimal? TileChietkhau,decimal? TienChietkhau,string KieuChietkhau,decimal? TyleTt,long? IdThe,int? IdDangky,byte? TthaiTamthu,long? IdTamthu,DateTime? NgayTamthu,byte? BhytNguonKhac,decimal? BhytGiaTyle,decimal? BnTtt,decimal? PtramBhytGoc,decimal? PtramBhyt,decimal? BnCct)
+	    public void Update(long Id,long IdBenhnhan,int? IdKhoachuyen,short? TrangthaiChuyen,short IdKhoanoitru,string MaLuotkham,short? IdBuong,short? IdGiuong,byte? KieuGiuong,byte TrangThai,DateTime NgayVaokhoa,DateTime? NgayKetthuc,short? IdBacsiChidinh,byte? NguonThanhtoan,string NguoiTao,DateTime NgayTao,string NguoiSua,DateTime? NgaySua,int? TrangthaiHuy,DateTime? NgayThanhtoan,int? TrangthaiThanhtoan,int? DuyetBhyt,int? NoiTru,decimal? SoLuong,int? IdGia,decimal? DonGia,int? TuTuc,int? IdThanhtoan,int? IdKhoaRavien,int? TrangthaiRavien,decimal? BhytChitra,decimal? BnhanChitra,int? IdGoi,int? TrongGoi,int? IdNhanvienPhangiuong,DateTime? NgayPhangiuong,string NguoiPhangiuong,decimal? PhuThu,int? TrangthaiXacnhan,string TenHienthi,decimal? GiaGoc,long? IdKham,int? IdBenhLy,int? IdLoaiBg,string KieuThue,decimal? PhuThuNgoaigoi,int? IdChuyen,int? Stt,byte? CachtinhSoluong,byte? CachtinhGia,int? SoluongGio,byte? TrangthaiChotkhoa,byte? KhoatonghopChot,long? IdLichsuDoituongKcb,string MatheBhyt,byte? IsGhepGiuong,decimal? SoLuongGhep,byte? TinhChiphi,string HuongDieutri,decimal? TileChietkhau,decimal? TienChietkhau,string KieuChietkhau,decimal? TyleTt,long? IdThe,int? IdDangky,byte? TthaiTamthu,long? IdTamthu,DateTime? NgayTamthu,byte? BhytNguonKhac,decimal? BhytGiaTyle,decimal? BnTtt,decimal? PtramBhytGoc,decimal? PtramBhyt,decimal? BnCct,long? IdHuydvu)
 	    {
 		    NoitruPhanbuonggiuong item = new NoitruPhanbuonggiuong();
 	        item.MarkOld();
@@ -391,6 +393,8 @@ namespace VMS.HIS.DAL
 			item.PtramBhyt = PtramBhyt;
 				
 			item.BnCct = BnCct;
+				
+			item.IdHuydvu = IdHuydvu;
 				
 	        item.Save(UserName);
 	    }

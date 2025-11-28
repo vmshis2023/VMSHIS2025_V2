@@ -209,7 +209,7 @@ namespace VMS.HIS.DAL
 				TableSchema.TableColumn colvarReportCode = new TableSchema.TableColumn(schema);
 				colvarReportCode.ColumnName = "report_code";
 				colvarReportCode.DataType = DbType.String;
-				colvarReportCode.MaxLength = 100;
+				colvarReportCode.MaxLength = 500;
 				colvarReportCode.AutoIncrement = false;
 				colvarReportCode.IsNullable = true;
 				colvarReportCode.IsPrimaryKey = false;

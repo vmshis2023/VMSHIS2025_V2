@@ -57,6 +57,7 @@ namespace VNS.HIS.UI.NOITRU
             // 
             // panel1
             // 
+            this.panel1.AutoScroll = true;
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.chkGiuong);
             this.panel1.Controls.Add(this.grdPhieudieutri);

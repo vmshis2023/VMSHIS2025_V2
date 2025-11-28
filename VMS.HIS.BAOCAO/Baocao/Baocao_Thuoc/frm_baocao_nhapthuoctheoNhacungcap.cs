@@ -69,7 +69,7 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
             baocaO_TIEUDE1.Init("thuoc_baocao_nhapkho_theonhacungcap");
             else
                 baocaO_TIEUDE1.Init("vt_baocao_nhapkho_theonhacungcap");
-            txtNhacungcap.Init();
+            DataBinding.BindDataCombobox(cbo_nhacungcap, THU_VIEN_CHUNG.LayDulieuDanhmucChung("NHACUNGCAP",true), DmucChung.Columns.Ma, DmucChung.Columns.Ten);
             DataBinding.BindData(cboKho, KIEU_THUOC_VT == "THUOC" ? CommonLoadDuoc.LAYTHONGTIN_KHOTHUOC_TATCA() : CommonLoadDuoc.LAYTHONGTIN_KHOVATTU_TATCA(), TDmucKho.Columns.IdKho, TDmucKho.Columns.TenKho);
             AutocompleteThuoc();
             AutocompleteLoaithuoc();
@@ -134,13 +134,14 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
             try
             {
                 DataTable _dataThuoc = new Select().From(DmucThuoc.Schema).Where(DmucThuoc.KieuThuocvattuColumn).IsEqualTo(KIEU_THUOC_VT).And(DmucThuoc.TrangThaiColumn).IsEqualTo(1).ExecuteDataSet().Tables[0];
-                if (_dataThuoc == null)
-                {
-                    txtthuoc.dtData = null;
-                    return;
-                }
-                txtthuoc.dtData = _dataThuoc;
-                txtthuoc.ChangeDataSource();
+                DataBinding.BindDataCombobox(cbo_thuoc, _dataThuoc, DmucThuoc.Columns.IdThuoc, DmucThuoc.Columns.TenThuoc);
+                //if (_dataThuoc == null)
+                //{
+                //    txtthuoc.dtData = null;
+                //    return;
+                //}
+                //txtthuoc.dtData = _dataThuoc;
+                //txtthuoc.ChangeDataSource();
             }
             catch
             {
@@ -169,14 +170,11 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
         {
             try
             {
-                string manhacungcap = Utility.DoTrim(txtNhacungcap.myCode);
+                if (m_dtReport == null || m_dtReport.Columns.Count <= 0) cmd_TimKiem.PerformClick();
+                string manhacungcap = Utility.sDbnull(cbo_nhacungcap.SelectedValue);
                 if (manhacungcap == "") manhacungcap = "ALL";
-                DataTable m_dtReport =
-              BAOCAO_THUOC.ThuocBaocaoThuoctheonhacungcap(chkByDate.Checked ? dtFromDate.Value : Convert.ToDateTime("01/01/1900"),
-                                           chkByDate.Checked ? dtToDate.Value : globalVariables.SysDate,
-                                           Utility.Int32Dbnull(cboKho.SelectedValue), manhacungcap, KIEU_THUOC_VT,Utility.Bool2byte(chkPhieuvay.Checked));
-                Utility.SetDataSourceForDataGridEx(grdList, m_dtReport, true, true, "1=1", "");
-                if (m_dtReport.Rows.Count <= 0)
+               
+                if (m_dtReport == null ||  m_dtReport.Rows.Count <= 0)
                 {
                     Utility.ShowMsg("Không tìm thấy dữ liệu", "Thông báo", MessageBoxIcon.Warning);
                     return;
@@ -234,15 +232,25 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
             }
           
         }
-
-        private void cmdCboDownHTTT_Click(object sender, EventArgs e)
+        DataTable m_dtReport = null;
+        private void cmd_TimKiem_Click(object sender, EventArgs e)
         {
-            txtthuoc.ShowMe();
-        }
+            try
+            {
+                string manhacungcap = Utility.sDbnull(cbo_nhacungcap.SelectedValue);
+                if (manhacungcap == "") manhacungcap = "ALL";
 
-        private void uiButton1_Click(object sender, EventArgs e)
-        {
-            txtNhacungcap.ShowMe();
+                m_dtReport= BAOCAO_THUOC.ThuocBaocaoThuoctheonhacungcap(chkByDate.Checked ? dtFromDate.Value : Convert.ToDateTime("01/01/1900"),
+                                           chkByDate.Checked ? dtToDate.Value : globalVariables.SysDate,
+                                           Utility.Int32Dbnull(cboKho.SelectedValue), manhacungcap, KIEU_THUOC_VT, Utility.Bool2byte(chkPhieuvay.Checked));
+                Utility.SetDataSourceForDataGridEx(grdList, m_dtReport, true, true, "1=1", "");
+                
+            }
+            catch (Exception)
+            {
+
+
+            }
         }
     }
 }

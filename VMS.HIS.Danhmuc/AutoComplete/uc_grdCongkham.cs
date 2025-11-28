@@ -51,7 +51,9 @@ namespace VNS.HIS.UCs
 
         void grdICD_Click(object sender, EventArgs e)
         {
-            if (!Utility.isValidGrid(grdList) || grdList.CurrentColumn.Key== "CHON") return;
+           
+            if (!Utility.isValidGrid(grdList) || (grdList.CurrentColumn!=null && grdList.CurrentColumn.Key== "CHON")) return;
+           
             grdICD_KeyDown(grdList, new KeyEventArgs(Keys.Enter));
         }
 
@@ -67,10 +69,12 @@ namespace VNS.HIS.UCs
         {
             try
             {
+               
                 if (e.KeyCode == Keys.Enter && Utility.isValidGrid(grdList) && grdList.Visible)
                 {
                     List<int> lstSelectedID = new List<int>();
                     List<int> lstLoai = new List<int>();
+                    
                     if (grdList.GetCheckedRows().Count() <= 0)
                     {
                         lstSelectedID = new List<int>() { Utility.Int32Dbnull(grdList.CurrentRow.Cells["id_dichvukcb"].Value) };
@@ -81,6 +85,7 @@ namespace VNS.HIS.UCs
                         lstSelectedID = grdList.GetCheckedRows().Select(c => Utility.Int32Dbnull(c.Cells["id_dichvukcb"].Value)).ToList<int>();
                        lstLoai = grdList.GetCheckedRows().Select(c => Utility.Int32Dbnull(c.Cells["Loai"].Value)).ToList<int>();
                     }
+                   
                     RowIndex = 1;
                     _OnKeyDown(Utility.Int32Dbnull(grdList.CurrentRow.Cells["loai"].Value, ""), Utility.Int32Dbnull( grdList.CurrentRow.Cells["id_dichvukcb"].Value.ToString()), lstSelectedID, lstLoai,grdList.CurrentRow.Cells["ma_dichvukcb"].Value.ToString(), Utility.sDbnull(grdList.CurrentRow.Cells["ten_dichvukcb"].Value, ""), Utility.sDbnull(grdList.CurrentRow.Cells["ten_phongkham"].Value, ""));
                 }

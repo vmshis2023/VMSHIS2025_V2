@@ -80,10 +80,20 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(long? IdBenhnhan,string MaLuotkham,DateTime? NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua,string Chandoan,DateTime? ThoigianHoichan,string TomtatTinhtrangbenh,string Cacxetnghiemcdha,string Nhommau,int? Dutrumau,string Phuongphapphauthuat,string PhuongphapvocamDukien,bool? MallampatiLoai1,bool? MallampatiLoai2,bool? MallampatiLoai3,bool? MallampatiLoai4,bool? LoaiphauthuatDacbiet,bool? LoaiphauthuatLoai1,bool? LoaiphauthuatLoai2,bool? LoaiphauthuatLoai3,bool? PhanloaiAsaLoai1,bool? PhanloaiAsaLoai2,bool? PhanloaiAsaLoai3,bool? PhanloaiAsaLoai4,bool? PhanloaiAsaLoai5,bool? PhanloainguycoSach,bool? PhanloainguycoSachnhiem,bool? PhanloainguycoNhiem,bool? PhanloainguycoBan,string KhangsinhDuphong,int? IdBacsyPhauthuat,int? IdBacsyGayme,int? IdLanhdaokhoaLamsang,int? IdLanhdaoDuyetmo,DateTime? NgayDukien,string CacbienchungNguycoKhokhanLuuy,string CacbienphapthaytheYcChuanbidacbiet)
+	    public void Insert(string MaPhieu,DateTime NgayBienban,bool? Capcuu,bool? Bancap,bool? ChuongtrinhPhien,long? IdBenhnhan,string MaLuotkham,DateTime? NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua,string Chandoan,DateTime? NgayHoichan,string TomtatTinhtrangbenh,string Cacxetnghiemcdha,string Nhommau,int? Dutrumau,string Phuongphapphauthuat,string PhuongphapvocamDukien,bool? MallampatiLoai1,bool? MallampatiLoai2,bool? MallampatiLoai3,bool? MallampatiLoai4,bool? LoaiphauthuatDacbiet,bool? LoaiphauthuatLoai1,bool? LoaiphauthuatLoai2,bool? LoaiphauthuatLoai3,bool? PhanloaiAsaLoai1,bool? PhanloaiAsaLoai2,bool? PhanloaiAsaLoai3,bool? PhanloaiAsaLoai4,bool? PhanloaiAsaLoai5,bool? PhanloainguycoSach,bool? PhanloainguycoSachnhiem,bool? PhanloainguycoNhiem,bool? PhanloainguycoBan,string KhangsinhDuphong,int? IdBacsyPhauthuat,int? IdBacsyGayme,int? IdLanhdaokhoaLamsang,int? IdLanhdaoDuyetmo,DateTime? NgayDukien,string CacbienchungNguycoKhokhanLuuy,string CacbienphapthaytheYcChuanbidacbiet)
 	    {
 		    EmrPt01Bienbanhoichanthongquamo item = new EmrPt01Bienbanhoichanthongquamo();
 		    
+            item.MaPhieu = MaPhieu;
+            
+            item.NgayBienban = NgayBienban;
+            
+            item.Capcuu = Capcuu;
+            
+            item.Bancap = Bancap;
+            
+            item.ChuongtrinhPhien = ChuongtrinhPhien;
+            
             item.IdBenhnhan = IdBenhnhan;
             
             item.MaLuotkham = MaLuotkham;
@@ -98,7 +108,7 @@ namespace VMS.HIS.DAL
             
             item.Chandoan = Chandoan;
             
-            item.ThoigianHoichan = ThoigianHoichan;
+            item.NgayHoichan = NgayHoichan;
             
             item.TomtatTinhtrangbenh = TomtatTinhtrangbenh;
             
@@ -170,13 +180,23 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(long Id,long? IdBenhnhan,string MaLuotkham,DateTime? NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua,string Chandoan,DateTime? ThoigianHoichan,string TomtatTinhtrangbenh,string Cacxetnghiemcdha,string Nhommau,int? Dutrumau,string Phuongphapphauthuat,string PhuongphapvocamDukien,bool? MallampatiLoai1,bool? MallampatiLoai2,bool? MallampatiLoai3,bool? MallampatiLoai4,bool? LoaiphauthuatDacbiet,bool? LoaiphauthuatLoai1,bool? LoaiphauthuatLoai2,bool? LoaiphauthuatLoai3,bool? PhanloaiAsaLoai1,bool? PhanloaiAsaLoai2,bool? PhanloaiAsaLoai3,bool? PhanloaiAsaLoai4,bool? PhanloaiAsaLoai5,bool? PhanloainguycoSach,bool? PhanloainguycoSachnhiem,bool? PhanloainguycoNhiem,bool? PhanloainguycoBan,string KhangsinhDuphong,int? IdBacsyPhauthuat,int? IdBacsyGayme,int? IdLanhdaokhoaLamsang,int? IdLanhdaoDuyetmo,DateTime? NgayDukien,string CacbienchungNguycoKhokhanLuuy,string CacbienphapthaytheYcChuanbidacbiet)
+	    public void Update(long Id,string MaPhieu,DateTime NgayBienban,bool? Capcuu,bool? Bancap,bool? ChuongtrinhPhien,long? IdBenhnhan,string MaLuotkham,DateTime? NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua,string Chandoan,DateTime? NgayHoichan,string TomtatTinhtrangbenh,string Cacxetnghiemcdha,string Nhommau,int? Dutrumau,string Phuongphapphauthuat,string PhuongphapvocamDukien,bool? MallampatiLoai1,bool? MallampatiLoai2,bool? MallampatiLoai3,bool? MallampatiLoai4,bool? LoaiphauthuatDacbiet,bool? LoaiphauthuatLoai1,bool? LoaiphauthuatLoai2,bool? LoaiphauthuatLoai3,bool? PhanloaiAsaLoai1,bool? PhanloaiAsaLoai2,bool? PhanloaiAsaLoai3,bool? PhanloaiAsaLoai4,bool? PhanloaiAsaLoai5,bool? PhanloainguycoSach,bool? PhanloainguycoSachnhiem,bool? PhanloainguycoNhiem,bool? PhanloainguycoBan,string KhangsinhDuphong,int? IdBacsyPhauthuat,int? IdBacsyGayme,int? IdLanhdaokhoaLamsang,int? IdLanhdaoDuyetmo,DateTime? NgayDukien,string CacbienchungNguycoKhokhanLuuy,string CacbienphapthaytheYcChuanbidacbiet)
 	    {
 		    EmrPt01Bienbanhoichanthongquamo item = new EmrPt01Bienbanhoichanthongquamo();
 	        item.MarkOld();
 	        item.IsLoaded = true;
 		    
 			item.Id = Id;
+				
+			item.MaPhieu = MaPhieu;
+				
+			item.NgayBienban = NgayBienban;
+				
+			item.Capcuu = Capcuu;
+				
+			item.Bancap = Bancap;
+				
+			item.ChuongtrinhPhien = ChuongtrinhPhien;
 				
 			item.IdBenhnhan = IdBenhnhan;
 				
@@ -192,7 +212,7 @@ namespace VMS.HIS.DAL
 				
 			item.Chandoan = Chandoan;
 				
-			item.ThoigianHoichan = ThoigianHoichan;
+			item.NgayHoichan = NgayHoichan;
 				
 			item.TomtatTinhtrangbenh = TomtatTinhtrangbenh;
 				

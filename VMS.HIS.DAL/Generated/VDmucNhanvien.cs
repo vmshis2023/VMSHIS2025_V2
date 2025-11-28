@@ -669,6 +669,42 @@ namespace VMS.HIS.DAL{
                 
                 schema.Columns.Add(colvarUserTotp);
                 
+                TableSchema.TableColumn colvarSad = new TableSchema.TableColumn(schema);
+                colvarSad.ColumnName = "SAD";
+                colvarSad.DataType = DbType.String;
+                colvarSad.MaxLength = -1;
+                colvarSad.AutoIncrement = false;
+                colvarSad.IsNullable = true;
+                colvarSad.IsPrimaryKey = false;
+                colvarSad.IsForeignKey = false;
+                colvarSad.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarSad);
+                
+                TableSchema.TableColumn colvarMaLienThongBacSi = new TableSchema.TableColumn(schema);
+                colvarMaLienThongBacSi.ColumnName = "ma_lien_thong_bac_si";
+                colvarMaLienThongBacSi.DataType = DbType.String;
+                colvarMaLienThongBacSi.MaxLength = 50;
+                colvarMaLienThongBacSi.AutoIncrement = false;
+                colvarMaLienThongBacSi.IsNullable = true;
+                colvarMaLienThongBacSi.IsPrimaryKey = false;
+                colvarMaLienThongBacSi.IsForeignKey = false;
+                colvarMaLienThongBacSi.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarMaLienThongBacSi);
+                
+                TableSchema.TableColumn colvarMatkhauLienThongBacSi = new TableSchema.TableColumn(schema);
+                colvarMatkhauLienThongBacSi.ColumnName = "matkhau_lien_thong_bac_si";
+                colvarMatkhauLienThongBacSi.DataType = DbType.String;
+                colvarMatkhauLienThongBacSi.MaxLength = 50;
+                colvarMatkhauLienThongBacSi.AutoIncrement = false;
+                colvarMatkhauLienThongBacSi.IsNullable = true;
+                colvarMatkhauLienThongBacSi.IsPrimaryKey = false;
+                colvarMatkhauLienThongBacSi.IsForeignKey = false;
+                colvarMatkhauLienThongBacSi.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarMatkhauLienThongBacSi);
+                
                 TableSchema.TableColumn colvarTenCosokcb = new TableSchema.TableColumn(schema);
                 colvarTenCosokcb.ColumnName = "ten_cosokcb";
                 colvarTenCosokcb.DataType = DbType.String;
@@ -1493,6 +1529,48 @@ namespace VMS.HIS.DAL{
             }
         }
 	      
+        [XmlAttribute("Sad")]
+        [Bindable(true)]
+        public string Sad 
+	    {
+		    get
+		    {
+			    return GetColumnValue<string>("SAD");
+		    }
+            set 
+		    {
+			    SetColumnValue("SAD", value);
+            }
+        }
+	      
+        [XmlAttribute("MaLienThongBacSi")]
+        [Bindable(true)]
+        public string MaLienThongBacSi 
+	    {
+		    get
+		    {
+			    return GetColumnValue<string>("ma_lien_thong_bac_si");
+		    }
+            set 
+		    {
+			    SetColumnValue("ma_lien_thong_bac_si", value);
+            }
+        }
+	      
+        [XmlAttribute("MatkhauLienThongBacSi")]
+        [Bindable(true)]
+        public string MatkhauLienThongBacSi 
+	    {
+		    get
+		    {
+			    return GetColumnValue<string>("matkhau_lien_thong_bac_si");
+		    }
+            set 
+		    {
+			    SetColumnValue("matkhau_lien_thong_bac_si", value);
+            }
+        }
+	      
         [XmlAttribute("TenCosokcb")]
         [Bindable(true)]
         public string TenCosokcb 
@@ -1671,6 +1749,12 @@ namespace VMS.HIS.DAL{
             public static string UserSecret = @"user_secret";
             
             public static string UserTotp = @"user_totp";
+            
+            public static string Sad = @"SAD";
+            
+            public static string MaLienThongBacSi = @"ma_lien_thong_bac_si";
+            
+            public static string MatkhauLienThongBacSi = @"matkhau_lien_thong_bac_si";
             
             public static string TenCosokcb = @"ten_cosokcb";
             

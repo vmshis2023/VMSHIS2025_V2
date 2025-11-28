@@ -220,7 +220,8 @@
             this.uiTabThongtinBN = new Janus.Windows.UI.Tab.UITab();
             this.uiTabPage6 = new Janus.Windows.UI.Tab.UITabPage();
             this.pnlPatientInfor = new System.Windows.Forms.Panel();
-            this.cmdViewPdf2 = new Janus.Windows.EditControls.UIButton();
+            this.lnkChandoan = new System.Windows.Forms.LinkLabel();
+            this.txt_chandoan = new Janus.Windows.GridEX.EditControls.EditBox();
             this.cmdgetPatient = new Janus.Windows.EditControls.UIButton();
             this.cboKhoanoitru = new Janus.Windows.EditControls.UIComboBox();
             this.txtIdPhieudieutri = new Janus.Windows.GridEX.EditControls.EditBox();
@@ -251,6 +252,7 @@
             this.dtInput_Date = new Janus.Windows.CalendarCombo.CalendarCombo();
             this.label2 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
+            this.cmdViewPdf2 = new Janus.Windows.EditControls.UIButton();
             this.panel6 = new System.Windows.Forms.Panel();
             this.cmdInchiphiKCB = new Janus.Windows.EditControls.UIButton();
             this.cmdTongketBA = new Janus.Windows.EditControls.UIButton();
@@ -2599,7 +2601,8 @@
             // 
             // pnlPatientInfor
             // 
-            this.pnlPatientInfor.Controls.Add(this.cmdViewPdf2);
+            this.pnlPatientInfor.Controls.Add(this.lnkChandoan);
+            this.pnlPatientInfor.Controls.Add(this.txt_chandoan);
             this.pnlPatientInfor.Controls.Add(this.cmdgetPatient);
             this.pnlPatientInfor.Controls.Add(this.cboKhoanoitru);
             this.pnlPatientInfor.Controls.Add(this.cmdconfig2);
@@ -2640,18 +2643,28 @@
             this.pnlPatientInfor.TabIndex = 468;
             this.pnlPatientInfor.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlPatientInfor_Paint);
             // 
-            // cmdViewPdf2
+            // lnkChandoan
             // 
-            this.cmdViewPdf2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.cmdViewPdf2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.cmdViewPdf2.Image = ((System.Drawing.Image)(resources.GetObject("cmdViewPdf2.Image")));
-            this.cmdViewPdf2.ImageSize = new System.Drawing.Size(30, 30);
-            this.cmdViewPdf2.Location = new System.Drawing.Point(911, 69);
-            this.cmdViewPdf2.Name = "cmdViewPdf2";
-            this.cmdViewPdf2.Size = new System.Drawing.Size(35, 35);
-            this.cmdViewPdf2.TabIndex = 562;
-            this.cmdViewPdf2.TabStop = false;
-            this.cmdViewPdf2.Visible = false;
+            this.lnkChandoan.AutoSize = true;
+            this.lnkChandoan.Location = new System.Drawing.Point(905, 11);
+            this.lnkChandoan.Name = "lnkChandoan";
+            this.lnkChandoan.Size = new System.Drawing.Size(68, 15);
+            this.lnkChandoan.TabIndex = 609;
+            this.lnkChandoan.TabStop = true;
+            this.lnkChandoan.Text = "Chẩn đoán";
+            this.lnkChandoan.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkChandoan_LinkClicked);
+            // 
+            // txt_chandoan
+            // 
+            this.txt_chandoan.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txt_chandoan.Location = new System.Drawing.Point(908, 29);
+            this.txt_chandoan.Multiline = true;
+            this.txt_chandoan.Name = "txt_chandoan";
+            this.txt_chandoan.ReadOnly = true;
+            this.txt_chandoan.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txt_chandoan.Size = new System.Drawing.Size(349, 75);
+            this.txt_chandoan.TabIndex = 608;
             // 
             // cmdgetPatient
             // 
@@ -3022,8 +3035,23 @@
             this.label19.Text = "ID BN";
             this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // cmdViewPdf2
+            // 
+            this.cmdViewPdf2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmdViewPdf2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.cmdViewPdf2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.cmdViewPdf2.Image = ((System.Drawing.Image)(resources.GetObject("cmdViewPdf2.Image")));
+            this.cmdViewPdf2.ImageSize = new System.Drawing.Size(24, 24);
+            this.cmdViewPdf2.Location = new System.Drawing.Point(1223, 6);
+            this.cmdViewPdf2.Name = "cmdViewPdf2";
+            this.cmdViewPdf2.Size = new System.Drawing.Size(35, 35);
+            this.cmdViewPdf2.TabIndex = 562;
+            this.cmdViewPdf2.TabStop = false;
+            this.cmdViewPdf2.Click += new System.EventHandler(this.cmdViewPdf2_Click);
+            // 
             // panel6
             // 
+            this.panel6.Controls.Add(this.cmdViewPdf2);
             this.panel6.Controls.Add(this.cmdCtxOther);
             this.panel6.Controls.Add(this.cmdTonghop);
             this.panel6.Controls.Add(this.cmdInchiphiKCB);
@@ -3036,6 +3064,7 @@
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(1264, 49);
             this.panel6.TabIndex = 67;
+            this.panel6.Paint += new System.Windows.Forms.PaintEventHandler(this.panel6_Paint);
             // 
             // cmdInchiphiKCB
             // 
@@ -3461,5 +3490,7 @@
         private System.Windows.Forms.RadioButton optAll;
         private System.Windows.Forms.RadioButton optNgoaitru;
         private System.Windows.Forms.RadioButton optNoitru;
+        private System.Windows.Forms.LinkLabel lnkChandoan;
+        private Janus.Windows.GridEX.EditControls.EditBox txt_chandoan;
     }
 }

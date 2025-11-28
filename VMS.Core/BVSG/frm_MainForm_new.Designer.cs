@@ -79,6 +79,7 @@
             this.cmdLoadSysparams = new Janus.Windows.EditControls.UIButton();
             this.cmdChangePWD = new Janus.Windows.EditControls.UIButton();
             this.cmdrelogin = new Janus.Windows.EditControls.UIButton();
+            this.cmd_capnhat_chungthuso = new Janus.Windows.EditControls.UIButton();
             this.cmdChucnangkhac = new Janus.Windows.EditControls.UIButton();
             this.ucError1 = new VNS.HIS.UCs.UCError();
             this.pnlLogo = new System.Windows.Forms.Panel();
@@ -253,7 +254,7 @@
             this.pnlSearch.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlSearch.Location = new System.Drawing.Point(179, 0);
             this.pnlSearch.Name = "pnlSearch";
-            this.pnlSearch.Size = new System.Drawing.Size(787, 40);
+            this.pnlSearch.Size = new System.Drawing.Size(713, 40);
             this.pnlSearch.TabIndex = 556;
             // 
             // label2
@@ -349,13 +350,14 @@
             this.flowLayoutPanel1.Controls.Add(this.cmdLoadSysparams);
             this.flowLayoutPanel1.Controls.Add(this.cmdChangePWD);
             this.flowLayoutPanel1.Controls.Add(this.cmdrelogin);
+            this.flowLayoutPanel1.Controls.Add(this.cmd_capnhat_chungthuso);
             this.flowLayoutPanel1.Controls.Add(this.cmdChucnangkhac);
             this.flowLayoutPanel1.Controls.Add(this.ucError1);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(966, 0);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(892, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(516, 40);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(590, 40);
             this.flowLayoutPanel1.TabIndex = 9;
             // 
             // cmdClose
@@ -364,7 +366,7 @@
             this.cmdClose.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdClose.Image = ((System.Drawing.Image)(resources.GetObject("cmdClose.Image")));
             this.cmdClose.ImageSize = new System.Drawing.Size(23, 23);
-            this.cmdClose.Location = new System.Drawing.Point(512, 3);
+            this.cmdClose.Location = new System.Drawing.Point(586, 3);
             this.cmdClose.Name = "cmdClose";
             this.cmdClose.Office2007ColorScheme = Janus.Windows.UI.Office2007ColorScheme.Custom;
             this.cmdClose.Office2007CustomColor = System.Drawing.Color.White;
@@ -380,7 +382,7 @@
             this.cmdHelp.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdHelp.Image = ((System.Drawing.Image)(resources.GetObject("cmdHelp.Image")));
             this.cmdHelp.ImageSize = new System.Drawing.Size(23, 23);
-            this.cmdHelp.Location = new System.Drawing.Point(506, 3);
+            this.cmdHelp.Location = new System.Drawing.Point(580, 3);
             this.cmdHelp.Name = "cmdHelp";
             this.cmdHelp.Office2007ColorScheme = Janus.Windows.UI.Office2007ColorScheme.Custom;
             this.cmdHelp.Office2007CustomColor = System.Drawing.Color.White;
@@ -396,7 +398,7 @@
             this.cmdLoadSysparams.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdLoadSysparams.Image = ((System.Drawing.Image)(resources.GetObject("cmdLoadSysparams.Image")));
             this.cmdLoadSysparams.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdLoadSysparams.Location = new System.Drawing.Point(387, 3);
+            this.cmdLoadSysparams.Location = new System.Drawing.Point(461, 3);
             this.cmdLoadSysparams.Name = "cmdLoadSysparams";
             this.cmdLoadSysparams.Office2007ColorScheme = Janus.Windows.UI.Office2007ColorScheme.Custom;
             this.cmdLoadSysparams.Office2007CustomColor = System.Drawing.Color.White;
@@ -414,7 +416,7 @@
             this.cmdChangePWD.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdChangePWD.Image = ((System.Drawing.Image)(resources.GetObject("cmdChangePWD.Image")));
             this.cmdChangePWD.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdChangePWD.Location = new System.Drawing.Point(259, 3);
+            this.cmdChangePWD.Location = new System.Drawing.Point(333, 3);
             this.cmdChangePWD.Name = "cmdChangePWD";
             this.cmdChangePWD.Office2007ColorScheme = Janus.Windows.UI.Office2007ColorScheme.Custom;
             this.cmdChangePWD.Office2007CustomColor = System.Drawing.Color.Red;
@@ -429,13 +431,28 @@
             this.cmdrelogin.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdrelogin.Image = ((System.Drawing.Image)(resources.GetObject("cmdrelogin.Image")));
             this.cmdrelogin.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdrelogin.Location = new System.Drawing.Point(128, 3);
+            this.cmdrelogin.Location = new System.Drawing.Point(202, 3);
             this.cmdrelogin.Name = "cmdrelogin";
             this.cmdrelogin.Office2007ColorScheme = Janus.Windows.UI.Office2007ColorScheme.Custom;
             this.cmdrelogin.Office2007CustomColor = System.Drawing.Color.Red;
             this.cmdrelogin.Size = new System.Drawing.Size(125, 35);
             this.cmdrelogin.TabIndex = 558;
             this.cmdrelogin.Text = "Đăng nhập lại";
+            // 
+            // cmd_capnhat_chungthuso
+            // 
+            this.cmd_capnhat_chungthuso.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmd_capnhat_chungthuso.ButtonStyle = Janus.Windows.EditControls.ButtonStyle.Button;
+            this.cmd_capnhat_chungthuso.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmd_capnhat_chungthuso.Image = ((System.Drawing.Image)(resources.GetObject("cmd_capnhat_chungthuso.Image")));
+            this.cmd_capnhat_chungthuso.ImageSize = new System.Drawing.Size(32, 32);
+            this.cmd_capnhat_chungthuso.Location = new System.Drawing.Point(154, 3);
+            this.cmd_capnhat_chungthuso.Name = "cmd_capnhat_chungthuso";
+            this.cmd_capnhat_chungthuso.Office2007ColorScheme = Janus.Windows.UI.Office2007ColorScheme.Custom;
+            this.cmd_capnhat_chungthuso.Office2007CustomColor = System.Drawing.Color.Red;
+            this.cmd_capnhat_chungthuso.Size = new System.Drawing.Size(42, 35);
+            this.cmd_capnhat_chungthuso.TabIndex = 560;
+            this.cmd_capnhat_chungthuso.Click += new System.EventHandler(this.cmd_capnhat_chungthuso_Click);
             // 
             // cmdChucnangkhac
             // 
@@ -444,13 +461,13 @@
             this.cmdChucnangkhac.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdChucnangkhac.Image = ((System.Drawing.Image)(resources.GetObject("cmdChucnangkhac.Image")));
             this.cmdChucnangkhac.ImageSize = new System.Drawing.Size(20, 20);
-            this.cmdChucnangkhac.Location = new System.Drawing.Point(9, 3);
+            this.cmdChucnangkhac.Location = new System.Drawing.Point(84, 3);
             this.cmdChucnangkhac.Name = "cmdChucnangkhac";
             this.cmdChucnangkhac.Office2007ColorScheme = Janus.Windows.UI.Office2007ColorScheme.Custom;
             this.cmdChucnangkhac.Office2007CustomColor = System.Drawing.Color.Red;
-            this.cmdChucnangkhac.Size = new System.Drawing.Size(113, 35);
+            this.cmdChucnangkhac.Size = new System.Drawing.Size(64, 35);
             this.cmdChucnangkhac.TabIndex = 557;
-            this.cmdChucnangkhac.Text = "More";
+            this.cmdChucnangkhac.Text = "...";
             this.cmdChucnangkhac.Click += new System.EventHandler(this.cmdThanhToan_Click);
             // 
             // ucError1
@@ -461,7 +478,7 @@
             this.ucError1.Color2 = System.Drawing.Color.Red;
             this.ucError1.EllapsedTime = 1000;
             this.ucError1.ErrText = "";
-            this.ucError1.Location = new System.Drawing.Point(478, 44);
+            this.ucError1.Location = new System.Drawing.Point(43, 3);
             this.ucError1.Name = "ucError1";
             this.ucError1.NumberofBrlink = 60;
             this.ucError1.Size = new System.Drawing.Size(35, 35);
@@ -634,7 +651,7 @@
             // pMain
             // 
             this.pMain.AutoHide = true;
-            this.pMain.CloseButtonVisible = Janus.Windows.UI.InheritableBoolean.True;
+            this.pMain.CloseButtonVisible = Janus.Windows.UI.InheritableBoolean.False;
             this.pMain.FloatingSize = new System.Drawing.Size(0, 0);
             this.pMain.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pMain.GroupStyle = Janus.Windows.UI.Dock.PanelGroupStyle.OutlookNavigator;
@@ -891,5 +908,6 @@
         private VNS.HIS.UCs.AutoCompleteTextbox txtFunction;
         private System.Windows.Forms.Timer timer3;
         private System.Windows.Forms.Timer tmrtoquit;
+        private Janus.Windows.EditControls.UIButton cmd_capnhat_chungthuso;
     }
 }

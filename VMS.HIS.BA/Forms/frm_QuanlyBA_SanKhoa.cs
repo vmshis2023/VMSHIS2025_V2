@@ -98,6 +98,7 @@ namespace VMS.HIS.UI.EMR
                   new Select().From(DmucChung.Schema)
                       .Where(DmucChung.Columns.Loai).IsEqualTo("EMR_LOAIBA")
                       .And(DmucChung.Columns.TrangThai).IsEqualTo(1)
+                        .And(DmucChung.Columns.Ma).IsEqualTo(lstLoaiBA)
                       .OrderAsc(DmucChung.Columns.SttHthi)
                       .ExecuteDataSet().Tables[0];
             if (dtData.Rows.Count > 1)
@@ -556,7 +557,7 @@ namespace VMS.HIS.UI.EMR
         }
         private void mnuInVoBA_Click(object sender, EventArgs e)
         {
-            
+            InitData4Print();
             clsInBA.InBA(objEmrBa.IdBa, objEmrBa.MaBa, objEmrBa.LoaiBa, objLuotkham, null, null, null, null, 0, false);
         }
 
@@ -609,6 +610,28 @@ namespace VMS.HIS.UI.EMR
             BA.m_enAct = action.Insert;
             BA._OnCreated += _OnCreated;
             BA.ShowDialog();
+        }
+
+        private void cmd_giaychungsinh_Click(object sender, EventArgs e)
+        {
+            frm_giaychungsinh giayxacnhan = new frm_giaychungsinh();
+            giayxacnhan.mv_blnCallFromMenu = false;
+            giayxacnhan.m_enAct = action.Update;
+            giayxacnhan.ucThongtinnguoibenh_emr_basic1.txtMaluotkham.Text = grdList.GetValue(KcbLuotkham.Columns.MaLuotkham).ToString();
+            giayxacnhan.ucThongtinnguoibenh_emr_basic1.Refresh();
+            giayxacnhan.ShowDialog();
+        }
+
+        private void cmd_hosotheodoi_sosinh_Click(object sender, EventArgs e)
+        {
+            frm_hoso_theodoi_sosinh _phieu = new frm_hoso_theodoi_sosinh();
+            _phieu.mv_blnCallFromMenu = false;
+            _phieu.m_enAct = action.Update;
+            objKcbLuotkham = Utility.getKcbLuotkham(grdList.CurrentRow);
+            _phieu.InitData(objKcbLuotkham, EmrHosoTheodoiSosinh.FetchByID(Utility.Int64Dbnull(grdList.GetValue("id"))));
+            _phieu.ucThongtinnguoibenh_emr_basic1.txtMaluotkham.Text = grdList.GetValue(KcbLuotkham.Columns.MaLuotkham).ToString();
+            _phieu.ucThongtinnguoibenh_emr_basic1.Refresh();
+            _phieu.ShowDialog();
         }
     }
 }

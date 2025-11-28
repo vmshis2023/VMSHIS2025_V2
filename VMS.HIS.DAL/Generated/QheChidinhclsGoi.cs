@@ -178,6 +178,19 @@ namespace VMS.HIS.DAL
 				colvarIdGoi.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarIdGoi);
 				
+				TableSchema.TableColumn colvarIdDangky = new TableSchema.TableColumn(schema);
+				colvarIdDangky.ColumnName = "id_dangky";
+				colvarIdDangky.DataType = DbType.Int32;
+				colvarIdDangky.MaxLength = 0;
+				colvarIdDangky.AutoIncrement = false;
+				colvarIdDangky.IsNullable = true;
+				colvarIdDangky.IsPrimaryKey = false;
+				colvarIdDangky.IsForeignKey = false;
+				colvarIdDangky.IsReadOnly = false;
+				colvarIdDangky.DefaultSetting = @"";
+				colvarIdDangky.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarIdDangky);
+				
 				TableSchema.TableColumn colvarSoTien = new TableSchema.TableColumn(schema);
 				colvarSoTien.ColumnName = "so_tien";
 				colvarSoTien.DataType = DbType.Decimal;
@@ -187,7 +200,8 @@ namespace VMS.HIS.DAL
 				colvarSoTien.IsPrimaryKey = false;
 				colvarSoTien.IsForeignKey = false;
 				colvarSoTien.IsReadOnly = false;
-				colvarSoTien.DefaultSetting = @"";
+				
+						colvarSoTien.DefaultSetting = @"((0))";
 				colvarSoTien.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarSoTien);
 				
@@ -259,6 +273,14 @@ namespace VMS.HIS.DAL
 			set { SetColumnValue(Columns.IdGoi, value); }
 		}
 		  
+		[XmlAttribute("IdDangky")]
+		[Bindable(true)]
+		public int? IdDangky 
+		{
+			get { return GetColumnValue<int?>(Columns.IdDangky); }
+			set { SetColumnValue(Columns.IdDangky, value); }
+		}
+		  
 		[XmlAttribute("SoTien")]
 		[Bindable(true)]
 		public decimal SoTien 
@@ -302,7 +324,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(long varIdChidinh,string varMaChidinh,int varIdGoi,decimal varSoTien,DateTime varNgayTao,string varNguoiTao)
+		public static void Insert(long varIdChidinh,string varMaChidinh,int varIdGoi,int? varIdDangky,decimal varSoTien,DateTime varNgayTao,string varNguoiTao)
 		{
 			QheChidinhclsGoi item = new QheChidinhclsGoi();
 			
@@ -311,6 +333,8 @@ namespace VMS.HIS.DAL
 			item.MaChidinh = varMaChidinh;
 			
 			item.IdGoi = varIdGoi;
+			
+			item.IdDangky = varIdDangky;
 			
 			item.SoTien = varSoTien;
 			
@@ -328,7 +352,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(long varId,long varIdChidinh,string varMaChidinh,int varIdGoi,decimal varSoTien,DateTime varNgayTao,string varNguoiTao)
+		public static void Update(long varId,long varIdChidinh,string varMaChidinh,int varIdGoi,int? varIdDangky,decimal varSoTien,DateTime varNgayTao,string varNguoiTao)
 		{
 			QheChidinhclsGoi item = new QheChidinhclsGoi();
 			
@@ -339,6 +363,8 @@ namespace VMS.HIS.DAL
 				item.MaChidinh = varMaChidinh;
 			
 				item.IdGoi = varIdGoi;
+			
+				item.IdDangky = varIdDangky;
 			
 				item.SoTien = varSoTien;
 			
@@ -387,23 +413,30 @@ namespace VMS.HIS.DAL
         
         
         
-        public static TableSchema.TableColumn SoTienColumn
+        public static TableSchema.TableColumn IdDangkyColumn
         {
             get { return Schema.Columns[4]; }
         }
         
         
         
-        public static TableSchema.TableColumn NgayTaoColumn
+        public static TableSchema.TableColumn SoTienColumn
         {
             get { return Schema.Columns[5]; }
         }
         
         
         
-        public static TableSchema.TableColumn NguoiTaoColumn
+        public static TableSchema.TableColumn NgayTaoColumn
         {
             get { return Schema.Columns[6]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn NguoiTaoColumn
+        {
+            get { return Schema.Columns[7]; }
         }
         
         
@@ -416,6 +449,7 @@ namespace VMS.HIS.DAL
 			 public static string IdChidinh = @"id_chidinh";
 			 public static string MaChidinh = @"ma_chidinh";
 			 public static string IdGoi = @"id_goi";
+			 public static string IdDangky = @"id_dangky";
 			 public static string SoTien = @"so_tien";
 			 public static string NgayTao = @"ngay_tao";
 			 public static string NguoiTao = @"nguoi_tao";

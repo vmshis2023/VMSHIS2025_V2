@@ -217,6 +217,11 @@ namespace VNS.HIS.UI.Baocao
             ShowGrid();
         }
 
+        private void cmdPrint_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
         private void radChuyenDen_CheckedChanged(object sender, EventArgs e)
         {
             ShowGrid();

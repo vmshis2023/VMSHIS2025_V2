@@ -122,6 +122,12 @@
     <Compile Include="frm_KCB_DSACH_BNHAN.designer.cs">
       <DependentUpon>frm_KCB_DSACH_BNHAN.cs</DependentUpon>
     </Compile>
+    <Compile Include="frm_KCB_KE_DONTHUOC_TAIQUAY_OLD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_KCB_KE_DONTHUOC_TAIQUAY_OLD.Designer.cs">
+      <DependentUpon>frm_KCB_KE_DONTHUOC_TAIQUAY_OLD.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm_KCB_THAMKHAM_V2.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -139,6 +145,12 @@
     </Compile>
     <Compile Include="frm_KCB_DANGKY_DICHVU.Designer.cs">
       <DependentUpon>frm_KCB_DANGKY_DICHVU.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_phatthuoc_ngoaitru_hongphat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_phatthuoc_ngoaitru_hongphat.Designer.cs">
+      <DependentUpon>frm_phatthuoc_ngoaitru_hongphat.cs</DependentUpon>
     </Compile>
     <Compile Include="frm_phatthuoc_tutruc.cs">
       <SubType>Form</SubType>
@@ -175,12 +187,6 @@
     </Compile>
     <Compile Include="frm_KCB_KeVacxin_Tiemchung.Designer.cs">
       <DependentUpon>frm_KCB_KeVacxin_Tiemchung.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frm_KCB_KE_DONTHUOC_TAIQUAY.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frm_KCB_KE_DONTHUOC_TAIQUAY.Designer.cs">
-      <DependentUpon>frm_KCB_KE_DONTHUOC_TAIQUAY.cs</DependentUpon>
     </Compile>
     <Compile Include="frm_KCB_Lapphieuhen_Tiemchung.cs">
       <SubType>Form</SubType>
@@ -268,6 +274,9 @@
     <EmbeddedResource Include="frm_KCB_DSACH_BNHAN.resx">
       <DependentUpon>frm_KCB_DSACH_BNHAN.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frm_KCB_KE_DONTHUOC_TAIQUAY_OLD.resx">
+      <DependentUpon>frm_KCB_KE_DONTHUOC_TAIQUAY_OLD.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm_KCB_THAMKHAM_V2.resx">
       <DependentUpon>frm_KCB_THAMKHAM_V2.cs</DependentUpon>
     </EmbeddedResource>
@@ -276,6 +285,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frm_KCB_DANGKY_DICHVU.resx">
       <DependentUpon>frm_KCB_DANGKY_DICHVU.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_phatthuoc_ngoaitru_hongphat.resx">
+      <DependentUpon>frm_phatthuoc_ngoaitru_hongphat.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_phatthuoc_tutruc.resx">
       <DependentUpon>frm_phatthuoc_tutruc.cs</DependentUpon>
@@ -296,9 +308,6 @@
     <EmbeddedResource Include="frm_KCB_KeVacxin_Tiemchung.resx">
       <DependentUpon>frm_KCB_KeVacxin_Tiemchung.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frm_KCB_KE_DONTHUOC_TAIQUAY.resx">
-      <DependentUpon>frm_KCB_KE_DONTHUOC_TAIQUAY.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_KCB_Lapphieuhen_Tiemchung.resx">
       <DependentUpon>frm_KCB_Lapphieuhen_Tiemchung.cs</DependentUpon>
@@ -376,9 +385,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\VMS.Emr\VMS.Emr\VMS.HIS.Bus.Emr.csproj">
+    <ProjectReference Include="..\VMS.Emr\VMS.Emr\9_0.VMS.HIS.Bus.Emr.csproj">
       <Project>{323d0245-5cd3-488a-8b83-edade85b3da4}</Project>
-      <Name>VMS.HIS.Bus.Emr</Name>
+      <Name>9_0.VMS.HIS.Bus.Emr</Name>
     </ProjectReference>
     <ProjectReference Include="..\VMS.HIS.BA\9_1.VMS.HIS.EMR.csproj">
       <Project>{0fb2fda1-6238-415d-afa9-acca3094c1d1}</Project>
@@ -621,6 +630,7 @@
     <Folder Include="Backup\240926_Load2Show\" />
     <Folder Include="Backup\250809\" />
     <Folder Include="Backup\250814\" />
+    <Folder Include="Backup\251102\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Add.png" />

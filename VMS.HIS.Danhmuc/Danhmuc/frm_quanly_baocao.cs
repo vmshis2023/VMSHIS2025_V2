@@ -45,6 +45,10 @@ namespace VNS.HIS.UI.DANHMUC
                 {
                      num = new Update(SysReport.Schema).Set(SysReport.Columns.MaPhieuEmr).EqualTo(colValue).Where(SysReport.Columns.MaBaocao).IsEqualTo(mabc).Execute();
                 }
+                if (colKey == SysReport.Columns.SttHthi)
+                {
+                    num = new Update(SysReport.Schema).Set(SysReport.Columns.SttHthi).EqualTo( Utility.Int32Dbnull(colValue,0)).Where(SysReport.Columns.MaBaocao).IsEqualTo(mabc).Execute();
+                }
                 else
                      num = new Update(SysReport.Schema).Set(colKey).EqualTo(colValue).Where(SysReport.Columns.MaBaocao).IsEqualTo(mabc).Execute();
                 grdList.UpdateData();

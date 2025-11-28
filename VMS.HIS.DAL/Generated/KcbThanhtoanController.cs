@@ -80,7 +80,7 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(string MaLuotkham,long IdBenhnhan,string MaDoituongKcb,short? IdDoituongKcb,short? IdLoaidoituongKcb,DateTime NgayThanhtoan,int IdNhanvienThanhtoan,string MaThanhtoan,byte KieuThanhtoan,int? TrangthaiIn,DateTime? NgayIn,string NguoiIn,DateTime? NgayTonghop,string NguoiTonghop,string MaKhoaThuchien,DateTime? NgayChot,byte? TrangthaiChot,decimal TongTien,decimal BhytChitra,decimal BnhanChitra,short? PtramBhyt,decimal TileChietkhau,string KieuChietkhau,decimal TongtienChietkhau,decimal? TongtienChietkhauHoadon,decimal? TongtienChietkhauChitiet,string MaLydoChietkhau,string LydoChietkhau,string NguoiTao,DateTime NgayTao,DateTime? NguoiSua,string NgaySua,int? IdCapphat,string MauHoadon,string KiHieu,string MaQuyen,string Serie,byte? TrangthaiSeri,long? IdHdonLog,byte NoiTru,string MaPttt,string IpMaytao,string IpMaysua,string TenMaytao,string TenMaysua,DateTime? NgayRavien,decimal? PhuThu,decimal? TuTuc,string MaLydoHuy,bool? TtoanThuoc,decimal? CkhauNguon,decimal? CkhauCong,string MaNganhang,int? IdGoi,int? IdDangky,DateTime? MaxNgayTao,string Ghichu,string MaCoso,byte? TtoanAo,byte? TrangThai,long? IdKetchuyen,int? IdCtrinhKhuyenmai,string MaVoucher,decimal? TienChietkhauVoucher,short? MucHuongBhyt,bool? TthaiXuatHddt,string TransactionId,string RefId,string UsedBy,bool? TthaiDangphathanh,string MotaThem)
+	    public void Insert(string MaLuotkham,long IdBenhnhan,string MaDoituongKcb,short? IdDoituongKcb,short? IdLoaidoituongKcb,DateTime NgayThanhtoan,int IdNhanvienThanhtoan,string MaThanhtoan,byte KieuThanhtoan,int? TrangthaiIn,DateTime? NgayIn,string NguoiIn,DateTime? NgayTonghop,string NguoiTonghop,string MaKhoaThuchien,DateTime? NgayChot,byte? TrangthaiChot,decimal TongTien,decimal BhytChitra,decimal BnhanChitra,short? PtramBhyt,decimal TileChietkhau,string KieuChietkhau,decimal TongtienChietkhau,decimal? TongtienChietkhauHoadon,decimal? TongtienChietkhauChitiet,string MaLydoChietkhau,string LydoChietkhau,string NguoiTao,DateTime NgayTao,DateTime? NguoiSua,string NgaySua,int? IdCapphat,string MauHoadon,string KiHieu,string MaQuyen,string Serie,byte? TrangthaiSeri,long? IdHdonLog,byte NoiTru,string MaPttt,string IpMaytao,string IpMaysua,string TenMaytao,string TenMaysua,DateTime? NgayRavien,decimal? PhuThu,decimal? TuTuc,string MaLydoHuy,bool? TtoanThuoc,decimal? CkhauNguon,decimal? CkhauCong,string MaNganhang,int? IdGoi,int? IdDangky,DateTime? MaxNgayTao,string Ghichu,string MaCoso,byte? TtoanAo,byte? TrangThai,long? IdKetchuyen,int? IdCtrinhKhuyenmai,string MaVoucher,decimal? TienChietkhauVoucher,short? MucHuongBhyt,bool? TthaiXuatHddt,string TransactionId,string RefId,string UsedBy,bool? TthaiDangphathanh,string MotaThem,decimal? TienHoanung,decimal? ThuaThieu,byte? ThanhtoanGhino)
 	    {
 		    KcbThanhtoan item = new KcbThanhtoan();
 		    
@@ -226,6 +226,12 @@ namespace VMS.HIS.DAL
             
             item.MotaThem = MotaThem;
             
+            item.TienHoanung = TienHoanung;
+            
+            item.ThuaThieu = ThuaThieu;
+            
+            item.ThanhtoanGhino = ThanhtoanGhino;
+            
 	    
 		    item.Save(UserName);
 	    }
@@ -234,7 +240,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(long IdThanhtoan,string MaLuotkham,long IdBenhnhan,string MaDoituongKcb,short? IdDoituongKcb,short? IdLoaidoituongKcb,DateTime NgayThanhtoan,int IdNhanvienThanhtoan,string MaThanhtoan,byte KieuThanhtoan,int? TrangthaiIn,DateTime? NgayIn,string NguoiIn,DateTime? NgayTonghop,string NguoiTonghop,string MaKhoaThuchien,DateTime? NgayChot,byte? TrangthaiChot,decimal TongTien,decimal BhytChitra,decimal BnhanChitra,short? PtramBhyt,decimal TileChietkhau,string KieuChietkhau,decimal TongtienChietkhau,decimal? TongtienChietkhauHoadon,decimal? TongtienChietkhauChitiet,string MaLydoChietkhau,string LydoChietkhau,string NguoiTao,DateTime NgayTao,DateTime? NguoiSua,string NgaySua,int? IdCapphat,string MauHoadon,string KiHieu,string MaQuyen,string Serie,byte? TrangthaiSeri,long? IdHdonLog,byte NoiTru,string MaPttt,string IpMaytao,string IpMaysua,string TenMaytao,string TenMaysua,DateTime? NgayRavien,decimal? PhuThu,decimal? TuTuc,string MaLydoHuy,bool? TtoanThuoc,decimal? CkhauNguon,decimal? CkhauCong,string MaNganhang,int? IdGoi,int? IdDangky,DateTime? MaxNgayTao,string Ghichu,string MaCoso,byte? TtoanAo,byte? TrangThai,long? IdKetchuyen,int? IdCtrinhKhuyenmai,string MaVoucher,decimal? TienChietkhauVoucher,short? MucHuongBhyt,bool? TthaiXuatHddt,string TransactionId,string RefId,string UsedBy,bool? TthaiDangphathanh,string MotaThem)
+	    public void Update(long IdThanhtoan,string MaLuotkham,long IdBenhnhan,string MaDoituongKcb,short? IdDoituongKcb,short? IdLoaidoituongKcb,DateTime NgayThanhtoan,int IdNhanvienThanhtoan,string MaThanhtoan,byte KieuThanhtoan,int? TrangthaiIn,DateTime? NgayIn,string NguoiIn,DateTime? NgayTonghop,string NguoiTonghop,string MaKhoaThuchien,DateTime? NgayChot,byte? TrangthaiChot,decimal TongTien,decimal BhytChitra,decimal BnhanChitra,short? PtramBhyt,decimal TileChietkhau,string KieuChietkhau,decimal TongtienChietkhau,decimal? TongtienChietkhauHoadon,decimal? TongtienChietkhauChitiet,string MaLydoChietkhau,string LydoChietkhau,string NguoiTao,DateTime NgayTao,DateTime? NguoiSua,string NgaySua,int? IdCapphat,string MauHoadon,string KiHieu,string MaQuyen,string Serie,byte? TrangthaiSeri,long? IdHdonLog,byte NoiTru,string MaPttt,string IpMaytao,string IpMaysua,string TenMaytao,string TenMaysua,DateTime? NgayRavien,decimal? PhuThu,decimal? TuTuc,string MaLydoHuy,bool? TtoanThuoc,decimal? CkhauNguon,decimal? CkhauCong,string MaNganhang,int? IdGoi,int? IdDangky,DateTime? MaxNgayTao,string Ghichu,string MaCoso,byte? TtoanAo,byte? TrangThai,long? IdKetchuyen,int? IdCtrinhKhuyenmai,string MaVoucher,decimal? TienChietkhauVoucher,short? MucHuongBhyt,bool? TthaiXuatHddt,string TransactionId,string RefId,string UsedBy,bool? TthaiDangphathanh,string MotaThem,decimal? TienHoanung,decimal? ThuaThieu,byte? ThanhtoanGhino)
 	    {
 		    KcbThanhtoan item = new KcbThanhtoan();
 	        item.MarkOld();
@@ -383,6 +389,12 @@ namespace VMS.HIS.DAL
 			item.TthaiDangphathanh = TthaiDangphathanh;
 				
 			item.MotaThem = MotaThem;
+				
+			item.TienHoanung = TienHoanung;
+				
+			item.ThuaThieu = ThuaThieu;
+				
+			item.ThanhtoanGhino = ThanhtoanGhino;
 				
 	        item.Save(UserName);
 	    }

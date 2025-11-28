@@ -196,8 +196,9 @@ namespace VNS.HIS.BusRule.Classes
                     return ActionResult.Success;
                 }
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
+                Utility.CatchException(ex);
                 return ActionResult.Error;
             }
         }
@@ -332,7 +333,7 @@ namespace VNS.HIS.BusRule.Classes
                                     objChidinh.DaBangiaomau, objChidinh.LuongmauHoaly, objChidinh.LuongmauVisinh,
                                     objChidinh.LuongmauGui
                                     , objChidinh.LuuMau, objChidinh.DieukienLuumau, objChidinh.ThanhlyMau,
-                                    objChidinh.NgayThanhly, objChidinh.NguoiThanhly, objChidinh.LoaiPhieu, objChidinh.LastActionName, objChidinh.MaCoso);
+                                    objChidinh.NgayThanhly, objChidinh.NguoiThanhly, objChidinh.LoaiPhieu, objChidinh.LastActionName, objChidinh.MaCoso, objChidinh.ChidinhTudongTheoCongkham);
                                 sp.Execute();
                                 log.Trace("0.3 Da thuc hien xong cau SP");
                                 objChidinh.IdChidinh = Utility.Int64Dbnull(sp.OutputValues[0]);
@@ -343,21 +344,27 @@ namespace VNS.HIS.BusRule.Classes
                                 log.Trace("2. Da them moi chi tiet chi dinh CLS");
                                 ActionResult result=ActionResult.Success;
                                 //Xử lý tự thanh toán cho gói trừ đuổi(gói thai sản dùng cho nhiều đợt khám)
-                                //if (lstDichvutronggoi.Count > 0)
-                                //{
-                                //    foreach (int id_dangky in lst_id_dangky)
-                                //    {
-                                //        GoiDangki objgoiDK = GoiDangki.FetchByID(id_dangky);
-                                //        if (objgoiDK != null )
-                                //            result = new clsGoikham().ThanhToanGoi(objLuotkham, lstDichvutronggoi, 2, objgoiDK.IdDangky, objgoiDK.IdGoi, Utility.ByteDbnull(objLuotkham.Noitru), ref ErrMsg);
-                                //        if (result != ActionResult.Success) return result;
-                                //    }
-                                //}
-                                if (lst_id_goi.Count>0 && lst_id_dangky.Count<=0)//Gói mổ BV mắt(dùng 1 lần)
+                                if (lstDichvutronggoi.Count > 0)
                                 {
-                                    foreach(int id_goi in lst_id_goi)
-                                    new clsGoikham().ThemGoiKham_BVM(objChidinh, (int)objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, id_goi,DateTime.Now);
-                                }    
+                                    foreach (int id_dangky in lst_id_dangky)
+                                    {
+                                        GoiDangki objgoiDK = GoiDangki.FetchByID(id_dangky);
+                                        if (objgoiDK != null)
+                                            result = new clsGoikham().ThanhToanGoi(objLuotkham, lstDichvutronggoi, 2, objgoiDK.IdDangky, objgoiDK.IdGoi, Utility.ByteDbnull(objLuotkham.Noitru), ref ErrMsg);
+                                        if (result != ActionResult.Success) return result;
+                                    }
+                                }
+                                if (lst_id_goi.Count > 0 && lst_id_dangky.Count <= 0)//Gói mổ BV mắt(dùng 1 lần)
+                                {
+                                    foreach (int id_goi in lst_id_goi)
+                                    {
+                                        GoiDanhsach objGoi = GoiDanhsach.FetchByID(id_goi);
+                                        if (objGoi != null && objGoi.KieuGoi == 0)
+                                        {
+                                            new clsGoikham().ThemGoiKham_BVM(objChidinh, (int)objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, id_goi, DateTime.Now);
+                                        }
+                                    }
+                                }
                             }
                             else
                             {
@@ -426,7 +433,7 @@ namespace VNS.HIS.BusRule.Classes
                                     objChidinh.DaBangiaomau, objChidinh.LuongmauHoaly, objChidinh.LuongmauVisinh,
                                     objChidinh.LuongmauGui
                                     , objChidinh.LuuMau, objChidinh.DieukienLuumau, objChidinh.ThanhlyMau,
-                                    objChidinh.NgayThanhly, objChidinh.NguoiThanhly, objChidinh.LoaiPhieu, objChidinh.LastActionName, objChidinh.MaCoso);
+                                    objChidinh.NgayThanhly, objChidinh.NguoiThanhly, objChidinh.LoaiPhieu, objChidinh.LastActionName, objChidinh.MaCoso, objChidinh.ChidinhTudongTheoCongkham);
                                 sp.Execute();
                                 log.Trace("0.3 Da thuc hien xong cau SP");
                                 objChidinh.IdChidinh = Utility.Int64Dbnull(sp.OutputValues[0]);
@@ -511,6 +518,7 @@ namespace VNS.HIS.BusRule.Classes
             using (var scope = new TransactionScope())
             {
                 if (objLuotkham == null) return;
+                bool coquanhe = false;
                 foreach (KcbChidinhclsChitiet objChidinhCtiet in assignDetail)
                 {
                     log.Info("1.1 Them moi thong tin cua phieu chi dinh chi tiet voi ma phieu Id_chidinh=" +
@@ -555,12 +563,12 @@ namespace VNS.HIS.BusRule.Classes
                             objChidinhCtiet.NguonThanhtoan, objChidinhCtiet.IpMaytao, objChidinhCtiet.TenMaytao
                             , objChidinhCtiet.MahoaMau, objChidinhCtiet.MauUutien, objChidinhCtiet.NgayhenTrakq, objChidinhCtiet.TinhChkhau, objLuotkham.IdThe, objChidinhCtiet.IdDangky
                             , objChidinhCtiet.BhytNguonKhac, objChidinhCtiet.BhytGiaTyle, objChidinhCtiet.BnTtt, objChidinhCtiet.BnCct, objChidinhCtiet.ChophepDenghiMg, objChidinhCtiet.TyleMg
-                            );
+                            , objChidinhCtiet.NgoaiGio);
                         sp.Execute();
                         objChidinhCtiet.IdChitietchidinh = Utility.Int64Dbnull(sp.OutputValues[0]);
                         objChidinhCtiet.MahoaMau = Utility.sDbnull(sp.OutputValues[1]);
                         //đẩy vào bảng quan he
-                        if(objChidinhCtiet.IdGoi>0)
+                        if(objChidinhCtiet.IdGoi>0 && !coquanhe)
                         {
                             GoiDanhsach _goi = GoiDanhsach.FetchByID(objChidinhCtiet.IdGoi);
                             if (_goi != null)
@@ -575,11 +583,14 @@ namespace VNS.HIS.BusRule.Classes
                                     _newitem.IdChidinh = objChidinhCtiet.IdChidinh;
                                     _newitem.MaChidinh = objChidinh.MaChidinh;
                                     _newitem.IdGoi = Utility.Int32Dbnull(objChidinhCtiet.IdGoi);
+                                    _newitem.IdDangky = Utility.Int32Dbnull(objChidinhCtiet.IdDangky);
                                     _newitem.SoTien = _goi.SoTien;
                                     _newitem.NgayTao = objChidinh.NgayTao.Value;
                                     _newitem.NguoiTao = objChidinh.NguoiTao;
                                     _newitem.Save();
                                 }
+                                else
+                                    coquanhe = true;
                             }
                         }    
                         

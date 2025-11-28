@@ -1285,5 +1285,10 @@ namespace VNS.HIS.UI.NGOAITRU
             }
         }
         #endregion
+
+        private void cmdSave_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -30,12 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_SpecialPass));
             this.lblPwd = new System.Windows.Forms.Label();
-            this.cmdAccept = new System.Windows.Forms.Button();
-            this.cmdCancel = new System.Windows.Forms.Button();
             this.txtpwd = new System.Windows.Forms.TextBox();
             this.lblMsg = new System.Windows.Forms.Label();
             this.lbltitle = new System.Windows.Forms.Label();
+            this.cmdCancel = new System.Windows.Forms.Button();
             this.txtShowHidePwd = new System.Windows.Forms.Label();
+            this.cmdAccept = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblPwd
@@ -46,35 +46,6 @@
             this.lblPwd.Size = new System.Drawing.Size(66, 16);
             this.lblPwd.TabIndex = 2;
             this.lblPwd.Text = "Mật khẩu:";
-            // 
-            // cmdAccept
-            // 
-            this.cmdAccept.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cmdAccept.Image = ((System.Drawing.Image)(resources.GetObject("cmdAccept.Image")));
-            this.cmdAccept.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdAccept.Location = new System.Drawing.Point(208, 93);
-            this.cmdAccept.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cmdAccept.Name = "cmdAccept";
-            this.cmdAccept.Size = new System.Drawing.Size(120, 35);
-            this.cmdAccept.TabIndex = 1;
-            this.cmdAccept.Text = "Ok";
-            this.cmdAccept.UseVisualStyleBackColor = true;
-            this.cmdAccept.Click += new System.EventHandler(this.cmdAccept_Click);
-            // 
-            // cmdCancel
-            // 
-            this.cmdCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cmdCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cmdCancel.Image = ((System.Drawing.Image)(resources.GetObject("cmdCancel.Image")));
-            this.cmdCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdCancel.Location = new System.Drawing.Point(334, 93);
-            this.cmdCancel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cmdCancel.Name = "cmdCancel";
-            this.cmdCancel.Size = new System.Drawing.Size(120, 35);
-            this.cmdCancel.TabIndex = 2;
-            this.cmdCancel.Text = "Thoát(Esc)";
-            this.cmdCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cmdCancel.UseVisualStyleBackColor = true;
             // 
             // txtpwd
             // 
@@ -103,6 +74,21 @@
             this.lbltitle.TabIndex = 6;
             this.lbltitle.Text = "Nhập mật khẩu đặc biệt";
             // 
+            // cmdCancel
+            // 
+            this.cmdCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.cmdCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmdCancel.Image = ((System.Drawing.Image)(resources.GetObject("cmdCancel.Image")));
+            this.cmdCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdCancel.Location = new System.Drawing.Point(334, 93);
+            this.cmdCancel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cmdCancel.Name = "cmdCancel";
+            this.cmdCancel.Size = new System.Drawing.Size(120, 35);
+            this.cmdCancel.TabIndex = 2;
+            this.cmdCancel.Text = "Thoát(Esc)";
+            this.cmdCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cmdCancel.UseVisualStyleBackColor = true;
+            // 
             // txtShowHidePwd
             // 
             this.txtShowHidePwd.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -113,6 +99,21 @@
             this.txtShowHidePwd.Size = new System.Drawing.Size(28, 23);
             this.txtShowHidePwd.TabIndex = 627;
             this.txtShowHidePwd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.txtShowHidePwd.Click += new System.EventHandler(this.txtShowHidePwd_Click);
+            // 
+            // cmdAccept
+            // 
+            this.cmdAccept.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmdAccept.Image = ((System.Drawing.Image)(resources.GetObject("cmdAccept.Image")));
+            this.cmdAccept.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdAccept.Location = new System.Drawing.Point(208, 93);
+            this.cmdAccept.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cmdAccept.Name = "cmdAccept";
+            this.cmdAccept.Size = new System.Drawing.Size(120, 35);
+            this.cmdAccept.TabIndex = 1;
+            this.cmdAccept.Text = "Ok";
+            this.cmdAccept.UseVisualStyleBackColor = true;
+            this.cmdAccept.Click += new System.EventHandler(this.cmdAccept_Click);
             // 
             // frm_SpecialPass
             // 

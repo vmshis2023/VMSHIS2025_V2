@@ -350,6 +350,32 @@ namespace VMS.HIS.DAL
 				colvarLoaiPhanbo.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarLoaiPhanbo);
 				
+				TableSchema.TableColumn colvarIdTnv = new TableSchema.TableColumn(schema);
+				colvarIdTnv.ColumnName = "id_tnv";
+				colvarIdTnv.DataType = DbType.Int32;
+				colvarIdTnv.MaxLength = 0;
+				colvarIdTnv.AutoIncrement = false;
+				colvarIdTnv.IsNullable = true;
+				colvarIdTnv.IsPrimaryKey = false;
+				colvarIdTnv.IsForeignKey = false;
+				colvarIdTnv.IsReadOnly = false;
+				colvarIdTnv.DefaultSetting = @"";
+				colvarIdTnv.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarIdTnv);
+				
+				TableSchema.TableColumn colvarMaTnv = new TableSchema.TableColumn(schema);
+				colvarMaTnv.ColumnName = "ma_tnv";
+				colvarMaTnv.DataType = DbType.String;
+				colvarMaTnv.MaxLength = 30;
+				colvarMaTnv.AutoIncrement = false;
+				colvarMaTnv.IsNullable = true;
+				colvarMaTnv.IsPrimaryKey = false;
+				colvarMaTnv.IsForeignKey = false;
+				colvarMaTnv.IsReadOnly = false;
+				colvarMaTnv.DefaultSetting = @"";
+				colvarMaTnv.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarMaTnv);
+				
 				BaseSchema = schema;
 				//add this schema to the provider
 				//so we can query it later
@@ -495,6 +521,22 @@ namespace VMS.HIS.DAL
 			get { return GetColumnValue<byte?>(Columns.LoaiPhanbo); }
 			set { SetColumnValue(Columns.LoaiPhanbo, value); }
 		}
+		  
+		[XmlAttribute("IdTnv")]
+		[Bindable(true)]
+		public int? IdTnv 
+		{
+			get { return GetColumnValue<int?>(Columns.IdTnv); }
+			set { SetColumnValue(Columns.IdTnv, value); }
+		}
+		  
+		[XmlAttribute("MaTnv")]
+		[Bindable(true)]
+		public string MaTnv 
+		{
+			get { return GetColumnValue<string>(Columns.MaTnv); }
+			set { SetColumnValue(Columns.MaTnv, value); }
+		}
 		
 		#endregion
 		
@@ -515,7 +557,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(long? varIdThanhtoan,string varMaPttt,long varIdBenhnhan,string varMaLuotkham,byte varNoiTru,decimal varTongTien,decimal varSoTien,string varNguoiTao,DateTime varNgayTao,string varNguoiSua,DateTime? varNgaySua,string varMaNganhang,long? varIdPhieuthu,long? varIdTamung,byte? varTthaiHuy,byte? varLoaiPhanbo)
+		public static void Insert(long? varIdThanhtoan,string varMaPttt,long varIdBenhnhan,string varMaLuotkham,byte varNoiTru,decimal varTongTien,decimal varSoTien,string varNguoiTao,DateTime varNgayTao,string varNguoiSua,DateTime? varNgaySua,string varMaNganhang,long? varIdPhieuthu,long? varIdTamung,byte? varTthaiHuy,byte? varLoaiPhanbo,int? varIdTnv,string varMaTnv)
 		{
 			KcbThanhtoanPhanbotheoPTTT item = new KcbThanhtoanPhanbotheoPTTT();
 			
@@ -551,6 +593,10 @@ namespace VMS.HIS.DAL
 			
 			item.LoaiPhanbo = varLoaiPhanbo;
 			
+			item.IdTnv = varIdTnv;
+			
+			item.MaTnv = varMaTnv;
+			
 		
 			if (System.Web.HttpContext.Current != null)
 				item.Save(System.Web.HttpContext.Current.User.Identity.Name);
@@ -561,7 +607,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(long? varIdThanhtoan,string varMaPttt,long varIdBenhnhan,string varMaLuotkham,byte varNoiTru,decimal varTongTien,decimal varSoTien,string varNguoiTao,DateTime varNgayTao,string varNguoiSua,DateTime? varNgaySua,string varMaNganhang,long varId,long? varIdPhieuthu,long? varIdTamung,byte? varTthaiHuy,byte? varLoaiPhanbo)
+		public static void Update(long? varIdThanhtoan,string varMaPttt,long varIdBenhnhan,string varMaLuotkham,byte varNoiTru,decimal varTongTien,decimal varSoTien,string varNguoiTao,DateTime varNgayTao,string varNguoiSua,DateTime? varNgaySua,string varMaNganhang,long varId,long? varIdPhieuthu,long? varIdTamung,byte? varTthaiHuy,byte? varLoaiPhanbo,int? varIdTnv,string varMaTnv)
 		{
 			KcbThanhtoanPhanbotheoPTTT item = new KcbThanhtoanPhanbotheoPTTT();
 			
@@ -598,6 +644,10 @@ namespace VMS.HIS.DAL
 				item.TthaiHuy = varTthaiHuy;
 			
 				item.LoaiPhanbo = varLoaiPhanbo;
+			
+				item.IdTnv = varIdTnv;
+			
+				item.MaTnv = varMaTnv;
 			
 			item.IsNew = false;
 			if (System.Web.HttpContext.Current != null)
@@ -731,6 +781,20 @@ namespace VMS.HIS.DAL
         
         
         
+        public static TableSchema.TableColumn IdTnvColumn
+        {
+            get { return Schema.Columns[17]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn MaTnvColumn
+        {
+            get { return Schema.Columns[18]; }
+        }
+        
+        
+        
         #endregion
 		#region Columns Struct
 		public struct Columns
@@ -752,6 +816,8 @@ namespace VMS.HIS.DAL
 			 public static string IdTamung = @"id_tamung";
 			 public static string TthaiHuy = @"tthai_huy";
 			 public static string LoaiPhanbo = @"loai_phanbo";
+			 public static string IdTnv = @"id_tnv";
+			 public static string MaTnv = @"ma_tnv";
 						
 		}
 		#endregion

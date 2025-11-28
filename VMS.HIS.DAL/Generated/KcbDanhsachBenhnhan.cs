@@ -635,19 +635,6 @@ namespace VMS.HIS.DAL
 				colvarMaBenhnhan.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarMaBenhnhan);
 				
-				TableSchema.TableColumn colvarSoLo = new TableSchema.TableColumn(schema);
-				colvarSoLo.ColumnName = "so_lo";
-				colvarSoLo.DataType = DbType.String;
-				colvarSoLo.MaxLength = 50;
-				colvarSoLo.AutoIncrement = false;
-				colvarSoLo.IsNullable = true;
-				colvarSoLo.IsPrimaryKey = false;
-				colvarSoLo.IsForeignKey = false;
-				colvarSoLo.IsReadOnly = false;
-				colvarSoLo.DefaultSetting = @"";
-				colvarSoLo.ForeignKeyTableName = "";
-				schema.Columns.Add(colvarSoLo);
-				
 				TableSchema.TableColumn colvarLastNoigioithieu = new TableSchema.TableColumn(schema);
 				colvarLastNoigioithieu.ColumnName = "Last_Noigioithieu";
 				colvarLastNoigioithieu.DataType = DbType.String;
@@ -751,6 +738,71 @@ namespace VMS.HIS.DAL
 				colvarPassPost.DefaultSetting = @"";
 				colvarPassPost.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarPassPost);
+				
+				TableSchema.TableColumn colvarMaNhanvien = new TableSchema.TableColumn(schema);
+				colvarMaNhanvien.ColumnName = "ma_nhanvien";
+				colvarMaNhanvien.DataType = DbType.String;
+				colvarMaNhanvien.MaxLength = 30;
+				colvarMaNhanvien.AutoIncrement = false;
+				colvarMaNhanvien.IsNullable = true;
+				colvarMaNhanvien.IsPrimaryKey = false;
+				colvarMaNhanvien.IsForeignKey = false;
+				colvarMaNhanvien.IsReadOnly = false;
+				colvarMaNhanvien.DefaultSetting = @"";
+				colvarMaNhanvien.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarMaNhanvien);
+				
+				TableSchema.TableColumn colvarIdCongty = new TableSchema.TableColumn(schema);
+				colvarIdCongty.ColumnName = "id_congty";
+				colvarIdCongty.DataType = DbType.Int64;
+				colvarIdCongty.MaxLength = 0;
+				colvarIdCongty.AutoIncrement = false;
+				colvarIdCongty.IsNullable = true;
+				colvarIdCongty.IsPrimaryKey = false;
+				colvarIdCongty.IsForeignKey = false;
+				colvarIdCongty.IsReadOnly = false;
+				colvarIdCongty.DefaultSetting = @"";
+				colvarIdCongty.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarIdCongty);
+				
+				TableSchema.TableColumn colvarIdHopdong = new TableSchema.TableColumn(schema);
+				colvarIdHopdong.ColumnName = "id_hopdong";
+				colvarIdHopdong.DataType = DbType.Int64;
+				colvarIdHopdong.MaxLength = 0;
+				colvarIdHopdong.AutoIncrement = false;
+				colvarIdHopdong.IsNullable = true;
+				colvarIdHopdong.IsPrimaryKey = false;
+				colvarIdHopdong.IsForeignKey = false;
+				colvarIdHopdong.IsReadOnly = false;
+				colvarIdHopdong.DefaultSetting = @"";
+				colvarIdHopdong.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarIdHopdong);
+				
+				TableSchema.TableColumn colvarIdSolo = new TableSchema.TableColumn(schema);
+				colvarIdSolo.ColumnName = "id_solo";
+				colvarIdSolo.DataType = DbType.Int64;
+				colvarIdSolo.MaxLength = 0;
+				colvarIdSolo.AutoIncrement = false;
+				colvarIdSolo.IsNullable = true;
+				colvarIdSolo.IsPrimaryKey = false;
+				colvarIdSolo.IsForeignKey = false;
+				colvarIdSolo.IsReadOnly = false;
+				colvarIdSolo.DefaultSetting = @"";
+				colvarIdSolo.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarIdSolo);
+				
+				TableSchema.TableColumn colvarSoLo = new TableSchema.TableColumn(schema);
+				colvarSoLo.ColumnName = "so_lo";
+				colvarSoLo.DataType = DbType.String;
+				colvarSoLo.MaxLength = 50;
+				colvarSoLo.AutoIncrement = false;
+				colvarSoLo.IsNullable = true;
+				colvarSoLo.IsPrimaryKey = false;
+				colvarSoLo.IsForeignKey = false;
+				colvarSoLo.IsReadOnly = false;
+				colvarSoLo.DefaultSetting = @"";
+				colvarSoLo.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarSoLo);
 				
 				BaseSchema = schema;
 				//add this schema to the provider
@@ -1074,14 +1126,6 @@ namespace VMS.HIS.DAL
 			set { SetColumnValue(Columns.MaBenhnhan, value); }
 		}
 		  
-		[XmlAttribute("SoLo")]
-		[Bindable(true)]
-		public string SoLo 
-		{
-			get { return GetColumnValue<string>(Columns.SoLo); }
-			set { SetColumnValue(Columns.SoLo, value); }
-		}
-		  
 		[XmlAttribute("LastNoigioithieu")]
 		[Bindable(true)]
 		public string LastNoigioithieu 
@@ -1145,6 +1189,46 @@ namespace VMS.HIS.DAL
 			get { return GetColumnValue<string>(Columns.PassPost); }
 			set { SetColumnValue(Columns.PassPost, value); }
 		}
+		  
+		[XmlAttribute("MaNhanvien")]
+		[Bindable(true)]
+		public string MaNhanvien 
+		{
+			get { return GetColumnValue<string>(Columns.MaNhanvien); }
+			set { SetColumnValue(Columns.MaNhanvien, value); }
+		}
+		  
+		[XmlAttribute("IdCongty")]
+		[Bindable(true)]
+		public long? IdCongty 
+		{
+			get { return GetColumnValue<long?>(Columns.IdCongty); }
+			set { SetColumnValue(Columns.IdCongty, value); }
+		}
+		  
+		[XmlAttribute("IdHopdong")]
+		[Bindable(true)]
+		public long? IdHopdong 
+		{
+			get { return GetColumnValue<long?>(Columns.IdHopdong); }
+			set { SetColumnValue(Columns.IdHopdong, value); }
+		}
+		  
+		[XmlAttribute("IdSolo")]
+		[Bindable(true)]
+		public long? IdSolo 
+		{
+			get { return GetColumnValue<long?>(Columns.IdSolo); }
+			set { SetColumnValue(Columns.IdSolo, value); }
+		}
+		  
+		[XmlAttribute("SoLo")]
+		[Bindable(true)]
+		public string SoLo 
+		{
+			get { return GetColumnValue<string>(Columns.SoLo); }
+			set { SetColumnValue(Columns.SoLo, value); }
+		}
 		
 		#endregion
 		
@@ -1165,7 +1249,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(string varTenBenhnhan,string varDiaChi,string varMaTinhThanhpho,string varMaQuanhuyen,DateTime? varNgaySinh,short? varNamSinh,byte? varIdGioitinh,string varGioiTinh,string varNgheNghiep,string varCoQuan,string varCmt,string varMaQuocgia,string varDienThoai,string varEmail,DateTime varNgayTiepdon,string varNguoiTiepdon,string varDanToc,string varTonGiao,DateTime? varNgaySua,DateTime? varNgayTao,string varNguoiSua,string varNguoiTao,string varDiachiBhyt,string varNguonGoc,byte? varKieuBenhnhan,byte? varMacDinh,string varIpMaytao,string varIpMaysua,string varTenMaytao,string varTenMaysua,string varDiachiLienhe,string varDienthoaiLienhe,string varFax,string varNguoiLienhe,string varSoTiemchungQg,string varLastActionName,string varChucVu,string varMaBenhnhan,string varSoLo,string varLastNoigioithieu,string varFirstNoigioithieu,string varCanhBao,string varSonhaDuongpho,string varMaXaphuong,string varNhomMau,string varMasoThue,string varPassPost)
+		public static void Insert(string varTenBenhnhan,string varDiaChi,string varMaTinhThanhpho,string varMaQuanhuyen,DateTime? varNgaySinh,short? varNamSinh,byte? varIdGioitinh,string varGioiTinh,string varNgheNghiep,string varCoQuan,string varCmt,string varMaQuocgia,string varDienThoai,string varEmail,DateTime varNgayTiepdon,string varNguoiTiepdon,string varDanToc,string varTonGiao,DateTime? varNgaySua,DateTime? varNgayTao,string varNguoiSua,string varNguoiTao,string varDiachiBhyt,string varNguonGoc,byte? varKieuBenhnhan,byte? varMacDinh,string varIpMaytao,string varIpMaysua,string varTenMaytao,string varTenMaysua,string varDiachiLienhe,string varDienthoaiLienhe,string varFax,string varNguoiLienhe,string varSoTiemchungQg,string varLastActionName,string varChucVu,string varMaBenhnhan,string varLastNoigioithieu,string varFirstNoigioithieu,string varCanhBao,string varSonhaDuongpho,string varMaXaphuong,string varNhomMau,string varMasoThue,string varPassPost,string varMaNhanvien,long? varIdCongty,long? varIdHopdong,long? varIdSolo,string varSoLo)
 		{
 			KcbDanhsachBenhnhan item = new KcbDanhsachBenhnhan();
 			
@@ -1245,8 +1329,6 @@ namespace VMS.HIS.DAL
 			
 			item.MaBenhnhan = varMaBenhnhan;
 			
-			item.SoLo = varSoLo;
-			
 			item.LastNoigioithieu = varLastNoigioithieu;
 			
 			item.FirstNoigioithieu = varFirstNoigioithieu;
@@ -1263,6 +1345,16 @@ namespace VMS.HIS.DAL
 			
 			item.PassPost = varPassPost;
 			
+			item.MaNhanvien = varMaNhanvien;
+			
+			item.IdCongty = varIdCongty;
+			
+			item.IdHopdong = varIdHopdong;
+			
+			item.IdSolo = varIdSolo;
+			
+			item.SoLo = varSoLo;
+			
 		
 			if (System.Web.HttpContext.Current != null)
 				item.Save(System.Web.HttpContext.Current.User.Identity.Name);
@@ -1273,7 +1365,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(long varIdBenhnhan,string varTenBenhnhan,string varDiaChi,string varMaTinhThanhpho,string varMaQuanhuyen,DateTime? varNgaySinh,short? varNamSinh,byte? varIdGioitinh,string varGioiTinh,string varNgheNghiep,string varCoQuan,string varCmt,string varMaQuocgia,string varDienThoai,string varEmail,DateTime varNgayTiepdon,string varNguoiTiepdon,string varDanToc,string varTonGiao,DateTime? varNgaySua,DateTime? varNgayTao,string varNguoiSua,string varNguoiTao,string varDiachiBhyt,string varNguonGoc,byte? varKieuBenhnhan,byte? varMacDinh,string varIpMaytao,string varIpMaysua,string varTenMaytao,string varTenMaysua,string varDiachiLienhe,string varDienthoaiLienhe,string varFax,string varNguoiLienhe,string varSoTiemchungQg,string varLastActionName,string varChucVu,string varMaBenhnhan,string varSoLo,string varLastNoigioithieu,string varFirstNoigioithieu,string varCanhBao,string varSonhaDuongpho,string varMaXaphuong,string varNhomMau,string varMasoThue,string varPassPost)
+		public static void Update(long varIdBenhnhan,string varTenBenhnhan,string varDiaChi,string varMaTinhThanhpho,string varMaQuanhuyen,DateTime? varNgaySinh,short? varNamSinh,byte? varIdGioitinh,string varGioiTinh,string varNgheNghiep,string varCoQuan,string varCmt,string varMaQuocgia,string varDienThoai,string varEmail,DateTime varNgayTiepdon,string varNguoiTiepdon,string varDanToc,string varTonGiao,DateTime? varNgaySua,DateTime? varNgayTao,string varNguoiSua,string varNguoiTao,string varDiachiBhyt,string varNguonGoc,byte? varKieuBenhnhan,byte? varMacDinh,string varIpMaytao,string varIpMaysua,string varTenMaytao,string varTenMaysua,string varDiachiLienhe,string varDienthoaiLienhe,string varFax,string varNguoiLienhe,string varSoTiemchungQg,string varLastActionName,string varChucVu,string varMaBenhnhan,string varLastNoigioithieu,string varFirstNoigioithieu,string varCanhBao,string varSonhaDuongpho,string varMaXaphuong,string varNhomMau,string varMasoThue,string varPassPost,string varMaNhanvien,long? varIdCongty,long? varIdHopdong,long? varIdSolo,string varSoLo)
 		{
 			KcbDanhsachBenhnhan item = new KcbDanhsachBenhnhan();
 			
@@ -1355,8 +1447,6 @@ namespace VMS.HIS.DAL
 			
 				item.MaBenhnhan = varMaBenhnhan;
 			
-				item.SoLo = varSoLo;
-			
 				item.LastNoigioithieu = varLastNoigioithieu;
 			
 				item.FirstNoigioithieu = varFirstNoigioithieu;
@@ -1372,6 +1462,16 @@ namespace VMS.HIS.DAL
 				item.MasoThue = varMasoThue;
 			
 				item.PassPost = varPassPost;
+			
+				item.MaNhanvien = varMaNhanvien;
+			
+				item.IdCongty = varIdCongty;
+			
+				item.IdHopdong = varIdHopdong;
+			
+				item.IdSolo = varIdSolo;
+			
+				item.SoLo = varSoLo;
 			
 			item.IsNew = false;
 			if (System.Web.HttpContext.Current != null)
@@ -1659,65 +1759,93 @@ namespace VMS.HIS.DAL
         
         
         
-        public static TableSchema.TableColumn SoLoColumn
+        public static TableSchema.TableColumn LastNoigioithieuColumn
         {
             get { return Schema.Columns[39]; }
         }
         
         
         
-        public static TableSchema.TableColumn LastNoigioithieuColumn
+        public static TableSchema.TableColumn FirstNoigioithieuColumn
         {
             get { return Schema.Columns[40]; }
         }
         
         
         
-        public static TableSchema.TableColumn FirstNoigioithieuColumn
+        public static TableSchema.TableColumn CanhBaoColumn
         {
             get { return Schema.Columns[41]; }
         }
         
         
         
-        public static TableSchema.TableColumn CanhBaoColumn
+        public static TableSchema.TableColumn SonhaDuongphoColumn
         {
             get { return Schema.Columns[42]; }
         }
         
         
         
-        public static TableSchema.TableColumn SonhaDuongphoColumn
+        public static TableSchema.TableColumn MaXaphuongColumn
         {
             get { return Schema.Columns[43]; }
         }
         
         
         
-        public static TableSchema.TableColumn MaXaphuongColumn
+        public static TableSchema.TableColumn NhomMauColumn
         {
             get { return Schema.Columns[44]; }
         }
         
         
         
-        public static TableSchema.TableColumn NhomMauColumn
+        public static TableSchema.TableColumn MasoThueColumn
         {
             get { return Schema.Columns[45]; }
         }
         
         
         
-        public static TableSchema.TableColumn MasoThueColumn
+        public static TableSchema.TableColumn PassPostColumn
         {
             get { return Schema.Columns[46]; }
         }
         
         
         
-        public static TableSchema.TableColumn PassPostColumn
+        public static TableSchema.TableColumn MaNhanvienColumn
         {
             get { return Schema.Columns[47]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn IdCongtyColumn
+        {
+            get { return Schema.Columns[48]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn IdHopdongColumn
+        {
+            get { return Schema.Columns[49]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn IdSoloColumn
+        {
+            get { return Schema.Columns[50]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn SoLoColumn
+        {
+            get { return Schema.Columns[51]; }
         }
         
         
@@ -1765,7 +1893,6 @@ namespace VMS.HIS.DAL
 			 public static string LastActionName = @"LastActionName";
 			 public static string ChucVu = @"chuc_vu";
 			 public static string MaBenhnhan = @"ma_benhnhan";
-			 public static string SoLo = @"so_lo";
 			 public static string LastNoigioithieu = @"Last_Noigioithieu";
 			 public static string FirstNoigioithieu = @"First_Noigioithieu";
 			 public static string CanhBao = @"canh_bao";
@@ -1774,6 +1901,11 @@ namespace VMS.HIS.DAL
 			 public static string NhomMau = @"nhom_mau";
 			 public static string MasoThue = @"maso_thue";
 			 public static string PassPost = @"pass_post";
+			 public static string MaNhanvien = @"ma_nhanvien";
+			 public static string IdCongty = @"id_congty";
+			 public static string IdHopdong = @"id_hopdong";
+			 public static string IdSolo = @"id_solo";
+			 public static string SoLo = @"so_lo";
 						
 		}
 		#endregion

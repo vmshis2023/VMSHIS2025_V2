@@ -119,13 +119,7 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
             try
             {
                 DataTable _dataThuoc = SPs.ThuocLayDanhmucThuocTheoDanhmucKho(lstStockID).GetDataSet().Tables[0];
-                if (_dataThuoc == null)
-                {
-                    txtthuoc.dtData = null;
-                    return;
-                }
-                txtthuoc.dtData = _dataThuoc;
-                txtthuoc.ChangeDataSource();
+                DataBinding.BindDataCombobox(cbo_thuoc, _dataThuoc, DmucThuoc.Columns.IdThuoc, DmucThuoc.Columns.TenThuoc);
             }
             catch
             {
@@ -141,6 +135,7 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
 
             try
             {
+                if (m_dtReport == null || m_dtReport.Columns.Count <= 0) cmd_TimKiem.PerformClick();
                 if (!string.IsNullOrEmpty(cboKhoThuoc.Text))
                 {
                     var query = (from chk in cboKhoThuoc.CheckedValues.AsEnumerable()
@@ -169,11 +164,6 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
                 {
                     ishethan = -1;
                 }
-                //Truyền dữ liệu vào datatable
-                DataTable m_dtReport = BAOCAO_THUOC.ThuocBaocaoSoluongtonthuoctheokho(chuoiIDKhoThuoc, Utility.Int32Dbnull(txtDrugID.Text, -1), Utility.Int32Dbnull(txtLoaithuoc.MyID, -1), ishethan, KIEU_THUOC_VT);
-                THU_VIEN_CHUNG.CreateXML(m_dtReport, "thuoc_baocaothuocton_theokho.xml");
-                //Truyền dữ liệu vào datagrid-view
-                Utility.SetDataSourceForDataGridEx(grdList, m_dtReport, true, true, "1=1", "");
                 if (m_dtReport.Rows.Count <= 0)
                 {
                     Utility.ShowMsg("Không tìm thấy dữ liệu cho báo cáo", "Thông báo", MessageBoxIcon.Warning);
@@ -195,7 +185,7 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
 
                 //Lấy chuỗi condition truyền vào biến ?FromDateToDate trên crpt
                 string Condition = string.Format("Thuộc kho :{0} - Thuốc: {1}", string.IsNullOrEmpty(cboKhoThuoc.Text) ? "Tất cả" : cboKhoThuoc.Text,
-                                                string.IsNullOrEmpty(txtthuoc.Text) ? "Tất cả" : txtthuoc.Text);
+                                                string.IsNullOrEmpty(cbo_thuoc.Text) ? "Tất cả" : cbo_thuoc.Text);
               
                 //Lấy tên người tạo báo cáo và gọi crpt
                 string StaffName = globalVariables.gv_strTenNhanvien;
@@ -272,7 +262,52 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
 
         private void uiButton2_Click(object sender, EventArgs e)
         {
-            txtthuoc.ShowMe();
+            
+        }
+        DataTable m_dtReport = null;
+        private void cmd_TimKiem_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                if (!string.IsNullOrEmpty(cboKhoThuoc.Text))
+                {
+                    var query = (from chk in cboKhoThuoc.CheckedValues.AsEnumerable()
+                                 let x = Utility.sDbnull(chk)
+                                 select x).ToArray();
+                    if (query.Any())
+                    {
+                        chuoiIDKhoThuoc = string.Join(",", query);
+                    }
+                }
+                //Lấy giá trị xác nhận hết hạn hay chưa
+                Int16 ishethan;
+                if (radTatCa.Checked)
+                {
+                    ishethan = -1;
+                }
+                else if (radChuaHetHan.Checked)
+                {
+                    ishethan = 0;
+                }
+                else if (radDaHetHan.Checked)
+                {
+                    ishethan = 1;
+                }
+                else
+                {
+                    ishethan = -1;
+                }
+                //Truyền dữ liệu vào datatable
+                 m_dtReport = BAOCAO_THUOC.ThuocBaocaoSoluongtonthuoctheokho(chuoiIDKhoThuoc, Utility.Int32Dbnull(txtDrugID.Text, -1), Utility.Int32Dbnull(txtLoaithuoc.MyID, -1), ishethan, KIEU_THUOC_VT);
+                THU_VIEN_CHUNG.CreateXML(m_dtReport, "thuoc_baocaothuocton_theokho.xml");
+                //Truyền dữ liệu vào datagrid-view
+                Utility.SetDataSourceForDataGridEx(grdList, m_dtReport, true, true, "1=1", "");
+               
+            }
+            catch (Exception exception)
+            {
+            }
         }
     }
 }

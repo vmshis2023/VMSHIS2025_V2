@@ -77,6 +77,10 @@
       <HintPath>..\..\..\..\..\HISLink\Running\Mabry.Barcode.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.1.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\HIS_BVSG\Running\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="NLog">
       <HintPath>..\..\..\Running_QLPKEBM\NLog.dll</HintPath>
     </Reference>
@@ -108,6 +112,12 @@
     <Compile Include="DUOC\frm_bienban_kiemnhap.Designer.cs">
       <DependentUpon>frm_bienban_kiemnhap.cs</DependentUpon>
     </Compile>
+    <Compile Include="DUOC\frm_capnhat_thuoctinh_thuoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DUOC\frm_capnhat_thuoctinh_thuoc.designer.cs">
+      <DependentUpon>frm_capnhat_thuoctinh_thuoc.cs</DependentUpon>
+    </Compile>
     <Compile Include="DUOC\frm_PhieuXuatthuocNgoai.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,6 +129,12 @@
     </Compile>
     <Compile Include="DUOC\frm_qhe_doituong_thuoc_coban.Designer.cs">
       <DependentUpon>frm_qhe_doituong_thuoc_coban.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DUOC\frm_QuanlyLienthongDonthuocQuocGia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DUOC\frm_QuanlyLienthongDonthuocQuocGia.Designer.cs">
+      <DependentUpon>frm_QuanlyLienthongDonthuocQuocGia.cs</DependentUpon>
     </Compile>
     <Compile Include="DUOC\frm_Quanly_VAT.cs">
       <SubType>Form</SubType>
@@ -414,6 +430,12 @@
     <Compile Include="DUOC\QuanlyThau\frm_quanlythau.Designer.cs">
       <DependentUpon>frm_quanlythau.cs</DependentUpon>
     </Compile>
+    <Compile Include="DUOC\UCs\uc_HoiDong.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DUOC\UCs\uc_HoiDong.Designer.cs">
+      <DependentUpon>uc_HoiDong.cs</DependentUpon>
+    </Compile>
     <Compile Include="DUOC\VTTH_PhongChucNang\frm_AddCapPhatVTTHPhongChucnang.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -443,11 +465,17 @@
     <EmbeddedResource Include="DUOC\frm_bienban_kiemnhap.resx">
       <DependentUpon>frm_bienban_kiemnhap.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DUOC\frm_capnhat_thuoctinh_thuoc.resx">
+      <DependentUpon>frm_capnhat_thuoctinh_thuoc.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DUOC\frm_PhieuXuatthuocNgoai.resx">
       <DependentUpon>frm_PhieuXuatthuocNgoai.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DUOC\frm_qhe_doituong_thuoc_coban.resx">
       <DependentUpon>frm_qhe_doituong_thuoc_coban.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DUOC\frm_QuanlyLienthongDonthuocQuocGia.resx">
+      <DependentUpon>frm_QuanlyLienthongDonthuocQuocGia.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DUOC\frm_Quanly_VAT.resx">
       <DependentUpon>frm_Quanly_VAT.cs</DependentUpon>
@@ -596,6 +624,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DUOC\QuanlyThau\frm_quanlythau.resx">
       <DependentUpon>frm_quanlythau.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DUOC\UCs\uc_HoiDong.resx">
+      <DependentUpon>uc_HoiDong.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DUOC\VTTH_PhongChucNang\frm_AddCapPhatVTTHPhongChucnang.resx">
       <DependentUpon>frm_AddCapPhatVTTHPhongChucnang.cs</DependentUpon>

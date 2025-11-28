@@ -1,0 +1,9 @@
+2025-09-12 09:43:23.2419||INFO|Startup|BaseDirectory: F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Vnpt\bin\Debug\netcoreapp3.1\netcoreapp3.1\ 
+2025-09-12 09:43:47.0230||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- 
+2025-09-12 09:43:47.0647||DEBUG|DigitalSignaturePdfFileSign|api: https://gwsca.vnpt.vn/sca/sp769 
+2025-09-12 09:44:11.2071||ERROR|DigitalSignaturePdfFileSign|There was an error on 'DigitalSignaturePdfFileSign' invocation: System.NullReferenceException: Object reference not set to an instance of an object.
+   at VMS.ChuKySo.Api.Controllers.IDController.DigitalSignaturePdfFileSign(VMSDigitalSignature objDigitalSignature) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Vnpt\Controllers\IDController.cs:line 160 
+2025-09-12 09:44:26.7874||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- 
+2025-09-12 09:44:26.7934||DEBUG|DigitalSignaturePdfFileSign|api: https://gwsca.vnpt.vn/sca/sp769 
+2025-09-12 09:45:40.5702||ERROR|DigitalSignaturePdfFileSign|There was an error on 'DigitalSignaturePdfFileSign' invocation: System.NullReferenceException: Object reference not set to an instance of an object.
+   at VMS.ChuKySo.Api.Controllers.IDController.DigitalSignaturePdfFileSign(VMSDigitalSignature objDigitalSignature) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Vnpt\Controllers\IDController.cs:line 160 

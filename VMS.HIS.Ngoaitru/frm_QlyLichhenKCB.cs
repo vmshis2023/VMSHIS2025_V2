@@ -27,6 +27,7 @@ namespace VNS.HIS.UI.Forms.Cauhinh
         {
             this._args = args;
             InitializeComponent();
+            Utility.SetVisualStyle(this);
             this.KeyDown += new KeyEventHandler(frm_QlyLichhenKCB_KeyDown);
             grdPatient.DoubleClick += new EventHandler(grdPatient_DoubleClick);
             grdPatient.KeyDown+=new KeyEventHandler(grdPatient_KeyDown);
@@ -74,7 +75,7 @@ namespace VNS.HIS.UI.Forms.Cauhinh
                 else
                     filter += " AND _type=0";
             if (filter.Length <= 0) filter = "1=1";
-            Utility.SetDataSourceForDataGridEx(grdPatient, m_dtLSuHen, true, true, filter, "_type desc, songay_conlai asc,ten_benhnhan");
+            Utility.SetDataSourceForDataGridEx(grdPatient, m_dtLSuHen, true, true, filter, "songay_conlai desc,ten_benhnhan");
         }
         void grdLsugoi_UpdatingCell(object sender, UpdatingCellEventArgs e)
         {
@@ -301,6 +302,16 @@ namespace VNS.HIS.UI.Forms.Cauhinh
         }
 
         private void mnuUpdate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmdTimKiem_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void nmrGoilaitruoc_ValueChanged(object sender, EventArgs e)
         {
 
         }

@@ -80,7 +80,7 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(string MaBaocao,string MaNhom,string TieuDe,string FileRieng,string FileChuan,string MoTa,short? PrintNumber,string NguoiTao,DateTime? NgayTao,string NguoiSua,DateTime? NgaySua,byte? ExcelStartLine,string ExcelFileName,string FileWord,string MaPhieuEmr)
+	    public void Insert(string MaBaocao,string MaNhom,string TieuDe,string FileRieng,string FileChuan,string MoTa,short? PrintNumber,string NguoiTao,DateTime? NgayTao,string NguoiSua,DateTime? NgaySua,byte? ExcelStartLine,string ExcelFileName,string FileWord,string MaPhieuEmr,byte? SttHthi)
 	    {
 		    SysReport item = new SysReport();
 		    
@@ -114,6 +114,8 @@ namespace VMS.HIS.DAL
             
             item.MaPhieuEmr = MaPhieuEmr;
             
+            item.SttHthi = SttHthi;
+            
 	    
 		    item.Save(UserName);
 	    }
@@ -122,7 +124,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(string MaBaocao,string MaNhom,string TieuDe,string FileRieng,string FileChuan,string MoTa,short? PrintNumber,string NguoiTao,DateTime? NgayTao,string NguoiSua,DateTime? NgaySua,byte? ExcelStartLine,string ExcelFileName,string FileWord,string MaPhieuEmr)
+	    public void Update(string MaBaocao,string MaNhom,string TieuDe,string FileRieng,string FileChuan,string MoTa,short? PrintNumber,string NguoiTao,DateTime? NgayTao,string NguoiSua,DateTime? NgaySua,byte? ExcelStartLine,string ExcelFileName,string FileWord,string MaPhieuEmr,byte? SttHthi)
 	    {
 		    SysReport item = new SysReport();
 	        item.MarkOld();
@@ -157,6 +159,8 @@ namespace VMS.HIS.DAL
 			item.FileWord = FileWord;
 				
 			item.MaPhieuEmr = MaPhieuEmr;
+				
+			item.SttHthi = SttHthi;
 				
 	        item.Save(UserName);
 	    }

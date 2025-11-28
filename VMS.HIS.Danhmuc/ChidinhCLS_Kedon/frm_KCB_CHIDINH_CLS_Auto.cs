@@ -568,7 +568,7 @@ namespace VNS.HIS.UI.NGOAITRU
                     cboGoi.Enabled = false;
                     return;
                 }
-                DataTable _dtGoiKhamTheoBNCaNhan = new clsGoikham().LayGoiKhamTheoBN(objLuotkham.IdBenhnhan, "-1");
+                DataTable _dtGoiKhamTheoBNCaNhan = new clsGoikham().LayGoiKhamTheoBN(objLuotkham.IdBenhnhan,"", "-1");
                 DataTable dtAvailable = _dtGoiKhamTheoBNCaNhan.Clone();
                 var q = from p in _dtGoiKhamTheoBNCaNhan.AsEnumerable()
                         where Utility.Int32Dbnull(p["condichvu"], 0) > 0

@@ -1,0 +1,43 @@
+2025-09-24 00:24:59.2410||TRACE|ThemBacSy|_________Begin________ 
+2025-09-24 00:24:59.5504||TRACE|ThemBacSy| 
+2025-09-24 00:24:59.7992||TRACE|ThemBacSy|WebRequest Invalid URI: The URI is empty. 
+2025-09-24 00:24:59.9514||TRACE|ThemBacSy|_________End________ 
+2025-09-24 00:34:29.8702||TRACE|ThemBacSy|_________Begin________ 
+2025-09-24 00:41:10.1949||TRACE|ThemBacSy|_________Begin________ 
+2025-09-24 00:41:43.6283||TRACE|ThemBacSy|https://api.donthuocquocgia.vn/api/v1/them-bac-si 
+2025-09-24 00:41:44.0339||TRACE|ThemBacSy|WebRequest The remote server returned an error: (404) Not Found. 
+2025-09-24 00:42:24.1011||TRACE|ThemBacSy|https://api.donthuocquocgia.vn/api/v1/them-bac-si 
+2025-09-24 00:53:02.7535||TRACE|ThemBacSy|_________Begin________ 
+2025-09-24 00:53:13.0197||TRACE|ThemBacSy|https://api.donthuocquocgia.vn/api/v1/them-bac-si 
+2025-09-24 00:53:22.3057||TRACE|ThemBacSy|{"message":"B\u1ea1n \u0111\u00e3 th\u00eam b\u00e1c s\u0129 th\u00e0nh c\u00f4ng"} 
+2025-09-24 00:53:35.5282||TRACE|ThemBacSy|_________End________ 
+2025-09-24 01:00:21.1140||TRACE|ThemBacSy|_________Begin________ 
+2025-09-24 01:00:23.0649||TRACE|ThemBacSy|https://api.donthuocquocgia.vn/api/v1/them-bac-si 
+2025-09-24 01:00:23.7681||TRACE|ThemBacSy|{"message":"B\u1ea1n \u0111\u00e3 th\u00eam b\u00e1c s\u0129 th\u00e0nh c\u00f4ng"} 
+2025-09-24 01:00:33.1943||TRACE|ThemBacSy|https://api.donthuocquocgia.vn/api/v1/them-bac-si 
+2025-09-24 01:00:42.6590||TRACE|ThemBacSy|{"message":"B\u00e1c s\u0129 \u0111\u00e3 thu\u1ed9c trong trung t\u00e2m c\u1ee7a b\u1ea1n"} 
+2025-09-24 01:00:44.2842||TRACE|ThemBacSy|_________End________ 
+2025-09-24 01:01:05.7838||TRACE|ThemBacSy|_________Begin________ 
+2025-09-24 01:01:06.6638||TRACE|ThemBacSy|https://api.donthuocquocgia.vn/api/v1/them-bac-si 
+2025-09-24 01:01:07.1378||TRACE|ThemBacSy|WebRequest The remote server returned an error: (404) Not Found. 
+2025-09-24 01:01:10.2382||TRACE|ThemBacSy|_________End________ 
+2025-09-24 01:01:26.2492||TRACE|ThemBacSy|_________Begin________ 
+2025-09-24 01:01:26.3643||TRACE|ThemBacSy|https://api.donthuocquocgia.vn/api/v1/them-bac-si 
+2025-09-24 01:01:26.6937||TRACE|ThemBacSy|{"message":"B\u1ea1n \u0111\u00e3 th\u00eam b\u00e1c s\u0129 th\u00e0nh c\u00f4ng"} 
+2025-09-24 01:01:28.4431||TRACE|ThemBacSy|_________End________ 
+2025-09-24 01:01:41.3174||TRACE|ThemBacSy|_________Begin________ 
+2025-09-24 01:01:41.4159||TRACE|ThemBacSy|https://api.donthuocquocgia.vn/api/v1/them-bac-si 
+2025-09-24 01:01:41.7548||TRACE|ThemBacSy|{"message":"B\u1ea1n \u0111\u00e3 th\u00eam b\u00e1c s\u0129 th\u00e0nh c\u00f4ng"} 
+2025-09-24 01:01:42.5656||TRACE|ThemBacSy|_________End________ 
+2025-09-24 01:01:55.5315||TRACE|ThemBacSy|_________Begin________ 
+2025-09-24 01:01:55.6500||TRACE|ThemBacSy|https://api.donthuocquocgia.vn/api/v1/them-bac-si 
+2025-09-24 01:01:56.0630||TRACE|ThemBacSy|{"message":"B\u1ea1n \u0111\u00e3 th\u00eam b\u00e1c s\u0129 th\u00e0nh c\u00f4ng"} 
+2025-09-24 01:01:57.5206||TRACE|ThemBacSy|_________End________ 
+2025-09-24 01:04:19.3427||TRACE|ThemBacSy|_________Begin________ 
+2025-09-24 01:04:19.4617||TRACE|ThemBacSy|https://api.donthuocquocgia.vn/api/v1/them-bac-si 
+2025-09-24 01:04:19.8911||TRACE|ThemBacSy|{"message":"B\u00e1c s\u0129 \u0111\u00e3 thu\u1ed9c trong trung t\u00e2m c\u1ee7a b\u1ea1n"} 
+2025-09-24 01:04:22.1132||TRACE|ThemBacSy|_________End________ 
+2025-09-24 01:04:44.2429||TRACE|ThemBacSy|_________Begin________ 
+2025-09-24 01:04:44.5516||TRACE|ThemBacSy|https://api.donthuocquocgia.vn/api/v1/them-bac-si 
+2025-09-24 01:04:45.0525||TRACE|ThemBacSy|{"message":"B\u00e1c s\u0129 \u0111\u00e3 thu\u1ed9c trong trung t\u00e2m c\u1ee7a b\u1ea1n"} 
+2025-09-24 01:04:45.1981||TRACE|ThemBacSy|_________End________ 

@@ -1,0 +1,8 @@
+C:\HIS_BVSG\Running\VMS.Resources.dll
+C:\HIS_BVSG\Running\VMS.Resources.pdb
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.Resources\obj\Debug\4.VMS.Resources.csproj.AssemblyReference.cache
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.Resources\obj\Debug\VMS.Resources.Properties.Resources.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.Resources\obj\Debug\4.VMS.Resources.csproj.GenerateResource.cache
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.Resources\obj\Debug\4.VMS.Resources.csproj.CoreCompileInputs.cache
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.Resources\obj\Debug\VMS.Resources.dll
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.Resources\obj\Debug\VMS.Resources.pdb

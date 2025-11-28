@@ -23,9 +23,6 @@ using System.Net.Security;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-
-using VMS.ChuKySo.Api.DigitalSignature.CyberLotus;
-using VMS.ChuKySo.Api.DigitalSignature.VMS;
 using VMS.ChuKySo.Api.Helpers;
 using VnptHashSignatures.Common;
 using VnptHashSignatures.Interface;
@@ -96,7 +93,7 @@ namespace VMS.ChuKySo.Api.Controllers
                 var dataTobeSign = objDigitalSignature.base64Pdf;
 
                 string certAlias = "BvSonTay";// objDigitalSignature.appId;// "540110beffa622f3ca84bd2f93f0122c";//"5401100015b7ed04b187b438917c4590"; // Serial cua Chung thu so
-                string Pin = objDigitalSignature.secret;// "12345678";//"0493645647"; // ma pin cua HSM | mat khau cua CTS
+                string Pin = objDigitalSignature.userSecret;// "12345678";//"0493645647"; // ma pin cua HSM | mat khau cua CTS
 
 
                 SigningReq req = new SigningReq();

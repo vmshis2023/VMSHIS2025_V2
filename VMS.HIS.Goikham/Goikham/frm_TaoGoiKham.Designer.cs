@@ -29,16 +29,15 @@ namespace VNS.HIS.UI.GOIKHAM
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_TaoGoiKham));
-            Janus.Windows.GridEX.GridEXLayout grdKham_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
+            Janus.Windows.GridEX.GridEXLayout grd_congkham_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.GridEX.GridEXLayout grdCLS_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.GridEX.GridEXLayout grdThuoc_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.GridEX.GridEXLayout grdGiuong_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.GridEX.GridEXLayout grdVTu_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.GridEX.GridEXLayout grdChitiet_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
-            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem3 = new Janus.Windows.EditControls.UIComboBoxItem();
-            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem4 = new Janus.Windows.EditControls.UIComboBoxItem();
+            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem1 = new Janus.Windows.EditControls.UIComboBoxItem();
+            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem2 = new Janus.Windows.EditControls.UIComboBoxItem();
             this.uiGroupBox1 = new Janus.Windows.EditControls.UIGroupBox();
             this.cmdSave = new Janus.Windows.EditControls.UIButton();
             this.cmdThoat = new Janus.Windows.EditControls.UIButton();
@@ -46,7 +45,7 @@ namespace VNS.HIS.UI.GOIKHAM
             this.label7 = new System.Windows.Forms.Label();
             this.tabControl = new Janus.Windows.UI.Tab.UITab();
             this.tabKham = new Janus.Windows.UI.Tab.UITabPage();
-            this.grdKham = new Janus.Windows.GridEX.GridEX();
+            this.grd_congkham = new Janus.Windows.GridEX.GridEX();
             this.tabCLS = new Janus.Windows.UI.Tab.UITabPage();
             this.grdCLS = new Janus.Windows.GridEX.GridEX();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -69,7 +68,7 @@ namespace VNS.HIS.UI.GOIKHAM
             this.lbldonthuocmau = new System.Windows.Forms.Label();
             this.autoVTTH = new VNS.HIS.UCs.AutoCompleteTextbox();
             this.grdChitiet = new Janus.Windows.GridEX.GridEX();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider();
             this.txtMaGoi = new Janus.Windows.GridEX.EditControls.EditBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -113,7 +112,7 @@ namespace VNS.HIS.UI.GOIKHAM
             ((System.ComponentModel.ISupportInitialize)(this.tabControl)).BeginInit();
             this.tabControl.SuspendLayout();
             this.tabKham.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdKham)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grd_congkham)).BeginInit();
             this.tabCLS.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdCLS)).BeginInit();
             this.panel3.SuspendLayout();
@@ -215,7 +214,7 @@ namespace VNS.HIS.UI.GOIKHAM
             // 
             // tabKham
             // 
-            this.tabKham.Controls.Add(this.grdKham);
+            this.tabKham.Controls.Add(this.grd_congkham);
             this.tabKham.Key = "1";
             this.tabKham.Location = new System.Drawing.Point(1, 23);
             this.tabKham.Name = "tabKham";
@@ -223,36 +222,36 @@ namespace VNS.HIS.UI.GOIKHAM
             this.tabKham.TabStop = true;
             this.tabKham.Text = "Khám";
             // 
-            // grdKham
+            // grd_congkham
             // 
-            this.grdKham.BackColor = System.Drawing.Color.Silver;
-            this.grdKham.BuiltInTextsData = "<LocalizableData ID=\"LocalizableStrings\" Collection=\"true\"><FilterRowInfoText>Lọc" +
+            this.grd_congkham.BackColor = System.Drawing.Color.Silver;
+            this.grd_congkham.BuiltInTextsData = "<LocalizableData ID=\"LocalizableStrings\" Collection=\"true\"><FilterRowInfoText>Lọc" +
     " thông tin chỉ định</FilterRowInfoText></LocalizableData>";
-            this.grdKham.DefaultFilterRowComparison = Janus.Windows.GridEX.FilterConditionOperator.Contains;
-            grdKham_DesignTimeLayout.LayoutString = resources.GetString("grdKham_DesignTimeLayout.LayoutString");
-            this.grdKham.DesignTimeLayout = grdKham_DesignTimeLayout;
-            this.grdKham.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdKham.DynamicFiltering = true;
-            this.grdKham.FilterMode = Janus.Windows.GridEX.FilterMode.Automatic;
-            this.grdKham.FilterRowUpdateMode = Janus.Windows.GridEX.FilterRowUpdateMode.WhenValueChanges;
-            this.grdKham.FocusCellFormatStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.grdKham.FocusCellFormatStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            this.grdKham.FocusCellFormatStyle.FontBold = Janus.Windows.GridEX.TriState.True;
-            this.grdKham.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.grdKham.GroupByBoxVisible = false;
-            this.grdKham.GroupRowFormatStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.grdKham.GroupRowFormatStyle.FontBold = Janus.Windows.GridEX.TriState.True;
-            this.grdKham.GroupRowFormatStyle.ForeColor = System.Drawing.Color.Red;
-            this.grdKham.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight;
-            this.grdKham.Location = new System.Drawing.Point(0, 0);
-            this.grdKham.Name = "grdKham";
-            this.grdKham.RecordNavigator = true;
-            this.grdKham.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
-            this.grdKham.Size = new System.Drawing.Size(505, 530);
-            this.grdKham.TabIndex = 10;
-            this.grdKham.TableSpacing = 0;
-            this.grdKham.UseGroupRowSelector = true;
-            this.grdKham.CellValueChanged += new Janus.Windows.GridEX.ColumnActionEventHandler(this.grdKham_CellValueChanged);
+            this.grd_congkham.DefaultFilterRowComparison = Janus.Windows.GridEX.FilterConditionOperator.Contains;
+            grd_congkham_DesignTimeLayout.LayoutString = resources.GetString("grd_congkham_DesignTimeLayout.LayoutString");
+            this.grd_congkham.DesignTimeLayout = grd_congkham_DesignTimeLayout;
+            this.grd_congkham.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grd_congkham.DynamicFiltering = true;
+            this.grd_congkham.FilterMode = Janus.Windows.GridEX.FilterMode.Automatic;
+            this.grd_congkham.FilterRowUpdateMode = Janus.Windows.GridEX.FilterRowUpdateMode.WhenValueChanges;
+            this.grd_congkham.FocusCellFormatStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.grd_congkham.FocusCellFormatStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            this.grd_congkham.FocusCellFormatStyle.FontBold = Janus.Windows.GridEX.TriState.True;
+            this.grd_congkham.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.grd_congkham.GroupByBoxVisible = false;
+            this.grd_congkham.GroupRowFormatStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.grd_congkham.GroupRowFormatStyle.FontBold = Janus.Windows.GridEX.TriState.True;
+            this.grd_congkham.GroupRowFormatStyle.ForeColor = System.Drawing.Color.Red;
+            this.grd_congkham.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight;
+            this.grd_congkham.Location = new System.Drawing.Point(0, 0);
+            this.grd_congkham.Name = "grd_congkham";
+            this.grd_congkham.RecordNavigator = true;
+            this.grd_congkham.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
+            this.grd_congkham.Size = new System.Drawing.Size(505, 530);
+            this.grd_congkham.TabIndex = 10;
+            this.grd_congkham.TableSpacing = 0;
+            this.grd_congkham.UseGroupRowSelector = true;
+            this.grd_congkham.CellValueChanged += new Janus.Windows.GridEX.ColumnActionEventHandler(this.grdKham_CellValueChanged);
             // 
             // tabCLS
             // 
@@ -398,6 +397,7 @@ namespace VNS.HIS.UI.GOIKHAM
             this.tabThuoc.Name = "tabThuoc";
             this.tabThuoc.Size = new System.Drawing.Size(505, 530);
             this.tabThuoc.TabStop = true;
+            this.tabThuoc.TabVisible = false;
             this.tabThuoc.Text = "Thuốc";
             // 
             // grdThuoc
@@ -560,6 +560,7 @@ namespace VNS.HIS.UI.GOIKHAM
             this.tabVTu.Name = "tabVTu";
             this.tabVTu.Size = new System.Drawing.Size(505, 530);
             this.tabVTu.TabStop = true;
+            this.tabVTu.TabVisible = false;
             this.tabVTu.Text = "Vật tư";
             // 
             // grdVTu
@@ -833,23 +834,24 @@ namespace VNS.HIS.UI.GOIKHAM
             // 
             // cboKieugoi
             // 
-            uiComboBoxItem3.FormatStyle.Alpha = 0;
-            uiComboBoxItem3.IsSeparator = false;
-            uiComboBoxItem3.Text = "Gói dùng 1 lần";
-            uiComboBoxItem3.Value = ((byte)(0));
-            uiComboBoxItem4.FormatStyle.Alpha = 0;
-            uiComboBoxItem4.IsSeparator = false;
-            uiComboBoxItem4.Text = "Gói trừ dần";
-            uiComboBoxItem4.Value = ((byte)(1));
+            uiComboBoxItem1.FormatStyle.Alpha = 0;
+            uiComboBoxItem1.IsSeparator = false;
+            uiComboBoxItem1.Text = "Gói KSK";
+            uiComboBoxItem1.Value = ((byte)(0));
+            uiComboBoxItem2.FormatStyle.Alpha = 0;
+            uiComboBoxItem2.IsSeparator = false;
+            uiComboBoxItem2.Text = "Gói trừ dần";
+            uiComboBoxItem2.Value = ((byte)(1));
             this.cboKieugoi.Items.AddRange(new Janus.Windows.EditControls.UIComboBoxItem[] {
-            uiComboBoxItem3,
-            uiComboBoxItem4});
+            uiComboBoxItem1,
+            uiComboBoxItem2});
             this.cboKieugoi.Location = new System.Drawing.Point(248, 22);
             this.cboKieugoi.Name = "cboKieugoi";
             this.cboKieugoi.Size = new System.Drawing.Size(231, 21);
             this.cboKieugoi.TabIndex = 631;
             this.cboKieugoi.TabStop = false;
             this.cboKieugoi.Text = "---Tất cả----";
+            this.cboKieugoi.SelectedIndexChanged += new System.EventHandler(this.cboKieugoi_SelectedIndexChanged);
             // 
             // label15
             // 
@@ -1377,7 +1379,7 @@ namespace VNS.HIS.UI.GOIKHAM
             ((System.ComponentModel.ISupportInitialize)(this.tabControl)).EndInit();
             this.tabControl.ResumeLayout(false);
             this.tabKham.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grdKham)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grd_congkham)).EndInit();
             this.tabCLS.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdCLS)).EndInit();
             this.panel3.ResumeLayout(false);
@@ -1434,7 +1436,7 @@ namespace VNS.HIS.UI.GOIKHAM
         private Janus.Windows.EditControls.UICheckBox chkChiDinhNhanh;
         private Janus.Windows.EditControls.UIButton cmdAccept;
         private Janus.Windows.GridEX.EditControls.EditBox txtFilterName;
-        private Janus.Windows.GridEX.GridEX grdKham;
+        private Janus.Windows.GridEX.GridEX grd_congkham;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;

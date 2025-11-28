@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             Janus.Windows.GridEX.GridEXLayout grdList_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_quanlycacphongchucnang));
+            Janus.Windows.GridEX.GridEXLayout grdVTTH_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem1 = new Janus.Windows.EditControls.UIComboBoxItem();
             Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem2 = new Janus.Windows.EditControls.UIComboBoxItem();
             Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem3 = new Janus.Windows.EditControls.UIComboBoxItem();
@@ -43,6 +44,7 @@
             this.lblMsg = new System.Windows.Forms.ToolStripStatusLabel();
             this.TabInfo = new Janus.Windows.UI.Tab.UITab();
             this.tabDanhsach = new Janus.Windows.UI.Tab.UITabPage();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.grdList = new Janus.Windows.GridEX.GridEX();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolChooseBN = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,6 +60,24 @@
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuBatdaukham = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuHuytiepnhan = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.uiTab1 = new Janus.Windows.UI.Tab.UITab();
+            this.uiTabPageVTTH = new Janus.Windows.UI.Tab.UITabPage();
+            this.grdVTTH = new Janus.Windows.GridEX.GridEX();
+            this.ctx_tinhchiphi = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnu_TinhPhi = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnu_HaoPhi = new System.Windows.Forms.ToolStripMenuItem();
+            this.pnlDonthuoc = new System.Windows.Forms.Panel();
+            this.cmdWords = new Janus.Windows.EditControls.UIButton();
+            this.cmd_indon_vtth = new Janus.Windows.EditControls.UIButton();
+            this.cmd_xoa_vtth = new Janus.Windows.EditControls.UIButton();
+            this.cmd_suadon_vtth = new Janus.Windows.EditControls.UIButton();
+            this.cmd_themdon_vtth = new Janus.Windows.EditControls.UIButton();
+            this.uiTabPageFileDinhKem = new Janus.Windows.UI.Tab.UITabPage();
+            this.pnlAttachedFiles = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.cmdFileAttach = new Janus.Windows.EditControls.UIButton();
             this.grpTimKiem = new Janus.Windows.EditControls.UIGroupBox();
             this.pnlQMS = new System.Windows.Forms.Panel();
             this.lnkGoto = new System.Windows.Forms.LinkLabel();
@@ -83,6 +103,7 @@
             this.label71 = new System.Windows.Forms.Label();
             this.label72 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
+            this.cmdShowHide = new Janus.Windows.EditControls.UIButton();
             this.lnkDelete = new System.Windows.Forms.LinkLabel();
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -139,12 +160,27 @@
             this.toolStripMenuItem14 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuCallbyQMS = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuQmsMan = new System.Windows.Forms.ToolStripMenuItem();
+            this.ctxDelFile = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnuDelFile = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TabInfo)).BeginInit();
             this.TabInfo.SuspendLayout();
             this.tabDanhsach.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdList)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.uiTab1)).BeginInit();
+            this.uiTab1.SuspendLayout();
+            this.uiTabPageVTTH.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdVTTH)).BeginInit();
+            this.ctx_tinhchiphi.SuspendLayout();
+            this.pnlDonthuoc.SuspendLayout();
+            this.uiTabPageFileDinhKem.SuspendLayout();
+            this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grpTimKiem)).BeginInit();
             this.grpTimKiem.SuspendLayout();
             this.pnlQMS.SuspendLayout();
@@ -160,6 +196,7 @@
             this.ctxImage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox13)).BeginInit();
             this.ctxQMSFunction.SuspendLayout();
+            this.ctxDelFile.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -225,7 +262,7 @@
             // 
             // tabDanhsach
             // 
-            this.tabDanhsach.Controls.Add(this.grdList);
+            this.tabDanhsach.Controls.Add(this.splitContainer1);
             this.tabDanhsach.Controls.Add(this.grpTimKiem);
             this.tabDanhsach.Image = ((System.Drawing.Image)(resources.GetObject("tabDanhsach.Image")));
             this.tabDanhsach.Location = new System.Drawing.Point(1, 27);
@@ -233,6 +270,23 @@
             this.tabDanhsach.Size = new System.Drawing.Size(1266, 711);
             this.tabDanhsach.TabStop = true;
             this.tabDanhsach.Text = "Danh sách bệnh nhân chờ nhập KQ";
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 203);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.grdList);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.panel3);
+            this.splitContainer1.Size = new System.Drawing.Size(1266, 508);
+            this.splitContainer1.SplitterDistance = 808;
+            this.splitContainer1.TabIndex = 3;
             // 
             // grdList
             // 
@@ -256,11 +310,11 @@
             this.grdList.Font = new System.Drawing.Font("Arial", 9F);
             this.grdList.GroupByBoxVisible = false;
             this.grdList.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight;
-            this.grdList.Location = new System.Drawing.Point(0, 203);
+            this.grdList.Location = new System.Drawing.Point(0, 0);
             this.grdList.Name = "grdList";
             this.grdList.RecordNavigator = true;
             this.grdList.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
-            this.grdList.Size = new System.Drawing.Size(1266, 508);
+            this.grdList.Size = new System.Drawing.Size(808, 508);
             this.grdList.TabIndex = 1;
             this.grdList.TabStop = false;
             this.toolTip1.SetToolTip(this.grdList, "Nhấn nút cập nhật hoặc Kích đúp chuột vào dịch vụ để bắt đầu nhập kết quả");
@@ -383,6 +437,218 @@
             this.mnuHuytiepnhan.Size = new System.Drawing.Size(277, 26);
             this.mnuHuytiepnhan.Text = "Hủy đang thực hiện";
             this.mnuHuytiepnhan.Click += new System.EventHandler(this.mnuHuytiepnhan_Click);
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.uiTab1);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(454, 508);
+            this.panel3.TabIndex = 2;
+            // 
+            // uiTab1
+            // 
+            this.uiTab1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiTab1.Font = new System.Drawing.Font("Arial", 9F);
+            this.uiTab1.Location = new System.Drawing.Point(0, 0);
+            this.uiTab1.Name = "uiTab1";
+            this.uiTab1.Size = new System.Drawing.Size(454, 508);
+            this.uiTab1.TabIndex = 557;
+            this.uiTab1.TabPages.AddRange(new Janus.Windows.UI.Tab.UITabPage[] {
+            this.uiTabPageVTTH,
+            this.uiTabPageFileDinhKem});
+            // 
+            // uiTabPageVTTH
+            // 
+            this.uiTabPageVTTH.Controls.Add(this.grdVTTH);
+            this.uiTabPageVTTH.Controls.Add(this.pnlDonthuoc);
+            this.uiTabPageVTTH.Location = new System.Drawing.Point(1, 23);
+            this.uiTabPageVTTH.Name = "uiTabPageVTTH";
+            this.uiTabPageVTTH.Size = new System.Drawing.Size(450, 482);
+            this.uiTabPageVTTH.TabStop = true;
+            this.uiTabPageVTTH.Text = "Kê VTTH";
+            // 
+            // grdVTTH
+            // 
+            this.grdVTTH.AlternatingColors = true;
+            this.grdVTTH.AlternatingRowFormatStyle.BackColor = System.Drawing.Color.Cornsilk;
+            this.grdVTTH.ContextMenuStrip = this.ctx_tinhchiphi;
+            grdVTTH_DesignTimeLayout.LayoutString = resources.GetString("grdVTTH_DesignTimeLayout.LayoutString");
+            this.grdVTTH.DesignTimeLayout = grdVTTH_DesignTimeLayout;
+            this.grdVTTH.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdVTTH.DynamicFiltering = true;
+            this.grdVTTH.FilterMode = Janus.Windows.GridEX.FilterMode.Automatic;
+            this.grdVTTH.FilterRowFormatStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.grdVTTH.FilterRowUpdateMode = Janus.Windows.GridEX.FilterRowUpdateMode.WhenValueChanges;
+            this.grdVTTH.Font = new System.Drawing.Font("Arial", 9F);
+            this.grdVTTH.GroupByBoxVisible = false;
+            this.grdVTTH.GroupRowFormatStyle.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            this.grdVTTH.GroupRowFormatStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.grdVTTH.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight;
+            this.grdVTTH.Location = new System.Drawing.Point(0, 0);
+            this.grdVTTH.Name = "grdVTTH";
+            this.grdVTTH.RecordNavigator = true;
+            this.grdVTTH.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
+            this.grdVTTH.SelectedFormatStyle.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.grdVTTH.SettingsKey = "grdPresDetail";
+            this.grdVTTH.Size = new System.Drawing.Size(450, 442);
+            this.grdVTTH.TabIndex = 556;
+            this.grdVTTH.TotalRow = Janus.Windows.GridEX.InheritableBoolean.True;
+            this.grdVTTH.TotalRowFormatStyle.BackColor = System.Drawing.SystemColors.Info;
+            this.grdVTTH.TotalRowFormatStyle.FontBold = Janus.Windows.GridEX.TriState.True;
+            this.grdVTTH.TotalRowFormatStyle.ForeColor = System.Drawing.Color.Black;
+            this.grdVTTH.TotalRowPosition = Janus.Windows.GridEX.TotalRowPosition.BottomFixed;
+            this.grdVTTH.UseGroupRowSelector = true;
+            // 
+            // ctx_tinhchiphi
+            // 
+            this.ctx_tinhchiphi.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnu_TinhPhi,
+            this.toolStripSeparator4,
+            this.mnu_HaoPhi});
+            this.ctx_tinhchiphi.Name = "ctxMauPhieu";
+            this.ctx_tinhchiphi.Size = new System.Drawing.Size(118, 54);
+            // 
+            // mnu_TinhPhi
+            // 
+            this.mnu_TinhPhi.Name = "mnu_TinhPhi";
+            this.mnu_TinhPhi.Size = new System.Drawing.Size(117, 22);
+            this.mnu_TinhPhi.Text = "Tính phí";
+            this.mnu_TinhPhi.Click += new System.EventHandler(this.mnu_TinhPhi_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(114, 6);
+            // 
+            // mnu_HaoPhi
+            // 
+            this.mnu_HaoPhi.Name = "mnu_HaoPhi";
+            this.mnu_HaoPhi.Size = new System.Drawing.Size(117, 22);
+            this.mnu_HaoPhi.Text = "Hao phí";
+            this.mnu_HaoPhi.Click += new System.EventHandler(this.mnu_HaoPhi_Click);
+            // 
+            // pnlDonthuoc
+            // 
+            this.pnlDonthuoc.BackColor = System.Drawing.SystemColors.Control;
+            this.pnlDonthuoc.Controls.Add(this.cmdWords);
+            this.pnlDonthuoc.Controls.Add(this.cmd_indon_vtth);
+            this.pnlDonthuoc.Controls.Add(this.cmd_xoa_vtth);
+            this.pnlDonthuoc.Controls.Add(this.cmd_suadon_vtth);
+            this.pnlDonthuoc.Controls.Add(this.cmd_themdon_vtth);
+            this.pnlDonthuoc.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlDonthuoc.Location = new System.Drawing.Point(0, 442);
+            this.pnlDonthuoc.Name = "pnlDonthuoc";
+            this.pnlDonthuoc.Size = new System.Drawing.Size(450, 40);
+            this.pnlDonthuoc.TabIndex = 555;
+            // 
+            // cmdWords
+            // 
+            this.cmdWords.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cmdWords.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmdWords.Image = ((System.Drawing.Image)(resources.GetObject("cmdWords.Image")));
+            this.cmdWords.ImageSize = new System.Drawing.Size(20, 20);
+            this.cmdWords.Location = new System.Drawing.Point(4, 0);
+            this.cmdWords.Name = "cmdWords";
+            this.cmdWords.Size = new System.Drawing.Size(10, 33);
+            this.cmdWords.TabIndex = 83;
+            this.cmdWords.TabStop = false;
+            this.cmdWords.Visible = false;
+            this.cmdWords.VisualStyle = Janus.Windows.UI.VisualStyle.Office2003;
+            // 
+            // cmd_indon_vtth
+            // 
+            this.cmd_indon_vtth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cmd_indon_vtth.Enabled = false;
+            this.cmd_indon_vtth.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmd_indon_vtth.Image = ((System.Drawing.Image)(resources.GetObject("cmd_indon_vtth.Image")));
+            this.cmd_indon_vtth.ImageSize = new System.Drawing.Size(20, 20);
+            this.cmd_indon_vtth.Location = new System.Drawing.Point(4, 0);
+            this.cmd_indon_vtth.Name = "cmd_indon_vtth";
+            this.cmd_indon_vtth.Size = new System.Drawing.Size(60, 33);
+            this.cmd_indon_vtth.TabIndex = 84;
+            this.cmd_indon_vtth.Click += new System.EventHandler(this.cmd_indon_vtth_Click);
+            // 
+            // cmd_xoa_vtth
+            // 
+            this.cmd_xoa_vtth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmd_xoa_vtth.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmd_xoa_vtth.Image = ((System.Drawing.Image)(resources.GetObject("cmd_xoa_vtth.Image")));
+            this.cmd_xoa_vtth.ImageSize = new System.Drawing.Size(22, 22);
+            this.cmd_xoa_vtth.Location = new System.Drawing.Point(352, 5);
+            this.cmd_xoa_vtth.Name = "cmd_xoa_vtth";
+            this.cmd_xoa_vtth.Size = new System.Drawing.Size(89, 30);
+            this.cmd_xoa_vtth.TabIndex = 82;
+            this.cmd_xoa_vtth.Text = "Xóa";
+            this.cmd_xoa_vtth.Click += new System.EventHandler(this.cmd_xoa_vtth_Click);
+            // 
+            // cmd_suadon_vtth
+            // 
+            this.cmd_suadon_vtth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmd_suadon_vtth.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmd_suadon_vtth.Image = ((System.Drawing.Image)(resources.GetObject("cmd_suadon_vtth.Image")));
+            this.cmd_suadon_vtth.ImageSize = new System.Drawing.Size(22, 22);
+            this.cmd_suadon_vtth.Location = new System.Drawing.Point(257, 5);
+            this.cmd_suadon_vtth.Name = "cmd_suadon_vtth";
+            this.cmd_suadon_vtth.Size = new System.Drawing.Size(89, 30);
+            this.cmd_suadon_vtth.TabIndex = 81;
+            this.cmd_suadon_vtth.Text = "Sửa";
+            this.cmd_suadon_vtth.Click += new System.EventHandler(this.cmd_suadon_vtth_Click);
+            // 
+            // cmd_themdon_vtth
+            // 
+            this.cmd_themdon_vtth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmd_themdon_vtth.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmd_themdon_vtth.Image = global::VMS.HIS.Cls.Properties.Resources.add_04_32;
+            this.cmd_themdon_vtth.ImageSize = new System.Drawing.Size(22, 22);
+            this.cmd_themdon_vtth.Location = new System.Drawing.Point(162, 5);
+            this.cmd_themdon_vtth.Name = "cmd_themdon_vtth";
+            this.cmd_themdon_vtth.Size = new System.Drawing.Size(89, 30);
+            this.cmd_themdon_vtth.TabIndex = 80;
+            this.cmd_themdon_vtth.Text = "Thêm";
+            this.cmd_themdon_vtth.Click += new System.EventHandler(this.cmd_themdon_vtth_Click);
+            // 
+            // uiTabPageFileDinhKem
+            // 
+            this.uiTabPageFileDinhKem.Controls.Add(this.pnlAttachedFiles);
+            this.uiTabPageFileDinhKem.Controls.Add(this.panel4);
+            this.uiTabPageFileDinhKem.Location = new System.Drawing.Point(1, 23);
+            this.uiTabPageFileDinhKem.Name = "uiTabPageFileDinhKem";
+            this.uiTabPageFileDinhKem.Size = new System.Drawing.Size(450, 482);
+            this.uiTabPageFileDinhKem.TabStop = true;
+            this.uiTabPageFileDinhKem.Text = "File đính kèm";
+            // 
+            // pnlAttachedFiles
+            // 
+            this.pnlAttachedFiles.AutoScroll = true;
+            this.pnlAttachedFiles.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlAttachedFiles.Location = new System.Drawing.Point(0, 0);
+            this.pnlAttachedFiles.Name = "pnlAttachedFiles";
+            this.pnlAttachedFiles.Padding = new System.Windows.Forms.Padding(10);
+            this.pnlAttachedFiles.Size = new System.Drawing.Size(450, 446);
+            this.pnlAttachedFiles.TabIndex = 258;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.cmdFileAttach);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel4.Location = new System.Drawing.Point(0, 446);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(450, 36);
+            this.panel4.TabIndex = 0;
+            // 
+            // cmdFileAttach
+            // 
+            this.cmdFileAttach.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cmdFileAttach.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmdFileAttach.Image = ((System.Drawing.Image)(resources.GetObject("cmdFileAttach.Image")));
+            this.cmdFileAttach.Location = new System.Drawing.Point(0, 0);
+            this.cmdFileAttach.Name = "cmdFileAttach";
+            this.cmdFileAttach.Size = new System.Drawing.Size(450, 36);
+            this.cmdFileAttach.TabIndex = 259;
+            this.cmdFileAttach.Text = "Đính kèm file PDF, tài liệu khác liên quan đến dịch vụ đang chọn";
+            this.cmdFileAttach.Click += new System.EventHandler(this.cmdFileAttach_Click);
             // 
             // grpTimKiem
             // 
@@ -605,6 +871,7 @@
             this.flowLayoutPanel1.Controls.Add(this.panel12);
             this.flowLayoutPanel1.Controls.Add(this.panel13);
             this.flowLayoutPanel1.Controls.Add(this.label31);
+            this.flowLayoutPanel1.Controls.Add(this.cmdShowHide);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 172);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -708,12 +975,28 @@
             this.label31.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.label31.Location = new System.Drawing.Point(408, 0);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(673, 24);
+            this.label31.Size = new System.Drawing.Size(673, 32);
             this.label31.TabIndex = 531;
             this.label31.Text = "Chú ý: Các Bệnh nhân ngoại trú ngoài BHYT cần phải thanh toán dịch vụ hoặc chuyển" +
     " cận lâm sàng mới đủ cơ sở thực hiện";
             this.label31.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label31.Click += new System.EventHandler(this.label31_Click);
+            // 
+            // cmdShowHide
+            // 
+            this.cmdShowHide.Appearance = Janus.Windows.UI.Appearance.Flat;
+            this.cmdShowHide.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmdShowHide.Image = ((System.Drawing.Image)(resources.GetObject("cmdShowHide.Image")));
+            this.cmdShowHide.ImageSize = new System.Drawing.Size(18, 18);
+            this.cmdShowHide.Location = new System.Drawing.Point(1087, 3);
+            this.cmdShowHide.Name = "cmdShowHide";
+            this.cmdShowHide.Office2007ColorScheme = Janus.Windows.UI.Office2007ColorScheme.Custom;
+            this.cmdShowHide.Office2007CustomColor = System.Drawing.SystemColors.Control;
+            this.cmdShowHide.Size = new System.Drawing.Size(26, 26);
+            this.cmdShowHide.TabIndex = 709;
+            this.toolTip1.SetToolTip(this.cmdShowHide, "Ẩn/hiện kê VTTH/File đính kèm");
+            this.cmdShowHide.VisualStyle = Janus.Windows.UI.VisualStyle.Office2007;
+            this.cmdShowHide.Click += new System.EventHandler(this.cmdShowHide_Click);
             // 
             // lnkDelete
             // 
@@ -1289,6 +1572,21 @@
             this.mnuQmsMan.Text = "Quản lý danh sách QMS";
             this.mnuQmsMan.Click += new System.EventHandler(this.mnuQmsMan_Click);
             // 
+            // ctxDelFile
+            // 
+            this.ctxDelFile.Font = new System.Drawing.Font("Arial", 9F);
+            this.ctxDelFile.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuDelFile});
+            this.ctxDelFile.Name = "ctxDelDrug";
+            this.ctxDelFile.Size = new System.Drawing.Size(169, 26);
+            // 
+            // mnuDelFile
+            // 
+            this.mnuDelFile.Name = "mnuDelFile";
+            this.mnuDelFile.Size = new System.Drawing.Size(168, 22);
+            this.mnuDelFile.Text = "Xóa file đính kèm";
+            this.mnuDelFile.Click += new System.EventHandler(this.mnuDelFile_Click);
+            // 
             // frm_quanlycacphongchucnang
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1309,8 +1607,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.TabInfo)).EndInit();
             this.TabInfo.ResumeLayout(false);
             this.tabDanhsach.ResumeLayout(false);
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdList)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.uiTab1)).EndInit();
+            this.uiTab1.ResumeLayout(false);
+            this.uiTabPageVTTH.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grdVTTH)).EndInit();
+            this.ctx_tinhchiphi.ResumeLayout(false);
+            this.pnlDonthuoc.ResumeLayout(false);
+            this.uiTabPageFileDinhKem.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grpTimKiem)).EndInit();
             this.grpTimKiem.ResumeLayout(false);
             this.grpTimKiem.PerformLayout();
@@ -1331,6 +1642,7 @@
             this.ctxImage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox13)).EndInit();
             this.ctxQMSFunction.ResumeLayout(false);
+            this.ctxDelFile.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1442,5 +1754,27 @@
         private System.Windows.Forms.ToolStripMenuItem mnuHuytiepnhan;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
         private System.Windows.Forms.ToolStripMenuItem mnuBatdaukham;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Panel pnlDonthuoc;
+        private Janus.Windows.EditControls.UIButton cmdWords;
+        private Janus.Windows.EditControls.UIButton cmd_indon_vtth;
+        private Janus.Windows.EditControls.UIButton cmd_xoa_vtth;
+        private Janus.Windows.EditControls.UIButton cmd_suadon_vtth;
+        private Janus.Windows.EditControls.UIButton cmd_themdon_vtth;
+        private Janus.Windows.GridEX.GridEX grdVTTH;
+        private Janus.Windows.EditControls.UIButton cmdShowHide;
+        private System.Windows.Forms.ContextMenuStrip ctx_tinhchiphi;
+        private System.Windows.Forms.ToolStripMenuItem mnu_TinhPhi;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem mnu_HaoPhi;
+        private Janus.Windows.UI.Tab.UITab uiTab1;
+        private Janus.Windows.UI.Tab.UITabPage uiTabPageVTTH;
+        private Janus.Windows.UI.Tab.UITabPage uiTabPageFileDinhKem;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.FlowLayoutPanel pnlAttachedFiles;
+        private Janus.Windows.EditControls.UIButton cmdFileAttach;
+        private System.Windows.Forms.ContextMenuStrip ctxDelFile;
+        private System.Windows.Forms.ToolStripMenuItem mnuDelFile;
     }
 }

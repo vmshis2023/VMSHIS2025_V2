@@ -18,6 +18,7 @@ using VMS.HIS.Bus.Emr;
 using VMS.HIS.UI.EMR;
 using VMS.HIS.Bus;
 using Janus.Windows.GridEX;
+using VNS.HIS.UI.DANHMUC.PHIEU;
 
 namespace VNS.HIS.UI.NOITRU
 {
@@ -54,8 +55,9 @@ namespace VNS.HIS.UI.NOITRU
         private long id_chitietdonthuoc;
         private long id_donthuoc;
         private int id_chitietdonthuoc_Thuoc_Thu;
-        private int soluong = 1;
-        private int soluong_ke;
+        private decimal soluong_conlai = 0;
+        private decimal soluong_ke = 0;
+        decimal soluongdatruyen = 0;
         private int idthuockho;
         private int doctorid;
         private string tenthuoc;
@@ -66,9 +68,10 @@ namespace VNS.HIS.UI.NOITRU
        
         void modifyCommandPhieutruyendich()
         {
-            int soluongdatruyen = m_dtPhieuchitiet.AsEnumerable().Where(c=>Utility.Int32Dbnull( c["id_chitietdonthuoc"])== id_chitietdonthuoc).Sum(c => Utility.Int32Dbnull(c["so_luong"]));
+             soluongdatruyen = m_dtPhieuchitiet.AsEnumerable().Where(c=>Utility.Int32Dbnull( c["id_chitietdonthuoc"])== id_chitietdonthuoc).Sum(c => Utility.DecimaltoDbnull(c["so_luong"]));
+            soluong_conlai = soluong_ke - soluongdatruyen;
             bool hasPTD = m_dtPhieuchitiet.Select("id_chitietdonthuoc=" + id_chitietdonthuoc).Length > 0;
-            cmdThemoiPTD.Enabled = Utility.isValidGrid(grd_thuoc_dichtruyen) && soluongdatruyen < soluong_ke;
+            cmdThemoiPTD.Enabled = Utility.isValidGrid(grd_thuoc_dichtruyen);//&& soluongdatruyen < soluong_ke;
             cmdSuaPTD.Enabled = Utility.isValidGrid(grd_thuoc_dichtruyen) && hasPTD;
             cmdXoaPTD.Enabled = Utility.isValidGrid(grd_thuoc_dichtruyen) && hasPTD;
             cmdInPTD.Enabled = Utility.isValidGrid(grd_thuoc_dichtruyen) && hasPTD;
@@ -93,7 +96,7 @@ namespace VNS.HIS.UI.NOITRU
                    
                     id_chitietdonthuoc = Utility.Int64Dbnull(grd_thuoc_dichtruyen.GetValue("id_chitietdonthuoc"), -1);
                     id_donthuoc = Utility.Int64Dbnull(grd_thuoc_dichtruyen.GetValue("id_donthuoc"), -1);
-                    soluong_ke = Utility.Int32Dbnull(grd_thuoc_dichtruyen.GetValue("so_luong"), -1);
+                    soluong_ke = Utility.DecimaltoDbnull(grd_thuoc_dichtruyen.GetValue("so_luong"), -1);
                     idthuockho = Utility.Int32Dbnull(grd_thuoc_dichtruyen.GetValue("Id_ThuocKho"), -1);
                     tenthuoc = Utility.sDbnull(grd_thuoc_dichtruyen.GetValue("ten_thuoc"));
                     solo = Utility.sDbnull(grd_thuoc_dichtruyen.GetValue("so_lo"));
@@ -501,7 +504,7 @@ namespace VNS.HIS.UI.NOITRU
                     Utility.ShowMsg("Bạn cần chọn ít nhất một thuốc để thêm mới phiếu truyền dịch");
                     return;
                 }
-                if (m_dtPhieuchitiet.AsEnumerable().Where(c => Utility.Int32Dbnull(c["id_chitietdonthuoc"]) == id_chitietdonthuoc).Sum(c => Utility.Int32Dbnull(c["so_luong"])) >= soluong_ke)
+                if (m_dtPhieuchitiet.AsEnumerable().Where(c => Utility.Int32Dbnull(c["id_chitietdonthuoc"]) == id_chitietdonthuoc).Sum(c => Utility.DecimaltoDbnull(c["so_luong"])) >= soluong_ke)
                 {
                     Utility.ShowMsg(string.Format("Số lượng truyền dịch đã bằng số lượng kê đơn {0} nên bạn không được tạo phiếu truyền dịch thêm cho thuốc đang chọn. Vui lòng chọn thuốc khác", soluong_ke));
                     return;
@@ -514,7 +517,9 @@ namespace VNS.HIS.UI.NOITRU
                 frm.id_donthuoc = id_donthuoc;
                 frm.id_thuoc = id_thuoc;
                 frm.grdList = grd_chitiet_dichtruyen;
-                frm.SoLuong = soluong;
+                frm.soluong_conlai = soluong_conlai;
+                frm.soluong_ke = soluong_ke;
+                frm.soluongdatruyen = soluongdatruyen;
                 frm.Id_ThuocKho = idthuockho;
                 frm.TenThuoc = tenthuoc;
                 frm.solo = solo;
@@ -557,7 +562,9 @@ namespace VNS.HIS.UI.NOITRU
                             frm.id_donthuoc = id_donthuoc;
                             frm.id_thuoc = id_thuoc;
                             frm.grdList = grd_chitiet_dichtruyen;
-                            frm.SoLuong = soluong;
+                            frm.soluong_conlai = soluong_conlai;
+                            frm.soluong_ke = soluong_ke;
+                            frm.soluongdatruyen = soluongdatruyen;
                             frm.Id_ThuocKho = idthuockho;
                             frm.TenThuoc = tenthuoc;
                             frm.solo = solo;

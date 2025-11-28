@@ -30,10 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_Themmoi_Phieunhapkho));
-            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel9 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
-            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel10 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
-            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel11 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
-            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel12 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
+            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel1 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
+            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel2 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
+            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel3 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
+            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel4 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
             Janus.Windows.GridEX.GridEXLayout grdChitiet_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             this.grpControl = new Janus.Windows.EditControls.UIGroupBox();
             this.pnlHide = new System.Windows.Forms.Panel();
@@ -983,7 +983,6 @@
             // 
             // txtDonViTinh
             // 
-            this.txtDonViTinh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDonViTinh.BackColor = System.Drawing.SystemColors.Control;
             this.txtDonViTinh.Enabled = false;
             this.txtDonViTinh.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1007,39 +1006,39 @@
             // uiStatusBar1
             // 
             this.uiStatusBar1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiStatusBar1.Location = new System.Drawing.Point(0, 758);
+            this.uiStatusBar1.Location = new System.Drawing.Point(0, 738);
             this.uiStatusBar1.Name = "uiStatusBar1";
-            uiStatusBarPanel9.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
-            uiStatusBarPanel9.BorderColor = System.Drawing.Color.Empty;
-            uiStatusBarPanel9.Key = "";
-            uiStatusBarPanel9.ProgressBarValue = 0;
-            uiStatusBarPanel9.Text = "Ctrl+N: Thêm phiếu";
-            uiStatusBarPanel9.Width = 122;
-            uiStatusBarPanel10.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
-            uiStatusBarPanel10.BorderColor = System.Drawing.Color.Empty;
-            uiStatusBarPanel10.Key = "";
-            uiStatusBarPanel10.ProgressBarValue = 0;
-            uiStatusBarPanel10.Text = "Ctrl+S: Lưu lại";
-            uiStatusBarPanel10.Width = 93;
-            uiStatusBarPanel11.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
-            uiStatusBarPanel11.BorderColor = System.Drawing.Color.Empty;
-            uiStatusBarPanel11.Key = "";
-            uiStatusBarPanel11.ProgressBarValue = 0;
-            uiStatusBarPanel11.Text = "Esc: Thoát Form";
-            uiStatusBarPanel11.Width = 105;
-            uiStatusBarPanel12.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
-            uiStatusBarPanel12.BorderColor = System.Drawing.Color.Empty;
-            uiStatusBarPanel12.FormatStyle.FontBold = Janus.Windows.UI.TriState.True;
-            uiStatusBarPanel12.FormatStyle.ForeColor = System.Drawing.Color.Navy;
-            uiStatusBarPanel12.Key = "MSG";
-            uiStatusBarPanel12.ProgressBarValue = 0;
-            uiStatusBarPanel12.Text = "Thông báo";
-            uiStatusBarPanel12.Width = 74;
+            uiStatusBarPanel1.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
+            uiStatusBarPanel1.BorderColor = System.Drawing.Color.Empty;
+            uiStatusBarPanel1.Key = "";
+            uiStatusBarPanel1.ProgressBarValue = 0;
+            uiStatusBarPanel1.Text = "Ctrl+N: Thêm phiếu";
+            uiStatusBarPanel1.Width = 122;
+            uiStatusBarPanel2.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
+            uiStatusBarPanel2.BorderColor = System.Drawing.Color.Empty;
+            uiStatusBarPanel2.Key = "";
+            uiStatusBarPanel2.ProgressBarValue = 0;
+            uiStatusBarPanel2.Text = "Ctrl+S: Lưu lại";
+            uiStatusBarPanel2.Width = 93;
+            uiStatusBarPanel3.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
+            uiStatusBarPanel3.BorderColor = System.Drawing.Color.Empty;
+            uiStatusBarPanel3.Key = "";
+            uiStatusBarPanel3.ProgressBarValue = 0;
+            uiStatusBarPanel3.Text = "Esc: Thoát Form";
+            uiStatusBarPanel3.Width = 105;
+            uiStatusBarPanel4.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
+            uiStatusBarPanel4.BorderColor = System.Drawing.Color.Empty;
+            uiStatusBarPanel4.FormatStyle.FontBold = Janus.Windows.UI.TriState.True;
+            uiStatusBarPanel4.FormatStyle.ForeColor = System.Drawing.Color.Navy;
+            uiStatusBarPanel4.Key = "MSG";
+            uiStatusBarPanel4.ProgressBarValue = 0;
+            uiStatusBarPanel4.Text = "Thông báo";
+            uiStatusBarPanel4.Width = 74;
             this.uiStatusBar1.Panels.AddRange(new Janus.Windows.UI.StatusBar.UIStatusBarPanel[] {
-            uiStatusBarPanel9,
-            uiStatusBarPanel10,
-            uiStatusBarPanel11,
-            uiStatusBarPanel12});
+            uiStatusBarPanel1,
+            uiStatusBarPanel2,
+            uiStatusBarPanel3,
+            uiStatusBarPanel4});
             this.uiStatusBar1.Size = new System.Drawing.Size(1262, 23);
             this.uiStatusBar1.TabIndex = 2;
             this.uiStatusBar1.TabStop = false;
@@ -1058,7 +1057,7 @@
             this.uiAct.Controls.Add(this.cmdCancel);
             this.uiAct.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.uiAct.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiAct.Location = new System.Drawing.Point(0, 709);
+            this.uiAct.Location = new System.Drawing.Point(0, 689);
             this.uiAct.Name = "uiAct";
             this.uiAct.Size = new System.Drawing.Size(1262, 49);
             this.uiAct.TabIndex = 20;
@@ -1201,25 +1200,25 @@
             // 
             // uiGroupBox3
             // 
-            this.uiGroupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.uiGroupBox3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uiGroupBox3.FrameStyle = Janus.Windows.EditControls.FrameStyle.Top;
             this.uiGroupBox3.Location = new System.Drawing.Point(-2, 169);
             this.uiGroupBox3.Name = "uiGroupBox3";
-            this.uiGroupBox3.Size = new System.Drawing.Size(1261, 18);
+            this.uiGroupBox3.Size = new System.Drawing.Size(1225, 18);
             this.uiGroupBox3.TabIndex = 100;
             this.uiGroupBox3.Text = "Thông tin chi tiết ";
             this.uiGroupBox3.VisualStyle = Janus.Windows.UI.Dock.PanelVisualStyle.Office2003;
             // 
             // uiGroupBox4
             // 
+            this.uiGroupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.uiGroupBox4.Controls.Add(this.grdChitiet);
-            this.uiGroupBox4.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.uiGroupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uiGroupBox4.Location = new System.Drawing.Point(0, 319);
             this.uiGroupBox4.Name = "uiGroupBox4";
-            this.uiGroupBox4.Size = new System.Drawing.Size(1262, 390);
+            this.uiGroupBox4.Size = new System.Drawing.Size(1262, 370);
             this.uiGroupBox4.TabIndex = 60;
             this.uiGroupBox4.Text = "Thông tin phiếu nhập";
             this.uiGroupBox4.VisualStyle = Janus.Windows.UI.Dock.PanelVisualStyle.Office2003;
@@ -1237,7 +1236,7 @@
             this.grdChitiet.Name = "grdChitiet";
             this.grdChitiet.RecordNavigator = true;
             this.grdChitiet.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
-            this.grdChitiet.Size = new System.Drawing.Size(1256, 370);
+            this.grdChitiet.Size = new System.Drawing.Size(1256, 350);
             this.grdChitiet.TabIndex = 2;
             this.grdChitiet.TabStop = false;
             this.grdChitiet.TotalRow = Janus.Windows.GridEX.InheritableBoolean.True;
@@ -1318,7 +1317,6 @@
             // 
             // lblChietkhau
             // 
-            this.lblChietkhau.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblChietkhau.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblChietkhau.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lblChietkhau.Location = new System.Drawing.Point(930, 198);
@@ -1342,7 +1340,6 @@
             // 
             // label17
             // 
-            this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label17.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.ForeColor = System.Drawing.SystemColors.WindowText;
             this.label17.Location = new System.Drawing.Point(930, 220);
@@ -1354,7 +1351,6 @@
             // 
             // label22
             // 
-            this.label22.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label22.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label22.ForeColor = System.Drawing.Color.Red;
             this.label22.Location = new System.Drawing.Point(728, 297);
@@ -1370,7 +1366,6 @@
             // 
             // cmdHuyThongTin
             // 
-            this.cmdHuyThongTin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdHuyThongTin.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdHuyThongTin.Image = ((System.Drawing.Image)(resources.GetObject("cmdHuyThongTin.Image")));
             this.cmdHuyThongTin.ImageSize = new System.Drawing.Size(28, 28);
@@ -1384,7 +1379,6 @@
             // 
             // cmdAddDetail
             // 
-            this.cmdAddDetail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdAddDetail.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdAddDetail.Image = ((System.Drawing.Image)(resources.GetObject("cmdAddDetail.Image")));
             this.cmdAddDetail.ImageSize = new System.Drawing.Size(24, 24);
@@ -1398,7 +1392,6 @@
             // 
             // lblBHYTcu
             // 
-            this.lblBHYTcu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblBHYTcu.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBHYTcu.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lblBHYTcu.Location = new System.Drawing.Point(730, 248);
@@ -1411,7 +1404,6 @@
             // 
             // lblPhuthuDt
             // 
-            this.lblPhuthuDt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblPhuthuDt.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPhuthuDt.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lblPhuthuDt.Location = new System.Drawing.Point(928, 246);
@@ -1424,7 +1416,6 @@
             // 
             // lblPhuthuTT
             // 
-            this.lblPhuthuTT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblPhuthuTT.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPhuthuTT.ForeColor = System.Drawing.SystemColors.WindowText;
             this.lblPhuthuTT.Location = new System.Drawing.Point(929, 271);
@@ -1437,7 +1428,6 @@
             // 
             // nmrThangDu
             // 
-            this.nmrThangDu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.nmrThangDu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.nmrThangDu.DecimalPlaces = 2;
             this.nmrThangDu.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1450,7 +1440,6 @@
             // 
             // label19
             // 
-            this.label19.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label19.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ForeColor = System.Drawing.SystemColors.WindowText;
             this.label19.Location = new System.Drawing.Point(935, 296);
@@ -1463,8 +1452,6 @@
             // 
             // txtSoLo
             // 
-            this.txtSoLo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSoLo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtSoLo.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSoLo.Location = new System.Drawing.Point(305, 268);
@@ -1486,8 +1473,6 @@
             // 
             // prgBar1
             // 
-            this.prgBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.prgBar1.Location = new System.Drawing.Point(108, 169);
             this.prgBar1.Name = "prgBar1";
             this.prgBar1.Size = new System.Drawing.Size(1012, 19);
@@ -1496,8 +1481,6 @@
             // 
             // txtmathuoc
             // 
-            this.txtmathuoc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtmathuoc.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtmathuoc.Location = new System.Drawing.Point(305, 220);
             this.txtmathuoc.Name = "txtmathuoc";
@@ -1549,7 +1532,6 @@
             // 
             // label27
             // 
-            this.label27.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label27.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label27.ForeColor = System.Drawing.Color.Black;
             this.label27.Location = new System.Drawing.Point(724, 197);
@@ -1561,7 +1543,6 @@
             // 
             // txtIdQD
             // 
-            this.txtIdQD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtIdQD.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIdQD.Location = new System.Drawing.Point(813, 194);
             this.txtIdQD.MaxLength = 200;
@@ -1573,7 +1554,6 @@
             // 
             // label30
             // 
-            this.label30.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label30.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label30.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.label30.Location = new System.Drawing.Point(497, 271);
@@ -1585,7 +1565,6 @@
             // 
             // label31
             // 
-            this.label31.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label31.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label31.Location = new System.Drawing.Point(392, 221);
             this.label31.Name = "label31";
@@ -1596,7 +1575,6 @@
             // 
             // label32
             // 
-            this.label32.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label32.Font = new System.Drawing.Font("Arial", 9.75F);
             this.label32.ForeColor = System.Drawing.Color.Black;
             this.label32.Location = new System.Drawing.Point(497, 198);
@@ -1608,7 +1586,6 @@
             // 
             // label33
             // 
-            this.label33.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label33.Font = new System.Drawing.Font("Arial", 9.75F);
             this.label33.ForeColor = System.Drawing.Color.Black;
             this.label33.Location = new System.Drawing.Point(497, 222);
@@ -1620,7 +1597,6 @@
             // 
             // label34
             // 
-            this.label34.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label34.Font = new System.Drawing.Font("Arial", 9.75F);
             this.label34.ForeColor = System.Drawing.Color.Black;
             this.label34.Location = new System.Drawing.Point(497, 248);
@@ -1632,7 +1608,6 @@
             // 
             // txtSLthau
             // 
-            this.txtSLthau.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSLthau.BackColor = System.Drawing.Color.White;
             this.txtSLthau.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtSLthau.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1647,7 +1622,6 @@
             // 
             // txtsldieutiet
             // 
-            this.txtsldieutiet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtsldieutiet.BackColor = System.Drawing.Color.White;
             this.txtsldieutiet.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtsldieutiet.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1662,7 +1636,6 @@
             // 
             // txtSlnhapkho
             // 
-            this.txtSlnhapkho.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSlnhapkho.BackColor = System.Drawing.Color.White;
             this.txtSlnhapkho.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtSlnhapkho.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1677,7 +1650,6 @@
             // 
             // lblKhachuyen
             // 
-            this.lblKhachuyen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblKhachuyen.BackColor = System.Drawing.Color.White;
             this.lblKhachuyen.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblKhachuyen.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1697,8 +1669,6 @@
             this.txtsoDK._TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtsoDK.AddValues = false;
             this.txtsoDK.AllowMultiline = false;
-            this.txtsoDK.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtsoDK.AutoCompleteList = ((System.Collections.Generic.List<string>)(resources.GetObject("txtsoDK.AutoCompleteList")));
             this.txtsoDK.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtsoDK.buildShortcut = false;
@@ -1740,7 +1710,6 @@
             // 
             // txtThanhTien
             // 
-            this.txtThanhTien.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtThanhTien.BackColor = System.Drawing.SystemColors.Control;
             this.txtThanhTien.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtThanhTien.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1754,7 +1723,6 @@
             // 
             // txtGiaBHYT_cu
             // 
-            this.txtGiaBHYT_cu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtGiaBHYT_cu.BackColor = System.Drawing.SystemColors.Control;
             this.txtGiaBHYT_cu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtGiaBHYT_cu.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1769,7 +1737,6 @@
             // 
             // txtPhuthuTT
             // 
-            this.txtPhuthuTT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPhuthuTT.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPhuthuTT.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPhuthuTT.Location = new System.Drawing.Point(1012, 266);
@@ -1782,7 +1749,6 @@
             // 
             // txtPhuthuDT
             // 
-            this.txtPhuthuDT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPhuthuDT.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPhuthuDT.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPhuthuDT.Location = new System.Drawing.Point(1012, 242);
@@ -1795,7 +1761,6 @@
             // 
             // txtGiaBHYT
             // 
-            this.txtGiaBHYT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtGiaBHYT.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtGiaBHYT.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtGiaBHYT.Location = new System.Drawing.Point(1012, 290);
@@ -1808,7 +1773,6 @@
             // 
             // txtChietkhau
             // 
-            this.txtChietkhau.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtChietkhau.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtChietkhau.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtChietkhau.Location = new System.Drawing.Point(1012, 195);
@@ -1824,8 +1788,6 @@
             this.txtDrugName._backcolor = System.Drawing.SystemColors.Control;
             this.txtDrugName._Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDrugName.AllowedSelectPrice = false;
-            this.txtDrugName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDrugName.AutoCompleteList = ((System.Collections.Generic.List<string>)(resources.GetObject("txtDrugName.AutoCompleteList")));
             this.txtDrugName.BackColor = System.Drawing.Color.Honeydew;
             this.txtDrugName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -1973,8 +1935,9 @@
             // 
             // frm_Themmoi_Phieunhapkho
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
-            this.ClientSize = new System.Drawing.Size(1262, 781);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(1262, 761);
             this.Controls.Add(this.nmr_giaban_dvu);
             this.Controls.Add(this.nmr_giasau_VAT);
             this.Controls.Add(this.nmr_giatruoc_VAT);

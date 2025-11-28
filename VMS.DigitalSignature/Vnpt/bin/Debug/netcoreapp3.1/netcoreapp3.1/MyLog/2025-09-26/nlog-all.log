@@ -1,0 +1,292 @@
+2025-09-26 13:33:47.2650||DEBUG|VMS.ChuKySo.Api.Program|Init API 
+2025-09-26 13:33:49.6011||INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down. 
+2025-09-26 13:33:49.6227||INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development 
+2025-09-26 13:33:49.6330||INFO|Microsoft.Hosting.Lifetime|Content root path: F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Vnpt 
+2025-09-26 13:33:49.6569||INFO|Startup|BaseDirectory: F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Vnpt\bin\Debug\netcoreapp3.1\netcoreapp3.1\ 
+2025-09-26 21:42:50.0322||DEBUG|VMS.ChuKySo.Api.Program|Init API 
+2025-09-26 21:42:53.2344||INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down. 
+2025-09-26 21:42:53.2606||INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development 
+2025-09-26 21:42:53.2748||INFO|Microsoft.Hosting.Lifetime|Content root path: F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Vnpt 
+2025-09-26 21:42:53.3124||INFO|Startup|BaseDirectory: F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Vnpt\bin\Debug\netcoreapp3.1\netcoreapp3.1\ 
+2025-09-26 21:51:21.1796||DEBUG|KysoPDF|---------Begin KysoPDF---------------------------------------------------- 
+2025-09-26 21:51:21.1936||DEBUG|KysoPDF|api: https://gwsca.vnpt.vn/sca/sp769 
+2025-09-26 21:51:21.1936||DEBUG|KysoPDF|Thông tin user kí số: user 'ANHNTL', userFullName 'Nguyễn Thị Lan Anh' with userId: '001081007147', password: '1' 
+2025-09-26 21:51:21.2131||DEBUG|KysoPDF|File Length: 112731 
+2025-09-26 21:51:21.2131||DEBUG|KysoPDF|Signature Length: 0 
+2025-09-26 21:51:24.0154||DEBUG|KysoPDF|cert found 
+2025-09-26 21:51:24.1774||ERROR|KysoPDF|There was an error on 'KysoPDF' invocation: System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')
+   at System.Collections.Generic.List`1.get_Item(Int32 index)
+   at VMS.ChuKySo.Api.Controllers.VnptController.KysoPDF(VMSDigitalSignature objDigitalSignature) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Vnpt\Controllers\VnptController.cs:line 121 
+2025-09-26 21:54:39.1123||DEBUG|KysoPDF|---------Begin KysoPDF---------------------------------------------------- 
+2025-09-26 21:54:39.1123||DEBUG|KysoPDF|api: https://gwsca.vnpt.vn/sca/sp769 
+2025-09-26 21:54:39.1328||DEBUG|KysoPDF|Thông tin user kí số: user 'ANHNTL', userFullName 'Nguyễn Thị Lan Anh' with userId: '001081007147', password: '1' 
+2025-09-26 21:54:39.1328||DEBUG|KysoPDF|File Length: 113412 
+2025-09-26 21:54:39.1328||DEBUG|KysoPDF|Signature Length: 0 
+2025-09-26 21:54:39.3894||DEBUG|KysoPDF|cert found 
+2025-09-26 21:54:39.4876||ERROR|KysoPDF|There was an error on 'KysoPDF' invocation: System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')
+   at System.Collections.Generic.List`1.get_Item(Int32 index)
+   at VMS.ChuKySo.Api.Controllers.VnptController.KysoPDF(VMSDigitalSignature objDigitalSignature) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Vnpt\Controllers\VnptController.cs:line 121 
+2025-09-26 21:55:09.9942||DEBUG|KysoPDF|---------Begin KysoPDF---------------------------------------------------- 
+2025-09-26 21:55:17.7263||DEBUG|KysoPDF|api: https://gwsca.vnpt.vn/sca/sp769 
+2025-09-26 21:55:23.1471||DEBUG|KysoPDF|Thông tin user kí số: user 'ANHNTL', userFullName 'Nguyễn Thị Lan Anh' with userId: '001081007147', password: '1' 
+2025-09-26 21:55:25.5098||DEBUG|KysoPDF|File Length: 113412 
+2025-09-26 21:55:25.9976||DEBUG|KysoPDF|Signature Length: 0 
+2025-09-26 21:56:13.5784||DEBUG|KysoPDF|cert found 
+2025-09-26 21:56:13.6455||ERROR|KysoPDF|There was an error on 'KysoPDF' invocation: System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')
+   at System.Collections.Generic.List`1.get_Item(Int32 index)
+   at VMS.ChuKySo.Api.Controllers.VnptController.KysoPDF(VMSDigitalSignature objDigitalSignature) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Vnpt\Controllers\VnptController.cs:line 121 
+2025-09-26 21:57:34.5736||DEBUG|KysoPDF|---------Begin KysoPDF---------------------------------------------------- 
+2025-09-26 21:57:34.5736||DEBUG|KysoPDF|api: https://gwsca.vnpt.vn/sca/sp769 
+2025-09-26 21:57:34.5987||DEBUG|KysoPDF|Thông tin user kí số: user 'BSTUTTC', userFullName 'BSCKI. Trần Thị Cẩm Tú' with userId: '086190000436', password: 'BaoAn@0307' 
+2025-09-26 21:57:34.5987||DEBUG|KysoPDF|File Length: 113412 
+2025-09-26 21:57:34.5987||DEBUG|KysoPDF|Signature Length: 0 
+2025-09-26 21:57:49.9599||DEBUG|KysoPDF|cert found 
+2025-09-26 21:58:01.0776||DEBUG|KysoPDF|Sign with Reactangle: 354,192,504,242 
+2025-09-26 21:58:01.6449||DEBUG|KysoPDF|GetSecondHashAsBase64() done with hasValue=XhsHM+NE8vHZSTtbJbxIyXlc8O9BMGIIJpIK1/aNZAU= 
+2025-09-26 21:58:05.1388||DEBUG|KysoPDF|data_to_be_sign=5e1b0733e344f2f1d9493b5b25bc48c9795cf0ef4130620826920ad7f68d6405 
+2025-09-26 21:58:05.8286||DEBUG|KysoPDF|sign with serial number=5401010105b4ecc8195ce02b2c5a6e33 
+2025-09-26 21:58:13.2961||DEBUG|KysoPDF|datasigned=lWIQpoDFqBHhS+LuHGX3aIYVvpbziUoIHyn063COKFz1z5y49Okc8dc7gfMfBvUMhVbmnMygWwphtOqHxTx0hRMUnoo+eeliOOcoH1+Jis2YI4W947EgQYggcA1cBhEaBMd9Ql+skplUv98xWEufftEBftrScn2y6upJNpm3lM2z26fZg0kXpHyyGedqSPxFXyRe0HJEnvya9Dvq27GGEL1vCcdrR6SOeUNRV5P1h603eDnz8MYigzc1fsRHhys4VE7cJHv00TYymelLTosCVMxp7JlYlpMOm0aKBksWBjkkOra8lLu9HxhwKt1Wo18/mHM2uTllsQjFZVQpO/T6kw== 
+2025-09-26 21:58:17.0941||DEBUG|KysoPDF|Kí pdf Thành công 
+2025-09-26 22:25:25.4362||DEBUG|KysoPDF|---------Begin KysoPDF---------------------------------------------------- 
+2025-09-26 22:25:25.4403||DEBUG|KysoPDF|api: https://gwsca.vnpt.vn/sca/sp769 
+2025-09-26 22:25:25.4403||DEBUG|KysoPDF|Thông tin user kí số: user 'BSTUTTC', userFullName 'BSCKI. Trần Thị Cẩm Tú' with userId: '086190000436', password: 'BaoAn@0307' 
+2025-09-26 22:25:25.4403||DEBUG|KysoPDF|File Length: 114651 
+2025-09-26 22:25:25.4403||DEBUG|KysoPDF|Signature Length: 0 
+2025-09-26 22:25:27.6817||DEBUG|KysoPDF|cert found 
+2025-09-26 22:25:27.6817||DEBUG|KysoPDF|Sign with Reactangle: 363,192,513,242 
+2025-09-26 22:25:27.7693||DEBUG|KysoPDF|GetSecondHashAsBase64() done with hasValue=o4N+Zms+7JKwzLjBZ9oTw4K9w2yWvKUwWq8ZsNEO1qM= 
+2025-09-26 22:25:27.7693||DEBUG|KysoPDF|data_to_be_sign=a3837e666b3eec92b0ccb8c167da13c382bdc36c96bca5305aaf19b0d10ed6a3 
+2025-09-26 22:25:27.7693||DEBUG|KysoPDF|sign with serial number=5401010105b4ecc8195ce02b2c5a6e33 
+2025-09-26 22:25:28.5127||DEBUG|KysoPDF|datasigned=kgcycNs+Nw37keCA8CE+DtZylm8dV7v0f2LN602Jel0fDDJqoGt0lvr8h6eV01J73thIe3g5NwHtOY3yCw6FEaaVkOPkktUoT+90eqdXfnc53riUgiybR4PfrTe34NbBjsxZiSyRPwRiwWVxYarfZ5TbvvjqlrzLUfZn8M7l9oj19IVFZAoo5l3KpCrOA2omXKVldF5RwnU2UlVaYd2fzzGXVKw4ET4YMZF0smN8NQosDI7GaRoxUJ7+CRk9lnXjM6ckZGR2epIWgpJZW6u9qkqm7AgmN8GI3kRogJ5/4mNyp8cvSPX8hs+ZSY2ZyRDC2Si15iwQLgY34dCtTb31EQ== 
+2025-09-26 22:25:28.5127||DEBUG|KysoPDF|Kí pdf Thành công 
+2025-09-26 22:27:53.9604||DEBUG|KysoPDF|---------Begin KysoPDF---------------------------------------------------- 
+2025-09-26 22:27:53.9604||DEBUG|KysoPDF|api: https://gwsca.vnpt.vn/sca/sp769 
+2025-09-26 22:27:53.9848||DEBUG|KysoPDF|Thông tin user kí số: user 'BSTUTTC', userFullName 'BSCKI. Trần Thị Cẩm Tú' with userId: '086190000436', password: 'BaoAn@0307' 
+2025-09-26 22:27:53.9901||DEBUG|KysoPDF|File Length: 122165 
+2025-09-26 22:27:53.9901||DEBUG|KysoPDF|Signature Length: 0 
+2025-09-26 22:27:58.4499||DEBUG|KysoPDF|cert found 
+2025-09-26 22:27:58.4499||DEBUG|KysoPDF|Sign with Reactangle: 363,192,513,242 
+2025-09-26 22:27:58.5089||DEBUG|KysoPDF|GetSecondHashAsBase64() done with hasValue=UK/VsLJScxAGOCEajxqjgAnyaBYem3Ds14u3iPiL68Y= 
+2025-09-26 22:27:58.5089||DEBUG|KysoPDF|data_to_be_sign=50afd5b0b25273100638211a8f1aa38009f268161e9b70ecd78bb788f88bebc6 
+2025-09-26 22:27:58.5089||DEBUG|KysoPDF|sign with serial number=5401010105b4ecc8195ce02b2c5a6e33 
+2025-09-26 22:27:59.2137||DEBUG|KysoPDF|datasigned=CDLNO+P+3MwwuK/Qgr+h9l4JN0ywj2KAk9COdZxBmbZbs0z9kEvg25b0ZfVFAy8DgUDK0PyiKFQ4V8Ix6xSKJxQK0Wa+4oc2vym8lFMZmPuEJJZTqBTb8oipBbvM/JRzwNAVl/pW5NC0cf6Sp5npBjdyQ6MoTEHQ2faGj/JyIR2vaZS/gqrzfit1+mCRqThAvpMrf9I9IcG/FTTelyiZHx1LC+EFu/1RH7y/7ShZ8e1DKc1nqWJxxmm6wzTz3TNWYjgLNuMlDuRvPFzQEw72e3DT0tAutXikeeexRd0BZziFPqHQ7e7ceLqZBPWCFnTetMgEnaIQJ2UQGGXwYbE2UA== 
+2025-09-26 22:27:59.2137||DEBUG|KysoPDF|Kí pdf Thành công 
+2025-09-26 22:29:12.2675||DEBUG|VMS.ChuKySo.Api.Program|Init API 
+2025-09-26 22:29:13.8777||INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down. 
+2025-09-26 22:29:13.8777||INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development 
+2025-09-26 22:29:13.8777||INFO|Microsoft.Hosting.Lifetime|Content root path: F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Vnpt 
+2025-09-26 22:29:13.9106||INFO|Startup|BaseDirectory: F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Vnpt\bin\Debug\netcoreapp3.1\netcoreapp3.1\ 
+2025-09-26 22:29:16.4144||DEBUG|KysoPDF|---------Begin KysoPDF---------------------------------------------------- 
+2025-09-26 22:29:16.4144||DEBUG|KysoPDF|api: https://gwsca.vnpt.vn/sca/sp769 
+2025-09-26 22:29:16.4144||DEBUG|KysoPDF|Thông tin user kí số: user 'BSTUTTC', userFullName 'BSCKI. Trần Thị Cẩm Tú' with userId: '086190000436', password: 'BaoAn@0307' 
+2025-09-26 22:29:16.4368||DEBUG|KysoPDF|File Length: 122165 
+2025-09-26 22:29:16.4368||DEBUG|KysoPDF|Signature Length: 0 
+2025-09-26 22:29:18.4205||DEBUG|KysoPDF|cert found 
+2025-09-26 22:29:18.5689||DEBUG|KysoPDF|Sign with Reactangle: 363,192,513,242 
+2025-09-26 22:29:19.1815||DEBUG|KysoPDF|GetSecondHashAsBase64() done with hasValue=7Hez/rzqpQgFnO/iZiiFdBciSNbhlCQ32vAI0R5BmOo= 
+2025-09-26 22:29:19.1815||DEBUG|KysoPDF|data_to_be_sign=ec77b3febceaa508059cefe266288574172248d6e1942437daf008d11e4198ea 
+2025-09-26 22:29:19.1815||DEBUG|KysoPDF|sign with serial number=5401010105b4ecc8195ce02b2c5a6e33 
+2025-09-26 22:29:20.0695||DEBUG|KysoPDF|datasigned=an4sT6UZ1GrRAiKZSjvEpO8wVgNVqH9oc2ExY84e32M2TiM4nZuiXnn4M8xkPGZI+mh668qjByup2U/kZBFMeEs9Og9BfhNHxaUpAZUATUPmX+eZ4pdw0soRBp3VcIAqtdY/AyRrPe2NeJGAkHFtzWV5uvPGL1D1KiOcY9IzPnTZzFdjLlK+zUMAfiRBvYgxcEteirnu8X2weX9ekOqSTihW8SqpV6Y4AZBrRhOtt7KJFpP5GTIgt+oUynwKI6JEfl7mgR01QAwjSap1lZUjA+3p972/QAxt0fsCRucP7NiLBqPKngJRmhY6SQz5TmYCV3v5odPvznDYieCPaj5vPg== 
+2025-09-26 22:29:20.1008||DEBUG|KysoPDF|Kí pdf Thành công 
+2025-09-26 22:31:40.2306||DEBUG|VMS.ChuKySo.Api.Program|Init API 
+2025-09-26 22:31:41.0384||INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down. 
+2025-09-26 22:31:41.0384||INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development 
+2025-09-26 22:31:41.0384||INFO|Microsoft.Hosting.Lifetime|Content root path: F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Vnpt 
+2025-09-26 22:31:41.0591||INFO|Startup|BaseDirectory: F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Vnpt\bin\Debug\netcoreapp3.1\netcoreapp3.1\ 
+2025-09-26 22:33:08.4080||DEBUG|KysoPDF|---------Begin KysoPDF---------------------------------------------------- 
+2025-09-26 22:33:08.4097||DEBUG|KysoPDF|api: https://gwsca.vnpt.vn/sca/sp769 
+2025-09-26 22:33:08.4097||DEBUG|KysoPDF|Thông tin user kí số: user 'BSTUTTC', userFullName 'BSCKI. Trần Thị Cẩm Tú' with userId: '086190000436', password: 'BaoAn@0307' 
+2025-09-26 22:33:08.4247||DEBUG|KysoPDF|File Length: 122176 
+2025-09-26 22:33:08.4247||DEBUG|KysoPDF|Signature Length: 0 
+2025-09-26 22:33:09.0805||DEBUG|KysoPDF|cert found 
+2025-09-26 22:33:09.1115||DEBUG|KysoPDF|Sign with Reactangle: 363,182,563,242 
+2025-09-26 22:33:09.3724||DEBUG|KysoPDF|GetSecondHashAsBase64() done with hasValue=8NTS6Sl0FiBi18IW6IwZsdWrmIFDWvsBzf7Wf6ChUVA= 
+2025-09-26 22:33:09.3724||DEBUG|KysoPDF|data_to_be_sign=f0d4d2e92974162062d7c216e88c19b1d5ab9881435afb01cdfed67fa0a15150 
+2025-09-26 22:33:09.3724||DEBUG|KysoPDF|sign with serial number=5401010105b4ecc8195ce02b2c5a6e33 
+2025-09-26 22:33:10.0111||DEBUG|KysoPDF|datasigned=iONV+MaYn2CzMN4kGBYcDZQA7OEC5x/Mv+kzwBxFTsUUxHJ2U/P86+qpGrkceQ64qJlMAEajaI2iEy9jqfKOB4fonapwCPxzi8CR8eJAxepQOGY105imVLG/67o+KN9prjvZBaH/9Q5VK1F8ZQkVyjE5osAXrwXPZAnGH1ftUYrAoYezMXGqSYwUn0sRoosNltXjN2truRqGYNBIN+M0KgTXDhdrf0TBBpXtVNt2Yz+iU5zhkGNSky04WL9r/2YTkYL1YEH9QMPUPQRs8l+cBijBnLbMcOBmZ6sKxWz+a2K1GHnmvygupejBCHEF8SQyNfoT4U3Wxv7tGYhZ6zyMpA== 
+2025-09-26 22:33:10.0171||DEBUG|KysoPDF|Kí pdf Thành công 
+2025-09-26 22:37:02.0805||DEBUG|KysoPDF|---------Begin KysoPDF---------------------------------------------------- 
+2025-09-26 22:37:02.0805||DEBUG|KysoPDF|api: https://gwsca.vnpt.vn/sca/sp769 
+2025-09-26 22:37:02.0805||DEBUG|KysoPDF|Thông tin user kí số: user 'BSTUTTC', userFullName 'BSCKI. Trần Thị Cẩm Tú' with userId: '086190000436', password: 'BaoAn@0307' 
+2025-09-26 22:37:02.0805||DEBUG|KysoPDF|File Length: 122259 
+2025-09-26 22:37:02.0805||DEBUG|KysoPDF|Signature Length: 0 
+2025-09-26 22:37:02.3743||DEBUG|KysoPDF|cert found 
+2025-09-26 22:37:02.3786||DEBUG|KysoPDF|Sign with Reactangle: 383,168,583,228 
+2025-09-26 22:37:02.4068||DEBUG|KysoPDF|GetSecondHashAsBase64() done with hasValue=J6htcsI86rKRygoUELdSbtnpaLJfIu0qL/8hFJQxYys= 
+2025-09-26 22:37:02.4076||DEBUG|KysoPDF|data_to_be_sign=27a86d72c23ceab291ca0a1410b7526ed9e968b25f22ed2a2fff21149431632b 
+2025-09-26 22:37:02.4076||DEBUG|KysoPDF|sign with serial number=5401010105b4ecc8195ce02b2c5a6e33 
+2025-09-26 22:37:02.9761||DEBUG|KysoPDF|datasigned=eO03qpo9dIQ24cA7qv3a4wN47phPwBhus1A099iRvgqV3amftZYTjHH1U8uhYxnS9C+V/NO0F0NzV9bA2X8XyRW2ygUwGDO1XdeHWvdqUcI69/KqkYaSxddqo8VQ4VCyXNMEDBpU2CtgqVCmCU1WGVYLv7WGOb+unngv9JhmAishx3ZRAh24I9OOiRQFwTSWkFcyulUkZxROMG1KOdqADPZIZAYSJwv2RUzfaguzvZyAMPMWCYz2ElBJKXC4HpEQTLg2oxgL7mIgT2Rvk8hEjd4aLfLfXJet0shebNkmUZWa9EfJwmuYlPeWUBUzKjt0W998f9fOYzq1DeJO26jsUw== 
+2025-09-26 22:37:02.9761||DEBUG|KysoPDF|Kí pdf Thành công 
+2025-09-26 22:42:30.9653||DEBUG|KysoPDF|---------Begin KysoPDF---------------------------------------------------- 
+2025-09-26 22:42:30.9653||DEBUG|KysoPDF|api: https://gwsca.vnpt.vn/sca/sp769 
+2025-09-26 22:42:30.9653||DEBUG|KysoPDF|Thông tin user kí số: user 'BSTUTTC', userFullName 'BSCKI. Trần Thị Cẩm Tú' with userId: '086190000436', password: 'BaoAn@0307' 
+2025-09-26 22:42:30.9706||DEBUG|KysoPDF|File Length: 122212 
+2025-09-26 22:42:30.9706||DEBUG|KysoPDF|Signature Length: 0 
+2025-09-26 22:42:31.1752||DEBUG|KysoPDF|cert found 
+2025-09-26 22:42:31.1752||DEBUG|KysoPDF|Sign with Reactangle: 357,168,557,228 
+2025-09-26 22:42:31.1992||DEBUG|KysoPDF|GetSecondHashAsBase64() done with hasValue=32ENL0v2CsAaLqL9odFUsmBQuJAfQOGM8Xtvlnz0RvA= 
+2025-09-26 22:42:31.1992||DEBUG|KysoPDF|data_to_be_sign=df610d2f4bf60ac01a2ea2fda1d154b26050b8901f40e18cf17b6f967cf446f0 
+2025-09-26 22:42:31.1992||DEBUG|KysoPDF|sign with serial number=5401010105b4ecc8195ce02b2c5a6e33 
+2025-09-26 22:42:31.8090||DEBUG|KysoPDF|datasigned=FoT+JRTR+sPjkNfgt9UZlsq54TKOn1Zh7bvY2tSfbuiokK8bd2Wz0aG3gW1KP6CsiMpc654G8gCXW/l05Ob+FFL1c9Q0HfHe349UDqtapQjyaEUde3ZHkF4ibLlTIWPcmibkVF6LnmKMrXXkCg0GzxKHL0NvFQSitPDlcNWnHurye7LhyigpYj4OlE4WijwRq84vApl0GHAKe7G3PUKyICGGxie4MAbFHy8XgyGpoC0iFkIIfyuLJ57uJkqVDIxch12EEdPV6yZPDS9oR8SyA1D2k7J8R9FQoB39kY8uTsWG0Mg2vQA1KAjhvIicmvCz/id9FQJ5/fN/DmBbSlH2pQ== 
+2025-09-26 22:42:31.8090||DEBUG|KysoPDF|Kí pdf Thành công 
+2025-09-26 22:44:34.0954||DEBUG|KysoPDF|---------Begin KysoPDF---------------------------------------------------- 
+2025-09-26 22:44:34.0970||DEBUG|KysoPDF|api: https://gwsca.vnpt.vn/sca/sp769 
+2025-09-26 22:44:34.0970||DEBUG|KysoPDF|Thông tin user kí số: user 'BSTUTTC', userFullName 'BSCKI. Trần Thị Cẩm Tú' with userId: '086190000436', password: 'BaoAn@0307' 
+2025-09-26 22:44:34.0970||DEBUG|KysoPDF|File Length: 122164 
+2025-09-26 22:44:34.0970||DEBUG|KysoPDF|Signature Length: 0 
+2025-09-26 22:44:34.3053||DEBUG|KysoPDF|cert found 
+2025-09-26 22:44:34.3053||DEBUG|KysoPDF|Sign with Reactangle: 362,182,562,242 
+2025-09-26 22:44:34.3330||DEBUG|KysoPDF|GetSecondHashAsBase64() done with hasValue=t06xMazdg5QrKDwyP240qrDqN3WUfuyPCdnYx6Zga3w= 
+2025-09-26 22:44:34.3330||DEBUG|KysoPDF|data_to_be_sign=b74eb131acdd83942b283c323f6e34aab0ea3775947eec8f09d9d8c7a6606b7c 
+2025-09-26 22:44:34.3330||DEBUG|KysoPDF|sign with serial number=5401010105b4ecc8195ce02b2c5a6e33 
+2025-09-26 22:44:34.9693||DEBUG|KysoPDF|datasigned=gj+G+keoCt0P2c0Qsst64OYXi/fY+e3ahJMoQ2b9bfklOX3zuoI55cMfghYcrGMq8maz5rQsU28+NMvrVQz1vRGrLLAZPDKLO8gwFw27EaRPbrV8wUSokk4hCqLEgopZslJx7PioRna7je1XYOLcPRBs3/2OH+FhIKmAdfmgs1FlWPAnWf5XDXpyap3agxD+URM0o5ts2YMblzJq89mWEQ8gcpNwALZMB5jF9g61Hk/QQEW2ru6G9ukj9uBeB2sD9uGNgysthpFNFVa32d14zKDfRyfuAtlKliCrwf337gqfxEcIA0zSrHxI9J4ISY+jiYYGLlhM+uoKrB/6osqbHw== 
+2025-09-26 22:44:34.9716||DEBUG|KysoPDF|Kí pdf Thành công 
+2025-09-26 22:47:40.8664||DEBUG|KysoPDF|---------Begin KysoPDF---------------------------------------------------- 
+2025-09-26 22:47:40.8664||DEBUG|KysoPDF|api: https://gwsca.vnpt.vn/sca/sp769 
+2025-09-26 22:47:40.8664||DEBUG|KysoPDF|Thông tin user kí số: user 'BSTUTTC', userFullName 'BSCKI. Trần Thị Cẩm Tú' with userId: '086190000436', password: 'BaoAn@0307' 
+2025-09-26 22:47:40.8664||DEBUG|KysoPDF|File Length: 122267 
+2025-09-26 22:47:40.8664||DEBUG|KysoPDF|Signature Length: 0 
+2025-09-26 22:47:41.0741||DEBUG|KysoPDF|cert found 
+2025-09-26 22:47:41.0741||DEBUG|KysoPDF|Sign with Reactangle: 371,179,571,239 
+2025-09-26 22:47:41.1251||DEBUG|KysoPDF|GetSecondHashAsBase64() done with hasValue=okVKVUMW0KHYqitZnQSJKs01/idcCGYOtvaFd90O2/0= 
+2025-09-26 22:47:41.1251||DEBUG|KysoPDF|data_to_be_sign=a2454a554316d0a1d8aa2b599d04892acd35fe275c08660eb6f68577dd0edbfd 
+2025-09-26 22:47:41.1251||DEBUG|KysoPDF|sign with serial number=5401010105b4ecc8195ce02b2c5a6e33 
+2025-09-26 22:47:41.7348||DEBUG|KysoPDF|datasigned=jWjzZuzVzmDK/LdhchdNG7+Tfw7xa9+wHtdPlpbv8FWQnEavQKWx0Epws3OS14is9x54bmDIzefeuZj2af/nI+xwN3UYe4+NcIQSfEJpwSl2dAcSTLh6LMiIAhnFvaA7ZFqJDPyhSt0gsdQRneZ43RlVrFc+0fEjvhpT+Qxj6YVF/4zujDGPbC5dXJHbdxuRSRwcUFgtr8+cmUJSZ4nCyBj9pUPnNWJ5UKwa9dkXKjvYZQHkd3VGNoIg/gHXmBgn/sBVgJZ3nKLh1RiWLm6SVTGiIy2kzTJCIk7X0FtWpGooltdwcreqxIIWJd9f9h03vDl7/BDI006PoQ9PjqI+2A== 
+2025-09-26 22:47:41.7364||DEBUG|KysoPDF|Kí pdf Thành công 
+2025-09-26 23:07:03.1741||DEBUG|VMS.ChuKySo.Api.Program|Init API 
+2025-09-26 23:07:05.6692||INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down. 
+2025-09-26 23:07:05.6787||INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development 
+2025-09-26 23:07:05.6936||INFO|Microsoft.Hosting.Lifetime|Content root path: F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Vnpt 
+2025-09-26 23:07:05.7367||INFO|Startup|BaseDirectory: F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Vnpt\bin\Debug\netcoreapp3.1\netcoreapp3.1\ 
+2025-09-26 23:07:09.8235||DEBUG|KysoPDF|---------Begin KysoPDF---------------------------------------------------- 
+2025-09-26 23:07:09.8235||DEBUG|KysoPDF|api: https://gwsca.vnpt.vn/sca/sp769 
+2025-09-26 23:07:09.8235||DEBUG|KysoPDF|Thông tin user kí số: user 'BSTUTTC', userFullName 'BSCKI. Trần Thị Cẩm Tú' with userId: '086190000436', password: 'BaoAn@0307' 
+2025-09-26 23:07:09.8362||DEBUG|KysoPDF|File Length: 113471 
+2025-09-26 23:07:09.8362||DEBUG|KysoPDF|Signature Length: 0 
+2025-09-26 23:07:11.1361||DEBUG|KysoPDF|cert found 
+2025-09-26 23:07:11.1907||DEBUG|KysoPDF|Sign with Reactangle: 335,129,535,189 
+2025-09-26 23:07:11.6114||DEBUG|KysoPDF|GetSecondHashAsBase64() done with hasValue=fgLzpFepcOyxzFiMhWGnnbDQabIH5X+R+379DCGYlAk= 
+2025-09-26 23:07:11.6114||DEBUG|KysoPDF|data_to_be_sign=7e02f3a457a970ecb1cc588c8561a79db0d069b207e57f91fb7efd0c21989409 
+2025-09-26 23:07:11.6114||DEBUG|KysoPDF|sign with serial number=5401010105b4ecc8195ce02b2c5a6e33 
+2025-09-26 23:07:12.4173||DEBUG|KysoPDF|datasigned=e8WN2tumTIZF7XF1PfLiSGEaCaGFUWDwNT0hfC6t8h0GWxsgDkZMUB5vLC8vKU2T83tQJVdZtItBJs8Qd6qqsB5Tli7I0EyMo+JtoH4KKqHt3yuWc5YycQxW9Dp6RqsnNhSlVTMOiDJLVcqjMPYAGYqhrIgrf0sq5Ln2deKz1RezP1w7QlMep98SwUEX+42sc5+IVr10e5mwbaJ6zb2JTL0hCh9hCZlf/A/1UQTTav0iS6o+JhMgi2P6ujfneW7zptfWiS+qWmzGgc+ZAE3ohs32dGERpgF0OgGU45jqGcFyFU46T5nZqWjo+g3Vkse9ltucDk5GOxLkn/TU1jZ6fQ== 
+2025-09-26 23:07:12.4283||DEBUG|KysoPDF|Kí pdf Thành công 
+2025-09-26 23:16:04.5917||DEBUG|KysoPDF|---------Begin KysoPDF---------------------------------------------------- 
+2025-09-26 23:16:04.5917||DEBUG|KysoPDF|api: https://gwsca.vnpt.vn/sca/sp769 
+2025-09-26 23:16:04.6054||DEBUG|KysoPDF|Thông tin user kí số: user 'BSTUTTC', userFullName 'BSCKI. Trần Thị Cẩm Tú' with userId: '086190000436', password: 'BaoAn@0307' 
+2025-09-26 23:16:04.6054||DEBUG|KysoPDF|File Length: 113466 
+2025-09-26 23:16:04.6054||DEBUG|KysoPDF|Signature Length: 0 
+2025-09-26 23:16:04.8373||DEBUG|KysoPDF|cert found 
+2025-09-26 23:16:04.8373||DEBUG|KysoPDF|Sign with Reactangle: 386,179,566,239 
+2025-09-26 23:16:04.9047||DEBUG|KysoPDF|GetSecondHashAsBase64() done with hasValue=Udmh0smfUj4HCY4SqUdnwiLTdxARJ7cZNK/SnyBkrIE= 
+2025-09-26 23:16:04.9047||DEBUG|KysoPDF|data_to_be_sign=51d9a1d2c99f523e07098e12a94767c222d377101127b71934afd29f2064ac81 
+2025-09-26 23:16:04.9047||DEBUG|KysoPDF|sign with serial number=5401010105b4ecc8195ce02b2c5a6e33 
+2025-09-26 23:16:05.6166||DEBUG|KysoPDF|datasigned=IFwjJ6gmbyWe3KO3FiOI1mL8QBh4zUjiVYhVdBv1l6LJTQxKYiVyqi8wNCYf80743+zTO2GhBhxiALWWtGWBdZsIYTRa9kVe9c2a0UP9cwm+T1VoXCwlbCPOBdhju0dPm8wQocx3lYXSDF6oKjVGI6Qiq+YcVBZ2WEZm6OuRvS0/BRfk3abgH5SrBxconADnOitqMrOc804wWLCeBBuEGa0W+a7ldXPUJQnEZtUrxV40/1h+njVss1GVs7FAYL5vTmfF3AxB6fwXvD+UcEBOU1z2TZvEXFH9UAojyDqUONNZZkNfKP+/Ev4YQXJ0o2ReKHRtVyu4ZPLjxy8KL5Oyaw== 
+2025-09-26 23:16:05.6166||DEBUG|KysoPDF|Kí pdf Thành công 
+2025-09-26 23:19:43.5609||DEBUG|KysoPDF|---------Begin KysoPDF---------------------------------------------------- 
+2025-09-26 23:19:43.5609||DEBUG|KysoPDF|api: https://gwsca.vnpt.vn/sca/sp769 
+2025-09-26 23:19:43.5707||DEBUG|KysoPDF|Thông tin user kí số: user 'BSTUTTC', userFullName 'BSCKI. Trần Thị Cẩm Tú' with userId: '086190000436', password: 'BaoAn@0307' 
+2025-09-26 23:19:43.5707||DEBUG|KysoPDF|File Length: 120824 
+2025-09-26 23:19:43.5707||DEBUG|KysoPDF|Signature Length: 0 
+2025-09-26 23:19:43.8603||DEBUG|KysoPDF|cert found 
+2025-09-26 23:19:43.8623||DEBUG|KysoPDF|Sign with Reactangle: 386,69,566,129 
+2025-09-26 23:19:43.9020||DEBUG|KysoPDF|GetSecondHashAsBase64() done with hasValue=aUDv6gWCMO/ynpjTWrm3o23cHLHXmSc8krVhWOdIswg= 
+2025-09-26 23:19:43.9020||DEBUG|KysoPDF|data_to_be_sign=6940efea058230eff29e98d35ab9b7a36ddc1cb1d799273c92b56158e748b308 
+2025-09-26 23:19:43.9020||DEBUG|KysoPDF|sign with serial number=5401010105b4ecc8195ce02b2c5a6e33 
+2025-09-26 23:19:44.5978||DEBUG|KysoPDF|datasigned=SBtkojpUhjWWfGUSWEwpabhzCb0lqVHBKZpx9DlJDyImPsw6G+pidID+6VkClWuRGDSi2KU7fIsHER4b3YAIKxQ/LpIGUrNOQ/Cy/wtUCrb1lbj6nUkG3Vb0dfFhfPKzFZgmU/oC1uFchsrmzVCbMPjUPcB9neCS6SnKp2bpoJX3ERWKodGlWBf0PXBKqdObseA/+gnmf9MOKtij10sPg0GCYR402A+MlS1TecfcwVbRyIuinezDu73kQHMa6pE3Hv3xLOrBcChidAR8HFMlCkyLOBL5B+h/5FtCq2kyFpMzQe7EaElia1cxKUOd7QpXEGIo5oLAvvBcE0ngDSjoCw== 
+2025-09-26 23:19:44.5978||DEBUG|KysoPDF|Kí pdf Thành công 
+2025-09-26 23:20:02.5455||DEBUG|KysoPDF|---------Begin KysoPDF---------------------------------------------------- 
+2025-09-26 23:20:02.5487||DEBUG|KysoPDF|api: https://gwsca.vnpt.vn/sca/sp769 
+2025-09-26 23:20:02.5487||DEBUG|KysoPDF|Thông tin user kí số: user 'BSTUTTC', userFullName 'BSCKI. Trần Thị Cẩm Tú' with userId: '086190000436', password: 'BaoAn@0307' 
+2025-09-26 23:20:02.5487||DEBUG|KysoPDF|File Length: 121414 
+2025-09-26 23:20:02.5662||DEBUG|KysoPDF|Signature Length: 0 
+2025-09-26 23:20:02.7873||DEBUG|KysoPDF|cert found 
+2025-09-26 23:20:02.7873||DEBUG|KysoPDF|Sign with Reactangle: 386,701,566,761 
+2025-09-26 23:20:02.8358||DEBUG|KysoPDF|GetSecondHashAsBase64() done with hasValue=rxdmi7u3T1maU0xPYnaw6lhsoJ1lPc0SZ8BXNkgWvMw= 
+2025-09-26 23:20:02.8358||DEBUG|KysoPDF|data_to_be_sign=af17668bbbb74f599a534c4f6276b0ea586ca09d653dcd1267c057364816bccc 
+2025-09-26 23:20:02.8358||DEBUG|KysoPDF|sign with serial number=5401010105b4ecc8195ce02b2c5a6e33 
+2025-09-26 23:20:03.4857||DEBUG|KysoPDF|datasigned=nPmypsjt4+R7btT/aqHSIE29zJ5H/FFL+4rqaFwwVfL9lmxIw2MTYdnO5dL4yd6ND2yMeBQN9rEfcVYMQn5URVmSinoj5r7g5D/BqeLWUNzJlUotsf3mb02aX1SYOdG6DlGYjKqsi6rLUaA9YO3U/KB1kSD7IqLT8L2W/q2UnTbq+0LG3p9IwYncYpnlL9fVlFVKRv4MRl82tU9SJ9LYT932tbDBdKU+jOQzjspuk2fooMsacg0LnHeVca90Dr9xnf/jrMZpznJxWaSaJmo+MDP77CJXMyVFlPRABkmxbcottFf6RJ/neOgKaN5ZRHGNdjYm5G/cU6aBy393V/+e7A== 
+2025-09-26 23:20:03.4887||DEBUG|KysoPDF|Kí pdf Thành công 
+2025-09-26 23:20:22.3081||DEBUG|KysoPDF|---------Begin KysoPDF---------------------------------------------------- 
+2025-09-26 23:20:22.3081||DEBUG|KysoPDF|api: https://gwsca.vnpt.vn/sca/sp769 
+2025-09-26 23:20:22.3081||DEBUG|KysoPDF|Thông tin user kí số: user 'BSTUTTC', userFullName 'BSCKI. Trần Thị Cẩm Tú' with userId: '086190000436', password: 'BaoAn@0307' 
+2025-09-26 23:20:22.3155||DEBUG|KysoPDF|File Length: 121438 
+2025-09-26 23:20:22.3155||DEBUG|KysoPDF|Signature Length: 0 
+2025-09-26 23:20:22.5362||DEBUG|KysoPDF|cert found 
+2025-09-26 23:20:22.5362||DEBUG|KysoPDF|Sign with Reactangle: 386,701,566,761 
+2025-09-26 23:20:22.5820||DEBUG|KysoPDF|GetSecondHashAsBase64() done with hasValue=icu5mNaHm8kApRn6VqBGgIpYXKbahDZcmbnXVccEfuQ= 
+2025-09-26 23:20:22.5820||DEBUG|KysoPDF|data_to_be_sign=89cbb998d6879bc900a519fa56a046808a585ca6da84365c99b9d755c7047ee4 
+2025-09-26 23:20:22.5820||DEBUG|KysoPDF|sign with serial number=5401010105b4ecc8195ce02b2c5a6e33 
+2025-09-26 23:20:23.2474||DEBUG|KysoPDF|datasigned=X0pGAdGT2FVAPz63g+TzccLs/XPSJQMQVPSLwdrldEaKRe5GNy3RupGX4Huqk5zWz/ph47H4r1g9lYQedaBftTnsSayiJdhefk38PGxslLqK8p+Bw2BOgafMz2sI5fJo3BJWb0LqqHBXHzz99UEWsCFdNaNZFc2Zt59fMR7tWqQgZAb2sfBBZvO2QBsHozVRshw0oufz/je2SgYykoEgoKifmmdo98620vp8NOgU732JQ1mis76aFxPbjle/OAPE4gADL5DCZl6uF7kIVf6Tp4iYCDOiF/95XB/4KtCqa2N44hz8XOisWyxg1XTSnfkLsnHaC0+IgIOW3x8/l/kBmg== 
+2025-09-26 23:20:23.2474||DEBUG|KysoPDF|Kí pdf Thành công 
+2025-09-26 23:21:00.6544||DEBUG|KysoPDF|---------Begin KysoPDF---------------------------------------------------- 
+2025-09-26 23:21:00.6544||DEBUG|KysoPDF|api: https://gwsca.vnpt.vn/sca/sp769 
+2025-09-26 23:21:00.6772||DEBUG|KysoPDF|Thông tin user kí số: user 'BSTUTTC', userFullName 'BSCKI. Trần Thị Cẩm Tú' with userId: '086190000436', password: 'BaoAn@0307' 
+2025-09-26 23:21:00.6772||DEBUG|KysoPDF|File Length: 120730 
+2025-09-26 23:21:00.6772||DEBUG|KysoPDF|Signature Length: 0 
+2025-09-26 23:21:00.8863||DEBUG|KysoPDF|cert found 
+2025-09-26 23:21:00.8863||DEBUG|KysoPDF|Sign with Reactangle: 386,179,566,239 
+2025-09-26 23:21:00.9081||DEBUG|KysoPDF|GetSecondHashAsBase64() done with hasValue=tJ5JshQ/cPXh8q53dSZqI5GcSrBf9dbQUWMJSJx2w9A= 
+2025-09-26 23:21:00.9081||DEBUG|KysoPDF|data_to_be_sign=b49e49b2143f70f5e1f2ae7775266a23919c4ab05ff5d6d0516309489c76c3d0 
+2025-09-26 23:21:00.9081||DEBUG|KysoPDF|sign with serial number=5401010105b4ecc8195ce02b2c5a6e33 
+2025-09-26 23:21:01.5169||DEBUG|KysoPDF|datasigned=lM59dXDHzRN4IuvHoz8JM9VVvw33WfRmONnqIaMaMXsnWNQaLdPofRCosxq1IBAZJ0ViSKSy3NqdE84Qw0mfr+FQ2xd/2mP/aCCIDX6/mgaJBL8lMn2UoA/lOHEi2l1/gvXgdzVwwTZdOJu4sDaw22Ba1tTFgddr1WoG+KpIVGFI+lYp8N3NNLYl4vustDYcoEAZUxanOY5/IXwsPc+Dv8ihe2Rg9FUrqeAFwNwGZwSiZj/ddmG+wXz3fZH5xvNoBM57yzWlxhdaGSAlq4KEUO9ratMnt4XeI0z8OsM04TIPmdclE9moiRyxb8Wy/kREuUpXh0xfu4M2KBZcLSk+ZQ== 
+2025-09-26 23:21:01.5189||DEBUG|KysoPDF|Kí pdf Thành công 
+2025-09-26 23:24:32.4696||DEBUG|KysoPDF|---------Begin KysoPDF---------------------------------------------------- 
+2025-09-26 23:24:32.4704||DEBUG|KysoPDF|api: https://gwsca.vnpt.vn/sca/sp769 
+2025-09-26 23:24:32.4704||DEBUG|KysoPDF|Thông tin user kí số: user 'BSTUTTC', userFullName 'BSCKI. Trần Thị Cẩm Tú' with userId: '086190000436', password: 'BaoAn@0307' 
+2025-09-26 23:24:32.4704||DEBUG|KysoPDF|File Length: 120730 
+2025-09-26 23:24:32.4704||DEBUG|KysoPDF|Signature Length: 0 
+2025-09-26 23:24:32.7376||DEBUG|KysoPDF|cert found 
+2025-09-26 23:24:32.7376||DEBUG|KysoPDF|Sign with Reactangle: 386,179,566,239 
+2025-09-26 23:24:32.7618||DEBUG|KysoPDF|GetSecondHashAsBase64() done with hasValue=kmAlUA5P3QuwqF4gwerpHpSCFhl24O02p5GW/ePZzus= 
+2025-09-26 23:24:32.7618||DEBUG|KysoPDF|data_to_be_sign=926025500e4fdd0bb0a85e20c1eae91e9482161976e0ed36a79196fde3d9ceeb 
+2025-09-26 23:24:32.7618||DEBUG|KysoPDF|sign with serial number=5401010105b4ecc8195ce02b2c5a6e33 
+2025-09-26 23:24:33.4096||DEBUG|KysoPDF|datasigned=mgSEv0dykFxDMdYMJqPOMVC3Q7Du+Usy38IhFMSbKf4/LKcMxHCsOgWgNzLNK1FKr5UFoaBrrPJorkMT4sL/0gEDFeErM7GQyjg/1C/JKPAa+a3EBqEt1QSMvUWFwbolUV2wMPBF0iub7Tn4BR0dyAPZL835rAZi34IO22bXnW852+Jz/gpsoe4YDB13rS1SdcwN6+rZqF53m4vnahu5H5wnD1I+K/ntTFS7p/CWWfhaOlxCYyrbL9RX3J77ScIprMEj6rNisNQjZoOnAC5zhHhwdAVUix1rSIYwgD2oYDYRIg+Hq3HMMbsfv7UO4Bw+9FealpxE/gGw+XiE6XGKbg== 
+2025-09-26 23:24:33.4096||DEBUG|KysoPDF|Kí pdf Thành công 
+2025-09-26 23:25:37.4981||DEBUG|KysoPDF|---------Begin KysoPDF---------------------------------------------------- 
+2025-09-26 23:25:37.4981||DEBUG|KysoPDF|api: https://gwsca.vnpt.vn/sca/sp769 
+2025-09-26 23:25:37.5015||DEBUG|KysoPDF|Thông tin user kí số: user 'BSTUTTC', userFullName 'BSCKI. Trần Thị Cẩm Tú' with userId: '086190000436', password: 'BaoAn@0307' 
+2025-09-26 23:25:37.5015||DEBUG|KysoPDF|File Length: 119744 
+2025-09-26 23:25:37.5015||DEBUG|KysoPDF|Signature Length: 0 
+2025-09-26 23:25:37.7059||DEBUG|KysoPDF|cert found 
+2025-09-26 23:25:37.7059||DEBUG|KysoPDF|Sign with Reactangle: 386,199,566,239 
+2025-09-26 23:25:37.7344||DEBUG|KysoPDF|GetSecondHashAsBase64() done with hasValue=V1BxBTIZCVOEAMqwqoey/3XVx1Er7pfgzrMpMp7QghY= 
+2025-09-26 23:25:37.7344||DEBUG|KysoPDF|data_to_be_sign=57507105321909538400cab0aa87b2ff75d5c7512bee97e0ceb329329ed08216 
+2025-09-26 23:25:37.7358||DEBUG|KysoPDF|sign with serial number=5401010105b4ecc8195ce02b2c5a6e33 
+2025-09-26 23:25:38.3797||DEBUG|KysoPDF|datasigned=VSHATsUy2LIzTuoRXKQ7n8VwyLq9iSrkLN1sqtuDQD7VPkB0Z/Fhwa3lf0y0aMzOr6nVzUkXPhKhH0tQt0AZupEd0u+3bohLb5fhVlMfZac1KDqDFUpSkVQFCW3b0tICh0iQ0p121b/MutOwUWBJowbpx2RPIZDdXWMJPH8AfzDyQGf80CE+/a/3ro2q8QTec8ecZWBWa82blqdLAbv42HUENNBzJYulsPiFqf0Zj7zToNlRT//ewMZmOwyWnXMDISHRenqQvirKzZgc3u/eHeBgjRnpcp1ioluRy2afakQ9TmGdwWzNmNue3fgH35lzsCAi85PjD2hksMbsvPFxpg== 
+2025-09-26 23:25:38.3797||DEBUG|KysoPDF|Kí pdf Thành công 
+2025-09-26 23:27:57.2954||DEBUG|KysoPDF|---------Begin KysoPDF---------------------------------------------------- 
+2025-09-26 23:27:57.2954||DEBUG|KysoPDF|api: https://gwsca.vnpt.vn/sca/sp769 
+2025-09-26 23:27:57.2985||DEBUG|KysoPDF|Thông tin user kí số: user 'BSTUTTC', userFullName 'BSCKI. Trần Thị Cẩm Tú' with userId: '086190000436', password: 'BaoAn@0307' 
+2025-09-26 23:27:57.2985||DEBUG|KysoPDF|File Length: 119744 
+2025-09-26 23:27:57.2985||DEBUG|KysoPDF|Signature Length: 0 
+2025-09-26 23:27:57.5108||DEBUG|KysoPDF|cert found 
+2025-09-26 23:27:57.5108||DEBUG|KysoPDF|Sign with Reactangle: 386,199,566,239 
+2025-09-26 23:27:57.5432||DEBUG|KysoPDF|GetSecondHashAsBase64() done with hasValue=4Tb3zEyD9SpG+hf2INdQ7u55Ge4MVcpCJaO/TeiYZFg= 
+2025-09-26 23:27:57.5432||DEBUG|KysoPDF|data_to_be_sign=e136f7cc4c83f52a46fa17f620d750eeee7919ee0c55ca4225a3bf4de8986458 
+2025-09-26 23:27:57.5432||DEBUG|KysoPDF|sign with serial number=5401010105b4ecc8195ce02b2c5a6e33 
+2025-09-26 23:27:58.1939||DEBUG|KysoPDF|datasigned=hF7Y1QaZDeJeQ9JSDnqdWQMG2x4/PdOQzq4HU2pME7GhhG23BGiLrm0rHcykNBlExY7rRGlRCnrvAuobKbXS3btJc+RIlvDiHMLZs3s7xQDYDJ2uy3bjfaGPg5+ZyCUMYbQkWGkbpyuwSqDanyb6+Fu4WsUk7Fbap6qMrHzSextS4GgvB2qX58vpCbcCK2D5hvgw0xeEWgkaqUdfKMpeuc1Y9zFZe3l9Lfe3lyQXO1VXfnRAvkHp4sAFwFux0FvC27DMkayNwYqSAFBWvxpLIgi8OYeU/QlLOeNgyw6HroDNOjKnlGKMahJhbkBovFVzdEBL0RVXSO1+RjqDwA11MQ== 
+2025-09-26 23:27:58.1939||DEBUG|KysoPDF|Kí pdf Thành công 
+2025-09-26 23:34:34.6680||DEBUG|KysoPDF|---------Begin KysoPDF---------------------------------------------------- 
+2025-09-26 23:34:34.6680||DEBUG|KysoPDF|api: https://gwsca.vnpt.vn/sca/sp769 
+2025-09-26 23:34:34.6680||DEBUG|KysoPDF|Thông tin user kí số: user 'BSTUTTC', userFullName 'BSCKI. Trần Thị Cẩm Tú' with userId: '086190000436', password: 'BaoAn@0307' 
+2025-09-26 23:34:34.6737||DEBUG|KysoPDF|File Length: 119744 
+2025-09-26 23:34:34.6737||DEBUG|KysoPDF|Signature Length: 0 
+2025-09-26 23:34:34.9765||DEBUG|KysoPDF|cert found 
+2025-09-26 23:34:34.9765||DEBUG|KysoPDF|Sign with Reactangle: 386,199,566,239 
+2025-09-26 23:34:35.0056||DEBUG|KysoPDF|GetSecondHashAsBase64() done with hasValue=95QI4r0o5hVMkEoZgSUB0x7T41tnyuYfFnc3uvizaG0= 
+2025-09-26 23:34:35.0056||DEBUG|KysoPDF|data_to_be_sign=f79408e2bd28e6154c904a19812501d31ed3e35b67cae61f167737baf8b3686d 
+2025-09-26 23:34:35.0056||DEBUG|KysoPDF|sign with serial number=5401010105b4ecc8195ce02b2c5a6e33 
+2025-09-26 23:34:35.6618||DEBUG|KysoPDF|datasigned=QkJIiz0sOWnL16eR2bB+026olinb/G6Aidx1WPoRnvqfVn010SVGMMAOQW+Ts6T2GIHTGKJqLre3zo4W9Tx/JbiCYkst/WyqNf29X3uYc8ZaBiDPhHyTrE8682PHtRlAg4eP84klC07htjFFiTv6XOINc75zpe7FWqb91bOUfZFPNgM0OGZjNtOiPa2oLIKGUrhPdiqB8OHSAqecVPrFH5wFXbOnQc3UzqpQgdB0A1H4YX4ooDWeK5j0aO1uOEm9fcb+u9amzbUrVsMwP2Dl4DdMUgV09p/gHfO3zDpt1kpOv+zlT9ws65eFn9LtXAvO0c0Aw888J+nO1YawBub8tw== 
+2025-09-26 23:34:35.6618||DEBUG|KysoPDF|Kí pdf Thành công 
+2025-09-26 23:35:07.5834||DEBUG|KysoPDF|---------Begin KysoPDF---------------------------------------------------- 
+2025-09-26 23:35:07.5834||DEBUG|KysoPDF|api: https://gwsca.vnpt.vn/sca/sp769 
+2025-09-26 23:35:07.5834||DEBUG|KysoPDF|Thông tin user kí số: user 'BSTUTTC', userFullName 'BSCKI. Trần Thị Cẩm Tú' with userId: '086190000436', password: 'BaoAn@0307' 
+2025-09-26 23:35:07.5834||DEBUG|KysoPDF|File Length: 119744 
+2025-09-26 23:35:07.5834||DEBUG|KysoPDF|Signature Length: 0 
+2025-09-26 23:35:07.8026||DEBUG|KysoPDF|cert found 
+2025-09-26 23:35:07.8026||DEBUG|KysoPDF|Sign with Reactangle: 386,199,566,239 
+2025-09-26 23:35:07.8351||DEBUG|KysoPDF|GetSecondHashAsBase64() done with hasValue=Hr2H99NlbrLD0IP1tDztQ3jb+DGpAIUYYOjxqgXINdc= 
+2025-09-26 23:35:07.8351||DEBUG|KysoPDF|data_to_be_sign=1ebd87f7d3656eb2c3d083f5b43ced4378dbf831a900851860e8f1aa05c835d7 
+2025-09-26 23:35:07.8351||DEBUG|KysoPDF|sign with serial number=5401010105b4ecc8195ce02b2c5a6e33 
+2025-09-26 23:35:08.5352||DEBUG|KysoPDF|datasigned=TbFSLSfoUbV/vP1HwYlWPm7lwm6wBG/CLgU67Mac3A82Gd+y/fJ3iiMBlPKNv9tqUaYq4JZ5nkhp2dkfd9fZRHP+xdD48ShAABCVTn+CGkbxaAJdn/8E9yyNA6MiOVxEoPswrab4/StFLTlsqGsozkwxlYlBtDTxCfaQA4Mon6oET1jkS9orLxNwwPJPziw3gXC0ocrKzuDnNSiFHvFnD1wUMU6LLTKPzoqau938DsfGhoJ4OImLapQWz939uNW5oyQ1GhpLufR66/5IJ7c/fDkhM33MlPQvPtL51tgGablPWpI2eXbAjjKUoqcLZLgtYeMhoeiHExIYZiWM0ok1+w== 
+2025-09-26 23:35:08.5352||DEBUG|KysoPDF|Kí pdf Thành công 

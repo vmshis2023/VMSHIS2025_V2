@@ -1,0 +1,43 @@
+2025-09-15 23:20:11.7137||INFO|Startup|BaseDirectory: F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\ 
+2025-09-15 23:21:54.6683||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- 
+2025-09-15 23:22:01.3844||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType '2' for pdf file 'C:\HIS_BVSG\Running\pdf2sign\2025_09_15\250915.0072\165194_signed.pdf' by user 'ANHNTL', userFullName 'Nguyễn Thị Lan Anh' with userId: '', password: '' 
+2025-09-15 23:22:01.7765||DEBUG|DigitalSignaturePdfFileSign|File Length: 111328 
+2025-09-15 23:23:36.2243||DEBUG|DigitalSignaturePdfFileSign|Ký file1.Ký hash thành công 
+2025-09-15 23:23:36.2521||DEBUG|DigitalSignaturePdfFileSign|Ký file1.Ký thành công 
+2025-09-15 23:24:42.3050||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- 
+2025-09-15 23:24:42.3050||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType '2' for pdf file 'C:\HIS_BVSG\Running\pdf2sign\2025_09_15\250915.0072\165194_signed.pdf' by user 'ANHNTL', userFullName 'Nguyễn Thị Lan Anh' with userId: '', password: '' 
+2025-09-15 23:24:42.3119||DEBUG|DigitalSignaturePdfFileSign|File Length: 111328 
+2025-09-15 23:24:43.9784||ERROR|DigitalSignaturePdfFileSign|Error: The remote server returned an error: (404) . 
+2025-09-15 23:24:43.9784||ERROR|DigitalSignaturePdfFileSign|ERROR: Login to Cloud CA 
+2025-09-15 23:24:43.9784||DEBUG|DigitalSignaturePdfFileSign|Ký file2.Chưa chọn CTS 
+2025-09-15 23:25:01.3931||ERROR|DigitalSignaturePdfFileSign|There was an error on 'DigitalSignaturePdfFileSign' invocation: System.IO.FileNotFoundException: Could not find file 'F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\PDF\SignedPDF\adc73c56-32f0-48f8-8865-6e4a292f70db_signed.pdf'.
+File name: 'F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\PDF\SignedPDF\adc73c56-32f0-48f8-8865-6e4a292f70db_signed.pdf'
+   at System.IO.FileStream.ValidateFileHandle(SafeFileHandle fileHandle)
+   at System.IO.FileStream.CreateFileOpenHandle(FileMode mode, FileShare share, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize)
+   at System.IO.File.ReadAllBytes(String path)
+   at VMS.ChuKySo.Api.Controllers.ViettelController.DigitalSignaturePdfFileSign(VMSDigitalSignature objDigitalSignature) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\Controllers\ViettelController.cs:line 507 
+2025-09-15 23:25:24.2148||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- 
+2025-09-15 23:25:24.2187||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType '2' for pdf file 'C:\HIS_BVSG\Running\pdf2sign\2025_09_15\250915.0072\165194_signed.pdf' by user 'ANHNTL', userFullName 'Nguyễn Thị Lan Anh' with userId: '', password: '' 
+2025-09-15 23:25:24.2187||DEBUG|DigitalSignaturePdfFileSign|File Length: 111328 
+2025-09-15 23:25:36.5566||ERROR|DigitalSignaturePdfFileSign|Error: The remote server returned an error: (404) . 
+2025-09-15 23:25:36.5566||ERROR|DigitalSignaturePdfFileSign|ERROR: Login to Cloud CA 
+2025-09-15 23:25:45.3509||DEBUG|DigitalSignaturePdfFileSign|Ký file3.Chưa chọn CTS 
+2025-09-15 23:25:45.3978||ERROR|DigitalSignaturePdfFileSign|There was an error on 'DigitalSignaturePdfFileSign' invocation: System.IO.FileNotFoundException: Could not find file 'F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\PDF\SignedPDF\cfd36172-2fe5-4340-9301-84a5152daa4d_signed.pdf'.
+File name: 'F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\PDF\SignedPDF\cfd36172-2fe5-4340-9301-84a5152daa4d_signed.pdf'
+   at System.IO.FileStream.ValidateFileHandle(SafeFileHandle fileHandle)
+   at System.IO.FileStream.CreateFileOpenHandle(FileMode mode, FileShare share, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize)
+   at System.IO.File.ReadAllBytes(String path)
+   at VMS.ChuKySo.Api.Controllers.ViettelController.DigitalSignaturePdfFileSign(VMSDigitalSignature objDigitalSignature) in F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\Controllers\ViettelController.cs:line 507 
+2025-09-15 23:26:56.2689||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- 
+2025-09-15 23:26:56.2689||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType '2' for pdf file 'C:\HIS_BVSG\Running\pdf2sign\2025_09_15\250915.0072\165194_signed.pdf' by user 'ANHNTL', userFullName 'Nguyễn Thị Lan Anh' with userId: '001081007147', password: '1' 
+2025-09-15 23:26:56.2689||DEBUG|DigitalSignaturePdfFileSign|File Length: 111328 
+2025-09-15 23:27:21.0032||DEBUG|DigitalSignaturePdfFileSign|Ký file4.Ký hash thành công 
+2025-09-15 23:27:38.5984||DEBUG|DigitalSignaturePdfFileSign|Ký file4.Ký thành công 
+2025-09-15 23:32:31.2473||DEBUG|DigitalSignaturePdfFileSign|---------------------------------------------------------------------- 
+2025-09-15 23:32:31.2487||DEBUG|DigitalSignaturePdfFileSign|Begin iSignatureType '2' for pdf file 'C:\HIS_BVSG\Running\pdf2sign\2025_09_15\250915.0072\165194_signed.pdf' by user 'ANHNTL', userFullName 'Nguyễn Thị Lan Anh' with userId: '001081007147', password: '1' 
+2025-09-15 23:32:31.2487||DEBUG|DigitalSignaturePdfFileSign|File Length: 111328 
+2025-09-15 23:33:13.7559||INFO|Startup|BaseDirectory: F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\ 

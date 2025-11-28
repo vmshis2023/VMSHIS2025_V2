@@ -14,25 +14,50 @@ namespace VNS.HIS.UI.Forms.Cauhinh
         public string v_Patient_Code = "";
         public DateTime pdt_InputDate = globalVariables.SysDate;
         public bool mv_blnCancel = true;
-        public frm_ChonngayThanhtoan()
+        DateTime? NgayPhieu;
+        public frm_ChonngayThanhtoan(DateTime? NgayPhieu)
         {
             InitializeComponent();
+            this.NgayPhieu = NgayPhieu;
            radCurrentDate.CheckedChanged+=new EventHandler(radCurrentDate_CheckedChanged);
             radEditDate.CheckedChanged+=new EventHandler(radEditDate_CheckedChanged);
             radRegisterDate.CheckedChanged+=new EventHandler(radRegisterDate_CheckedChanged);
+            dtCreateDate.Value = NgayPhieu.Value;
+
+        }
+        public frm_ChonngayThanhtoan()
+        {
+            InitializeComponent();
+            
+            radCurrentDate.CheckedChanged += new EventHandler(radCurrentDate_CheckedChanged);
+            radEditDate.CheckedChanged += new EventHandler(radEditDate_CheckedChanged);
+            radRegisterDate.CheckedChanged += new EventHandler(radRegisterDate_CheckedChanged);
             dtCreateDate.Value = globalVariables.SysDate;
         }
-
         private void cmdExit_Click(object sender, EventArgs e)
         {
             mv_blnCancel = true;
+            this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
         private void cmdAccept_Click(object sender, EventArgs e)
         {
-            mv_blnCancel = false;
-            pdt_InputDate = dtCreateDate.Value;
+            if (NgayPhieu.HasValue)
+            {
+                if (!Utility.AcceptQuestion(string.Format("Bạn có chắc chắn muốn đổi thông tin ngày từ {0} sang {1} hay không?", NgayPhieu.Value.ToString("dd/MM/yyyy HH:mm"), dtCreateDate.Value.ToString("dd/MM/yyyy HH:mm")), "Xác nhận đổi ngày", true))
+                {
+                    mv_blnCancel = true;
+                    this.DialogResult = DialogResult.Cancel;
+                    return;
+                }
+            }
+            else
+            {
+                mv_blnCancel = false;
+                pdt_InputDate = dtCreateDate.Value;
+                this.DialogResult = DialogResult.OK;
+            }
             this.Close();
         }
 
@@ -68,5 +93,15 @@ namespace VNS.HIS.UI.Forms.Cauhinh
 
         }
 
+        private void opt_ngayhoadon_CheckedChanged(object sender, EventArgs e)
+        {
+            if (opt_ngayhoadon.Checked)
+            {
+                if (NgayPhieu.HasValue)
+                {
+                    dtCreateDate.Value = NgayPhieu.Value;
+                }
+            }
+        }
     }
 }

@@ -319,6 +319,18 @@
     <Compile Include="ChidinhCLS_Kedon\frm_KCB_CHIDINH_CLS_Auto.Designer.cs">
       <DependentUpon>frm_KCB_CHIDINH_CLS_Auto.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChidinhCLS_Kedon\frm_KCB_KE_DONTHUOC_TAIQUAY.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChidinhCLS_Kedon\frm_KCB_KE_DONTHUOC_TAIQUAY.Designer.cs">
+      <DependentUpon>frm_KCB_KE_DONTHUOC_TAIQUAY.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChidinhCLS_Kedon\frm_KCB_KE_DONTHUOC_MUANGOAI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChidinhCLS_Kedon\frm_KCB_KE_DONTHUOC_MUANGOAI.Designer.cs">
+      <DependentUpon>frm_KCB_KE_DONTHUOC_MUANGOAI.cs</DependentUpon>
+    </Compile>
     <Compile Include="ChidinhCLS_Kedon\frm_thuchien_donthuoc.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -337,6 +349,12 @@
     <Compile Include="ChidinhCLS_Kedon\frm_chitietdonthuocmau.Designer.cs">
       <DependentUpon>frm_chitietdonthuocmau.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChidinhCLS_Kedon\frm_XemKQCLS_V1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChidinhCLS_Kedon\frm_XemKQCLS_V1.Designer.cs">
+      <DependentUpon>frm_XemKQCLS_V1.cs</DependentUpon>
+    </Compile>
     <Compile Include="ChidinhCLS_Kedon\frm_XemKQCLS.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -350,6 +368,12 @@
       <DependentUpon>frm_DoichieuGiaDvuKCB_Truockhichuyendoi.cs</DependentUpon>
     </Compile>
     <Compile Include="Class1.cs" />
+    <Compile Include="Danhmuc\frm_dmuc_nhacungcap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Danhmuc\frm_dmuc_nhacungcap.Designer.cs">
+      <DependentUpon>frm_dmuc_nhacungcap.cs</DependentUpon>
+    </Compile>
     <Compile Include="Danhmuc\frm_capnhat_maphieuEmr.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -416,11 +440,29 @@
     <Compile Include="ChuyenDoituong\frm_chuyendoituongkcb.Designer.cs">
       <DependentUpon>frm_chuyendoituongkcb.cs</DependentUpon>
     </Compile>
+    <Compile Include="DichvuKCB_CLS\frm_capnhat_thuoctinh_dichvu_cls.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DichvuKCB_CLS\frm_capnhat_thuoctinh_dichvu_cls.designer.cs">
+      <DependentUpon>frm_capnhat_thuoctinh_dichvu_cls.cs</DependentUpon>
+    </Compile>
     <Compile Include="DichvuKCB_CLS\frm_saochepcongkham.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DichvuKCB_CLS\frm_saochepcongkham.Designer.cs">
       <DependentUpon>frm_saochepcongkham.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dungchung\frm_Dsach_Congkham.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dungchung\frm_Dsach_Congkham.Designer.cs">
+      <DependentUpon>frm_Dsach_Congkham.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dungchung\frm_danhsach_hoidong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dungchung\frm_danhsach_hoidong.Designer.cs">
+      <DependentUpon>frm_danhsach_hoidong.cs</DependentUpon>
     </Compile>
     <Compile Include="Dungchung\frm_CapnhatNguon_Doitac.cs">
       <SubType>Form</SubType>
@@ -434,11 +476,41 @@
     <Compile Include="Dungchung\Frm_CapNhat_Thongtin_Thue.Designer.cs">
       <DependentUpon>Frm_CapNhat_Thongtin_Thue.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dungchung\frm_capnhat_chungthuso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dungchung\frm_capnhat_chungthuso.Designer.cs">
+      <DependentUpon>frm_capnhat_chungthuso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dungchung\frm_ChonngayDuyet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dungchung\frm_ChonngayDuyet.Designer.cs">
+      <DependentUpon>frm_ChonngayDuyet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dungchung\frm_ChonNguoiNhanHoSo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dungchung\frm_ChonNguoiNhanHoSo.Designer.cs">
+      <DependentUpon>frm_ChonNguoiNhanHoSo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dungchung\frm_ChonTungayDenngay.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Dungchung\frm_ChonTungayDenngay.Designer.cs">
       <DependentUpon>frm_ChonTungayDenngay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dungchung\frm_InBangKeChiPhiKCB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dungchung\frm_InBangKeChiPhiKCB.Designer.cs">
+      <DependentUpon>frm_InBangKeChiPhiKCB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Goikham\frm_ChitietdichvuTronggoi1Lan_Preview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Goikham\frm_ChitietdichvuTronggoi1Lan_Preview.designer.cs">
+      <DependentUpon>frm_ChitietdichvuTronggoi1Lan_Preview.cs</DependentUpon>
     </Compile>
     <Compile Include="Goikham\frm_ChitietdichvuTronggoi1Lan.cs">
       <SubType>Form</SubType>
@@ -476,11 +548,23 @@
     <Compile Include="NhomCLS_Thuoc\frm_nhomchidinh_cls.designer.cs">
       <DependentUpon>frm_nhomchidinh_cls.cs</DependentUpon>
     </Compile>
+    <Compile Include="Noitru\frm_lichsubuonggiuong_nguoibenh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Noitru\frm_lichsubuonggiuong_nguoibenh.Designer.cs">
+      <DependentUpon>frm_lichsubuonggiuong_nguoibenh.cs</DependentUpon>
+    </Compile>
     <Compile Include="PdfViewer\frm_PdfViewer.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="PdfViewer\frm_PdfViewer.Designer.cs">
       <DependentUpon>frm_PdfViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Phieu\frm_ThemChitietTruyendich.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Phieu\frm_ThemChitietTruyendich.Designer.cs">
+      <DependentUpon>frm_ThemChitietTruyendich.cs</DependentUpon>
     </Compile>
     <Compile Include="QuanheGia_DichvuCLS_THuoc\frm_xemthongtingia.cs">
       <SubType>Form</SubType>
@@ -578,6 +662,18 @@
     </Compile>
     <Compile Include="UserControls\medRadioButton.Designer.cs">
       <DependentUpon>medRadioButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ucThongtinnguoibenh_quaythuoc.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ucThongtinnguoibenh_quaythuoc.Designer.cs">
+      <DependentUpon>ucThongtinnguoibenh_quaythuoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ucThongtinnguoibenh_emr_sosinh_basic.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ucThongtinnguoibenh_emr_sosinh_basic.Designer.cs">
+      <DependentUpon>ucThongtinnguoibenh_emr_sosinh_basic.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\ucThongtinnguoibenh_emr_basic_v2.cs">
       <SubType>UserControl</SubType>
@@ -1344,6 +1440,12 @@
     <EmbeddedResource Include="ChidinhCLS_Kedon\frm_KCB_CHIDINH_CLS_Auto.resx">
       <DependentUpon>frm_KCB_CHIDINH_CLS_Auto.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ChidinhCLS_Kedon\frm_KCB_KE_DONTHUOC_TAIQUAY.resx">
+      <DependentUpon>frm_KCB_KE_DONTHUOC_TAIQUAY.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChidinhCLS_Kedon\frm_KCB_KE_DONTHUOC_MUANGOAI.resx">
+      <DependentUpon>frm_KCB_KE_DONTHUOC_MUANGOAI.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ChidinhCLS_Kedon\frm_thuchien_donthuoc.resx">
       <DependentUpon>frm_thuchien_donthuoc.cs</DependentUpon>
     </EmbeddedResource>
@@ -1353,11 +1455,17 @@
     <EmbeddedResource Include="ChidinhCLS_Kedon\frm_chitietdonthuocmau.resx">
       <DependentUpon>frm_chitietdonthuocmau.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ChidinhCLS_Kedon\frm_XemKQCLS_V1.resx">
+      <DependentUpon>frm_XemKQCLS_V1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ChidinhCLS_Kedon\frm_XemKQCLS.resx">
       <DependentUpon>frm_XemKQCLS.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ChuyenDoituong\frm_DoichieuGiaDvuKCB_Truockhichuyendoi.resx">
       <DependentUpon>frm_DoichieuGiaDvuKCB_Truockhichuyendoi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Danhmuc\frm_dmuc_nhacungcap.resx">
+      <DependentUpon>frm_dmuc_nhacungcap.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Danhmuc\frm_capnhat_maphieuEmr.resx">
       <DependentUpon>frm_capnhat_maphieuEmr.cs</DependentUpon>
@@ -1394,8 +1502,17 @@
     <EmbeddedResource Include="ChuyenDoituong\frm_chuyendoituongkcb.resx">
       <DependentUpon>frm_chuyendoituongkcb.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DichvuKCB_CLS\frm_capnhat_thuoctinh_dichvu_cls.resx">
+      <DependentUpon>frm_capnhat_thuoctinh_dichvu_cls.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DichvuKCB_CLS\frm_saochepcongkham.resx">
       <DependentUpon>frm_saochepcongkham.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dungchung\frm_Dsach_Congkham.resx">
+      <DependentUpon>frm_Dsach_Congkham.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dungchung\frm_danhsach_hoidong.resx">
+      <DependentUpon>frm_danhsach_hoidong.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dungchung\frm_CapnhatNguon_Doitac.resx">
       <DependentUpon>frm_CapnhatNguon_Doitac.cs</DependentUpon>
@@ -1403,8 +1520,23 @@
     <EmbeddedResource Include="Dungchung\Frm_CapNhat_Thongtin_Thue.resx">
       <DependentUpon>Frm_CapNhat_Thongtin_Thue.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dungchung\frm_capnhat_chungthuso.resx">
+      <DependentUpon>frm_capnhat_chungthuso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dungchung\frm_ChonngayDuyet.resx">
+      <DependentUpon>frm_ChonngayDuyet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dungchung\frm_ChonNguoiNhanHoSo.resx">
+      <DependentUpon>frm_ChonNguoiNhanHoSo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dungchung\frm_ChonTungayDenngay.resx">
       <DependentUpon>frm_ChonTungayDenngay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dungchung\frm_InBangKeChiPhiKCB.resx">
+      <DependentUpon>frm_InBangKeChiPhiKCB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Goikham\frm_ChitietdichvuTronggoi1Lan_Preview.resx">
+      <DependentUpon>frm_ChitietdichvuTronggoi1Lan_Preview.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Goikham\frm_ChitietdichvuTronggoi1Lan.resx">
       <DependentUpon>frm_ChitietdichvuTronggoi1Lan.cs</DependentUpon>
@@ -1424,8 +1556,14 @@
     <EmbeddedResource Include="NhomCLS_Thuoc\frm_nhomchidinh_cls.resx">
       <DependentUpon>frm_nhomchidinh_cls.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Noitru\frm_lichsubuonggiuong_nguoibenh.resx">
+      <DependentUpon>frm_lichsubuonggiuong_nguoibenh.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PdfViewer\frm_PdfViewer.resx">
       <DependentUpon>frm_PdfViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Phieu\frm_ThemChitietTruyendich.resx">
+      <DependentUpon>frm_ThemChitietTruyendich.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="QuanheGia_DichvuCLS_THuoc\frm_xemthongtingia.resx">
       <DependentUpon>frm_xemthongtingia.cs</DependentUpon>
@@ -1474,6 +1612,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\medRadioButton.resx">
       <DependentUpon>medRadioButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ucThongtinnguoibenh_quaythuoc.resx">
+      <DependentUpon>ucThongtinnguoibenh_quaythuoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ucThongtinnguoibenh_emr_sosinh_basic.resx">
+      <DependentUpon>ucThongtinnguoibenh_emr_sosinh_basic.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ucThongtinnguoibenh_emr_basic_v2.resx">
       <DependentUpon>ucThongtinnguoibenh_emr_basic_v2.cs</DependentUpon>
@@ -1828,9 +1972,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\VMS.Emr\VMS.Emr\VMS.HIS.Bus.Emr.csproj">
+    <ProjectReference Include="..\VMS.Emr\VMS.Emr\9_0.VMS.HIS.Bus.Emr.csproj">
       <Project>{323d0245-5cd3-488a-8b83-edade85b3da4}</Project>
-      <Name>VMS.HIS.Bus.Emr</Name>
+      <Name>9_0.VMS.HIS.Bus.Emr</Name>
     </ProjectReference>
     <ProjectReference Include="..\VMS.HIS.BHYT\4_1.VMS.HIS.BHYT.csproj">
       <Project>{c68b076c-ad56-46bb-a16a-88f357aee6f4}</Project>

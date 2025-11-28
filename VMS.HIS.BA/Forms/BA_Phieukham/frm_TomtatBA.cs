@@ -18,6 +18,7 @@ using System.Diagnostics;
 using VMS.HIS.Bus;
 using System.Transactions;
 using VMS.HIS.Bus.Emr;
+using VMS.HIS.Danhmuc.Dungchung;
 //using SubSonic.Utilities;
 
 namespace VMS.HIS.UI.EMR
@@ -120,24 +121,73 @@ namespace VMS.HIS.UI.EMR
                 //cmdSave.Enabled = !objLuotkham.NgayRavien.HasValue;
             }
         }
+        string getBenhPhu_V1(string ma,string ten)
+        {
+            // Tách thành mảng
+            var arrMa = ma.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            var arrTen = string.IsNullOrWhiteSpace(ten)
+                ? Enumerable.Empty<string>().ToArray()
+                : ten.Split(new[] { ',' }, StringSplitOptions.None);
 
+            // Ghép
+            var result = string.Join(",", arrMa.Select((m, i) =>
+            {
+                string t = i < arrTen.Length ? arrTen[i] : "";
+                return $"{t}({m})";
+            }));
+            return result;
+        }
+        string getBenhPhu_V2(string ma, string ten)
+        {
+            var arrMa = ma.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                       .Select(s => s.Trim())
+                       .ToArray();
+
+            var arrTen = string.IsNullOrWhiteSpace(ten)
+                ? new string[0]               // hoặc Array.Empty<string>() nếu .NET >=4.6
+                : ten.Split(new[] { ',' }, StringSplitOptions.None)
+                     .Select(s => s.Trim())
+                     .ToArray();
+
+            var result = string.Join(",", arrMa.Select((m, i) =>
+            {
+                // nếu tên thiếu hoặc rỗng thì để trống
+                string t = i < arrTen.Length ? arrTen[i] : "";
+                return $"{m}:{t}";
+            }));
+            return result;
+        }
         void FillData4Update()
         {
             ClearControl();
-            
+            txtId.Clear();
             dtpNgayRavien.Text = "";
             txtTinhtrangRavien._Text = "";
-            txtCDRavien.Text = "";
+            txt_chandoan_ravien.Text = "";
             txtPPdieutri.Text = "";
             txtHuongdieutri.Text = "";
             chkNoikhoa.Checked = false;
             chkPTTT.Checked = false;
             txtNoikhoamota.Text = "";
             txtPTTTmota.Text = "";
+            EmrPhieukhambenh objPKB = new Select().From(EmrPhieukhambenh.Schema)
+               .Where(EmrPhieukhambenh.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
+               .And(EmrPhieukhambenh.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
+               .And(EmrPhieukhambenh.Columns.Noitru).IsEqualTo(1)
+               .ExecuteSingle<EmrPhieukhambenh>();
+            if(objPKB==null)
+                objPKB = new Select().From(EmrPhieukhambenh.Schema)
+               .Where(EmrPhieukhambenh.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
+               .And(EmrPhieukhambenh.Columns.MaLuotkham).IsEqualTo(objLuotkham.MaLuotkham)
+               .And(EmrPhieukhambenh.Columns.Noitru).IsEqualTo(0)
+               .ExecuteSingle<EmrPhieukhambenh>();
             if (objRavien != null)
             {
+                string cdrv = string.Format("{0}:{1},{2}", objRavien.MotaBenhchinh, objRavien.MabenhChinh, getBenhPhu_V1(Utility.sDbnull( objRavien.MabenhPhu), Utility.sDbnull(objRavien.TenBenhphu)));
+                if (Utility.sDbnull(objRavien.ChanDoan).Length > 0)
+                    cdrv += "," + Utility.sDbnull(objRavien.ChanDoan);
                 dtpNgayRavien.Value = objLuotkham.NgayRavien.Value;
-                txtCDRavien.Text = objRavien.ChanDoan;
+                txt_chandoan_ravien.Text = cdrv;
                 txtPPdieutri.Text = objRavien.PhuongphapDieutri;
                 txtTinhtrangRavien.SetCode(objRavien.MaTinhtrangravien);
                 txtTruongkhoa.SetId(objRavien.IdBacsiChuyenvien); 
@@ -164,13 +214,17 @@ namespace VMS.HIS.UI.EMR
             if (objLuotkham.TrangthaiNoitru > 0)
             {
                 txtBSDieuTri.SetId(Utility.sDbnull(objLuotkham.IdBsDieutrinoitruChinh));
-                txtCDnhapvien.Text = objNhapvien.ChandoanVaovien;
+                txt_chandoanvaovien.Text = objNhapvien.ChandoanVaovien;
+                autoLydovv._Text = objNhapvien.LydoNhapvien;
                 dtpNgayNhapvien.Value = objLuotkham.NgayNhapvien.Value;
+                txtTiensubenh.Text = objNhapvien != null ? objNhapvien.TsuBanthan : "";
+                txtquatrinhbenhly.Text = objNhapvien != null ? objNhapvien.QuatrinhBenhly : "";
+                txtDauhieulamsang.Text = objPKB!=null? objPKB.BoPhan:"";
             }
             else//TKBA Ngoại trú
             {
                 txtBSDieuTri.SetId(Utility.sDbnull(objCongkham.IdBacsikham));
-                txtCDnhapvien.Text = objChandoanKetluan != null ? objChandoanKetluan.Chandoan : "";
+                txt_chandoanvaovien.Text = objChandoanKetluan != null ? objChandoanKetluan.Chandoan : "";
                 autoLydovv._Text = objChandoanKetluan!=null? objChandoanKetluan.TrieuchungBandau:"";
                 dtpNgayNhapvien.Value = objLuotkham.NgayTiepdon;
                 txtTiensubenh.Text = objChandoanKetluan != null ? objChandoanKetluan.TiensuBenh : "";
@@ -186,8 +240,12 @@ namespace VMS.HIS.UI.EMR
             }
            
 
-            if (ttba != null)
+            if (ttba != null && ttba.Id>0)
             {
+                txtId.Text = ttba.Id.ToString();
+                txt_chandoanvaovien.Text = ttba.ChandoanVaovien;
+                txt_chandoan_ravien.Text = ttba.ChandoanRavien;
+                autoLydovv._Text = ttba.LydoVaovien;
                 txtPPdieutri.Text = ttba.PhuongphapDieutri;
                 txttinhtrangravienMota.Text = ttba.TinhtrangRavienMota;
                 txtquatrinhbenhly.Text = ttba.QuatrinhbenhlyDienbienlamsang;
@@ -218,7 +276,8 @@ namespace VMS.HIS.UI.EMR
             else
             {
 
-            }    
+            }
+            txtSoHoso.Text = ttba == null || string.IsNullOrEmpty(Utility.sDbnull(ttba.SoHoso, "")) ? THU_VIEN_CHUNG.TT25LaySohoso(9) : Utility.sDbnull(ttba.SoHoso, "");
         }
 
         public void ClearControl()
@@ -235,11 +294,48 @@ namespace VMS.HIS.UI.EMR
             txtB_SieuAm.Clear();
             txtB_XetNghiem.Clear();
             txtB_Khac.Clear();
+            txtSoHoso.Clear();
         }
         private Boolean isValidData()
         {
-            
-           
+            string Msg = "";
+            if (Utility.sDbnull(txtSoHoso.Text) == "")
+            {
+                Msg = "Bạn phải nhập số hồ sơ";
+                Utility.ShowMsg(Msg);
+                txtSoHoso.Focus();
+                return false;
+            }
+            DataTable dtData = new Select().From(EmrTomtatBa.Schema)
+                .Where(EmrTomtatBa.Columns.SoHoso).IsEqualTo(Utility.DoTrim(txtSoHoso.Text))
+                .And(EmrTomtatBa.Columns.Id).IsNotEqualTo(Utility.Int64Dbnull(txtId.Text, -1))
+                .ExecuteDataSet().Tables[0];
+            if (dtData.Rows.Count > 0)
+            {
+                Msg = "Số hồ sơ đã được sử dụng. Vui lòng nhập số hồ sơ khác";
+                Utility.ShowMsg(Msg);
+               txtSoHoso.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(txt_chandoanvaovien.Text))
+            {
+                Utility.ShowMsg("Thông tin  Chẩn đoán ra viện không được bỏ trống", "Cảnh báo", MessageBoxIcon.Warning);
+                txt_chandoanvaovien.Focus();
+                return false;
+            }
+            if (string.IsNullOrEmpty(txt_chandoan_ravien.Text))
+            {
+                Utility.ShowMsg("Thông tin Chẩn đoán ra viện không được bỏ trống", "Cảnh báo", MessageBoxIcon.Warning);
+                txt_chandoan_ravien.Focus();
+                return false;
+            }
+            if (string.IsNullOrEmpty(autoLydovv.Text))
+            {
+                Utility.ShowMsg("Thông tin Lý do vào viện không được bỏ trống", "Cảnh báo", MessageBoxIcon.Warning);
+                autoLydovv.Focus();
+                return false;
+            }
             if (string.IsNullOrEmpty(txtquatrinhbenhly.Text))
             {
                 Utility.ShowMsg("Thông tin quá trình bệnh lý không được bỏ trống", "Cảnh báo", MessageBoxIcon.Warning);
@@ -394,12 +490,16 @@ namespace VMS.HIS.UI.EMR
                             ttba.NgayTao = THU_VIEN_CHUNG.GetSysDateTime();
                         }
                         ttba.IdBacsiDieutri = Utility.Int16Dbnull(txtBSDieuTri.MyID);
+                        ttba.SoHoso = Utility.DoTrim(txtSoHoso.Text);
                         ttba.MaLuotkham = objLuotkham.MaLuotkham;
                         ttba.IdBenhnhan = (int)objLuotkham.IdBenhnhan;
                         ttba.IdKhoadieutri = Utility.Int32Dbnull(autoKhoa.MyID, -1);
-                        ttba.QuatrinhbenhlyDienbienlamsang = Utility.DoTrim(txtquatrinhbenhly.Text);
-                        ttba.TiensuBenh = Utility.DoTrim(txtTiensubenh.Text);
-                        ttba.TomtatKqcls = Utility.DoTrim(txtTomtatCLS.Text);
+                        ttba.ChandoanVaovien = Utility.sDbnull(txt_chandoanvaovien.Text);
+                        ttba.LydoVaovien = Utility.sDbnull(autoLydovv.Text);
+                        ttba.ChandoanRavien = Utility.sDbnull(txt_chandoan_ravien.Text);
+                        ttba.QuatrinhbenhlyDienbienlamsang = Utility.sDbnull(txtquatrinhbenhly.Text);
+                        ttba.TiensuBenh = Utility.sDbnull(txtTiensubenh.Text);
+                        ttba.TomtatKqcls = Utility.sDbnull(txtTomtatCLS.Text);
                         ttba.NgayTtba = dtNgayTTBA.Value;
                         ttba.DauhieuLamsang = Utility.DoTrim(txtDauhieulamsang.Text);
                         ttba.Noikhoa = Utility.Bool2byte(chkNoikhoa.Checked);
@@ -433,6 +533,7 @@ namespace VMS.HIS.UI.EMR
                         ttba.Save();
                       
                         emrdoc.InitDocument(ttba.IdBenhnhan, ttba.MaLuotkham, Utility.Int64Dbnull(ttba.Id), ttba.NgayTtba.Value, Loaiphieu_HIS.PHIEU_TTBA, "BA_TTBA", ttba.NguoiTao, -1, -1, Utility.Byte2Bool(1), "", true,false,"",Loaiphieu_HIS.PHIEU_TTBA);
+                        emrdoc.Force2Saved = true;
                         emrdoc.Save();
                         new Update(KcbLuotkham.Schema).Set(KcbLuotkham.Columns.IdBsDieutrinoitruChinh).EqualTo(txtBSDieuTri.MyID)
                             .Where(KcbLuotkham.Columns.IdBenhnhan).IsEqualTo(objLuotkham.IdBenhnhan)
@@ -503,7 +604,7 @@ namespace VMS.HIS.UI.EMR
         {
             try
             {
-
+                globalVariables.dtSignInfor = SPs.EmrLaythongtinChukyTrenphieu(ttba.Id.ToString(), "", 1).GetDataSet().Tables[0];
                 clsInBA.InTomTatBA(ttba);
             }
             catch (Exception ex)
@@ -546,6 +647,51 @@ namespace VMS.HIS.UI.EMR
                 }
 
             }
+        }
+
+        private void lnk_kq_cls_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            frm_XemKQCLS_V1 _XemKQCLS_V1 = new frm_XemKQCLS_V1(this.objLuotkham,100);
+            if(_XemKQCLS_V1.ShowDialog()==DialogResult.OK)
+            {
+                string result = _XemKQCLS_V1.result;
+                if (Utility.sDbnull(txtTomtatCLS.Text) != "")
+                {
+                    if (Utility.AcceptQuestion("Thông tin tóm tắt KQ cận lâm sàng sẽ được cập nhật theo các kết quả vừa chọn. Bạn có chắc chắn?", "Xác nhận", true))
+                    {
+                        txtTomtatCLS.Text = result;
+                    }
+                }
+                else
+                    txtTomtatCLS.Text = result;
+            }    
+        }
+
+        private void lnk_chandoanvaovien_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (objNhapvien != null)
+            {
+                string cdrv = Utility.sDbnull(objNhapvien.ChandoanVaovien);// string.Format("{0}:{1},{2}", objNhapvien.MotaBenhchinh, objNhapvien.MabenhChinh, getBenhPhu_V1(Utility.sDbnull(objRavien.MabenhPhu), Utility.sDbnull(objRavien.TenBenhphu)));
+                //if (Utility.sDbnull(objNhapvien.ChandoanVaovien).Length > 0)
+                //    cdrv += "," + Utility.sDbnull(objNhapvien.ChandoanVaovien);
+                txt_chandoanvaovien.Text = cdrv;
+            }
+        }
+
+        private void lbk_chandoan_ravien_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (objRavien != null)
+            {
+                string cdrv = string.Format("{0}:{1},{2}", objRavien.MotaBenhchinh, objRavien.MabenhChinh, getBenhPhu_V1(Utility.sDbnull(objRavien.MabenhPhu), Utility.sDbnull(objRavien.TenBenhphu)));
+                if (Utility.sDbnull(objRavien.ChanDoan).Length > 0)
+                    cdrv += "," + Utility.sDbnull(objRavien.ChanDoan);
+                txt_chandoan_ravien.Text = cdrv;
+            }
+        }
+
+        private void cmdTuSinh_Click(object sender, EventArgs e)
+        {
+            txtSoHoso.Text = THU_VIEN_CHUNG.TT25LaySohoso(9);
         }
     }
 }

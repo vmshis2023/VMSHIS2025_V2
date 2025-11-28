@@ -99,6 +99,7 @@ namespace VNS.HIS.UI.NOITRU
         }
         private void frm_Saochep_phieudieutri_Load(object sender, EventArgs e)
         {
+            
             dtSaoChepNgay.MinDate = objLuotkham.NgayNhapvien.Value;
             dtGioLapPhieu.Value = globalVariables.SysDate;
             DataBinding.BindDataCombox(cboKhoanoitru,
@@ -114,11 +115,9 @@ namespace VNS.HIS.UI.NOITRU
             cboKhoaHientai.SelectedIndex = Utility.GetSelectedIndex(cboKhoaHientai, Utility.sDbnull(objLuotkham.IdKhoanoitru, "0"));
             cboKhoaHientai.Enabled = globalVariables.IsAdmin || Utility.Int32Dbnull(cboKhoaHientai.SelectedValue, -1) <= 0;
             mv_blnHasLoaded = true;
+            LoadUserConfigs();
             LaydanhsachPhieudieutri();
             Modifycommands();
-
-           
-           
         }
 
         private DataTable m_dNoitruPhieudieutri = new DataTable();
@@ -207,11 +206,36 @@ namespace VNS.HIS.UI.NOITRU
             if (!mv_blnHasLoaded) return;
             LaydanhsachPhieudieutri();
         }
+        void LoadUserConfigs()
+        {
+            try
+            {
+                chkThoatsaukhiluu.Checked = Utility.getUserConfigValue(chkThoatsaukhiluu.Tag.ToString(), Utility.Bool2byte(chkThoatsaukhiluu.Checked)) == 1;
+               
+            }
+            catch (Exception ex)
+            {
 
+                Utility.CatchException(ex);
+            }
+        }
+        void SaveUserConfigs()
+        {
+            try
+            {
+                Utility.SaveUserConfig(chkThoatsaukhiluu.Tag.ToString(), Utility.Bool2byte(chkThoatsaukhiluu.Checked));
+               
+            }
+            catch (Exception ex)
+            {
+
+                Utility.CatchException(ex);
+            }
+        }
         private void frm_Saochep_phieudieutri_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
 
+            SaveUserConfigs();
         }
 
         private KcbDonthuocChitiet[] CreatePresDetail()
@@ -287,7 +311,7 @@ namespace VNS.HIS.UI.NOITRU
                 objPhieudieutri[idx].GioDieutri = dtGioLapPhieu.Text;
                // objPhieudieutri[idx].GioDieutri = Utility.GetValueFromGridColumn(ngaythang,NoitruPhieudieutri.Columns.GioDieutri) ;//;
                 objPhieudieutri[idx].TthaiIn = 0;
-                objPhieudieutri[idx].IdBacsi = globalVariables.gv_intIDNhanvien;
+                objPhieudieutri[idx].IdBacsi = Utility.Int16Dbnull(Utility.GetValueFromGridColumn(grdPhieudieutrigoc,NoitruPhieudieutri.Columns.IdBacsi));
                 objPhieudieutri[idx].Thu = Utility.ConvertDayVietnamese(Convert.ToDateTime(ngaythang.Cells[NoitruPhieudieutri.Columns.NgayDieutri].Value).DayOfWeek.ToString());
                 if (chkYlenh.Checked)
                 {
@@ -337,7 +361,7 @@ namespace VNS.HIS.UI.NOITRU
                     return;
                 }
             }
-            if(moreAsk)
+            if (moreAsk)
                 if (!Utility.AcceptQuestion("Bạn đã chắc chắn muốn sao chép phiếu điều trị cho các ngày bạn đang chọn không?", "Thông báo", true))
                 {
                     return;
@@ -352,8 +376,17 @@ namespace VNS.HIS.UI.NOITRU
                     {
                         _OnCopyComplete();
                     }
+                    m_dtDanhsachNgaysaochep.Clear();
                     Utility.Log(this.Name, globalVariables.UserName, string.Format("Sao chép từ phiếu điều trị cho Người bệnh có ID ={0}, Mã lượt khám ={1}",objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham), newaction.Duplicate, this.GetType().Assembly.ManifestModule.Name);
                     Utility.ShowMsg("Bạn sao chép thành công. Nhấn OK để kết thúc", "Thông báo");
+                    if(chkThoatsaukhiluu.Checked)
+                    {
+                        cmdExit.PerformClick();
+                    }   
+                    else
+                    {
+                        LaydanhsachPhieudieutri();
+                    }    
                     break;
                 case ActionResult.Error:
                     Utility.ShowMsg("Lỗi trong quá trình sao chép", "Thông báo");
@@ -582,6 +615,11 @@ namespace VNS.HIS.UI.NOITRU
              if (lstErrr.Count > 0)
                 Utility.ShowMsg(string.Format(@"Cảnh báo:\n{0}",string.Join(@"\n",lstErrr.ToArray<string>())));
             m_dtDanhsachNgaysaochep.AcceptChanges();
+        }
+
+        private void cmdAddNgay_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

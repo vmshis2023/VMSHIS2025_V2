@@ -1,0 +1,29 @@
+2025-10-27 02:27:45.8195||DEBUG|VMS.ChuKySo.Api.Program|Init API 
+2025-10-27 02:27:47.5685||INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down. 
+2025-10-27 02:27:47.5685||INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development 
+2025-10-27 02:27:47.5727||INFO|Microsoft.Hosting.Lifetime|Content root path: F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel 
+2025-10-27 02:27:47.6105||INFO|Startup|BaseDirectory: F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\ 
+2025-10-27 13:45:19.4558||DEBUG|VMS.ChuKySo.Api.Program|Init API 
+2025-10-27 13:45:21.5823||INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down. 
+2025-10-27 13:45:21.5823||INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development 
+2025-10-27 13:45:21.5901||INFO|Microsoft.Hosting.Lifetime|Content root path: F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel 
+2025-10-27 13:45:21.6668||INFO|Startup|BaseDirectory: F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\ 
+2025-10-27 14:28:30.6222||DEBUG|KysoPDF|---------Begin KysoPDF---------------------------------------------------- 
+2025-10-27 14:28:33.9583||DEBUG|KysoPDF|Thông tin user kí số: user 'CUONGDV', userFullName 'Đào Văn Cường' with userId: '001081007147', password: '' 
+2025-10-27 14:28:34.2204||DEBUG|KysoPDF|File Length: 131902 
+2025-10-27 14:28:46.6798||DEBUG|KysoPDF|----------------------Bắt đầu ký xác thực---------------------- 
+2025-10-27 14:28:57.7319||DEBUG|KysoPDF|Ký file1.Ký hash thành công 
+2025-10-27 14:28:57.7565||DEBUG|KysoPDF|Ký file1.Ký thành công 
+2025-10-27 14:28:57.7678||DEBUG|KysoPDF|----------------------Kết thúc ký xác thực---------------------- 
+2025-10-27 14:33:01.4927||DEBUG|VMS.ChuKySo.Api.Program|Init API 
+2025-10-27 14:33:03.0384||INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down. 
+2025-10-27 14:33:03.0409||INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development 
+2025-10-27 14:33:03.0409||INFO|Microsoft.Hosting.Lifetime|Content root path: F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel 
+2025-10-27 14:33:03.0644||INFO|Startup|BaseDirectory: F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\ 
+2025-10-27 14:38:53.2228||DEBUG|KysoPDF|---------Begin KysoPDF---------------------------------------------------- 
+2025-10-27 14:38:53.2228||DEBUG|KysoPDF|Thông tin user kí số: user 'CUONGDV', userFullName 'Đào Văn Cường' with userId: '001081007147', password: '' 
+2025-10-27 14:38:53.2291||DEBUG|KysoPDF|File Length: 117174 
+2025-10-27 14:38:53.2291||DEBUG|KysoPDF|----------------------Bắt đầu ký xác thực---------------------- 
+2025-10-27 14:39:00.9368||DEBUG|KysoPDF|Ký file1.Ký hash thành công 
+2025-10-27 14:39:00.9586||DEBUG|KysoPDF|Ký file1.Ký thành công 
+2025-10-27 14:39:00.9694||DEBUG|KysoPDF|----------------------Kết thúc ký xác thực---------------------- 

@@ -946,6 +946,7 @@ namespace VNS.HIS.NGHIEPVU.THUOC
                     KcbDonthuocChitiet objChitiet = KcbDonthuocChitiet.FetchByID(Utility.Int64Dbnull( dr[KcbDonthuocChitiet.Columns.IdChitietdonthuoc]));
                     if (objChitiet != null && objChitiet.TrangThai<=0)//Chưa được lĩnh mới kiểm tra
                     {
+                        ID_KHO =Utility.Int16Dbnull( objChitiet.IdKho);
                         decimal SOLUONG_LINH = objChitiet.SoLuong;
                         if (Utility.DecimaltoDbnull(objChitiet.SluongSua, 0) > 0)
                             SOLUONG_LINH = Utility.DecimaltoDbnull(objChitiet.SluongSua, 0);

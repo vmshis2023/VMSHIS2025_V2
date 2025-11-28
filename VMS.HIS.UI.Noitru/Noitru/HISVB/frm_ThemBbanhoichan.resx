@@ -139,6 +139,27 @@
         QmCC
 </value>
   </data>
+  <data name="cmdRefreshChucnangsong.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        xAAADsQBlSsOGwAAAAd0SU1FB+cGCAgTN1og6fAAAAAHdEVYdEF1dGhvcgCprsxIAAAADHRFWHREZXNj
+        cmlwdGlvbgATCSEjAAAACnRFWHRDb3B5cmlnaHQArA/MOgAAAAl0RVh0U29mdHdhcmUAXXD/OgAAAAd0
+        RVh0U291cmNlAPX/g+sAAAAIdEVYdENvbW1lbnQA9syWvwAAAAZ0RVh0VGl0bGUAqO7SJwAAAsNJREFU
+        SEu1lE1ME0EUx/E7fqAXvw5+H4wRBWkp+zG7UDRRvJhoPKgXPBvlZqKGk1eNxoSDBg0R+RAKpWUpbbeV
+        GNGiRuPNmHgA9GQ0wehFys57vsEsbtcp0aQefsnM//92ZufNe1OGiP8VqVhKpGIpkYp+qu7B+lAkH1Qi
+        0Kj0EIMYEJos1o9UdKlpx00sDpdYFsZZis/UPUYUsDT8EJoeh8tqB2yQfesiFQVKG2xkNtiH3iAaGUR9
+        mL/SR3jnHDQWWsML8tKQq32YV2RrCKSiQKTAsPmAkeZJLQIHq+/gyrLjuFggxiHSaLPE3CY2f1/Th1Wy
+        df4QvJzsw2UtLbhI5gn2tH5arQ1BW8NLRG2Yj9LGa/0xBROBYTkXtZhz1q8XY981WKVbMF4/hqj0Y5Pf
+        L5gEeyFkZPg3loQPgfu41esthNoPp8NP5+4pao7iEq83PzAHYDMbgedmFlFg2BAJPYByb3AxRGqYBZ+p
+        ut5VUHF4vfkBG4JGZvHXagzylNfvehqSdJFBb7AMcxC26InZE1qcT+rDOE3rnNNjsNv1fweO4oqaDqhg
+        KfioxvlUJdX3tgQsd/1i0E/sNbL8LUtRiixxeviixaHB9QuCd96Ccj0FOUrPjNIN+73eQlBnN9G9cdGE
+        ahyuer2CQIE6wK+L2taicMPvLQTdX8R8BLnKm7jOqxcECZQuDLA0/0opmxbvjt8vhtkLO7QYHPDrBRMX
+        PepcCY/Tm2PDVG0UjsliBJo1e7jOhqPVt3GpzBdIxSN0uWoUWuuptlkGHH2Id1N1nQl1Q1Dpw4AWdU7p
+        Md5VNwZ5M8snqtpxu2wdgVQUiDdHiTkX6DGbCD9DFJ3Kkr+of4IYzlGvZGFSs5zmfz6BF5FbddA5ryWg
+        gxopQ2Wc1UegkzZvru6BXbJvvEjFYmh3Yc3fdreLVCwlUrGUSMXSgWU/Ad7NYCkdRswBAAAAAElFTkSu
+        QmCC
+</value>
+  </data>
   <data name="txtHopTai.AutoCompleteList" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAJoBbXNjb3JsaWIsIFZlcnNpb249NC4wLjAuMCwgQ3VsdHVyZT1u
@@ -213,27 +234,6 @@
   </data>
   <data name="grdBacsithamgia_DesignTimeLayout.LayoutString" xml:space="preserve">
     <value>&lt;GridEXLayoutData&gt;&lt;RootTable&gt;&lt;Columns Collection="true" ElementName="Column"&gt;&lt;Column0 ID="ma_nhanvien"&gt;&lt;Caption&gt;Mã bác sĩ&lt;/Caption&gt;&lt;DataMember&gt;ma_nhanvien&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;ma_nhanvien&lt;/Key&gt;&lt;Position&gt;0&lt;/Position&gt;&lt;/Column0&gt;&lt;Column1 ID="ten_nhanvien"&gt;&lt;Caption&gt;Tên bác sĩ&lt;/Caption&gt;&lt;DataMember&gt;ten_nhanvien&lt;/DataMember&gt;&lt;EditType&gt;NoEdit&lt;/EditType&gt;&lt;Key&gt;ten_nhanvien&lt;/Key&gt;&lt;Position&gt;1&lt;/Position&gt;&lt;Width&gt;251&lt;/Width&gt;&lt;/Column1&gt;&lt;/Columns&gt;&lt;GroupCondition /&gt;&lt;/RootTable&gt;&lt;/GridEXLayoutData&gt;</value>
-  </data>
-  <data name="cmdRefreshChucnangsong.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        xAAADsQBlSsOGwAAAAd0SU1FB+cGCAgTN1og6fAAAAAHdEVYdEF1dGhvcgCprsxIAAAADHRFWHREZXNj
-        cmlwdGlvbgATCSEjAAAACnRFWHRDb3B5cmlnaHQArA/MOgAAAAl0RVh0U29mdHdhcmUAXXD/OgAAAAd0
-        RVh0U291cmNlAPX/g+sAAAAIdEVYdENvbW1lbnQA9syWvwAAAAZ0RVh0VGl0bGUAqO7SJwAAAsNJREFU
-        SEu1lE1ME0EUx/E7fqAXvw5+H4wRBWkp+zG7UDRRvJhoPKgXPBvlZqKGk1eNxoSDBg0R+RAKpWUpbbeV
-        GNGiRuPNmHgA9GQ0wehFys57vsEsbtcp0aQefsnM//92ZufNe1OGiP8VqVhKpGIpkYp+qu7B+lAkH1Qi
-        0Kj0EIMYEJos1o9UdKlpx00sDpdYFsZZis/UPUYUsDT8EJoeh8tqB2yQfesiFQVKG2xkNtiH3iAaGUR9
-        mL/SR3jnHDQWWsML8tKQq32YV2RrCKSiQKTAsPmAkeZJLQIHq+/gyrLjuFggxiHSaLPE3CY2f1/Th1Wy
-        df4QvJzsw2UtLbhI5gn2tH5arQ1BW8NLRG2Yj9LGa/0xBROBYTkXtZhz1q8XY981WKVbMF4/hqj0Y5Pf
-        L5gEeyFkZPg3loQPgfu41esthNoPp8NP5+4pao7iEq83PzAHYDMbgedmFlFg2BAJPYByb3AxRGqYBZ+p
-        ut5VUHF4vfkBG4JGZvHXagzylNfvehqSdJFBb7AMcxC26InZE1qcT+rDOE3rnNNjsNv1fweO4oqaDqhg
-        KfioxvlUJdX3tgQsd/1i0E/sNbL8LUtRiixxeviixaHB9QuCd96Ccj0FOUrPjNIN+73eQlBnN9G9cdGE
-        ahyuer2CQIE6wK+L2taicMPvLQTdX8R8BLnKm7jOqxcECZQuDLA0/0opmxbvjt8vhtkLO7QYHPDrBRMX
-        PepcCY/Tm2PDVG0UjsliBJo1e7jOhqPVt3GpzBdIxSN0uWoUWuuptlkGHH2Id1N1nQl1Q1Dpw4AWdU7p
-        Md5VNwZ5M8snqtpxu2wdgVQUiDdHiTkX6DGbCD9DFJ3Kkr+of4IYzlGvZGFSs5zmfz6BF5FbddA5ryWg
-        gxopQ2Wc1UegkzZvru6BXbJvvEjFYmh3Yc3fdreLVCwlUrGUSMXSgWU/Ad7NYCkdRswBAAAAAElFTkSu
-        QmCC
-</value>
   </data>
   <data name="cmdRefreshCDHA.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

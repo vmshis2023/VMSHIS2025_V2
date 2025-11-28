@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel1 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
             Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel2 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
             Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel3 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
@@ -102,7 +101,7 @@
             this.dtFromDate = new Janus.Windows.CalendarCombo.CalendarCombo();
             this.label14 = new System.Windows.Forms.Label();
             this.cmdClear = new System.Windows.Forms.LinkLabel();
-            this.ctxDelCLS = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ctxDelCLS = new System.Windows.Forms.ContextMenuStrip();
             this.mnuDeleteCLS = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuViewPdfTheoLuotkham = new System.Windows.Forms.ToolStripMenuItem();
@@ -133,13 +132,13 @@
             this.mnuNgoaigoi_CLS = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem25 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuXoaGoi = new System.Windows.Forms.ToolStripMenuItem();
-            this.ctxDelDrug = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ctxDelDrug = new System.Windows.Forms.ContextMenuStrip();
             this.mnuDelDrug = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem23 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuTronggoi_Thuoc = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuNgoaigoi_thuoc = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdCauHinh = new Janus.Windows.EditControls.UIButton();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTip1 = new System.Windows.Forms.ToolTip();
             this.txtPatient_Code = new Janus.Windows.GridEX.EditControls.EditBox();
             this.lblSOkham = new System.Windows.Forms.Label();
             this.chkHienthichitiet = new System.Windows.Forms.CheckBox();
@@ -220,7 +219,7 @@
             this.txtPatient_Name = new Janus.Windows.GridEX.EditControls.EditBox();
             this.label30 = new System.Windows.Forms.Label();
             this.grdList = new Janus.Windows.GridEX.GridEX();
-            this.ctxCongkham = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ctxCongkham = new System.Windows.Forms.ContextMenuStrip();
             this.mnuXoacongkham = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem18 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuBarcode = new System.Windows.Forms.ToolStripMenuItem();
@@ -240,7 +239,7 @@
             this.uiTabKCB = new Janus.Windows.UI.Tab.UITab();
             this.uiTabPage1 = new Janus.Windows.UI.Tab.UITabPage();
             this.pnlother = new System.Windows.Forms.Panel();
-            this.ctxFuntions = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ctxFuntions = new System.Windows.Forms.ContextMenuStrip();
             this.mnuInKQKhammat = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuBarcode1 = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdInphieukham = new System.Windows.Forms.ToolStripMenuItem();
@@ -443,7 +442,7 @@
             this.tabPageVTTH = new Janus.Windows.UI.Tab.UITabPage();
             this.pnlTabKeVTTH = new System.Windows.Forms.Panel();
             this.grdVTTH = new Janus.Windows.GridEX.GridEX();
-            this.ctxDelVTTH = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ctxDelVTTH = new System.Windows.Forms.ContextMenuStrip();
             this.mnuDelVTTH = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem24 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuTronggoi_VTTH = new System.Windows.Forms.ToolStripMenuItem();
@@ -507,11 +506,11 @@
             this.txtSoQMS = new Janus.Windows.GridEX.EditControls.MaskedEditBox();
             this.cmdStart = new Janus.Windows.EditControls.UIButton();
             this.label59 = new System.Windows.Forms.Label();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.uiTabPage5 = new Janus.Windows.UI.Tab.UITabPage();
-            this.ctxDoiChuyenPhong = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ctxDoiChuyenPhong = new System.Windows.Forms.ContextMenuStrip();
             this.cmdDoikham = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.cmdChuyenKham = new System.Windows.Forms.ToolStripMenuItem();
@@ -519,8 +518,8 @@
             this.cmdKhamChuyenKhoa = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.txtNoiDung = new Janus.Windows.GridEX.EditControls.EditBox();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.ctxDelFile = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.timer1 = new System.Windows.Forms.Timer();
+            this.ctxDelFile = new System.Windows.Forms.ContextMenuStrip();
             this.mnuDelFile = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
@@ -534,11 +533,11 @@
             this.label62 = new System.Windows.Forms.Label();
             this.grbLichsuCongkham = new System.Windows.Forms.GroupBox();
             this.grdCongkham = new Janus.Windows.GridEX.GridEX();
-            this.ctxLichsuCongkham = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ctxLichsuCongkham = new System.Windows.Forms.ContextMenuStrip();
             this.mnuLaythongtinlankhamtruoc = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDisplayme = new System.Windows.Forms.ToolStripMenuItem();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.ctxQMSFunction = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider();
+            this.ctxQMSFunction = new System.Windows.Forms.ContextMenuStrip();
             this.mnuQMSConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuQmsColor = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem14 = new System.Windows.Forms.ToolStripSeparator();
@@ -4636,6 +4635,7 @@
             this.cmdDenghiMG.Size = new System.Drawing.Size(101, 30);
             this.cmdDenghiMG.TabIndex = 535;
             this.cmdDenghiMG.Text = "Đề nghị MG";
+            this.cmdDenghiMG.Click += new System.EventHandler(this.cmdDenghiMG_Click_1);
             // 
             // cmdInGoi
             // 
@@ -4648,6 +4648,7 @@
             this.cmdInGoi.Size = new System.Drawing.Size(110, 30);
             this.cmdInGoi.TabIndex = 534;
             this.cmdInGoi.Text = "In gói CĐ";
+            this.cmdInGoi.Click += new System.EventHandler(this.cmdInGoi_Click_1);
             // 
             // cmdIntachPhieu
             // 

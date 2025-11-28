@@ -168,7 +168,7 @@ namespace VNS.HIS.UI.THUOC
         private void frm_DanhmucKhothuoc_Load(object sender, EventArgs e)
         {
 
-            m_dtKhoThuoc =CommonLoadDuoc.LAYDANHMUCKHO(-1,"ALL","ALL","ALL",100,100,1);
+            m_dtKhoThuoc =CommonLoadDuoc.LAYDANHMUCKHO(-1,"ALL","ALL","ALL",100,100,100);
             Utility.SetDataSourceForDataGridEx(grdKhoThuoc,m_dtKhoThuoc,true,true,"1=1","");
             ModifyCommand();
            

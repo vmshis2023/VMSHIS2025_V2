@@ -85,7 +85,7 @@ namespace VNS.HIS.UI.NOITRU
                                 decimal tien_chietkhau = Utility.DecimaltoDbnull(_row.Cells["tien_chietkhau"].Value, 0);
                                 long id_phieu = Utility.Int64Dbnull(_row.Cells["id_phieu"].Value);
                                 long id_phieuchitiet = Utility.Int64Dbnull(_row.Cells["id_phieu_chitiet"].Value);
-                                CapnhatChietkhau_DonGia(0,id_loaithanhtoan, kieu_chietkhau, tile_chietkhau, tien_chietkhau, id_phieu, id_phieuchitiet);
+                                if (THU_VIEN_CHUNG.Laygiatrithamsohethong("THANHTOAN_CHIETKHAU_TUDONGLUU", "1", true) == "1") CapnhatChietkhau_DonGia(0,id_loaithanhtoan, kieu_chietkhau, tile_chietkhau, tien_chietkhau, id_phieu, id_phieuchitiet);
                                 
                             }
                         }
@@ -117,7 +117,7 @@ namespace VNS.HIS.UI.NOITRU
                                 decimal tien_chietkhau = Utility.DecimaltoDbnull(_row.Cells["tien_chietkhau"].Value, 0);
                                 long id_phieu = Utility.Int64Dbnull(_row.Cells["id_phieu"].Value);
                                 long id_phieuchitiet = Utility.Int64Dbnull(_row.Cells["id_phieu_chitiet"].Value);
-                                CapnhatChietkhau_DonGia(0,id_loaithanhtoan, kieu_chietkhau, tile_chietkhau, tien_chietkhau, id_phieu, id_phieuchitiet);
+                                if (THU_VIEN_CHUNG.Laygiatrithamsohethong("THANHTOAN_CHIETKHAU_TUDONGLUU", "1", true) == "1") CapnhatChietkhau_DonGia(0,id_loaithanhtoan, kieu_chietkhau, tile_chietkhau, tien_chietkhau, id_phieu, id_phieuchitiet);
                             }
                         }
                     }
@@ -364,7 +364,7 @@ namespace VNS.HIS.UI.NOITRU
                         
                         long id_phieu = Utility.Int64Dbnull(grdThongTinChuaThanhToan.CurrentRow.Cells["id_phieu"].Value);
                         long id_phieuchitiet = Utility.Int64Dbnull(grdThongTinChuaThanhToan.CurrentRow.Cells["id_phieu_chitiet"].Value);
-                        CapnhatChietkhau_DonGia(0,id_loaithanhtoan, kieu_chietkhau, tile_chietkhau, tien_chietkhau, id_phieu, id_phieuchitiet);
+                        if (THU_VIEN_CHUNG.Laygiatrithamsohethong("THANHTOAN_CHIETKHAU_TUDONGLUU", "1", true) == "1") CapnhatChietkhau_DonGia(0,id_loaithanhtoan, kieu_chietkhau, tile_chietkhau, tien_chietkhau, id_phieu, id_phieuchitiet);
                         Utility.Log(this.Name, globalVariables.UserName, string.Format("Sửa chiết khấu {0} từ {1} thành {2} thành công ", grdThongTinChuaThanhToan.GetValue("ten_chitietdichvu"), Utility.FormatCurrencyHIS(Utility.DecimaltoDbnull(e.InitialValue, 0)), Utility.FormatCurrencyHIS(Utility.DecimaltoDbnull(e.Value, 0))), newaction.Update, this.GetType().Assembly.ManifestModule.Name);
                     }
                 }
@@ -524,7 +524,7 @@ namespace VNS.HIS.UI.NOITRU
             try
             {
                 Utility.WaitNow(this);
-                DataTable dtData = SPs.NoitruTonghopChiphiRavien(objLuotkham.MaLuotkham, (int)objLuotkham.IdBenhnhan, Utility.Bool2byte(!Khoanoitrutonghop), Utility.sDbnull(cboKhoadieutri.SelectedValue, "-1"), getidphieudieutri()).GetDataSet().Tables[0];
+                DataTable dtData = SPs.NoitruTonghopChiphiRavien(objLuotkham.MaLuotkham, (int)objLuotkham.IdBenhnhan, Utility.Bool2byte(!Khoanoitrutonghop), Utility.sDbnull(cboKhoadieutri.SelectedValue, "-1"), getidphieudieutri(),0).GetDataSet().Tables[0];
 
                 if (dtData.Rows.Count <= 0)
                 {
@@ -605,7 +605,7 @@ namespace VNS.HIS.UI.NOITRU
             try
             {
                 Utility.WaitNow(this);
-                DataTable dtData = SPs.NoitruTonghopChiphiRavien(objLuotkham.MaLuotkham, (int)objLuotkham.IdBenhnhan, Utility.Bool2byte(!Khoanoitrutonghop), Utility.sDbnull(cboKhoadieutri.SelectedValue, "-1"), getidphieudieutri()).GetDataSet().Tables[0];
+                DataTable dtData = SPs.NoitruTonghopChiphiRavien(objLuotkham.MaLuotkham, (int)objLuotkham.IdBenhnhan, Utility.Bool2byte(!Khoanoitrutonghop), Utility.sDbnull(cboKhoadieutri.SelectedValue, "-1"), getidphieudieutri(),0).GetDataSet().Tables[0];
                 THU_VIEN_CHUNG.Sapxepthutuin(ref dtData, false);
                 dtData.DefaultView.Sort = "stt_in,stt_hthi_loaidichvu ,stt_hthi_dichvu,stt_hthi_chitiet,ten_chitietdichvu";
 
@@ -853,7 +853,7 @@ namespace VNS.HIS.UI.NOITRU
             {
                 ucThongtinnguoibenh_doc_v51.Refresh(objLuotkham.MaLuotkham);
                 m_dtChiPhiThanhtoan =
-                   SPs.NoitruTonghopChiphiRavien(objLuotkham.MaLuotkham, (int)objLuotkham.IdBenhnhan, Utility.Bool2byte(!Khoanoitrutonghop), idkhoanoitru, getidphieudieutri()).GetDataSet().Tables[0];
+                   SPs.NoitruTonghopChiphiRavien(objLuotkham.MaLuotkham, (int)objLuotkham.IdBenhnhan, Utility.Bool2byte(!Khoanoitrutonghop), idkhoanoitru, getidphieudieutri(),0).GetDataSet().Tables[0];
                // Utility.SetDataSourceForDataGridEx_Basic(grdThongTinChuaThanhToan, m_dtChiPhiThanhtoan,true, true, "trangthai_huy=0" + (PropertyLib._ThanhtoanProperties.Hienthidichvuchuathanhtoan ? " and trangthai_thanhtoan=0" : ""), "");
                 Utility.SetDataSourceForDataGridEx_Basic(grdThongTinChuaThanhToan, m_dtChiPhiThanhtoan, true, true, "trangthai_huy=0" + (PropertyLib._ThanhtoanProperties.Hienthidichvuchuathanhtoan ? " and trangthai_thanhtoan=0" : ""), "");
                 THU_VIEN_CHUNG.CreateXML(m_dtChiPhiThanhtoan, string.Format("tonghopchiphi_kcb.xml"));

@@ -81,13 +81,7 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
             try
             {
                 DataTable _dataThuoc = SPs.ThuocLayDanhmucThuocTheokho(Utility.Int32Dbnull(cboKho.SelectedValue, -1)).GetDataSet().Tables[0];
-                if (_dataThuoc == null)
-                {
-                    txtthuoc.dtData = null;
-                    return;
-                }
-                txtthuoc.dtData = _dataThuoc;
-                txtthuoc.ChangeDataSource();
+                DataBinding.BindDataCombobox(cbo_thuoc, _dataThuoc, DmucThuoc.Columns.IdThuoc, DmucThuoc.Columns.TenThuoc);
             }
             catch
             {
@@ -112,14 +106,10 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
         {
             try
             {
+                if (m_dtReport == null || m_dtReport.Columns.Count <= 0) cmd_TimKiem.PerformClick();
                 int trangthai = Trangthai();
                 int kieungaytimkiem = chkKieungaytimkiem.Checked ? 1 : 0;
-                DataTable m_dtReport =
-              BAOCAO_THUOC.ThuocBaocaoTinhhinhnhapkhothuoc(chkByDate.Checked ? dtFromDate.Value.ToString("dd/MM/yyyy") : "01/01/1900",
-                                           chkByDate.Checked ? dtToDate.Value.ToString("dd/MM/yyyy") : "01/01/1900", trangthai,
-                                           Utility.Int32Dbnull(cboKho.SelectedValue), Utility.Int32Dbnull(txtthuoc.MyID, -1), (byte)LoaiPhieu.PhieuThanhly, kieungaytimkiem, Utility.DoTrim(txtLydothanhly.Text), "-1", KIEU_THUOC_VT);
                 THU_VIEN_CHUNG.CreateXML(m_dtReport, "thuoc_baocaochitiet_nhapkho.xml");
-                Utility.SetDataSourceForDataGridEx(grdList,m_dtReport,true,true,"1=1","");
                 if (m_dtReport.Rows.Count <= 0)
                 {
                     Utility.ShowMsg("Không tìm thấy dữ liệu", "Thông báo", MessageBoxIcon.Warning);
@@ -186,7 +176,26 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
 
         private void cmdCboDownHTTT_Click(object sender, EventArgs e)
         {
-            txtthuoc.ShowMe();
+          
+        }
+        DataTable m_dtReport = null;
+        private void cmd_TimKiem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int trangthai = Trangthai();
+                int kieungaytimkiem = chkKieungaytimkiem.Checked ? 1 : 0;
+
+                m_dtReport= BAOCAO_THUOC.ThuocBaocaoTinhhinhnhapkhothuoc(chkByDate.Checked ? dtFromDate.Value.ToString("dd/MM/yyyy") : "01/01/1900",
+                                           chkByDate.Checked ? dtToDate.Value.ToString("dd/MM/yyyy") : "01/01/1900", trangthai,
+                                           Utility.Int32Dbnull(cboKho.SelectedValue), Utility.Int32Dbnull(cbo_thuoc.SelectedValue, -1), (byte)LoaiPhieu.PhieuThanhly, kieungaytimkiem, Utility.DoTrim(txtLydothanhly.Text), "-1", KIEU_THUOC_VT);
+                THU_VIEN_CHUNG.CreateXML(m_dtReport, "thuoc_baocaochitiet_nhapkho.xml");
+                Utility.SetDataSourceForDataGridEx(grdList, m_dtReport, true, true, "1=1", "");
+                
+            }
+            catch (Exception)
+            {
+            }
         }
     }
 }

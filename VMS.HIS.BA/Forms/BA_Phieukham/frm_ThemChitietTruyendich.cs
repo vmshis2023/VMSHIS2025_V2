@@ -30,7 +30,9 @@ namespace VMS.HIS.UI.EMR
         public string TenThuoc  = "";
         public string solo  = "";
         public int Doctor_ID = -1;
-        public int SoLuong  = 0;
+        public decimal soluong_conlai = 0;
+        public decimal soluong_ke = 0;
+        public decimal soluongdatruyen = 0;
         public int id_khoadieutri = -1;
         public int id_BG = -1;
         TThuockho thuockho = null;
@@ -39,6 +41,8 @@ namespace VMS.HIS.UI.EMR
         private readonly Logger _log;
         public NoitruPhieudichtruyenChitiet objPhieudichtruyen_chitiet = null;
         public NoitruPhieudichtruyen objphieu = null;
+        double soGiotMoiMl = 20;
+        bool AllowValueChanged = false;
         public frm_ThemChitietTruyendich()
         {
             InitializeComponent();
@@ -48,8 +52,44 @@ namespace VMS.HIS.UI.EMR
             dtpNgaythuchien.Value = THU_VIEN_CHUNG.GetSysDateTime();
             dtp_thoigianbatdau.Value =  dtpNgaythuchien.Value.AddSeconds(5);
             dtp_thoigianketthuc.Value = dtp_thoigianbatdau.Value.AddSeconds(5);
+            nmr_TocDo.ValueChanged += Nmr_TocDo_ValueChanged;
+            dtp_thoigianketthuc.ValueChanged += Dtp_thoigianketthuc_ValueChanged;
+            nmr_Volume.ValueChanged += Nmr_Volume_ValueChanged;
         }
 
+        private void Nmr_Volume_ValueChanged(object sender, EventArgs e)
+        {
+            if (!AllowValueChanged) return;
+            dtp_thoigianketthuc.Value = TinhThoiGianKetThuc(dtp_thoigianbatdau.Value, Utility.DoubletoDbnull(nmr_Volume.Value), Utility.DoubletoDbnull(nmr_TocDo.Value));
+        }
+
+        private void Dtp_thoigianketthuc_ValueChanged(object sender, EventArgs e)
+        {
+            if (!AllowValueChanged) return;
+            dtp_thoigianketthuc.Value = TinhThoiGianKetThuc(dtp_thoigianbatdau.Value, Utility.DoubletoDbnull(nmr_Volume.Value), Utility.DoubletoDbnull(nmr_TocDo.Value));
+        }
+
+        private void Nmr_TocDo_ValueChanged(object sender, EventArgs e)
+        {
+            if (!AllowValueChanged) return;
+            lblRoman.Text = Utility.FromNumber2ToRoman(Utility.Int32Dbnull(nmr_TocDo.Value));
+            dtp_thoigianketthuc.Value = TinhThoiGianKetThuc(dtp_thoigianbatdau.Value, Utility.DoubletoDbnull(nmr_Volume.Value), Utility.DoubletoDbnull(nmr_TocDo.Value));
+        }
+         DateTime TinhThoiGianKetThuc(
+    DateTime thoiGianBatDau,
+    double theTichMl,
+    double tocDoGiotPhut
+    )
+        {
+            if (theTichMl <= 0 || tocDoGiotPhut <= 0 || soGiotMoiMl <= 0)
+                throw new ArgumentException("Giá trị phải lớn hơn 0.");
+
+            // Tổng thời gian truyền (phút)
+            double thoiGianTruyenPhut = (theTichMl * soGiotMoiMl) / tocDoGiotPhut;
+            lblThoigian.Text =string.Format("(Khoảng {0} phút)",Convert.ToInt32( thoiGianTruyenPhut).ToString());
+            // Cộng thêm vào thời gian bắt đầu
+            return thoiGianBatDau.AddMinutes(thoiGianTruyenPhut);
+        }
         void grdDonthuocchitiet_RowCheckStateChanged(object sender, RowCheckStateChangeEventArgs e)
         {
 
@@ -113,16 +153,22 @@ namespace VMS.HIS.UI.EMR
                     return false;
                 }
             }
-            if (Utility.Int32Dbnull(txtQuantity.Value,0)<=0)
+            if (Utility.DecimaltoDbnull(nmr_SoLuong.Value,0)<=0)
             {
-                Utility.SetMsgError(errorProvider1, txtQuantity, "Số lượng thuốc truyền dịch phải lớn hơn 0(>0)");
-                txtQuantity.Focus();
+                Utility.SetMsgError(errorProvider1, nmr_SoLuong, "Số lượng thuốc truyền dịch phải lớn hơn 0(>0)");
+                nmr_SoLuong.Focus();
                 return false;
             }
-            if (Utility.Int32Dbnull(txtTocDo.Value, 0) <= 0)
+            if (Utility.Int32Dbnull(nmr_TocDo.Value, 0) <= 0)
             {
-                Utility.SetMsgError(errorProvider1, txtTocDo, "Tốc độ truyền phải lớn hơn 0(>0)");
-                txtTocDo.Focus();
+                Utility.SetMsgError(errorProvider1, nmr_TocDo, "Tốc độ truyền phải lớn hơn 0(>0)");
+                nmr_TocDo.Focus();
+                return false;
+            }
+            if (dtp_thoigianbatdau.Text == "")
+            {
+                Utility.SetMsgError(errorProvider1, dtp_thoigianbatdau, "Bạn phải nhập thời gian bắt đầu truyền dịch");
+                dtp_thoigianbatdau.Focus();
                 return false;
             }
             if (dtp_thoigianbatdau.Value < dtpNgaythuchien.Value.Date)
@@ -131,9 +177,15 @@ namespace VMS.HIS.UI.EMR
                 dtp_thoigianbatdau.Focus();
                 return false;
             }
-            if (dtp_thoigianbatdau.Value > dtp_thoigianketthuc.Value)
+            if (dtp_thoigianketthuc.Text == "")
             {
-                Utility.SetMsgError(errorProvider1, dtp_thoigianketthuc, "Thời gian kết thúc phải >= thời gian bắt đầu");
+                Utility.SetMsgError(errorProvider1, dtp_thoigianketthuc, "Bạn phải nhập thời gian kết thúc truyền dịch");
+                dtp_thoigianketthuc.Focus();
+                return false;
+            }
+            if (dtp_thoigianbatdau.Value >= dtp_thoigianketthuc.Value)
+            {
+                Utility.SetMsgError(errorProvider1, dtp_thoigianketthuc, "Thời gian kết thúc phải sau thời gian bắt đầu");
                 dtp_thoigianketthuc.Focus();
                 return false;
             }
@@ -163,7 +215,7 @@ namespace VMS.HIS.UI.EMR
                    switch (em_Action)
                    {
                        case action.Insert:
-                           txtID.Text = IdPhieu.ToString();
+                          
                            ProcessDataWhenInsert();
                            break;
                        case action.Update:
@@ -193,9 +245,9 @@ namespace VMS.HIS.UI.EMR
         /// </summary>
         private void ClearControl()
         {
-            txtQuantity.Clear();
+            nmr_SoLuong.ResetText();
             txtSoLo.Clear();
-            txtTocDo.Clear();           
+            nmr_TocDo.Clear();           
             GetData();
         }
         /// <summary>
@@ -277,7 +329,7 @@ namespace VMS.HIS.UI.EMR
             try
             {
 
-                DataRow[] newDr = m_dtPhieuchitiet.Select("id_phieu=" + Utility.Int64Dbnull(txtID.Text, -1));
+                DataRow[] newDr = m_dtPhieuchitiet.Select("id=" + Utility.Int64Dbnull(txtID.Text, -1));
                 if (newDr.GetLength(0) > 0)
                 {
                     newDr[0][NoitruPhieudichtruyenChitiet.Columns.NgayThuchien] = dtpNgaythuchien.Value;
@@ -286,13 +338,14 @@ namespace VMS.HIS.UI.EMR
                     newDr[0][NoitruPhieudichtruyenChitiet.Columns.IdThuoc] = id_thuoc;
                     newDr[0][NoitruPhieudichtruyenChitiet.Columns.IdChitietdonthuoc] = id_chitietdonthuoc;
                     newDr[0][NoitruPhieudichtruyenChitiet.Columns.IdDonthuoc] = id_donthuoc;
-                    newDr[0][NoitruPhieudichtruyenChitiet.Columns.TocDo] = Utility.sDbnull(txtTocDo.Text, "");
-                    newDr[0][NoitruPhieudichtruyenChitiet.Columns.SoLuong] = Utility.Int32Dbnull(txtQuantity.Text, 0);
+                    newDr[0][NoitruPhieudichtruyenChitiet.Columns.TocDo] = Utility.sDbnull(nmr_TocDo.Text, "");
+                    newDr[0][NoitruPhieudichtruyenChitiet.Columns.SoLuong] = Utility.DecimaltoDbnull(nmr_SoLuong.Value, 0);
                     newDr[0][NoitruPhieudichtruyenChitiet.Columns.IdBacsichidinh] = Utility.Int32Dbnull(txtBacSyCD.MyID, -1);
                     newDr[0][NoitruPhieudichtruyenChitiet.Columns.IdYtathuchien] = Utility.Int32Dbnull(txtYta.MyID, -1);
+                    newDr[0]["ten_dichtruyen"] = txtTenThuoc.Text;
                     newDr[0]["ten_bacsi_chidinh"] = txtBacSyCD.Text;
                     newDr[0]["ten_yta_thuchien"] = txtYta.Text;
-                    newDr[0]["SO_LO"] = txtSoLo.Text;
+                    newDr[0]["so_lo"] = txtSoLo.Text;
 
 
                 }
@@ -310,7 +363,7 @@ namespace VMS.HIS.UI.EMR
             objPhieudichtruyen_chitiet.NguoiThuchien = globalVariables.UserName;
             objPhieudichtruyen_chitiet.IdPhieu = IdPhieu;
             objPhieudichtruyen_chitiet.NgayThuchien = Convert.ToDateTime(dtpNgaythuchien.Value);
-            objPhieudichtruyen_chitiet.SoLuong = Utility.Int32Dbnull(txtQuantity.Value);
+            objPhieudichtruyen_chitiet.SoLuong = Utility.DecimaltoDbnull(nmr_SoLuong.Value);
             objPhieudichtruyen_chitiet.IdThuoc = Utility.Int32Dbnull(id_thuoc);
             objPhieudichtruyen_chitiet.SoLo = Utility.sDbnull(txtSoLo.Text);
             objPhieudichtruyen_chitiet.TenDichtruyen = Utility.sDbnull(txtTenThuoc.Text);
@@ -321,7 +374,9 @@ namespace VMS.HIS.UI.EMR
             objPhieudichtruyen_chitiet.TenBacsyChidinh = txtBacSyCD.Text;
             objPhieudichtruyen_chitiet.TenYtaThuchien = txtYta.Text;
             objPhieudichtruyen_chitiet.IdYtathuchien = Utility.Int32Dbnull(txtYta.MyID, -1);
-            objPhieudichtruyen_chitiet.TocDo = Utility.Int32Dbnull(txtTocDo.Text, null);
+            objPhieudichtruyen_chitiet.TheTich = Utility.Int32Dbnull(nmr_Volume.Text, null);
+            objPhieudichtruyen_chitiet.TocDo = Utility.Int32Dbnull(nmr_TocDo.Text, null);
+            objPhieudichtruyen_chitiet.Roman = lblRoman.Text;
             objPhieudichtruyen_chitiet.IdChitietdonthuoc = id_chitietdonthuoc;
             objPhieudichtruyen_chitiet.IdDonthuoc = id_donthuoc;
             objPhieudichtruyen_chitiet.IdThuockho = Id_ThuocKho;
@@ -377,6 +432,19 @@ namespace VMS.HIS.UI.EMR
         {
             try
             {
+                AllowValueChanged = false;
+                nmr_SoLuong.Maximum = soluong_ke;
+                if(em_Action==action.Insert)
+                {
+                    nmr_SoLuong.Maximum = soluong_conlai;
+                    nmr_SoLuong.Value = soluong_conlai;
+                }   
+                else//Update
+                {
+
+                }    
+                soGiotMoiMl = Utility.DoubletoDbnull(THU_VIEN_CHUNG.Laygiatrithamsohethong("TRUYENDICH_SOGIOT_TREN_ML","20",false));
+                lblLoaiDayTruyen.Text = string.Format("Đang dùng loại dây truyền {0} giọt/phút", soGiotMoiMl);
                 if (!dt_ThuocKetHop.Columns.Contains("id_thuoc"))
                 {
                     dt_ThuocKetHop.Columns.Add("id_thuoc", typeof(string));
@@ -393,7 +461,7 @@ namespace VMS.HIS.UI.EMR
                
                 txtidphieuthuoc.Text = Utility.sDbnull(id_chitietdonthuoc);
                 txtDrug_Id.Text = Utility.sDbnull(id_thuoc);
-                txtQuantity.Value = SoLuong;
+               
                 txtTenThuoc.Text = TenThuoc;
                 if (thuockho != null)
                 {
@@ -464,6 +532,7 @@ namespace VMS.HIS.UI.EMR
             {
                 case action.Insert:
                     txtID.Text = "-1";
+                    AllowValueChanged = true;
                     break;
                 case action.Update:
                     InitData4Update();
@@ -478,18 +547,21 @@ namespace VMS.HIS.UI.EMR
             objPhieudichtruyen_chitiet = NoitruPhieudichtruyenChitiet.FetchByID(Utility.Int64Dbnull(txtID.Text, -1));
             if(objPhieudichtruyen_chitiet!=null)
             {
-
+                txtID.Text = objPhieudichtruyen_chitiet.Id.ToString();
                 dtpNgaythuchien.Value = objPhieudichtruyen_chitiet.NgayThuchien;
-                txtQuantity.Value = Utility.Int32Dbnull(objPhieudichtruyen_chitiet.SoLuong);
+                nmr_SoLuong.Value = Utility.DecimaltoDbnull(objPhieudichtruyen_chitiet.SoLuong);
                 dtp_thoigianbatdau.Value = objPhieudichtruyen_chitiet.ThoigianBatdau;
                 dtp_thoigianketthuc.Value = objPhieudichtruyen_chitiet.ThoigianKetthuc;
-                txtTocDo.Value = Utility.Int32Dbnull(objPhieudichtruyen_chitiet.TocDo);
+                nmr_TocDo.Value = Utility.Int32Dbnull(objPhieudichtruyen_chitiet.TocDo);
+                nmr_Volume.Value = Utility.Int32Dbnull(objPhieudichtruyen_chitiet.TheTich,1);
                 txtDrug_Id.Text = Utility.sDbnull(objPhieudichtruyen_chitiet.IdThuoc);
                 txtBacSyCD.SetId(objPhieudichtruyen_chitiet.IdBacsichidinh);
                 txtYta.SetId(objPhieudichtruyen_chitiet.IdYtathuchien);
                 txtKhoaphong.SetId(objphieu.IdKhoadieutri);
                 txtBuong.Text = objphieu.Buong;
                 txtGiuong.Text = objphieu.Giuong;
+                AllowValueChanged = true;
+                lblRoman.Text = Utility.FromNumber2ToRoman(Utility.Int32Dbnull(nmr_TocDo.Value));
                 string dataString = Utility.sDbnull(objPhieudichtruyen_chitiet.IdThuocKethop, "");
                 dt_ThuocKetHop.Clear();
                 if (!string.IsNullOrEmpty(dataString))
@@ -628,6 +700,11 @@ namespace VMS.HIS.UI.EMR
         private void chk_freedom_CheckedChanged(object sender, EventArgs e)
         {
             txtTenThuoc.ReadOnly = txtSoLo.ReadOnly = txtBacSyCD.ReadOnly = !chk_freedom.Checked;
+        }
+
+        private void txtTocDo_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

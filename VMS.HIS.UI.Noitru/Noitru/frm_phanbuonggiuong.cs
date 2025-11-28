@@ -375,13 +375,28 @@ namespace VNS.HIS.UI.NOITRU
 
             if (dt != null && dt.Rows.Count > 0)
             {
-                Utility.SetMsg(lblMsg,
-                    string.Format("Giường này đang được nằm bởi bệnh nhân: {0}. Mời bạn chọn giường khác",
-                        Utility.sDbnull(dt.Rows[0][KcbDanhsachBenhnhan.Columns.TenBenhnhan])), true);
-                errorProvider1.SetError(txtBedCode, lblMsg.Text);
-                txtBedCode.Focus();
-                txtBedCode.SelectAll();
-                return false;
+                int dang_nam = Utility.Int32Dbnull(dt.Rows[0]["dang_nam"]);
+                int toi_da = Utility.Int32Dbnull(dt.Rows[0]["songuoi_toida"]);
+                if (toi_da <= 1 && dang_nam > 0)
+                {
+                    Utility.SetMsg(lblMsg,
+                        string.Format("Giường này đang được nằm bởi bệnh nhân: {0}. Mời bạn chọn giường khác",
+                            Utility.sDbnull(dt.Rows[0][KcbDanhsachBenhnhan.Columns.TenBenhnhan])), true);
+                    errorProvider1.SetError(txtBedCode, lblMsg.Text);
+                    txtBedCode.Focus();
+                    txtBedCode.SelectAll();
+                    return false;
+                }
+                else if(toi_da< dang_nam+1)
+                {
+                    string dsach_nguoibenh_nam_giuong = string.Join(",", dt.AsEnumerable().Select(c => Utility.sDbnull(c[KcbDanhsachBenhnhan.Columns.TenBenhnhan])).ToArray<string>());
+                    Utility.SetMsg(lblMsg,
+                       string.Format("Giường này đang được cấu hình nằm tối đa: {0} người và đang có {1} người nằm. Mời bạn chọn giường khác", toi_da, dang_nam,dsach_nguoibenh_nam_giuong), true);
+                    errorProvider1.SetError(txtBedCode, lblMsg.Text);
+                    txtBedCode.Focus();
+                    txtBedCode.SelectAll();
+                    return false;
+                }    
             }
             if (chkKhongtinh.Checked)
             {

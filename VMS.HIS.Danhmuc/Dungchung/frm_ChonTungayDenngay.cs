@@ -33,12 +33,13 @@ namespace VNS.HIS.UI.Forms.Cauhinh
         private void cmdAccept_Click(object sender, EventArgs e)
         {
             Utility.SetMsg(lblMsg, "", true);
-            if (dtp_tungay.Value < pdt_InputDate)
+            if (dtp_tungay.Value > dtp_denngay.Value)
             {
-                Utility.SetMsg(lblMsg, string.Format("Từ ngày phải >= đến ngày "), true);
+                Utility.SetMsg(lblMsg, string.Format("Từ ngày phải <= đến ngày "), true);
                 dtp_tungay.Focus();
                 return;
             }
+            this.DialogResult = DialogResult.OK;
             b_Cancel = false;
             this.Close();
         }

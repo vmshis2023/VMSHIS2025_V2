@@ -44,6 +44,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.opt_ngayhoadon = new Janus.Windows.EditControls.UIRadioButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox1)).BeginInit();
             this.uiGroupBox1.SuspendLayout();
@@ -65,6 +66,7 @@
             // 
             // uiGroupBox1
             // 
+            this.uiGroupBox1.Controls.Add(this.opt_ngayhoadon);
             this.uiGroupBox1.Controls.Add(this.label1);
             this.uiGroupBox1.Controls.Add(this.dtCreateDate);
             this.uiGroupBox1.Controls.Add(this.radEditDate);
@@ -108,7 +110,7 @@
             // radEditDate
             // 
             this.radEditDate.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radEditDate.Location = new System.Drawing.Point(377, 32);
+            this.radEditDate.Location = new System.Drawing.Point(455, 29);
             this.radEditDate.Name = "radEditDate";
             this.radEditDate.Size = new System.Drawing.Size(97, 27);
             this.radEditDate.TabIndex = 7;
@@ -119,7 +121,7 @@
             // radRegisterDate
             // 
             this.radRegisterDate.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radRegisterDate.Location = new System.Drawing.Point(219, 32);
+            this.radRegisterDate.Location = new System.Drawing.Point(297, 29);
             this.radRegisterDate.Name = "radRegisterDate";
             this.radRegisterDate.Size = new System.Drawing.Size(152, 27);
             this.radRegisterDate.TabIndex = 6;
@@ -130,7 +132,7 @@
             // 
             this.radCurrentDate.Checked = true;
             this.radCurrentDate.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radCurrentDate.Location = new System.Drawing.Point(90, 32);
+            this.radCurrentDate.Location = new System.Drawing.Point(168, 29);
             this.radCurrentDate.Name = "radCurrentDate";
             this.radCurrentDate.Size = new System.Drawing.Size(121, 27);
             this.radCurrentDate.TabIndex = 5;
@@ -213,6 +215,17 @@
             this.toolTip1.IsBalloon = true;
             this.toolTip1.ToolTipTitle = "Trợ giúp nhanh:";
             // 
+            // opt_ngayhoadon
+            // 
+            this.opt_ngayhoadon.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.opt_ngayhoadon.Location = new System.Drawing.Point(29, 29);
+            this.opt_ngayhoadon.Name = "opt_ngayhoadon";
+            this.opt_ngayhoadon.Size = new System.Drawing.Size(121, 27);
+            this.opt_ngayhoadon.TabIndex = 10;
+            this.opt_ngayhoadon.Text = "Ngày hóa đơn";
+            this.opt_ngayhoadon.VisualStyle = Janus.Windows.UI.VisualStyle.Office2007;
+            this.opt_ngayhoadon.CheckedChanged += new System.EventHandler(this.opt_ngayhoadon_CheckedChanged);
+            // 
             // frm_ChonngayThanhtoan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -259,5 +272,6 @@
         private Janus.Windows.EditControls.UIRadioButton radRegisterDate;
         private Janus.Windows.EditControls.UIRadioButton radCurrentDate;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private Janus.Windows.EditControls.UIRadioButton opt_ngayhoadon;
     }
 }

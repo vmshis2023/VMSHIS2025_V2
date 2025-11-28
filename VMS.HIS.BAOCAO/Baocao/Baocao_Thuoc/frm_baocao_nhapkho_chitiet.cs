@@ -12,6 +12,7 @@ using VNS.Libs;
 using VMS.HIS.DAL;
 using VNS.HIS.BusRule.Classes;
 using VNS.HIS.UI.Baocao;
+using VMS.HIS.Danhmuc.Dungchung;
 
 namespace VNS.HIS.UI.BaoCao.Form_BaoCao
 {
@@ -26,8 +27,7 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
             InitializeComponent();
             Utility.SetVisualStyle(this);
             this.KIEU_THUOC_VT = KIEU_THUOC_VT;
-            txtKho.TextChanged += txtKho_TextChanged;
-            txtKho._OnEnterMe += txtKho__OnEnterMe;
+            
             dtNgayIn.Value = dtFromDate.Value = dtToDate.Value = globalVariables.SysDate;
             
         }
@@ -59,8 +59,9 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
         {
             baocaO_TIEUDE1.Init("thuoc_baocaochitiet_nhapkho");
             txtNhacungcap.Init();
-            txtKho.Init(KIEU_THUOC_VT == "THUOC" ? CommonLoadDuoc.LAYTHONGTIN_KHOTHUOC_CHAN() : CommonLoadDuoc.LAYTHONGTIN_KHOVATTU_CHAN(), new List<string>() { TDmucKho.Columns.IdKho, TDmucKho.Columns.MaKho, TDmucKho.Columns.TenKho });
-         //   DataBinding.BindData(cboKho, KIEU_THUOC_VT == "THUOC" ? CommonLoadDuoc.LAYTHONGTIN_KHOTHUOC_CHAN() : CommonLoadDuoc.LAYTHONGTIN_KHOVATTU_CHAN(), TDmucKho.Columns.IdKho, TDmucKho.Columns.TenKho);
+            DataTable dtKho = KIEU_THUOC_VT == "THUOC" ? CommonLoadDuoc.LAYTHONGTIN_KHOTHUOC_CHAN() : CommonLoadDuoc.LAYTHONGTIN_KHOVATTU_CHAN();
+            DataBinding.BindDataCombobox(cbo_kho, dtKho, TDmucKho.Columns.IdKho, TDmucKho.Columns.TenKho,"---Chọn kho---",true);
+            
             AutocompleteThuoc();
         }
        
@@ -69,14 +70,8 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
 
             try
             {
-                DataTable _dataThuoc = SPs.ThuocLayDanhmucThuocTheokho(Utility.Int32Dbnull(txtKho.MyID, -1)).GetDataSet().Tables[0];
-                if (_dataThuoc == null)
-                {
-                    txtthuoc.dtData = null;
-                    return;
-                }
-                txtthuoc.dtData = _dataThuoc;
-                txtthuoc.ChangeDataSource();
+                DataTable _dataThuoc = SPs.ThuocLayDanhmucThuocTheokho(Utility.Int32Dbnull(cbo_kho.SelectedValue, -1)).GetDataSet().Tables[0];
+                DataBinding.BindDataCombobox(cbo_thuoc, _dataThuoc, DmucThuoc.Columns.IdThuoc, DmucThuoc.Columns.TenThuoc);
             }
             catch
             {
@@ -101,15 +96,9 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
         {
             try
             {
-                int trangthai = Trangthai();
-                int kieungaytimkiem = chkKieungaytimkiem.Checked ? 1 : 0;
-                DataTable m_dtReport =
-              BAOCAO_THUOC.ThuocBaocaoTinhhinhnhapkhothuoc(chkByDate.Checked ? dtFromDate.Value.ToString("dd/MM/yyyy") : "01/01/1900",
-                                           chkByDate.Checked ? dtToDate.Value.ToString("dd/MM/yyyy") : "01/01/1900", trangthai,
-                                           Utility.Int32Dbnull(txtKho.MyID), Utility.Int32Dbnull(txtthuoc.MyID, -1), (byte)LoaiPhieu.PhieuNhapKho, kieungaytimkiem, "", txtNhacungcap.myCode, KIEU_THUOC_VT);
+                if (m_dtReport == null || m_dtReport.Columns.Count <= 0) cmd_TimKiem.PerformClick();
                 THU_VIEN_CHUNG.CreateXML(m_dtReport, "thuoc_baocaochitiet_nhapkho.xml");
-                Utility.SetDataSourceForDataGridEx(grdList,m_dtReport,true,true,"1=1","");
-                if (m_dtReport.Rows.Count <= 0)
+                if (m_dtReport == null || m_dtReport.Rows.Count <= 0)
                 {
                     Utility.ShowMsg("Không tìm thấy dữ liệu", "Thông báo", MessageBoxIcon.Warning);
                     return;
@@ -178,12 +167,62 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
 
         private void cmdComboDown_Click(object sender, EventArgs e)
         {
-            txtKho.ShowMe();
+          
         }
 
         private void uiButton1_Click(object sender, EventArgs e)
         {
-            txtthuoc.ShowMe();
+           
+        }
+        DataTable m_dtReport = null;
+        private void cmd_TimKiem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int trangthai = Trangthai();
+                int kieungaytimkiem = chkKieungaytimkiem.Checked ? 1 : 0;
+
+                m_dtReport = BAOCAO_THUOC.ThuocBaocaoTinhhinhnhapkhothuoc(chkByDate.Checked ? dtFromDate.Value.ToString("dd/MM/yyyy") : "01/01/1900",
+                                           chkByDate.Checked ? dtToDate.Value.ToString("dd/MM/yyyy") : "01/01/1900", trangthai,
+                                           Utility.Int32Dbnull(cbo_kho.SelectedValue), Utility.Int32Dbnull(cbo_thuoc.SelectedValue, -1), (byte)LoaiPhieu.PhieuNhapKho, kieungaytimkiem, "", txtNhacungcap.myCode, KIEU_THUOC_VT);
+                THU_VIEN_CHUNG.CreateXML(m_dtReport, "thuoc_baocaochitiet_nhapkho.xml");
+                Utility.SetDataSourceForDataGridEx(grdList, m_dtReport, true, true, "1=1", "");
+               
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        private void cmdHoiDongKiemNhap_Click(object sender, EventArgs e)
+        {
+            if(Utility.Int32Dbnull( cbo_kho.SelectedValue,0)<=0)
+            {
+                Utility.ShowMsg("Bạn cần chọn kho trước khi nhập hội đồng kiểm nhập cho kho");
+            }
+            long id_phieu = Utility.Int32Dbnull(cbo_kho.SelectedValue, 0);
+            byte loai_phieu = 1;//0=Hội đồng kiểm nhập theo phiếu nhập kho;1= hội đồng kiểm nhập theo
+            frm_danhsach_hoidong _hoidong = new frm_danhsach_hoidong(id_phieu, loai_phieu);
+            _hoidong.ShowDialog();
+        }
+
+        private void cmdInBienBanKiemNhap_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (m_dtReport == null || m_dtReport.Columns.Count <= 0) cmd_TimKiem.PerformClick();
+                THU_VIEN_CHUNG.CreateXML(m_dtReport, "thuoc_bienban_kiemnhap_theokho.xml");
+                if (m_dtReport == null || m_dtReport.Rows.Count <= 0)
+                {
+                    Utility.ShowMsg("Không tìm thấy dữ liệu", "Thông báo", MessageBoxIcon.Warning);
+                    return;
+                }
+                string FromDateToDate = Utility.FromToDateTime(dtFromDate.Text, dtToDate.Text);
+                thuoc_baocao.BienBanKiemNhapKho(m_dtReport, KIEU_THUOC_VT == "THUOC" ? "thuoc_bienban_kiemnhap_theokho" : "vt_bienban_kiemnhap_theokho",  dtNgayIn.Value, FromDateToDate);
+            }
+            catch (Exception)
+            {
+            }
         }
     }
 }

@@ -80,7 +80,7 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(string MaThuoc,string MaQD40,string MaQDTinh,string QD31,short IdLoaithuoc,string MaTinhchat,string TenThuoc,string TenBietduoc,string TenBhyt,decimal DonGia,string MaDonvitinh,string MotaThem,string MaHoatchat,string HamLuong,string HangSanxuat,string SoDangky,string NuocSanxuat,byte TrangThai,string DangBaoche,short? GioihanKedon,int? DonviBut,string KieuThuocvattu,string NoitruNgoaitru,byte? TuTuc,decimal? GiaBhyt,decimal? PhuthuDungtuyen,decimal? PhuthuTraituyen,byte? CoChiathuoc,int? SluongChia,decimal? DongiaChia,string MaDvichia,string NguoiTao,DateTime? NgayTao,DateTime? NgaySua,string NguoiSua,string KieuBiendong,string MaDuongdung,byte? SingleService,int? SluongVuottran,string LastActionName,decimal? GiaDv,string CongBo,string IdNhathau,string LoaiThau,string NhomThau,string NguonGoc,int? TonDau,bool? TuvanThem,bool? HuySudung,bool? ThuocTheodoi,bool? NhapSluong0,bool? AxCongbhyt,bool? CamguiXml,bool? KekemDvu,bool? LagoiVattu,string QuiCach,string MaPhanloaithuoc,string HoatChat,decimal? GioihanThoigian,decimal? LieudungToida,decimal? TyleTt,byte? VatInvoice)
+	    public void Insert(string MaThuoc,string MaQD40,string MaQDTinh,string QD31,short IdLoaithuoc,string MaTinhchat,string TenThuoc,string TenBietduoc,string TenBhyt,decimal DonGia,string MaDonvitinh,string MotaThem,string MaHoatchat,string HamLuong,string HangSanxuat,string SoDangky,string NuocSanxuat,byte TrangThai,string DangBaoche,short? GioihanKedon,int? DonviBut,string KieuThuocvattu,string NoitruNgoaitru,byte? TuTuc,decimal? GiaBhyt,decimal? PhuthuDungtuyen,decimal? PhuthuTraituyen,byte? CoChiathuoc,int? SluongChia,decimal? DongiaChia,string MaDvichia,string NguoiTao,DateTime? NgayTao,DateTime? NgaySua,string NguoiSua,string KieuBiendong,string MaDuongdung,byte? SingleService,int? SluongVuottran,string LastActionName,decimal? GiaDv,string CongBo,string IdNhathau,string LoaiThau,string NhomThau,string NguonGoc,int? TonDau,bool? TuvanThem,bool? HuySudung,bool? ThuocTheodoi,bool? NhapSluong0,bool? AxCongbhyt,bool? CamguiXml,bool? KekemDvu,bool? LagoiVattu,string QuiCach,string MaPhanloaithuoc,string HoatChat,decimal? GioihanThoigian,decimal? LieudungToida,decimal? TyleTt,byte? VatInvoice,string MathuocQuocgia,string TenthuocQuocgia,bool? GuiLienthong,bool? ThuocMuaNgoai)
 	    {
 		    DmucThuoc item = new DmucThuoc();
 		    
@@ -208,6 +208,14 @@ namespace VMS.HIS.DAL
             
             item.VatInvoice = VatInvoice;
             
+            item.MathuocQuocgia = MathuocQuocgia;
+            
+            item.TenthuocQuocgia = TenthuocQuocgia;
+            
+            item.GuiLienthong = GuiLienthong;
+            
+            item.ThuocMuaNgoai = ThuocMuaNgoai;
+            
 	    
 		    item.Save(UserName);
 	    }
@@ -216,7 +224,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(int IdThuoc,string MaThuoc,string MaQD40,string MaQDTinh,string QD31,short IdLoaithuoc,string MaTinhchat,string TenThuoc,string TenBietduoc,string TenBhyt,decimal DonGia,string MaDonvitinh,string MotaThem,string MaHoatchat,string HamLuong,string HangSanxuat,string SoDangky,string NuocSanxuat,byte TrangThai,string DangBaoche,short? GioihanKedon,int? DonviBut,string KieuThuocvattu,string NoitruNgoaitru,byte? TuTuc,decimal? GiaBhyt,decimal? PhuthuDungtuyen,decimal? PhuthuTraituyen,byte? CoChiathuoc,int? SluongChia,decimal? DongiaChia,string MaDvichia,string NguoiTao,DateTime? NgayTao,DateTime? NgaySua,string NguoiSua,string KieuBiendong,string MaDuongdung,byte? SingleService,int? SluongVuottran,string LastActionName,decimal? GiaDv,string CongBo,string IdNhathau,string LoaiThau,string NhomThau,string NguonGoc,int? TonDau,bool? TuvanThem,bool? HuySudung,bool? ThuocTheodoi,bool? NhapSluong0,bool? AxCongbhyt,bool? CamguiXml,bool? KekemDvu,bool? LagoiVattu,string QuiCach,string MaPhanloaithuoc,string HoatChat,decimal? GioihanThoigian,decimal? LieudungToida,decimal? TyleTt,byte? VatInvoice)
+	    public void Update(int IdThuoc,string MaThuoc,string MaQD40,string MaQDTinh,string QD31,short IdLoaithuoc,string MaTinhchat,string TenThuoc,string TenBietduoc,string TenBhyt,decimal DonGia,string MaDonvitinh,string MotaThem,string MaHoatchat,string HamLuong,string HangSanxuat,string SoDangky,string NuocSanxuat,byte TrangThai,string DangBaoche,short? GioihanKedon,int? DonviBut,string KieuThuocvattu,string NoitruNgoaitru,byte? TuTuc,decimal? GiaBhyt,decimal? PhuthuDungtuyen,decimal? PhuthuTraituyen,byte? CoChiathuoc,int? SluongChia,decimal? DongiaChia,string MaDvichia,string NguoiTao,DateTime? NgayTao,DateTime? NgaySua,string NguoiSua,string KieuBiendong,string MaDuongdung,byte? SingleService,int? SluongVuottran,string LastActionName,decimal? GiaDv,string CongBo,string IdNhathau,string LoaiThau,string NhomThau,string NguonGoc,int? TonDau,bool? TuvanThem,bool? HuySudung,bool? ThuocTheodoi,bool? NhapSluong0,bool? AxCongbhyt,bool? CamguiXml,bool? KekemDvu,bool? LagoiVattu,string QuiCach,string MaPhanloaithuoc,string HoatChat,decimal? GioihanThoigian,decimal? LieudungToida,decimal? TyleTt,byte? VatInvoice,string MathuocQuocgia,string TenthuocQuocgia,bool? GuiLienthong,bool? ThuocMuaNgoai)
 	    {
 		    DmucThuoc item = new DmucThuoc();
 	        item.MarkOld();
@@ -347,6 +355,14 @@ namespace VMS.HIS.DAL
 			item.TyleTt = TyleTt;
 				
 			item.VatInvoice = VatInvoice;
+				
+			item.MathuocQuocgia = MathuocQuocgia;
+				
+			item.TenthuocQuocgia = TenthuocQuocgia;
+				
+			item.GuiLienthong = GuiLienthong;
+				
+			item.ThuocMuaNgoai = ThuocMuaNgoai;
 				
 	        item.Save(UserName);
 	    }

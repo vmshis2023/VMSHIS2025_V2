@@ -11,7 +11,6 @@ F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Ngoaitru\obj\Debug\VNS.HIS.UI.Forms.N
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Ngoaitru\obj\Debug\VNS.HIS.UI.NGOAITRU.frm_DanhSach_ICD.resources
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Ngoaitru\obj\Debug\VNS.HIS.UI.NGOAITRU.frm_KCB_DANGKY_CAPNHAT.resources
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Ngoaitru\obj\Debug\VNS.HIS.UI.NGOAITRU.frm_KCB_KeVacxin_Tiemchung.resources
-F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Ngoaitru\obj\Debug\VNS.HIS.UI.NGOAITRU.frm_KCB_KE_DONTHUOC_TAIQUAY.resources
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Ngoaitru\obj\Debug\VNS.HIS.UI.Forms.NGOAITRU.frm_KCB_Lapphieuhen_Tiemchung.resources
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Ngoaitru\obj\Debug\VNS.HIS.UI.NGOAITRU.frm_KCB_MokhoaBenhnhan.resources
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Ngoaitru\obj\Debug\VNS.HIS.UI.NGOAITRU.frm_KCB_THAMKHAM.resources
@@ -33,4 +32,6 @@ C:\HIS_BVSG\Running\VMS.HIS.Ngoaitru.pdb
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Ngoaitru\obj\Debug\9_5.VMS.HIS.Ngoaitru.csproj.CopyComplete
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Ngoaitru\obj\Debug\VMS.HIS.Ngoaitru.dll
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Ngoaitru\obj\Debug\VMS.HIS.Ngoaitru.pdb
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Ngoaitru\obj\Debug\VNS.HIS.UI.NGOAITRU.frm_KCB_KE_DONTHUOC_TAIQUAY_OLD.resources
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Ngoaitru\obj\Debug\9_5.VMS.HIS.Ngoaitru.csproj.AssemblyReference.cache
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.Ngoaitru\obj\Debug\VNS.HIS.UI.THUOC.frm_phatthuoc_ngoaitru_hongphat.resources

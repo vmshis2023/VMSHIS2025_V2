@@ -31,10 +31,14 @@ namespace VNS.HIS.BusRule.Goikham
             var dt = SPs.GoiLayChiTietTheoMa(idGoiDvu).GetDataSet().Tables[0];
             return dt;
         }
-
-        public DataTable LayChiTietGoiKhamTheoBN(int idGoiDvu, long patientId, int id_dangky)
+        public DataTable LayChiTietGoiKhamTheoIdDangKy(int IdDangKy)
         {
-            var dt = SPs.GoiLayChiTietGoiKhamTheoBN(idGoiDvu, patientId, id_dangky).GetDataSet().Tables[0];
+            var dt = SPs.GoiLayChiTietTheoIdDangKy(IdDangKy).GetDataSet().Tables[0];
+            return dt;
+        }
+        public DataTable LayChiTietGoiKhamTheoBN(int idGoiDvu, long id_benhnhan, int id_dangky)
+        {
+            var dt = SPs.GoiLayChiTietGoiKhamTheoBN(idGoiDvu, id_benhnhan, id_dangky).GetDataSet().Tables[0];
             return dt;
         }
 
@@ -131,7 +135,7 @@ namespace VNS.HIS.BusRule.Goikham
             return goiDanhsach.IdGoi;
         }
 
-        public int ThemChiTietGoiKham(int idGoiDvu, int serviceId, int serviceDetailId, string serviceDetailName, short soLanThucHien, short loaiDv, decimal donGia,bool chophep_denghi_mg,byte tyle_mg)
+        public int ThemChiTietGoiKham(int idGoiDvu, int serviceId, int serviceDetailId, string serviceDetailName, short soLanThucHien, short loaiDv, decimal donGia, decimal DongiaNgoaigio, bool chophep_denghi_mg,byte tyle_mg)
         {
             var goiChiTiet = new GoiChitiet();
             goiChiTiet.IdGoi = idGoiDvu;
@@ -141,6 +145,7 @@ namespace VNS.HIS.BusRule.Goikham
             goiChiTiet.SoLuong = soLanThucHien;
             goiChiTiet.LoaiDvu = loaiDv;
             goiChiTiet.DonGia = donGia;
+            goiChiTiet.DongiaNgoaigio = DongiaNgoaigio;
             goiChiTiet.ChophepDenghiMg = chophep_denghi_mg;
             goiChiTiet.TyleMg = tyle_mg;
             goiChiTiet.Save();
@@ -156,25 +161,25 @@ namespace VNS.HIS.BusRule.Goikham
         }
 
         //public DataTable LayDanhSachBN(bool theongay, DateTime fromDate, DateTime toDate, int objectType, int hosStatus,
-        //    string patientName, int patientId, string patientCode, string patientPhone)
+        //    string patientName, int id_benhnhan, string patientCode, string patientPhone)
         //{
         //    var dt = SPs.GoiLayDanhSachTiepDonBN(
         //        theongay ? fromDate : Convert.ToDateTime("01/01/1900"),
         //        theongay ? toDate : THU_VIEN_CHUNG.GetSysDateTime(),
         //        objectType, hosStatus,
         //        patientName,
-        //        patientId,
+        //        id_benhnhan,
         //        patientCode, globalVariables.MA_KHOA_THIEN,
         //        patientPhone).GetDataSet().Tables[0];
         //    return dt;
         //}
 
-        public DataTable LayGoiKhamTheoBN(long patientId, string soLo)
+        public DataTable LayGoiKhamTheoBN(long id_benhnhan,string ma_luotkham, string soLo)
         {
-            var dt = SPs.GoiLayGoiKhamTheoBN(patientId, soLo).GetDataSet().Tables[0];
+            var dt = SPs.GoiLayGoiKhamTheoBN(id_benhnhan, ma_luotkham, soLo).GetDataSet().Tables[0];
             return dt;
         }
-        public int ThemGoiKham_BVM(KcbChidinhcl objChidinh, int patientId, string ma_luotkham, int idGoiDVu,DateTime ngay_dangky)
+        public int ThemGoiKham_BVM(KcbChidinhcl objChidinh, int id_benhnhan, string ma_luotkham, int idGoiDVu,DateTime ngay_dangky)
         {
             int id_dangky = -1;
             GoiDanhsach _goi = GoiDanhsach.FetchByID(idGoiDVu);
@@ -183,7 +188,7 @@ namespace VNS.HIS.BusRule.Goikham
                 GoiDangki _goidangky = new GoiDangki();
 
                 _goidangky.IdGoi = idGoiDVu;
-                _goidangky.IdBenhnhan = patientId;
+                _goidangky.IdBenhnhan = id_benhnhan;
                 _goidangky.MaLuotkham = ma_luotkham;
                 _goidangky.HieulucTungay = _goi.HieulucTungay;
                 _goidangky.HieulucDenngay = _goi.HieulucDenngay;
@@ -242,7 +247,7 @@ namespace VNS.HIS.BusRule.Goikham
             return id_dangky;
         }
 
-        public int ThemGoiKham_BVM(KcbDangkyKcb objCongkham, int patientId, string ma_luotkham, int idGoiDVu, DateTime ngay_dangky)
+        public int ThemGoiKham_BVM(KcbDangkyKcb objCongkham, int id_benhnhan, string ma_luotkham, int idGoiDVu, DateTime ngay_dangky)
         {
             int id_dangky = -1;
             GoiDanhsach _goi = GoiDanhsach.FetchByID(idGoiDVu);
@@ -251,7 +256,7 @@ namespace VNS.HIS.BusRule.Goikham
                 GoiDangki _goidangky = new GoiDangki();
 
                 _goidangky.IdGoi = idGoiDVu;
-                _goidangky.IdBenhnhan = patientId;
+                _goidangky.IdBenhnhan = id_benhnhan;
                 _goidangky.MaLuotkham = ma_luotkham;
                 _goidangky.HieulucTungay = _goi.HieulucTungay;
                 _goidangky.HieulucDenngay = _goi.HieulucDenngay;
@@ -260,17 +265,148 @@ namespace VNS.HIS.BusRule.Goikham
                 _goidangky.SoTien = _goi.SoTien;
                 _goidangky.MienGiam = _goi.MienGiam;
                 _goidangky.GiamBhyt = _goi.GiamBhyt;
+                _goidangky.KieuGoi = _goi.KieuGoi;
                 _goidangky.Solo = "";
                 _goidangky.NgayDangky = ngay_dangky;
                 _goidangky.TthaiHuy = false;
                 _goidangky.TthaiKichhoat = true;
                 _goidangky.TthaiTtoan = false;
-                _goidangky.IdKhoaChidinh = objCongkham.IdKhoakcb;
-                _goidangky.IdKhoadieutri = objCongkham.IdKhoakcb;
-                _goidangky.IdPhongChidinh = objCongkham.IdPhongkham;
-                _goidangky.IdKhoaThuchien = objCongkham.IdKhoakcb;
-                _goidangky.IdThe = objCongkham.IdLichsuDoituongKcb;
-                _goidangky.IdKham = objCongkham.IdKham;
+                _goidangky.IdKhoaChidinh = objCongkham!=null ? objCongkham.IdKhoakcb:globalVariables.IdKhoaNhanvien;
+                _goidangky.IdKhoadieutri = objCongkham != null ? objCongkham.IdKhoakcb : globalVariables.IdKhoaNhanvien;
+                _goidangky.IdPhongChidinh = objCongkham != null ? objCongkham.IdPhongkham : globalVariables.IdPhongNhanvien;
+                _goidangky.IdKhoaThuchien = objCongkham != null ? objCongkham.IdKhoakcb : globalVariables.IdKhoaNhanvien;
+                _goidangky.IdThe = objCongkham != null ? objCongkham.IdLichsuDoituongKcb : 0;
+                _goidangky.IdKham = objCongkham != null ? objCongkham.IdKham:0;
+                _goidangky.Noitru = 0;
+                _goidangky.IdNvienTao = globalVariables.gv_intIDNhanvien;
+
+                _goidangky.Save();
+                id_dangky = _goidangky.IdDangky;
+                //int num = new Update(KcbChidinhclsChitiet.Schema)
+                //     .Set(KcbChidinhclsChitiet.Columns.IdDangky).EqualTo(id_dangky)
+                //     .Where(KcbChidinhclsChitiet.Columns.IdGoi).IsEqualTo(_goidangky.IdGoi)
+                //     .And(KcbChidinhclsChitiet.Columns.IdChidinh).IsEqualTo(objChidinh.IdChidinh)
+                //     .Execute();
+                var dtDichVuTrongGoi =
+                    new Select().From(GoiChitiet.Schema).Where(GoiChitiet.Columns.IdGoi).IsEqualTo(idGoiDVu).
+                        ExecuteDataSet().Tables[0];
+                foreach (DataRow row in dtDichVuTrongGoi.Rows)
+                {
+                    var serviceId = Utility.Int32Dbnull(row["id_dichvu"]);
+                    var serviceDetailId = Utility.Int32Dbnull(row["id_chitietdichvu"]);
+                    var serviceDetailName = Utility.sDbnull(row["ten_chitietdichvu"]);
+                    var loaiDv = Utility.Int16Dbnull(row["loai_dvu"]);
+                    var soLuong = Utility.Int16Dbnull(row["SO_LUONG"]);
+                    decimal donGia = Utility.DecimaltoDbnull(row["DON_GIA"]);
+
+                    var goiQuanHe = new GoiTinhtrangsudung();
+                    goiQuanHe.IdDangky = id_dangky;
+                    goiQuanHe.IdGoi = idGoiDVu;
+                    goiQuanHe.IdDichvu = serviceId;
+                    goiQuanHe.IdChitietdichvu = serviceDetailId;
+                    goiQuanHe.TenChitietdichvu = serviceDetailName;
+                    goiQuanHe.LoaiDvu = loaiDv;
+                    goiQuanHe.SoLuong = soLuong;
+                    goiQuanHe.DonGia = donGia;
+                    goiQuanHe.TrangThai = 1;
+                    goiQuanHe.SoluongDung = soLuong;
+                    goiQuanHe.Save();
+                }
+            }
+            return id_dangky;
+        }
+        public int ThemGoiKSK(KcbLuotkham objLuotkham, int idGoiDVu, DateTime ngay_dangky)
+        {
+            int id_dangky = -1;
+            GoiDanhsach _goi = GoiDanhsach.FetchByID(idGoiDVu);
+            if (_goi != null)
+            {
+                GoiDangki _goidangky = new GoiDangki();
+
+                _goidangky.IdGoi = idGoiDVu;
+                _goidangky.IdBenhnhan = (int)objLuotkham.IdBenhnhan;
+                _goidangky.MaLuotkham = objLuotkham.MaLuotkham;
+                _goidangky.HieulucTungay = _goi.HieulucTungay;
+                _goidangky.HieulucDenngay = _goi.HieulucDenngay;
+                _goidangky.NgayTao = DateTime.Now;
+                _goidangky.NguoiTao = globalVariables.UserName;
+                _goidangky.SoTien = _goi.SoTien;
+                _goidangky.MienGiam = _goi.MienGiam;
+                _goidangky.GiamBhyt = _goi.GiamBhyt;
+                _goidangky.KieuGoi = _goi.KieuGoi;
+                _goidangky.Solo = "";
+                _goidangky.NgayDangky = ngay_dangky;
+                _goidangky.TthaiHuy = false;
+                _goidangky.TthaiKichhoat = true;
+                _goidangky.TthaiTtoan = false;
+                _goidangky.IdKhoaChidinh = objLuotkham != null ? objLuotkham.IdKhoatiepnhan : globalVariables.IdKhoaNhanvien;
+                _goidangky.IdKhoadieutri = objLuotkham != null ? objLuotkham.IdKhoatiepnhan : globalVariables.IdKhoaNhanvien;
+                _goidangky.IdPhongChidinh = objLuotkham != null ? objLuotkham.IdKhoatiepnhan : globalVariables.IdPhongNhanvien;
+                _goidangky.IdKhoaThuchien = objLuotkham != null ? objLuotkham.IdKhoatiepnhan : globalVariables.IdKhoaNhanvien;
+                _goidangky.IdThe = objLuotkham != null ? objLuotkham.IdLichsuDoituongKcb : 0;
+                _goidangky.IdKham = 0;
+                _goidangky.Noitru = 0;
+                _goidangky.IdNvienTao = globalVariables.gv_intIDNhanvien;
+
+                _goidangky.Save();
+                id_dangky = _goidangky.IdDangky;
+                //int num = new Update(KcbChidinhclsChitiet.Schema)
+                //     .Set(KcbChidinhclsChitiet.Columns.IdDangky).EqualTo(id_dangky)
+                //     .Where(KcbChidinhclsChitiet.Columns.IdGoi).IsEqualTo(_goidangky.IdGoi)
+                //     .And(KcbChidinhclsChitiet.Columns.IdChidinh).IsEqualTo(objChidinh.IdChidinh)
+                //     .Execute();
+                var dtDichVuTrongGoi =
+                    new Select().From(GoiChitiet.Schema).Where(GoiChitiet.Columns.IdGoi).IsEqualTo(idGoiDVu).
+                        ExecuteDataSet().Tables[0];
+                foreach (DataRow row in dtDichVuTrongGoi.Rows)
+                {
+                    var serviceId = Utility.Int32Dbnull(row["id_dichvu"]);
+                    var serviceDetailId = Utility.Int32Dbnull(row["id_chitietdichvu"]);
+                    var serviceDetailName = Utility.sDbnull(row["ten_chitietdichvu"]);
+                    var loaiDv = Utility.Int16Dbnull(row["loai_dvu"]);
+                    var soLuong = Utility.Int16Dbnull(row["SO_LUONG"]);
+                    decimal donGia = Utility.DecimaltoDbnull(row["DON_GIA"]);
+
+                    var goiQuanHe = new GoiTinhtrangsudung();
+                    goiQuanHe.IdDangky = id_dangky;
+                    goiQuanHe.IdGoi = idGoiDVu;
+                    goiQuanHe.IdDichvu = serviceId;
+                    goiQuanHe.IdChitietdichvu = serviceDetailId;
+                    goiQuanHe.TenChitietdichvu = serviceDetailName;
+                    goiQuanHe.LoaiDvu = loaiDv;
+                    goiQuanHe.SoLuong = soLuong;
+                    goiQuanHe.DonGia = donGia;
+                    goiQuanHe.TrangThai = 1;
+                    goiQuanHe.SoluongDung = soLuong;
+                    goiQuanHe.Save();
+                }
+            }
+            return id_dangky;
+        }
+        public int DangKyGoiKhamThaiSan(int id_benhnhan, string ma_luotkham, int idGoiDVu, DateTime ngay_dangky)
+        {
+            int id_dangky = -1;
+            GoiDanhsach _goi = GoiDanhsach.FetchByID(idGoiDVu);
+            if (_goi != null)
+            {
+                GoiDangki _goidangky = new GoiDangki();
+
+                _goidangky.IdGoi = idGoiDVu;
+                _goidangky.IdBenhnhan = id_benhnhan;
+                _goidangky.MaLuotkham = ma_luotkham;
+                _goidangky.HieulucTungay = _goi.HieulucTungay;
+                _goidangky.HieulucDenngay = _goi.HieulucDenngay;
+                _goidangky.NgayTao = DateTime.Now;
+                _goidangky.NguoiTao = globalVariables.UserName;
+                _goidangky.SoTien = _goi.SoTien;
+                _goidangky.KieuGoi = _goi.KieuGoi;
+                _goidangky.MienGiam = _goi.MienGiam;
+                _goidangky.GiamBhyt = _goi.GiamBhyt;
+                _goidangky.Solo = "";
+                _goidangky.NgayDangky = ngay_dangky;
+                _goidangky.TthaiHuy = false;
+                _goidangky.TthaiKichhoat = false;
+                _goidangky.TthaiTtoan = false;
                 _goidangky.Noitru = 0;
                 _goidangky.IdNvienTao = globalVariables.gv_intIDNhanvien;
 
@@ -310,9 +446,7 @@ namespace VNS.HIS.BusRule.Goikham
             return id_dangky;
         }
 
-
-
-        public int ThemGoiKhamChoBN(int patientId,string ma_luotkham, int idGoiDVu, decimal tienGoi, decimal mienGiam, decimal giamTruBhyt, DateTime hieuLucTu, DateTime hieuLucDen,DateTime ngay_dangky, string soLo)
+        public int ThemGoiKhamChoBN(int id_benhnhan,string ma_luotkham, int idGoiDVu, decimal tienGoi, decimal mienGiam, decimal giamTruBhyt, DateTime hieuLucTu, DateTime hieuLucDen,DateTime ngay_dangky, string soLo)
         {
             var _goidangky = new GoiDangki();
             using (var Scope = new TransactionScope())
@@ -321,7 +455,7 @@ namespace VNS.HIS.BusRule.Goikham
                 {
                    
                     _goidangky.IdGoi = idGoiDVu;
-                    _goidangky.IdBenhnhan = patientId;
+                    _goidangky.IdBenhnhan = id_benhnhan;
                     _goidangky.MaLuotkham = ma_luotkham;
                     _goidangky.HieulucTungay = hieuLucTu;
                     _goidangky.HieulucDenngay = hieuLucDen;
@@ -479,6 +613,8 @@ namespace VNS.HIS.BusRule.Goikham
         }
         public ActionResult ThanhToanGoi(KcbLuotkham objLuotkham, List<int> lst_id_chitietdichvu, Int16 loai_dichvu, int id_dangky, int id_goi, byte noitrungoaitru,ref string ErrMsg)
         {
+            bool tudongthanhtoan = THU_VIEN_CHUNG.Laygiatrithamsohethong("GOI_TUDONGTHANHTOAN_KHICHIDINHDICHVU", "1", true) == "1";
+            if (!tudongthanhtoan) return ActionResult.Success;//Không tạo các bản khi thanh toán
             ErrMsg = "";
             KcbThanhtoan objPayment = GetThanhtoan(objLuotkham, id_dangky, id_goi, noitrungoaitru);
          KCB_THANHTOAN  _THANHTOAN = new KCB_THANHTOAN();
@@ -492,11 +628,16 @@ namespace VNS.HIS.BusRule.Goikham
                Utility.ShowMsg(ErrMsg);
                return ActionResult.Error;
            }
-           if (lstItems == null)
+           if (lstItems == null )
            {
                Utility.ShowMsg("Lỗi khi tạo dữ liệu thanh toán chi tiết. Liên hệ đơn vị cung cấp phần mềm để được hỗ trợ\n" + ErrMsg);
                return ActionResult.Error;
            }
+            if (lstItems.Count==0)
+            {
+                Utility.ShowMsg("Không tạo được chi tiết thanh toán dịch vụ gói. Liên hệ đơn vị cung cấp phần mềm để được hỗ trợ\n" + ErrMsg);
+                return ActionResult.Error;
+            }
             decimal ttbnChitrathucsu=0;
             long v_Payment_ID=-1;
             //Thực hiện tạo bản ghi thanh toán và chi tiết thanh toán
@@ -526,7 +667,10 @@ namespace VNS.HIS.BusRule.Goikham
                 List<KcbThanhtoanChitiet> lstItems = new List<KcbThanhtoanChitiet>();
                 foreach (DataRow row in dtData.Rows)
                 {
-                    if (lst_id_chitietdichvu.Contains(Utility.Int16Dbnull(row["Id_Chitietdichvu"], -1)))
+                    byte IdLoaithanhtoan = Utility.ByteDbnull(row["Id_Loaithanhtoan"], -1);
+                    if ((IdLoaithanhtoan==1 && lst_id_chitietdichvu.Contains(Utility.Int32Dbnull(row["id_phieu"], -1))) 
+                        || (IdLoaithanhtoan == 2 && lst_id_chitietdichvu.Contains(Utility.Int16Dbnull(row["Id_Chitietdichvu"], -1)))
+                        )
                     {
                         KcbThanhtoanChitiet newItem = new KcbThanhtoanChitiet();
                         newItem.IdThanhtoan = -1;
@@ -610,7 +754,7 @@ namespace VNS.HIS.BusRule.Goikham
         }
         KcbThanhtoan GetThanhtoan(KcbLuotkham objLuotkham, int id_dangky, int id_goi, byte noitrungoaitru)
         {
-            bool taorieng = THU_VIEN_CHUNG.Laygiatrithamsohethong("GOI_THANHTOANAO_TAORIENG_MOILANCHIDINH", "1", true)=="1";
+            bool taorieng = THU_VIEN_CHUNG.Laygiatrithamsohethong("GOI_TUDONGTAO_THANHTOANRIENG_MOILANCHIDINH", "1", true)=="1";
             KcbThanhtoan objPayment = new KcbThanhtoan();
             if (!taorieng)//Tìm thanh toán đã có để thêm chi tiết
             {
@@ -731,7 +875,7 @@ namespace VNS.HIS.BusRule.Goikham
 
                 //    objLogTamUngHoanUng.IdGoiDvu = Utility.Int32Dbnull(objDeposit.IdGoiDvu);
                 //    objLogTamUngHoanUng.PatientCode = Utility.sDbnull(objDeposit.PatientCode);
-                //    objLogTamUngHoanUng.PatientId = Utility.Int32Dbnull(objDeposit.PatientId);
+                //    objLogTamUngHoanUng.id_benhnhan = Utility.Int32Dbnull(objDeposit.id_benhnhan);
                 //    objLogTamUngHoanUng.DepositId = Utility.Int32Dbnull(objDeposit.DepositId);
                 //    objLogTamUngHoanUng.DepositCode = Utility.sDbnull(objDeposit.DepositCode);
                 //    objLogTamUngHoanUng.DepositDate = objDeposit.DepositDate;
@@ -839,9 +983,9 @@ namespace VNS.HIS.BusRule.Goikham
                 .Where(GoiDangki.Columns.IdDangky).IsEqualTo(IdDangky).Execute();
         }
 
-        public DataTable LayPhieuQuanLyCrpt(long patientId, string patientCode, int id_dangky)
+        public DataTable LayPhieuQuanLyCrpt(long id_benhnhan, string patientCode, int id_dangky)
         {
-            var dt = SPs.GoiIntinhhinhsudunggoi(patientId, patientCode, id_dangky).GetDataSet().Tables[0];
+            var dt = SPs.GoiIntinhhinhsudunggoi(id_benhnhan, patientCode, id_dangky).GetDataSet().Tables[0];
             return dt;
         }
 

@@ -319,7 +319,7 @@
             this.cmdExportToExcel.Font = new System.Drawing.Font("Arial", 9F);
             this.cmdExportToExcel.Image = ((System.Drawing.Image)(resources.GetObject("cmdExportToExcel.Image")));
             this.cmdExportToExcel.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdExportToExcel.Location = new System.Drawing.Point(361, 520);
+            this.cmdExportToExcel.Location = new System.Drawing.Point(540, 515);
             this.cmdExportToExcel.Name = "cmdExportToExcel";
             this.cmdExportToExcel.Size = new System.Drawing.Size(133, 35);
             this.cmdExportToExcel.TabIndex = 118;
@@ -360,7 +360,7 @@
             this.cmdInPhieuXN.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdInPhieuXN.Font = new System.Drawing.Font("Arial", 9F);
             this.cmdInPhieuXN.Image = ((System.Drawing.Image)(resources.GetObject("cmdInPhieuXN.Image")));
-            this.cmdInPhieuXN.Location = new System.Drawing.Point(500, 520);
+            this.cmdInPhieuXN.Location = new System.Drawing.Point(679, 515);
             this.cmdInPhieuXN.Name = "cmdInPhieuXN";
             this.cmdInPhieuXN.Size = new System.Drawing.Size(133, 35);
             this.cmdInPhieuXN.TabIndex = 114;
@@ -373,7 +373,7 @@
             this.cmdExit.Font = new System.Drawing.Font("Arial", 9F);
             this.cmdExit.Image = global::VMS.HIS.BAOCAO.Properties.Resources.close_24;
             this.cmdExit.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdExit.Location = new System.Drawing.Point(644, 520);
+            this.cmdExit.Location = new System.Drawing.Point(823, 515);
             this.cmdExit.Name = "cmdExit";
             this.cmdExit.Size = new System.Drawing.Size(133, 35);
             this.cmdExit.TabIndex = 113;

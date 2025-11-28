@@ -47,10 +47,14 @@ namespace VMS.ChuKySo.Api
     }
     public class ViettelSettings
     {
+        public string PdfFolder { get; set; }
         public string Url { get; set; }
         public string ClientId { get; set; }
         public string ClientSecret { get; set; }
         public string ProfileId { get; set; }
+        public string userId { get; set; }
+        public string AccessToken { get; set; }
+        public int AccessTokenExpiresIn { get; set; }
         public CertBO[] CertBOs { get; set; }
     }
 }

@@ -937,6 +937,33 @@ namespace VMS.HIS.DAL
 				colvarTthaiThaythe.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarTthaiThaythe);
 				
+				TableSchema.TableColumn colvarNgoaiGio = new TableSchema.TableColumn(schema);
+				colvarNgoaiGio.ColumnName = "ngoai_gio";
+				colvarNgoaiGio.DataType = DbType.Boolean;
+				colvarNgoaiGio.MaxLength = 0;
+				colvarNgoaiGio.AutoIncrement = false;
+				colvarNgoaiGio.IsNullable = true;
+				colvarNgoaiGio.IsPrimaryKey = false;
+				colvarNgoaiGio.IsForeignKey = false;
+				colvarNgoaiGio.IsReadOnly = false;
+				
+						colvarNgoaiGio.DefaultSetting = @"((0))";
+				colvarNgoaiGio.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarNgoaiGio);
+				
+				TableSchema.TableColumn colvarHienThi = new TableSchema.TableColumn(schema);
+				colvarHienThi.ColumnName = "hien_thi";
+				colvarHienThi.DataType = DbType.Byte;
+				colvarHienThi.MaxLength = 0;
+				colvarHienThi.AutoIncrement = false;
+				colvarHienThi.IsNullable = true;
+				colvarHienThi.IsPrimaryKey = false;
+				colvarHienThi.IsForeignKey = false;
+				colvarHienThi.IsReadOnly = false;
+				colvarHienThi.DefaultSetting = @"";
+				colvarHienThi.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarHienThi);
+				
 				BaseSchema = schema;
 				//add this schema to the provider
 				//so we can query it later
@@ -1434,6 +1461,22 @@ namespace VMS.HIS.DAL
 			get { return GetColumnValue<bool?>(Columns.TthaiThaythe); }
 			set { SetColumnValue(Columns.TthaiThaythe, value); }
 		}
+		  
+		[XmlAttribute("NgoaiGio")]
+		[Bindable(true)]
+		public bool? NgoaiGio 
+		{
+			get { return GetColumnValue<bool?>(Columns.NgoaiGio); }
+			set { SetColumnValue(Columns.NgoaiGio, value); }
+		}
+		  
+		[XmlAttribute("HienThi")]
+		[Bindable(true)]
+		public byte? HienThi 
+		{
+			get { return GetColumnValue<byte?>(Columns.HienThi); }
+			set { SetColumnValue(Columns.HienThi, value); }
+		}
 		
 		#endregion
 		
@@ -1454,7 +1497,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(long varIdThanhtoan,string varMadoituongGia,decimal? varPtramBhytGoc,decimal varPtramBhyt,decimal? varSoLuong,decimal varDonGia,decimal varBnhanChitra,decimal varBhytChitra,decimal varPhuThu,byte varTuTuc,long varIdPhieu,long varIdPhieuChitiet,int varIdDichvu,int varIdChitietdichvu,string varTenChitietdichvu,string varTenBhyt,string varDonviTinh,int? varSttIn,int? varIdKhoakcb,short? varIdPhongkham,short? varIdBacsiChidinh,byte varIdLoaithanhtoan,string varTenLoaithanhtoan,string varMaDoituongKcb,string varKieuChietkhau,decimal? varTileChietkhau,decimal? varTienChietkhau,byte? varTrangthaiHuy,byte? varTrangthaiBhyt,byte? varTrangthaiChuyen,byte? varTinhChiphi,byte varNoiTru,int? varIdGoi,byte? varTrongGoi,long? varIdKham,byte? varNguonGoc,long? varIdThanhtoanhuy,long? varIdLichsuDoituongKcb,string varMatheBhyt,DateTime varNgayTao,string varNguoiTao,decimal? varTyleTt,decimal? varGiaGoc,byte? varTinhChkhau,byte? varCkNguongt,string varUserTao,int? varTongTralai,byte? varMultiCancel,long? varIdThe,int? varIdDangky,byte? varBhytNguonKhac,decimal? varBhytGiaTyle,decimal? varBnTtt,decimal? varBnCct,decimal? varTienKhuyenmai,byte? varTthaiKhuyenmai,bool? varTthaiXuatHddt,string varTransactionId,string varRefId,bool? varTthaiThaythe)
+		public static void Insert(long varIdThanhtoan,string varMadoituongGia,decimal? varPtramBhytGoc,decimal varPtramBhyt,decimal? varSoLuong,decimal varDonGia,decimal varBnhanChitra,decimal varBhytChitra,decimal varPhuThu,byte varTuTuc,long varIdPhieu,long varIdPhieuChitiet,int varIdDichvu,int varIdChitietdichvu,string varTenChitietdichvu,string varTenBhyt,string varDonviTinh,int? varSttIn,int? varIdKhoakcb,short? varIdPhongkham,short? varIdBacsiChidinh,byte varIdLoaithanhtoan,string varTenLoaithanhtoan,string varMaDoituongKcb,string varKieuChietkhau,decimal? varTileChietkhau,decimal? varTienChietkhau,byte? varTrangthaiHuy,byte? varTrangthaiBhyt,byte? varTrangthaiChuyen,byte? varTinhChiphi,byte varNoiTru,int? varIdGoi,byte? varTrongGoi,long? varIdKham,byte? varNguonGoc,long? varIdThanhtoanhuy,long? varIdLichsuDoituongKcb,string varMatheBhyt,DateTime varNgayTao,string varNguoiTao,decimal? varTyleTt,decimal? varGiaGoc,byte? varTinhChkhau,byte? varCkNguongt,string varUserTao,int? varTongTralai,byte? varMultiCancel,long? varIdThe,int? varIdDangky,byte? varBhytNguonKhac,decimal? varBhytGiaTyle,decimal? varBnTtt,decimal? varBnCct,decimal? varTienKhuyenmai,byte? varTthaiKhuyenmai,bool? varTthaiXuatHddt,string varTransactionId,string varRefId,bool? varTthaiThaythe,bool? varNgoaiGio,byte? varHienThi)
 		{
 			KcbThanhtoanChitiet item = new KcbThanhtoanChitiet();
 			
@@ -1578,6 +1621,10 @@ namespace VMS.HIS.DAL
 			
 			item.TthaiThaythe = varTthaiThaythe;
 			
+			item.NgoaiGio = varNgoaiGio;
+			
+			item.HienThi = varHienThi;
+			
 		
 			if (System.Web.HttpContext.Current != null)
 				item.Save(System.Web.HttpContext.Current.User.Identity.Name);
@@ -1588,7 +1635,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(long varIdChitiet,long varIdThanhtoan,string varMadoituongGia,decimal? varPtramBhytGoc,decimal varPtramBhyt,decimal? varSoLuong,decimal varDonGia,decimal varBnhanChitra,decimal varBhytChitra,decimal varPhuThu,byte varTuTuc,long varIdPhieu,long varIdPhieuChitiet,int varIdDichvu,int varIdChitietdichvu,string varTenChitietdichvu,string varTenBhyt,string varDonviTinh,int? varSttIn,int? varIdKhoakcb,short? varIdPhongkham,short? varIdBacsiChidinh,byte varIdLoaithanhtoan,string varTenLoaithanhtoan,string varMaDoituongKcb,string varKieuChietkhau,decimal? varTileChietkhau,decimal? varTienChietkhau,byte? varTrangthaiHuy,byte? varTrangthaiBhyt,byte? varTrangthaiChuyen,byte? varTinhChiphi,byte varNoiTru,int? varIdGoi,byte? varTrongGoi,long? varIdKham,byte? varNguonGoc,long? varIdThanhtoanhuy,long? varIdLichsuDoituongKcb,string varMatheBhyt,DateTime varNgayTao,string varNguoiTao,decimal? varTyleTt,decimal? varGiaGoc,byte? varTinhChkhau,byte? varCkNguongt,string varUserTao,int? varTongTralai,byte? varMultiCancel,long? varIdThe,int? varIdDangky,byte? varBhytNguonKhac,decimal? varBhytGiaTyle,decimal? varBnTtt,decimal? varBnCct,decimal? varTienKhuyenmai,byte? varTthaiKhuyenmai,bool? varTthaiXuatHddt,string varTransactionId,string varRefId,bool? varTthaiThaythe)
+		public static void Update(long varIdChitiet,long varIdThanhtoan,string varMadoituongGia,decimal? varPtramBhytGoc,decimal varPtramBhyt,decimal? varSoLuong,decimal varDonGia,decimal varBnhanChitra,decimal varBhytChitra,decimal varPhuThu,byte varTuTuc,long varIdPhieu,long varIdPhieuChitiet,int varIdDichvu,int varIdChitietdichvu,string varTenChitietdichvu,string varTenBhyt,string varDonviTinh,int? varSttIn,int? varIdKhoakcb,short? varIdPhongkham,short? varIdBacsiChidinh,byte varIdLoaithanhtoan,string varTenLoaithanhtoan,string varMaDoituongKcb,string varKieuChietkhau,decimal? varTileChietkhau,decimal? varTienChietkhau,byte? varTrangthaiHuy,byte? varTrangthaiBhyt,byte? varTrangthaiChuyen,byte? varTinhChiphi,byte varNoiTru,int? varIdGoi,byte? varTrongGoi,long? varIdKham,byte? varNguonGoc,long? varIdThanhtoanhuy,long? varIdLichsuDoituongKcb,string varMatheBhyt,DateTime varNgayTao,string varNguoiTao,decimal? varTyleTt,decimal? varGiaGoc,byte? varTinhChkhau,byte? varCkNguongt,string varUserTao,int? varTongTralai,byte? varMultiCancel,long? varIdThe,int? varIdDangky,byte? varBhytNguonKhac,decimal? varBhytGiaTyle,decimal? varBnTtt,decimal? varBnCct,decimal? varTienKhuyenmai,byte? varTthaiKhuyenmai,bool? varTthaiXuatHddt,string varTransactionId,string varRefId,bool? varTthaiThaythe,bool? varNgoaiGio,byte? varHienThi)
 		{
 			KcbThanhtoanChitiet item = new KcbThanhtoanChitiet();
 			
@@ -1713,6 +1760,10 @@ namespace VMS.HIS.DAL
 				item.RefId = varRefId;
 			
 				item.TthaiThaythe = varTthaiThaythe;
+			
+				item.NgoaiGio = varNgoaiGio;
+			
+				item.HienThi = varHienThi;
 			
 			item.IsNew = false;
 			if (System.Web.HttpContext.Current != null)
@@ -2154,6 +2205,20 @@ namespace VMS.HIS.DAL
         
         
         
+        public static TableSchema.TableColumn NgoaiGioColumn
+        {
+            get { return Schema.Columns[61]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn HienThiColumn
+        {
+            get { return Schema.Columns[62]; }
+        }
+        
+        
+        
         #endregion
 		#region Columns Struct
 		public struct Columns
@@ -2219,6 +2284,8 @@ namespace VMS.HIS.DAL
 			 public static string TransactionId = @"transaction_id";
 			 public static string RefId = @"RefId";
 			 public static string TthaiThaythe = @"tthai_thaythe";
+			 public static string NgoaiGio = @"ngoai_gio";
+			 public static string HienThi = @"hien_thi";
 						
 		}
 		#endregion

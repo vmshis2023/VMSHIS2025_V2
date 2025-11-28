@@ -449,6 +449,7 @@ namespace VNS.HIS.UI.DANHMUC
                 objDichVu.MaPhieuEmr = Utility.sDbnull(cboPhieuEMR.SelectedValue);
                 objDichVu.IsNew = true;
                 objDichVu.Save();
+                Utility.Log(this.Name, globalVariables.UserName, string.Format("Thêm mới dịch vụ CLS {0}-{1} thành công", objDichVu.TenDichvu, objDichVu.IdDichvu), newaction.Insert, "DANHMUC");
                 ProcessData(objDichVu.IdDichvu);
             }
             catch
@@ -601,7 +602,8 @@ namespace VNS.HIS.UI.DANHMUC
                 .Set(DmucDichvucl.Columns.MaPhieuEmr).EqualTo(Utility.sDbnull(cboPhieuEMR.SelectedValue))
                 .Where(DmucDichvucl.Columns.IdDichvu).IsEqualTo(Utility.Int32Dbnull(txtID.Text,-1))
                 .Execute();
-            
+            Utility.Log(this.Name, globalVariables.UserName, string.Format("Cập nhật dịch vụ CLS {0}-{1} thành công", Utility.sDbnull(txtServiceName.Text, ""), txtID.Text), newaction.Update, "DANHMUC");
+
             ProcessData1();
         }
 

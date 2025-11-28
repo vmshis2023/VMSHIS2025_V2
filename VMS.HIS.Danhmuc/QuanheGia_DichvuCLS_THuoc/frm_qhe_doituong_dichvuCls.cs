@@ -230,10 +230,17 @@ namespace VNS.HIS.UI.DANHMUC
 
 
                     }
+                    else if (colName == "dongia_ngoaigio" && ma_doituong_kcb == "BHYT")
+                    {
+                        e.Value = e.InitialValue;
+                        Utility.ShowMsg("Đơn giá ngoài giờ chỉ áp dụng đối với đối tượng khác BHYT.\nVui lòng chọn dòng giá của đối tượng khác BHYT trước khi nhập đơn giá ngoài giờ");
+                    }
                     else
+                    {
                         num = new Update(QheDoituongDichvucl.Schema)
                       .Set(colName).EqualTo(don_gia)
                       .Where(QheDoituongDichvucl.Columns.IdQuanhe).IsEqualTo(id_quanhe).Execute();
+                    }
                     Utility.Log(this.Name, globalVariables.UserName, string.Format("Cập nhật giá {0}={1} của dịch vụ {2},IdChitietdichvu={3} ", e.Column.Key, e.Value, grdList.CurrentRow.Cells["ten_chitietdichvu"].Value, grdList.CurrentRow.Cells[QheDoituongDichvucl.Columns.IdChitietdichvu].Value), newaction.Update, this.GetType().Assembly.ManifestModule.Name);
                 }
                 else
@@ -658,7 +665,7 @@ namespace VNS.HIS.UI.DANHMUC
                 Utility.Int32Dbnull(grdList.CurrentRow.Cells[DmucDichvuclsChitiet.Columns.IdChitietdichvu].Value, 0);
             frm.ShowDialog();
             if (!frm.m_blnCancel)
-                cmdSaveObjectAll_Click(cmdSaveObjectAll, e);
+                SaveAll(true);
             ModifyCommand1();
             ModifyCommand();
         }
@@ -772,11 +779,106 @@ namespace VNS.HIS.UI.DANHMUC
 
         private void cmdSaveAll_Click(object sender, EventArgs e)
         {
-            SaveAll();
+            SaveAll(false);
         }
 
+        private void SaveAll(bool OnlyNew)
+        {
+            try
+            {
+                Utility.SetMsg(lblMsg, "", false);
+                decimal GiaDV = LayGiaDV();
+                int ServiceDetailId = -1;
+                decimal GiaPhuThu = 0;
+                decimal GiaBHYT = LayGiaBHYT();
+                string KTH = "ALL";
+                decimal tyle_tt = 100;
+                foreach (GridEXRow gridExRow in grdQhe.GetRows())
+                {
+                    Int16 IdDoituongKcb = Utility.Int16Dbnull(gridExRow.Cells[DmucDoituongkcb.Columns.IdDoituongKcb].Value, 0);
+                    string MaDoituongKcb = Utility.sDbnull(gridExRow.Cells[DmucDoituongkcb.Columns.MaDoituongKcb].Value, 0);
 
-        private void SaveAll()
+                    ServiceDetailId =
+                        Utility.Int32Dbnull(gridExRow.Cells[QheDoituongDichvucl.Columns.IdChitietdichvu].Value, -1);
+
+                    GiaPhuThu = Utility.DecimaltoDbnull(gridExRow.Cells[QheDoituongDichvucl.Columns.PhuthuTraituyen].Value, 0);
+                    tyle_tt = Utility.DecimaltoDbnull(gridExRow.Cells[QheDoituongDichvucl.Columns.TyleTt].Value, 0);
+                    int ObjectTypeType =
+                        Utility.Int32Dbnull(gridExRow.Cells[QheDoituongDichvucl.Columns.IdLoaidoituongKcb].Value, 0);
+                    int id_qhe = Utility.Int32Dbnull(gridExRow.Cells[QheDoituongDichvucl.Columns.IdQuanhe].Value, 0);
+                    //if (ObjectTypeType == 0) KTH = "ALL"; else 
+                    KTH = Utility.sDbnull(cboKhoaTH.SelectedValue, "ALL");
+                    //Nếu đối tượng BHYT có tồn tại thì update lại thông tin trong đó có giá phụ thu trái tuyến
+                    if (id_qhe > 0)
+                    {
+                        if (!OnlyNew)//Tự bấm nút in mới lưu cả những thằng đang có. Còn nếu chọn đối tượng mới thì ko cần lưu
+                        {
+                            new Update(QheDoituongDichvucl.Schema)
+                                .Set(QheDoituongDichvucl.Columns.NgaySua).EqualTo(globalVariables.SysDate)
+                                .Set(QheDoituongDichvucl.Columns.NguoiSua).EqualTo(globalVariables.UserName)
+                                .Set(QheDoituongDichvucl.Columns.IdDichvu).EqualTo(GetService_ID(Utility.Int32Dbnull(gridExRow.Cells[QheDoituongDichvucl.Columns.IdChitietdichvu].Value, -1)))
+                                .Set(QheDoituongDichvucl.Columns.DonGia).EqualTo(Utility.DecimaltoDbnull(gridExRow.Cells[QheDoituongDichvucl.Columns.DonGia].Value, 0))
+                                .Set(QheDoituongDichvucl.Columns.TyleTt).EqualTo(tyle_tt)
+                                .Set(QheDoituongDichvucl.Columns.PhuthuDungtuyen).EqualTo(Utility.DecimaltoDbnull(gridExRow.Cells[QheDoituongDichvucl.Columns.PhuthuDungtuyen].Value, 0))
+                                .Set(QheDoituongDichvucl.Columns.PhuthuTraituyen).EqualTo(GiaPhuThu)
+                                .Set(QheDoituongDichvucl.Columns.MotaThem).EqualTo(Utility.sDbnull(gridExRow.Cells[QheDoituongDichvucl.Columns.MotaThem].Value, ""))
+                                .Where(QheDoituongDichvucl.Columns.IdChitietdichvu).IsEqualTo(ServiceDetail_ID)
+                                .And(QheDoituongDichvucl.Columns.IdLoaidoituongKcb).IsEqualTo(Utility.Int32Dbnull(gridExRow.Cells[QheDoituongDichvucl.Columns.IdLoaidoituongKcb].Value, -1))
+                                .And(QheDoituongDichvucl.Columns.MaKhoaThuchien).IsEqualTo(KTH)
+                                .Execute();
+                        }
+                    }
+                    else
+                    {
+                       
+                            
+                        var _newItems = new QheDoituongDichvucl();
+                        _newItems.IdDoituongKcb = IdDoituongKcb;
+                        _newItems.IdDichvu =
+                            Utility.Int16Dbnull(gridExRow.Cells[QheDoituongDichvucl.Columns.IdDichvu].Value, -1);
+                        _newItems.IdChitietdichvu =
+                            Utility.Int32Dbnull(gridExRow.Cells[QheDoituongDichvucl.Columns.IdChitietdichvu].Value,
+                                -1);
+                        _newItems.TyleGiam = 0;
+                        _newItems.KieuGiamgia = 0;
+                        _newItems.DonGia =
+                            Utility.DecimaltoDbnull(gridExRow.Cells[QheDoituongDichvucl.Columns.DonGia].Value, 0);
+                        _newItems.PhuthuDungtuyen =
+                            Utility.DecimaltoDbnull(
+                                gridExRow.Cells[QheDoituongDichvucl.Columns.PhuthuDungtuyen].Value, 0);
+                        _newItems.PhuthuTraituyen = GiaPhuThu;
+                        _newItems.IdLoaidoituongKcb =
+                            Utility.Int32Dbnull(
+                                gridExRow.Cells[QheDoituongDichvucl.Columns.IdLoaidoituongKcb].Value, -1);
+                        _newItems.MaDoituongKcb = MaDoituongKcb;
+
+                        _newItems.NguoiTao = globalVariables.UserName;
+                        _newItems.NgayTao = globalVariables.SysDate;
+                        _newItems.MaKhoaThuchien = KTH;
+                        _newItems.IsNew = true;
+                        _newItems.Save();
+                        gridExRow.BeginEdit();
+                        gridExRow.Cells[QheDoituongDichvucl.Columns.IdQuanhe].Value = _newItems.IdQuanhe;
+                        gridExRow.EndEdit();
+                    }
+
+                    gridExRow.BeginEdit();
+                    gridExRow.Cells[QheDoituongDichvucl.Columns.PhuthuTraituyen].Value = GiaPhuThu;
+                    gridExRow.EndEdit();
+                    grdQhe.UpdateData();
+
+                }
+                Utility.SetMsg(lblMsg, "Bạn thực hiện cập nhập giá thành công", false);
+            }
+            catch (Exception exception)
+            {
+                Utility.SetMsg(lblMsg, "Lỗi trong quá trình cập nhập thông tin", false);
+            }
+        }
+        /// <summary>
+        /// Tạm rem 2025-09-23 vì đang lưu lung tung
+        /// </summary>
+        private void SaveAll_Bak()
         {
             try
             {
@@ -998,7 +1100,12 @@ namespace VNS.HIS.UI.DANHMUC
         private void frm_qhe_doituong_dichvuCls_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape) cmdClose.PerformClick();
-            if (e.KeyCode == Keys.F5) LoadData();
+            if (e.KeyCode == Keys.F5)
+            {
+                LoadBogia();
+                LoadData();
+                cboBogia_SelectedIndexChanged(cboBogia, e);
+            }
             if (e.KeyCode == Keys.N && e.Control) cmdThemMoi.PerformClick();
             if (e.KeyCode == Keys.U && e.Control) cmdUpdate.PerformClick();
             if (e.KeyCode == Keys.S && e.Control) cmdSaveObjectAll_Click(cmdSaveObjectAll, new EventArgs());
@@ -1155,7 +1262,7 @@ namespace VNS.HIS.UI.DANHMUC
 
         private void cmdSaveObjectAll_Click(object sender, EventArgs e)
         {
-            SaveAll();
+            SaveAll(false);
         }
 
         private decimal LayGiaDV()
@@ -1533,6 +1640,11 @@ namespace VNS.HIS.UI.DANHMUC
 
 
         private void mnuTaoQheGiaDvuCLS_DoituongKCB_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmdDelete_Click_1(object sender, EventArgs e)
         {
 
         }

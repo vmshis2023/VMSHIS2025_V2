@@ -295,6 +295,71 @@ namespace VMS.HIS.DAL
 				colvarPhanloai.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarPhanloai);
 				
+				TableSchema.TableColumn colvarDienThoai = new TableSchema.TableColumn(schema);
+				colvarDienThoai.ColumnName = "DIEN_THOAI";
+				colvarDienThoai.DataType = DbType.String;
+				colvarDienThoai.MaxLength = 30;
+				colvarDienThoai.AutoIncrement = false;
+				colvarDienThoai.IsNullable = true;
+				colvarDienThoai.IsPrimaryKey = false;
+				colvarDienThoai.IsForeignKey = false;
+				colvarDienThoai.IsReadOnly = false;
+				colvarDienThoai.DefaultSetting = @"";
+				colvarDienThoai.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarDienThoai);
+				
+				TableSchema.TableColumn colvarDiaChi = new TableSchema.TableColumn(schema);
+				colvarDiaChi.ColumnName = "DIA_CHI";
+				colvarDiaChi.DataType = DbType.String;
+				colvarDiaChi.MaxLength = 255;
+				colvarDiaChi.AutoIncrement = false;
+				colvarDiaChi.IsNullable = true;
+				colvarDiaChi.IsPrimaryKey = false;
+				colvarDiaChi.IsForeignKey = false;
+				colvarDiaChi.IsReadOnly = false;
+				colvarDiaChi.DefaultSetting = @"";
+				colvarDiaChi.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarDiaChi);
+				
+				TableSchema.TableColumn colvarSoTaikhoan = new TableSchema.TableColumn(schema);
+				colvarSoTaikhoan.ColumnName = "SO_TAIKHOAN";
+				colvarSoTaikhoan.DataType = DbType.String;
+				colvarSoTaikhoan.MaxLength = 30;
+				colvarSoTaikhoan.AutoIncrement = false;
+				colvarSoTaikhoan.IsNullable = true;
+				colvarSoTaikhoan.IsPrimaryKey = false;
+				colvarSoTaikhoan.IsForeignKey = false;
+				colvarSoTaikhoan.IsReadOnly = false;
+				colvarSoTaikhoan.DefaultSetting = @"";
+				colvarSoTaikhoan.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarSoTaikhoan);
+				
+				TableSchema.TableColumn colvarMst = new TableSchema.TableColumn(schema);
+				colvarMst.ColumnName = "MST";
+				colvarMst.DataType = DbType.String;
+				colvarMst.MaxLength = 30;
+				colvarMst.AutoIncrement = false;
+				colvarMst.IsNullable = true;
+				colvarMst.IsPrimaryKey = false;
+				colvarMst.IsForeignKey = false;
+				colvarMst.IsReadOnly = false;
+				colvarMst.DefaultSetting = @"";
+				colvarMst.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarMst);
+				
+				TableSchema.TableColumn colvarQuocgia = new TableSchema.TableColumn(schema);
+				colvarQuocgia.ColumnName = "QUOCGIA";
+				colvarQuocgia.DataType = DbType.String;
+				colvarQuocgia.MaxLength = 50;
+				colvarQuocgia.AutoIncrement = false;
+				colvarQuocgia.IsNullable = true;
+				colvarQuocgia.IsPrimaryKey = false;
+				colvarQuocgia.IsForeignKey = false;
+				colvarQuocgia.IsReadOnly = false;
+				colvarQuocgia.DefaultSetting = @"";
+				colvarQuocgia.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarQuocgia);
+				
 				BaseSchema = schema;
 				//add this schema to the provider
 				//so we can query it later
@@ -408,6 +473,46 @@ namespace VMS.HIS.DAL
 			get { return GetColumnValue<string>(Columns.Phanloai); }
 			set { SetColumnValue(Columns.Phanloai, value); }
 		}
+		  
+		[XmlAttribute("DienThoai")]
+		[Bindable(true)]
+		public string DienThoai 
+		{
+			get { return GetColumnValue<string>(Columns.DienThoai); }
+			set { SetColumnValue(Columns.DienThoai, value); }
+		}
+		  
+		[XmlAttribute("DiaChi")]
+		[Bindable(true)]
+		public string DiaChi 
+		{
+			get { return GetColumnValue<string>(Columns.DiaChi); }
+			set { SetColumnValue(Columns.DiaChi, value); }
+		}
+		  
+		[XmlAttribute("SoTaikhoan")]
+		[Bindable(true)]
+		public string SoTaikhoan 
+		{
+			get { return GetColumnValue<string>(Columns.SoTaikhoan); }
+			set { SetColumnValue(Columns.SoTaikhoan, value); }
+		}
+		  
+		[XmlAttribute("Mst")]
+		[Bindable(true)]
+		public string Mst 
+		{
+			get { return GetColumnValue<string>(Columns.Mst); }
+			set { SetColumnValue(Columns.Mst, value); }
+		}
+		  
+		[XmlAttribute("Quocgia")]
+		[Bindable(true)]
+		public string Quocgia 
+		{
+			get { return GetColumnValue<string>(Columns.Quocgia); }
+			set { SetColumnValue(Columns.Quocgia, value); }
+		}
 		
 		#endregion
 		
@@ -428,7 +533,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(string varMa,string varLoai,string varTen,int varSttHthi,int varTrangThai,byte? varTrangthaiMacdinh,string varVietTat,string varMotaThem,string varNguoiTao,DateTime? varNgayTao,string varNguoiSua,DateTime? varNgaySua,string varPhanloai)
+		public static void Insert(string varMa,string varLoai,string varTen,int varSttHthi,int varTrangThai,byte? varTrangthaiMacdinh,string varVietTat,string varMotaThem,string varNguoiTao,DateTime? varNgayTao,string varNguoiSua,DateTime? varNgaySua,string varPhanloai,string varDienThoai,string varDiaChi,string varSoTaikhoan,string varMst,string varQuocgia)
 		{
 			DmucChung item = new DmucChung();
 			
@@ -458,6 +563,16 @@ namespace VMS.HIS.DAL
 			
 			item.Phanloai = varPhanloai;
 			
+			item.DienThoai = varDienThoai;
+			
+			item.DiaChi = varDiaChi;
+			
+			item.SoTaikhoan = varSoTaikhoan;
+			
+			item.Mst = varMst;
+			
+			item.Quocgia = varQuocgia;
+			
 		
 			if (System.Web.HttpContext.Current != null)
 				item.Save(System.Web.HttpContext.Current.User.Identity.Name);
@@ -468,7 +583,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(string varMa,string varLoai,string varTen,int varSttHthi,int varTrangThai,byte? varTrangthaiMacdinh,string varVietTat,string varMotaThem,string varNguoiTao,DateTime? varNgayTao,string varNguoiSua,DateTime? varNgaySua,string varPhanloai)
+		public static void Update(string varMa,string varLoai,string varTen,int varSttHthi,int varTrangThai,byte? varTrangthaiMacdinh,string varVietTat,string varMotaThem,string varNguoiTao,DateTime? varNgayTao,string varNguoiSua,DateTime? varNgaySua,string varPhanloai,string varDienThoai,string varDiaChi,string varSoTaikhoan,string varMst,string varQuocgia)
 		{
 			DmucChung item = new DmucChung();
 			
@@ -497,6 +612,16 @@ namespace VMS.HIS.DAL
 				item.NgaySua = varNgaySua;
 			
 				item.Phanloai = varPhanloai;
+			
+				item.DienThoai = varDienThoai;
+			
+				item.DiaChi = varDiaChi;
+			
+				item.SoTaikhoan = varSoTaikhoan;
+			
+				item.Mst = varMst;
+			
+				item.Quocgia = varQuocgia;
 			
 			item.IsNew = false;
 			if (System.Web.HttpContext.Current != null)
@@ -602,6 +727,41 @@ namespace VMS.HIS.DAL
         
         
         
+        public static TableSchema.TableColumn DienThoaiColumn
+        {
+            get { return Schema.Columns[13]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn DiaChiColumn
+        {
+            get { return Schema.Columns[14]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn SoTaikhoanColumn
+        {
+            get { return Schema.Columns[15]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn MstColumn
+        {
+            get { return Schema.Columns[16]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn QuocgiaColumn
+        {
+            get { return Schema.Columns[17]; }
+        }
+        
+        
+        
         #endregion
 		#region Columns Struct
 		public struct Columns
@@ -619,6 +779,11 @@ namespace VMS.HIS.DAL
 			 public static string NguoiSua = @"NGUOI_SUA";
 			 public static string NgaySua = @"NGAY_SUA";
 			 public static string Phanloai = @"PHANLOAI";
+			 public static string DienThoai = @"DIEN_THOAI";
+			 public static string DiaChi = @"DIA_CHI";
+			 public static string SoTaikhoan = @"SO_TAIKHOAN";
+			 public static string Mst = @"MST";
+			 public static string Quocgia = @"QUOCGIA";
 						
 		}
 		#endregion

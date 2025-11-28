@@ -28,23 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel1 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
             Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel2 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
             Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel3 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
             Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel4 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
             Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel5 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_PhieuNhapKho));
             Janus.Windows.GridEX.GridEXLayout grdList_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.GridEX.GridEXLayout grdPhieuNhapChiTiet_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_PhieuNhapKho));
             this.uiStatusBar1 = new Janus.Windows.UI.StatusBar.UIStatusBar();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.cmdThemPhieuNhap = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.cmdUpdatePhieuNhap = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.cmdXoaPhieuNhap = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.cmdNhapKho = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.cmdHuyXacnhan = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.cmdView = new System.Windows.Forms.ToolStripButton();
+            this.cmdInPhieuNhapKho = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.cmd_HoiDongKiemNhap = new System.Windows.Forms.ToolStripButton();
+            this.cmdInBienBanKiemNhap = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.cmdExit = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.uiGroupBox1 = new Janus.Windows.EditControls.UIGroupBox();
             this.cboNhaCungcap = new VNS.HIS.UCs.EasyCompletionComboBox();
@@ -67,6 +77,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.cmdSearch = new Janus.Windows.EditControls.UIButton();
             this.chkByDate = new Janus.Windows.EditControls.UICheckBox();
             this.txtSoPhieu = new Janus.Windows.GridEX.EditControls.EditBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -74,25 +85,15 @@
             this.uiGroupBox2 = new Janus.Windows.EditControls.UIGroupBox();
             this.grdList = new Janus.Windows.GridEX.GridEX();
             this.uiGroupBox4 = new Janus.Windows.EditControls.UIGroupBox();
+            this.cmdAddDetail = new Janus.Windows.EditControls.UIButton();
             this.label22 = new System.Windows.Forms.Label();
             this.txtGiaban = new MaskedTextBox.MaskedTextBox();
             this.grdPhieuNhapChiTiet = new Janus.Windows.GridEX.GridEX();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
             this.mnuUpdateGia = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuXoa = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTip1 = new System.Windows.Forms.ToolTip();
             this.cmdConfig = new Janus.Windows.EditControls.UIButton();
-            this.cmdAddDetail = new Janus.Windows.EditControls.UIButton();
-            this.cmdSearch = new Janus.Windows.EditControls.UIButton();
-            this.cmdThemPhieuNhap = new System.Windows.Forms.ToolStripButton();
-            this.cmdUpdatePhieuNhap = new System.Windows.Forms.ToolStripButton();
-            this.cmdXoaPhieuNhap = new System.Windows.Forms.ToolStripButton();
-            this.cmdNhapKho = new System.Windows.Forms.ToolStripButton();
-            this.cmdHuyXacnhan = new System.Windows.Forms.ToolStripButton();
-            this.cmdView = new System.Windows.Forms.ToolStripButton();
-            this.cmdInPhieuNhapKho = new System.Windows.Forms.ToolStripButton();
-            this.cmd_bienbankiemnhap = new System.Windows.Forms.ToolStripButton();
-            this.cmdExit = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox1)).BeginInit();
             this.uiGroupBox1.SuspendLayout();
@@ -176,7 +177,9 @@
             this.toolStripSeparator1,
             this.cmdView,
             this.cmdInPhieuNhapKho,
-            this.cmd_bienbankiemnhap,
+            this.toolStripSeparator8,
+            this.cmd_HoiDongKiemNhap,
+            this.cmdInBienBanKiemNhap,
             this.toolStripSeparator6,
             this.cmdExit,
             this.toolStripSeparator7});
@@ -186,35 +189,137 @@
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // cmdThemPhieuNhap
+            // 
+            this.cmdThemPhieuNhap.Image = global::VMS.HIS.Duoc.Properties.Resources.add_04_32;
+            this.cmdThemPhieuNhap.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.cmdThemPhieuNhap.Name = "cmdThemPhieuNhap";
+            this.cmdThemPhieuNhap.Size = new System.Drawing.Size(97, 24);
+            this.cmdThemPhieuNhap.Text = "Thêm phiếu";
+            this.cmdThemPhieuNhap.ToolTipText = "Thêm mới phiếu nhập kho(Ctrl+N)";
+            this.cmdThemPhieuNhap.Click += new System.EventHandler(this.cmdThemPhieuNhap_Click);
+            // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(6, 27);
+            // 
+            // cmdUpdatePhieuNhap
+            // 
+            this.cmdUpdatePhieuNhap.Image = ((System.Drawing.Image)(resources.GetObject("cmdUpdatePhieuNhap.Image")));
+            this.cmdUpdatePhieuNhap.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.cmdUpdatePhieuNhap.Name = "cmdUpdatePhieuNhap";
+            this.cmdUpdatePhieuNhap.Size = new System.Drawing.Size(88, 24);
+            this.cmdUpdatePhieuNhap.Text = "Sửa phiếu";
+            this.cmdUpdatePhieuNhap.ToolTipText = "Sửa phiếu nhập kho(Ctrl+E)";
+            this.cmdUpdatePhieuNhap.Click += new System.EventHandler(this.cmdUpdatePhieuNhap_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 27);
             // 
+            // cmdXoaPhieuNhap
+            // 
+            this.cmdXoaPhieuNhap.Image = ((System.Drawing.Image)(resources.GetObject("cmdXoaPhieuNhap.Image")));
+            this.cmdXoaPhieuNhap.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.cmdXoaPhieuNhap.Name = "cmdXoaPhieuNhap";
+            this.cmdXoaPhieuNhap.Size = new System.Drawing.Size(86, 24);
+            this.cmdXoaPhieuNhap.Text = "Xóa phiếu";
+            this.cmdXoaPhieuNhap.ToolTipText = "Xóa phiếu nhập kho(Ctrl+D)";
+            this.cmdXoaPhieuNhap.Click += new System.EventHandler(this.cmdXoaPhieuNhap_Click);
+            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
+            // 
+            // cmdNhapKho
+            // 
+            this.cmdNhapKho.Image = ((System.Drawing.Image)(resources.GetObject("cmdNhapKho.Image")));
+            this.cmdNhapKho.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.cmdNhapKho.Name = "cmdNhapKho";
+            this.cmdNhapKho.Size = new System.Drawing.Size(82, 24);
+            this.cmdNhapKho.Text = "Xác nhận";
+            this.cmdNhapKho.ToolTipText = "Ctrl+X: Xác nhận nhập vào kho(Thuốc được cộng vào trong kho nhập)";
+            this.cmdNhapKho.Click += new System.EventHandler(this.cmdNhapKho_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(6, 27);
             // 
+            // cmdHuyXacnhan
+            // 
+            this.cmdHuyXacnhan.Image = ((System.Drawing.Image)(resources.GetObject("cmdHuyXacnhan.Image")));
+            this.cmdHuyXacnhan.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.cmdHuyXacnhan.Name = "cmdHuyXacnhan";
+            this.cmdHuyXacnhan.Size = new System.Drawing.Size(104, 24);
+            this.cmdHuyXacnhan.Text = "Hủy xác nhận";
+            this.cmdHuyXacnhan.ToolTipText = "Ctrl+Z: Hủy xác nhận phiếu nhập kho(Thuốc bị trừ khỏi kho nhập)";
+            this.cmdHuyXacnhan.Click += new System.EventHandler(this.cmdHuyXacnhan_Click);
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
+            // cmdView
+            // 
+            this.cmdView.Image = ((System.Drawing.Image)(resources.GetObject("cmdView.Image")));
+            this.cmdView.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.cmdView.Name = "cmdView";
+            this.cmdView.Size = new System.Drawing.Size(106, 24);
+            this.cmdView.Text = "Xem lại phiếu";
+            this.cmdView.Click += new System.EventHandler(this.cmdView_Click);
+            // 
+            // cmdInPhieuNhapKho
+            // 
+            this.cmdInPhieuNhapKho.Image = global::VMS.HIS.Duoc.Properties.Resources.printtype1_24;
+            this.cmdInPhieuNhapKho.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.cmdInPhieuNhapKho.Name = "cmdInPhieuNhapKho";
+            this.cmdInPhieuNhapKho.Size = new System.Drawing.Size(75, 24);
+            this.cmdInPhieuNhapKho.Text = "In phiếu";
+            this.cmdInPhieuNhapKho.ToolTipText = "In phiếu nhập kho(Ctrl+P)";
+            this.cmdInPhieuNhapKho.Click += new System.EventHandler(this.cmdInPhieuNhapKho_Click);
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 27);
+            // 
+            // cmd_HoiDongKiemNhap
+            // 
+            this.cmd_HoiDongKiemNhap.Image = ((System.Drawing.Image)(resources.GetObject("cmd_HoiDongKiemNhap.Image")));
+            this.cmd_HoiDongKiemNhap.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.cmd_HoiDongKiemNhap.Name = "cmd_HoiDongKiemNhap";
+            this.cmd_HoiDongKiemNhap.Size = new System.Drawing.Size(142, 24);
+            this.cmd_HoiDongKiemNhap.Text = "Hội đồng kiểm nhập";
+            this.cmd_HoiDongKiemNhap.Click += new System.EventHandler(this.cmd_HoiDongKiemNhap_Click);
+            // 
+            // cmdInBienBanKiemNhap
+            // 
+            this.cmdInBienBanKiemNhap.Image = global::VMS.HIS.Duoc.Properties.Resources.printer_32;
+            this.cmdInBienBanKiemNhap.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.cmdInBienBanKiemNhap.Name = "cmdInBienBanKiemNhap";
+            this.cmdInBienBanKiemNhap.Size = new System.Drawing.Size(156, 24);
+            this.cmdInBienBanKiemNhap.Text = "In Biên bản Kiểm nhập";
+            this.cmdInBienBanKiemNhap.Click += new System.EventHandler(this.cmdInBienBanKiemNhap_Click);
+            // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
             this.toolStripSeparator6.Size = new System.Drawing.Size(6, 27);
+            // 
+            // cmdExit
+            // 
+            this.cmdExit.Image = global::VMS.HIS.Duoc.Properties.Resources.close_24;
+            this.cmdExit.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.cmdExit.Name = "cmdExit";
+            this.cmdExit.Size = new System.Drawing.Size(94, 24);
+            this.cmdExit.Text = "Thoát (Esc)";
+            this.cmdExit.ToolTipText = "Thoát khỏi chức năng (Esc)";
+            this.cmdExit.Click += new System.EventHandler(this.cmdExit_Click);
             // 
             // toolStripSeparator7
             // 
@@ -514,6 +619,20 @@
             this.label2.Text = "Nhân viên:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // cmdSearch
+            // 
+            this.cmdSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmdSearch.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmdSearch.Image = ((System.Drawing.Image)(resources.GetObject("cmdSearch.Image")));
+            this.cmdSearch.ImageSize = new System.Drawing.Size(24, 24);
+            this.cmdSearch.Location = new System.Drawing.Point(1106, 23);
+            this.cmdSearch.Name = "cmdSearch";
+            this.cmdSearch.Size = new System.Drawing.Size(152, 57);
+            this.cmdSearch.TabIndex = 9;
+            this.cmdSearch.Text = "&Tìm kiếm(F3)";
+            this.cmdSearch.VisualStyle = Janus.Windows.UI.VisualStyle.Office2003;
+            this.cmdSearch.Click += new System.EventHandler(this.cmdSearch_Click);
+            // 
             // chkByDate
             // 
             this.chkByDate.Checked = true;
@@ -616,6 +735,22 @@
             this.uiGroupBox4.Text = "Chi tiết phiếu nhập";
             this.uiGroupBox4.VisualStyle = Janus.Windows.UI.Dock.PanelVisualStyle.Office2003;
             // 
+            // cmdAddDetail
+            // 
+            this.cmdAddDetail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cmdAddDetail.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmdAddDetail.Image = ((System.Drawing.Image)(resources.GetObject("cmdAddDetail.Image")));
+            this.cmdAddDetail.ImageSize = new System.Drawing.Size(24, 24);
+            this.cmdAddDetail.Location = new System.Drawing.Point(244, 534);
+            this.cmdAddDetail.Name = "cmdAddDetail";
+            this.cmdAddDetail.Size = new System.Drawing.Size(120, 36);
+            this.cmdAddDetail.TabIndex = 510;
+            this.cmdAddDetail.Text = "Chấp nhận";
+            this.cmdAddDetail.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Far;
+            this.toolTip1.SetToolTip(this.cmdAddDetail, "Nhấn vào đây để thêm thuốc vào chi tiết");
+            this.cmdAddDetail.Visible = false;
+            this.cmdAddDetail.Click += new System.EventHandler(this.cmdAddDetail_Click);
+            // 
             // label22
             // 
             this.label22.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -709,123 +844,6 @@
             this.cmdConfig.TabIndex = 460;
             this.cmdConfig.VisualStyle = Janus.Windows.UI.VisualStyle.Office2007;
             this.cmdConfig.Click += new System.EventHandler(this.cmdConfig_Click);
-            // 
-            // cmdAddDetail
-            // 
-            this.cmdAddDetail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cmdAddDetail.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdAddDetail.Image = ((System.Drawing.Image)(resources.GetObject("cmdAddDetail.Image")));
-            this.cmdAddDetail.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdAddDetail.Location = new System.Drawing.Point(244, 534);
-            this.cmdAddDetail.Name = "cmdAddDetail";
-            this.cmdAddDetail.Size = new System.Drawing.Size(120, 36);
-            this.cmdAddDetail.TabIndex = 510;
-            this.cmdAddDetail.Text = "Chấp nhận";
-            this.cmdAddDetail.TextHorizontalAlignment = Janus.Windows.EditControls.TextAlignment.Far;
-            this.toolTip1.SetToolTip(this.cmdAddDetail, "Nhấn vào đây để thêm thuốc vào chi tiết");
-            this.cmdAddDetail.Visible = false;
-            this.cmdAddDetail.Click += new System.EventHandler(this.cmdAddDetail_Click);
-            // 
-            // cmdSearch
-            // 
-            this.cmdSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmdSearch.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdSearch.Image = ((System.Drawing.Image)(resources.GetObject("cmdSearch.Image")));
-            this.cmdSearch.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdSearch.Location = new System.Drawing.Point(1106, 23);
-            this.cmdSearch.Name = "cmdSearch";
-            this.cmdSearch.Size = new System.Drawing.Size(152, 57);
-            this.cmdSearch.TabIndex = 9;
-            this.cmdSearch.Text = "&Tìm kiếm(F3)";
-            this.cmdSearch.VisualStyle = Janus.Windows.UI.VisualStyle.Office2003;
-            this.cmdSearch.Click += new System.EventHandler(this.cmdSearch_Click);
-            // 
-            // cmdThemPhieuNhap
-            // 
-            this.cmdThemPhieuNhap.Image = global::VMS.HIS.Duoc.Properties.Resources.add_04_32;
-            this.cmdThemPhieuNhap.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.cmdThemPhieuNhap.Name = "cmdThemPhieuNhap";
-            this.cmdThemPhieuNhap.Size = new System.Drawing.Size(97, 24);
-            this.cmdThemPhieuNhap.Text = "Thêm phiếu";
-            this.cmdThemPhieuNhap.ToolTipText = "Thêm mới phiếu nhập kho(Ctrl+N)";
-            this.cmdThemPhieuNhap.Click += new System.EventHandler(this.cmdThemPhieuNhap_Click);
-            // 
-            // cmdUpdatePhieuNhap
-            // 
-            this.cmdUpdatePhieuNhap.Image = ((System.Drawing.Image)(resources.GetObject("cmdUpdatePhieuNhap.Image")));
-            this.cmdUpdatePhieuNhap.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.cmdUpdatePhieuNhap.Name = "cmdUpdatePhieuNhap";
-            this.cmdUpdatePhieuNhap.Size = new System.Drawing.Size(88, 24);
-            this.cmdUpdatePhieuNhap.Text = "Sửa phiếu";
-            this.cmdUpdatePhieuNhap.ToolTipText = "Sửa phiếu nhập kho(Ctrl+E)";
-            this.cmdUpdatePhieuNhap.Click += new System.EventHandler(this.cmdUpdatePhieuNhap_Click);
-            // 
-            // cmdXoaPhieuNhap
-            // 
-            this.cmdXoaPhieuNhap.Image = ((System.Drawing.Image)(resources.GetObject("cmdXoaPhieuNhap.Image")));
-            this.cmdXoaPhieuNhap.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.cmdXoaPhieuNhap.Name = "cmdXoaPhieuNhap";
-            this.cmdXoaPhieuNhap.Size = new System.Drawing.Size(86, 24);
-            this.cmdXoaPhieuNhap.Text = "Xóa phiếu";
-            this.cmdXoaPhieuNhap.ToolTipText = "Xóa phiếu nhập kho(Ctrl+D)";
-            this.cmdXoaPhieuNhap.Click += new System.EventHandler(this.cmdXoaPhieuNhap_Click);
-            // 
-            // cmdNhapKho
-            // 
-            this.cmdNhapKho.Image = ((System.Drawing.Image)(resources.GetObject("cmdNhapKho.Image")));
-            this.cmdNhapKho.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.cmdNhapKho.Name = "cmdNhapKho";
-            this.cmdNhapKho.Size = new System.Drawing.Size(82, 24);
-            this.cmdNhapKho.Text = "Xác nhận";
-            this.cmdNhapKho.ToolTipText = "Ctrl+X: Xác nhận nhập vào kho(Thuốc được cộng vào trong kho nhập)";
-            this.cmdNhapKho.Click += new System.EventHandler(this.cmdNhapKho_Click);
-            // 
-            // cmdHuyXacnhan
-            // 
-            this.cmdHuyXacnhan.Image = ((System.Drawing.Image)(resources.GetObject("cmdHuyXacnhan.Image")));
-            this.cmdHuyXacnhan.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.cmdHuyXacnhan.Name = "cmdHuyXacnhan";
-            this.cmdHuyXacnhan.Size = new System.Drawing.Size(104, 24);
-            this.cmdHuyXacnhan.Text = "Hủy xác nhận";
-            this.cmdHuyXacnhan.ToolTipText = "Ctrl+Z: Hủy xác nhận phiếu nhập kho(Thuốc bị trừ khỏi kho nhập)";
-            this.cmdHuyXacnhan.Click += new System.EventHandler(this.cmdHuyXacnhan_Click);
-            // 
-            // cmdView
-            // 
-            this.cmdView.Image = ((System.Drawing.Image)(resources.GetObject("cmdView.Image")));
-            this.cmdView.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.cmdView.Name = "cmdView";
-            this.cmdView.Size = new System.Drawing.Size(106, 24);
-            this.cmdView.Text = "Xem lại phiếu";
-            this.cmdView.Click += new System.EventHandler(this.cmdView_Click);
-            // 
-            // cmdInPhieuNhapKho
-            // 
-            this.cmdInPhieuNhapKho.Image = global::VMS.HIS.Duoc.Properties.Resources.printtype1_24;
-            this.cmdInPhieuNhapKho.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.cmdInPhieuNhapKho.Name = "cmdInPhieuNhapKho";
-            this.cmdInPhieuNhapKho.Size = new System.Drawing.Size(75, 24);
-            this.cmdInPhieuNhapKho.Text = "In phiếu";
-            this.cmdInPhieuNhapKho.ToolTipText = "In phiếu nhập kho(Ctrl+P)";
-            this.cmdInPhieuNhapKho.Click += new System.EventHandler(this.cmdInPhieuNhapKho_Click);
-            // 
-            // cmd_bienbankiemnhap
-            // 
-            this.cmd_bienbankiemnhap.Image = ((System.Drawing.Image)(resources.GetObject("cmd_bienbankiemnhap.Image")));
-            this.cmd_bienbankiemnhap.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.cmd_bienbankiemnhap.Name = "cmd_bienbankiemnhap";
-            this.cmd_bienbankiemnhap.Size = new System.Drawing.Size(141, 24);
-            this.cmd_bienbankiemnhap.Text = "Biên bản kiểm nhập";
-            // 
-            // cmdExit
-            // 
-            this.cmdExit.Image = global::VMS.HIS.Duoc.Properties.Resources.close_24;
-            this.cmdExit.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.cmdExit.Name = "cmdExit";
-            this.cmdExit.Size = new System.Drawing.Size(94, 24);
-            this.cmdExit.Text = "Thoát (Esc)";
-            this.cmdExit.ToolTipText = "Thoát khỏi chức năng (Esc)";
-            this.cmdExit.Click += new System.EventHandler(this.cmdExit_Click);
             // 
             // frm_PhieuNhapKho
             // 
@@ -927,6 +945,8 @@
         private UCs.EasyCompletionComboBox cboKhoThuoc;
         private UCs.EasyCompletionComboBox cboNhanvien;
         private UCs.EasyCompletionComboBox cboNhaCungcap;
-        private System.Windows.Forms.ToolStripButton cmd_bienbankiemnhap;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
+        private System.Windows.Forms.ToolStripButton cmd_HoiDongKiemNhap;
+        private System.Windows.Forms.ToolStripButton cmdInBienBanKiemNhap;
     }
 }

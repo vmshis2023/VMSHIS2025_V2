@@ -1,0 +1,135 @@
+2025-09-12 09:53:24.4926 Info Message Template Auto Format enabled
+2025-09-12 09:53:24.5301 Info Loading assembly: NLog.Web.AspNetCore
+2025-09-12 09:53:24.6639 Info Adding target FileTarget(Name=allfile)
+2025-09-12 09:53:24.6639 Info Adding target FileTarget(Name=ownFile-web)
+2025-09-12 09:53:24.7508 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\nlog.config
+2025-09-12 10:00:35.2363 Info Message Template Auto Format enabled
+2025-09-12 10:00:35.2626 Info Loading assembly: NLog.Web.AspNetCore
+2025-09-12 10:00:35.3601 Info Adding target FileTarget(Name=allfile)
+2025-09-12 10:00:35.3601 Info Adding target FileTarget(Name=ownFile-web)
+2025-09-12 10:00:35.5610 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\nlog.config
+2025-09-12 10:04:42.9746 Info Message Template Auto Format enabled
+2025-09-12 10:04:42.9947 Info Loading assembly: NLog.Web.AspNetCore
+2025-09-12 10:04:43.1063 Info Adding target FileTarget(Name=allfile)
+2025-09-12 10:04:43.1063 Info Adding target FileTarget(Name=ownFile-web)
+2025-09-12 10:04:43.1525 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\nlog.config
+2025-09-12 10:07:18.9791 Info Message Template Auto Format enabled
+2025-09-12 10:07:19.0009 Info Loading assembly: NLog.Web.AspNetCore
+2025-09-12 10:07:19.1483 Info Adding target FileTarget(Name=allfile)
+2025-09-12 10:07:19.1483 Info Adding target FileTarget(Name=ownFile-web)
+2025-09-12 10:07:19.1876 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\nlog.config
+2025-09-12 10:13:46.6542 Info Message Template Auto Format enabled
+2025-09-12 10:13:46.7013 Info Loading assembly: NLog.Web.AspNetCore
+2025-09-12 10:13:46.8201 Info Adding target FileTarget(Name=allfile)
+2025-09-12 10:13:46.8201 Info Adding target FileTarget(Name=ownFile-web)
+2025-09-12 10:13:46.8660 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\nlog.config
+2025-09-12 10:21:20.6096 Info Message Template Auto Format enabled
+2025-09-12 10:21:20.6428 Info Loading assembly: NLog.Web.AspNetCore
+2025-09-12 10:21:20.8161 Info Adding target FileTarget(Name=allfile)
+2025-09-12 10:21:20.8161 Info Adding target FileTarget(Name=ownFile-web)
+2025-09-12 10:21:20.8611 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\nlog.config
+2025-09-12 10:24:18.3357 Info Message Template Auto Format enabled
+2025-09-12 10:24:18.3641 Info Loading assembly: NLog.Web.AspNetCore
+2025-09-12 10:24:18.4709 Info Adding target FileTarget(Name=allfile)
+2025-09-12 10:24:18.4709 Info Adding target FileTarget(Name=ownFile-web)
+2025-09-12 10:24:18.5085 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\nlog.config
+2025-09-12 10:28:43.6540 Info Message Template Auto Format enabled
+2025-09-12 10:28:43.7352 Info Loading assembly: NLog.Web.AspNetCore
+2025-09-12 10:28:43.8913 Info Adding target FileTarget(Name=allfile)
+2025-09-12 10:28:43.8913 Info Adding target FileTarget(Name=ownFile-web)
+2025-09-12 10:28:43.9413 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\nlog.config
+2025-09-12 10:37:59.7311 Info Message Template Auto Format enabled
+2025-09-12 10:37:59.7610 Info Loading assembly: NLog.Web.AspNetCore
+2025-09-12 10:37:59.8504 Info Adding target FileTarget(Name=allfile)
+2025-09-12 10:37:59.8504 Info Adding target FileTarget(Name=ownFile-web)
+2025-09-12 10:37:59.8883 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\nlog.config
+2025-09-12 10:47:49.5835 Info Message Template Auto Format enabled
+2025-09-12 10:47:49.7136 Info Loading assembly: NLog.Web.AspNetCore
+2025-09-12 10:47:49.8319 Info Adding target FileTarget(Name=allfile)
+2025-09-12 10:47:49.8319 Info Adding target FileTarget(Name=ownFile-web)
+2025-09-12 10:47:49.8668 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\nlog.config
+2025-09-12 10:51:28.2667 Info Message Template Auto Format enabled
+2025-09-12 10:51:28.2916 Info Loading assembly: NLog.Web.AspNetCore
+2025-09-12 10:51:28.3955 Info Adding target FileTarget(Name=allfile)
+2025-09-12 10:51:28.3955 Info Adding target FileTarget(Name=ownFile-web)
+2025-09-12 10:51:28.4409 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\nlog.config
+2025-09-12 10:56:31.6123 Info Message Template Auto Format enabled
+2025-09-12 10:56:31.6334 Info Loading assembly: NLog.Web.AspNetCore
+2025-09-12 10:56:31.7179 Info Adding target FileTarget(Name=allfile)
+2025-09-12 10:56:31.7179 Info Adding target FileTarget(Name=ownFile-web)
+2025-09-12 10:56:31.7521 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\nlog.config
+2025-09-12 11:08:58.6479 Info Message Template Auto Format enabled
+2025-09-12 11:08:58.6683 Info Loading assembly: NLog.Web.AspNetCore
+2025-09-12 11:08:58.7536 Info Adding target FileTarget(Name=allfile)
+2025-09-12 11:08:58.7536 Info Adding target FileTarget(Name=ownFile-web)
+2025-09-12 11:08:58.7885 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\nlog.config
+2025-09-12 11:10:11.1206 Info Message Template Auto Format enabled
+2025-09-12 11:10:11.1557 Info Loading assembly: NLog.Web.AspNetCore
+2025-09-12 11:10:11.4877 Info Adding target FileTarget(Name=allfile)
+2025-09-12 11:10:11.4877 Info Adding target FileTarget(Name=ownFile-web)
+2025-09-12 11:10:11.5425 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\nlog.config
+2025-09-12 11:11:44.5324 Info Message Template Auto Format enabled
+2025-09-12 11:11:44.5549 Info Loading assembly: NLog.Web.AspNetCore
+2025-09-12 11:11:44.6741 Info Adding target FileTarget(Name=allfile)
+2025-09-12 11:11:44.6741 Info Adding target FileTarget(Name=ownFile-web)
+2025-09-12 11:11:44.7246 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\nlog.config
+2025-09-12 11:13:07.3918 Info Message Template Auto Format enabled
+2025-09-12 11:13:07.4132 Info Loading assembly: NLog.Web.AspNetCore
+2025-09-12 11:13:07.5302 Info Adding target FileTarget(Name=allfile)
+2025-09-12 11:13:07.5302 Info Adding target FileTarget(Name=ownFile-web)
+2025-09-12 11:13:07.5730 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\nlog.config
+2025-09-12 11:53:29.1608 Info Message Template Auto Format enabled
+2025-09-12 11:53:29.2428 Info Loading assembly: NLog.Web.AspNetCore
+2025-09-12 11:53:29.3596 Info Adding target FileTarget(Name=allfile)
+2025-09-12 11:53:29.3596 Info Adding target FileTarget(Name=ownFile-web)
+2025-09-12 11:53:29.4220 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\nlog.config
+2025-09-12 12:48:22.6666 Info Message Template Auto Format enabled
+2025-09-12 12:48:22.6984 Info Loading assembly: NLog.Web.AspNetCore
+2025-09-12 12:48:22.8678 Info Adding target FileTarget(Name=allfile)
+2025-09-12 12:48:22.8706 Info Adding target FileTarget(Name=ownFile-web)
+2025-09-12 12:48:22.9172 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\nlog.config
+2025-09-12 13:20:08.3558 Info Message Template Auto Format enabled
+2025-09-12 13:20:08.3786 Info Loading assembly: NLog.Web.AspNetCore
+2025-09-12 13:20:08.5406 Info Adding target FileTarget(Name=allfile)
+2025-09-12 13:20:08.5424 Info Adding target FileTarget(Name=ownFile-web)
+2025-09-12 13:20:08.5836 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\nlog.config
+2025-09-15 23:20:10.3576 Info Message Template Auto Format enabled
+2025-09-15 23:20:10.3754 Info Loading assembly: NLog.Web.AspNetCore
+2025-09-15 23:20:10.4531 Info Adding target FileTarget(Name=allfile)
+2025-09-15 23:20:10.4531 Info Adding target FileTarget(Name=ownFile-web)
+2025-09-15 23:20:10.4721 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\nlog.config
+2025-09-15 23:33:13.2050 Info Message Template Auto Format enabled
+2025-09-15 23:33:13.2166 Info Loading assembly: NLog.Web.AspNetCore
+2025-09-15 23:33:13.2710 Info Adding target FileTarget(Name=allfile)
+2025-09-15 23:33:13.2710 Info Adding target FileTarget(Name=ownFile-web)
+2025-09-15 23:33:13.2986 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\nlog.config
+2025-09-16 11:13:12.9489 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-09-16 11:13:12.9907 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-09-16 11:13:13.0235 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-09-16 11:13:13.0512 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\nlog.config
+2025-09-16 11:13:13.0745 Info Configuration initialized.
+2025-09-29 22:12:26.4696 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-09-29 22:12:26.5090 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-09-29 22:12:26.5373 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-09-29 22:12:26.5887 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\nlog.config
+2025-09-29 22:12:26.6186 Info Configuration initialized.
+2025-09-29 23:29:09.2134 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-09-29 23:29:09.3152 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-09-29 23:29:09.3402 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-09-29 23:29:09.3914 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\nlog.config
+2025-09-29 23:29:09.4101 Info Configuration initialized.
+2025-10-27 02:27:45.6676 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-10-27 02:27:45.7136 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-10-27 02:27:45.7364 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-10-27 02:27:45.7790 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\nlog.config
+2025-10-27 02:27:45.7932 Info Configuration initialized.
+2025-10-27 13:45:19.1709 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-10-27 13:45:19.2543 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-10-27 13:45:19.2901 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-10-27 13:45:19.3757 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\nlog.config
+2025-10-27 13:45:19.4043 Info Configuration initialized.
+2025-10-27 14:33:00.8711 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2025-10-27 14:33:00.9419 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2025-10-27 14:33:00.9738 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2025-10-27 14:33:01.0360 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=47, FilePath=F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.DigitalSignature\Viettel\bin\Debug\netcoreapp3.1\netcoreapp3.1\nlog.config
+2025-10-27 14:33:01.0720 Info Configuration initialized.

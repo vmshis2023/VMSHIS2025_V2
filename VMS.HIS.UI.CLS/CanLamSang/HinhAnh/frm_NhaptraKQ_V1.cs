@@ -366,6 +366,12 @@ namespace VNS.HIS.UI.Forms.HinhAnh
 
         void cmdSaveAndAccept_Click(object sender, EventArgs e)
         {
+            if (objNhanvien == null)
+            {
+                Utility.ShowMsg("Cần chọn Bác sỹ thực hiện trước khi thực hiện lưu và in kết quả trả người bệnh");
+                cboBacsi.Focus();
+                return;
+            }
             SaveKQ(false, true);
         }
         void cmdChonfile_Click(object sender, EventArgs e)
@@ -1833,11 +1839,12 @@ namespace VNS.HIS.UI.Forms.HinhAnh
             }
             finally
             {
-                ModifyCommandButtons();
+              
                 if (cboDoc.Items.Count > 0 && cboDoc.SelectedIndex < 0) cboDoc.SelectedIndex = 0;
                 AllowSelectionChanged = true;
                 txtTenFileKQ.Text = cboDoc.Text;
                 setReadOnly();
+                ModifyCommandButtons();
                 timer1.Start();
                 LoadHTML();
                 loadHinhAnh(false);
@@ -1849,7 +1856,7 @@ namespace VNS.HIS.UI.Forms.HinhAnh
             if (objKcbChidinhclsChitiet != null)
             {
                 cmdPrint.Enabled = objKcbChidinhclsChitiet.TrangThai >= 3;
-                cmdSave.Enabled = cmdSaveAndAccept.Enabled = cmdSaveAndPrint.Enabled = objKcbChidinhclsChitiet.TrangThai >= 1 && objKcbChidinhclsChitiet.TrangThai <=3;//Chưa duyệt
+                mnuLuu_In.Enabled=  cmdSave.Enabled = cmdSaveAndAccept.Enabled = cmdSaveAndPrint.Enabled = objKcbChidinhclsChitiet.TrangThai >= 1 && objKcbChidinhclsChitiet.TrangThai <= 3 && Utility.sDbnull(objKcbChidinhclsChitiet.FileKyso) == "";//Chưa duyệt && chưa kí số
                 cmdDuyet.Enabled =mnuDuyet.Enabled= objKcbChidinhclsChitiet.TrangThai == 3;
                 cmdHuyduyet.Enabled = cmdHuyduyet.Visible =mnuHuyduyet.Enabled= objKcbChidinhclsChitiet.TrangThai == 4;
                 cmdDuyet.Visible = !cmdHuyduyet.Visible;
@@ -2213,6 +2220,12 @@ namespace VNS.HIS.UI.Forms.HinhAnh
         {
             try
             {
+                if (objNhanvien == null)
+                {
+                    Utility.ShowMsg("Cần chọn Bác sỹ thực hiện trước khi thực hiện lưu và in kết quả trả người bệnh");
+                    cboBacsi.Focus();
+                    return;
+                }
                 cmdSave.Enabled = false;
                 SaveKQ(false, PropertyLib._HinhAnhProperties.SaveAndConfirm);
                 if (chkInsauluu.Checked) InKetQua(null);
@@ -2288,6 +2301,7 @@ namespace VNS.HIS.UI.Forms.HinhAnh
         {
             try
             {
+
                 cmdPrint.Enabled = false;
                 //if (!_IsReadonly)
                 //    SaveKQ(false, PropertyLib._HinhAnhProperties.SaveAndConfirm);
@@ -3109,6 +3123,12 @@ namespace VNS.HIS.UI.Forms.HinhAnh
         }
         private void mnuLuu_In_Click(object sender, EventArgs e)
         {
+            if (objNhanvien == null)
+            {
+                Utility.ShowMsg("Cần chọn Bác sỹ thực hiện trước khi thực hiện lưu và in kết quả trả người bệnh");
+                cboBacsi.Focus();
+                return;
+            }
             SaveKQ(false, PropertyLib._HinhAnhProperties.SaveAndConfirm);
             InKetQua(null);
             ModifyCommandButtons();
@@ -3116,6 +3136,12 @@ namespace VNS.HIS.UI.Forms.HinhAnh
 
         private void cmdSaveAndPrint_Click(object sender, EventArgs e)
         {
+            if (objNhanvien == null)
+            {
+                Utility.ShowMsg("Cần chọn Bác sỹ thực hiện trước khi thực hiện lưu và in kết quả trả người bệnh");
+                cboBacsi.Focus();
+                return;
+            }
             SaveKQ(false,false);// PropertyLib._HinhAnhProperties.SaveAndConfirm);
             InKetQua(null);
             ModifyCommandButtons();

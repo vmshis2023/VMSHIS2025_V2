@@ -80,7 +80,7 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(long IdPhieu,int IdBacsichidinh,string TenBacsyChidinh,int IdYtathuchien,string TenYtaThuchien,int SoLuong,int IdThuoc,string TenDichtruyen,string SoLo,int TocDo,DateTime ThoigianBatdau,DateTime ThoigianKetthuc,string NguoiThuchien,DateTime NgayThuchien,DateTime NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua,long IdChitietdonthuoc,byte TrangthaiIn,string IdThuocKethop,long IdDonthuoc,long? IdThuockho)
+	    public void Insert(long IdPhieu,int IdBacsichidinh,string TenBacsyChidinh,int IdYtathuchien,string TenYtaThuchien,decimal SoLuong,int? TheTich,int IdThuoc,string TenDichtruyen,string SoLo,int TocDo,string Roman,DateTime ThoigianBatdau,DateTime ThoigianKetthuc,string NguoiThuchien,DateTime NgayThuchien,DateTime NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua,long IdChitietdonthuoc,byte TrangthaiIn,string IdThuocKethop,long IdDonthuoc,long? IdThuockho,short? IdKhoa,short? IdBuong,short? IdGiuong,string TenKhoa,string TenBuong,string TenGiuong)
 	    {
 		    NoitruPhieudichtruyenChitiet item = new NoitruPhieudichtruyenChitiet();
 		    
@@ -96,6 +96,8 @@ namespace VMS.HIS.DAL
             
             item.SoLuong = SoLuong;
             
+            item.TheTich = TheTich;
+            
             item.IdThuoc = IdThuoc;
             
             item.TenDichtruyen = TenDichtruyen;
@@ -103,6 +105,8 @@ namespace VMS.HIS.DAL
             item.SoLo = SoLo;
             
             item.TocDo = TocDo;
+            
+            item.Roman = Roman;
             
             item.ThoigianBatdau = ThoigianBatdau;
             
@@ -130,6 +134,18 @@ namespace VMS.HIS.DAL
             
             item.IdThuockho = IdThuockho;
             
+            item.IdKhoa = IdKhoa;
+            
+            item.IdBuong = IdBuong;
+            
+            item.IdGiuong = IdGiuong;
+            
+            item.TenKhoa = TenKhoa;
+            
+            item.TenBuong = TenBuong;
+            
+            item.TenGiuong = TenGiuong;
+            
 	    
 		    item.Save(UserName);
 	    }
@@ -138,7 +154,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(long Id,long IdPhieu,int IdBacsichidinh,string TenBacsyChidinh,int IdYtathuchien,string TenYtaThuchien,int SoLuong,int IdThuoc,string TenDichtruyen,string SoLo,int TocDo,DateTime ThoigianBatdau,DateTime ThoigianKetthuc,string NguoiThuchien,DateTime NgayThuchien,DateTime NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua,long IdChitietdonthuoc,byte TrangthaiIn,string IdThuocKethop,long IdDonthuoc,long? IdThuockho)
+	    public void Update(long Id,long IdPhieu,int IdBacsichidinh,string TenBacsyChidinh,int IdYtathuchien,string TenYtaThuchien,decimal SoLuong,int? TheTich,int IdThuoc,string TenDichtruyen,string SoLo,int TocDo,string Roman,DateTime ThoigianBatdau,DateTime ThoigianKetthuc,string NguoiThuchien,DateTime NgayThuchien,DateTime NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua,long IdChitietdonthuoc,byte TrangthaiIn,string IdThuocKethop,long IdDonthuoc,long? IdThuockho,short? IdKhoa,short? IdBuong,short? IdGiuong,string TenKhoa,string TenBuong,string TenGiuong)
 	    {
 		    NoitruPhieudichtruyenChitiet item = new NoitruPhieudichtruyenChitiet();
 	        item.MarkOld();
@@ -158,6 +174,8 @@ namespace VMS.HIS.DAL
 				
 			item.SoLuong = SoLuong;
 				
+			item.TheTich = TheTich;
+				
 			item.IdThuoc = IdThuoc;
 				
 			item.TenDichtruyen = TenDichtruyen;
@@ -165,6 +183,8 @@ namespace VMS.HIS.DAL
 			item.SoLo = SoLo;
 				
 			item.TocDo = TocDo;
+				
+			item.Roman = Roman;
 				
 			item.ThoigianBatdau = ThoigianBatdau;
 				
@@ -191,6 +211,18 @@ namespace VMS.HIS.DAL
 			item.IdDonthuoc = IdDonthuoc;
 				
 			item.IdThuockho = IdThuockho;
+				
+			item.IdKhoa = IdKhoa;
+				
+			item.IdBuong = IdBuong;
+				
+			item.IdGiuong = IdGiuong;
+				
+			item.TenKhoa = TenKhoa;
+				
+			item.TenBuong = TenBuong;
+				
+			item.TenGiuong = TenGiuong;
 				
 	        item.Save(UserName);
 	    }

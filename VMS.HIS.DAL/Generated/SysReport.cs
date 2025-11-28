@@ -322,6 +322,20 @@ namespace VMS.HIS.DAL
 				colvarMaPhieuEmr.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarMaPhieuEmr);
 				
+				TableSchema.TableColumn colvarSttHthi = new TableSchema.TableColumn(schema);
+				colvarSttHthi.ColumnName = "stt_hthi";
+				colvarSttHthi.DataType = DbType.Byte;
+				colvarSttHthi.MaxLength = 0;
+				colvarSttHthi.AutoIncrement = false;
+				colvarSttHthi.IsNullable = true;
+				colvarSttHthi.IsPrimaryKey = false;
+				colvarSttHthi.IsForeignKey = false;
+				colvarSttHthi.IsReadOnly = false;
+				
+						colvarSttHthi.DefaultSetting = @"((0))";
+				colvarSttHthi.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarSttHthi);
+				
 				BaseSchema = schema;
 				//add this schema to the provider
 				//so we can query it later
@@ -451,6 +465,14 @@ namespace VMS.HIS.DAL
 			get { return GetColumnValue<string>(Columns.MaPhieuEmr); }
 			set { SetColumnValue(Columns.MaPhieuEmr, value); }
 		}
+		  
+		[XmlAttribute("SttHthi")]
+		[Bindable(true)]
+		public byte? SttHthi 
+		{
+			get { return GetColumnValue<byte?>(Columns.SttHthi); }
+			set { SetColumnValue(Columns.SttHthi, value); }
+		}
 		
 		#endregion
 		
@@ -471,7 +493,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(string varMaBaocao,string varMaNhom,string varTieuDe,string varFileRieng,string varFileChuan,string varMoTa,short? varPrintNumber,string varNguoiTao,DateTime? varNgayTao,string varNguoiSua,DateTime? varNgaySua,byte? varExcelStartLine,string varExcelFileName,string varFileWord,string varMaPhieuEmr)
+		public static void Insert(string varMaBaocao,string varMaNhom,string varTieuDe,string varFileRieng,string varFileChuan,string varMoTa,short? varPrintNumber,string varNguoiTao,DateTime? varNgayTao,string varNguoiSua,DateTime? varNgaySua,byte? varExcelStartLine,string varExcelFileName,string varFileWord,string varMaPhieuEmr,byte? varSttHthi)
 		{
 			SysReport item = new SysReport();
 			
@@ -505,6 +527,8 @@ namespace VMS.HIS.DAL
 			
 			item.MaPhieuEmr = varMaPhieuEmr;
 			
+			item.SttHthi = varSttHthi;
+			
 		
 			if (System.Web.HttpContext.Current != null)
 				item.Save(System.Web.HttpContext.Current.User.Identity.Name);
@@ -515,7 +539,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(string varMaBaocao,string varMaNhom,string varTieuDe,string varFileRieng,string varFileChuan,string varMoTa,short? varPrintNumber,string varNguoiTao,DateTime? varNgayTao,string varNguoiSua,DateTime? varNgaySua,byte? varExcelStartLine,string varExcelFileName,string varFileWord,string varMaPhieuEmr)
+		public static void Update(string varMaBaocao,string varMaNhom,string varTieuDe,string varFileRieng,string varFileChuan,string varMoTa,short? varPrintNumber,string varNguoiTao,DateTime? varNgayTao,string varNguoiSua,DateTime? varNgaySua,byte? varExcelStartLine,string varExcelFileName,string varFileWord,string varMaPhieuEmr,byte? varSttHthi)
 		{
 			SysReport item = new SysReport();
 			
@@ -548,6 +572,8 @@ namespace VMS.HIS.DAL
 				item.FileWord = varFileWord;
 			
 				item.MaPhieuEmr = varMaPhieuEmr;
+			
+				item.SttHthi = varSttHthi;
 			
 			item.IsNew = false;
 			if (System.Web.HttpContext.Current != null)
@@ -667,6 +693,13 @@ namespace VMS.HIS.DAL
         
         
         
+        public static TableSchema.TableColumn SttHthiColumn
+        {
+            get { return Schema.Columns[15]; }
+        }
+        
+        
+        
         #endregion
 		#region Columns Struct
 		public struct Columns
@@ -686,6 +719,7 @@ namespace VMS.HIS.DAL
 			 public static string ExcelFileName = @"Excel_FileName";
 			 public static string FileWord = @"file_word";
 			 public static string MaPhieuEmr = @"ma_phieu_emr";
+			 public static string SttHthi = @"stt_hthi";
 						
 		}
 		#endregion

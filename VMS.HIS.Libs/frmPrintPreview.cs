@@ -64,6 +64,7 @@ namespace VNS.Libs
 
             //This call is required by the Windows Form Designer.
             InitializeComponent();
+            this.Shown += FrmPrintPreview_Shown;
             Utility.SetVisualStyle(this);
             log = LogManager.GetCurrentClassLogger();
             //Add any initialization after the InitializeComponent() call
@@ -79,12 +80,43 @@ namespace VNS.Libs
 
             CauHinh();
         }
+
+        private void FrmPrintPreview_Shown(object sender, EventArgs e)
+        {
+            try
+            {
+                this.crptViewer.ReportSource = this.RptDoc;
+
+                reportTitle1.Init(mv_sReportCode);
+                addTrinhKy_OnFormLoad();
+                cmdPrint.Focus();
+
+                CleanTemporaryFolders();
+                if (AutoClose) this.Close();
+            }
+            catch (Exception ex)
+            {
+            }
+            try
+            {
+                crptViewer.Refresh();
+                crptViewer.Update();
+                crptViewer.PerformLayout();
+            }
+            catch (Exception)
+            {
+
+              
+            }
+        }
+
         public frmPrintPreview( string FormTitle, ReportDocument RptDoc, bool pv_bSetContent, bool pv_bDisplayPrintButton)
             : base()
         {
 
             //This call is required by the Windows Form Designer.
-            InitializeComponent();
+            InitializeComponent(); 
+            this.Shown += FrmPrintPreview_Shown;
             Utility.SetVisualStyle(this);
             log = LogManager.GetCurrentClassLogger();
             //Add any initialization after the InitializeComponent() call
@@ -204,18 +236,7 @@ namespace VNS.Libs
         private void frmPrintPreview_Load(object sender, System.EventArgs e)
         {
 
-            try
-            {
-                this.crptViewer.ReportSource = this.RptDoc;
-                reportTitle1.Init(mv_sReportCode);
-                addTrinhKy_OnFormLoad();
-                cmdPrint.Focus();
-                CleanTemporaryFolders();
-                if (AutoClose) this.Close();
-            }
-            catch (Exception ex)
-            {
-            }
+           
         }
         void LoadPrintNumberByReportCode()
         {

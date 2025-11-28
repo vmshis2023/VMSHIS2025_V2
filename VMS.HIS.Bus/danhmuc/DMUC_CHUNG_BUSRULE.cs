@@ -147,6 +147,12 @@ namespace VNS.HIS.NGHIEPVU
                     .Set(DmucChung.Columns.VietTat).EqualTo(obj.VietTat)
                     .Set(DmucChung.Columns.SttHthi).EqualTo(obj.SttHthi)
                     .Set(DmucChung.Columns.MotaThem).EqualTo(obj.MotaThem)
+                    .Set(DmucChung.Columns.DienThoai).EqualTo(obj.DienThoai)
+                    .Set(DmucChung.Columns.SoTaikhoan).EqualTo(obj.SoTaikhoan)
+                    .Set(DmucChung.Columns.Mst).EqualTo(obj.Mst)
+                    .Set(DmucChung.Columns.DiaChi).EqualTo(obj.DiaChi)
+                    .Set(DmucChung.Columns.Quocgia).EqualTo(obj.Quocgia)
+
                     .Set(DmucChung.Columns.TrangThai).EqualTo(obj.TrangThai)
                     .Set(DmucChung.Columns.TrangthaiMacdinh).EqualTo(obj.TrangthaiMacdinh)
                     .Set(DmucChung.Columns.NgaySua).EqualTo(obj.NgaySua)

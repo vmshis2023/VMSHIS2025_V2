@@ -14,6 +14,9 @@ using VNS.Properties;
 using VNS.HIS.NGHIEPVU.THUOC;
 using VNS.HIS.UI.Forms.Cauhinh;
 using System.IO;
+using VMS.HIS.Duoc.DUOC;
+using VMS.HIS.Danhmuc.Dungchung;
+
 namespace VNS.HIS.UI.THUOC
 {
     /// <summary>
@@ -778,6 +781,32 @@ namespace VNS.HIS.UI.THUOC
             catch (Exception ex)
             {
                 Utility.CatchException(ex);
+            }
+        }
+
+
+        private void cmd_HoiDongKiemNhap_Click(object sender, EventArgs e)
+        {
+            long id_phieu = Utility.Int64Dbnull(grdList.GetValue(TPhieuNhapxuatthuoc.Columns.IdPhieu), -1);
+            byte loai_phieu = 0;//0=Hội đồng kiểm nhập theo phiếu nhập kho;1= hội đồng kiểm nhập theo
+            frm_danhsach_hoidong _hoidong = new frm_danhsach_hoidong(id_phieu, loai_phieu);
+            _hoidong.ShowDialog();
+        }
+
+        private void cmdInBienBanKiemNhap_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int IdPhieu = Utility.Int32Dbnull(grdList.GetValue(TPhieuNhapxuatthuoc.Columns.IdPhieu), -1);
+                TPhieuNhapxuatthuoc objPhieuNhap = TPhieuNhapxuatthuoc.FetchByID(IdPhieu);
+                if (objPhieuNhap != null)
+                {
+                    VNS.HIS.UI.Baocao.thuoc_phieuin_nhapxuat.InBienBanKiemNhap(IdPhieu, "BIÊN BẢN KIỂM NHẬP", globalVariables.SysDate);
+                }
+            }
+            catch (Exception ex)
+            {
+                Utility.ShowMsg("Lỗi khi in biên bản kiểm nhập:\n" + ex.Message);
             }
         }
     }

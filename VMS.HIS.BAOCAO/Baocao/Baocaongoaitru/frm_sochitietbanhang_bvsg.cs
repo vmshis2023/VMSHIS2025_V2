@@ -500,7 +500,7 @@ namespace VNS.HIS.UI.Baocao
         /// <param name="e"></param>
         private void cmdInPhieuXN_Click(object sender, EventArgs e)
         {
-            
+           
                 BaocaoSochitietbanhang();
               
         }

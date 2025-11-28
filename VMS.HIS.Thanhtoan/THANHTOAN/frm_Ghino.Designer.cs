@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Janus.Windows.GridEX.GridEXLayout grdThongTinChuaThanhToan_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_Ghino));
+            Janus.Windows.GridEX.GridEXLayout grdThongTinChuaThanhToan_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.GridEX.GridEXLayout grd_danhsach_ghino_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.GridEX.GridEXLayout grd_chitietghino_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
-            this.ctxUpdatePrice = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.mnuUpdatePrice = new System.Windows.Forms.ToolStripMenuItem();
-            this.grdThongTinChuaThanhToan = new Janus.Windows.GridEX.GridEX();
+            this.ctx_tinhnang = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnu_cancel = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnu_reuse = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlThongtintien = new System.Windows.Forms.Panel();
             this.chk_thoatsaukhiluu = new Janus.Windows.EditControls.UICheckBox();
             this.txtGhichu = new Janus.Windows.GridEX.EditControls.EditBox();
@@ -80,89 +80,78 @@
             this.cmdAccept = new Janus.Windows.EditControls.UIButton();
             this.label12 = new System.Windows.Forms.Label();
             this.dtPaymentDate = new Janus.Windows.CalendarCombo.CalendarCombo();
-            this.uiTabTamthu = new Janus.Windows.UI.Tab.UITab();
+            this.uiTabCongNo = new Janus.Windows.UI.Tab.UITab();
+            this.uiTabPageDichvu = new Janus.Windows.UI.Tab.UITabPage();
+            this.grdThongTinChuaThanhToan = new Janus.Windows.GridEX.GridEX();
+            this.ucThongtinnguoibenh_v21 = new VNS.HIS.UI.Forms.Dungchung.UCs.ucThongtinnguoibenh_v2();
+            this.uiTabPageLichsu = new Janus.Windows.UI.Tab.UITabPage();
             this.grd_danhsach_ghino = new Janus.Windows.GridEX.GridEX();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.uiGroupBox1 = new Janus.Windows.EditControls.UIGroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.dtp_denngay = new Janus.Windows.CalendarCombo.CalendarCombo();
+            this.lblMsg = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.dtp_tungay = new Janus.Windows.CalendarCombo.CalendarCombo();
+            this.opt_tungay_denngay = new Janus.Windows.EditControls.UIRadioButton();
+            this.opt_trongngay = new Janus.Windows.EditControls.UIRadioButton();
+            this.cmd_print = new Janus.Windows.EditControls.UIButton();
+            this.pnlheader = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.grd_chitietghino = new Janus.Windows.GridEX.GridEX();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.txtTilemiengiamAll = new MaskedTextBox.MaskedTextBox();
+            this.chkPercent = new System.Windows.Forms.CheckBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cmd_huy_dichvu = new Janus.Windows.EditControls.UIButton();
+            this.cmd_update_ghino = new Janus.Windows.EditControls.UIButton();
             this.cmd_exit2 = new Janus.Windows.EditControls.UIButton();
             this.cmd_gachno = new Janus.Windows.EditControls.UIButton();
             this.cmd_delete = new Janus.Windows.EditControls.UIButton();
             this.cmdInhoadon = new Janus.Windows.EditControls.UIButton();
-            this.uiTabPageDichvu = new Janus.Windows.UI.Tab.UITabPage();
-            this.ucThongtinnguoibenh_v21 = new VNS.HIS.UI.Forms.Dungchung.UCs.ucThongtinnguoibenh_v2();
-            this.uiTabPageLichsu = new Janus.Windows.UI.Tab.UITabPage();
-            this.ctxUpdatePrice.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdThongTinChuaThanhToan)).BeginInit();
+            this.ctx_tinhnang.SuspendLayout();
             this.pnlThongtintien.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.uiTabTamthu)).BeginInit();
-            this.uiTabTamthu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grd_danhsach_ghino)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grd_chitietghino)).BeginInit();
-            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.uiTabCongNo)).BeginInit();
+            this.uiTabCongNo.SuspendLayout();
             this.uiTabPageDichvu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdThongTinChuaThanhToan)).BeginInit();
             this.uiTabPageLichsu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grd_danhsach_ghino)).BeginInit();
+            this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox1)).BeginInit();
+            this.uiGroupBox1.SuspendLayout();
+            this.pnlheader.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grd_chitietghino)).BeginInit();
+            this.panel6.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // ctxUpdatePrice
+            // ctx_tinhnang
             // 
-            this.ctxUpdatePrice.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuUpdatePrice});
-            this.ctxUpdatePrice.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.ctxUpdatePrice.Name = "contextMenuStrip1";
-            this.ctxUpdatePrice.Size = new System.Drawing.Size(414, 26);
+            this.ctx_tinhnang.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnu_cancel,
+            this.mnu_reuse});
+            this.ctx_tinhnang.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
+            this.ctx_tinhnang.Name = "contextMenuStrip1";
+            this.ctx_tinhnang.Size = new System.Drawing.Size(253, 48);
             // 
-            // mnuUpdatePrice
+            // mnu_cancel
             // 
-            this.mnuUpdatePrice.Name = "mnuUpdatePrice";
-            this.mnuUpdatePrice.Size = new System.Drawing.Size(413, 22);
-            this.mnuUpdatePrice.Text = "Khôi phục dữ liệu thanh toán chi tiết cho các dịch vụ đang chọn";
+            this.mnu_cancel.Name = "mnu_cancel";
+            this.mnu_cancel.Size = new System.Drawing.Size(252, 22);
+            this.mnu_cancel.Text = "Hủy sử dụng dịch vụ không dùng";
+            this.mnu_cancel.Click += new System.EventHandler(this.mnu_cancel_Click);
             // 
-            // grdThongTinChuaThanhToan
+            // mnu_reuse
             // 
-            this.grdThongTinChuaThanhToan.AlternatingColors = true;
-            this.grdThongTinChuaThanhToan.AlternatingRowFormatStyle.BackColor = System.Drawing.Color.Cornsilk;
-            this.grdThongTinChuaThanhToan.BackColor = System.Drawing.SystemColors.Control;
-            this.grdThongTinChuaThanhToan.BuiltInTextsData = "<LocalizableData ID=\"LocalizableStrings\" Collection=\"true\"><RecordNavigator>Số bả" +
-    "n ghi:|/</RecordNavigator></LocalizableData>";
-            this.grdThongTinChuaThanhToan.CellSelectionMode = Janus.Windows.GridEX.CellSelectionMode.SingleCell;
-            this.grdThongTinChuaThanhToan.ControlStyle.ButtonAppearance = Janus.Windows.GridEX.ButtonAppearance.FlatBorderless;
-            this.grdThongTinChuaThanhToan.ControlStyle.ControlColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.grdThongTinChuaThanhToan.ControlStyle.HoverBlendColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.grdThongTinChuaThanhToan.ControlStyle.ScrollBarColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.grdThongTinChuaThanhToan.ControlStyle.WindowColor = System.Drawing.SystemColors.GradientActiveCaption;
-            grdThongTinChuaThanhToan_DesignTimeLayout.LayoutString = resources.GetString("grdThongTinChuaThanhToan_DesignTimeLayout.LayoutString");
-            this.grdThongTinChuaThanhToan.DesignTimeLayout = grdThongTinChuaThanhToan_DesignTimeLayout;
-            this.grdThongTinChuaThanhToan.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdThongTinChuaThanhToan.DynamicFiltering = true;
-            this.grdThongTinChuaThanhToan.FilterMode = Janus.Windows.GridEX.FilterMode.Automatic;
-            this.grdThongTinChuaThanhToan.FilterRowFormatStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.grdThongTinChuaThanhToan.FilterRowUpdateMode = Janus.Windows.GridEX.FilterRowUpdateMode.WhenValueChanges;
-            this.grdThongTinChuaThanhToan.FlatBorderColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.grdThongTinChuaThanhToan.Font = new System.Drawing.Font("Arial", 9F);
-            this.grdThongTinChuaThanhToan.GroupByBoxVisible = false;
-            this.grdThongTinChuaThanhToan.GroupRowFormatStyle.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
-            this.grdThongTinChuaThanhToan.GroupRowFormatStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.grdThongTinChuaThanhToan.GroupTotalRowFormatStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.grdThongTinChuaThanhToan.GroupTotals = Janus.Windows.GridEX.GroupTotals.Always;
-            this.grdThongTinChuaThanhToan.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight;
-            this.grdThongTinChuaThanhToan.Location = new System.Drawing.Point(0, 129);
-            this.grdThongTinChuaThanhToan.Name = "grdThongTinChuaThanhToan";
-            this.grdThongTinChuaThanhToan.NewRowFormatStyle.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.grdThongTinChuaThanhToan.NewRowFormatStyle.BackColorGradient = System.Drawing.SystemColors.GradientActiveCaption;
-            this.grdThongTinChuaThanhToan.RecordNavigator = true;
-            this.grdThongTinChuaThanhToan.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
-            this.grdThongTinChuaThanhToan.SelectedFormatStyle.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.grdThongTinChuaThanhToan.SelectionMode = Janus.Windows.GridEX.SelectionMode.MultipleSelection;
-            this.grdThongTinChuaThanhToan.Size = new System.Drawing.Size(1145, 529);
-            this.grdThongTinChuaThanhToan.TabIndex = 116;
-            this.grdThongTinChuaThanhToan.TableHeaders = Janus.Windows.GridEX.InheritableBoolean.Default;
-            this.grdThongTinChuaThanhToan.TotalRow = Janus.Windows.GridEX.InheritableBoolean.True;
-            this.grdThongTinChuaThanhToan.TotalRowFormatStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.grdThongTinChuaThanhToan.TotalRowFormatStyle.FontBold = Janus.Windows.GridEX.TriState.True;
-            this.grdThongTinChuaThanhToan.TotalRowPosition = Janus.Windows.GridEX.TotalRowPosition.BottomFixed;
-            this.grdThongTinChuaThanhToan.TreeLineColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.grdThongTinChuaThanhToan.UseGroupRowSelector = true;
+            this.mnu_reuse.Name = "mnu_reuse";
+            this.mnu_reuse.Size = new System.Drawing.Size(252, 22);
+            this.mnu_reuse.Text = "Tái sử dụng dịch vụ đã hủy";
+            this.mnu_reuse.Click += new System.EventHandler(this.mnu_reuse_Click);
             // 
             // pnlThongtintien
             // 
@@ -764,17 +753,95 @@
             this.dtPaymentDate.TabIndex = 363;
             this.dtPaymentDate.Value = new System.DateTime(2013, 6, 19, 0, 0, 0, 0);
             // 
-            // uiTabTamthu
+            // uiTabCongNo
             // 
-            this.uiTabTamthu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiTabTamthu.Font = new System.Drawing.Font("Arial", 9F);
-            this.uiTabTamthu.Location = new System.Drawing.Point(0, 0);
-            this.uiTabTamthu.Name = "uiTabTamthu";
-            this.uiTabTamthu.Size = new System.Drawing.Size(1149, 802);
-            this.uiTabTamthu.TabIndex = 364;
-            this.uiTabTamthu.TabPages.AddRange(new Janus.Windows.UI.Tab.UITabPage[] {
+            this.uiTabCongNo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiTabCongNo.Font = new System.Drawing.Font("Arial", 9F);
+            this.uiTabCongNo.Location = new System.Drawing.Point(0, 0);
+            this.uiTabCongNo.Name = "uiTabCongNo";
+            this.uiTabCongNo.Size = new System.Drawing.Size(1149, 802);
+            this.uiTabCongNo.TabIndex = 364;
+            this.uiTabCongNo.TabPages.AddRange(new Janus.Windows.UI.Tab.UITabPage[] {
             this.uiTabPageDichvu,
             this.uiTabPageLichsu});
+            // 
+            // uiTabPageDichvu
+            // 
+            this.uiTabPageDichvu.Controls.Add(this.grdThongTinChuaThanhToan);
+            this.uiTabPageDichvu.Controls.Add(this.ucThongtinnguoibenh_v21);
+            this.uiTabPageDichvu.Controls.Add(this.pnlThongtintien);
+            this.uiTabPageDichvu.Key = "LIST";
+            this.uiTabPageDichvu.Location = new System.Drawing.Point(1, 23);
+            this.uiTabPageDichvu.Name = "uiTabPageDichvu";
+            this.uiTabPageDichvu.Size = new System.Drawing.Size(1145, 776);
+            this.uiTabPageDichvu.TabStop = true;
+            this.uiTabPageDichvu.Text = "Thông tin dịch vụ cần ghi nợ";
+            // 
+            // grdThongTinChuaThanhToan
+            // 
+            this.grdThongTinChuaThanhToan.AlternatingColors = true;
+            this.grdThongTinChuaThanhToan.AlternatingRowFormatStyle.BackColor = System.Drawing.Color.Cornsilk;
+            this.grdThongTinChuaThanhToan.BackColor = System.Drawing.SystemColors.Control;
+            this.grdThongTinChuaThanhToan.BuiltInTextsData = "<LocalizableData ID=\"LocalizableStrings\" Collection=\"true\"><RecordNavigator>Số bả" +
+    "n ghi:|/</RecordNavigator></LocalizableData>";
+            this.grdThongTinChuaThanhToan.CellSelectionMode = Janus.Windows.GridEX.CellSelectionMode.SingleCell;
+            this.grdThongTinChuaThanhToan.ControlStyle.ButtonAppearance = Janus.Windows.GridEX.ButtonAppearance.FlatBorderless;
+            this.grdThongTinChuaThanhToan.ControlStyle.ControlColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.grdThongTinChuaThanhToan.ControlStyle.HoverBlendColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.grdThongTinChuaThanhToan.ControlStyle.ScrollBarColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.grdThongTinChuaThanhToan.ControlStyle.WindowColor = System.Drawing.SystemColors.GradientActiveCaption;
+            grdThongTinChuaThanhToan_DesignTimeLayout.LayoutString = resources.GetString("grdThongTinChuaThanhToan_DesignTimeLayout.LayoutString");
+            this.grdThongTinChuaThanhToan.DesignTimeLayout = grdThongTinChuaThanhToan_DesignTimeLayout;
+            this.grdThongTinChuaThanhToan.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdThongTinChuaThanhToan.DynamicFiltering = true;
+            this.grdThongTinChuaThanhToan.FilterMode = Janus.Windows.GridEX.FilterMode.Automatic;
+            this.grdThongTinChuaThanhToan.FilterRowFormatStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.grdThongTinChuaThanhToan.FilterRowUpdateMode = Janus.Windows.GridEX.FilterRowUpdateMode.WhenValueChanges;
+            this.grdThongTinChuaThanhToan.FlatBorderColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.grdThongTinChuaThanhToan.Font = new System.Drawing.Font("Arial", 9F);
+            this.grdThongTinChuaThanhToan.GroupByBoxVisible = false;
+            this.grdThongTinChuaThanhToan.GroupRowFormatStyle.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            this.grdThongTinChuaThanhToan.GroupRowFormatStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.grdThongTinChuaThanhToan.GroupTotalRowFormatStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.grdThongTinChuaThanhToan.GroupTotals = Janus.Windows.GridEX.GroupTotals.Always;
+            this.grdThongTinChuaThanhToan.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight;
+            this.grdThongTinChuaThanhToan.Location = new System.Drawing.Point(0, 129);
+            this.grdThongTinChuaThanhToan.Name = "grdThongTinChuaThanhToan";
+            this.grdThongTinChuaThanhToan.NewRowFormatStyle.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.grdThongTinChuaThanhToan.NewRowFormatStyle.BackColorGradient = System.Drawing.SystemColors.GradientActiveCaption;
+            this.grdThongTinChuaThanhToan.RecordNavigator = true;
+            this.grdThongTinChuaThanhToan.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
+            this.grdThongTinChuaThanhToan.SelectedFormatStyle.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.grdThongTinChuaThanhToan.SelectionMode = Janus.Windows.GridEX.SelectionMode.MultipleSelection;
+            this.grdThongTinChuaThanhToan.Size = new System.Drawing.Size(1145, 529);
+            this.grdThongTinChuaThanhToan.TabIndex = 365;
+            this.grdThongTinChuaThanhToan.TableHeaders = Janus.Windows.GridEX.InheritableBoolean.Default;
+            this.grdThongTinChuaThanhToan.TotalRow = Janus.Windows.GridEX.InheritableBoolean.True;
+            this.grdThongTinChuaThanhToan.TotalRowFormatStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.grdThongTinChuaThanhToan.TotalRowFormatStyle.FontBold = Janus.Windows.GridEX.TriState.True;
+            this.grdThongTinChuaThanhToan.TotalRowPosition = Janus.Windows.GridEX.TotalRowPosition.BottomFixed;
+            this.grdThongTinChuaThanhToan.TreeLineColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.grdThongTinChuaThanhToan.UseGroupRowSelector = true;
+            // 
+            // ucThongtinnguoibenh_v21
+            // 
+            this.ucThongtinnguoibenh_v21.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucThongtinnguoibenh_v21.Location = new System.Drawing.Point(0, 0);
+            this.ucThongtinnguoibenh_v21.Name = "ucThongtinnguoibenh_v21";
+            this.ucThongtinnguoibenh_v21.Size = new System.Drawing.Size(1145, 129);
+            this.ucThongtinnguoibenh_v21.TabIndex = 364;
+            // 
+            // uiTabPageLichsu
+            // 
+            this.uiTabPageLichsu.Controls.Add(this.grd_danhsach_ghino);
+            this.uiTabPageLichsu.Controls.Add(this.panel3);
+            this.uiTabPageLichsu.Controls.Add(this.panel2);
+            this.uiTabPageLichsu.Key = "HISTORY";
+            this.uiTabPageLichsu.Location = new System.Drawing.Point(1, 23);
+            this.uiTabPageLichsu.Name = "uiTabPageLichsu";
+            this.uiTabPageLichsu.Size = new System.Drawing.Size(1145, 776);
+            this.uiTabPageLichsu.TabStop = true;
+            this.uiTabPageLichsu.Text = "Lịch sử ghi nợ";
             // 
             // grd_danhsach_ghino
             // 
@@ -799,12 +866,178 @@
             this.grd_danhsach_ghino.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
             this.grd_danhsach_ghino.SelectedFormatStyle.BackColor = System.Drawing.Color.PaleTurquoise;
             this.grd_danhsach_ghino.SelectedInactiveFormatStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.grd_danhsach_ghino.Size = new System.Drawing.Size(615, 729);
+            this.grd_danhsach_ghino.Size = new System.Drawing.Size(609, 729);
             this.grd_danhsach_ghino.TabIndex = 10;
             this.grd_danhsach_ghino.TotalRow = Janus.Windows.GridEX.InheritableBoolean.True;
             this.grd_danhsach_ghino.TotalRowFormatStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.grd_danhsach_ghino.TotalRowFormatStyle.FontBold = Janus.Windows.GridEX.TriState.True;
             this.grd_danhsach_ghino.TotalRowPosition = Janus.Windows.GridEX.TotalRowPosition.BottomFixed;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.panel4);
+            this.panel3.Controls.Add(this.grd_chitietghino);
+            this.panel3.Controls.Add(this.panel6);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel3.Location = new System.Drawing.Point(609, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(536, 729);
+            this.panel3.TabIndex = 118;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.uiGroupBox1);
+            this.panel4.Controls.Add(this.cmd_print);
+            this.panel4.Controls.Add(this.pnlheader);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(0, 512);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(536, 217);
+            this.panel4.TabIndex = 118;
+            // 
+            // uiGroupBox1
+            // 
+            this.uiGroupBox1.Controls.Add(this.label3);
+            this.uiGroupBox1.Controls.Add(this.dtp_denngay);
+            this.uiGroupBox1.Controls.Add(this.lblMsg);
+            this.uiGroupBox1.Controls.Add(this.label4);
+            this.uiGroupBox1.Controls.Add(this.dtp_tungay);
+            this.uiGroupBox1.Controls.Add(this.opt_tungay_denngay);
+            this.uiGroupBox1.Controls.Add(this.opt_trongngay);
+            this.uiGroupBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.uiGroupBox1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uiGroupBox1.Location = new System.Drawing.Point(0, 55);
+            this.uiGroupBox1.Name = "uiGroupBox1";
+            this.uiGroupBox1.Size = new System.Drawing.Size(536, 115);
+            this.uiGroupBox1.TabIndex = 1;
+            // 
+            // label3
+            // 
+            this.label3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(254, 65);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(62, 15);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "đến ngày:";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // dtp_denngay
+            // 
+            this.dtp_denngay.CustomFormat = "dd/MM/yyyy ";
+            this.dtp_denngay.DateFormat = Janus.Windows.CalendarCombo.DateFormat.Custom;
+            // 
+            // 
+            // 
+            this.dtp_denngay.DropDownCalendar.Name = "";
+            this.dtp_denngay.Enabled = false;
+            this.dtp_denngay.Location = new System.Drawing.Point(322, 62);
+            this.dtp_denngay.Name = "dtp_denngay";
+            this.dtp_denngay.ShowUpDown = true;
+            this.dtp_denngay.Size = new System.Drawing.Size(125, 21);
+            this.dtp_denngay.TabIndex = 3;
+            this.dtp_denngay.Value = new System.DateTime(2025, 10, 18, 0, 0, 0, 0);
+            // 
+            // lblMsg
+            // 
+            this.lblMsg.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lblMsg.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMsg.Location = new System.Drawing.Point(3, 88);
+            this.lblMsg.Name = "lblMsg";
+            this.lblMsg.Size = new System.Drawing.Size(530, 24);
+            this.lblMsg.TabIndex = 6;
+            this.lblMsg.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label4
+            // 
+            this.label4.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(3, 65);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(114, 15);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Từ ngày:";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // dtp_tungay
+            // 
+            this.dtp_tungay.CustomFormat = "dd/MM/yyyy ";
+            this.dtp_tungay.DateFormat = Janus.Windows.CalendarCombo.DateFormat.Custom;
+            // 
+            // 
+            // 
+            this.dtp_tungay.DropDownCalendar.Name = "";
+            this.dtp_tungay.Enabled = false;
+            this.dtp_tungay.Location = new System.Drawing.Point(123, 62);
+            this.dtp_tungay.Name = "dtp_tungay";
+            this.dtp_tungay.ShowUpDown = true;
+            this.dtp_tungay.Size = new System.Drawing.Size(125, 21);
+            this.dtp_tungay.TabIndex = 2;
+            this.dtp_tungay.Value = new System.DateTime(2025, 10, 18, 0, 0, 0, 0);
+            // 
+            // opt_tungay_denngay
+            // 
+            this.opt_tungay_denngay.Location = new System.Drawing.Point(233, 21);
+            this.opt_tungay_denngay.Name = "opt_tungay_denngay";
+            this.opt_tungay_denngay.Size = new System.Drawing.Size(130, 23);
+            this.opt_tungay_denngay.TabIndex = 1;
+            this.opt_tungay_denngay.TabStop = true;
+            this.opt_tungay_denngay.Text = "Từ ngày đến ngày";
+            this.opt_tungay_denngay.CheckedChanged += new System.EventHandler(this.opt_tungay_denngay_CheckedChanged);
+            // 
+            // opt_trongngay
+            // 
+            this.opt_trongngay.Checked = true;
+            this.opt_trongngay.Location = new System.Drawing.Point(123, 21);
+            this.opt_trongngay.Name = "opt_trongngay";
+            this.opt_trongngay.Size = new System.Drawing.Size(104, 23);
+            this.opt_trongngay.TabIndex = 0;
+            this.opt_trongngay.TabStop = true;
+            this.opt_trongngay.Text = "Trong ngày";
+            this.opt_trongngay.CheckedChanged += new System.EventHandler(this.opt_trongngay_CheckedChanged);
+            // 
+            // cmd_print
+            // 
+            this.cmd_print.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmd_print.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmd_print.Image = global::VMS.HIS.Thanhtoan.Properties.Resources.printer_24;
+            this.cmd_print.ImageSize = new System.Drawing.Size(24, 24);
+            this.cmd_print.Location = new System.Drawing.Point(437, 178);
+            this.cmd_print.Name = "cmd_print";
+            this.cmd_print.Size = new System.Drawing.Size(96, 33);
+            this.cmd_print.TabIndex = 4;
+            this.cmd_print.Text = "In";
+            this.cmd_print.Click += new System.EventHandler(this.cmd_print_Click);
+            // 
+            // pnlheader
+            // 
+            this.pnlheader.Controls.Add(this.label5);
+            this.pnlheader.Controls.Add(this.panel5);
+            this.pnlheader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlheader.Location = new System.Drawing.Point(0, 0);
+            this.pnlheader.Name = "pnlheader";
+            this.pnlheader.Size = new System.Drawing.Size(536, 55);
+            this.pnlheader.TabIndex = 0;
+            // 
+            // label5
+            // 
+            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label5.Location = new System.Drawing.Point(73, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(463, 55);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "BÁO CÁO CHI TIẾT CÔNG NỢ PHẢI THU";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // panel5
+            // 
+            this.panel5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel5.BackgroundImage")));
+            this.panel5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel5.Location = new System.Drawing.Point(0, 0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(73, 55);
+            this.panel5.TabIndex = 1;
             // 
             // grd_chitietghino
             // 
@@ -814,6 +1047,7 @@
             this.grd_chitietghino.BuiltInTextsData = "<LocalizableData ID=\"LocalizableStrings\" Collection=\"true\"><RecordNavigator>Số bả" +
     "n ghi:|/</RecordNavigator></LocalizableData>";
             this.grd_chitietghino.CellSelectionMode = Janus.Windows.GridEX.CellSelectionMode.SingleCell;
+            this.grd_chitietghino.ContextMenuStrip = this.ctx_tinhnang;
             this.grd_chitietghino.ControlStyle.ButtonAppearance = Janus.Windows.GridEX.ButtonAppearance.FlatBorderless;
             this.grd_chitietghino.ControlStyle.ControlColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.grd_chitietghino.ControlStyle.HoverBlendColor = System.Drawing.SystemColors.GradientActiveCaption;
@@ -821,7 +1055,7 @@
             this.grd_chitietghino.ControlStyle.WindowColor = System.Drawing.SystemColors.GradientActiveCaption;
             grd_chitietghino_DesignTimeLayout.LayoutString = resources.GetString("grd_chitietghino_DesignTimeLayout.LayoutString");
             this.grd_chitietghino.DesignTimeLayout = grd_chitietghino_DesignTimeLayout;
-            this.grd_chitietghino.Dock = System.Windows.Forms.DockStyle.Right;
+            this.grd_chitietghino.Dock = System.Windows.Forms.DockStyle.Top;
             this.grd_chitietghino.DynamicFiltering = true;
             this.grd_chitietghino.FilterMode = Janus.Windows.GridEX.FilterMode.Automatic;
             this.grd_chitietghino.FilterRowFormatStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
@@ -834,7 +1068,7 @@
             this.grd_chitietghino.GroupTotalRowFormatStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.grd_chitietghino.GroupTotals = Janus.Windows.GridEX.GroupTotals.Always;
             this.grd_chitietghino.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight;
-            this.grd_chitietghino.Location = new System.Drawing.Point(615, 0);
+            this.grd_chitietghino.Location = new System.Drawing.Point(0, 49);
             this.grd_chitietghino.Name = "grd_chitietghino";
             this.grd_chitietghino.NewRowFormatStyle.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.grd_chitietghino.NewRowFormatStyle.BackColorGradient = System.Drawing.SystemColors.GradientActiveCaption;
@@ -842,7 +1076,7 @@
             this.grd_chitietghino.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
             this.grd_chitietghino.SelectedFormatStyle.BackColor = System.Drawing.Color.PaleTurquoise;
             this.grd_chitietghino.SelectionMode = Janus.Windows.GridEX.SelectionMode.MultipleSelection;
-            this.grd_chitietghino.Size = new System.Drawing.Size(530, 729);
+            this.grd_chitietghino.Size = new System.Drawing.Size(536, 463);
             this.grd_chitietghino.TabIndex = 117;
             this.grd_chitietghino.TableHeaders = Janus.Windows.GridEX.InheritableBoolean.Default;
             this.grd_chitietghino.TotalRow = Janus.Windows.GridEX.InheritableBoolean.True;
@@ -852,8 +1086,47 @@
             this.grd_chitietghino.TreeLineColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.grd_chitietghino.UseGroupRowSelector = true;
             // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.txtTilemiengiamAll);
+            this.panel6.Controls.Add(this.chkPercent);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel6.Location = new System.Drawing.Point(0, 0);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(536, 49);
+            this.panel6.TabIndex = 119;
+            // 
+            // txtTilemiengiamAll
+            // 
+            this.txtTilemiengiamAll.BackColor = System.Drawing.Color.White;
+            this.txtTilemiengiamAll.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtTilemiengiamAll.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            this.txtTilemiengiamAll.ForeColor = System.Drawing.Color.Red;
+            this.txtTilemiengiamAll.Location = new System.Drawing.Point(206, 13);
+            this.txtTilemiengiamAll.Masked = MaskedTextBox.Mask.Decimal;
+            this.txtTilemiengiamAll.Name = "txtTilemiengiamAll";
+            this.txtTilemiengiamAll.Size = new System.Drawing.Size(79, 21);
+            this.txtTilemiengiamAll.TabIndex = 378;
+            this.txtTilemiengiamAll.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // chkPercent
+            // 
+            this.chkPercent.Checked = true;
+            this.chkPercent.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkPercent.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkPercent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.chkPercent.Location = new System.Drawing.Point(6, 14);
+            this.chkPercent.Name = "chkPercent";
+            this.chkPercent.Size = new System.Drawing.Size(194, 20);
+            this.chkPercent.TabIndex = 379;
+            this.chkPercent.Text = "Điều chỉnh % Miễn giảm:";
+            this.chkPercent.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkPercent.UseVisualStyleBackColor = true;
+            // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.cmd_huy_dichvu);
+            this.panel2.Controls.Add(this.cmd_update_ghino);
             this.panel2.Controls.Add(this.cmd_exit2);
             this.panel2.Controls.Add(this.cmd_gachno);
             this.panel2.Controls.Add(this.cmd_delete);
@@ -863,6 +1136,39 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1145, 47);
             this.panel2.TabIndex = 0;
+            // 
+            // cmd_huy_dichvu
+            // 
+            this.cmd_huy_dichvu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmd_huy_dichvu.ButtonStyle = Janus.Windows.EditControls.ButtonStyle.Button;
+            this.cmd_huy_dichvu.Font = new System.Drawing.Font("Arial", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Strikeout))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmd_huy_dichvu.Image = ((System.Drawing.Image)(resources.GetObject("cmd_huy_dichvu.Image")));
+            this.cmd_huy_dichvu.ImageSize = new System.Drawing.Size(24, 24);
+            this.cmd_huy_dichvu.Location = new System.Drawing.Point(434, 6);
+            this.cmd_huy_dichvu.Name = "cmd_huy_dichvu";
+            this.cmd_huy_dichvu.Office2007ColorScheme = Janus.Windows.UI.Office2007ColorScheme.Custom;
+            this.cmd_huy_dichvu.Office2007CustomColor = System.Drawing.Color.Red;
+            this.cmd_huy_dichvu.Size = new System.Drawing.Size(115, 32);
+            this.cmd_huy_dichvu.TabIndex = 718;
+            this.cmd_huy_dichvu.Text = "Hủy dịch vụ";
+            this.cmd_huy_dichvu.Visible = false;
+            this.cmd_huy_dichvu.Click += new System.EventHandler(this.cmd_huy_dichvu_Click);
+            // 
+            // cmd_update_ghino
+            // 
+            this.cmd_update_ghino.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cmd_update_ghino.ButtonStyle = Janus.Windows.EditControls.ButtonStyle.Button;
+            this.cmd_update_ghino.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmd_update_ghino.Image = ((System.Drawing.Image)(resources.GetObject("cmd_update_ghino.Image")));
+            this.cmd_update_ghino.ImageSize = new System.Drawing.Size(22, 22);
+            this.cmd_update_ghino.Location = new System.Drawing.Point(3, 6);
+            this.cmd_update_ghino.Name = "cmd_update_ghino";
+            this.cmd_update_ghino.Office2007ColorScheme = Janus.Windows.UI.Office2007ColorScheme.Custom;
+            this.cmd_update_ghino.Office2007CustomColor = System.Drawing.Color.Red;
+            this.cmd_update_ghino.Size = new System.Drawing.Size(96, 32);
+            this.cmd_update_ghino.TabIndex = 717;
+            this.cmd_update_ghino.Text = "Refresh";
+            this.cmd_update_ghino.Click += new System.EventHandler(this.cmd_update_ghino_Click);
             // 
             // cmd_exit2
             // 
@@ -886,13 +1192,14 @@
             this.cmd_gachno.Font = new System.Drawing.Font("Arial", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Strikeout))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmd_gachno.Image = ((System.Drawing.Image)(resources.GetObject("cmd_gachno.Image")));
             this.cmd_gachno.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmd_gachno.Location = new System.Drawing.Point(842, 6);
+            this.cmd_gachno.Location = new System.Drawing.Point(555, 6);
             this.cmd_gachno.Name = "cmd_gachno";
             this.cmd_gachno.Office2007ColorScheme = Janus.Windows.UI.Office2007ColorScheme.Custom;
             this.cmd_gachno.Office2007CustomColor = System.Drawing.Color.Red;
             this.cmd_gachno.Size = new System.Drawing.Size(96, 32);
             this.cmd_gachno.TabIndex = 715;
             this.cmd_gachno.Text = "Gạch nợ";
+            this.cmd_gachno.Visible = false;
             this.cmd_gachno.Click += new System.EventHandler(this.cmd_gachno_Click);
             // 
             // cmd_delete
@@ -902,7 +1209,7 @@
             this.cmd_delete.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmd_delete.Image = ((System.Drawing.Image)(resources.GetObject("cmd_delete.Image")));
             this.cmd_delete.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmd_delete.Location = new System.Drawing.Point(740, 6);
+            this.cmd_delete.Location = new System.Drawing.Point(842, 6);
             this.cmd_delete.Name = "cmd_delete";
             this.cmd_delete.Office2007ColorScheme = Janus.Windows.UI.Office2007ColorScheme.Custom;
             this.cmd_delete.Office2007CustomColor = System.Drawing.Color.WhiteSmoke;
@@ -925,71 +1232,47 @@
             this.cmdInhoadon.Size = new System.Drawing.Size(96, 32);
             this.cmdInhoadon.TabIndex = 22;
             this.cmdInhoadon.Text = "In phiếu";
-            // 
-            // uiTabPageDichvu
-            // 
-            this.uiTabPageDichvu.Controls.Add(this.grdThongTinChuaThanhToan);
-            this.uiTabPageDichvu.Controls.Add(this.ucThongtinnguoibenh_v21);
-            this.uiTabPageDichvu.Controls.Add(this.pnlThongtintien);
-            this.uiTabPageDichvu.Key = "LIST";
-            this.uiTabPageDichvu.Location = new System.Drawing.Point(1, 23);
-            this.uiTabPageDichvu.Name = "uiTabPageDichvu";
-            this.uiTabPageDichvu.Size = new System.Drawing.Size(1145, 776);
-            this.uiTabPageDichvu.TabStop = true;
-            this.uiTabPageDichvu.Text = "Thông tin dịch vụ cần ghi nợ";
-            // 
-            // ucThongtinnguoibenh_v21
-            // 
-            this.ucThongtinnguoibenh_v21.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ucThongtinnguoibenh_v21.Location = new System.Drawing.Point(0, 0);
-            this.ucThongtinnguoibenh_v21.Name = "ucThongtinnguoibenh_v21";
-            this.ucThongtinnguoibenh_v21.Size = new System.Drawing.Size(1145, 129);
-            this.ucThongtinnguoibenh_v21.TabIndex = 364;
-            // 
-            // uiTabPageLichsu
-            // 
-            this.uiTabPageLichsu.Controls.Add(this.grd_danhsach_ghino);
-            this.uiTabPageLichsu.Controls.Add(this.grd_chitietghino);
-            this.uiTabPageLichsu.Controls.Add(this.panel2);
-            this.uiTabPageLichsu.Key = "HISTORY";
-            this.uiTabPageLichsu.Location = new System.Drawing.Point(1, 23);
-            this.uiTabPageLichsu.Name = "uiTabPageLichsu";
-            this.uiTabPageLichsu.Size = new System.Drawing.Size(1145, 776);
-            this.uiTabPageLichsu.TabStop = true;
-            this.uiTabPageLichsu.Text = "Lịch sử ghi nợ";
+            this.cmdInhoadon.Click += new System.EventHandler(this.cmdInhoadon_Click);
             // 
             // frm_Ghino
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1149, 802);
-            this.Controls.Add(this.uiTabTamthu);
+            this.Controls.Add(this.uiTabCongNo);
             this.Name = "frm_Ghino";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Chọn Ghi nợ dịch vụ";
             this.Load += new System.EventHandler(this.frm_Ghino_Load);
-            this.ctxUpdatePrice.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grdThongTinChuaThanhToan)).EndInit();
+            this.ctx_tinhnang.ResumeLayout(false);
             this.pnlThongtintien.ResumeLayout(false);
             this.pnlThongtintien.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.uiTabTamthu)).EndInit();
-            this.uiTabTamthu.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grd_danhsach_ghino)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grd_chitietghino)).EndInit();
-            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.uiTabCongNo)).EndInit();
+            this.uiTabCongNo.ResumeLayout(false);
             this.uiTabPageDichvu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grdThongTinChuaThanhToan)).EndInit();
             this.uiTabPageLichsu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grd_danhsach_ghino)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox1)).EndInit();
+            this.uiGroupBox1.ResumeLayout(false);
+            this.uiGroupBox1.PerformLayout();
+            this.pnlheader.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grd_chitietghino)).EndInit();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.ContextMenuStrip ctxUpdatePrice;
-        private System.Windows.Forms.ToolStripMenuItem mnuUpdatePrice;
-        private Janus.Windows.GridEX.GridEX grdThongTinChuaThanhToan;
+        private System.Windows.Forms.ContextMenuStrip ctx_tinhnang;
+        private System.Windows.Forms.ToolStripMenuItem mnu_cancel;
         private System.Windows.Forms.Panel pnlThongtintien;
         private Janus.Windows.EditControls.UIButton cmdShowHide;
         private System.Windows.Forms.Label lblTrangthainoitru;
@@ -1028,7 +1311,7 @@
         private Janus.Windows.GridEX.EditControls.EditBox txtDachietkhau;
         private Janus.Windows.GridEX.EditControls.EditBox txtTienChietkhau;
         private System.Windows.Forms.Panel panel1;
-        private Janus.Windows.UI.Tab.UITab uiTabTamthu;
+        private Janus.Windows.UI.Tab.UITab uiTabCongNo;
         private Janus.Windows.UI.Tab.UITabPage uiTabPageDichvu;
         private Janus.Windows.UI.Tab.UITabPage uiTabPageLichsu;
         private System.Windows.Forms.Panel panel2;
@@ -1045,5 +1328,26 @@
         private Janus.Windows.EditControls.UICheckBox chk_thoatsaukhiluu;
         private Janus.Windows.GridEX.GridEX grd_chitietghino;
         private Janus.Windows.EditControls.UIButton cmd_exit2;
+        private Janus.Windows.EditControls.UIButton cmd_update_ghino;
+        private Janus.Windows.GridEX.GridEX grdThongTinChuaThanhToan;
+        private System.Windows.Forms.ToolStripMenuItem mnu_reuse;
+        private Janus.Windows.EditControls.UIButton cmd_huy_dichvu;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel4;
+        private Janus.Windows.EditControls.UIGroupBox uiGroupBox1;
+        private System.Windows.Forms.Label label3;
+        public Janus.Windows.CalendarCombo.CalendarCombo dtp_denngay;
+        public System.Windows.Forms.Label lblMsg;
+        private System.Windows.Forms.Label label4;
+        public Janus.Windows.CalendarCombo.CalendarCombo dtp_tungay;
+        public Janus.Windows.EditControls.UIRadioButton opt_tungay_denngay;
+        public Janus.Windows.EditControls.UIRadioButton opt_trongngay;
+        private Janus.Windows.EditControls.UIButton cmd_print;
+        private System.Windows.Forms.Panel pnlheader;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel6;
+        private MaskedTextBox.MaskedTextBox txtTilemiengiamAll;
+        private System.Windows.Forms.CheckBox chkPercent;
     }
 }

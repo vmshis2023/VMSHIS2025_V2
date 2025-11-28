@@ -12,6 +12,8 @@ using SubSonic;
 using VNS.Properties;
 using VNS.HIS.UI.DANHMUC;
 using VNS.HIS.NGHIEPVU;
+using VNS.HISLink.UI.Duoc.Form_DanhMuc;
+
 namespace VNS.HIS.UI.THUOC
 {
     public partial class frm_themmoi_thuoc : Form
@@ -120,6 +122,7 @@ namespace VNS.HIS.UI.THUOC
             txtCachsudung._OnShowData += txtCachsudung__OnShowData;
             txtNuocSX._OnShowData += txtNuocSX__OnShowData;
             txtHangSX._OnShowData += txtHangSX__OnShowData;
+           
             txtDangBaoChe._OnShowData += txtDangBaoChe__OnShowData;
             txtKieuthuocVT._OnShowData += txtKieuthuocVT__OnShowData;
             txtKieuthuocVT._OnEnterMe += txtKieuthuocVT__OnEnterMe;
@@ -128,7 +131,21 @@ namespace VNS.HIS.UI.THUOC
             txtloaithau._OnShowData += txtloaithau__OnShowData;
             txtnhomthau._OnShowData += txtnhomthau__OnShowData;
             autoPhanloaithuoc._OnShowData += autoPhanloaithuoc__OnShowData;
+            autoQuicach._OnShowDataV1 += _OnShowDataV1;
             cmdNew.Click += cmdNew_Click;
+        }
+
+        private void _OnShowDataV1(UCs.AutoCompleteTextbox_Danhmucchung obj)
+        {
+            DMUC_DCHUNG dmucDchung = new DMUC_DCHUNG(obj.LOAI_DANHMUC);
+            dmucDchung.ShowDialog();
+            if (!dmucDchung.m_blnCancel)
+            {
+                string oldCode = obj.myCode;
+                obj.Init();
+                obj.SetCode(oldCode);
+                obj.Focus();
+            }
         }
 
         void txtKieuthuocVT__OnSelectionChanged()
@@ -709,23 +726,24 @@ namespace VNS.HIS.UI.THUOC
                     txtCode.Clear();
                     txtMaQD40.Clear();
                     txtMaQDTinh.Clear();
-                    txtContent.Clear();
-                    txtNumber_Register.Clear();
-                    txtHangSX.SetDefaultItem();
-                    txtNuocSX.SetDefaultItem();
-                    chkHieuLuc.Checked = true;
-                    txtName.Clear();
-                    txtTEN_BHYT.Clear();
-                    autoPhanloaithuoc.SetDefaultItem();
-                    autoHoatchat.Clear();
-                    txtDangBaoChe.SetDefaultItem();
-                    txtDonvitinh.SetDefaultItem();
-                    txtDongia.Clear();
-                    txtGiaBHYT.Clear();
-                    txtCachsudung.SetDefaultItem();
-                    txtPTDT.Clear();
-                    txtSlVuottran.Text = "0";
-                    txtPTTT.Clear();
+                    //251104 rem lại để giữ nội dung cho thuốc mới
+                    //txtContent.Clear();
+                    //txtNumber_Register.Clear();
+                    //txtHangSX.SetDefaultItem();
+                    //txtNuocSX.SetDefaultItem();
+                    //chkHieuLuc.Checked = true;
+                    //txtName.Clear();
+                    //txtTEN_BHYT.Clear();
+                    //autoPhanloaithuoc.SetDefaultItem();
+                    //autoHoatchat.Clear();
+                    //txtDangBaoChe.SetDefaultItem();
+                    //txtDonvitinh.SetDefaultItem();
+                    //txtDongia.Clear();
+                    //txtGiaBHYT.Clear();
+                    //txtCachsudung.SetDefaultItem();
+                    //txtPTDT.Clear();
+                    //txtSlVuottran.Text = "0";
+                    //txtPTTT.Clear();
                     optAll.Checked = true;
                     chkTutuc.Checked = false;
                     chkSingle.Checked = false;
@@ -833,6 +851,9 @@ namespace VNS.HIS.UI.THUOC
                 objThuoc.PhuthuDungtuyen = Utility.DecimaltoDbnull(txtPTDT.Text, 0);
                 objThuoc.PhuthuTraituyen = Utility.DecimaltoDbnull(txtPTTT.Text, 0);
                 objThuoc.MotaThem = Utility.sDbnull(txtDesc.Text);
+                objThuoc.TenthuocQuocgia = Utility.sDbnull(txt_ten_lienthong.Text);
+                objThuoc.MathuocQuocgia = Utility.sDbnull(txt_ma_lienthong.Text);
+                objThuoc.GuiLienthong = chk_gui_lienthong.Checked;
                 objThuoc.DangBaoche = Utility.DoTrim(txtDangBaoChe.Text);
                 objThuoc.HamLuong = Utility.sDbnull(txtContent.Text);
                 objThuoc.HangSanxuat = Utility.sDbnull(txtHangSX.Text);
@@ -962,6 +983,9 @@ namespace VNS.HIS.UI.THUOC
 
             objThuoc.TenThuoc = Utility.GetValue(txtName.Text, false);
             objThuoc.TenBhyt = Utility.GetValue(txtTEN_BHYT.Text, false);
+            objThuoc.TenthuocQuocgia = Utility.sDbnull(txt_ten_lienthong.Text);
+            objThuoc.MathuocQuocgia = Utility.sDbnull(txt_ma_lienthong.Text);
+            objThuoc.GuiLienthong = chk_gui_lienthong.Checked;
             objThuoc.DonGia = Utility.DecimaltoDbnull( txtDongia.Text,0);
             objThuoc.GiaDv = Utility.DecimaltoDbnull(txtGiaDV.Text, 0);
             objThuoc.GiaBhyt = Utility.DecimaltoDbnull(txtGiaBHYT.Text, 0);
@@ -1391,8 +1415,17 @@ namespace VNS.HIS.UI.THUOC
             this.Close();
         }
 
+        private void cmd_show_hoatchat_Click(object sender, EventArgs e)
+        {
+            string old_code = autoHoatchat.MyCode;
+            frm_Danhmuc_HoatChat _Danhmuc_HoatChat = new frm_Danhmuc_HoatChat();
+            _Danhmuc_HoatChat.ShowDialog();
+            Autocompletehoatchat();
+        }
 
+        private void cmdNew_Click_1(object sender, EventArgs e)
+        {
 
-
+        }
     }
 }

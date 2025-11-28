@@ -145,7 +145,10 @@ namespace VNS.HIS.UI.GOIKHAM
                 Utility.EnableButton(cmdSave, true);
             }
         }
-     
-        
+
+        private void cmdSave_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

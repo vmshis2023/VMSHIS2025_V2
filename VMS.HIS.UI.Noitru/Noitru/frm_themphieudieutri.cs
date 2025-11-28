@@ -37,7 +37,7 @@ namespace VNS.HIS.UI.NOITRU
             Utility.SetVisualStyle(this);
             KeyPreview = true;
            
-            cboBacSy.Enabled = true;
+            cbo_BacSyDieuTri.Enabled = true;
             CauHinh();
         }
         public void SetDate()
@@ -86,7 +86,7 @@ namespace VNS.HIS.UI.NOITRU
 
                 dataTable = THU_VIEN_CHUNG.LaydanhsachKhoanoitruTheoBacsi(globalVariables.UserName, Utility.Bool2byte(globalVariables.IsAdmin), (byte)1);
                 DataBinding.BindDataCombobox(cboKhoaNoiTru, dataTable,
-                                           DmucKhoaphong.Columns.IdKhoaphong, DmucKhoaphong.Columns.TenKhoaphong, "", true);
+                                           DmucKhoaphong.Columns.IdKhoaphong, DmucKhoaphong.Columns.TenKhoaphong, "---Chọn---", true);
                 if (id_khoasua > 0)
                     cboKhoaNoiTru.SelectedIndex = Utility.GetSelectedIndex(cboKhoaNoiTru, id_khoasua.ToString());
                 else if (objBuongGiuong != null)
@@ -99,17 +99,17 @@ namespace VNS.HIS.UI.NOITRU
                 }
                 if (cboKhoaNoiTru.SelectedIndex != 0 && cboKhoaNoiTru.Items.Count == 1) cboKhoaNoiTru.SelectedIndex = 0;
                 DataTable m_dtDoctorAssign = THU_VIEN_CHUNG.LaydanhsachBacsi(-1, 1);
-                DataBinding.BindDataCombobox(cboBacSy, m_dtDoctorAssign, DmucNhanvien.Columns.IdNhanvien,
-                                           DmucNhanvien.Columns.TenNhanvien, "---Bác sỹ điều trị---", true);
+                DataBinding.BindDataCombobox(cbo_BacSyDieuTri, m_dtDoctorAssign, DmucNhanvien.Columns.IdNhanvien,
+                                           DmucNhanvien.Columns.TenNhanvien, "---Chọn---", true);
                 if (globalVariables.gv_intIDNhanvien <= 0)
                 {
-                    if (cboBacSy.Items.Count > 0)
-                        cboBacSy.SelectedIndex = 0;
+                    if (cbo_BacSyDieuTri.Items.Count > 0)
+                        cbo_BacSyDieuTri.SelectedIndex = 0;
                 }
                 else
                 {
-                    if (cboBacSy.Items.Count > 0)
-                        cboBacSy.SelectedIndex = Utility.GetSelectedIndex(cboBacSy,
+                    if (cbo_BacSyDieuTri.Items.Count > 0)
+                        cbo_BacSyDieuTri.SelectedIndex = Utility.GetSelectedIndex(cbo_BacSyDieuTri,
                                                                                  globalVariables.gv_intIDNhanvien.ToString());
                 }
             }
@@ -129,7 +129,7 @@ namespace VNS.HIS.UI.NOITRU
             getData();
             ModifyCommands();
             cboKhoaNoiTru.Enabled = globalVariables.IsAdmin || cboKhoaNoiTru.Items.Count>1;
-            cboBacSy.Enabled = globalVariables.IsAdmin;
+            cbo_BacSyDieuTri.Enabled = globalVariables.IsAdmin;
            
         }
 
@@ -170,7 +170,7 @@ namespace VNS.HIS.UI.NOITRU
                 txtDieuduongtheodoi.Text = objPhieudieutri.ThongtinTheodoi;
                 cboKhoaNoiTru.SelectedIndex = Utility.GetSelectedIndex(cboKhoaNoiTru, objPhieudieutri.IdKhoanoitru.ToString());
                 chkPhieuBoSung.Checked = Utility.Byte2Bool(objPhieudieutri.TthaiBosung);
-                cboBacSy.SelectedIndex = Utility.GetSelectedIndex(cboBacSy, objPhieudieutri.IdBacsi.ToString());
+                cbo_BacSyDieuTri.SelectedIndex = Utility.GetSelectedIndex(cbo_BacSyDieuTri, objPhieudieutri.IdBacsi.ToString());
                 if (objBuongGiuong == null)
                     objBuongGiuong = NoitruPhanbuonggiuong.FetchByID(objPhieudieutri.IdBuongGiuong);
             }
@@ -203,11 +203,11 @@ namespace VNS.HIS.UI.NOITRU
                 return false;
             }
 
-            if (cboBacSy.SelectedIndex < 0)
+            if (Utility.Int32Dbnull( cbo_BacSyDieuTri.SelectedValue,0) <= 0)
             {
                 Utility.ShowMsg("Bạn phải chọn bác sỹ điều trị mời bạn xem lại");
-                errorProvider1.SetError(cboBacSy, lblMsg.Text);
-                cboBacSy.Focus();
+                errorProvider1.SetError(cbo_BacSyDieuTri, lblMsg.Text);
+                cbo_BacSyDieuTri.Focus();
                 return false;
             }
             if (!chkPhieuBoSung.Checked)
@@ -355,8 +355,8 @@ namespace VNS.HIS.UI.NOITRU
             objPhieudieutri.IdBenhnhan = Utility.Int32Dbnull(objLuotkham.IdBenhnhan, -1);
             objPhieudieutri.IdBuong = objLuotkham.IdBuong;
             objPhieudieutri.IdGiuong = objLuotkham.IdGiuong;
-            if (cboBacSy.SelectedIndex > 0)
-                objPhieudieutri.IdBacsi = Utility.Int16Dbnull(cboBacSy.SelectedValue);
+            if (cbo_BacSyDieuTri.SelectedIndex > 0)
+                objPhieudieutri.IdBacsi = Utility.Int16Dbnull(cbo_BacSyDieuTri.SelectedValue);
             else
             {
                 objPhieudieutri.IdBacsi = globalVariables.gv_intIDNhanvien;
@@ -372,9 +372,9 @@ namespace VNS.HIS.UI.NOITRU
                     DataRow drv = p_TreatMent.NewRow();
                     Utility.FromObjectToDatarow(objPhieudieutri, ref drv);
                     drv["sngay_dieutri"] = dtNgayLapPhieu.Value.ToString("dd/MM/yyyy");
-                    if (cboBacSy.SelectedIndex > 0)
+                    if (cbo_BacSyDieuTri.SelectedIndex > 0)
                     {
-                        drv["ten_bacsidieutri"] = cboBacSy.Text;
+                        drv["ten_bacsidieutri"] = cbo_BacSyDieuTri.Text;
                     }
                     drv["ten_khoanoitru"] = cboKhoaNoiTru.Text;
                     p_TreatMent.Rows.Add(drv);
@@ -509,6 +509,7 @@ namespace VNS.HIS.UI.NOITRU
                 .Set(KcbDonthuoc.Columns.NgaySua).EqualTo(globalVariables.SysDate)
                 .Where(KcbDonthuoc.Columns.IdPhieudieutri).IsEqualTo(Utility.Int32Dbnull(txtTreat_ID.Text)).Execute();
         }
+        EmrDocuments emrdoc = new EmrDocuments();
         private void UpdatePhieuDieuTri()
         {
             objPhieudieutri.IdPhieudieutri = Utility.Int32Dbnull(txtTreat_ID.Text, -1);
@@ -544,27 +545,29 @@ namespace VNS.HIS.UI.NOITRU
             objPhieudieutri.IdGiuong = id_giuong;
             objPhieudieutri.IdBenhnhan = Utility.Int32Dbnull(objLuotkham.IdBenhnhan, -1);
             objPhieudieutri.TthaiBosung =Utility.Bool2byte( chkPhieuBoSung.Checked);
-            if (cboBacSy.SelectedIndex > 0)
-                objPhieudieutri.IdBacsi = Utility.Int16Dbnull(cboBacSy.SelectedValue);
+            if (cbo_BacSyDieuTri.SelectedIndex > 0)
+                objPhieudieutri.IdBacsi = Utility.Int16Dbnull(cbo_BacSyDieuTri.SelectedValue);
             else
             {
                 objPhieudieutri.IdBacsi = globalVariables.gv_intIDNhanvien;
             }
+            //Kiểm tra điều kiện trước khi cập nhật
+              
             ActionResult actionResult = new noitru_phieudieutri().ThemPhieudieutri(objPhieudieutri);
             switch (actionResult)
             {
                 case ActionResult.Success:
                     Utility.Log(this.Name, globalVariables.UserName, string.Format("Sửa phiếu điều trị ID={0}  thành công ", objPhieudieutri.IdPhieudieutri), newaction.Delete, this.GetType().Assembly.ManifestModule.Name);
-                    EmrDocuments emrdoc = new EmrDocuments();
+                    
                     emrdoc.InitDocument(Utility.Int64Dbnull(objPhieudieutri.IdBenhnhan), objPhieudieutri.MaLuotkham, Utility.Int64Dbnull(objPhieudieutri.IdPhieudieutri), objPhieudieutri.NgayDieutri.Value, Loaiphieu_HIS.PHIEUDIEUTRI, "noitru_phieudieutri", objPhieudieutri.NguoiTao, Utility.Int16Dbnull(objPhieudieutri.IdKhoanoitru), -1, Utility.Byte2Bool(0), "");
                     emrdoc.Save();
                     DataRow drv = p_TreatMent.NewRow();
                     Utility.FromObjectToDatarow(objPhieudieutri, ref drv);
                     drv["sngay_dieutri"] = dtNgayLapPhieu.Value.ToString("dd/MM/yyyy");
                     drv["ten_khoanoitru"] = cboKhoaNoiTru.Text;
-                    if (cboBacSy.SelectedIndex > 0)
+                    if (cbo_BacSyDieuTri.SelectedIndex > 0)
                     {
-                        if (p_TreatMent.Columns.Contains("ten_bacsidieutri")) drv["ten_bacsidieutri"] = cboBacSy.Text;
+                        if (p_TreatMent.Columns.Contains("ten_bacsidieutri")) drv["ten_bacsidieutri"] = cbo_BacSyDieuTri.Text;
                     }
                     var query = from dt in p_TreatMent.AsEnumerable()
                         where
@@ -602,7 +605,7 @@ namespace VNS.HIS.UI.NOITRU
             if (e.Control && e.KeyCode == Keys.S) cmdSave_Click(cmdSave, new EventArgs());
         }
 
-        private void cboBacSy_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbo_BacSyDieuTri_SelectedIndexChanged(object sender, EventArgs e)
         {
             //setStatusControl();
         }

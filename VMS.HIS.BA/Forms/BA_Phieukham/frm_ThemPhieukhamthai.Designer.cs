@@ -32,13 +32,13 @@
             Janus.Windows.GridEX.GridEXLayout grdLichsusankhoa_Layout_0 = new Janus.Windows.GridEX.GridEXLayout();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.cmdViewKQCLS = new Janus.Windows.EditControls.UIButton();
-            this.ucThongtinnguoibenh_doc_v61 = new VNS.HIS.UI.Forms.Dungchung.UCs.ucThongtinnguoibenh_doc_v6();
             this.cmdInReport = new Janus.Windows.EditControls.UIButton();
             this.chkPreview = new System.Windows.Forms.CheckBox();
             this.cmdSave = new Janus.Windows.EditControls.UIButton();
             this.uiTabInfor = new Janus.Windows.UI.Tab.UITab();
-            this.tabPage1 = new Janus.Windows.UI.Tab.UITabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label45 = new System.Windows.Forms.Label();
+            this.dtpNgaykhamtruoc = new Janus.Windows.CalendarCombo.CalendarCombo();
             this.cmdThemTiensuSankhoa = new Janus.Windows.EditControls.UIButton();
             this.nmrSomuitiemphonguonvan = new System.Windows.Forms.NumericUpDown();
             this.nmrSolancothai = new System.Windows.Forms.NumericUpDown();
@@ -153,10 +153,8 @@
             this.txttoanthan_batthuong_ghiro = new Janus.Windows.GridEX.EditControls.EditBox();
             this.opttoanthan_batthuong = new System.Windows.Forms.RadioButton();
             this.opttoanthan_binhthuong = new System.Windows.Forms.RadioButton();
-            this.dtpNgaykhamtruoc = new Janus.Windows.CalendarCombo.CalendarCombo();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.tabPage2 = new Janus.Windows.UI.Tab.UITabPage();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label42 = new System.Windows.Forms.Label();
@@ -351,13 +349,16 @@
             this.cmdExit = new Janus.Windows.EditControls.UIButton();
             this.cmdIn = new Janus.Windows.EditControls.UIButton();
             this.cmdThemMoiBN = new Janus.Windows.EditControls.UIButton();
+            this.ucThongtinnguoibenh_doc_v61 = new VNS.HIS.UI.Forms.Dungchung.UCs.ucThongtinnguoibenh_doc_v6();
+            this.tabPage1 = new Janus.Windows.UI.Tab.UITabPage();
+            this.tabPage2 = new Janus.Windows.UI.Tab.UITabPage();
+            this.txt_bacsikham = new VNS.HIS.UCs.AutoCompleteTextbox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiTabInfor)).BeginInit();
             this.uiTabInfor.SuspendLayout();
-            this.tabPage1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nmrSomuitiemphonguonvan)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmrSolancothai)).BeginInit();
@@ -382,7 +383,6 @@
             this.panel10.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panel9.SuspendLayout();
-            this.tabPage2.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nmrVongbung)).BeginInit();
@@ -417,6 +417,8 @@
             this.panel28.SuspendLayout();
             this.panel29.SuspendLayout();
             this.panel30.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -455,14 +457,7 @@
             this.cmdViewKQCLS.TabIndex = 164;
             this.cmdViewKQCLS.TabStop = false;
             this.cmdViewKQCLS.Text = "Xem KQ CLS";
-            // 
-            // ucThongtinnguoibenh_doc_v61
-            // 
-            this.ucThongtinnguoibenh_doc_v61.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ucThongtinnguoibenh_doc_v61.Location = new System.Drawing.Point(0, 0);
-            this.ucThongtinnguoibenh_doc_v61.Name = "ucThongtinnguoibenh_doc_v61";
-            this.ucThongtinnguoibenh_doc_v61.Size = new System.Drawing.Size(433, 517);
-            this.ucThongtinnguoibenh_doc_v61.TabIndex = 1;
+            this.cmdViewKQCLS.Click += new System.EventHandler(this.cmdViewKQCLS_Click_1);
             // 
             // cmdInReport
             // 
@@ -524,20 +519,13 @@
             this.uiTabInfor.TabStop = false;
             this.uiTabInfor.VisualStyle = Janus.Windows.UI.Tab.TabVisualStyle.Normal;
             // 
-            // tabPage1
-            // 
-            this.tabPage1.AutoScroll = true;
-            this.tabPage1.Controls.Add(this.panel2);
-            this.tabPage1.Location = new System.Drawing.Point(1, 23);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(1188, 780);
-            this.tabPage1.TabStop = true;
-            this.tabPage1.Text = "Nội dung tờ 1";
-            // 
             // panel2
             // 
             this.panel2.AutoScroll = true;
             this.panel2.AutoScrollMargin = new System.Drawing.Size(0, 15);
+            this.panel2.Controls.Add(this.label45);
+            this.panel2.Controls.Add(this.dtpNgaykhamtruoc);
+            this.panel2.Controls.Add(this.txt_bacsikham);
             this.panel2.Controls.Add(this.cmdThemTiensuSankhoa);
             this.panel2.Controls.Add(this.nmrSomuitiemphonguonvan);
             this.panel2.Controls.Add(this.nmrSolancothai);
@@ -608,7 +596,6 @@
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.label51);
             this.panel2.Controls.Add(this.panel9);
-            this.panel2.Controls.Add(this.dtpNgaykhamtruoc);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -616,6 +603,33 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1188, 780);
             this.panel2.TabIndex = 1;
+            // 
+            // label45
+            // 
+            this.label45.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label45.ForeColor = System.Drawing.Color.Red;
+            this.label45.Location = new System.Drawing.Point(395, 25);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(79, 21);
+            this.label45.TabIndex = 2584;
+            this.label45.Text = "Bác sĩ khám:";
+            this.label45.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // dtpNgaykhamtruoc
+            // 
+            this.dtpNgaykhamtruoc.CustomFormat = "dd/MM/yyyy HH:mm:ss";
+            this.dtpNgaykhamtruoc.DateFormat = Janus.Windows.CalendarCombo.DateFormat.Custom;
+            // 
+            // 
+            // 
+            this.dtpNgaykhamtruoc.DropDownCalendar.Name = "";
+            this.dtpNgaykhamtruoc.DropDownCalendar.Visible = false;
+            this.dtpNgaykhamtruoc.Location = new System.Drawing.Point(166, 25);
+            this.dtpNgaykhamtruoc.Name = "dtpNgaykhamtruoc";
+            this.dtpNgaykhamtruoc.ShowUpDown = true;
+            this.dtpNgaykhamtruoc.Size = new System.Drawing.Size(218, 21);
+            this.dtpNgaykhamtruoc.TabIndex = 1;
+            this.dtpNgaykhamtruoc.Value = new System.DateTime(2019, 8, 10, 0, 0, 0, 0);
             // 
             // cmdThemTiensuSankhoa
             // 
@@ -1912,24 +1926,9 @@
             this.opttoanthan_binhthuong.Text = "Bình thường";
             this.opttoanthan_binhthuong.UseVisualStyleBackColor = true;
             // 
-            // dtpNgaykhamtruoc
-            // 
-            this.dtpNgaykhamtruoc.CustomFormat = "dd/MM/yyyy HH:mm:ss";
-            this.dtpNgaykhamtruoc.DateFormat = Janus.Windows.CalendarCombo.DateFormat.Custom;
-            // 
-            // 
-            // 
-            this.dtpNgaykhamtruoc.DropDownCalendar.Name = "";
-            this.dtpNgaykhamtruoc.DropDownCalendar.Visible = false;
-            this.dtpNgaykhamtruoc.Location = new System.Drawing.Point(166, 25);
-            this.dtpNgaykhamtruoc.Name = "dtpNgaykhamtruoc";
-            this.dtpNgaykhamtruoc.ShowUpDown = true;
-            this.dtpNgaykhamtruoc.Size = new System.Drawing.Size(218, 21);
-            this.dtpNgaykhamtruoc.TabIndex = 1;
-            this.dtpNgaykhamtruoc.Value = new System.DateTime(2019, 8, 10, 0, 0, 0, 0);
-            // 
             // label3
             // 
+            this.label3.ForeColor = System.Drawing.Color.Red;
             this.label3.Location = new System.Drawing.Point(3, 27);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(161, 15);
@@ -1947,16 +1946,6 @@
             this.label1.Size = new System.Drawing.Size(161, 15);
             this.label1.TabIndex = 0;
             this.label1.Text = "I. Thông tin lần khám trước";
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.AutoScroll = true;
-            this.tabPage2.Controls.Add(this.panel7);
-            this.tabPage2.Location = new System.Drawing.Point(1, 23);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(1188, 780);
-            this.tabPage2.TabStop = true;
-            this.tabPage2.Text = "Nội dung tờ 2";
             // 
             // panel7
             // 
@@ -4258,6 +4247,77 @@
             this.cmdThemMoiBN.Text = "Thêm mới";
             this.cmdThemMoiBN.ToolTipText = "Nhấn vào đây để thêm mới Bệnh nhân";
             // 
+            // ucThongtinnguoibenh_doc_v61
+            // 
+            this.ucThongtinnguoibenh_doc_v61.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucThongtinnguoibenh_doc_v61.Location = new System.Drawing.Point(0, 0);
+            this.ucThongtinnguoibenh_doc_v61.Name = "ucThongtinnguoibenh_doc_v61";
+            this.ucThongtinnguoibenh_doc_v61.Size = new System.Drawing.Size(433, 517);
+            this.ucThongtinnguoibenh_doc_v61.TabIndex = 1;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.AutoScroll = true;
+            this.tabPage1.Controls.Add(this.panel2);
+            this.tabPage1.Location = new System.Drawing.Point(1, 23);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Size = new System.Drawing.Size(1188, 780);
+            this.tabPage1.TabStop = true;
+            this.tabPage1.Text = "Nội dung tờ 1";
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.AutoScroll = true;
+            this.tabPage2.Controls.Add(this.panel7);
+            this.tabPage2.Location = new System.Drawing.Point(1, 23);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Size = new System.Drawing.Size(1188, 780);
+            this.tabPage2.TabStop = true;
+            this.tabPage2.Text = "Nội dung tờ 2";
+            // 
+            // txt_bacsikham
+            // 
+            this.txt_bacsikham._backcolor = System.Drawing.Color.WhiteSmoke;
+            this.txt_bacsikham._Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_bacsikham._TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txt_bacsikham.AutoCompleteList = ((System.Collections.Generic.List<string>)(resources.GetObject("txt_bacsikham.AutoCompleteList")));
+            this.txt_bacsikham.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txt_bacsikham.buildShortcut = false;
+            this.txt_bacsikham.CaseSensitive = false;
+            this.txt_bacsikham.CompareNoID = true;
+            this.txt_bacsikham.DefaultCode = "-1";
+            this.txt_bacsikham.DefaultID = "-1";
+            this.txt_bacsikham.DisplayType = 0;
+            this.txt_bacsikham.Drug_ID = null;
+            this.txt_bacsikham.ExtraWidth = 0;
+            this.txt_bacsikham.FillValueAfterSelect = false;
+            this.txt_bacsikham.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.txt_bacsikham.ForeColor = System.Drawing.Color.Red;
+            this.txt_bacsikham.Location = new System.Drawing.Point(480, 25);
+            this.txt_bacsikham.MaxHeight = 289;
+            this.txt_bacsikham.MinTypedCharacters = 2;
+            this.txt_bacsikham.MyCode = "-1";
+            this.txt_bacsikham.MyID = "-1";
+            this.txt_bacsikham.MyText = "";
+            this.txt_bacsikham.MyTextOnly = "";
+            this.txt_bacsikham.Name = "txt_bacsikham";
+            this.txt_bacsikham.RaiseEvent = true;
+            this.txt_bacsikham.RaiseEventEnter = true;
+            this.txt_bacsikham.RaiseEventEnterWhenEmpty = true;
+            this.txt_bacsikham.SelectedIndex = -1;
+            this.txt_bacsikham.Size = new System.Drawing.Size(322, 21);
+            this.txt_bacsikham.splitChar = '@';
+            this.txt_bacsikham.splitCharIDAndCode = '#';
+            this.txt_bacsikham.TabIndex = 1;
+            this.txt_bacsikham.TakeCode = false;
+            this.txt_bacsikham.txtMyCode = null;
+            this.txt_bacsikham.txtMyCode_Edit = null;
+            this.txt_bacsikham.txtMyID = null;
+            this.txt_bacsikham.txtMyID_Edit = null;
+            this.txt_bacsikham.txtMyName = null;
+            this.txt_bacsikham.txtMyName_Edit = null;
+            this.txt_bacsikham.txtNext = null;
+            // 
             // frm_ThemPhieukhamthai
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -4276,7 +4336,6 @@
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.uiTabInfor)).EndInit();
             this.uiTabInfor.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nmrSomuitiemphonguonvan)).EndInit();
@@ -4320,7 +4379,6 @@
             this.panel8.PerformLayout();
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
@@ -4385,6 +4443,8 @@
             this.panel29.PerformLayout();
             this.panel30.ResumeLayout(false);
             this.panel30.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -4712,5 +4772,7 @@
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.Label label44;
         private Janus.Windows.GridEX.EditControls.EditBox txtVu;
+        private System.Windows.Forms.Label label45;
+        private VNS.HIS.UCs.AutoCompleteTextbox txt_bacsikham;
     }
 }

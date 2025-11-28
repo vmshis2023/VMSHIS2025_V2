@@ -468,6 +468,58 @@ namespace VMS.HIS.DAL
 				colvarCapKinh.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarCapKinh);
 				
+				TableSchema.TableColumn colvarNguoiTao = new TableSchema.TableColumn(schema);
+				colvarNguoiTao.ColumnName = "nguoi_tao";
+				colvarNguoiTao.DataType = DbType.String;
+				colvarNguoiTao.MaxLength = 50;
+				colvarNguoiTao.AutoIncrement = false;
+				colvarNguoiTao.IsNullable = true;
+				colvarNguoiTao.IsPrimaryKey = false;
+				colvarNguoiTao.IsForeignKey = false;
+				colvarNguoiTao.IsReadOnly = false;
+				colvarNguoiTao.DefaultSetting = @"";
+				colvarNguoiTao.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarNguoiTao);
+				
+				TableSchema.TableColumn colvarNgayTao = new TableSchema.TableColumn(schema);
+				colvarNgayTao.ColumnName = "ngay_tao";
+				colvarNgayTao.DataType = DbType.DateTime;
+				colvarNgayTao.MaxLength = 0;
+				colvarNgayTao.AutoIncrement = false;
+				colvarNgayTao.IsNullable = true;
+				colvarNgayTao.IsPrimaryKey = false;
+				colvarNgayTao.IsForeignKey = false;
+				colvarNgayTao.IsReadOnly = false;
+				colvarNgayTao.DefaultSetting = @"";
+				colvarNgayTao.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarNgayTao);
+				
+				TableSchema.TableColumn colvarNgaySua = new TableSchema.TableColumn(schema);
+				colvarNgaySua.ColumnName = "ngay_sua";
+				colvarNgaySua.DataType = DbType.DateTime;
+				colvarNgaySua.MaxLength = 0;
+				colvarNgaySua.AutoIncrement = false;
+				colvarNgaySua.IsNullable = true;
+				colvarNgaySua.IsPrimaryKey = false;
+				colvarNgaySua.IsForeignKey = false;
+				colvarNgaySua.IsReadOnly = false;
+				colvarNgaySua.DefaultSetting = @"";
+				colvarNgaySua.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarNgaySua);
+				
+				TableSchema.TableColumn colvarNguoiSua = new TableSchema.TableColumn(schema);
+				colvarNguoiSua.ColumnName = "nguoi_sua";
+				colvarNguoiSua.DataType = DbType.String;
+				colvarNguoiSua.MaxLength = 50;
+				colvarNguoiSua.AutoIncrement = false;
+				colvarNguoiSua.IsNullable = true;
+				colvarNguoiSua.IsPrimaryKey = false;
+				colvarNguoiSua.IsForeignKey = false;
+				colvarNguoiSua.IsReadOnly = false;
+				colvarNguoiSua.DefaultSetting = @"";
+				colvarNguoiSua.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarNguoiSua);
+				
 				BaseSchema = schema;
 				//add this schema to the provider
 				//so we can query it later
@@ -685,6 +737,38 @@ namespace VMS.HIS.DAL
 			get { return GetColumnValue<bool?>(Columns.CapKinh); }
 			set { SetColumnValue(Columns.CapKinh, value); }
 		}
+		  
+		[XmlAttribute("NguoiTao")]
+		[Bindable(true)]
+		public string NguoiTao 
+		{
+			get { return GetColumnValue<string>(Columns.NguoiTao); }
+			set { SetColumnValue(Columns.NguoiTao, value); }
+		}
+		  
+		[XmlAttribute("NgayTao")]
+		[Bindable(true)]
+		public DateTime? NgayTao 
+		{
+			get { return GetColumnValue<DateTime?>(Columns.NgayTao); }
+			set { SetColumnValue(Columns.NgayTao, value); }
+		}
+		  
+		[XmlAttribute("NgaySua")]
+		[Bindable(true)]
+		public DateTime? NgaySua 
+		{
+			get { return GetColumnValue<DateTime?>(Columns.NgaySua); }
+			set { SetColumnValue(Columns.NgaySua, value); }
+		}
+		  
+		[XmlAttribute("NguoiSua")]
+		[Bindable(true)]
+		public string NguoiSua 
+		{
+			get { return GetColumnValue<string>(Columns.NguoiSua); }
+			set { SetColumnValue(Columns.NguoiSua, value); }
+		}
 		
 		#endregion
 		
@@ -705,7 +789,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(string varMaDichvukcb,string varMaBhyt,string varTenDichvukcb,short varIdKieukham,short varIdKhoaphong,short varIdBacsy,short varIdDoituongKcb,short varIdPhongkham,decimal varDonGia,decimal? varPhuthuDungtuyen,decimal? varPhuthuTraituyen,decimal? varDongiaNgoaigio,decimal? varPhuthuNgoaigio,string varMaDoituongKcb,int? varIdPhikemtheo,int? varIdPhikemtheongoaigio,string varNhomBaocao,byte? varTuTuc,short? varSttHthi,string varMotaThem,string varMaGia,bool? varHoatDong,short? varIdLoaidoituongKcb,byte? varKhamThiluc,bool? varCapKinh)
+		public static void Insert(string varMaDichvukcb,string varMaBhyt,string varTenDichvukcb,short varIdKieukham,short varIdKhoaphong,short varIdBacsy,short varIdDoituongKcb,short varIdPhongkham,decimal varDonGia,decimal? varPhuthuDungtuyen,decimal? varPhuthuTraituyen,decimal? varDongiaNgoaigio,decimal? varPhuthuNgoaigio,string varMaDoituongKcb,int? varIdPhikemtheo,int? varIdPhikemtheongoaigio,string varNhomBaocao,byte? varTuTuc,short? varSttHthi,string varMotaThem,string varMaGia,bool? varHoatDong,short? varIdLoaidoituongKcb,byte? varKhamThiluc,bool? varCapKinh,string varNguoiTao,DateTime? varNgayTao,DateTime? varNgaySua,string varNguoiSua)
 		{
 			DmucDichvukcb item = new DmucDichvukcb();
 			
@@ -759,6 +843,14 @@ namespace VMS.HIS.DAL
 			
 			item.CapKinh = varCapKinh;
 			
+			item.NguoiTao = varNguoiTao;
+			
+			item.NgayTao = varNgayTao;
+			
+			item.NgaySua = varNgaySua;
+			
+			item.NguoiSua = varNguoiSua;
+			
 		
 			if (System.Web.HttpContext.Current != null)
 				item.Save(System.Web.HttpContext.Current.User.Identity.Name);
@@ -769,7 +861,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(int varIdDichvukcb,string varMaDichvukcb,string varMaBhyt,string varTenDichvukcb,short varIdKieukham,short varIdKhoaphong,short varIdBacsy,short varIdDoituongKcb,short varIdPhongkham,decimal varDonGia,decimal? varPhuthuDungtuyen,decimal? varPhuthuTraituyen,decimal? varDongiaNgoaigio,decimal? varPhuthuNgoaigio,string varMaDoituongKcb,int? varIdPhikemtheo,int? varIdPhikemtheongoaigio,string varNhomBaocao,byte? varTuTuc,short? varSttHthi,string varMotaThem,string varMaGia,bool? varHoatDong,short? varIdLoaidoituongKcb,byte? varKhamThiluc,bool? varCapKinh)
+		public static void Update(int varIdDichvukcb,string varMaDichvukcb,string varMaBhyt,string varTenDichvukcb,short varIdKieukham,short varIdKhoaphong,short varIdBacsy,short varIdDoituongKcb,short varIdPhongkham,decimal varDonGia,decimal? varPhuthuDungtuyen,decimal? varPhuthuTraituyen,decimal? varDongiaNgoaigio,decimal? varPhuthuNgoaigio,string varMaDoituongKcb,int? varIdPhikemtheo,int? varIdPhikemtheongoaigio,string varNhomBaocao,byte? varTuTuc,short? varSttHthi,string varMotaThem,string varMaGia,bool? varHoatDong,short? varIdLoaidoituongKcb,byte? varKhamThiluc,bool? varCapKinh,string varNguoiTao,DateTime? varNgayTao,DateTime? varNgaySua,string varNguoiSua)
 		{
 			DmucDichvukcb item = new DmucDichvukcb();
 			
@@ -824,6 +916,14 @@ namespace VMS.HIS.DAL
 				item.KhamThiluc = varKhamThiluc;
 			
 				item.CapKinh = varCapKinh;
+			
+				item.NguoiTao = varNguoiTao;
+			
+				item.NgayTao = varNgayTao;
+			
+				item.NgaySua = varNgaySua;
+			
+				item.NguoiSua = varNguoiSua;
 			
 			item.IsNew = false;
 			if (System.Web.HttpContext.Current != null)
@@ -1020,6 +1120,34 @@ namespace VMS.HIS.DAL
         
         
         
+        public static TableSchema.TableColumn NguoiTaoColumn
+        {
+            get { return Schema.Columns[26]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn NgayTaoColumn
+        {
+            get { return Schema.Columns[27]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn NgaySuaColumn
+        {
+            get { return Schema.Columns[28]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn NguoiSuaColumn
+        {
+            get { return Schema.Columns[29]; }
+        }
+        
+        
+        
         #endregion
 		#region Columns Struct
 		public struct Columns
@@ -1050,6 +1178,10 @@ namespace VMS.HIS.DAL
 			 public static string IdLoaidoituongKcb = @"id_loaidoituong_kcb";
 			 public static string KhamThiluc = @"kham_thiluc";
 			 public static string CapKinh = @"cap_kinh";
+			 public static string NguoiTao = @"nguoi_tao";
+			 public static string NgayTao = @"ngay_tao";
+			 public static string NgaySua = @"ngay_sua";
+			 public static string NguoiSua = @"nguoi_sua";
 						
 		}
 		#endregion

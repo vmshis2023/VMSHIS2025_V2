@@ -51,6 +51,8 @@ namespace VMS.HIS.UI.EMR
             this.mnuInVoBA = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuInTomtatBA = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.cmd_giaychungsinh = new System.Windows.Forms.ToolStripButton();
+            this.cmd_hosotheodoi_sosinh = new System.Windows.Forms.ToolStripButton();
             this.cmdTomtatBA = new System.Windows.Forms.ToolStripButton();
             this.cmdEmr = new System.Windows.Forms.ToolStripButton();
             this.cmdDongBA = new System.Windows.Forms.ToolStripButton();
@@ -105,6 +107,8 @@ namespace VMS.HIS.UI.EMR
             this.cmdDelete,
             this.toolStripDropDownButton1,
             this.toolStripSeparator1,
+            this.cmd_giaychungsinh,
+            this.cmd_hosotheodoi_sosinh,
             this.cmdTomtatBA,
             this.cmdEmr,
             this.cmdDongBA,
@@ -232,6 +236,26 @@ namespace VMS.HIS.UI.EMR
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            // 
+            // cmd_giaychungsinh
+            // 
+            this.cmd_giaychungsinh.Image = ((System.Drawing.Image)(resources.GetObject("cmd_giaychungsinh.Image")));
+            this.cmd_giaychungsinh.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.cmd_giaychungsinh.Name = "cmd_giaychungsinh";
+            this.cmd_giaychungsinh.Size = new System.Drawing.Size(135, 24);
+            this.cmd_giaychungsinh.Text = "Giấy chứng sinh";
+            this.cmd_giaychungsinh.Visible = false;
+            this.cmd_giaychungsinh.Click += new System.EventHandler(this.cmd_giaychungsinh_Click);
+            // 
+            // cmd_hosotheodoi_sosinh
+            // 
+            this.cmd_hosotheodoi_sosinh.Image = ((System.Drawing.Image)(resources.GetObject("cmd_hosotheodoi_sosinh.Image")));
+            this.cmd_hosotheodoi_sosinh.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.cmd_hosotheodoi_sosinh.Name = "cmd_hosotheodoi_sosinh";
+            this.cmd_hosotheodoi_sosinh.Size = new System.Drawing.Size(174, 24);
+            this.cmd_hosotheodoi_sosinh.Text = "Hồ sơ theo dõi sơ sinh";
+            this.cmd_hosotheodoi_sosinh.Visible = false;
+            this.cmd_hosotheodoi_sosinh.Click += new System.EventHandler(this.cmd_hosotheodoi_sosinh_Click);
             // 
             // cmdTomtatBA
             // 
@@ -739,5 +763,7 @@ namespace VMS.HIS.UI.EMR
         private System.Windows.Forms.ComboBox cboLoaiBA;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ToolStripButton cmdInsert;
+        private System.Windows.Forms.ToolStripButton cmd_giaychungsinh;
+        private System.Windows.Forms.ToolStripButton cmd_hosotheodoi_sosinh;
     }
 }

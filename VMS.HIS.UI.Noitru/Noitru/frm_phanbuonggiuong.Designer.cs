@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel1 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_phanbuonggiuong));
             Janus.Windows.GridEX.GridEXLayout cboGia_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
@@ -71,7 +72,7 @@
             this.cmdSave = new Janus.Windows.EditControls.UIButton();
             this.txtGia = new VNS.HIS.UCs.AutoCompleteTextbox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.grpThongTinBN)).BeginInit();
             this.grpThongTinBN.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox1)).BeginInit();
@@ -91,7 +92,7 @@
             this.grpThongTinBN.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpThongTinBN.Location = new System.Drawing.Point(0, 0);
             this.grpThongTinBN.Name = "grpThongTinBN";
-            this.grpThongTinBN.Size = new System.Drawing.Size(1284, 122);
+            this.grpThongTinBN.Size = new System.Drawing.Size(1224, 122);
             this.grpThongTinBN.TabIndex = 0;
             this.grpThongTinBN.Text = "Thông tin Bệnh nhân";
             this.grpThongTinBN.VisualStyle = Janus.Windows.UI.Dock.PanelVisualStyle.Office2003;
@@ -102,7 +103,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ucThongtinnguoibenh1.Location = new System.Drawing.Point(17, 12);
             this.ucThongtinnguoibenh1.Name = "ucThongtinnguoibenh1";
-            this.ucThongtinnguoibenh1.Size = new System.Drawing.Size(1261, 106);
+            this.ucThongtinnguoibenh1.Size = new System.Drawing.Size(1195, 106);
             this.ucThongtinnguoibenh1.TabIndex = 0;
             // 
             // lblMsg
@@ -127,7 +128,7 @@
             uiStatusBarPanel1.Width = 184;
             this.uiStatusBar1.Panels.AddRange(new Janus.Windows.UI.StatusBar.UIStatusBarPanel[] {
             uiStatusBarPanel1});
-            this.uiStatusBar1.Size = new System.Drawing.Size(1284, 23);
+            this.uiStatusBar1.Size = new System.Drawing.Size(1224, 23);
             this.uiStatusBar1.TabIndex = 2;
             // 
             // uiGroupBox1
@@ -152,7 +153,7 @@
             this.uiGroupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.uiGroupBox1.Location = new System.Drawing.Point(0, 122);
             this.uiGroupBox1.Name = "uiGroupBox1";
-            this.uiGroupBox1.Size = new System.Drawing.Size(1284, 98);
+            this.uiGroupBox1.Size = new System.Drawing.Size(1224, 98);
             this.uiGroupBox1.TabIndex = 554;
             this.uiGroupBox1.VisualStyle = Janus.Windows.UI.Dock.PanelVisualStyle.Office2007;
             // 
@@ -371,7 +372,7 @@
             this.txtBedCode.RaiseEventEnter = true;
             this.txtBedCode.RaiseEventEnterWhenEmpty = true;
             this.txtBedCode.SelectedIndex = -1;
-            this.txtBedCode.Size = new System.Drawing.Size(655, 22);
+            this.txtBedCode.Size = new System.Drawing.Size(595, 22);
             this.txtBedCode.splitChar = '@';
             this.txtBedCode.splitCharIDAndCode = '#';
             this.txtBedCode.TabIndex = 502;
@@ -474,7 +475,7 @@
             this.cmdSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdSearch.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdSearch.Image = ((System.Drawing.Image)(resources.GetObject("cmdSearch.Image")));
-            this.cmdSearch.Location = new System.Drawing.Point(1231, 31);
+            this.cmdSearch.Location = new System.Drawing.Point(1171, 31);
             this.cmdSearch.Name = "cmdSearch";
             this.cmdSearch.Size = new System.Drawing.Size(31, 25);
             this.cmdSearch.TabIndex = 518;
@@ -529,7 +530,7 @@
             this.grdBuong.Name = "grdBuong";
             this.grdBuong.RecordNavigator = true;
             this.grdBuong.RowHeaderContent = Janus.Windows.GridEX.RowHeaderContent.RowIndex;
-            this.grdBuong.Size = new System.Drawing.Size(598, 387);
+            this.grdBuong.Size = new System.Drawing.Size(586, 387);
             this.grdBuong.TabIndex = 552;
             this.grdBuong.TabStop = false;
             this.grdBuong.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007;
@@ -553,11 +554,11 @@
             this.grdGiuong.Font = new System.Drawing.Font("Arial", 9F);
             this.grdGiuong.GroupByBoxVisible = false;
             this.grdGiuong.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight;
-            this.grdGiuong.Location = new System.Drawing.Point(598, 0);
+            this.grdGiuong.Location = new System.Drawing.Point(586, 0);
             this.grdGiuong.Name = "grdGiuong";
             this.grdGiuong.RecordNavigator = true;
             this.grdGiuong.RowHeaderContent = Janus.Windows.GridEX.RowHeaderContent.RowIndex;
-            this.grdGiuong.Size = new System.Drawing.Size(686, 387);
+            this.grdGiuong.Size = new System.Drawing.Size(638, 387);
             this.grdGiuong.TabIndex = 553;
             this.grdGiuong.TabStop = false;
             this.grdGiuong.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007;
@@ -614,7 +615,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 607);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1284, 131);
+            this.panel1.Size = new System.Drawing.Size(1224, 131);
             this.panel1.TabIndex = 496;
             // 
             // chkKhongtinh
@@ -662,7 +663,7 @@
             this.txtBacsi.RaiseEventEnter = true;
             this.txtBacsi.RaiseEventEnterWhenEmpty = true;
             this.txtBacsi.SelectedIndex = -1;
-            this.txtBacsi.Size = new System.Drawing.Size(1099, 21);
+            this.txtBacsi.Size = new System.Drawing.Size(1039, 21);
             this.txtBacsi.splitChar = '@';
             this.txtBacsi.splitCharIDAndCode = '#';
             this.txtBacsi.TabIndex = 520;
@@ -682,7 +683,7 @@
             this.cmdExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdExit.Image = global::VMS.HIS.Noitru.Properties.Resources.close_24;
             this.cmdExit.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdExit.Location = new System.Drawing.Point(1142, 76);
+            this.cmdExit.Location = new System.Drawing.Point(1035, 72);
             this.cmdExit.Name = "cmdExit";
             this.cmdExit.Size = new System.Drawing.Size(130, 35);
             this.cmdExit.TabIndex = 557;
@@ -694,7 +695,7 @@
             this.cmdSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdSave.Image = ((System.Drawing.Image)(resources.GetObject("cmdSave.Image")));
             this.cmdSave.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdSave.Location = new System.Drawing.Point(1006, 76);
+            this.cmdSave.Location = new System.Drawing.Point(899, 72);
             this.cmdSave.Name = "cmdSave";
             this.cmdSave.Size = new System.Drawing.Size(130, 35);
             this.cmdSave.TabIndex = 556;
@@ -750,7 +751,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 220);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1284, 387);
+            this.panel2.Size = new System.Drawing.Size(1224, 387);
             this.panel2.TabIndex = 521;
             // 
             // errorProvider1
@@ -759,9 +760,9 @@
             // 
             // frm_phanbuonggiuong
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1284, 761);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(1224, 761);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.uiGroupBox1);
             this.Controls.Add(this.grpThongTinBN);

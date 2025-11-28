@@ -105,6 +105,7 @@
             this.cmdSave.TabIndex = 6;
             this.cmdSave.Text = "Chấp nhận";
             this.cmdSave.ToolTipText = "Phím tắt Ctrl+S";
+            this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click_1);
             // 
             // cmdClose
             // 

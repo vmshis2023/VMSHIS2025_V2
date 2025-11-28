@@ -1612,9 +1612,7 @@ namespace VNS.HIS.UI.NOITRU
             if (!_Phieuravien.mv_blnCancel && _Phieuravien.objLuotkham != null)
             {
                 objLuotkham = Utility.getKcbLuotkham(objLuotkham);
-                cmdXacnhan.Enabled = _khoanoitrutonghop ||
-                                     (_Phieuravien.objLuotkham.TrangthaiNoitru >= 3 &&
-                                      _Phieuravien.objLuotkham.TrangthaiNoitru <= 4);
+                RefreshTrangthai();
             }
             //Tính toán lại thông tin buồng giường cuối cùng
             LayLichsuBuongGiuong();
@@ -2490,6 +2488,7 @@ namespace VNS.HIS.UI.NOITRU
                             txtKhoanoitru.Text = Utility.sDbnull(dr["ten_khoanoitru"], "");
                             txtBuong.Text = Utility.sDbnull(dr["ten_buong"], "");
                             txtGiuong.Text = Utility.sDbnull(dr["ten_giuong"], "");
+                            LaythongtinChandoan();
                             LaydanhsachPhieudieutri();
                             LayLichsuBuongGiuong();
                             Loaddanhsachcongkhamdadangki();
@@ -3678,7 +3677,7 @@ namespace VNS.HIS.UI.NOITRU
         {
             try
             {
-                DataTable dtData = SPs.NoitruTonghopChiphiRavien(objLuotkham.MaLuotkham, (int)objLuotkham.IdBenhnhan, Utility.Bool2byte(!_khoanoitrutonghop), Utility.sDbnull(cboKhoanoitru.SelectedValue, "-1"), "-1").GetDataSet().Tables[0];
+                DataTable dtData = SPs.NoitruTonghopChiphiRavien(objLuotkham.MaLuotkham, (int)objLuotkham.IdBenhnhan, Utility.Bool2byte(!_khoanoitrutonghop), Utility.sDbnull(cboKhoanoitru.SelectedValue, "-1"), "-1",0).GetDataSet().Tables[0];
                 new INPHIEU_THANHTOAN_NGOAITRU().Inbienlai_DichvuChuathanhtoan(dtData, true, 1);
             }
             catch (Exception ex)
@@ -4101,6 +4100,53 @@ namespace VNS.HIS.UI.NOITRU
         }
 
         private void uiButton2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lnkChandoan_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ShowChandoan();
+        }
+        void ShowChandoan()
+        {
+            if (objLuotkham != null && objLuotkham.TrangthaiNoitru >= 3)
+            {
+                Utility.ShowMsg("Người bệnh đã được tổng hợp làm thủ tục ra viện nên bạn không thể nhập thêm thông tin chẩn đoán");
+                return;
+            }
+            frm_ChandoanICD _ChandoanICD = new frm_ChandoanICD();
+            _ChandoanICD.objLuotkham = this.objLuotkham;
+            _ChandoanICD.CallfromParent = true;
+            _ChandoanICD.ShowDialog();
+            LaythongtinChandoan();
+        }
+        void LaythongtinChandoan()
+        {
+            try
+            {
+                string chan_doan = "";
+
+                Utility.GetChandoanHienThiFormDieuTriNoitru(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, DateTime.Now.AddYears(100), ref chan_doan, false);
+                txt_chandoan.Text = chan_doan;
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+            }
+
+        }
+
+        private void cmdViewPdf2_Click(object sender, EventArgs e)
+        {
+            if (RowCLS == null || objLuotkham == null || objPhieudieutri == null) return;
+            frm_PdfViewer _PdfViewer = new frm_PdfViewer(1);
+            _PdfViewer.ma_luotkham = objLuotkham.MaLuotkham;
+            _PdfViewer.ma_chidinh = Utility.sDbnull(RowCLS.Cells[KcbChidinhcl.Columns.MaChidinh].Value);
+            _PdfViewer.ShowDialog();
+        }
+
+        private void panel6_Paint(object sender, PaintEventArgs e)
         {
 
         }

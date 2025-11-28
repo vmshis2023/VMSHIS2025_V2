@@ -985,7 +985,7 @@ namespace VNS.HIS.UI.DANHMUC
                 if (e.KeyCode == Keys.Enter)
                 {
                     //var activeControl = FindFocusedControl(this);
-                    if (uiTabPage1.ActiveControl != null && uiTabPage1.ActiveControl.Name == txtTen.Name && chkMultiLine.Checked)
+                    if (txt_sotaikhoan.ActiveControl != null && txt_sotaikhoan.ActiveControl.Name == txtTen.Name && chkMultiLine.Checked)
                     {
                     }
                     else

@@ -11147,7 +11147,7 @@ namespace VNS.HIS.UI.NGOAITRU
             try
             {
                 Utility.WaitNow(this);
-                DataTable dtData = SPs.NgoaitruTonghopChiphiChuathanhtoan(objLuotkham.MaLuotkham, (int)objLuotkham.IdBenhnhan).GetDataSet().Tables[0];
+                DataTable dtData = SPs.NgoaitruTonghopChiphiChuathanhtoan(objLuotkham.MaLuotkham, (int)objLuotkham.IdBenhnhan,-1).GetDataSet().Tables[0];
                 THU_VIEN_CHUNG.Sapxepthutuin(ref dtData, false);
                 dtData.DefaultView.Sort = "stt_in,stt_hthi_loaidichvu ,stt_hthi_dichvu,stt_hthi_chitiet,ten_chitietdichvu";
 
@@ -12465,7 +12465,7 @@ namespace VNS.HIS.UI.NGOAITRU
         {
             try
             {
-                DataTable dtData = SPs.NgoaitruTonghopChiphiChuathanhtoan(objLuotkham.MaLuotkham, (int)objLuotkham.IdBenhnhan).GetDataSet().Tables[0];
+                DataTable dtData = SPs.NgoaitruTonghopChiphiChuathanhtoan(objLuotkham.MaLuotkham, (int)objLuotkham.IdBenhnhan,-1).GetDataSet().Tables[0];
                 new INPHIEU_THANHTOAN_NGOAITRU().Inbienlai_DichvuChuathanhtoan(dtData, true, 1);
             }
             catch (Exception ex)
@@ -13054,6 +13054,16 @@ namespace VNS.HIS.UI.NGOAITRU
         }
 
         private void mnuXoaGoi_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmdDenghiMG_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmdInGoi_Click_1(object sender, EventArgs e)
         {
 
         }

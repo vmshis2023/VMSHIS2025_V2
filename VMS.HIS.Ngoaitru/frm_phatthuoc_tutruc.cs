@@ -2828,11 +2828,11 @@ namespace VNS.HIS.UI.THUOC
                         frm.objLuotkham = objLuotkham;
                         frm.objBenhnhan = objBenhnhan;
                         frm.id_kham = -1;
-                        frm.txtPatientCode.Text = Utility.sDbnull(objLuotkham.MaLuotkham);
-                        frm.txtPatientID.Text = Utility.sDbnull(objBenhnhan.IdBenhnhan, "-1");
+                        frm.txt_maluotkham.Text = Utility.sDbnull(objLuotkham.MaLuotkham);
+                        frm.txt_idbenhnhan.Text = Utility.sDbnull(objBenhnhan.IdBenhnhan, "-1");
                         frm.txtSoDT.Text = Utility.sDbnull(objBenhnhan.DienThoai, "");
-                        frm.txtTEN_BN.Text = Utility.sDbnull(objBenhnhan.TenBenhnhan, "");
-                        frm.txtNgheNghiep.Text = Utility.sDbnull(objBenhnhan.NamSinh, "");
+                        frm.txt_tenbenhnhan.Text = Utility.sDbnull(objBenhnhan.TenBenhnhan, "");
+                        //frm.txtNgheNghiep.Text = Utility.sDbnull(objBenhnhan.NamSinh, "");
                         frm.txtPres_ID.Text = Utility.sDbnull(objPrescription.IdDonthuoc);
                         frm.dtNgayKhamLai.MinDate = DateTime.Now;
                         frm._ngayhenkhamlai = DateTime.Now.ToString("dd/MM/yyyy");
@@ -2877,12 +2877,12 @@ namespace VNS.HIS.UI.THUOC
                 frm.dt_ICD_PHU = null;
                 frm.id_kham = -1;
                 frm.dtpBOD.Value = new DateTime((int)objBenhnhan.NamSinh, 1, 1);
-                frm.txtPatientCode.Text = Utility.sDbnull(objLuotkham.MaLuotkham);
-                frm.txtPatientID.Text = Utility.sDbnull(objBenhnhan.IdBenhnhan, "-1");
+                frm.txt_maluotkham.Text = Utility.sDbnull(objLuotkham.MaLuotkham);
+                frm.txt_idbenhnhan.Text = Utility.sDbnull(objBenhnhan.IdBenhnhan, "-1");
                 frm.txtSoDT.Text = Utility.sDbnull(objBenhnhan.DienThoai, "");
-                frm.txtTEN_BN.Text = Utility.sDbnull(objBenhnhan.TenBenhnhan, "");
-                frm.txtNgheNghiep.Text = Utility.sDbnull(objBenhnhan.NgheNghiep, "");
-                frm.cboPatientSex.SelectedIndex = 0;// Utility.GetSelectedIndex(cboPatientSex, objBenhnhan.GioiTinh);
+                frm.txt_tenbenhnhan.Text = Utility.sDbnull(objBenhnhan.TenBenhnhan, "");
+                //frm.txtNgheNghiep.Text = Utility.sDbnull(objBenhnhan.NgheNghiep, "");
+                frm.cbo_gioitinh.SelectedIndex = 0;// Utility.GetSelectedIndex(cboPatientSex, objBenhnhan.GioiTinh);
                 frm.txtPres_ID.Text = "-1";
                 frm.dtNgayKhamLai.MinDate = DateTime.Now;
                 frm._ngayhenkhamlai = DateTime.Now.ToString("dd/MM/yyyy");
@@ -2892,7 +2892,7 @@ namespace VNS.HIS.UI.THUOC
 
                 if (!frm.m_blnCancel)
                 {
-                    long intIdDonthuoc = frm.mv_intIdDonthuoc;
+                    long intIdDonthuoc = frm.IdDonthuoc;
                     if (intIdDonthuoc > 0)
                     {
                         DataTable dtTemp =

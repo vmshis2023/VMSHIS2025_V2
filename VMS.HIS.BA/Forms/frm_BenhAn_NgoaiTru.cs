@@ -98,12 +98,39 @@ namespace VMS.HIS.UI.EMR
                 dt_ThongtinNguoibenh = ucThongtinnguoibenh_emr_basic1.dt_ThongtinNguoibenh;
                 //if (!IsValidData()) return;
                 ClearControl();
+                if (!KiemTraBenhAn())
+                {
+                    ModifyCommand();
+                    return;
+                }
                 FillData4Update();
+               
                 ModifyCommand();
             }
         }
+        bool KiemTraBenhAn()
+        {
+            objEmrBa = new Select().From<EmrBa>()
+                    .Where(EmrBa.Columns.MaLuotkham)
+                    .IsEqualTo(objLuotkham.MaLuotkham)
+                    .And(EmrBa.Columns.IdBenhnhan)
+                    .IsEqualTo(Utility.Int32Dbnull(objLuotkham.IdBenhnhan))
+                    .ExecuteSingle<EmrBa>();
+            if (objEmrBa == null || (objEmrBa != null && this.lstLoaiBA.Contains(objEmrBa.LoaiBa)))
+            {
+                return true;
+            }
+            else if (objEmrBa != null && !this.lstLoaiBA.Contains(objEmrBa.LoaiBa))
+            {
+                Utility.ShowMsg(string.Format("Người bệnh {0} đã có {1} nên không thể tạo Bệnh án Ngoại trú. Vui lòng kiểm tra lại", ucThongtinnguoibenh_emr_basic1.txtTenBN.Text, Utility.GetTenLoaiBenhAn(objEmrBa.LoaiBa)));
+                objLuotkham = null;
+                objBenhnhan = null; 
+                return false;
+            }
+            return false;
+        }
 
-         
+
         void soluongto_TextChanged(object sender, EventArgs e)
         {
             txtB_Tongso.Text =( Utility.Int32Dbnull(txtB_CTScanner.Text, 0) + Utility.Int32Dbnull(txtB_Khac.Text, 0) + Utility.Int32Dbnull(txtB_SieuAm.Text, 0) + Utility.Int32Dbnull(txtB_XetNghiem.Text, 0) + Utility.Int32Dbnull(txtB_Xquang.Text, 0)).ToString();
@@ -343,6 +370,7 @@ namespace VMS.HIS.UI.EMR
             {
                 Utility.SetMsg(lblMsg, "Cần chọn người bệnh trước khi làm Bệnh án. Vui lòng kiểm tra lại", true);
                 ucThongtinnguoibenh_emr_basic1.txtMaluotkham.Focus();
+                ucThongtinnguoibenh_emr_basic1.txtMaluotkham.SelectAll();
                 return false;
             }
             if (Utility.sDbnull(cboLoaiBA.SelectedValue, "-1") == "-1")
@@ -375,13 +403,13 @@ namespace VMS.HIS.UI.EMR
                     txtNguoiGiaoHoSo.Focus();
                     return false;
                 }
-                if (Utility.Int32Dbnull(txtNguoiNhanHoSo.MyID, -1) <= 0)
-                {
-                    uiTabBA.SelectedTab = tabpageTo4;
-                    Utility.SetMsg(lblMsg, "Bạn cần chọn Người nhận hồ sơ trong danh mục hệ thống", true);
-                    txtNguoiNhanHoSo.Focus();
-                    return false;
-                }
+                //if (Utility.Int32Dbnull(txtNguoiNhanHoSo.MyID, -1) <= 0)
+                //{
+                //    uiTabBA.SelectedTab = tabpageTo4;
+                //    Utility.SetMsg(lblMsg, "Bạn cần chọn Người nhận hồ sơ trong danh mục hệ thống", true);
+                //    txtNguoiNhanHoSo.Focus();
+                //    return false;
+                //}
                 if (Utility.Int32Dbnull(txtBSDieuTri.MyID, -1) <= 0)
                 {
                     uiTabBA.SelectedTab = tabpageTo4;
@@ -592,8 +620,8 @@ namespace VMS.HIS.UI.EMR
             }
             objTKBA.IdNguoigiaoHoso = Utility.Int16Dbnull(txtNguoiGiaoHoSo.MyID);
             objTKBA.MaNguoigiaohoso = txtNguoiGiaoHoSo.MyCode;
-            objTKBA.IdNguoinhanHoso = Utility.Int16Dbnull(txtNguoiNhanHoSo.MyID);
-            objTKBA.MaNguoinhanhoso = txtNguoiNhanHoSo.MyCode;
+            //objTKBA.IdNguoinhanHoso = Utility.Int16Dbnull(txtNguoiNhanHoSo.MyID);
+            //objTKBA.MaNguoinhanhoso = txtNguoiNhanHoSo.MyCode;
             objTKBA.IdGiamdoc = Utility.Int16Dbnull(txtGDBV.MyID);
             objTKBA.MaGiamdoc = txtGDBV.MyCode;
             objTKBA.IdBacsiDieutri = Utility.Int16Dbnull(txtBSDieuTri.MyID);
@@ -780,8 +808,8 @@ namespace VMS.HIS.UI.EMR
 
                 objEmrBa.IdNguoigiaoHoso = Utility.Int16Dbnull(txtNguoiGiaoHoSo.MyID);
                 objEmrBa.TongketbaMaNguoigiaohoso = txtNguoiGiaoHoSo.Text;
-                objEmrBa.IdNguoinhanHoso = Utility.Int16Dbnull(txtNguoiNhanHoSo.MyID);
-                objEmrBa.TongketbaMaNguoiNhanhoso = txtNguoiNhanHoSo.Text;
+                //objEmrBa.IdNguoinhanHoso = Utility.Int16Dbnull(txtNguoiNhanHoSo.MyID);
+                //objEmrBa.TongketbaMaNguoiNhanhoso = txtNguoiNhanHoSo.Text;
                 objEmrBa.MabacsiLamBA = txtBSlamBA.MyCode;
                 objEmrBa.IdBacsiLamBA =Utility.Int16Dbnull( txtBSlamBA.MyID);
                 objEmrBa.TenbacsiLamBA = txtBSlamBA.Text;

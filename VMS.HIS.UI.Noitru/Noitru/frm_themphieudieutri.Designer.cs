@@ -33,15 +33,11 @@
             Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem1 = new Janus.Windows.EditControls.UIComboBoxItem();
             Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem2 = new Janus.Windows.EditControls.UIComboBoxItem();
             Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem3 = new Janus.Windows.EditControls.UIComboBoxItem();
-            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem4 = new Janus.Windows.EditControls.UIComboBoxItem();
-            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem5 = new Janus.Windows.EditControls.UIComboBoxItem();
-            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem6 = new Janus.Windows.EditControls.UIComboBoxItem();
             Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel1 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
             Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel2 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
             this.grpThongTinDieuTri = new Janus.Windows.EditControls.UIGroupBox();
             this.dtpNgaynhapvien = new Janus.Windows.CalendarCombo.CalendarCombo();
             this.label8 = new System.Windows.Forms.Label();
-            this.cboBacSy = new Janus.Windows.EditControls.UIComboBox();
             this.cboKhoaNoiTru = new Janus.Windows.EditControls.UIComboBox();
             this.dtGioLapPhieu = new Janus.Windows.CalendarCombo.CalendarCombo();
             this.txtDieuduongtheodoi = new Janus.Windows.GridEX.EditControls.EditBox();
@@ -62,6 +58,7 @@
             this.cmdExit = new Janus.Windows.EditControls.UIButton();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.cbo_BacSyDieuTri = new VNS.HIS.UCs.EasyCompletionComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.grpThongTinDieuTri)).BeginInit();
             this.grpThongTinDieuTri.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -70,9 +67,9 @@
             // grpThongTinDieuTri
             // 
             resources.ApplyResources(this.grpThongTinDieuTri, "grpThongTinDieuTri");
+            this.grpThongTinDieuTri.Controls.Add(this.cbo_BacSyDieuTri);
             this.grpThongTinDieuTri.Controls.Add(this.dtpNgaynhapvien);
             this.grpThongTinDieuTri.Controls.Add(this.label8);
-            this.grpThongTinDieuTri.Controls.Add(this.cboBacSy);
             this.grpThongTinDieuTri.Controls.Add(this.cboKhoaNoiTru);
             this.grpThongTinDieuTri.Controls.Add(this.dtGioLapPhieu);
             this.grpThongTinDieuTri.Controls.Add(this.txtDieuduongtheodoi);
@@ -109,11 +106,11 @@
             resources.ApplyResources(this.label8, "label8");
             this.label8.Name = "label8";
             // 
-            // cboBacSy
+            // cboKhoaNoiTru
             // 
-            this.cboBacSy.BorderStyle = Janus.Windows.UI.BorderStyle.Flat;
-            this.cboBacSy.ComboStyle = Janus.Windows.EditControls.ComboStyle.DropDownList;
-            resources.ApplyResources(this.cboBacSy, "cboBacSy");
+            this.cboKhoaNoiTru.BorderStyle = Janus.Windows.UI.BorderStyle.Flat;
+            this.cboKhoaNoiTru.ComboStyle = Janus.Windows.EditControls.ComboStyle.DropDownList;
+            resources.ApplyResources(this.cboKhoaNoiTru, "cboKhoaNoiTru");
             uiComboBoxItem1.FormatStyle.Alpha = 0;
             uiComboBoxItem1.IsSeparator = false;
             resources.ApplyResources(uiComboBoxItem1, "uiComboBoxItem1");
@@ -123,31 +120,10 @@
             uiComboBoxItem3.FormatStyle.Alpha = 0;
             uiComboBoxItem3.IsSeparator = false;
             resources.ApplyResources(uiComboBoxItem3, "uiComboBoxItem3");
-            this.cboBacSy.Items.AddRange(new Janus.Windows.EditControls.UIComboBoxItem[] {
+            this.cboKhoaNoiTru.Items.AddRange(new Janus.Windows.EditControls.UIComboBoxItem[] {
             uiComboBoxItem1,
             uiComboBoxItem2,
             uiComboBoxItem3});
-            this.cboBacSy.Name = "cboBacSy";
-            this.cboBacSy.TabStop = false;
-            // 
-            // cboKhoaNoiTru
-            // 
-            this.cboKhoaNoiTru.BorderStyle = Janus.Windows.UI.BorderStyle.Flat;
-            this.cboKhoaNoiTru.ComboStyle = Janus.Windows.EditControls.ComboStyle.DropDownList;
-            resources.ApplyResources(this.cboKhoaNoiTru, "cboKhoaNoiTru");
-            uiComboBoxItem4.FormatStyle.Alpha = 0;
-            uiComboBoxItem4.IsSeparator = false;
-            resources.ApplyResources(uiComboBoxItem4, "uiComboBoxItem4");
-            uiComboBoxItem5.FormatStyle.Alpha = 0;
-            uiComboBoxItem5.IsSeparator = false;
-            resources.ApplyResources(uiComboBoxItem5, "uiComboBoxItem5");
-            uiComboBoxItem6.FormatStyle.Alpha = 0;
-            uiComboBoxItem6.IsSeparator = false;
-            resources.ApplyResources(uiComboBoxItem6, "uiComboBoxItem6");
-            this.cboKhoaNoiTru.Items.AddRange(new Janus.Windows.EditControls.UIComboBoxItem[] {
-            uiComboBoxItem4,
-            uiComboBoxItem5,
-            uiComboBoxItem6});
             this.cboKhoaNoiTru.Name = "cboKhoaNoiTru";
             this.cboKhoaNoiTru.TabStop = false;
             this.cboKhoaNoiTru.SelectedIndexChanged += new System.EventHandler(this.cboKhoaNoiTru_SelectedIndexChanged);
@@ -201,11 +177,13 @@
             // 
             // label7
             // 
+            this.label7.ForeColor = System.Drawing.Color.Red;
             resources.ApplyResources(this.label7, "label7");
             this.label7.Name = "label7";
             // 
             // label6
             // 
+            this.label6.ForeColor = System.Drawing.Color.Red;
             resources.ApplyResources(this.label6, "label6");
             this.label6.Name = "label6";
             // 
@@ -282,6 +260,14 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // cbo_BacSyDieuTri
+            // 
+            resources.ApplyResources(this.cbo_BacSyDieuTri, "cbo_BacSyDieuTri");
+            this.cbo_BacSyDieuTri.FormattingEnabled = true;
+            this.cbo_BacSyDieuTri.Name = "cbo_BacSyDieuTri";
+            this.cbo_BacSyDieuTri.Next_Control = null;
+            this.cbo_BacSyDieuTri.RaiseEnterEventWhenInvisible = true;
+            // 
             // frm_themphieudieutri
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -329,10 +315,10 @@
         internal Janus.Windows.GridEX.EditControls.EditBox txtDieuduongtheodoi;
         internal Janus.Windows.GridEX.EditControls.EditBox txtBstheodoi;
         private Janus.Windows.CalendarCombo.CalendarCombo dtGioLapPhieu;
-        private Janus.Windows.EditControls.UIComboBox cboBacSy;
         private Janus.Windows.EditControls.UIComboBox cboKhoaNoiTru;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private Janus.Windows.CalendarCombo.CalendarCombo dtpNgaynhapvien;
         private System.Windows.Forms.Label label8;
+        private UCs.EasyCompletionComboBox cbo_BacSyDieuTri;
     }
 }

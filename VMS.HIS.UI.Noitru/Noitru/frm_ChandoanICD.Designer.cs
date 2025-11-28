@@ -37,7 +37,7 @@
             this.ucChandoanICD1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucChandoanICD1.Location = new System.Drawing.Point(0, 111);
             this.ucChandoanICD1.Name = "ucChandoanICD1";
-            this.ucChandoanICD1.Size = new System.Drawing.Size(1264, 650);
+            this.ucChandoanICD1.Size = new System.Drawing.Size(1008, 618);
             this.ucChandoanICD1.TabIndex = 1;
             // 
             // ucThongtinnguoibenh1
@@ -45,19 +45,18 @@
             this.ucThongtinnguoibenh1.Dock = System.Windows.Forms.DockStyle.Top;
             this.ucThongtinnguoibenh1.Location = new System.Drawing.Point(0, 0);
             this.ucThongtinnguoibenh1.Name = "ucThongtinnguoibenh1";
-            this.ucThongtinnguoibenh1.Size = new System.Drawing.Size(1264, 111);
+            this.ucThongtinnguoibenh1.Size = new System.Drawing.Size(1008, 111);
             this.ucThongtinnguoibenh1.TabIndex = 0;
             // 
             // frm_ChandoanICD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1264, 761);
+            this.ClientSize = new System.Drawing.Size(1008, 729);
             this.Controls.Add(this.ucChandoanICD1);
             this.Controls.Add(this.ucThongtinnguoibenh1);
             this.KeyPreview = true;
             this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "frm_ChandoanICD";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

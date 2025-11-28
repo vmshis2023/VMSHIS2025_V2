@@ -96,7 +96,7 @@ namespace VMS.HIS.DAL{
                 TableSchema.TableColumn colvarTenDichvukcb = new TableSchema.TableColumn(schema);
                 colvarTenDichvukcb.ColumnName = "ten_dichvukcb";
                 colvarTenDichvukcb.DataType = DbType.String;
-                colvarTenDichvukcb.MaxLength = 100;
+                colvarTenDichvukcb.MaxLength = 500;
                 colvarTenDichvukcb.AutoIncrement = false;
                 colvarTenDichvukcb.IsNullable = true;
                 colvarTenDichvukcb.IsPrimaryKey = false;
@@ -369,6 +369,54 @@ namespace VMS.HIS.DAL{
                 
                 schema.Columns.Add(colvarCapKinh);
                 
+                TableSchema.TableColumn colvarNguoiTao = new TableSchema.TableColumn(schema);
+                colvarNguoiTao.ColumnName = "nguoi_tao";
+                colvarNguoiTao.DataType = DbType.String;
+                colvarNguoiTao.MaxLength = 50;
+                colvarNguoiTao.AutoIncrement = false;
+                colvarNguoiTao.IsNullable = true;
+                colvarNguoiTao.IsPrimaryKey = false;
+                colvarNguoiTao.IsForeignKey = false;
+                colvarNguoiTao.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarNguoiTao);
+                
+                TableSchema.TableColumn colvarNgayTao = new TableSchema.TableColumn(schema);
+                colvarNgayTao.ColumnName = "ngay_tao";
+                colvarNgayTao.DataType = DbType.DateTime;
+                colvarNgayTao.MaxLength = 0;
+                colvarNgayTao.AutoIncrement = false;
+                colvarNgayTao.IsNullable = true;
+                colvarNgayTao.IsPrimaryKey = false;
+                colvarNgayTao.IsForeignKey = false;
+                colvarNgayTao.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarNgayTao);
+                
+                TableSchema.TableColumn colvarNgaySua = new TableSchema.TableColumn(schema);
+                colvarNgaySua.ColumnName = "ngay_sua";
+                colvarNgaySua.DataType = DbType.DateTime;
+                colvarNgaySua.MaxLength = 0;
+                colvarNgaySua.AutoIncrement = false;
+                colvarNgaySua.IsNullable = true;
+                colvarNgaySua.IsPrimaryKey = false;
+                colvarNgaySua.IsForeignKey = false;
+                colvarNgaySua.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarNgaySua);
+                
+                TableSchema.TableColumn colvarNguoiSua = new TableSchema.TableColumn(schema);
+                colvarNguoiSua.ColumnName = "nguoi_sua";
+                colvarNguoiSua.DataType = DbType.String;
+                colvarNguoiSua.MaxLength = 50;
+                colvarNguoiSua.AutoIncrement = false;
+                colvarNguoiSua.IsNullable = true;
+                colvarNguoiSua.IsPrimaryKey = false;
+                colvarNguoiSua.IsForeignKey = false;
+                colvarNguoiSua.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarNguoiSua);
+                
                 TableSchema.TableColumn colvarTenBacsi = new TableSchema.TableColumn(schema);
                 colvarTenBacsi.ColumnName = "ten_bacsi";
                 colvarTenBacsi.DataType = DbType.String;
@@ -408,7 +456,7 @@ namespace VMS.HIS.DAL{
                 TableSchema.TableColumn colvarTenKieukham = new TableSchema.TableColumn(schema);
                 colvarTenKieukham.ColumnName = "ten_kieukham";
                 colvarTenKieukham.DataType = DbType.String;
-                colvarTenKieukham.MaxLength = 100;
+                colvarTenKieukham.MaxLength = 500;
                 colvarTenKieukham.AutoIncrement = false;
                 colvarTenKieukham.IsNullable = false;
                 colvarTenKieukham.IsPrimaryKey = false;
@@ -843,6 +891,62 @@ namespace VMS.HIS.DAL{
             }
         }
 	      
+        [XmlAttribute("NguoiTao")]
+        [Bindable(true)]
+        public string NguoiTao 
+	    {
+		    get
+		    {
+			    return GetColumnValue<string>("nguoi_tao");
+		    }
+            set 
+		    {
+			    SetColumnValue("nguoi_tao", value);
+            }
+        }
+	      
+        [XmlAttribute("NgayTao")]
+        [Bindable(true)]
+        public DateTime? NgayTao 
+	    {
+		    get
+		    {
+			    return GetColumnValue<DateTime?>("ngay_tao");
+		    }
+            set 
+		    {
+			    SetColumnValue("ngay_tao", value);
+            }
+        }
+	      
+        [XmlAttribute("NgaySua")]
+        [Bindable(true)]
+        public DateTime? NgaySua 
+	    {
+		    get
+		    {
+			    return GetColumnValue<DateTime?>("ngay_sua");
+		    }
+            set 
+		    {
+			    SetColumnValue("ngay_sua", value);
+            }
+        }
+	      
+        [XmlAttribute("NguoiSua")]
+        [Bindable(true)]
+        public string NguoiSua 
+	    {
+		    get
+		    {
+			    return GetColumnValue<string>("nguoi_sua");
+		    }
+            set 
+		    {
+			    SetColumnValue("nguoi_sua", value);
+            }
+        }
+	      
         [XmlAttribute("TenBacsi")]
         [Bindable(true)]
         public string TenBacsi 
@@ -971,6 +1075,14 @@ namespace VMS.HIS.DAL{
             public static string KhamThiluc = @"kham_thiluc";
             
             public static string CapKinh = @"cap_kinh";
+            
+            public static string NguoiTao = @"nguoi_tao";
+            
+            public static string NgayTao = @"ngay_tao";
+            
+            public static string NgaySua = @"ngay_sua";
+            
+            public static string NguoiSua = @"nguoi_sua";
             
             public static string TenBacsi = @"ten_bacsi";
             

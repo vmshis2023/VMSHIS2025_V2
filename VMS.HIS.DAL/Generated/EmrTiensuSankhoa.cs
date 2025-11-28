@@ -282,6 +282,19 @@ namespace VMS.HIS.DAL
 				colvarChuangoaitucung.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarChuangoaitucung);
 				
+				TableSchema.TableColumn colvarChuaTrung = new TableSchema.TableColumn(schema);
+				colvarChuaTrung.ColumnName = "chua_trung";
+				colvarChuaTrung.DataType = DbType.Boolean;
+				colvarChuaTrung.MaxLength = 0;
+				colvarChuaTrung.AutoIncrement = false;
+				colvarChuaTrung.IsNullable = true;
+				colvarChuaTrung.IsPrimaryKey = false;
+				colvarChuaTrung.IsForeignKey = false;
+				colvarChuaTrung.IsReadOnly = false;
+				colvarChuaTrung.DefaultSetting = @"";
+				colvarChuaTrung.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarChuaTrung);
+				
 				TableSchema.TableColumn colvarThaichetluu = new TableSchema.TableColumn(schema);
 				colvarThaichetluu.ColumnName = "thaichetluu";
 				colvarThaichetluu.DataType = DbType.Boolean;
@@ -572,6 +585,14 @@ namespace VMS.HIS.DAL
 			set { SetColumnValue(Columns.Chuangoaitucung, value); }
 		}
 		  
+		[XmlAttribute("ChuaTrung")]
+		[Bindable(true)]
+		public bool? ChuaTrung 
+		{
+			get { return GetColumnValue<bool?>(Columns.ChuaTrung); }
+			set { SetColumnValue(Columns.ChuaTrung, value); }
+		}
+		  
 		[XmlAttribute("Thaichetluu")]
 		[Bindable(true)]
 		public bool? Thaichetluu 
@@ -703,7 +724,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(string varMaLuotkham,long varIdBenhnhan,byte? varSolanCothai,int? varNam,bool? varDeduthang,bool? varDethieuthang,bool? varSay,bool? varHut,bool? varNao,bool? varCovac,bool? varChuangoaitucung,bool? varThaichetluu,bool? varConhiensong,string varThongtintreCannangBenhtat,string varPhuongphapde,bool? varTaibienHausan,string varTuoithai,string varNoiketthucthainghen,string varDienbienthai,bool? varTthaiXoa,bool? varTthaiAn,DateTime? varNgayTao,string varNguoiTao,DateTime varNgaySua,string varNguoiSua)
+		public static void Insert(string varMaLuotkham,long varIdBenhnhan,byte? varSolanCothai,int? varNam,bool? varDeduthang,bool? varDethieuthang,bool? varSay,bool? varHut,bool? varNao,bool? varCovac,bool? varChuangoaitucung,bool? varChuaTrung,bool? varThaichetluu,bool? varConhiensong,string varThongtintreCannangBenhtat,string varPhuongphapde,bool? varTaibienHausan,string varTuoithai,string varNoiketthucthainghen,string varDienbienthai,bool? varTthaiXoa,bool? varTthaiAn,DateTime? varNgayTao,string varNguoiTao,DateTime varNgaySua,string varNguoiSua)
 		{
 			EmrTiensuSankhoa item = new EmrTiensuSankhoa();
 			
@@ -728,6 +749,8 @@ namespace VMS.HIS.DAL
 			item.Covac = varCovac;
 			
 			item.Chuangoaitucung = varChuangoaitucung;
+			
+			item.ChuaTrung = varChuaTrung;
 			
 			item.Thaichetluu = varThaichetluu;
 			
@@ -767,7 +790,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(long varId,string varMaLuotkham,long varIdBenhnhan,byte? varSolanCothai,int? varNam,bool? varDeduthang,bool? varDethieuthang,bool? varSay,bool? varHut,bool? varNao,bool? varCovac,bool? varChuangoaitucung,bool? varThaichetluu,bool? varConhiensong,string varThongtintreCannangBenhtat,string varPhuongphapde,bool? varTaibienHausan,string varTuoithai,string varNoiketthucthainghen,string varDienbienthai,bool? varTthaiXoa,bool? varTthaiAn,DateTime? varNgayTao,string varNguoiTao,DateTime varNgaySua,string varNguoiSua)
+		public static void Update(long varId,string varMaLuotkham,long varIdBenhnhan,byte? varSolanCothai,int? varNam,bool? varDeduthang,bool? varDethieuthang,bool? varSay,bool? varHut,bool? varNao,bool? varCovac,bool? varChuangoaitucung,bool? varChuaTrung,bool? varThaichetluu,bool? varConhiensong,string varThongtintreCannangBenhtat,string varPhuongphapde,bool? varTaibienHausan,string varTuoithai,string varNoiketthucthainghen,string varDienbienthai,bool? varTthaiXoa,bool? varTthaiAn,DateTime? varNgayTao,string varNguoiTao,DateTime varNgaySua,string varNguoiSua)
 		{
 			EmrTiensuSankhoa item = new EmrTiensuSankhoa();
 			
@@ -794,6 +817,8 @@ namespace VMS.HIS.DAL
 				item.Covac = varCovac;
 			
 				item.Chuangoaitucung = varChuangoaitucung;
+			
+				item.ChuaTrung = varChuaTrung;
 			
 				item.Thaichetluu = varThaichetluu;
 			
@@ -920,100 +945,107 @@ namespace VMS.HIS.DAL
         
         
         
-        public static TableSchema.TableColumn ThaichetluuColumn
+        public static TableSchema.TableColumn ChuaTrungColumn
         {
             get { return Schema.Columns[12]; }
         }
         
         
         
-        public static TableSchema.TableColumn ConhiensongColumn
+        public static TableSchema.TableColumn ThaichetluuColumn
         {
             get { return Schema.Columns[13]; }
         }
         
         
         
-        public static TableSchema.TableColumn ThongtintreCannangBenhtatColumn
+        public static TableSchema.TableColumn ConhiensongColumn
         {
             get { return Schema.Columns[14]; }
         }
         
         
         
-        public static TableSchema.TableColumn PhuongphapdeColumn
+        public static TableSchema.TableColumn ThongtintreCannangBenhtatColumn
         {
             get { return Schema.Columns[15]; }
         }
         
         
         
-        public static TableSchema.TableColumn TaibienHausanColumn
+        public static TableSchema.TableColumn PhuongphapdeColumn
         {
             get { return Schema.Columns[16]; }
         }
         
         
         
-        public static TableSchema.TableColumn TuoithaiColumn
+        public static TableSchema.TableColumn TaibienHausanColumn
         {
             get { return Schema.Columns[17]; }
         }
         
         
         
-        public static TableSchema.TableColumn NoiketthucthainghenColumn
+        public static TableSchema.TableColumn TuoithaiColumn
         {
             get { return Schema.Columns[18]; }
         }
         
         
         
-        public static TableSchema.TableColumn DienbienthaiColumn
+        public static TableSchema.TableColumn NoiketthucthainghenColumn
         {
             get { return Schema.Columns[19]; }
         }
         
         
         
-        public static TableSchema.TableColumn TthaiXoaColumn
+        public static TableSchema.TableColumn DienbienthaiColumn
         {
             get { return Schema.Columns[20]; }
         }
         
         
         
-        public static TableSchema.TableColumn TthaiAnColumn
+        public static TableSchema.TableColumn TthaiXoaColumn
         {
             get { return Schema.Columns[21]; }
         }
         
         
         
-        public static TableSchema.TableColumn NgayTaoColumn
+        public static TableSchema.TableColumn TthaiAnColumn
         {
             get { return Schema.Columns[22]; }
         }
         
         
         
-        public static TableSchema.TableColumn NguoiTaoColumn
+        public static TableSchema.TableColumn NgayTaoColumn
         {
             get { return Schema.Columns[23]; }
         }
         
         
         
-        public static TableSchema.TableColumn NgaySuaColumn
+        public static TableSchema.TableColumn NguoiTaoColumn
         {
             get { return Schema.Columns[24]; }
         }
         
         
         
-        public static TableSchema.TableColumn NguoiSuaColumn
+        public static TableSchema.TableColumn NgaySuaColumn
         {
             get { return Schema.Columns[25]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn NguoiSuaColumn
+        {
+            get { return Schema.Columns[26]; }
         }
         
         
@@ -1034,6 +1066,7 @@ namespace VMS.HIS.DAL
 			 public static string Nao = @"nao";
 			 public static string Covac = @"covac";
 			 public static string Chuangoaitucung = @"chuangoaitucung";
+			 public static string ChuaTrung = @"chua_trung";
 			 public static string Thaichetluu = @"thaichetluu";
 			 public static string Conhiensong = @"conhiensong";
 			 public static string ThongtintreCannangBenhtat = @"thongtintre_cannang_benhtat";

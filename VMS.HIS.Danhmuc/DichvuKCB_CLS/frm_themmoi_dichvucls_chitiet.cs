@@ -42,7 +42,7 @@ namespace VNS.HIS.UI.DANHMUC
             Utility.SetVisualStyle(this);
             KeyPreview = true;
             cmdExit.Click += cmdExit_Click;
-            cmdSave.Click += btnNew_Click;
+            cmdSave.Click += cmdSave_Click;
             txtServiceDetailName.LostFocus += txtServiceDetailName_LostFocus;
             cboDepartment.SelectedIndexChanged += cboDepartment_SelectedIndexChanged;
             chkHienThi.Checked = true;
@@ -260,7 +260,7 @@ namespace VNS.HIS.UI.DANHMUC
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnNew_Click(object sender, EventArgs e)
+        private void cmdSave_Click(object sender, EventArgs e)
         {
             if (!IsValidData()) return;
             switch (m_enAction)
@@ -453,6 +453,8 @@ namespace VNS.HIS.UI.DANHMUC
                 txtTyleHotro.Text = Utility.sDbnull(objDichVuChitiet.TyleHotro, "0");
                 chkThanhtoannguonkhac.Checked = Utility.Byte2Bool(objDichVuChitiet.BhytNguonKhac);
                 chkHIV.Checked = Utility.Byte2Bool(objDichVuChitiet.Hiv);
+                chk_LaHuongDieuTri.Checked = Utility.Byte2Bool(objDichVuChitiet.LaHuongDieuTri);
+                chk_yeucau_cokq.Checked = !Utility.Byte2Bool(objDichVuChitiet.Khongbatbuoccoketqua);
                 if (objDichVuChitiet.NgayKetthuc == null || objDichVuChitiet.NgayCongbo==null)
                 {
                     dtpNgayCongBo.Value = DateTime.Now;
@@ -710,7 +712,9 @@ namespace VNS.HIS.UI.DANHMUC
                 objDichVuChitiet.TyleTtNguonkhac = Utility.DecimaltoDbnull(txtTylenguonkhac.Text, 0);
                 objDichVuChitiet.TyleHotro = Utility.DecimaltoDbnull(txtTyleHotro.Text, 0);
                 objDichVuChitiet.BhytNguonKhac = Utility.Bool2byte(chkThanhtoannguonkhac.Checked);
-                chkHIV.Checked = Utility.Byte2Bool(objDichVuChitiet.Hiv);
+                objDichVuChitiet.Hiv = chkHIV.Checked;
+                objDichVuChitiet.LaHuongDieuTri = chk_LaHuongDieuTri.Checked;
+                objDichVuChitiet.Khongbatbuoccoketqua = !chk_yeucau_cokq.Checked;
                 objDichVuChitiet.MaPhieuEmr = Utility.sDbnull(cboPhieuEMR.SelectedValue);
 
                 objDichVuChitiet.IsNew = true;
@@ -887,7 +891,9 @@ namespace VNS.HIS.UI.DANHMUC
                 objDichVuChitiet.TyleTtNguonkhac = Utility.DecimaltoDbnull(txtTylenguonkhac.Text, 0);
                 objDichVuChitiet.TyleHotro = Utility.DecimaltoDbnull(txtTyleHotro.Text, 0);
                 objDichVuChitiet.BhytNguonKhac = Utility.Bool2byte(chkThanhtoannguonkhac.Checked);
-                chkHIV.Checked = Utility.Byte2Bool(objDichVuChitiet.Hiv);
+                objDichVuChitiet.Hiv = chkHIV.Checked;
+                objDichVuChitiet.LaHuongDieuTri = chk_LaHuongDieuTri.Checked;
+                objDichVuChitiet.Khongbatbuoccoketqua = !chk_yeucau_cokq.Checked;
                 objDichVuChitiet.MaPhieuEmr = Utility.sDbnull(cboPhieuEMR.SelectedValue);
                 objDichVuChitiet.IsNew = false;
                 objDichVuChitiet.MarkOld();
@@ -1020,7 +1026,7 @@ namespace VNS.HIS.UI.DANHMUC
             txtmadichvu.Text = txtMaBhyt.Text;
         }
 
-        private void btnNew_Click_1(object sender, EventArgs e)
+        private void cmdSave_Click_1(object sender, EventArgs e)
         {
 
         }

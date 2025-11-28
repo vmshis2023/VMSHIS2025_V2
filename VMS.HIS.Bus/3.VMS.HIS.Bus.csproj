@@ -55,6 +55,10 @@
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Aspose.PDF, Version=20.7.0.0, Culture=neutral, PublicKeyToken=f0262d67fe233d63, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\HIS_BVSG\Running\Aspose.PDF.dll</HintPath>
+    </Reference>
     <Reference Include="Aspose.Words, Version=16.6.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\HIS_BVSG\Running\Aspose.Words.dll</HintPath>
@@ -146,6 +150,8 @@
     <Compile Include="Classess\BA\clsInBA.cs" />
     <Compile Include="Classess\Pdf2Emr\Pdf2HisItem.cs" />
     <Compile Include="Classess\Pdf2Emr\Pdf2HisManager.cs" />
+    <Compile Include="Classess\PdfHelper_Aspose.cs" />
+    <Compile Include="Classess\WordHelper.cs" />
     <Compile Include="Classess\WordPrinter.cs" />
     <Compile Include="Classess\INPHIEU_THANHTOAN_NGOAITRU.cs" />
     <Compile Include="Classess\INPHIEU_THANHTOAN_NOITRU.cs" />
@@ -213,6 +219,7 @@
     <Compile Include="QRPay\HDBank\HDBankConnection.cs" />
     <Compile Include="Thuoc\ChotThuoc\ChotThuoc.cs" />
     <Compile Include="Thuoc\DanhMuc\QuanHeDoiTuongKho.cs" />
+    <Compile Include="Thuoc\DonThuocQuocGia\DuocTT27.cs" />
     <Compile Include="Thuoc\KiemtradieukienXacnhan_Huyxacnhan\Kiemtra.cs" />
     <Compile Include="Thuoc\NhapKho\THUOC_NHAPKHO.cs" />
     <Compile Include="Thuoc\Noitru\Trathuocthua.cs" />
@@ -224,9 +231,9 @@
     <Compile Include="Thuoc\XuatThuoc\XuatThuoc.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\VMS.Emr\VMS.Emr\VMS.HIS.Bus.Emr.csproj">
+    <ProjectReference Include="..\VMS.Emr\VMS.Emr\9_0.VMS.HIS.Bus.Emr.csproj">
       <Project>{323d0245-5cd3-488a-8b83-edade85b3da4}</Project>
-      <Name>VMS.HIS.Bus.Emr</Name>
+      <Name>9_0.VMS.HIS.Bus.Emr</Name>
     </ProjectReference>
     <ProjectReference Include="..\VMS.HIS.BHYT\4_1.VMS.HIS.BHYT.csproj">
       <Project>{C68B076C-AD56-46BB-A16A-88F357AEE6F4}</Project>

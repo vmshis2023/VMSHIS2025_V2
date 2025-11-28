@@ -29,13 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem5 = new Janus.Windows.EditControls.UIComboBoxItem();
-            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem6 = new Janus.Windows.EditControls.UIComboBoxItem();
-            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem7 = new Janus.Windows.EditControls.UIComboBoxItem();
-            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem8 = new Janus.Windows.EditControls.UIComboBoxItem();
+            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem1 = new Janus.Windows.EditControls.UIComboBoxItem();
+            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem2 = new Janus.Windows.EditControls.UIComboBoxItem();
+            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem3 = new Janus.Windows.EditControls.UIComboBoxItem();
+            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem4 = new Janus.Windows.EditControls.UIComboBoxItem();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucThuchikhac));
             Janus.Windows.GridEX.GridEXLayout grdThuchi_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
             this.cboNganhang = new Janus.Windows.EditControls.UIComboBox();
             this.cboPttt = new Janus.Windows.EditControls.UIComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -62,6 +63,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.txtNguoithu = new VNS.HIS.UCs.AutoCompleteTextbox();
+            this.txtNhomthuchi = new VNS.HIS.UCs.AutoCompleteTextbox_Danhmucchung();
             this.txtLydo = new VNS.HIS.UCs.AutoCompleteTextbox_Danhmucchung();
             this.lblNguoithuchi = new System.Windows.Forms.Label();
             this.txtSotien = new MaskedTextBox.MaskedTextBox();
@@ -72,8 +74,7 @@
             this.ctxMore = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cmdPhanbo = new System.Windows.Forms.ToolStripMenuItem();
             this.cmdConfig = new Janus.Windows.EditControls.UIButton();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtNhomthuchi = new VNS.HIS.UCs.AutoCompleteTextbox_Danhmucchung();
+            this.chk_HoanKiQui = new System.Windows.Forms.CheckBox();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.pnlFunctions.SuspendLayout();
@@ -84,6 +85,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.Control;
+            this.panel2.Controls.Add(this.chk_HoanKiQui);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.cboNganhang);
             this.panel2.Controls.Add(this.cboPttt);
@@ -115,23 +117,34 @@
             this.panel2.Size = new System.Drawing.Size(800, 278);
             this.panel2.TabIndex = 10;
             // 
+            // label5
+            // 
+            this.label5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.Red;
+            this.label5.Location = new System.Drawing.Point(495, 87);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(60, 20);
+            this.label5.TabIndex = 404;
+            this.label5.Text = "Nhóm:";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // cboNganhang
             // 
             this.cboNganhang.BackColor = System.Drawing.Color.White;
             this.cboNganhang.BorderStyle = Janus.Windows.UI.BorderStyle.Sunken;
             this.cboNganhang.ComboStyle = Janus.Windows.EditControls.ComboStyle.DropDownList;
             this.cboNganhang.Font = new System.Drawing.Font("Arial", 9F);
-            uiComboBoxItem5.FormatStyle.Alpha = 0;
-            uiComboBoxItem5.IsSeparator = false;
-            uiComboBoxItem5.Text = "In nhiệt";
-            uiComboBoxItem5.Value = "0";
-            uiComboBoxItem6.FormatStyle.Alpha = 0;
-            uiComboBoxItem6.IsSeparator = false;
-            uiComboBoxItem6.Text = "In laser";
-            uiComboBoxItem6.Value = "1";
+            uiComboBoxItem1.FormatStyle.Alpha = 0;
+            uiComboBoxItem1.IsSeparator = false;
+            uiComboBoxItem1.Text = "In nhiệt";
+            uiComboBoxItem1.Value = "0";
+            uiComboBoxItem2.FormatStyle.Alpha = 0;
+            uiComboBoxItem2.IsSeparator = false;
+            uiComboBoxItem2.Text = "In laser";
+            uiComboBoxItem2.Value = "1";
             this.cboNganhang.Items.AddRange(new Janus.Windows.EditControls.UIComboBoxItem[] {
-            uiComboBoxItem5,
-            uiComboBoxItem6});
+            uiComboBoxItem1,
+            uiComboBoxItem2});
             this.cboNganhang.Location = new System.Drawing.Point(370, 135);
             this.cboNganhang.Name = "cboNganhang";
             this.cboNganhang.Size = new System.Drawing.Size(420, 21);
@@ -145,17 +158,17 @@
             this.cboPttt.BorderStyle = Janus.Windows.UI.BorderStyle.Sunken;
             this.cboPttt.ComboStyle = Janus.Windows.EditControls.ComboStyle.DropDownList;
             this.cboPttt.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            uiComboBoxItem7.FormatStyle.Alpha = 0;
-            uiComboBoxItem7.IsSeparator = false;
-            uiComboBoxItem7.Text = "In nhiệt";
-            uiComboBoxItem7.Value = "0";
-            uiComboBoxItem8.FormatStyle.Alpha = 0;
-            uiComboBoxItem8.IsSeparator = false;
-            uiComboBoxItem8.Text = "In laser";
-            uiComboBoxItem8.Value = "1";
+            uiComboBoxItem3.FormatStyle.Alpha = 0;
+            uiComboBoxItem3.IsSeparator = false;
+            uiComboBoxItem3.Text = "In nhiệt";
+            uiComboBoxItem3.Value = "0";
+            uiComboBoxItem4.FormatStyle.Alpha = 0;
+            uiComboBoxItem4.IsSeparator = false;
+            uiComboBoxItem4.Text = "In laser";
+            uiComboBoxItem4.Value = "1";
             this.cboPttt.Items.AddRange(new Janus.Windows.EditControls.UIComboBoxItem[] {
-            uiComboBoxItem7,
-            uiComboBoxItem8});
+            uiComboBoxItem3,
+            uiComboBoxItem4});
             this.cboPttt.Location = new System.Drawing.Point(111, 135);
             this.cboPttt.Name = "cboPttt";
             this.cboPttt.Size = new System.Drawing.Size(173, 21);
@@ -543,6 +556,54 @@
             this.txtNguoithu.txtMyName_Edit = null;
             this.txtNguoithu.txtNext = this.autoNguonkiqui;
             // 
+            // txtNhomthuchi
+            // 
+            this.txtNhomthuchi._backcolor = System.Drawing.Color.WhiteSmoke;
+            this.txtNhomthuchi._Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNhomthuchi._TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtNhomthuchi.AddValues = true;
+            this.txtNhomthuchi.AllowMultiline = false;
+            this.txtNhomthuchi.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtNhomthuchi.AutoCompleteList = ((System.Collections.Generic.List<string>)(resources.GetObject("txtNhomthuchi.AutoCompleteList")));
+            this.txtNhomthuchi.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtNhomthuchi.buildShortcut = false;
+            this.txtNhomthuchi.CaseSensitive = false;
+            this.txtNhomthuchi.cmdDropDown = null;
+            this.txtNhomthuchi.CompareNoID = true;
+            this.txtNhomthuchi.DefaultCode = "-1";
+            this.txtNhomthuchi.DefaultID = "-1";
+            this.txtNhomthuchi.Drug_ID = null;
+            this.txtNhomthuchi.ExtraWidth = 0;
+            this.txtNhomthuchi.FillValueAfterSelect = false;
+            this.txtNhomthuchi.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNhomthuchi.LOAI_DANHMUC = "NHOMTHUCHI";
+            this.txtNhomthuchi.Location = new System.Drawing.Point(561, 87);
+            this.txtNhomthuchi.MaxHeight = 150;
+            this.txtNhomthuchi.MinTypedCharacters = 4;
+            this.txtNhomthuchi.MyCode = "-1";
+            this.txtNhomthuchi.MyID = "-1";
+            this.txtNhomthuchi.Name = "txtNhomthuchi";
+            this.txtNhomthuchi.RaiseEvent = false;
+            this.txtNhomthuchi.RaiseEventEnter = true;
+            this.txtNhomthuchi.RaiseEventEnterWhenEmpty = false;
+            this.txtNhomthuchi.SelectedIndex = -1;
+            this.txtNhomthuchi.SetDefaultWhenInit = true;
+            this.txtNhomthuchi.ShowCodeWithValue = false;
+            this.txtNhomthuchi.Size = new System.Drawing.Size(230, 22);
+            this.txtNhomthuchi.splitChar = '@';
+            this.txtNhomthuchi.splitCharIDAndCode = '#';
+            this.txtNhomthuchi.TabIndex = 10;
+            this.txtNhomthuchi.TakeCode = false;
+            this.txtNhomthuchi.txtMyCode = null;
+            this.txtNhomthuchi.txtMyCode_Edit = null;
+            this.txtNhomthuchi.txtMyID = null;
+            this.txtNhomthuchi.txtMyID_Edit = null;
+            this.txtNhomthuchi.txtMyName = null;
+            this.txtNhomthuchi.txtMyName_Edit = null;
+            this.txtNhomthuchi.txtNext = null;
+            this.txtNhomthuchi.txtNext1 = null;
+            // 
             // txtLydo
             // 
             this.txtLydo._backcolor = System.Drawing.SystemColors.Control;
@@ -710,64 +771,17 @@
             this.cmdConfig.Visible = false;
             this.cmdConfig.VisualStyle = Janus.Windows.UI.VisualStyle.Office2007;
             // 
-            // label5
+            // chk_HoanKiQui
             // 
-            this.label5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.Red;
-            this.label5.Location = new System.Drawing.Point(495, 87);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(60, 20);
-            this.label5.TabIndex = 404;
-            this.label5.Text = "Nhóm:";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtNhomthuchi
-            // 
-            this.txtNhomthuchi._backcolor = System.Drawing.Color.WhiteSmoke;
-            this.txtNhomthuchi._Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNhomthuchi._TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.txtNhomthuchi.AddValues = true;
-            this.txtNhomthuchi.AllowMultiline = false;
-            this.txtNhomthuchi.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNhomthuchi.AutoCompleteList = ((System.Collections.Generic.List<string>)(resources.GetObject("txtNhomthuchi.AutoCompleteList")));
-            this.txtNhomthuchi.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtNhomthuchi.buildShortcut = false;
-            this.txtNhomthuchi.CaseSensitive = false;
-            this.txtNhomthuchi.cmdDropDown = null;
-            this.txtNhomthuchi.CompareNoID = true;
-            this.txtNhomthuchi.DefaultCode = "-1";
-            this.txtNhomthuchi.DefaultID = "-1";
-            this.txtNhomthuchi.Drug_ID = null;
-            this.txtNhomthuchi.ExtraWidth = 0;
-            this.txtNhomthuchi.FillValueAfterSelect = false;
-            this.txtNhomthuchi.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNhomthuchi.LOAI_DANHMUC = "NHOMTHUCHI";
-            this.txtNhomthuchi.Location = new System.Drawing.Point(561, 87);
-            this.txtNhomthuchi.MaxHeight = 150;
-            this.txtNhomthuchi.MinTypedCharacters = 4;
-            this.txtNhomthuchi.MyCode = "-1";
-            this.txtNhomthuchi.MyID = "-1";
-            this.txtNhomthuchi.Name = "txtNhomthuchi";
-            this.txtNhomthuchi.RaiseEvent = false;
-            this.txtNhomthuchi.RaiseEventEnter = true;
-            this.txtNhomthuchi.RaiseEventEnterWhenEmpty = false;
-            this.txtNhomthuchi.SelectedIndex = -1;
-            this.txtNhomthuchi.SetDefaultWhenInit = true;
-            this.txtNhomthuchi.ShowCodeWithValue = false;
-            this.txtNhomthuchi.Size = new System.Drawing.Size(230, 22);
-            this.txtNhomthuchi.splitChar = '@';
-            this.txtNhomthuchi.splitCharIDAndCode = '#';
-            this.txtNhomthuchi.TabIndex = 10;
-            this.txtNhomthuchi.TakeCode = false;
-            this.txtNhomthuchi.txtMyCode = null;
-            this.txtNhomthuchi.txtMyCode_Edit = null;
-            this.txtNhomthuchi.txtMyID = null;
-            this.txtNhomthuchi.txtMyID_Edit = null;
-            this.txtNhomthuchi.txtMyName = null;
-            this.txtNhomthuchi.txtMyName_Edit = null;
-            this.txtNhomthuchi.txtNext = null;
-            this.txtNhomthuchi.txtNext1 = null;
+            this.chk_HoanKiQui.AutoSize = true;
+            this.chk_HoanKiQui.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chk_HoanKiQui.Location = new System.Drawing.Point(378, 191);
+            this.chk_HoanKiQui.Name = "chk_HoanKiQui";
+            this.chk_HoanKiQui.Size = new System.Drawing.Size(107, 20);
+            this.chk_HoanKiQui.TabIndex = 405;
+            this.chk_HoanKiQui.TabStop = false;
+            this.chk_HoanKiQui.Text = "Hoàn kí quĩ?";
+            this.chk_HoanKiQui.UseVisualStyleBackColor = true;
             // 
             // ucThuchikhac
             // 
@@ -829,5 +843,6 @@
         public Janus.Windows.EditControls.UIComboBox cboPttt;
         private System.Windows.Forms.Label label5;
         private AutoCompleteTextbox_Danhmucchung txtNhomthuchi;
+        private System.Windows.Forms.CheckBox chk_HoanKiQui;
     }
 }

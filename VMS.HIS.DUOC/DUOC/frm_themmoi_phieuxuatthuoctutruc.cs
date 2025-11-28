@@ -404,9 +404,9 @@ namespace VNS.HIS.UI.THUOC
                 else
                 {
                     if (THU_VIEN_CHUNG.Laygiatrithamsohethong("THUOC_INPHIEUXUATKHO _2LIEN", "0", false) == "1")
-                        VNS.HIS.UI.Baocao.thuoc_phieuin_nhapxuat.InphieuXuatkho_2lien(IDPhieuNhap, "PHIẾU XUẤT THUỐC TỦ TRỰC", globalVariables.SysDate);
+                        VNS.HIS.UI.Baocao.thuoc_phieuin_nhapxuat.InphieuXuatkho_2lien(IDPhieuNhap, "PHIẾU XUẤT THUỐC TỦ TRỰC", globalVariables.SysDate, "THUOC_PHIEULINHBU_TUTRUC");
                     else
-                        VNS.HIS.UI.Baocao.thuoc_phieuin_nhapxuat.InphieuXuatkho(IDPhieuNhap, "PHIẾU XUẤT THUỐC TỦ TRỰC", globalVariables.SysDate);
+                        VNS.HIS.UI.Baocao.thuoc_phieuin_nhapxuat.InphieuXuatkho(IDPhieuNhap, "PHIẾU XUẤT THUỐC TỦ TRỰC", globalVariables.SysDate, "THUOC_PHIEULINHBU_TUTRUC");
                 }
             }
 

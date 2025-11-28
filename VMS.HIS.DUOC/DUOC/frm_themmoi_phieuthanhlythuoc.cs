@@ -273,11 +273,12 @@ namespace VNS.HIS.UI.THUOC
                     {
                         cmdAddDetail.Enabled = true;
                         grdKhoXuat.MoveTo(q.First());
-
+                        txtDongia.Text = Utility.sDbnull(q.FirstOrDefault().Cells["DON_GIA"].Value);
                     }
                     else
                     {
                         cmdAddDetail.Enabled = false;
+                        txtDongia.Text = "";
                     }
                     var q1 = from p in grdPhieuXuatChiTiet.GetDataRows()
                              where Utility.Int32Dbnull(p.Cells[DmucThuoc.Columns.IdThuoc].Value, 0) == _idthuoc

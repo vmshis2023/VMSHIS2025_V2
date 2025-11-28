@@ -405,7 +405,7 @@ namespace VNS.HIS.Classes
            DataRow[] arrKCB = m_dtReportPhieuThu.Select("id_loaithanhtoan=1");
            DataRow[] arrOther = m_dtReportPhieuThu.Select("id_loaithanhtoan<>1");
             bool isBHYT = THU_VIEN_CHUNG.IsBaoHiem(Utility.ByteDbnull(m_dtReportPhieuThu.Rows[0]["id_loaidoituong_kcb"]));
-
+           
             if (!isBHYT)
             {
                 if (PropertyLib._MayInProperties.KieuInBienlai == KieuIn.Innhiet)
@@ -460,6 +460,7 @@ namespace VNS.HIS.Classes
                     reportCode = "thanhtoan_Bienlai_Dichvu_A4_BHYT";
                 crpt = Utility.GetReport(reportCode, ref tieude, ref reportname);
             }
+           
             if (crpt == null) return;
            var objForm = new frmPrintPreview("", crpt, true, true);
            objForm.mv_sReportFileName = Path.GetFileName(reportname);
@@ -467,11 +468,13 @@ namespace VNS.HIS.Classes
            objForm.nguoi_thuchien = Utility.sDbnull(m_dtReportPhieuThu.Rows[0]["ten_tnv"], "");
            objForm.ten_benhnhan = Utility.sDbnull(m_dtReportPhieuThu.Rows[0]["ten_benhnhan"], "");
            objForm.NGAY = objThanhtoan.NgayThanhtoan;
-           //try
-           //{
-           crpt.SetDataSource(m_dtReportPhieuThu.DefaultView);
-           //crpt.DataDefinition.FormulaFields["Formula_1"].Text = Strings.Chr(34) + "                                                                      ".Replace("#$X$#", Strings.Chr(34) + "&Chr(13)&" + Strings.Chr(34)) + Strings.Chr(34);
-           Utility.SetParameterValue(crpt, "ParentBranchName", globalVariables.ParentBranch_Name);
+           
+            //try
+            //{
+            crpt.SetDataSource(m_dtReportPhieuThu.DefaultView);
+           
+            //crpt.DataDefinition.FormulaFields["Formula_1"].Text = Strings.Chr(34) + "                                                                      ".Replace("#$X$#", Strings.Chr(34) + "&Chr(13)&" + Strings.Chr(34)) + Strings.Chr(34);
+            Utility.SetParameterValue(crpt, "ParentBranchName", globalVariables.ParentBranch_Name);
            Utility.SetParameterValue(crpt, "BranchName", globalVariables.Branch_Name);
            Utility.SetParameterValue(crpt, "Telephone", globalVariables.Branch_Phone);
            Utility.SetParameterValue(crpt, "Address", globalVariables.Branch_Address);
@@ -489,7 +492,8 @@ namespace VNS.HIS.Classes
            Utility.SetParameterValue(crpt, "BottomCondition", THU_VIEN_CHUNG.BottomCondition());
            Utility.SetParameterValue(crpt, "txtTrinhky", Utility.getTrinhky(objForm.mv_sReportFileName, NGAYINPHIEU));
            objForm.crptViewer.ReportSource = crpt;
-           if (Utility.isPrintPreview(PropertyLib._MayInProperties.KieuInBienlai == KieuIn.Innhiet ? PropertyLib._MayInProperties.TenMayInBienlai_Nhiet : PropertyLib._MayInProperties.TenMayInBienlai, PropertyLib._MayInProperties.PreviewInBienlai))
+           
+            if (Utility.isPrintPreview(PropertyLib._MayInProperties.KieuInBienlai == KieuIn.Innhiet ? PropertyLib._MayInProperties.TenMayInBienlai_Nhiet : PropertyLib._MayInProperties.TenMayInBienlai, PropertyLib._MayInProperties.PreviewInBienlai))
            {
                objForm.SetDefaultPrinter(PropertyLib._MayInProperties.KieuInBienlai == KieuIn.Innhiet ? PropertyLib._MayInProperties.TenMayInBienlai_Nhiet : PropertyLib._MayInProperties.TenMayInBienlai, 0);
                objForm.ShowDialog();
@@ -502,13 +506,113 @@ namespace VNS.HIS.Classes
                crpt.PrintToPrinter(1, false, 0, 0);
            }
        }
-       /// <summary>
-       /// HÀM THỰC HIỆN VIỆC IN PHIẾU BIÊN LAI CHO BẢO HIỂM Y TẾ
-       /// </summary>
-       /// <param name="m_dtReportPhieuThu"></param>
-       /// <param name="sTitleReport"></param>
-       /// <param name="ngayIn"></param>
-       public void INPHIEU_BIENLAI_BHYT(DataTable m_dtReportPhieuThu, DateTime ngayIn, string khogiay)
+        public void INPHIEU_GhiNo(DataTable m_dtReportPhieuThu, KcbThanhtoanGhino objGhino, string khogiay)
+        {
+            Utility.UpdateLogotoDatatable(ref m_dtReportPhieuThu);
+            m_dtReportPhieuThu.DefaultView.Sort = "stt_hthi_khoaphong,stt_in ,stt_hthi_loaidichvu,stt_hthi_dichvu,stt_hthi_chitiet,ten_chitietdichvu";
+            m_dtReportPhieuThu.AcceptChanges();
+            var p = (from q in m_dtReportPhieuThu.AsEnumerable()
+                     group q by q.Field<long>(KcbThanhtoan.Columns.IdThanhtoan) into r
+                     select new
+                     {
+                         _key = r.Key,
+                         tongtien_chietkhau_hoadon = r.Min(g => g.Field<decimal>("tongtien_chietkhau_hoadon")),
+                         tongtien_chietkhau_chitiet = r.Min(g => g.Field<decimal>("tongtien_chietkhau_chitiet")),
+                         tongtien_chietkhau = r.Min(g => g.Field<decimal>("tongtien_chietkhau"))
+                     }).ToList();
+
+            decimal tong = Utility.getSUM(m_dtReportPhieuThu, "TT_BN");
+            decimal tong_ck_hoadon = p.Sum(c => c.tongtien_chietkhau_hoadon);
+            decimal tong_ck = p.Sum(c => c.tongtien_chietkhau);
+            tong = tong - tong_ck;
+            ReportDocument crpt = new ReportDocument();
+            string tieude = "", reportname = "", reportCode = "";
+            DataRow[] arrKCB = m_dtReportPhieuThu.Select("id_loaithanhtoan=1");
+            DataRow[] arrOther = m_dtReportPhieuThu.Select("id_loaithanhtoan<>1");
+            //bool isBHYT = THU_VIEN_CHUNG.IsBaoHiem(Utility.ByteDbnull(m_dtReportPhieuThu.Rows[0]["id_loaidoituong_kcb"]));
+
+                if (PropertyLib._MayInProperties.KieuInBienlai == KieuIn.Innhiet)
+                {
+                    reportCode = "thanhtoan_Bienlai_Dichvu_A4_Innhiet";
+                    crpt = Utility.GetReport(reportCode, ref tieude, ref reportname);
+                }
+                else
+                {
+                    switch (khogiay)
+                    {
+                        case "A4":
+                            reportCode = tong_ck <= 0 ? "thanhtoan_Bienlai_Dichvu_A4" : "thanhtoan_Bienlai_Dichvu_Comiengiam_A4";
+                            crpt = Utility.GetReport(reportCode, ref tieude, ref reportname);
+                            break;
+                        case "A5":
+                            reportCode = tong_ck <= 0 ? "thanhtoan_Bienlai_Dichvu_A5" : "thanhtoan_Bienlai_Dichvu_Comiengiam_A5";
+                            crpt = Utility.GetReport(reportCode, ref tieude, ref reportname);
+                            break;
+
+                    }
+                }
+
+                if (arrKCB.Length > 0 && arrOther.Length <= 0)//In biên lai thanh toán dịch vụ KCB có kèm số QMS và Tên phòng khám
+                {
+                    reportCode = "thanhtoan_Bienlai_KCB_A4";
+                    crpt = Utility.GetReport(reportCode, ref tieude, ref reportname);
+                }
+                
+               
+                    reportCode = "thanhtoan_Bienlai_GhiNo";
+
+                    crpt = Utility.GetReport(reportCode, ref tieude, ref reportname);
+               
+            
+            if (crpt == null) return;
+            var objForm = new frmPrintPreview("", crpt, true, true);
+            objForm.mv_sReportFileName = Path.GetFileName(reportname);
+            objForm.mv_sReportCode = reportCode;
+            objForm.nguoi_thuchien = Utility.sDbnull(m_dtReportPhieuThu.Rows[0]["ten_tnv"], "");
+            objForm.ten_benhnhan = Utility.sDbnull(m_dtReportPhieuThu.Rows[0]["ten_benhnhan"], "");
+            objForm.NGAY = objGhino.NgayGhino;
+            //try
+            //{
+            crpt.SetDataSource(m_dtReportPhieuThu.DefaultView);
+            //crpt.DataDefinition.FormulaFields["Formula_1"].Text = Strings.Chr(34) + "                                                                      ".Replace("#$X$#", Strings.Chr(34) + "&Chr(13)&" + Strings.Chr(34)) + Strings.Chr(34);
+            Utility.SetParameterValue(crpt, "ParentBranchName", globalVariables.ParentBranch_Name);
+            Utility.SetParameterValue(crpt, "BranchName", globalVariables.Branch_Name);
+            Utility.SetParameterValue(crpt, "Telephone", globalVariables.Branch_Phone);
+            Utility.SetParameterValue(crpt, "Address", globalVariables.Branch_Address);
+            Utility.SetParameterValue(crpt, "Contact", string.Format("Điện thoại: {0} Email: {1}", globalVariables.Branch_Phone, globalVariables.Branch_Email));
+            Utility.SetParameterValue(crpt, "tienmiengiam_hdon", tong_ck_hoadon);
+            Utility.SetParameterValue(crpt, "tong_miengiam", tong_ck);
+            Utility.SetParameterValue(crpt, "tongtien_bn", tong);
+            //  Utility.SetParameterValue(crpt,"DateTime", Utility.FormatDateTime(dtCreateDate.Value));
+            Utility.SetParameterValue(crpt, "DIADIEM", globalVariables.gv_strDiadiem);
+            Utility.SetParameterValue(crpt, "CurrentDate", Utility.FormatDateTime(objGhino.NgayGhino, false));
+            Utility.SetParameterValue(crpt, "sCurrentDate", Utility.FormatDateTime(objGhino.NgayGhino, false));
+            Utility.SetParameterValue(crpt, "sTitleReport", tieude);
+            Utility.SetParameterValue(crpt, "sMoneyCharacter",
+                                   new MoneyByLetter().sMoneyToLetter(Utility.sDbnull(tong)));
+            Utility.SetParameterValue(crpt, "BottomCondition", THU_VIEN_CHUNG.BottomCondition());
+            Utility.SetParameterValue(crpt, "txtTrinhky", Utility.getTrinhky(objForm.mv_sReportFileName, NGAYINPHIEU));
+            objForm.crptViewer.ReportSource = crpt;
+            if (Utility.isPrintPreview(PropertyLib._MayInProperties.KieuInBienlai == KieuIn.Innhiet ? PropertyLib._MayInProperties.TenMayInBienlai_Nhiet : PropertyLib._MayInProperties.TenMayInBienlai, PropertyLib._MayInProperties.PreviewInBienlai))
+            {
+                objForm.SetDefaultPrinter(PropertyLib._MayInProperties.KieuInBienlai == KieuIn.Innhiet ? PropertyLib._MayInProperties.TenMayInBienlai_Nhiet : PropertyLib._MayInProperties.TenMayInBienlai, 0);
+                objForm.ShowDialog();
+
+            }
+            else
+            {
+                objForm.addTrinhKy_OnFormLoad();
+                crpt.PrintOptions.PrinterName = PropertyLib._MayInProperties.KieuInBienlai == KieuIn.Innhiet ? PropertyLib._MayInProperties.TenMayInBienlai_Nhiet : PropertyLib._MayInProperties.TenMayInBienlai;
+                crpt.PrintToPrinter(1, false, 0, 0);
+            }
+        }
+        /// <summary>
+        /// HÀM THỰC HIỆN VIỆC IN PHIẾU BIÊN LAI CHO BẢO HIỂM Y TẾ
+        /// </summary>
+        /// <param name="m_dtReportPhieuThu"></param>
+        /// <param name="sTitleReport"></param>
+        /// <param name="ngayIn"></param>
+        public void INPHIEU_BIENLAI_BHYT(DataTable m_dtReportPhieuThu, DateTime ngayIn, string khogiay)
        {
 
            if (m_dtReportPhieuThu.Rows.Count <= 0)
@@ -599,7 +703,17 @@ namespace VNS.HIS.Classes
        {
            Utility.UpdateLogotoDatatable(ref m_dtReportPhieuThu);
            m_dtReportPhieuThu.DefaultView.Sort = "stt_hthi_khoaphong,stt_in ,stt_hthi_loaidichvu,stt_hthi_dichvu,stt_hthi_chitiet,ten_chitietdichvu";
-           m_dtReportPhieuThu.AcceptChanges();
+            if (!m_dtReportPhieuThu.Columns.Contains("ma_lien"))
+            {
+                Utility.AddColums2DataTable(m_dtReportPhieuThu, new List<string>() { "ma_lien", "ten_lien" }, new List<Type>() { typeof(string), typeof(string) });
+
+                foreach (DataRow row in m_dtReportPhieuThu.AsEnumerable())
+                {
+                    row["ma_lien"] = "1";
+                    row["ten_lien"] = "";
+                }
+            }
+            m_dtReportPhieuThu.AcceptChanges();
            var p = (from q in m_dtReportPhieuThu.AsEnumerable()
                     group q by q.Field<long>(KcbThanhtoan.Columns.IdThanhtoan) into r
                     select new
@@ -891,8 +1005,10 @@ namespace VNS.HIS.Classes
           
            try
            {
+                
                ActionResult actionResult = new KCB_THANHTOAN().Capnhattrangthaithanhtoan(id_thanhtoan);
-               if (actionResult == ActionResult.Success)
+               
+                if (actionResult == ActionResult.Success)
                {
                    switch (objLuotkham.MaDoituongKcb)
                    {
@@ -1013,6 +1129,11 @@ namespace VNS.HIS.Classes
            try
            {
                KcbThanhtoan objPayment = KcbThanhtoan.FetchByID(payment_id);
+                if(objPayment==null)
+                {
+                    Utility.ShowMsg("Bạn cần chọn phiếu thanh toán có mã TT để in được bảng kê này");
+                    return;
+                }    
                if (IsTongHop) objPayment.IdThanhtoan = -1;
                ///lấy thông tin vào phiếu thu
                DataTable mDtReportPhieuThu = new KCB_THANHTOAN().LaythongtininbienlaiDichvu(objPayment,-1, noitru,1);
@@ -1103,7 +1224,46 @@ namespace VNS.HIS.Classes
                log.Trace(exception.Message);
            }
        }
-       private void Inbienlai_BHYT(long payment_id, bool IsTongHop, byte noitru, byte boqua_cacdichvu_tralai=100)
+        public void Inbienlai_ghino(long id_ghino,KcbLuotkham objLuotkham)
+        {
+            try
+            {
+                KcbThanhtoanGhino objGhino = KcbThanhtoanGhino.FetchByID(id_ghino);
+                DataTable mDtReportPhieuThu = SPs.GhiNoLaydulieuIn(objLuotkham.MaLuotkham, (int)objLuotkham.IdBenhnhan, id_ghino).GetDataSet().Tables[0];
+                ///lấy thông tin vào phiếu thu
+                Utility.AddColums2DataTable(mDtReportPhieuThu, new List<string>() { "ma_lien", "ten_lien" }, new List<Type>() { typeof(string), typeof(string) });
+                DataTable dtResult = mDtReportPhieuThu.Clone();
+                //Xử lý duplicate dữ liệu dựa theo hình thức thanh toán để tạo các liên
+                string str_Lien = "1@(Liên 1: Lưu tại phòng kế toán);2@(Liên 2: Lưu tại phòng khám);3@(Liên 3: Giao khách hàng)";
+                    //Thông tin các liên lưu trong mô tả thêm
+                    List<string> lstLien = str_Lien.Split(';').ToList<string>();//Cấu trúc malien:tenlien;malien1:tenlien1;....
+                    foreach (string lien in lstLien)
+                    {
+                        string ma_lien = lien.Split('@')[0];
+                        string ten_lien = lien.Split('@')[1];
+                        AddLien(mDtReportPhieuThu, ma_lien, ten_lien, dtResult);
+                    }
+              
+                //dtResult đã chứa thông tin của 4 liên
+                THU_VIEN_CHUNG.Sapxepthutuin(ref dtResult, false);
+                dtResult.DefaultView.Sort = "ma_lien,stt_hthi_khoaphong,stt_in,stt_hthi_loaidichvu ,stt_hthi_dichvu,stt_hthi_chitiet,ten_chitietdichvu";
+
+                THU_VIEN_CHUNG.CreateXML(mDtReportPhieuThu, Application.StartupPath + @"\Xml4Reports\Thanhtoan_InBienLai_DV.XML");
+                if (dtResult.Rows.Count <= 0)
+                {
+                    Utility.ShowMsg("Không tìm thấy dữ liệu in phiếu (Kcb_Thanhtoan_Laythongtin_Inbienlai_Dv_2023)", "Thông báo");
+                    return;
+                }
+                // Utility.CreateBarcodeData(ref mDtReportPhieuThu, objPayment.MaLuotkham);
+                INPHIEU_GhiNo(dtResult, objGhino, PropertyLib._MayInProperties.CoGiayInBienlai == Papersize.A4 ? "A4" : "A5");
+
+            }
+            catch (Exception exception)
+            {
+                log.Trace(exception.Message);
+            }
+        }
+        private void Inbienlai_BHYT(long payment_id, bool IsTongHop, byte noitru, byte boqua_cacdichvu_tralai=100)
        {
            try
            {
@@ -1271,14 +1431,19 @@ namespace VNS.HIS.Classes
                THU_VIEN_CHUNG.CreateXML(dtPatientPayment, "thanhtoan_Hoadondo.xml");
                Utility.UpdateLogotoDatatable(ref dtPatientPayment);
                dtPatientPayment.Rows[0]["sotien_bangchu"] =
-                   new MoneyByLetter().sMoneyToLetter(Utility.sDbnull(dtPatientPayment.Rows[0]["TONG_TIEN"]));
-               string tieude = "", reportname = "";
-               ReportDocument report = Utility.GetReport("thanhtoan_Hoadondo", ref tieude, ref reportname);
+                   new MoneyByLetter().sMoneyToLetter(Utility.sDbnull( Math.Abs( Utility.DecimaltoDbnull(dtPatientPayment.Rows[0]["TONG_TIEN"]))));
+                KcbThanhtoan objPayment = KcbThanhtoan.FetchByID(paymentID);
+                if (objPayment == null)
+                {
+                    Utility.ShowMsg("Thanh toán không tồn tại(Do người khác đã hủy trong quá trình bạn thao tác). Vui lòng chọn lại bệnh nhân để kiểm tra");
+                    return;
+                }
+                string tieude = "", reportname = "";
+                string report_code = "thanhtoan_Hoadondo";
+                if(objPayment.ThuaThieu<0) report_code = "thanhtoan_Hoadondo_phieuchi";
+                ReportDocument report = Utility.GetReport(report_code, ref tieude, ref reportname);
                if (report == null) return;
-               KcbThanhtoan objPayment = KcbThanhtoan.FetchByID(paymentID);
-               if (objPayment == null) {
-                   Utility.ShowMsg("Thanh toán không tồn tại(Do người khác đã hủy trong quá trình bạn thao tác). Vui lòng chọn lại bệnh nhân để kiểm tra");
-                   return; }
+              
                var objForm = new frmPrintPreview("", report, true, true);
                //objForm.AutoClose = true;
                objForm.mv_sReportFileName = Path.GetFileName(reportname);

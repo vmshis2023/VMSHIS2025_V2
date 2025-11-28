@@ -98,6 +98,7 @@ namespace VMS.HIS.UI.EMR
                   new Select().From(DmucChung.Schema)
                       .Where(DmucChung.Columns.Loai).IsEqualTo("EMR_LOAIBA")
                       .And(DmucChung.Columns.TrangThai).IsEqualTo(1)
+                       .And(DmucChung.Columns.Ma).IsEqualTo(lstLoaiBA)
                       .OrderAsc(DmucChung.Columns.SttHthi)
                       .ExecuteDataSet().Tables[0];
             if (dtData.Rows.Count > 1)
@@ -556,7 +557,7 @@ namespace VMS.HIS.UI.EMR
         }
         private void mnuInVoBA_Click(object sender, EventArgs e)
         {
-            
+            InitData4Print();
             clsInBA.InBA(objEmrBa.IdBa, objEmrBa.MaBa, objEmrBa.LoaiBa, objLuotkham, null, null, null, null, 0, false);
         }
 

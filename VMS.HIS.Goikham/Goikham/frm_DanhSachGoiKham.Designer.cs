@@ -28,20 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_DanhSachGoiKham));
             Janus.Windows.GridEX.GridEXLayout grdGoiKham_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.GridEX.GridEXLayout grdChiTietGoiKham_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
-            Janus.Windows.GridEX.GridEXLayout gridEX1_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
+            Janus.Windows.GridEX.GridEXLayout grd_voucher_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.GridEX.GridEXLayout grdQhe_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
-            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem1 = new Janus.Windows.EditControls.UIComboBoxItem();
-            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem2 = new Janus.Windows.EditControls.UIComboBoxItem();
-            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem3 = new Janus.Windows.EditControls.UIComboBoxItem();
-            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem4 = new Janus.Windows.EditControls.UIComboBoxItem();
-            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem5 = new Janus.Windows.EditControls.UIComboBoxItem();
-            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem6 = new Janus.Windows.EditControls.UIComboBoxItem();
-            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem7 = new Janus.Windows.EditControls.UIComboBoxItem();
-            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem8 = new Janus.Windows.EditControls.UIComboBoxItem();
-            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem9 = new Janus.Windows.EditControls.UIComboBoxItem();
+            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem10 = new Janus.Windows.EditControls.UIComboBoxItem();
+            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem11 = new Janus.Windows.EditControls.UIComboBoxItem();
+            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem12 = new Janus.Windows.EditControls.UIComboBoxItem();
+            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem13 = new Janus.Windows.EditControls.UIComboBoxItem();
+            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem14 = new Janus.Windows.EditControls.UIComboBoxItem();
+            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem15 = new Janus.Windows.EditControls.UIComboBoxItem();
+            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem16 = new Janus.Windows.EditControls.UIComboBoxItem();
+            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem17 = new Janus.Windows.EditControls.UIComboBoxItem();
+            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem18 = new Janus.Windows.EditControls.UIComboBoxItem();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.cmdThemMoi = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -56,11 +57,15 @@
             this.cmdThoat = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.grdGoiKham = new Janus.Windows.GridEX.GridEX();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnu_GoiThaiSan = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnu_Goi1Lan = new System.Windows.Forms.ToolStripMenuItem();
             this.uiTab1 = new Janus.Windows.UI.Tab.UITab();
             this.uiTabPage1 = new Janus.Windows.UI.Tab.UITabPage();
             this.grdChiTietGoiKham = new Janus.Windows.GridEX.GridEX();
-            this.uiTabPage2 = new Janus.Windows.UI.Tab.UITabPage();
-            this.gridEX1 = new Janus.Windows.GridEX.GridEX();
+            this.uiTabPageVoucher = new Janus.Windows.UI.Tab.UITabPage();
+            this.grd_voucher = new Janus.Windows.GridEX.GridEX();
             this.uiTabPage3 = new Janus.Windows.UI.Tab.UITabPage();
             this.grdQhe = new Janus.Windows.GridEX.GridEX();
             this.pnlAct = new System.Windows.Forms.Panel();
@@ -87,18 +92,20 @@
             this.chkByDate = new System.Windows.Forms.CheckBox();
             this.Label1 = new System.Windows.Forms.Label();
             this.cmdTimKiem = new Janus.Windows.EditControls.UIButton();
+            this.cmd_saochepgoi = new System.Windows.Forms.ToolStripButton();
             this.toolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdGoiKham)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiTab1)).BeginInit();
             this.uiTab1.SuspendLayout();
             this.uiTabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdChiTietGoiKham)).BeginInit();
-            this.uiTabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridEX1)).BeginInit();
+            this.uiTabPageVoucher.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grd_voucher)).BeginInit();
             this.uiTabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdQhe)).BeginInit();
             this.pnlAct.SuspendLayout();
@@ -119,6 +126,7 @@
             this.toolStripSeparator2,
             this.cmdXoa,
             this.toolStripSeparator3,
+            this.cmd_saochepgoi,
             this.cmdGenerateVoucher,
             this.cmdHieuluc,
             this.cmdHide,
@@ -240,6 +248,7 @@
             this.grdGoiKham.AlternatingColors = true;
             this.grdGoiKham.BuiltInTextsData = "<LocalizableData ID=\"LocalizableStrings\" Collection=\"true\"><FilterRowInfoText>Lọc" +
     " thông tin dùng chung</FilterRowInfoText></LocalizableData>";
+            this.grdGoiKham.ContextMenuStrip = this.contextMenuStrip1;
             this.grdGoiKham.DefaultFilterRowComparison = Janus.Windows.GridEX.FilterConditionOperator.Contains;
             grdGoiKham_DesignTimeLayout.LayoutString = resources.GetString("grdGoiKham_DesignTimeLayout.LayoutString");
             this.grdGoiKham.DesignTimeLayout = grdGoiKham_DesignTimeLayout;
@@ -263,6 +272,34 @@
             this.grdGoiKham.RowDoubleClick += new Janus.Windows.GridEX.RowActionEventHandler(this.grdGoiKham_RowDoubleClick);
             this.grdGoiKham.SelectionChanged += new System.EventHandler(this.grdGoiKham_SelectionChanged);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnu_GoiThaiSan,
+            this.toolStripMenuItem1,
+            this.mnu_Goi1Lan});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(252, 54);
+            // 
+            // mnu_GoiThaiSan
+            // 
+            this.mnu_GoiThaiSan.Name = "mnu_GoiThaiSan";
+            this.mnu_GoiThaiSan.Size = new System.Drawing.Size(251, 22);
+            this.mnu_GoiThaiSan.Text = "Đổi sang gói trừ dần(Gói thai sản)";
+            this.mnu_GoiThaiSan.Click += new System.EventHandler(this.mnu_GoiThaiSan_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(248, 6);
+            // 
+            // mnu_Goi1Lan
+            // 
+            this.mnu_Goi1Lan.Name = "mnu_Goi1Lan";
+            this.mnu_Goi1Lan.Size = new System.Drawing.Size(251, 22);
+            this.mnu_Goi1Lan.Text = "Đổi sang gói dùng 1 lần";
+            this.mnu_Goi1Lan.Click += new System.EventHandler(this.mnu_Goi1Lan_Click);
+            // 
             // uiTab1
             // 
             this.uiTab1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -273,7 +310,7 @@
             this.uiTab1.TabIndex = 3;
             this.uiTab1.TabPages.AddRange(new Janus.Windows.UI.Tab.UITabPage[] {
             this.uiTabPage1,
-            this.uiTabPage2,
+            this.uiTabPageVoucher,
             this.uiTabPage3});
             // 
             // uiTabPage1
@@ -314,42 +351,42 @@
             this.grdChiTietGoiKham.TabIndex = 1;
             this.grdChiTietGoiKham.TotalRow = Janus.Windows.GridEX.InheritableBoolean.True;
             // 
-            // uiTabPage2
+            // uiTabPageVoucher
             // 
-            this.uiTabPage2.Controls.Add(this.gridEX1);
-            this.uiTabPage2.Location = new System.Drawing.Point(1, 23);
-            this.uiTabPage2.Name = "uiTabPage2";
-            this.uiTabPage2.Size = new System.Drawing.Size(595, 670);
-            this.uiTabPage2.TabStop = true;
-            this.uiTabPage2.Text = "Danh sách mã Coupon/Voucher";
+            this.uiTabPageVoucher.Controls.Add(this.grd_voucher);
+            this.uiTabPageVoucher.Location = new System.Drawing.Point(1, 23);
+            this.uiTabPageVoucher.Name = "uiTabPageVoucher";
+            this.uiTabPageVoucher.Size = new System.Drawing.Size(595, 670);
+            this.uiTabPageVoucher.TabStop = true;
+            this.uiTabPageVoucher.Text = "Danh sách mã Coupon/Voucher";
             // 
-            // gridEX1
+            // grd_voucher
             // 
-            this.gridEX1.AllowEdit = Janus.Windows.GridEX.InheritableBoolean.False;
-            this.gridEX1.AlternatingColors = true;
-            this.gridEX1.BuiltInTextsData = "<LocalizableData ID=\"LocalizableStrings\" Collection=\"true\"><FilterRowInfoText>Lọc" +
+            this.grd_voucher.AllowEdit = Janus.Windows.GridEX.InheritableBoolean.False;
+            this.grd_voucher.AlternatingColors = true;
+            this.grd_voucher.BuiltInTextsData = "<LocalizableData ID=\"LocalizableStrings\" Collection=\"true\"><FilterRowInfoText>Lọc" +
     " thông tin dùng chung</FilterRowInfoText></LocalizableData>";
-            this.gridEX1.DefaultFilterRowComparison = Janus.Windows.GridEX.FilterConditionOperator.Contains;
-            gridEX1_DesignTimeLayout.LayoutString = resources.GetString("gridEX1_DesignTimeLayout.LayoutString");
-            this.gridEX1.DesignTimeLayout = gridEX1_DesignTimeLayout;
-            this.gridEX1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridEX1.FilterMode = Janus.Windows.GridEX.FilterMode.Automatic;
-            this.gridEX1.FilterRowButtonStyle = Janus.Windows.GridEX.FilterRowButtonStyle.ConditionOperatorDropDown;
-            this.gridEX1.FilterRowFormatStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.gridEX1.FilterRowUpdateMode = Janus.Windows.GridEX.FilterRowUpdateMode.WhenValueChanges;
-            this.gridEX1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.gridEX1.GroupByBoxVisible = false;
-            this.gridEX1.GroupRowFormatStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.gridEX1.GroupRowFormatStyle.ForeColor = System.Drawing.Color.Red;
-            this.gridEX1.GroupRowVisualStyle = Janus.Windows.GridEX.GroupRowVisualStyle.Outlook2003;
-            this.gridEX1.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight;
-            this.gridEX1.Location = new System.Drawing.Point(0, 0);
-            this.gridEX1.Name = "gridEX1";
-            this.gridEX1.RecordNavigator = true;
-            this.gridEX1.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
-            this.gridEX1.Size = new System.Drawing.Size(595, 670);
-            this.gridEX1.TabIndex = 2;
-            this.gridEX1.TotalRow = Janus.Windows.GridEX.InheritableBoolean.True;
+            this.grd_voucher.DefaultFilterRowComparison = Janus.Windows.GridEX.FilterConditionOperator.Contains;
+            grd_voucher_DesignTimeLayout.LayoutString = resources.GetString("grd_voucher_DesignTimeLayout.LayoutString");
+            this.grd_voucher.DesignTimeLayout = grd_voucher_DesignTimeLayout;
+            this.grd_voucher.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grd_voucher.FilterMode = Janus.Windows.GridEX.FilterMode.Automatic;
+            this.grd_voucher.FilterRowButtonStyle = Janus.Windows.GridEX.FilterRowButtonStyle.ConditionOperatorDropDown;
+            this.grd_voucher.FilterRowFormatStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.grd_voucher.FilterRowUpdateMode = Janus.Windows.GridEX.FilterRowUpdateMode.WhenValueChanges;
+            this.grd_voucher.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.grd_voucher.GroupByBoxVisible = false;
+            this.grd_voucher.GroupRowFormatStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.grd_voucher.GroupRowFormatStyle.ForeColor = System.Drawing.Color.Red;
+            this.grd_voucher.GroupRowVisualStyle = Janus.Windows.GridEX.GroupRowVisualStyle.Outlook2003;
+            this.grd_voucher.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight;
+            this.grd_voucher.Location = new System.Drawing.Point(0, 0);
+            this.grd_voucher.Name = "grd_voucher";
+            this.grd_voucher.RecordNavigator = true;
+            this.grd_voucher.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
+            this.grd_voucher.Size = new System.Drawing.Size(595, 670);
+            this.grd_voucher.TabIndex = 2;
+            this.grd_voucher.TotalRow = Janus.Windows.GridEX.InheritableBoolean.True;
             // 
             // uiTabPage3
             // 
@@ -476,28 +513,27 @@
             // 
             // cboKieugoi
             // 
-            uiComboBoxItem1.FormatStyle.Alpha = 0;
-            uiComboBoxItem1.IsSeparator = false;
-            uiComboBoxItem1.Text = "Tất cả";
-            uiComboBoxItem1.Value = ((byte)(100));
-            uiComboBoxItem2.FormatStyle.Alpha = 0;
-            uiComboBoxItem2.IsSeparator = false;
-            uiComboBoxItem2.Text = "Gói dùng 1 lần";
-            uiComboBoxItem2.Value = ((byte)(0));
-            uiComboBoxItem3.FormatStyle.Alpha = 0;
-            uiComboBoxItem3.IsSeparator = false;
-            uiComboBoxItem3.Text = "Gói trừ dần";
-            uiComboBoxItem3.Value = ((byte)(1));
+            uiComboBoxItem10.FormatStyle.Alpha = 0;
+            uiComboBoxItem10.IsSeparator = false;
+            uiComboBoxItem10.Text = "Tất cả";
+            uiComboBoxItem10.Value = ((byte)(100));
+            uiComboBoxItem11.FormatStyle.Alpha = 0;
+            uiComboBoxItem11.IsSeparator = false;
+            uiComboBoxItem11.Text = "Gói dùng 1 lần";
+            uiComboBoxItem11.Value = ((byte)(0));
+            uiComboBoxItem12.FormatStyle.Alpha = 0;
+            uiComboBoxItem12.IsSeparator = false;
+            uiComboBoxItem12.Text = "Gói trừ dần";
+            uiComboBoxItem12.Value = ((byte)(1));
             this.cboKieugoi.Items.AddRange(new Janus.Windows.EditControls.UIComboBoxItem[] {
-            uiComboBoxItem1,
-            uiComboBoxItem2,
-            uiComboBoxItem3});
+            uiComboBoxItem10,
+            uiComboBoxItem11,
+            uiComboBoxItem12});
             this.cboKieugoi.Location = new System.Drawing.Point(283, 40);
             this.cboKieugoi.Name = "cboKieugoi";
-            this.cboKieugoi.Size = new System.Drawing.Size(301, 21);
+            this.cboKieugoi.Size = new System.Drawing.Size(230, 21);
             this.cboKieugoi.TabIndex = 522;
             this.cboKieugoi.TabStop = false;
-            this.cboKieugoi.Text = "---Tất cả----";
             // 
             // label5
             // 
@@ -522,22 +558,22 @@
             // 
             // cboTrangThai
             // 
-            uiComboBoxItem4.FormatStyle.Alpha = 0;
-            uiComboBoxItem4.IsSeparator = false;
-            uiComboBoxItem4.Text = "Tất cả";
-            uiComboBoxItem4.Value = 100;
-            uiComboBoxItem5.FormatStyle.Alpha = 0;
-            uiComboBoxItem5.IsSeparator = false;
-            uiComboBoxItem5.Text = "Hết hiệu lực";
-            uiComboBoxItem5.Value = ((short)(0));
-            uiComboBoxItem6.FormatStyle.Alpha = 0;
-            uiComboBoxItem6.IsSeparator = false;
-            uiComboBoxItem6.Text = "Đang hiệu lực";
-            uiComboBoxItem6.Value = ((short)(1));
+            uiComboBoxItem13.FormatStyle.Alpha = 0;
+            uiComboBoxItem13.IsSeparator = false;
+            uiComboBoxItem13.Text = "Tất cả";
+            uiComboBoxItem13.Value = 100;
+            uiComboBoxItem14.FormatStyle.Alpha = 0;
+            uiComboBoxItem14.IsSeparator = false;
+            uiComboBoxItem14.Text = "Hết hiệu lực";
+            uiComboBoxItem14.Value = ((short)(0));
+            uiComboBoxItem15.FormatStyle.Alpha = 0;
+            uiComboBoxItem15.IsSeparator = false;
+            uiComboBoxItem15.Text = "Đang hiệu lực";
+            uiComboBoxItem15.Value = ((short)(1));
             this.cboTrangThai.Items.AddRange(new Janus.Windows.EditControls.UIComboBoxItem[] {
-            uiComboBoxItem4,
-            uiComboBoxItem5,
-            uiComboBoxItem6});
+            uiComboBoxItem13,
+            uiComboBoxItem14,
+            uiComboBoxItem15});
             this.cboTrangThai.Location = new System.Drawing.Point(94, 40);
             this.cboTrangThai.Name = "cboTrangThai";
             this.cboTrangThai.Size = new System.Drawing.Size(117, 21);
@@ -549,25 +585,25 @@
             // 
             this.cboLoai.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            uiComboBoxItem7.FormatStyle.Alpha = 0;
-            uiComboBoxItem7.IsSeparator = false;
-            uiComboBoxItem7.Text = "Tất cả";
-            uiComboBoxItem7.Value = ((byte)(100));
-            uiComboBoxItem8.FormatStyle.Alpha = 0;
-            uiComboBoxItem8.IsSeparator = false;
-            uiComboBoxItem8.Text = "Chương trình khuyến mãi";
-            uiComboBoxItem8.Value = ((byte)(1));
-            uiComboBoxItem9.FormatStyle.Alpha = 0;
-            uiComboBoxItem9.IsSeparator = false;
-            uiComboBoxItem9.Text = "Chương trình giảm giá(Voucher/Coupon)";
-            uiComboBoxItem9.Value = ((byte)(2));
+            uiComboBoxItem16.FormatStyle.Alpha = 0;
+            uiComboBoxItem16.IsSeparator = false;
+            uiComboBoxItem16.Text = "Tất cả";
+            uiComboBoxItem16.Value = ((byte)(100));
+            uiComboBoxItem17.FormatStyle.Alpha = 0;
+            uiComboBoxItem17.IsSeparator = false;
+            uiComboBoxItem17.Text = "Chương trình khuyến mãi";
+            uiComboBoxItem17.Value = ((byte)(1));
+            uiComboBoxItem18.FormatStyle.Alpha = 0;
+            uiComboBoxItem18.IsSeparator = false;
+            uiComboBoxItem18.Text = "Chương trình giảm giá(Voucher/Coupon)";
+            uiComboBoxItem18.Value = ((byte)(2));
             this.cboLoai.Items.AddRange(new Janus.Windows.EditControls.UIComboBoxItem[] {
-            uiComboBoxItem7,
-            uiComboBoxItem8,
-            uiComboBoxItem9});
-            this.cboLoai.Location = new System.Drawing.Point(671, 42);
+            uiComboBoxItem16,
+            uiComboBoxItem17,
+            uiComboBoxItem18});
+            this.cboLoai.Location = new System.Drawing.Point(565, 40);
             this.cboLoai.Name = "cboLoai";
-            this.cboLoai.Size = new System.Drawing.Size(524, 21);
+            this.cboLoai.Size = new System.Drawing.Size(709, 21);
             this.cboLoai.TabIndex = 5;
             this.cboLoai.TabStop = false;
             this.cboLoai.Text = "---Tất cả----";
@@ -576,9 +612,9 @@
             // 
             this.label4.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(588, 17);
+            this.label4.Location = new System.Drawing.Point(519, 15);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(77, 15);
+            this.label4.Size = new System.Drawing.Size(40, 15);
             this.label4.TabIndex = 518;
             this.label4.Text = "Mã";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -587,7 +623,7 @@
             // 
             this.txtMa.BackColor = System.Drawing.Color.White;
             this.txtMa.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMa.Location = new System.Drawing.Point(671, 13);
+            this.txtMa.Location = new System.Drawing.Point(565, 11);
             this.txtMa.Name = "txtMa";
             this.txtMa.Size = new System.Drawing.Size(138, 21);
             this.txtMa.TabIndex = 3;
@@ -598,9 +634,9 @@
             // 
             this.label2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(436, 15);
+            this.label2.Location = new System.Drawing.Point(419, 19);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(43, 15);
+            this.label2.Size = new System.Drawing.Size(30, 15);
             this.label2.TabIndex = 516;
             this.label2.Text = "ID";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -609,10 +645,10 @@
             // 
             this.txtId.BackColor = System.Drawing.Color.White;
             this.txtId.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtId.Location = new System.Drawing.Point(482, 13);
+            this.txtId.Location = new System.Drawing.Point(455, 14);
             this.txtId.Name = "txtId";
             this.txtId.Numeric = true;
-            this.txtId.Size = new System.Drawing.Size(102, 21);
+            this.txtId.Size = new System.Drawing.Size(58, 21);
             this.txtId.TabIndex = 2;
             this.txtId.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center;
             this.txtId.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
@@ -620,7 +656,7 @@
             // lblLoaigoi
             // 
             this.lblLoaigoi.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLoaigoi.Location = new System.Drawing.Point(622, 47);
+            this.lblLoaigoi.Location = new System.Drawing.Point(519, 45);
             this.lblLoaigoi.Name = "lblLoaigoi";
             this.lblLoaigoi.Size = new System.Drawing.Size(43, 15);
             this.lblLoaigoi.TabIndex = 514;
@@ -629,11 +665,13 @@
             // 
             // txtTen
             // 
+            this.txtTen.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTen.BackColor = System.Drawing.Color.White;
             this.txtTen.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTen.Location = new System.Drawing.Point(882, 10);
+            this.txtTen.Location = new System.Drawing.Point(748, 8);
             this.txtTen.Name = "txtTen";
-            this.txtTen.Size = new System.Drawing.Size(313, 23);
+            this.txtTen.Size = new System.Drawing.Size(526, 23);
             this.txtTen.TabIndex = 4;
             this.txtTen.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2003;
             // 
@@ -641,9 +679,9 @@
             // 
             this.label3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(815, 14);
+            this.label3.Location = new System.Drawing.Point(709, 12);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(61, 15);
+            this.label3.Size = new System.Drawing.Size(33, 15);
             this.label3.TabIndex = 511;
             this.label3.Text = "Tên";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -712,12 +750,21 @@
             this.cmdTimKiem.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdTimKiem.Image = ((System.Drawing.Image)(resources.GetObject("cmdTimKiem.Image")));
             this.cmdTimKiem.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdTimKiem.Location = new System.Drawing.Point(1252, 17);
+            this.cmdTimKiem.Location = new System.Drawing.Point(1280, 17);
             this.cmdTimKiem.Name = "cmdTimKiem";
-            this.cmdTimKiem.Size = new System.Drawing.Size(162, 47);
+            this.cmdTimKiem.Size = new System.Drawing.Size(134, 47);
             this.cmdTimKiem.TabIndex = 6;
             this.cmdTimKiem.Text = "Tìm kiếm (F3)";
             this.cmdTimKiem.Click += new System.EventHandler(this.cmdTimKiem_Click);
+            // 
+            // cmd_saochepgoi
+            // 
+            this.cmd_saochepgoi.Image = ((System.Drawing.Image)(resources.GetObject("cmd_saochepgoi.Image")));
+            this.cmd_saochepgoi.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.cmd_saochepgoi.Name = "cmd_saochepgoi";
+            this.cmd_saochepgoi.Size = new System.Drawing.Size(108, 24);
+            this.cmd_saochepgoi.Text = "Sao chép gói";
+            this.cmd_saochepgoi.Click += new System.EventHandler(this.cmd_saochepgoi_Click);
             // 
             // frm_DanhSachGoiKham
             // 
@@ -741,12 +788,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdGoiKham)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.uiTab1)).EndInit();
             this.uiTab1.ResumeLayout(false);
             this.uiTabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdChiTietGoiKham)).EndInit();
-            this.uiTabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridEX1)).EndInit();
+            this.uiTabPageVoucher.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grd_voucher)).EndInit();
             this.uiTabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdQhe)).EndInit();
             this.pnlAct.ResumeLayout(false);
@@ -778,8 +826,8 @@
         private System.Windows.Forms.ToolStripButton cmdGenerateVoucher;
         private Janus.Windows.UI.Tab.UITab uiTab1;
         private Janus.Windows.UI.Tab.UITabPage uiTabPage1;
-        private Janus.Windows.UI.Tab.UITabPage uiTabPage2;
-        private Janus.Windows.GridEX.GridEX gridEX1;
+        private Janus.Windows.UI.Tab.UITabPage uiTabPageVoucher;
+        private Janus.Windows.GridEX.GridEX grd_voucher;
         private System.Windows.Forms.Panel panel1;
         private Janus.Windows.EditControls.UIGroupBox uiGroupBox1;
         internal System.Windows.Forms.Label label10;
@@ -806,6 +854,11 @@
         private Janus.Windows.EditControls.UIButton cmdAdd;
         private Janus.Windows.GridEX.GridEX grdQhe;
         internal System.Windows.Forms.Label lblMsg;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem mnu_GoiThaiSan;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem mnu_Goi1Lan;
+        private System.Windows.Forms.ToolStripButton cmd_saochepgoi;
     }
 }
 

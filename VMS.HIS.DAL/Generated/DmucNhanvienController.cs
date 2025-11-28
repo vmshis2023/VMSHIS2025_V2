@@ -80,7 +80,7 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(string MaNhanvien,string TenNhanvien,short IdPhong,int? IdKhoa,string MaLoainhanvien,string UserName,string MaChungchi,byte? PtramCkhau,byte? Cungthuchien,decimal? ChiphiCungthuchien,string MaCoso,byte? TrangThai,int? SttHthi,string MotaThem,string NguoiTao,DateTime? NgayTao,string NguoiSua,DateTime? NgaySua,byte? IdGioitinh,string GioiTinh,string MaLoaiKcb,string MaKhoa,string TenKhoa,string MaBhxh,string MaChucdanh,DateTime? NgaycapCchn,string NoicapCchn,string PhamviChuyenmo,string PhamviChuyenmonBacsi,string DvktKhac,string VbanPhancong,byte? ThoigianDky,string ThoigianNgay,string ThoigianTuan,string CskcbKhac,string CskcbCgkt,string QdinhCgkt,bool? AnhxaBhyt,decimal? TranKedon,string ChucDanh,string ChucVu,string ViTri,string DienThoai,byte[] ChuKy,byte[] Hinhanh,byte? LaTruongkhoa,byte? LaNguoidaidienDonvi,string UserId,string UserSecret,string UserTotp)
+	    public void Insert(string MaNhanvien,string TenNhanvien,short IdPhong,int? IdKhoa,string MaLoainhanvien,string UserName,string MaChungchi,byte? PtramCkhau,byte? Cungthuchien,decimal? ChiphiCungthuchien,string MaCoso,byte? TrangThai,int? SttHthi,string MotaThem,string NguoiTao,DateTime? NgayTao,string NguoiSua,DateTime? NgaySua,byte? IdGioitinh,string GioiTinh,string MaLoaiKcb,string MaKhoa,string TenKhoa,string MaBhxh,string MaChucdanh,DateTime? NgaycapCchn,string NoicapCchn,string PhamviChuyenmo,string PhamviChuyenmonBacsi,string DvktKhac,string VbanPhancong,byte? ThoigianDky,string ThoigianNgay,string ThoigianTuan,string CskcbKhac,string CskcbCgkt,string QdinhCgkt,bool? AnhxaBhyt,decimal? TranKedon,string ChucDanh,string ChucVu,string ViTri,string DienThoai,byte[] ChuKy,byte[] Hinhanh,byte? LaTruongkhoa,byte? LaNguoidaidienDonvi,string UserId,string UserSecret,string UserTotp,string Sad,string MaLienThongBacSi,string MatkhauLienThongBacSi)
 	    {
 		    DmucNhanvien item = new DmucNhanvien();
 		    
@@ -184,6 +184,12 @@ namespace VMS.HIS.DAL
             
             item.UserTotp = UserTotp;
             
+            item.Sad = Sad;
+            
+            item.MaLienThongBacSi = MaLienThongBacSi;
+            
+            item.MatkhauLienThongBacSi = MatkhauLienThongBacSi;
+            
 	    
 		    item.Save(UserName);
 	    }
@@ -192,7 +198,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(short IdNhanvien,string MaNhanvien,string TenNhanvien,short IdPhong,int? IdKhoa,string MaLoainhanvien,string UserName,string MaChungchi,byte? PtramCkhau,byte? Cungthuchien,decimal? ChiphiCungthuchien,string MaCoso,byte? TrangThai,int? SttHthi,string MotaThem,string NguoiTao,DateTime? NgayTao,string NguoiSua,DateTime? NgaySua,byte? IdGioitinh,string GioiTinh,string MaLoaiKcb,string MaKhoa,string TenKhoa,string MaBhxh,string MaChucdanh,DateTime? NgaycapCchn,string NoicapCchn,string PhamviChuyenmo,string PhamviChuyenmonBacsi,string DvktKhac,string VbanPhancong,byte? ThoigianDky,string ThoigianNgay,string ThoigianTuan,string CskcbKhac,string CskcbCgkt,string QdinhCgkt,bool? AnhxaBhyt,decimal? TranKedon,string ChucDanh,string ChucVu,string ViTri,string DienThoai,byte[] ChuKy,byte[] Hinhanh,byte? LaTruongkhoa,byte? LaNguoidaidienDonvi,string UserId,string UserSecret,string UserTotp)
+	    public void Update(short IdNhanvien,string MaNhanvien,string TenNhanvien,short IdPhong,int? IdKhoa,string MaLoainhanvien,string UserName,string MaChungchi,byte? PtramCkhau,byte? Cungthuchien,decimal? ChiphiCungthuchien,string MaCoso,byte? TrangThai,int? SttHthi,string MotaThem,string NguoiTao,DateTime? NgayTao,string NguoiSua,DateTime? NgaySua,byte? IdGioitinh,string GioiTinh,string MaLoaiKcb,string MaKhoa,string TenKhoa,string MaBhxh,string MaChucdanh,DateTime? NgaycapCchn,string NoicapCchn,string PhamviChuyenmo,string PhamviChuyenmonBacsi,string DvktKhac,string VbanPhancong,byte? ThoigianDky,string ThoigianNgay,string ThoigianTuan,string CskcbKhac,string CskcbCgkt,string QdinhCgkt,bool? AnhxaBhyt,decimal? TranKedon,string ChucDanh,string ChucVu,string ViTri,string DienThoai,byte[] ChuKy,byte[] Hinhanh,byte? LaTruongkhoa,byte? LaNguoidaidienDonvi,string UserId,string UserSecret,string UserTotp,string Sad,string MaLienThongBacSi,string MatkhauLienThongBacSi)
 	    {
 		    DmucNhanvien item = new DmucNhanvien();
 	        item.MarkOld();
@@ -299,6 +305,12 @@ namespace VMS.HIS.DAL
 			item.UserSecret = UserSecret;
 				
 			item.UserTotp = UserTotp;
+				
+			item.Sad = Sad;
+				
+			item.MaLienThongBacSi = MaLienThongBacSi;
+				
+			item.MatkhauLienThongBacSi = MatkhauLienThongBacSi;
 				
 	        item.Save(UserName);
 	    }

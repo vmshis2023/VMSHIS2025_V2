@@ -10,6 +10,7 @@ using VNS.HIS.UI.Classess;
 using VNS.HIS.UI.DANHMUC;
 using VNS.Libs;
 using VNS.Properties;
+using VNS.HIS.UI.NGOAITRU;
 
 namespace VNS.HIS.UI.Forms.NGOAITRU
 {
@@ -47,6 +48,24 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
             optThem.CheckedChanged += optThem_CheckedChanged;
             optChange.CheckedChanged += optThem_CheckedChanged;
             autoComplete_Congkham._OnGridSelectionChanged += AutoComplete_Congkham__OnGridSelectionChanged;
+            grdRegExam.MouseDoubleClick += GrdRegExam_MouseDoubleClick;
+        }
+
+        private void GrdRegExam_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            try
+            {
+               objCongkham_Cu = KcbDangkyKcb.FetchByID(Utility.Int32Dbnull(grdRegExam.GetValue("id_kham")));
+               
+                dongia = objCongkham_Cu.TrangthaiThanhtoan > 0 ? objCongkham_Cu.DonGia : -1;
+                txtPKcu.Text = Utility.sDbnull(grdRegExam.GetValue("ten_phongkham"));
+                txtCongkhamCu.Text = Utility.sDbnull(grdRegExam.GetValue("ten_dichvukcb"));
+                RefreshKCB();
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         private void Frm_ChuyenPhongkham_Load(object sender, EventArgs e)
@@ -55,6 +74,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
             {
                 chkThutienkhamsau.Enabled = Utility.Coquyen("tiepdon_chon_thanhtoancongkhamsau") && THU_VIEN_CHUNG.Laygiatrithamsohethong("TIEPDON_CHON_THANHTOANCONGKHAMSAU", "1", false) == "1";
                 objLuotkham = KcbLuotkham.FetchByID(objCongkham_Cu.MaLuotkham);
+                LayDanhsachCongkham();
                 _objDoituongKcb =
                   new Select().From(DmucDoituongkcb.Schema)
                       .Where(DmucDoituongkcb.MaDoituongKcbColumn)
@@ -76,7 +96,14 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
                 Utility.ShowMsg(ex.Message);
             }
         }
+        private void LayDanhsachCongkham()
+        {
+            
+            m_dtDangkyPhongkham = new KCB_DANGKY().LayDsachCongkhamDadangki(objLuotkham!=null?objLuotkham.MaLuotkham:"", objLuotkham!=null? objLuotkham.IdBenhnhan:-1, 0);
+            Utility.SetDataSourceForDataGridEx(grdRegExam, m_dtDangkyPhongkham, false, true, "", "stt_tt37");
+           
 
+        }
         private void AutoComplete_Congkham__OnGridSelectionChanged(int Loai,int id_congkham, List<int> lstSelectedID, List<int> lstLoai, string ma_congkham, string ten_congkham, string ten_phongkham)
         {
             objDichvuKcb = DmucDichvukcb.FetchByID(id_congkham);
@@ -155,7 +182,24 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
         {
             try
             {
+                cmdChuyen.Enabled = false;
                 Utility.SetMsg(lblMsg, "", true);
+                if (objCongkham_Cu != null &&  Utility.Byte2Bool(objCongkham_Cu.DachidinhCls))
+                {
+                    Utility.ShowMsg("Đã chỉ định cận lâm sàng nên không thể đổi sang phòng khám khác", "Thông báo");
+                    return;
+                }
+                if (objCongkham_Cu != null && Utility.Byte2Bool(objCongkham_Cu.DakeDonthuoc))
+                {
+                    Utility.ShowMsg("Đã kê đơn nên không thể đổi sang phòng khám khác", "Thông báo");
+                    return;
+                }
+                ////Bỏ theo ý Viet 230615
+                if (objCongkham_Cu != null && Utility.Byte2Bool(objCongkham_Cu.DakeDonthuoc))
+                {
+                    Utility.ShowMsg("Đã kết thúc khám nên không thể đổi sang phòng khám khác", "Thông báo");
+                    return;
+                }
 
                 if (Utility.Int32Dbnull( autoComplete_Congkham.MyID)  <= 0)
                 {
@@ -204,13 +248,19 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
                     {
                         lblMsg.Text = @"Đổi phòng khám thành công";
                         InphieuKham();
-                        cmdChuyen.Enabled = false;
+                        
                         Utility.Log(Name, globalVariables.UserName,
                             string.Format("Đổi công khám cho bệnh nhân {0},{1} từ công khám {2} sang công khám {3}",
                                 objCongkham_Cu.MaLuotkham, objBenhnhan.TenBenhnhan, txtCongkhamCu.Text, objDichvuKcb.TenDichvukcb), newaction.Move, this.GetType().Assembly.ManifestModule.Name);
-                       
+                        
+                        if (m_dtDangkyPhongkham != null)
+                        {
+                            LayDanhsachCongkham();
+                            Utility.GonewRowJanus(grdRegExam, KcbDangkyKcb.Columns.IdKham, objCongkham_Cu.IdKham.ToString());
+                            cmdInPhieukhamchuyenkhoa.Focus();
+                        }
                         m_blnCancel = false;
-                        Close();
+                        //Close();
                     }
                 }
             }
@@ -218,6 +268,10 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
             {
                 Utility.ShowMsg("Lỗi" + ex.Message);
                 //throw;
+            }
+            finally
+            {
+                cmdChuyen.Enabled = true;
             }
         }
 
@@ -248,7 +302,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
         KCB_QMS _KCB_QMS = new KCB_QMS();
         private void InphieuKham()
         {
-            int IdKham = id_congkham;
+            int IdKham = Utility.Int32Dbnull(grdRegExam.GetValue("id_kham"));
             KcbDangkyKcb objCongkham = KcbDangkyKcb.FetchByID(id_congkham);
             if (objCongkham != null)
             {
@@ -425,7 +479,7 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
        
         void RefreshKCB()
         {
-            m_dtDanhsachDichvuKCB = THU_VIEN_CHUNG.LayDsach_Dvu_KCB(MA_DTUONG, "ALL", optThem.Checked ? -1 : objCongkham_Cu.TrangthaiThanhtoan > 0 ? objCongkham_Cu.DonGia : -1,-1);
+            m_dtDanhsachDichvuKCB = THU_VIEN_CHUNG.LayDsach_Dvu_KCB(MA_DTUONG, "ALL", optThem.Checked ? -1 : objCongkham_Cu.TrangthaiThanhtoan > 0 || objCongkham_Cu.IdTamthu > 0 ? objCongkham_Cu.DonGia : -1,-1);
             DataRow[] arrDr = null;
             if (m_dtDanhsachDichvuKCB == null) return;
             if (!m_dtDanhsachDichvuKCB.Columns.Contains("ShortCut"))
@@ -457,32 +511,45 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
 
         private void cmdDangkyKCB_Click(object sender, EventArgs e)
         {
-            if (Utility.Int32Dbnull(autoComplete_Congkham.MyID) <= 0)
+            try
             {
-                Utility.ShowMsg("Bạn phải chọn công khám mới", "Thông báo", MessageBoxIcon.Warning);
-                return;
-            }
-            objDichvuKcb = DmucDichvukcb.FetchByID(Utility.Int32Dbnull(autoComplete_Congkham.MyID));
-           
-            
-            if (objDichvuKcb != null)
-            {
-                //if (chkThutienkhamsau.Checked && !Utility.AcceptQuestion(string.Format("Bạn có chắc chắn muốn thêm công khám mới {0} và thanh toán tiền khám sau hay không?", objDichvuKcb.TenDichvukcb), "Xác nhận thanh toán công khám sau", true))
-                //    return;
-                //Utility.SetMsg(lblDonGia, Utility.sDbnull(objDichvuKcb.DonGia), true);
-                //Utility.SetMsg(lblPhuThu, Utility.sDbnull(Utility.Int32Dbnull(objLuotkham.DungTuyen.Value, 0) == 1 ? objDichvuKcb.PhuthuDungtuyen : objDichvuKcb.PhuthuTraituyen), true);
-                if ((m_dtDangkyPhongkham.Select(KcbDangkyKcb.Columns.IdPhongkham + "=" + objDichvuKcb.IdPhongkham + "").GetLength(0) <= 0))
+                cmdDangkyKCB.Enabled = false;
+                if (Utility.Int32Dbnull(autoComplete_Congkham.MyID) <= 0)
                 {
-                    ProcessData();
+                    Utility.ShowMsg("Bạn phải chọn công khám mới", "Thông báo", MessageBoxIcon.Warning);
+                    return;
                 }
-                else
+                objDichvuKcb = DmucDichvukcb.FetchByID(Utility.Int32Dbnull(autoComplete_Congkham.MyID));
+
+
+                if (objDichvuKcb != null)
                 {
-                    if (Utility.AcceptQuestion("Bệnh nhân đã được đăng ký khám chữa bệnh tại phòng khám này. Bạn có muốn tiếp tục đăng ký dịch vụ KCB mới vừa chọn hay không?", "Thông báo", true))
+                    //if (chkThutienkhamsau.Checked && !Utility.AcceptQuestion(string.Format("Bạn có chắc chắn muốn thêm công khám mới {0} và thanh toán tiền khám sau hay không?", objDichvuKcb.TenDichvukcb), "Xác nhận thanh toán công khám sau", true))
+                    //    return;
+                    //Utility.SetMsg(lblDonGia, Utility.sDbnull(objDichvuKcb.DonGia), true);
+                    //Utility.SetMsg(lblPhuThu, Utility.sDbnull(Utility.Int32Dbnull(objLuotkham.DungTuyen.Value, 0) == 1 ? objDichvuKcb.PhuthuDungtuyen : objDichvuKcb.PhuthuTraituyen), true);
+                    if ((m_dtDangkyPhongkham.Select(KcbDangkyKcb.Columns.IdPhongkham + "=" + objDichvuKcb.IdPhongkham + "").GetLength(0) <= 0))
                     {
                         ProcessData();
                     }
+                    else
+                    {
+                        if (Utility.AcceptQuestion("Bệnh nhân đã được đăng ký khám chữa bệnh tại phòng khám này. Bạn có muốn tiếp tục đăng ký dịch vụ KCB mới vừa chọn hay không?", "Thông báo", true))
+                        {
+                            ProcessData();
+                        }
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+               
+            }
+            finally
+            {
+                cmdDangkyKCB.Enabled = true;
+            }
+           
         }
         public DmucDichvukcb objDichvuKcb = null;
         void ProcessData()
@@ -496,6 +563,9 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
                  KcbDangkyKcb objCongkham = TaoCongKham();
                 if (objCongkham != null)
                 {
+                    DataTable dtDvuKemCongKham = SPs.CongkhamLaydanhmucdichvuKemtheo(objCongkham.IdDichvuKcb).GetDataSet().Tables[0];
+                    objCongkham.CongkhamKemdichvu = Convert.ToByte(dtDvuKemCongKham != null && dtDvuKemCongKham.Rows.Count > 0 ? 1 : 0);
+
                     objCongkham.TinhChiphi = 1;
                     objCongkham.MaLuotkham = objLuotkham.MaLuotkham;
                     objCongkham.IdBenhnhan = objLuotkham.IdBenhnhan;
@@ -504,9 +574,41 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
                     if (actionResult == ActionResult.Success)
                     {
                         id_congkham = Utility.Int32Dbnull(v_RegId);
+                        //Kiểm tra nếu công khám có dịch vụ kèm thì cũng tự tạo phiếu chỉ định
+                        if (dtDvuKemCongKham != null && dtDvuKemCongKham.Rows.Count > 0)
+                        {
+                            var frm = new frm_KCB_CHIDINH_CLS("-GOI,-TIEN,-CHIPHITHEM", 0);
+                            frm.txtAssign_ID.Text = @"-100";
+                            frm.Exam_ID = -1;
+                            frm.IdBacsikham = -1;
+                            frm.objLuotkham = objLuotkham; // CreatePatientExam();
+                            frm.objBenhnhan = objBenhnhan;
+                            frm.objCongkham = null;
+                            frm.txtidkham.Text = "-1";
+                            frm.m_eAction = action.Insert;
+                            frm.txtAssign_ID.Text = @"-1";
+                            frm.noitru = 0;
+                            frm.SetInfor(objLuotkham, objCongkham, globalVariables.SysDate, (int)objCongkham.IdKham, 0, 0, globalVariables.gv_intIDNhanvien, false, dtDvuKemCongKham,null);
+                            frm.ShowDialog();
+                            if (!frm.m_blnCancel)
+                            {
+
+                            }
+                            frm.Close();
+                            frm.Dispose();
+                            frm = null;
+                            GC.Collect();
+                        }
+                        Utility.Log(this.Name, globalVariables.UserName, string.Format("Thêm công khám {0} cho bệnh nhân ID={1}, PID={2}, Tên={3} thành công", objCongkham.TenDichvuKcb, objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, objBenhnhan.TenBenhnhan), newaction.Add, this.GetType().Assembly.ManifestModule.Name);
+                        if (m_dtDangkyPhongkham != null)
+                        {
+                            LayDanhsachCongkham();
+                            Utility.GonewRowJanus(grdRegExam, KcbDangkyKcb.Columns.IdKham, v_RegId.ToString());
+                            cmdInPhieukhamchuyenkhoa.Focus();
+                        }
                         Utility.ShowMsg(string.Format("Bạn đã đăng ký phòng khám cho người bệnh thành công. Vui lòng hướng dẫn người bệnh sang phòng khám mới để tiếp tục Khám chữa bệnh"), "Thông báo", MessageBoxIcon.Information);
                         InphieuKham();
-                        this.Close();
+                        //this.Close();
                         return;
                     }
                     if (actionResult == ActionResult.Error)
@@ -643,6 +745,9 @@ namespace VNS.HIS.UI.Forms.NGOAITRU
             return null;
         }
 
-      
+        private void optChange_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

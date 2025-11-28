@@ -61,7 +61,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VMS.Invoice", "..\VMS.Invoi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VMS.Invoice.Model", "..\VMS.Invoice.Model\VMS.Invoice.Model\VMS.Invoice.Model.csproj", "{791A67B4-F2D0-4F5B-ACE4-ED201505A66F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VMS.HIS.Bus.Emr", "..\VMS.Emr\VMS.Emr\VMS.HIS.Bus.Emr.csproj", "{323D0245-5CD3-488A-8B83-EDADE85B3DA4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "9_0.VMS.HIS.Bus.Emr", "..\VMS.Emr\VMS.Emr\9_0.VMS.HIS.Bus.Emr.csproj", "{323D0245-5CD3-488A-8B83-EDADE85B3DA4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VMS.Chukyso.Api", "..\VMS.DigitalSignature\VNPT\VMS.Chukyso.Api.csproj", "{C03EB256-96CF-43FB-94C5-7E3B73B63298}"
 EndProject

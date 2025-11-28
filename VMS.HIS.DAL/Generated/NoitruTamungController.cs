@@ -80,7 +80,7 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(long IdBenhnhan,string MaLuotkham,decimal? SoTien,byte TrangThai,DateTime? NgayTamung,byte? KieuTamung,string MotaThem,int? IdTnv,string NguoiSua,DateTime? NgaySua,string NguoiTao,DateTime NgayTao,short? IdKhoanoitru,long? IdBuonggiuong,int? IdBuong,int? IdGiuong,byte? Noitru,long? IdTamung,string MaPttt,string MaNguonTamung,string MaNganhang,long? IdThanhtoan,string Code,short? IdKkb,byte? TthaiHuy,DateTime? NgayHuy,string NguoiHuy,string LydoHuy,string MaHtttHuy,string MaNganhangHuy,bool? TuTrului,short? IdGoi,string MaCoso,string GhiChu,bool? LaTamthu,bool? TthaiXuatHddt,string RefId,string TransactionId)
+	    public void Insert(long IdBenhnhan,string MaLuotkham,decimal? SoTien,byte TrangThai,DateTime? NgayTamung,byte? KieuTamung,string MotaThem,int? IdTnv,string MaTnv,string NguoiSua,DateTime? NgaySua,string NguoiTao,DateTime NgayTao,short? IdKhoanoitru,long? IdBuonggiuong,int? IdBuong,int? IdGiuong,byte? Noitru,long? IdTamung,string MaPttt,string MaNguonTamung,byte? LoaiTamung,string MaNganhang,long? IdThanhtoan,string Code,short? IdKkb,byte? TthaiHuy,DateTime? NgayHuy,string NguoiHuy,string LydoHuy,string MaHtttHuy,string MaNganhangHuy,bool? TuTrului,short? IdGoi,string MaCoso,string GhiChu,bool? LaTamthu,bool? TthaiXuatHddt,string RefId,string TransactionId,DateTime? NgayTattoan,string NguoiTattoan,bool? TthaiTattoan)
 	    {
 		    NoitruTamung item = new NoitruTamung();
 		    
@@ -99,6 +99,8 @@ namespace VMS.HIS.DAL
             item.MotaThem = MotaThem;
             
             item.IdTnv = IdTnv;
+            
+            item.MaTnv = MaTnv;
             
             item.NguoiSua = NguoiSua;
             
@@ -123,6 +125,8 @@ namespace VMS.HIS.DAL
             item.MaPttt = MaPttt;
             
             item.MaNguonTamung = MaNguonTamung;
+            
+            item.LoaiTamung = LoaiTamung;
             
             item.MaNganhang = MaNganhang;
             
@@ -160,6 +164,12 @@ namespace VMS.HIS.DAL
             
             item.TransactionId = TransactionId;
             
+            item.NgayTattoan = NgayTattoan;
+            
+            item.NguoiTattoan = NguoiTattoan;
+            
+            item.TthaiTattoan = TthaiTattoan;
+            
 	    
 		    item.Save(UserName);
 	    }
@@ -168,7 +178,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(long Id,long IdBenhnhan,string MaLuotkham,decimal? SoTien,byte TrangThai,DateTime? NgayTamung,byte? KieuTamung,string MotaThem,int? IdTnv,string NguoiSua,DateTime? NgaySua,string NguoiTao,DateTime NgayTao,short? IdKhoanoitru,long? IdBuonggiuong,int? IdBuong,int? IdGiuong,byte? Noitru,long? IdTamung,string MaPttt,string MaNguonTamung,string MaNganhang,long? IdThanhtoan,string Code,short? IdKkb,byte? TthaiHuy,DateTime? NgayHuy,string NguoiHuy,string LydoHuy,string MaHtttHuy,string MaNganhangHuy,bool? TuTrului,short? IdGoi,string MaCoso,string GhiChu,bool? LaTamthu,bool? TthaiXuatHddt,string RefId,string TransactionId)
+	    public void Update(long Id,long IdBenhnhan,string MaLuotkham,decimal? SoTien,byte TrangThai,DateTime? NgayTamung,byte? KieuTamung,string MotaThem,int? IdTnv,string MaTnv,string NguoiSua,DateTime? NgaySua,string NguoiTao,DateTime NgayTao,short? IdKhoanoitru,long? IdBuonggiuong,int? IdBuong,int? IdGiuong,byte? Noitru,long? IdTamung,string MaPttt,string MaNguonTamung,byte? LoaiTamung,string MaNganhang,long? IdThanhtoan,string Code,short? IdKkb,byte? TthaiHuy,DateTime? NgayHuy,string NguoiHuy,string LydoHuy,string MaHtttHuy,string MaNganhangHuy,bool? TuTrului,short? IdGoi,string MaCoso,string GhiChu,bool? LaTamthu,bool? TthaiXuatHddt,string RefId,string TransactionId,DateTime? NgayTattoan,string NguoiTattoan,bool? TthaiTattoan)
 	    {
 		    NoitruTamung item = new NoitruTamung();
 	        item.MarkOld();
@@ -191,6 +201,8 @@ namespace VMS.HIS.DAL
 			item.MotaThem = MotaThem;
 				
 			item.IdTnv = IdTnv;
+				
+			item.MaTnv = MaTnv;
 				
 			item.NguoiSua = NguoiSua;
 				
@@ -215,6 +227,8 @@ namespace VMS.HIS.DAL
 			item.MaPttt = MaPttt;
 				
 			item.MaNguonTamung = MaNguonTamung;
+				
+			item.LoaiTamung = LoaiTamung;
 				
 			item.MaNganhang = MaNganhang;
 				
@@ -251,6 +265,12 @@ namespace VMS.HIS.DAL
 			item.RefId = RefId;
 				
 			item.TransactionId = TransactionId;
+				
+			item.NgayTattoan = NgayTattoan;
+				
+			item.NguoiTattoan = NguoiTattoan;
+				
+			item.TthaiTattoan = TthaiTattoan;
 				
 	        item.Save(UserName);
 	    }

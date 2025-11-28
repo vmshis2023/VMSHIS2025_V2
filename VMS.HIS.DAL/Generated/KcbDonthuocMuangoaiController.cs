@@ -50,9 +50,9 @@ namespace VMS.HIS.DAL
             return coll;
         }
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public KcbDonthuocMuangoaiCollection FetchByID(object Id)
+        public KcbDonthuocMuangoaiCollection FetchByID(object IdDonthuoc)
         {
-            KcbDonthuocMuangoaiCollection coll = new KcbDonthuocMuangoaiCollection().Where("id", Id).Load();
+            KcbDonthuocMuangoaiCollection coll = new KcbDonthuocMuangoaiCollection().Where("id_donthuoc", IdDonthuoc).Load();
             return coll;
         }
 		
@@ -64,14 +64,14 @@ namespace VMS.HIS.DAL
             return coll;
         }
         [DataObjectMethod(DataObjectMethodType.Delete, true)]
-        public bool Delete(object Id)
+        public bool Delete(object IdDonthuoc)
         {
-            return (KcbDonthuocMuangoai.Delete(Id) == 1);
+            return (KcbDonthuocMuangoai.Delete(IdDonthuoc) == 1);
         }
         [DataObjectMethod(DataObjectMethodType.Delete, false)]
-        public bool Destroy(object Id)
+        public bool Destroy(object IdDonthuoc)
         {
-            return (KcbDonthuocMuangoai.Destroy(Id) == 1);
+            return (KcbDonthuocMuangoai.Destroy(IdDonthuoc) == 1);
         }
         
         
@@ -80,19 +80,15 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(long IdBenhnhan,string MaLuotkham,string TenThuoc,int? SoLuong,string CachDung,string LoidanBacsi,DateTime NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua)
+	    public void Insert(string TenBacsi,long IdBenhnhan,string MaLuotkham,string LoidanBacsi,DateTime NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua,long? IdCongkham)
 	    {
 		    KcbDonthuocMuangoai item = new KcbDonthuocMuangoai();
 		    
+            item.TenBacsi = TenBacsi;
+            
             item.IdBenhnhan = IdBenhnhan;
             
             item.MaLuotkham = MaLuotkham;
-            
-            item.TenThuoc = TenThuoc;
-            
-            item.SoLuong = SoLuong;
-            
-            item.CachDung = CachDung;
             
             item.LoidanBacsi = LoidanBacsi;
             
@@ -104,6 +100,8 @@ namespace VMS.HIS.DAL
             
             item.NguoiSua = NguoiSua;
             
+            item.IdCongkham = IdCongkham;
+            
 	    
 		    item.Save(UserName);
 	    }
@@ -112,23 +110,19 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(long Id,long IdBenhnhan,string MaLuotkham,string TenThuoc,int? SoLuong,string CachDung,string LoidanBacsi,DateTime NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua)
+	    public void Update(long IdDonthuoc,string TenBacsi,long IdBenhnhan,string MaLuotkham,string LoidanBacsi,DateTime NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua,long? IdCongkham)
 	    {
 		    KcbDonthuocMuangoai item = new KcbDonthuocMuangoai();
 	        item.MarkOld();
 	        item.IsLoaded = true;
 		    
-			item.Id = Id;
+			item.IdDonthuoc = IdDonthuoc;
+				
+			item.TenBacsi = TenBacsi;
 				
 			item.IdBenhnhan = IdBenhnhan;
 				
 			item.MaLuotkham = MaLuotkham;
-				
-			item.TenThuoc = TenThuoc;
-				
-			item.SoLuong = SoLuong;
-				
-			item.CachDung = CachDung;
 				
 			item.LoidanBacsi = LoidanBacsi;
 				
@@ -139,6 +133,8 @@ namespace VMS.HIS.DAL
 			item.NgaySua = NgaySua;
 				
 			item.NguoiSua = NguoiSua;
+				
+			item.IdCongkham = IdCongkham;
 				
 	        item.Save(UserName);
 	    }

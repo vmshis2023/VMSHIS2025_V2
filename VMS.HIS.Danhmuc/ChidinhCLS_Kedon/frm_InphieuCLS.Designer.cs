@@ -41,6 +41,7 @@
             this.dtNgayInPhieu = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.cmdInXacNhanHIV = new System.Windows.Forms.Button();
+            this.chk_kiso = new Janus.Windows.EditControls.UICheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox1)).BeginInit();
             this.uiGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdList)).BeginInit();
@@ -161,7 +162,7 @@
             this.dtNgayInPhieu.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtNgayInPhieu.Location = new System.Drawing.Point(93, 528);
             this.dtNgayInPhieu.Name = "dtNgayInPhieu";
-            this.dtNgayInPhieu.Size = new System.Drawing.Size(148, 22);
+            this.dtNgayInPhieu.Size = new System.Drawing.Size(183, 22);
             this.dtNgayInPhieu.TabIndex = 510;
             // 
             // label2
@@ -188,11 +189,28 @@
             this.cmdInXacNhanHIV.Visible = false;
             this.cmdInXacNhanHIV.Click += new System.EventHandler(this.cmdInXacNhanHIV_Click);
             // 
+            // chk_kiso
+            // 
+            this.chk_kiso.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.chk_kiso.BackColor = System.Drawing.Color.Transparent;
+            this.chk_kiso.Checked = true;
+            this.chk_kiso.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chk_kiso.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chk_kiso.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.chk_kiso.Location = new System.Drawing.Point(291, 529);
+            this.chk_kiso.Name = "chk_kiso";
+            this.chk_kiso.Size = new System.Drawing.Size(80, 23);
+            this.chk_kiso.TabIndex = 518;
+            this.chk_kiso.TabStop = false;
+            this.chk_kiso.Tag = "CLS_KISO_KHILUUVAIN";
+            this.chk_kiso.Text = "Kí số?";
+            // 
             // frm_InphieuCLS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.chk_kiso);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dtNgayInPhieu);
             this.Controls.Add(this.chkPrintPreview);
@@ -236,5 +254,6 @@
         private System.Windows.Forms.DateTimePicker dtNgayInPhieu;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button cmdInXacNhanHIV;
+        private Janus.Windows.EditControls.UICheckBox chk_kiso;
     }
 }

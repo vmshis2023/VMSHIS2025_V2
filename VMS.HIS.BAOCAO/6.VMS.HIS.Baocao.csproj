@@ -124,11 +124,11 @@
     <Compile Include="Baocao\Baocaongoaitru\frm_baocaocongno.Designer.cs">
       <DependentUpon>frm_baocaocongno.cs</DependentUpon>
     </Compile>
-    <Compile Include="Baocao\Baocaongoaitru\frm_baocaodoanhthuphongkham_Hongphat.cs">
+    <Compile Include="Baocao\Baocaongoaitru\frm_baocaodoanhthuphongkham_Hongphat_V2.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Baocao\Baocaongoaitru\frm_baocaodoanhthuphongkham_Hongphat.Designer.cs">
-      <DependentUpon>frm_baocaodoanhthuphongkham_Hongphat.cs</DependentUpon>
+    <Compile Include="Baocao\Baocaongoaitru\frm_baocaodoanhthuphongkham_Hongphat_V2.Designer.cs">
+      <DependentUpon>frm_baocaodoanhthuphongkham_Hongphat_V2.cs</DependentUpon>
     </Compile>
     <Compile Include="Baocao\Baocaongoaitru\frm_tonghopchiphiKCB_bvsg.cs">
       <SubType>Form</SubType>
@@ -274,6 +274,12 @@
     <Compile Include="Baocao\Baocaonoitru\frm_baocaotinhhinhnoitru.Designer.cs">
       <DependentUpon>frm_baocaotinhhinhnoitru.cs</DependentUpon>
     </Compile>
+    <Compile Include="Baocao\Baocaonoitru\frm_baocao_danhsach_khambenh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocaonoitru\frm_baocao_danhsach_khambenh.Designer.cs">
+      <DependentUpon>frm_baocao_danhsach_khambenh.cs</DependentUpon>
+    </Compile>
     <Compile Include="Baocao\Baocaonoitru\frm_thongkechuyenvien.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -285,6 +291,24 @@
     </Compile>
     <Compile Include="Baocao\Baocaonoitru\frm_thongkenhapvien.Designer.cs">
       <DependentUpon>frm_thongkenhapvien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_soluong_thuoc_trongkho.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_soluong_thuoc_trongkho.Designer.cs">
+      <DependentUpon>frm_baocao_soluong_thuoc_trongkho.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_tonkho_nhathuoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_tonkho_nhathuoc.Designer.cs">
+      <DependentUpon>frm_baocao_tonkho_nhathuoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_muathuoc_taiquay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_muathuoc_taiquay.Designer.cs">
+      <DependentUpon>frm_baocao_muathuoc_taiquay.cs</DependentUpon>
     </Compile>
     <Compile Include="Baocao\Baocao_Thuoc\frm_baocao_nhapxuaton_tutruc.cs">
       <SubType>Form</SubType>
@@ -642,8 +666,8 @@
     <EmbeddedResource Include="Baocao\Baocaongoaitru\frm_baocaocongno.resx">
       <DependentUpon>frm_baocaocongno.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Baocao\Baocaongoaitru\frm_baocaodoanhthuphongkham_Hongphat.resx">
-      <DependentUpon>frm_baocaodoanhthuphongkham_Hongphat.cs</DependentUpon>
+    <EmbeddedResource Include="Baocao\Baocaongoaitru\frm_baocaodoanhthuphongkham_Hongphat_V2.resx">
+      <DependentUpon>frm_baocaodoanhthuphongkham_Hongphat_V2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Baocao\Baocaongoaitru\frm_tonghopchiphiKCB_bvsg.resx">
       <DependentUpon>frm_tonghopchiphiKCB_bvsg.cs</DependentUpon>
@@ -717,11 +741,23 @@
     <EmbeddedResource Include="Baocao\Baocaonoitru\frm_baocaotinhhinhnoitru.resx">
       <DependentUpon>frm_baocaotinhhinhnoitru.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocaonoitru\frm_baocao_danhsach_khambenh.resx">
+      <DependentUpon>frm_baocao_danhsach_khambenh.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Baocao\Baocaonoitru\frm_thongkechuyenvien.resx">
       <DependentUpon>frm_thongkechuyenvien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Baocao\Baocaonoitru\frm_thongkenhapvien.resx">
       <DependentUpon>frm_thongkenhapvien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocao_Thuoc\frm_baocao_soluong_thuoc_trongkho.resx">
+      <DependentUpon>frm_baocao_soluong_thuoc_trongkho.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocao_Thuoc\frm_baocao_tonkho_nhathuoc.resx">
+      <DependentUpon>frm_baocao_tonkho_nhathuoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Baocao\Baocao_Thuoc\frm_baocao_muathuoc_taiquay.resx">
+      <DependentUpon>frm_baocao_muathuoc_taiquay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Baocao\Baocao_Thuoc\frm_baocao_nhapxuaton_tutruc.resx">
       <DependentUpon>frm_baocao_nhapxuaton_tutruc.cs</DependentUpon>

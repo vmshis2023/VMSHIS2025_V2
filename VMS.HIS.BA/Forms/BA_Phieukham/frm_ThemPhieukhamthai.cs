@@ -23,6 +23,7 @@ using System.Diagnostics;
 using VNS.HIS.BusRule.Classes;
 using VMS.HIS.Danhmuc.Dungchung;
 using System.Transactions;
+using VMS.HIS.Bus.Emr;
 
 namespace VMS.HIS.UI.EMR
 {
@@ -33,6 +34,7 @@ namespace VMS.HIS.UI.EMR
         public bool CallfromParent = false;
         KcbLuotkham objLuotkham = null;
         DataTable dtTiensusankhoa = new DataTable();
+        public bool Force2Saved = false;
         public frm_ThemPhieukhamthai()
         {
             InitializeComponent();
@@ -217,6 +219,7 @@ namespace VMS.HIS.UI.EMR
             {
                
                 dtpNgaykhamtruoc.Value = Convert.ToDateTime(_pkt.NgayKham);
+                txt_bacsikham.SetId(Utility.Int32Dbnull( _pkt.IdBacsi));
                 txtThongtinlankhamtruoc.Text = _pkt.ThongtinLankhamtruoc;
                 txtChandoantruoc.Text = _pkt.ChanDoan;
                 txtXutri.Text = _pkt.XuTri;
@@ -690,15 +693,14 @@ namespace VMS.HIS.UI.EMR
         private Boolean isValidData()
         {
             //errorProvider1.Clear();
-            //if (txtBacsidexuat.MyID == "-1")
-            //{
-            //    Utility.ShowMsg("Bạn phải nhập bác sĩ đề xuất hội chẩn");
-            //    uiTabInfor.SelectedIndex = 0;
-            //    errorProvider1.SetError(txtBacsidexuat, "Nhập thông tin");
-            //    txtBacsidexuat.Focus();
-            //    txtBacsidexuat.SelectAll();
-            //    return false;
-            //}
+            if (txt_bacsikham.MyID == "-1")
+            {
+                Utility.ShowMsg("Bạn phải nhập Bác sĩ khám");
+                uiTabInfor.SelectedIndex = 0;
+                txt_bacsikham.Focus();
+                txt_bacsikham.SelectAll();
+                return false;
+            }
             //if (dtbsthamgia.Rows.Count <= 0)
             //{
             //    uiTabInfor.SelectedIndex = 0;
@@ -795,6 +797,13 @@ namespace VMS.HIS.UI.EMR
         private void frm_ThemPhieukhamthai_Load(object sender, EventArgs e)
         {
             LoadUserConfigs();
+            txt_bacsikham.Init(globalVariables.gv_dtDmucNhanvien,
+                             new List<string>
+                                  {
+                                      DmucNhanvien.Columns.IdNhanvien,
+                                      DmucNhanvien.Columns.MaNhanvien,
+                                      DmucNhanvien.Columns.TenNhanvien
+                                  });
             if (_pkt != null && m_enAct == action.Update)
             {
                 //FillData4Update();
@@ -823,6 +832,7 @@ namespace VMS.HIS.UI.EMR
             sp.Execute();
             return Utility.sDbnull(sp.OutputValues[0], "-1");
         }
+        EmrDocuments emrdoc = new EmrDocuments();
         private void cmdSave_Click(object sender, EventArgs e)
         {
             try
@@ -852,6 +862,7 @@ namespace VMS.HIS.UI.EMR
                 _pkt.IdBenhnhan = objLuotkham.IdBenhnhan;
                 _pkt.MaLuotkham = objLuotkham.MaLuotkham;
                 _pkt.NgayKham = dtpNgaykhamtruoc.Value;
+                _pkt.IdBacsi = Utility.Int16Dbnull(txt_bacsikham.MyID);
                 _pkt.ThongtinLankhamtruoc = Utility.sDbnull(txtThongtinlankhamtruoc.Text);
                 _pkt.ChanDoan = Utility.sDbnull(txtChandoantruoc.Text);
                 _pkt.XuTri = Utility.sDbnull(txtXutri.Text);
@@ -1006,6 +1017,9 @@ namespace VMS.HIS.UI.EMR
                     using (var dbScope = new SharedDbConnectionScope())
                     {
                         _pkt.Save();
+                        emrdoc.Force2Saved = Force2Saved;
+                        emrdoc.InitDocument(objLuotkham.IdBenhnhan, objLuotkham.MaLuotkham, Utility.Int64Dbnull(_pkt.IdPhieukhamthai), _pkt.NgayKham.Value, Loaiphieu_HIS.PHIEUKHAMTHAI, "PHIEUKHAMTHAI", _pkt.NguoiTao, -1, -1, Utility.Byte2Bool(0), "");
+                        emrdoc.Save();
                         if (Utility.sDbnull(_pkt.Nhommau).Length > 0)
                             new Update(KcbDanhsachBenhnhan.Schema).Set(KcbDanhsachBenhnhan.Columns.NhomMau).EqualTo(_pkt.Nhommau).Where(KcbDanhsachBenhnhan.Columns.IdBenhnhan).IsEqualTo(_pkt.IdBenhnhan).Execute();
                     }
@@ -1526,5 +1540,9 @@ namespace VMS.HIS.UI.EMR
 
         }
 
+        private void cmdViewKQCLS_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

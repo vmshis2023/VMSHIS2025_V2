@@ -34,14 +34,12 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.baocaO_TIEUDE1 = new VNS.HIS.UI.FORMs.BAOCAO.BHYT.UserControls.BAOCAO_TIEUDE();
             this.uiGroupBox1 = new Janus.Windows.EditControls.UIGroupBox();
-            this.uiButton1 = new Janus.Windows.EditControls.UIButton();
-            this.cmdComboDown = new Janus.Windows.EditControls.UIButton();
-            this.txtKho = new VNS.HIS.UCs.AutoCompleteTextbox();
+            this.cbo_kho = new VNS.HIS.UCs.EasyCompletionComboBox();
+            this.cbo_thuoc = new VNS.HIS.UCs.EasyCompletionComboBox();
             this.txtNhacungcap = new VNS.HIS.UCs.AutoCompleteTextbox_Danhmucchung();
             this.label7 = new System.Windows.Forms.Label();
             this.chkKieungaytimkiem = new Janus.Windows.EditControls.UICheckBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtthuoc = new VNS.HIS.UCs.AutoCompleteTextbox_Thuoc();
             this.label6 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.rdoChuaXacNhan = new System.Windows.Forms.RadioButton();
@@ -49,7 +47,6 @@
             this.rdoTatCa = new System.Windows.Forms.RadioButton();
             this.grdList = new Janus.Windows.GridEX.GridEX();
             this.label3 = new System.Windows.Forms.Label();
-            this.cboKho = new Janus.Windows.EditControls.UIComboBox();
             this.dtToDate = new Janus.Windows.CalendarCombo.CalendarCombo();
             this.dtFromDate = new Janus.Windows.CalendarCombo.CalendarCombo();
             this.chkByDate = new Janus.Windows.EditControls.UICheckBox();
@@ -62,6 +59,9 @@
             this.gridEXExporter1 = new Janus.Windows.GridEX.Export.GridEXExporter(this.components);
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.cmd_TimKiem = new Janus.Windows.EditControls.UIButton();
+            this.cmdHoiDongKiemNhap = new Janus.Windows.EditControls.UIButton();
+            this.cmdInBienBanKiemNhap = new Janus.Windows.EditControls.UIButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox1)).BeginInit();
             this.uiGroupBox1.SuspendLayout();
@@ -99,14 +99,14 @@
             this.uiGroupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiGroupBox1.Controls.Add(this.uiButton1);
-            this.uiGroupBox1.Controls.Add(this.cmdComboDown);
-            this.uiGroupBox1.Controls.Add(this.txtKho);
+            this.uiGroupBox1.Controls.Add(this.cmdInBienBanKiemNhap);
+            this.uiGroupBox1.Controls.Add(this.cmdHoiDongKiemNhap);
+            this.uiGroupBox1.Controls.Add(this.cbo_kho);
+            this.uiGroupBox1.Controls.Add(this.cbo_thuoc);
             this.uiGroupBox1.Controls.Add(this.txtNhacungcap);
             this.uiGroupBox1.Controls.Add(this.label7);
             this.uiGroupBox1.Controls.Add(this.chkKieungaytimkiem);
             this.uiGroupBox1.Controls.Add(this.label4);
-            this.uiGroupBox1.Controls.Add(this.txtthuoc);
             this.uiGroupBox1.Controls.Add(this.label6);
             this.uiGroupBox1.Controls.Add(this.label2);
             this.uiGroupBox1.Controls.Add(this.rdoChuaXacNhan);
@@ -114,78 +114,35 @@
             this.uiGroupBox1.Controls.Add(this.rdoTatCa);
             this.uiGroupBox1.Controls.Add(this.grdList);
             this.uiGroupBox1.Controls.Add(this.label3);
-            this.uiGroupBox1.Controls.Add(this.cboKho);
             this.uiGroupBox1.Controls.Add(this.dtToDate);
             this.uiGroupBox1.Controls.Add(this.dtFromDate);
             this.uiGroupBox1.Controls.Add(this.chkByDate);
             this.uiGroupBox1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uiGroupBox1.Location = new System.Drawing.Point(0, 66);
             this.uiGroupBox1.Name = "uiGroupBox1";
-            this.uiGroupBox1.Size = new System.Drawing.Size(1002, 599);
+            this.uiGroupBox1.Size = new System.Drawing.Size(1002, 613);
             this.uiGroupBox1.TabIndex = 1;
             this.uiGroupBox1.Text = "Thông tin báo cáo";
             // 
-            // uiButton1
+            // cbo_kho
             // 
-            this.uiButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiButton1.Image = ((System.Drawing.Image)(resources.GetObject("uiButton1.Image")));
-            this.uiButton1.ImageSize = new System.Drawing.Size(12, 12);
-            this.uiButton1.Location = new System.Drawing.Point(679, 55);
-            this.uiButton1.Name = "uiButton1";
-            this.uiButton1.Size = new System.Drawing.Size(23, 23);
-            this.uiButton1.TabIndex = 587;
-            this.uiButton1.Click += new System.EventHandler(this.uiButton1_Click);
+            this.cbo_kho.FormattingEnabled = true;
+            this.cbo_kho.Location = new System.Drawing.Point(133, 30);
+            this.cbo_kho.Name = "cbo_kho";
+            this.cbo_kho.Next_Control = null;
+            this.cbo_kho.RaiseEnterEventWhenInvisible = true;
+            this.cbo_kho.Size = new System.Drawing.Size(546, 23);
+            this.cbo_kho.TabIndex = 0;
             // 
-            // cmdComboDown
+            // cbo_thuoc
             // 
-            this.cmdComboDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdComboDown.Image = ((System.Drawing.Image)(resources.GetObject("cmdComboDown.Image")));
-            this.cmdComboDown.ImageSize = new System.Drawing.Size(12, 12);
-            this.cmdComboDown.Location = new System.Drawing.Point(679, 29);
-            this.cmdComboDown.Name = "cmdComboDown";
-            this.cmdComboDown.Size = new System.Drawing.Size(23, 23);
-            this.cmdComboDown.TabIndex = 586;
-            this.cmdComboDown.Click += new System.EventHandler(this.cmdComboDown_Click);
-            // 
-            // txtKho
-            // 
-            this.txtKho._backcolor = System.Drawing.SystemColors.Control;
-            this.txtKho._Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtKho._TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.txtKho.AutoCompleteList = ((System.Collections.Generic.List<string>)(resources.GetObject("txtKho.AutoCompleteList")));
-            this.txtKho.buildShortcut = false;
-            this.txtKho.CaseSensitive = false;
-            this.txtKho.CompareNoID = true;
-            this.txtKho.DefaultCode = "-1";
-            this.txtKho.DefaultID = "-1";
-            this.txtKho.DisplayType = 0;
-            this.txtKho.Drug_ID = null;
-            this.txtKho.ExtraWidth = 0;
-            this.txtKho.FillValueAfterSelect = false;
-            this.txtKho.Location = new System.Drawing.Point(133, 31);
-            this.txtKho.MaxHeight = 250;
-            this.txtKho.MinTypedCharacters = 2;
-            this.txtKho.MyCode = "-1";
-            this.txtKho.MyID = "-1";
-            this.txtKho.MyText = "";
-            this.txtKho.MyTextOnly = "";
-            this.txtKho.Name = "txtKho";
-            this.txtKho.RaiseEvent = true;
-            this.txtKho.RaiseEventEnter = true;
-            this.txtKho.RaiseEventEnterWhenEmpty = true;
-            this.txtKho.SelectedIndex = -1;
-            this.txtKho.Size = new System.Drawing.Size(546, 21);
-            this.txtKho.splitChar = '@';
-            this.txtKho.splitCharIDAndCode = '#';
-            this.txtKho.TabIndex = 125;
-            this.txtKho.TakeCode = false;
-            this.txtKho.txtMyCode = null;
-            this.txtKho.txtMyCode_Edit = null;
-            this.txtKho.txtMyID = null;
-            this.txtKho.txtMyID_Edit = null;
-            this.txtKho.txtMyName = null;
-            this.txtKho.txtMyName_Edit = null;
-            this.txtKho.txtNext = null;
+            this.cbo_thuoc.FormattingEnabled = true;
+            this.cbo_thuoc.Location = new System.Drawing.Point(133, 55);
+            this.cbo_thuoc.Name = "cbo_thuoc";
+            this.cbo_thuoc.Next_Control = null;
+            this.cbo_thuoc.RaiseEnterEventWhenInvisible = true;
+            this.cbo_thuoc.Size = new System.Drawing.Size(546, 23);
+            this.cbo_thuoc.TabIndex = 1;
             // 
             // txtNhacungcap
             // 
@@ -198,6 +155,7 @@
             this.txtNhacungcap.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtNhacungcap.buildShortcut = false;
             this.txtNhacungcap.CaseSensitive = false;
+            this.txtNhacungcap.cmdDropDown = null;
             this.txtNhacungcap.CompareNoID = true;
             this.txtNhacungcap.DefaultCode = "-1";
             this.txtNhacungcap.DefaultID = "-1";
@@ -215,6 +173,7 @@
             this.txtNhacungcap.RaiseEventEnter = false;
             this.txtNhacungcap.RaiseEventEnterWhenEmpty = false;
             this.txtNhacungcap.SelectedIndex = -1;
+            this.txtNhacungcap.SetDefaultWhenInit = true;
             this.txtNhacungcap.ShowCodeWithValue = false;
             this.txtNhacungcap.Size = new System.Drawing.Size(546, 21);
             this.txtNhacungcap.splitChar = '@';
@@ -259,47 +218,6 @@
             this.label4.TabIndex = 40;
             this.label4.Text = "Trạng thái:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtthuoc
-            // 
-            this.txtthuoc._backcolor = System.Drawing.SystemColors.Control;
-            this.txtthuoc._Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtthuoc.AllowedSelectPrice = false;
-            this.txtthuoc.AutoCompleteList = ((System.Collections.Generic.List<string>)(resources.GetObject("txtthuoc.AutoCompleteList")));
-            this.txtthuoc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtthuoc.CaseSensitive = false;
-            this.txtthuoc.CompareNoID = true;
-            this.txtthuoc.DefaultCode = "-1";
-            this.txtthuoc.DefaultID = "-1";
-            this.txtthuoc.Drug_ID = null;
-            this.txtthuoc.ExtraWidth = 0;
-            this.txtthuoc.ExtraWidth_Pre = 0;
-            this.txtthuoc.FillValueAfterSelect = true;
-            this.txtthuoc.Font = new System.Drawing.Font("Arial", 9F);
-            this.txtthuoc.GridView = false;
-            this.txtthuoc.Location = new System.Drawing.Point(133, 55);
-            this.txtthuoc.MaxHeight = 300;
-            this.txtthuoc.MinTypedCharacters = 2;
-            this.txtthuoc.MyCode = "-1";
-            this.txtthuoc.MyID = "-1";
-            this.txtthuoc.MyText = "";
-            this.txtthuoc.Name = "txtthuoc";
-            this.txtthuoc.RaiseEvent = false;
-            this.txtthuoc.RaiseEventEnter = false;
-            this.txtthuoc.RaiseEventEnterWhenEmpty = false;
-            this.txtthuoc.SelectedIndex = -1;
-            this.txtthuoc.Size = new System.Drawing.Size(546, 21);
-            this.txtthuoc.splitChar = '@';
-            this.txtthuoc.splitCharIDAndCode = '#';
-            this.txtthuoc.TabIndex = 1;
-            this.txtthuoc.TakeCode = false;
-            this.txtthuoc.txtMyCode = null;
-            this.txtthuoc.txtMyCode_Edit = null;
-            this.txtthuoc.txtMyID = null;
-            this.txtthuoc.txtMyID_Edit = null;
-            this.txtthuoc.txtMyName = null;
-            this.txtthuoc.txtMyName_Edit = null;
-            this.txtthuoc.txtNext = null;
             // 
             // label6
             // 
@@ -367,7 +285,7 @@
             this.grdList.Location = new System.Drawing.Point(8, 174);
             this.grdList.Name = "grdList";
             this.grdList.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
-            this.grdList.Size = new System.Drawing.Size(988, 419);
+            this.grdList.Size = new System.Drawing.Size(988, 433);
             this.grdList.TabIndex = 12;
             this.grdList.TabStop = false;
             this.grdList.TotalRow = Janus.Windows.GridEX.InheritableBoolean.True;
@@ -382,15 +300,6 @@
             this.label3.TabIndex = 8;
             this.label3.Text = "Chọn kho";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // cboKho
-            // 
-            this.cboKho.Location = new System.Drawing.Point(694, 29);
-            this.cboKho.Name = "cboKho";
-            this.cboKho.Size = new System.Drawing.Size(20, 21);
-            this.cboKho.TabIndex = 0;
-            this.cboKho.Text = "Kho";
-            this.cboKho.Visible = false;
             // 
             // dtToDate
             // 
@@ -440,24 +349,24 @@
             this.cmdExit.Font = new System.Drawing.Font("Arial", 9F);
             this.cmdExit.Image = ((System.Drawing.Image)(resources.GetObject("cmdExit.Image")));
             this.cmdExit.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdExit.Location = new System.Drawing.Point(872, 685);
+            this.cmdExit.Location = new System.Drawing.Point(893, 687);
             this.cmdExit.Name = "cmdExit";
-            this.cmdExit.Size = new System.Drawing.Size(130, 32);
+            this.cmdExit.Size = new System.Drawing.Size(103, 33);
             this.cmdExit.TabIndex = 11;
-            this.cmdExit.Text = "Thoát chức năng";
+            this.cmdExit.Text = "Thoát";
             this.cmdExit.Click += new System.EventHandler(this.cmdExit_Click);
             // 
             // cmdBaoCao
             // 
             this.cmdBaoCao.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdBaoCao.Font = new System.Drawing.Font("Arial", 9F);
-            this.cmdBaoCao.Image = ((System.Drawing.Image)(resources.GetObject("cmdBaoCao.Image")));
+            this.cmdBaoCao.Image = global::VMS.HIS.BAOCAO.Properties.Resources.printtype1_32;
             this.cmdBaoCao.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdBaoCao.Location = new System.Drawing.Point(736, 685);
+            this.cmdBaoCao.Location = new System.Drawing.Point(784, 687);
             this.cmdBaoCao.Name = "cmdBaoCao";
-            this.cmdBaoCao.Size = new System.Drawing.Size(130, 32);
+            this.cmdBaoCao.Size = new System.Drawing.Size(103, 33);
             this.cmdBaoCao.TabIndex = 9;
-            this.cmdBaoCao.Text = "In báo cáo";
+            this.cmdBaoCao.Text = "In";
             this.cmdBaoCao.Click += new System.EventHandler(this.cmdBaoCao_Click);
             // 
             // dtNgayIn
@@ -494,9 +403,9 @@
             this.cmdExportToExcel.Font = new System.Drawing.Font("Arial", 9F);
             this.cmdExportToExcel.Image = ((System.Drawing.Image)(resources.GetObject("cmdExportToExcel.Image")));
             this.cmdExportToExcel.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdExportToExcel.Location = new System.Drawing.Point(600, 687);
+            this.cmdExportToExcel.Location = new System.Drawing.Point(566, 687);
             this.cmdExportToExcel.Name = "cmdExportToExcel";
-            this.cmdExportToExcel.Size = new System.Drawing.Size(130, 30);
+            this.cmdExportToExcel.Size = new System.Drawing.Size(103, 33);
             this.cmdExportToExcel.TabIndex = 10;
             this.cmdExportToExcel.Text = "Xuất Excel";
             this.cmdExportToExcel.Click += new System.EventHandler(this.cmdExportToExcel_Click);
@@ -514,10 +423,49 @@
             this.toolTip1.IsBalloon = true;
             this.toolTip1.ToolTipTitle = "Trợ giúp";
             // 
+            // cmd_TimKiem
+            // 
+            this.cmd_TimKiem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmd_TimKiem.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmd_TimKiem.Image = ((System.Drawing.Image)(resources.GetObject("cmd_TimKiem.Image")));
+            this.cmd_TimKiem.ImageSize = new System.Drawing.Size(24, 24);
+            this.cmd_TimKiem.Location = new System.Drawing.Point(675, 687);
+            this.cmd_TimKiem.Name = "cmd_TimKiem";
+            this.cmd_TimKiem.Size = new System.Drawing.Size(103, 33);
+            this.cmd_TimKiem.TabIndex = 16;
+            this.cmd_TimKiem.Text = "Tìm kiếm";
+            this.cmd_TimKiem.ToolTipText = "Bạn nhấn nút in phiếu để thực hiện in phiếu xét nghiệm cho bệnh nhân";
+            this.cmd_TimKiem.Click += new System.EventHandler(this.cmd_TimKiem_Click);
+            // 
+            // cmdHoiDongKiemNhap
+            // 
+            this.cmdHoiDongKiemNhap.Font = new System.Drawing.Font("Arial", 9F);
+            this.cmdHoiDongKiemNhap.Image = ((System.Drawing.Image)(resources.GetObject("cmdHoiDongKiemNhap.Image")));
+            this.cmdHoiDongKiemNhap.ImageSize = new System.Drawing.Size(22, 22);
+            this.cmdHoiDongKiemNhap.Location = new System.Drawing.Point(685, 30);
+            this.cmdHoiDongKiemNhap.Name = "cmdHoiDongKiemNhap";
+            this.cmdHoiDongKiemNhap.Size = new System.Drawing.Size(158, 30);
+            this.cmdHoiDongKiemNhap.TabIndex = 72;
+            this.cmdHoiDongKiemNhap.Text = "Hội đồng kiểm nhập";
+            this.cmdHoiDongKiemNhap.Click += new System.EventHandler(this.cmdHoiDongKiemNhap_Click);
+            // 
+            // cmdInBienBanKiemNhap
+            // 
+            this.cmdInBienBanKiemNhap.Font = new System.Drawing.Font("Arial", 9F);
+            this.cmdInBienBanKiemNhap.Image = global::VMS.HIS.BAOCAO.Properties.Resources.printer_32;
+            this.cmdInBienBanKiemNhap.ImageSize = new System.Drawing.Size(22, 22);
+            this.cmdInBienBanKiemNhap.Location = new System.Drawing.Point(685, 63);
+            this.cmdInBienBanKiemNhap.Name = "cmdInBienBanKiemNhap";
+            this.cmdInBienBanKiemNhap.Size = new System.Drawing.Size(158, 30);
+            this.cmdInBienBanKiemNhap.TabIndex = 73;
+            this.cmdInBienBanKiemNhap.Text = "In B.bản kiểm nhập";
+            this.cmdInBienBanKiemNhap.Click += new System.EventHandler(this.cmdInBienBanKiemNhap_Click);
+            // 
             // frm_baocao_nhapkho_chitiet
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.Controls.Add(this.cmd_TimKiem);
             this.Controls.Add(this.cmdExportToExcel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dtNgayIn);
@@ -557,7 +505,6 @@
         private Janus.Windows.CalendarCombo.CalendarCombo dtFromDate;
         private Janus.Windows.EditControls.UICheckBox chkByDate;
         private System.Windows.Forms.Label label3;
-        private Janus.Windows.EditControls.UIComboBox cboKho;
         private Janus.Windows.GridEX.GridEX grdList;
         private Janus.Windows.EditControls.UIButton cmdExportToExcel;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
@@ -569,14 +516,15 @@
         private VNS.HIS.UI.FORMs.BAOCAO.BHYT.UserControls.BAOCAO_TIEUDE baocaO_TIEUDE1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
-        private UCs.AutoCompleteTextbox_Thuoc txtthuoc;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ToolTip toolTip1;
         private Janus.Windows.EditControls.UICheckBox chkKieungaytimkiem;
         private UCs.AutoCompleteTextbox_Danhmucchung txtNhacungcap;
         private System.Windows.Forms.Label label7;
-        private UCs.AutoCompleteTextbox txtKho;
-        private Janus.Windows.EditControls.UIButton uiButton1;
-        private Janus.Windows.EditControls.UIButton cmdComboDown;
+        private UCs.EasyCompletionComboBox cbo_thuoc;
+        private UCs.EasyCompletionComboBox cbo_kho;
+        private Janus.Windows.EditControls.UIButton cmd_TimKiem;
+        private Janus.Windows.EditControls.UIButton cmdInBienBanKiemNhap;
+        private Janus.Windows.EditControls.UIButton cmdHoiDongKiemNhap;
     }
 }

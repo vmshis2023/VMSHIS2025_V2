@@ -38,6 +38,7 @@
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.sysColor = new System.Windows.Forms.ToolStrip();
             this.cmdThemMoi = new System.Windows.Forms.ToolStripButton();
@@ -60,7 +61,6 @@
             this.DataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.sysColor.SuspendLayout();
@@ -119,6 +119,12 @@
             this.statusStrip1.Size = new System.Drawing.Size(1321, 22);
             this.statusStrip1.TabIndex = 45;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(64, 17);
+            this.toolStripStatusLabel2.Text = "F5: Refresh";
             // 
             // errorProvider1
             // 
@@ -312,12 +318,6 @@
             this.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1";
             this.DataGridViewTextBoxColumn1.ReadOnly = true;
             this.DataGridViewTextBoxColumn1.Width = 80;
-            // 
-            // toolStripStatusLabel2
-            // 
-            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(64, 17);
-            this.toolStripStatusLabel2.Text = "F5: Refresh";
             // 
             // frm_quanly_baocao
             // 

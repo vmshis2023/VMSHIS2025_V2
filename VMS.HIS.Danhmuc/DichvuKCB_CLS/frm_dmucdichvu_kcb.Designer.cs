@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_dmucdichvu_kcb));
             Janus.Windows.GridEX.GridEXLayout grdList_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
+            Janus.Windows.GridEX.GridEXLayout grd_DvuKemTheoCongKham_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel1 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
             Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel2 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
             Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel3 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
@@ -42,6 +43,7 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.cmdDelete = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.cmdSaochep = new System.Windows.Forms.ToolStripButton();
             this.cmdExport = new System.Windows.Forms.ToolStripButton();
             this.cmdSaveAll = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
@@ -59,15 +61,23 @@
             this.cboLoaiKham = new System.Windows.Forms.ComboBox();
             this.uiGroupBox2 = new Janus.Windows.EditControls.UIGroupBox();
             this.grdList = new Janus.Windows.GridEX.GridEX();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.grd_DvuKemTheoCongKham = new Janus.Windows.GridEX.GridEX();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.cmdAccept = new Janus.Windows.EditControls.UIButton();
+            this.label6 = new System.Windows.Forms.Label();
             this.uiStatusBar2 = new Janus.Windows.UI.StatusBar.UIStatusBar();
             this.gridEXExporter = new Janus.Windows.GridEX.Export.GridEXExporter(this.components);
-            this.cmdSaochep = new System.Windows.Forms.ToolStripButton();
+            this.txtDichvu = new VNS.HIS.UCs.AutoCompleteTextbox();
             this.sysColor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox1)).BeginInit();
             this.uiGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox2)).BeginInit();
             this.uiGroupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdList)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grd_DvuKemTheoCongKham)).BeginInit();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // sysColor
@@ -135,6 +145,15 @@
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(6, 31);
+            // 
+            // cmdSaochep
+            // 
+            this.cmdSaochep.Image = ((System.Drawing.Image)(resources.GetObject("cmdSaochep.Image")));
+            this.cmdSaochep.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.cmdSaochep.Name = "cmdSaochep";
+            this.cmdSaochep.Size = new System.Drawing.Size(146, 28);
+            this.cmdSaochep.Text = "Sao chép công khám";
+            this.cmdSaochep.Click += new System.EventHandler(this.cmdSaochep_Click);
             // 
             // cmdExport
             // 
@@ -297,6 +316,7 @@
             // uiGroupBox2
             // 
             this.uiGroupBox2.Controls.Add(this.grdList);
+            this.uiGroupBox2.Controls.Add(this.panel1);
             this.uiGroupBox2.Controls.Add(this.uiStatusBar2);
             this.uiGroupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiGroupBox2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -323,13 +343,75 @@
             this.grdList.Location = new System.Drawing.Point(3, 18);
             this.grdList.Name = "grdList";
             this.grdList.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.True;
-            this.grdList.Size = new System.Drawing.Size(1178, 595);
+            this.grdList.Size = new System.Drawing.Size(710, 595);
             this.grdList.TabIndex = 13;
             this.grdList.TableHeaders = Janus.Windows.GridEX.InheritableBoolean.Default;
             this.grdList.UseGroupRowSelector = true;
             this.grdList.CellUpdated += new Janus.Windows.GridEX.ColumnActionEventHandler(this.grd_Insurance_Objects_CellUpdated);
             this.grdList.UpdatingCell += new Janus.Windows.GridEX.UpdatingCellEventHandler(this.grd_Insurance_Objects_UpdatingCell);
             this.grdList.ApplyingFilter += new System.ComponentModel.CancelEventHandler(this.grd_Insurance_Objects_ApplyingFilter);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.grd_DvuKemTheoCongKham);
+            this.panel1.Controls.Add(this.panel4);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel1.Location = new System.Drawing.Point(713, 18);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(468, 595);
+            this.panel1.TabIndex = 14;
+            // 
+            // grd_DvuKemTheoCongKham
+            // 
+            grd_DvuKemTheoCongKham_DesignTimeLayout.LayoutString = resources.GetString("grd_DvuKemTheoCongKham_DesignTimeLayout.LayoutString");
+            this.grd_DvuKemTheoCongKham.DesignTimeLayout = grd_DvuKemTheoCongKham_DesignTimeLayout;
+            this.grd_DvuKemTheoCongKham.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grd_DvuKemTheoCongKham.DynamicFiltering = true;
+            this.grd_DvuKemTheoCongKham.FilterMode = Janus.Windows.GridEX.FilterMode.Automatic;
+            this.grd_DvuKemTheoCongKham.FilterRowFormatStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.grd_DvuKemTheoCongKham.FilterRowUpdateMode = Janus.Windows.GridEX.FilterRowUpdateMode.WhenValueChanges;
+            this.grd_DvuKemTheoCongKham.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.grd_DvuKemTheoCongKham.GroupByBoxVisible = false;
+            this.grd_DvuKemTheoCongKham.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight;
+            this.grd_DvuKemTheoCongKham.Location = new System.Drawing.Point(0, 57);
+            this.grd_DvuKemTheoCongKham.Name = "grd_DvuKemTheoCongKham";
+            this.grd_DvuKemTheoCongKham.Size = new System.Drawing.Size(468, 538);
+            this.grd_DvuKemTheoCongKham.TabIndex = 1653;
+            this.grd_DvuKemTheoCongKham.TabStop = false;
+            this.grd_DvuKemTheoCongKham.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.cmdAccept);
+            this.panel4.Controls.Add(this.label6);
+            this.panel4.Controls.Add(this.txtDichvu);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(468, 57);
+            this.panel4.TabIndex = 1652;
+            // 
+            // cmdAccept
+            // 
+            this.cmdAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmdAccept.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmdAccept.Image = ((System.Drawing.Image)(resources.GetObject("cmdAccept.Image")));
+            this.cmdAccept.Location = new System.Drawing.Point(430, 29);
+            this.cmdAccept.Name = "cmdAccept";
+            this.cmdAccept.Size = new System.Drawing.Size(29, 22);
+            this.cmdAccept.TabIndex = 8;
+            this.cmdAccept.Tag = "0";
+            this.cmdAccept.Click += new System.EventHandler(this.cmdAccept_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(6, 7);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(201, 15);
+            this.label6.TabIndex = 6;
+            this.label6.Text = "Chọn dịch vụ kèm theo công khám";
             // 
             // uiStatusBar2
             // 
@@ -369,14 +451,50 @@
             this.uiStatusBar2.TabIndex = 12;
             this.uiStatusBar2.VisualStyle = Janus.Windows.UI.VisualStyle.Office2007;
             // 
-            // cmdSaochep
+            // txtDichvu
             // 
-            this.cmdSaochep.Image = ((System.Drawing.Image)(resources.GetObject("cmdSaochep.Image")));
-            this.cmdSaochep.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.cmdSaochep.Name = "cmdSaochep";
-            this.cmdSaochep.Size = new System.Drawing.Size(146, 28);
-            this.cmdSaochep.Text = "Sao chép công khám";
-            this.cmdSaochep.Click += new System.EventHandler(this.cmdSaochep_Click);
+            this.txtDichvu._backcolor = System.Drawing.Color.WhiteSmoke;
+            this.txtDichvu._Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDichvu._TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtDichvu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDichvu.AutoCompleteList = ((System.Collections.Generic.List<string>)(resources.GetObject("txtDichvu.AutoCompleteList")));
+            this.txtDichvu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtDichvu.buildShortcut = false;
+            this.txtDichvu.CaseSensitive = false;
+            this.txtDichvu.CompareNoID = true;
+            this.txtDichvu.DefaultCode = "-1";
+            this.txtDichvu.DefaultID = "-1";
+            this.txtDichvu.DisplayType = 0;
+            this.txtDichvu.Drug_ID = null;
+            this.txtDichvu.ExtraWidth = 0;
+            this.txtDichvu.FillValueAfterSelect = false;
+            this.txtDichvu.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDichvu.Location = new System.Drawing.Point(5, 29);
+            this.txtDichvu.MaxHeight = 289;
+            this.txtDichvu.MinTypedCharacters = 2;
+            this.txtDichvu.MyCode = "-1";
+            this.txtDichvu.MyID = "-1";
+            this.txtDichvu.MyText = "";
+            this.txtDichvu.MyTextOnly = "";
+            this.txtDichvu.Name = "txtDichvu";
+            this.txtDichvu.RaiseEvent = true;
+            this.txtDichvu.RaiseEventEnter = true;
+            this.txtDichvu.RaiseEventEnterWhenEmpty = true;
+            this.txtDichvu.SelectedIndex = -1;
+            this.txtDichvu.Size = new System.Drawing.Size(421, 21);
+            this.txtDichvu.splitChar = '@';
+            this.txtDichvu.splitCharIDAndCode = '#';
+            this.txtDichvu.TabIndex = 0;
+            this.txtDichvu.TabStop = false;
+            this.txtDichvu.TakeCode = false;
+            this.txtDichvu.txtMyCode = null;
+            this.txtDichvu.txtMyCode_Edit = null;
+            this.txtDichvu.txtMyID = null;
+            this.txtDichvu.txtMyID_Edit = null;
+            this.txtDichvu.txtMyName = null;
+            this.txtDichvu.txtMyName_Edit = null;
+            this.txtDichvu.txtNext = null;
             // 
             // frm_dmucdichvu_kcb
             // 
@@ -401,6 +519,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.uiGroupBox2)).EndInit();
             this.uiGroupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdList)).EndInit();
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grd_DvuKemTheoCongKham)).EndInit();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -435,5 +557,11 @@
         private System.Windows.Forms.ToolStripButton cmdExport;
         private Janus.Windows.GridEX.Export.GridEXExporter gridEXExporter;
         private System.Windows.Forms.ToolStripButton cmdSaochep;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel4;
+        private UCs.AutoCompleteTextbox txtDichvu;
+        private Janus.Windows.GridEX.GridEX grd_DvuKemTheoCongKham;
+        private System.Windows.Forms.Label label6;
+        private Janus.Windows.EditControls.UIButton cmdAccept;
     }
 }

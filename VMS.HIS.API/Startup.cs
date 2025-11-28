@@ -13,6 +13,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using VMS.Helpers;
 using VMS.Invoice;
 
 
@@ -35,7 +36,7 @@ namespace VMS.HIS.API
 
             var identitySettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettingMisaInvoices>(Configuration.GetSection("AppSettingMisaInvoices"));
-
+            services.Configure<AppSettingDonThuocQG>(Configuration.GetSection("AppSettingsDonThuocQG"));
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(options =>
             {

@@ -161,7 +161,7 @@
           "lib/netstandard2.0/Newtonsoft.Json.dll": {}
         }
       },
-      "NLog/4.7.11": {
+      "NLog/5.2.8": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/NLog.dll": {}
@@ -170,11 +170,11 @@
           "lib/netstandard2.0/NLog.dll": {}
         }
       },
-      "NLog.Extensions.Logging/1.7.4": {
+      "NLog.Extensions.Logging/1.6.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Logging": "3.0.0",
-          "NLog": "4.7.11"
+          "NLog": "[4.6.7, 5.0.0-beta01)"
         },
         "compile": {
           "lib/netcoreapp3.0/NLog.Extensions.Logging.dll": {}
@@ -183,10 +183,10 @@
           "lib/netcoreapp3.0/NLog.Extensions.Logging.dll": {}
         }
       },
-      "NLog.Web.AspNetCore/4.14.0": {
+      "NLog.Web.AspNetCore/4.9.0": {
         "type": "package",
         "dependencies": {
-          "NLog.Extensions.Logging": "1.7.4"
+          "NLog.Extensions.Logging": "1.6.0"
         },
         "compile": {
           "lib/netcoreapp3.0/NLog.Web.AspNetCore.dll": {}
@@ -661,53 +661,41 @@
         "packageIcon.png"
       ]
     },
-    "NLog/4.7.11": {
-      "sha512": "A7EpoOjWesV5BPx1cOiBndazZq1VGdagIs6oK8ttcRDl5adCMtHiTqnsD5yYaOrMxOQeCjHBf/w3nKzCmhGbgw==",
+    "NLog/5.2.8": {
+      "sha512": "jAIELkWBs1CXFPp986KSGpDFQZHCFccO+LMbKBTTNm42KifaI1mYzFMFQQfuGmGMTrCx0TFPhDjHDE4cLAZWiQ==",
       "type": "package",
-      "path": "nlog/4.7.11",
+      "path": "nlog/5.2.8",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "lib/monoandroid44/NLog.dll",
-        "lib/monoandroid44/NLog.xml",
+        "N.png",
         "lib/net35/NLog.dll",
         "lib/net35/NLog.xml",
-        "lib/net40-client/NLog.dll",
-        "lib/net40-client/NLog.xml",
         "lib/net45/NLog.dll",
         "lib/net45/NLog.xml",
+        "lib/net46/NLog.dll",
+        "lib/net46/NLog.xml",
         "lib/netstandard1.3/NLog.dll",
         "lib/netstandard1.3/NLog.xml",
         "lib/netstandard1.5/NLog.dll",
         "lib/netstandard1.5/NLog.xml",
         "lib/netstandard2.0/NLog.dll",
         "lib/netstandard2.0/NLog.xml",
-        "lib/sl4/NLog.dll",
-        "lib/sl4/NLog.xml",
-        "lib/sl5/NLog.dll",
-        "lib/sl5/NLog.xml",
-        "lib/wp8/NLog.dll",
-        "lib/wp8/NLog.xml",
-        "lib/xamarinios10/NLog.dll",
-        "lib/xamarinios10/NLog.xml",
-        "nlog.4.7.11.nupkg.sha512",
+        "nlog.5.2.8.nupkg.sha512",
         "nlog.nuspec"
       ]
     },
-    "NLog.Extensions.Logging/1.7.4": {
-      "sha512": "/dMxI/lBPNhKe9uONCQaZ3JYSHJh9/yez4Uqc6yIo2hIGaoi8sbQg7WQqW5/1WAIquhrG/SeCEZUTGMiRSQAHw==",
+    "NLog.Extensions.Logging/1.6.0": {
+      "sha512": "T4EoyIMeVG0hMRzbzAOALtTvzshsDkdlxcgpQ0h/MDNppe/VwG39/M4LwisR8ViLPJmakLO0y7ey/IrK46FMFA==",
       "type": "package",
-      "path": "nlog.extensions.logging/1.7.4",
+      "path": "nlog.extensions.logging/1.6.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "N.png",
         "lib/net451/NLog.Extensions.Logging.dll",
         "lib/net451/NLog.Extensions.Logging.xml",
         "lib/net461/NLog.Extensions.Logging.dll",
         "lib/net461/NLog.Extensions.Logging.xml",
-        "lib/net5.0/NLog.Extensions.Logging.dll",
-        "lib/net5.0/NLog.Extensions.Logging.xml",
         "lib/netcoreapp3.0/NLog.Extensions.Logging.dll",
         "lib/netcoreapp3.0/NLog.Extensions.Logging.xml",
         "lib/netstandard1.3/NLog.Extensions.Logging.dll",
@@ -716,18 +704,17 @@
         "lib/netstandard1.5/NLog.Extensions.Logging.xml",
         "lib/netstandard2.0/NLog.Extensions.Logging.dll",
         "lib/netstandard2.0/NLog.Extensions.Logging.xml",
-        "nlog.extensions.logging.1.7.4.nupkg.sha512",
+        "nlog.extensions.logging.1.6.0.nupkg.sha512",
         "nlog.extensions.logging.nuspec"
       ]
     },
-    "NLog.Web.AspNetCore/4.14.0": {
-      "sha512": "5fTviEu/f+mIxucGHmcx1q/mtJGo8EZbxACD57H4iJPZbLaD0LsLxMB2xDCxDO9uexlnfMMDoryq1nFdrl/C6A==",
+    "NLog.Web.AspNetCore/4.9.0": {
+      "sha512": "lEA+6Xm/DbU+Z6qVbJP1fgP4MvE0amlwXlJj3MyarcassZ/yuIAQIJsiLoJ/NMDFu1Jfh139L8F4mQpB/r5q/g==",
       "type": "package",
-      "path": "nlog.web.aspnetcore/4.14.0",
+      "path": "nlog.web.aspnetcore/4.9.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "N.png",
         "lib/net451/NLog.Web.AspNetCore.dll",
         "lib/net451/NLog.Web.AspNetCore.xml",
         "lib/net461/NLog.Web.AspNetCore.dll",
@@ -738,9 +725,8 @@
         "lib/netstandard1.5/NLog.Web.AspNetCore.xml",
         "lib/netstandard2.0/NLog.Web.AspNetCore.dll",
         "lib/netstandard2.0/NLog.Web.AspNetCore.xml",
-        "nlog.web.aspnetcore.4.14.0.nupkg.sha512",
-        "nlog.web.aspnetcore.nuspec",
-        "readme.txt"
+        "nlog.web.aspnetcore.4.9.0.nupkg.sha512",
+        "nlog.web.aspnetcore.nuspec"
       ]
     },
     "Swashbuckle.AspNetCore/6.2.1": {
@@ -1217,8 +1203,8 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "NLog >= 4.7.11",
-      "NLog.Web.AspNetCore >= 4.14.0",
+      "NLog >= 5.2.8",
+      "NLog.Web.AspNetCore >= 4.9.0",
       "Newtonsoft.Json >= 13.0.1",
       "Swashbuckle.AspNetCore >= 6.2.1",
       "System.Drawing.Common >= 6.0.0",
@@ -1278,11 +1264,11 @@
         "dependencies": {
           "NLog": {
             "target": "Package",
-            "version": "[4.7.11, )"
+            "version": "[5.2.8, )"
           },
           "NLog.Web.AspNetCore": {
             "target": "Package",
-            "version": "[4.14.0, )"
+            "version": "[4.9.0, )"
           },
           "Newtonsoft.Json": {
             "target": "Package",
@@ -1340,5 +1326,17 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1608",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Detected package version outside of dependency constraint: NLog.Extensions.Logging 1.6.0 requires NLog (>= 4.6.7 && < 5.0.0-beta01) but version NLog 5.2.8 was resolved.",
+      "libraryId": "NLog",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    }
+  ]
 }

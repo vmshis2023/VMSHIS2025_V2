@@ -391,14 +391,10 @@ namespace VMS.API.Libs
                 objDigitalSignature.base64Pdf = base64Pdf;
                 objDigitalSignature.base64Signature = base64Signature;
                 objDigitalSignature.signatureType = signatureType;
-                objDigitalSignature.signatureName = signatureName;
                 objDigitalSignature.pdfFileName = pdfFileName;
                 objDigitalSignature.userName = userName;
                 objDigitalSignature.userFullName = userFullName;
-                objDigitalSignature.appId = appId;
-                objDigitalSignature.secret = secret;
                 objDigitalSignature.locations = locations;
-                objDigitalSignature.dateSigned = dateSigned;
                 var stringPayload = JsonConvert.SerializeObject(objDigitalSignature);
                 
                 response = CallRestApi(webServiceLink + "/DigitalSignaturePdfFileSign", RequestMethod.POST, stringPayload);
@@ -459,34 +455,27 @@ namespace VMS.API.Libs
             }
             return retData;
         }
-        public string DigitalSignaturePdfFileSign(
+        public ApiRequestResponse KysoPDF(
             string webServiceLink, VMSDigitalSignature objDigitalSignature, ref string errMsg)
         {
-            var retData = string.Empty;
+            ApiRequestResponse ret;
             var response = string.Empty;
             try
             {
                 var stringPayload = JsonConvert.SerializeObject(objDigitalSignature);
 
-                response = CallRestApi(webServiceLink + "/DigitalSignaturePdfFileSign", RequestMethod.POST, stringPayload);
-                ApiRequestResponse ret;
+                response = CallRestApi(webServiceLink + "/KysoPDF", RequestMethod.POST, stringPayload);
+              
                 ret = JsonConvert.DeserializeObject<ApiRequestResponse>(response);
-                errMsg = ret.Message;
-                retData = ret.Data.ToString();
+                return ret;
+
             }
             catch (Exception ex)
             {
-                if (!string.IsNullOrEmpty(response))
-                {
-                    errMsg = response;
-                }
-                else
-                {
-                    errMsg = ex.Message;
-                }
-
+                errMsg = ex.Message;
+                return null;
             }
-            return retData;
+          
         }
 
         public VMSQMSAudio GetAudio(string qmsApiLink, string content, ref string errMsg)

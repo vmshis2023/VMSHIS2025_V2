@@ -145,22 +145,22 @@ namespace VMS.HIS.Danhmuc
             // optMachidinh
             // 
             this.optMachidinh.AutoSize = true;
-            this.optMachidinh.Checked = true;
             this.optMachidinh.Location = new System.Drawing.Point(652, 29);
             this.optMachidinh.Name = "optMachidinh";
             this.optMachidinh.Size = new System.Drawing.Size(183, 19);
             this.optMachidinh.TabIndex = 467;
-            this.optMachidinh.TabStop = true;
             this.optMachidinh.Text = "Tìm kết quả theo mã chỉ định";
             this.optMachidinh.UseVisualStyleBackColor = true;
             // 
             // optMaluotkham
             // 
             this.optMaluotkham.AutoSize = true;
+            this.optMaluotkham.Checked = true;
             this.optMaluotkham.Location = new System.Drawing.Point(652, 7);
             this.optMaluotkham.Name = "optMaluotkham";
             this.optMaluotkham.Size = new System.Drawing.Size(171, 19);
             this.optMaluotkham.TabIndex = 466;
+            this.optMaluotkham.TabStop = true;
             this.optMaluotkham.Text = "Tìm kết quả theo mã khám";
             this.optMaluotkham.UseVisualStyleBackColor = true;
             this.optMaluotkham.CheckedChanged += new System.EventHandler(this.optMaluotkham_CheckedChanged);

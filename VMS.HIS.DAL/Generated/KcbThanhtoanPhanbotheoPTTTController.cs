@@ -80,7 +80,7 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(long? IdThanhtoan,string MaPttt,long IdBenhnhan,string MaLuotkham,byte NoiTru,decimal TongTien,decimal SoTien,string NguoiTao,DateTime NgayTao,string NguoiSua,DateTime? NgaySua,string MaNganhang,long? IdPhieuthu,long? IdTamung,byte? TthaiHuy,byte? LoaiPhanbo)
+	    public void Insert(long? IdThanhtoan,string MaPttt,long IdBenhnhan,string MaLuotkham,byte NoiTru,decimal TongTien,decimal SoTien,string NguoiTao,DateTime NgayTao,string NguoiSua,DateTime? NgaySua,string MaNganhang,long? IdPhieuthu,long? IdTamung,byte? TthaiHuy,byte? LoaiPhanbo,int? IdTnv,string MaTnv)
 	    {
 		    KcbThanhtoanPhanbotheoPTTT item = new KcbThanhtoanPhanbotheoPTTT();
 		    
@@ -116,6 +116,10 @@ namespace VMS.HIS.DAL
             
             item.LoaiPhanbo = LoaiPhanbo;
             
+            item.IdTnv = IdTnv;
+            
+            item.MaTnv = MaTnv;
+            
 	    
 		    item.Save(UserName);
 	    }
@@ -124,7 +128,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(long? IdThanhtoan,string MaPttt,long IdBenhnhan,string MaLuotkham,byte NoiTru,decimal TongTien,decimal SoTien,string NguoiTao,DateTime NgayTao,string NguoiSua,DateTime? NgaySua,string MaNganhang,long Id,long? IdPhieuthu,long? IdTamung,byte? TthaiHuy,byte? LoaiPhanbo)
+	    public void Update(long? IdThanhtoan,string MaPttt,long IdBenhnhan,string MaLuotkham,byte NoiTru,decimal TongTien,decimal SoTien,string NguoiTao,DateTime NgayTao,string NguoiSua,DateTime? NgaySua,string MaNganhang,long Id,long? IdPhieuthu,long? IdTamung,byte? TthaiHuy,byte? LoaiPhanbo,int? IdTnv,string MaTnv)
 	    {
 		    KcbThanhtoanPhanbotheoPTTT item = new KcbThanhtoanPhanbotheoPTTT();
 	        item.MarkOld();
@@ -163,6 +167,10 @@ namespace VMS.HIS.DAL
 			item.TthaiHuy = TthaiHuy;
 				
 			item.LoaiPhanbo = LoaiPhanbo;
+				
+			item.IdTnv = IdTnv;
+				
+			item.MaTnv = MaTnv;
 				
 	        item.Save(UserName);
 	    }

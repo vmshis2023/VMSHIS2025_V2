@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_NhaplydoHuy));
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblTitle2 = new System.Windows.Forms.Label();
@@ -37,8 +36,8 @@
             this.cmdSave = new Janus.Windows.EditControls.UIButton();
             this.cmdClose = new Janus.Windows.EditControls.UIButton();
             this.vbLine1 = new VNS.UCs.VBLine();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.toolTip1 = new System.Windows.Forms.ToolTip();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider();
             this.lblName = new System.Windows.Forms.Label();
             this.txtDmucchung = new VNS.HIS.UCs.AutoCompleteTextbox_Danhmucchung();
             this.lblMsg = new System.Windows.Forms.Label();
@@ -83,7 +82,7 @@
             // panel2
             // 
             this.panel2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel2.BackgroundImage")));
-            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
@@ -162,7 +161,9 @@
             this.txtDmucchung.AllowMultiline = false;
             this.txtDmucchung.AutoCompleteList = null;
             this.txtDmucchung.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtDmucchung.buildShortcut = false;
             this.txtDmucchung.CaseSensitive = false;
+            this.txtDmucchung.cmdDropDown = null;
             this.txtDmucchung.CompareNoID = true;
             this.txtDmucchung.DefaultCode = "-1";
             this.txtDmucchung.DefaultID = "-1";
@@ -181,6 +182,7 @@
             this.txtDmucchung.RaiseEventEnter = false;
             this.txtDmucchung.RaiseEventEnterWhenEmpty = false;
             this.txtDmucchung.SelectedIndex = -1;
+            this.txtDmucchung.SetDefaultWhenInit = true;
             this.txtDmucchung.ShowCodeWithValue = false;
             this.txtDmucchung.Size = new System.Drawing.Size(424, 25);
             this.txtDmucchung.splitChar = '@';
@@ -194,6 +196,7 @@
             this.txtDmucchung.txtMyName = null;
             this.txtDmucchung.txtMyName_Edit = null;
             this.txtDmucchung.txtNext = null;
+            this.txtDmucchung.txtNext1 = null;
             // 
             // lblMsg
             // 
@@ -208,13 +211,13 @@
             // 
             // lblDate
             // 
-            this.lblDate.AutoSize = true;
             this.lblDate.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDate.Location = new System.Drawing.Point(63, 92);
+            this.lblDate.Location = new System.Drawing.Point(4, 92);
             this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(57, 15);
+            this.lblDate.Size = new System.Drawing.Size(122, 15);
             this.lblDate.TabIndex = 547;
             this.lblDate.Text = "Ngày hủy";
+            this.lblDate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // dtNgaythuchien
             // 

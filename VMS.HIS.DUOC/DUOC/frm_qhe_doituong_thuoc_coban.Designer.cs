@@ -52,7 +52,11 @@
             this.mnuUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuHethieuluc = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnu_capnhat_thongtin_thuoc = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuHieuLuc = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuHuyHieuLuc = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuTaogiaquanhe = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuCreateGiaDV = new System.Windows.Forms.ToolStripMenuItem();
             this.tabObjectType = new Janus.Windows.UI.Tab.UITab();
@@ -245,11 +249,15 @@
             this.mnuUpdate,
             this.mnuDelete,
             this.mnuHethieuluc,
+            this.mnu_capnhat_thongtin_thuoc,
             this.toolStripMenuItem1,
+            this.mnuHieuLuc,
+            this.mnuHuyHieuLuc,
+            this.toolStripMenuItem2,
             this.mnuTaogiaquanhe,
             this.mnuCreateGiaDV});
             this.ctxThuoc.Name = "contextMenuStrip1";
-            this.ctxThuoc.Size = new System.Drawing.Size(488, 120);
+            this.ctxThuoc.Size = new System.Drawing.Size(488, 192);
             // 
             // mnuUpdate
             // 
@@ -259,6 +267,7 @@
             // 
             // mnuDelete
             // 
+            this.mnuDelete.Image = ((System.Drawing.Image)(resources.GetObject("mnuDelete.Image")));
             this.mnuDelete.Name = "mnuDelete";
             this.mnuDelete.Size = new System.Drawing.Size(487, 22);
             this.mnuDelete.Text = "Xóa thuốc";
@@ -269,11 +278,41 @@
             this.mnuHethieuluc.Name = "mnuHethieuluc";
             this.mnuHethieuluc.Size = new System.Drawing.Size(487, 22);
             this.mnuHethieuluc.Text = "Làm hết hiệu lực thuốc";
+            this.mnuHethieuluc.Visible = false;
+            this.mnuHethieuluc.Click += new System.EventHandler(this.mnuHethieuluc_Click_1);
+            // 
+            // mnu_capnhat_thongtin_thuoc
+            // 
+            this.mnu_capnhat_thongtin_thuoc.Name = "mnu_capnhat_thongtin_thuoc";
+            this.mnu_capnhat_thongtin_thuoc.Size = new System.Drawing.Size(487, 22);
+            this.mnu_capnhat_thongtin_thuoc.Text = "Cập nhật thông tin thuốc(Tính chất, Nhóm dược lý, Hoạt chất, ...)";
+            this.mnu_capnhat_thongtin_thuoc.Click += new System.EventHandler(this.mnu_capnhat_thongtin_thuoc_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(484, 6);
+            // 
+            // mnuHieuLuc
+            // 
+            this.mnuHieuLuc.Image = ((System.Drawing.Image)(resources.GetObject("mnuHieuLuc.Image")));
+            this.mnuHieuLuc.Name = "mnuHieuLuc";
+            this.mnuHieuLuc.Size = new System.Drawing.Size(487, 22);
+            this.mnuHieuLuc.Text = "Kích hoạt sử dụng (Hiệu lực) các thuốc -VT đang chọn";
+            this.mnuHieuLuc.Click += new System.EventHandler(this.mnuHieuLuc_Click);
+            // 
+            // mnuHuyHieuLuc
+            // 
+            this.mnuHuyHieuLuc.Image = ((System.Drawing.Image)(resources.GetObject("mnuHuyHieuLuc.Image")));
+            this.mnuHuyHieuLuc.Name = "mnuHuyHieuLuc";
+            this.mnuHuyHieuLuc.Size = new System.Drawing.Size(487, 22);
+            this.mnuHuyHieuLuc.Text = "Hủy sử dụng (Hiệu lực) các thuốc -VT đang chọn";
+            this.mnuHuyHieuLuc.Click += new System.EventHandler(this.mnuHuyHieuLuc_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(484, 6);
             // 
             // mnuTaogiaquanhe
             // 
@@ -785,5 +824,9 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem mnuTaogiaquanhe;
         private System.Windows.Forms.ToolStripMenuItem mnuCreateGiaDV;
+        private System.Windows.Forms.ToolStripMenuItem mnuHuyHieuLuc;
+        private System.Windows.Forms.ToolStripMenuItem mnuHieuLuc;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem mnu_capnhat_thongtin_thuoc;
     }
 }

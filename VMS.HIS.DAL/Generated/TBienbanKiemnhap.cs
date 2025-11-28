@@ -167,8 +167,8 @@ namespace VMS.HIS.DAL
 				
 				TableSchema.TableColumn colvarLoaiHoidong = new TableSchema.TableColumn(schema);
 				colvarLoaiHoidong.ColumnName = "loai_hoidong";
-				colvarLoaiHoidong.DataType = DbType.Byte;
-				colvarLoaiHoidong.MaxLength = 0;
+				colvarLoaiHoidong.DataType = DbType.String;
+				colvarLoaiHoidong.MaxLength = 30;
 				colvarLoaiHoidong.AutoIncrement = false;
 				colvarLoaiHoidong.IsNullable = true;
 				colvarLoaiHoidong.IsPrimaryKey = false;
@@ -279,9 +279,9 @@ namespace VMS.HIS.DAL
 		  
 		[XmlAttribute("LoaiHoidong")]
 		[Bindable(true)]
-		public byte? LoaiHoidong 
+		public string LoaiHoidong 
 		{
-			get { return GetColumnValue<byte?>(Columns.LoaiHoidong); }
+			get { return GetColumnValue<string>(Columns.LoaiHoidong); }
 			set { SetColumnValue(Columns.LoaiHoidong, value); }
 		}
 		  
@@ -344,7 +344,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(long? varIdPhieu,byte? varLoaiPhieu,byte? varLoaiHoidong,DateTime? varNgayBienban,string varNguoiTao,DateTime? varNgayTao,string varNguoiSua,DateTime? varNgaySua)
+		public static void Insert(long? varIdPhieu,byte? varLoaiPhieu,string varLoaiHoidong,DateTime? varNgayBienban,string varNguoiTao,DateTime? varNgayTao,string varNguoiSua,DateTime? varNgaySua)
 		{
 			TBienbanKiemnhap item = new TBienbanKiemnhap();
 			
@@ -374,7 +374,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(long varIdBienban,long? varIdPhieu,byte? varLoaiPhieu,byte? varLoaiHoidong,DateTime? varNgayBienban,string varNguoiTao,DateTime? varNgayTao,string varNguoiSua,DateTime? varNgaySua)
+		public static void Update(long varIdBienban,long? varIdPhieu,byte? varLoaiPhieu,string varLoaiHoidong,DateTime? varNgayBienban,string varNguoiTao,DateTime? varNgayTao,string varNguoiSua,DateTime? varNgaySua)
 		{
 			TBienbanKiemnhap item = new TBienbanKiemnhap();
 			

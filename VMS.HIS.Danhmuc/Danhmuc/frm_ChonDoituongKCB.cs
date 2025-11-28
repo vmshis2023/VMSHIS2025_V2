@@ -58,6 +58,8 @@ namespace VNS.HIS.UI.DANHMUC
                 foreach (Janus.Windows.GridEX.GridEXRow gridExRow in grdObjectTypeList.GetCheckedRows())
                 {
                     DataRow newDr = m_dtObjectDataSource.NewRow();
+
+                    newDr[QheDoituongDichvucl.Columns.IdDoituongKcb] = Utility.sDbnull(gridExRow.Cells[DmucDoituongkcb.Columns.IdDoituongKcb].Value, "");
                     newDr[QheDoituongDichvucl.Columns.MaDoituongKcb] = Utility.sDbnull(gridExRow.Cells[DmucDoituongkcb.Columns.MaDoituongKcb].Value, "");
                     newDr[VQheDoituongDichvucl.Columns.TenDoituongKcb] = Utility.sDbnull(gridExRow.Cells[DmucDoituongkcb.Columns.TenDoituongKcb].Value, "");
                     newDr[QheDoituongDichvucl.Columns.PhuthuDungtuyen] = 0;

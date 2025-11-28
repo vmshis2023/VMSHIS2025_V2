@@ -80,7 +80,7 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(string MaGhino,long IdBenhnhan,string MaLuotkham,DateTime NgayGhino,decimal SoTien,string LydoGhino,short IdNguoiGhino,byte TrangThai,short? IdNguoiGachno,DateTime? NgayGachno,DateTime NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua)
+	    public void Insert(string MaGhino,long IdBenhnhan,string MaLuotkham,DateTime NgayGhino,decimal SoTien,decimal? TongtienChietkhau,decimal? TongtienChietkhauHoadon,decimal? TongtienChietkhauChitiet,string LydoGhino,short IdNguoiGhino,byte TrangThai,short? IdNguoiGachno,DateTime? NgayGachno,DateTime NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua,byte? NoiTru)
 	    {
 		    KcbThanhtoanGhino item = new KcbThanhtoanGhino();
 		    
@@ -93,6 +93,12 @@ namespace VMS.HIS.DAL
             item.NgayGhino = NgayGhino;
             
             item.SoTien = SoTien;
+            
+            item.TongtienChietkhau = TongtienChietkhau;
+            
+            item.TongtienChietkhauHoadon = TongtienChietkhauHoadon;
+            
+            item.TongtienChietkhauChitiet = TongtienChietkhauChitiet;
             
             item.LydoGhino = LydoGhino;
             
@@ -112,6 +118,8 @@ namespace VMS.HIS.DAL
             
             item.NguoiSua = NguoiSua;
             
+            item.NoiTru = NoiTru;
+            
 	    
 		    item.Save(UserName);
 	    }
@@ -120,7 +128,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(long Id,string MaGhino,long IdBenhnhan,string MaLuotkham,DateTime NgayGhino,decimal SoTien,string LydoGhino,short IdNguoiGhino,byte TrangThai,short? IdNguoiGachno,DateTime? NgayGachno,DateTime NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua)
+	    public void Update(long Id,string MaGhino,long IdBenhnhan,string MaLuotkham,DateTime NgayGhino,decimal SoTien,decimal? TongtienChietkhau,decimal? TongtienChietkhauHoadon,decimal? TongtienChietkhauChitiet,string LydoGhino,short IdNguoiGhino,byte TrangThai,short? IdNguoiGachno,DateTime? NgayGachno,DateTime NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua,byte? NoiTru)
 	    {
 		    KcbThanhtoanGhino item = new KcbThanhtoanGhino();
 	        item.MarkOld();
@@ -137,6 +145,12 @@ namespace VMS.HIS.DAL
 			item.NgayGhino = NgayGhino;
 				
 			item.SoTien = SoTien;
+				
+			item.TongtienChietkhau = TongtienChietkhau;
+				
+			item.TongtienChietkhauHoadon = TongtienChietkhauHoadon;
+				
+			item.TongtienChietkhauChitiet = TongtienChietkhauChitiet;
 				
 			item.LydoGhino = LydoGhino;
 				
@@ -155,6 +169,8 @@ namespace VMS.HIS.DAL
 			item.NgaySua = NgaySua;
 				
 			item.NguoiSua = NguoiSua;
+				
+			item.NoiTru = NoiTru;
 				
 	        item.Save(UserName);
 	    }

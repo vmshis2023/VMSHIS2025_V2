@@ -32,17 +32,17 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
             Utility.SetVisualStyle(this);
             this.KieuKho = args.Split('-')[0];
             this.KIEU_THUOC_VT = args.Split('-')[1];
-            
+
             dtNgayIn.Value = dtFromDate.Value = dtToDate.Value = globalVariables.SysDate;
-            
-         
-            cmdExit.Click+=new EventHandler(cmdExit_Click);
-            this.Load+=new EventHandler(frm_baocao_nhapxuaton_Load);
+
+
+            cmdExit.Click += new EventHandler(cmdExit_Click);
+            this.Load += new EventHandler(frm_baocao_nhapxuaton_Load);
             chkByDate.CheckedChanged += chkByDate_CheckedChanged;
-            cmdBaoCao.Click+=new EventHandler(cmdBaoCao_Click);
-            this.KeyDown+=new KeyEventHandler(frm_baocao_nhapxuaton_KeyDown);
-            txtKho.TextChanged +=txtKho_TextChanged;
-           // cboKho.SelectedIndexChanged += new EventHandler(cboKho_SelectedIndexChanged);
+            cmdBaoCao.Click += new EventHandler(cmdBaoCao_Click);
+            this.KeyDown += new KeyEventHandler(frm_baocao_nhapxuaton_KeyDown);
+            txtKho.TextChanged += txtKho_TextChanged;
+            // cboKho.SelectedIndexChanged += new EventHandler(cboKho_SelectedIndexChanged);
             chkChanle.CheckedChanged += new EventHandler(chkChanle_CheckedChanged);
             chkTheoNhomThuoc.CheckedChanged += new EventHandler(chkTheoNhomThuoc_CheckedChanged);
             gridEXExporter1.GridEX = grdListKhoChan;
@@ -167,13 +167,7 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
             try
             {
                 DataTable _dataThuoc = SPs.ThuocLayDanhmucThuocTheokho(Utility.Int32Dbnull(txtKho.MyID, -1)).GetDataSet().Tables[0];
-                if (_dataThuoc == null)
-                {
-                    txtthuoc.dtData = null;
-                    return;
-                }
-                txtthuoc.dtData = _dataThuoc;
-                txtthuoc.ChangeDataSource();
+                DataBinding.BindDataCombobox(cbo_thuoc, _dataThuoc, DmucThuoc.Columns.IdThuoc, DmucThuoc.Columns.TenThuoc);
             }
             catch
             {
@@ -205,9 +199,9 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
         }
         private void CauHinh()
         {
-            HisDuocProperties =PropertyLib._HisDuocProperties;
+            HisDuocProperties = PropertyLib._HisDuocProperties;
         }
-        
+
         /// <summary>
         /// hàm thực hiện việc đống form hiện tại
         /// </summary>
@@ -235,10 +229,10 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
             else
             {
                 baocaO_TIEUDE1.Init("vt_baocao_nhapxuatton_khochan");
-                dtkho = KieuKho == "ALL" ? CommonLoadDuoc.LAYTHONGTIN_KHOVATTU_TATCA() : (KieuKho == "CHAN" ? CommonLoadDuoc.LAYTHONGTIN_KHOVATTU_CHAN() : CommonLoadDuoc.LAYTHONGTIN_KHOVATTU_LE(new List<string> { "TATCA", "NGOAITRU","NOITRU" }));
+                dtkho = KieuKho == "ALL" ? CommonLoadDuoc.LAYTHONGTIN_KHOVATTU_TATCA() : (KieuKho == "CHAN" ? CommonLoadDuoc.LAYTHONGTIN_KHOVATTU_CHAN() : CommonLoadDuoc.LAYTHONGTIN_KHOVATTU_LE(new List<string> { "TATCA", "NGOAITRU", "NOITRU" }));
             }
             txtKho.Init(dtkho, new List<string>() { TDmucKho.Columns.IdKho, TDmucKho.Columns.MaKho, TDmucKho.Columns.TenKho });
-        //    DataBinding.BindData(cboKho, dtkho, TDmucKho.Columns.IdKho, TDmucKho.Columns.TenKho);
+            //    DataBinding.BindData(cboKho, dtkho, TDmucKho.Columns.IdKho, TDmucKho.Columns.TenKho);
             DataTable m_dtNhomThuoc = new Select().From(DmucLoaithuoc.Schema).Where(DmucLoaithuoc.Columns.KieuThuocvattu).IsEqualTo(KIEU_THUOC_VT)
                 .OrderAsc(DmucLoaithuoc.Columns.SttHthi).ExecuteDataSet().Tables[0];
             allowChanged = true;
@@ -264,22 +258,11 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
         {
             try
             {
+                if (m_dtReport == null || m_dtReport.Columns.Count <= 0) cmd_TimKiem.PerformClick();
                 string nhomthuoc = "-1";
 
                 nhomthuoc = txtLoaithuoc.MyID.ToString();
 
-
-                DataTable m_dtReport = null;
-                if (_item.KieuKho == "CHAN" || (chkChanle.Enabled && chkChanle.Checked))
-               m_dtReport= BAOCAO_THUOC.ThuocBaocaoBiendongthuocTrongkhotong(chkByDate.Checked ? dtFromDate.Text : Utility.sDbnull("01/01/1900"),
-                                           chkByDate.Checked ? dtToDate.Text : globalVariables.SysDate.ToString(),
-                                           Utility.Int32Dbnull(txtKho.MyID), nhomthuoc, Utility.Int32Dbnull(txtthuoc.MyID, -1), chkBiendong.Checked ? 1 : 0);
-                else
-                  m_dtReport=  BAOCAO_THUOC.ThuocBaocaoBiendongthuocTrongkhole(chkByDate.Checked ? dtFromDate.Text : Utility.sDbnull("01/01/1900"),
-                                         chkByDate.Checked ? dtToDate.Text : globalVariables.SysDate.ToString(),
-                                         Utility.Int32Dbnull(txtKho.MyID), Utility.Int32Dbnull(txtthuoc.MyID, -1), nhomthuoc, chkBiendong.Checked ? 1 : 0);
-               
-                Utility.SetDataSourceForDataGridEx( _item.KieuKho == "CHAN" || (chkChanle.Enabled && chkChanle.Checked) ? grdListKhoChan : grdListKhole, m_dtReport, true, true, "1=1", "");
                 if (m_dtReport.Rows.Count <= 0)
                 {
                     Utility.ShowMsg("Không tìm thấy dữ liệu", "Thông báo", MessageBoxIcon.Warning);
@@ -289,23 +272,18 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
                 if (_item.KieuKho == "CHAN" || (chkChanle.Enabled && chkChanle.Checked))
                 {
                     THU_VIEN_CHUNG.CreateXML(m_dtReport, "baocao_xuatnhapton_khochan.xml");
-                    thuoc_baocao.BaocaoNhapxuattonKhochan(m_dtReport,KIEU_THUOC_VT, baocaO_TIEUDE1.TIEUDE,
+                    thuoc_baocao.BaocaoNhapxuattonKhochan(m_dtReport, KIEU_THUOC_VT, baocaO_TIEUDE1.TIEUDE,
                                                                                           dtNgayIn.Value, FromDateToDate,
                                                                                           Utility.sDbnull(txtKho.Text), chkTheoNhomThuoc.Checked);
                 }
                 else
                 {
                     THU_VIEN_CHUNG.CreateXML(m_dtReport, "baocao_xuatnhapton_khole.xml");
-                    thuoc_baocao.BaocaoNhapxuattonKhole(m_dtReport,KIEU_THUOC_VT, baocaO_TIEUDE1.TIEUDE,
+                    thuoc_baocao.BaocaoNhapxuattonKhole(m_dtReport, KIEU_THUOC_VT, baocaO_TIEUDE1.TIEUDE,
                                                                                              dtNgayIn.Value, FromDateToDate,
                                                                                              Utility.sDbnull(txtKho.Text), chkTheoNhomThuoc.Checked);
                 }
-                //else
-                //{
-                //    thuoc_baocao.BaocaoNhapxuattonKhochanTheonhom(m_dtReport, baocaO_TIEUDE1.TIEUDE,
-                //                                                                         dtNgayIn.Value, FromDateToDate,
-                //                                                                         Utility.sDbnull(cboKho.Text));
-                //}
+
             }
             catch (Exception)
             {
@@ -326,9 +304,9 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
             if (e.KeyCode == Keys.F5) cmdExportToExcel.PerformClick();
         }
 
-       
 
-       
+
+
 
         private void cmdBaoCao_Click_1(object sender, EventArgs e)
         {
@@ -389,7 +367,7 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
         /// <param name="e"></param>
         private void cmdGetDataDrug_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void uiButton1_Click(object sender, EventArgs e)
@@ -399,7 +377,37 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
 
         private void uiButton2_Click(object sender, EventArgs e)
         {
-            txtthuoc.ShowMe();
+
+        }
+        DataTable m_dtReport = null;
+        private void cmd_TimKiem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string nhomthuoc = "-1";
+
+                nhomthuoc = txtLoaithuoc.MyID.ToString();
+
+
+
+                if (_item.KieuKho == "CHAN" || (chkChanle.Enabled && chkChanle.Checked))
+                    m_dtReport = BAOCAO_THUOC.ThuocBaocaoBiendongthuocTrongkhotong(chkByDate.Checked ? dtFromDate.Text : Utility.sDbnull("01/01/1900"),
+                                                chkByDate.Checked ? dtToDate.Text : globalVariables.SysDate.ToString(),
+                                                Utility.Int32Dbnull(txtKho.MyID), nhomthuoc, Utility.Int32Dbnull(cbo_thuoc.SelectedValue, -1), chkBiendong.Checked ? 1 : 0);
+                else
+                    m_dtReport = BAOCAO_THUOC.ThuocBaocaoBiendongthuocTrongkhole(chkByDate.Checked ? dtFromDate.Text : Utility.sDbnull("01/01/1900"),
+                                           chkByDate.Checked ? dtToDate.Text : globalVariables.SysDate.ToString(),
+                                           Utility.Int32Dbnull(txtKho.MyID), Utility.Int32Dbnull(cbo_thuoc.SelectedValue, -1), nhomthuoc, chkBiendong.Checked ? 1 : 0);
+
+                Utility.SetDataSourceForDataGridEx(_item.KieuKho == "CHAN" || (chkChanle.Enabled && chkChanle.Checked) ? grdListKhoChan : grdListKhole, m_dtReport, true, true, "1=1", "");
+
+
+            }
+            catch (Exception)
+            {
+
+
+            }
         }
     }
 }

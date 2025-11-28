@@ -228,6 +228,7 @@
             this.cmdInphieu.Name = "cmdInphieu";
             this.cmdInphieu.Size = new System.Drawing.Size(78, 28);
             this.cmdInphieu.Text = "In phiếu";
+            this.cmdInphieu.Click += new System.EventHandler(this.cmdInphieu_Click_1);
             // 
             // cmdConfig
             // 

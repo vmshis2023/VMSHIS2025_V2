@@ -24,6 +24,7 @@ namespace VNS.HIS.UI.THUOC
         public string ma="";
         public string ten = "";
         public bool m_blnCancel = true;
+        bool ly_do_trong_danh_muc = false;
         string _name = "";
         public frm_NhaplydoHuy()
         {
@@ -34,12 +35,13 @@ namespace VNS.HIS.UI.THUOC
             this._name = lblName.Text;
             InitEvents();
         }
-        public frm_NhaplydoHuy(string loaidanhmuc,string title1,string title2,string _name,string ngaythuchien)
+        public frm_NhaplydoHuy(string loaidanhmuc,string title1,string title2,string _name,string ngaythuchien,bool ly_do_trong_danh_muc=false)
         {
             InitializeComponent();
             this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             dtNgaythuchien.Value = DateTime.Now;
             this.Text = title1;
+            this.ly_do_trong_danh_muc = ly_do_trong_danh_muc;
             lblDate.Text = ngaythuchien;
             txtDmucchung.LOAI_DANHMUC = loaidanhmuc;
             lblTitle1.Text = title1;
@@ -137,7 +139,8 @@ namespace VNS.HIS.UI.THUOC
         private bool isValidData()
         {
             Utility.SetMsg(lblMsg, "", true);
-            if (txtDmucchung.myCode == "-1" || Utility.DoTrim(txtDmucchung.myCode) == "")
+           
+            if ((ly_do_trong_danh_muc && (txtDmucchung.myCode == "-1" || Utility.DoTrim(txtDmucchung.myCode) == "")) ||(!ly_do_trong_danh_muc && Utility.DoTrim(txtDmucchung.Text)==""))
             {
                 Utility.SetMsg(lblMsg, "Bạn cần nhập "+_name, true);
                 txtDmucchung.Focus();

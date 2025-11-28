@@ -31,6 +31,7 @@ namespace VMS.HIS.UI.EMR.Ucs
         public int id_bacsikham = -1;
         DmucNhanvien objBacsiPttt = null;
         DmucNhanvien objNguoiDaidien = null;
+        public bool Force2Saved = false;
         public uc_tt32_giaycamketchapnhanpttt_gaymehoisuc()
         {
             InitializeComponent();
@@ -406,6 +407,7 @@ namespace VMS.HIS.UI.EMR.Ucs
                         phieucamket.Save();
                         if (objBacsiPttt == null)
                             objBacsiPttt = DmucNhanvien.FetchByID(Utility.Int32Dbnull(txt_bacsi_pttt.MyID));
+                        emrdoc.Force2Saved = Force2Saved;
                         emrdoc.InitDocument(phieucamket.IdBenhnhan, phieucamket.MaLuotkham, Utility.Int64Dbnull(phieucamket.IdPhieu), phieucamket.NgayCamket, Loaiphieu_HIS.PHIEU_CAMKET_PTTT, "PHIEU_CAMKET_PTTT", phieucamket.NguoiTao,Utility.Int16Dbnull( objBacsiPttt.IdKhoa), Utility.Int16Dbnull(objBacsiPttt.IdPhong), Utility.Byte2Bool(0),"");
                         emrdoc.Save();
 

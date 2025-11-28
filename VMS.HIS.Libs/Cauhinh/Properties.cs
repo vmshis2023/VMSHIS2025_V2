@@ -4579,17 +4579,23 @@ DisplayName(@"Tự động chuyển sang phòng khám bác sĩ đang khám")]
         public int Dorongbentrai { get; set; }
        
 
-        [Browsable(true), ReadOnly(false), Category("Cấu hình tính năng kê thuốc - vật tư tiêu hao"),
+        [Browsable(true), ReadOnly(false), Category("Cấu hình thông tin Kết quả CLS"),
          Description(
              "True=Hiển thị kết quả CLS trong lưới chỉ định. False=Hiển thị bằng lưới bên cạnh. Với Cận lâm sàng có chi tiết(Tổng phân tích tế bào máu, tổng phân tích nước tiểu...) thì hiển thị ở lưới bên cạnh"
              ),
          DisplayName("Hiển thị kết quả CLS trong lưới chỉ định")]
         public bool HienthiKetquaCLSTrongluoiChidinh { get; set; }
 
-        [Browsable(true), ReadOnly(false), Category("Cấu hình tính năng kê thuốc - vật tư tiêu hao"),
-         Description("Độ rộng vùng xem kết quả CLS"),
-         DisplayName("Độ rộng vung xem kết quả CLS")]
+        [Browsable(true), ReadOnly(false), Category("Cấu hình thông tin Kết quả CLS"),
+         Description("Độ rộng vùng xem kết quả CLS ngoại trú"),
+         DisplayName("Độ rộng vung xem kết quả CLS ngoại trú")]
         public int DorongVungKetquaCLS { get; set; }
+
+
+        [Browsable(true), ReadOnly(false), Category("Cấu hình thông tin Kết quả CLS"),
+         Description("Độ rộng vùng xem kết quả CLS nội trú"),
+         DisplayName("Độ rộng vung xem kết quả CLS nội trú")]
+        public int DorongVungKetquaCLS_NoiTru { get; set; }
 
         [Browsable(false), ReadOnly(false), Category("Cấu hình tính năng kê thuốc - vật tư tiêu hao"),
          Description("ID kho vật tư vừa kê"),

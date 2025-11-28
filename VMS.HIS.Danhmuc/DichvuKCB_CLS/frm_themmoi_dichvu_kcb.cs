@@ -187,6 +187,8 @@ namespace VNS.HIS.UI.DANHMUC
             try
             {
                 var objDmucDichvukcb = new DmucDichvukcb();
+                objDmucDichvukcb.NguoiTao = globalVariables.UserName;
+                objDmucDichvukcb.NgayTao = globalVariables.SysDate;
                 objDmucDichvukcb.MaDichvukcb = Utility.sDbnull(txtCode.Text.Trim(), "");
                 objDmucDichvukcb.MaBhyt = Utility.sDbnull(txtMaBhyt.Text.Trim(), "");
                 objDmucDichvukcb.MaGia = Utility.sDbnull(txtmagiabhyt.Text.Trim(), "");
@@ -230,6 +232,7 @@ namespace VNS.HIS.UI.DANHMUC
                 objDmucDichvukcb.CapKinh =chkCapkinh.Checked;
                 objDmucDichvukcb.IsNew = true;
                 objDmucDichvukcb.Save();
+                Utility.Log(this.Name, globalVariables.UserName, string.Format("Thêm mới công khám {0}-{1} thành công", objDmucDichvukcb.TenDichvukcb, objDmucDichvukcb.IdDichvukcb), newaction.Insert, "DANHMUC");
                 DataRow dr = m_dtDataRelation.NewRow();
                 dr[DmucDichvukcb.Columns.IdDichvukcb] = Utility.Int32Dbnull(
                     _Query.GetMax(DmucDichvukcb.Columns.IdDichvukcb), -1);
@@ -333,10 +336,13 @@ namespace VNS.HIS.UI.DANHMUC
                     .Set(DmucDichvukcb.Columns.TuTuc).EqualTo(Utility.Bool2byte(chkTutuc.Checked))
                     .Set(DmucDichvukcb.Columns.PhuthuDungtuyen).EqualTo(Utility.DecimaltoDbnull(txtPTDT.Text, 0))
                     .Set(DmucDichvukcb.Columns.PhuthuTraituyen).EqualTo(Utility.DecimaltoDbnull(txtPTTT.Text, 0))
+                     .Set(DmucDichvukcb.Columns.NguoiSua).EqualTo(globalVariables.UserName)
+                      .Set(DmucDichvukcb.Columns.NgaySua).EqualTo(globalVariables.SysDate)
                     .Where(DmucDichvukcb.Columns.IdDichvukcb).IsEqualTo(Utility.DecimaltoDbnull(txtInsObject_ID.Text, -1)).
                     Execute();
                 if (record > 0)
                 {
+                    Utility.Log(this.Name, globalVariables.UserName, string.Format("Cập nhật thông tin công khám {0} thành công", txtInsObject_ID.Text) ,newaction.Update, "DANHMUC");
                     DataRow[] dr =
                         m_dtDataRelation.Select(DmucDichvukcb.Columns.IdDichvukcb + "=" +
                                                 Utility.Int32Dbnull(txtInsObject_ID.Text, -1));
@@ -396,6 +402,18 @@ namespace VNS.HIS.UI.DANHMUC
         private bool IsValidData()
         {
             Utility.SetMsg(lblMsg, "", false);
+            if (string.IsNullOrEmpty(txtCode.Text))
+            {
+                Utility.SetMsg(lblMsg, "Mã công khám không được phép để trống", true);
+                txtCode.Focus();
+                return false;
+            }
+            if (string.IsNullOrEmpty(txtName.Text))
+            {
+                Utility.SetMsg(lblMsg, "Tên công khám không được phép để trống", true);
+                txtName.Focus();
+                return false;
+            }
             if (cboLoaiKham.Items.Count <= 0)
             {
                 Utility.SetMsg(lblMsg, "Phải khởi tạo danh mục loại khám trước khi thực hiện chức năng này", true);

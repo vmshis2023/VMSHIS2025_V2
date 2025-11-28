@@ -504,7 +504,11 @@ namespace VNS.HIS.UI.NOITRU
                 FillBacsiPttt(bbhc.IdbacsiPttt, dtbsphauthuat, grd_bspt);
                 FillBacsiPttt(bbhc.IdbacsiPtttPhu, dtbsphauthuatphu, grd_bsphauthuatphu);
                 txtHopTai._Text = bbhc.HopTai;
-                autoChutoa._Text = bbhc.ChuToa;
+                if (Utility.Int16Dbnull(bbhc.IdChutoa) > 0)
+                    autoChutoa.SetId(bbhc.IdChutoa);
+                else
+                    autoChutoa._Text = bbhc.ChuToa;
+                autoKhoa.SetId(Utility.Int16Dbnull(bbhc.IdKhoahoichan));
                 autoThuki._Text = bbhc.ThuKy;
                 txtYeuCauHoiChan.Text = bbhc.YeucauHoichan;
                 autoLydohc.SetCode(bbhc.MaLydoHc);
@@ -796,15 +800,15 @@ namespace VNS.HIS.UI.NOITRU
         private Boolean isValidData()
         {
             errorProvider1.Clear();
-            //if (txtBacsidexuat.MyID == "-1")
-            //{
-            //    Utility.ShowMsg("Bạn phải nhập bác sĩ đề xuất hội chẩn");
-            //    uiTabInfor.SelectedIndex = 0;
-            //    errorProvider1.SetError(txtBacsidexuat, "Nhập thông tin");
-            //    txtBacsidexuat.Focus();
-            //    txtBacsidexuat.SelectAll();
-            //    return false;
-            //}
+            if (txtBacsidexuat.MyID == "-1")
+            {
+                Utility.ShowMsg("Bạn phải nhập bác sĩ đề xuất hội chẩn");
+                uiTabInfor.SelectedIndex = 0;
+                errorProvider1.SetError(txtBacsidexuat, "Nhập thông tin");
+                txtBacsidexuat.Focus();
+                txtBacsidexuat.SelectAll();
+                return false;
+            }
             //if (dtbsthamgia.Rows.Count <= 0)
             //{
             //    uiTabInfor.SelectedIndex = 0;
@@ -823,7 +827,7 @@ namespace VNS.HIS.UI.NOITRU
             //    txtHopTai.SelectAll();
             //    return false;
             //}
-            if (Utility.DoTrim(autoChutoa.Text) == "")
+            if (Utility.sDbnull(autoChutoa.MyID) == "-1")
             {
                 uiTabInfor.SelectedIndex = 0;
                 Utility.ShowMsg("Bạn phải nhập chủ tọa hội chẩn");
@@ -841,6 +845,25 @@ namespace VNS.HIS.UI.NOITRU
                 autoKhoa.SelectAll();
                 return false;
             }
+            if (dtbsphauthuat.Rows.Count <= 0)
+            {
+                uiTabInfor.SelectedIndex = 1;
+                Utility.ShowMsg("Bạn phải nhập Bác sỹ phẫu thuật chính");
+                errorProvider1.SetError(autoBSPhauthuat, "Nhập thông tin");
+                autoBSPhauthuat.Focus();
+                autoBSPhauthuat.SelectAll();
+                return false;
+            }
+            if (dtbsgayme.Rows.Count <= 0)
+            {
+                uiTabInfor.SelectedIndex = 1;
+                Utility.ShowMsg("Bạn phải nhập Bác sĩ gây mê");
+                errorProvider1.SetError(autoBSGayme, "Nhập thông tin");
+                autoBSGayme.Focus();
+                autoBSGayme.SelectAll();
+                return false;
+            }
+
             //if (Utility.DoTrim(autoThuki.Text) == "")
             //{
             //    uiTabInfor.SelectedIndex = 0;
@@ -1090,6 +1113,7 @@ namespace VNS.HIS.UI.NOITRU
                 bbhc.NgayHoichan = dtpNgayhoichan.Value;
                 bbhc.BacsiThamgia = getBacsithamgia();
                 bbhc.HopTai = txtHopTai.Text;
+                bbhc.IdChutoa =Utility.Int16Dbnull( autoChutoa.MyID);
                 bbhc.ChuToa = autoChutoa.Text;
                 bbhc.ThuKy = autoThuki.Text;
                 bbhc.YeucauHoichan = txtYeuCauHoiChan.Text;
@@ -1174,6 +1198,7 @@ namespace VNS.HIS.UI.NOITRU
                 bbhc.IdbacsiPttt = getBacsithamgia(dtbsphauthuat);
                 bbhc.IdbacsiPtttPhu = getBacsithamgia(dtbsphauthuatphu);
                 bbhc.Save();
+                emrdoc.Force2Saved = true;
                 emrdoc.InitDocument(bbhc.IdBenhnhan, bbhc.MaLuotkham, Utility.Int64Dbnull(bbhc.Id), bbhc.NgayHoichan, Loaiphieu_HIS.BIENBANHOICHAN, "BIENBAN_HOICHAN", bbhc.NguoiTao,(Int16) bbhc.IdKhoahoichan, -1, Utility.Byte2Bool(objLuotkham.Noitru), "", true);
                 emrdoc.Save();
                 if (Utility.sDbnull(bbhc.Nhommau).Length > 0)

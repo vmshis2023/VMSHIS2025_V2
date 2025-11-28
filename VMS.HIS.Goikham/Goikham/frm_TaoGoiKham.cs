@@ -47,6 +47,7 @@ namespace VNS.HIS.UI.GOIKHAM
             m_dtChitietgoi.Columns.Add("SO_LUONG");
             m_dtChitietgoi.Columns.Add("id_dichvu");
             m_dtChitietgoi.Columns.Add("don_gia");
+            m_dtChitietgoi.Columns.Add("dongia_ngoaigio");
             m_dtChitietgoi.Columns.Add("thanh_tien");
              txtnhomchidinh._OnEnterMe += txtnhomchidinh__OnEnterMe;
             cmdDelete.Click+=btnXoaDichVu_Click;
@@ -66,6 +67,34 @@ namespace VNS.HIS.UI.GOIKHAM
             autoNhomCLS._OnEnterMe += autoNhomCLS__OnEnterMe;
             cmdAccept.Click += cmdAccept_Click;
             grdChitiet.UpdatingCell += GrdChitiet_UpdatingCell;
+            this.FormClosing += Frm_TaoGoiKham_FormClosing;
+        }
+
+        private void Frm_TaoGoiKham_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                //Kiểm tra các dịch vụ chưa thêm mới thì hỏi
+                List<string> lstNew = (from row in grdChitiet.GetDataRows()
+                                    where Utility.Int32Dbnull(row.Cells["id_chitiet"].Value) <=0
+                                    select "A").ToList<string>();
+                if(lstNew.Count>0)
+                {
+                    if (Utility.AcceptQuestion("Một số dịch vụ vừa thêm vào gói và chưa nhấn nút Lưu. Bạn có muốn hệ thống tự động lưu các dịch vụ này?\nNhấn Yes để lưu và thoát.\nNhấn No để thoát không lưu", "Xác nhận thay đổi gói", true))
+                    {
+                        cmdSave.PerformClick();
+                    }
+                    else
+                    {    
+                        e.Cancel = true;
+                    }    
+                }    
+            }
+            catch (Exception)
+            {
+
+                
+            }
         }
 
         private void GrdChitiet_UpdatingCell(object sender, UpdatingCellEventArgs e)
@@ -74,8 +103,8 @@ namespace VNS.HIS.UI.GOIKHAM
             {
                 int id_chitiet = Utility.Int32Dbnull(grdChitiet.GetValue("id_chitiet"));
                 int num = 0;
-                if (id_chitiet > 0)
-                {
+              
+                
                     if (e.Column.Key == "tyle_mg")
                     {
                         if (Utility.Int32Dbnull(e.Value) < 0 || Utility.Int32Dbnull(e.Value) > 100)
@@ -84,18 +113,54 @@ namespace VNS.HIS.UI.GOIKHAM
                             e.Value = e.InitialValue;
                             return;
                         }
-                        num = new Update(GoiChitiet.Schema).Set(GoiChitiet.Columns.TyleMg).EqualTo(Utility.Int32Dbnull(e.Value)).Where(GoiChitiet.Columns.IdChitiet).IsEqualTo(id_chitiet).Execute();
+                    if (id_chitiet > 0) num = new Update(GoiChitiet.Schema).Set(GoiChitiet.Columns.TyleMg).EqualTo(Utility.Int32Dbnull(e.Value)).Where(GoiChitiet.Columns.IdChitiet).IsEqualTo(id_chitiet).Execute();
+                    }
+                   else if (e.Column.Key == "don_gia")
+                    {
+                        if (Utility.DecimaltoDbnull(e.Value) <0)
+                        {
+                            Utility.ShowMsg("Đơn giá phải >=0");
+                            e.Value = e.InitialValue;
+                            return;
+                        }
+                        grdChitiet.CurrentRow.Cells["Thanh_tien"].Value = Utility.DecimaltoDbnull(grdChitiet.CurrentRow.Cells["SO_LUONG"].Value, 1) * Utility.DecimaltoDbnull(e.Value, 1);
+                    if (id_chitiet > 0) num = new Update(GoiChitiet.Schema).Set(GoiChitiet.Columns.DonGia).EqualTo(Utility.DecimaltoDbnull(e.Value)).Where(GoiChitiet.Columns.IdChitiet).IsEqualTo(id_chitiet).Execute();
+                    }
+                    else if (e.Column.Key == "SO_LUONG")
+                    {
+                        if (Utility.DecimaltoDbnull(e.Value) < 0)
+                        {
+                            Utility.ShowMsg("Đơn giá phải >=0");
+                            e.Value = e.InitialValue;
+                            return;
+                        }
+                        grdChitiet.CurrentRow.Cells["Thanh_tien"].Value = Utility.DecimaltoDbnull(grdChitiet.CurrentRow.Cells["don_gia"].Value, 1) * Utility.DecimaltoDbnull(e.Value, 1);
+                    if (id_chitiet > 0) num = new Update(GoiChitiet.Schema).Set(GoiChitiet.Columns.SoLuong).EqualTo(Utility.DecimaltoDbnull(e.Value)).Where(GoiChitiet.Columns.IdChitiet).IsEqualTo(id_chitiet).Execute();
+                    }
+                    else if (e.Column.Key == "dongia_ngoaigio")
+                    {
+                        if (Utility.DecimaltoDbnull(e.Value) < 0)
+                        {
+                            Utility.ShowMsg("Đơn giá ngoài giờ phải >=0");
+                            e.Value = e.InitialValue;
+                            return;
+                        }
+                    if (id_chitiet > 0) num = new Update(GoiChitiet.Schema).Set(GoiChitiet.Columns.DongiaNgoaigio).EqualTo(Utility.DecimaltoDbnull(e.Value)).Where(GoiChitiet.Columns.IdChitiet).IsEqualTo(id_chitiet).Execute();
                     }
                     else if (e.Column.Key == "chophep_denghi_mg")
                     {
-                        num = new Update(GoiChitiet.Schema).Set(GoiChitiet.Columns.ChophepDenghiMg).EqualTo(e.Value).Where(GoiChitiet.Columns.IdChitiet).IsEqualTo(id_chitiet).Execute();
+                    if (id_chitiet > 0) num = new Update(GoiChitiet.Schema).Set(GoiChitiet.Columns.ChophepDenghiMg).EqualTo(e.Value).Where(GoiChitiet.Columns.IdChitiet).IsEqualTo(id_chitiet).Execute();
                     }    
-                }
+               
             }
             catch (Exception ex)
             {
 
-                throw;
+                Utility.CatchException(ex);
+            }
+            finally
+            {
+                TinhThanhTien();
             }
         }
 
@@ -234,7 +299,7 @@ namespace VNS.HIS.UI.GOIKHAM
                 txtGiamtruBHYT.LostFocus += txtGiamtruBHYT_LostFocus;
 
                 _dsDanhMucDichVu = _goiKhamService.LayDanhMucDichVu();
-                grdKham.DataSource = _dsDanhMucDichVu.Tables[0];
+                grd_congkham.DataSource = _dsDanhMucDichVu.Tables[0];
                 grdCLS.DataSource = _dsDanhMucDichVu.Tables[1];
                 grdThuoc.DataSource = _dsDanhMucDichVu.Tables[2];
                 grdGiuong.DataSource = _dsDanhMucDichVu.Tables[3];
@@ -550,11 +615,12 @@ namespace VNS.HIS.UI.GOIKHAM
                     var soLanThucHien = Utility.Int16Dbnull(row.Cells["SO_LUONG"].Value);
                     var idChiTiet = Utility.Int32Dbnull(row.Cells["ID_CHITIET"].Value);
                     decimal  donGia = Utility.DecimaltoDbnull(row.Cells["don_gia"].Value);
+                    decimal dongia_ngoaigio = Utility.DecimaltoDbnull(row.Cells["dongia_ngoaigio"].Value);
                     bool chophep_denghi_mg = Utility.ByteDbnull(row.Cells["chophep_denghi_mg"].Value) == 1;
                     byte tyle_mg = Utility.ByteDbnull(row.Cells["tyle_mg"].Value);
                     if (idChiTiet <= 0)
                     {
-                        idChiTiet = _goiKhamService.ThemChiTietGoiKham(idGoiDVu, serviceId, serviceDetailId, serviceDetailName, soLanThucHien, loaiDv, donGia, chophep_denghi_mg, tyle_mg);
+                        idChiTiet = _goiKhamService.ThemChiTietGoiKham(idGoiDVu, serviceId, serviceDetailId, serviceDetailName, soLanThucHien, loaiDv, donGia, dongia_ngoaigio, chophep_denghi_mg, tyle_mg);
                     }
                     else
                     {
@@ -663,7 +729,7 @@ namespace VNS.HIS.UI.GOIKHAM
 
         private void grdKham_CellValueChanged(object sender, ColumnActionEventArgs e)
         {
-            PerformCellValueChanged(grdKham);
+            PerformCellValueChanged(grd_congkham);
             TinhThanhTien();
         }
 
@@ -717,16 +783,17 @@ namespace VNS.HIS.UI.GOIKHAM
         {
             try
             {
-                if(!chkChiDinhNhanh.Checked)
+                bool isCongKham = grd.Name == grd_congkham.Name;
+                if (!chkChiDinhNhanh.Checked)
                 {
                     foreach (GridEXRow row in grd.GetCheckedRows())
                     {
-                        ThemDongVaoLuoi(row);
+                        ThemDongVaoLuoi(row, isCongKham);
                     }
                 }
                 else
                 {
-                    ThemDongVaoLuoi(grd.CurrentRow);
+                    ThemDongVaoLuoi(grd.CurrentRow, isCongKham);
                 }
 
                 grd.UnCheckAllRecords();
@@ -738,14 +805,14 @@ namespace VNS.HIS.UI.GOIKHAM
             }
         }
 
-        private void ThemDongVaoLuoi(GridEXRow currentRow)
+        private void ThemDongVaoLuoi(GridEXRow currentRow, bool isCongKham = false)
         {
             try
             {
 
                 var serviceDetailId = Utility.sDbnull(currentRow.Cells["id_chitietdichvu"].Value);
                 var loaiDv = tabControl.SelectedTab.Key;
-                DataRow[] arrDr = m_dtChitietgoi.Select(String.Format("{0}={1} and {2}={3}", "id_chitietdichvu",serviceDetailId ,"Loai_DVU",loaiDv));
+                DataRow[] arrDr = m_dtChitietgoi.Select(String.Format("{0}={1} and {2}={3}", "id_chitietdichvu", serviceDetailId, "Loai_DVU", loaiDv));
                 if (arrDr.Length <= 0)
                 {
                     var newRow = m_dtChitietgoi.NewRow();
@@ -755,25 +822,32 @@ namespace VNS.HIS.UI.GOIKHAM
                     newRow["Loai_DVU"] = tabControl.SelectedTab.Key;
                     newRow["SO_LUONG"] = 1;
                     newRow["Ten_Loai_DVU"] = tabControl.SelectedTab.Text;
-                    newRow["don_gia"] = Utility.DecimaltoDbnull(currentRow.Cells["gia_dv"].Value,0);
+                    newRow["don_gia"] = Utility.DecimaltoDbnull(currentRow.Cells["gia_dv"].Value, 0);
+                    if (!isCongKham || !currentRow.GridEX.RootTable.Columns.Contains("dongia_ngoaigio"))
+                        newRow["dongia_ngoaigio"] = Utility.DecimaltoDbnull(currentRow.Cells["gia_dv"].Value, 0);
+                    else
+                        newRow["dongia_ngoaigio"] = Utility.DecimaltoDbnull(currentRow.Cells["dongia_ngoaigio"].Value, 0);
                     newRow["Thanh_tien"] = Utility.DecimaltoDbnull(newRow["SO_LUONG"], 1) * Utility.DecimaltoDbnull(newRow["don_gia"], 1);
                     newRow["IsNew"] = 1;
                     m_dtChitietgoi.Rows.Add(newRow);
                 }
                 else
                 {
-                    arrDr[0]["SO_LUONG"] = Utility.Int32Dbnull(arrDr[0]["SO_LUONG"]) + 1;
-                    arrDr[0]["Thanh_tien"] = Utility.DecimaltoDbnull(arrDr[0]["SO_LUONG"], 1) * Utility.DecimaltoDbnull(arrDr[0]["don_gia"], 1);
+                    if (Utility.Int32Dbnull(cboKieugoi.SelectedValue, 0) == 1)//Gói trừ đuổi mới cộng số lượng, còn không mặc định là 1
+                    {
+                        arrDr[0]["SO_LUONG"] = Utility.Int32Dbnull(arrDr[0]["SO_LUONG"]) + 1;
+                        arrDr[0]["Thanh_tien"] = Utility.DecimaltoDbnull(arrDr[0]["SO_LUONG"], 1) * Utility.DecimaltoDbnull(arrDr[0]["don_gia"], 1);
+                    }
                 }
                 m_dtChitietgoi.AcceptChanges();
-                Utility.GotoNewRowJanus(grdChitiet,"id_chitietdichvu",serviceDetailId);
+                Utility.GotoNewRowJanus(grdChitiet, "id_chitietdichvu", serviceDetailId);
                 TinhThanhTien();
             }
             catch (Exception ex)
             {
                 Utility.ShowMsg(ex.Message);
             }
-            
+
         }
 
         private void TinhThanhTien()
@@ -784,10 +858,13 @@ namespace VNS.HIS.UI.GOIKHAM
                                                   Utility.DecimaltoDbnull(txtTienGoi.Text) -
                                                   Utility.DecimaltoDbnull(txtMienGiam.Text) -
                                                   Utility.DecimaltoDbnull(txtGiamtruBHYT.Text));
-                txtThanhTienThamChieu.Text = string.Format("{0:#,##0}",(from row in grdChitiet.GetDataRows()
-                                              select
-                                                  Utility.DecimaltoDbnull(row.Cells["SO_LUONG"].Value)*
-                                                  Utility.DecimaltoDbnull(row.Cells["don_gia"].Value)).Sum());
+                decimal thanh_tien= (from row in grdChitiet.GetDataRows()
+                                     select Utility.DecimaltoDbnull(row.Cells["SO_LUONG"].Value) * Utility.DecimaltoDbnull(row.Cells["don_gia"].Value)).Sum();
+
+                txtThanhTienThamChieu.Text = string.Format("{0:#,##0}", (from row in grdChitiet.GetDataRows()
+                                                                         select Utility.DecimaltoDbnull(row.Cells["thanh_tien"].Value)).Sum());
+                                                  //                          Utility.DecimaltoDbnull(row.Cells["SO_LUONG"].Value) *
+                                                  //Utility.DecimaltoDbnull(row.Cells["don_gia"].Value));.Sum());
 
             }
             catch (Exception ex)
@@ -840,7 +917,7 @@ namespace VNS.HIS.UI.GOIKHAM
                 case "1":
                     Bring2Front(txtCongkham);
                     _currentAuto = txtCongkham;
-                    _currentGrid = grdKham;
+                    _currentGrid = grd_congkham;
                     break;
                 case "2":
                     Bring2Front(txtDichvuCLS);
@@ -1081,6 +1158,11 @@ namespace VNS.HIS.UI.GOIKHAM
         private void cmdTake_Click(object sender, EventArgs e)
         {
             txtTienGoi.Text = txtThanhTienThamChieu.Text;
+        }
+
+        private void cboKieugoi_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            grdChitiet.RootTable.Columns["so_luong"].EditType = cboKieugoi.SelectedIndex == 0 ? EditType.NoEdit : EditType.TextBox;
         }
         //private Query _query = LNhomDvuCl.CreateQuery();
         //private LNhomDvuCl CreateLNhomDvuCl()

@@ -11,7 +11,7 @@ namespace VMS.ChuKySo.Api.DigitalSignature.CyberLotus
     {
         //static Dictionary<String, HttpClient> clients = new Dictionary<string, HttpClient>();
 
-        public static HttpClient CreateHttpClient(string url,string apiId, string apiSecret)
+        public static HttpClient CreateHttpClient(string url, string apiId, string apiSecret)
         {
             HttpClient client;
 

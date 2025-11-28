@@ -49,5 +49,24 @@ namespace DEMO_CLOUD_CA_DOTNET
             //String base64Hash = pdfSig.createHash(src, certChain, null);
             return base64Hash;
         }
+        public static String GetHashTypeImgText(float X,float Y,float W,float H, SignPdfFile pdfSig, String src, X509Certificate[] certChain, string hashAlg, string imgUri,int SizeFont, int SizeFontImage)
+        {
+            DisplayConfig displayConfig = null;
+            if (string.IsNullOrEmpty(imgUri))
+            {
+                displayConfig = DisplayConfig.generateDisplayConfigRectangleText(0, X, Y, W, H,
+               null, DisplayConfig.SIGN_TEXT_FORMAT_4, CertUtils.GetCN(certChain[0]), "Kí chỉ định", "Hà Nội", "{0:dd/MM/yyyy HH:mm:ss}");
+            }
+            else
+            {
+                displayConfig = DisplayConfig.generateDisplayConfigImageText(0, X, Y, W, H,
+                null, DisplayConfig.SIGN_TEXT_FORMAT_4, CertUtils.GetCN(certChain[0]), "Kí chỉ định", "Hà Nội", "{0:dd/MM/yyyy HH:mm:ss}", imgUri);
+            }
+           if(imgUri=="") displayConfig.SizeFont = SizeFont;
+           else displayConfig.SizeFont = SizeFontImage;
+            String base64Hash = pdfSig.createHash(src, certChain, displayConfig, hashAlg);
+            //String base64Hash = pdfSig.createHash(src, certChain, null);
+            return base64Hash;
+        }
     }
 }

@@ -1101,6 +1101,30 @@ namespace VMS.HIS.DAL{
                 
                 schema.Columns.Add(colvarTrongGoi);
                 
+                TableSchema.TableColumn colvarMaTen = new TableSchema.TableColumn(schema);
+                colvarMaTen.ColumnName = "ma_ten";
+                colvarMaTen.DataType = DbType.String;
+                colvarMaTen.MaxLength = 50;
+                colvarMaTen.AutoIncrement = false;
+                colvarMaTen.IsNullable = true;
+                colvarMaTen.IsPrimaryKey = false;
+                colvarMaTen.IsForeignKey = false;
+                colvarMaTen.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarMaTen);
+                
+                TableSchema.TableColumn colvarLaHuongDieuTri = new TableSchema.TableColumn(schema);
+                colvarLaHuongDieuTri.ColumnName = "la_huong_dieu_tri";
+                colvarLaHuongDieuTri.DataType = DbType.Boolean;
+                colvarLaHuongDieuTri.MaxLength = 0;
+                colvarLaHuongDieuTri.AutoIncrement = false;
+                colvarLaHuongDieuTri.IsNullable = true;
+                colvarLaHuongDieuTri.IsPrimaryKey = false;
+                colvarLaHuongDieuTri.IsForeignKey = false;
+                colvarLaHuongDieuTri.IsReadOnly = false;
+                
+                schema.Columns.Add(colvarLaHuongDieuTri);
+                
                 TableSchema.TableColumn colvarMotaThemChitiet = new TableSchema.TableColumn(schema);
                 colvarMotaThemChitiet.ColumnName = "mota_them_chitiet";
                 colvarMotaThemChitiet.DataType = DbType.String;
@@ -2861,6 +2885,34 @@ namespace VMS.HIS.DAL{
             }
         }
 	      
+        [XmlAttribute("MaTen")]
+        [Bindable(true)]
+        public string MaTen 
+	    {
+		    get
+		    {
+			    return GetColumnValue<string>("ma_ten");
+		    }
+            set 
+		    {
+			    SetColumnValue("ma_ten", value);
+            }
+        }
+	      
+        [XmlAttribute("LaHuongDieuTri")]
+        [Bindable(true)]
+        public bool? LaHuongDieuTri 
+	    {
+		    get
+		    {
+			    return GetColumnValue<bool?>("la_huong_dieu_tri");
+		    }
+            set 
+		    {
+			    SetColumnValue("la_huong_dieu_tri", value);
+            }
+        }
+	      
         [XmlAttribute("MotaThemChitiet")]
         [Bindable(true)]
         public string MotaThemChitiet 
@@ -3615,6 +3667,10 @@ namespace VMS.HIS.DAL{
             public static string DongiaTnnn = @"dongia_TNNN";
             
             public static string TrongGoi = @"trong_goi";
+            
+            public static string MaTen = @"ma_ten";
+            
+            public static string LaHuongDieuTri = @"la_huong_dieu_tri";
             
             public static string MotaThemChitiet = @"mota_them_chitiet";
             

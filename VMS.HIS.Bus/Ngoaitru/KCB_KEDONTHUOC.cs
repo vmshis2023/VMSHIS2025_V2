@@ -124,7 +124,11 @@ namespace VNS.HIS.BusRule.Classes
          {
              return SPs.DonthuocLaythongtinThuoctrongkhoKedon(id_kho, KieuThuocVT, ma_doituong_kcb,Dungtuyen,Noitru, MaKHOATHIEN).GetDataSet().Tables[0];
          }
-         public DataTable LayThuoctrongkho(int id_kho, int id_maloaithuoc, string KieuKho)
+        public DataTable LayThuoctrongkhokedonTay(int id_kho,int id_thuoc, string KieuThuocVT, string ma_doituong_kcb, int Dungtuyen, int Noitru, string MaKHOATHIEN)
+        {
+            return SPs.DonthuocLaythongtinThuoctrongkhoKedonTay(id_kho, id_thuoc, KieuThuocVT, ma_doituong_kcb, Dungtuyen, Noitru, MaKHOATHIEN).GetDataSet().Tables[0];
+        }
+        public DataTable LayThuoctrongkho(int id_kho, int id_maloaithuoc, string KieuKho)
          {
              return SPs.ThuocTimkiemThuoctrongkho(id_kho, id_maloaithuoc, KieuKho).GetDataSet().Tables[0];
          }
@@ -170,7 +174,7 @@ namespace VNS.HIS.BusRule.Classes
                                  objkcbcdkl.Para, objkcbcdkl.QuaiBi, objkcbcdkl.SPO2, objkcbcdkl.PhantruocMatphai, objkcbcdkl.PhantruocMattrai, objkcbcdkl.DaymatMatphai,
                                     objkcbcdkl.DaymatMattrai, objkcbcdkl.VannhanMatphai, objkcbcdkl.VannhanMattrai, objkcbcdkl.ChandoanMatphai, objkcbcdkl.ChandoanMattrai, objkcbcdkl.Khammat
                                     , objkcbcdkl.IcdMatphai, objkcbcdkl.TenIcdMatphai, objkcbcdkl.IcdMattrai, objkcbcdkl.TenIcdMattrai
-                                    , objkcbcdkl.VitriIcdChinh, objkcbcdkl.Sotxuathuyet, objkcbcdkl.Taychanmieng, objkcbcdkl.MantinhCapthuoc, objkcbcdkl.MantinhCls, objkcbcdkl.TiensuGiadinh);
+                                    , objkcbcdkl.VitriIcdChinh, objkcbcdkl.Sotxuathuyet, objkcbcdkl.Taychanmieng, objkcbcdkl.MantinhCapthuoc, objkcbcdkl.MantinhCls, objkcbcdkl.TiensuGiadinh, objkcbcdkl.TenbenhPhu);
 
                              sp.Execute();
                              objkcbcdkl.IdChandoan = Utility.Int64Dbnull(sp.OutputValues[0]);
@@ -207,7 +211,7 @@ namespace VNS.HIS.BusRule.Classes
                                  objkcbcdkl.XuTri, objkcbcdkl.Para, objkcbcdkl.QuaiBi, objkcbcdkl.SPO2, objkcbcdkl.PhantruocMatphai, objkcbcdkl.PhantruocMattrai, objkcbcdkl.DaymatMatphai,
                                     objkcbcdkl.DaymatMattrai, objkcbcdkl.VannhanMatphai, objkcbcdkl.VannhanMattrai, objkcbcdkl.ChandoanMatphai, objkcbcdkl.ChandoanMattrai, objkcbcdkl.Khammat
                                     , objkcbcdkl.IcdMatphai, objkcbcdkl.TenIcdMatphai, objkcbcdkl.IcdMattrai, objkcbcdkl.TenIcdMattrai
-                                    , objkcbcdkl.VitriIcdChinh, objkcbcdkl.Sotxuathuyet, objkcbcdkl.Taychanmieng, objkcbcdkl.MantinhCapthuoc, objkcbcdkl.MantinhCls).Execute();
+                                    , objkcbcdkl.VitriIcdChinh, objkcbcdkl.Sotxuathuyet, objkcbcdkl.Taychanmieng, objkcbcdkl.MantinhCapthuoc, objkcbcdkl.MantinhCls, objkcbcdkl.TenbenhPhu).Execute();
                          }
                          DataTable dtData = SPs.SpKcbLaydulieuChandoanKetluanTheoluotkham(objkcbcdkl.IdBenhnhan,0, objkcbcdkl.MaLuotkham).GetDataSet().Tables[0];
                          var query = (from chandoan in dtData.AsEnumerable()
@@ -289,7 +293,7 @@ namespace VNS.HIS.BusRule.Classes
                                  objkcbcdkl.Para, objkcbcdkl.QuaiBi, objkcbcdkl.SPO2, objkcbcdkl.PhantruocMatphai, objkcbcdkl.PhantruocMattrai, objkcbcdkl.DaymatMatphai,
                                     objkcbcdkl.DaymatMattrai, objkcbcdkl.VannhanMatphai, objkcbcdkl.VannhanMattrai, objkcbcdkl.ChandoanMatphai, objkcbcdkl.ChandoanMattrai, objkcbcdkl.Khammat
                                     , objkcbcdkl.IcdMatphai, objkcbcdkl.TenIcdMatphai, objkcbcdkl.IcdMattrai, objkcbcdkl.TenIcdMattrai
-                                    , objkcbcdkl.VitriIcdChinh, objkcbcdkl.Sotxuathuyet, objkcbcdkl.Taychanmieng, objkcbcdkl.MantinhCapthuoc, objkcbcdkl.MantinhCls, objkcbcdkl.TiensuGiadinh);
+                                    , objkcbcdkl.VitriIcdChinh, objkcbcdkl.Sotxuathuyet, objkcbcdkl.Taychanmieng, objkcbcdkl.MantinhCapthuoc, objkcbcdkl.MantinhCls, objkcbcdkl.TiensuGiadinh, objkcbcdkl.TenbenhPhu);
 
                             sp.Execute();
                             objkcbcdkl.IdChandoan = Utility.Int64Dbnull(sp.OutputValues[0]);
@@ -326,7 +330,7 @@ namespace VNS.HIS.BusRule.Classes
                                  objkcbcdkl.XuTri, objkcbcdkl.Para, objkcbcdkl.QuaiBi, objkcbcdkl.SPO2, objkcbcdkl.PhantruocMatphai, objkcbcdkl.PhantruocMattrai, objkcbcdkl.DaymatMatphai,
                                     objkcbcdkl.DaymatMattrai, objkcbcdkl.VannhanMatphai, objkcbcdkl.VannhanMattrai, objkcbcdkl.ChandoanMatphai, objkcbcdkl.ChandoanMattrai, objkcbcdkl.Khammat
                                     , objkcbcdkl.IcdMatphai, objkcbcdkl.TenIcdMatphai, objkcbcdkl.IcdMattrai, objkcbcdkl.TenIcdMattrai
-                                    , objkcbcdkl.VitriIcdChinh, objkcbcdkl.Sotxuathuyet, objkcbcdkl.Taychanmieng, objkcbcdkl.MantinhCapthuoc, objkcbcdkl.MantinhCls).Execute();
+                                    , objkcbcdkl.VitriIcdChinh, objkcbcdkl.Sotxuathuyet, objkcbcdkl.Taychanmieng, objkcbcdkl.MantinhCapthuoc, objkcbcdkl.MantinhCls, objkcbcdkl.TenbenhPhu).Execute();
                          }
                          DataTable dtData = SPs.SpKcbLaydulieuChandoanKetluanTheoluotkham(objkcbcdkl.IdBenhnhan,0, objkcbcdkl.MaLuotkham).GetDataSet().Tables[0];
                          var query = (from chandoan in dtData.AsEnumerable()

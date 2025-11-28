@@ -80,7 +80,7 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(string MaLuotkham,long IdBenhnhan,byte? SolanCothai,int? Nam,bool? Deduthang,bool? Dethieuthang,bool? Say,bool? Hut,bool? Nao,bool? Covac,bool? Chuangoaitucung,bool? Thaichetluu,bool? Conhiensong,string ThongtintreCannangBenhtat,string Phuongphapde,bool? TaibienHausan,string Tuoithai,string Noiketthucthainghen,string Dienbienthai,bool? TthaiXoa,bool? TthaiAn,DateTime? NgayTao,string NguoiTao,DateTime NgaySua,string NguoiSua)
+	    public void Insert(string MaLuotkham,long IdBenhnhan,byte? SolanCothai,int? Nam,bool? Deduthang,bool? Dethieuthang,bool? Say,bool? Hut,bool? Nao,bool? Covac,bool? Chuangoaitucung,bool? ChuaTrung,bool? Thaichetluu,bool? Conhiensong,string ThongtintreCannangBenhtat,string Phuongphapde,bool? TaibienHausan,string Tuoithai,string Noiketthucthainghen,string Dienbienthai,bool? TthaiXoa,bool? TthaiAn,DateTime? NgayTao,string NguoiTao,DateTime NgaySua,string NguoiSua)
 	    {
 		    EmrTiensuSankhoa item = new EmrTiensuSankhoa();
 		    
@@ -105,6 +105,8 @@ namespace VMS.HIS.DAL
             item.Covac = Covac;
             
             item.Chuangoaitucung = Chuangoaitucung;
+            
+            item.ChuaTrung = ChuaTrung;
             
             item.Thaichetluu = Thaichetluu;
             
@@ -142,7 +144,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(long Id,string MaLuotkham,long IdBenhnhan,byte? SolanCothai,int? Nam,bool? Deduthang,bool? Dethieuthang,bool? Say,bool? Hut,bool? Nao,bool? Covac,bool? Chuangoaitucung,bool? Thaichetluu,bool? Conhiensong,string ThongtintreCannangBenhtat,string Phuongphapde,bool? TaibienHausan,string Tuoithai,string Noiketthucthainghen,string Dienbienthai,bool? TthaiXoa,bool? TthaiAn,DateTime? NgayTao,string NguoiTao,DateTime NgaySua,string NguoiSua)
+	    public void Update(long Id,string MaLuotkham,long IdBenhnhan,byte? SolanCothai,int? Nam,bool? Deduthang,bool? Dethieuthang,bool? Say,bool? Hut,bool? Nao,bool? Covac,bool? Chuangoaitucung,bool? ChuaTrung,bool? Thaichetluu,bool? Conhiensong,string ThongtintreCannangBenhtat,string Phuongphapde,bool? TaibienHausan,string Tuoithai,string Noiketthucthainghen,string Dienbienthai,bool? TthaiXoa,bool? TthaiAn,DateTime? NgayTao,string NguoiTao,DateTime NgaySua,string NguoiSua)
 	    {
 		    EmrTiensuSankhoa item = new EmrTiensuSankhoa();
 	        item.MarkOld();
@@ -171,6 +173,8 @@ namespace VMS.HIS.DAL
 			item.Covac = Covac;
 				
 			item.Chuangoaitucung = Chuangoaitucung;
+				
+			item.ChuaTrung = ChuaTrung;
 				
 			item.Thaichetluu = Thaichetluu;
 				

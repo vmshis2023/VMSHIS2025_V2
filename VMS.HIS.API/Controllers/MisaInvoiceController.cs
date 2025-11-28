@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using NLog;
+using VMS.Helpers;
 using VMS.Invoice;
 
 namespace VMS.HIS.API.Controllers

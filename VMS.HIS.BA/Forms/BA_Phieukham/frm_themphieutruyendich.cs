@@ -15,6 +15,7 @@ using VNS.Properties;
 using VNS.HIS.UI.DANHMUC;
 using Janus.Windows.GridEX.EditControls;
 using Janus.Windows.EditControls;
+using VMS.HIS.Bus.Emr;
 
 namespace VMS.HIS.UI.EMR
 {
@@ -32,10 +33,12 @@ namespace VMS.HIS.UI.EMR
         public bool m_blnCancel = true;
         string _name = "";
         public NoitruPhieudichtruyen objPhieu = null;
+        public bool Force2Saved = false;
         public frm_themphieutruyendich()
         {
             InitializeComponent();
             Utility.SetVisualStyle(this);
+            //dtpNgayphieu.Value = globalVariables.SysDate;
             this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             ucThongtinnguoibenh_emr_basic1._OnEnterMe += UcThongtinnguoibenh_emr_basic1__OnEnterMe;
            
@@ -119,8 +122,10 @@ namespace VMS.HIS.UI.EMR
             {
                 txtId.Text = objPhieu.IdPhieu.ToString();
                 cbo_khoanoitru.SelectedValue =objPhieu.IdKhoadieutri;
-                txtBuong.Text = objPhieu.Buong;
-                txtGiuong.Text = objPhieu.Giuong;
+                if (objPhieu.NgayPhieu.HasValue)
+                    dtpNgayphieu.Value = objPhieu.NgayPhieu.Value;
+                txtBuong.Text = objPhieu.TenBuong;
+                txtGiuong.Text = objPhieu.TenGiuong;
                 txt_chandoan.Text = objPhieu.ChanDoan;
             }
         }
@@ -143,8 +148,8 @@ namespace VMS.HIS.UI.EMR
         {
            
         }
-       
 
+        EmrDocuments emrdoc = new EmrDocuments();
         void cmdSave_Click(object sender, EventArgs e)
         {
             try
@@ -164,12 +169,15 @@ namespace VMS.HIS.UI.EMR
                 }
                 objPhieu.IdBenhnhan = objLuotkham.IdBenhnhan;
                 objPhieu.MaLuotkham = objLuotkham.MaLuotkham;
+                objPhieu.NgayPhieu = dtpNgayphieu.Value;
                 objPhieu.IdKhoadieutri =Utility.Int32Dbnull( cbo_khoanoitru.SelectedValue);
-                objPhieu.Khoa = cbo_khoanoitru.Text;
-                objPhieu.Buong = txtBuong.Text;
-                objPhieu.Giuong = txtGiuong.Text;
+                objPhieu.TenKhoa = cbo_khoanoitru.Text;
+                objPhieu.TenBuong = txtBuong.Text;
+                objPhieu.TenGiuong = txtGiuong.Text;
                 objPhieu.ChanDoan = txt_chandoan.Text;
                 objPhieu.Save();
+                emrdoc.InitDocument(objPhieu.IdBenhnhan, objPhieu.MaLuotkham, Utility.Int64Dbnull(objPhieu.IdPhieu), objPhieu.NgayPhieu.Value, Loaiphieu_HIS.PHIEUTHEODOI_TRUYENDICH, "PHIEUTHEODOI_TRUYENDICH", objPhieu.NguoiTao, Utility.Int16Dbnull(objPhieu.IdKhoadieutri), -1, Utility.Byte2Bool(0), "");
+                emrdoc.Save();
                 if (_OnCreated != null) _OnCreated(objPhieu.IdPhieu, m_enAct);
                 this.DialogResult = System.Windows.Forms.DialogResult.OK;
                 m_blnCancel = false;
@@ -216,6 +224,13 @@ namespace VMS.HIS.UI.EMR
                 Msg = "Bạn phải chọn Khoa thực hiện truyền dịch";
                 errorProvider1.SetError(cbo_khoanoitru, Msg);
                 cbo_khoanoitru.Focus();
+                return false;
+            }
+            if (dtpNgayphieu.Text == "")
+            {
+                Msg = "Phải nhập ngày của phiếu truyền dịch";
+                errorProvider1.SetError(dtpNgayphieu, Msg);
+                dtpNgayphieu.Focus();
                 return false;
             }
             return true;

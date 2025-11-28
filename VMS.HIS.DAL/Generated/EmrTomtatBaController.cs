@@ -80,15 +80,23 @@ namespace VMS.HIS.DAL
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(long IdBenhnhan,string MaLuotkham,int IdKhoadieutri,string QuatrinhbenhlyDienbienlamsang,string TiensuBenh,string TomtatKqcls,string DauhieuLamsang,byte? Noikhoa,string NoikhoaMota,byte? Pttt,string PtttMota,string HuongDieutri,string PhuongphapDieutri,string MaTinhtrangRavien,string TinhtrangRavienMota,DateTime? NgayTtba,short? IdNguoigiaoHoso,string MaNguoigiaoHoso,string NguoigiaoHoso,string MaNguoiNhanhoso,string NguoiNhanhoso,short? IdNguoinhanHoso,string MaNguoigiaohoso,string MaNguoinhanhoso,DateTime? NgayGiaonhanhoso,int? SotoXquang,int? SotoCt,int? SotoSieuam,int? SotoXetnghiem,int? SotoKhac,short? IdBacsiDieutri,string MaBacsiDieutri,short? IdTruongkhoadieutri,string MaTruongkhoadieutri,short? IdGiamdoc,string MaGiamdoc,DateTime NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua)
+	    public void Insert(string SoHoso,long IdBenhnhan,string MaLuotkham,int IdKhoadieutri,string ChandoanVaovien,string ChandoanRavien,string LydoVaovien,string QuatrinhbenhlyDienbienlamsang,string TiensuBenh,string TomtatKqcls,string DauhieuLamsang,byte? Noikhoa,string NoikhoaMota,byte? Pttt,string PtttMota,string HuongDieutri,string PhuongphapDieutri,string MaTinhtrangRavien,string TinhtrangRavienMota,DateTime? NgayTtba,short? IdNguoigiaoHoso,string MaNguoigiaoHoso,string NguoigiaoHoso,string MaNguoiNhanhoso,string NguoiNhanhoso,short? IdNguoinhanHoso,string MaNguoigiaohoso,string MaNguoinhanhoso,DateTime? NgayGiaonhanhoso,int? SotoXquang,int? SotoCt,int? SotoSieuam,int? SotoXetnghiem,int? SotoKhac,short? IdBacsiDieutri,string MaBacsiDieutri,short? IdTruongkhoadieutri,string MaTruongkhoadieutri,short? IdGiamdoc,string MaGiamdoc,DateTime NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua)
 	    {
 		    EmrTomtatBa item = new EmrTomtatBa();
 		    
+            item.SoHoso = SoHoso;
+            
             item.IdBenhnhan = IdBenhnhan;
             
             item.MaLuotkham = MaLuotkham;
             
             item.IdKhoadieutri = IdKhoadieutri;
+            
+            item.ChandoanVaovien = ChandoanVaovien;
+            
+            item.ChandoanRavien = ChandoanRavien;
+            
+            item.LydoVaovien = LydoVaovien;
             
             item.QuatrinhbenhlyDienbienlamsang = QuatrinhbenhlyDienbienlamsang;
             
@@ -172,7 +180,7 @@ namespace VMS.HIS.DAL
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(long Id,long IdBenhnhan,string MaLuotkham,int IdKhoadieutri,string QuatrinhbenhlyDienbienlamsang,string TiensuBenh,string TomtatKqcls,string DauhieuLamsang,byte? Noikhoa,string NoikhoaMota,byte? Pttt,string PtttMota,string HuongDieutri,string PhuongphapDieutri,string MaTinhtrangRavien,string TinhtrangRavienMota,DateTime? NgayTtba,short? IdNguoigiaoHoso,string MaNguoigiaoHoso,string NguoigiaoHoso,string MaNguoiNhanhoso,string NguoiNhanhoso,short? IdNguoinhanHoso,string MaNguoigiaohoso,string MaNguoinhanhoso,DateTime? NgayGiaonhanhoso,int? SotoXquang,int? SotoCt,int? SotoSieuam,int? SotoXetnghiem,int? SotoKhac,short? IdBacsiDieutri,string MaBacsiDieutri,short? IdTruongkhoadieutri,string MaTruongkhoadieutri,short? IdGiamdoc,string MaGiamdoc,DateTime NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua)
+	    public void Update(long Id,string SoHoso,long IdBenhnhan,string MaLuotkham,int IdKhoadieutri,string ChandoanVaovien,string ChandoanRavien,string LydoVaovien,string QuatrinhbenhlyDienbienlamsang,string TiensuBenh,string TomtatKqcls,string DauhieuLamsang,byte? Noikhoa,string NoikhoaMota,byte? Pttt,string PtttMota,string HuongDieutri,string PhuongphapDieutri,string MaTinhtrangRavien,string TinhtrangRavienMota,DateTime? NgayTtba,short? IdNguoigiaoHoso,string MaNguoigiaoHoso,string NguoigiaoHoso,string MaNguoiNhanhoso,string NguoiNhanhoso,short? IdNguoinhanHoso,string MaNguoigiaohoso,string MaNguoinhanhoso,DateTime? NgayGiaonhanhoso,int? SotoXquang,int? SotoCt,int? SotoSieuam,int? SotoXetnghiem,int? SotoKhac,short? IdBacsiDieutri,string MaBacsiDieutri,short? IdTruongkhoadieutri,string MaTruongkhoadieutri,short? IdGiamdoc,string MaGiamdoc,DateTime NgayTao,string NguoiTao,DateTime? NgaySua,string NguoiSua)
 	    {
 		    EmrTomtatBa item = new EmrTomtatBa();
 	        item.MarkOld();
@@ -180,11 +188,19 @@ namespace VMS.HIS.DAL
 		    
 			item.Id = Id;
 				
+			item.SoHoso = SoHoso;
+				
 			item.IdBenhnhan = IdBenhnhan;
 				
 			item.MaLuotkham = MaLuotkham;
 				
 			item.IdKhoadieutri = IdKhoadieutri;
+				
+			item.ChandoanVaovien = ChandoanVaovien;
+				
+			item.ChandoanRavien = ChandoanRavien;
+				
+			item.LydoVaovien = LydoVaovien;
 				
 			item.QuatrinhbenhlyDienbienlamsang = QuatrinhbenhlyDienbienlamsang;
 				

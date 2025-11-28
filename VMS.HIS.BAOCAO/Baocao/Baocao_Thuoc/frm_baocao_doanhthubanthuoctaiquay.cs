@@ -135,13 +135,7 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
             try
             {
                 DataTable _dataThuoc = SPs.ThuocLayDanhmucThuocTheoDanhmucKho(lstStockID).GetDataSet().Tables[0];
-                if (_dataThuoc == null)
-                {
-                    txtthuoc.dtData = null;
-                    return;
-                }
-                txtthuoc.dtData = _dataThuoc;
-                txtthuoc.ChangeDataSource();
+                DataBinding.BindDataCombobox(cbo_thuoc, _dataThuoc, DmucThuoc.Columns.IdThuoc, DmucThuoc.Columns.TenThuoc);
             }
             catch
             {
@@ -384,7 +378,7 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
 
         private void uiButton2_Click(object sender, EventArgs e)
         {
-            txtthuoc.ShowMe();
+          
         }
 
         /// <summary>
@@ -490,6 +484,135 @@ namespace VNS.HIS.UI.BaoCao.Form_BaoCao
                 }
                 DataTable m_dtReport = null;
                 byte loaidonthuoc =Utility.ByteDbnull( optAll.Checked?100:(optBsi.Checked?0:1));
+                byte loaibaocao = optChitiet.Checked ? (byte)0 : (byte)1;
+                m_dtReport = BAOCAO_THUOC.BaocaoBanthuoctaiquayBvsg(fromdate, todate, "-1", Utility.sDbnull(cboNhanvien.SelectedValue, "-1"), Utility.sDbnull(cboPttt.SelectedValue, "-1"), Utility.sDbnull(cboNganhang.SelectedValue, "-1"),
+                                       lstStockID, loaidonthuoc, Utility.Int32Dbnull(txtBacsi.MyID, -1), loaibaocao);
+
+                if (optChitiet.Checked)
+                {
+                    Utility.SetDataSourceForDataGridEx_Basic(grdListDetail, m_dtReport, true, true, "1=1", "");
+                    THU_VIEN_CHUNG.CreateXML(m_dtReport, "Baocao_Banthuoctaiquay_chitiet.xml");
+                }
+                else
+                {
+                    Utility.SetDataSourceForDataGridEx_Basic(grdList, m_dtReport, true, true, "1=1", "");
+                    THU_VIEN_CHUNG.CreateXML(m_dtReport, "Baocao_Banthuoctaiquay.xml");
+                }
+                if (m_dtReport.Rows.Count <= 0)
+                {
+                    Utility.ShowMsg("Không tìm thấy dữ liệu", "Thông báo", MessageBoxIcon.Warning);
+                    return;
+                }
+
+
+                //thuoc_baocao.BaocaoNhapxuatThuoc(m_dtReport, cboReportType.SelectedValue.ToString(), KIEU_THUOC_VT, baocaO_TIEUDE1.TIEUDE, _tondau, _toncuoi,
+                //                                                                      dtNgayIn.Value, FromDateToDate,
+                //                                                                      Utility.sDbnull(cboKho.Text), chkTheoNhomThuoc.Checked);
+            }
+            catch (Exception ex)
+            {
+
+                Utility.CatchException(ex);
+            }
+        }
+
+        private void cmd_TimKiem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string nhomthuoc = "-1";
+
+                nhomthuoc = txtLoaithuoc.MyID.ToString();
+                string fromdate = "01/01/2000";
+                string todate = "01/01/2000";
+                string _value = "1";
+                string _tondau = "Tồn đầu";
+                string _toncuoi = "Tồn cuối";
+                string FromDateToDate = Utility.FromToDateTime(dtFromDate.Text, dtToDate.Text);
+                if (optThang.Checked)
+                {
+                    if (cboThang.SelectedIndex < 0)
+                    {
+                        Utility.ShowMsg("Bạn phải chọn Tháng báo cáo");
+                        cboThang.Focus();
+                        return;
+                    }
+                    _value = cboThang.SelectedValue.ToString();
+                    _tondau = "Tồn đầu tháng " + _value;
+                    _toncuoi = "Tồn cuối tháng " + _value;
+                    FromDateToDate = "Tháng " + _value;
+                    switch (_value)
+                    {
+                        case "2":
+                            fromdate = new DateTime(dtpNam.Value.Year, Utility.Int32Dbnull(_value, 2), 1).ToString("dd/MM/yyyy");
+                            todate = new DateTime(dtpNam.Value.Year, Utility.Int32Dbnull(_value, 2), 29).ToString("dd/MM/yyyy");
+                            break;
+                        case "4":
+                        case "6":
+                        case "9":
+                        case "11":
+                            fromdate = new DateTime(dtpNam.Value.Year, Utility.Int32Dbnull(_value, 2), 1).ToString("dd/MM/yyyy");
+                            todate = new DateTime(dtpNam.Value.Year, Utility.Int32Dbnull(_value, 2), 30).ToString("dd/MM/yyyy");
+                            break;
+                        default:
+                            fromdate = new DateTime(dtpNam.Value.Year, Utility.Int32Dbnull(_value, 2), 1).ToString("dd/MM/yyyy");
+                            todate = new DateTime(dtpNam.Value.Year, Utility.Int32Dbnull(_value, 2), 31).ToString("dd/MM/yyyy");
+                            break;
+                    }
+                }
+                else if (optQuy.Checked)
+                {
+                    if (cboQuy.SelectedIndex < 0)
+                    {
+                        Utility.ShowMsg("Bạn phải chọn Quý báo cáo");
+                        cboQuy.Focus();
+                        return;
+                    }
+                    _value = cboQuy.SelectedValue.ToString();
+                    _tondau = "Tồn đầu quý " + _value;
+                    _toncuoi = "Tồn cuối quý " + _value;
+                    FromDateToDate = "Quý " + _value;
+                    switch (_value)
+                    {
+                        case "1":
+                            fromdate = new DateTime(dtpNam.Value.Year, 1, 1).ToString("dd/MM/yyyy");
+                            todate = new DateTime(dtpNam.Value.Year, 3, 31).ToString("dd/MM/yyyy");
+                            break;
+                        case "2":
+                            fromdate = new DateTime(dtpNam.Value.Year, 4, 1).ToString("dd/MM/yyyy");
+                            todate = new DateTime(dtpNam.Value.Year, 6, 30).ToString("dd/MM/yyyy");
+                            break;
+                        case "3":
+                            fromdate = new DateTime(dtpNam.Value.Year, 7, 1).ToString("dd/MM/yyyy");
+                            todate = new DateTime(dtpNam.Value.Year, 9, 30).ToString("dd/MM/yyyy");
+                            break;
+                        case "4":
+                            fromdate = new DateTime(dtpNam.Value.Year, 10, 1).ToString("dd/MM/yyyy");
+                            todate = new DateTime(dtpNam.Value.Year, 12, 31).ToString("dd/MM/yyyy");
+                            break;
+                        default:
+                            fromdate = new DateTime(dtpNam.Value.Year, 1, 1).ToString("dd/MM/yyyy");
+                            todate = new DateTime(dtpNam.Value.Year, 12, 31).ToString("dd/MM/yyyy");
+                            break;
+                    }
+                }
+                else if (optNam.Checked)
+                {
+                    FromDateToDate = "Năm " + dtpNam.Value.Year.ToString();
+                    _tondau = "Tồn " + dtpNam.Value.AddYears(-1).Year.ToString();
+                    _toncuoi = "Tồn " + dtpNam.Value.Year.ToString();
+                    fromdate = new DateTime(dtpNam.Value.Year, 1, 1).ToString("dd/MM/yyyy");
+                    todate = new DateTime(dtpNam.Value.Year, 12, 31).ToString("dd/MM/yyyy");
+                }
+                else
+                {
+                    _tondau = "Tồn đầu " + dtFromDate.Value.ToString("dd/MM/yyyy");
+                    _toncuoi = "Tồn cuối " + dtToDate.Value.ToString("dd/MM/yyyy");
+                    fromdate = dtFromDate.Value.ToString("dd/MM/yyyy");
+                    todate = dtToDate.Value.ToString("dd/MM/yyyy");
+                }
+                DataTable m_dtReport = null;
+                byte loaidonthuoc = Utility.ByteDbnull(optAll.Checked ? 100 : (optBsi.Checked ? 0 : 1));
                 byte loaibaocao = optChitiet.Checked ? (byte)0 : (byte)1;
                 m_dtReport = BAOCAO_THUOC.BaocaoBanthuoctaiquayBvsg(fromdate, todate, "-1", Utility.sDbnull(cboNhanvien.SelectedValue, "-1"), Utility.sDbnull(cboPttt.SelectedValue, "-1"), Utility.sDbnull(cboNganhang.SelectedValue, "-1"),
                                        lstStockID, loaidonthuoc, Utility.Int32Dbnull(txtBacsi.MyID, -1), loaibaocao);

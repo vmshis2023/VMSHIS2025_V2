@@ -60,11 +60,17 @@
             this.mnuTnvChidinh = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuHuyTvnChidinh = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnu_huyvungkhaosat = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnu_update_loai_dichvu = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnu_HieuLuc = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnu_HetHieuLuc = new System.Windows.Forms.ToolStripMenuItem();
             this.grdChitiet = new Janus.Windows.GridEX.GridEX();
             this.uiStatusBar2 = new Janus.Windows.UI.StatusBar.UIStatusBar();
             this.panel3 = new System.Windows.Forms.Panel();
             this.uiTab1 = new Janus.Windows.UI.Tab.UITab();
-            this.uitabpageVKS = new Janus.Windows.UI.Tab.UITabPage();
             this.grdVungKs = new Janus.Windows.GridEX.GridEX();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.cmdThemMoi = new System.Windows.Forms.ToolStripButton();
@@ -77,25 +83,20 @@
             this.cmdGanVungKS = new System.Windows.Forms.ToolStripButton();
             this.btnLayDuLieu = new System.Windows.Forms.ToolStripButton();
             this.cmdDynamic = new System.Windows.Forms.ToolStripButton();
-            this.uiTabPage1 = new Janus.Windows.UI.Tab.UITabPage();
             this.grdDinhmucVTTH = new Janus.Windows.GridEX.GridEX();
             this.panel6 = new System.Windows.Forms.Panel();
             this.cmdAddDetail = new Janus.Windows.EditControls.UIButton();
             this.cmdXoaDinhmucVTTh = new Janus.Windows.EditControls.UIButton();
-            this.uiTabPageQheCamchidinh = new Janus.Windows.UI.Tab.UITabPage();
             this.grdDanhsachCamChidinhChungphieu = new Janus.Windows.GridEX.GridEX();
             this.panel5 = new System.Windows.Forms.Panel();
             this.cmdAccept = new Janus.Windows.EditControls.UIButton();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.txtDichvu = new VNS.HIS.UCs.AutoCompleteTextbox();
-            this.vbLine2 = new VNS.UCs.VBLine();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.optTatca = new Janus.Windows.EditControls.UIRadioButton();
             this.optHieuluc = new Janus.Windows.EditControls.UIRadioButton();
             this.optHethieuluc = new Janus.Windows.EditControls.UIRadioButton();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtLoaiDichvu = new VNS.HIS.UCs.AutoCompleteTextbox();
             this.label1 = new System.Windows.Forms.Label();
             this.gridEXPrintDocument1 = new Janus.Windows.GridEX.GridEXPrintDocument();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
@@ -115,8 +116,15 @@
             this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.gridEXExporter1 = new Janus.Windows.GridEX.Export.GridEXExporter(this.components);
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnu_huyvungkhaosat = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnu_LaHuongDieuTri = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnu_HuyLaHuongDieuTri = new System.Windows.Forms.ToolStripMenuItem();
+            this.uitabpageVKS = new Janus.Windows.UI.Tab.UITabPage();
+            this.uiTabPage1 = new Janus.Windows.UI.Tab.UITabPage();
+            this.uiTabPageQheCamchidinh = new Janus.Windows.UI.Tab.UITabPage();
+            this.txtLoaiDichvu = new VNS.HIS.UCs.AutoCompleteTextbox();
+            this.txtDichvu = new VNS.HIS.UCs.AutoCompleteTextbox();
+            this.vbLine2 = new VNS.UCs.VBLine();
             this.sysColor.SuspendLayout();
             this.tabVKS.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -127,18 +135,18 @@
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiTab1)).BeginInit();
             this.uiTab1.SuspendLayout();
-            this.uitabpageVKS.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdVungKs)).BeginInit();
             this.toolStrip.SuspendLayout();
-            this.uiTabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdDinhmucVTTH)).BeginInit();
             this.panel6.SuspendLayout();
-            this.uiTabPageQheCamchidinh.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdDanhsachCamChidinhChungphieu)).BeginInit();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.uitabpageVKS.SuspendLayout();
+            this.uiTabPage1.SuspendLayout();
+            this.uiTabPageQheCamchidinh.SuspendLayout();
             this.SuspendLayout();
             // 
             // sysColor
@@ -330,28 +338,81 @@
             this.toolStripMenuItem1,
             this.mnuHuyTvnChidinh,
             this.toolStripMenuItem2,
-            this.mnu_huyvungkhaosat});
+            this.mnu_huyvungkhaosat,
+            this.toolStripMenuItem3,
+            this.mnu_update_loai_dichvu,
+            this.toolStripMenuItem4,
+            this.mnu_HieuLuc,
+            this.mnu_HetHieuLuc,
+            this.toolStripMenuItem5,
+            this.mnu_LaHuongDieuTri,
+            this.mnu_HuyLaHuongDieuTri});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(320, 104);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(413, 210);
             // 
             // mnuTnvChidinh
             // 
             this.mnuTnvChidinh.Name = "mnuTnvChidinh";
-            this.mnuTnvChidinh.Size = new System.Drawing.Size(319, 22);
+            this.mnuTnvChidinh.Size = new System.Drawing.Size(412, 22);
             this.mnuTnvChidinh.Text = "Chuyển thu ngân viên chỉ định";
             this.mnuTnvChidinh.Click += new System.EventHandler(this.mnuTnvChidinh_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(316, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(409, 6);
             // 
             // mnuHuyTvnChidinh
             // 
             this.mnuHuyTvnChidinh.Name = "mnuHuyTvnChidinh";
-            this.mnuHuyTvnChidinh.Size = new System.Drawing.Size(319, 22);
+            this.mnuHuyTvnChidinh.Size = new System.Drawing.Size(412, 22);
             this.mnuHuyTvnChidinh.Text = "Hủy thu ngân viên chỉ định";
             this.mnuHuyTvnChidinh.Click += new System.EventHandler(this.mnuHuyTvnChidinh_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(409, 6);
+            // 
+            // mnu_huyvungkhaosat
+            // 
+            this.mnu_huyvungkhaosat.Name = "mnu_huyvungkhaosat";
+            this.mnu_huyvungkhaosat.Size = new System.Drawing.Size(412, 22);
+            this.mnu_huyvungkhaosat.Text = "Hủy vùng khảo sát cho các dịch vụ đang chọn";
+            this.mnu_huyvungkhaosat.Click += new System.EventHandler(this.mnu_huyvungkhaosat_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(409, 6);
+            // 
+            // mnu_update_loai_dichvu
+            // 
+            this.mnu_update_loai_dichvu.Name = "mnu_update_loai_dichvu";
+            this.mnu_update_loai_dichvu.Size = new System.Drawing.Size(412, 22);
+            this.mnu_update_loai_dichvu.Text = "Cập nhật Loại dịch vụ,Loại PTTT cho các Dịch vụ CLS đang chọn";
+            this.mnu_update_loai_dichvu.Click += new System.EventHandler(this.mnu_update_loai_dichvu_Click);
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(409, 6);
+            // 
+            // mnu_HieuLuc
+            // 
+            this.mnu_HieuLuc.Image = ((System.Drawing.Image)(resources.GetObject("mnu_HieuLuc.Image")));
+            this.mnu_HieuLuc.Name = "mnu_HieuLuc";
+            this.mnu_HieuLuc.Size = new System.Drawing.Size(412, 22);
+            this.mnu_HieuLuc.Text = "Kích hoạt sử dụng (Hiệu lực) các Dịch vụ CLS đang chọn";
+            this.mnu_HieuLuc.Click += new System.EventHandler(this.mnu_HieuLuc_Click);
+            // 
+            // mnu_HetHieuLuc
+            // 
+            this.mnu_HetHieuLuc.Image = ((System.Drawing.Image)(resources.GetObject("mnu_HetHieuLuc.Image")));
+            this.mnu_HetHieuLuc.Name = "mnu_HetHieuLuc";
+            this.mnu_HetHieuLuc.Size = new System.Drawing.Size(412, 22);
+            this.mnu_HetHieuLuc.Text = "Hủy sử dụng (Hiệu lực) các Dịch vụ CLS đang chọn";
+            this.mnu_HetHieuLuc.Click += new System.EventHandler(this.mnu_HetHieuLuc_Click);
             // 
             // grdChitiet
             // 
@@ -434,16 +495,6 @@
             this.uiTabPage1,
             this.uiTabPageQheCamchidinh});
             this.uiTab1.VisualStyle = Janus.Windows.UI.Tab.TabVisualStyle.VS2005;
-            // 
-            // uitabpageVKS
-            // 
-            this.uitabpageVKS.Controls.Add(this.grdVungKs);
-            this.uitabpageVKS.Controls.Add(this.toolStrip);
-            this.uitabpageVKS.Location = new System.Drawing.Point(1, 24);
-            this.uitabpageVKS.Name = "uitabpageVKS";
-            this.uitabpageVKS.Size = new System.Drawing.Size(484, 589);
-            this.uitabpageVKS.TabStop = true;
-            this.uitabpageVKS.Text = "Danh mục vùng khảo sát";
             // 
             // grdVungKs
             // 
@@ -582,16 +633,6 @@
             this.cmdDynamic.Text = "toolStripButton2";
             this.cmdDynamic.Click += new System.EventHandler(this.cmdDynamic_Click);
             // 
-            // uiTabPage1
-            // 
-            this.uiTabPage1.Controls.Add(this.grdDinhmucVTTH);
-            this.uiTabPage1.Controls.Add(this.panel6);
-            this.uiTabPage1.Location = new System.Drawing.Point(1, 24);
-            this.uiTabPage1.Name = "uiTabPage1";
-            this.uiTabPage1.Size = new System.Drawing.Size(484, 589);
-            this.uiTabPage1.TabStop = true;
-            this.uiTabPage1.Text = "Định mức VTTH";
-            // 
             // grdDinhmucVTTH
             // 
             this.grdDinhmucVTTH.BackColor = System.Drawing.Color.Silver;
@@ -656,17 +697,6 @@
             this.cmdXoaDinhmucVTTh.Text = "Xóa định mức VTTH";
             this.cmdXoaDinhmucVTTh.Click += new System.EventHandler(this.cmdXoaDinhmucVTTh_Click);
             // 
-            // uiTabPageQheCamchidinh
-            // 
-            this.uiTabPageQheCamchidinh.Controls.Add(this.grdDanhsachCamChidinhChungphieu);
-            this.uiTabPageQheCamchidinh.Controls.Add(this.panel5);
-            this.uiTabPageQheCamchidinh.Controls.Add(this.panel4);
-            this.uiTabPageQheCamchidinh.Location = new System.Drawing.Point(1, 24);
-            this.uiTabPageQheCamchidinh.Name = "uiTabPageQheCamchidinh";
-            this.uiTabPageQheCamchidinh.Size = new System.Drawing.Size(484, 589);
-            this.uiTabPageQheCamchidinh.TabStop = true;
-            this.uiTabPageQheCamchidinh.Text = "Tương tác CLS";
-            // 
             // grdDanhsachCamChidinhChungphieu
             // 
             grdDanhsachCamChidinhChungphieu_DesignTimeLayout.LayoutString = resources.GetString("grdDanhsachCamChidinhChungphieu_DesignTimeLayout.LayoutString");
@@ -718,64 +748,6 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(484, 57);
             this.panel4.TabIndex = 1651;
-            // 
-            // txtDichvu
-            // 
-            this.txtDichvu._backcolor = System.Drawing.Color.WhiteSmoke;
-            this.txtDichvu._Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDichvu._TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.txtDichvu.AutoCompleteList = ((System.Collections.Generic.List<string>)(resources.GetObject("txtDichvu.AutoCompleteList")));
-            this.txtDichvu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtDichvu.buildShortcut = false;
-            this.txtDichvu.CaseSensitive = false;
-            this.txtDichvu.CompareNoID = true;
-            this.txtDichvu.DefaultCode = "-1";
-            this.txtDichvu.DefaultID = "-1";
-            this.txtDichvu.DisplayType = 0;
-            this.txtDichvu.Drug_ID = null;
-            this.txtDichvu.ExtraWidth = 0;
-            this.txtDichvu.FillValueAfterSelect = false;
-            this.txtDichvu.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDichvu.Location = new System.Drawing.Point(5, 29);
-            this.txtDichvu.MaxHeight = 289;
-            this.txtDichvu.MinTypedCharacters = 2;
-            this.txtDichvu.MyCode = "-1";
-            this.txtDichvu.MyID = "-1";
-            this.txtDichvu.MyText = "";
-            this.txtDichvu.MyTextOnly = "";
-            this.txtDichvu.Name = "txtDichvu";
-            this.txtDichvu.RaiseEvent = true;
-            this.txtDichvu.RaiseEventEnter = true;
-            this.txtDichvu.RaiseEventEnterWhenEmpty = true;
-            this.txtDichvu.SelectedIndex = -1;
-            this.txtDichvu.Size = new System.Drawing.Size(475, 21);
-            this.txtDichvu.splitChar = '@';
-            this.txtDichvu.splitCharIDAndCode = '#';
-            this.txtDichvu.TabIndex = 0;
-            this.txtDichvu.TabStop = false;
-            this.txtDichvu.TakeCode = false;
-            this.txtDichvu.txtMyCode = null;
-            this.txtDichvu.txtMyCode_Edit = null;
-            this.txtDichvu.txtMyID = null;
-            this.txtDichvu.txtMyID_Edit = null;
-            this.txtDichvu.txtMyName = null;
-            this.txtDichvu.txtMyName_Edit = null;
-            this.txtDichvu.txtNext = null;
-            // 
-            // vbLine2
-            // 
-            this.vbLine2._FontColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.vbLine2.BackColor = System.Drawing.Color.Transparent;
-            this.vbLine2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.vbLine2.FontText = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
-            this.vbLine2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.vbLine2.Location = new System.Drawing.Point(4, 4);
-            this.vbLine2.Margin = new System.Windows.Forms.Padding(4);
-            this.vbLine2.Name = "vbLine2";
-            this.vbLine2.Size = new System.Drawing.Size(476, 22);
-            this.vbLine2.TabIndex = 1641;
-            this.vbLine2.TabStop = false;
-            this.vbLine2.YourText = "Gõ dịch vụ cấm kê chung với dịch vụ đang chọn";
             // 
             // groupBox1
             // 
@@ -849,48 +821,6 @@
             this.label4.Size = new System.Drawing.Size(65, 16);
             this.label4.TabIndex = 471;
             this.label4.Text = "Trạng thái";
-            // 
-            // txtLoaiDichvu
-            // 
-            this.txtLoaiDichvu._backcolor = System.Drawing.Color.WhiteSmoke;
-            this.txtLoaiDichvu._Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLoaiDichvu._TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.txtLoaiDichvu.AutoCompleteList = ((System.Collections.Generic.List<string>)(resources.GetObject("txtLoaiDichvu.AutoCompleteList")));
-            this.txtLoaiDichvu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtLoaiDichvu.buildShortcut = false;
-            this.txtLoaiDichvu.CaseSensitive = false;
-            this.txtLoaiDichvu.CompareNoID = true;
-            this.txtLoaiDichvu.DefaultCode = "-1";
-            this.txtLoaiDichvu.DefaultID = "-1";
-            this.txtLoaiDichvu.DisplayType = 0;
-            this.txtLoaiDichvu.Drug_ID = null;
-            this.txtLoaiDichvu.ExtraWidth = 0;
-            this.txtLoaiDichvu.FillValueAfterSelect = false;
-            this.txtLoaiDichvu.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLoaiDichvu.Location = new System.Drawing.Point(75, 20);
-            this.txtLoaiDichvu.MaxHeight = 289;
-            this.txtLoaiDichvu.MinTypedCharacters = 2;
-            this.txtLoaiDichvu.MyCode = "-1";
-            this.txtLoaiDichvu.MyID = "-1";
-            this.txtLoaiDichvu.MyText = "";
-            this.txtLoaiDichvu.MyTextOnly = "";
-            this.txtLoaiDichvu.Name = "txtLoaiDichvu";
-            this.txtLoaiDichvu.RaiseEvent = false;
-            this.txtLoaiDichvu.RaiseEventEnter = true;
-            this.txtLoaiDichvu.RaiseEventEnterWhenEmpty = true;
-            this.txtLoaiDichvu.SelectedIndex = -1;
-            this.txtLoaiDichvu.Size = new System.Drawing.Size(458, 21);
-            this.txtLoaiDichvu.splitChar = '@';
-            this.txtLoaiDichvu.splitCharIDAndCode = '#';
-            this.txtLoaiDichvu.TabIndex = 0;
-            this.txtLoaiDichvu.TakeCode = false;
-            this.txtLoaiDichvu.txtMyCode = null;
-            this.txtLoaiDichvu.txtMyCode_Edit = null;
-            this.txtLoaiDichvu.txtMyID = null;
-            this.txtLoaiDichvu.txtMyID_Edit = null;
-            this.txtLoaiDichvu.txtMyName = null;
-            this.txtLoaiDichvu.txtMyName_Edit = null;
-            this.txtLoaiDichvu.txtNext = null;
             // 
             // label1
             // 
@@ -1052,17 +982,155 @@
             this.toolTip1.IsBalloon = true;
             this.toolTip1.ToolTipTitle = "Trợ giúp";
             // 
-            // toolStripMenuItem2
+            // toolStripMenuItem5
             // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(316, 6);
+            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(409, 6);
             // 
-            // mnu_huyvungkhaosat
+            // mnu_LaHuongDieuTri
             // 
-            this.mnu_huyvungkhaosat.Name = "mnu_huyvungkhaosat";
-            this.mnu_huyvungkhaosat.Size = new System.Drawing.Size(319, 22);
-            this.mnu_huyvungkhaosat.Text = "Hủy vùng khảo sát cho các dịch vụ đang chọn";
-            this.mnu_huyvungkhaosat.Click += new System.EventHandler(this.mnu_huyvungkhaosat_Click);
+            this.mnu_LaHuongDieuTri.Name = "mnu_LaHuongDieuTri";
+            this.mnu_LaHuongDieuTri.Size = new System.Drawing.Size(412, 22);
+            this.mnu_LaHuongDieuTri.Text = "Đặt các dịch vụ đang chọn mang tính chất Hướng điều trị";
+            this.mnu_LaHuongDieuTri.Click += new System.EventHandler(this.mnu_LaHuongDieuTri_Click);
+            // 
+            // mnu_HuyLaHuongDieuTri
+            // 
+            this.mnu_HuyLaHuongDieuTri.Name = "mnu_HuyLaHuongDieuTri";
+            this.mnu_HuyLaHuongDieuTri.Size = new System.Drawing.Size(412, 22);
+            this.mnu_HuyLaHuongDieuTri.Text = "Bỏ các dịch vụ đang chọn khỏi tính chất Hướng điều trị";
+            this.mnu_HuyLaHuongDieuTri.Click += new System.EventHandler(this.mnu_HuyLaHuongDieuTri_Click);
+            // 
+            // uitabpageVKS
+            // 
+            this.uitabpageVKS.Controls.Add(this.grdVungKs);
+            this.uitabpageVKS.Controls.Add(this.toolStrip);
+            this.uitabpageVKS.Location = new System.Drawing.Point(1, 24);
+            this.uitabpageVKS.Name = "uitabpageVKS";
+            this.uitabpageVKS.Size = new System.Drawing.Size(484, 589);
+            this.uitabpageVKS.TabStop = true;
+            this.uitabpageVKS.Text = "Danh mục vùng khảo sát";
+            // 
+            // uiTabPage1
+            // 
+            this.uiTabPage1.Controls.Add(this.grdDinhmucVTTH);
+            this.uiTabPage1.Controls.Add(this.panel6);
+            this.uiTabPage1.Location = new System.Drawing.Point(1, 24);
+            this.uiTabPage1.Name = "uiTabPage1";
+            this.uiTabPage1.Size = new System.Drawing.Size(484, 589);
+            this.uiTabPage1.TabStop = true;
+            this.uiTabPage1.Text = "Định mức VTTH";
+            // 
+            // uiTabPageQheCamchidinh
+            // 
+            this.uiTabPageQheCamchidinh.Controls.Add(this.grdDanhsachCamChidinhChungphieu);
+            this.uiTabPageQheCamchidinh.Controls.Add(this.panel5);
+            this.uiTabPageQheCamchidinh.Controls.Add(this.panel4);
+            this.uiTabPageQheCamchidinh.Location = new System.Drawing.Point(1, 24);
+            this.uiTabPageQheCamchidinh.Name = "uiTabPageQheCamchidinh";
+            this.uiTabPageQheCamchidinh.Size = new System.Drawing.Size(484, 589);
+            this.uiTabPageQheCamchidinh.TabStop = true;
+            this.uiTabPageQheCamchidinh.Text = "Tương tác CLS";
+            // 
+            // txtLoaiDichvu
+            // 
+            this.txtLoaiDichvu._backcolor = System.Drawing.Color.WhiteSmoke;
+            this.txtLoaiDichvu._Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLoaiDichvu._TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtLoaiDichvu.AutoCompleteList = ((System.Collections.Generic.List<string>)(resources.GetObject("txtLoaiDichvu.AutoCompleteList")));
+            this.txtLoaiDichvu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtLoaiDichvu.buildShortcut = false;
+            this.txtLoaiDichvu.CaseSensitive = false;
+            this.txtLoaiDichvu.CompareNoID = true;
+            this.txtLoaiDichvu.DefaultCode = "-1";
+            this.txtLoaiDichvu.DefaultID = "-1";
+            this.txtLoaiDichvu.DisplayType = 0;
+            this.txtLoaiDichvu.Drug_ID = null;
+            this.txtLoaiDichvu.ExtraWidth = 0;
+            this.txtLoaiDichvu.FillValueAfterSelect = false;
+            this.txtLoaiDichvu.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLoaiDichvu.Location = new System.Drawing.Point(75, 20);
+            this.txtLoaiDichvu.MaxHeight = 289;
+            this.txtLoaiDichvu.MinTypedCharacters = 2;
+            this.txtLoaiDichvu.MyCode = "-1";
+            this.txtLoaiDichvu.MyID = "-1";
+            this.txtLoaiDichvu.MyText = "";
+            this.txtLoaiDichvu.MyTextOnly = "";
+            this.txtLoaiDichvu.Name = "txtLoaiDichvu";
+            this.txtLoaiDichvu.RaiseEvent = false;
+            this.txtLoaiDichvu.RaiseEventEnter = true;
+            this.txtLoaiDichvu.RaiseEventEnterWhenEmpty = true;
+            this.txtLoaiDichvu.SelectedIndex = -1;
+            this.txtLoaiDichvu.Size = new System.Drawing.Size(458, 21);
+            this.txtLoaiDichvu.splitChar = '@';
+            this.txtLoaiDichvu.splitCharIDAndCode = '#';
+            this.txtLoaiDichvu.TabIndex = 0;
+            this.txtLoaiDichvu.TakeCode = false;
+            this.txtLoaiDichvu.txtMyCode = null;
+            this.txtLoaiDichvu.txtMyCode_Edit = null;
+            this.txtLoaiDichvu.txtMyID = null;
+            this.txtLoaiDichvu.txtMyID_Edit = null;
+            this.txtLoaiDichvu.txtMyName = null;
+            this.txtLoaiDichvu.txtMyName_Edit = null;
+            this.txtLoaiDichvu.txtNext = null;
+            // 
+            // txtDichvu
+            // 
+            this.txtDichvu._backcolor = System.Drawing.Color.WhiteSmoke;
+            this.txtDichvu._Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDichvu._TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtDichvu.AutoCompleteList = ((System.Collections.Generic.List<string>)(resources.GetObject("txtDichvu.AutoCompleteList")));
+            this.txtDichvu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtDichvu.buildShortcut = false;
+            this.txtDichvu.CaseSensitive = false;
+            this.txtDichvu.CompareNoID = true;
+            this.txtDichvu.DefaultCode = "-1";
+            this.txtDichvu.DefaultID = "-1";
+            this.txtDichvu.DisplayType = 0;
+            this.txtDichvu.Drug_ID = null;
+            this.txtDichvu.ExtraWidth = 0;
+            this.txtDichvu.FillValueAfterSelect = false;
+            this.txtDichvu.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDichvu.Location = new System.Drawing.Point(5, 29);
+            this.txtDichvu.MaxHeight = 289;
+            this.txtDichvu.MinTypedCharacters = 2;
+            this.txtDichvu.MyCode = "-1";
+            this.txtDichvu.MyID = "-1";
+            this.txtDichvu.MyText = "";
+            this.txtDichvu.MyTextOnly = "";
+            this.txtDichvu.Name = "txtDichvu";
+            this.txtDichvu.RaiseEvent = true;
+            this.txtDichvu.RaiseEventEnter = true;
+            this.txtDichvu.RaiseEventEnterWhenEmpty = true;
+            this.txtDichvu.SelectedIndex = -1;
+            this.txtDichvu.Size = new System.Drawing.Size(475, 21);
+            this.txtDichvu.splitChar = '@';
+            this.txtDichvu.splitCharIDAndCode = '#';
+            this.txtDichvu.TabIndex = 0;
+            this.txtDichvu.TabStop = false;
+            this.txtDichvu.TakeCode = false;
+            this.txtDichvu.txtMyCode = null;
+            this.txtDichvu.txtMyCode_Edit = null;
+            this.txtDichvu.txtMyID = null;
+            this.txtDichvu.txtMyID_Edit = null;
+            this.txtDichvu.txtMyName = null;
+            this.txtDichvu.txtMyName_Edit = null;
+            this.txtDichvu.txtNext = null;
+            // 
+            // vbLine2
+            // 
+            this.vbLine2._FontColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.vbLine2.BackColor = System.Drawing.Color.Transparent;
+            this.vbLine2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.vbLine2.FontText = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold);
+            this.vbLine2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.vbLine2.Location = new System.Drawing.Point(4, 4);
+            this.vbLine2.Margin = new System.Windows.Forms.Padding(4);
+            this.vbLine2.Name = "vbLine2";
+            this.vbLine2.Size = new System.Drawing.Size(476, 22);
+            this.vbLine2.TabIndex = 1641;
+            this.vbLine2.TabStop = false;
+            this.vbLine2.YourText = "Gõ dịch vụ cấm kê chung với dịch vụ đang chọn";
             // 
             // frm_dmuc_dichvuCLS_chitiet
             // 
@@ -1091,15 +1159,11 @@
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.uiTab1)).EndInit();
             this.uiTab1.ResumeLayout(false);
-            this.uitabpageVKS.ResumeLayout(false);
-            this.uitabpageVKS.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdVungKs)).EndInit();
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
-            this.uiTabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdDinhmucVTTH)).EndInit();
             this.panel6.ResumeLayout(false);
-            this.uiTabPageQheCamchidinh.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdDanhsachCamChidinhChungphieu)).EndInit();
             this.panel5.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
@@ -1107,6 +1171,10 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.panel2.ResumeLayout(false);
+            this.uitabpageVKS.ResumeLayout(false);
+            this.uitabpageVKS.PerformLayout();
+            this.uiTabPage1.ResumeLayout(false);
+            this.uiTabPageQheCamchidinh.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1189,5 +1257,13 @@
         private Janus.Windows.GridEX.Export.GridEXExporter gridEXExporter1;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem mnu_huyvungkhaosat;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem mnu_update_loai_dichvu;
+        private System.Windows.Forms.ToolStripMenuItem mnu_HetHieuLuc;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem mnu_HieuLuc;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
+        private System.Windows.Forms.ToolStripMenuItem mnu_LaHuongDieuTri;
+        private System.Windows.Forms.ToolStripMenuItem mnu_HuyLaHuongDieuTri;
     }
 }

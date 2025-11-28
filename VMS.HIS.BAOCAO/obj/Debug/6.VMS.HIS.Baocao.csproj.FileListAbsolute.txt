@@ -94,5 +94,9 @@ C:\HIS_BVSG\Running\VMS.HIS.Baocao.pdb
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BAOCAO\obj\Debug\6.VMS.HIS.Baocao.csproj.CopyComplete
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BAOCAO\obj\Debug\VMS.HIS.Baocao.dll
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BAOCAO\obj\Debug\VMS.HIS.Baocao.pdb
-F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BAOCAO\obj\Debug\VNS.HIS.UI.Baocao.frm_baocaodoanhthuphongkham_Hongphat.resources
 F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BAOCAO\obj\Debug\VNS.HIS.UI.Baocao.frm_baocaocongno.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BAOCAO\obj\Debug\VNS.HIS.UI.Baocao.frm_baocaodoanhthuphongkham_Hongphat_V2.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BAOCAO\obj\Debug\VNS.HIS.UI.BaoCao.Form_BaoCao.frm_baocao_muathuoc_taiquay.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BAOCAO\obj\Debug\VNS.HIS.UI.BaoCao.Form_BaoCao.frm_baocao_tonkho_nhathuoc.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BAOCAO\obj\Debug\VNS.HIS.UI.BaoCao.Form_BaoCao.frm_baocao_soluong_thuoc_trongkho.resources
+F:\VMS_HIS\GitHub2024\VMS_HIS_2024\VMS.HIS.BAOCAO\obj\Debug\VNS.HIS.UI.BaoCao.Form_BaoCao.frm_baocao_danhsach_khambenh.resources

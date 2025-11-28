@@ -2217,6 +2217,97 @@ namespace VMS.HIS.DAL
 				colvarNoicapCmt.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarNoicapCmt);
 				
+				TableSchema.TableColumn colvarMaNhanvien = new TableSchema.TableColumn(schema);
+				colvarMaNhanvien.ColumnName = "ma_nhanvien";
+				colvarMaNhanvien.DataType = DbType.String;
+				colvarMaNhanvien.MaxLength = 30;
+				colvarMaNhanvien.AutoIncrement = false;
+				colvarMaNhanvien.IsNullable = true;
+				colvarMaNhanvien.IsPrimaryKey = false;
+				colvarMaNhanvien.IsForeignKey = false;
+				colvarMaNhanvien.IsReadOnly = false;
+				colvarMaNhanvien.DefaultSetting = @"";
+				colvarMaNhanvien.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarMaNhanvien);
+				
+				TableSchema.TableColumn colvarIdCongty = new TableSchema.TableColumn(schema);
+				colvarIdCongty.ColumnName = "id_congty";
+				colvarIdCongty.DataType = DbType.Int64;
+				colvarIdCongty.MaxLength = 0;
+				colvarIdCongty.AutoIncrement = false;
+				colvarIdCongty.IsNullable = true;
+				colvarIdCongty.IsPrimaryKey = false;
+				colvarIdCongty.IsForeignKey = false;
+				colvarIdCongty.IsReadOnly = false;
+				colvarIdCongty.DefaultSetting = @"";
+				colvarIdCongty.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarIdCongty);
+				
+				TableSchema.TableColumn colvarIdHopdong = new TableSchema.TableColumn(schema);
+				colvarIdHopdong.ColumnName = "id_hopdong";
+				colvarIdHopdong.DataType = DbType.Int64;
+				colvarIdHopdong.MaxLength = 0;
+				colvarIdHopdong.AutoIncrement = false;
+				colvarIdHopdong.IsNullable = true;
+				colvarIdHopdong.IsPrimaryKey = false;
+				colvarIdHopdong.IsForeignKey = false;
+				colvarIdHopdong.IsReadOnly = false;
+				colvarIdHopdong.DefaultSetting = @"";
+				colvarIdHopdong.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarIdHopdong);
+				
+				TableSchema.TableColumn colvarIdSolo = new TableSchema.TableColumn(schema);
+				colvarIdSolo.ColumnName = "id_solo";
+				colvarIdSolo.DataType = DbType.Int64;
+				colvarIdSolo.MaxLength = 0;
+				colvarIdSolo.AutoIncrement = false;
+				colvarIdSolo.IsNullable = true;
+				colvarIdSolo.IsPrimaryKey = false;
+				colvarIdSolo.IsForeignKey = false;
+				colvarIdSolo.IsReadOnly = false;
+				colvarIdSolo.DefaultSetting = @"";
+				colvarIdSolo.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarIdSolo);
+				
+				TableSchema.TableColumn colvarSoLo = new TableSchema.TableColumn(schema);
+				colvarSoLo.ColumnName = "so_lo";
+				colvarSoLo.DataType = DbType.String;
+				colvarSoLo.MaxLength = 50;
+				colvarSoLo.AutoIncrement = false;
+				colvarSoLo.IsNullable = true;
+				colvarSoLo.IsPrimaryKey = false;
+				colvarSoLo.IsForeignKey = false;
+				colvarSoLo.IsReadOnly = false;
+				colvarSoLo.DefaultSetting = @"";
+				colvarSoLo.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarSoLo);
+				
+				TableSchema.TableColumn colvarTenbenhPhu = new TableSchema.TableColumn(schema);
+				colvarTenbenhPhu.ColumnName = "tenbenh_phu";
+				colvarTenbenhPhu.DataType = DbType.String;
+				colvarTenbenhPhu.MaxLength = 1500;
+				colvarTenbenhPhu.AutoIncrement = false;
+				colvarTenbenhPhu.IsNullable = true;
+				colvarTenbenhPhu.IsPrimaryKey = false;
+				colvarTenbenhPhu.IsForeignKey = false;
+				colvarTenbenhPhu.IsReadOnly = false;
+				colvarTenbenhPhu.DefaultSetting = @"";
+				colvarTenbenhPhu.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarTenbenhPhu);
+				
+				TableSchema.TableColumn colvarTenCongTy = new TableSchema.TableColumn(schema);
+				colvarTenCongTy.ColumnName = "ten_cong_ty";
+				colvarTenCongTy.DataType = DbType.String;
+				colvarTenCongTy.MaxLength = 255;
+				colvarTenCongTy.AutoIncrement = false;
+				colvarTenCongTy.IsNullable = true;
+				colvarTenCongTy.IsPrimaryKey = false;
+				colvarTenCongTy.IsForeignKey = false;
+				colvarTenCongTy.IsReadOnly = false;
+				colvarTenCongTy.DefaultSetting = @"";
+				colvarTenCongTy.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarTenCongTy);
+				
 				BaseSchema = schema;
 				//add this schema to the provider
 				//so we can query it later
@@ -3498,6 +3589,62 @@ namespace VMS.HIS.DAL
 			get { return GetColumnValue<string>(Columns.NoicapCmt); }
 			set { SetColumnValue(Columns.NoicapCmt, value); }
 		}
+		  
+		[XmlAttribute("MaNhanvien")]
+		[Bindable(true)]
+		public string MaNhanvien 
+		{
+			get { return GetColumnValue<string>(Columns.MaNhanvien); }
+			set { SetColumnValue(Columns.MaNhanvien, value); }
+		}
+		  
+		[XmlAttribute("IdCongty")]
+		[Bindable(true)]
+		public long? IdCongty 
+		{
+			get { return GetColumnValue<long?>(Columns.IdCongty); }
+			set { SetColumnValue(Columns.IdCongty, value); }
+		}
+		  
+		[XmlAttribute("IdHopdong")]
+		[Bindable(true)]
+		public long? IdHopdong 
+		{
+			get { return GetColumnValue<long?>(Columns.IdHopdong); }
+			set { SetColumnValue(Columns.IdHopdong, value); }
+		}
+		  
+		[XmlAttribute("IdSolo")]
+		[Bindable(true)]
+		public long? IdSolo 
+		{
+			get { return GetColumnValue<long?>(Columns.IdSolo); }
+			set { SetColumnValue(Columns.IdSolo, value); }
+		}
+		  
+		[XmlAttribute("SoLo")]
+		[Bindable(true)]
+		public string SoLo 
+		{
+			get { return GetColumnValue<string>(Columns.SoLo); }
+			set { SetColumnValue(Columns.SoLo, value); }
+		}
+		  
+		[XmlAttribute("TenbenhPhu")]
+		[Bindable(true)]
+		public string TenbenhPhu 
+		{
+			get { return GetColumnValue<string>(Columns.TenbenhPhu); }
+			set { SetColumnValue(Columns.TenbenhPhu, value); }
+		}
+		  
+		[XmlAttribute("TenCongTy")]
+		[Bindable(true)]
+		public string TenCongTy 
+		{
+			get { return GetColumnValue<string>(Columns.TenCongTy); }
+			set { SetColumnValue(Columns.TenCongTy, value); }
+		}
 		
 		#endregion
 		
@@ -3518,7 +3665,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(string varMaLuotkham,long varIdBenhnhan,DateTime varNgayTiepdon,string varNguoiTiepdon,int varTuoi,byte varLoaiTuoi,short varIdDoituongKcb,string varMadoituongGia,string varMaDoituongKcb,byte? varIdLoaidoituongKcb,decimal? varPtramBhytGoc,decimal? varPtramBhyt,string varMatheBhyt,DateTime? varNgaybatdauBhyt,DateTime? varNgayketthucBhyt,string varNoicapBhyt,string varMaNoicapBhyt,string varMaDoituongBhyt,int? varMaQuyenloi,string varNoiDongtrusoKcbbd,string varMaKcbbd,byte? varDungTuyen,string varCmt,DateTime? varNgayThanhtoan,decimal? varLuongCoban,int? varTrangthaiCapcuu,string varTrieuChung,string varChanDoan,string varKetLuan,string varHuongDieutri,string varMabenhChinh,string varMabenhPhu,byte varHienthiBaocao,string varSoBenhAn,string varLoaiBenhAn,long? varIdBa,int? varSongayDieutri,short? varIdKhoatiepnhan,short? varSolanKham,int? varSttKham,byte? varNoitru,string varMaKhoaThuchien,string varChandoanKemtheo,string varNguoiKetthuc,DateTime? varNgayKetthuc,string varLydoKetthuc,string varDiaChi,string varDiachiBhyt,short? varIdBenhvienDen,short? varIdBenhvienDi,byte? varTthaiChuyenden,byte? varTthaiChuyendi,short? varIdBacsiNhapvien,short? varIdBacsiChuyenvien,byte? varTrangthaiNgoaitru,byte varTrangthaiNoitru,byte varLocked,byte? varTthaiThopNoitru,byte? varTthaiThanhtoannoitru,long? varIdNhapvien,DateTime? varNgayNhapvien,DateTime? varNgayRavien,string varSoRavien,string varMotaNhapvien,long? varIdRavien,short? varIdKhoanoitru,short? varIdBuong,short? varIdGiuong,DateTime? varNgayKedon,DateTime? varNgayNhanthuoc,DateTime? varNgayNhanketquaCls,string varNoiGioithieu,byte? varBoVien,string varEmail,string varNhomBenhnhan,byte? varGiayBhyt,string varMadtuongSinhsong,string varIpMaytao,string varIpMaysua,string varTenMaytao,long? varIdLichsuDoituongKcb,string varTenMaysua,byte? varCachTao,string varKieuKham,string varMotaThem,DateTime varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua,string varLastActionName,DateTime? varNgayDu5nam,string varChandoanChuyenden,short? varSongayHen,decimal? varChiphiGioithieu,string varThongtinNguongt,string varNguoiLienhe,string varDienthoaiLienhe,string varDiachiLienhe,string varMoiquanheNguoibenh,string varSdt,string varMaTainanthuongtich,string varMaDoituongKcbBhyt,string varMaLoaikcb824,bool? varManTinh,int? varIdBsDieutrinoitruChinh,int? varIdBsDieutrinoitruPhu,string varSoVaovien,string varMaBenhravien,string varChandoanRavien,string varMaDoitac,string varThongtinMg,string varGhichuDoitac,string varMaTinhtp,string varMaQuanhuyen,string varMaXaphuong,byte? varThanhtoanCongkhamsau,int? varMaLydovaovien,DateTime? varTuyentruocDtTungay,DateTime? varTuyentruocDtDenngay,bool? varGuiXml,bool? varGuiXmlSyt,string varMaDoituongGiamdinh,string varMaHosoYte,string varMabenhYhctChinh,string varMabenhYhctPhu,string varMabenhYhctTtruoc,string varMabenhYhctNvien,long? varIdThe,string varMaCoso,DateTime? varThoigianLaysoQMS,string varMaKenh,DateTime? varNgayApdungBhyt,string varMaYte,short? varNamYte,long? varIdCongkhamNhapvien,string varMaNghenghiep,string varSonhaDuongpho,DateTime? varNgayInphoi,string varNguoiInphoi,string varNgayHuyInphoi,DateTime? varNguoiHuyInphoi,byte? varTthaiInphoi,short? varIdBacsiKham,bool? varTthaiUutien,short? varMucHuongBhyt,string varCmtNguoilienhe,string varSogiayChuyentuyen,DateTime? varNgayMienCctTu,DateTime? varNgayMienCctDen,bool? varNoThe,string varMaDoituongNothe,byte? varShs,string varThueCongty,string varThueMaso,string varThueDiachi,string varThueSotaikhoan,string varPassPost,DateTime? varNgaycapCmt,string varNoicapCmt)
+		public static void Insert(string varMaLuotkham,long varIdBenhnhan,DateTime varNgayTiepdon,string varNguoiTiepdon,int varTuoi,byte varLoaiTuoi,short varIdDoituongKcb,string varMadoituongGia,string varMaDoituongKcb,byte? varIdLoaidoituongKcb,decimal? varPtramBhytGoc,decimal? varPtramBhyt,string varMatheBhyt,DateTime? varNgaybatdauBhyt,DateTime? varNgayketthucBhyt,string varNoicapBhyt,string varMaNoicapBhyt,string varMaDoituongBhyt,int? varMaQuyenloi,string varNoiDongtrusoKcbbd,string varMaKcbbd,byte? varDungTuyen,string varCmt,DateTime? varNgayThanhtoan,decimal? varLuongCoban,int? varTrangthaiCapcuu,string varTrieuChung,string varChanDoan,string varKetLuan,string varHuongDieutri,string varMabenhChinh,string varMabenhPhu,byte varHienthiBaocao,string varSoBenhAn,string varLoaiBenhAn,long? varIdBa,int? varSongayDieutri,short? varIdKhoatiepnhan,short? varSolanKham,int? varSttKham,byte? varNoitru,string varMaKhoaThuchien,string varChandoanKemtheo,string varNguoiKetthuc,DateTime? varNgayKetthuc,string varLydoKetthuc,string varDiaChi,string varDiachiBhyt,short? varIdBenhvienDen,short? varIdBenhvienDi,byte? varTthaiChuyenden,byte? varTthaiChuyendi,short? varIdBacsiNhapvien,short? varIdBacsiChuyenvien,byte? varTrangthaiNgoaitru,byte varTrangthaiNoitru,byte varLocked,byte? varTthaiThopNoitru,byte? varTthaiThanhtoannoitru,long? varIdNhapvien,DateTime? varNgayNhapvien,DateTime? varNgayRavien,string varSoRavien,string varMotaNhapvien,long? varIdRavien,short? varIdKhoanoitru,short? varIdBuong,short? varIdGiuong,DateTime? varNgayKedon,DateTime? varNgayNhanthuoc,DateTime? varNgayNhanketquaCls,string varNoiGioithieu,byte? varBoVien,string varEmail,string varNhomBenhnhan,byte? varGiayBhyt,string varMadtuongSinhsong,string varIpMaytao,string varIpMaysua,string varTenMaytao,long? varIdLichsuDoituongKcb,string varTenMaysua,byte? varCachTao,string varKieuKham,string varMotaThem,DateTime varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua,string varLastActionName,DateTime? varNgayDu5nam,string varChandoanChuyenden,short? varSongayHen,decimal? varChiphiGioithieu,string varThongtinNguongt,string varNguoiLienhe,string varDienthoaiLienhe,string varDiachiLienhe,string varMoiquanheNguoibenh,string varSdt,string varMaTainanthuongtich,string varMaDoituongKcbBhyt,string varMaLoaikcb824,bool? varManTinh,int? varIdBsDieutrinoitruChinh,int? varIdBsDieutrinoitruPhu,string varSoVaovien,string varMaBenhravien,string varChandoanRavien,string varMaDoitac,string varThongtinMg,string varGhichuDoitac,string varMaTinhtp,string varMaQuanhuyen,string varMaXaphuong,byte? varThanhtoanCongkhamsau,int? varMaLydovaovien,DateTime? varTuyentruocDtTungay,DateTime? varTuyentruocDtDenngay,bool? varGuiXml,bool? varGuiXmlSyt,string varMaDoituongGiamdinh,string varMaHosoYte,string varMabenhYhctChinh,string varMabenhYhctPhu,string varMabenhYhctTtruoc,string varMabenhYhctNvien,long? varIdThe,string varMaCoso,DateTime? varThoigianLaysoQMS,string varMaKenh,DateTime? varNgayApdungBhyt,string varMaYte,short? varNamYte,long? varIdCongkhamNhapvien,string varMaNghenghiep,string varSonhaDuongpho,DateTime? varNgayInphoi,string varNguoiInphoi,string varNgayHuyInphoi,DateTime? varNguoiHuyInphoi,byte? varTthaiInphoi,short? varIdBacsiKham,bool? varTthaiUutien,short? varMucHuongBhyt,string varCmtNguoilienhe,string varSogiayChuyentuyen,DateTime? varNgayMienCctTu,DateTime? varNgayMienCctDen,bool? varNoThe,string varMaDoituongNothe,byte? varShs,string varThueCongty,string varThueMaso,string varThueDiachi,string varThueSotaikhoan,string varPassPost,DateTime? varNgaycapCmt,string varNoicapCmt,string varMaNhanvien,long? varIdCongty,long? varIdHopdong,long? varIdSolo,string varSoLo,string varTenbenhPhu,string varTenCongTy)
 		{
 			KcbLuotkham item = new KcbLuotkham();
 			
@@ -3840,6 +3987,20 @@ namespace VMS.HIS.DAL
 			
 			item.NoicapCmt = varNoicapCmt;
 			
+			item.MaNhanvien = varMaNhanvien;
+			
+			item.IdCongty = varIdCongty;
+			
+			item.IdHopdong = varIdHopdong;
+			
+			item.IdSolo = varIdSolo;
+			
+			item.SoLo = varSoLo;
+			
+			item.TenbenhPhu = varTenbenhPhu;
+			
+			item.TenCongTy = varTenCongTy;
+			
 		
 			if (System.Web.HttpContext.Current != null)
 				item.Save(System.Web.HttpContext.Current.User.Identity.Name);
@@ -3850,7 +4011,7 @@ namespace VMS.HIS.DAL
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(string varMaLuotkham,long varIdBenhnhan,DateTime varNgayTiepdon,string varNguoiTiepdon,int varTuoi,byte varLoaiTuoi,short varIdDoituongKcb,string varMadoituongGia,string varMaDoituongKcb,byte? varIdLoaidoituongKcb,decimal? varPtramBhytGoc,decimal? varPtramBhyt,string varMatheBhyt,DateTime? varNgaybatdauBhyt,DateTime? varNgayketthucBhyt,string varNoicapBhyt,string varMaNoicapBhyt,string varMaDoituongBhyt,int? varMaQuyenloi,string varNoiDongtrusoKcbbd,string varMaKcbbd,byte? varDungTuyen,string varCmt,DateTime? varNgayThanhtoan,decimal? varLuongCoban,int? varTrangthaiCapcuu,string varTrieuChung,string varChanDoan,string varKetLuan,string varHuongDieutri,string varMabenhChinh,string varMabenhPhu,byte varHienthiBaocao,string varSoBenhAn,string varLoaiBenhAn,long? varIdBa,int? varSongayDieutri,short? varIdKhoatiepnhan,short? varSolanKham,int? varSttKham,byte? varNoitru,string varMaKhoaThuchien,string varChandoanKemtheo,string varNguoiKetthuc,DateTime? varNgayKetthuc,string varLydoKetthuc,string varDiaChi,string varDiachiBhyt,short? varIdBenhvienDen,short? varIdBenhvienDi,byte? varTthaiChuyenden,byte? varTthaiChuyendi,short? varIdBacsiNhapvien,short? varIdBacsiChuyenvien,byte? varTrangthaiNgoaitru,byte varTrangthaiNoitru,byte varLocked,byte? varTthaiThopNoitru,byte? varTthaiThanhtoannoitru,long? varIdNhapvien,DateTime? varNgayNhapvien,DateTime? varNgayRavien,string varSoRavien,string varMotaNhapvien,long? varIdRavien,short? varIdKhoanoitru,short? varIdBuong,short? varIdGiuong,DateTime? varNgayKedon,DateTime? varNgayNhanthuoc,DateTime? varNgayNhanketquaCls,string varNoiGioithieu,byte? varBoVien,string varEmail,string varNhomBenhnhan,byte? varGiayBhyt,string varMadtuongSinhsong,string varIpMaytao,string varIpMaysua,string varTenMaytao,long? varIdLichsuDoituongKcb,string varTenMaysua,byte? varCachTao,string varKieuKham,string varMotaThem,DateTime varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua,string varLastActionName,DateTime? varNgayDu5nam,string varChandoanChuyenden,short? varSongayHen,decimal? varChiphiGioithieu,string varThongtinNguongt,string varNguoiLienhe,string varDienthoaiLienhe,string varDiachiLienhe,string varMoiquanheNguoibenh,string varSdt,string varMaTainanthuongtich,string varMaDoituongKcbBhyt,string varMaLoaikcb824,bool? varManTinh,int? varIdBsDieutrinoitruChinh,int? varIdBsDieutrinoitruPhu,string varSoVaovien,string varMaBenhravien,string varChandoanRavien,string varMaDoitac,string varThongtinMg,string varGhichuDoitac,string varMaTinhtp,string varMaQuanhuyen,string varMaXaphuong,byte? varThanhtoanCongkhamsau,int? varMaLydovaovien,DateTime? varTuyentruocDtTungay,DateTime? varTuyentruocDtDenngay,bool? varGuiXml,bool? varGuiXmlSyt,string varMaDoituongGiamdinh,string varMaHosoYte,string varMabenhYhctChinh,string varMabenhYhctPhu,string varMabenhYhctTtruoc,string varMabenhYhctNvien,long? varIdThe,string varMaCoso,DateTime? varThoigianLaysoQMS,string varMaKenh,DateTime? varNgayApdungBhyt,string varMaYte,short? varNamYte,long? varIdCongkhamNhapvien,string varMaNghenghiep,string varSonhaDuongpho,DateTime? varNgayInphoi,string varNguoiInphoi,string varNgayHuyInphoi,DateTime? varNguoiHuyInphoi,byte? varTthaiInphoi,short? varIdBacsiKham,bool? varTthaiUutien,short? varMucHuongBhyt,string varCmtNguoilienhe,string varSogiayChuyentuyen,DateTime? varNgayMienCctTu,DateTime? varNgayMienCctDen,bool? varNoThe,string varMaDoituongNothe,byte? varShs,string varThueCongty,string varThueMaso,string varThueDiachi,string varThueSotaikhoan,string varPassPost,DateTime? varNgaycapCmt,string varNoicapCmt)
+		public static void Update(string varMaLuotkham,long varIdBenhnhan,DateTime varNgayTiepdon,string varNguoiTiepdon,int varTuoi,byte varLoaiTuoi,short varIdDoituongKcb,string varMadoituongGia,string varMaDoituongKcb,byte? varIdLoaidoituongKcb,decimal? varPtramBhytGoc,decimal? varPtramBhyt,string varMatheBhyt,DateTime? varNgaybatdauBhyt,DateTime? varNgayketthucBhyt,string varNoicapBhyt,string varMaNoicapBhyt,string varMaDoituongBhyt,int? varMaQuyenloi,string varNoiDongtrusoKcbbd,string varMaKcbbd,byte? varDungTuyen,string varCmt,DateTime? varNgayThanhtoan,decimal? varLuongCoban,int? varTrangthaiCapcuu,string varTrieuChung,string varChanDoan,string varKetLuan,string varHuongDieutri,string varMabenhChinh,string varMabenhPhu,byte varHienthiBaocao,string varSoBenhAn,string varLoaiBenhAn,long? varIdBa,int? varSongayDieutri,short? varIdKhoatiepnhan,short? varSolanKham,int? varSttKham,byte? varNoitru,string varMaKhoaThuchien,string varChandoanKemtheo,string varNguoiKetthuc,DateTime? varNgayKetthuc,string varLydoKetthuc,string varDiaChi,string varDiachiBhyt,short? varIdBenhvienDen,short? varIdBenhvienDi,byte? varTthaiChuyenden,byte? varTthaiChuyendi,short? varIdBacsiNhapvien,short? varIdBacsiChuyenvien,byte? varTrangthaiNgoaitru,byte varTrangthaiNoitru,byte varLocked,byte? varTthaiThopNoitru,byte? varTthaiThanhtoannoitru,long? varIdNhapvien,DateTime? varNgayNhapvien,DateTime? varNgayRavien,string varSoRavien,string varMotaNhapvien,long? varIdRavien,short? varIdKhoanoitru,short? varIdBuong,short? varIdGiuong,DateTime? varNgayKedon,DateTime? varNgayNhanthuoc,DateTime? varNgayNhanketquaCls,string varNoiGioithieu,byte? varBoVien,string varEmail,string varNhomBenhnhan,byte? varGiayBhyt,string varMadtuongSinhsong,string varIpMaytao,string varIpMaysua,string varTenMaytao,long? varIdLichsuDoituongKcb,string varTenMaysua,byte? varCachTao,string varKieuKham,string varMotaThem,DateTime varNgayTao,string varNguoiTao,DateTime? varNgaySua,string varNguoiSua,string varLastActionName,DateTime? varNgayDu5nam,string varChandoanChuyenden,short? varSongayHen,decimal? varChiphiGioithieu,string varThongtinNguongt,string varNguoiLienhe,string varDienthoaiLienhe,string varDiachiLienhe,string varMoiquanheNguoibenh,string varSdt,string varMaTainanthuongtich,string varMaDoituongKcbBhyt,string varMaLoaikcb824,bool? varManTinh,int? varIdBsDieutrinoitruChinh,int? varIdBsDieutrinoitruPhu,string varSoVaovien,string varMaBenhravien,string varChandoanRavien,string varMaDoitac,string varThongtinMg,string varGhichuDoitac,string varMaTinhtp,string varMaQuanhuyen,string varMaXaphuong,byte? varThanhtoanCongkhamsau,int? varMaLydovaovien,DateTime? varTuyentruocDtTungay,DateTime? varTuyentruocDtDenngay,bool? varGuiXml,bool? varGuiXmlSyt,string varMaDoituongGiamdinh,string varMaHosoYte,string varMabenhYhctChinh,string varMabenhYhctPhu,string varMabenhYhctTtruoc,string varMabenhYhctNvien,long? varIdThe,string varMaCoso,DateTime? varThoigianLaysoQMS,string varMaKenh,DateTime? varNgayApdungBhyt,string varMaYte,short? varNamYte,long? varIdCongkhamNhapvien,string varMaNghenghiep,string varSonhaDuongpho,DateTime? varNgayInphoi,string varNguoiInphoi,string varNgayHuyInphoi,DateTime? varNguoiHuyInphoi,byte? varTthaiInphoi,short? varIdBacsiKham,bool? varTthaiUutien,short? varMucHuongBhyt,string varCmtNguoilienhe,string varSogiayChuyentuyen,DateTime? varNgayMienCctTu,DateTime? varNgayMienCctDen,bool? varNoThe,string varMaDoituongNothe,byte? varShs,string varThueCongty,string varThueMaso,string varThueDiachi,string varThueSotaikhoan,string varPassPost,DateTime? varNgaycapCmt,string varNoicapCmt,string varMaNhanvien,long? varIdCongty,long? varIdHopdong,long? varIdSolo,string varSoLo,string varTenbenhPhu,string varTenCongTy)
 		{
 			KcbLuotkham item = new KcbLuotkham();
 			
@@ -4171,6 +4332,20 @@ namespace VMS.HIS.DAL
 				item.NgaycapCmt = varNgaycapCmt;
 			
 				item.NoicapCmt = varNoicapCmt;
+			
+				item.MaNhanvien = varMaNhanvien;
+			
+				item.IdCongty = varIdCongty;
+			
+				item.IdHopdong = varIdHopdong;
+			
+				item.IdSolo = varIdSolo;
+			
+				item.SoLo = varSoLo;
+			
+				item.TenbenhPhu = varTenbenhPhu;
+			
+				item.TenCongTy = varTenCongTy;
 			
 			item.IsNew = false;
 			if (System.Web.HttpContext.Current != null)
@@ -5298,6 +5473,55 @@ namespace VMS.HIS.DAL
         
         
         
+        public static TableSchema.TableColumn MaNhanvienColumn
+        {
+            get { return Schema.Columns[159]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn IdCongtyColumn
+        {
+            get { return Schema.Columns[160]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn IdHopdongColumn
+        {
+            get { return Schema.Columns[161]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn IdSoloColumn
+        {
+            get { return Schema.Columns[162]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn SoLoColumn
+        {
+            get { return Schema.Columns[163]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn TenbenhPhuColumn
+        {
+            get { return Schema.Columns[164]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn TenCongTyColumn
+        {
+            get { return Schema.Columns[165]; }
+        }
+        
+        
+        
         #endregion
 		#region Columns Struct
 		public struct Columns
@@ -5461,6 +5685,13 @@ namespace VMS.HIS.DAL
 			 public static string PassPost = @"pass_post";
 			 public static string NgaycapCmt = @"ngaycap_CMT";
 			 public static string NoicapCmt = @"noicap_CMT";
+			 public static string MaNhanvien = @"ma_nhanvien";
+			 public static string IdCongty = @"id_congty";
+			 public static string IdHopdong = @"id_hopdong";
+			 public static string IdSolo = @"id_solo";
+			 public static string SoLo = @"so_lo";
+			 public static string TenbenhPhu = @"tenbenh_phu";
+			 public static string TenCongTy = @"ten_cong_ty";
 						
 		}
 		#endregion

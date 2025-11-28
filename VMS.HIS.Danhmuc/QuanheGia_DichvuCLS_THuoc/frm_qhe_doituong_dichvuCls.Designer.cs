@@ -33,12 +33,12 @@
             Janus.Windows.GridEX.GridEXLayout grdQhe_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.GridEX.GridEXLayout grdObjectType_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             Janus.Windows.GridEX.GridEXLayout grdList_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
-            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem1 = new Janus.Windows.EditControls.UIComboBoxItem();
-            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem2 = new Janus.Windows.EditControls.UIComboBoxItem();
-            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem3 = new Janus.Windows.EditControls.UIComboBoxItem();
-            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem4 = new Janus.Windows.EditControls.UIComboBoxItem();
-            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem5 = new Janus.Windows.EditControls.UIComboBoxItem();
-            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem6 = new Janus.Windows.EditControls.UIComboBoxItem();
+            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem7 = new Janus.Windows.EditControls.UIComboBoxItem();
+            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem8 = new Janus.Windows.EditControls.UIComboBoxItem();
+            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem9 = new Janus.Windows.EditControls.UIComboBoxItem();
+            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem10 = new Janus.Windows.EditControls.UIComboBoxItem();
+            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem11 = new Janus.Windows.EditControls.UIComboBoxItem();
+            Janus.Windows.EditControls.UIComboBoxItem uiComboBoxItem12 = new Janus.Windows.EditControls.UIComboBoxItem();
             this.sysColor = new System.Windows.Forms.ToolStrip();
             this.cmdThemMoi = new System.Windows.Forms.ToolStripButton();
             this.cmdCapNhap = new System.Windows.Forms.ToolStripButton();
@@ -411,7 +411,7 @@
             this.cmdDetailDeleteAll.Name = "cmdDetailDeleteAll";
             this.cmdDetailDeleteAll.Size = new System.Drawing.Size(96, 30);
             this.cmdDetailDeleteAll.TabIndex = 29;
-            this.cmdDetailDeleteAll.Text = "Xóa tất cả";
+            this.cmdDetailDeleteAll.Text = "Xóa";
             // 
             // cmdSaveObjectAll
             // 
@@ -423,7 +423,7 @@
             this.cmdSaveObjectAll.Name = "cmdSaveObjectAll";
             this.cmdSaveObjectAll.Size = new System.Drawing.Size(96, 30);
             this.cmdSaveObjectAll.TabIndex = 28;
-            this.cmdSaveObjectAll.Text = "Ghi";
+            this.cmdSaveObjectAll.Text = "Lưu";
             // 
             // cmdDelete
             // 
@@ -431,11 +431,13 @@
             this.cmdDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdDelete.Image = ((System.Drawing.Image)(resources.GetObject("cmdDelete.Image")));
             this.cmdDelete.ImageSize = new System.Drawing.Size(20, 20);
-            this.cmdDelete.Location = new System.Drawing.Point(192, 8);
+            this.cmdDelete.Location = new System.Drawing.Point(6, 12);
             this.cmdDelete.Name = "cmdDelete";
             this.cmdDelete.Size = new System.Drawing.Size(96, 30);
             this.cmdDelete.TabIndex = 27;
             this.cmdDelete.Text = "Xóa";
+            this.cmdDelete.Visible = false;
+            this.cmdDelete.Click += new System.EventHandler(this.cmdDelete_Click_1);
             // 
             // cmdAdd
             // 
@@ -443,7 +445,7 @@
             this.cmdAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdAdd.Image = ((System.Drawing.Image)(resources.GetObject("cmdAdd.Image")));
             this.cmdAdd.ImageSize = new System.Drawing.Size(24, 24);
-            this.cmdAdd.Location = new System.Drawing.Point(92, 8);
+            this.cmdAdd.Location = new System.Drawing.Point(190, 8);
             this.cmdAdd.Name = "cmdAdd";
             this.cmdAdd.Size = new System.Drawing.Size(96, 30);
             this.cmdAdd.TabIndex = 26;
@@ -702,22 +704,22 @@
             // cboKieuIn
             // 
             this.cboKieuIn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            uiComboBoxItem1.FormatStyle.Alpha = 0;
-            uiComboBoxItem1.IsSeparator = false;
-            uiComboBoxItem1.Text = "Tất cả";
-            uiComboBoxItem1.Value = ((short)(0));
-            uiComboBoxItem2.FormatStyle.Alpha = 0;
-            uiComboBoxItem2.IsSeparator = false;
-            uiComboBoxItem2.Text = "Có giá quan hệ";
-            uiComboBoxItem2.Value = ((short)(1));
-            uiComboBoxItem3.FormatStyle.Alpha = 0;
-            uiComboBoxItem3.IsSeparator = false;
-            uiComboBoxItem3.Text = "Chưa có giá quan hệ";
-            uiComboBoxItem3.Value = ((short)(2));
+            uiComboBoxItem7.FormatStyle.Alpha = 0;
+            uiComboBoxItem7.IsSeparator = false;
+            uiComboBoxItem7.Text = "Tất cả";
+            uiComboBoxItem7.Value = ((short)(0));
+            uiComboBoxItem8.FormatStyle.Alpha = 0;
+            uiComboBoxItem8.IsSeparator = false;
+            uiComboBoxItem8.Text = "Có giá quan hệ";
+            uiComboBoxItem8.Value = ((short)(1));
+            uiComboBoxItem9.FormatStyle.Alpha = 0;
+            uiComboBoxItem9.IsSeparator = false;
+            uiComboBoxItem9.Text = "Chưa có giá quan hệ";
+            uiComboBoxItem9.Value = ((short)(2));
             this.cboKieuIn.Items.AddRange(new Janus.Windows.EditControls.UIComboBoxItem[] {
-            uiComboBoxItem1,
-            uiComboBoxItem2,
-            uiComboBoxItem3});
+            uiComboBoxItem7,
+            uiComboBoxItem8,
+            uiComboBoxItem9});
             this.cboKieuIn.Location = new System.Drawing.Point(128, 73);
             this.cboKieuIn.MaxDropDownItems = 30;
             this.cboKieuIn.Name = "cboKieuIn";
@@ -789,22 +791,22 @@
             // 
             this.cboKhoaTH.ComboStyle = Janus.Windows.EditControls.ComboStyle.DropDownList;
             this.cboKhoaTH.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            uiComboBoxItem4.FormatStyle.Alpha = 0;
-            uiComboBoxItem4.IsSeparator = false;
-            uiComboBoxItem4.Text = "--- Chọn ---";
-            uiComboBoxItem4.Value = -1;
-            uiComboBoxItem5.FormatStyle.Alpha = 0;
-            uiComboBoxItem5.IsSeparator = false;
-            uiComboBoxItem5.Text = "Hiệu lực";
-            uiComboBoxItem5.Value = 1;
-            uiComboBoxItem6.FormatStyle.Alpha = 0;
-            uiComboBoxItem6.IsSeparator = false;
-            uiComboBoxItem6.Text = "Không hiệu lực";
-            uiComboBoxItem6.Value = 0;
+            uiComboBoxItem10.FormatStyle.Alpha = 0;
+            uiComboBoxItem10.IsSeparator = false;
+            uiComboBoxItem10.Text = "--- Chọn ---";
+            uiComboBoxItem10.Value = -1;
+            uiComboBoxItem11.FormatStyle.Alpha = 0;
+            uiComboBoxItem11.IsSeparator = false;
+            uiComboBoxItem11.Text = "Hiệu lực";
+            uiComboBoxItem11.Value = 1;
+            uiComboBoxItem12.FormatStyle.Alpha = 0;
+            uiComboBoxItem12.IsSeparator = false;
+            uiComboBoxItem12.Text = "Không hiệu lực";
+            uiComboBoxItem12.Value = 0;
             this.cboKhoaTH.Items.AddRange(new Janus.Windows.EditControls.UIComboBoxItem[] {
-            uiComboBoxItem4,
-            uiComboBoxItem5,
-            uiComboBoxItem6});
+            uiComboBoxItem10,
+            uiComboBoxItem11,
+            uiComboBoxItem12});
             this.cboKhoaTH.Location = new System.Drawing.Point(128, 47);
             this.cboKhoaTH.Name = "cboKhoaTH";
             this.cboKhoaTH.Size = new System.Drawing.Size(392, 22);

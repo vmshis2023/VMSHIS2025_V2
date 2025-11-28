@@ -1,0 +1,40 @@
+2025-09-24 00:24:57.5600||DEBUG|getTokenCSKCB|----------------------------------------- 
+2025-09-24 00:24:57.7428||TRACE|getTokenCSKCB|url  :  
+2025-09-24 00:24:58.1946||TRACE|getTokenCSKCB| 
+2025-09-24 00:24:58.4644||TRACE|getTokenCSKCB|WebRequest Invalid URI: The URI is empty. 
+2025-09-24 00:24:58.6617||DEBUG|getTokenCSKCB|Dữ liệu trả về : Invalid URI: The URI is empty. 
+2025-09-24 00:24:59.0271||DEBUG|getTokenCSKCB|Error parsing Infinity value. Path '', line 1, position 2. 
+2025-09-24 00:29:53.6199||DEBUG|getTokenCSKCB|----------------------------------------- 
+2025-09-24 00:29:53.7610||TRACE|getTokenCSKCB|url  :  
+2025-09-24 00:29:54.0606||TRACE|getTokenCSKCB| 
+2025-09-24 00:29:54.2550||TRACE|getTokenCSKCB|WebRequest Invalid URI: The URI is empty. 
+2025-09-24 00:29:54.3885||DEBUG|getTokenCSKCB|Dữ liệu trả về : Invalid URI: The URI is empty. 
+2025-09-24 00:29:54.6733||DEBUG|getTokenCSKCB|Error parsing Infinity value. Path '', line 1, position 2. 
+2025-09-24 00:30:54.7151||DEBUG|getTokenCSKCB|----------------------------------------- 
+2025-09-24 00:34:26.2649||DEBUG|getTokenCSKCB|----------------------------------------- 
+2025-09-24 00:34:26.3664||TRACE|getTokenCSKCB|url  :  
+2025-09-24 00:34:26.5831||TRACE|getTokenCSKCB| 
+2025-09-24 00:34:26.7144||TRACE|getTokenCSKCB|WebRequest Invalid URI: The URI is empty. 
+2025-09-24 00:34:26.8067||DEBUG|getTokenCSKCB|Dữ liệu trả về : Invalid URI: The URI is empty. 
+2025-09-24 00:34:26.9779||DEBUG|getTokenCSKCB|Error parsing Infinity value. Path '', line 1, position 2. 
+2025-09-24 00:41:01.5401||DEBUG|getTokenCSKCB|----------------------------------------- 
+2025-09-24 00:41:01.6307||TRACE|getTokenCSKCB|url  : https://api.donthuocquocgia.vn/api/auth/dang-nhap-co-so-kham-chua-benh 
+2025-09-24 00:41:01.8751||TRACE|getTokenCSKCB|https://api.donthuocquocgia.vn/api/auth/dang-nhap-co-so-kham-chua-benh 
+2025-09-24 00:41:02.8723||TRACE|getTokenCSKCB|{"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vYXBpLmRvbnRodW9jcXVvY2dpYS52bi9hcGkvYXV0aC9kYW5nLW5oYXAtY28tc28ta2hhbS1jaHVhLWJlbmgiLCJpYXQiOjE3NTg2NDkzMzgsImV4cCI6MTc1OTI1NDEzOCwibmJmIjoxNzU4NjQ5MzM4LCJqdGkiOiJhTExjRUo4ZVBEck9odVpsIiwic3ViIjoiNjg3OGE2NzQ4NjdmNTEzOTJjMGZjOTVkIiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.oM_Dx-KgS3PvYdHrjrFexkb0o-cAypqoQWAmkn2CLI8","token_type":"bearer"} 
+2025-09-24 00:41:02.9857||DEBUG|getTokenCSKCB|Dữ liệu trả về : {"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vYXBpLmRvbnRodW9jcXVvY2dpYS52bi9hcGkvYXV0aC9kYW5nLW5oYXAtY28tc28ta2hhbS1jaHVhLWJlbmgiLCJpYXQiOjE3NTg2NDkzMzgsImV4cCI6MTc1OTI1NDEzOCwibmJmIjoxNzU4NjQ5MzM4LCJqdGkiOiJhTExjRUo4ZVBEck9odVpsIiwic3ViIjoiNjg3OGE2NzQ4NjdmNTEzOTJjMGZjOTVkIiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.oM_Dx-KgS3PvYdHrjrFexkb0o-cAypqoQWAmkn2CLI8","token_type":"bearer"} 
+2025-09-24 00:53:01.7313||DEBUG|getTokenCSKCB|----------------------------------------- 
+2025-09-24 00:53:01.8138||TRACE|getTokenCSKCB|url  : https://api.donthuocquocgia.vn/api/auth/dang-nhap-co-so-kham-chua-benh 
+2025-09-24 01:00:19.7721||DEBUG|getTokenCSKCB|----------------------------------------- 
+2025-09-24 01:00:19.8773||TRACE|getTokenCSKCB|url  : https://api.donthuocquocgia.vn/api/auth/dang-nhap-co-so-kham-chua-benh 
+2025-09-24 01:01:05.1933||DEBUG|getTokenCSKCB|----------------------------------------- 
+2025-09-24 01:01:05.2834||TRACE|getTokenCSKCB|url  : https://api.donthuocquocgia.vn/api/auth/dang-nhap-co-so-kham-chua-benh 
+2025-09-24 01:01:26.0636||DEBUG|getTokenCSKCB|----------------------------------------- 
+2025-09-24 01:01:26.1633||TRACE|getTokenCSKCB|url  : https://api.donthuocquocgia.vn/api/auth/dang-nhap-co-so-kham-chua-benh 
+2025-09-24 01:01:41.1401||DEBUG|getTokenCSKCB|----------------------------------------- 
+2025-09-24 01:01:41.2393||TRACE|getTokenCSKCB|url  : https://api.donthuocquocgia.vn/api/auth/dang-nhap-co-so-kham-chua-benh 
+2025-09-24 01:01:55.2590||DEBUG|getTokenCSKCB|----------------------------------------- 
+2025-09-24 01:01:55.3956||TRACE|getTokenCSKCB|url  : https://api.donthuocquocgia.vn/api/auth/dang-nhap-co-so-kham-chua-benh 
+2025-09-24 01:04:19.0658||DEBUG|getTokenCSKCB|----------------------------------------- 
+2025-09-24 01:04:19.2187||TRACE|getTokenCSKCB|url  : https://api.donthuocquocgia.vn/api/auth/dang-nhap-co-so-kham-chua-benh 
+2025-09-24 01:04:43.8812||DEBUG|getTokenCSKCB|----------------------------------------- 
+2025-09-24 01:04:44.0936||TRACE|getTokenCSKCB|url  : https://api.donthuocquocgia.vn/api/auth/dang-nhap-co-so-kham-chua-benh 

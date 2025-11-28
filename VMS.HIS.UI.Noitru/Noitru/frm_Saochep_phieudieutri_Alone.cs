@@ -357,6 +357,7 @@ namespace VNS.HIS.UI.NOITRU
                         _OnCopyComplete();
                     }
                     Utility.ShowMsg("Bạn sao chép thành công. Nhấn OK để kết thúc", "Thông báo");
+                    this.Close();
                     break;
                 case ActionResult.Error:
                     Utility.ShowMsg("Lỗi trong quá trình sao chép", "Thông báo");

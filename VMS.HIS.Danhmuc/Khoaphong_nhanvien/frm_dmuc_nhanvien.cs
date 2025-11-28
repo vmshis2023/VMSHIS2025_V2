@@ -12,6 +12,7 @@ using VNS.Libs;
 using VMS.HIS.DAL;
 using VNS.HIS.NGHIEPVU;
 using System.IO;
+using VNS.HIS.NGHIEPVU.THUOC;
 
 namespace VNS.HIS.UI.DANHMUC
 {
@@ -21,7 +22,7 @@ namespace VNS.HIS.UI.DANHMUC
         private DataTable m_dtStaffList = new DataTable();
         private DataTable m_dtStaffType = new DataTable();
         private DataTable m_dtRank = new DataTable();
-
+        DuocTT27 _DuocTT27 = new DuocTT27();
         #endregion
         #region "Contructor"
         public frm_dmuc_nhanvien()
@@ -44,10 +45,16 @@ namespace VNS.HIS.UI.DANHMUC
                 txtLoaiDichvu._OnSelectionChanged += txtLoaiDichvu__OnSelectionChanged;
                 optNo.CheckedChanged += optAll_CheckedChanged;
                 optYes.CheckedChanged += optAll_CheckedChanged;
+                _DuocTT27._OnStatus += _DuocTT27__OnStatus;
             }
             catch
             {
             }
+        }
+
+        private void _DuocTT27__OnStatus(string status, bool isErr)
+        {
+           
         }
 
         void grdKhoa_SelectionChanged(object sender, EventArgs e)
@@ -266,6 +273,7 @@ namespace VNS.HIS.UI.DANHMUC
                 if (grdNhanvien.CurrentRow != null)
                 {
                     objNhanvien = DmucNhanvien.FetchByID(Utility.Int32Dbnull(grdNhanvien.GetValue("id_nhanvien")));
+                    LoadChungThuSo();
                     LoadQuanHeNhanVienKho();
 
                     LoadQuanHeNhanVienQuyen();
@@ -294,6 +302,18 @@ namespace VNS.HIS.UI.DANHMUC
             }
             
 
+        }
+        void LoadChungThuSo()
+        {
+            if (objNhanvien != null)
+            {
+                txt_UserId.Text = objNhanvien.UserId;
+                txt_PassWord.Text = objNhanvien.UserSecret;
+                txt_TOTP.Text = objNhanvien.UserTotp;
+
+                txt_ma_bacsi_lien_thong.Text = objNhanvien.MaLienThongBacSi;
+                txt_matkhau_bacsi_lien_thong.Text = objNhanvien.MatkhauLienThongBacSi ;
+            }
         }
         /// <summary>
         /// hàm thực hiện thêm mới nhân viên
@@ -1597,6 +1617,239 @@ namespace VNS.HIS.UI.DANHMUC
                     Utility.ShowMsg("Bạn không có quyền tạo người dùng từ nhân viên. Phải có quyền Quản trị hệ thống hoặc được gán quyền có mã QTHT_TAONGUOIDUNG_TUNHANVIEN");
                 }    
                 
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+            }
+        }
+
+        private void cmd_Luu_Chungthuso_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (objNhanvien != null && Utility.Coquyen("CKS_CAPNHAT_THONGTIN_KISO_CHOBACSI"))
+                {
+                    Utility.ExecuteSql(string.Format("update dmuc_nhanvien set user_id='{0}',user_secret='{1}',user_totp='{2}' where id_nhanvien={3} ", Utility.sDbnull(txt_UserId.Text), Utility.sDbnull(txt_PassWord.Text), Utility.sDbnull(txt_TOTP.Text), objNhanvien.IdNhanvien), CommandType.Text);
+                    Utility.Log(this.Name, globalVariables.UserName, string.Format("Cập nhật thông tin Chứng thư số user_id='{0}',user_secret='{1}',user_totp='{2}'cho nhân viên {3} thành công", Utility.sDbnull(txt_UserId.Text), Utility.sDbnull(txt_PassWord.Text), Utility.sDbnull(txt_TOTP.Text), objNhanvien.TenNhanvien), newaction.Update, this.GetType().Assembly.ManifestModule.Name);
+                    Utility.ShowMsg("Cập nhật thông tin chứng thư số thành công");
+                }
+                else
+                {
+                    Utility.ShowMsg("Bạn cần chọn nhân viên và cần có quyền cập nhật thông tin chữ kí số cho bác sĩ trước khi bấm nút Lưu");
+                }    
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+            }
+        }
+
+        private void cmd_luu_thong_tin_lien_thong_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (objNhanvien != null && Utility.Coquyen("DONTHUOC_CAPNHAT_THONGTIN_LIENTHONG_DONTHUOCQUOCGIA_CHOBACSI"))
+                {
+                    Utility.ExecuteSql(string.Format("update dmuc_nhanvien set ma_lien_thong_bac_si='{0}',matkhau_lien_thong_bac_si='{1}' where id_nhanvien={2} ", Utility.sDbnull(txt_ma_bacsi_lien_thong.Text), Utility.sDbnull(txt_matkhau_bacsi_lien_thong.Text), objNhanvien.IdNhanvien), CommandType.Text);
+                    Utility.Log(this.Name, globalVariables.UserName, string.Format("Cập nhật thông tin Liên thông ĐTQG ma_lien_thong_bac_si='{0}',matkhau_lien_thong_bac_si='{1}'cho nhân viên {2} thành công", Utility.sDbnull(txt_ma_bacsi_lien_thong.Text), Utility.sDbnull(txt_matkhau_bacsi_lien_thong.Text), objNhanvien.TenNhanvien), newaction.Update, this.GetType().Assembly.ManifestModule.Name);
+                    Utility.ShowMsg("Cập nhật thông tin liên thông dược quốc gia cho Bác sĩ thành công");
+                }
+
+                else
+                {
+                    Utility.ShowMsg("Bạn cần chọn nhân viên và cần có quyền cập nhật thông tin liên thông đơn thuốc quốc gia(DONTHUOC_CAPNHAT_THONGTIN_LIENTHONG_DONTHUOCQUOCGIA_CHOBACSI) cho bác sĩ trước khi bấm nút Lưu");
+                }
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+            }
+        }
+        bool isShowPassword = false;
+        bool isShowPassword1 = false;
+        private void lbl_Show_MatKhau_LienThong_Click(object sender, EventArgs e)
+        {
+            isShowPassword = !isShowPassword;
+            if (isShowPassword)
+                txt_matkhau_bacsi_lien_thong.PasswordChar = '\0';
+            else
+                txt_matkhau_bacsi_lien_thong.PasswordChar = '*';
+        }
+
+        private void txt_ShowHide_MatKhau_KiSo_Click(object sender, EventArgs e)
+        {
+            isShowPassword1 = !isShowPassword1;
+            if (isShowPassword1)
+                txt_PassWord.PasswordChar = '\0';
+            else
+                txt_PassWord.PasswordChar = '*';
+        }
+      
+        private void cmd_ThemBacsi_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string ma_lien_thong_bac_si = Utility.sDbnull(txt_ma_bacsi_lien_thong.Text);
+                if (ma_lien_thong_bac_si == "")
+                {
+                    Utility.ShowMsg("Cần nhập thông tin mã bác sĩ liên thông trước khi thêm bác sĩ vào cơ sở");
+                    txt_ma_bacsi_lien_thong.Focus();
+                    return;
+                }
+                bool ketqua = false;
+                string msg = "";
+                string result = _DuocTT27.ThemBacSy(ma_lien_thong_bac_si, ref ketqua, ref msg);
+                if (!string.IsNullOrEmpty(result))
+                {
+                    if (ketqua)
+                    {
+                        Utility.ShowMsg("Thêm bác sĩ thành công");
+                    }
+                    else
+                    {
+                        Utility.ShowMsg(string.Format("{0}. Thêm mới bác sỹ thất bại.\nLỗi do cổng trả về: {1}", ma_lien_thong_bac_si, msg));
+
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+            }
+           
+
+        }
+
+        private void mnu_them_bacsi_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<string> lstErr = new List<string>();
+                
+                    string ma_lien_thong_bac_si =Utility.sDbnull( txt_ma_bacsi_lien_thong.Text);
+                    if (ma_lien_thong_bac_si != "")
+                    {
+                        bool ketqua = false;
+                        string msg = "";
+                        string result = new DuocTT27().ThemBacSy(ma_lien_thong_bac_si, ref ketqua, ref msg);
+                        if (!string.IsNullOrEmpty(result))
+                        {
+                            if (ketqua)
+                            {
+                            }
+                            else
+                            {
+                                lstErr.Add(string.Format(string.Format("{0}. Thêm mới bác sỹ thất bại.\nLỗi do cổng trả về: {1}", ma_lien_thong_bac_si, msg)));
+
+                            }
+                        }
+                    }
+
+               
+                if(lstErr.Count>0)
+                {
+                    Utility.ShowMsg(string.Join("\n", lstErr.ToArray<string>()));
+                }   
+                else
+                {
+                    Utility.ShowMsg("Thêm bác sĩ thành công");
+                }    
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+            }
+        }
+
+        private void chk_co_malienthong_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!chk_co_malienthong.Checked)
+                m_dtStaffList.DefaultView.RowFilter = "1=1";
+            else 
+                m_dtStaffList.DefaultView.RowFilter = "len(Isnull(ma_lien_thong_bac_si,''))>0";
+           
+        }
+
+        private void cmd_xoa_bacsi_lienthong_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<string> lstErr = new List<string>();
+
+                string ma_lien_thong_bac_si = Utility.sDbnull(txt_ma_bacsi_lien_thong.Text);
+              
+                if (ma_lien_thong_bac_si != "")
+                    {
+                        bool ketqua = false;
+                        string msg = "";
+                        string result = new DuocTT27().XoaBacSi(ma_lien_thong_bac_si, ref ketqua, ref msg);
+                        if (!string.IsNullOrEmpty(result))
+                        {
+                            if (ketqua)
+                            {
+                            }
+                            else
+                            {
+                                lstErr.Add(string.Format(string.Format("{0}. Xóa bác sỹ thất bại.\nLỗi do cổng trả về: {1}", ma_lien_thong_bac_si, msg)));
+
+                            }
+                        }
+                    }
+
+              
+                if (lstErr.Count > 0)
+                {
+                    Utility.ShowMsg(string.Join("\n", lstErr.ToArray<string>()));
+                }
+                else
+                {
+                    Utility.ShowMsg("Xóa bác sĩ thành công");
+                }
+            }
+            catch (Exception ex)
+            {
+                Utility.CatchException(ex);
+            }
+        }
+
+        private void cmd_login_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<string> lstErr = new List<string>();
+
+                string ma_lien_thong_bac_si = Utility.sDbnull(txt_ma_bacsi_lien_thong.Text);
+                string matkhau_lien_thong_bac_si = Utility.sDbnull(txt_matkhau_bacsi_lien_thong.Text);
+                if (ma_lien_thong_bac_si != "")
+                {
+                    bool ketqua = false;
+                    string msg = "";
+                    string result = new DuocTT27().DangNhapBacSi(ma_lien_thong_bac_si, matkhau_lien_thong_bac_si, ref ketqua, ref msg);
+                    if (!string.IsNullOrEmpty(result))
+                    {
+                        if (ketqua)
+                        {
+                            
+                        }
+                        else
+                        {
+                            lstErr.Add(string.Format(string.Format("{0}. Xóa bác sỹ thất bại.\nLỗi do cổng trả về: {1}", ma_lien_thong_bac_si, msg)));
+
+                        }
+                    }
+                }
+
+               
+                if (lstErr.Count > 0)
+                {
+                    Utility.ShowMsg(string.Join("\n", lstErr.ToArray<string>()));
+                }
+                else
+                {
+                    Utility.ShowMsg("Đăng nhập bác sĩ thành công");
+                }
             }
             catch (Exception ex)
             {

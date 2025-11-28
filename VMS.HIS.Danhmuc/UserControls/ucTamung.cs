@@ -46,13 +46,19 @@ namespace VNS.HIS.UCs.Noitru
         bool hasLoadedDmuc = false;
         DataTable dtPttt = new DataTable();
         DataTable dtPttt_rieng = new DataTable();
+        DataTable dtLoaiTU = new DataTable();
         DataTable dtNganhang = new DataTable();
         void LoadPtttNganhang()
         {
             if (hasLoadedDmuc) return;
-            DataTable dtData = THU_VIEN_CHUNG.LayDulieuDanhmucChung(new List<string>() { "PHUONGTHUCTHANHTOAN", "NGANHANG" }, true);
+            DataTable dtData = THU_VIEN_CHUNG.LayDulieuDanhmucChung(new List<string>() { "PHUONGTHUCTHANHTOAN", "NGANHANG","LOAI_TAMUNG" }, true);
             dtPttt = THU_VIEN_CHUNG.LayDulieuDanhmucChung(dtData, "PHUONGTHUCTHANHTOAN");
             dtNganhang = THU_VIEN_CHUNG.LayDulieuDanhmucChung(dtData, "NGANHANG");
+            dtLoaiTU = THU_VIEN_CHUNG.LayDulieuDanhmucChung(dtData, "LOAI_TAMUNG");
+            cbo_loaitamung.DataSource = dtLoaiTU;
+            cbo_loaitamung.ValueMember = DmucChung.Columns.Ma;
+            cbo_loaitamung.DisplayMember = DmucChung.Columns.Ten;
+
             cboPttt.DataSource = dtPttt;
             cboPttt.ValueMember = DmucChung.Columns.Ma;
             cboPttt.DisplayMember = DmucChung.Columns.Ten;
@@ -62,6 +68,9 @@ namespace VNS.HIS.UCs.Noitru
 
             cboPttt.SelectedValue = THU_VIEN_CHUNG.Laygiatrimacdinh(dtPttt);
             cboNganhang.SelectedValue = THU_VIEN_CHUNG.Laygiatrimacdinh(dtNganhang);
+            cbo_loaitamung.SelectedValue = THU_VIEN_CHUNG.Laygiatrimacdinh(dtLoaiTU);
+            if (dtLoaiTU.Rows.Count == 1)
+                cbo_loaitamung.SelectedIndex = 0;
         }
         void InitPTTTColumns()
         {
@@ -197,33 +206,56 @@ namespace VNS.HIS.UCs.Noitru
                         NoitruTamung objtemp = NoitruTamung.FetchByID(Utility.Int64Dbnull(grdHuyTU.GetValue(NoitruTamung.Columns.Id)));
                         if (objtemp != null)
                         {
-                            
-                                if (noitru_TamungHoanung.RestoreTienTamung(objtemp))
+
+                            if (noitru_TamungHoanung.RestoreTienTamung(objtemp))
+                            {
+                                Utility.Log(this.Name, globalVariables.UserName, string.Format("Khôi phục bản ghi tạm ứng của người bệnh id_benhnhan ={0}, PID={1}, số tiền ={2} thành công ", objLuotkham.IdBenhnhan.ToString(), objLuotkham.MaLuotkham, Utility.FormatCurrencyHIS(Utility.DecimaltoDbnull(grdHuyTU.GetValue("so_tien")))), newaction.Restore, this.GetType().Assembly.ManifestModule.Name);
+                                Utility.SetMsg(lblMsg, string.Format("Khôi phục bản ghi tạm ứng {0} thành công", txtSotien.Text), false);
+                                DataRow drDelete = Utility.getCurrentDataRow(grdHuyTU);
+                                if (drDelete != null)
                                 {
-                                    Utility.SetMsg(lblMsg, string.Format("Khôi phục bản ghi tạm ứng {0} thành công", txtSotien.Text), false);
-                                    DataRow drDelete = Utility.getCurrentDataRow(grdHuyTU);
-                                    if (drDelete != null)
-                                    {
-                                        //Thêm vào dòng hủy
-                                        drDelete["tthai_huy"] = 0;
-                                        drDelete["ngay_huy"] = DBNull.Value ;
-                                        drDelete["nguoi_huy"] = "";
-                                        drDelete["lydo_huy"] ="";
-                                        drDelete["ma_httt_huy"] = "";
-                                        drDelete["ma_nganhang_huy"] = "";
-                                        m_dtTamung.ImportRow(drDelete);
-                                        m_dtTamung.AcceptChanges();
-                                        m_dtHuyTU.Rows.Remove(drDelete);
-                                        m_dtHuyTU.AcceptChanges();
-                                       
-                                    }
+                                    //Thêm vào dòng hủy
+                                    drDelete["tthai_huy"] = 0;
+                                    drDelete["ngay_huy"] = DBNull.Value;
+                                    drDelete["nguoi_huy"] = "";
+                                    drDelete["lydo_huy"] = "";
+                                    drDelete["ma_httt_huy"] = "";
+                                    drDelete["ma_nganhang_huy"] = "";
+                                    m_dtTamung.ImportRow(drDelete);
+                                    m_dtTamung.AcceptChanges();
+                                    m_dtHuyTU.Rows.Remove(drDelete);
+                                    m_dtHuyTU.AcceptChanges();
+
                                 }
-                            
+                            }
+
                             SetControlStatus();
                         }
                         else
                         {
                             Utility.SetMsg(lblMsg, string.Format("Bạn cần chọn dòng tạm ứng cần xóa"), true);
+                        }
+                    }
+                }
+                if (e.Column.Key == "XOA")
+                {
+                    if (!Utility.Coquyen("TAMUNG_QUYEN_XOA"))
+                    {
+                        Utility.ShowMsg("Bạn không có quyền xóa các bản ghi hủy tạm ứng(TAMUNG_QUYEN_XOA). Vui lòng liên hệ quản trị để được cấp quyền");
+                        return;
+                    }
+                    if (Utility.AcceptQuestion("Bạn có chắc chắn muốn xóa hẳn các tạm ứng đã hủy này hay không?", "Xác nhận", true))
+                    {
+                      num=  new Delete().From(NoitruTamung.Schema)
+                            .Where(NoitruTamung.Columns.Id).IsEqualTo(Utility.Int64Dbnull(grdHuyTU.GetValue("id")))
+                            .Execute();
+                        DataRow drDelete = Utility.getCurrentDataRow(grdHuyTU);
+                        if (num>0 && drDelete != null)
+                        {
+                            Utility.Log(this.Name, globalVariables.UserName, string.Format("Xóa bản ghi tạm ứng của người bệnh id_benhnhan ={0}, PID={1}, số tiền ={2} thành công ", objLuotkham.IdBenhnhan.ToString(), objLuotkham.MaLuotkham, Utility.FormatCurrencyHIS(Utility.DecimaltoDbnull(grdHuyTU.GetValue("so_tien")))), newaction.Delete, this.GetType().Assembly.ManifestModule.Name);
+                            m_dtHuyTU.Rows.Remove(drDelete);
+                            m_dtHuyTU.AcceptChanges();
+
                         }
                     }
                 }
@@ -601,7 +633,8 @@ namespace VNS.HIS.UCs.Noitru
                     objTamung.IdGiuong = objLuotkham.IdGiuong;
                     objTamung.Noitru = (byte)(objLuotkham.TrangthaiNoitru <= 0 ? 0 : 1);
                     objTamung.KieuTamung = 0;
-                    objTamung.TuTrului = objTamung.Noitru == 0 ? true : chkTUtrului.Checked;
+                    objTamung.LoaiTamung = Utility.ByteDbnull(cbo_loaitamung.SelectedValue);
+                    objTamung.TuTrului = false;// objTamung.Noitru == 0 ? true : chkTUtrului.Checked;
                     objTamung.GhiChu = Utility.DoTrim(txtGhichu.Text);
                     objTamung.MotaThem = txtLydo.Text;
                     objTamung.IdTnv = Utility.Int32Dbnull(txtNguoithu.MyID, -1);
@@ -610,7 +643,8 @@ namespace VNS.HIS.UCs.Noitru
                     objTamung.MaPttt = Utility.sDbnull(cboPttt.SelectedValue, "-1");// txtPttt.myCode;
                     objTamung.MaNganhang = cboNganhang.Enabled ? Utility.sDbnull(cboNganhang.SelectedValue, "-1") : "-1"; // autoNganhang.Enabled ? autoNganhang.myCode : "-1";
                     objTamung.MaNguonTamung = autoNguonkiqui.myCode;
-                    objTamung.NguoiTao = globalVariables.UserName;
+                    objTamung.NguoiTao = txtNguoithu.MyCode;
+                    objTamung.MaTnv= txtNguoithu.MyCode;
                     objTamung.NgayTao = DateTime.Now;
                     objTamung.TrangThai = 0;
                     objTamung.IdGoi = -1;
@@ -618,6 +652,7 @@ namespace VNS.HIS.UCs.Noitru
                     objTamung.IsNew = true;
                     if (noitru_TamungHoanung.NoptienTamung(objTamung))
                     {
+                       
                         DataRow newDr = m_dtTamung.NewRow();
                         Utility.FromObjectToDatarow(objTamung, ref newDr);
                         newDr["sngay_tamung"] = dtpNgaythu.Value.ToString("dd/MM/yyyy");
@@ -637,6 +672,13 @@ namespace VNS.HIS.UCs.Noitru
                         m_dtTamung.Rows.Add(newDr);
                         m_dtTamung.AcceptChanges();
                         Utility.GotoNewRowJanus(grdTamung, NoitruTamung.Columns.Id, objTamung.Id.ToString());
+                        //Kiểm tra nếu hình thức thanh toán phân bổ thì hiển thị chức năng phân bổ
+                        List<string> lstPhanbo = THU_VIEN_CHUNG.Laygiatrithamsohethong("THANHTOAN_PTTT_BATBUOCPHANBO", false).Split(',').ToList<string>();
+                        //Check nếu chọn Pttt=phân bổ và số dòng phân bổ <1 thì tự động hiển thị form phân bổ
+                        if (lstPhanbo.Contains(cboPttt.SelectedValue.ToString()))
+                        {
+                            Phanbo();
+                        }
                         if (chkSaveAndPrint.Checked)
                             cmdIn_Click(cmdIn, e);
                         m_enAct = action.FirstOrFinished;
@@ -646,8 +688,9 @@ namespace VNS.HIS.UCs.Noitru
                 {
                     objTamung.SoTien = Utility.DecimaltoDbnull(txtSotien.Text);
                     objTamung.NgayTamung = dtpNgaythu.Value;
-                    objTamung.TuTrului = objTamung.Noitru == 0 ? true : chkTUtrului.Checked;
+                    objTamung.TuTrului = false;// objTamung.Noitru == 0 ? true : chkTUtrului.Checked;
                     objTamung.MotaThem = txtLydo.Text;
+                    objTamung.LoaiTamung = Utility.ByteDbnull(cbo_loaitamung.SelectedValue);
                     objTamung.GhiChu = Utility.DoTrim(txtGhichu.Text);
                     //objTamung.MotaThem = Utility.DoTrim(txtMotathem.Text);
                     objTamung.IdTnv = Utility.Int32Dbnull(txtNguoithu.MyID, -1);
@@ -744,6 +787,17 @@ namespace VNS.HIS.UCs.Noitru
                 txtNguoithu.Focus();
                 return false;
             }
+            //Kiểm tra nếu loại tạm ứng là bảo lãnh chi phí thì cần chọn đơn vị bảo lãnh kí quỹ
+            int Loai_tamung = Utility.Int32Dbnull(cbo_loaitamung.SelectedValue);
+            if(Loai_tamung==2)
+            {
+                if(autoNguonkiqui.myCode=="-1")
+                {
+                    Utility.SetMsg(lblMsg, string.Format("Bạn cần chọn nguồn kí quĩ bảo lãnh số tiền cho người bệnh"), true);
+                    autoNguonkiqui.Focus();
+                    return false;
+                }    
+            }    
             if (Utility.sDbnull(cboPttt.SelectedValue, "-1") == "-1")
             {
                 Utility.SetMsg(lblMsg, string.Format("Bạn phải chọn hình thức thanh toán"), true);
@@ -1084,7 +1138,7 @@ namespace VNS.HIS.UCs.Noitru
                         txtLydo.Enabled = true;
                         txtGhichu.Enabled = true;
                         txtNguoithu.Enabled = true;
-                        
+                        cbo_loaitamung.Enabled = true;
                         objTamung = null;
                         dtpNgaythu.Value = globalVariables.SysDate;
                         txtSotien.Text = "0";
@@ -1121,6 +1175,7 @@ namespace VNS.HIS.UCs.Noitru
                         txtLydo.Enabled = true;
                         txtGhichu.Enabled = true;
                         txtNguoithu.Enabled = true;
+                        cbo_loaitamung.Enabled = true;
                         txtSotien.Enabled = true;
                         autoNguonkiqui.Enabled = true;
                         cboPttt.Enabled = true;
@@ -1152,6 +1207,7 @@ namespace VNS.HIS.UCs.Noitru
                         txtLydo.Enabled = false;
                         txtGhichu.Enabled = false;
                         txtNguoithu.Enabled = false;
+                        cbo_loaitamung.Enabled = false;
                         txtSotien.Enabled = false;
                         autoNguonkiqui.Enabled = false;
                         cboPttt.Enabled = false;
@@ -1211,6 +1267,7 @@ namespace VNS.HIS.UCs.Noitru
                     txtGhichu.Clear();
                     txtNguoithu.SetCode("-1");
                     cboNganhang.SelectedIndex = -1;
+                    cbo_loaitamung.SelectedValue = THU_VIEN_CHUNG.Laygiatrimacdinh(dtLoaiTU);
                     cboPttt.SelectedIndex = -1;
                     //autoNganhang.SetCode("-1");
                     //txtPttt.SetCode("-1");
@@ -1229,6 +1286,7 @@ namespace VNS.HIS.UCs.Noitru
                         txtLydo.SetCode("-1");
                         txtGhichu.Clear();
                         txtNguoithu.SetCode("-1");
+                        cbo_loaitamung.SelectedValue = THU_VIEN_CHUNG.Laygiatrimacdinh(dtLoaiTU);
                         cboNganhang.SelectedIndex = -1;
                         cboPttt.SelectedIndex = -1;
                         autoNguonkiqui.SetCode("-1");
@@ -1240,6 +1298,7 @@ namespace VNS.HIS.UCs.Noitru
                         dtpNgaythu.Value = objTamung.NgayTamung.Value;
                         txtSotien.Text = objTamung.SoTien.ToString();
                         txtLydo._Text = objTamung.MotaThem;
+                        cbo_loaitamung.SelectedValue=Utility.sDbnull( objTamung.LoaiTamung );
                         txtGhichu.Text = objTamung.GhiChu;
                         txtNguoithu.SetId(objTamung.IdTnv);
                         chkTUtrului.Checked = Utility.Bool2Bool(objTamung.TuTrului);
@@ -1519,23 +1578,42 @@ namespace VNS.HIS.UCs.Noitru
                         return;
                     }
                 }
-                else//Kiểm tra phần nội trú
+                //else//Kiểm tra phần nội trú
+                //{
+                //    if (!globalVariables.isSuperAdmin)
+                //    {
+                //        if (objLuotkham.TrangthaiNoitru < 4)
+                //        {
+                //            Utility.ShowMsg("Chi phí KCB của người bệnh chưa được chuyển tài chính kế toán nên bạn không thể thực hiện hoàn ứng bằng tay");
+                //            return;
+                //        }
+                //    }
+                //}
+                foreach (GridEXRow row in grdTamung.GetCheckedRows())
                 {
-                    if (!globalVariables.isSuperAdmin)
+                    NoitruTamung objTU = NoitruTamung.FetchByID(Utility.Int64Dbnull(row.Cells["id"].Value) );
+                    if(objTU==null  )
                     {
-                        if (objLuotkham.TrangthaiNoitru < 4)
-                        {
-                            Utility.ShowMsg("Chi phí KCB của người bệnh chưa được chuyển tài chính kế toán nên bạn không thể thực hiện hoàn ứng bằng tay");
-                            return;
-                        }
+                        Utility.ShowMsg(string.Format("Dòng tạm ứng {0} không tồn tại. Vui lòng kiểm tra lại.", Utility.sDbnull(row.Cells["so_tien"].Value)));
+                        continue;
                     }
+                    if (objTU.IdThanhtoan>0)
+                    {
+                        Utility.ShowMsg(string.Format("Dòng tạm ứng {0} đã được hoàn ứng cho thanh toán {1}. Vui lòng kiểm tra lại.", Utility.sDbnull(row.Cells["so_tien"].Value), objTU.IdThanhtoan));
+                        continue;
+                    }
+                    if (objTU.TrangThai !=0)
+                    {
+                        Utility.ShowMsg(string.Format("Dòng tạm ứng {0} có trạng thái đã được hoàn ứng cho thanh toán {1}. Vui lòng kiểm tra lại.", Utility.sDbnull(row.Cells["so_tien"].Value), objTU.IdThanhtoan));
+                        continue;
+                    }
+                    string maphieu = THU_VIEN_CHUNG.SinhmaVienphi("HKQ");
+                    SPs.NoitruHoanung(objTU.Id, - 1l, maphieu, objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan, DateTime.Now,
+                        globalVariables.gv_intIDNhanvien, globalVariables.UserName,
+                        Utility.Int32Dbnull(objLuotkham.IdKhoanoitru, -1), Utility.Int64Dbnull(objLuotkham.IdRavien, -1),
+                        Utility.Int32Dbnull(objLuotkham.IdBuong, -1), Utility.Int32Dbnull(objLuotkham.IdGiuong, -1),
+                        (byte)(objLuotkham.TrangthaiNoitru > 0 ? 1 : 0), "TM", "").Execute();
                 }
-                string maphieu = THU_VIEN_CHUNG.SinhmaVienphi("HKQ");
-                SPs.NoitruHoanung(-1l, maphieu, objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan, DateTime.Now,
-                    globalVariables.gv_intIDNhanvien, globalVariables.UserName,
-                    Utility.Int32Dbnull(objLuotkham.IdKhoanoitru, -1), Utility.Int64Dbnull(objLuotkham.IdRavien, -1),
-                    Utility.Int32Dbnull(objLuotkham.IdBuong, -1), Utility.Int32Dbnull(objLuotkham.IdGiuong, -1),
-                    (byte)(objLuotkham.TrangthaiNoitru>0?1:0),"TM","").Execute();
 
             }
             catch (Exception ex)
@@ -1555,40 +1633,49 @@ namespace VNS.HIS.UCs.Noitru
                     Utility.ShowMsg("Bạn không có quyền hủy hoàn ứng (thanhtoan_huyhoanung). Vui lòng liên hệ bộ phận IT để được cấp quyền");
                     return;
                 }
-                NoitruTamung objHU = NoitruTamung.FetchByID(Utility.Int64Dbnull(grdHoanung.GetValue("id"), -1));
-                //Kiểm tra ngày hủy
-                int kcbThanhtoanSongayHuyHu =
-                    Utility.Int32Dbnull(
-                        THU_VIEN_CHUNG.Laygiatrithamsohethong("THANHTOAN_SONGAY_HUYHU", "0", true), 0);
-                var chenhlech =
-                    (int)Math.Ceiling((globalVariables.SysDate.Date - objHU.NgayTamung.Value.Date).TotalDays);
-                if (chenhlech > kcbThanhtoanSongayHuyHu)
+                foreach (GridEXRow row in grdTamung.GetCheckedRows())
                 {
-                    Utility.ShowMsg(
-                       string.Format("Ngày Hoàn ứng: {0}. Hệ thống không cho phép bạn hủy hoàn ứng khi đã quá {1} ngày. Cần liên hệ quản trị hệ thống để được trợ giúp", objHU.NgayTamung.Value.Date.ToString("dd/MM/yyyy"), kcbThanhtoanSongayHuyHu.ToString()));
-                    return;
-                }
+                    NoitruTamung objHU = NoitruTamung.FetchByID(Utility.Int64Dbnull(grdHoanung.GetValue("id"), -1));
+                    if (objHU.IdThanhtoan > 0)
+                    {
+                        Utility.ShowMsg("Dòng hoàn ứng bạn chọn được tạo bởi chức năng thanh toán/tất toán nên muốn hủy bạn cần hủy thanh toán.");
+                        return;
+                    }
+                    //Kiểm tra ngày hủy
+                    int kcbThanhtoanSongayHuyHu =
+                        Utility.Int32Dbnull(
+                            THU_VIEN_CHUNG.Laygiatrithamsohethong("THANHTOAN_SONGAY_HUYHU", "0", true), 0);
+                    var chenhlech =
+                        (int)Math.Ceiling((globalVariables.SysDate.Date - objHU.NgayTamung.Value.Date).TotalDays);
+                    if (chenhlech > kcbThanhtoanSongayHuyHu)
+                    {
+                        Utility.ShowMsg(
+                           string.Format("Ngày Hoàn ứng: {0}. Hệ thống không cho phép bạn hủy hoàn ứng khi đã quá {1} ngày. Cần liên hệ quản trị hệ thống để được trợ giúp", objHU.NgayTamung.Value.Date.ToString("dd/MM/yyyy"), kcbThanhtoanSongayHuyHu.ToString()));
+                        return;
+                    }
 
-                objLuotkham = Utility.getKcbLuotkham(objLuotkham);
-                ////Bỏ các dòng code dưới để cho phép hủy. Nếu cần có thể chọn thanh toán và hoàn ứng lại được
-                //if (v_bytNoitru == 0)//Đang được gọi từ form thanh toán ngoại trú
-                //{
-                //    GridEXRow currentRow = Utility.findthelastChild(grdHoanung.CurrentRow);
-                //    //Không cho phép hủy hoàn ứng với các bản ghi gắn với thanh toán
-                //    if (Utility.Int64Dbnull(currentRow.Cells["id_thanhtoan"].Value, -1) > 0)
-                //    {
-                //        Utility.ShowMsg("Bản tin bạn chọn hoàn ứng gắn với thanh toán nên không cho phép hủy tay. Cần hủy thanh toán để tự động hủy hoàn ứng");
-                //        return;
-                //    }
-                //}
-                //else// Nếu gọi từ nội trú thì kiểm tra đã thanh toán nội trú không cho phép hủy hoàn ứng
-                //{
-                //    if (objLuotkham.TrangthaiNoitru == 6)
-                //    {
-                //        Utility.ShowMsg("Bệnh nhân đã thanh toán nội trú nên bạn không được phép hủy hoàn ứng");
-                //        return;
-                //    }
-                SPs.NoitruHuyhoanung(objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan, objHU.IdThanhtoan, v_bytNoitru).Execute();
+                    objLuotkham = Utility.getKcbLuotkham(objLuotkham);
+                    ////Bỏ các dòng code dưới để cho phép hủy. Nếu cần có thể chọn thanh toán và hoàn ứng lại được
+                    //if (v_bytNoitru == 0)//Đang được gọi từ form thanh toán ngoại trú
+                    //{
+                    //    GridEXRow currentRow = Utility.findthelastChild(grdHoanung.CurrentRow);
+                    //    //Không cho phép hủy hoàn ứng với các bản ghi gắn với thanh toán
+                    //    if (Utility.Int64Dbnull(currentRow.Cells["id_thanhtoan"].Value, -1) > 0)
+                    //    {
+                    //        Utility.ShowMsg("Bản tin bạn chọn hoàn ứng gắn với thanh toán nên không cho phép hủy tay. Cần hủy thanh toán để tự động hủy hoàn ứng");
+                    //        return;
+                    //    }
+                    //}
+                    //else// Nếu gọi từ nội trú thì kiểm tra đã thanh toán nội trú không cho phép hủy hoàn ứng
+                    //{
+                    //    if (objLuotkham.TrangthaiNoitru == 6)
+                    //    {
+                    //        Utility.ShowMsg("Bệnh nhân đã thanh toán nội trú nên bạn không được phép hủy hoàn ứng");
+                    //        return;
+                    //    }
+
+                    SPs.NoitruHuyhoanung(objLuotkham.MaLuotkham, objLuotkham.IdBenhnhan, objHU.Id, objHU.IdThanhtoan, v_bytNoitru).Execute();
+                }
                 Utility.ShowMsg("Đã hủy hoàn ứng thành công");
                 LayLichsuTamung();
                 //}
@@ -1687,6 +1774,124 @@ namespace VNS.HIS.UCs.Noitru
             List<string> lstPTTT = THU_VIEN_CHUNG.Laygiatrithamsohethong("THANHTOAN_PTTT_CHONNGANHANG", false).Split(',').ToList<string>();
             cboNganhang.Enabled = lstPTTT.Contains(Utility.sDbnull( cboPttt.SelectedValue,"-1")) && m_enAct!=action.FirstOrFinished;
             if (!cboNganhang.Enabled) cboNganhang.SelectedIndex = -1;
+        }
+
+        private void cmdthemmoi_Click_1(object sender, EventArgs e)
+        {
+
+        }
+        int num = 0;
+        private void mnu_chuyentamung_sangnoitru_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!Utility.isValidGrid(grdTamung)) return;
+                NoitruTamung objTU = NoitruTamung.FetchByID(Utility.Int64Dbnull(grdTamung.GetValue("id")));
+                if (objTU != null)
+                {
+                    if (Utility.ByteDbnull(objTU.KieuTamung) == 0 && Utility.ByteDbnull(objTU.TrangThai) == 0)
+                    {
+                        num = new Update(NoitruTamung.Schema).Set(NoitruTamung.Columns.Noitru).EqualTo(1).Where(NoitruTamung.Columns.Id).IsEqualTo(objTU.Id).Execute();
+                        if (num >= 0)
+                        {
+                            Utility.Log(this.Name, globalVariables.UserName, string.Format("Chuyển tạm ứng về nội trú cho người bệnh id_benhnhan ={0}, PID={1}, số tiền ={2} thành công ", objLuotkham.IdBenhnhan.ToString(), objLuotkham.MaLuotkham, Utility.FormatCurrencyHIS(Utility.DecimaltoDbnull(objTU.SoTien))), newaction.Update, this.GetType().Assembly.ManifestModule.Name);
+                            Utility.ShowMsg(string.Format("Chuyển tạm ứng {0} về nội trú thành công. Nhấn OK để kết thúc", Utility.FormatCurrencyHIS(Utility.DecimaltoDbnull(objTU.SoTien))));
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+
+            }
+        }
+
+        private void mnu_tattoan_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!Utility.isValidGrid(grdTamung)) return;
+                NoitruTamung objTU = NoitruTamung.FetchByID(Utility.Int64Dbnull(grdTamung.GetValue("id")));
+                if (objTU != null)
+                {
+                    if (Utility.ByteDbnull(objTU.LoaiTamung) == 2 && Utility.ByteDbnull(objTU.TthaiTattoan) == 0)
+                    {
+                        frm_ChonngayDuyet _chonngay = new frm_ChonngayDuyet(objTU.NgayTamung.Value, false, "");
+                        if (_chonngay.ShowDialog() == DialogResult.OK)
+                        {
+                            num = new Update(NoitruTamung.Schema)
+                                .Set(NoitruTamung.Columns.NguoiTattoan).EqualTo(globalVariables.UserName)
+                                 .Set(NoitruTamung.Columns.TthaiTattoan).EqualTo(1)
+                                  .Set(NoitruTamung.Columns.NgayTattoan).EqualTo(_chonngay.ngay_xacnhan)
+                                .Where(NoitruTamung.Columns.Id).IsEqualTo(objTU.Id)
+                                .Execute();
+                            if (num >= 0)
+                            {
+                                Utility.Log(this.Name, globalVariables.UserName, string.Format("Tất toán tiền tạm ứng bảo lãnh id_benhnhan ={0}, PID={1}, số tiền ={2} thành công ", objLuotkham.IdBenhnhan.ToString(), objLuotkham.MaLuotkham, Utility.FormatCurrencyHIS(Utility.DecimaltoDbnull(objTU.SoTien))), newaction.Update, this.GetType().Assembly.ManifestModule.Name);
+                                Utility.ShowMsg(string.Format("Tất toán khoản tiền tạm ứng bảo lãnh {0} từ đối tác bảo hiểm thành công. ", Utility.FormatCurrencyHIS(Utility.DecimaltoDbnull(objTU.SoTien))));
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Utility.ShowMsg(string.Format("Bản ghi tạm ứng không đủ điều kiện xác nhận(Do đã được xác nhận hoặc không phải loại tạm ứng bảo lãnh) "));
+                    }    
+                }
+            }
+            catch (Exception ex)
+            {
+
+
+            }
+        }
+
+        private void mnu_huytattoan_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!Utility.isValidGrid(grdTamung)) return;
+                NoitruTamung objTU = NoitruTamung.FetchByID(Utility.Int64Dbnull(grdTamung.GetValue("id")));
+                if (objTU != null)
+                {
+                    if (Utility.ByteDbnull(objTU.LoaiTamung) == 2 && Utility.ByteDbnull(objTU.TthaiTattoan) == 1)
+                    {
+                       if(Utility.AcceptQuestion(string.Format("Bạn có chắc chắn muốn hủy tất toán tiền tạm ứng bảo lãnh từ đối tác {0} hay không?",Utility.sDbnull(grdTamung.GetValue("ten_nguon_tamung"))),"Xác nhận hủy",true))
+                        {     
+                            num = new Update(NoitruTamung.Schema)
+                                .Set(NoitruTamung.Columns.NguoiTattoan).EqualTo("")
+                                 .Set(NoitruTamung.Columns.NgayTattoan).EqualTo(null)
+                                  .Set(NoitruTamung.Columns.TthaiTattoan).EqualTo(0)
+                                .Where(NoitruTamung.Columns.Id).IsEqualTo(objTU.Id)
+                                .Execute();
+                            if (num >= 0)
+                            {
+                                Utility.Log(this.Name, globalVariables.UserName, string.Format("Hủy tất toán tạm ứng bảo lãnh id_benhnhan ={0}, PID={1}, số tiền ={2} thành công ", objLuotkham.IdBenhnhan.ToString(), objLuotkham.MaLuotkham, Utility.FormatCurrencyHIS(Utility.DecimaltoDbnull(objTU.SoTien))), newaction.Update, this.GetType().Assembly.ManifestModule.Name);
+                                Utility.ShowMsg(string.Format("Hủy tất toán tạm ứng bảo lãnh {0} từ đối tác bảo hiểm thành công. ", Utility.FormatCurrencyHIS(Utility.DecimaltoDbnull(objTU.SoTien))));
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Utility.ShowMsg(string.Format("Bản ghi tạm ứng không đủ điều kiện xác nhận(Do đã được xác nhận hoặc không phải loại tạm ứng bảo lãnh) "));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+
+            }
+        }
+
+        private void cmdxoa_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmdHoanung_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

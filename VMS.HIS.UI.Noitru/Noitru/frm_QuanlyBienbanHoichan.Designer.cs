@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_QuanlyBienbanHoichan));
-            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel1 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
-            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel2 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
-            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel3 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
+            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel4 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
+            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel5 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
+            Janus.Windows.UI.StatusBar.UIStatusBarPanel uiStatusBarPanel6 = new Janus.Windows.UI.StatusBar.UIStatusBarPanel();
             Janus.Windows.GridEX.GridEXLayout grdList_DesignTimeLayout = new Janus.Windows.GridEX.GridEXLayout();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.cmdInsert = new System.Windows.Forms.ToolStripButton();
@@ -253,6 +253,7 @@
             this.autohinhthuchc.RaiseEventEnter = false;
             this.autohinhthuchc.RaiseEventEnterWhenEmpty = false;
             this.autohinhthuchc.SelectedIndex = -1;
+            this.autohinhthuchc.SetDefaultWhenInit = true;
             this.autohinhthuchc.ShowCodeWithValue = false;
             this.autohinhthuchc.Size = new System.Drawing.Size(1091, 21);
             this.autohinhthuchc.splitChar = '@';
@@ -300,6 +301,7 @@
             this.autoLydohc.RaiseEventEnter = false;
             this.autoLydohc.RaiseEventEnterWhenEmpty = false;
             this.autoLydohc.SelectedIndex = -1;
+            this.autoLydohc.SetDefaultWhenInit = true;
             this.autoLydohc.ShowCodeWithValue = false;
             this.autoLydohc.Size = new System.Drawing.Size(1091, 21);
             this.autoLydohc.splitChar = '@';
@@ -413,7 +415,6 @@
             // 
             this.dtToDate.DropDownCalendar.Name = "";
             this.dtToDate.DropDownCalendar.VisualStyle = Janus.Windows.CalendarCombo.VisualStyle.Office2003;
-            this.dtToDate.Enabled = false;
             this.dtToDate.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtToDate.Location = new System.Drawing.Point(373, 26);
             this.dtToDate.Name = "dtToDate";
@@ -425,6 +426,8 @@
             // 
             // chkByDate
             // 
+            this.chkByDate.Checked = true;
+            this.chkByDate.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkByDate.Location = new System.Drawing.Point(10, 24);
             this.chkByDate.Name = "chkByDate";
             this.chkByDate.Size = new System.Drawing.Size(120, 27);
@@ -442,7 +445,6 @@
             // 
             this.dtFromDate.DropDownCalendar.Name = "";
             this.dtFromDate.DropDownCalendar.VisualStyle = Janus.Windows.CalendarCombo.VisualStyle.Office2003;
-            this.dtFromDate.Enabled = false;
             this.dtFromDate.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtFromDate.Location = new System.Drawing.Point(136, 26);
             this.dtFromDate.Name = "dtFromDate";
@@ -522,26 +524,26 @@
             this.uiStatusBar1.Font = new System.Drawing.Font("Arial", 9F);
             this.uiStatusBar1.Location = new System.Drawing.Point(0, 706);
             this.uiStatusBar1.Name = "uiStatusBar1";
-            uiStatusBarPanel1.BorderColor = System.Drawing.Color.Empty;
-            uiStatusBarPanel1.Key = "";
-            uiStatusBarPanel1.ProgressBarValue = 0;
-            uiStatusBarPanel1.Text = "F3: Tìm kiếm ";
-            uiStatusBarPanel2.BorderColor = System.Drawing.Color.Empty;
-            uiStatusBarPanel2.Key = "";
-            uiStatusBarPanel2.ProgressBarValue = 0;
-            uiStatusBarPanel2.Text = "Esc: Thoát";
-            uiStatusBarPanel3.Alignment = System.Windows.Forms.HorizontalAlignment.Right;
-            uiStatusBarPanel3.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Spring;
-            uiStatusBarPanel3.BorderColor = System.Drawing.Color.Empty;
-            uiStatusBarPanel3.Key = "";
-            uiStatusBarPanel3.ProgressBarValue = 0;
-            uiStatusBarPanel3.Text = "Với mã khám nhập các số cuối khác số 0 và nhấn Enter. Ví dụ tìm mã khám 2300012 t" +
+            uiStatusBarPanel4.BorderColor = System.Drawing.Color.Empty;
+            uiStatusBarPanel4.Key = "";
+            uiStatusBarPanel4.ProgressBarValue = 0;
+            uiStatusBarPanel4.Text = "F3: Tìm kiếm ";
+            uiStatusBarPanel5.BorderColor = System.Drawing.Color.Empty;
+            uiStatusBarPanel5.Key = "";
+            uiStatusBarPanel5.ProgressBarValue = 0;
+            uiStatusBarPanel5.Text = "Esc: Thoát";
+            uiStatusBarPanel6.Alignment = System.Windows.Forms.HorizontalAlignment.Right;
+            uiStatusBarPanel6.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Spring;
+            uiStatusBarPanel6.BorderColor = System.Drawing.Color.Empty;
+            uiStatusBarPanel6.Key = "";
+            uiStatusBarPanel6.ProgressBarValue = 0;
+            uiStatusBarPanel6.Text = "Với mã khám nhập các số cuối khác số 0 và nhấn Enter. Ví dụ tìm mã khám 2300012 t" +
     "hì chỉ cần gõ 12 và Enter.                                       ";
-            uiStatusBarPanel3.Width = 1236;
+            uiStatusBarPanel6.Width = 1236;
             this.uiStatusBar1.Panels.AddRange(new Janus.Windows.UI.StatusBar.UIStatusBarPanel[] {
-            uiStatusBarPanel1,
-            uiStatusBarPanel2,
-            uiStatusBarPanel3});
+            uiStatusBarPanel4,
+            uiStatusBarPanel5,
+            uiStatusBarPanel6});
             this.uiStatusBar1.Size = new System.Drawing.Size(1446, 23);
             this.uiStatusBar1.TabIndex = 359;
             this.uiStatusBar1.TabStop = false;
